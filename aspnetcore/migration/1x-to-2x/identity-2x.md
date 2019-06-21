@@ -303,13 +303,24 @@ There are two variations of Windows authentication:
 
 The first variation described above is unaffected by the 2.0 changes.
 
-The second variation described above is affected by the 2.0 changes. For example, you may be allowing anonymous users into your app at the IIS or [HTTP.sys](xref:fundamentals/servers/httpsys) layer but authorizing users at the Controller level. In this scenario, set the default scheme to `IISDefaults.AuthenticationScheme` in the `Startup.ConfigureServices` method:
+The second variation described above is affected by the 2.0 changes. For example, you may be allowing anonymous users into your app at the IIS or [HTTP.sys](xref:fundamentals/servers/httpsys) layer but authorizing users at the Controller level. In this scenario, set the default scheme to `HttpSysDefaults.AuthenticationScheme` or `IISDefaults.AuthenticationScheme` in the `Startup.ConfigureServices` method:
 
+For [Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/)
 ```csharp
+using Microsoft.AspNetCore.Server.HttpSys;
+
+services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
+```
+
+For [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/)
+```csharp
+using Microsoft.AspNetCore.Server.IISIntegration;
+
 services.AddAuthentication(IISDefaults.AuthenticationScheme);
 ```
 
-Failure to set the default scheme prevents the authorize request to challenge from working.
+Failure to set the default scheme prevents the authorize request to challenge from working with the following exception:
+> `System.InvalidOperationException`: No authenticationScheme was specified, and there was no DefaultChallengeScheme found.
 
 <a name="identity-cookie-options"></a>
 
