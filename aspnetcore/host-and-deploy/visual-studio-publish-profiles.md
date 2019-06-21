@@ -131,7 +131,7 @@ The **Publish** tab of the app capacities page is displayed. If the project lack
 
 To determine the most appropriate publish target, see [What publishing options are right for me](/visualstudio/ide/not-in-toc/web-publish-options).
 
-When the **Folder** publish target is selected, specify a folder path to store the published assets. The default folder path is *bin\\{PROJECT CONFIGURATION}\\{TARGET FRAMEWORK MONIKER}\publish\\*. For example, *bin\Release\netcoreapp2.2\publish\\*. Click the **Create Profile** button to finish.
+When the **Folder** publish target is selected, specify a folder path to store the published assets. The default folder path is *bin\\{PROJECT CONFIGURATION}\\{TARGET FRAMEWORK MONIKER}\publish\\*. For example, *bin\Release\netcoreapp2.2\publish\\*. Select the **Create Profile** button to finish.
 
 Once a publish profile is created, the **Publish** tab's content changes. The newly created profile appears in a drop-down list. Below the drop-down list, select **Create new profile** to create another new profile.
 
