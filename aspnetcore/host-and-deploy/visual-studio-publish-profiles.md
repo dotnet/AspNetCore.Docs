@@ -140,8 +140,6 @@ Visual Studio's publish tool produces a *Properties/PublishProfiles/{PROFILE NAM
 * Contains publish configuration settings and is consumed by the publishing process.
 * Can be modified to customize the build and publish process.
 
-`<LastUsedBuildConfiguration>` is a special global property and shouldn't be in any file that's imported during the build. For more information, see [MSBuild: how to set the configuration property](http://sedodream.com/2012/10/27/MSBuildHowToSetTheConfigurationProperty.aspx).
-
 When publishing to an Azure target, the *.pubxml* file contains your Azure subscription identifier. With that target type, adding this file to source control is discouraged. When publishing to a non-Azure target, it's safe to check in the *.pubxml* file.
 
 Sensitive information (like the publish password) is encrypted on a per user/machine level. It's stored in the *Properties/PublishProfiles/{PROFILE NAME}.pubxml.user* file. Because this file can store sensitive information, it shouldn't be checked into source control.
@@ -237,8 +235,8 @@ MSBuild file.
 In the preceding example:
 
 * The `<ExcludeApp_Data>` property is present merely to satisfy an XML schema requirement. The `<ExcludeApp_Data>` property has no effect on the publish process, even if there's an *App_Data* folder in the project root. The *App_Data* folder doesn't receive special treatment as it does in ASP.NET 4.x projects.
-* The `<LastUsedBuildConfiguration>` property is set to `Release`. When publishing from Visual Studio, the value of `<LastUsedBuildConfiguration>` is set using the value when the publish process is started. `<LastUsedBuildConfiguration>` is special and shouldn't be overridden in an imported MSBuild file. This property can, however, be overridden from the command line using one of the following approaches.
 
+* The `<LastUsedBuildConfiguration>` property is set to `Release`. When publishing from Visual Studio, the value of `<LastUsedBuildConfiguration>` is set using the value when the publish process is started. `<LastUsedBuildConfiguration>` is special and shouldn't be overridden in an imported MSBuild file. This property can, however, be overridden from the command line using one of the following approaches.
   * Using the .NET Core CLI:
 
     ```console
@@ -250,6 +248,8 @@ In the preceding example:
     ```console
     msbuild /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
     ```
+
+  For more information, see [MSBuild: how to set the configuration property](http://sedodream.com/2012/10/27/MSBuildHowToSetTheConfigurationProperty.aspx).
 
 ## Publish to an MSDeploy endpoint from the command line
 
