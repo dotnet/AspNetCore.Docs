@@ -36,7 +36,7 @@ When MSBuild or Visual Studio loads a project, the following high-level actions 
 
 When the project is loaded, the [MSBuild project items](/visualstudio/msbuild/common-msbuild-project-items) (files) are computed. The item type determines how the file is processed. By default, *.cs* files are included in the `Compile` item list. Files in the `Compile` item list are compiled.
 
-The `Content` item list contains files that are published in addition to the build outputs. By default, files matching the patterns `wwwroot\**`, `**\*.config`, and `**\*.json` are included in the `Content` item list. For example, the `wwwroot\**` [globbing pattern](https://gruntjs.com/configuring-tasks#globbing-patterns) matches all files in the *wwwroot* folder **and** its subfolders.
+The `Content` item list contains files that are published in addition to the build outputs. By default, files matching the patterns `wwwroot\**`, `**\*.config`, and `**\*.json` are included in the `Content` item list. For example, the `wwwroot\**` [globbing pattern](https://gruntjs.com/configuring-tasks#globbing-patterns) matches all files in the *wwwroot* folder and its subfolders.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -81,16 +81,16 @@ The `dotnet publish` command produces a variation of the following output:
 
 ```console
 C:\Webs\Web1>dotnet publish
-Microsoft (R) Build Engine version {version} for .NET Core
+Microsoft (R) Build Engine version {VERSION} for .NET Core
 Copyright (C) Microsoft Corporation. All rights reserved.
 
   Restore completed in 36.81 ms for C:\Webs\Web1\Web1.csproj.
-  Web1 -> C:\Webs\Web1\bin\Debug\{target-framework-moniker}\Web1.dll
-  Web1 -> C:\Webs\Web1\bin\Debug\{target-framework-moniker}\Web1.Views.dll
-  Web1 -> C:\Webs\Web1\bin\Debug\{target-framework-moniker}\publish\
+  Web1 -> C:\Webs\Web1\bin\Debug\{TARGET FRAMEWORK MONIKER}\Web1.dll
+  Web1 -> C:\Webs\Web1\bin\Debug\{TARGET FRAMEWORK MONIKER}\Web1.Views.dll
+  Web1 -> C:\Webs\Web1\bin\Debug\{TARGET FRAMEWORK MONIKER}\publish\
 ```
 
-The default publish folder is *bin\Debug\{target-framework-moniker}\publish\*. For example, *bin\Debug\netcoreapp2.2\publish\*.
+The default publish folder format is *bin\Debug\\{TARGET FRAMEWORK MONIKER}\publish\\*. For example, *bin\Debug\netcoreapp2.2\publish\\*.
 
 The following command specifies a `Release` build and the publishing directory:
 
@@ -126,12 +126,12 @@ The **Publish** tab of the app capacities page is displayed. If the project lack
 * Azure App Service on Linux
 * Azure Virtual Machines
 * Folder
-* IIS, FTP, etc. (for any web server)
+* IIS, FTP, Web Deploy (for any web server)
 * Import Profile
 
 To determine the most appropriate publish target, see [What publishing options are right for me](/visualstudio/ide/not-in-toc/web-publish-options).
 
-When the **Folder** publish target is selected, specify a folder path to store the published assets. The default folder path is *bin\{project-configuration}\{target-framework-moniker}\publish\*. For example, *bin\Release\netcoreapp2.2\publish\*. Click the **Create Profile** button to finish.
+When the **Folder** publish target is selected, specify a folder path to store the published assets. The default folder path is *bin\\{PROJECT CONFIGURATION}\\{TARGET FRAMEWORK MONIKER}\publish\\*. For example, *bin\Release\netcoreapp2.2\publish\\*. Click the **Create Profile** button to finish.
 
 Once a publish profile is created, the **Publish** tab's content changes. The newly created profile appears in a drop-down list. Below the drop-down list, select **Create new profile** to create another new profile.
 
@@ -377,11 +377,11 @@ The following `<Content>` element deletes the targeted files at the deployment s
 </ItemGroup>
 ```
 
-Using command-line deployment with the preceding `<Content>` element yields the following output:
+Using command-line deployment with the preceding `<Content>` element yields a variation of the following output:
 
 ```console
 MSDeployPublish:
-  Starting Web deployment task from source: manifest(C:\Webs\Web1\obj\Release\netcoreapp1.1\PubTmp\Web1.SourceManifest.
+  Starting Web deployment task from source: manifest(C:\Webs\Web1\obj\Release\{TARGET FRAMEWORK MONIKER}\PubTmp\Web1.SourceManifest.
   xml) to Destination: auto().
   Deleting file (Web11112\Views\Home\About1.cshtml).
   Deleting file (Web11112\Views\Home\About2.cshtml).
