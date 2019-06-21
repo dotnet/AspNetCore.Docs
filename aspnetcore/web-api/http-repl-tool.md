@@ -90,7 +90,8 @@ ui             Displays the swagger UI page, if available, in the default browse
 Use help <COMMAND> to learn more details about individual commands. e.g. `help get`
 ```
 
-The following sections outline the available CLI commands.
+Httprepl offers command completion. pressing <TAB> will iterate through the list of commands that complete the characters or API endpoint that you typed. The following sections outline the available CLI commands. 
+
 ## Connecting to the API service
 To connect to a service, run the command `dotnet httprepl <BASE URI>`. <BASE URI> is the base URI for the service. Example: `>dotnet httprepl http://localhost:5000`.
 Alternatively, you can run the navigation command `set base <BASE URI>` at any time while httprepl is running. Example: `(Disconnected)~ set base http://localhost:5000`.
@@ -125,7 +126,70 @@ http://localhost:5000/people~
 ```
 
 ## Testing the API service
-To test the API service you can issue GET, POST, PUT, DELETE, PATCH, HEAD and OPTIONS requests.
+To test the API service you can issue GET, POST, PUT, DELETE, PATCH, HEAD and OPTIONS [requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods).
+
+To issue a GET request, run the command `get`.
+```console
+http://localhost:5000~ get
+```
+The preceding command displays output similar to the following:
+```console
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 21 Jun 2019 03:38:45 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+[
+  {
+    "id": 0,
+    "name": "Scott Hunter"
+  },
+  {
+    "id": 1,
+    "name": "Scott Hanselman"
+  },
+  {
+    "id": 2,
+    "name": "Scott Guthrie"
+  }
+]
+
+
+http://localhost:5000/People~
+```
+
+You can also get a particular record.
+```console
+http://localhost:5000~ get 2
+```
+The preceding command displays output similar to the following:
+```console
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 21 Jun 2019 06:17:57 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+[
+  {
+    "id": 2,
+    "name": "Scott Guthrie"
+  }
+]
+
+
+http://localhost:5000/People~
+```
+
+
+To issue a POST request, run the command `post`.
+```console
+http://localhost:5000~ post
+```
+Issuing a post command will open an editor with the json template for you to enter the data to post. to use your prefered editor use the command `pref set editor.command.default '<EXECUTABLE>'`, where <EXECUTABLE> is the full path to the executable file for your editor. Example: `pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`
+  
+
 
 ## Additional resources
 * [REST API requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
