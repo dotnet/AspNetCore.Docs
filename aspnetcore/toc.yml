@@ -425,6 +425,8 @@
       uid: web-api/advanced/analyzers
     - name: Conventions
       uid: web-api/advanced/conventions
+    - name: Use the HTTP REPL tool
+      uid: web-api/http-repl-tool
 - name: Real-time apps
   displayName: signalr
   items:
