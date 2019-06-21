@@ -124,7 +124,7 @@ In the following code, the Delete `<button>` element calls the `DeleteItem` meth
 <input @bind="_id" />
 <button @onclick="@DeleteItem">Delete</button>
 
-@functions {
+@code {
     private long _id;
 
     private async Task DeleteItem() =>
