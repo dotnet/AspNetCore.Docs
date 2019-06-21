@@ -140,7 +140,7 @@ Visual Studio's publish tool produces a *Properties/PublishProfiles/{PROFILE NAM
 * Contains publish configuration settings and is consumed by the publishing process.
 * Can be modified to customize the build and publish process.
 
-`<LastUsedBuildConfiguration>` is special because it's a global property and shouldn't be in any file that's imported in the build. For more information, see [MSBuild: how to set the configuration property](http://sedodream.com/2012/10/27/MSBuildHowToSetTheConfigurationProperty.aspx).
+`<LastUsedBuildConfiguration>` is a special global property and shouldn't be in any file that's imported during the build. For more information, see [MSBuild: how to set the configuration property](http://sedodream.com/2012/10/27/MSBuildHowToSetTheConfigurationProperty.aspx).
 
 When publishing to an Azure target, the *.pubxml* file contains your Azure subscription identifier. With that target type, adding this file to source control is discouraged. When publishing to a non-Azure target, it's safe to check in the *.pubxml* file.
 
