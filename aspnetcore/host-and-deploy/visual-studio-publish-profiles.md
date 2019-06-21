@@ -284,7 +284,7 @@ msbuild "AzureWebApp.csproj"
     /p:Password=".........."
 ```
 
-A publish profile can also be used with the .NET Core CLI's [dotnet msbuild](/dotnet/core/tools/dotnet-msbuild) command from a Windows command prompt:
+A publish profile can also be used with the .NET Core CLI's [dotnet msbuild](/dotnet/core/tools/dotnet-msbuild) command from a Windows command shell:
 
 ```console
 dotnet msbuild "AzureWebApp.csproj"
