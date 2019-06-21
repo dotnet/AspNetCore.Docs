@@ -221,4 +221,4 @@ Issuing a `post` command opens an editor with the JSON template for you to enter
 ## Additional resources
 
 * [REST API requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
-* [HTTPRepl GitHub repository](https://github.com/aspnet/AspLabs)
+* [HTTP REPL GitHub repository](https://github.com/aspnet/AspLabs)
