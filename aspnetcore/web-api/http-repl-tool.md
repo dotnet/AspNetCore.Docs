@@ -10,7 +10,7 @@ uid: web-api/http-repl-tool
 ---
 # Use the HTTP REPL tool
 
-The HTTP REPL is a cross-platform tool that's supported everywhere .NET Core is supported.
+The HTTP REPL is a cross-platform tool that's supported everywhere .NET Core is supported. It is a light weight command line tool for making HTTP calls to test APIs and view their results.
 
 ## Prerequisites
 
