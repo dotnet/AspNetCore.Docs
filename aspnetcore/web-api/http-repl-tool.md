@@ -91,9 +91,12 @@ Use help <COMMAND> to learn more details about individual commands. e.g. `help g
 ```
 
 The following sections outline the available CLI commands.
-## <Command heading here>
+## connecting to a service
+To connect to a service, run the command `dotnet httprepl <BASE URI>`. <BASE URI> is the base URI for the service. Example: `>dotnet httprepl http://localhost:5000`.
+Alternatively, you can run the navigation command `set base <BASE URI>` at any time while httprepl is running. Example: `(Disconnected)~ set base http://localhost:5000`.
 
-
+## pointing to the swagger document for the service
+To properly inspect the service you need to set the relative URI to the swagger document for the API service. To so run the navigation command `set swagger <RELATIVE URI>`. Example: `http://localhost:5000~ set swagger /swagger/v1/swagger.json`.
 
 ## Additional resources
 
