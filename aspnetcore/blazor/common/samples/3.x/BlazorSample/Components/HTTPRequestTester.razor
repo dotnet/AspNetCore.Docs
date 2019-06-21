@@ -1,6 +1,4 @@
-@using System.Net
 @using System.Net.Http
-@using Microsoft.AspNetCore.Blazor.Http
 @using Microsoft.AspNetCore.Components
 @inject HttpClient Http
 @inject IUriHelper UriHelper
@@ -29,12 +27,12 @@
 
 <p>
     <div>URI:</div>
-    <input id="request-uri" type="text" bind="@_uri" size="120" />
+    <input id="request-uri" @bind="_uri" size="120" />
 </p>
 
 <p>
     <div>Method:</div>
-    <select id="request-method" bind="@_method">
+    <select id="request-method" @bind="_method">
         <option value="GET">GET</option>
         <option value="POST" selected>POST</option>
         <option value="PUT">PUT</option>
@@ -44,7 +42,7 @@
 
 <p>
     <div>Credentials:</div>
-    <select id="request-credentials" bind="@_credentials">
+    <select id="request-credentials" @bind="_credentials">
         <option value="include" selected>include</option>
         <option value="same-origin">same-origin</option>
         <option value="omit">omit</option>
@@ -53,7 +51,7 @@
 
 <p>
     <div>Request body:</div>
-    <textarea id="request-body" bind="@_requestBody"></textarea>
+    <textarea id="request-body" @bind="_requestBody"></textarea>
 </p>
 
 <p>
@@ -61,20 +59,20 @@
     @foreach (var header in _requestHeaders)
     {
         <div class="header-entry">
-            Name: <input bind="@header.Name" />
-            Value: <input bind="@header.Value" />
-            <button class="btn btn-danger" onclick="@(e => RemoveHeader(header))">remove</button>
+            Name: <input @bind="header.Name" />
+            Value: <input @bind="header.Value" />
+            <button class="btn btn-danger" @onclick="@(e => RemoveHeader(header))">remove</button>
         </div>
     }
-    <button class="btn btn-primary" id="add-header" onclick="@AddHeader">Add</button>
+    <button class="btn btn-primary" id="add-header" @onclick="@AddHeader">Add</button>
 </p>
 
 <p>
     <div>Request referrer:</div>
-    <input id="request-referrer" type="text" bind="@_requestReferrer" size="120" />
+    <input id="request-referrer" type="text" @bind="_requestReferrer" size="120" />
 </p>
 
-<button class="btn btn-success" id="send-request" onclick="@DoRequest">Request</button>
+<button class="btn btn-success" id="send-request" @onclick="@DoRequest">Request</button>
 
 @if (_responseStatusCode.HasValue)
 {
@@ -84,7 +82,7 @@
     <p><div>Headers:</div><textarea id="response-headers" readonly>@_responseHeaders</textarea></p>
 }
 
-@functions {
+@code {
     private string _uri = "https://localhost:10000/api/todo";
     private string _method = "POST";
     private string _requestBody = @"{""name"":""A New Todo Item"",""isComplete"":false}";

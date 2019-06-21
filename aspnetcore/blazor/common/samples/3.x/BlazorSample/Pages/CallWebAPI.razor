@@ -1,14 +1,11 @@
 @page "/CallWebAPI"
-@using System.IO
-@using System.Linq
-@using System.Threading.Tasks
 @inject HttpClient Http
 
 <h1>Call a Web API from Blazor</h1>
 
 <h2>Blazor Example</h2>
 
-<p>This example requires a running web API service based on the sample app for the <a href="https://docs.microsoft.com/aspnet/core/tutorials/first-web-api">Tutorial: Create a web API with ASP.NET Core MVC</a> topic. This Blazor sample app makes requests to the web API service at <code>https://localhost:10000/api/todo</code>. If a different service address is used, update the <code>ServiceEndpoint</code> constant value in the Razor component's <code>@@functions</code> block.</p>
+<p>This example requires a running web API service based on the sample app for the <a href="https://docs.microsoft.com/aspnet/core/tutorials/first-web-api">Tutorial: Create a web API with ASP.NET Core MVC</a> topic. This Blazor sample app makes requests to the web API service at <code>https://localhost:10000/api/todo</code>. If a different service address is used, update the <code>ServiceEndpoint</code> constant value in the Razor component's <code>@@code</code> block.</p>
 
 <p>The Blazor sample app makes a <a href="https://docs.microsoft.com/aspnet/core/security/cors">cross-origin resource sharing (CORS)</a> request from <code>http://localhost:5000</code> or <code>https://localhost:5001</code> to the web API service app. Add the following CORS middleware configuration to the web API's service's <code>Startup.Configure</code> method before it calls <code>UseMvc</code>:</p>
 
@@ -38,14 +35,14 @@ else
         <tbody>
             <tr id="editRow" style="display:@_editRowStyle">
                 <td class="text-center">
-                    <input type="checkbox" bind="@_editItem.IsComplete" />
+                    <input type="checkbox" @bind="_editItem.IsComplete" />
                 </td>
                 <td>
-                    <input type="text" bind="@_editItem.Name" />
+                    <input @bind="_editItem.Name" />
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-success" onclick="@(async () => await SaveItem())">Save</button>
-                    <button class="btn btn-danger" onclick="@(() => _editRowStyle = "none")">Cancel</button>
+                    <button class="btn btn-success" @onclick="@SaveItem">Save</button>
+                    <button class="btn btn-danger" @onclick="@(() => _editRowStyle = "none")">Cancel</button>
                 </td>
             </tr>
             @foreach (var item in _todoItems)
@@ -59,18 +56,18 @@ else
                     </td>
                     <td>@item.Name</td>
                     <td class="text-center">
-                        <button class="btn btn-warning" onclick="@(() => EditItem(item.Id))">Edit</button>
-                        <button class="btn btn-danger" onclick="@(async () => await DeleteItem(item.Id))">Delete</button>
+                        <button class="btn btn-warning" @onclick="@(() => EditItem(item.Id))">Edit</button>
+                        <button class="btn btn-danger" @onclick="@(async () => await DeleteItem(item.Id))">Delete</button>
                     </td>
                 </tr>
             }
             <tr id="addRow">
                 <td></td>
                 <td>
-                    <input type="text" bind="@_newItemName" placeholder="New Todo Item" />
+                    <input @bind="_newItemName" placeholder="New Todo Item" />
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-success" onclick="@(async () => await AddItem())">Add</button>
+                    <button class="btn btn-success" @onclick="@AddItem">Add</button>
                 </td>
             </tr>
         </tbody>
@@ -79,7 +76,7 @@ else
 
 <HTTPRequestTester />
 
-@functions {
+@code {
     private const string ServiceEndpoint = "https://localhost:10000/api/todo";
     private TodoItem[] _todoItems;
     private TodoItem _editItem = new TodoItem();
@@ -108,14 +105,14 @@ else
 
     private async Task SaveItem()
     {
-        await Http.PutJsonAsync(Path.Combine(ServiceEndpoint, _editItem.Id.ToString()), _editItem);
+        await Http.PutJsonAsync($"{ServiceEndpoint}/{_editItem.Id}", _editItem);
         await GetTodoItems();
         _editRowStyle = "none";
     }
 
     private async Task DeleteItem(long id)
     {
-        await Http.DeleteAsync(Path.Combine(ServiceEndpoint, id.ToString()));
+        await Http.DeleteAsync($"{ServiceEndpoint}/{id}");
         await GetTodoItems();
         _editRowStyle = "none";
     }
