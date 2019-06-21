@@ -1,10 +1,11 @@
 ---
 title: Use the HTTP REPL tool
 author: scottaddie
-description: Learn how to use the HTTP REPL .NET Core Global Tool to brownse and test an ASP.NET Core web API.
+description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and test an ASP.NET Core web API.
+monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/22/2019
+ms.date: 06/21/2019
 uid: web-api/http-repl-tool
 ---
 # Use the HTTP REPL tool
@@ -13,7 +14,7 @@ The HTTP REPL is a cross-platform tool that's supported everywhere .NET Core is 
 
 ## Prerequisites
 
-* .NET Core <3.0.100-preview6-012264> SDK or later
+* [.NET Core SDK 3.0.100](https://dotnet.microsoft.com/download/dotnet-core/3.0) or later
 
 ## Installation
 
@@ -27,19 +28,20 @@ A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool)
 
 ## Usage
 
-After successful installation of the tool, the following command can be used to start the httprepl:
+After successful installation of the tool, the following command can be used to start the HTTP REPL:
 
 ```console
 dotnet httprepl
 ```
 
-To view the available httprepl commands:
+To view the available HTTP REPL commands:
 
 ```console
 dotnet httprepl --help
 ```
 
 The preceding command displays output similar to the following:
+
 ```console
 Usage: dotnet httprepl [<BASE_ADDRESS>] [options]
 
@@ -90,21 +92,34 @@ ui             Displays the swagger UI page, if available, in the default browse
 Use help <COMMAND> to learn more details about individual commands. e.g. `help get`
 ```
 
-Httprepl offers command completion. pressing <TAB> will iterate through the list of commands that complete the characters or API endpoint that you typed. The following sections outline the available CLI commands. 
+The HTTP REPL offers command completion. Pressing `Tab` iterates through the list of commands that complete the characters or API endpoint that you typed. The following sections outline the available CLI commands. 
 
-## Connecting to the API service
-To connect to a service, run the command `dotnet httprepl <BASE URI>`. <BASE URI> is the base URI for the service. Example: `>dotnet httprepl http://localhost:5000`.
-Alternatively, you can run the navigation command `set base <BASE URI>` at any time while httprepl is running. Example: `(Disconnected)~ set base http://localhost:5000`.
+## Connect to the API service
 
-## Pointing to the swagger document for the API service
-To properly inspect the service you need to set the relative URI to the swagger document for the API service. To so run the navigation command `set swagger <RELATIVE URI>`. Example: `http://localhost:5000~ set swagger /swagger/v1/swagger.json`.
+Connect to a service by running the following command:
 
-## Navigating the API service
+```console
+dotnet httprepl <BASE URI>
+```
+
+`<BASE URI>` is the base URI for the service. For example, `dotnet httprepl http://localhost:5000`.
+
+Alternatively, you can run the navigation command `set base <BASE URI>` at any time while the HTTP REPL is running. For example, `(Disconnected)~ set base http://localhost:5000`.
+
+## Point to the Swagger document for the API service
+
+To properly inspect the service, set the relative URI to the Swagger document for the API service. To do so, run the navigation command `set swagger <RELATIVE URI>`. Example: `http://localhost:5000~ set swagger /swagger/v1/swagger.json`.
+
+## Navigate the API service
+
 To list the different endpoints at the current subtree of the API service, run the command `ls`.
+
 ```console
 http://localhot:5000~ ls
 ```
+
 The preceding command displays output similar to the following:
+
 ```console
 .        []
 People   [get|post]
@@ -113,26 +128,34 @@ Values   [get|post]
 http://localhost:5000/~
 ```
 
-
 To navigate to a different endpoint of the API service, run the command `cd`.
+
 ```console
 http://localhost:5000~ cd people
 ```
+
 The preceding command displays output similar to the following:
+
 ```console
 /people    [get|post]
 
 http://localhost:5000/people~
 ```
 
-## Testing the API service
-To test the API service you can issue GET, POST, PUT, DELETE, PATCH, HEAD and OPTIONS [requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods).
+## Test the API service
 
-To issue a GET request, run the command `get`.
+To test the API service, you can issue GET, POST, PUT, DELETE, PATCH, HEAD, and OPTIONS [HTTP requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods).
+
+### HTTP GET requests
+
+To issue an HTTP GET request, run the `get` command:
+
 ```console
 http://localhost:5000~ get
 ```
+
 The preceding command displays output similar to the following:
+
 ```console
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
@@ -159,11 +182,14 @@ Transfer-Encoding: chunked
 http://localhost:5000/People~
 ```
 
-You can also get a particular record.
+You can also retrieve a specific record:
+
 ```console
 http://localhost:5000~ get 2
 ```
+
 The preceding command displays output similar to the following:
+
 ```console
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
@@ -182,15 +208,17 @@ Transfer-Encoding: chunked
 http://localhost:5000/People~
 ```
 
+### HTTP POST requests
 
-To issue a POST request, run the command `post`.
+To issue an HTTP POST request, run the `post` command:
+
 ```console
 http://localhost:5000~ post
 ```
-Issuing a post command will open an editor with the json template for you to enter the data to post. to use your prefered editor use the command `pref set editor.command.default '<EXECUTABLE>'`, where <EXECUTABLE> is the full path to the executable file for your editor. Example: `pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`.
-  
 
+Issuing a `post` command opens an editor with the JSON template for you to enter the data to post. To use your preferred editor, use the command `pref set editor.command.default '<EXECUTABLE>'`, where `<EXECUTABLE>` is the full path to the editor's executable file. Example: `pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`.
 
 ## Additional resources
+
 * [REST API requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
 * [HTTPRepl GitHub repository](https://github.com/aspnet/AspLabs)
