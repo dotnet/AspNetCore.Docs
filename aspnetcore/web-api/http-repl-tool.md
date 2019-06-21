@@ -33,7 +33,7 @@ After successful installation of the tool, the following command can be used to 
 dotnet httprepl
 ```
 
-to view the available httprepl commands:
+To view the available httprepl commands:
 
 ```console
 dotnet httprepl --help
@@ -77,7 +77,7 @@ Shell Commands:
 Use these commands to interact with the REPL shell.
 
 clear          Removes all text from the shell.
-echo [on/off]  Turns request echoing on or off, show the request that was mode when using request commands.
+echo [on/off]  Turns request echoing on or off, show the request that was made when using request commands.
 exit           Exit the shell.
 
 REPL Customization Commands:
@@ -91,13 +91,37 @@ Use help <COMMAND> to learn more details about individual commands. e.g. `help g
 ```
 
 The following sections outline the available CLI commands.
-## connecting to a service
+## Connecting to the API service
 To connect to a service, run the command `dotnet httprepl <BASE URI>`. <BASE URI> is the base URI for the service. Example: `>dotnet httprepl http://localhost:5000`.
 Alternatively, you can run the navigation command `set base <BASE URI>` at any time while httprepl is running. Example: `(Disconnected)~ set base http://localhost:5000`.
 
-## pointing to the swagger document for the service
+## Pointing to the swagger document for the API service
 To properly inspect the service you need to set the relative URI to the swagger document for the API service. To so run the navigation command `set swagger <RELATIVE URI>`. Example: `http://localhost:5000~ set swagger /swagger/v1/swagger.json`.
 
+## Navigating the API service
+To list the different endpoints at the current subtree of the API service, run the command `ls`.
+```console
+http://localhot:5000~ ls
+```
+The preceding command displays output similar to the following:
+```console
+.        []
+People   [get|post]
+Values   [get|post]
+
+http://localhost:5000/~
+```
+
+To navigate to a different endpoint of the API service, run the command `cd`.
+```console
+http://localhost:5000~ cd people
+```
+The preceding command displays output similar to the following:
+```console
+/people    [get|post]
+
+http://localhost:5000/people~
+```
 ## Additional resources
 
 * [HTTPRepl GitHub repository](https://github.com/aspnet/AspLabs)
