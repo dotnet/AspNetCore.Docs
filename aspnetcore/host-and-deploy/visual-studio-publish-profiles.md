@@ -64,7 +64,7 @@ When an ASP.NET Core project references `Microsoft.NET.Sdk.Web` in the project f
 
 ## Basic command-line publishing
 
-Command-line publishing works on all .NET Core-supported platforms and doesn't require Visual Studio. In the following samples, the .NET Core CLI's [dotnet publish](/dotnet/core/tools/dotnet-publish) command is run from the project directory (which contains the *.csproj* file). If the project folder isn't the current working directory, explicitly pass in the project file path. For example:
+Command-line publishing works on all .NET Core-supported platforms and doesn't require Visual Studio. In the following examples, the .NET Core CLI's [dotnet publish](/dotnet/core/tools/dotnet-publish) command is run from the project directory (which contains the *.csproj* file). If the project folder isn't the current working directory, explicitly pass in the project file path. For example:
 
 ```console
 dotnet publish C:\Webs\Web1
