@@ -128,5 +128,5 @@ http://localhost:5000/people~
 To test the API service you can issue GET, POST, PUT, DELETE, PATCH, HEAD and OPTIONS requests.
 
 ## Additional resources
-* [REST API requests] (https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
+* [REST API requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
 * [HTTPRepl GitHub repository](https://github.com/aspnet/AspLabs)
