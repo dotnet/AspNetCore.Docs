@@ -187,7 +187,7 @@ To issue a POST request, run the command `post`.
 ```console
 http://localhost:5000~ post
 ```
-Issuing a post command will open an editor with the json template for you to enter the data to post. to use your prefered editor use the command `pref set editor.command.default '<EXECUTABLE>'`, where <EXECUTABLE> is the full path to the executable file for your editor. Example: `pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`
+Issuing a post command will open an editor with the json template for you to enter the data to post. to use your prefered editor use the command `pref set editor.command.default '<EXECUTABLE>'`, where <EXECUTABLE> is the full path to the executable file for your editor. Example: `pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`.
   
 
 
