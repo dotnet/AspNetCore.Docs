@@ -108,7 +108,7 @@ Alternatively, you can run the navigation command `set base <BASE URI>` at any t
 
 ## Point to the Swagger document for the API service
 
-To properly inspect the service, set the relative URI to the Swagger document for the API service. To do so, run the navigation command `set swagger <RELATIVE URI>`. Example: `http://localhost:5000~ set swagger /swagger/v1/swagger.json`.
+To properly inspect the service, set the relative URI to the Swagger document for the API service. To do so, run the navigation command `set swagger <RELATIVE URI>`. For example, `http://localhost:5000~ set swagger /swagger/v1/swagger.json`.
 
 ## Navigate the API service
 
@@ -216,7 +216,7 @@ To issue an HTTP POST request, run the `post` command:
 http://localhost:5000~ post
 ```
 
-Issuing a `post` command opens an editor with the JSON template for you to enter the data to post. To use your preferred editor, use the command `pref set editor.command.default '<EXECUTABLE>'`, where `<EXECUTABLE>` is the full path to the editor's executable file. Example: `pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`.
+Issuing a `post` command opens an editor with the JSON template for you to enter the data to post. To use your preferred editor, use the command `pref set editor.command.default '<EXECUTABLE>'`, where `<EXECUTABLE>` is the full path to the editor's executable file. For example, `pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`.
 
 ## Additional resources
 
