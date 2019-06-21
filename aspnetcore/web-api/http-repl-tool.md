@@ -112,6 +112,7 @@ Values   [get|post]
 http://localhost:5000/~
 ```
 
+
 To navigate to a different endpoint of the API service, run the command `cd`.
 ```console
 http://localhost:5000~ cd people
@@ -122,6 +123,10 @@ The preceding command displays output similar to the following:
 
 http://localhost:5000/people~
 ```
-## Additional resources
 
+## Testing the API service
+To test the API service you can issue GET, POST, PUT, DELETE, PATCH, HEAD and OPTIONS requests.
+
+## Additional resources
+* [REST API requests] (https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
 * [HTTPRepl GitHub repository](https://github.com/aspnet/AspLabs)
