@@ -48,7 +48,7 @@ ASP.NET Core 2.x can target .NET Core or .NET Framework. ASP.NET Core apps targe
 
 ASP.NET Core 2.x is supported on .NET Framework versions that implement .NET Standard 2.0:
 
-* .NET Framework 4.7.1 and later is strongly recommended.
+* .NET Framework latest version is strongly recommended.
 * .NET Framework 4.6.1 and later.
 
 ASP.NET Core 3.0 and later will only run on .NET Core. For more details regarding this change, see [A first look at changes coming in ASP.NET Core 3.0](https://blogs.msdn.microsoft.com/webdev/2018/10/29/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
