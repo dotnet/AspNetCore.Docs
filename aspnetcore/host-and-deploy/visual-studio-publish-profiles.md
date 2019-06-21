@@ -295,7 +295,7 @@ dotnet msbuild "AzureWebApp.csproj"
 ```
 
 > [!IMPORTANT]
-> The `dotnet msbuild` command is cross-platform and can compile ASP.NET Core apps on macOS and Linux. However, MSBuild on macOS and Linux isn't capable of deploying an app to Azure or other MSDeploy endpoint.
+> The `dotnet msbuild` command is a cross-platform command and can compile ASP.NET Core apps on macOS and Linux. However, MSBuild on macOS and Linux isn't capable of deploying an app to Azure or other MSDeploy endpoints.
 
 ## Set the environment
 
