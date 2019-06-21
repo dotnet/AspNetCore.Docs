@@ -4,7 +4,7 @@ author: zuckerthoben
 description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core web API.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/30/2018
+ms.date: 06/21/2019
 uid: tutorials/get-started-with-nswag
 ---
 # Get started with NSwag and ASP.NET Core
@@ -85,13 +85,13 @@ dotnet add TodoApi.csproj package NSwag.AspNetCore
 
 ## Add and configure Swagger middleware
 
-Add and configure Swagger in your ASP.NET Core app by performing the following steps in the `Startup` class:
+Add and configure Swagger in your ASP.NET Core app by performing the following steps:
 
-* In the `ConfigureServices` method, register the required Swagger services:
+* In the `Startup.ConfigureServices` method, register the required Swagger services:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_ConfigureServices&highlight=8)]
 
-* In the `Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI:
+* In the `Startup.Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=6-7)]
 
