@@ -218,6 +218,120 @@ http://localhost:5000~ post
 
 Issuing a `post` command opens an editor with the JSON template for you to enter the data to post. To use your preferred editor, use the command `pref set editor.command.default '<EXECUTABLE>'`, where `<EXECUTABLE>` is the full path to the editor's executable file. For example, `pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`.
 
+### HTTP PUT requests
+To issue an HTTP PUT request, run the `put` command on an endpoint that supports it:
+
+```console
+http://localhost:5000/~ cd Values
+/Values    [get|post]
+
+http://localhost:5000/Values~ ls
+.      [get|post]
+..     []
+{id}   [get|put|delete]
+
+http://localhost:5000/Values~ get
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Sat, 22 Jun 2019 00:07:32 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+[
+  {
+    "id": 0,
+    "data": "Apple"
+  },
+  {
+    "id": 1,
+    "data": "Orange"
+  },
+  {
+    "id": 2,
+    "data": "Strawberry"
+  }
+]
+
+
+http://localhost:5000/Values~ put 1
+```
+Issuing a `put` command opens an editor for you to enter the values to put. To use your preferred editor, use the command `pref set editor.command.default '<EXECUTABLE>'`, where `<EXECUTABLE>` is the full path to the editor's executable file. For example, `pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`.
+
+```console
+[main 2019-06-22T00:08:07.236Z] update#setState idle
+HTTP/1.1 200 OK
+Content-Length: 0
+Date: Sat, 22 Jun 2019 00:08:16 GMT
+Server: Kestrel
+```
+You can then Issue a `get` command to see how these values changed after your `put`. For example, if you typed "Cheery" in the editor, a `get` would return the following:
+
+```console
+http://localhost:5000/Values~ get
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Sat, 22 Jun 2019 00:08:20 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+[
+  {
+    "id": 0,
+    "data": "Apple"
+  },
+  {
+    "id": 1,
+    "data": "Cherry"
+  },
+  {
+    "id": 2,
+    "data": "Strawberry"
+  }
+]
+
+
+http://localhost:5000/Values~ 
+```
+
+### HTTP DELETE requests
+To issue an HTTP DELETE request, run the `delete` command on an endpoint that supports it:
+```console
+http://localhost:5000/Values~ delete 1
+```
+The preceding command displays output similar to the following:
+```console
+HTTP/1.1 200 OK
+Content-Length: 0
+Date: Sat, 22 Jun 2019 00:16:27 GMT
+Server: Kestrel
+```
+
+
+You can then Issue a `get` command to see how these values changed after your `delete`. In this example, a `get` would return the following:
+
+```console
+http://localhost:5000/Values~ get
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Sat, 22 Jun 2019 00:16:30 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+[
+  {
+    "id": 0,
+    "data": "Apple"
+  },
+  {
+    "id": 2,
+    "data": "Strawberry"
+  }
+]
+
+
+http://localhost:5000/Values~
+```
+
 ## Additional resources
 
 * [REST API requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
