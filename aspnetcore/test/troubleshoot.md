@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Understand and troubleshoot warnings and errors with ASP.NET Core projects.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/13/2019
+ms.date: 06/19/2019
 uid: test/troubleshoot
 ---
 # Troubleshoot ASP.NET Core projects
@@ -21,11 +21,11 @@ The following links provide troubleshooting guidance:
 
 ## .NET Core SDK warnings
 
-### Both the 32 bit and 64 bit versions of the .NET Core SDK are installed
+### Both the 32-bit and 64-bit versions of the .NET Core SDK are installed
 
 In the **New Project** dialog for ASP.NET Core, you may see the following warning:
 
-> Both 32 and 64 bit versions of the .NET Core SDK are installed. Only templates from the 64 bit version(s) installed at 'C:\\Program Files\\dotnet\\sdk\\' will be displayed.
+> Both 32-bit and 64-bit versions of the .NET Core SDK are installed. Only templates from the 64-bit versions installed at 'C:\\Program Files\\dotnet\\sdk\\' are displayed.
 
 This warning appears when both 32-bit (x86) and 64-bit (x64) versions of the [.NET Core SDK](https://www.microsoft.com/net/download/all) are installed. Common reasons both versions may be installed include:
 
@@ -39,7 +39,7 @@ Uninstall the 32-bit .NET Core SDK to prevent this warning. Uninstall from **Con
 
 In the **New Project** dialog for ASP.NET Core, you may see the following warning:
 
-> The .NET Core SDK is installed in multiple locations. Only templates from the SDK(s) installed at 'C:\\Program Files\\dotnet\\sdk\\' will be displayed.
+> The .NET Core SDK is installed in multiple locations. Only templates from the SDKs installed at 'C:\\Program Files\\dotnet\\sdk\\' are displayed.
 
 You see this message when you have at least one installation of the .NET Core SDK in a directory outside of *C:\\Program Files\\dotnet\\sdk\\*. Usually this happens when the .NET Core SDK has been deployed on a machine using copy/paste instead of the MSI installer.
 
