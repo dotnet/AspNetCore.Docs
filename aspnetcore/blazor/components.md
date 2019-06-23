@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/12/2019
+ms.date: 06/16/2019
 uid: blazor/components
 ---
 # Create and use Razor components
@@ -139,13 +139,13 @@ Using `@bind` with a `CurrentValue` property (`<input @bind="CurrentValue" />`) 
 
 When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `@bind` handles a few cases where type conversions are performed. In principle, `@bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-In addition to `onchange`, the property can be bound using other events like `oninput` by adding a `@bind` attribute with an `event` parameter:
+In addition to handling `onchange` events with `@bind` syntax, a property or field can be bound using other events by specifying an `@bind-value` attribute with an `event` parameter. The following example binds the `CurrentValue` property for the `oninput` event:
 
 ```cshtml
-<input type="text" @bind-value="@CurrentValue" @bind-value:event="oninput" />
+<input @bind-value="CurrentValue" @bind-value:event="oninput" />
 ```
 
-Unlike `onchange`, `oninput` fires for every character that is input into the text box.
+Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
 **Format strings**
 
@@ -299,13 +299,24 @@ Event handlers can also be asynchronous and return a <xref:System.Threading.Task
 
 For some events, event-specific event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
 
-The list of supported event arguments is:
+Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) are shown in the following table.
 
-* UIEventArgs
-* UIChangeEventArgs
-* UIKeyboardEventArgs
-* UIMouseEventArgs
+| Event | Class |
+| ----- | ----- |
+| Clipboard | `UIClipboardEventArgs` |
+| Drag  | `UIDragEventArgs` &ndash; `DataTransfer` is used to hold the dragged data during a drag and drop operation and may hold one or more `UIDataTransferItem`. `UIDataTransferItem` represents one drag data item. |
+| Error | `UIErrorEventArgs` |
+| Focus | `UIFocusEventArgs` &ndash; Doesn't include support for `relatedTarget`. |
+| `<input>` change | `UIChangeEventArgs` |
+| Keyboard | `UIKeyboardEventArgs` |
+| Mouse | `UIMouseEventArgs` |
+| Mouse pointer | `UIPointerEventArgs` |
+| Mouse wheel | `UIWheelEventArgs` |
+| Progress | `UIProgressEventArgs` |
+| Touch | `UITouchEventArgs` &ndash; `UITouchPoint` represents a single contact point on a touch-sensitive device. |
 
+For information on the properties and event handling behavior of the events in the preceding table, see [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) in the reference source.
+  
 Lambda expressions can also be used:
 
 ```cshtml

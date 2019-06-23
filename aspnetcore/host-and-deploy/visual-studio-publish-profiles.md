@@ -120,7 +120,7 @@ Create a publish profile in Visual Studio by choosing one of the following paths
 * Right-click the project in **Solution Explorer** and select **Publish**.
 * Select **Publish {PROJECT NAME}** from the **Build** menu.
 
-The **Publish** tab of the app capacities page is displayed. If the project lacks a publish profile, the **Pick a publish target** page is displayed. You're asked to select one of the following publish targets:
+The **Publish** tab of the app capabilities page is displayed. If the project lacks a publish profile, the **Pick a publish target** page is displayed. You're asked to select one of the following publish targets:
 
 * Azure App Service
 * Azure App Service on Linux
