@@ -8,11 +8,22 @@ uid: security/authentication/social/social-without-identity
 ---
 # Use social sign-in provider authentication without ASP.NET Core Identity
 
-This sample provides the minimum code required to use [social authentication](xref:security/authentication/social/index) with an ASP.NET Core web app. This is not a complete sample, it doesn't contain:
+<xref:security/authentication/social/index> describes how to set up an ASP.NET Core app to enable users to sign in using OAuth 2.0 with credentials from external authentication providers. The described approach uses ASP.NET Core Identity as a full-featured authentication provider.
 
-* Sign-in and sign-out UI
-* Other UI expected in an an authenticated web app.
+This tutorial demonstrates how to use an external authentication provider without ASP.NET Core Identity. This is useful for apps that do not require all of the features of ASP.NET Core Identity, but still require integration with a trusted external authentication provider.
 
+This tutorial uses [Google authentication](xref:security/authentication/google-logins) for authenticating users, shifting many of the complexities of managing the sign-in process over to Google. To integrate with a different external authentication provider, see the following:
+
+* [Facebook authentication](xref:security/authentication/facebook-logins)
+* [Microsoft authentication](xref:security/authentication/microsoft-logins)
+* [Twitter authentication](xref:security/authentication/twitter-logins)
+* [Other providers](xref:security/authentication/otherlogins)
+
+<!--
+TODO: Call out that the instructions use Identity?
+-->
+
+<!--
 ## Update template generated code
 
 The sample app is created with the following command:
@@ -44,3 +55,4 @@ Enable authentication in `Configure`:
 [!code-csharp[](social-without-identity/sample/Pages/Index.cshtml.cs?name=snippet&highlight=7-11)]
 
 [!code-csharp[](social-without-identity/sample/Pages/Privacy.cshtml.cs?name=snippet&highlight=1)]
+-->
