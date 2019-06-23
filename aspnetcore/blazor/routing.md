@@ -1,14 +1,14 @@
 ---
-title: Blazor routing
+title: ASP.NET Core Blazor routing
 author: guardrex
 description: Learn how to route requests in apps and about the NavLink component.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2019
+ms.date: 06/14/2019
 uid: blazor/routing
 ---
-# Blazor routing
+# ASP.NET Core Blazor routing
 
 By [Luke Latham](https://github.com/guardrex)
 
