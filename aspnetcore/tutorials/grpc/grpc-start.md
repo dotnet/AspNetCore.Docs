@@ -118,6 +118,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 ## [Visual Studio](#tab/visual-studio)
 
+* Open a second instance of Visual Studio.
 * Select **File** > **New** > **Project** from the menu bar.
 * In the **Create a new project** dialog, select **Console App (.NET Core)**.
 * Select **Next**
@@ -145,7 +146,7 @@ Follow the instructions [here](/dotnet/core/tutorials/using-on-mac-vs-full-solut
 
 ### Add required packages
 
-Add the following packages to the gRPC client project:
+The gRPC client project requires the following packages:
 
 * [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client), which contains the .NET Core client.
 * [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/), which contains protobuf message APIs for C#.
@@ -202,7 +203,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
   # [Visual Studio](#tab/visual-studio) 
 
-  Right-click the project and select the **Edit GrpcGreeterClient.csproj**.
+  Right-click the project and select **Edit Project File**.
 
   # [Visual Studio Code](#tab/visual-studio-code) 
 
@@ -214,7 +215,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
   ---
 
-* Add the **greet.proto** file to the `<Protobuf>` item group of the GrpcGreeterClient project file:
+* Add an item group with a `<Protobuf>` element that refers to the **greet.proto** file:
 
   ```XML
   <ItemGroup>
@@ -222,11 +223,9 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
   </ItemGroup>
   ```
 
-Build the client project to trigger the generation of the C# client assets.
-
 ### Create the Greeter client
 
-Build the project to create the types in the **Greeter** namespace. The `Greeter` types are generated automatically by the build process.
+Build the project to create the types in the `GrpcGreeter` namespace. The `GrpcGreeter` types are generated automatically by the build process.
 
 Update the gRPC client *Program.cs* file with the following code:
 

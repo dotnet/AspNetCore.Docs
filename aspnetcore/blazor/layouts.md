@@ -1,14 +1,14 @@
 ---
-title: Blazor layouts
+title: ASP.NET Core Blazor layouts
 author: guardrex
 description: Learn how to create reusable layout components for Blazor apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/24/2019
+ms.date: 06/14/2019
 uid: blazor/layouts
 ---
-# Blazor layouts
+# ASP.NET Core Blazor layouts
 
 By [Rainer Stropek](https://www.timecockpit.com)
 

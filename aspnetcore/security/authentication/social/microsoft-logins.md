@@ -53,7 +53,7 @@ Link sensitive settings like Microsoft `ClientId` and `ClientSecret` to your app
 
 ## Configure Microsoft Account Authentication
 
-Add the Microsoft Account service in the `ConfigureServices` method in *Startup.cs* file:
+Add the Microsoft Account service to `Startup.ConfigureServices`:
 
 [!code-csharp[](~/security/authentication/social/social-code/StartupMS.cs?name=snippet&highlight=10-14)]
 
