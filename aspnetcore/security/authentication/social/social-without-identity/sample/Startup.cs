@@ -26,7 +26,6 @@ namespace WebApp1
         #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-
             services
                 .AddAuthentication(options =>
                 {
@@ -65,7 +64,7 @@ namespace WebApp1
             app.UseAuthentication();
 
             app.UseMvc();
-        }       
+        }
+        #endregion
     }
-    #endregion
 }

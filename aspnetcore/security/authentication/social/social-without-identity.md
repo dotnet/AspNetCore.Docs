@@ -41,8 +41,6 @@ Enable authentication in `Configure`:
 
 ## Update the Index and Privacy pages
 
-[!code-csharp[](social-without-identity/sample/Pages/Index.cshtml.cs?highlight=10-16)]
+[!code-csharp[](social-without-identity/sample/Pages/Index.cshtml.cs?name=snippet&highlight=7-11)]
 
-[!code-csharp[](social-without-identity/sample/Pages/Index.cshtml.cs?highlight=18-22)]
-
-[!code-csharp[](social-without-identity/sample/Pages/Privacy.cshtml.cs?highlight=6)]
+[!code-csharp[](social-without-identity/sample/Pages/Privacy.cshtml.cs?name=snippet&highlight=1)]
