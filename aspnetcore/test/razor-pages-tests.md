@@ -60,7 +60,7 @@ The test app is a console app inside the *tests/RazorPagesTestSample.Tests* fold
 | Test app folder | Description |
 | --------------- | ----------- |
 | *UnitTests*     | <ul><li>*DataAccessLayerTest.cs* contains the unit tests for the DAL.</li><li>*IndexPageTests.cs* contains the unit tests for the Index page model.</li></ul> |
-| *Utilities*     | Contains the `TestingDbContextOptions` method used to create new database context options for each DAL unit test so that the database is reset to its baseline condition for each test. |
+| *Utilities*     | Contains the `TestDbContextOptions` method used to create new database context options for each DAL unit test so that the database is reset to its baseline condition for each test. |
 
 The test framework is [xUnit](https://xunit.github.io/). The object mocking framework is [Moq](https://github.com/moq/moq4).
 
@@ -87,14 +87,14 @@ using (var db = new AppDbContext(optionsBuilder.Options))
 }
 ```
 
-The problem with this approach is that each test receives the database in whatever state the previous test left it. This can be problematic when trying to write atomic unit tests that don't interfere with each other. To force the `AppDbContext` to use a new database context for each test, supply a `DbContextOptions` instance that's based on a new service provider. The test app shows how to do this using its `Utilities` class method `TestingDbContextOptions` (*tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs*):
+The problem with this approach is that each test receives the database in whatever state the previous test left it. This can be problematic when trying to write atomic unit tests that don't interfere with each other. To force the `AppDbContext` to use a new database context for each test, supply a `DbContextOptions` instance that's based on a new service provider. The test app shows how to do this using its `Utilities` class method `TestDbContextOptions` (*tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs*):
 
 [!code-csharp[](razor-pages-tests/samples/2.x/tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs?name=snippet1)]
 
 Using the `DbContextOptions` in the DAL unit tests allows each test to run atomically with a fresh database instance:
 
 ```csharp
-using (var db = new AppDbContext(Utilities.TestingDbContextOptions()))
+using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 {
     // Use the db here in the unit test.
 }
