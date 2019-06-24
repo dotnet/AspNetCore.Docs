@@ -1,5 +1,4 @@
-@using System.Net.Http
-@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Blazor.Http
 @inject HttpClient Http
 @inject IUriHelper UriHelper
 
@@ -87,13 +86,13 @@
     private string _method = "POST";
     private string _requestBody = @"{""name"":""A New Todo Item"",""isComplete"":false}";
     private List<RequestHeader> _requestHeaders = new List<RequestHeader>()
-{
+    {
         new RequestHeader() { Name = "Content-Type", Value = "application/json" },
         new RequestHeader() { Name = "Authorization", Value = "Bearer MHrHDcEfxjoYZgeFONFh7HgQ" }
     };
     private string _requestReferrer;
     private string _credentials = "include";
-    private HttpStatusCode? _responseStatusCode;
+    private System.Net.HttpStatusCode? _responseStatusCode;
     private string _responseBody;
     private string _responseHeaders;
 
@@ -112,9 +111,7 @@
             {
                 Method = new HttpMethod(_method),
                 RequestUri = new Uri(_uri),
-                Content = string.IsNullOrEmpty(_requestBody)
-                    ? null
-                    : new StringContent(_requestBody)
+                Content = string.IsNullOrEmpty(_requestBody) ? null : new StringContent(_requestBody)
             };
 
             foreach (var header in _requestHeaders)
@@ -143,11 +140,8 @@
             var response = await Http.SendAsync(requestMessage);
             _responseStatusCode = response.StatusCode;
             _responseBody = await response.Content.ReadAsStringAsync();
-            var allHeaders = response.Headers.Concat(response.Content?.Headers
-                ?? Enumerable.Empty<KeyValuePair<string, IEnumerable<string>>>());
-            _responseHeaders = string.Join(
-                Environment.NewLine,
-                allHeaders.Select(pair => $"{pair.Key}: {pair.Value.First()}").ToArray());
+            var allHeaders = response.Headers.Concat(response.Content?.Headers ?? Enumerable.Empty<KeyValuePair<string, IEnumerable<string>>>());
+            _responseHeaders = string.Join(Environment.NewLine, allHeaders.Select(pair => $"{pair.Key}: {pair.Value.First()}").ToArray());
         }
         catch (Exception ex)
         {
@@ -155,7 +149,7 @@
             {
                 ex = ex.InnerException;
             }
-            _responseStatusCode = HttpStatusCode.SeeOther;
+            _responseStatusCode = System.Net.HttpStatusCode.SeeOther;
             _responseBody = ex.Message + Environment.NewLine + ex.StackTrace;
         }
 
