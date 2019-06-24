@@ -536,7 +536,7 @@ protected override void OnAfterRender()
 }
 ```
 
-### Complete asynchronous actions before rendering
+### Handle incomplete async actions at render
 
 Asynchronous actions performed in lifecycle events may not have completed before the component is rendered. Objects might be `null` or incompletely populated with data while the lifecycle method is executing. Provide rendering logic to confirm that objects are initialized. Render placeholder UI elements (for example, a loading message) while objects are `null`.
 
@@ -544,7 +544,7 @@ In the Fetch Data component of the Blazor templates, `OnInitAsync` is overridden
 
 *Pages/FetchData.razor*:
 
-[!code-cshtml[](components/samples_snapshot/3.x/FetchData.razor?highlight=9-18,21-26)]
+[!code-cshtml[](components/samples_snapshot/3.x/FetchData.razor?highlight=9)]
 
 ### Execute code before parameters are set
 
