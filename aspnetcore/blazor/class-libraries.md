@@ -5,14 +5,14 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/19/2019
+ms.date: 06/24/2019
 uid: blazor/class-libraries
 ---
 # ASP.NET Core Razor components class libraries
 
 By [Simon Timms](https://github.com/stimms)
 
-Components can be shared in [Razor class libraries (RCLs)](xref:razor-pages/ui-class) across projects. A *Razor components class library* can be included from:
+Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. A *Razor components class library* can be included from:
 
 * Another project in the solution.
 * A NuGet package.
