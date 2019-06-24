@@ -468,7 +468,7 @@ The default value is 96 KB (98,304).
 ::: moniker-end
 
 > [!WARNING]
-> A large number of blocking synchronous IO operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` if using a library that doesn't support asynchronous IO.
+> A large number of blocking synchronous IO operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous IO.
 
 ::: moniker range=">= aspnetcore-2.2"
 
