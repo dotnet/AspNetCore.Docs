@@ -3,12 +3,10 @@ title: Use Grunt in ASP.NET Core
 author: rick-anderson
 description: Use Grunt in ASP.NET Core
 ms.author: riande
-ms.date: 05/14/2019
+ms.date: 06/18/2019
 uid: client-side/using-grunt
 ---
 # Use Grunt in ASP.NET Core
-
-By [Noel Rice](https://blog.falafel.com/falafel-software-recognized-sitefinity-website-year/)
 
 Grunt is a JavaScript task runner that automates script minification, TypeScript compilation, code quality "lint" tools, CSS pre-processors, and just about any repetitive chore that needs doing to support client development. Grunt is fully supported in Visual Studio.
 

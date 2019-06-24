@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/14/2019
+ms.date: 06/18/2019
 uid: blazor/get-started
 ---
 # Get started with ASP.NET Core Blazor
@@ -26,7 +26,7 @@ Get started with Blazor:
 
    # [Visual Studio](#tab/visual-studio)
 
-   1\. Install the latest [Visual Studio preview](https://visualstudio.com/preview) with the **ASP.NET and web development** workload.
+   1\. Install the latest [Visual Studio preview](https://visualstudio.com/vs/preview) with the **ASP.NET and web development** workload.
 
    2\. Install the latest [Blazor extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
 
@@ -68,6 +68,8 @@ Get started with Blazor:
 
    6\. If using a Blazor server-side app, run the app using the Visual Studio Code debugger. If using a Blazor client-side app, execute `dotnet run` from the app's project folder.
 
+   7\. In a browser, navigate to `https://localhost:5001`.
+
    <!--
 
    # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -108,9 +110,9 @@ Get started with Blazor:
 
    For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
 
-   ---
+   In a browser, navigate to `https://localhost:5001`.
 
-In a browser, navigate to `https://localhost:5001`.
+   ---
 
 Multiple pages are available from tabs in the sidebar:
 
@@ -135,7 +137,7 @@ Each time the **Click me** button is selected:
 
 The runtime compares the new content to the previous content and only applies the changed content to the Document Object Model (DOM).
 
-Add a component to another component using HTML syntax. For example, a Counter component can be added to the app's homepage by adding a `<Counter />` element to the Index component.
+Add a component to another component using HTML syntax. For example, add the Counter component to the app's homepage by adding a `<Counter />` element to the Index component.
 
 *Pages/Index.razor*:
 
