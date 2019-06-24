@@ -1,14 +1,14 @@
 ---
-title: "Tutorial: Create a web API with ASP.NET Core MVC"
+title: "Tutorial: Create a web API with ASP.NET Core"
 author: rick-anderson
-description: Build a web API with ASP.NET Core MVC
+description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/4/2019
+ms.date: 06/18/2019
 uid: tutorials/first-web-api
 ---
 
-# Tutorial: Create a web API with ASP.NET Core MVC
+# Tutorial: Create a web API with ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
@@ -271,7 +271,7 @@ The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult
 
 This tutorial uses Postman to test the web API.
 
-* Install [Postman](https://www.getpostman.com/apps)
+* Install [Postman](https://www.getpostman.com/downloads/)
 * Start the web app.
 * Start Postman.
 * Disable **SSL certificate verification**

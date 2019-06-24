@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-#region snippet_StartupConfigureImports
-using NJsonSchema;
-using NSwag.AspNetCore;
-#endregion
 using TodoApi.Models;
 
 namespace TodoApi
@@ -14,7 +10,7 @@ namespace TodoApi
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TodoContext>(opt => 
+            services.AddDbContext<TodoContext>(opt =>
                 opt.UseInMemoryDatabase("TodoList"));
             services.AddMvc();
 
@@ -29,7 +25,7 @@ namespace TodoApi
             app.UseStaticFiles();
 
             // Register the Swagger generator and the Swagger UI middlewares
-            app.UseSwagger();
+            app.UseOpenApi();
             app.UseSwaggerUi3();
 
             app.UseMvc();

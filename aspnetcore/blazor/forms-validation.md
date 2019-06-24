@@ -1,14 +1,14 @@
 ---
-title: Blazor forms and validation
+title: ASP.NET Core Blazor forms and validation
 author: guardrex
 description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/12/2019
+ms.date: 06/14/2019
 uid: blazor/forms-validation
 ---
-# Blazor forms and validation
+# ASP.NET Core Blazor forms and validation
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 

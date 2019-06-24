@@ -1,14 +1,14 @@
 ---
-title: Debug Blazor
+title: Debug ASP.NET Core Blazor
 author: guardrex
 description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/15/2019
+ms.date: 06/14/2019
 uid: blazor/debug
 ---
-# Debug Blazor
+# Debug ASP.NET Core Blazor
 
 [Daniel Roth](https://github.com/danroth27)
 

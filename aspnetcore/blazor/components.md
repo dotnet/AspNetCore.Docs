@@ -5,12 +5,12 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/14/2019
+ms.date: 06/16/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
 
-By [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), and [Morné Zaayman](https://github.com/MorneZaayman)
+By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -139,13 +139,13 @@ Using `@bind` with a `CurrentValue` property (`<input @bind="CurrentValue" />`) 
 
 When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `@bind` handles a few cases where type conversions are performed. In principle, `@bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-In addition to `onchange`, the property can be bound using other events like `oninput` by adding a `@bind` attribute with an `event` parameter:
+In addition to handling `onchange` events with `@bind` syntax, a property or field can be bound using other events by specifying an `@bind-value` attribute with an `event` parameter. The following example binds the `CurrentValue` property for the `oninput` event:
 
 ```cshtml
-<input type="text" @bind-value="@CurrentValue" @bind-value:event="oninput" />
+<input @bind-value="CurrentValue" @bind-value:event="oninput" />
 ```
 
-Unlike `onchange`, `oninput` fires for every character that is input into the text box.
+Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
 **Format strings**
 
@@ -299,13 +299,24 @@ Event handlers can also be asynchronous and return a <xref:System.Threading.Task
 
 For some events, event-specific event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
 
-The list of supported event arguments is:
+Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) are shown in the following table.
 
-* UIEventArgs
-* UIChangeEventArgs
-* UIKeyboardEventArgs
-* UIMouseEventArgs
+| Event | Class |
+| ----- | ----- |
+| Clipboard | `UIClipboardEventArgs` |
+| Drag  | `UIDragEventArgs` &ndash; `DataTransfer` is used to hold the dragged data during a drag and drop operation and may hold one or more `UIDataTransferItem`. `UIDataTransferItem` represents one drag data item. |
+| Error | `UIErrorEventArgs` |
+| Focus | `UIFocusEventArgs` &ndash; Doesn't include support for `relatedTarget`. |
+| `<input>` change | `UIChangeEventArgs` |
+| Keyboard | `UIKeyboardEventArgs` |
+| Mouse | `UIMouseEventArgs` |
+| Mouse pointer | `UIPointerEventArgs` |
+| Mouse wheel | `UIWheelEventArgs` |
+| Progress | `UIProgressEventArgs` |
+| Touch | `UITouchEventArgs` &ndash; `UITouchPoint` represents a single contact point on a touch-sensitive device. |
 
+For information on the properties and event handling behavior of the events in the preceding table, see [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) in the reference source.
+  
 Lambda expressions can also be used:
 
 ```cshtml
@@ -379,9 +390,9 @@ Invoke an `EventCallback` or `EventCallback<T>` with `InvokeAsync` and await the
 await callback.InvokeAsync(arg);
 ```
 
-Use `EventCallback` and `EventCallback<T>` for event handling and binding component parameters. Don't use `EventCallback` and `EventCallback<T>` for child content&mdash;continue to use `RenderFragment` and `RenderFragment<T>` for child content.
+Use `EventCallback` and `EventCallback<T>` for event handling and binding component parameters.
 
-Prefer the strongly typed `EventCallback<T>`, which provides better error feedback to users of the component. Similar to other UI event handlers, specifying the event parameter is optional. Use `EventCallback` when there's no value passed to the callback.
+Prefer the strongly typed `EventCallback<T>` over `EventCallback`. `EventCallback<T>` provides better error feedback to users of the component. Similar to other UI event handlers, specifying the event parameter is optional. Use `EventCallback` when there's no value passed to the callback.
 
 ## Capture references to components
 
@@ -681,11 +692,11 @@ Razor directives are shown in the following table.
 | [\@namespace](xref:mvc/views/razor#section-6) | Sets the namespace of the generated component class. |
 | [\@attribute](xref:mvc/views/razor#section-7) | Adds an attribute to the generated component class. |
 
-**Conditional attributes**
+**Conditional HTML element attributes**
 
-Attributes are conditionally rendered based on the .NET value. If the value is `false` or `null`,  the attribute isn't rendered. If the value is `true`, the attribute is rendered minimized.
+HTML element attributes are conditionally rendered based on the .NET value. If the value is `false` or `null`, the attribute isn't rendered. If the value is `true`, the attribute is rendered minimized.
 
-In the following example, `IsCompleted` determines if `checked` is rendered in the control's markup:
+In the following example, `IsCompleted` determines if `checked` is rendered in the element's markup:
 
 ```cshtml
 <input type="checkbox" checked="@IsCompleted" />
