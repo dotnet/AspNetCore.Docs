@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2019
+ms.date: 06/24/2019
 uid: blazor/routing
 ---
 # Blazor routing
@@ -52,14 +52,12 @@ The Router component (`<Router>`) allows the app to specify custom content if co
 In the *App.razor* file, set custom content in the `<NotFoundConent>` element of the Router component:
 
 ```cshtml
-<CascadingAuthenticationState>
-    <Router AppAssembly="typeof(Startup).Assembly">
-        <NotFoundContent>
-            <h1>Sorry</h1>
-            <p>Sorry, there's nothing at this address.</p> b
-        </NotFoundContent>
-    </Router>
-</CascadingAuthenticationState>
+<Router AppAssembly="typeof(Startup).Assembly">
+    <NotFoundContent>
+        <h1>Sorry</h1>
+        <p>Sorry, there's nothing at this address.</p> b
+    </NotFoundContent>
+</Router>
 ```
 
 The content of `<NotFoundContent>` can include arbitrary items, such as other interactive components.
