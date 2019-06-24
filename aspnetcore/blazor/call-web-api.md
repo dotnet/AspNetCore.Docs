@@ -25,7 +25,7 @@ For Blazor client-side examples, see the following components in the sample app:
 
 ## HttpClient and JSON helpers
 
-In Blazor client-side apps, [HttpClient](xref:fundamentals/http-requests) is available as a preconfigured service for making requests back to the origin server. `HttpClient` and JSON helpers are also used to call third party web API service endpoints. `HttpClient` is implemented using the browser [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same origin policy.
+In Blazor client-side apps, [HttpClient](xref:fundamentals/http-requests) is available as a preconfigured service for making requests back to the origin server. `HttpClient` and JSON helpers are also used to call third-party web API endpoints. `HttpClient` is implemented using the browser [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same origin policy.
 
 The client's base address is set to the originating server's address. Inject an `HttpClient` instance using the `@inject` directive:
 
@@ -34,7 +34,7 @@ The client's base address is set to the originating server's address. Inject an 
 @inject HttpClient Http
 ```
 
-In the following examples, a Todo web API service processes create, read, update, and delete (CRUD) operations. The examples are based on a `TodoItem` class that stores the:
+In the following examples, a Todo web API processes create, read, update, and delete (CRUD) operations. The examples are based on a `TodoItem` class that stores the:
 
 * ID (`Id`, `long`) &ndash; Unique ID of the item.
 * Name (`Name`, `string`) &ndash; Name of the item.
@@ -51,7 +51,7 @@ private class TodoItem
 
 JSON helper methods send requests to a URI (a web API in the following examples) and process the response:
 
-* `GetJsonAsync` &ndash; Sends a GET request and parses the JSON response body to create an object.
+* `GetJsonAsync` &ndash; Sends an HTTP GET request and parses the JSON response body to create an object.
 
   In the following code, the `_todoItems` are displayed by the component. The `GetTodoItems` method is triggered when the component is finished rendering ([OnInitAsync](xref:blazor/components#lifecycle-methods)). See the sample app for a complete example.
 
@@ -67,7 +67,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
   }
   ```
 
-* `PostJsonAsync` &ndash; Sends a POST request, including JSON-encoded content, and parses the JSON response body to create an object.
+* `PostJsonAsync` &ndash; Sends an HTTP POST request, including JSON-encoded content, and parses the JSON response body to create an object.
 
   In the following code, `_newItemName` is provided by a bound element of the component. The `AddItem` method is triggered by selecting a `<button>` element. See the sample app for a complete example.
 
@@ -89,9 +89,9 @@ JSON helper methods send requests to a URI (a web API in the following examples)
   }
   ```
 
-* `PutJsonAsync` &ndash; Sends a PUT request, including JSON-encoded content.
+* `PutJsonAsync` &ndash; Sends an HTTP PUT request, including JSON-encoded content.
 
-  In the following code, `_editItem` values for `Name`and `IsCompleted` are provided by bound elements of the component. The item's `Id` is set when the item is selected in another part of the UI and `EditItem` is called. The `SaveItem` method is triggered by selecting the Save `<button>` element. See the sample app for a complete example.
+  In the following code, `_editItem` values for `Name` and `IsCompleted` are provided by bound elements of the component. The item's `Id` is set when the item is selected in another part of the UI and `EditItem` is called. The `SaveItem` method is triggered by selecting the Save `<button>` element. See the sample app for a complete example.
 
   ```cshtml
   @using System.Net.Http
@@ -116,7 +116,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
   }
   ```
 
-<xref:System.Net.Http> includes additional extension methods for sending HTTP requests and receiving HTTP responses. [HttpClient.DeleteAsync](xref:System.Net.Http.HttpClient.DeleteAsync*) is used to send a DELETE request to a web API.
+<xref:System.Net.Http> includes additional extension methods for sending HTTP requests and receiving HTTP responses. [HttpClient.DeleteAsync](xref:System.Net.Http.HttpClient.DeleteAsync*) is used to send an HTTP DELETE request to a web API.
 
 In the following code, the Delete `<button>` element calls the `DeleteItem` method. The bound `<input>` element supplies the `id` of the item to delete. See the sample app for a complete example.
 
@@ -137,7 +137,7 @@ In the following code, the Delete `<button>` element calls the `DeleteItem` meth
 
 ## Cross-origin resource sharing (CORS)
 
-Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. Sometimes, you might want to allow other sites make cross-origin resource sharing (CORS) requests to your app.
+Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. Sometimes, you might want to allow other sites to make cross-origin resource sharing (CORS) requests to your app.
 
 The sample app demonstrates the use of CORS in the Call Web API component (*Pages/CallWebAPI.razor*).
 

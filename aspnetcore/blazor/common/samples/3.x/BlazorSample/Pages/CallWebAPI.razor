@@ -5,7 +5,7 @@
 
 <h2>Blazor Example</h2>
 
-<p>This example requires a running web API service based on the sample app for the <a href="https://docs.microsoft.com/aspnet/core/tutorials/first-web-api">Tutorial: Create a web API with ASP.NET Core MVC</a> topic. This Blazor sample app makes requests to the web API service at <code>https://localhost:10000/api/todo</code>. If a different service address is used, update the <code>ServiceEndpoint</code> constant value in the Razor component's <code>@@code</code> block.</p>
+<p>This example requires a running web API based on the sample app for the <a href="https://docs.microsoft.com/aspnet/core/tutorials/first-web-api">Tutorial: Create a web API with ASP.NET Core MVC</a> topic. This Blazor sample app makes requests to the web API at <code>https://localhost:10000/api/todo</code>. If a different web API address is used, update the <code>ServiceEndpoint</code> constant value in the Razor component's <code>@@code</code> block.</p>
 
 <p>The Blazor sample app makes a <a href="https://docs.microsoft.com/aspnet/core/security/cors">cross-origin resource sharing (CORS)</a> request from <code>http://localhost:5000</code> or <code>https://localhost:5001</code> to the web API service app. Add the following CORS middleware configuration to the web API's service's <code>Startup.Configure</code> method before it calls <code>UseMvc</code>:</p>
 
