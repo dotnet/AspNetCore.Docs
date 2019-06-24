@@ -32,7 +32,7 @@ For example, consider the *greet.proto* file used in [Get started with gRPC serv
 
 The *.proto* file is included in a project by adding it to the `<Protobuf>` item group:
 
-[!code-xml[](~/tutorials//grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-11)]
+[!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-9)]
 
 ## C# Tooling support for .proto files
 
@@ -44,7 +44,7 @@ The tooling package [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) is 
 
 This package is required by both the server and client projects. `Grpc.Tools` can be added by using the Package Manager in Visual Studio or adding a `<PackageReference>` to the project file:
 
-[!code-xml[](~/tutorials//grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=1&range=17)]
+[!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=1&range=15)]
 
 The tooling package isn't required at runtime, so the dependency is marked with `PrivateAssets="All"`.
 
@@ -62,7 +62,7 @@ For client-side assets, a concrete client type is generated. The gRPC calls in t
 
 By default, server and client assets are generated for each *.proto* file included in the `<Protobuf>` item group. To ensure only the server assets are generated in a server project, the `GrpcServices` attribute is set to `Server`.
 
-[!code-xml[](~/tutorials//grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-11)]
+[!code-xml[](~/tutorials//grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-9)]
 
 Similarly, the attribute is set to `Client` in client projects.
 
