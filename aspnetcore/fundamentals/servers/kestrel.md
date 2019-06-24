@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 06/20/2019
+ms.date: 06/24/2019
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -466,6 +466,9 @@ The default value is 96 KB (98,304).
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous IO is allowed for the request and response. The  default value is `true`.
 
 ::: moniker-end
+
+> [!WARNING]
+> A large number of blocking synchronous IO operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` if using a library that doesn't support asynchronous IO.
 
 ::: moniker range=">= aspnetcore-2.2"
 
