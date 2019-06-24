@@ -55,8 +55,7 @@ For more information, see [Introduction to Logging](xref:fundamentals/logging/in
 
 A new authentication model makes it easier to configure authentication for an application using DI.
 
-New templates are available for configuring authentication for web apps and web APIs using [Azure AD B2C]
-(https://azure.microsoft.com/services/active-directory-b2c/).
+New templates are available for configuring authentication for web apps and web APIs using [Azure AD B2C](https://azure.microsoft.com/services/active-directory-b2c/).
 
 For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/3054).
 

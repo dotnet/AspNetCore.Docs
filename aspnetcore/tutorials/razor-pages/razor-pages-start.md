@@ -177,7 +177,7 @@ Contains configuration data, such as connection strings. For more information, s
 
 ### Program.cs
 
-Contains the entry point for the program. For more information, see <xref:fundamentals/host/web-host>.
+Contains the entry point for the program. For more information, see <xref:fundamentals/host/generic-host>.
 
 ### Startup.cs
 
