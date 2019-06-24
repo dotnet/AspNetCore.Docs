@@ -238,12 +238,12 @@ The consuming app references static assets provided by the library with `<script
 
 ### Multi-project development flow
 
-When the app runs:
+When the consuming app runs:
 
-* The assets stay in their original folders.
-* Any change within the class library *wwwroot* folder is reflected in the consuming app without rebuilding the consuming app.
+* The assets in the RCL stay in their original folders.
+* Any change within the RCL's *wwwroot* folder is reflected in the consuming app without rebuilding the consuming app.
 
-When the RCL is built, a manifest is produced that describes the static web asset locations. The consuming app reads the manifest at runtime to consume the assets from the referenced projects and packages.
+When the RCL is built, a manifest is produced that describes the static web asset locations. The consuming app reads the manifest at runtime to consume the assets from referenced projects and packages.
 
 ### Publish
 
