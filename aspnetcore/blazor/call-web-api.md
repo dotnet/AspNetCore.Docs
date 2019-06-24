@@ -5,32 +5,29 @@ description: Learn how to call a web API from a Blazor app using JSON helpers, i
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/21/2019
+ms.date: 06/24/2019
 uid: blazor/call-web-api
 ---
 # Call a web API from ASP.NET Core Blazor
 
 By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
 
-Blazor apps call web API services using [HttpClient](xref:fundamentals/http-requests). Compose requests using Blazor JSON helpers or with <xref:System.Net.Http.HttpRequestMessage>, which can include JavaScript [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) request options.
+Blazor client-side apps call web APIs using a preconfigured `HttpClient` service. Compose requests, which can include JavaScript [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) options, using Blazor JSON helpers or with <xref:System.Net.Http.HttpRequestMessage>.
+
+Blazor server-side apps call web APIs using <xref:System.Net.Http.IHttpClientFactory>, which implements <xref:System.Net.Http.HttpClient>. For more information, see <xref:fundamentals/http-requests>.
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
-See the following components in the sample app:
+For Blazor client-side examples, see the following components in the sample app:
 
 * Call Web API (*Pages/CallWebAPI.razor*)
 * HTTP Request Tester (*Components/HTTPRequestTester.razor*)
 
-> [!NOTE]
-> This topic applies to Blazor client-side apps that call web APIs in a Razor Component.
->
-> In Blazor server-side apps, the <xref:System.Net.Http.HttpClient> implementation is provided by .NET Core. An `HttpClient` service for Blazor server-side apps is in-design. For more information, see [Making HTTP requests from Blazor apps](https://github.com/aspnet/AspNetCore/issues/10397) in the aspnet/AspNetCore GitHub repository.
-
 ## HttpClient and JSON helpers
 
-Use [HttpClient](xref:fundamentals/http-requests) and JSON helpers to call a web API service endpoint from a Blazor app. In Blazor client-side apps, `HttpClient` is implemented using the browser [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same origin policy. In Blazor server-side apps, the <xref:System.Net.Http.HttpClient> implementation is provided by .NET Core and can be used when making web API requests in server-side code.
+In Blazor client-side apps, [HttpClient](xref:fundamentals/http-requests) is available as a preconfigured service for making requests back to the origin server. `HttpClient` and JSON helpers are also used to call third party web API service endpoints. `HttpClient` is implemented using the browser [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same origin policy.
 
-In Blazor client-side apps, `HttpClient` is available as a service. The client's base address is set to the originating server's address. Inject an `HttpClient` instance using the `@inject` directive. If the component isn't routable and thus doesn't include the `@page` directive, import <xref:System.Net.Http> with an `@using` directive:
+The client's base address is set to the originating server's address. Inject an `HttpClient` instance using the `@inject` directive:
 
 ```cshtml
 @using System.Net.Http
@@ -94,19 +91,25 @@ JSON helper methods send requests to a URI (a web API in the following examples)
 
 * `PutJsonAsync` &ndash; Sends a PUT request, including JSON-encoded content.
 
-  In the following code, `_editItem` values (`Id`, `Name`, `IsCompleted`) are provided by bound elements of the component. The `SaveItem` method is triggered by selecting the Save `<button>` element. See the sample app for a complete example.
+  In the following code, `_editItem` values for `Name`and `IsCompleted` are provided by bound elements of the component. The item's `Id` is set when the item is selected in another part of the UI and `EditItem` is called. The `SaveItem` method is triggered by selecting the Save `<button>` element. See the sample app for a complete example.
 
   ```cshtml
   @using System.Net.Http
   @inject HttpClient Http
 
-  <input @bind="_editItem.Id" />
   <input type="checkbox" @bind="_editItem.IsComplete" />
   <input @bind="_editItem.Name" />
   <button @onclick="@SaveItem">Save</button>
 
   @code {
       private TodoItem _editItem = new TodoItem();
+
+      private void EditItem(long id)
+      {
+          var editItem = _todoItems.Single(i => i.Id == id);
+          _editItem = new TodoItem { Id = editItem.Id, Name = editItem.Name, 
+              IsComplete = editItem.IsComplete };
+      }
 
       private async Task SaveItem() =>
           await Http.PutJsonAsync($"api/todo/{_editItem.Id}, _editItem);
@@ -142,15 +145,13 @@ For more information, see <xref:security/cors>.
 
 ## HttpClient and HttpRequestMessage with Fetch API request options
 
-Use [HttpClient](xref:fundamentals/http-requests) and <xref:System.Net.Http.HttpRequestMessage> to customize requests.
+When running on WebAssembly in a Blazor client-side app, use [HttpClient](xref:fundamentals/http-requests) and <xref:System.Net.Http.HttpRequestMessage> to customize requests. For example, you can specify the request URI, HTTP method, and any desired request headers.
 
-In the following example:
+Supply request options to the underlying JavaScript [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) using the `WebAssemblyHttpMessageHandler.FetchArgs` property on the request. As shown in the following example, the `credentials` property is set to any of the following values:
 
-When running on WebAssembly in a Blazor client-side app, supply request options to the underlying JavaScript [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) using the `WebAssemblyHttpMessageHandler.FetchArgs` property on the request. As shown in the following example, the `credentials` property is set to any of the following values:
-
-  * `FetchCredentialsOption.Include` ("include") &ndash; Advises the browser to send credentials (such as cookies or HTTP authentication headers) even for cross-origin requests. Only allowed when the CORS policy is configured to allow credentials.
-  * `FetchCredentialsOption.Omit` ("omit") &ndash; Advises the browser never to send credentials (such as cookies or HTTP auth headers).
-  * `FetchCredentialsOption.SameOrigin` ("same-origin") &ndash; Advises the browser to send credentials (such as cookies or HTTP auth headers) only if the target URL is on the same origin as the calling application.
+* `FetchCredentialsOption.Include` ("include") &ndash; Advises the browser to send credentials (such as cookies or HTTP authentication headers) even for cross-origin requests. Only allowed when the CORS policy is configured to allow credentials.
+* `FetchCredentialsOption.Omit` ("omit") &ndash; Advises the browser never to send credentials (such as cookies or HTTP auth headers).
+* `FetchCredentialsOption.SameOrigin` ("same-origin") &ndash; Advises the browser to send credentials (such as cookies or HTTP auth headers) only if the target URL is on the same origin as the calling application.
 
 ```cshtml
 @using System.Net.Http
