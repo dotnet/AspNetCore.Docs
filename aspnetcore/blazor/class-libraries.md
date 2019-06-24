@@ -18,7 +18,7 @@ Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-cl
 * A NuGet package.
 * A referenced .NET library.
 
-Just as components are regular .NET types, components provided by Razor class libraries are normal .NET assemblies.
+Just as components are regular .NET types, components provided by a Razor class library are normal .NET assemblies.
 
 ## Create a Razor class library
 
