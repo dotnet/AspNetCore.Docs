@@ -1,7 +1,7 @@
 ---
 title: Publish an ASP.NET Core SignalR app to Azure App Service
 author: bradygaster
-description: Learn how to publish an ASP.NET Core SignalR app to the Azure App Service.
+description: Learn how to publish an ASP.NET Core SignalR app to Azure App Service.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
@@ -21,7 +21,11 @@ By [Brady Gaster](https://twitter.com/bradygaster)
 
 This article covers publishing using the tools in Visual Studio. Visual Studio Code users can use [Azure CLI](/cli/azure) commands to publish apps to Azure. For more information, see [Publish an ASP.NET Core app to Azure with command line tools](/azure/app-service/app-service-web-get-started-dotnet).
 
-1. Right-click on the project in **Solution Explorer** and select **Publish**. Confirm that **App Service** and **Create new** are selected in the **Pick a publish target** dialog. Select **Create Profile** from the **Publish** button drop down.
+1. Right-click on the project in **Solution Explorer** and select **Publish**.
+
+1. Confirm that **App Service** and **Create new** are selected in the **Pick a publish target** dialog.
+
+1. Select **Create Profile** from the **Publish** button drop down.
 
    Enter the information described in the following table in the **Create App Service** dialog and select **Create**.
 
@@ -36,18 +40,20 @@ This article covers publishing using the tools in Visual Studio. Visual Studio C
 
    ![Dependencies area showing the selection of Azure SignalR Service in the Add drop-down list](publish-to-azure-web-app/_static/signalr-service-dependency.png)
 
-1. In the the **Azure SignalR Service** dialog, select **Create a new Azure SignalR Service instance**. Provide a **Name**, **Resource Group**, and **Location**. Return to the **Azure SignalR Service** dialog and select **Add**.
+1. In the **Azure SignalR Service** dialog, select **Create a new Azure SignalR Service instance**.
+
+1. Provide a **Name**, **Resource Group**, and **Location**. Return to the **Azure SignalR Service** dialog and select **Add**.
 
 Visual Studio completes the following tasks:
 
 * Creates a Publish Profile containing publish settings.
-* Creates or uses an existing *Azure Web App* with the provided details.
+* Creates an *Azure Web App* with the provided details.
 * Publishes the app.
 * Launches a browser, which loads the web app.
 
-The format of the app's URL is `{App Service Name}.azurewebsites.net`. For example, an app named `SignalRChatApp` has a URL of `https://signalrchatapp.azurewebsites.net`.
+The format of the app's URL is `{APP SERVICE NAME}.azurewebsites.net`. For example, an app named `SignalRChatApp` has a URL of `https://signalrchatapp.azurewebsites.net`.
 
-If an HTTP *502.2 - Bad Gateway* error occurs during a preview release, see [Deploy ASP.NET Core preview release to Azure App Service](xref:host-and-deploy/azure-apps/index#deploy-aspnet-core-preview-release-to-azure-app-service) to resolve it.
+If an HTTP *502.2 - Bad Gateway* error occurs when deploying an app that targets a preview .NET Core release, see [Deploy ASP.NET Core preview release to Azure App Service](xref:host-and-deploy/azure-apps/index#deploy-aspnet-core-preview-release-to-azure-app-service) to resolve it.
 
 ## Configure the app in Azure App Service
 
