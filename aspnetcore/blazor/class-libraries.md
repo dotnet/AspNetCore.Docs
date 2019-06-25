@@ -18,9 +18,9 @@ Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-cl
 * A NuGet package.
 * A referenced .NET library.
 
-Just as components are regular .NET types, components provided by a Razor class library are normal .NET assemblies.
+Just as components are regular .NET types, components provided by an RCL are normal .NET assemblies.
 
-## Create a Razor class library
+## Create an RCL
 
 Follow the guidance in the <xref:blazor/get-started> article to configure your environment for Blazor.
 
@@ -31,23 +31,23 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
 1. Provide a project name in the **Project name** field or accept the default project name. The examples in this topic use the project name `MyComponentLib1`. Select **Create**.
 1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected.
 1. Select the **Razor Class Library** template. Select **Create**.
-1. Add the Razor class library to a solution:
+1. Add the RCL to a solution:
    1. Right-click the solution. Select **Add** > **Existing Project**.
-   1. Navigate to the Razor class library's project file.
-   1. Select the Razor class library's project file (*.csproj*).
-1. Add a reference the Razor class library from the app:
+   1. Navigate to the RCL's project file.
+   1. Select the RCL's project file (*.csproj*).
+1. Add a reference the RCL from the app:
    1. Right-click the app project. Select **Add** > **Reference**.
-   1. Select the Razor class library project. Select **OK**.
+   1. Select the RCL project. Select **OK**.
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
-1. Use the Razor class library (`razorclasslib`) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell. In the following example, a Razor class library is created named `MyComponentLib1`. The folder that holds `MyComponentLib1` is created automatically when the command is executed.
+1. Use the Razor Class Library template (`razorclasslib`) with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell. In the following example, an RCL is created named `MyComponentLib1`. The folder that holds `MyComponentLib1` is created automatically when the command is executed.
 
    ```console
    dotnet new razorclasslib -o MyComponentLib1
    ```
 
-1. To add the library to an existing project, use the [dotnet add reference](/dotnet/core/tools/dotnet-add-reference) command from a command shell. In the following example, the Razor class library is added to the app. Execute the following command from the app's project folder with the path to the library:
+1. To add the library to an existing project, use the [dotnet add reference](/dotnet/core/tools/dotnet-add-reference) command from a command shell. In the following example, the RCL is added to the app. Execute the following command from the app's project folder with the path to the library:
 
    ```console
    dotnet add reference {PATH TO LIBRARY}
@@ -55,9 +55,9 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
 
 ---
 
-Add Razor component files (*.razor*) to the Razor class library.
+Add Razor component files (*.razor*) to the RCL.
 
-## Razor class libraries not supported for client-side apps
+## RCLs not supported for client-side apps
 
 In ASP.NET Core 3.0 Preview, Razor class libraries aren't compatible with Blazor client-side apps.
 

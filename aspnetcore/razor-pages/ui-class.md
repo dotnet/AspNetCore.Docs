@@ -8,11 +8,11 @@ ms.date: 06/24/2019
 ms.custom: "mvc, seodec18"
 uid: razor-pages/ui-class
 ---
-# Create reusable UI using the Razor Class Library project in ASP.NET Core
+# Create reusable UI using the Razor class library project in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor views, pages, controllers, page models, [Razor components](xref:blazor/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor Class Library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (*.cshtml* file) in the web app takes precedence.
+Razor views, pages, controllers, page models, [Razor components](xref:blazor/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (*.cshtml* file) in the web app takes precedence.
 
 This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
@@ -191,7 +191,7 @@ dotnet run
 
 ### Test WebApp1
 
-Verify the Razor UI class library is being used.
+Verify the Razor UI class library is in use:
 
 * Browse to `/MyFeature/Page1`.
 
@@ -240,10 +240,10 @@ The consuming app references static assets provided by the library with `<script
 
 When the consuming app runs:
 
-* The assets in the RCL stay in their original folders.
-* Any change within the RCL's *wwwroot* folder is reflected in the consuming app without rebuilding the consuming app.
+* The assets in the RCL stay in their original folders. The assets aren't moved to the consuming app.
+* Any change within the RCL's *wwwroot* folder is reflected in the consuming app after the RCL is rebuilt and without rebuilding the consuming app.
 
-When the RCL is built, a manifest is produced that describes the static web asset locations. The consuming app reads the manifest at runtime to consume the assets from referenced projects and packages.
+When the RCL is built, a manifest is produced that describes the static web asset locations. The consuming app reads the manifest at runtime to consume the assets from referenced projects and packages. When a new asset is added to an RCL, the RCL must be rebuilt to update its manifest before a consuming app can access the new asset.
 
 ### Publish
 
