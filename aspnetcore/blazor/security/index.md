@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/24/2019
+ms.date: 06/25/2019
 uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization
@@ -112,13 +112,13 @@ In Blazor client-side apps, authentication checks can be bypassed because all cl
 
 Implement an [AuthenticationStateProvider service](#authenticationstateprovider-service) to set up authentication in a Blazor client-side app. For more information, see the [Implement a custom AuthenticationStateProvider](#implement-a-custom-authenticationstateprovider) section.
 
-### AuthenticationStateProvider service
+## AuthenticationStateProvider service
 
 Blazor server-side apps include a built-in `AuthenticationStateProvider` service that obtains authentication state data from ASP.NET Core's `HttpContext.User`. This is how authentication state integrates with existing ASP.NET Core server-side authentication mechanisms.
 
-`AuthenticationStateProvider` is the underlying service used by the Authorize View component (`AuthorizeView`) and Cascading Authentication State component (`<CascadingAuthenticationState>`) to get the authentication state.
+`AuthenticationStateProvider` is the underlying service used by the `AuthorizeView` component and `CascadingAuthenticationState` component to get the authentication state.
 
-You don't typically use `AuthenticationStateProvider` directly. Use the [Authorize View component](#authorize-view-component) or [Task<AuthenticationState>](#expose-the-authentication-state-as-a-cascading-parameter) approaches described later in this article. The main drawback to using `AuthenticationStateProvider` directly is that the component isn't notified automatically if the underlying authentication state data changes.
+You don't typically use `AuthenticationStateProvider` directly. Use the [AuthorizeView component](#authorizeview-component) or [Task<AuthenticationState>](#expose-the-authentication-state-as-a-cascading-parameter) approaches described later in this article. The main drawback to using `AuthenticationStateProvider` directly is that the component isn't notified automatically if the underlying authentication state data changes.
 
 The `AuthenticationStateProvider` service can provide the current user's <xref:System.Security.Claims.ClaimsPrincipal> data, as shown in the following example:
 
@@ -150,14 +150,7 @@ If `user.Identity.IsAuthenticated` is `true` and because the user is a <xref:Sys
 
 For more information on dependency injection (DI) and services, see <xref:blazor/dependency-injection> and <xref:fundamentals/dependency-injection>.
 
-### Implement a custom AuthenticationStateProvider
-
-> [!WARNING]
-> **We don't recommend implementing a custom `AuthenticationStateProvider` in Blazor server-side apps.**
->
-> The built-in `AuthenticationStateProvider` implementation for Blazor server-side apps integrates with ASP.NET Core's built-in authentication mechanisms. If a custom provider is implemented, security vulnerabilities might be introduced to the app.
-
-The only common scenario where a custom `AuthenticationStateProvider` is implemented is in a Blazor client-side app. A custom provider can integrate with external authentication systems independently of server-side code. In Blazor client-side apps, authentication only exists to present a convenient UI to well-behaved users&mdash;authentication doesn't enforce security in Blazor client-side apps because client-side authorization rules can be bypassed by a malicious user.
+## Implement a custom AuthenticationStateProvider
 
 If you're building a Blazor client-side app or if your app's specification absolutely requires a custom provider, implement a provider and override `GetAuthenticationStateAsync`:
 
@@ -189,7 +182,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Using the `CustomAuthStateProvider`, all users are authenticated with the username `mrfibuli`.
 
-### Expose the authentication state as a cascading parameter
+## Expose the authentication state as a cascading parameter
 
 If authentication state data is required for procedural logic, such as when performing an action triggered by the user, obtain the authentication state data by defining a cascading parameter of type `Task<AuthenticationState>`:
 
@@ -219,14 +212,14 @@ If authentication state data is required for procedural logic, such as when perf
 }
 ```
 
-Set up the `Task<AuthenticationState>` cascading parameter using the Cascading Authentication State component (`<CascadingAuthenticationState>`):
+Set up the `Task<AuthenticationState>` cascading parameter using the `CascadingAuthenticationState` component:
 
 ```cshtml
 <CascadingAuthenticationState>
     <Router AppAssembly="typeof(Startup).Assembly">
         <NotFoundContent>
             <h1>Sorry</h1>
-            <p>Sorry, there's nothing at this address.</p> b
+            <p>Sorry, there's nothing at this address.</p>
         </NotFoundContent>
     </Router>
 </CascadingAuthenticationState>
@@ -247,9 +240,9 @@ Access is typically granted or denied based on whether:
 
 Each of these concepts is the same as in an ASP.NET Core MVC or Razor Pages app. For more information on ASP.NET Core security, see the articles under [ASP.NET Core Security and Identity](xref:security/index).
 
-### Authorize View component
+## AuthorizeView component
 
-The Authorize View component (`<AuthorizeView>`) selectively displays UI depending on whether the user is authorized to see it. This approach is useful when you only need to *display* data for the user and don't need to use the user's identity in procedural logic.
+The `AuthorizeView` component selectively displays UI depending on whether the user is authorized to see it. This approach is useful when you only need to *display* data for the user and don't need to use the user's identity in procedural logic.
 
 The component exposes a `context` variable of type `AuthenticationState`, which you can use to access information about the signed-in user:
 
@@ -284,9 +277,9 @@ If authorization conditions aren't specified, `<AuthorizeView>` treats:
 * Authenticated (signed-in) users as authorized.
 * Unauthenticated (signed-out) users as unauthorized.
 
-#### Role-based and policy-based authorization
+### Role-based and policy-based authorization
 
-The Authorize View component (`<AuthorizeView>`) supports *role-based* or *policy-based* authorization.
+The `AuthorizeView` component supports *role-based* or *policy-based* authorization.
 
 For role-base authorization, use the `Roles` parameter:
 
@@ -315,7 +308,7 @@ If neither `Roles` nor `Policy` is specified, `<AuthorizeView>` uses the default
 * Authenticated (signed-in) users as authorized.
 * Unauthenticated (signed-out) users as unauthorized.
 
-#### Content displayed during asynchronous authentication
+### Content displayed during asynchronous authentication
 
 Blazor allows for authentication state to be determined *asynchronously*. The primary scenario for this approach is in Blazor client-side apps that make a request to an external endpoint for authentication.
 
@@ -334,9 +327,9 @@ While authentication is in progress, `<AuthorizeView>` displays no content by de
 </AuthorizeView>
 ```
 
-This approach isn't normally applicable to Blazor server-side apps. Blazor server-side apps know the authentication state as soon as the state is established. `Authorizing` content can be provided in a Blazor server-side app's Authorize View component (`<AuthorizeView>`), but the content is never displayed.
+This approach isn't normally applicable to Blazor server-side apps. Blazor server-side apps know the authentication state as soon as the state is established. `Authorizing` content can be provided in a Blazor server-side app's `AuthorizeView` component, but the content is never displayed.
 
-### \[Authorize] attribute
+## \[Authorize] attribute
 
 Just like an app can use `[Authorize]` with an MVC controller or Razor page, `[Authorize]` can also be used with Razor Components:
 
@@ -350,7 +343,7 @@ You can only see this if you're signed in.
 > [!IMPORTANT]
 > Only use `[Authorize]` on `@page` components reached via the Blazor Router. Authorization is only performed as an aspect of routing and *not* for child components rendered within a page. To authorize the display of specific parts within a page, use `<AuthorizeView>` instead.
 
-You may need to add `@using Microsoft.AspNetCore.Authorization` either to the component or to the *\_Imports.razor* file in order for the component to compile.
+You may need to add `@using Microsoft.AspNetCore.Authorization` either to the component or to the *_Imports.razor* file in order for the component to compile.
 
 The `[Authorize]` attribute also supports role-based or policy-based authorization. For role-based authorization, use the `Roles` parameter:
 
@@ -375,9 +368,9 @@ If neither `Roles` nor `Policy` is specified, `[Authorize]` uses the default pol
 * Authenticated (signed-in) users as authorized.
 * Unauthenticated (signed-out) users as unauthorized.
 
-### Customize unauthorized content with the Router component
+## Customize unauthorized content with the Router component
 
-The Router component (`<Router>`) allows the app to specify custom content if:
+The `Router` component allows the app to specify custom content if:
 
 * Content isn't found.
 * The user fails an `[Authorize]` condition applied to the component. The `[Authorize]` attribute is covered in the [[Authorize] attribute](#authorize-attribute) section.
@@ -413,14 +406,11 @@ If `<NotAuthorizedContent>` isn't specified, the router uses the following fallb
 Not authorized.
 ```
 
-> [!NOTE]
-> **Known issue**: In ASP.NET Core 3.0 Preview 6, `<NotAuthorizedContent>` and `<AuthorizingContent>` on the Router component can't be specified in Blazor server-side apps but do work in Blazor client-side apps. This will be addressed in the Preview 7 release.
-
-### Notification about authentication state changes
+## Notification about authentication state changes
 
 If the app determines that the underlying authentication state data has changed (for example, because the user signed out or another user has changed their roles), a custom `AuthenticationStateProvider` can optionally invoke the method `NotifyAuthenticationStateChanged` on the `AuthenticationStateProvider` base class. This notifies consumers of the authentication state data (for example, `<AuthorizeView>`) to rerender using the new data.
 
-### Procedural logic
+## Procedural logic
 
 If the app is required to check authorization rules as part of procedural logic, use a cascaded parameter of type `Task<AuthenticationState>` to obtain the user's <xref:System.Security.Claims.ClaimsPrincipal>. `Task<AuthenticationState>` can be combined with other services, such as `IAuthorizationService`, to evaluate policies.
 
@@ -457,7 +447,7 @@ If the app is required to check authorization rules as part of procedural logic,
 }
 ```
 
-### Authorization in Blazor client-side apps
+## Authorization in Blazor client-side apps
 
 In Blazor client-side apps, authorization checks can be bypassed because all client-side code can be modified by users. The same is true for all client-side app technologies, including JavaScript SPA frameworks or native apps for any operating system.
 
@@ -465,9 +455,11 @@ In Blazor client-side apps, authorization checks can be bypassed because all cli
 
 ## Troubleshoot errors
 
-**Authorization requires a cascading parameter of type Task\<AuthenticationState>. Consider using CascadingAuthenticationState to supply this.**
+Common errors:
 
-**`null` value is received for `authenticationStateTask`**
+* **Authorization requires a cascading parameter of type Task\<AuthenticationState>. Consider using CascadingAuthenticationState to supply this.**
+
+* **`null` value is received for `authenticationStateTask`**
 
 It's likely that the project wasn't created using a Blazor server-side template with authentication enabled. Wrap a `<CascadingAuthenticationState>` around some part of the UI tree, for example in *App.razor* as follows:
 
