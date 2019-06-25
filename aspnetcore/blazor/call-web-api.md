@@ -5,7 +5,7 @@ description: Learn how to call a web API from a Blazor app using JSON helpers, i
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/24/2019
+ms.date: 06/25/2019
 uid: blazor/call-web-api
 ---
 # Call a web API from ASP.NET Core Blazor
@@ -14,7 +14,7 @@ By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.c
 
 Blazor client-side apps call web APIs using a preconfigured `HttpClient` service. Compose requests, which can include JavaScript [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) options, using Blazor JSON helpers or with <xref:System.Net.Http.HttpRequestMessage>.
 
-Blazor server-side apps call web APIs using <xref:System.Net.Http.IHttpClientFactory>, which implements <xref:System.Net.Http.HttpClient>. For more information, see <xref:fundamentals/http-requests>.
+Blazor server-side apps call web APIs using <xref:System.Net.Http.HttpClient> instances typically created using <xref:System.Net.Http.IHttpClientFactory>. For more information, see <xref:fundamentals/http-requests>.
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -137,11 +137,11 @@ In the following code, the Delete `<button>` element calls the `DeleteItem` meth
 
 ## Cross-origin resource sharing (CORS)
 
-Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. Sometimes, you might want to allow other sites to make cross-origin resource sharing (CORS) requests to your app.
+Browser security prevents a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/).
 
 The sample app demonstrates the use of CORS in the Call Web API component (*Pages/CallWebAPI.razor*).
 
-For more information, see <xref:security/cors>.
+To allow other sites to make cross-origin resource sharing (CORS) requests to your app, see <xref:security/cors>.
 
 ## HttpClient and HttpRequestMessage with Fetch API request options
 
@@ -194,7 +194,9 @@ Supply request options to the underlying JavaScript [Fetch API](https://develope
 
 For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlobalScope.fetch():Parameters](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
 
-When sending credentials (authorization cookies/headers) on CORS requests, allow the `Authorization` header when creating the CORS policy for CORS middleware. The following policy includes configuration for:
+When sending credentials (authorization cookies/headers) on CORS requests, the `Authorization` header must be allowed by the CORS policy.
+
+The following policy includes configuration for:
 
 * Request origins (`http://localhost:5000`, `https://localhost:5001`).
 * Any method (verb).
