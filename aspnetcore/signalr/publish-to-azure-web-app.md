@@ -5,7 +5,7 @@ description: Learn how to publish an ASP.NET Core SignalR app to the Azure App S
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 06/10/2019
+ms.date: 06/25/2019
 uid: signalr/publish-to-azure-web-app
 ---
 # Publish an ASP.NET Core SignalR app to Azure App Service
@@ -21,7 +21,7 @@ By [Brady Gaster](https://twitter.com/bradygaster)
 
 This article covers publishing using the tools in Visual Studio. Visual Studio Code users can use [Azure CLI](/cli/azure) commands to publish apps to Azure. For more information, see [Publish an ASP.NET Core app to Azure with command line tools](/azure/app-service/app-service-web-get-started-dotnet).
 
-1. Right-click on the project in **Solution Explorer** and select **Publish**. Confirm that **App Service** and **Create new** are selected in the **Pick a publish target** dialog and select **Publish**.
+1. Right-click on the project in **Solution Explorer** and select **Publish**. Confirm that **App Service** and **Create new** are selected in the **Pick a publish target** dialog. Select **Create Profile** from the **Publish** button drop down.
 
    Enter the information described in the following table in the **Create App Service** dialog and select **Create**.
 
