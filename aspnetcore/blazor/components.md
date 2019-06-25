@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/16/2019
+ms.date: 06/25/2019
 uid: blazor/components
 ---
 # Create and use Razor components
@@ -1127,7 +1127,12 @@ There are four ways to render an initial component hierarchy into an app:
 
 Attached rendering creates a component hierarchy and renders its contents into static HTML. The app preserves the rendered components in memory until the JavaScript Blazor server-side library boots up and resumes rendering on the client.
 
-Attached rendering is the most powerful approach for rendering a component. Attached rendering enables prerendering a root component passing in an initial set of parameters and maintaining state until the client reconnects and is able to interact with the app. Attached rendering incurs additional expense:
+Attached rendering enables prerendering a root component:
+
+* Passing in an initial set of parameters.
+* Maintaining state until the client reconnects and is able to interact with the app.
+
+Attached rendering incurs additional expense:
 
 * The component hierarchy must be kept in memory whether the client connects to the app or not.
 * Sticky sessions are required.
