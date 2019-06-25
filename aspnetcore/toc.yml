@@ -342,7 +342,7 @@
       uid: mvc/views/layout
     - name: Razor syntax
       uid: mvc/views/razor
-    - name: Razor Class Libraries
+    - name: Razor class libraries
       uid: razor-pages/ui-class
     - name: Tag Helpers
       uid: mvc/views/tag-helpers/builtin-th/Index
