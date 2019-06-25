@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/25/2019
-uid: blazor/security/index
+uid: security/blazor/index
 ---
 # ASP.NET Core Blazor authentication and authorization
 
