@@ -1,16 +1,19 @@
 ---
-title: Use the HTTP REPL tool
+title: Test APIs with the HTTP REPL tool
 author: scottaddie
 description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and test an ASP.NET Core web API.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/21/2019
+ms.date: 06/26/2019
 uid: web-api/http-repl-tool
 ---
-# Use the HTTP REPL tool
+# Test APIs with the HTTP REPL tool
 
-The HTTP REPL is a cross-platform tool that's supported everywhere .NET Core is supported. It is a light weight command line tool for making HTTP calls to test APIs and view their results.
+The HTTP REPL is:
+
+* A lightweight, cross-platform command-line tool that's supported everywhere .NET Core is supported.
+* Used for making HTTP requests to test APIs and view their results.
 
 ## Prerequisites
 
@@ -21,7 +24,7 @@ The HTTP REPL is a cross-platform tool that's supported everywhere .NET Core is 
 To install the HTTP REPL:
 
 ```console
-dotnet tool install -g dotnet-httprepl
+dotnet tool install -g dotnet-httprepl --version 2.2.0-preview3-35497
 ```
 
 A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [dotnet-httprepl](https://www.nuget.org/packages/dotnet-httprepl) NuGet package.
@@ -219,6 +222,7 @@ http://localhost:5000~ post
 Issuing a `post` command opens an editor with the JSON template for you to enter the data to post. To use your preferred editor, use the command `pref set editor.command.default '<EXECUTABLE>'`, where `<EXECUTABLE>` is the full path to the editor's executable file. For example, `pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`.
 
 ### HTTP PUT requests
+
 To issue an HTTP PUT request, run the `put` command on an endpoint that supports it:
 
 ```console
@@ -255,6 +259,7 @@ Transfer-Encoding: chunked
 
 http://localhost:5000/Values~ put 1
 ```
+
 Issuing a `put` command opens an editor for you to enter the values to put. To use your preferred editor, use the command `pref set editor.command.default '<EXECUTABLE>'`, where `<EXECUTABLE>` is the full path to the editor's executable file. For example, `pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`.
 
 ```console
@@ -264,7 +269,8 @@ Content-Length: 0
 Date: Sat, 22 Jun 2019 00:08:16 GMT
 Server: Kestrel
 ```
-You can then Issue a `get` command to see how these values changed after your `put`. For example, if you typed "Cheery" in the editor, a `get` would return the following:
+
+You can then issue a `get` command to see how these values changed after your `put`. For example, if you typed "Cheery" in the editor, a `get` returns the following:
 
 ```console
 http://localhost:5000/Values~ get
@@ -294,11 +300,15 @@ http://localhost:5000/Values~
 ```
 
 ### HTTP DELETE requests
+
 To issue an HTTP DELETE request, run the `delete` command on an endpoint that supports it:
+
 ```console
 http://localhost:5000/Values~ delete 1
 ```
+
 The preceding command displays output similar to the following:
+
 ```console
 HTTP/1.1 200 OK
 Content-Length: 0
@@ -306,8 +316,7 @@ Date: Sat, 22 Jun 2019 00:16:27 GMT
 Server: Kestrel
 ```
 
-
-You can then Issue a `get` command to see how these values changed after your `delete`. In this example, a `get` would return the following:
+You can then issue a `get` command to see how these values changed after your `delete`. In this example, a `get` returns the following:
 
 ```console
 http://localhost:5000/Values~ get
