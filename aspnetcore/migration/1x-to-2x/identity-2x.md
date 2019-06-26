@@ -3,7 +3,7 @@ title: Migrate authentication and Identity to ASP.NET Core 2.0
 author: scottaddie
 description: This article outlines the most common steps for migrating ASP.NET Core 1.x authentication and Identity to ASP.NET Core 2.0.
 ms.author: scaddie
-ms.date: 06/13/2019
+ms.date: 06/21/2019
 uid: migration/1x-to-2x/identity-2x
 ---
 # Migrate authentication and Identity to ASP.NET Core 2.0
@@ -298,18 +298,31 @@ In 2.0 projects, import the `Microsoft.AspNetCore.Authentication` namespace, and
 ## Windows Authentication (HTTP.sys / IISIntegration)
 
 There are two variations of Windows authentication:
-1. The host only allows authenticated users
-2. The host allows both anonymous and authenticated users
 
-The first variation described above is unaffected by the 2.0 changes.
+* The host only allows authenticated users. This variation isn't affected by the 2.0 changes.
+* The host allows both anonymous and authenticated users. This variation is affected by the 2.0 changes. For example, the app should allow anonymous users at the [IIS](xref:host-and-deploy/iis/index) or [HTTP.sys](xref:fundamentals/servers/httpsys) layer but authorize users at the controller level. In this scenario, set the default scheme in the `Startup.ConfigureServices` method.
 
-The second variation described above is affected by the 2.0 changes. For example, you may be allowing anonymous users into your app at the IIS or [HTTP.sys](xref:fundamentals/servers/httpsys) layer but authorizing users at the Controller level. In this scenario, set the default scheme to `IISDefaults.AuthenticationScheme` in the `Startup.ConfigureServices` method:
+  For [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/), set the default scheme to `IISDefaults.AuthenticationScheme`:
 
-```csharp
-services.AddAuthentication(IISDefaults.AuthenticationScheme);
-```
+  ```csharp
+  using Microsoft.AspNetCore.Server.IISIntegration;
 
-Failure to set the default scheme prevents the authorize request to challenge from working.
+  services.AddAuthentication(IISDefaults.AuthenticationScheme);
+  ```
+
+  For [Microsoft.AspNetCore.Server.HttpSys](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.HttpSys/), set the default scheme to `HttpSysDefaults.AuthenticationScheme`:
+
+  ```csharp
+  using Microsoft.AspNetCore.Server.HttpSys;
+
+  services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
+  ```
+
+  Failure to set the default scheme prevents the authorize (challenge) request from working with the following exception:
+
+  > `System.InvalidOperationException`: No authenticationScheme was specified, and there was no DefaultChallengeScheme found.
+
+For more information, see <xref:security/authentication/windowsauth>.
 
 <a name="identity-cookie-options"></a>
 

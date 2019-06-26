@@ -5,22 +5,22 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/14/2019
+ms.date: 06/24/2019
 uid: blazor/class-libraries
 ---
 # ASP.NET Core Razor components class libraries
 
 By [Simon Timms](https://github.com/stimms)
 
-Components can be shared in Razor class libraries across projects. Components can be included from:
+Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. A *Razor components class library* can be included from:
 
 * Another project in the solution.
 * A NuGet package.
 * A referenced .NET library.
 
-Just as components are regular .NET types, components provided by Razor class libraries are normal .NET assemblies.
+Just as components are regular .NET types, components provided by an RCL are normal .NET assemblies.
 
-## Create a Razor class library
+## Create an RCL
 
 Follow the guidance in the <xref:blazor/get-started> article to configure your environment for Blazor.
 
@@ -31,23 +31,23 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
 1. Provide a project name in the **Project name** field or accept the default project name. The examples in this topic use the project name `MyComponentLib1`. Select **Create**.
 1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected.
 1. Select the **Razor Class Library** template. Select **Create**.
-1. Add the Razor class library to a solution:
+1. Add the RCL to a solution:
    1. Right-click the solution. Select **Add** > **Existing Project**.
-   1. Navigate to the Razor class library's project file.
-   1. Select the Razor class library's project file (*.csproj*).
-1. Add a reference the Razor class library from the app:
+   1. Navigate to the RCL's project file.
+   1. Select the RCL's project file (*.csproj*).
+1. Add a reference the RCL from the app:
    1. Right-click the app project. Select **Add** > **Reference**.
-   1. Select the Razor class library project. Select **OK**.
+   1. Select the RCL project. Select **OK**.
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
-1. Use the Razor class library (`razorclasslib`) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell. In the following example, a Razor class library is created named `MyComponentLib1`. The folder that holds `MyComponentLib1` is created automatically when the command is executed.
+1. Use the Razor Class Library template (`razorclasslib`) with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell. In the following example, an RCL is created named `MyComponentLib1`. The folder that holds `MyComponentLib1` is created automatically when the command is executed.
 
    ```console
    dotnet new razorclasslib -o MyComponentLib1
    ```
 
-1. To add the library to an existing project, use the [dotnet add reference](/dotnet/core/tools/dotnet-add-reference) command from a command shell. In the following example, the Razor class library is added to the app. Execute the following command from the app's project folder with the path to the library:
+1. To add the library to an existing project, use the [dotnet add reference](/dotnet/core/tools/dotnet-add-reference) command from a command shell. In the following example, the RCL is added to the app. Execute the following command from the app's project folder with the path to the library:
 
    ```console
    dotnet add reference {PATH TO LIBRARY}
@@ -55,9 +55,9 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
 
 ---
 
-Add Razor component files (*.razor*) to the Razor class library.
+Add Razor component files (*.razor*) to the RCL.
 
-## Razor class libraries not supported for client-side apps
+## RCLs not supported for client-side apps
 
 In ASP.NET Core 3.0 Preview, Razor class libraries aren't compatible with Blazor client-side apps.
 
@@ -68,15 +68,6 @@ dotnet new blazorlib -o MyComponentLib1
 ```
 
 Component libraries using the `blazorlib` template can include static files, such as images, JavaScript, and stylesheets. At build time, static files are embedded into the built assembly file (*.dll*), which allows consumption of the components without having to worry about how to include their resources. Any files included in the `content` directory are marked as an embedded resource.
-
-## Static assets not supported for server-side apps
-
-In ASP.NET Core 3.0 Preview, Blazor server-side apps can't consume static assets from either a Razor class library (`razorclasslib`) or a Blazor library (`blazorlib`).
-
-As a temporary workaround, you can try [BlazorEmbedLibrary](https://www.nuget.org/packages/BlazorEmbedLibrary/).
-
-> [!NOTE]
-> [BlazorEmbedLibrary](https://www.nuget.org/packages/BlazorEmbedLibrary/) isn't maintained or supported by Microsoft.
 
 ## Consume a library component
 
@@ -125,29 +116,12 @@ Upload the package to NuGet using the [dotnet nuget publish](/dotnet/core/tools/
 dotnet nuget publish
 ```
 
-When using the `blazorlib` template, static resources are included in the NuGet package. Library consumers automatically receive scripts and stylesheets, so consumers aren't required to manually install the resources. Note that [static assets aren't supported for server-side apps](#static-assets-not-supported-for-server-side-apps), including when a Blazor library (`blazorlib`) is referenced by a server-side app.
+When using the `blazorlib` template, static resources are included in the NuGet package. Library consumers automatically receive scripts and stylesheets, so consumers aren't required to manually install the resources.
 
-## Create a Razor class library with static assets
+## Create a Razor components class library with static assets
 
-Razor class libraries (RCL) frequently require companion static assets that can be referenced by the consuming app of the RCL. ASP.NET Core allows creating RCLs that include static assets that are available to a consuming app.
+An RCL can include static assets. The static assets are available to any app that consumes the library. For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
 
-To include companion assets as part of a Razor class library, create a *wwwroot* folder in the class library and include any required files in that folder.
+## Additional resources
 
-When packing a Razor class library, all companion assets in the *wwwroot* folder are included in the package automatically and are made available to apps referencing the package.
-
-### Consume content from a referenced Razor class library
-
-The files included in the *wwwroot* folder of the Razor class library are exposed to the consuming app under the prefix `_content/{LIBRARY NAME}/`. The consuming app references these assets via `<script>`, `<style>`, `<img>`, and other HTML tags.
-
-### Multi-project development flow
-
-When the app runs:
-
-* The assets stay in their original folders.
-* Any change within the class library *wwwroot* folder is reflected in the app without rebuilding.
-
-At build time, a manifest is produced with all the static web asset locations. The manifest is read at runtime and allows the app to consume the assets from referenced projects and packages.
-
-### Publish
-
-When the app is published, the companion assets from all referenced projects and packages are copied into the *wwwroot* folder of the published app under `_content/{LIBRARY NAME}/`.
+* <xref:razor-pages/ui-class>
