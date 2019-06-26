@@ -5,14 +5,14 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/14/2019
+ms.date: 06/26/2019
 uid: blazor/routing
 ---
 # ASP.NET Core Blazor routing
 
 By [Luke Latham](https://github.com/guardrex)
 
-Learn how to route requests in apps and about the NavLink component.
+Learn how to route requests in apps and about the `NavLink` component.
 
 ## ASP.NET Core endpoint routing integration
 
@@ -22,7 +22,7 @@ Blazor server-side is integrated into [ASP.NET Core Endpoint Routing](xref:funda
 
 ## Route templates
 
-The `<Router>` component enables routing, and a route template is provided to each accessible component. The `<Router>` component appears in the *App.razor* file:
+The `Router` component enables routing, and a route template is provided to each accessible component. The `Router` component appears in the *App.razor* file:
 
 In a Blazor server-side app:
 
@@ -42,16 +42,25 @@ Multiple route templates can be applied to a component. The following component 
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
 
-`<Router>` supports setting a fallback component to render when a requested route isn't resolved. Enable this opt-in scenario by setting the `FallbackComponent` parameter to the type of the fallback component class.
+> [!IMPORTANT]
+> To generate routes properly, the app must include a `<base>` tag in its *wwwroot/index.html* file (Blazor client-side) or *Pages/_Host.cshtml* file (Blazor server-side) with the app base path specified in the `href` attribute (`<base href="/">`). For more information, see <xref:host-and-deploy/blazor/client-side#app-base-path>.
 
-The following example sets a component defined in *Pages/MyFallbackRazorComponent.razor* as the fallback component for a `<Router>`:
+## Provide custom content when content isn't found
+
+The `Router` component allows the app to specify custom content if content isn't found for the requested route.
+
+In the *App.razor* file, set custom content in the `<NotFoundContent>` element of the `Router` component:
 
 ```cshtml
-<Router ... FallbackComponent="typeof(Pages.MyFallbackRazorComponent)" />
+<Router AppAssembly="typeof(Startup).Assembly">
+    <NotFoundContent>
+        <h1>Sorry</h1>
+        <p>Sorry, there's nothing at this address.</p> b
+    </NotFoundContent>
+</Router>
 ```
 
-> [!IMPORTANT]
-> To generate routes properly, the app must include a `<base>` tag in its *wwwroot/index.html* file (Blazor client-side) or *Pages/\_Host.cshtml* file (Blazor server-side) with the app base path specified in the `href` attribute (`<base href="/">`). For more information, see <xref:host-and-deploy/blazor/client-side#app-base-path>.
+The content of `<NotFoundContent>` can include arbitrary items, such as other interactive components.
 
 ## Route parameters
 
@@ -65,7 +74,7 @@ Optional parameters aren't supported for Blazor apps in ASP.NET Core 3.0 Preview
 
 A route constraint enforces type matching on a route segment to a component.
 
-In the following example, the route to the Users component only matches if:
+In the following example, the route to the `Users` component only matches if:
 
 * An `Id` route segment is present on the request URL.
 * The `Id` segment is an integer (`int`).
@@ -90,9 +99,9 @@ The route constraints shown in the following table are available. For the route 
 
 ## NavLink component
 
-Use a NavLink component in place of HTML `<a>` elements when creating navigation links. A NavLink component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed.
+Use a `NavLink` component in place of HTML `<a>` elements when creating navigation links. A `NavLink` component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed.
 
-The following NavMenu component creates a [Bootstrap](https://getbootstrap.com/docs/) navigation bar that demonstrates how to use NavLink components:
+The following `NavMenu` component creates a [Bootstrap](https://getbootstrap.com/docs/) navigation bar that demonstrates how to use `NavLink` components:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Shared/NavMenu.razor?name=snippet_NavLinks&highlight=4-6,9-11)]
 
@@ -101,7 +110,7 @@ There are two `NavLinkMatch` options:
 * `NavLinkMatch.All` &ndash; Specifies that the NavLink should be active when it matches the entire current URL.
 * `NavLinkMatch.Prefix` &ndash; Specifies that the NavLink should be active when it matches any prefix of the current URL.
 
-In the preceding example, the Home NavLink (`href=""`) matches all URLs and always receives the `active` CSS class. The second NavLink only receives the `active` class when the user visits the Blazor Route component (`href="BlazorRoute"`).
+In the preceding example, the Home NavLink (`href=""`) matches all URLs and always receives the `active` CSS class. The second NavLink only receives the `active` class when the user visits the `BlazorRoute` component (`href="BlazorRoute"`).
 
 ## URI and navigation state helpers
 
@@ -110,7 +119,7 @@ Use `Microsoft.AspNetCore.Components.IUriHelper` to work with URIs and navigatio
 | Member | Description |
 | ------ | ----------- |
 | `GetAbsoluteUri` | Gets the current absolute URI. |
-| `GetBaseUri` | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, `GetBaseUri` corresponds to the `href` attribute on the document's `<base>` element in *wwwroot/index.html* (Blazor client-side) or *Pages/\_Host.cshtml* (Blazor server-side). |
+| `GetBaseUri` | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, `GetBaseUri` corresponds to the `href` attribute on the document's `<base>` element in *wwwroot/index.html* (Blazor client-side) or *Pages/_Host.cshtml* (Blazor server-side). |
 | `NavigateTo` | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul> |
 | `OnLocationChanged` | An event that fires when the navigation location has changed. |
 | `ToAbsoluteUri` | Converts a relative URI into an absolute URI. |

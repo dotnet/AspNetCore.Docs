@@ -40,7 +40,7 @@ Every folder of an app can optionally contain a template file named *_Imports.ra
 The following *_Imports.razor* file imports:
 
 * `MainLayout`.
-* All Razor components in a the same folder and any subfolders.
+* All Razor components in the same folder and any subfolders.
 * The `BlazorApp1.Data` namespace.
  
 [!code-cshtml[](layouts/sample_snapshot/3.x/_Imports.razor)]
