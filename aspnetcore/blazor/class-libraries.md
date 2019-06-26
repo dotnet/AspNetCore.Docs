@@ -120,7 +120,7 @@ When using the `blazorlib` template, static resources are included in the NuGet 
 
 ## Create a Razor components class library with static assets
 
-An RCL can include static assets. The static assets are available to any app that consumes the library. For more information, see <xref:razor-pages/ui-class#create-a-razor-class-library-with-static-assets>.
+An RCL can include static assets. The static assets are available to any app that consumes the library. For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
 
 ## Additional resources
 

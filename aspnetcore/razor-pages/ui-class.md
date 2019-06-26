@@ -28,7 +28,7 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 * Verify **ASP.NET Core 2.1** or later is selected.
 * Select **Razor Class Library** > **OK**.
 
-A RCL has the following project file:
+An RCL has the following project file:
 
 [!code-xml[Main](ui-class/samples/cli/RazorUIClassLib/RazorUIClassLib.csproj)]
 
@@ -46,7 +46,7 @@ For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid 
 
 Add Razor files to the RCL.
 
-The ASP.NET Core templates assume the RCL content is in the *Areas* folder. See [RCL Pages layout](#afs) to create a RCL that exposes content in `~/Pages` rather than `~/Areas/Pages`.
+The ASP.NET Core templates assume the RCL content is in the *Areas* folder. See [RCL Pages layout](#afs) to create an RCL that exposes content in `~/Pages` rather than `~/Areas/Pages`.
 
 ## Referencing RCL content
 
@@ -55,13 +55,13 @@ The RCL can be referenced by:
 * NuGet package. See [Creating NuGet packages](/nuget/create-packages/creating-a-package) and [dotnet add package](/dotnet/core/tools/dotnet-add-package) and [Create and publish a NuGet package](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
 * *{ProjectName}.csproj*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
 
-## Walkthrough: Create a RCL project and use from a Razor Pages project
+## Walkthrough: Create an RCL project and use from a Razor Pages project
 
 You can download the [complete project](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) and test it rather than creating it. The sample download contains additional code and links that make the project easy to test. You can leave feedback in [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/6098) with your comments on download samples versus step-by-step instructions.
 
 ### Test the download app
 
-If you haven't downloaded the completed app and would rather create the walkthrough project, skip to the [next section](#create-a-razor-class-library).
+If you haven't downloaded the completed app and would rather create the walkthrough project, skip to the [next section](#create-an-rcl).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -85,9 +85,9 @@ dotnet run
 
 Follow the instructions in [Test WebApp1](#test)
 
-## Create a RCL
+## Create an RCL
 
-In this section, a RCL is created. Razor files are added to the RCL.
+In this section, an RCL is created. Razor files are added to the RCL.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -222,11 +222,11 @@ Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *_Header.csht
 </body>
 ```
 
-## Create a RCL with static assets
+## Create an RCL with static assets
 
-A RCL may require companion static assets that can be referenced by the consuming app of the RCL. ASP.NET Core allows creating RCLs that include static assets that are available to a consuming app.
+An RCL may require companion static assets that can be referenced by the consuming app of the RCL. ASP.NET Core allows creating RCLs that include static assets that are available to a consuming app.
 
-To include companion assets as part of a RCL, create a *wwwroot* folder in the class library and include any required files in that folder.
+To include companion assets as part of an RCL, create a *wwwroot* folder in the class library and include any required files in that folder.
 
 When packing an RCL, all companion assets in the *wwwroot* folder are included in the package automatically and are made available to apps referencing the package.
 
