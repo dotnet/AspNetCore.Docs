@@ -300,7 +300,7 @@
           uid: blazor/debug
         - name: Call a web API
           uid: blazor/call-web-api
-        - name: Host and deploy
+        - name: Hosting and deployment
           items:
             - name: Overview
               uid: host-and-deploy/blazor/index
@@ -456,9 +456,6 @@
         - name: Users and groups
           uid: signalr/groups
           displayName: signalr
-        - name: Publish to Azure
-          uid: signalr/publish-to-azure-web-app
-          displayName: signalr
         - name: API design considerations
           uid: signalr/api-design
           displayName: signalr
@@ -489,9 +486,9 @@
         - name: Overview
           displayName: signalr
           uid: signalr/scale
-        - name: Azure SignalR Service
+        - name: Azure App Service
+          uid: signalr/publish-to-azure-web-app
           displayName: signalr
-          href: /azure/azure-signalr/signalr-overview?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Redis backplane
           displayName: signalr
           uid: signalr/redis-backplane
