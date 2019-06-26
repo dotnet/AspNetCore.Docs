@@ -67,8 +67,6 @@ Permissible authentication values (`{AUTHENTICATION}`) are shown in the followin
 
 The command creates a folder named with the value provided for the `{APP NAME}` placeholder and uses the folder name as the app's name. For more information, see the [dotnet new](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
-Open the project's folder in Visual Studio Code.
-
 <!--
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -81,6 +79,7 @@ Open the project's folder in Visual Studio Code.
 
 -->
 
+<!--
 # [.NET Core CLI](#tab/netcore-cli/)
 
 Follow the .NET Core CLI guidance in the <xref:blazor/get-started> article to create a new Blazor server-side project with an authentication mechanism:
@@ -101,6 +100,8 @@ Permissible authentication values (`{AUTHENTICATION}`) are shown in the followin
 | Windows Authentication                                                                   | `Windows`                |
 
 The command creates a folder named with the value provided for the `{APP NAME}` placeholder and uses the folder name as the app's name. For more information, see the [dotnet new](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
+
+-->
 
 ---
 
