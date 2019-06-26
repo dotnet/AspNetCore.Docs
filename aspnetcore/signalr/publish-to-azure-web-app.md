@@ -5,7 +5,7 @@ description: Learn how to publish an ASP.NET Core SignalR app to Azure App Servi
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 06/25/2019
+ms.date: 06/26/2019
 uid: signalr/publish-to-azure-web-app
 ---
 # Publish an ASP.NET Core SignalR app to Azure App Service
@@ -57,9 +57,9 @@ If an HTTP *502.2 - Bad Gateway* error occurs when deploying an app that targets
 
 ## Configure the app in Azure App Service
 
-*This section only applies to apps not using the Azure SignalR Service.*
-
 > [!NOTE]
+> *This section only applies to apps not using the Azure SignalR Service.*
+>
 > If the app uses the Azure SignalR Service, the App Service doesn't require the configuration of Application Request Routing (ARR) Affinity and Web Sockets described in this section. Clients connect their Web Sockets to the Azure SignalR Service, not directly to the app.
 
 For apps hosted without the Azure SignalR Service, enable:

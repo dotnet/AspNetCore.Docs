@@ -300,6 +300,8 @@
           uid: blazor/javascript-interop
         - name: Debug
           uid: blazor/debug
+        - name: Call a web API
+          uid: blazor/call-web-api
         - name: Hosting and deployment
           items:
             - name: Overview
@@ -484,7 +486,7 @@
         - name: Overview
           displayName: signalr
           uid: signalr/scale
-        - name: Azure SignalR App Service
+        - name: Azure App Service
           uid: signalr/publish-to-azure-web-app
           displayName: signalr
         - name: Redis backplane
