@@ -296,6 +296,8 @@
           uid: blazor/routing
         - name: JavaScript interop
           uid: blazor/javascript-interop
+        - name: Security and Identity
+          uid: security/blazor/index
         - name: Debug
           uid: blazor/debug
         - name: Call a web API
@@ -959,6 +961,8 @@
       uid: security/ip-safelist
     - name: Application security - OWASP
       href: https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/DotNet_Security_Cheat_Sheet.md
+    - name: Blazor
+      uid: security/blazor/index
 - name: Performance
   items:
     - name: Overview
