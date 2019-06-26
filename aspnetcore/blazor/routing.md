@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/25/2019
+ms.date: 06/26/2019
 uid: blazor/routing
 ---
 # ASP.NET Core Blazor routing
@@ -49,7 +49,7 @@ Multiple route templates can be applied to a component. The following component 
 
 The `Router` component allows the app to specify custom content if content isn't found for the requested route.
 
-In the *App.razor* file, set custom content in the `<NotFoundConent>` element of the `Router` component:
+In the *App.razor* file, set custom content in the `<NotFoundContent>` element of the `Router` component:
 
 ```cshtml
 <Router AppAssembly="typeof(Startup).Assembly">
