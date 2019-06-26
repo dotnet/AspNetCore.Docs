@@ -471,5 +471,5 @@ The `CascadingAuthenticationState` supplies the `Task<AuthenticationState>` casc
 
 ## Additional resources
 
-* <xref:xref:security/index>
+* <xref:security/index>
 * <xref:security/authentication/windowsauth>
