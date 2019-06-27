@@ -92,9 +92,19 @@ HubConnection hubConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
 
 ## Known limitations
 
+::: moniker range=">= aspnetcore-3.0"
+
+* Only the JSON protocol is supported.
+* Transport fallback and the Server Sent Events transport are not supported.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 * Only the JSON protocol is supported.
 * Only the WebSockets transport is supported.
 * Streaming isn't supported yet.
+::: moniker-end
 
 ## Additional resources
 
