@@ -16,9 +16,24 @@ The ASP.NET Core SignalR JavaScript client library enables developers to call se
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/javascript-client/sample) ([how to download](xref:index#how-to-download-a-sample))
 
+
+
 ## Install the SignalR client package
 
 The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs.com/) package. If you're using Visual Studio, run `npm install` from the **Package Manager Console** while in the root folder. For Visual Studio Code, run the command from the **Integrated Terminal**.
+
+::: moniker range=">= aspnetcore-3.0"
+
+  ```console
+  npm init -y
+  npm install @microsoft/signalr
+  ```
+
+npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
+
+::: moniker-end
+
+::: moniker range=" < aspnetcore-3.0"
 
   ```console
   npm init -y
@@ -26,6 +41,8 @@ The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs
   ```
 
 npm installs the package contents in the *node_modules\\@aspnet\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
+
+::: moniker-end
 
 ## Use the SignalR JavaScript client
 
