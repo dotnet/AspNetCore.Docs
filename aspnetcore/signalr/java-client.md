@@ -5,7 +5,7 @@ description: Learn how to use the ASP.NET Core SignalR Java client.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: mimengis
 ms.custom: mvc
-ms.date: 03/14/2019
+ms.date: 06/27/2019
 uid: signalr/java-client
 ---
 # ASP.NET Core SignalR Java client
@@ -92,9 +92,20 @@ HubConnection hubConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
 
 ## Known limitations
 
+::: moniker range=">= aspnetcore-3.0"
+
+* Only the JSON protocol is supported.
+* Transport fallback and the Server Sent Events transport aren't supported.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 * Only the JSON protocol is supported.
 * Only the WebSockets transport is supported.
 * Streaming isn't supported yet.
+
+::: moniker-end
 
 ## Additional resources
 
