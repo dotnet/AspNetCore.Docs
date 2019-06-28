@@ -47,7 +47,7 @@ Use the following instructions for your operating system configuration.
 
 ### Windows using Linux containers
 
-Generate cert and configure local machine:
+Generate certificate and configure local machine:
 
 ```console
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
@@ -67,7 +67,7 @@ The password must match the password used for the certificate.
 
 ### macOS or Linux
 
-Generate cert and configure local machine:
+Generate certificate and configure local machine:
 
 ```console
 dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { password here }
@@ -89,7 +89,7 @@ The password must match the password used for the certificate.
 
 ### Windows using Windows containers
 
-Generate cert and configure local machine:
+Generate certificate and configure local machine:
 
 ```console
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
