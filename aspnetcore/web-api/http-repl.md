@@ -2,7 +2,7 @@
 title: Test APIs with the HTTP REPL tool
 author: scottaddie
 description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and test an ASP.NET Core web API.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 06/28/2019
@@ -10,16 +10,18 @@ uid: web-api/http-repl
 ---
 # Test APIs with the HTTP REPL tool
 
+By [Scott Addie](https://twitter.com/Scott_Addie)
+
 The HTTP REPL is:
 
 * A lightweight, cross-platform command-line tool that's supported everywhere .NET Core is supported.
-* Used for making HTTP requests to test APIs and view their results.
+* Used for making HTTP requests to test ASP.NET Core web APIs and view their results.
 
 To follow along, [view or download the sample ASP.NET Core web API](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl-tool/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Prerequisites
 
-* [.NET Core SDK 3.0.100](https://dotnet.microsoft.com/download/dotnet-core/3.0) or later
+* [!INCLUDE [2.1-SDK](~/includes/2.1-SDK.md)]
 
 ## Installation
 
@@ -45,7 +47,7 @@ To view the available HTTP REPL commands:
 dotnet httprepl --help
 ```
 
-The preceding command displays output similar to the following:
+The following output is displayed:
 
 ```console
 Usage: dotnet httprepl [<BASE_ADDRESS>] [options]
@@ -73,7 +75,7 @@ set header     Sets or clears a header for all requests. e.g. `set header conten
 
 
 Navigation Commands:
-The REPL allows you to navigate your URL space and focus on specific APIS that you are working on.
+The REPL allows you to navigate your URL space and focus on specific APIs that you are working on.
 
 set base       Set the base URI. e.g. `set base http://locahost:5000`
 set swagger    Set the URI, relative to your base if set, of the Swagger document for this API. e.g. `set swagger /swagger/v1/swagger.json`
@@ -92,7 +94,7 @@ Use these commands to customize the REPL behavior..
 
 pref [get/set] Allows viewing or changing preferences, e.g. 'pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`
 run            Runs the script at the given path. A script is a set of commands that can be typed with one command per line.
-ui             Displays the swagger UI page, if available, in the default browser.
+ui             Displays the Swagger UI page, if available, in the default browser.
 
 Use help <COMMAND> to learn more details about individual commands. e.g. `help get`
 ```
@@ -109,7 +111,7 @@ dotnet httprepl <BASE URI>
 
 `<BASE URI>` is the base URI for the service. For example, `dotnet httprepl https://localhost:5001`.
 
-Alternatively, you can run the following command at any time while the HTTP REPL is running:
+Alternatively, run the following command at any time while the HTTP REPL is running:
 
 ```console
 set base <BASE URI>
@@ -127,17 +129,17 @@ set swagger <RELATIVE URI>
 
 For example, `https://localhost:5001~ set swagger /swagger/v1/swagger.json`.
 
-## Navigate the API service
+## Navigate the web API
 
 ### View available endpoints
 
-To list the different endpoints at the current subtree of the API service, run the `ls` command:
+To list the different endpoints at the current subtree of the web API, run the `ls` command:
 
 ```console
 https://localhot:5001~ ls
 ```
 
-The preceding command displays output similar to the following:
+The following output format is displayed:
 
 ```console
 .        []
@@ -145,6 +147,12 @@ Fruits   [get|post]
 People   [get|post]
 
 https://localhost:5001/~
+```
+
+Alternatively, run the `ui` command to open the web API's Swagger UI page in a browser. For example:
+
+```console
+https://localhost:5001/~ ui
 ```
 
 ### Navigate to an endpoint
@@ -155,7 +163,7 @@ To navigate to a different endpoint of the API service, run the `cd` command:
 https://localhost:5001~ cd people
 ```
 
-The preceding command displays output similar to the following:
+The following output format is displayed:
 
 ```console
 /people    [get|post]
@@ -163,9 +171,38 @@ The preceding command displays output similar to the following:
 https://localhost:5001/people~
 ```
 
+## Set the default colors
+
+To customize the default HTTP REPL tool coloring, run the `pref get` command. For example:
+
+```console
+https://localhost:5001/~ pref get
+```
+
+The preceding command displays the available key-value pairs:
+
+```console
+colors.json=Green
+colors.json.arrayBrace=BoldCyan
+colors.json.comma=BoldYellow
+colors.json.name=BoldMagenta
+colors.json.nameSeparator=BoldWhite
+colors.json.objectBrace=Cyan
+colors.protocol=BoldGreen
+colors.status=BoldYellow
+```
+
+Locate the key corresponding to the color to be changed. For example, change the `colors.json` key value from `Green` to `White` as follows:
+
+```console
+https://localhost:5001/people~ pref set colors.json White
+```
+
+Only the [allowed colors](https://github.com/aspnet/HttpRepl/blob/01d5c3c3373e98fe566ff5ef8a17c571de880293/src/Microsoft.Repl/ConsoleHandling/AllowedColors.cs) may be used. The updated coloring is persisted across the current session and is honored in future sessions. Subsequent HTTP requests display output with the new coloring.
+
 ## Set the default editor
 
-To test API methods requiring an HTTP request body, a default editor must be set. The HTTP REPL tool uses the setting to determine which editor to launch for editing the request body. Run the following command to set your preferred editor as the default editor:
+To test API methods requiring an HTTP request body, a default editor must be set. The HTTP REPL tool launches the configured editor for the sole purpose of composing the request body. Run the following command to set your preferred editor as the default editor:
 
 ```console
 pref set editor.command.default "<EXECUTABLE>"
@@ -195,69 +232,79 @@ pref set editor.command.default "C:\Program Files\Microsoft VS Code\Code.exe"
 
 ## Test the API service
 
-To test the API service, you can issue GET, POST, PUT, DELETE, PATCH, HEAD, and OPTIONS [HTTP requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods).
+To test the API service, issue one of the following [HTTP requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods):
+
+* [GET](#http-get-requests)
+* [POST](#http-post-requests)
+* [PUT](#http-put-requests)
+* [DELETE](#http-delete-requests)
+* PATCH
+* HEAD
+* OPTIONS
 
 ### HTTP GET requests
 
-To issue an HTTP GET request, run the `get` command:
+To issue an HTTP GET request:
 
-```console
-https://localhost:5001~ get
-```
+1. Run the `get` command on an endpoint that supports it:
 
-The preceding command displays output similar to the following:
+    ```console
+    https://localhost:5001/people~ get
+    ```
+    
+    The preceding command displays the following output format:
+    
+    ```console
+    HTTP/1.1 200 OK
+    Content-Type: application/json; charset=utf-8
+    Date: Fri, 21 Jun 2019 03:38:45 GMT
+    Server: Kestrel
+    Transfer-Encoding: chunked
+    
+    [
+      {
+        "id": 1,
+        "name": "Scott Hunter"
+      },
+      {
+        "id": 2,
+        "name": "Scott Hanselman"
+      },
+      {
+        "id": 3,
+        "name": "Scott Guthrie"
+      }
+    ]
+    
+    
+    https://localhost:5001/people~
+    ```
 
-```console
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-Date: Fri, 21 Jun 2019 03:38:45 GMT
-Server: Kestrel
-Transfer-Encoding: chunked
+1. Retrieve a specific record by passing a parameter to the `get` command:
 
-[
-  {
-    "id": 1,
-    "name": "Scott Hunter"
-  },
-  {
-    "id": 2,
-    "name": "Scott Hanselman"
-  },
-  {
-    "id": 3,
-    "name": "Scott Guthrie"
-  }
-]
-
-
-https://localhost:5001/people~
-```
-
-You can also retrieve a specific record:
-
-```console
-https://localhost:5001~ get 2
-```
-
-The preceding command displays output similar to the following:
-
-```console
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-Date: Fri, 21 Jun 2019 06:17:57 GMT
-Server: Kestrel
-Transfer-Encoding: chunked
-
-[
-  {
-    "id": 2,
-    "name": "Scott Hanselman"
-  }
-]
-
-
-https://localhost:5001/people~
-```
+    ```console
+    https://localhost:5001/people~ get 2
+    ```
+    
+    The preceding command displays the following output format:
+    
+    ```console
+    HTTP/1.1 200 OK
+    Content-Type: application/json; charset=utf-8
+    Date: Fri, 21 Jun 2019 06:17:57 GMT
+    Server: Kestrel
+    Transfer-Encoding: chunked
+    
+    [
+      {
+        "id": 2,
+        "name": "Scott Hanselman"
+      }
+    ]
+    
+    
+    https://localhost:5001/people~
+    ```
 
 ### HTTP POST requests
 
@@ -289,7 +336,7 @@ To issue an HTTP POST request:
 
 1. Modify the JSON template, and save your changes.
 
-1. Close the editor. Output resembling the following appears in the command shell:
+1. Close the editor. The following output appears in the command shell:
 
     ```console
     HTTP/1.1 201 Created
@@ -363,7 +410,7 @@ To issue an HTTP PUT request:
 
 1. Modify the JSON template, and save your changes.
 
-1. Close the editor. Output resembling the following appears in the command shell:
+1. Close the editor. The following output appears in the command shell:
 
     ```console
     [main 2019-06-28T17:27:01.805Z] update#setState idle
@@ -411,7 +458,7 @@ To issue an HTTP DELETE request:
     https://localhost:5001/fruits~ delete 2
     ```
 
-    The preceding command displays output similar to the following:
+    The preceding command displays the following output format:
 
     ```console
     HTTP/1.1 204 No Content
@@ -421,32 +468,88 @@ To issue an HTTP DELETE request:
 
 1. *Optional*: Issue a `get` command to see the modifications. In this example, a `get` returns the following:
 
+    ```console
+    https://localhost:5001/fruits~ get
+    HTTP/1.1 200 OK
+    Content-Type: application/json; charset=utf-8
+    Date: Sat, 22 Jun 2019 00:16:30 GMT
+    Server: Kestrel
+    Transfer-Encoding: chunked
+    
+    [
+      {
+        "id": 1,
+        "data": "Apple"
+      },
+      {
+        "id": 3,
+        "data": "Strawberry"
+      }
+    ]
+    
+    
+    https://localhost:5001/fruits~
+    ```
+
+## Toggle HTTP request display
+
+By default, display of the HTTP request being sent is suppressed.
+
+### Enable display
+
+View the HTTP request being sent by running the `echo on` command. For example:
+
 ```console
-https://localhost:5001/fruits~ get
-HTTP/1.1 200 OK
+https://localhost:5001/people~ echo on
+Request echoing is on
+```
+
+Subsequent HTTP requests in the current session display the request headers. For example:
+
+```console
+https://localhost:5001/People~ POST
+
+[main 2019-06-28T18:50:11.930Z] update#setState idle
+Request to https://localhost:5001...
+
+POST /People HTTP/1.1
+Content-Length: 41
+Content-Type: application/json
+User-Agent: HTTP-REPL
+
+{
+  "id": 0,
+  "name": "Scott Addie"
+}
+
+Response from https://localhost:5001...
+
+HTTP/1.1 201 Created
 Content-Type: application/json; charset=utf-8
-Date: Sat, 22 Jun 2019 00:16:30 GMT
+Date: Fri, 28 Jun 2019 18:50:21 GMT
+Location: https://localhost:5001/People/4
 Server: Kestrel
 Transfer-Encoding: chunked
 
-[
-  {
-    "id": 1,
-    "data": "Apple"
-  },
-  {
-    "id": 3,
-    "data": "Strawberry"
-  }
-]
+{
+  "id": 4,
+  "name": "Scott Addie"
+}
 
 
-https://localhost:5001/fruits~
+https://localhost:5001/People~
 ```
 
+### Disable display
 
+Suppress display of the HTTP request being sent by running the `echo off` command. For example:
+
+```console
+https://localhost:5001/people~ echo off
+Request echoing is off
+```
 
 ## Additional resources
 
 * [REST API requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
-* [HTTP REPL GitHub repository](https://github.com/aspnet/AspLabs)
+* [HTTP REPL GitHub repository](https://github.com/aspnet/HttpRepl)
