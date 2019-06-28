@@ -21,7 +21,7 @@ To follow along, [view or download the sample ASP.NET Core web API](https://gith
 
 ## Prerequisites
 
-* [!INCLUDE [2.1-SDK](../../includes/2.1-SDK.md)]
+* [!INCLUDE [2.1-SDK](~/includes/2.1-SDK.md)]
 
 ## Installation
 
