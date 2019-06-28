@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 06/24/2019
+ms.date: 06/28/2019
 ms.custom: "mvc, seodec18"
 uid: razor-pages/ui-class
 ---
@@ -222,6 +222,8 @@ Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *_Header.csht
 </body>
 ```
 
+::: moniker range=">= aspnetcore-3.0"
+
 ## Create an RCL with static assets
 
 An RCL may require companion static assets that can be referenced by the consuming app of the RCL. ASP.NET Core allows creating RCLs that include static assets that are available to a consuming app.
@@ -248,3 +250,5 @@ When the RCL is built, a manifest is produced that describes the static web asse
 ### Publish
 
 When the app is published, the companion assets from all referenced projects and packages are copied into the *wwwroot* folder of the published app under `_content/{LIBRARY NAME}/`.
+
+::: moniker-end
