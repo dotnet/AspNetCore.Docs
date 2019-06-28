@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 07/05/2019
 uid: security/docker-https
 ---
-# Hosting ASP.NET Core Images with Docker over HTTPS
+# Hosting ASP.NET Core images with Docker over HTTPS
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -19,6 +19,10 @@ This document explains how to run pre-built container images with HTTPS.
 See [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/aspnetcore-docker-https-development.md) for development scenarios.
 
 This sample requires [Docker 17.06](https://docs.docker.com/release-notes/docker-ce) or later of the [Docker client](https://www.docker.com/products/docker).
+
+## Prerequisites
+
+The [.NET Core 2.2 SDK](https://www.microsoft.com/net/download) or later is required for some of the instructions in this document.
 
 ## Certificates
 
@@ -31,77 +35,74 @@ For production certs:
 * The `dotnet dev-certs` tool is not required.
 * Certificates do not need to be stored in the location used in the instructions. Any location should work, although storing certs within your site directory is not recommended.
 
-The instructions volume mount certificates into containers. You can add certificates into container images with a `COPY` command in a Dockerfile. Copying certificates into an image is not recommended, itt makes difficult to use the same image:
+The instructions volume mount certificates into containers. You can add certificates into container images with a `COPY` command in a Dockerfile. Copying certificates into an image is not recommended:
 
-* For testing with developer certificates.
-* Hosting with production certificates. 
+* It makes difficult to use the same image for testing with developer certificates.
+* It makes difficult to use the same image for Hosting with production certificates.
+* There is significant risk of certificate disclosure.
 
-There is significant risk of certificate disclosure if certificates are made part of container images.
+## Running pre-built container images with HTTPS
 
-## Running pre-built Container Images with HTTPS
-
-Use the following instructions, for your operating system configuration.
-
-You need the [.NET Core 2.1 SDK or newer](https://www.microsoft.com/net/download) for some of the instructions.
+Use the following instructions for your operating system configuration.
 
 ### Windows using Linux containers
 
 Generate cert and configure local machine:
 
 ```console
-dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p crypticpassword
+dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
 dotnet dev-certs https --trust
 ```
 
-> Note: `crypticpassword` is used as a stand-in for a password of your own choosing.
+In the preceding commands, replace `{ password here }` with a password.
 
 Run the container image with ASP.NET Core configured for HTTPS:
 
 ```console
 docker pull mcr.microsoft.com/dotnet/core/samples:aspnetapp
-docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="crypticpassword" -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx -v %USERPROFILE%\.aspnet\https:/https/ mcr.microsoft.com/dotnet/core/samples:aspnetapp
+docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="password" -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx -v %USERPROFILE%\.aspnet\https:/https/ mcr.microsoft.com/dotnet/core/samples:aspnetapp
 ```
 
-> Note: The password must match the password used for the certificate.
+The password must match the password used for the certificate.
 
 ### macOS or Linux
 
 Generate cert and configure local machine:
 
 ```console
-dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p crypticpassword
+dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { password here }
 dotnet dev-certs https --trust
 ```
 
-> Note: `dotnet dev-certs https --trust` is only supported on macOS and Windows. You need to trust certs on Linux in the way that is supported by your distro. It is likely that you need to trust the certificate in your browser.
+`dotnet dev-certs https --trust` is only supported on macOS and Windows. You need to trust certs on Linux in the way that is supported by your distro. It is likely that you need to trust the certificate in your browser.
 
-> Note: `crypticpassword` is used as a stand-in for a password of your own choosing.
+In the preceding commands, replace `{ password here }` with a password.
 
 Run the container image with ASP.NET Core configured for HTTPS:
 
 ```console
 docker pull mcr.microsoft.com/dotnet/core/samples:aspnetapp
-docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="crypticpassword" -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx -v ${HOME}/.aspnet/https:/https/ mcr.microsoft.com/dotnet/core/samples:aspnetapp
+docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="password" -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx -v ${HOME}/.aspnet/https:/https/ mcr.microsoft.com/dotnet/core/samples:aspnetapp
 ```
 
-> Note: The password must match the password used for the certificate.
+The password must match the password used for the certificate.
 
 ### Windows using Windows containers
 
 Generate cert and configure local machine:
 
 ```console
-dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p crypticpassword
+dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
 dotnet dev-certs https --trust
 ```
 
-> Note: `crypticpassword` is used as a stand-in for a password of your own choosing.
+In the preceding commands, replace `{ password here }` with a password.
 
 Run the container image with ASP.NET Core configured for HTTPS:
 
 ```console
 docker pull mcr.microsoft.com/dotnet/core/samples:aspnetapp
-docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="crypticpassword" -e ASPNETCORE_Kestrel__Certificates__Default__Path=\https\aspnetapp.pfx -v %USERPROFILE%\.aspnet\https:C:\https\ mcr.microsoft.com/dotnet/core/samples:aspnetapp
+docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="password" -e ASPNETCORE_Kestrel__Certificates__Default__Path=\https\aspnetapp.pfx -v %USERPROFILE%\.aspnet\https:C:\https\ mcr.microsoft.com/dotnet/core/samples:aspnetapp
 ```
 
-> Note: The password must match the password used for the certificate.
+The password must match the password used for the certificate.
