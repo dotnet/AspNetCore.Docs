@@ -943,6 +943,8 @@
         - name: Azure Key Vault Configuration Provider
           displayName: password, connection string, API key, secrets
           uid: security/key-vault-configuration
+    - name: Enforce HTTPS
+      uid: security/enforcing-ssl
     - name: Host Docker with HTTPS
       uid: security/docker-https
     - name: EU General Data Protection Regulation (GDPR) support

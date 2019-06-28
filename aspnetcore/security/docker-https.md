@@ -22,13 +22,21 @@ This sample requires [Docker 17.06](https://docs.docker.com/release-notes/docker
 
 ## Certificates
 
-You need a certificate from a [certificate authority](https://en.wikipedia.org/wiki/Certificate_authority) for [production hosting](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) for your domain. You may already have one. [Let's Encrypt](https://letsencrypt.org/) is a certificate authority that offers free certificates.
+A certificate from a [certificate authority](https://en.wikipedia.org/wiki/Certificate_authority) is required for [production hosting](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) for a domain.  [Let's Encrypt](https://letsencrypt.org/) is a certificate authority that offers free certificates.
 
 This document uses [self-signed development certificates](https://en.wikipedia.org/wiki/Self-signed_certificate) for hosting pre-built images over `localhost`. The instructions are similar to using production certificates.
 
-For production certs, you do not need to use the `dotnet dev-certs` tool or store the certificates in the location used in the instructions. Any location should work, although storing certs within your site directory is an anti-pattern.
+For production certs:
 
-The instructions volume mount certificates into containers. You can add certificates into container images with a `COPY` command in a Dockerfile. Copying certificates into an image is an anti-pattern. It makes it harder to use the same image for testing with dev certificates and hosting with production certificates. There is also a  significant risk of certificate disclosure if certificates are made part of container images.
+* The `dotnet dev-certs` tool is not required.
+* Certificates do not need to be stored in the location used in the instructions. Any location should work, although storing certs within your site directory is not recommended.
+
+The instructions volume mount certificates into containers. You can add certificates into container images with a `COPY` command in a Dockerfile. Copying certificates into an image is not recommended, itt makes difficult to use the same image:
+
+* For testing with developer certificates.
+* Hosting with production certificates. 
+
+There is significant risk of certificate disclosure if certificates are made part of container images.
 
 ## Running pre-built Container Images with HTTPS
 
