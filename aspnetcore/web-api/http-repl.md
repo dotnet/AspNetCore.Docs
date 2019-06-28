@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/27/2019
+ms.date: 06/28/2019
 uid: web-api/http-repl
 ---
 # Test APIs with the HTTP REPL tool
@@ -129,6 +129,8 @@ For example, `https://localhost:5001~ set swagger /swagger/v1/swagger.json`.
 
 ## Navigate the API service
 
+### View available endpoints
+
 To list the different endpoints at the current subtree of the API service, run the `ls` command:
 
 ```console
@@ -144,6 +146,8 @@ People   [get|post]
 
 https://localhost:5001/~
 ```
+
+### Navigate to an endpoint
 
 To navigate to a different endpoint of the API service, run the `cd` command:
 
@@ -164,7 +168,7 @@ https://localhost:5001/people~
 To test API methods requiring an HTTP request body, a default editor must be set. The HTTP REPL tool uses the setting to determine which editor to launch for editing the request body. Run the following command to set your preferred editor as the default editor:
 
 ```console
-pref set editor.command.default '<EXECUTABLE>'
+pref set editor.command.default "<EXECUTABLE>"
 ```
 
 In the preceding command, `<EXECUTABLE>` is the full path to the editor's executable file. For example, run the following command to set Visual Studio Code as the default editor:
@@ -257,110 +261,165 @@ https://localhost:5001/people~
 
 ### HTTP POST requests
 
-To issue an HTTP POST request, run the `post` command:
+To issue an HTTP POST request:
 
-```console
-https://localhost:5001/people~ post
-```
+1. Set the appropriate HTTP request headers. For example, indicate that the request body's media type is JSON:
 
-Issuing a `post` command opens an editor with the JSON template for you to enter the data to post. To set the default editor, see [Set the default editor](#set-the-default-editor).
+    ```console
+    https://localhost:5001/people~ set header content-type application/json    
+    ```
+
+1. Run the `post` command on an endpoint that supports it:
+
+    ```console
+    https://localhost:5001/people~ post
+    ```
+
+    The default editor opens a *.tmp* file with a JSON template representing the HTTP request body. For example:
+
+    ```json
+    {
+      "id": 0,
+      "name": "Scott Addie"
+    }
+    ```
+
+    > [!TIP]
+    > To set the default editor, see the [Set the default editor](#set-the-default-editor) section.
+
+1. Modify the JSON template, and save your changes.
+
+1. Close the editor. Output resembling the following appears in the command shell:
+
+    ```console
+    HTTP/1.1 201 Created
+    Content-Type: application/json; charset=utf-8
+    Date: Thu, 27 Jun 2019 21:24:18 GMT
+    Location: https://localhost:5001/People/4
+    Server: Kestrel
+    Transfer-Encoding: chunked
+    
+    {
+      "id": 4,
+      "name": "Scott Addie"
+    }
+    
+    
+    https://localhost:5001/People~    
+    ```
 
 ### HTTP PUT requests
 
-To issue an HTTP PUT request, run the `put` command on an endpoint that supports it:
+To issue an HTTP PUT request:
 
-```console
-https://localhost:5001/~ cd fruits
-/fruits    [get|post]
+1. *Optional*: Run the `get` command to view the data before modifying it:
 
-https://localhost:5001/fruits~ ls
-.      [get|post]
-..     []
-{id}   [get|put|delete]
+    ```console
+    https://localhost:5001/fruits~ get
+    HTTP/1.1 200 OK
+    Content-Type: application/json; charset=utf-8
+    Date: Sat, 22 Jun 2019 00:07:32 GMT
+    Server: Kestrel
+    Transfer-Encoding: chunked
+    
+    [
+      {
+        "id": 1,
+        "data": "Apple"
+      },
+      {
+        "id": 2,
+        "data": "Orange"
+      },
+      {
+        "id": 3,
+        "data": "Strawberry"
+      }
+    ]
 
-https://localhost:5001/fruits~ get
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-Date: Sat, 22 Jun 2019 00:07:32 GMT
-Server: Kestrel
-Transfer-Encoding: chunked
+1. Set the appropriate HTTP request headers. For example, indicate that the request body's media type is JSON:
 
-[
-  {
-    "id": 1,
-    "data": "Apple"
-  },
-  {
-    "id": 2,
-    "data": "Orange"
-  },
-  {
-    "id": 3,
-    "data": "Strawberry"
-  }
-]
+    ```console
+    https://localhost:5001/fruits~ set header content-type application/json    
+    ```
 
+1. Run the `put` command on an endpoint that supports it:
 
-https://localhost:5001/fruits~ put 2
-```
+    ```console    
+    https://localhost:5001/fruits~ put 2
+    ```
 
-Issuing a `put` command opens an editor for you to enter the values to put. To set the default editor, see [Set the default editor](#set-the-default-editor).
+    The default editor opens a *.tmp* file with a JSON template representing the HTTP request body. For example:
 
-```console
-[main 2019-06-22T00:08:07.236Z] update#setState idle
-HTTP/1.1 200 OK
-Content-Length: 0
-Date: Sat, 22 Jun 2019 00:08:16 GMT
-Server: Kestrel
-```
+    ```json
+    {
+      "id": 2,
+      "name": "Cherry"
+    }
+    ```
 
-You can then issue a `get` command to see how these values changed after your `put`. For example, if you typed "Cherry" in the editor, a `get` returns the following:
+    > [!TIP]
+    > To set the default editor, see the [Set the default editor](#set-the-default-editor) section.
 
-```console
-https://localhost:5001/fruits~ get
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-Date: Sat, 22 Jun 2019 00:08:20 GMT
-Server: Kestrel
-Transfer-Encoding: chunked
+1. Modify the JSON template, and save your changes.
 
-[
-  {
-    "id": 1,
-    "data": "Apple"
-  },
-  {
-    "id": 2,
-    "data": "Cherry"
-  },
-  {
-    "id": 3,
-    "data": "Strawberry"
-  }
-]
+1. Close the editor. Output resembling the following appears in the command shell:
 
+    ```console
+    [main 2019-06-28T17:27:01.805Z] update#setState idle
+    HTTP/1.1 204 No Content
+    Date: Fri, 28 Jun 2019 17:28:21 GMT
+    Server: Kestrel
+    ```
 
-https://localhost:5001/fruits~ 
-```
+1. *Optional*: Issue a `get` command to see the modifications. For example, if you typed "Cherry" in the editor, a `get` returns the following:
+
+    ```console
+    https://localhost:5001/fruits~ get
+    HTTP/1.1 200 OK
+    Content-Type: application/json; charset=utf-8
+    Date: Sat, 22 Jun 2019 00:08:20 GMT
+    Server: Kestrel
+    Transfer-Encoding: chunked
+    
+    [
+      {
+        "id": 1,
+        "data": "Apple"
+      },
+      {
+        "id": 2,
+        "data": "Cherry"
+      },
+      {
+        "id": 3,
+        "data": "Strawberry"
+      }
+    ]
+    
+    
+    https://localhost:5001/fruits~ 
+    ```
 
 ### HTTP DELETE requests
 
-To issue an HTTP DELETE request, run the `delete` command on an endpoint that supports it:
+To issue an HTTP DELETE request:
 
-```console
-https://localhost:5001/fruits~ delete 2
-```
+1. Run the `delete` command on an endpoint that supports it:
 
-The preceding command displays output similar to the following:
+    ```console
+    https://localhost:5001/fruits~ delete 2
+    ```
 
-```console
-HTTP/1.1 200 OK
-Content-Length: 0
-Date: Sat, 22 Jun 2019 00:16:27 GMT
-Server: Kestrel
-```
+    The preceding command displays output similar to the following:
 
-You can then issue a `get` command to see how these values changed after your `delete`. In this example, a `get` returns the following:
+    ```console
+    HTTP/1.1 204 No Content
+    Date: Fri, 28 Jun 2019 17:36:42 GMT
+    Server: Kestrel
+    ```
+
+1. *Optional*: Issue a `get` command to see the modifications. In this example, a `get` returns the following:
 
 ```console
 https://localhost:5001/fruits~ get
@@ -384,6 +443,8 @@ Transfer-Encoding: chunked
 
 https://localhost:5001/fruits~
 ```
+
+
 
 ## Additional resources
 
