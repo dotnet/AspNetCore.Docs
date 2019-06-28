@@ -5,7 +5,7 @@ description: Overview of ASP.NET Core SignalR JavaScript client.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 04/17/2019
+ms.date: 06/28/2019
 uid: signalr/javascript-client
 ---
 # ASP.NET Core SignalR JavaScript client
@@ -31,7 +31,7 @@ npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\
 
 ::: moniker-end
 
-::: moniker range=" < aspnetcore-3.0"
+::: moniker range="< aspnetcore-3.0"
 
   ```console
   npm init -y
