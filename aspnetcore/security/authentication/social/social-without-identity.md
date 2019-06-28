@@ -3,7 +3,7 @@ title: Facebook, Google, and external provider authentication without ASP.NET Co
 author: rick-anderson
 description: An explanation of using Facebook, Google, Twitter, etc. account user authentication without ASP.NET Core Identity.
 ms.author: riande
-ms.date: 05/11/2019
+ms.date: 06/28/2019
 uid: security/authentication/social/social-without-identity
 ---
 # Use social sign-in provider authentication without ASP.NET Core Identity
@@ -19,25 +19,15 @@ This sample uses [Google authentication](xref:security/authentication/google-log
 * [Twitter authentication](xref:security/authentication/twitter-logins)
 * [Other providers](xref:security/authentication/otherlogins)
 
-<!--
-TODO: Should we call out that the instructions in the linked topics all use Identity?
--->
-
 ## Configuration
 
 In the `ConfigureServices` method, configure the app's authentication schemes with the `AddAuthentication`, `AddCookie` and `AddGoogle` methods:
 
 [!code-csharp[](social-without-identity/sample/Startup.cs?name=snippet1)]
 
-<!--
-TODO: Rework the following explanation to detail more about DefaultScheme, DefaultChallengeScheme and the fallback mechanism.
--->
+The call to [AddAuthentication](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication#Microsoft_Extensions_DependencyInjection_AuthenticationServiceCollectionExtensions_AddAuthentication_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_AuthenticationOptions__) sets both the app's [DefaultScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultScheme) and the app's [DefaultChallengeScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultChallengeScheme). The `DefaultChallengeScheme` is used as the default scheme for calls to [HttpContext.ChallengeAsync](dotnet/api/microsoft.aspnetcore.authentication.authenticationhttpcontextextensions.challengeasync). The `DefaultScheme` is used as a fallback default scheme. For example, if `DefaultChallengeScheme` is not set, calls to `HttpContext.ChallengeAsync` fallback to use the `DefaultScheme`.
 
-The preceding code:
-
-* Sets the default authentication scheme to cookie authentication.
-* Sets the default challenge scheme to Google authentication.
-* Gets the Google client ID and client secret from [Secret Manager](xref:security/app-secrets).
+Setting the app's `DefaultScheme` to [CookieAuthenticationDefaults.AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) ("Cookies") configures the app to use cookies to encrypt and store user information. Setting the app's `DefaultChallengeScheme` to [GoogleDefaults.AuthenticationScheme](xref:Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme) ("Google") configures the app to use Google as the authentication provider.
 
 In the `Configure` method, call the `UseAuthentication` method to invoke the Authentication Middleware that sets the `HttpContext.User` property. Call the `UseAuthentication` method before calling `UseMvcWithDefaultRoute` or `UseMvc`:
 
