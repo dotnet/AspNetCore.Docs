@@ -29,7 +29,7 @@ Run `dotnet new grpc -o GrpcGreeter` from the command line.
 
 ## Add gRPC services to an ASP.NET Core app
 
-gRPC requires the following packages:
+gRPC requires the following package:
 
 * [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore)
 
