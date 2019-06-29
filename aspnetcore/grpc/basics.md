@@ -58,7 +58,7 @@ For server-side assets, an abstract service base type is generated. The base typ
 
 For client-side assets, a concrete client type is generated. The gRPC calls in the *.proto* file are translated into methods on the concrete type, which can be called. For the `greet.proto`, the example described previously, a concrete `GreeterClient` type is generated. Call `GreeterClient.SayHello` to initiate a gRPC call to the server.
 
-[!code-csharp[](~/tutorials//grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?highlight=5-8&name=snippet)]
+[!code-csharp[](~/tutorials//grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?highlight=3-6&name=snippet)]
 
 By default, server and client assets are generated for each *.proto* file included in the `<Protobuf>` item group. To ensure only the server assets are generated in a server project, the `GrpcServices` attribute is set to `Server`.
 
