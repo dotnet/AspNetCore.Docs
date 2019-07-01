@@ -60,7 +60,7 @@ Components are ordinary C# classes and can be placed anywhere within a project. 
 Use components with existing Razor Pages and MVC apps. There's no need to rewrite existing pages or views to use Razor components. When the page or view is rendered, components are prerendered&dagger; at the same time. 
 
 > [!NOTE]
-> &dagger;Server-side prerendering is enabled for Blazor server-side apps by default. Client-side Blazor apps will support prerendering in the upcoming Preview 5 release. For more information, see [Update templates/middleware to use MapFallbackToPage/File](https://github.com/aspnet/AspNetCore/issues/8852).
+> &dagger;Server-side prerendering is enabled for Blazor server-side apps by default. Blazor client-side apps will support prerendering in the upcoming Preview 5 release. For more information, see [Update templates/middleware to use MapFallbackToPage/File](https://github.com/aspnet/AspNetCore/issues/8852).
 
 To render a component from a page or view, use the `RenderComponentAsync<TComponent>` HTML helper method:
 
