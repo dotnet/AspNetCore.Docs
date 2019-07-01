@@ -25,13 +25,16 @@ To follow along, [view or download the sample ASP.NET Core web API](https://gith
 
 ## Installation
 
-To install the HTTP REPL:
+To install the HTTP REPL, run the following command:
 
 ```console
-dotnet tool install -g dotnet-httprepl --version 2.2.0-preview3-35497
+dotnet tool install -g dotnet-httprepl 
+    --version 2.2.0-rtm-35542 
+    --add-source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json
 ```
 
-A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [dotnet-httprepl](https://www.nuget.org/packages/dotnet-httprepl) NuGet package.
+A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [dotnet-httprepl](https://dotnet.myget.org/feed/dotnet-core/package/nuget/dotnet-httprepl
+) NuGet package on MyGet.
 
 ## Usage
 
