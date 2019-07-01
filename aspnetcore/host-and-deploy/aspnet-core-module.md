@@ -103,6 +103,25 @@ For out-of-process, [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-u
 * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
 * Configure the host to capture startup errors.
 
+::: moniker range=">= aspnetcore-3.0"
+
+When hosting out-of-process, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. When transforming claims with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation, call <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> to add authentication services:
+
+  ```csharp
+  public void ConfigureServices(IServiceCollection services)
+  {
+      services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
+      services.AddAuthentication(IISDefaults.AuthenticationScheme);
+  }
+
+  public void Configure(IApplicationBuilder app)
+  {
+      app.UseAuthentication();
+  }
+  ```
+
+::: moniker-end
+
 ### Hosting model changes
 
 If the `hostingModel` setting is changed in the *web.config* file (explained in the [Configuration with web.config](#configuration-with-webconfig) section), the module recycles the worker process for IIS.
