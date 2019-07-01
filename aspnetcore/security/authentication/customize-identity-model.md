@@ -3,7 +3,7 @@ title: Identity model customization in ASP.NET Core
 author: ajcvickers
 description: This article describes how to customize the underlying Entity Framework Core data model for ASP.NET Core Identity.
 ms.author: avickers
-ms.date: 04/24/2019
+ms.date: 07/01/2019
 uid: security/authentication/customize_identity_model
 ---
 # Identity model customization in ASP.NET Core
@@ -66,7 +66,7 @@ The [entity types](#entity-types) are related to each other in the following way
 
 ### Default model configuration
 
-Identity defines many *context classes* that inherit from <xref:Microsoft.EntityFrameworkCore.DbContext> to configure and use the model. This configuration is done using the [EF Core Code First Fluent API](/ef/core/modeling/) in the <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating*> method of the context class. The default configuration is:
+Identity defines many *context classes* that inherit from <xref:Microsoft.EntityFrameworkCore.DbContext> to configure and use the model. This configuration is done using the [EF Core Code First Fluent API](/ef/core/modeling/) in the [OnModelCreating](/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating) method of the context class. The default configuration is:
 
 ```csharp
 builder.Entity<TUser>(b =>
