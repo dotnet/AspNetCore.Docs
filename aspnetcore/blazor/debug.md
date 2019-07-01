@@ -12,7 +12,7 @@ uid: blazor/debug
 
 [Daniel Roth](https://github.com/danroth27)
 
-*Early* support exists for debugging client-side Blazor apps running on WebAssembly in Chrome.
+*Early* support exists for debugging Blazor client-side apps running on WebAssembly in Chrome.
 
 Debugger capabilities are limited. Available scenarios include:
 
@@ -34,7 +34,7 @@ Development of further debugging scenarios is an on-going focus of the engineeri
 
 ## Procedure
 
-To debug a client-side Blazor app in Chrome:
+To debug a Blazor client-side app in Chrome:
 
 * Build a Blazor app in `Debug` configuration (the default for unpublished apps).
 * Run the Blazor app in Chrome (version 70 or later).

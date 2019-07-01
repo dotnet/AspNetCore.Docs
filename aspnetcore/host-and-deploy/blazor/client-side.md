@@ -172,7 +172,7 @@ Removing the handler or disabling inheritance is performed in addition to config
 
 ## Hosted deployment with ASP.NET Core
 
-A *hosted deployment* serves the client-side Blazor app to browsers from an [ASP.NET Core app](xref:index) that runs on a server.
+A *hosted deployment* serves the Blazor client-side app to browsers from an [ASP.NET Core app](xref:index) that runs on a server.
 
 The Blazor app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor (ASP.NET Core hosted)** project template (`blazorhosted` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command).
 
@@ -182,7 +182,7 @@ For information on deploying to Azure App Service, see <xref:tutorials/publish-t
 
 ## Standalone deployment
 
-A *standalone deployment* serves the client-side Blazor app as a set of static files that are requested directly by clients. Any static file server is able to serve the Blazor app.
+A *standalone deployment* serves the Blazor client-side app as a set of static files that are requested directly by clients. Any static file server is able to serve the Blazor app.
 
 Standalone deployment assets are published to the *bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist* folder.
 
