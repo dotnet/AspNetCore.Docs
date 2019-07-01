@@ -93,7 +93,7 @@ The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method:
   * Debug
   * EventSource
   * EventLog (only when running on Windows)
-* Enables [scope validation](fundamentals/dependency-injection#scope-validation) when the environment is Development.
+* Enables [scope validation](xref:fundamentals/dependency-injection#scope-validation) when the environment is Development.
 
 The `ConfigureWebHostDefaults` method:
 
@@ -115,7 +115,7 @@ Services that are registered automatically include the following:
 
 For a list of all framework-provided services, see <xref:fundamentals/dependency-injection#framework-provided-services>.
 
-### IHostApplicationLifetime
+## IHostApplicationLifetime
 
 Inject the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (formerly `IApplicationLifetime`) service into any class to handle post-startup and graceful shutdown tasks. Three properties on the interface are cancellation tokens used to register app start and app stop event handler methods. The interface also includes a `StopApplication` method.
 
@@ -123,7 +123,7 @@ The following example is an `IHostedService` implementation that registers the `
 
 [!code-csharp[](generic-host/samples-snapshot/3.x/LifetimeEventsHostedService.cs?name=snippet_LifetimeEvents)]
 
-### IHostLifetime
+## IHostLifetime
 
 The <xref:Microsoft.Extensions.Hosting.IHostLifetime> implementation controls when the host starts and when it stops. The last implementation registered is used.
 
@@ -132,7 +132,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostLifetime> implementation controls wh
 * listens for Ctrl+C/SIGINT or SIGTERM and calls <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> to start the shutdown process.
 * Unblocks extensions such as [RunAsync](#runasync) and [WaitForShutdownAsync](#waitforshutdownasync).
 
-### IHostEnvironment
+## IHostEnvironment
 
 Inject the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> service into a class to get information about the following:
 
@@ -140,7 +140,7 @@ Inject the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> service into a c
 * [EnvironmentName](#environmentname)
 * [ContentRootPath](#contentrootpath)
 
-Web apps implement the <xref:Microsoft.Extensions.Hosting.IWebHostEnvironment> interface, which inherits `IHostEnvironment` and adds:
+Web apps implement the `IWebHostEnvironment` interface, which inherits `IHostEnvironment` and adds:
 
 * [WebRootPath](#webrootpath)
 
@@ -159,7 +159,7 @@ The environment variable provider with prefix `DOTNET_` is included by default. 
 
 The following example creates host configuration:
 
-[!code-csharp[](generic-host/samples/3.x/GenericHostSample/Program.cs?name=snippet_HostConfig)]
+[!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippet_HostConfig)]
 
 > [!TIP]
 > During development when using [Visual Studio](https://visualstudio.microsoft.com) or running an app with `dotnet run`, environment variables may be set in the *Properties/launchSettings.json* file. In [Visual Studio Code](https://code.visualstudio.com/), environment variables may be set in the *.vscode/launch.json* file. For more information, see <xref:fundamentals/environments>.
@@ -174,7 +174,7 @@ App configuration automatically receives host configuration provided by `Configu
 
 The following example creates app configuration:
 
-[!code-csharp[](generic-host/samples/3.x/GenericHostSample/Program.cs?name=snippet_AppConfig)]
+[!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippet_AppConfig)]
 
 > [!TIP]
 > To move settings files to the output directory for publishing, specify the settings files as [MSBuild project items](/visualstudio/msbuild/common-msbuild-project-items) in the project file. The sample app moves its JSON app settings files and *hostsettings.json* with the following `<Content>` item:
@@ -250,7 +250,7 @@ If the timeout period expires before all of the hosted services stop, any remain
 
 To set this value, use the environment variable or configure `HostOptions`. The following example sets the timeout to 20 seconds:
 
-[!code-csharp[](generic-host/samples/3.x/GenericHostSample/Program.cs?name=snippetHostOptions)]
+[!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippetHostOptions)]
 
 ## Settings for web apps
 
