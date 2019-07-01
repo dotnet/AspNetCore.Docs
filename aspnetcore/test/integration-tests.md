@@ -5,7 +5,7 @@ description: Learn how integration tests ensure that an app's components functio
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/05/2019
+ms.date: 07/01/2019
 uid: test/integration-tests
 ---
 # Integration tests in ASP.NET Core
@@ -295,12 +295,9 @@ Call the [UseSolutionRelativeContentRoot](/dotnet/api/microsoft.aspnetcore.testh
    {
        protected override void ConfigureWebHost(IWebHostBuilder builder)
        {
-           builder.ConfigureServices(services =>
-           {
-               builder.UseSolutionRelativeContentRoot("<SOLUTION-RELATIVE-PATH>");
+           builder.UseSolutionRelativeContentRoot("<SOLUTION-RELATIVE-PATH>");
 
-               ...
-           });
+           ...
        }
    }
    ```
