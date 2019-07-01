@@ -109,9 +109,9 @@ The [Settings for all app types](#settings-for-all-app-types) and [Settings for 
 
 Services that are registered automatically include the following:
 
-* [IHostApplicationLifetime](#IHostApplicationLifetime)
-* [IHostLifetime](#IHostLifetime)
-* [IHostEnvironment / IWebHostEnvironment](#IHostEnvironment)
+* [IHostApplicationLifetime](#ihostapplicationlifetime)
+* [IHostLifetime](#ihostLifetime)
+* [IHostEnvironment / IWebHostEnvironment](#ihostenvironment)
 
 For a list of all framework-provided services, see <xref:fundamentals/dependency-injection#framework-provided-services>.
 
@@ -234,7 +234,7 @@ Host.CreateDefaultBuilder(args)
     //...
 ```
 
-### Shutdown Timeout
+### ShutdownTimeout
 
 [HostOptions.ShutdownTimeout](xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*) sets the timeout for <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>. The default value is five seconds.  During the timeout period, the host:
 
@@ -250,7 +250,7 @@ If the timeout period expires before all of the hosted services stop, any remain
 
 To set this value, use the environment variable or configure `HostOptions`. The following example sets the timeout to 20 seconds:
 
-[!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippetHostOptions)]
+[!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippet_HostOptions)]
 
 ## Settings for web apps
 
