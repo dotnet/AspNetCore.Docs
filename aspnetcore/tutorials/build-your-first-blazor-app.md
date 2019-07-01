@@ -14,7 +14,7 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 
 This tutorial shows you how to build and modify a Blazor app.
 
-Follow the guidance in the <xref:blazor/get-started> article to create a Blazor project for this tutorial. Name the project **ToDoList**.
+Follow the guidance in the <xref:blazor/get-started> article to create a Blazor project for this tutorial. Name the project *ToDoList*.
 
 ## Build components
 
