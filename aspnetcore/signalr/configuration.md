@@ -68,7 +68,7 @@ The following table describes options for configuring SignalR hubs:
 
 ::: moniker-end
 
-::: moniker range="aspnetcore-2.2"
+::: moniker range="= aspnetcore-2.2"
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
@@ -80,7 +80,7 @@ The following table describes options for configuring SignalR hubs:
 
 ::: moniker-end
 
-::: moniker range="aspnetcore-2.1"
+::: moniker range="= aspnetcore-2.1"
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
