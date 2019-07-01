@@ -5,6 +5,7 @@ using SwaggerApp.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace SwaggerApp.Controllers
 {
@@ -60,6 +61,9 @@ namespace SwaggerApp.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> Delete(int id)
         {
             var fruit = await _context.Fruits.FindAsync(id);

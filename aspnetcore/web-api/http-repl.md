@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/28/2019
+ms.date: 07/01/2019
 uid: web-api/http-repl
 ---
 # Test APIs with the HTTP REPL tool
@@ -99,7 +99,7 @@ ui             Displays the Swagger UI page, if available, in the default browse
 Use help <COMMAND> to learn more details about individual commands. e.g. `help get`
 ```
 
-The HTTP REPL offers command completion. Pressing `Tab` iterates through the list of commands that complete the characters or API endpoint that you typed. The following sections outline the available CLI commands. 
+The HTTP REPL offers command completion. Pressing the <kbd>Tab</kbd> key iterates through the list of commands that complete the characters or API endpoint that you typed. The following sections outline the available CLI commands. 
 
 ## Connect to the API service
 
@@ -109,7 +109,11 @@ Connect to a service by running the following command:
 dotnet httprepl <BASE URI>
 ```
 
-`<BASE URI>` is the base URI for the service. For example, `dotnet httprepl https://localhost:5001`.
+`<BASE URI>` is the base URI for the service. For example:
+
+```console
+dotnet httprepl https://localhost:5001
+```
 
 Alternatively, run the following command at any time while the HTTP REPL is running:
 
@@ -117,26 +121,34 @@ Alternatively, run the following command at any time while the HTTP REPL is runn
 set base <BASE URI>
 ```
 
-For example, `(Disconnected)~ set base https://localhost:5001`.
+For example:
+
+```console
+(Disconnected)~ set base https://localhost:5001
+```
 
 ## Point to the Swagger document for the API service
 
-To properly inspect the service, set the relative URI to the Swagger document for the API service. To do so, run the following command:
+To properly inspect the service, set the relative URI to the Swagger document for the API service. To set the relative URI, run the following command:
 
 ```console
 set swagger <RELATIVE URI>
 ```
 
-For example, `https://localhost:5001~ set swagger /swagger/v1/swagger.json`.
+For example:
+
+```console
+https://localhost:5001/~ set swagger /swagger/v1/swagger.json
+```
 
 ## Navigate the web API
 
 ### View available endpoints
 
-To list the different endpoints at the current subtree of the web API, run the `ls` command:
+To list the different endpoints (controllers) at the root of the web API address, run the `ls` command:
 
 ```console
-https://localhot:5001~ ls
+https://localhot:5001/~ ls
 ```
 
 The following output format is displayed:
@@ -147,6 +159,19 @@ Fruits   [get|post]
 People   [get|post]
 
 https://localhost:5001/~
+```
+
+The preceding output indicates that there are two controllers available: `Fruits` and `People`. Both controllers support parameterless HTTP GET and POST operations.
+
+Navigating into a specific controller reveals more detail. For example, the following command's output shows the `Fruits` controller also supports HTTP GET, PUT, and DELETE operations. Each of these operations expects an `id` parameter in the route:
+
+```console
+https://localhost:5001/fruits~ ls
+.      [get|post]
+..     []
+{id}   [get|put|delete]
+
+https://localhost:5001/fruits~
 ```
 
 Alternatively, run the `ui` command to open the web API's Swagger UI page in a browser. For example:
@@ -160,10 +185,10 @@ https://localhost:5001/~ ui
 To navigate to a different endpoint of the API service, run the `cd` command:
 
 ```console
-https://localhost:5001~ cd people
+https://localhost:5001/~ cd people
 ```
 
-The following output format is displayed:
+The path following the `cd` command is case insensitive. The following output format is displayed:
 
 ```console
 /people    [get|post]
@@ -342,7 +367,7 @@ To issue an HTTP POST request:
     HTTP/1.1 201 Created
     Content-Type: application/json; charset=utf-8
     Date: Thu, 27 Jun 2019 21:24:18 GMT
-    Location: https://localhost:5001/People/4
+    Location: https://localhost:5001/people/4
     Server: Kestrel
     Transfer-Encoding: chunked
     
@@ -352,7 +377,7 @@ To issue an HTTP POST request:
     }
     
     
-    https://localhost:5001/People~    
+    https://localhost:5001/people~    
     ```
 
 ### HTTP PUT requests
@@ -507,12 +532,12 @@ Request echoing is on
 Subsequent HTTP requests in the current session display the request headers. For example:
 
 ```console
-https://localhost:5001/People~ POST
+https://localhost:5001/people~ POST
 
 [main 2019-06-28T18:50:11.930Z] update#setState idle
 Request to https://localhost:5001...
 
-POST /People HTTP/1.1
+POST /people HTTP/1.1
 Content-Length: 41
 Content-Type: application/json
 User-Agent: HTTP-REPL
@@ -527,7 +552,7 @@ Response from https://localhost:5001...
 HTTP/1.1 201 Created
 Content-Type: application/json; charset=utf-8
 Date: Fri, 28 Jun 2019 18:50:21 GMT
-Location: https://localhost:5001/People/4
+Location: https://localhost:5001/people/4
 Server: Kestrel
 Transfer-Encoding: chunked
 
@@ -537,7 +562,7 @@ Transfer-Encoding: chunked
 }
 
 
-https://localhost:5001/People~
+https://localhost:5001/people~
 ```
 
 ### Disable display
