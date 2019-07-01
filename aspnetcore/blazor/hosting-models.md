@@ -37,7 +37,7 @@ The client-side hosting model offers several benefits:
 * There's no .NET server-side dependency. The app is fully functioning after downloaded to the client.
 * Client resources and capabilities are fully leveraged.
 * Work is offloaded from the server to the client.
-* An ASP.NET Core server isn't required to serve the app. Serverless deployment scenarios are possible (for example, serving the app from a CDN).
+* An ASP.NET Core web server isn't required to host the app. Serverless deployment scenarios are possible (for example, serving the app from a CDN).
 
 There are downsides to client-side hosting:
 
