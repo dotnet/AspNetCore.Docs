@@ -108,7 +108,7 @@ The [Settings for all app types](#settings-for-all-app-types) and [Settings for 
 Services that are registered automatically include the following:
 
 * [IHostApplicationLifetime](#ihostapplicationlifetime)
-* [IHostLifetime](#ihostLifetime)
+* [IHostLifetime](#ihostlifetime)
 * [IHostEnvironment / IWebHostEnvironment](#ihostenvironment)
 
 For a list of all framework-provided services, see <xref:fundamentals/dependency-injection#framework-provided-services>.
@@ -140,7 +140,7 @@ Inject the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> service into a c
 
 Web apps implement the `IWebHostEnvironment` interface, which inherits `IHostEnvironment` and adds:
 
-* [WebRootPath](#webrootpath)
+* [WebRootPath](#webroot)
 
 ## Host configuration
 
@@ -326,7 +326,7 @@ To set this value, use configuration or call `UseSetting`:
 webBuilder.UseSetting(WebHostDefaults.HostingStartupExcludeAssembliesKey, "assembly1;assembly2");
 ```
 
-### HTTPS Port
+### HTTPS_Port
 
 The HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
 
@@ -341,7 +341,7 @@ To set this value, use configuration or call `UseSetting`:
 webBuilder.UseSetting("https_port", "8080");
 ```
 
-### Prefer Hosting URLs
+### PreferHostingUrls
 
 Indicates whether the host should listen on the URLs configured with the `IWebHostBuilder` instead of those configured with the `IServer` implementation.
 
@@ -356,7 +356,7 @@ To set this value, use the environment variable or call `PreferHostingUrls`:
 webBuilder.PreferHostingUrls(false);
 ```
 
-### Prevent Hosting Startup
+### PreventHostingStartup
 
 Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
 
@@ -371,7 +371,7 @@ To set this value, use the environment variable or call `UseSetting` :
 webBuilder.UseSetting(WebHostDefaults.PreventHostingStartupKey, "true");
 ```
 
-### Startup Assembly
+### StartupAssembly
 
 The assembly to search for the `Startup` class.
 
@@ -407,7 +407,7 @@ webBuilder.UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002");
 
 Kestrel has its own endpoint configuration API. For more information, see <xref:fundamentals/servers/kestrel#endpoint-configuration>.
 
-### Web Root
+### WebRoot
 
 The relative path to the app's static assets.
 
