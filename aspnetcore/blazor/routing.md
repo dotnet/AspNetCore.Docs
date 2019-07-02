@@ -5,14 +5,14 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/26/2019
+ms.date: 07/02/2019
 uid: blazor/routing
 ---
 # ASP.NET Core Blazor routing
 
 By [Luke Latham](https://github.com/guardrex)
 
-Learn how to route requests in apps and about the `NavLink` component.
+Learn how to route requests and how to use the `NavLink` component to create navigation links in Blazor apps.
 
 ## ASP.NET Core endpoint routing integration
 
@@ -99,18 +99,18 @@ The route constraints shown in the following table are available. For the route 
 
 ## NavLink component
 
-Use a `NavLink` component in place of HTML `<a>` elements when creating navigation links. A `NavLink` component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed.
+Use a `NavLink` component in place of HTML hyperlink elements (`<a>`) when creating navigation links. A `NavLink` component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed.
 
 The following `NavMenu` component creates a [Bootstrap](https://getbootstrap.com/docs/) navigation bar that demonstrates how to use `NavLink` components:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Shared/NavMenu.razor?name=snippet_NavLinks&highlight=4-6,9-11)]
+[!code-cshtml[](routing/samples_snapshot/3.x/NavMenu.razor?highlight=4,9)]
 
-There are two `NavLinkMatch` options:
+There are two `NavLinkMatch` options that you can assign to the `Match` attribute of the `<NavLink>` element:
 
-* `NavLinkMatch.All` &ndash; Specifies that the NavLink should be active when it matches the entire current URL.
-* `NavLinkMatch.Prefix` &ndash; Specifies that the NavLink should be active when it matches any prefix of the current URL.
+* `NavLinkMatch.All` &ndash; The `NavLink` is active when it matches the entire current URL.
+* `NavLinkMatch.Prefix` (*default*) &ndash; The `NavLink` is active when it matches any prefix of the current URL.
 
-In the preceding example, the Home NavLink (`href=""`) matches all URLs and always receives the `active` CSS class. The second NavLink only receives the `active` class when the user visits the `BlazorRoute` component (`href="BlazorRoute"`).
+In the preceding example, the Home `NavLink` `href=""` matches the home URL and only receives the `active` CSS class at the app's default base path URL (for example, `https://localhost:5001/`). The second `NavLink` receives the `active` class when the user visits any URL with a `MyComponent` prefix (for example, `https://localhost:5001/MyComponent` and `https://localhost:5001/MyComponent/AnotherSegment`).
 
 ## URI and navigation state helpers
 
@@ -125,7 +125,7 @@ Use `Microsoft.AspNetCore.Components.IUriHelper` to work with URIs and navigatio
 | `ToAbsoluteUri` | Converts a relative URI into an absolute URI. |
 | `ToBaseRelativePath` | Given a base URI (for example, a URI previously returned by `GetBaseUri`), converts an absolute URI into a URI relative to the base URI prefix. |
 
-The following component navigates to the app's Counter component when the button is selected:
+The following component navigates to the app's `Counter` component when the button is selected:
 
 ```cshtml
 @page "/navigate"
