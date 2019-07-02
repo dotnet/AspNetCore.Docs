@@ -3,7 +3,7 @@ title: .NET Generic Host
 author: guardrex
 description: Learn about the .NET Core Generic Host, which is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: tdykstra
 ms.custom: mvc
 ms.date: 07/01/2019
 uid: fundamentals/host/generic-host
@@ -11,8 +11,6 @@ uid: fundamentals/host/generic-host
 # .NET Generic Host
 
 ::: moniker range=">= aspnetcore-3.0"
-
-By [Luke Latham](https://github.com/guardrex) and [Tom Dykstra](https://github.com/guardrex)
 
 This article introduces the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) and provides guidance on how to use it.
 
@@ -495,8 +493,6 @@ public class Program
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
-
-By [Luke Latham](https://github.com/guardrex)
 
 ASP.NET Core apps configure and launch a host. The host is responsible for app startup and lifetime management.
 
