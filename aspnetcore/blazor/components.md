@@ -179,7 +179,7 @@ Parent component:
 
 <ChildComponent @bind-Year="ParentYear" />
 
-<button class="btn btn-primary" @onclick="@ChangeTheYear">
+<button class="btn btn-primary" @onclick="ChangeTheYear">
     Change Year to 1986
 </button>
 
@@ -257,7 +257,7 @@ Razor components provide event handling features. For an HTML element attribute 
 The following code calls the `UpdateHeading` method when the button is selected in the UI:
 
 ```cshtml
-<button class="btn btn-primary" @onclick="@UpdateHeading">
+<button class="btn btn-primary" @onclick="UpdateHeading">
     Update heading
 </button>
 
@@ -272,7 +272,7 @@ The following code calls the `UpdateHeading` method when the button is selected 
 The following code calls the `CheckboxChanged` method when the check box is changed in the UI:
 
 ```cshtml
-<input type="checkbox" class="form-check-input" @onchange="@CheckboxChanged" />
+<input type="checkbox" class="form-check-input" @onchange="CheckboxChanged" />
 
 @code {
     private void CheckboxChanged()
@@ -285,7 +285,7 @@ The following code calls the `CheckboxChanged` method when the check box is chan
 Event handlers can also be asynchronous and return a <xref:System.Threading.Tasks.Task>. There's no need to manually call `StateHasChanged()`. Exceptions are logged when they occur.
 
 ```cshtml
-<button class="btn btn-primary" @onclick="@UpdateHeading">
+<button class="btn btn-primary" @onclick="UpdateHeading">
     Update heading
 </button>
 
@@ -880,13 +880,13 @@ In the sample app, the Cascading Values Parameters Theme component binds the `Th
 <p>Current count: @currentCount</p>
 
 <p>
-    <button class="btn" @onclick="@IncrementCount">
+    <button class="btn" @onclick="IncrementCount">
         Increment Counter (Unthemed)
     </button>
 </p>
 
 <p>
-    <button class="btn @ThemeInfo.ButtonClass" @onclick="@IncrementCount">
+    <button class="btn @ThemeInfo.ButtonClass" @onclick="IncrementCount">
         Increment Counter (Themed)
     </button>
 </p>
@@ -994,7 +994,7 @@ In the following example, the loop in the `CreateComponent` method generates thr
 
 @CustomRender
 
-<button type="button" @onclick="@RenderComponent">
+<button type="button" @onclick="RenderComponent">
     Create three Pet Details components
 </button>
 

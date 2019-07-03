@@ -125,7 +125,7 @@ The following component navigates to the app's Counter component when the button
 
 <h1>Navigate in Code Example</h1>
 
-<button class="btn btn-primary" @onclick="@NavigateToCounterComponent">
+<button class="btn btn-primary" @onclick="NavigateToCounterComponent">
     Navigate to the Counter component
 </button>
 
