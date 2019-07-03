@@ -5,7 +5,7 @@ ms.author: riande
 description: The dotnet aspnet-codegenerator command scaffolds ASP.NET Core projects
 ms.date: 06/15/2019
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
-
+---
 
 # dotnet aspnet-codegenerator
 
