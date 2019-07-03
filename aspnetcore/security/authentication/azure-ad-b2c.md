@@ -2,8 +2,9 @@
 title: Cloud authentication with Azure Active Directory B2C in ASP.NET Core
 author: camsoper
 description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core.
-ms.date: 02/27/2019
+ms.author: casoper
 ms.custom: mvc
+ms.date: 02/27/2019
 uid: security/authentication/azure-ad-b2c
 ---
 # Cloud authentication with Azure Active Directory B2C in ASP.NET Core
