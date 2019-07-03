@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/02/2019
+ms.date: 07/03/2019
 uid: web-api/http-repl
 ---
 # Test APIs with the HTTP REPL tool
@@ -148,7 +148,7 @@ https://localhost:5001/~ set swagger /swagger/v1/swagger.json
 
 ### View available endpoints
 
-To list the different endpoints (controllers) at the root of the web API address, run the `ls` command:
+To list the different endpoints (controllers) at the current path of the web API address, run the `ls` or `dir` command:
 
 ```console
 https://localhot:5001/~ ls
@@ -212,6 +212,8 @@ The HTTP REPL's default [colors](#set-the-default-colors) and [editor](#set-the-
 *%USERPROFILE%\.httpreplprefs*
 
 ---
+
+The *.httpreplprefs* file is loaded on startup and not monitored for changes at runtime. Manual modifications to the file take effect only after restarting the tool.
 
 ### Set the default colors
 
@@ -589,6 +591,35 @@ Suppress display of the HTTP request being sent by running the `echo off` comman
 ```console
 https://localhost:5001/people~ echo off
 Request echoing is off
+```
+
+## Clear the output
+
+To remove all output written to the command shell by the HTTP REPL tool, run the `clear` or `cls` command. To illustrate, imagine the command shell contains the following output:
+
+```console
+dotnet httprepl https://localhost:5001
+(Disconnected)~ set base "https://localhost:5001"
+Using swagger metadata from https://localhost:5001/swagger/v1/swagger.json
+
+https://localhost:5001/~ ls
+.        []
+Fruits   [get|post]
+People   [get|post]
+
+https://localhost:5001/~
+```
+
+Run the following command to clear the output:
+
+```console
+https://localhost:5001/~ clear
+```
+
+After running the preceding command, the command shell contains only the following output:
+
+```console
+https://localhost:5001/~
 ```
 
 ## Additional resources
