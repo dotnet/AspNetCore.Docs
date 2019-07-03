@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace Culture
 {
-#region snippet1
+    #region snippet1
     public class Startup
     {
         public void Configure(IApplicationBuilder app)
@@ -19,9 +19,8 @@ namespace Culture
                 await context.Response.WriteAsync(
                     $"Hello {CultureInfo.CurrentCulture.DisplayName}");
             });
-
         }
     }
-#endregion
+    #endregion
 }
 #endif
