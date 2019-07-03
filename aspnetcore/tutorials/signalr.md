@@ -35,11 +35,11 @@ At the end, you'll have a working chat app:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-2.2.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-2.2.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
 
 ---
 
@@ -53,7 +53,7 @@ At the end, you'll have a working chat app:
 
 * In the **Configure your new project** dialog, name the project *SignalRChat*, and then select **Create**.
 
-In the **Create a new ASP.NET Core Web Application** dialog, select **.NET Core** and **ASP.NET Core 3.0**. 
+* In the **Create a new ASP.NET Core Web Application** dialog, select **.NET Core** and **ASP.NET Core 3.0**. 
 
 * Select **Web Application** to create a project that uses Razor Pages, and then select **Create**.
 
@@ -113,7 +113,7 @@ The SignalR server library is included in the ASP.NET 3.0 shared framework. The 
 * Run the following command to get the SignalR client library by using LibMan. You might have to wait a few seconds before seeing output.
 
   ```console
-  libman install @aspnet/signalr -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
+  libman install @aspnet/signalr@3.0.0-preview6.19307.2 -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
   ```
 
   The parameters specify the following options:
@@ -126,7 +126,7 @@ The SignalR server library is included in the ASP.NET 3.0 shared framework. The 
   ```console
   wwwroot/lib/signalr/dist/browser/signalr.js written to disk
   wwwroot/lib/signalr/dist/browser/signalr.min.js written to disk
-  Installed library "@aspnet/signalr@1.0.3" to "wwwroot/lib/signalr"
+  Installed library "@aspnet/signalr@3.0.0" to "wwwroot/lib/signalr"
   ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -239,15 +239,6 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 > ![signalr.js not found error](signalr/_static/f12-console.png)
 
 ## Next steps
-
-In this tutorial, you learned how to:
-
-> [!div class="checklist"]
-> * Create a web app project.
-> * Add the SignalR client library.
-> * Create a SignalR hub.
-> * Configure the project to use SignalR.
-> * Add code that uses the hub to send messages from any client to all connected clients.
 
 To learn more about SignalR, see the introduction:
 
