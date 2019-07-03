@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to use change tokens to track changes.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 07/03/2017
+ms.date: 07/03/2019
 uid: fundamentals/change-tokens
 ---
 # Detect changes with change tokens in ASP.NET Core
