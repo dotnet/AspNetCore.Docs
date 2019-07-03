@@ -152,7 +152,7 @@ You can use the constructor arguments and properties of the `[Authorize]` attrib
 
 ```csharp
 [Authorize("MyAuthorizationPolicy")]
-public class ChatHub: Hub
+public class ChatHub : Hub
 {
 }
 ```
@@ -161,7 +161,7 @@ Individual hub methods can have the `[Authorize]` attribute applied as well. If 
 
 ```csharp
 [Authorize]
-public class ChatHub: Hub
+public class ChatHub : Hub
 {
     public async Task Send(string message)
     {
@@ -176,6 +176,58 @@ public class ChatHub: Hub
 }
 ```
 
+::: moniker range=">= aspnetcore-3.0"
+
+### Use authorization handlers to customize hub method authorization
+
+SignalR passes a custom resource to authorization handlers when a hub method requires authorization. The resource is of type `HubInvocationContext` and contains `HubCallerContext`, the name of the hub method, and the arguments to the hub method for use in custom authorization logic.
+
+The following example shows a custom handler that only allows users with the same name as the hub method to invoke the method.
+
+```csharp
+public class HubMethodAuthorizationHandler :
+    AuthorizationHandler<HubMethodRequirement, HubInvocationContext>
+{
+    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
+                                                   HubMethodRequirement requirement,
+                                                   HubInvocationContext resource)
+    {
+        if (context.User.Identity?.Name == resource.HubMethodName)
+        {
+            context.Succeed(requirement);
+        }
+
+        return Task.CompletedTask;
+    }
+}
+
+public class HubMethodRequirement : IAuthorizationRequirement { }
+
+public ChatHub : Hub
+{
+    [Authorize("NamedMethod")]
+    public void Steve()
+    {
+    }
+}
+
+public void ConfigureServices(IServiceCollection services)
+{
+    // ... other services ...
+
+    services.AddAuthorization(options =>
+    {
+        options.AddPolicy("NamedMethod", policy =>
+            policy.Requirements.Add(new HubMethodRequirement()));
+    });
+
+    services.AddSingleton<IAuthorizationHandler, HubMethodAuthorizationHandler>();
+}
+```
+
+::: moniker-end
+
 ## Additional resources
 
 * [Bearer Token Authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
+* [Resource based Authorization](xref:security/authorization/resourcebased)
