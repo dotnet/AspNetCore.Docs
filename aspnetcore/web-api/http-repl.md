@@ -34,7 +34,7 @@ dotnet tool install -g dotnet-httprepl
 ```
 
 A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [dotnet-httprepl](https://dotnet.myget.org/feed/dotnet-core/package/nuget/dotnet-httprepl
-) NuGet package on MyGet.
+) NuGet package hosted on MyGet.
 
 ## Usage
 
@@ -205,11 +205,11 @@ The HTTP REPL's default [colors](#set-the-default-colors) and [editor](#set-the-
 
 # [Linux / macOS](#tab/linux+macos)
 
-*%HOME%\.httpreplprefs*
+*%HOME%/.httpreplprefs*
 
 # [Windows](#tab/windows)
 
-*%USERPROFILE%\.httpreplprefs*
+*%USERPROFILE%\\.httpreplprefs*
 
 ---
 
@@ -539,7 +539,7 @@ To issue an HTTP DELETE request:
 
 By default, display of the HTTP request being sent is suppressed.
 
-### Enable display
+### Enable request display
 
 View the HTTP request being sent by running the `echo on` command. For example:
 
@@ -584,7 +584,7 @@ Transfer-Encoding: chunked
 https://localhost:5001/people~
 ```
 
-### Disable display
+### Disable request display
 
 Suppress display of the HTTP request being sent by running the `echo off` command. For example:
 
