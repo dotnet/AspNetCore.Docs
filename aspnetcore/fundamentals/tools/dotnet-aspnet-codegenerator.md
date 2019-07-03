@@ -6,18 +6,6 @@ description: The dotnet aspnet-codegenerator command scaffolds ASP.NET Core proj
 ms.date: 06/15/2019
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 
----
-title: Session and app state in ASP.NET Core
-author: rick-anderson
-description: Discover approaches to preserve session and app state between requests.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 03/12/2019
-uid: fundamentals/app-state
----
-
-https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools
 
 # dotnet aspnet-codegenerator
 
@@ -27,7 +15,7 @@ This article applies to [.NET Core 2.2 SDK](https://dotnet.microsoft.com/downloa
 
 ## Installing aspnet-codegenerator
 
-`aspnet-codegenerator` is a [global tool](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) that must be installed. The following command installs the latest stable version of the `aspnet-codegenerator` tool:
+`aspnet-codegenerator` is a [global tool](/dotnet/core/tools/global-tools) that must be installed. The following command installs the latest stable version of the `aspnet-codegenerator` tool:
 
 ```console
 dotnet tool install -g aspnet-codegenerator
@@ -76,7 +64,7 @@ Defines the build configuration. The default value is `Debug`.
 
 `-tfm|--target-framework`
 
-Target [Framework](../../standard/frameworks.md) to use. For example, `net46`.
+Target [Framework](/dotnet/standard/frameworks) to use. For example, `net46`.
 
 `-b|--build-base-path`
 
