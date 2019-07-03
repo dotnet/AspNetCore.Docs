@@ -9,6 +9,8 @@ uid: fundamentals/tools/dotnet-aspnet-codegenerator
 
 # dotnet aspnet-codegenerator
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 `dotnet aspnet-codegenerator` - Runs the ASP.NET Core scaffolding engine. `dotnet aspnet-codegenerator` is only required to scaffold from the command line, it's not need to use scaffolding with Visual Studio.
 
 This article applies to [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download/dotnet-core/2.2) and later.
