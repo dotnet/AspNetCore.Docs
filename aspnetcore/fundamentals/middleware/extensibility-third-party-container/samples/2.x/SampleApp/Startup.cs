@@ -19,13 +19,7 @@ namespace MiddlewareExtensibilitySample
         #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Replace the default middleware factory with the 
             // SimpleInjectorMiddlewareFactory.
@@ -69,14 +63,11 @@ namespace MiddlewareExtensibilitySample
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
             }
 
             app.UseSimpleInjectorActivatedMiddleware();
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
             app.UseMvc();
         }
         #endregion
