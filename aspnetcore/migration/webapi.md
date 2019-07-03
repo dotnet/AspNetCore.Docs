@@ -17,7 +17,7 @@ An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients,
 
 ## Prerequisites
 
-[!INCLUDE [net-core-prereqs-vs-2.2](../includes/net-core-prereqs-vs-2.2.md)]
+[!INCLUDE [prerequisites](../includes/net-core-prereqs-vs2019-2.2.md)]
 
 ## Review ASP.NET 4.x Web API project
 
