@@ -201,7 +201,7 @@ https://localhost:5001/people~
 
 ## Customize the HTTP REPL
 
-The HTTP REPL's default [colors](#set-the-default-colors) and [editor](#set-the-default-editor) can be customized. The HTTP REPL preferences are persisted across the current session and are honored in future sessions. Once modified, the preferences are stored in the following file:
+The HTTP REPL's default [colors](#set-color-preferences) can be customized. Additionally, a [default text editor](#set-the-default-editor) can be defined. The HTTP REPL preferences are persisted across the current session and are honored in future sessions. Once modified, the preferences are stored in the following file:
 
 # [Linux / macOS](#tab/linux+macos)
 
@@ -215,9 +215,9 @@ The HTTP REPL's default [colors](#set-the-default-colors) and [editor](#set-the-
 
 The *.httpreplprefs* file is loaded on startup and not monitored for changes at runtime. Manual modifications to the file take effect only after restarting the tool.
 
-### Set the default colors
+### View the settings
 
-To customize the default HTTP REPL tool coloring, run the `pref get` command. For example:
+To view the available settings, run the `pref get` command. For example:
 
 ```console
 https://localhost:5001/~ pref get
@@ -236,7 +236,9 @@ colors.protocol=BoldGreen
 colors.status=BoldYellow
 ```
 
-Locate the key corresponding to the color to be changed. For example, change the `colors.json` key value from `Green` to `White` as follows:
+### Set color preferences
+
+To customize the default HTTP REPL tool coloring, locate the key corresponding to the color to be changed. For instructions on how to find the keys, see the [View the settings](#view-the-settings) section. For example, change the `colors.json` key value from `Green` to `White` as follows:
 
 ```console
 https://localhost:5001/people~ pref set colors.json White
@@ -244,9 +246,9 @@ https://localhost:5001/people~ pref set colors.json White
 
 Only the [allowed colors](https://github.com/aspnet/HttpRepl/blob/01d5c3c3373e98fe566ff5ef8a17c571de880293/src/Microsoft.Repl/ConsoleHandling/AllowedColors.cs) may be used. Subsequent HTTP requests display output with the new coloring.
 
-### Set the default editor
+### Set the default text editor
 
-To test API methods requiring an HTTP request body, a default editor must be set. The HTTP REPL tool launches the configured editor for the sole purpose of composing the request body. Run the following command to set your preferred editor as the default editor:
+By default, the HTTP REPL has no text editor configured for use. To test web API methods requiring an HTTP request body, a default text editor must be set. The HTTP REPL tool launches the configured editor for the sole purpose of composing the request body. Run the following command to set your preferred editor as the default editor:
 
 ```console
 pref set editor.command.default "<EXECUTABLE>"
