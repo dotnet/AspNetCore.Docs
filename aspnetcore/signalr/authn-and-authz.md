@@ -203,7 +203,7 @@ public class HubMethodAuthorizationHandler :
 
 public class HubMethodRequirement : IAuthorizationRequirement { }
 
-public ChatHub : Hub
+public class ChatHub : Hub
 {
     [Authorize("NamedMethod")]
     public void Steve()
