@@ -5,7 +5,7 @@ description: Learn how to use strongly-typed middleware with factory-based activ
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/03/2018
+ms.date: 07/03/2019
 uid: fundamentals/middleware/extensibility-third-party-container
 ---
 # Middleware activation with a third-party container in ASP.NET Core
