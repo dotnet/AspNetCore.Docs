@@ -3,14 +3,14 @@ title: Facebook, Google, and external provider authentication without ASP.NET Co
 author: rick-anderson
 description: An explanation of using Facebook, Google, Twitter, etc. account user authentication without ASP.NET Core Identity.
 ms.author: riande
-ms.date: 07/02/2019
+ms.date: 07/04/2019
 uid: security/authentication/social/social-without-identity
 ---
 # Use social sign-in provider authentication without ASP.NET Core Identity
 
-<xref:security/authentication/social/index> describes how to set up an ASP.NET Core app to enable users to sign in using OAuth 2.0 with credentials from external authentication providers. The approach described in that topic uses ASP.NET Core Identity as a full-featured authentication provider.
+<xref:security/authentication/social/index> describes how to enable users to sign in using OAuth 2.0 with credentials from external authentication providers. The approach described in that topic includes ASP.NET Core Identity as an authentication provider.
 
-This sample demonstrates how to use an external authentication provider without ASP.NET Core Identity. This is useful for apps that do not require all of the features of ASP.NET Core Identity, but still require integration with a trusted external authentication provider.
+This sample demonstrates how to use an external authentication provider **without** ASP.NET Core Identity. This is useful for apps that don't require all of the features of ASP.NET Core Identity, but still require integration with a trusted external authentication provider.
 
 This sample uses [Google authentication](xref:security/authentication/google-logins) for authenticating users. Using Google authentication shifts many of the complexities of managing the sign-in process to Google. To integrate with a different external authentication provider, see the following topics:
 
@@ -41,9 +41,9 @@ In the `Configure` method, call the `UseAuthentication` method to invoke the Aut
 
 To learn more about authentication schemes and cookie authentication, see <xref:security/authentication/cookie>.
 
-## Applying simple authorization
+## Applying basic authorization
 
-Test the app's authentication configuration by applying the `AuthorizeAttribute` attribute to a controller, action or page. The following code limits access to the *Privacy* page to any user that has been authenticated using Google:
+Test the app's authentication configuration by applying the `AuthorizeAttribute` attribute to a controller, action, or page. The following code limits access to the *Privacy* page to users that have been authenticated:
 
 [!code-csharp[](social-without-identity/sample/Pages/Privacy.cshtml.cs?name=snippet&highlight=1)]
 
