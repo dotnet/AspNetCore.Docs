@@ -180,7 +180,7 @@ public class ChatHub : Hub
 
 ### Use authorization handlers to customize hub method authorization
 
-SignalR passes a custom resource to authorization handlers when a hub method requires authorization. The resource is of type `HubInvocationContext` and contains `HubCallerContext`, the name of the hub method, and the arguments to the hub method for use in custom authorization logic.
+SignalR provides a custom resource to authorization handlers when a hub method requires authorization. The resource is an instance of `HubInvocationContext`. The `HubInvocationContext` includes the `HubCallerContext`, the name of the hub method being invoked, and the arguments to the hub method.
 
 The following example shows a custom handler that only allows users with the same name as the hub method to invoke the method.
 
@@ -212,7 +212,7 @@ public class ChatHub : Hub
 }
 ```
 
-Setup the policy and register the handler in DI.
+Set up the policy and register the handler in DI.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
