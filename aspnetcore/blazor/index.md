@@ -45,7 +45,7 @@ The following Razor markup demonstrates a component (*Dialog.razor*), which can 
 
     @ChildContent
 
-    <button @onclick="@OnYes">Yes!</button>
+    <button @onclick="OnYes">Yes!</button>
 </div>
 
 @code {
