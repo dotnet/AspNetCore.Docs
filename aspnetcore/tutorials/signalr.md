@@ -25,8 +25,6 @@ At the end, you'll have a working chat app:
 
 ![SignalR sample app](signalr/_static/signalr-get-started-finished.png)
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr/sample) ([how to download](xref:index#how-to-download-a-sample)).
-
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
@@ -168,7 +166,7 @@ A *hub* is a class that serves as a high-level pipeline that handles client-serv
 
 * In the *Hubs* folder, create a *ChatHub.cs* file with the following code:
 
-  [!code-csharp[Startup](signalr/sample/Hubs/ChatHub.cs)]
+  [!code-csharp[Startup](signalr/sample-snapshot/ChatHub.cs)]
 
   The `ChatHub` class inherits from the SignalR `Hub` class. The `Hub` class manages connections, groups, and messaging.
 
@@ -180,7 +178,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 * Add the following highlighted code to the *Startup.cs* file.
 
-  [!code-csharp[Startup](signalr/sample/Startup.cs?highlight=6,30,58)]
+  [!code-csharp[Startup](signalr/sample-snapshot/Startup.cs?highlight=6,30,58)]
 
   These changes add SignalR to the ASP.NET Core dependency injection and routing systems.
 
@@ -188,7 +186,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 * Replace the content in *Pages\Index.cshtml* with the following code:
 
-  [!code-cshtml[Index](signalr/sample/Pages/Index.cshtml)]
+  [!code-cshtml[Index](signalr/sample-snapshot/Index.cshtml)]
 
   The preceding code:
 
@@ -198,7 +196,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 * In the *wwwroot/js* folder, create a *chat.js* file with the following code:
 
-  [!code-javascript[Index](signalr/sample/wwwroot/js/chat.js)]
+  [!code-javascript[Index](signalr/sample-snapshot/chat.js)]
 
   The preceding code:
 
