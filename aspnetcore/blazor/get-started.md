@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/18/2019
+ms.date: 07/01/2019
 uid: blazor/get-started
 ---
 # Get started with ASP.NET Core Blazor
@@ -48,13 +48,13 @@ Get started with Blazor:
 
    2\. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
 
-   3\. For a Blazor client-side experience, execute the following command from a command shell:
+   3\. For a Blazor client-side experience, execute the following command in a command shell:
 
       ```console
       dotnet new blazor -o WebApplication1
       ```
 
-      For a Blazor server-side experience, execute the following command from a command shell:
+      For a Blazor server-side experience, execute the following command in a command shell:
 
       ```console
       dotnet new blazorserverside -o WebApplication1
@@ -92,7 +92,7 @@ Get started with Blazor:
 
    # [.NET Core CLI](#tab/netcore-cli/)
 
-   For a Blazor client-side experience, execute the following commands from a command shell:
+   For a Blazor client-side experience, execute the following commands in a command shell:
 
    ```console
    dotnet new blazor -o WebApplication1
@@ -100,7 +100,7 @@ Get started with Blazor:
    dotnet run
    ```
 
-   For a Blazor server-side experience, execute the following commands from a command shell:
+   For a Blazor server-side experience, execute the following commands in a command shell:
 
    ```console
    dotnet new blazorserverside -o WebApplication1
@@ -126,7 +126,7 @@ On the Counter page, select the **Click me** button to increment the counter wit
 
 [!code-cshtml[](get-started/samples_snapshot/3.x/Counter1.razor?highlight=7,12-15)]
 
-A request for `/counter` in the browser, as specified by the `@page` directive at the top, causes the Counter component to render its content. Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.
+A request for `/counter` in the browser, as specified by the `@page` directive at the top, causes the `Counter` component to render its content. Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.
 
 Each time the **Click me** button is selected:
 
@@ -137,15 +137,15 @@ Each time the **Click me** button is selected:
 
 The runtime compares the new content to the previous content and only applies the changed content to the Document Object Model (DOM).
 
-Add a component to another component using HTML syntax. For example, add the Counter component to the app's homepage by adding a `<Counter />` element to the Index component.
+Add a component to another component using HTML syntax. For example, add the `Counter` component to the app's homepage by adding a `<Counter />` element to the `Index` component.
 
 *Pages/Index.razor*:
 
 [!code-cshtml[](get-started/samples_snapshot/3.x/Index1.razor?highlight=7)]
 
-Run the app. The homepage has its own counter provided by the Counter component.
+Run the app. The homepage has its own counter provided by the `Counter` component.
 
-Component parameters are specified using attributes or [child content](xref:blazor/components#child-content), which allow you to set properties on the child component. To add a parameter to the Counter component, update the component's `@code` block:
+Component parameters are specified using attributes or [child content](xref:blazor/components#child-content), which allow you to set properties on the child component. To add a parameter to the `Counter` component, update the component's `@code` block:
 
 * Add a property for `IncrementAmount` with a `[Parameter]` attribute.
 * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
@@ -154,13 +154,13 @@ Component parameters are specified using attributes or [child content](xref:blaz
 
 [!code-cshtml[](get-started/samples_snapshot/3.x/Counter2.razor?highlight=12-13,17)]
 
-Specify the `IncrementAmount` in the Index component's `<Counter>` element using an attribute.
+Specify the `IncrementAmount` in the `Index` component's `<Counter>` element using an attribute.
 
 *Pages/Index.razor*:
 
 [!code-cshtml[](get-started/samples_snapshot/3.x/Index2.razor?highlight=7)]
 
-Run the app. The Index component has its own counter that increments by ten each time the **Click me** button is selected. The Counter component (*Counter.razor*) at `/counter` continues to increment by one.
+Run the app. The `Index` component has its own counter that increments by ten each time the **Click me** button is selected. The `Counter` component (*Counter.razor*) at `/counter` continues to increment by one.
 
 ## Next steps
 

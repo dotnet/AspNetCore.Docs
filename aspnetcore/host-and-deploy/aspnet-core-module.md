@@ -5,7 +5,7 @@ description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/17/2019
+ms.date: 07/01/2019
 uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module
@@ -102,6 +102,29 @@ For out-of-process, [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-u
 
 * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
 * Configure the host to capture startup errors.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+When hosting out-of-process, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. When transforming claims with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation, call <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> to add authentication services:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
+    services.AddAuthentication(IISDefaults.AuthenticationScheme);
+}
+
+public void Configure(IApplicationBuilder app)
+{
+    app.UseAuthentication();
+}
+```
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
 
 ### Hosting model changes
 

@@ -5,7 +5,7 @@ description: Learn how to create reusable layout components for Blazor apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/14/2019
+ms.date: 07/02/2019
 uid: blazor/layouts
 ---
 # ASP.NET Core Blazor layouts
@@ -18,8 +18,8 @@ Technically, a layout is just another component. A layout is defined in a Razor 
 
 To turn a *component* into a *layout*, the component:
 
-* Inherits from `LayoutComponentBase`, which defines a `Body` property that contains the content to be rendered inside the layout.
-* Uses the Razor syntax `@Body` to specify the location in the markup where the content should be rendered.
+* Inherits from `LayoutComponentBase`, which defines a `Body` property for the rendered content inside the layout.
+* Uses the Razor syntax `@Body` to specify the location in the layout markup where the content is rendered.
 
 The following code sample shows the Razor template of a layout component, *MainLayout.razor*. The layout inherits `LayoutComponentBase` and sets the `@Body` between the navigation bar and the footer:
 
@@ -29,13 +29,13 @@ The following code sample shows the Razor template of a layout component, *MainL
 
 Use the Razor directive `@layout` to apply a layout to a component. The compiler converts `@layout` into a `LayoutAttribute`, which is applied to the component class.
 
-The content of the following component, *MasterList.razor*, is inserted into the *MainLayout* at the position of `@Body`.
+The content of the following component, *MasterList.razor*, is inserted into the `MainLayout` at the position of `@Body`:
 
 [!code-cshtml[](layouts/sample_snapshot/3.x/MasterList.razor?highlight=1)]
 
 ## Centralized layout selection
 
-Every folder of an app can optionally contain a template file named *_Imports.razor*. The compiler includes the directives specified in the imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, a *_Imports.razor* file containing `@layout MainLayout` ensures that all of the components in a folder use *MainLayout*. There's no need to repeatedly add `@layout MainLayout` to all of the *.razor* files within the folder and subfolders. `@using` directives are also applied to components in the same way.
+Every folder of an app can optionally contain a template file named *_Imports.razor*. The compiler includes the directives specified in the imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, an *_Imports.razor* file containing `@layout MainLayout` ensures that all of the components in a folder use `MainLayout`. There's no need to repeatedly add `@layout MainLayout` to all of the *.razor* files within the folder and subfolders. `@using` directives are also applied to components in the same way.
 
 The following *_Imports.razor* file imports:
 
@@ -51,7 +51,7 @@ The Blazor templates use *_Imports.razor* files for layout selection. An app cre
 
 ## Nested layouts
 
-Apps can consist of nested layouts. A component can reference a layout which in turn references another layout. For example, nesting layouts can be used to create a multi-level menu structure.
+Apps can consist of nested layouts. A component can reference a layout which in turn references another layout. For example, nesting layouts are used to create a multi-level menu structure.
 
 The following example shows how to use nested layouts. The *EpisodesComponent.razor* file is the component to display. The component references the `MasterListLayout`:
 
@@ -61,7 +61,7 @@ The *MasterListLayout.razor* file provides the `MasterListLayout`. The layout re
 
 [!code-cshtml[](layouts/sample_snapshot/3.x/MasterListLayout.razor?highlight=1,9)]
 
-Finally, `MasterLayout` in *MasterLayout.razor* contains the top-level layout elements, such as the header, main menu, and footer. *MasterListLayout* with *EpisodesComponent* are rendered where `@Body` appears:
+Finally, `MasterLayout` in *MasterLayout.razor* contains the top-level layout elements, such as the header, main menu, and footer. `MasterListLayout` with `EpisodesComponent` are rendered where `@Body` appears:
 
 [!code-cshtml[](layouts/sample_snapshot/3.x/MasterLayout.razor?highlight=6)]
 
