@@ -125,7 +125,7 @@ The `AuthenticationStateProvider` service can provide the current user's <xref:S
 @page "/"
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-<button @onclick="@LogUsername">Write user info to console</button>
+<button @onclick="LogUsername">Write user info to console</button>
 
 @code {
     private async Task LogUsername()
@@ -188,7 +188,7 @@ If authentication state data is required for procedural logic, such as when perf
 ```cshtml
 @page "/"
 
-<button @onclick="@LogUsername">Log username</button>
+<button @onclick="LogUsername">Log username</button>
 
 @code {
     [CascadingParameter]
@@ -413,7 +413,7 @@ If the app is required to check authorization rules as part of procedural logic,
 ```cshtml
 @inject IAuthorizationService AuthorizationService
 
-<button @onclick="@DoSomething">Do something important</button>
+<button @onclick="DoSomething">Do something important</button>
 
 @code {
     [CascadingParameter]

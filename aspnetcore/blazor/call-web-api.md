@@ -76,7 +76,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
   @inject HttpClient Http
 
   <input @bind="_newItemName" placeholder="New Todo Item" />
-  <button @onclick="@AddItem">Add</button>
+  <button @onclick="AddItem">Add</button>
 
   @code {
       private string _newItemName;
@@ -99,7 +99,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
 
   <input type="checkbox" @bind="_editItem.IsComplete" />
   <input @bind="_editItem.Name" />
-  <button @onclick="@SaveItem">Save</button>
+  <button @onclick="SaveItem">Save</button>
 
   @code {
       private TodoItem _editItem = new TodoItem();
@@ -125,7 +125,7 @@ In the following code, the Delete `<button>` element calls the `DeleteItem` meth
 @inject HttpClient Http
 
 <input @bind="_id" />
-<button @onclick="@DeleteItem">Delete</button>
+<button @onclick="DeleteItem">Delete</button>
 
 @code {
     private long _id;

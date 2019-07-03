@@ -63,7 +63,7 @@
             <button class="btn btn-danger" @onclick="@(e => RemoveHeader(header))">remove</button>
         </div>
     }
-    <button class="btn btn-primary" id="add-header" @onclick="@AddHeader">Add</button>
+    <button class="btn btn-primary" id="add-header" @onclick="AddHeader">Add</button>
 </p>
 
 <p>
@@ -71,7 +71,7 @@
     <input id="request-referrer" type="text" @bind="_requestReferrer" size="120" />
 </p>
 
-<button class="btn btn-success" id="send-request" @onclick="@DoRequest">Request</button>
+<button class="btn btn-success" id="send-request" @onclick="DoRequest">Request</button>
 
 @if (_responseStatusCode.HasValue)
 {

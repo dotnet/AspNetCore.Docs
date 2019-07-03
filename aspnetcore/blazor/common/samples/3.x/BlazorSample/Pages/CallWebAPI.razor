@@ -41,7 +41,7 @@ else
                     <input @bind="_editItem.Name" />
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-success" @onclick="@SaveItem">Save</button>
+                    <button class="btn btn-success" @onclick="SaveItem">Save</button>
                     <button class="btn btn-danger" @onclick="@(() => _editRowStyle = "none")">Cancel</button>
                 </td>
             </tr>
@@ -67,7 +67,7 @@ else
                     <input @bind="_newItemName" placeholder="New Todo Item" />
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-success" @onclick="@AddItem">Add</button>
+                    <button class="btn btn-success" @onclick="AddItem">Add</button>
                 </td>
             </tr>
         </tbody>
