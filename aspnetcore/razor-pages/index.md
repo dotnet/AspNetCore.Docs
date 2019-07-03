@@ -21,7 +21,7 @@ This document provides an introduction to Razor Pages. It's not a step by step t
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs2017-2.2.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs2019-2.2.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 

@@ -34,7 +34,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs2017-2.2.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs2019-2.2.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 

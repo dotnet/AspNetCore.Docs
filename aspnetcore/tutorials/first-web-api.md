@@ -50,7 +50,7 @@ The following diagram shows the design of the app.
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs2017-2.2.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs2019-2.2.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
