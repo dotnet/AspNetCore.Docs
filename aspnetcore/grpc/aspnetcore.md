@@ -11,7 +11,21 @@ uid: grpc/aspnetcore
 
 This document shows how to get started with gRPC services using ASP.NET Core.
 
-[!INCLUDE[](~/includes/net-core-prereqs-all-3.0.md)]
+## Prerequisites
+
+# [Visual Studio](#tab/visual-studio)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vs-3.0.md)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.0.md)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
+
+---
 
 ## Get started with gRPC service in ASP.NET Core
 
