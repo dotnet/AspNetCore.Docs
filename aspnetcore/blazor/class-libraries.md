@@ -5,7 +5,7 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/24/2019
+ms.date: 07/02/2019
 uid: blazor/class-libraries
 ---
 # ASP.NET Core Razor components class libraries
@@ -41,13 +41,13 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
-1. Use the Razor Class Library template (`razorclasslib`) with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell. In the following example, an RCL is created named `MyComponentLib1`. The folder that holds `MyComponentLib1` is created automatically when the command is executed.
+1. Use the **Razor Class Library** template (`razorclasslib`) with the [dotnet new](/dotnet/core/tools/dotnet-new) command in a command shell. In the following example, an RCL is created named `MyComponentLib1`. The folder that holds `MyComponentLib1` is created automatically when the command is executed:
 
    ```console
    dotnet new razorclasslib -o MyComponentLib1
    ```
 
-1. To add the library to an existing project, use the [dotnet add reference](/dotnet/core/tools/dotnet-add-reference) command from a command shell. In the following example, the RCL is added to the app. Execute the following command from the app's project folder with the path to the library:
+1. To add the library to an existing project, use the [dotnet add reference](/dotnet/core/tools/dotnet-add-reference) command in a command shell. In the following example, the RCL is added to the app. Execute the following command from the app's project folder with the path to the library:
 
    ```console
    dotnet add reference {PATH TO LIBRARY}
@@ -55,13 +55,9 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
 
 ---
 
-Add Razor component files (*.razor*) to the RCL.
-
 ## RCLs not supported for client-side apps
 
-In ASP.NET Core 3.0 Preview, Razor class libraries aren't compatible with Blazor client-side apps.
-
-For Blazor client-side apps, use a Blazor component library created by the `blazorlib` template from a command shell:
+In the current ASP.NET Core 3.0 Preview, Razor class libraries aren't compatible with Blazor client-side apps. For Blazor client-side apps, use a Blazor component library created by the `blazorlib` template in a command shell:
 
 ```console
 dotnet new blazorlib -o MyComponentLib1
@@ -76,9 +72,9 @@ In order to consume components defined in a library in another project, use eith
 * Use the full type name with the namespace.
 * Use Razor's [\@using](xref:mvc/views/razor#using) directive. Individual components can be added by name.
 
-In the following examples, `MyComponentLib1` is a component library containing a Sales Report (`SalesReport`) component.
+In the following examples, `MyComponentLib1` is a component library containing a `SalesReport` component.
 
-The Sales Report component can be referenced using its full type name with namespace:
+The `SalesReport` component can be referenced using its full type name with namespace:
 
 ```cshtml
 <h1>Hello, world!</h1>
@@ -104,13 +100,13 @@ Include the `@using MyComponentLib1` directive in the top-level *_Import.razor* 
 
 ## Build, pack, and ship to NuGet
 
-Because component libraries are standard .NET libraries, packaging and shipping them to NuGet is no different from packaging and shipping any library to NuGet. Packaging is performed using the [dotnet pack](/dotnet/core/tools/dotnet-pack) command from a command shell:
+Because component libraries are standard .NET libraries, packaging and shipping them to NuGet is no different from packaging and shipping any library to NuGet. Packaging is performed using the [dotnet pack](/dotnet/core/tools/dotnet-pack) command in a command shell:
 
 ```console
 dotnet pack
 ```
 
-Upload the package to NuGet using the [dotnet nuget publish](/dotnet/core/tools/dotnet-nuget-push) command from a command shell:
+Upload the package to NuGet using the [dotnet nuget publish](/dotnet/core/tools/dotnet-nuget-push) command in a command shell:
 
 ```console
 dotnet nuget publish

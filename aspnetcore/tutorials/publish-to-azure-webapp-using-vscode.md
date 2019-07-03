@@ -2,7 +2,7 @@
 title: Publish an ASP.NET Core app to Azure with Visual Studio Code
 author: ricardoserradas
 description: Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio Code
-ms.author: ricardoserradas
+ms.author: riserrad
 ms.custom: mvc
 ms.date: 04/16/2019
 uid: tutorials/publish-to-azure-webapp-using-vscode
