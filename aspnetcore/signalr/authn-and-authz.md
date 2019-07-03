@@ -192,7 +192,7 @@ public class HubMethodAuthorizationHandler :
                                                    HubMethodRequirement requirement,
                                                    HubInvocationContext resource)
     {
-        if (context.User.Identity?.Name == resource.HubMethodName)
+        if (context.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value == resource.HubMethodName)
         {
             context.Succeed(requirement);
         }
@@ -210,7 +210,11 @@ public ChatHub : Hub
     {
     }
 }
+```
 
+Setup the policy and register the handler in DI.
+
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     // ... other services ...
