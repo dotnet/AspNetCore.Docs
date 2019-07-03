@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/01/2019
+ms.date: 07/02/2019
 uid: web-api/http-repl
 ---
 # Test APIs with the HTTP REPL tool
@@ -38,7 +38,7 @@ A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool)
 
 ## Usage
 
-After successful installation of the tool, the following command can be used to start the HTTP REPL:
+After successful installation of the tool, run the following command to start the HTTP REPL:
 
 ```console
 dotnet httprepl
@@ -104,15 +104,15 @@ Use help <COMMAND> to learn more details about individual commands. e.g. `help g
 
 The HTTP REPL offers command completion. Pressing the <kbd>Tab</kbd> key iterates through the list of commands that complete the characters or API endpoint that you typed. The following sections outline the available CLI commands. 
 
-## Connect to the API service
+## Connect to the web API
 
-Connect to a service by running the following command:
+Connect to a web API by running the following command:
 
 ```console
 dotnet httprepl <BASE URI>
 ```
 
-`<BASE URI>` is the base URI for the service. For example:
+`<BASE URI>` is the base URI for the web API. For example:
 
 ```console
 dotnet httprepl https://localhost:5001
@@ -130,9 +130,9 @@ For example:
 (Disconnected)~ set base https://localhost:5001
 ```
 
-## Point to the Swagger document for the API service
+## Point to the Swagger document for the web API
 
-To properly inspect the service, set the relative URI to the Swagger document for the API service. To set the relative URI, run the following command:
+To properly inspect the web API, set the relative URI to the Swagger document for the web API. To set the relative URI, run the following command:
 
 ```console
 set swagger <RELATIVE URI>
@@ -185,7 +185,7 @@ https://localhost:5001/~ ui
 
 ### Navigate to an endpoint
 
-To navigate to a different endpoint of the API service, run the `cd` command:
+To navigate to a different endpoint on the web API, run the `cd` command:
 
 ```console
 https://localhost:5001/~ cd people
@@ -199,7 +199,21 @@ The path following the `cd` command is case insensitive. The following output fo
 https://localhost:5001/people~
 ```
 
-## Set the default colors
+## Customize the HTTP REPL
+
+The HTTP REPL's default [colors](#set-the-default-colors) and [editor](#set-the-default-editor) can be customized. The HTTP REPL preferences are persisted across the current session and are honored in future sessions. Once modified, the preferences are stored in the following file:
+
+# [Linux / macOS](#tab/linux+macos)
+
+*%HOME%\.httpreplprefs*
+
+# [Windows](#tab/windows)
+
+*%USERPROFILE%\.httpreplprefs*
+
+---
+
+### Set the default colors
 
 To customize the default HTTP REPL tool coloring, run the `pref get` command. For example:
 
@@ -226,9 +240,9 @@ Locate the key corresponding to the color to be changed. For example, change the
 https://localhost:5001/people~ pref set colors.json White
 ```
 
-Only the [allowed colors](https://github.com/aspnet/HttpRepl/blob/01d5c3c3373e98fe566ff5ef8a17c571de880293/src/Microsoft.Repl/ConsoleHandling/AllowedColors.cs) may be used. The updated coloring is persisted across the current session and is honored in future sessions. Subsequent HTTP requests display output with the new coloring.
+Only the [allowed colors](https://github.com/aspnet/HttpRepl/blob/01d5c3c3373e98fe566ff5ef8a17c571de880293/src/Microsoft.Repl/ConsoleHandling/AllowedColors.cs) may be used. Subsequent HTTP requests display output with the new coloring.
 
-## Set the default editor
+### Set the default editor
 
 To test API methods requiring an HTTP request body, a default editor must be set. The HTTP REPL tool launches the configured editor for the sole purpose of composing the request body. Run the following command to set your preferred editor as the default editor:
 
@@ -258,9 +272,9 @@ pref set editor.command.default "C:\Program Files\Microsoft VS Code\Code.exe"
 
 ---
 
-## Test the API service
+## Test the web API
 
-To test the API service, issue one of the following [HTTP requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods):
+To test a web API, issue one of the following [HTTP requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods):
 
 * [GET](#http-get-requests)
 * [POST](#http-post-requests)
