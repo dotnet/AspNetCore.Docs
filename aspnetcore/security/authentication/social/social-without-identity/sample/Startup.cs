@@ -23,10 +23,9 @@ namespace WebApp1
 
         public IConfiguration Configuration { get; }
 
-        #region snippet1
+                    #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-
             services
                 .AddAuthentication(options =>
                 {
@@ -42,10 +41,9 @@ namespace WebApp1
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
-        #endregion
+                    #endregion
 
 
-        #region snippet2
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -62,10 +60,12 @@ namespace WebApp1
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            #region snippet2
             app.UseAuthentication();
+            #endregion
 
             app.UseMvc();
-        }       
+        }
+
     }
-    #endregion
 }

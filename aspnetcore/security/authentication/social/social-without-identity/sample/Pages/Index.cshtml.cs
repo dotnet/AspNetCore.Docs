@@ -5,14 +5,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApp1.Pages
 {
+    #region snippet
     public class IndexModel : PageModel
     {
-        public IActionResult OnGetLogin()
+        public void OnGet()
         {
-            return Challenge(new AuthenticationProperties
-            {
-                RedirectUri = Url.Page("/Index")
-            });
         }
 
         public async Task<IActionResult> OnPostLogoutAsync()
@@ -21,4 +18,5 @@ namespace WebApp1.Pages
             return RedirectToPage();
         }
     }
+    #endregion
 }
