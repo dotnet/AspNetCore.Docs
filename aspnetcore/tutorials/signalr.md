@@ -31,7 +31,7 @@ At the end, you'll have a working chat app:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs2017-2.2.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs-2.2-2017.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
