@@ -30,7 +30,7 @@ At the end, you have an app that can manage and display movie data.
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs-2.2-2017.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs2017-2.2.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
