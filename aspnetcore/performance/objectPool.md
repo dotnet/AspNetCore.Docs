@@ -37,7 +37,7 @@ Using a pool to get an object:
 
 <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> - The basic object pool abstraction. This is used to get and return objects.
 
-<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy`1> - Implement this to customize how an object is created and how it is *reset* when returned to the pool. This can be passed into an object pool that you construct directly. Alternatively, [ObjectPoolProvider.Create/<T>](xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*) acts as a factory for creating object pools.
+<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy`1> - Implement this to customize how an object is created and how it is *reset* when returned to the pool. This can be passed into an object pool that you construct directly. Alternatively, [ObjectPoolProvider.Create\<T>](xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*) acts as a factory for creating object pools.
 
 An `ObjectPool` can be initialized by:
 
@@ -47,7 +47,7 @@ An `ObjectPool` can be initialized by:
 
 ## How to use ObjectPool
 
-Call [ObjectPool/\<T>.Get](/dotnet/api/microsoft.extensions.objectpool.objectpool-1.get) to get an object and [ObjectPool/\<T>.Return(T)](/dotnet/api/microsoft.extensions.objectpool.objectpool-1.return) to return it.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
+Call [ObjectPool\<T>.Get](/dotnet/api/microsoft.extensions.objectpool.objectpool-1.get) to get an object and [ObjectPool\<T>.Return(T)](/dotnet/api/microsoft.extensions.objectpool.objectpool-1.return) to return it.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
 
 ## ObjectPool sample
 
