@@ -13,20 +13,20 @@ By [Steve Gordon](https://twitter.com/stevejgordon?), [Ryan Nowak](https://githu
 
 The <xref:Microsoft.Extensions.ObjectPool> is infrastructure that supports keeping a group of objects in memory for reuse rather than allowing the objects to be garbage collected.
 
-Object that may benefit from the object pool include objects that are:
+Objects that may benefit from the object pool include objects that are:
 
-- expensive to allocate or initialize
-- a limited resource
-- used predictably and frequently
+- Expensive to allocate or initialize
+- A limited resource
+- Used predictably and frequently
 
-For example, the ASP.NET Core framework uses the object pool in some places to reuse <xref:System.Text.StringBuilder> instances. `StringBuilder` allocates and manages its own buffers to hold character data when used. Because ASP.NET Core regularly uses `StringBuilder` to implement features, reusing them provides a performance benefit.
+For example, the ASP.NET Core framework uses the object pool in some places to reuse <xref:System.Text.StringBuilder> instances. `StringBuilder` allocates and manages its own buffers to hold character data. Because ASP.NET Core regularly uses `StringBuilder` to implement features, reusing them provides a performance benefit.
 
-Every decision has performance tradeoffs. You should only use a technique like object pooling after collecting performance data about realistic scenarios for your app or library. 
+Every decision has performance tradeoffs. You should only use a technique like object pooling after collecting performance data about realistic scenarios for your app or library.
 
 Using a pool to get an object:
 
-* Is typically slower than allocating an object. It's faster when the initialization or allocation cost of that kind of object is high.
-* Prevent objects managed by the pool from being de-allocated until you de-allocate the pool.
+* Is typically slower than allocating an object. It's faster when the initialization or allocation cost of the object is high.
+* Prevents objects managed by the pool from being de-allocated until you de-allocate the pool.
 
 > [!WARNING]
 > The ObjectPool doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.
@@ -37,7 +37,7 @@ Using a pool to get an object:
 
 <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> - The basic object pool abstraction. This is used to get and return objects.
 
-<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy`1> - Implement this to customize how an object is created and how it is *reset* when returned to the pool. This can be passed into an object pool that you construct directly. Alternatively, [ObjectPoolProvider.Create\<T>](xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*) acts as a factory for creating object pools.
+<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy`1> - Implement this to customize how an object is created and how it is *reset* when returned to the pool. This can be passed into an object pool that you construct directly. Alternatively, [ObjectPoolProvider.Create/<T>](xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*) acts as a factory for creating object pools.
 
 An `ObjectPool` can be initialized by:
 
@@ -47,4 +47,10 @@ An `ObjectPool` can be initialized by:
 
 ## How to use ObjectPool
 
-Call [ObjectPool\<T>.Get](/dotnet/api/microsoft.extensions.objectpool.objectpool-1.get) to get an object and [ObjectPool\<T>.Return(T)](/dotnet/api/microsoft.extensions.objectpool.objectpool-1.return) to return it.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
+Call [ObjectPool/<T>.Get](/dotnet/api/microsoft.extensions.objectpool.objectpool-1.get) to get an object and [ObjectPool/<T>.Return(T)](/dotnet/api/microsoft.extensions.objectpool.objectpool-1.return) to return it.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
+
+## ObjectPool sample
+
+The following sample creates an `ObjectPool` to contain a `StringBuilder`. The `StringBuilderPooledObjectPolicy.Create` method is called the first time an `ObjectPool<StringBuilder>` is requested. Subsequent requests for `ObjectPool<StringBuilder>` are returned by the `ObjectPool`:
+
+[!code-csharp[](objectPool/ObjectPoolSample/StringBuilderPooledObjectPolicy.cs?name=snippet)]
