@@ -54,3 +54,15 @@ Call [ObjectPool/<T>.Get](/dotnet/api/microsoft.extensions.objectpool.objectpool
 The following sample creates an `ObjectPool` to contain a `StringBuilder`. The `StringBuilderPooledObjectPolicy.Create` method is called the first time an `ObjectPool<StringBuilder>` is requested. Subsequent requests for `ObjectPool<StringBuilder>` are returned by the `ObjectPool`:
 
 [!code-csharp[](objectPool/ObjectPoolSample/StringBuilderPooledObjectPolicy.cs?name=snippet)]
+
+The following code shows the birthday middleware that uses the `ObjectPool<StringBuilder>`:
+
+[!code-csharp[](objectPool/ObjectPoolSample/StringBuilderPooledObjectPolicy.cs?name=snippet)&highlight=21,50]
+
+In the preceding code, the `builderPool.Get();` call requests an `ObjectPool<StringBuilder>` object. The first time `builderPool.Get();` is called, `StringBuilderPooledObjectPolicy.Create` is called. Subsequent requests for `ObjectPool<StringBuilder>` are returned by the `ObjectPool`.
+
+`builderPool.Return(stringBuilder);` invokes the `StringBuilderPooledObjectPolicy.Return` method, which clears the `StringBuilder` object.
+
+The following code initializes the `ObjectPool<StringBuilder>` and adds the `BirthdayMiddleware` to the request pipeline:
+
+[!code-csharp[](objectPool/ObjectPoolSample/Startup.cs?name=snippet)]
