@@ -16,7 +16,8 @@ namespace ObjectPoolSample
             _next = next;
         }
 
-        public async Task InvokeAsync(HttpContext context, ObjectPool<StringBuilder> builderPool)
+        public async Task InvokeAsync(HttpContext context, 
+            ObjectPool<StringBuilder> builderPool)
         {
             if (context.Request.Query.TryGetValue("firstName", out var firstName) &&
                 context.Request.Query.TryGetValue("lastName", out var lastName) && 
@@ -26,8 +27,7 @@ namespace ObjectPoolSample
                 int.TryParse(day, out var dayOfMonth))
             {                
                 var now = DateTime.UtcNow; // Ignore timezone.
-
-                var stringBuilder = builderPool.Get(); // Request a StringBuilder from the pool.
+                var stringBuilder = builderPool.Get(); 
 
                 try
                 {
@@ -42,14 +42,14 @@ namespace ObjectPoolSample
                     }
                     else
                     {
-                        var thisYearsBirthday = new DateTime(now.Year, monthOfYear, dayOfMonth);
+                        var thisYearsBDay = new DateTime(now.Year, monthOfYear, dayOfMonth);
 
-                        int daysUntilBirthday = thisYearsBirthday > now 
-                            ? (thisYearsBirthday - now).Days 
-                            : (thisYearsBirthday.AddYears(1) - now).Days;
+                        int daysUntilBirthday = thisYearsBDay > now 
+                            ? (thisYearsBDay - now).Days 
+                            : (thisYearsBDay.AddYears(1) - now).Days;
 
                         stringBuilder.Append("There are ").Append(daysUntilBirthday)
-                                                          .Append(" days until your birthday!");
+                                                         .Append(" days until your birthday!");
 
                         await context.Response.WriteAsync(stringBuilder.ToString());
                     }
