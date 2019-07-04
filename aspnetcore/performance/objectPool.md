@@ -1,0 +1,50 @@
+---
+title: Use ObjectPool to keep groups of object in memory in ASP.NET Core
+author: rick-anderson
+description: Use ObjectPool to keep groups of object in memory rather than allowing the objects to be garbage collected.
+monikerRange: '>= aspnetcore-2.2'
+ms.author: riande
+ms.date: 07/10/2019
+uid: performance/objectPool
+---
+# Use ObjectPool to keep groups of object in memory in ASP.NET Core
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+The <xref:Microsoft.Extensions.ObjectPool> is infrastructure that supports keeping a group of objects in memory for reuse rather than allowing the objects to be garbage collected.
+
+Object that may benefit from the object pool include objects that are:
+
+- expensive to allocate or initialize
+- a limited resource
+- used predictably and frequently
+
+For example, the ASP.NET Core framework uses the object pool in some places to reuse <xref:System.Text.StringBuilder> instances. `StringBuilder` allocates and manages its own buffers to hold character data when used. Because ASP.NET Core regularly uses `StringBuilder` to implement features, reusing them provides a performance benefit.
+
+Every decision has performance tradeoffs. You should only use a technique like object pooling after collecting performance data about realistic scenarios for your app or library. 
+
+Using a pool to get an object:
+
+* Is typically slower than allocating an object. It's faster when the initialization or allocation cost of that kind of object is high.
+* Prevent objects managed by the pool from being de-allocated until you de-allocate the pool.
+
+> [!WARNING]
+> The ObjectPool doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.
+>
+> The ObjectPool doesn't place a limit on the number of objects that it will allocate, it places a limit on the number of object it will retain.
+
+## Concepts
+
+<xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> - The basic object pool abstraction. This is used to get and return objects.
+
+<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy`1> - Implement this to customize how an object is created and how it is *reset* when returned to the pool. This can be passed into an object pool that you construct directly. Alternatively, [ObjectPoolProvider.Create\<T>](xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*) acts as a factory for creating object pools.
+
+An `ObjectPool` can be initialized by:
+
+- Instantiating a pool.
+- Registering a pool in [dependency injection](xref:fundamentals/dependency-injection) as an instance.
+- Registering the `ObjectPoolProvider<>` in dependency injection and using it as a factory.
+
+## How to use ObjectPool
+
+Call [ObjectPool\<T>.Get](xref:Microsoft.Extensions.ObjectPool.ObjectPool*) to get an object and <xref:Microsoft.Extensions.ObjectPool.ObjectPool*> to return it.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
