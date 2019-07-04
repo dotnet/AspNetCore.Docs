@@ -9,9 +9,7 @@ uid: performance/objectPool
 ---
 # Use ObjectPool to keep groups of object in memory in ASP.NET Core
 
-https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.objectpool.objectpool-1.return?view=aspnetcore-2.2
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Steve Gordon](https://twitter.com/stevejgordon?), [Ryan Nowak](https://github.com/rynowak) and  [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The <xref:Microsoft.Extensions.ObjectPool> is infrastructure that supports keeping a group of objects in memory for reuse rather than allowing the objects to be garbage collected.
 
@@ -49,4 +47,4 @@ An `ObjectPool` can be initialized by:
 
 ## How to use ObjectPool
 
-Call [ObjectPool\<T>.Get](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.objectpool.objectpool-1.get?view=aspnetcore-2.2) to get an object and [ObjectPool\<T>.Return(T)(https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.objectpool.objectpool-1.return?view=aspnetcore-2.2) to return it.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
+Call [ObjectPool\<T>.Get](/dotnet/api/microsoft.extensions.objectpool.objectpool-1.get) to get an object and [ObjectPool\<T>.Return(T)](/dotnet/api/microsoft.extensions.objectpool.objectpool-1.return) to return it.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
