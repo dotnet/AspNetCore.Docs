@@ -29,9 +29,9 @@ Using a pool to get an object:
 * Prevents objects managed by the pool from being de-allocated until you de-allocate the pool.
 
 > [!WARNING]
-> The ObjectPool doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.
+> The `ObjectPool` doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.
 >
-> The ObjectPool doesn't place a limit on the number of objects that it will allocate, it places a limit on the number of object it will retain.
+> The `ObjectPool` doesn't place a limit on the number of objects that it will allocate, it places a limit on the number of object it will retain.
 
 ## Concepts
 
