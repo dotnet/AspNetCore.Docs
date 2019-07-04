@@ -4,7 +4,7 @@ author: juntaoluo
 description: Learn the basic concepts when writing gRPC services with ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 03/08/2019
+ms.date: 07/03/2019
 uid: grpc/aspnetcore
 ---
 # gRPC services with ASP.NET Core
@@ -29,19 +29,17 @@ Run `dotnet new grpc -o GrpcGreeter` from the command line.
 
 ## Add gRPC services to an ASP.NET Core app
 
-gRPC requires the following package:
-
-* [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore)
+gRPC requires the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) package.
 
 ### Configure gRPC
 
 gRPC is enabled with the `AddGrpc` method:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Startup.cs?name=snippet&highlight=7)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Startup.cs?name=snippet&highlight=7)]
 
 Each gRPC service is added to the routing pipeline through the `MapGrpcService` method:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Startup.cs?name=snippet&highlight=24)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Startup.cs?name=snippet&highlight=24)]
 
 ASP.NET Core middlewares and features share the routing pipeline, therefore an app can be configured to serve additional request handlers. The additional request handlers, such as MVC controllers, work in parallel with the configured gRPC services.
 
