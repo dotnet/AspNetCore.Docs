@@ -4,7 +4,7 @@ author: juntaoluo
 description: Learn the basic concepts when writing gRPC services with C#.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 03/31/2019
+ms.date: 07/03/2019
 uid: grpc/basics
 ---
 # gRPC services with C\#
@@ -42,7 +42,7 @@ The tooling package [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) is 
 * Aren't added to the project or checked into source control.
 * Are a build artifact contained in the *obj* directory.
 
-This package is required by both the server and client projects. The `Grpc.AspNetCore` metapackage includes a reference to `Grpc.Tools`. Server projects can add `Grpc.AspNetCore` using the Package Manager in Visual Studio or adding a `<PackageReference>` to the project file:
+This package is required by both the server and client projects. The `Grpc.AspNetCore` metapackage includes a reference to `Grpc.Tools`. Server projects can add `Grpc.AspNetCore` using the Package Manager in Visual Studio or by adding a `<PackageReference>` to the project file:
 
 [!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=1&range=12)]
 
