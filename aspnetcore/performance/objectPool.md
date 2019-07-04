@@ -35,9 +35,9 @@ Using a pool to get an object:
 
 ## Concepts
 
-<xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> - The basic object pool abstraction. This is used to get and return objects.
+<xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> - The basic object pool abstraction, used to get and return objects.
 
-<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy`1> - Implement this to customize how an object is created and how it is *reset* when returned to the pool. This can be passed into an object pool that you construct directly. Alternatively, [ObjectPoolProvider.Create\<T>](xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*) acts as a factory for creating object pools.
+<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy`1> - Implement `ObjectPool.PooledObjectPolicy` to customize how an object is created and how it is *reset* when returned to the pool. This can be passed into an object pool that you construct directly. Alternatively, [ObjectPoolProvider.Create\<T>](xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*) acts as a factory for creating object pools.
 
 An `ObjectPool` can be initialized by:
 
