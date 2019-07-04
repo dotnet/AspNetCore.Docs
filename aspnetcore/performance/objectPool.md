@@ -23,15 +23,17 @@ For example, the ASP.NET Core framework uses the object pool in some places to r
 
 Every decision has performance tradeoffs. You should only use a technique like object pooling after collecting performance data about realistic scenarios for your app or library.
 
-Using a pool to get an object:
+Using the `ObjectPool` to get an object:
 
 * Is typically slower than allocating an object. It's faster when the initialization or allocation cost of the object is high.
 * Prevents objects managed by the pool from being de-allocated until you de-allocate the pool.
 
 > [!WARNING]
-> The `ObjectPool` doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.
+> `ObjectPool`
 >
-> The `ObjectPool` doesn't place a limit on the number of objects that it will allocate, it places a limit on the number of object it will retain.
+> - Doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.
+> - Doesn't place a limit on the number of objects that it will allocate.
+> - Places a limit on the number of objects it will retain.
 
 ## Concepts
 
