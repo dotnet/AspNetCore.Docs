@@ -47,11 +47,11 @@ An `ObjectPool` can be initialized by:
 
 ## How to use ObjectPool
 
-Call [ObjectPool/<T>.Get](/dotnet/api/microsoft.extensions.objectpool.objectpool-1.get) to get an object and [ObjectPool/<T>.Return(T)](/dotnet/api/microsoft.extensions.objectpool.objectpool-1.return) to return it.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
+Call [ObjectPool/\<T>.Get](/dotnet/api/microsoft.extensions.objectpool.objectpool-1.get) to get an object and [ObjectPool/\<T>.Return(T)](/dotnet/api/microsoft.extensions.objectpool.objectpool-1.return) to return it.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
 
 ## ObjectPool sample
 
-The following sample creates an `ObjectPool` to contain a `StringBuilder`. [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/\objectPool) ([how to download](xref:index#how-to-download-a-sample))
+The following sample creates an `ObjectPool` to contain a `StringBuilder`. [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/objectPool) ([how to download](xref:index#how-to-download-a-sample))
 
  The `StringBuilderPooledObjectPolicy.Create` method is called the first time an `ObjectPool<StringBuilder>` is requested. Subsequent requests for `ObjectPool<StringBuilder>` are returned by the `ObjectPool`:
 
