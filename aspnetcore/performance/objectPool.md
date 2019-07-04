@@ -61,7 +61,7 @@ The following code shows the birthday middleware that uses the `ObjectPool<Strin
 
 [!code-csharp[](objectPool/ObjectPoolSample/BirthdayMiddleware.cs?name=snippet&highlight=21,50)]
 
-In the preceding code, the `builderPool.Get();` call requests an `ObjectPool<StringBuilder>` object. The first time `builderPool.Get();` is called, `StringBuilderPooledObjectPolicy.Create` is called. Subsequent requests for `ObjectPool<StringBuilder>` are returned by the `ObjectPool`.
+In the preceding code, the `builderPool.Get` call requests an `ObjectPool<StringBuilder>` object. The first time `builderPool.Get` is called, `StringBuilderPooledObjectPolicy.Create` is called. Subsequent requests for `ObjectPool<StringBuilder>` are returned by the `ObjectPool`.
 
 `builderPool.Return(stringBuilder);` invokes the `StringBuilderPooledObjectPolicy.Return` method, which clears the `StringBuilder` object.
 
