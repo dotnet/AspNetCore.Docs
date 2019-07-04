@@ -103,6 +103,9 @@ Use the mongo Shell in the following steps to create a database, make collection
       ]
     }
     ```
+  
+  > [!NOTE]
+  > The ID's shown in this article will not match the IDs when you run this sample.
 
 1. View the documents in the database using the following command:
 
