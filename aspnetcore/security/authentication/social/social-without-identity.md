@@ -41,7 +41,7 @@ In the `Configure` method, call the `UseAuthentication` method to invoke the Aut
 
 To learn more about authentication schemes and cookie authentication, see <xref:security/authentication/cookie>.
 
-## Applying basic authorization
+## Applying authorization
 
 Test the app's authentication configuration by applying the `AuthorizeAttribute` attribute to a controller, action, or page. The following code limits access to the *Privacy* page to users that have been authenticated:
 

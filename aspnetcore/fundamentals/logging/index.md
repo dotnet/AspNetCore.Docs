@@ -25,6 +25,8 @@ To add a provider, call the provider's `Add{provider name}` extension method in 
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_ExpandDefault&highlight=18-20)]
 
+The preceding code requires references to `Microsoft.Extensions.Logging` and `Microsoft.Extensions.Configuration`.
+
 The default project template calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>, which adds the following logging providers:
 
 * Console
