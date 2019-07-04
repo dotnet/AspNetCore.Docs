@@ -51,15 +51,15 @@ Call [ObjectPool/<T>.Get](/dotnet/api/microsoft.extensions.objectpool.objectpool
 
 ## ObjectPool sample
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/\objectPool) ([how to download](xref:index#how-to-download-a-sample))
+The following sample creates an `ObjectPool` to contain a `StringBuilder`. [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/\objectPool) ([how to download](xref:index#how-to-download-a-sample))
 
-The following sample creates an `ObjectPool` to contain a `StringBuilder`. The `StringBuilderPooledObjectPolicy.Create` method is called the first time an `ObjectPool<StringBuilder>` is requested. Subsequent requests for `ObjectPool<StringBuilder>` are returned by the `ObjectPool`:
+ The `StringBuilderPooledObjectPolicy.Create` method is called the first time an `ObjectPool<StringBuilder>` is requested. Subsequent requests for `ObjectPool<StringBuilder>` are returned by the `ObjectPool`:
 
 [!code-csharp[](objectPool/ObjectPoolSample/StringBuilderPooledObjectPolicy.cs?name=snippet)]
 
 The following code shows the birthday middleware that uses the `ObjectPool<StringBuilder>`:
 
-[!code-csharp[](objectPool/ObjectPoolSample/\objectPool.cs?name=snippet&highlight=21,50)]
+[!code-csharp[](objectPool/ObjectPoolSample/objectPool.cs?name=snippet&highlight=21,50)]
 
 In the preceding code, the `builderPool.Get();` call requests an `ObjectPool<StringBuilder>` object. The first time `builderPool.Get();` is called, `StringBuilderPooledObjectPolicy.Create` is called. Subsequent requests for `ObjectPool<StringBuilder>` are returned by the `ObjectPool`.
 
