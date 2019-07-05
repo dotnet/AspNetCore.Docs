@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/01/2019
+ms.date: 07/05/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -955,34 +955,34 @@ The descendent `Tab` components capture the containing `TabSet` as a cascading p
 Render fragments can be defined using Razor template syntax. Razor templates are a way to define a UI snippet and assume the following format:
 
 ```cshtml
-@<tag>...</tag>
+@<{HTML tag}>...</{HTML tag}>
 ```
 
-The following example illustrates how to specify `RenderFragment` and `RenderFragment<T>` values.
-
-`RazorTemplates` component:
+The following example illustrates how to specify `RenderFragment` and `RenderFragment<T>` values and render templates directly in a component. Render fragments can also be passed as arguments to [templated components](#templated-components).
 
 ```cshtml
-@{
-    RenderFragment template = @<p>The time is @DateTime.Now.</p>;
-    RenderFragment<Pet> petTemplate = (pet) => @<p>Your pet's name is @pet.Name.</p>;
+@timeTemplate
+
+@petTemplate(new Pet { Name = "Rex" })
+
+@code {
+    private RenderFragment timeTemplate = @<p>The time is @DateTime.Now.</p>;
+    private RenderFragment<Pet> petTemplate = 
+        (pet) => @<p>Your pet's name is @pet.Name.</p>;
+
+    private class Pet
+    {
+        public string Name { get; set; }
+    }
 }
 ```
 
-Render fragments defined using Razor templates can be passed as arguments to templated components or rendered directly. For example, the previous templates are directly rendered with the following Razor markup:
+Rendered output of the preceding code:
 
-```cshtml
-@template
+```html
+<p>The time is 10/04/2018 01:26:52.</p>
 
-@petTemplate(new Pet { Name = "Rex" })
-```
-
-Rendered output:
-
-```
-The time is 10/04/2018 01:26:52.
-
-Your pet's name is Rex.
+<p>Your pet's name is Rex.</p>
 ```
 
 ## Manual RenderTreeBuilder logic
@@ -1002,7 +1002,7 @@ Consider the following `PetDetails` component, which can be manually built into 
 @code
 {
     [Parameter]
-    string PetDetailsQuote { get; set; }
+    private string PetDetailsQuote { get; set; }
 }
 ```
 
