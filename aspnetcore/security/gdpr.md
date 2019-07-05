@@ -47,7 +47,7 @@ Razor Pages and MVC projects created with the project templates include the foll
 
 [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) are initialized in `Startup.ConfigureServices`:
 
-[!code-csharp[Main](gdpr/sample/Startup.cs?name=snippet1&highlight=14-20)]
+[!code-csharp[Main](gdpr/sample/Startup.cs?name=snippet1&highlight=18-20)]
 
 [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) is called in `Startup.Configure`:
 
