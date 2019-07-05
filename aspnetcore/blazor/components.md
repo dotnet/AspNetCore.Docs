@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/01/2019
+ms.date: 07/05/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -958,7 +958,7 @@ Render fragments can be defined using Razor template syntax. Razor templates are
 @<{HTML tag}>...</{HTML tag}>
 ```
 
-The following example illustrates how to specify `RenderFragment` and `RenderFragment<T>` values and render templates directly in a component. Render fragments can also be passed as arguments to templated components.
+The following example illustrates how to specify `RenderFragment` and `RenderFragment<T>` values and render templates directly in a component. Render fragments can also be passed as arguments to [templated components](#templated-components).
 
 ```cshtml
 @timeTemplate
