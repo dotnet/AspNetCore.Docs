@@ -997,7 +997,7 @@ Consider the following `PetDetails` component, which can be manually built into 
 ```cshtml
 <h2>Pet Details Component</h2>
 
-<p>@PetDetailsQuote<p>
+<p>@PetDetailsQuote</p>
 
 @code
 {
