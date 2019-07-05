@@ -12,15 +12,9 @@ namespace ResponseCachingMiddleware
         #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
             services.AddResponseCaching();
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
         #endregion
 
@@ -34,18 +28,14 @@ namespace ResponseCachingMiddleware
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
 
             app.UseResponseCaching();
 
             app.Use(async (context, next) =>
             {
-                // For GetTypedHeaders, add: using Microsoft.AspNetCore.Http;
                 context.Response.GetTypedHeaders().CacheControl = 
                     new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
                     {
