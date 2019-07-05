@@ -18,7 +18,7 @@ ASP.NET Core 1.1 includes the following new features:
 - [Cookie-based TempData provider](xref:fundamentals/app-state#tempdata)
 - [Azure App Service logging provider](xref:fundamentals/logging/index#azure-app-service-provider)
 - [Azure Key Vault configuration provider](xref:security/key-vault-configuration)
-- [Azure and Redis Storage Data Protection Key Repositories](xref:security/data-protection/implementation/key-storage-providers#azure-and-redis)
+- [Azure and Redis Storage Data Protection Key Repositories](xref:security/data-protection/implementation/key-storage-providers)
 - WebListener Server for Windows
 - [WebSockets support](xref:fundamentals/websockets)
 

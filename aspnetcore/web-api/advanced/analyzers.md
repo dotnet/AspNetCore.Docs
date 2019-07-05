@@ -3,7 +3,7 @@ title: Use web API analyzers
 author: pranavkm
 description: Learn about the web API analyzers in Microsoft.AspNetCore.Mvc.Api.Analyzers.
 monikerRange: '>= aspnetcore-2.2'
-ms.author: pranavkm
+ms.author: prkrishn
 ms.custom: mvc
 ms.date: 12/14/2018
 uid: web-api/advanced/analyzers
@@ -74,4 +74,4 @@ The preceding action documents the HTTP 200 success return type but doesn't docu
 
 * <xref:web-api/advanced/conventions>
 * <xref:tutorials/web-api-help-pages-using-swagger>
-* [Annotation with ApiController attribute](xref:web-api/index#annotation-with-apicontroller-attribute)
+* <xref:web-api/index>

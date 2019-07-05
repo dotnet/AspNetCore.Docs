@@ -10,10 +10,6 @@ uid: data/ef-rp/complex-data-model
 
 # Razor Pages with EF Core in ASP.NET Core - Data Model - 5 of 8
 
-[!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
-
-::: moniker range=">= aspnetcore-2.1"
-
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
@@ -28,7 +24,7 @@ The entity classes for the completed data model is shown in the following illust
 ![Entity diagram](complex-data-model/_static/diagram.png)
 
 If you run into problems you can't solve, download the [completed app](
-https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
+https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
 ## Customize the data model with attributes
 
@@ -382,19 +378,18 @@ public ICollection<Course> Courses { get; set; }
 
 Note: By convention, EF Core enables cascade delete for non-nullable FKs and for many-to-many relationships. Cascading delete can result in circular cascade delete rules. Circular cascade delete rules causes an exception when a migration is added.
 
-For example, if the `Department.InstructorID` property wasn't defined as nullable:
+For example, if the `Department.InstructorID` property was defined as non-nullable:
 
-* EF Core configures a cascade delete rule to delete the instructor when the department is deleted.
-* Deleting the instructor when the department is deleted isn't the intended behavior.
+* EF Core configures a cascade delete rule to delete the department when the instructor is deleted.
+* Deleting the department when the instructor is deleted isn't the intended behavior.
+* The following fluent API would set a restrict rule instead of cascade.
 
-If business rules required the `InstructorID` property be non-nullable, use the following fluent API statement:
-
- ```csharp
- modelBuilder.Entity<Department>()
-    .HasOne(d => d.Administrator)
-    .WithMany()
-    .OnDelete(DeleteBehavior.Restrict)
- ```
+   ```csharp
+   modelBuilder.Entity<Department>()
+      .HasOne(d => d.Administrator)
+      .WithMany()
+      .OnDelete(DeleteBehavior.Restrict)
+  ```
 
 The preceding code disables cascade delete on the department-instructor relationship.
 
@@ -668,7 +663,7 @@ The next tutorial covers related data.
 * [YouTube version of this tutorial(Part 1)](https://www.youtube.com/watch?v=0n2f0ObgCoA)
 * [YouTube version of this tutorial(Part 2)](https://www.youtube.com/watch?v=Je0Z5K1TNmY)
 
-::: moniker-end
+
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/migrations)

@@ -70,6 +70,11 @@ namespace ContactManager.Data
 
             var user = await userManager.FindByIdAsync(uid);
 
+            if(user == null)
+            {
+                throw new Exception("The testUserPw password was probably not strong enough!");
+            }
+            
             IR = await userManager.AddToRoleAsync(user, role);
 
             return IR;

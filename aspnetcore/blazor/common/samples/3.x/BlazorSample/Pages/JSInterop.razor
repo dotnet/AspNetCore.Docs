@@ -7,13 +7,13 @@
 
 <h2>Invoke JavaScript functions from .NET methods</h2>
 
-<button type="button" class="btn btn-primary" onclick="@TriggerJsPrompt">
+<button type="button" class="btn btn-primary" @onclick="@TriggerJsPrompt">
     Trigger JavaScript Prompt
 </button>
 
 <h3 id="welcome" style="color:green;font-style:italic"></h3>
 
-@functions {
+@code {
     public async void TriggerJsPrompt()
     {
         // showPrompt is implemented in wwwroot/exampleJsInterop.js
@@ -48,11 +48,11 @@
 
 <!-- <snippet_JSInterop2> -->
 <button type="button" class="btn btn-primary"
-        onclick="exampleJsFunctions.returnArrayAsyncJs()">
+        @onclick="exampleJsFunctions.returnArrayAsyncJs()">
     Trigger .NET static method ReturnArrayAsync
 </button>
 
-@functions {
+@code {
     [JSInvokable]
     public static Task<int[]> ReturnArrayAsync()
     {
@@ -62,11 +62,11 @@
 <!-- </snippet_JSInterop2> -->
 
 <!-- <snippet_JSInterop3> -->
-<button type="button" class="btn btn-primary" onclick="@TriggerNetInstanceMethod">
+<button type="button" class="btn btn-primary" @onclick="@TriggerNetInstanceMethod">
     Trigger .NET instance method HelloHelper.SayHello
 </button>
 
-@functions {
+@code {
     public async void TriggerNetInstanceMethod()
     {
         var exampleJsInterop = new ExampleJsInterop(JSRuntime);

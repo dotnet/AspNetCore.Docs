@@ -70,6 +70,9 @@
               uid: tutorials/first-mvc-app/validation
             - name: Examine the Details and Delete methods
               uid: tutorials/first-mvc-app/details
+        - name: Blazor
+          displayName: tutorial
+          uid: tutorials/first-blazor-app
     - name: Web API apps
       items:
         - name: Create a web API
@@ -91,7 +94,7 @@
           uid: tutorials/signalr-typescript-webpack
     - name: Remote Procedure Call apps
       items:
-        - name: Get started with gRPC service in ASP.NET Core
+        - name: Get started with gRPC service
           uid: tutorials/grpc/grpc-start
     - name: Data access
       items:
@@ -166,10 +169,10 @@
       uid: fundamentals/middleware/index
     - name: Host
       items:
-      - name: Web Host
-        uid: fundamentals/host/web-host
       - name: Generic Host
         uid: fundamentals/host/generic-host
+      - name: Web Host
+        uid: fundamentals/host/web-host
     - name: Servers
       uid: fundamentals/servers/index
     - name: Configuration
@@ -189,6 +192,8 @@
       uid: fundamentals/http-requests
     - name: Static files
       uid: fundamentals/static-files
+    - name: Code generator
+      uid: fundamentals/tools/dotnet-aspnet-codegenerator
 - name: Web apps
   items:
     - name: Razor Pages
@@ -217,8 +222,6 @@
               uid: tutorials/razor-pages/validation
         - name: Filters
           uid: razor-pages/filter
-        - name: Razor Class Libraries
-          uid: razor-pages/ui-class
         - name: Route and app conventions
           uid: razor-pages/razor-pages-conventions
         - name: Upload files
@@ -230,8 +233,9 @@
         - name: Overview
           uid: mvc/overview
         - name: Tutorial
-          uid: tutorials/first-mvc-app/index
           items:
+            - name: Overview
+              uid: tutorials/first-mvc-app/index
             - name: Get started
               uid: tutorials/first-mvc-app/start-mvc
             - name: Add a controller
@@ -272,6 +276,8 @@
       items:
         - name: Overview
           uid: blazor/index
+        - name: Supported platforms
+          uid: blazor/supported-platforms
         - name: Get started
           uid: blazor/get-started
         - name: Hosting models
@@ -292,9 +298,13 @@
           uid: blazor/routing
         - name: JavaScript interop
           uid: blazor/javascript-interop
+        - name: Security and Identity
+          uid: security/blazor/index
         - name: Debug
           uid: blazor/debug
-        - name: Host and deploy
+        - name: Call a web API
+          uid: blazor/call-web-api
+        - name: Hosting and deployment
           items:
             - name: Overview
               uid: host-and-deploy/blazor/index
@@ -314,7 +324,7 @@
               uid: spa/react
             - name: React with Redux
               uid: spa/react-with-redux
-            - name: JavaScriptServices
+            - name: JavaScript Services
               uid: client-side/spa-services
         - name: LibMan
           items:
@@ -324,8 +334,6 @@
               uid: client-side/libman/libman-cli
             - name: Visual Studio
               uid: client-side/libman/libman-vs
-        - name: Gulp
-          uid: client-side/using-gulp
         - name: Grunt
           uid: client-side/using-grunt
         - name: Bower
@@ -338,13 +346,12 @@
       uid: fundamentals/app-state
     - name: Layout
       uid: mvc/views/layout
-    - name: Model binding
-      uid: mvc/models/model-binding
-    - name: Model validation
-      uid: mvc/models/validation
     - name: Razor syntax
       uid: mvc/views/razor
+    - name: Razor class libraries
+      uid: razor-pages/ui-class
     - name: Tag Helpers
+      uid: mvc/views/tag-helpers/builtin-th/Index
       items:
         - name: Overview
           uid: mvc/views/tag-helpers/intro
@@ -396,10 +403,6 @@
           uid: mvc/controllers/areas
         - name: App parts
           uid: mvc/extensibility/app-parts
-        - name: Custom model binding
-          uid: mvc/advanced/custom-model-binding
-        - name: Compatibility version
-          uid: mvc/compatibility-version
 - name: Web API apps
   items:
     - name: Overview
@@ -457,9 +460,6 @@
         - name: Users and groups
           uid: signalr/groups
           displayName: signalr
-        - name: Publish to Azure
-          uid: signalr/publish-to-azure-web-app
-          displayName: signalr
         - name: API design considerations
           uid: signalr/api-design
           displayName: signalr
@@ -490,9 +490,9 @@
         - name: Overview
           displayName: signalr
           uid: signalr/scale
-        - name: Azure SignalR Service
+        - name: Azure App Service
+          uid: signalr/publish-to-azure-web-app
           displayName: signalr
-          href: /azure/azure-signalr/signalr-overview?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Redis backplane
           displayName: signalr
           uid: signalr/redis-backplane
@@ -536,14 +536,6 @@
       uid: grpc/migration
     - name: Comparing gRPC services with HTTP APIs
       uid: grpc/comparison
-    - name: Tutorials
-      items:
-        - name: Get started with gRPC service in ASP.NET Core
-          uid: tutorials/grpc/index
-        - name: Create a ASP.NET Core gRPC Greeter Service
-          uid: tutorials/grpc/grpc-start
-        - name: Create a .NET Core gRPC client
-          uid: tutorials/grpc/grpc-client
 - name: Test, debug, and troubleshoot
   items:
     - name: Unit testing
@@ -826,6 +818,8 @@
           uid: security/authentication/2fa
         - name: Use Cookie Authentication without Identity
           uid: security/authentication/cookie
+        - name: Use social Authentication without Identity
+          uid: security/authentication/social/social-without-identity
         - name: Azure Active Directory
           items:
             - name: Overview
@@ -846,6 +840,8 @@
           href: /azure/app-service/overview-authentication-authorization?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Individual user accounts
           uid: security/authentication/individual
+        - name: Configure certificate authentication
+          uid: security/authentication/certauth
     - name: Authorization
       items:
         - name: Overview
@@ -969,6 +965,8 @@
       uid: security/ip-safelist
     - name: Application security - OWASP
       href: https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/DotNet_Security_Cheat_Sheet.md
+    - name: Blazor
+      uid: security/blazor/index
 - name: Performance
   items:
     - name: Overview
@@ -1000,6 +998,14 @@
       uid: fundamentals/troubleshoot-aspnet-core-localization
 - name: Advanced
   items:
+    - name: Model binding
+      uid: mvc/models/model-binding
+    - name: Custom model binding
+      uid: mvc/advanced/custom-model-binding
+    - name: Model validation
+      uid: mvc/models/validation
+    - name: Compatibility version
+      uid: mvc/compatibility-version
     - name: Write middleware
       uid: fundamentals/middleware/write
     - name: Request and response operations
@@ -1076,4 +1082,4 @@
 - name: API reference
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribute
-  href: https://github.com/aspnet/Docs/blob/master/CONTRIBUTING.md
+  href: https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md

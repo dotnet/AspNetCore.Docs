@@ -6,16 +6,16 @@
     @foreach (var todo in todos)
     {
         <li>
-            <input type="checkbox" bind="@todo.IsDone" />
-            <input bind="@todo.Title" />
+            <input type="checkbox" @bind="@todo.IsDone" />
+            <input @bind="@todo.Title" />
         </li>
     }
 </ul>
 
-<input placeholder="Something todo" bind="@newTodo" />
-<button onclick="@AddTodo">Add todo</button>
+<input placeholder="Something todo" @bind="@newTodo" />
+<button @onclick="@AddTodo">Add todo</button>
 
-@functions {
+@code {
     private IList<TodoItem> todos = new List<TodoItem>();
     private string newTodo;
 

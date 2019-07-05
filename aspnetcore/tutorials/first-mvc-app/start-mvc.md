@@ -3,7 +3,7 @@ title: Get started with ASP.NET Core MVC
 author: rick-anderson
 description: Learn how to get started with ASP.NET Core MVC.
 ms.author: riande
-ms.date: 12/12/2018
+ms.date: 04/24/2019
 uid: tutorials/first-mvc-app/start-mvc
 ---
 # Get started with ASP.NET Core MVC
@@ -26,34 +26,41 @@ At the end, you have an app that can manage and display movie data.
 
 [!INCLUDE[](~/includes/mvc-intro/download.md)]
 
-[!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
+## Prerequisites
 
+# [Visual Studio](#tab/visual-studio)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vs2019-2.2.md)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-2.2.md)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!INCLUDE[](~/includes/net-core-prereqs-mac-2.2.md)]
+
+---
 ## Create a web app
 
 # [Visual Studio](#tab/visual-studio)
 
-From Visual Studio, select  **File > New > Project**.
+* From the Visual Studio select **Create a new project**.
 
-![File > New > Project](start-mvc/_static/alt_new_project.png)
+* Selecct **ASP.NET Core Web Application** and then select **Next**.
 
-Complete the **New Project** dialog:
+![new ASP.NET Core Web Application](start-mvc/_static/np_2.1.png)
 
-* In the left pane, select **.NET Core**
-* In the center pane, select **ASP.NET Core Web Application (.NET Core)**
-* Name the project "MvcMovie" (It's important to name the project "MvcMovie" so when you copy code, the namespace will match.)
-* select **OK**
+* Name the project **MvcMovie** and select **Create**. It's important to name the project **MvcMovie** so when you copy code, the namespace will match.
 
-![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project2-21.png)
+  ![new ASP.NET Core Web Application](start-mvc/_static/config.png)
 
-Complete the **New ASP.NET Core Web Application (.NET Core) - MvcMovie** dialog:
 
-* In the version selector drop-down box select **ASP.NET Core 2.2**
-* Select **Web Application (Model-View-Controller)**
-* select **OK**.
+* Select **Web Application(Model-View-Controller)**, and then select **Create**.
 
 ![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22-21.png)
 
-Visual Studio used a default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start.
+Visual Studio used the default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -77,13 +84,15 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](~/tutorials/first-web-api-mac/_static/sln.png)
+  ![macOS New solution](./start-mvc/_static/new_project_vsmac.png)
 
-* Select **.NET Core App** > **ASP.NET Core** > **ASP.NET Core Web App (MVC)** > **Next**.
+* Select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**.
 
-  ![macOS New project dialog](~/tutorials/first-mvc-app-mac/start-mvc/1.png)
+  ![macOS New project dialog](./start-mvc/_static/new_project_mvc_vsmac.png)
 
-* In the **Configure your new ASP.NET Core Web API** dialog, accept the default **Target Framework** of **.NET Core 2.2*.
+* In the **Configure your new ASP.NET Core Web API** dialog, accept the default **Target Framework** of **.NET Core 2.2**.
+
+  ![macOS .NET Core 2.2 selection](./start-mvc/_static/new_project_22_vsmac.png)
 
 * Name the project **MvcMovie**, and then select **Create**.
 
@@ -107,6 +116,14 @@ Select **Ctrl-F5** to run the app in non-debug mode.
 
   ![IIS Express](start-mvc/_static/iis_express.png)
 
+* Select **Accept** to consent to tracking. This app doesn't track personal information. The template generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
+
+  ![Home or Index page](start-mvc/_static/privacy.png)
+
+  The following image shows the app after accepting tracking:
+
+  ![Home or Index page](start-mvc/_static/home2.2.png)
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Press Ctrl+F5 to run without the debugger.
@@ -117,6 +134,14 @@ Press Ctrl+F5 to run without the debugger.
 
   Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
 
+* Select **Accept** to consent to tracking. This app doesn't track personal information. The template generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
+
+  ![Home or Index page](start-mvc/_static/privacy.png)
+
+  The following image shows the app after accepting tracking:
+
+  ![Home or Index page](start-mvc/_static/home2.2.png)
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Run** > **Start Without Debugging** to launch the app. Visual Studio for Mac starts [Kestrel](xref:fundamentals/servers/index#kestrel) server, launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
@@ -126,15 +151,15 @@ Select **Run** > **Start Without Debugging** to launch the app. Visual Studio fo
 * The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. When you run the app, you'll see a different port number.
 * You can launch the app in debug or non-debug mode from the **Run** menu.
 
----
-
 * Select **Accept** to consent to tracking. This app doesn't track personal information. The template generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
 
-  ![Home or Index page](start-mvc/_static/privacy.png)
+  ![Home or Index page](./start-mvc/_static/output_privacy_macos.png)
 
   The following image shows the app after accepting tracking:
 
-  ![Home or Index page](start-mvc/_static/home2.2.png)
+  ![Home or Index page](./start-mvc/_static/output_macos.png)
+
+---
 
 [!INCLUDE[](~/includes/vs-vsc-vsmac-help.md)]
 

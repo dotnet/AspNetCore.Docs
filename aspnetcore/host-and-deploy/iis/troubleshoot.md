@@ -2,9 +2,10 @@
 title: Troubleshoot ASP.NET Core on IIS
 author: guardrex
 description: Learn how to diagnose problems with Internet Information Services (IIS) deployments of ASP.NET Core apps.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/14/2019
+ms.date: 06/19/2019
 uid: host-and-deploy/iis/troubleshoot
 ---
 # Troubleshoot ASP.NET Core on IIS
@@ -13,106 +14,14 @@ By [Luke Latham](https://github.com/guardrex)
 
 This article provides instructions on how to diagnose an ASP.NET Core app startup issue when hosting with [Internet Information Services (IIS)](/iis). The information in this article applies to hosting in IIS on Windows Server and Windows Desktop.
 
-::: moniker range=">= aspnetcore-2.2"
-
-In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) hosting during debugging. A *502.5 - Process Failure* or a *500.30 - Start Failure* that occurs when debugging locally can be troubleshooted using the advice in this topic.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.2"
-
-In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) hosting during debugging. A *502.5 Process Failure* that occurs when debugging locally can be troubleshooted using the advice in this topic.
-
-::: moniker-end
-
 Additional troubleshooting topics:
 
-<xref:host-and-deploy/azure-apps/troubleshoot>
-Although App Service uses the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) and IIS to host apps, see the dedicated topic for instructions specific to App Service.
+* Azure App Service also uses the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) and IIS to host apps. For troubleshooting advice that pertains specifically to Azure App Service, see <xref:host-and-deploy/azure-apps/troubleshoot>.
+* <xref:fundamentals/error-handling> covers how to handle errors in ASP.NET Core apps during development on a local system.
+* [Learn to debug using Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger) introduces the features of the Visual Studio debugger.
+* [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging) describes the debugging support built into Visual Studio Code.
 
-<xref:fundamentals/error-handling>
-Discover how to handle errors in ASP.NET Core apps during development on a local system.
-
-[Learn to debug using Visual Studio](/visualstudio/debugger/getting-started-with-the-debugger)
-This topic introduces the features of the Visual Studio debugger.
-
-[Debugging with Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
-Learn about the debugging support built into Visual Studio Code.
-
-## App startup errors
-
-### 502.5 Process Failure
-
-The worker process fails. The app doesn't start.
-
-The ASP.NET Core Module attempts to start the backend dotnet process but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log).
-
-A common failure condition is the app is misconfigured due to targeting a version of the ASP.NET Core shared framework that isn't present. Check which versions of the ASP.NET Core shared framework are installed on the target machine.
-
-The *502.5 Process Failure* error page is returned when a hosting or app misconfiguration causes the worker process to fail:
-
-![Browser window showing the 502.5 Process Failure page](troubleshoot/_static/process-failure-page.png)
-
-::: moniker range=">= aspnetcore-2.2"
-
-### 500.30 In-Process Startup Failure
-
-The worker process fails. The app doesn't start.
-
-The ASP.NET Core Module attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the [Application Event Log](#application-event-log) and the [ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log).
-
-A common failure condition is the app is misconfigured due to targeting a version of the ASP.NET Core shared framework that isn't present. Check which versions of the ASP.NET Core shared framework are installed on the target machine.
-
-### 500.0 In-Process Handler Load Failure
-
-The worker process fails. The app doesn't start.
-
-The ASP.NET Core Module fails to find the .NET Core CLR and find the in-process request handler (*aspnetcorev2_inprocess.dll*). Check that:
-
-* The app targets either the [Microsoft.AspNetCore.Server.IIS](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IIS) NuGet package or the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
-* The version of the ASP.NET Core shared framework that the app targets is installed on the target machine.
-
-### 500.0 Out-Of-Process Handler Load Failure
-
-The worker process fails. The app doesn't start.
-
-The ASP.NET Core Module fails to find the out-of-process hosting request handler. Make sure the *aspnetcorev2_outofprocess.dll* is present in a subfolder next to *aspnetcorev2.dll*.
-
-::: moniker-end
-
-### 500 Internal Server Error
-
-The app starts, but an error prevents the server from fulfilling the request.
-
-This error occurs within the app's code during startup or while creating a response. The response may contain no content, or the response may appear as a *500 Internal Server Error* in the browser. The Application Event Log usually states that the app started normally. From the server's perspective, that's correct. The app did start, but it can't generate a valid response. [Run the app at a command prompt](#run-the-app-at-a-command-prompt) on the server or [enable the ASP.NET Core Module stdout log](#aspnet-core-module-stdout-log) to troubleshoot the problem.
-
-### Failed to start application (ErrorCode '0x800700c1')
-
-```
-EventID: 1010
-Source: IIS AspNetCore Module V2
-Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
-```
-
-The app failed to start because the app's assembly (*.dll*) couldn't be loaded.
-
-This error occurs when there's a bitness mismatch between the published app and the w3wp/iisexpress process.
-
-Confirm that the app pool's 32-bit setting is correct:
-
-1. Select the app pool in IIS Manager's **Application Pools**.
-1. Select **Advanced Settings** under **Edit Application Pool** in the **Actions** panel.
-1. Set **Enable 32-Bit Applications**:
-   * If deploying a 32-bit (x86) app, set the value to `True`.
-   * If deploying a 64-bit (x64) app, set the value to `False`.
-
-### Connection reset
-
-If an error occurs after the headers are sent, it's too late for the server to send a **500 Internal Server Error** when an error occurs. This often happens when an error occurs during the serialization of complex objects for a response. This type of error appears as a *connection reset* error on the client. [Application logging](xref:fundamentals/logging/index) can help troubleshoot these types of errors.
-
-## Default startup limits
-
-The ASP.NET Core Module is configured with a default *startupTimeLimit* of 120 seconds. When left at the default value, an app may take up to two minutes to start before the module logs a process failure. For information on configuring the module, see [Attributes of the aspNetCore element](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
+[!INCLUDE[](~/includes/azure-iis-startup-errors.md)]
 
 ## Troubleshoot app startup errors
 
@@ -239,28 +148,28 @@ A *dump* is a snapshot of the system's memory and can help determine the cause o
 Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/wer/windows-error-reporting):
 
 1. Create a folder to hold crash dump files at `c:\dumps`. The app pool must have write access to the folder.
-1. Run the [EnableDumps PowerShell script](https://github.com/aspnet/Docs/blob/master/aspnetcore/host-and-deploy/iis/troubleshoot/scripts/EnableDumps.ps1):
-   * If the app uses the [in-process hosting model](xref:fundamentals/servers/index#in-process-hosting-model), run the script for *w3wp.exe*:
+1. Run the [EnableDumps PowerShell script](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/iis/troubleshoot/scripts/EnableDumps.ps1):
+   * If the app uses the [in-process hosting model](xref:host-and-deploy/iis/index#in-process-hosting-model), run the script for *w3wp.exe*:
 
      ```console
      .\EnableDumps w3wp.exe c:\dumps
      ```
 
-   * If the app uses the [out-of-process hosting model](xref:fundamentals/servers/index#out-of-process-hosting-model), run the script for *dotnet.exe*:
+   * If the app uses the [out-of-process hosting model](xref:host-and-deploy/iis/index#out-of-process-hosting-model), run the script for *dotnet.exe*:
 
      ```console
      .\EnableDumps dotnet.exe c:\dumps
      ```
 
 1. Run the app under the conditions that cause the crash to occur.
-1. After the crash has occurred, run the [DisableDumps PowerShell script](https://github.com/aspnet/Docs/blob/master/aspnetcore/host-and-deploy/iis/troubleshoot/scripts/DisableDumps.ps1):
-   * If the app uses the [in-process hosting model](xref:fundamentals/servers/index#in-process-hosting-model), run the script for *w3wp.exe*:
+1. After the crash has occurred, run the [DisableDumps PowerShell script](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/iis/troubleshoot/scripts/DisableDumps.ps1):
+   * If the app uses the [in-process hosting model](xref:host-and-deploy/iis/index#in-process-hosting-model), run the script for *w3wp.exe*:
 
      ```console
      .\DisableDumps w3wp.exe
      ```
 
-   * If the app uses the [out-of-process hosting model](xref:fundamentals/servers/index#out-of-process-hosting-model), run the script for *dotnet.exe*:
+   * If the app uses the [out-of-process hosting model](xref:host-and-deploy/iis/index#out-of-process-hosting-model), run the script for *dotnet.exe*:
 
      ```console
      .\DisableDumps dotnet.exe

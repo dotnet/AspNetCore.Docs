@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover topics related to authentication with Azure Active Directory in ASP.NET Core.
 ms.author: riande
 ms.date: 10/4/2017
-ms.custom: seodec18
+ms.custom: "mvc, seodec18"
 uid: security/authentication/azure-active-directory/index
 ---
 # Azure Active Directory with ASP.NET Core

@@ -1,6 +1,16 @@
 {
     "redirections": [
         {
+            "source_path": "aspnetcore/tutorials/grpc/grpc-client.md",
+            "redirect_url": "/aspnet/core/tutorials/grpc/grpc-start",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/grpc/index.md",
+            "redirect_url": "/aspnet/core/tutorials/grpc/grpc-start",
+            "redirect_document_id": false
+        },        
+        {
             "source_path": "aspnetcore/fundamentals/host/index.md",
             "redirect_url": "/aspnet/core/fundamentals/index#host",
             "redirect_document_id": false
@@ -843,6 +853,11 @@
         {
             "source_path": "aspnetcore/host-and-deploy/razor-components-blazor/configure-linker.md",
             "redirect_url": "/aspnet/core/host-and-deploy/blazor/configure-linker",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/client-side/using-gulp.md",
+            "redirect_url": "/aspnet/core/client-side/using-grunt",
             "redirect_document_id": false
         },
         {

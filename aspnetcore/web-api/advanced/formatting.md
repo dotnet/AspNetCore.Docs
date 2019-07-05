@@ -4,7 +4,9 @@ author: ardalis
 description: Learn how to format response data in ASP.NET Core Web API.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
+
 ms.date: 4/22/2019
+
 uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API
@@ -13,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ar
 
 ASP.NET Core MVC has built-in support for formatting response data, using fixed formats or in response to client specifications.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/advanced/formatting/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/formatting/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Format-Specific Action Results
 
@@ -87,6 +89,57 @@ If you would prefer your app honor browser accept headers, you can configure thi
 Apps that need to support additional formats beyond the default of JSON can add NuGet packages and configure ASP.NET Core to support them. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding); output formatters are used to format responses. Custom Formatters](xref:web-api/advanced/custom-formatters) can also be configured.
 
 ### Adding XML Format Support
+=======
+::: moniker range=">= aspnetcore-3.0"
+
+### Configure System.Text.Json-based formatters
+
+Features for the `System.Text.Json`-based formatters can be configured using `Microsoft.AspNetCore.Mvc.MvcOptions.SerializerOptions`.
+
+```csharp
+services.AddMvc(options =>
+{
+    options.SerializerOptions.WriterSettings.Indented = true;
+});
+```
+
+### Add Newtonsoft.Json-based JSON format support
+
+Prior to ASP.NET Core 3.0, MVC defaulted to using JSON formatters implemented using the `Newtonsoft.Json` package. In ASP.NET Core 3.0 or later, the default JSON formatters are based on `System.Text.Json`. Support for `Newtonsoft.Json`-based formatters and features is available by installing the [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package and configuring it in `Startup.ConfigureServices`.
+
+```csharp
+services.AddMvc()
+    .AddNewtonsoftJson();
+```
+
+Some features may not work well with `System.Text.Json`-based formatters and require a reference to the `Newtonsoft.Json`-based formatters for the ASP.NET Core 3.0
+release. Continue using the `Newtonsoft.Json`-based formatters if your ASP.NET Core 3.0 or later app:
+
+* Uses `Newtonsoft.Json` attributes (for example, `[JsonProperty]` or `[JsonIgnore]`), customizes the serialization settings, or relies on features that `Newtonsoft.Json` provides.
+* Configures `Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings`. Prior to ASP.NET Core 3.0, `JsonResult.SerializerSettings` accepts an instance of `JsonSerializerSettings` that is specific to `Newtonsoft.Json`.
+* Generates [OpenAPI](<xref:tutorials/web-api-help-pages-using-swagger>) documentation.
+
+::: moniker-end
+
+### Add XML format support
+
+::: moniker range="<= aspnetcore-2.2"
+
+To add XML formatting support in ASP.NET Core 2.2 or earlier, install the [Microsoft.AspNetCore.Mvc.Formatters.Xml](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Formatters.Xml/) NuGet package.
+
+::: moniker-end
+
+XML formatters implemented using `System.Xml.Serialization.XmlSerializer` can be configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*> in `Startup.ConfigureServices`:
+
+[!code-csharp[](./formatting/sample/Startup.cs?name=snippet1&highlight=2)]
+
+Alternatively, XML formatters implemented using `System.Runtime.Serialization.DataContractSerializer` can be configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlDataContractSerializerFormatters*> in `Startup.ConfigureServices`:
+
+```csharp
+services.AddMvc()
+    .AddXmlDataContractSerializerFormatters();
+```
+
 
 To add support for XML formatting, install the `Microsoft.AspNetCore.Mvc.Formatters.Xml` NuGet package.
 

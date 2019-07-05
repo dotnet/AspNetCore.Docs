@@ -1,6 +1,6 @@
 # Response compression sample application (ASP.NET Core 1.x)
 
-This sample illustrates the use of ASP.NET Core 1.x Response Compression Middleware to compress HTTP responses for. The sample demonstrates Gzip and custom compression providers for text and image responses and shows how to add a MIME type for compression. For the ASP.NET Core 2.x sample, see [Response compression sample application (ASP.NET Core 2.x)](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples/2.x).
+This sample illustrates the use of ASP.NET Core 1.x Response Compression Middleware to compress HTTP responses for. The sample demonstrates Gzip and custom compression providers for text and image responses and shows how to add a MIME type for compression. For the ASP.NET Core 2.x sample, see [Response compression sample application (ASP.NET Core 2.x)](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/response-compression/samples/2.x).
 
 ## Examples in this sample
 

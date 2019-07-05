@@ -203,7 +203,7 @@ The following sample patch document has no effect if the initial value of `Custo
 
 ## Get the code
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([How to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([How to download](xref:index#how-to-download-a-sample)).
 
 To test the sample, run the app and send HTTP requests with the following settings:
 
