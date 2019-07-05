@@ -71,8 +71,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-> [!TIP]
-> If the app uses Entity Framework Core, don't change the name of the `CreateHostBuilder` method. The [Entity Framework Core tools](/ef/core/miscellaneous/cli/) expect to find a `CreateHostBuilder` method that configures the host without running the app. For more information, see [Design-time DbContext Creation](/ef/core/miscellaneous/cli/dbcontext-creation).
+If the app uses Entity Framework Core, don't change the name of the `CreateHostBuilder` method. The [Entity Framework Core tools](/ef/core/miscellaneous/cli/) expect to find a `CreateHostBuilder` method that configures the host without running the app. For more information, see [Design-time DbContext Creation](/ef/core/miscellaneous/cli/dbcontext-creation).
 
 ## Default builder settings 
 
@@ -149,7 +148,7 @@ Host configuration is used for the following:
 * The properties of the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> implementation.
 * The [URLs](#urls) setting in web apps. The host passes this value to the servers through an `IServerAddresses` API.
 
-Host configuration automatically flows to app configuration ([ConfigureAppConfiguration](#configureappconfiguration).
+Host configuration automatically flows to [app configuration](#app-configuration).
 
 To add host configuration, call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> on `IHostBuilder`. `ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last on a given key.
 
@@ -159,8 +158,7 @@ The following example creates host configuration:
 
 [!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippet_HostConfig)]
 
-> [!TIP]
-> During development when using [Visual Studio](https://visualstudio.microsoft.com) or running an app with `dotnet run`, environment variables may be set in the *Properties/launchSettings.json* file. In [Visual Studio Code](https://code.visualstudio.com/), environment variables may be set in the *.vscode/launch.json* file. For more information, see <xref:fundamentals/environments>.
+When you run an app in Visual Studio or with `dotnet run`, environment variables may be set in the *Properties/launchSettings.json* file. In Visual Studio Code, use the *.vscode/launch.json* file. For more information, see <xref:fundamentals/environments>.
 
 ## App configuration
 
@@ -174,18 +172,18 @@ The following example creates app configuration:
 
 [!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippet_AppConfig)]
 
-> [!TIP]
-> To move settings files to the output directory for publishing, specify the settings files as [MSBuild project items](/visualstudio/msbuild/common-msbuild-project-items) in the project file. The sample app moves its JSON app settings files and *hostsettings.json* with the following `<Content>` item:
-> ```xml
-> <ItemGroup>
->   <Content Include="**\*.json" Exclude="bin\**\*;obj\**\*" 
->     CopyToOutputDirectory="PreserveNewest" />
-> </ItemGroup>
-> ```
+To move settings files to the output directory for publishing, specify the settings files as [MSBuild project items](/visualstudio/msbuild/common-msbuild-project-items) in the project file. The sample app moves its JSON app settings files and *hostsettings.json* with the following `<Content>` item:
+
+```xml
+<ItemGroup>
+  <Content Include="**\*.json" Exclude="bin\**\*;obj\**\*" 
+    CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
+```
 
 ## Settings for all app types
 
-This section lists host settings that apply to non-HTTP as well as HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix.
+This section lists host settings that apply to both HTTP and non-HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix.
 
 ### ApplicationName
 
