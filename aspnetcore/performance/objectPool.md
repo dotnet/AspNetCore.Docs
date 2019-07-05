@@ -53,7 +53,7 @@ Call [ObjectPool\<T>.Get](/dotnet/api/microsoft.extensions.objectpool.objectpool
 
 ## ObjectPool sample
 
-The following sample creates an `ObjectPool` to contain a `StringBuilder`. [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/objectPool) ([how to download](xref:index#how-to-download-a-sample))
+The following sample creates an `ObjectPool` to contain a `StringBuilder`. [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/objectPool) ([how to download](xref:index#how-to-download-a-sample)).
 
  The `StringBuilderPooledObjectPolicy.Create` method is called the first time an `ObjectPool<StringBuilder>` is requested. Subsequent requests for `ObjectPool<StringBuilder>` are returned by the `ObjectPool`:
 
