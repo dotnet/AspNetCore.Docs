@@ -38,8 +38,8 @@ To follow along, [view or download the sample ASP.NET Core web API](https://gith
 To install the HTTP REPL, run the following command:
 
 ```console
-dotnet tool install -g dotnet-httprepl 
-    --version 2.2.0-rtm-35542 
+dotnet tool install -g dotnet-httprepl
+    --version 2.2.0-rtm-35542
     --add-source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json
 ```
 
@@ -112,7 +112,7 @@ ui             Displays the Swagger UI page, if available, in the default browse
 Use help <COMMAND> to learn more details about individual commands. e.g. `help get`
 ```
 
-The HTTP REPL offers command completion. Pressing the <kbd>Tab</kbd> key iterates through the list of commands that complete the characters or API endpoint that you typed. The following sections outline the available CLI commands. 
+The HTTP REPL offers command completion. Pressing the <kbd>Tab</kbd> key iterates through the list of commands that complete the characters or API endpoint that you typed. The following sections outline the available CLI commands.
 
 ## Connect to the web API
 
@@ -213,7 +213,11 @@ https://localhost:5001/people~
 
 The HTTP REPL's default [colors](#set-color-preferences) can be customized. Additionally, a [default text editor](#set-the-default-text-editor) can be defined. The HTTP REPL preferences are persisted across the current session and are honored in future sessions. Once modified, the preferences are stored in the following file:
 
-# [Linux / macOS](#tab/linux+macos)
+# [Linux](#tab/linux)
+
+*%HOME%/.httpreplprefs*
+
+# [macOS](#tab/macos)
 
 *%HOME%/.httpreplprefs*
 
@@ -315,16 +319,16 @@ To issue an HTTP GET request:
     ```console
     https://localhost:5001/people~ get
     ```
-    
+
     The preceding command displays the following output format:
-    
+
     ```console
     HTTP/1.1 200 OK
     Content-Type: application/json; charset=utf-8
     Date: Fri, 21 Jun 2019 03:38:45 GMT
     Server: Kestrel
     Transfer-Encoding: chunked
-    
+
     [
       {
         "id": 1,
@@ -339,8 +343,8 @@ To issue an HTTP GET request:
         "name": "Scott Guthrie"
       }
     ]
-    
-    
+
+
     https://localhost:5001/people~
     ```
 
@@ -349,24 +353,24 @@ To issue an HTTP GET request:
     ```console
     https://localhost:5001/people~ get 2
     ```
-    
+
     The preceding command displays the following output format:
-    
+
     ```console
     HTTP/1.1 200 OK
     Content-Type: application/json; charset=utf-8
     Date: Fri, 21 Jun 2019 06:17:57 GMT
     Server: Kestrel
     Transfer-Encoding: chunked
-    
+
     [
       {
         "id": 2,
         "name": "Scott Hanselman"
       }
     ]
-    
-    
+
+
     https://localhost:5001/people~
     ```
 
@@ -430,14 +434,14 @@ To issue an HTTP POST request:
     Location: https://localhost:5001/people/4
     Server: Kestrel
     Transfer-Encoding: chunked
-    
+
     {
       "id": 4,
       "name": "Scott Addie"
     }
-    
-    
-    https://localhost:5001/people~    
+
+
+    https://localhost:5001/people~
     ```
 
 ## Test HTTP PUT requests
@@ -473,7 +477,7 @@ To issue an HTTP PUT request:
     Date: Sat, 22 Jun 2019 00:07:32 GMT
     Server: Kestrel
     Transfer-Encoding: chunked
-    
+
     [
       {
         "id": 1,
@@ -491,7 +495,7 @@ To issue an HTTP PUT request:
 
 1. Run the `put` command on an endpoint that supports it:
 
-    ```console    
+    ```console
     https://localhost:5001/fruits~ put 2 -h Content-Type=application/json
     ```
 
@@ -534,7 +538,7 @@ To issue an HTTP PUT request:
     Date: Sat, 22 Jun 2019 00:08:20 GMT
     Server: Kestrel
     Transfer-Encoding: chunked
-    
+
     [
       {
         "id": 1,
@@ -549,9 +553,9 @@ To issue an HTTP PUT request:
         "data": "Strawberry"
       }
     ]
-    
-    
-    https://localhost:5001/fruits~ 
+
+
+    https://localhost:5001/fruits~
     ```
 
 ## Test HTTP DELETE requests
@@ -585,7 +589,7 @@ To issue an HTTP DELETE request:
     Date: Sat, 22 Jun 2019 00:07:32 GMT
     Server: Kestrel
     Transfer-Encoding: chunked
-    
+
     [
       {
         "id": 1,
@@ -624,7 +628,7 @@ To issue an HTTP DELETE request:
     Date: Sat, 22 Jun 2019 00:16:30 GMT
     Server: Kestrel
     Transfer-Encoding: chunked
-    
+
     [
       {
         "id": 1,
@@ -635,8 +639,8 @@ To issue an HTTP DELETE request:
         "data": "Strawberry"
       }
     ]
-    
-    
+
+
     https://localhost:5001/fruits~
     ```
 
