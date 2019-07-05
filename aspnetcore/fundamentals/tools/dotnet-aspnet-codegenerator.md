@@ -1,8 +1,9 @@
 ---
 title: dotnet aspnet-codegenerator command
 author: rick-anderson
+description: The dotnet aspnet-codegenerator command scaffolds ASP.NET Core projects.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-description: The dotnet aspnet-codegenerator command scaffolds ASP.NET Core projects
 ms.date: 07/04/2019
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ---
@@ -13,17 +14,17 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 `dotnet aspnet-codegenerator` - Runs the ASP.NET Core scaffolding engine. `dotnet aspnet-codegenerator` is only required to scaffold from the command line, it's not need to use scaffolding with Visual Studio.
 
-This article applies to [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download/dotnet-core/2.2) and later.
+This article applies to [.NET Core 2.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/2.1) and later.
 
 ## Installing aspnet-codegenerator
 
-`aspnet-codegenerator` is a [global tool](/dotnet/core/tools/global-tools) that must be installed. The following command installs the latest stable version of the `aspnet-codegenerator` tool:
+`dotnet-aspnet-codegenerator` is a [global tool](/dotnet/core/tools/global-tools) that must be installed. The following command installs the latest stable version of the `dotnet-aspnet-codegenerator` tool:
 
 ```console
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
-The following command updates `aspnet-codegenerator` to the latest stable version available from the installed .NET Core SDKs:
+The following command updates `dotnet-aspnet-codegenerator` to the latest stable version available from the installed .NET Core SDKs:
 
 ```console
 dotnet tool update -g dotnet-aspnet-codegenerator
@@ -38,7 +39,7 @@ dotnet aspnet-codegenerator [-h|--help]
 
 ## Description
 
-The `dotnet aspnet-codegenerator ` global command runs the ASP.NET Core code generator and scaffolding engine.
+The `dotnet aspnet-codegenerator` global command runs the ASP.NET Core code generator and scaffolding engine.
 
 ## Arguments
 
