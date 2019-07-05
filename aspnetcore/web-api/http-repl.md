@@ -1,21 +1,31 @@
 ---
-title: Test APIs with the HTTP REPL tool
+title: Test web APIs with the HTTP REPL
 author: scottaddie
 description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and test an ASP.NET Core web API.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/03/2019
+ms.date: 07/05/2019
 uid: web-api/http-repl
 ---
-# Test APIs with the HTTP REPL tool
+# Test web APIs with the HTTP REPL
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
 
-The HTTP REPL is:
+The HTTP Read-Eval-Print Loop (REPL) is:
 
 * A lightweight, cross-platform command-line tool that's supported everywhere .NET Core is supported.
 * Used for making HTTP requests to test ASP.NET Core web APIs and view their results.
+
+The following [HTTP verbs](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods) are supported:
+
+* [GET](#test-http-get-requests)
+* [POST](#test-http-post-requests)
+* [PUT](#test-http-put-requests)
+* [DELETE](#test-http-delete-requests)
+* PATCH
+* HEAD
+* OPTIONS
 
 To follow along, [view or download the sample ASP.NET Core web API](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl-tool/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
@@ -93,7 +103,7 @@ echo [on/off]  Turns request echoing on or off, show the request that was made w
 exit           Exit the shell.
 
 REPL Customization Commands:
-Use these commands to customize the REPL behavior..
+Use these commands to customize the REPL behavior.
 
 pref [get/set] Allows viewing or changing preferences, e.g. 'pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`
 run            Runs the script at the given path. A script is a set of commands that can be typed with one command per line.
@@ -201,7 +211,7 @@ https://localhost:5001/people~
 
 ## Customize the HTTP REPL
 
-The HTTP REPL's default [colors](#set-color-preferences) can be customized. Additionally, a [default text editor](#set-the-default-editor) can be defined. The HTTP REPL preferences are persisted across the current session and are honored in future sessions. Once modified, the preferences are stored in the following file:
+The HTTP REPL's default [colors](#set-color-preferences) can be customized. Additionally, a [default text editor](#set-the-default-text-editor) can be defined. The HTTP REPL preferences are persisted across the current session and are honored in future sessions. Once modified, the preferences are stored in the following file:
 
 # [Linux / macOS](#tab/linux+macos)
 
@@ -248,13 +258,13 @@ Only the [allowed colors](https://github.com/aspnet/HttpRepl/blob/01d5c3c3373e98
 
 ### Set the default text editor
 
-By default, the HTTP REPL has no text editor configured for use. To test web API methods requiring an HTTP request body, a default text editor must be set. The HTTP REPL tool launches the configured editor for the sole purpose of composing the request body. Run the following command to set your preferred editor as the default editor:
+By default, the HTTP REPL has no text editor configured for use. To test web API methods requiring an HTTP request body, a default text editor must be set. The HTTP REPL tool launches the configured text editor for the sole purpose of composing the request body. Run the following command to set your preferred text editor as the default:
 
 ```console
 pref set editor.command.default "<EXECUTABLE>"
 ```
 
-In the preceding command, `<EXECUTABLE>` is the full path to the editor's executable file. For example, run the following command to set Visual Studio Code as the default editor:
+In the preceding command, `<EXECUTABLE>` is the full path to the text editor's executable file. For example, run the following command to set Visual Studio Code as the default text editor:
 
 # [Linux](#tab/linux)
 
@@ -276,19 +286,33 @@ pref set editor.command.default "C:\Program Files\Microsoft VS Code\Code.exe"
 
 ---
 
-## Test the web API
+## Test HTTP GET requests
 
-To test a web API, issue one of the following [HTTP requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods):
+### Synopsis
 
-* [GET](#http-get-requests)
-* [POST](#http-post-requests)
-* [PUT](#http-put-requests)
-* [DELETE](#http-delete-requests)
-* PATCH
-* HEAD
-* OPTIONS
+```console
+get <PARAMETER> [-F|--no-formatting] [-s|--streaming]
+```
 
-### HTTP GET requests
+### Arguments
+
+`PARAMETER`
+
+The route parameter, if any, expected by the associated controller action method.
+
+### Options
+
+The following options are available for the `get` command:
+
+* `-F|--no-formatting`
+
+  A flag whose presence suppresses HTTP response formatting.
+
+* `-s|--streaming`
+
+  A flag whose presence enables streaming of the HTTP response.
+
+### Example
 
 To issue an HTTP GET request:
 
@@ -352,37 +376,81 @@ To issue an HTTP GET request:
     https://localhost:5001/people~
     ```
 
-### HTTP POST requests
+## Test HTTP POST requests
+
+### Synopsis
+
+```console
+post <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [-s|--streaming]
+```
+
+### Arguments
+
+`PARAMETER`
+
+The route parameter, if any, expected by the associated controller action method.
+
+### Options
+
+* `c|--content`
+
+  Provides an inline HTTP request body. For example, `-c "{ 'id': 0, 'name': 'Scott Cate' }"`.
+
+* `-f|--file`
+
+  Provides a path to a file containing the HTTP request body. For example, `-f "C:\request.json"`.
+
+* `-h|--header`
+
+  Sets an HTTP request header. The following two value formats are supported:
+
+  * `{header}={value}`
+  * `{header}:{value}`
+
+* `--no-body`
+
+  Indicates that no HTTP request body is needed.
+
+* `-F|--no-formatting`
+
+  Suppresses HTTP response formatting.
+
+* `-s|--streaming`
+
+  Enables streaming of the HTTP response.
+
+### Example
 
 To issue an HTTP POST request:
-
-1. Set the appropriate HTTP request headers. For example, indicate that the request body's media type is JSON:
-
-    ```console
-    https://localhost:5001/people~ set header content-type application/json    
-    ```
 
 1. Run the `post` command on an endpoint that supports it:
 
     ```console
-    https://localhost:5001/people~ post
+    https://localhost:5001/people~ post -h Content-Type=application/json
     ```
 
-    The default editor opens a *.tmp* file with a JSON template representing the HTTP request body. For example:
+    In the preceding command, the `Content-Type` HTTP request header is set to indicate a request body media type of JSON. The default text editor opens a *.tmp* file with a JSON template representing the HTTP request body. For example:
 
     ```json
     {
       "id": 0,
-      "name": "Scott Addie"
+      "name": ""
     }
     ```
 
     > [!TIP]
-    > To set the default editor, see the [Set the default editor](#set-the-default-editor) section.
+    > To set the default text editor, see the [Set the default text editor](#set-the-default-text-editor) section.
 
-1. Modify the JSON template, and save your changes.
+1. Modify the JSON template to satisfy model validation requirements:
 
-1. Close the editor. The following output appears in the command shell:
+  ```json
+  {
+    "id": 0,
+    "name": "Scott Addie"
+  }
+  ```
+
+1. Save the *.tmp* file, and close the text editor. The following output appears in the command shell:
 
     ```console
     HTTP/1.1 201 Created
@@ -401,7 +469,50 @@ To issue an HTTP POST request:
     https://localhost:5001/people~    
     ```
 
-### HTTP PUT requests
+## Test HTTP PUT requests
+
+### Synopsis
+
+```console
+put <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [-s|--streaming]
+```
+
+### Arguments
+
+`PARAMETER`
+
+The route parameter, if any, expected by the associated controller action method.
+
+### Options
+
+* `c|--content`
+
+  Provides an inline HTTP request body. For example, `-c "{ 'id': 2, 'name': 'Cherry' }"`.
+
+* `-f|--file`
+
+  Provides a path to a file containing the HTTP request body. For example, `-f "C:\request.json"`.
+
+* `-h|--header`
+
+  Sets an HTTP request header. The following two value formats are supported:
+
+  * `{header}={value}`
+  * `{header}:{value}`
+
+* `--no-body`
+
+  Indicates that no HTTP request body is needed.
+
+* `-F|--no-formatting`
+
+  Suppresses HTTP response formatting.
+
+* `-s|--streaming`
+
+  Enables streaming of the HTTP response.
+
+### Example
 
 To issue an HTTP PUT request:
 
@@ -430,19 +541,25 @@ To issue an HTTP PUT request:
       }
     ]
 
-1. Set the appropriate HTTP request headers. For example, indicate that the request body's media type is JSON:
-
-    ```console
-    https://localhost:5001/fruits~ set header content-type application/json    
-    ```
-
 1. Run the `put` command on an endpoint that supports it:
 
     ```console    
-    https://localhost:5001/fruits~ put 2
+    https://localhost:5001/fruits~ put 2 -h Content-Type=application/json
     ```
 
-    The default editor opens a *.tmp* file with a JSON template representing the HTTP request body. For example:
+    In the preceding command, the `Content-Type` HTTP request header is set to indicate a request body media type of JSON. The default text editor opens a *.tmp* file with a JSON template representing the HTTP request body. For example:
+
+    ```json
+    {
+      "id": 0,
+      "name": ""
+    }
+    ```
+
+    > [!TIP]
+    > To set the default text editor, see the [Set the default text editor](#set-the-default-text-editor) section.
+
+1. Modify the JSON template to satisfy model validation requirements:
 
     ```json
     {
@@ -451,12 +568,7 @@ To issue an HTTP PUT request:
     }
     ```
 
-    > [!TIP]
-    > To set the default editor, see the [Set the default editor](#set-the-default-editor) section.
-
-1. Modify the JSON template, and save your changes.
-
-1. Close the editor. The following output appears in the command shell:
+1. Save the *.tmp* file, and close the text editor. The following output appears in the command shell:
 
     ```console
     [main 2019-06-28T17:27:01.805Z] update#setState idle
@@ -465,7 +577,7 @@ To issue an HTTP PUT request:
     Server: Kestrel
     ```
 
-1. *Optional*: Issue a `get` command to see the modifications. For example, if you typed "Cherry" in the editor, a `get` returns the following:
+1. *Optional*: Issue a `get` command to see the modifications. For example, if you typed "Cherry" in the text editor, a `get` returns the following:
 
     ```console
     https://localhost:5001/fruits~ get
@@ -494,9 +606,58 @@ To issue an HTTP PUT request:
     https://localhost:5001/fruits~ 
     ```
 
-### HTTP DELETE requests
+## Test HTTP DELETE requests
+
+### Synopsis
+
+```console
+delete <PARAMETER> [-F|--no-formatting] [-s|--streaming]
+```
+
+### Arguments
+
+`PARAMETER`
+
+The route parameter, if any, expected by the associated controller action method.
+
+### Options
+
+* `-F|--no-formatting`
+
+  Suppresses HTTP response formatting.
+
+* `-s|--streaming`
+
+  Enables streaming of the HTTP response.
+
+### Example
 
 To issue an HTTP DELETE request:
+
+1. *Optional*: Run the `get` command to view the data before modifying it:
+
+    ```console
+    https://localhost:5001/fruits~ get
+    HTTP/1.1 200 OK
+    Content-Type: application/json; charset=utf-8
+    Date: Sat, 22 Jun 2019 00:07:32 GMT
+    Server: Kestrel
+    Transfer-Encoding: chunked
+    
+    [
+      {
+        "id": 1,
+        "data": "Apple"
+      },
+      {
+        "id": 2,
+        "data": "Orange"
+      },
+      {
+        "id": 3,
+        "data": "Strawberry"
+      }
+    ]
 
 1. Run the `delete` command on an endpoint that supports it:
 
@@ -537,9 +698,29 @@ To issue an HTTP DELETE request:
     https://localhost:5001/fruits~
     ```
 
+## Set HTTP request headers
+
+To set an HTTP request header, use one of the following approaches:
+
+1. Set inline with the HTTP request. For example:
+
+  ```console
+  https://localhost:5001/people~ post -h Content-Type=application/json
+  ```
+
+  With the preceding approach, each distinct HTTP request header requires its own `-h` option.
+
+1. Set before sending the HTTP request. For example:
+
+  ```console
+  https://localhost:5001/people~ set header Content-Type application/json
+  ```
+
+  When setting the header before sending a request, the header remains set for the duration of the command shell session.
+
 ## Toggle HTTP request display
 
-By default, display of the HTTP request being sent is suppressed.
+By default, display of the HTTP request being sent is suppressed. It's possible to change the corresponding setting for the duration of the command shell session.
 
 ### Enable request display
 
@@ -553,7 +734,7 @@ Request echoing is on
 Subsequent HTTP requests in the current session display the request headers. For example:
 
 ```console
-https://localhost:5001/people~ POST
+https://localhost:5001/people~ post
 
 [main 2019-06-28T18:50:11.930Z] update#setState idle
 Request to https://localhost:5001...
