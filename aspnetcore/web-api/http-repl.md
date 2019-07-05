@@ -718,7 +718,11 @@ To set an HTTP request header, use one of the following approaches:
   https://localhost:5001/people~ set header Content-Type application/json
   ```
 
-  When setting the header before sending a request, the header remains set for the duration of the command shell session.
+  When setting the header before sending a request, the header remains set for the duration of the command shell session. To clear the header, provide an empty value. For example:
+
+  ```console
+  https://localhost:5001/people~ set header Content-Type
+  ```
 
 ## Toggle HTTP request display
 
