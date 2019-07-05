@@ -158,8 +158,6 @@ The following example creates host configuration:
 
 [!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippet_HostConfig)]
 
-When you run an app in Visual Studio or with `dotnet run`, environment variables may be set in the *Properties/launchSettings.json* file. In Visual Studio Code, use the *.vscode/launch.json* file. For more information, see <xref:fundamentals/environments>.
-
 ## App configuration
 
 App configuration is created by calling <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> on `IHostBuilder`. `ConfigureAppConfiguration` can be called multiple times with additive results. The app uses whichever option sets a value last on a given key. 
