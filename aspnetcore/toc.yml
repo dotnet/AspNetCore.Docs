@@ -987,6 +987,8 @@
       uid: performance/diagnostic-tools
     - name: Load and stress testing
       uid: test/loadtests
+    - name: ObjectPool
+      uid: performance/objectPool
 - name: Globalization and localization
   items:
     - name: Overview

@@ -29,7 +29,7 @@ Using the `ObjectPool` to get an object:
 * Prevents objects managed by the pool from being de-allocated until you de-allocate the pool.
 
 > [!WARNING]
-> `ObjectPool`
+> `ObjectPool`:
 >
 > - Doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.
 > - Doesn't place a limit on the number of objects that it will allocate.
@@ -65,8 +65,8 @@ The following code shows the birthday middleware that uses the `ObjectPool<Strin
 
 In the preceding code, the `builderPool.Get` call requests an `ObjectPool<StringBuilder>` object. The first time `builderPool.Get` is called, `StringBuilderPooledObjectPolicy.Create` is called. Subsequent requests for `ObjectPool<StringBuilder>` are returned by the `ObjectPool`.
 
-`builderPool.Return(stringBuilder);` invokes the `StringBuilderPooledObjectPolicy.Return` method, which clears the `StringBuilder` object.
+`builderPool.Return(stringBuilder)` invokes the `StringBuilderPooledObjectPolicy.Return` method, which clears the `StringBuilder` object.
 
-The following code initializes the `ObjectPool<StringBuilder>` and adds the `BirthdayMiddleware` to the request pipeline:
+The following code initializes `ObjectPool<StringBuilder>` and adds the `BirthdayMiddleware` to the request pipeline:
 
 [!code-csharp[](objectPool/ObjectPoolSample/Startup.cs?name=snippet)]
