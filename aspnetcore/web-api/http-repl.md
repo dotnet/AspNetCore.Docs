@@ -19,13 +19,13 @@ The HTTP Read-Eval-Print Loop (REPL) is:
 
 The following [HTTP verbs](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods) are supported:
 
+* [DELETE](#test-http-delete-requests)
 * [GET](#test-http-get-requests)
+* [HEAD](#test-http-head-requests)
+* [OPTIONS](#test-http-options-requests)
+* [PATCH](#test-http-patch-requests)
 * [POST](#test-http-post-requests)
 * [PUT](#test-http-put-requests)
-* [DELETE](#test-http-delete-requests)
-* PATCH
-* HEAD
-* OPTIONS
 
 To follow along, [view or download the sample ASP.NET Core web API](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl-tool/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
@@ -142,7 +142,7 @@ For example:
 
 ## Point to the Swagger document for the web API
 
-To properly inspect the web API, set the relative URI to the Swagger document for the web API. To set the relative URI, run the following command:
+To properly inspect the web API, set the relative URI to the Swagger document for the web API. Run the following command:
 
 ```console
 set swagger <RELATIVE URI>
@@ -291,7 +291,7 @@ pref set editor.command.default "C:\Program Files\Microsoft VS Code\Code.exe"
 ### Synopsis
 
 ```console
-get <PARAMETER> [-F|--no-formatting] [-s|--streaming]
+get <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
 ### Arguments
@@ -304,13 +304,7 @@ The route parameter, if any, expected by the associated controller action method
 
 The following options are available for the `get` command:
 
-* `-F|--no-formatting`
-
-  A flag whose presence suppresses HTTP response formatting.
-
-* `-s|--streaming`
-
-  A flag whose presence enables streaming of the HTTP response.
+[!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
 ### Example
 
@@ -381,7 +375,7 @@ To issue an HTTP GET request:
 ### Synopsis
 
 ```console
-post <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [-s|--streaming]
+post <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
 ### Arguments
@@ -392,32 +386,9 @@ The route parameter, if any, expected by the associated controller action method
 
 ### Options
 
-* `c|--content`
+[!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
-  Provides an inline HTTP request body. For example, `-c "{ 'id': 0, 'name': 'Scott Cate' }"`.
-
-* `-f|--file`
-
-  Provides a path to a file containing the HTTP request body. For example, `-f "C:\request.json"`.
-
-* `-h|--header`
-
-  Sets an HTTP request header. The following two value formats are supported:
-
-  * `{header}={value}`
-  * `{header}:{value}`
-
-* `--no-body`
-
-  Indicates that no HTTP request body is needed.
-
-* `-F|--no-formatting`
-
-  Suppresses HTTP response formatting.
-
-* `-s|--streaming`
-
-  Enables streaming of the HTTP response.
+[!INCLUDE [HTTP request body CLI options](~/includes/http-repl/requires-body-options.md)]
 
 ### Example
 
@@ -474,7 +445,7 @@ To issue an HTTP POST request:
 ### Synopsis
 
 ```console
-put <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [-s|--streaming]
+put <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
 ### Arguments
@@ -485,32 +456,9 @@ The route parameter, if any, expected by the associated controller action method
 
 ### Options
 
-* `c|--content`
+[!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
-  Provides an inline HTTP request body. For example, `-c "{ 'id': 2, 'name': 'Cherry' }"`.
-
-* `-f|--file`
-
-  Provides a path to a file containing the HTTP request body. For example, `-f "C:\request.json"`.
-
-* `-h|--header`
-
-  Sets an HTTP request header. The following two value formats are supported:
-
-  * `{header}={value}`
-  * `{header}:{value}`
-
-* `--no-body`
-
-  Indicates that no HTTP request body is needed.
-
-* `-F|--no-formatting`
-
-  Suppresses HTTP response formatting.
-
-* `-s|--streaming`
-
-  Enables streaming of the HTTP response.
+[!INCLUDE [HTTP request body CLI options](~/includes/http-repl/requires-body-options.md)]
 
 ### Example
 
@@ -611,7 +559,7 @@ To issue an HTTP PUT request:
 ### Synopsis
 
 ```console
-delete <PARAMETER> [-F|--no-formatting] [-s|--streaming]
+delete <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
 ### Arguments
@@ -622,13 +570,7 @@ The route parameter, if any, expected by the associated controller action method
 
 ### Options
 
-* `-F|--no-formatting`
-
-  Suppresses HTTP response formatting.
-
-* `-s|--streaming`
-
-  Enables streaming of the HTTP response.
+[!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
 ### Example
 
@@ -697,6 +639,62 @@ To issue an HTTP DELETE request:
     
     https://localhost:5001/fruits~
     ```
+
+## Test HTTP PATCH requests
+
+### Synopsis
+
+```console
+patch <PARAMETER> [-c|--content] [-f|--file] [-h|--header] [--no-body] [-F|--no-formatting] [--response] [--response:body] [--response:headers] [-s|--streaming]
+```
+
+### Arguments
+
+`PARAMETER`
+
+The route parameter, if any, expected by the associated controller action method.
+
+### Options
+
+[!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
+
+[!INCLUDE [HTTP request body CLI options](~/includes/http-repl/requires-body-options.md)]
+
+## Test HTTP HEAD requests
+
+### Synopsis
+
+```console
+head <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
+```
+
+### Arguments
+
+`PARAMETER`
+
+The route parameter, if any, expected by the associated controller action method.
+
+### Options
+
+[!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
+
+## Test HTTP OPTIONS requests
+
+### Synopsis
+
+```console
+options <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
+```
+
+### Arguments
+
+`PARAMETER`
+
+The route parameter, if any, expected by the associated controller action method.
+
+### Options
+
+[!INCLUDE [standard CLI options](~/includes/http-repl/standard-options.md)]
 
 ## Set HTTP request headers
 
