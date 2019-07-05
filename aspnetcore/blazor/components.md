@@ -977,7 +977,7 @@ The following example illustrates how to specify `RenderFragment` and `RenderFra
 }
 ```
 
-Rendered output of the previous code:
+Rendered output of the preceding code:
 
 ```html
 <p>The time is 10/04/2018 01:26:52.</p>
