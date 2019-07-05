@@ -90,7 +90,8 @@ The SignalR server library is included in the ASP.NET 3.0 shared framework. The 
 
 * In the **Add Client-Side Library** dialog, for **Provider** select **unpkg**.
 
-* For **Library**, enter `@aspnet/signalr@3.0.0-preview6.19307.2`.
+* For **Library**, enter `@aspnet/signalr@next`.
+<!-- when 3.0 is released, change @next to @latest -->
 
 * Select **Choose specific files**, expand the *dist/browser* folder, and select *signalr.js* and *signalr.min.js*.
 
@@ -111,7 +112,7 @@ The SignalR server library is included in the ASP.NET 3.0 shared framework. The 
 * Run the following command to get the SignalR client library by using LibMan. You might have to wait a few seconds before seeing output.
 
   ```console
-  libman install @aspnet/signalr@3.0.0-preview6.19307.2 -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
+  libman install @aspnet/signalr@next -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
   ```
 
   The parameters specify the following options:
@@ -124,7 +125,7 @@ The SignalR server library is included in the ASP.NET 3.0 shared framework. The 
   ```console
   wwwroot/lib/signalr/dist/browser/signalr.js written to disk
   wwwroot/lib/signalr/dist/browser/signalr.min.js written to disk
-  Installed library "@aspnet/signalr@3.0.0-preview6.19307.2" to "wwwroot/lib/signalr"
+  Installed library "@aspnet/signalr@next" to "wwwroot/lib/signalr"
   ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -140,7 +141,7 @@ The SignalR server library is included in the ASP.NET 3.0 shared framework. The 
 * Run the following command to get the SignalR client library by using LibMan.
 
   ```console
-  libman install @aspnet/signalr@3.0.0-preview6.19307.2 -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
+  libman install @aspnet/signalr@next -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
   ```
 
   The parameters specify the following options:
@@ -153,7 +154,7 @@ The SignalR server library is included in the ASP.NET 3.0 shared framework. The 
   ```console
   wwwroot/lib/signalr/dist/browser/signalr.js written to disk
   wwwroot/lib/signalr/dist/browser/signalr.min.js written to disk
-  Installed library "@aspnet/signalr@3.0.0-preview6.19307.2" to "wwwroot/lib/signalr"
+  Installed library "@aspnet/signalr@next" to "wwwroot/lib/signalr"
   ```
 
 ---
