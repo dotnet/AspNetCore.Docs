@@ -20,13 +20,13 @@ This article applies to [.NET Core 2.2 SDK](https://dotnet.microsoft.com/downloa
 `aspnet-codegenerator` is a [global tool](/dotnet/core/tools/global-tools) that must be installed. The following command installs the latest stable version of the `aspnet-codegenerator` tool:
 
 ```console
-dotnet tool install -g aspnet-codegenerator
+dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
 The following command updates `aspnet-codegenerator` to the latest stable version available from the installed .NET Core SDKs:
 
 ```console
-dotnet tool update -g aspnet-codegenerator
+dotnet tool update -g dotnet-aspnet-codegenerator
 ```
 
 ## Synopsis
