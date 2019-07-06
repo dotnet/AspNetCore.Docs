@@ -53,7 +53,7 @@ public override Task<BuyTicketsResponse> BuyTickets(
 
 ### Bearer token authentication
 
-The client can provide an access token for authentication. The server validates the token and uses it to identify the user. This validation is done only when the connection is established. During the life of the connection, the server doesn't automatically revalidate to check for token revocation.
+The client can provide an access token for authentication. The server validates the token and uses it to identify the user.
 
 On the server, bearer token authentication is configured using the [JWT Bearer middleware](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer).
 
@@ -75,7 +75,7 @@ public bool DoAuthenticatedCall(
 
 ### Client certificate authentication
 
-A client could alternatively provide a client certificate for authentication. Certificate authentication happens at the TLS level, long before it ever gets to ASP.NET Core. When the request enters ASP.NET Core [Microsoft.AspNetCore.Authentication.Certificate](xref:security/authentication/certauth) allows you to resolve the certificate to a `ClaimsPrincipal`.
+A client could alternatively provide a client certificate for authentication. [Certificate authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) happens at the TLS level, long before it ever gets to ASP.NET Core. When the request enters ASP.NET Core [Microsoft.AspNetCore.Authentication.Certificate](xref:security/authentication/certauth) allows you to resolve the certificate to a `ClaimsPrincipal`.
 
 In the .NET gRPC client, the client certificate is added to `HttpClientHandler` that is then used to create the gRPC client:
 
@@ -91,7 +91,7 @@ public Ticketer.TicketerClient CreateClientWithCert(
     // Create the gRPC client
     var httpClient = new HttpClient(handler);
     httpClient.BaseAddress = new Uri(baseAddress);
-    
+
     return GrpcClient.Create<Ticketer.TicketerClient>(httpClient);
 }
 ```
@@ -139,4 +139,5 @@ public class TicketerService : Ticketer.TicketerBase
 
 ## Additional resources
 
-* [Bearer Token Authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
+* [Bearer Token authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
+* [Configure Client Certificate authentication in ASP.NET Core](xref:security/authentication/certauth)
