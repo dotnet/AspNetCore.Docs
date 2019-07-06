@@ -28,9 +28,9 @@ The main reason for including all of the app's interdependent resources in one o
 
 ## HTTP vs. other workloads
 
-When a host starts, it calls `IHostedService.StartAsync` on each implementation of <xref:Microsoft.Extensions.Hosting.IHostedService> that is found in the DI container. In a web app, one of the `IHostedService` implementations is an [HTTP server implementation](xref:fundamentals/index#servers). There can also be other `IhostedService` implementations in the same host for background processes. 
+When a host starts, it calls `IHostedService.StartAsync` on each implementation of <xref:Microsoft.Extensions.Hosting.IHostedService> that is found in the DI container. In a web app, one of the `IHostedService` implementations is a web service that starts an [HTTP server implementation](xref:fundamentals/index#servers). There can also be other `IhostedService` implementations in the same host for background processes. 
 
-Apps that don't handle HTTP requests can also benefit from a host's ability to manage functions such as DI, logging, configuration, and app lifetime. Such apps have one or more `IhostedService` implementations and no HTTP server implementation. For more information on using the Generic Host for apps other than ASP.NET Core, see <xref:fundamentals/host/hosted-services>.
+Apps that don't handle HTTP requests can also benefit from a host's ability to manage functions such as DI, logging, configuration, and app lifetime. Such apps have one or more `IHostedService` implementations and no HTTP server implementation. For more information on using the Generic Host for apps other than ASP.NET Core, see <xref:fundamentals/host/hosted-services>.
 
 In versions of ASP.NET Core earlier than 3.0, the [Web Host](xref:fundamentals/host/web-host) is used for HTTP workloads. The Web Host is no longer recommended for web apps and remains available only for backward compatibility.
 
@@ -71,7 +71,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-If the app uses Entity Framework Core, don't change the name of the `CreateHostBuilder` method. The [Entity Framework Core tools](/ef/core/miscellaneous/cli/) expect to find a `CreateHostBuilder` method that configures the host without running the app. For more information, see [Design-time DbContext Creation](/ef/core/miscellaneous/cli/dbcontext-creation).
+If the app uses Entity Framework Core, don't change the name or signature of the `CreateHostBuilder` method. The [Entity Framework Core tools](/ef/core/miscellaneous/cli/) expect to find a `CreateHostBuilder` method that configures the host without running the app. For more information, see [Design-time DbContext Creation](/ef/core/miscellaneous/cli/dbcontext-creation).
 
 ## Default builder settings 
 
@@ -152,7 +152,7 @@ Host configuration automatically flows to [app configuration](#app-configuration
 
 To add host configuration, call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> on `IHostBuilder`. `ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last on a given key.
 
-The environment variable provider with prefix `DOTNET_` is included by default. For web apps, the environment variable provider with prefix `ASPNETCORE_` is added. The prefix is removed when the environment variables are read. For example, the environment variable value for `ASPNETCORE_ENVIRONMENT` becomes the host configuration value for the `environment` key.
+The environment variable provider with prefix `DOTNET_` and command line args are included by CreateDefaultBuilder. For web apps, the environment variable provider with prefix `ASPNETCORE_` is added. The prefix is removed when the environment variables are read. For example, the environment variable value for `ASPNETCORE_ENVIRONMENT` becomes the host configuration value for the `environment` key.
 
 The following example creates host configuration:
 
@@ -393,7 +393,7 @@ A semicolon-delimited list of IP addresses or host addresses with ports and prot
 **Key**: urls  
 **Type**: *string*  
 **Default**: `http://localhost:5000` and `https://localhost:5001`
-**Environment variable**: `ASPNETCORE_URLS`
+**Environment variable**: `<PREFIX_>URLS`
 
 To set this value, use the environment variable or call `UseUrls`:
 
@@ -410,7 +410,7 @@ The relative path to the app's static assets.
 **Key**: webroot  
 **Type**: *string*  
 **Default**: *(Content Root)/wwwroot*, if the path exists. If the path doesn't exist, a no-op file provider is used.  
-**Environment variable**: `ASPNETCORE_WEBROOT`
+**Environment variable**: `<PREFIX_>WEBROOT`
 
 To set this value, use the environment variable or call `UseWebRoot`:
 
@@ -450,7 +450,7 @@ Call methods on the built <xref:Microsoft.Extensions.Hosting.IHost> implementati
 
 ### WaitForShutdown
 
-<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> blocks the calling thread until shutdown is triggered via Ctrl+C/SIGINT or SIGTERM.
+<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> blocks the calling thread until shutdown is triggered by the IHostLifetime, such as via Ctrl+C/SIGINT or SIGTERM.
 
 ### WaitForShutdownAsync
 
@@ -458,7 +458,7 @@ Call methods on the built <xref:Microsoft.Extensions.Hosting.IHost> implementati
 
 ### External control
 
-External control of the host can be achieved using methods that can be called externally:
+Direct control of the host lifetime can be achieved using methods that can be called externally:
 
 ```csharp
 public class Program
