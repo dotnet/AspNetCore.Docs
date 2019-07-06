@@ -160,7 +160,7 @@ App configuration is created by calling <xref:Microsoft.Extensions.Hosting.HostB
 
 The configuration created by `ConfigureAppConfiguration` is available at [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*) for subsequent operations and as a service from DI.
 
-For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration#configureappconfiguration).
+For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index#configureappconfiguration).
 
 ## Settings for all app types
 
