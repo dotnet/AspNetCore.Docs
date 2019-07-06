@@ -16,21 +16,18 @@ This article introduces the .NET Core Generic Host (<xref:Microsoft.Extensions.H
 
 ## What's a host?
 
-An ASP.NET Core app builds a *host* on startup. The host is an object that encapsulates all of the app's resources, such as:
+A *host* is an object that encapsulates an app's resources, such as:
 
-* An HTTP server implementation
-* Middleware components
-* Services for dependency injection (DI)
+* Dependency injection (DI)
 * Logging
 * Configuration
+* `IHostedService` implementations
+
+When a host starts, it calls `IHostedService.StartAsync` on each implementation of <xref:Microsoft.Extensions.Hosting.IHostedService> that it finds in the DI container. In a web app, one of the `IHostedService` implementations is a web service that starts an [HTTP server implementation](xref:fundamentals/index#servers).
 
 The main reason for including all of the app's interdependent resources in one object is lifetime management: control over app startup and graceful shutdown.
 
-## HTTP vs. other workloads
-
-When a host starts, it calls `IHostedService.StartAsync` on each implementation of <xref:Microsoft.Extensions.Hosting.IHostedService> that is found in the DI container. In a web app, one of the `IHostedService` implementations is a web service that starts an [HTTP server implementation](xref:fundamentals/index#servers). There can also be other `IhostedService` implementations in the same host for background processes. 
-
-Apps that don't handle HTTP requests can also benefit from a host's ability to manage functions such as DI, logging, configuration, and app lifetime. Such apps have one or more `IHostedService` implementations and no HTTP server implementation. For more information on using the Generic Host for apps other than ASP.NET Core, see <xref:fundamentals/host/hosted-services>.
+## Web Host is deprecated
 
 In versions of ASP.NET Core earlier than 3.0, the [Web Host](xref:fundamentals/host/web-host) is used for HTTP workloads. The Web Host is no longer recommended for web apps and remains available only for backward compatibility.
 
@@ -78,7 +75,9 @@ If the app uses Entity Framework Core, don't change the name or signature of the
 The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method:
 
 * Sets the content root to the path returned by <xref:System.IO.Directory.GetCurrentDirectory*>.
-* Loads host configuration from environment variables prefixed with "DOTNET_".
+* Loads host configuration from:
+  * Environment variables prefixed with "DOTNET_".
+  * Command-line arguments.
 * Loads app configuration from:
   * *appsettings.json*.
   * *appsettings.{Environment}.json*.
@@ -90,7 +89,7 @@ The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method:
   * Debug
   * EventSource
   * EventLog (only when running on Windows)
-* Enables [scope validation](xref:fundamentals/dependency-injection#scope-validation) when the environment is Development.
+* Enables [scope validation](xref:fundamentals/dependency-injection#scope-validation) and [dependency validation](xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild) when the environment is Development.
 
 The `ConfigureWebHostDefaults` method:
 
@@ -143,12 +142,9 @@ Web apps implement the `IWebHostEnvironment` interface, which inherits `IHostEnv
 
 ## Host configuration
 
-Host configuration is used for the following:
+Host configuration is used for the properties of the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> implementation.
 
-* The properties of the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> implementation.
-* The [URLs](#urls) setting in web apps. The host passes this value to the servers through an `IServerAddresses` API.
-
-Host configuration automatically flows to [app configuration](#app-configuration).
+Host configuration is available from [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration) inside <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>. After `ConfigureAppConfiguration`, `HostBuilderContext.Configuration` is replaced with the app config.
 
 To add host configuration, call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> on `IHostBuilder`. `ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last on a given key.
 
@@ -164,20 +160,7 @@ App configuration is created by calling <xref:Microsoft.Extensions.Hosting.HostB
 
 The configuration created by `ConfigureAppConfiguration` is available at [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration*) for subsequent operations and as a service from DI.
 
-App configuration automatically receives host configuration provided by `ConfigureHostConfiguration`.
-
-The following example creates app configuration:
-
-[!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippet_AppConfig)]
-
-To move settings files to the output directory for publishing, specify the settings files as [MSBuild project items](/visualstudio/msbuild/common-msbuild-project-items) in the project file. The sample app moves its JSON app settings files and *hostsettings.json* with the following `<Content>` item:
-
-```xml
-<ItemGroup>
-  <Content Include="**\*.json" Exclude="bin\**\*;obj\**\*" 
-    CopyToOutputDirectory="PreserveNewest" />
-</ItemGroup>
-```
+For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration#configureappconfiguration).
 
 ## Settings for all app types
 
@@ -606,8 +589,6 @@ The environment can be set to any value. Framework-defined values include `Devel
 <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> uses an <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> to create an <xref:Microsoft.Extensions.Configuration.IConfiguration> for the host. The host configuration is used to initialize the <xref:Microsoft.Extensions.Hosting.IHostingEnvironment> for use in the app's build process.
 
 <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> can be called multiple times with additive results. The host uses whichever option sets a value last on a given key.
-
-Host configuration automatically flows to app configuration ([ConfigureAppConfiguration](#configureappconfiguration) and the rest of the app).
 
 No providers are included by default. You must explicitly specify whatever configuration providers the app requires in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*>, including:
 

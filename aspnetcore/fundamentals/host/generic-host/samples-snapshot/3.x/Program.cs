@@ -27,19 +27,6 @@ namespace GenericHostSample
         #endregion
 
         public static IHostBuilder CreateHostBuilder2(string[] args) =>
-        #region snippet_AppConfig
-            Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((hostContext, configApp) =>
-                {
-                    configApp.AddJsonFile("appsettings.json", optional: true);
-                    configApp.AddJsonFile(
-                        $"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json",
-                        optional: true);
-                    configApp.AddEnvironmentVariables(prefix: "PREFIX_");
-                    configApp.AddCommandLine(args);
-                });
-        #endregion  
-        public static IHostBuilder CreateHostBuilder3(string[] args) =>
         #region snippet_HostOptions
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
