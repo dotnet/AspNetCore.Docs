@@ -14,9 +14,9 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/grpc/authn-and-authz/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 
-## Authenticate users calling to a gRPC service
+## Authenticate users calling a gRPC service
 
-gRPC can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each connection. 
+gRPC can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each call. 
 
 The following is an example of `Startup.Configure` which uses gRPC and ASP.NET Core authentication:
 
@@ -80,21 +80,19 @@ A client could alternatively provide a client certificate for authentication. Ce
 In the .NET gRPC client, the client certificate is added to `HttpClientHandler` that is then used to create the gRPC client:
 
 ```cs
-public Ticketer.TicketerClient CreateClient(
+public Ticketer.TicketerClient CreateClientWithCert(
     string baseAddress,
-    string certificatePath,
-    string certificatePassword)
+    X509Certificate2 certificate)
 {
     // Add client cert to the handler
     var handler = new HttpClientHandler();
-    handler.ClientCertificates.Add(
-        new X509Certificate2(certificatePath, certificatePassword));
+    handler.ClientCertificates.Add(certificate);
 
     // Create the gRPC client
     var httpClient = new HttpClient(handler);
     httpClient.BaseAddress = new Uri(baseAddress);
-    var client = GrpcClient.Create<Ticketer.TicketerClient>(httpClient);
-    return client;
+    
+    return GrpcClient.Create<Ticketer.TicketerClient>(httpClient);
 }
 ```
 
