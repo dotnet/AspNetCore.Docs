@@ -2,6 +2,7 @@
 title: Test controller logic in ASP.NET Core
 author: ardalis
 description: Learn how to test controller logic in ASP.NET Core with Moq and xUnit.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/06/2019
@@ -116,8 +117,6 @@ The third `Create` test, `Create_ReturnsNewlyCreatedIdeaForSession`, verifies th
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_ApiIdeasControllerTests3&highlight=20-22,28-33)]
 
-::: moniker range=">= aspnetcore-2.1"
-
 ## Test ActionResult&lt;T&gt;
 
 In ASP.NET Core 2.1 or later, [ActionResult&lt;T&gt;](xref:web-api/action-return-types#actionresultt-type) (<xref:Microsoft.AspNetCore.Mvc.ActionResult%601>) enables you to return a type deriving from `ActionResult` or return a specific type.
@@ -171,8 +170,6 @@ For a valid session `id`, the final test confirms that:
 * The last item (the `Idea` added by the mock call to `UpdateAsync`) matches the `newIdea` added to the session in the test.
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/ApiIdeasControllerTests.cs?name=snippet_CreateActionResult_ReturnsNewlyCreatedIdeaForSession&highlight=20-22,28-34)]
-
-::: moniker-end
 
 ## Additional resources
 
