@@ -18,7 +18,7 @@ This article provides information on securing gRPC with .NET.
 
 gRPC messages are sent and received using HTTP/2. The recommended way to secure messages during transport is to use [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). We recommend gRPC always use TLS in production apps, and gRPC services only listen to and respond over secured ports.
 
-TLS is configured in Kestrel. For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](fundamentals/servers/kestrel#endpoint-configuration).
+TLS is configured in Kestrel. For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
 ## Exceptions
 
@@ -30,7 +30,7 @@ Incoming messages to gRPC clients and services are loaded into memory. Message s
 
 gRPC uses per-message size limits to manage incoming and outgoing messages. By default, gRPC limits incoming messages to 4 MB. There is no limit on outgoing messages.
 
-On the server, gRPC for ASP.NET Core message limits can be configured configured globally for an application with `AddGrpc`:
+On the server, gRPC for ASP.NET Core message limits can be configured configured for all services in an application with `AddGrpc`:
 
 ```cs
 public void ConfigureServices(IServiceCollection services)
@@ -43,4 +43,14 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Limits can also be configured for an individual service using `AddServiceOptions<TService>`.
+Limits can also be configured for an individual service using `AddServiceOptions<TService>`. For more information on configuring message size limits, see [gRPC configuration](xref:grpc/configuration).
+
+## Client certificate validation
+
+[Client certificates](https://tools.ietf.org/html/rfc5246#section-7.4.4) are initially validated when the connection is established. By default Kestrel does not perform additional validation of a connection's client certificate.
+
+We recommend that gRPC services secured by client certificates use the [Microsoft.AspNetCore.Authentication.Certificate](xref:security/authentication/certauth) package. ASP.NET Core certification authentication will perform additional validation on a client certificate, including:
+
+* Certificate has a valid extended key use (EKU)
+* Is within its validity period
+* Check certificate revocation
