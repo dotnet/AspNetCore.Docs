@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/05/2019
+ms.date: 07/08/2019
 uid: web-api/http-repl
 ---
 # Test web APIs with the HTTP REPL
@@ -252,13 +252,15 @@ colors.status=BoldYellow
 
 ### Set color preferences
 
-To customize the default HTTP REPL tool coloring, locate the key corresponding to the color to be changed. For instructions on how to find the keys, see the [View the settings](#view-the-settings) section. For example, change the `colors.json` key value from `Green` to `White` as follows:
+Response colorization is currently supported for JSON only. To customize the default HTTP REPL tool coloring, locate the key corresponding to the color to be changed. For instructions on how to find the keys, see the [View the settings](#view-the-settings) section. For example, change the `colors.json` key value from `Green` to `White` as follows:
 
 ```console
 https://localhost:5001/people~ pref set colors.json White
 ```
 
 Only the [allowed colors](https://github.com/aspnet/HttpRepl/blob/01d5c3c3373e98fe566ff5ef8a17c571de880293/src/Microsoft.Repl/ConsoleHandling/AllowedColors.cs) may be used. Subsequent HTTP requests display output with the new coloring.
+
+If `colors.json.name` doesn't have a value, `colors.json.string` is used. If `colors.json.string` doesn't have a value, `colors.json.literal` is used. If `colors.json.literal` doesn't have a value, `colors.json` is used. If `colors.json` doesn't have a value, the command shell's default text color (`AllowedColors.None`) is used.
 
 ### Set the default text editor
 
