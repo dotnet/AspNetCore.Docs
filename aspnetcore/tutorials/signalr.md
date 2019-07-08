@@ -4,7 +4,7 @@ author: bradygaster
 description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/30/2018
+ms.date: 07/08/2019
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
