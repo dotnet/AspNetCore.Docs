@@ -266,6 +266,52 @@ Only the [allowed colors](https://github.com/aspnet/HttpRepl/blob/01d5c3c3373e98
 
 If `colors.json.name` doesn't have a value, `colors.json.string` is used. If `colors.json.string` doesn't have a value, `colors.json.literal` is used. If `colors.json.literal` doesn't have a value, `colors.json` is used. If `colors.json` doesn't have a value, the command shell's default text color (`AllowedColors.None`) is used.
 
+### Set indentation size
+
+Response indentation size customization is currently supported for JSON only. The default size is two spaces. For example:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Apple"
+  },
+  {
+    "id": 2,
+    "name": "Orange"
+  },
+  {
+    "id": 3,
+    "name": "Strawberry"
+  }
+]
+```
+
+To change the default size, set the `formatting.json.indentSize` key. For example, to always use four spaces:
+
+```console
+pref set formatting.json.indentSize 4
+```
+
+Subsequent responses honor the setting of four spaces:
+
+```json
+[
+    {
+        "id": 1,
+        "name": "Apple"
+    },
+    {
+        "id": 2,
+        "name": "Orange"
+    },
+    {
+        "id": 3,
+        "name": "Strawberry"
+    }
+]
+```
+
 ### Set the default text editor
 
 By default, the HTTP REPL has no text editor configured for use. To test web API methods requiring an HTTP request body, a default text editor must be set. The HTTP REPL tool launches the configured text editor for the sole purpose of composing the request body. Run the following command to set your preferred text editor as the default:
