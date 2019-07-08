@@ -27,7 +27,7 @@ The following example shows a higher level scheme that combines lower level sche
 
 [!code-csharp[sample](policyschemes/samples/Startup.cs?name=snippet1)]
 
-The following example enables dynamic selection of schemes on a per request basis. That is, how to mix cookies and API authentication.
+The following example enables dynamic selection of schemes on a per request basis. That is, how to mix cookies and API authentication:
 
  <!-- REVIEW, missing If set in public Func<HttpContext, string> ForwardDefaultSelector -->
 
