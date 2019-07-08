@@ -22,13 +22,13 @@ To enable the default cookie consent feature found in the ASP.NET Core 2.2 templ
 
 * Add [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) too `Startup.ConfigureServices` and [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) to `Startup.Configure`:
 
-  [!code-csharp[Main](gdpr/sample/RP3.0/Startup.cs?name=snippet1&highlight=14-19,38)]
+  [!code-csharp[Main](gdpr/sample/RP3.0/Startup.cs?name=snippet1&highlight=12-19,38)]
 
 * Add the cookie consent partial to the *_Layout.cshtml* file:
 
-  [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_Layout.cshtml?name=snippet&highlight=3)]
+  [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_Layout.cshtml?name=snippet&highlight=4)]
 
-* Add the *\_CookieConsentPartial.cshtml* file:
+* Add the *\_CookieConsentPartial.cshtml* file to the project:
 
   [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_CookieConsentPartial.cshtml)]
 
