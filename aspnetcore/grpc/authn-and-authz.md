@@ -116,7 +116,7 @@ public class TicketerService : Ticketer.TicketerBase
 }
 ```
 
-Individual service methods can have the `[Authorize]` attribute applied as well. If the current user doesn't match the policy applied to the method, an error is returned to the caller:
+Individual service methods can have the `[Authorize]` attribute applied as well. If the current user doesn't match the policies applied to **both** the method and the class, an error is returned to the caller:
 
 ```csharp
 [Authorize]
