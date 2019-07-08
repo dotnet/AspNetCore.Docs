@@ -54,7 +54,11 @@ After successful installation of the tool, run the following command to start th
 dotnet httprepl
 ```
 
-To view the available HTTP REPL commands:
+To view the available HTTP REPL commands, run one of the following commands:
+
+```console
+dotnet httprepl -h
+```
 
 ```console
 dotnet httprepl --help
@@ -291,6 +295,12 @@ pref set editor.command.default "C:\Program Files\Microsoft VS Code\Code.exe"
 ```
 
 ---
+
+To launch the default text editor with specific CLI arguments, set the `editor.command.default.arguments` key. For example, assume Visual Studio Code is the default text editor and that you always want the HTTP REPL to open Visual Studio Code in a new session with extensions disabled. Run the following command:
+
+```console
+pref set editor.command.default.arguments "--disable-extensions --new-window"
+```
 
 ## Test HTTP GET requests
 
