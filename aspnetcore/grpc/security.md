@@ -30,7 +30,7 @@ Incoming messages to gRPC clients and services are loaded into memory. Message s
 
 gRPC uses per-message size limits to manage incoming and outgoing messages. By default, gRPC limits incoming messages to 4 MB. There is no limit on outgoing messages.
 
-On the server, gRPC for ASP.NET Core message limits can be configured configured for all services in an application with `AddGrpc`:
+On the server, gRPC for ASP.NET Core message limits can be configured for all services in an application with `AddGrpc`:
 
 ```cs
 public void ConfigureServices(IServiceCollection services)
