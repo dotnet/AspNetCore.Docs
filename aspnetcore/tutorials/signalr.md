@@ -41,7 +41,7 @@ At the end, you'll have a working chat app:
 
 ---
 
-## Create a web project
+## Create a web app project
 
 # [Visual Studio](#tab/visual-studio/)
 
@@ -72,9 +72,9 @@ At the end, you'll have a working chat app:
 
 * From the menu, select **File > New Solution**.
 
-* Select **.NET Core > App > ASP.NET Core Web App** (Don't select **ASP.NET Core Web App (MVC)**).
+* Select **.NET Core > App > Web Application** (Don't select **Web Application (MVC)**).
 
-* Select **Next**.
+* Make sure the **Target Framework** is set to **.NET Core 3.0**, and then select **Next**.
 
 * Name the project *SignalRChat*, and then select **Create**.
 
