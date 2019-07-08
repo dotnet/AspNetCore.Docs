@@ -4,7 +4,7 @@ author: prkhandelwal
 description: This tutorial demonstrates how to create an ASP.NET Core web API using a MongoDB NoSQL database.
 ms.author: scaddie
 ms.custom: "mvc, seodec18"
-ms.date: 06/10/2019
+ms.date: 07/10/2019
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
@@ -103,6 +103,9 @@ Use the mongo Shell in the following steps to create a database, make collection
       ]
     }
     ```
+  
+  > [!NOTE]
+  > The ID's shown in this article will not match the IDs when you run this sample.
 
 1. View the documents in the database using the following command:
 
@@ -312,11 +315,11 @@ The preceding web API controller:
     ]
     ```
 
-1. Navigate to `http://localhost:<port>/api/books/5bfd996f7b8e48dc15ff215e` to test the controller's overloaded `Get` action method. The following JSON response is displayed:
+1. Navigate to `http://localhost:<port>/api/books/{id here}` to test the controller's overloaded `Get` action method. The following JSON response is displayed:
 
     ```json
     {
-      "id":"5bfd996f7b8e48dc15ff215e",
+      "id":"{ID}",
       "bookName":"Clean Code",
       "price":43.15,
       "category":"Computers",

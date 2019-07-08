@@ -61,7 +61,7 @@ namespace policyschemes
         /// If set, this specifies the target scheme that this scheme should forward 
         /// SignOutAsync calls to. For example:
         /// Context.SignOutAsync("ThisScheme") => 
-        ///                              Context.SignInAsync("ForwardSignOutValue");
+        ///                              Context.SignOutAsync("ForwardSignOutValue");
         /// Set the target to the current scheme to disable forwarding and allow normal 
         /// processing.
         /// </summary>
