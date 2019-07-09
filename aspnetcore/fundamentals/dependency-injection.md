@@ -5,7 +5,7 @@ description: Learn how ASP.NET Core implements dependency injection and how to u
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/01/2019
+ms.date: 07/09/2019
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -173,6 +173,39 @@ Singleton lifetime services are created the first time they're requested (or whe
 
 > [!WARNING]
 > It's dangerous to resolve a scoped service from a singleton. It may cause the service to have incorrect state when processing subsequent requests.
+
+## Service registration methods
+
+Each service registration extension method offers overrides that are useful in specific scenarios.
+
+* In the following scenarios, the service container creates the service instance and disposes types that it creates automatically:
+
+  * Concrete type implements an interface &ndash; Useful when unit or integration tests mock objects for testing.
+
+    **Signature**: `Add{LIFETIME}<{INTERFACE}, {TYPE}>()`  
+    **Example**: `services.AddScoped<IMyDependency, MyDependency>();`
+
+    **Signature**: `Add{LIFETIME}<{INTERFACE}>(sp => new MyDependency())`  
+    **Example**: `services.AddScoped<IMyDependency>(sp => new MyDependency());`
+
+  * Concrete type is registered directly in the container:
+
+    **Signature**: `Add{LIFETIME}<{TYPE}>()`  
+    **Example**: `services.AddScoped<MyDependency>();`
+
+* In the following scenarios, the service container doesn't create the service instance, so user code must dispose of the instances created by the type:
+
+  * Concrete type implements an interface &ndash; Useful when unit or integration tests mock objects for testing. Parameters can pass arguments directly to the type instance.
+
+    **Signature**: `Add{LIFETIME}<{INTERFACE}>(new {TYPE})`  
+    **Example**: `services.AddScoped<IMyDependency>(new MyDependency("A string!"));`
+
+  * Concrete type is registered directly in the container:
+
+    **Signature**: `Add{LIFETIME}(new {TYPE})`  
+    **Example**: `services.AddScoped(new MyDependency());`
+
+For more information on type disposal, see the [Disposal of services](#disposal-of-services) section.
 
 ### Constructor injection behavior
 
