@@ -12,17 +12,20 @@ uid: grpc/security
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-This article provides information on securing gRPC with .NET.
+This article provides information on securing gRPC with .NET Core.
 
 ## Transport security
 
-gRPC messages are sent and received using HTTP/2. The recommended way to secure messages during transport is to use [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). We recommend gRPC always use TLS in production apps, and gRPC services only listen to and respond over secured ports.
+gRPC messages are sent and received using HTTP/2. We recommend:
+
+* [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) be used to secure messages in production gRPC apps.
+* gRPC services should only listen and respond over secured ports.
 
 TLS is configured in Kestrel. For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
 ## Exceptions
 
-Exception messages are generally considered sensitive data that shouldn't be revealed to a client. By default, gRPC doesn't send the details of an exception thrown by a gRPC service to the client. Instead, the client receives a generic message indicating an error occurred. Exception message delivery to the client can be overridden (for example in development or test) with [`EnableDetailedErrors`](xref:grpc/configuration#configure-services-options). Exception messages should not be exposed to the client in production apps.
+Exception messages are generally considered sensitive data that shouldn't be revealed to a client. By default, gRPC doesn't send the details of an exception thrown by a gRPC service to the client. Instead, the client receives a generic message indicating an error occurred. Exception message delivery to the client can be overridden (for example in development or test) with [`EnableDetailedErrors`](xref:grpc/configuration#configure-services-options). Exception messages shouldn't be exposed to the client in production apps.
 
 ## Message size limits
 
@@ -30,7 +33,7 @@ Incoming messages to gRPC clients and services are loaded into memory. Message s
 
 gRPC uses per-message size limits to manage incoming and outgoing messages. By default, gRPC limits incoming messages to 4 MB. There is no limit on outgoing messages.
 
-On the server, gRPC for ASP.NET Core message limits can be configured for all services in an application with `AddGrpc`:
+On the server, gRPC message limits can be configured for all services in an app with `AddGrpc`:
 
 ```cs
 public void ConfigureServices(IServiceCollection services)
