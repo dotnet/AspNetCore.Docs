@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core middleware and the request pipeline.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/03/2019
+ms.date: 07/09/2019
 uid: fundamentals/middleware/index
 ---
 # ASP.NET Core Middleware
@@ -72,7 +72,7 @@ The following `Startup.Configure` method adds middleware components for common a
 1. MVC (<xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*>) to add MVC to the request pipeline.
 
 ```csharp
-public void Configure(IApplicationBuilder app)
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
     if (env.IsDevelopment())
     {
