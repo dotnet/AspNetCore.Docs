@@ -27,8 +27,6 @@ When a host starts, it calls `IHostedService.StartAsync` on each implementation 
 
 The main reason for including all of the app's interdependent resources in one object is lifetime management: control over app startup and graceful shutdown.
 
-## Web Host is deprecated
-
 In versions of ASP.NET Core earlier than 3.0, the [Web Host](xref:fundamentals/host/web-host) is used for HTTP workloads. The Web Host is no longer recommended for web apps and remains available only for backward compatibility.
 
 ## Set up a host
