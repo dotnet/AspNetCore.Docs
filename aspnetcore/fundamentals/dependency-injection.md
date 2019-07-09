@@ -225,7 +225,7 @@ Each service registration extension method offers overloads that are useful in s
 
 For more information on type disposal, see the [Disposal of services](#disposal-of-services) section. For more information on mocking types for testing, see <xref:test/integration-tests#inject-mock-services>.
 
-`TryAdd{LIFETIME}` methods only register the service if there isn't already a registered instance of the service.
+`TryAdd{LIFETIME}` methods only register the service if there isn't already an implementation registered for the service.
 
 In the following example, the first line registers `MyDependency` for `IMyDependency`. The second line no-ops because `IMyDependency` already has a registered type:
 
