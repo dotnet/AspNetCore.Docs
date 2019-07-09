@@ -12,7 +12,7 @@ uid: grpc/security
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-This article provides information on securing gRPC with .NET.
+This article provides information on securing gRPC with .NET Core.
 
 ## Transport security
 
