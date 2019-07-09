@@ -16,9 +16,9 @@ ASP.NET Core provides APIs and templates to help meet some of the [EU General Da
 ::: moniker range=">= aspnetcore-3.0"
 
 * The project templates include extension points and stubbed markup that you can replace with your privacy and cookie use policy.
-* A cookie consent feature can be enabled that allows you to ask for (and track) consent from your users for storing personal information. If a user hasn't consented to data collection and the app has [CheckConsentNeeded](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.checkconsentneeded) set to `true`, non-essential cookies aren't sent to the browser.
+* The *Pages/Privacy.cshtml* page or *Views/Home/Privacy.cshtml* view provides a page to detail your site's privacy policy.
 
-To enable the default cookie consent feature found in the ASP.NET Core 2.2 templates in an ASP.NET Core 3.0 template generated app:
+To enable the default cookie consent feature like that found in the ASP.NET Core 2.2 templates in an ASP.NET Core 3.0 template generated app:
 
 * Add [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) too `Startup.ConfigureServices` and [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) to `Startup.Configure`:
 
