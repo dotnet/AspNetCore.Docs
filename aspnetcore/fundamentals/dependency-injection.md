@@ -185,7 +185,7 @@ Each service registration extension method offers overrides that are useful in s
     **Signature**: `Add{LIFETIME}<{INTERFACE}, {TYPE}>()`  
     **Example**: `services.AddScoped<IMyDependency, MyDependency>();`
 
-    **Signature**: `Add{LIFETIME}<{INTERFACE}>(sp => new MyDependency())`  
+    **Signature**: `Add{LIFETIME}<{INTERFACE}>(sp => new {TYPE})`  
     **Example**: `services.AddScoped<IMyDependency>(sp => new MyDependency());`
 
   * Concrete type is registered directly in the container:
