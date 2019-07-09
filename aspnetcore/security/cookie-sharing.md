@@ -155,7 +155,9 @@ public class ApplicationUser : IdentityUser
 
 ## Use a common user database
 
-Confirm that the identity system for each app is pointed at the same user database. Otherwise, the identity system produces failures at runtime when it attempts to match the information in the authentication cookie against the information in its database.
+When apps use the same Identity schema (same version of Identity), confirm that the Identity system for each app is pointed at the same user database. Otherwise, the identity system produces failures at runtime when it attempts to match the information in the authentication cookie against the information in its database.
+
+When the Identity schema is different among apps, usually because apps are using different Identity versions, sharing a common database based on the latest version of Identity isn't possible without remapping and adding columns in the older app's Identity schema. It's often more efficient to upgrade older apps to use the latest Identity version so that a common database can be shared by the apps.
 
 ## Additional resources
 
