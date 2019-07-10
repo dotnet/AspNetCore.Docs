@@ -241,7 +241,7 @@ These methods implement two GET endpoints:
 * `GET /api/todo`
 * `GET /api/todo/{id}`
 
-Stop the application if it is still running. Then rebuild and run the application again to include your latest changes.
+Stop the app if it's still running. Then run it again to include the latest changes.
 
 Test the app by calling the two endpoints from a browser. For example:
 
