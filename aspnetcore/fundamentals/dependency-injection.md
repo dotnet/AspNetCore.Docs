@@ -178,8 +178,8 @@ Singleton lifetime services (<xref:Microsoft.AspNet.OData.Builder.ODataModelBuil
 
 Each service registration extension method offers overloads that are useful in specific scenarios.
 
-| Method | Automatic<br>object<br>disposal | Alternate or<br>multiple<br>implementations | Pass args |
-| ------ | :-----------------------------: | :-----------------------------------------: | :-------: |
+| Method | Automatic<br>object<br>disposal | Multiple<br>implementations | Pass args |
+| ------ | :-----------------------------: | :-------------------------: | :-------: |
 | `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Example:<br>`services.AddScoped<IMyDep, MyDep>();` | Yes | Yes | No |
 | `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Examples:<br>`services.AddScoped<IMyDep>(sp => new MyDep());`<br>`services.AddScoped<IMyDep>(sp => new MyDep("A string!"));` | Yes | Yes | Yes |
 | `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Example:<br>`services.AddScoped<MyDep>();` | Yes | No | No |
