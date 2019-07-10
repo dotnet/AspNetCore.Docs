@@ -68,6 +68,7 @@ The following list contains third-party web performance tools with various featu
 * [Locust](https://locust.io/)
 * [West Wind WebSurge](http://websurge.west-wind.com/)
 * [Netling](https://github.com/hallatore/Netling)
+* [Vegeta](https://github.com/tsenart/vegeta)
 
 ## Additional resources
 
