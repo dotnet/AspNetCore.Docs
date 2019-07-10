@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/08/2019
+ms.date: 07/10/2019
 uid: web-api/http-repl
 ---
 # Test web APIs with the HTTP REPL
@@ -39,7 +39,7 @@ To install the HTTP REPL, run the following command:
 
 ```console
 dotnet tool install -g dotnet-httprepl
-    --version 2.2.0-rtm-35542
+    --version 2.2.0-*
     --add-source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json
 ```
 
@@ -264,7 +264,58 @@ https://localhost:5001/people~ pref set colors.json White
 
 Only the [allowed colors](https://github.com/aspnet/HttpRepl/blob/01d5c3c3373e98fe566ff5ef8a17c571de880293/src/Microsoft.Repl/ConsoleHandling/AllowedColors.cs) may be used. Subsequent HTTP requests display output with the new coloring.
 
-If `colors.json.name` doesn't have a value, `colors.json.string` is used. If `colors.json.string` doesn't have a value, `colors.json.literal` is used. If `colors.json.literal` doesn't have a value, `colors.json` is used. If `colors.json` doesn't have a value, the command shell's default text color (`AllowedColors.None`) is used.
+When specific color key values aren't set, more generic key values are considered. To demonstrate this fallback behavior, consider the following example:
+
+* If `colors.json.name` doesn't have a value, `colors.json.string` is used.
+* If `colors.json.string` doesn't have a value, `colors.json.literal` is used.
+* If `colors.json.literal` doesn't have a value, `colors.json` is used. 
+* If `colors.json` doesn't have a value, the command shell's default text color (`AllowedColors.None`) is used.
+
+### Set indentation size
+
+Response indentation size customization is currently supported for JSON only. The default size is two spaces. For example:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Apple"
+  },
+  {
+    "id": 2,
+    "name": "Orange"
+  },
+  {
+    "id": 3,
+    "name": "Strawberry"
+  }
+]
+```
+
+To change the default size, set the `formatting.json.indentSize` key. For example, to always use four spaces:
+
+```console
+pref set formatting.json.indentSize 4
+```
+
+Subsequent responses honor the setting of four spaces:
+
+```json
+[
+    {
+        "id": 1,
+        "name": "Apple"
+    },
+    {
+        "id": 2,
+        "name": "Orange"
+    },
+    {
+        "id": 3,
+        "name": "Strawberry"
+    }
+]
+```
 
 ### Set indentation size
 
