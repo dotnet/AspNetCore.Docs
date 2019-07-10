@@ -321,7 +321,7 @@ For targets that are collections of simple types, model binding looks for matche
 
 For `Dictionary` targets, model binding looks for matches to *parameter_name* or *property_name*. If no match is found, it looks for one of the supported formats without the prefix. For example:
 
-* Suppose the target parameter is a `Dictionary<string, string>` named `selectedCourses`:
+* Suppose the target parameter is a `Dictionary<int, string>` named `selectedCourses`:
 
   ```csharp
   public IActionResult OnPost(int? id, Dictionary<int, string> selectedCourses)
