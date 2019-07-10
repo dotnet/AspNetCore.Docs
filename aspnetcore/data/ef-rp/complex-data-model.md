@@ -483,7 +483,7 @@ The preceding code adds the new entities and configures the `CourseAssignment` e
 
 ## Fluent API alternative to attributes
 
-The `OnModelCreating` method in the preceding code uses the *fluent API* to configure EF Core behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement. The [following code](/ef/core/modeling/#methods-of-configuration) is an example of the fluent API:
+The `OnModelCreating` method in the preceding code uses the *fluent API* to configure EF Core behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement. The [following code](/ef/core/modeling/#use-fluent-api-to-configure-a-model) is an example of the fluent API:
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -509,7 +509,7 @@ Some of the attributes used in the this tutorial are used for:
 * EF Core configuration only (for example, `HasKey`).
 * Validation and EF Core configuration (for example, `[StringLength(50)]`).
 
-For more information about attributes vs. fluent API, see [Methods of configuration](/ef/core/modeling/#methods-of-configuration).
+For more information about attributes vs. fluent API, see [Methods of configuration](/ef/core/modeling/).
 
 ## Entity Diagram Showing Relationships
 
