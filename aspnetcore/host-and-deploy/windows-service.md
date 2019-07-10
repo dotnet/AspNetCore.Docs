@@ -205,7 +205,7 @@ An alternative approach to managing users when using Active Directory is to use 
 
 To establish *Log on as a service* rights for a service user account:
 
-1. Open the Local Security Policy editor by running *secpool.msc*.
+1. Open the Local Security Policy editor by running *secpol.msc*.
 1. Expand the **Local Policies** node and select **User Rights Assignment**.
 1. Open the **Log on as a service** policy.
 1. Select **Add User or Group**.

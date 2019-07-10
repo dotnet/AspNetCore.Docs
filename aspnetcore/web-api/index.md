@@ -5,10 +5,9 @@ description: Learn the basics of creating a web API in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/07/2019
+ms.date: 07/08/2019
 uid: web-api/index
 ---
-
 # Create web APIs with ASP.NET Core
 
 By [Scott Addie](https://github.com/scottaddie) and [Tom Dykstra](https://github.com/tdykstra)
@@ -23,7 +22,7 @@ A web API has one or more controller classes that derive from <xref:Microsoft.As
 
 [!code-csharp[](index/samples/2.x/Controllers/ValuesController.cs?name=snippet_Signature&highlight=3)]
 
-Don't create a web API controller by deriving from the <xref:Microsoft.AspNetCore.Mvc.Controller> base class. `Controller` derives from `ControllerBase` and adds support for views, so it's for handling web pages, not web API requests.  There's an exception to this rule: if you plan to use the same controller for both views and APIs, derive it from `Controller`.
+Don't create a web API controller by deriving from the <xref:Microsoft.AspNetCore.Mvc.Controller> class. `Controller` derives from `ControllerBase` and adds support for views, so it's for handling web pages, not web API requests.  There's an exception to this rule: if you plan to use the same controller for both views and APIs, derive it from `Controller`.
 
 The `ControllerBase` class provides many properties and methods that are useful for handling HTTP requests. For example, `ControllerBase.CreatedAtAction` returns a 201 status code:
 
