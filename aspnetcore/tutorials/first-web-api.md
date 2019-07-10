@@ -94,7 +94,7 @@ The following diagram shows the design of the app.
 
   ![macOS New solution](first-web-api-mac/_static/sln.png)
 
-* Select **.NET Core App** > **ASP.NET Core Web API** > **Next**.
+* Select **.NET Core** > **App** > **API** > **Next**.
 
   ![macOS New project dialog](first-web-api-mac/_static/1.png)
   
@@ -122,7 +122,7 @@ Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localh
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start With Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/api/values` to the URL (change the URL to `https://localhost:<port>/api/values`).
+Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/api/values` to the URL (change the URL to `https://localhost:<port>/api/values`).
 
 ---
 
@@ -240,6 +240,8 @@ These methods implement two GET endpoints:
 
 * `GET /api/todo`
 * `GET /api/todo/{id}`
+
+Stop the app if it's still running. Then run it again to include the latest changes.
 
 Test the app by calling the two endpoints from a browser. For example:
 
