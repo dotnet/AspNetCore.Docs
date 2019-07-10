@@ -62,7 +62,7 @@ The class creates and directly depends on the `MyDependency` instance. Code depe
 
 Dependency injection addresses these problems through:
 
-* The use of an interface to abstract the dependency implementation.
+* The use of an interface or base class to abstract the dependency implementation.
 * Registration of the dependency in a service container. ASP.NET Core provides a built-in service container, <xref:System.IServiceProvider>. Services are registered in the app's `Startup.ConfigureServices` method.
 * *Injection* of the service into the constructor of the class where it's used. The framework takes on the responsibility of creating an instance of the dependency and disposing of it when it's no longer needed.
 
@@ -178,23 +178,23 @@ Singleton lifetime services (<xref:Microsoft.AspNet.OData.Builder.ODataModelBuil
 
 Each service registration extension method offers overloads that are useful in specific scenarios.
 
-| Method | Automatic<br>object<br>disposal | Mocks for<br>testing | Pass args |
-| ------ | :-----------------------------: | :------------------: | :-------: |
-| `Add{LIFETIME}<{INTERFACE}, {TYPE}>()`<br>Example:<br>`services.AddScoped<IMyDep, MyDep>();` | Yes | Yes | No |
-| `Add{LIFETIME}<{INTERFACE}>(sp => new {TYPE})`<br>Examples:<br>`services.AddScoped<IMyDep>(sp => new MyDep());`<br>`services.AddScoped<IMyDep>(sp => new MyDep("A string!"));` | Yes | Yes | Yes |
-| `Add{LIFETIME}<{TYPE}>()`<br>Example:<br>`services.AddScoped<MyDep>();` | Yes | No | No |
-| `Add{LIFETIME}<{INTERFACE}>(new {TYPE})`<br>Examples:<br>`services.AddScoped<IMyDep>(new MyDep());`<br>`services.AddScoped<IMyDep>(new MyDep("A string!"));` | No | Yes | Yes |
-| `Add{LIFETIME}(new {TYPE})`<br>Examples:<br>`services.AddScoped(new MyDep());`<br>`services.AddScoped(new MyDep("A string!"));` | No | No | Yes |
+| Method | Automatic<br>object<br>disposal | Alternate or<br>multiple<br>implementations | Pass args |
+| ------ | :-----------------------------: | :-----------------------------------------: | :-------: |
+| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Example:<br>`services.AddScoped<IMyDep, MyDep>();` | Yes | Yes | No |
+| `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Examples:<br>`services.AddScoped<IMyDep>(sp => new MyDep());`<br>`services.AddScoped<IMyDep>(sp => new MyDep("A string!"));` | Yes | Yes | Yes |
+| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Example:<br>`services.AddScoped<MyDep>();` | Yes | No | No |
+| `Add{LIFETIME}<{SERVICE}>(new {IMPLEMENTATION})`<br>Examples:<br>`services.AddScoped<IMyDep>(new MyDep());`<br>`services.AddScoped<IMyDep>(new MyDep("A string!"));` | No | Yes | Yes |
+| `Add{LIFETIME}(new {IMPLEMENTATION})`<br>Examples:<br>`services.AddScoped(new MyDep());`<br>`services.AddScoped(new MyDep("A string!"));` | No | No | Yes |
 
-For more information on type disposal, see the [Disposal of services](#disposal-of-services) section. For more information on mocking types for testing, see <xref:test/integration-tests#inject-mock-services>.
+For more information on type disposal, see the [Disposal of services](#disposal-of-services) section. A common scenario for multiple implementations is [mocking types for testing](xref:test/integration-tests#inject-mock-services).
 
-`TryAdd{LIFETIME}` methods only register the service if there isn't already an implementation registered for the service.
+`TryAdd{LIFETIME}` methods only register the service if there isn't already an implementation registered.
 
-In the following example, the first line registers `MyDependency` for `IMyDependency`. The second line no-ops because `IMyDependency` already has a registered type:
+In the following example, the first line registers `MyDependency` for `IMyDependency`. The second line has no effect because `IMyDependency` already has a registered implementation:
 
 ```csharp
 services.AddSingleton<IMyDependency, MyDependency>();
-// The following line no-ops:
+// The following line has no effect:
 services.TryAddSingleton<IMyDependency, DifferentDependency>();
 ```
 
@@ -205,15 +205,20 @@ For more information, see:
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddScoped*>
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddSingleton*>
 
-[TryAddEnumerable(ServiceDescriptor)](xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddEnumerable*) methods only register the service if there isn't already a registered instance of a specific implementing type. Multiple services are resolved via `IEnumerable<{INTERFACE}>`; but when registering services, the the developer only wants to add an instance if one of the same type hasn't already been added. Generally, this method is used by library authors to avoid registering two copies of an instance in the container.
+[TryAddEnumerable(ServiceDescriptor)](xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddEnumerable*) methods only register the service if there isn't already an implementation *of the same type*. Multiple services are resolved via `IEnumerable<{SERVICE}>`. When registering services, the developer only wants to add an instance if one of the same type hasn't already been added. Generally, this method is used by library authors to avoid registering two copies of an instance in the container.
 
-In the following example, the first line registers `MyDependency` for `IMyDependency`. The second line registers `DifferentDependency`. The third line no-ops because `IMyDependency` already has a registered type of `MyDependency`:
+In the following example, the first line registers `MyDep` for `IMyDep1`. The second line registers `MyDep` for `IMyDep2`. The third line has no effect because `IMyDep1` already has a registered implementation of `MyDep`:
 
 ```csharp
-services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDependency, MyDependency>());
-services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDependency, DifferentDependency>());
-// The following line no-ops: Two registrations of MyDependency is avoided.
-services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDependency, MyDependency>());
+public interface IMyDep1 {}
+public interface IMyDep2 {}
+
+public class MyDep : IMyDep1, IMyDep2 {}
+
+services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep1, MyDep>());
+services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep2, MyDep>());
+// Two registrations of MyDep for IMyDep1 is avoided by the following line:
+services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep1, MyDep>());
 ```
 
 ### Constructor injection behavior
