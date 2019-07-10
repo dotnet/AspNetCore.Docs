@@ -35,7 +35,7 @@ gRPC uses per-message size limits to manage incoming and outgoing messages. By d
 
 On the server, gRPC message limits can be configured for all services in an app with `AddGrpc`:
 
-```cs
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddGrpc(options =>
