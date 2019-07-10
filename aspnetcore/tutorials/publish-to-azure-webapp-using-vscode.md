@@ -4,7 +4,7 @@ author: ricardoserradas
 description: Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio Code
 ms.author: riserrad
 ms.custom: mvc
-ms.date: 04/16/2019
+ms.date: 07/10/2019
 uid: tutorials/publish-to-azure-webapp-using-vscode
 ---
 
@@ -14,7 +14,7 @@ By [Ricardo Serradas](https://twitter.com/ricardoserradas)
 
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
-To troubleshoot an App Service deployment issue, see <xref:host-and-deploy/azure-apps/troubleshoot>.
+To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azure-iis>.
 
 ## Intro
 

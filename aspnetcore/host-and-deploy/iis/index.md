@@ -5,7 +5,7 @@ description: Learn how to host ASP.NET Core apps on Windows Server Internet Info
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2019
+ms.date: 07/10/2019
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
@@ -724,10 +724,10 @@ Learn about the directory structure of published ASP.NET Core apps.
 [Directory structure](xref:host-and-deploy/directory-structure)
 
 Discover active and inactive IIS modules for ASP.NET Core apps and how to manage IIS modules.  
-[IIS modules](xref:host-and-deploy/iis/troubleshoot)
+[IIS modules](xref:host-and-deploy/iis/modules)
 
 Learn how to diagnose problems with IIS deployments of ASP.NET Core apps.  
-[Troubleshoot](xref:host-and-deploy/iis/troubleshoot)
+[Troubleshoot](xref:test/troubleshoot-azure-iis)
 
 Distinguish common errors when hosting ASP.NET Core apps on IIS.  
 [Common errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)

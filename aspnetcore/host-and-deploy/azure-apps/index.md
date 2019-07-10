@@ -5,7 +5,7 @@ description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2019
+ms.date: 07/10/2019
 uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
@@ -109,7 +109,7 @@ Discover how to enable and access diagnostic logging for HTTP status codes, fail
 <xref:fundamentals/error-handling>  
 Understand common approaches to handling errors in ASP.NET Core apps.
 
-<xref:host-and-deploy/azure-apps/troubleshoot>  
+<xref:test/troubleshoot-azure-iis>  
 Learn how to diagnose issues with Azure App Service deployments with ASP.NET Core apps.
 
 <xref:host-and-deploy/azure-iis-errors-reference>  

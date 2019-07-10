@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about the logging framework in ASP.NET Core. Discover the built-in logging providers and learn more about popular third-party providers.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 05/01/2019
+ms.date: 07/10/2019
 uid: fundamentals/logging/index
 ---
 # Logging in ASP.NET Core
@@ -617,7 +617,7 @@ ASP.NET Core ships the following providers:
 * [AzureAppServicesBlob](#azure-app-service-provider)
 * [ApplicationInsights](#azure-application-insights-trace-logging)
 
-For information about stdout logging, see <xref:host-and-deploy/iis/troubleshoot#aspnet-core-module-stdout-log> and <xref:host-and-deploy/azure-apps/troubleshoot#aspnet-core-module-stdout-log>.
+For information on stdout and debug logging with the ASP.NET Core Module, see <xref:test/troubleshoot-azure-iis> and <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
 
 ### Console provider
 
