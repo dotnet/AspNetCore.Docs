@@ -32,11 +32,13 @@ This tutorial shows how to create an ASP.NET Core web app with user data protect
 * **Managers** can approve or reject contact data. Only approved contacts are visible to users.
 * **Administrators** can approve/reject and edit/delete any data.
 
+The images in this document exactly don't match the latest templates.
+
 In the following image, user Rick (`rick@example.com`) is signed in. Rick can only view approved contacts and **Edit**/**Delete**/**Create New** links for his contacts. Only the last record, created by Rick, displays **Edit** and **Delete** links. Other users won't see the last record until a manager or administrator changes the status to "Approved".
 
 ![Screenshot showing Rick signed in](secure-data/_static/rick.png)
 
-In the following image, `manager@contoso.com` is signed in and in the managers role:
+In the following image, `manager@contoso.com` is signed in and in the manager's role:
 
 ![Screenshot showing manager@contoso.com signed in](secure-data/_static/manager1.png)
 
@@ -46,7 +48,7 @@ The following image shows the managers details view of a contact:
 
 The **Approve** and **Reject** buttons are only displayed for managers and administrators.
 
-In the following image, `admin@contoso.com` is signed in and in the administrators role:
+In the following image, `admin@contoso.com` is signed in and in the administrator's role:
 
 ![Screenshot showing admin@contoso.com signed in](secure-data/_static/admin.png)
 
@@ -90,7 +92,7 @@ The following sections have all the major steps to create the secure user data a
 
 Use the ASP.NET [Identity](xref:security/authentication/identity) user ID to ensure users can edit their data, but not other users data. Add `OwnerID` and `ContactStatus` to the `Contact` model:
 
-[!code-csharp[](secure-data/samples/final30/Models/Contact.cs?name=snippet1&highlight=5-6,16-999)]
+[!code-csharp[](secure-data/samples/final3/Models/Contact.cs?name=snippet1&highlight=5-6,16-999)]
 
 `OwnerID` is the user's ID from the `AspNetUser` table in the [Identity](xref:security/authentication/identity) database. The `Status` field determines if a contact is viewable by general users.
 
@@ -105,19 +107,19 @@ dotnet ef database update
 
 Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
 
-[!code-csharp[](secure-data/samples/final30/Startup.cs?name=snippet2&highlight=9)]
+[!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet2&highlight=9)]
 
 ### Require authenticated users
 
 Set the default authentication policy to require users to be authenticated:
 
-[!code-csharp[](secure-data/samples/final30/Startup.cs?name=snippet&highlight=15-99)] 
+[!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=15-99)] 
 
  You can opt out of authentication at the Razor Page, controller, or action method level with the `[AllowAnonymous]` attribute. Setting the default authentication policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authentication required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
 
 Add [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) to the Index and Privacy pages so anonymous users can get information about the site before they register.
 
-[!code-csharp[](secure-data/samples/final30/Pages/Index.cshtml.cs?highlight=1,7)]
+[!code-csharp[](secure-data/samples/final3/Pages/Index.cshtml.cs?highlight=1,7)]
 
 ### Configure the test account
 
@@ -131,28 +133,28 @@ If a strong password is not specified, an exception is thrown when `SeedData.Ini
 
 Update `Main` to use the test password:
 
-[!code-csharp[](secure-data/samples/final30/Program.cs?name=snippet)]
+[!code-csharp[](secure-data/samples/final3/Program.cs?name=snippet)]
 
 ### Create the test accounts and update the contacts
 
 Update the `Initialize` method in the `SeedData` class to create the test accounts:
 
-[!code-csharp[](secure-data/samples/final30/Data/SeedData.cs?name=snippet_Initialize)]
+[!code-csharp[](secure-data/samples/final3/Data/SeedData.cs?name=snippet_Initialize)]
 
 Add the administrator user ID and `ContactStatus` to the contacts. Make one of the contacts "Submitted" and one "Rejected". Add the user ID and status to all the contacts. Only one contact is shown:
 
-[!code-csharp[](secure-data/samples/final30/Data/SeedData.cs?name=snippet1&highlight=17,18)]
+[!code-csharp[](secure-data/samples/final3/Data/SeedData.cs?name=snippet1&highlight=17,18)]
 
 ## Create owner, manager, and administrator authorization handlers
 
 Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folder. The `ContactIsOwnerAuthorizationHandler` verifies that the user acting on a resource owns the resource.
 
-[!code-csharp[](secure-data/samples/final30/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
+[!code-csharp[](secure-data/samples/final3/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
 The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally:
 
 * Return `context.Succeed` when the requirements are met.
-* Return `Task.CompletedTask` when requirements aren't met. `Task.CompletedTask` is neither success or failure&mdash;it allows other authorization handlers to run.
+* Return `Task.CompletedTask` when requirements aren't met. `Task.CompletedTask` is not success or failure&mdash;it allows other authorization handlers to run.
 
 If you need to explicitly fail, return [context.Fail](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
@@ -162,19 +164,19 @@ The app allows contact owners to edit/delete/create their own data. `ContactIsOw
 
 Create a `ContactManagerAuthorizationHandler` class in the *Authorization* folder. The `ContactManagerAuthorizationHandler` verifies the user acting on the resource is a manager. Only managers can approve or reject content changes (new or changed).
 
-[!code-csharp[](secure-data/samples/final30/Authorization/ContactManagerAuthorizationHandler.cs)]
+[!code-csharp[](secure-data/samples/final3/Authorization/ContactManagerAuthorizationHandler.cs)]
 
 ### Create an administrator authorization handler
 
 Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization* folder. The `ContactAdministratorsAuthorizationHandler` verifies the user acting on the resource is an administrator. Administrator can do all operations.
 
-[!code-csharp[](secure-data/samples/final30/Authorization/ContactAdministratorsAuthorizationHandler.cs)]
+[!code-csharp[](secure-data/samples/final3/Authorization/ContactAdministratorsAuthorizationHandler.cs)]
 
 ## Register the authorization handlers
 
 Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using [AddScoped](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionserviceextensions). The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](xref:security/authentication/identity), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
 
-[!code-csharp[](secure-data/samples/final30/Startup.cs?name=snippet_defaultPolicy&highlight=27-99)]
+[!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet_defaultPolicy&highlight=27-99)]
 
 `ContactAdministratorsAuthorizationHandler` and `ContactManagerAuthorizationHandler` are added as singletons. They're singletons because they don't use EF and all the information needed is in the `Context` parameter of the `HandleRequirementAsync` method.
 
@@ -186,13 +188,13 @@ In this section, you update the Razor Pages and add an operations requirements c
 
 Review the `ContactOperations` class. This class contains the requirements the app supports:
 
-[!code-csharp[](secure-data/samples/final30/Authorization/ContactOperations.cs)]
+[!code-csharp[](secure-data/samples/final3/Authorization/ContactOperations.cs)]
 
 ### Create a base class for the Contacts Razor Pages
 
 Create a base class that contains the services used in the contacts Razor Pages. The base class puts the initialization code in one location:
 
-[!code-csharp[](secure-data/samples/final30/Pages/Contacts/DI_BasePageModel.cs)]
+[!code-csharp[](secure-data/samples/final3/Pages/Contacts/DI_BasePageModel.cs)]
 
 The preceding code:
 
@@ -204,32 +206,32 @@ The preceding code:
 
 Update the create page model constructor to use the `DI_BasePageModel` base class:
 
-[!code-csharp[](secure-data/samples/final30/Pages/Contacts/Create.cshtml.cs?name=snippetCtor)]
+[!code-csharp[](secure-data/samples/final3/Pages/Contacts/Create.cshtml.cs?name=snippetCtor)]
 
 Update the `CreateModel.OnPostAsync` method to:
 
 * Add the user ID to the `Contact` model.
 * Call the authorization handler to verify the user has permission to create contacts.
 
-[!code-csharp[](secure-data/samples/final30/Pages/Contacts/Create.cshtml.cs?name=snippet_Create)]
+[!code-csharp[](secure-data/samples/final3/Pages/Contacts/Create.cshtml.cs?name=snippet_Create)]
 
 ### Update the IndexModel
 
 Update the `OnGetAsync` method so only approved contacts are shown to general users:
 
-[!code-csharp[](secure-data/samples/final30/Pages/Contacts/Index.cshtml.cs?name=snippet)]
+[!code-csharp[](secure-data/samples/final3/Pages/Contacts/Index.cshtml.cs?name=snippet)]
 
 ### Update the EditModel
 
 Add an authorization handler to verify the user owns the contact. Because resource authorization is being validated, the `[Authorize]` attribute is not enough. The app doesn't have access to the resource when attributes are evaluated. Resource-based authorization must be imperative. Checks must be performed once the app has access to the resource, either by loading it in the page model or by loading it within the handler itself. You frequently access the resource by passing in the resource key.
 
-[!code-csharp[](secure-data/samples/final30/Pages/Contacts/Edit.cshtml.cs?name=snippet)]
+[!code-csharp[](secure-data/samples/final3/Pages/Contacts/Edit.cshtml.cs?name=snippet)]
 
 ### Update the DeleteModel
 
 Update the delete page model to use the authorization handler to verify the user has delete permission on the contact.
 
-[!code-csharp[](secure-data/samples/final30/Pages/Contacts/Delete.cshtml.cs?name=snippet)]
+[!code-csharp[](secure-data/samples/final3/Pages/Contacts/Delete.cshtml.cs?name=snippet)]
 
 ## Inject the authorization service into the views
 
@@ -237,13 +239,13 @@ Currently, the UI shows edit and delete links for contacts the user can't modify
 
 Inject the authorization service in the *Pages/_ViewImports.cshtml* file so it's available to all views:
 
-[!code-cshtml[](secure-data/samples/final30/Pages/_ViewImports.cshtml?highlight=6-99)]
+[!code-cshtml[](secure-data/samples/final3/Pages/_ViewImports.cshtml?highlight=6-99)]
 
 The preceding markup adds several `using` statements.
 
 Update the **Edit** and **Delete** links in *Pages/Contacts/Index.cshtml* so they're only rendered for users with the appropriate permissions:
 
-[!code-cshtml[](secure-data/samples/final30/Pages/Contacts/Index.cshtml?highlight=34-36,62-999)]
+[!code-cshtml[](secure-data/samples/final3/Pages/Contacts/Index.cshtml?highlight=34-36,62-999)]
 
 > [!WARNING]
 > Hiding links from users that don't have permission to change data doesn't secure the app. Hiding links makes the app more user-friendly by displaying only valid links. Users can hack the generated URLs to invoke edit and delete operations on data they don't own. The Razor Page or controller must enforce access checks to secure the data.
@@ -262,7 +264,7 @@ Update the details page model:
 
 See [this issue](https://github.com/aspnet/AspNetCore.Docs/issues/8502) for information on:
 
-* Removing privileges from a user. For example muting a user in a chat app.
+* Removing privileges from a user. For example, muting a user in a chat app.
 * Adding privileges to a user.
 
 ## Test the completed app
@@ -362,7 +364,7 @@ In the following image, user Rick (`rick@example.com`) is signed in. Rick can on
 
 ![Screenshot showing Rick signed in](secure-data/_static/rick.png)
 
-In the following image, `manager@contoso.com` is signed in and in the managers role:
+In the following image, `manager@contoso.com` is signed in and in the manager's role:
 
 ![Screenshot showing manager@contoso.com signed in](secure-data/_static/manager1.png)
 
@@ -372,7 +374,7 @@ The following image shows the managers details view of a contact:
 
 The **Approve** and **Reject** buttons are only displayed for managers and administrators.
 
-In the following image, `admin@contoso.com` is signed in and in the administrators role:
+In the following image, `admin@contoso.com` is signed in and in the administrator's role:
 
 ![Screenshot showing admin@contoso.com signed in](secure-data/_static/admin.png)
 
@@ -478,7 +480,7 @@ Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folde
 The `ContactIsOwnerAuthorizationHandler` calls [context.Succeed](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_) if the current authenticated user is the contact owner. Authorization handlers generally:
 
 * Return `context.Succeed` when the requirements are met.
-* Return `Task.CompletedTask` when requirements aren't met. `Task.CompletedTask` is neither success or failure&mdash;it allows other authorization handlers to run.
+* Return `Task.CompletedTask` when requirements aren't met. `Task.CompletedTask` is not success or failure&mdash;it allows other authorization handlers to run.
 
 If you need to explicitly fail, return [context.Fail](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
@@ -588,7 +590,7 @@ Update the details page model:
 
 See [this issue](https://github.com/aspnet/AspNetCore.Docs/issues/8502) for information on:
 
-* Removing privileges from a user. For example muting a user in a chat app.
+* Removing privileges from a user. For example, muting a user in a chat app.
 * Adding privileges to a user.
 
 ## Test the completed app
