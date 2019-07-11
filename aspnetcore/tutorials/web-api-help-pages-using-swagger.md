@@ -107,7 +107,7 @@ Each public action method in your controllers can be tested from the UI. Click a
 ![Example Swagger GET test](web-api-help-pages-using-swagger/_static/get-try-it-out.png)
 
 > [!NOTE]
-> The Swagger UI version used for the screenshots is version 2. For a version 3 example, see [Petstore example](http://petstore.swagger.io/).
+> The Swagger UI version used for the screenshots is version 2. For a version 3 example, see [Petstore example](https://petstore.swagger.io/).
 
 ## Next steps
 

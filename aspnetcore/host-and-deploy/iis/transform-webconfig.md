@@ -176,5 +176,5 @@ dotnet publish /p:IsWebConfigTransformDisabled=true
 
 ## Additional resources
 
-* [Web.config Transformation Syntax for Web Application Project Deployment](http://go.microsoft.com/fwlink/?LinkId=301874)
+* [Web.config Transformation Syntax for Web Application Project Deployment](https://go.microsoft.com/fwlink/?LinkId=301874)
 * [Web.config Transformation Syntax for Web Project Deployment Using Visual Studio](https://docs.microsoft.com/previous-versions/aspnet/dd465326(v=vs.110))

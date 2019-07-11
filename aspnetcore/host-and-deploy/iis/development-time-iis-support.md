@@ -102,7 +102,7 @@ Create a new launch profile to add development-time IIS support:
 
 ::: moniker-end
 
-When not using Visual Studio, manually add a launch profile to the [launchSettings.json](http://json.schemastore.org/launchsettings) file in the *Properties* folder. The following example configures the profile to use the HTTPS protocol:
+When not using Visual Studio, manually add a launch profile to the [launchSettings.json](https://json.schemastore.org/launchsettings) file in the *Properties* folder. The following example configures the profile to use the HTTPS protocol:
 
 ```json
 {
