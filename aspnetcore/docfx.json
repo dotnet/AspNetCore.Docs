@@ -62,8 +62,8 @@
       "ms.technology": {
         "azure/**/**.md": "aspnetcore-azure",
         "client-side/**/**.md": "aspnetcore-clientside",
-        "blazor/**/**.md": "aspnetcore-blazor",
         "data/**/**.md": "aspnetcore-data",
+        "blazor/**/**.md": "aspnetcore-blazor",
         "fundamentals/**/**.md": "aspnetcore-fundamentals",
         "getting-started/**/**.md": "aspnetcore-getstarted",
         "host-and-deploy/**/**.md": "aspnetcore-hostdeploy",
