@@ -4,7 +4,7 @@ author: rick-anderson
 description: Tips for increasing performance in ASP.NET Core apps using ObjectPool.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
-ms.date: 4/11/2019
+ms.date: 04/11/2019
 uid: performance/ObjectPool
 ---
 # Object reuse with ObjectPool in ASP.NET Core

@@ -3,7 +3,7 @@ title: Add search to ASP.NET Core Razor Pages
 author: rick-anderson
 description: Shows how to add search to ASP.NET Core Razor Pages
 ms.author: riande
-ms.date: 12/3/2018
+ms.date: 12/03/2018
 uid: tutorials/razor-pages/search
 ---
 # Add search to ASP.NET Core Razor Pages
