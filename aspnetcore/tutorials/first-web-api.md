@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/23/2019
+ms.date: 07/11/2019
 uid: tutorials/first-web-api
 ---
 
@@ -241,7 +241,7 @@ These methods implement two GET endpoints:
 * `GET /api/todo`
 * `GET /api/todo/{id}`
 
-Stop the app if it's still running. Then run it again to include the latest changes.
+Stop the application if it is still running. Then rebuild and run the application again to include your latest changes.
 
 Test the app by calling the two endpoints from a browser. For example:
 
