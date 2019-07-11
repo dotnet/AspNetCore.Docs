@@ -1,7 +1,6 @@
 ﻿using ContactManager.Authorization;
 using ContactManager.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -43,8 +42,16 @@ namespace ContactManager.Data
             var user = await userManager.FindByNameAsync(UserName);
             if (user == null)
             {
-                user = new IdentityUser { UserName = UserName };
+                user = new IdentityUser {
+                    UserName = UserName,
+                    EmailConfirmed = true
+                };
                 await userManager.CreateAsync(user, testUserPw);
+            }
+
+            if (user == null)
+            {
+                throw new Exception("The password is probably not strong enough!");
             }
 
             return user.Id;

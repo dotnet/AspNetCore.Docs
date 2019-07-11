@@ -602,9 +602,12 @@ If you haven't already set a password for seeded user accounts, use the [Secret 
   dotnet user-secrets set SeedUserPW <PW>
   ```
 
-If the app has contacts:
+* Drop and update the database
+    ```console
+     dotnet ef database drop -f
+     dotnet ef database update  
+```
 
-* Delete all of the records in the `Contact` table.
 * Restart the app to seed the database.
 
 An easy way to test the completed app is to launch three different browsers (or incognito/InPrivate sessions). In one browser, register a new user (for example, `test@example.com`). Sign in to each browser with a different user. Verify the following operations:
