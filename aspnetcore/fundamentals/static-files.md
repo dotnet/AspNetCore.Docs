@@ -218,7 +218,7 @@ The [FileExtensionContentTypeProvider](/dotnet/api/microsoft.aspnetcore.staticfi
 
 [!code-csharp[](static-files/samples/1x/StartupFileExtensionContentTypeProvider.cs?name=snippet_ConfigureMethod&highlight=3-12,19)]
 
-See [MIME content types](http://www.iana.org/assignments/media-types/media-types.xhtml).
+See [MIME content types](https://www.iana.org/assignments/media-types/media-types.xhtml).
 
 ## Non-standard content types
 

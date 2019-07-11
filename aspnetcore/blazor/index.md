@@ -139,7 +139,7 @@ APIs that aren't applicable inside of a web browser (for example, accessing the 
 
 ## Additional resources
 
-* [WebAssembly](http://webassembly.org/)
+* [WebAssembly](https://webassembly.org/)
 * <xref:blazor/hosting-models>
 * [C# Guide](/dotnet/csharp/)
 * <xref:mvc/views/razor>

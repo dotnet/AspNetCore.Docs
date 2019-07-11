@@ -101,4 +101,4 @@ If you want to extend existing services, you can simply use this technique while
 
 ## See Also
 
-* Simon Timms Blog: [Getting Lookup Data Into Your View](http://blog.simontimms.com/2015/06/09/getting-lookup-data-into-you-view/)
+* Simon Timms Blog: [Getting Lookup Data Into Your View](https://blog.simontimms.com/2015/06/09/getting-lookup-data-into-you-view/)
