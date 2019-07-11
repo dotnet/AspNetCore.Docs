@@ -87,6 +87,7 @@
         "data/**/**.md": "conceptual",
         "fundamentals/**/**.md": "conceptual",
         "getting-started/**/**.md": "tutorial",
+        "grpc/**/**.md": "conceptual",
         "host-and-deploy/**/**.md": "conceptual",
         "index.md": "conceptual",
         "migration/**/**.md": "conceptual",
