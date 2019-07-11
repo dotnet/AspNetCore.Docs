@@ -962,7 +962,7 @@ The following configuration key-value pairs are created:
 | starship:class        | Constitution                                      |
 | starship:length       | 304.8                                             |
 | starship:commissioned | False                                             |
-| trademark             | Paramount Pictures Corp. http://www.paramount.com |
+| trademark             | Paramount Pictures Corp. https://www.paramount.com |
 
 The sample app calls `GetSection` with the `starship` key. The `starship` key-value pairs are isolated. The `Bind` method is called on the subsection passing in an instance of the `Starship` class. After binding the instance values, the instance is assigned to a property for rendering:
 
