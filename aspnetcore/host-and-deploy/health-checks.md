@@ -694,4 +694,4 @@ app.MapWhen(
 app.UseMvc();
 ```
 
-For more information, see <xref:fundamentals/middleware/#use-run-and-map>.
+For more information, see <xref:fundamentals/middleware/index#use-run-and-map>.
