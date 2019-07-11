@@ -66,7 +66,7 @@ The following list contains third-party web performance tools with various featu
 * [ApacheBench (ab)](https://httpd.apache.org/docs/2.4/programs/ab.html)
 * [Gatling](https://gatling.io/)
 * [Locust](https://locust.io/)
-* [West Wind WebSurge](http://websurge.west-wind.com/)
+* [West Wind WebSurge](https://websurge.west-wind.com/)
 * [Netling](https://github.com/hallatore/Netling)
 * [Vegeta](https://github.com/tsenart/vegeta)
 

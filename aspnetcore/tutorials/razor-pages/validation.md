@@ -41,7 +41,7 @@ A significant benefit is that **no** code changes were necessary in the Create  
 The form data isn't posted to the server until there are no client-side validation errors. Verify form data isn't posted by one or more of the following approaches:
 
 * Put a break point in the `OnPostAsync` method. Submit the form (select **Create** or **Save**). The break point is never hit.
-* Use the [Fiddler tool](http://www.telerik.com/fiddler).
+* Use the [Fiddler tool](https://www.telerik.com/fiddler).
 * Use the browser developer tools to monitor network traffic.
 
 ### Server-side validation
