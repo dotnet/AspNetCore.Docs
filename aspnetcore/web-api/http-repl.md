@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/10/2019
+ms.date: 07/12/2019
 uid: web-api/http-repl
 ---
 # Test web APIs with the HTTP REPL
@@ -264,7 +264,7 @@ https://localhost:5001/people~ pref set colors.json White
 
 Only the [allowed colors](https://github.com/aspnet/HttpRepl/blob/01d5c3c3373e98fe566ff5ef8a17c571de880293/src/Microsoft.Repl/ConsoleHandling/AllowedColors.cs) may be used. Subsequent HTTP requests display output with the new coloring.
 
-When specific color key values aren't set, more generic key values are considered. To demonstrate this fallback behavior, consider the following example:
+When specific color keys aren't set, more generic keys are considered. To demonstrate this fallback behavior, consider the following example:
 
 * If `colors.json.name` doesn't have a value, `colors.json.string` is used.
 * If `colors.json.string` doesn't have a value, `colors.json.literal` is used.
@@ -890,6 +890,61 @@ Suppress display of the HTTP request being sent by running the `echo off` comman
 https://localhost:5001/people~ echo off
 Request echoing is off
 ```
+
+## Run a script
+
+If you frequently execute the same set of HTTP REPL commands, consider storing them in a text file. Commands in the file take the same form as those executed manually on the command line. The commands can be executed in a batched fashion using the `run` command. For example:
+
+1. Create a text file containing a set of newline-delimited commands. To illustrate, consider a *people-script.txt* file containing the following commands:
+
+    ```text
+    set base https://localhost:5001
+    ls
+    cd People
+    ls
+    get 1
+    ```
+
+1. Execute the `run` command, passing in the text file's path. For example:
+
+    ```console
+    https://localhost:5001/~ run C:\http-repl-scripts\people-script.txt
+    ```
+
+    The following output appears:
+
+    ```console
+    https://localhost:5001/~ set base https://localhost:5001
+    Using swagger metadata from https://localhost:5001/swagger/v1/swagger.json
+    
+    https://localhost:5001/~ ls
+    .        []
+    Fruits   [get|post]
+    People   [get|post]
+    
+    https://localhost:5001/~ cd People
+    /People    [get|post]
+    
+    https://localhost:5001/People~ ls
+    .      [get|post]
+    ..     []
+    {id}   [get|put|delete]
+    
+    https://localhost:5001/People~ get 1
+    HTTP/1.1 200 OK
+    Content-Type: application/json; charset=utf-8
+    Date: Fri, 12 Jul 2019 19:20:10 GMT
+    Server: Kestrel
+    Transfer-Encoding: chunked
+    
+    {
+      "id": 1,
+      "name": "Scott Hunter"
+    }
+    
+    
+    https://localhost:5001/People~
+    ```
 
 ## Clear the output
 
