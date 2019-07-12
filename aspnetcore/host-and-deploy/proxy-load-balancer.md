@@ -5,7 +5,7 @@ description: Learn about configuration for apps hosted behind proxy servers and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/11/2019
+ms.date: 07/12/2019
 uid: host-and-deploy/proxy-load-balancer
 ---
 # Configure ASP.NET Core to work with proxy servers and load balancers
@@ -245,12 +245,6 @@ if (string.Equals(
     });
 }
 ```
-
-::: moniker range="< aspnetcore-3.0"
-
-Until new container images are provided in Azure, you must create an app setting (environment variable) for `ASPNETCORE_FORWARDEDHEADERS_ENABLED` set to `true`. For more information, see [Templates do not work in Antares Linux due to missing scheme forwarders (aspnet/AspNetCore #4135)](https://github.com/aspnet/AspNetCore/issues/4135).
-
-::: moniker-end
 
 ## Troubleshoot
 
