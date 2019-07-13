@@ -212,7 +212,12 @@
         }, 
         {   
             "source_path": "aspnetcore/data/index.md", 
-            "redirect_url": "/aspnet/core/data/ef-rp", 
+            "redirect_url": "/aspnet/core/data/ef-rp/intro", 
+            "redirect_document_id": false 
+        }, 
+        {   
+            "source_path": "aspnetcore/data/ef-rp/index.md", 
+            "redirect_url": "/aspnet/core/data/ef-rp/intro", 
             "redirect_document_id": false 
         }, 
         {   
