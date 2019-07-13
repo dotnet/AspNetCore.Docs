@@ -393,6 +393,7 @@ The `OnActionExecuted` method runs after the action method:
 
 Exception filters:
 
+* 
 * Implement <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter>. 
 * Can be used to implement common error handling policies.
 
@@ -403,6 +404,7 @@ The following sample exception filter uses a custom error view to display detail
 Exception filters:
 
 * Don't have before and after events.
+* Can't override the order of execution with the `Order` property.
 * Implement <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter.OnException*> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter.OnExceptionAsync*>.
 * Handle unhandled exceptions that occur in Razor Page or controller creation, [model binding](xref:mvc/models/model-binding), action filters, or action methods.
 * Do **not** catch exceptions that occur in resource filters, result filters, or MVC result execution.
