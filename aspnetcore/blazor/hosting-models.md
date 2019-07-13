@@ -52,7 +52,7 @@ With the server-side hosting model, the app is executed on the server from withi
 
 ![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](hosting-models/_static/server-side.png)
 
-To create a Blazor app using the server-side hosting model, use the ASP.NET Core **Blazor (server-side)** template ([dotnet new blazorserverside](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app hosts the server-side app and creates the SignalR endpoint where clients connect.
+To create a Blazor app using the server-side hosting model, use the ASP.NET Core **Blazor Server App** template ([dotnet new blazorserverside](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app hosts the server-side app and creates the SignalR endpoint where clients connect.
 
 The ASP.NET Core app references the app's `Startup` class to add:
 
