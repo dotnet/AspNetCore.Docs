@@ -492,8 +492,6 @@ In this tutorial, you learned how to:
 > * Configure the project to use SignalR.
 > * Add code that uses the hub to send messages from any client to all connected clients.
 
-## Next steps
-
 To learn more about SignalR, see the introduction:
 
 > [!div class="nextstepaction"]
