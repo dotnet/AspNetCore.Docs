@@ -26,7 +26,7 @@ For example, consider the *greet.proto* file used in [Get started with gRPC serv
 * The `Greeter` service defines a `SayHello` call.
 * `SayHello` sends a `HelloRequest` message and receives a `HelloResponse` message:
 
-[!code-proto[](~/tutorials//grpc/grpc-start/sample/GrpcGreeter/Protos/greet.proto)]
+[!code-protobuf[](~/tutorials//grpc/grpc-start/sample/GrpcGreeter/Protos/greet.proto)]
 
 ## Add a .proto file to a C\# app
 
