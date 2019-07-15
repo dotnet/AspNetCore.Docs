@@ -24,7 +24,7 @@ For example, consider the *greet.proto* file used in [Get started with gRPC serv
 
 * Defines a `Greeter` service.
 * The `Greeter` service defines a `SayHello` call.
-* `SayHello` sends a `HelloRequest` message and receives a `HelloResponse` message:
+* `SayHello` sends a `HelloRequest` message and receives a `HelloReply` message:
 
 [!code-protobuf[](~/tutorials//grpc/grpc-start/sample/GrpcGreeter/Protos/greet.proto)]
 
