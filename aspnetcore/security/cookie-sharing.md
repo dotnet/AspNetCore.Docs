@@ -5,7 +5,7 @@ description: Learn how to share authentication cookies among ASP.NET 4.x and ASP
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/08/2019
+ms.date: 07/15/2019
 uid: security/cookie-sharing
 ---
 # Share authentication cookies among ASP.NET apps
@@ -17,7 +17,7 @@ Websites often consist of individual web apps working together. To provide a sin
 In the examples that follow:
 
 * The authentication cookie name is set to a common value of `.AspNet.SharedCookie`.
-* Either explicitly or by default, the `AuthenticationType` is set to `Identity.Application`.
+* The `AuthenticationType` is set to `Identity.Application` either explicitly or by default.
 * A common app name is used to enable the data protection system to share data protection keys (`SharedCookieApp`).
 * `Identity.Application` is used as the authentication scheme. Whatever scheme is used, it must be used consistently *within and across* the shared cookie apps either as the default scheme or by explicitly setting it. The scheme is used when encrypting and decrypting cookies, so a consistent scheme must be used across apps.
 * A common [data protection key](xref:security/data-protection/implementation/key-management) storage location is used.
@@ -79,7 +79,7 @@ services.AddDataProtection()
 
 ## Share authentication cookies between ASP.NET 4.x and ASP.NET Core apps
 
-ASP.NET 4.x apps which use Katana Cookie Authentication Middleware can be configured to generate authentication cookies that are compatible with the ASP.NET Core Cookie Authentication Middleware. This allows upgrading a large site's individual apps piecemeal while providing a smooth SSO experience across the site.
+ASP.NET 4.x apps that use Katana Cookie Authentication Middleware can be configured to generate authentication cookies that are compatible with the ASP.NET Core Cookie Authentication Middleware. This allows upgrading a large site's individual apps in several steps while providing a smooth SSO experience across the site.
 
 When an app uses Katana Cookie Authentication Middleware, it calls `UseCookieAuthentication` in the project's *Startup.Auth.cs* file. ASP.NET 4.x web app projects created with Visual Studio 2013 and later use the Katana Cookie Authentication Middleware by default. Although `UseCookieAuthentication` is obsolete and unsupported for ASP.NET Core apps, calling `UseCookieAuthentication` in an ASP.NET 4.x app that uses Katana Cookie Authentication Middleware is valid.
 
