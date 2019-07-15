@@ -1104,7 +1104,7 @@ builder.AddContent(seq++, "Second");
 Now, the first output is:
 
 | Sequence | Type      | Data   |
-| :------: | --------- | :--- : |
+| :------: | --------- | :----: |
 | 0        | Text node | First  |
 | 1        | Text node | Second |
 

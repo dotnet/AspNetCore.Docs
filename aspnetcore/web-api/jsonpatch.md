@@ -66,7 +66,7 @@ The changes made by applying a JSON Patch document to a resource are atomic: if 
 
 ## Path syntax
 
-The [path](http://tools.ietf.org/html/rfc6901) property of an operation object has slashes between levels. For example, `"/address/zipCode"`.
+The [path](https://tools.ietf.org/html/rfc6901) property of an operation object has slashes between levels. For example, `"/address/zipCode"`.
 
 Zero-based indexes are used to specify array elements. The first element of the `addresses` array would be at `/addresses/0`. To `add` to the end of an array, use a hyphen (-) rather than an index number: `/addresses/-`.
 
@@ -216,6 +216,6 @@ To test the sample, run the app and send HTTP requests with the following settin
 
 * [IETF RFC 5789 PATCH method specification](https://tools.ietf.org/html/rfc5789)
 * [IETF RFC 6902 JSON Patch specification](https://tools.ietf.org/html/rfc6902)
-* [IETF RFC 6901 JSON Patch path format spec](http://tools.ietf.org/html/rfc6901)
-* [JSON Patch documentation](http://jsonpatch.com/). Includes links to resources for creating JSON Patch documents.
+* [IETF RFC 6901 JSON Patch path format spec](https://tools.ietf.org/html/rfc6901)
+* [JSON Patch documentation](https://jsonpatch.com/). Includes links to resources for creating JSON Patch documents.
 * [ASP.NET Core JSON Patch source code](https://github.com/aspnet/AspNetCore/tree/master/src/Features/JsonPatch/src)

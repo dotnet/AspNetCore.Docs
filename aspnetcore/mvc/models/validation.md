@@ -309,7 +309,7 @@ Custom client-side validation is done by generating `data-` HTML attributes that
 
 [!code-javascript[](validation/sample/wwwroot/js/classicMovieValidator.js?name=snippet_UnobtrusiveValidation)]
 
-For information about how to write adapters, see the [jQuery Validate documentation](http://jqueryvalidation.org/documentation/).
+For information about how to write adapters, see the [jQuery Validate documentation](https://jqueryvalidation.org/documentation/).
 
 The use of an adapter for a given field is triggered by `data-` attributes that:
 

@@ -10,7 +10,7 @@ uid: signalr/javascript-client
 ---
 # ASP.NET Core SignalR JavaScript client
 
-By [Rachel Appel](http://twitter.com/rachelappel)
+By [Rachel Appel](https://twitter.com/rachelappel)
 
 The ASP.NET Core SignalR JavaScript client library enables developers to call server-side hub code.
 

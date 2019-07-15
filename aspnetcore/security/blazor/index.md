@@ -35,7 +35,7 @@ The Blazor server-side project template can set up authentication for you when t
 
 Follow the Visual Studio guidance in the <xref:blazor/get-started> article to create a new Blazor server-side project with an authentication mechanism.
 
-After choosing the **Blazor (server-side)** template in the **Create a new ASP.NET Core Web Application** dialog, select **Change** under **Authentication**.
+After choosing the **Blazor Server App** template in the **Create a new ASP.NET Core Web Application** dialog, select **Change** under **Authentication**.
 
 A dialog opens to offer the same set of authentication mechanisms available for other ASP.NET Core projects:
 
