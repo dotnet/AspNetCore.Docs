@@ -300,6 +300,8 @@
           uid: blazor/javascript-interop
         - name: Security and Identity
           uid: security/blazor/index
+        - name: State management
+          uid: blazor/state-management
         - name: Debug
           uid: blazor/debug
         - name: Call a web API
