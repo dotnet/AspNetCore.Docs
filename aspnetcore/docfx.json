@@ -66,6 +66,7 @@
         "data/**/**.md": "aspnetcore-data",
         "fundamentals/**/**.md": "aspnetcore-fundamentals",
         "getting-started/**/**.md": "aspnetcore-getstarted",
+        "grpc/**/**.md": "aspnetcore-grpc",
         "host-and-deploy/**/**.md": "aspnetcore-hostdeploy",
         "index.md": "aspnetcore",
         "migration/**/**.md": "aspnetcore-migration",
