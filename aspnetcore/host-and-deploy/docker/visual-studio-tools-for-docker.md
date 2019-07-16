@@ -228,5 +228,5 @@ There may be an expectation for the production or release image to be smaller in
 * [Container development with Visual Studio](/visualstudio/containers)
 * [Azure Service Fabric: Prepare your development environment](/azure/service-fabric/service-fabric-get-started)
 * [Deploy a .NET app in a Windows container to Azure Service Fabric](/azure/service-fabric/service-fabric-host-app-in-a-container)
-* [Troubleshoot Visual Studio 2017 development with Docker](/azure/vs-azure-tools-docker-troubleshooting-docker-errors)
+* [Troubleshoot Visual Studio development with Docker](/azure/vs-azure-tools-docker-troubleshooting-docker-errors)
 * [Visual Studio Container Tools GitHub repository](https://github.com/Microsoft/DockerTools)
