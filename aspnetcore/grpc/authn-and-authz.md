@@ -16,7 +16,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 ## Authenticate users calling a gRPC service
 
-gRPC can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each call. 
+gRPC can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each call.
 
 The following is an example of `Startup.Configure` which uses gRPC and ASP.NET Core authentication:
 
@@ -77,6 +77,9 @@ public bool DoAuthenticatedCall(
 
 A client could alternatively provide a client certificate for authentication. [Certificate authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) happens at the TLS level, long before it ever gets to ASP.NET Core. When the request enters ASP.NET Core, the [client certificate authentication package](xref:security/authentication/certauth) allows you to resolve the certificate to a `ClaimsPrincipal`.
 
+> [!NOTE]
+> The host needs to be configured to accept client certificates. See [configure your host to require certificates](xref:security/authentication/certauth#configure-your-host-to-require-certificates) for information on accepting client certificates in Kestrel, IIS and Azure.
+
 In the .NET gRPC client, the client certificate is added to `HttpClientHandler` that is then used to create the gRPC client:
 
 ```csharp
@@ -95,6 +98,15 @@ public Ticketer.TicketerClient CreateClientWithCert(
     return GrpcClient.Create<Ticketer.TicketerClient>(httpClient);
 }
 ```
+
+### Other authentication mechanisms
+
+In addition to bearer token and client certificate authentication, all ASP.NET Core supported authentication mechanisms such as OAuth, OpenID and Negotiate should work with gRPC. Visit [ASP.NET Core authentication](xref:security/authentication/identity) for more information for configuring authentication on the server side.
+
+Client side configuration will depend on the authentication mechanism you are using. The previous bear token and client certificate authentication examples show a couple of ways the gRPC client can be configured to send authentication metadata with gRPC calls:
+
+* Strongly typed gRPC clients use `HttpClient` internally. Authentication can be configured on [`HttpClientHandler`](/dotnet/api/system.net.http.httpclienthandler), or by adding custom [`HttpMessageHandler`](/dotnet/api/system.net.http.httpmessagehandler) instances to the `HttpClient`.
+* Each gRPC call has an optional `CallOptions` argument. Custom headers can be sent using the option's headers collection.
 
 ## Authorize users to access services and service methods
 
