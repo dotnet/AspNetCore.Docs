@@ -100,7 +100,7 @@ public Ticketer.TicketerClient CreateClientWithCert(
 
 By default, all methods in a service can be called by unauthenticated users. In order to require authentication, apply the [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) attribute to the service:
 
-```cs
+```csharp
 [Authorize]
 public class TicketerService : Ticketer.TicketerBase
 {
