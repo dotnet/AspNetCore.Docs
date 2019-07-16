@@ -229,7 +229,7 @@ public class DomainRestrictedRequirement :
 }
 ```
 
-In `Startup.cs`, add the new policy, providing the custom `DomainRestrictedRequirement` requirement as a parameter to create the `DomainRestricted` policy. 
+In `Startup.ConfigureServices`, add the new policy, providing the custom `DomainRestrictedRequirement` requirement as a parameter to create the `DomainRestricted` policy.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
