@@ -1,1 +1,0 @@
-stockTickerHubProxy.Invoke("JoinGroup", "SignalRChatRoom");

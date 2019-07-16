@@ -1,7 +1,0 @@
-<configuration>
-  <system.webServer>
-<modules runAllManagedModulesForAllRequests="true">
- 	 <!-- more -->
-</modules>
-  </system.webServer>
-</configuration>

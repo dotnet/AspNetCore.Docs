@@ -1,1 +1,0 @@
-SqlCacheDependency dep = new SqlCacheDependency("pubs", "authors");

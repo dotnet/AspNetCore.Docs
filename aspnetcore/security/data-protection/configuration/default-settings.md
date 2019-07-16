@@ -21,6 +21,13 @@ The app attempts to detect its operational environment and handle key configurat
 
 1. If the user profile is available, keys are persisted to the *%LOCALAPPDATA%\ASP.NET\DataProtection-Keys* folder. If the operating system is Windows, the keys are encrypted at rest using DPAPI.
 
+   The app pool's [setProfileEnvironment attribute](/iis/configuration/system.applicationhost/applicationpools/add/processmodel#configuration) must also be enabled. The default value of `setProfileEnvironment` is `true`. In some scenarios (for example, Windows OS), `setProfileEnvironment` is set to `false`. If keys aren't stored in the user profile directory as expected:
+
+   1. Navigate to the *%windir%/system32/inetsrv/config* folder.
+   1. Open the *applicationHost.config* file.
+   1. Locate the `<system.applicationHost><applicationPools><applicationPoolDefaults><processModel>` element.
+   1. Confirm that the `setProfileEnvironment` attribute isn't present, which defaults the value to `true`, or explicitly set the attribute's value to `true`.
+
 1. If the app is hosted in IIS, keys are persisted to the HKLM registry in a special registry key that's ACLed only to the worker process account. Keys are encrypted at rest using DPAPI.
 
 1. If none of these conditions match, keys aren't persisted outside of the current process. When the process shuts down, all generated keys are lost.

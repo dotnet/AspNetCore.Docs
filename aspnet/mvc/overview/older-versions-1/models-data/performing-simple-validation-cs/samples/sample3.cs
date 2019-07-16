@@ -1,1 +1,0 @@
-public ActionResult Create([Bind(Exclude="Id")] Product productToCreate)

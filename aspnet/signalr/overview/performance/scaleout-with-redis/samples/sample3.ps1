@@ -1,1 +1,0 @@
-requirepass YourStrongPassword1234

@@ -1,0 +1,11 @@
+{
+    "Logging": {
+        "LogLevel": {
+            "Default": "Debug",
+            "System": "Information",
+            "Microsoft": "Information",
+            "Microsoft.AspNetCore.SignalR": "Debug",
+            "Microsoft.AspNetCore.Http.Connections": "Debug"
+        }
+    }
+}

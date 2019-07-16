@@ -1,3 +1,0 @@
-<applicationpools>
-  <add name="MyApplicationPool" startMode="AlwaysRunning" />
-</applicationpools>

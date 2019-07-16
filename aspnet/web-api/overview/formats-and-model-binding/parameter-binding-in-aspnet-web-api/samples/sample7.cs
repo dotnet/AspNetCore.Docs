@@ -1,1 +1,0 @@
-public HttpResponseMessage Get(GeoPoint location) { ... }

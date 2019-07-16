@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <SharedFrameworkVersion>2.1.0</SharedFrameworkVersion>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <SharedFrameworkVersion>2.2.0</SharedFrameworkVersion>
     <StartupDiagnosticsVersion>1.0.0</StartupDiagnosticsVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageTags>aspnetcore;StartupDiagnostics</PackageTags>

@@ -1,0 +1,10 @@
+[
+  {
+    "op": "remove",
+    "path": "/customerName"
+  },
+  {
+    "op": "remove",
+    "path": "/orders/0",
+  }
+]

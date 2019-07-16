@@ -19,9 +19,9 @@ The ASP.NET Core MVC application model include both abstract interfaces and conc
 The ASP.NET Core MVC Application Model has the following structure:
 
 * ApplicationModel
-	* Controllers (ControllerModel)
-		* Actions (ActionModel)
-			* Parameters (ParameterModel)
+  * Controllers (ControllerModel)
+    * Actions (ActionModel)
+      * Parameters (ParameterModel)
 
 Each level of the model has access to a common `Properties` collection, and lower levels can access and overwrite property values set by higher levels in the hierarchy. The properties are persisted to the `ActionDescriptor.Properties` when the actions are created. Then when a request is being handled, any properties a convention added or modified can be accessed through `ActionContext.ActionDescriptor.Properties`. Using properties is a great way to configure your filters, model binders, etc. on a per-action basis.
 
@@ -57,7 +57,7 @@ The `DefaultApplicationModelProvider` establishes many of the default behaviors 
 * Adding action method parameters to the context
 * Applying route and other attributes
 
-Some built-in behaviors are implemented by the `DefaultApplicationModelProvider`. This provider is responsible for constructing the [`ControllerModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.controllermodel), which in turn references [`ActionModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.actionmodel#Microsoft_AspNetCore_Mvc_ApplicationModels_ActionModel), [`PropertyModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.propertymodel), and [`ParameterModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.parametermodel#Microsoft_AspNetCore_Mvc_ApplicationModels_ParameterModel) instances. The `DefaultApplicationModelProvider` class is an internal framework implementation detail that can and will change in the future. 
+Some built-in behaviors are implemented by the `DefaultApplicationModelProvider`. This provider is responsible for constructing the [`ControllerModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.controllermodel), which in turn references [`ActionModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.actionmodel), [`PropertyModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.propertymodel), and [`ParameterModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.parametermodel) instances. The `DefaultApplicationModelProvider` class is an internal framework implementation detail that can and will change in the future. 
 
 The `AuthorizationApplicationModelProvider` is responsible for applying the behavior associated with the `AuthorizeFilter` and `AllowAnonymousFilter` attributes. [Learn more about these attributes](xref:security/authorization/simple).
 

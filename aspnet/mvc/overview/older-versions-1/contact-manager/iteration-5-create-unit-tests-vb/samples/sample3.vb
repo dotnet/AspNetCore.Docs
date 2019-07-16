@@ -1,1 +1,0 @@
-_service = New Mock(Of IContactManagerService)()

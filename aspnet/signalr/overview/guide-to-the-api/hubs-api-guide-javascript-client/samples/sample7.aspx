@@ -1,1 +1,0 @@
-<script src='<%: ResolveClientUrl("~/signalr/hubs") %>'></script>

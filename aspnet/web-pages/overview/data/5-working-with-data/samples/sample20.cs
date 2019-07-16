@@ -1,1 +1,0 @@
-db.Execute(updateQueryString, Name, Description, Price, ProductId);

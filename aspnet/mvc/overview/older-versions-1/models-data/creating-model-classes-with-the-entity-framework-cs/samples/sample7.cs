@@ -1,1 +1,0 @@
-var movieToUpdate = _db.MovieSet.First(m => m.Id == id);

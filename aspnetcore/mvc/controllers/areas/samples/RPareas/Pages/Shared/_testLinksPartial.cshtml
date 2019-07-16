@@ -1,0 +1,82 @@
+﻿
+<div>
+    <h3>Links generated using area </h3>
+
+    <ul>
+        <!-- <snippet> -->
+        <li>Anchor Tag Helper links</li>
+        <ul>
+            <li>
+                <a asp-area="Products" asp-page="/About">
+                    Products/About
+                </a>
+            </li>
+            <li>
+                <a asp-area="Services" asp-page="/Manage/About">
+                    Services/Manage/About
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/About">
+                    /About
+                </a>
+            </li>
+        </ul>
+        <li>Url.Page generated links</li>
+        <ul>
+            <li>
+                <a href='@Url.Page("/Manage/About", new { area = "Services" })'>
+                    Services/Manage/About
+                </a>
+            </li>
+            <li>
+                <a href='@Url.Page("/About", new { area = "Products" })'>
+                    Products/About
+                </a>
+            </li>
+        </ul>
+        <!-- </snippet> -->
+    </ul>
+
+</div>
+
+<div>
+    <h3>Ambient links NOT using area </h3>
+
+    <ul>
+        <li>Anchor Tag Helper links</li>
+        <ul>
+            <li>
+                <a asp-page="/About">
+                    Products/About
+                </a>
+            </li>
+            <!-- <snippet2> -->
+            <li>
+                <a asp-page="/Manage/About">
+                    Services/Manage/About
+                </a>
+            </li>
+            <li>
+                <a asp-page="/About">
+                    /About
+                </a>
+            </li>
+            <!-- </snippet2> -->
+        </ul>
+        <li>Url.Page generated links</li>
+        <ul>
+            <li>
+                <a href='@Url.Page("/Manage/About")'>
+                    Services/Manage/About
+                </a>
+            </li>
+            <li>
+                <a href='@Url.Page("/About")'>
+                    Products/About
+                </a>
+            </li>
+        </ul>
+    </ul>
+</div>
+

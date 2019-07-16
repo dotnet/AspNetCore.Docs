@@ -1,10 +1,8 @@
 ﻿#region snippet_BookServiceClass
+using BooksApi.Models;
+using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
-using BooksApi.Models;
-using Microsoft.Extensions.Configuration;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace BooksApi.Services
 {
@@ -13,25 +11,20 @@ namespace BooksApi.Services
         private readonly IMongoCollection<Book> _books;
 
         #region snippet_BookServiceConstructor
-        public BookService(IConfiguration config)
+        public BookService(IBookstoreDatabaseSettings settings)
         {
-            var client = new MongoClient(config.GetConnectionString("BookstoreDb"));
-            var database = client.GetDatabase("BookstoreDb");
-            _books = database.GetCollection<Book>("Books");
+            var client = new MongoClient(settings.ConnectionString);
+            var database = client.GetDatabase(settings.DatabaseName);
+
+            _books = database.GetCollection<Book>(settings.BooksCollectionName);
         }
         #endregion
 
-        public List<Book> Get()
-        {
-            return _books.Find(book => true).ToList();
-        }
+        public List<Book> Get() =>
+            _books.Find(book => true).ToList();
 
-        public Book Get(string id)
-        {
-            var docId = new ObjectId(id);
-
-            return _books.Find<Book>(book => book.Id == docId).FirstOrDefault();
-        }
+        public Book Get(string id) =>
+            _books.Find<Book>(book => book.Id == id).FirstOrDefault();
 
         public Book Create(Book book)
         {
@@ -39,22 +32,14 @@ namespace BooksApi.Services
             return book;
         }
 
-        public void Update(string id, Book bookIn)
-        {
-            var docId = new ObjectId(id);
+        public void Update(string id, Book bookIn) =>
+            _books.ReplaceOne(book => book.Id == id, bookIn);
 
-            _books.ReplaceOne(book => book.Id == docId, bookIn);
-        }
-
-        public void Remove(Book bookIn)
-        {
+        public void Remove(Book bookIn) =>
             _books.DeleteOne(book => book.Id == bookIn.Id);
-        }
 
-        public void Remove(ObjectId id)
-        {
+        public void Remove(string id) => 
             _books.DeleteOne(book => book.Id == id);
-        }
     }
 }
 #endregion

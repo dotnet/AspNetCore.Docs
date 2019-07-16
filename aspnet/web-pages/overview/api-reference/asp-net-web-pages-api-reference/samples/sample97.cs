@@ -1,1 +1,0 @@
-image.AddTextWatermark("Copyright")

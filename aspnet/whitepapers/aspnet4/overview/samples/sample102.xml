@@ -1,4 +1,0 @@
-<connectionStrings xdt:Transform="Replace"> 
-  <add name="BlogDB" connectionString="connection string detail]" /> 
-
-</connectionStrings>

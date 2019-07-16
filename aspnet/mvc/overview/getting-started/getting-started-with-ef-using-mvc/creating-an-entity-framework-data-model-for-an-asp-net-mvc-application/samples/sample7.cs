@@ -1,3 +1,0 @@
-public SchoolContext() : base("SchoolContext")
-{
-}

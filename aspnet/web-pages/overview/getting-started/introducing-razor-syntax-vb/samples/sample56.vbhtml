@@ -1,1 +1,0 @@
-@myScores("test4")

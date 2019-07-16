@@ -1,1 +1,0 @@
-GET http://localhost/odata/Categories?$expand=Products&$select=Name,Products/Name

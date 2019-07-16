@@ -1,1 +1,0 @@
-Layout = "~/_Layout.cshtml";

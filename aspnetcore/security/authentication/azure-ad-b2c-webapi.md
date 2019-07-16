@@ -31,7 +31,7 @@ In this tutorial, learn how to:
 The following are required for this walkthrough:
 
 * [Microsoft Azure subscription](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
-* [Visual Studio 2017](https://aka.ms/vsdownload?utm_source=mscom&utm_campaign=msdocs) (any edition)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 * [Postman](https://www.getpostman.com/postman)
 
 ## Create the Azure Active Directory B2C tenant
@@ -40,11 +40,11 @@ Create an Azure AD B2C tenant [as described in the documentation](/azure/active-
 
 ## Configure a sign-up or sign-in policy
 
-Use the steps in the Azure AD B2C documentation to [create a sign-up or sign-in policy](/azure/active-directory-b2c/active-directory-b2c-reference-policies#create-a-sign-up-or-sign-in-policy). Name the policy **SiUpIn**.  Use the example values provided in the documentation for **Identity providers**, **Sign-up attributes**, and **Application claims**. Using the **Run now** button to test the policy as described in the documentation is optional.
+Use the steps in the Azure AD B2C documentation to [create a sign-up or sign-in policy](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions). Name the policy **SiUpIn**.  Use the example values provided in the documentation for **Identity providers**, **Sign-up attributes**, and **Application claims**. Using the **Run now** button to test the policy as described in the documentation is optional.
 
 ## Register the API in Azure AD B2C
 
-In the newly created Azure AD B2C tenant, register your API using [the steps in the documentation](/azure/active-directory-b2c/active-directory-b2c-app-registration#register-a-web-api) under the **Register a web API** section.
+In the newly created Azure AD B2C tenant, register your API using [the steps in the documentation](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application) under the **Register a web API** section.
 
 Use the following values:
 
@@ -59,7 +59,7 @@ Use the following values:
 
 After the API is registered, the list of apps and APIs in the tenant is displayed. Select the API that was previously registered. Select the **Copy** icon to the right of the **Application ID** field to copy it to the clipboard. Select **Published scopes** and verify the default *user_impersonation* scope is present.
 
-## Create an ASP.NET Core app in Visual Studio 2017
+## Create an ASP.NET Core app in Visual Studio
 
 The Visual Studio Web Application template can be configured to use the Azure AD B2C tenant for authentication.
 
@@ -100,7 +100,7 @@ In Visual Studio, run the API. Visual Studio launches a browser pointed at the A
 
 ### Register Postman as a web app
 
-Since Postman simulates a web app that obtains tokens from the Azure AD B2C tenant, it must be registered in the tenant as a web app. Register Postman using [the steps in the documentation](/azure/active-directory-b2c/active-directory-b2c-app-registration#register-a-web-app) under the **Register a web app** section. Stop at the **Create a web app client secret** section. A client secret isn't required for this tutorial. 
+Since Postman simulates a web app that obtains tokens from the Azure AD B2C tenant, it must be registered in the tenant as a web app. Register Postman using [the steps in the documentation](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application) under the **Register a web app** section. Stop at the **Create a web app client secret** section. A client secret isn't required for this tutorial. 
 
 Use the following values:
 
@@ -151,8 +151,8 @@ To verify that the web API requires authentication, first make a request without
     ![401 unauthorized response](./azure-ad-b2c-webapi/postman-401-status.png)
 
 > [!IMPORTANT]
-> If you get a "Could not get any response" error, you may need to disable SSL certificate verification in the [Postman settings](https://learning.getpostman.com/docs/postman/launching_postman/settings). 
- 
+> If you receive a "Could not get any response" error, you may need to disable SSL certificate verification in the [Postman settings](https://learning.getpostman.com/docs/postman/launching_postman/settings).
+
 ### Obtain a bearer token
 
 To make an authenticated request to the web API, a bearer token is required. Postman makes it easy to sign in to the Azure AD B2C tenant and obtain a token.
@@ -163,17 +163,16 @@ To make an authenticated request to the web API, a bearer token is required. Pos
 
 2. Complete the **GET NEW ACCESS TOKEN** dialog as follows:
 
-
    |                Setting                 |                                             Value                                             |                                                                                                                                    Notes                                                                                                                                     |
    |----------------------------------------|-----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-   |      <strong>Token Name</strong>       |                                          *{token name}*                                       |                                                                                                                   Enter a descriptive name for the token.                                                                                                                    |
-   |      <strong>Grant Type</strong>       |                                           Implicit                                            |                                                                                                                                                                                                                                                                              |
-   |     <strong>Callback URL</strong>      |                                 `https://getpostman.com/postman`                              |                                                                                                                                                                                                                                                                              |
-   |       <strong>Auth URL</strong>        | `https://login.microsoftonline.com/{tenant domain name}/oauth2/v2.0/authorize?p=B2C_1_SiUpIn` |  Replace *{tenant domain name}* with the tenant's domain name. **IMPORTANT**: This URL must have the same domain name as what is found in `AzureAdB2C.Instance` in the web API's *appsettings.json* file. See NOTE&dagger;.                                                  |
-   |       <strong>Client ID</strong>       |                *{enter the Postman app's <b>Application ID</b>}*                              |                                                                                                                                                                                                                                                                              |
-   |         <strong>Scope</strong>         |         `https://{tenant domain name}/{api}/user_impersonation openid offline_access`       | Replace *{tenant domain name}* with the tenant's domain name. Replace *{api}* with the App ID URI you gave the web API when you first registered it (in this case, `api`). The pattern for the URL is: `https://{tenant}.onmicrosoft.com/{api-id-uri}/{scope name}`.         |
-   |         <strong>State</strong>         |                                      *{leave blank}*                                          |                                                                                                                                                                                                                                                                              |
-   | <strong>Client Authentication</strong> |                                Send client credentials in body                                |                                                                                                                                                                                                                                                                              |
+   |      **Token Name**       |                                          *{token name}*                                       |                                                                                                                   Enter a descriptive name for the token.                                                                                                                    |
+   |      **Grant Type**       |                                           Implicit                                            |                                                                                                                                                                                                                                                                              |
+   |     **Callback URL**      |                                 `https://getpostman.com/postman`                              |                                                                                                                                                                                                                                                                              |
+   |       **Auth URL**        | `https://login.microsoftonline.com/{tenant domain name}/oauth2/v2.0/authorize?p=B2C_1_SiUpIn` |  Replace *{tenant domain name}* with the tenant's domain name. **IMPORTANT**: This URL must have the same domain name as what is found in `AzureAdB2C.Instance` in the web API's *appsettings.json* file. See NOTE&dagger;.                                                  |
+   |       **Client ID**       |                *{enter the Postman app's **Application ID**}*                              |                                                                                                                                                                                                                                                                              |
+   |         **Scope**         |         `https://{tenant domain name}/{api}/user_impersonation openid offline_access`       | Replace *{tenant domain name}* with the tenant's domain name. Replace *{api}* with the App ID URI you gave the web API when you first registered it (in this case, `api`). The pattern for the URL is: `https://{tenant}.onmicrosoft.com/{api-id-uri}/{scope name}`.         |
+   |         **State**         |                                      *{leave blank}*                                          |                                                                                                                                                                                                                                                                              |
+   | **Client Authentication** |                                Send client credentials in body                                |                                                                                                                                                                                                                                                                              |
 
     > [!NOTE]
     > &dagger; The policy settings dialog in the Azure Active Directory B2C portal displays two possible URLs: One in the format `https://login.microsoftonline.com/`{tenant domain name}/{additional path information}, and the other in the format `https://{tenant name}.b2clogin.com/`{tenant domain name}/{additional path information}. It's **critical** that the domain found in in `AzureAdB2C.Instance` in the web API's *appsettings.json* file matches the one used in the web app's *appsettings.json* file. This is the same domain used for the Auth URL field in Postman. Note that Visual Studio uses a slightly different URL format than what's displayed in the portal. As long as the domains match, the URL works.

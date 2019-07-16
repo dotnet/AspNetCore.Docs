@@ -6,6 +6,6 @@
 
 * Update the database:
 
-	`dotnet ef database update`
+  `dotnet ef database update`
 
-* Enable SSL in the project
+* Enable HTTPS in the project

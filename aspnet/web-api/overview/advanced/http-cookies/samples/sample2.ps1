@@ -1,1 +1,0 @@
-Set-Cookie: session-id=1234567; max-age=86400; domain=example.com; path=/;

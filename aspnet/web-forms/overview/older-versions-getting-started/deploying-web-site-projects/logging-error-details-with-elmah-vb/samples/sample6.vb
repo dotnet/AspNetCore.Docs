@@ -1,9 +1,0 @@
-' ... Save user's information to the database ...
-...
-' Attempt to send the user a confirmation email
-	' ... Send an email ...
-Try
-Catch e As Exception
-' Error in sending email. Log it!
-ErrorSignal.FromCurrentContext().Raise(e)
-End Try

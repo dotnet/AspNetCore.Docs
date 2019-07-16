@@ -1,13 +1,13 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AuthorizationSample.Data;
-
-using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Collections.Generic;
 
 namespace AuthorizationSample.Pages.Account
 {
@@ -87,7 +87,7 @@ namespace AuthorizationSample.Pages.Account
 
             await Task.Delay(500);
 
-            if (email == "maria.rodriguez@contoso.com")
+            if (string.Equals(email, "maria.rodriguez@contoso.com", StringComparison.OrdinalIgnoreCase))
             {
                 return new ApplicationUser()
                 {

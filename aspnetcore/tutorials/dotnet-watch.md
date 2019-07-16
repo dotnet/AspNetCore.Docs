@@ -14,13 +14,16 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Victor Hurdugaci](https
 
 This tutorial uses an existing web API with two endpoints: one that returns a sum and one that returns a product. The product method has a bug, which is fixed in this tutorial.
 
-Download the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). It consists of two projects: *WebApp* (an ASP.NET Core web API) and *WebAppTests* (unit tests for the web API).
+Download the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). It consists of two projects: *WebApp* (an ASP.NET Core web API) and *WebAppTests* (unit tests for the web API).
 
 In a command shell, navigate to the *WebApp* folder. Run the following command:
 
 ```console
 dotnet run
 ```
+
+> [!NOTE]
+> You can use `dotnet run --project <PROJECT>` to specify a project to run. For example, running `dotnet run --project WebApp` from the root of the sample app will also run the *WebApp* project.
 
 The console output shows messages similar to the following (indicating that the app is running and awaiting requests):
 
@@ -71,6 +74,9 @@ Any [.NET Core CLI command](/dotnet/core/tools#cli-commands) can be run with `do
 
 Run `dotnet watch run` in the *WebApp* folder. The console output indicates `watch` has started.
 
+> [!NOTE]
+> You can use `dotnet watch --project <PROJECT>` to specify a project to watch. For example, running `dotnet watch --project WebApp run` from the root of the sample app will also run and watch the *WebApp* project.
+
 ## Make changes with `dotnet watch`
 
 Make sure `dotnet watch` is running.
@@ -80,7 +86,7 @@ Fix the bug in the `Product` method of *MathController.cs* so it returns the pro
 ```csharp
 public static int Product(int a, int b)
 {
-  return a * b;
+    return a * b;
 }
 ```
 
@@ -173,4 +179,4 @@ VSTest executes when any file changes in either test project.
 
 ## `dotnet-watch` in GitHub
 
-`dotnet-watch` is part of the GitHub [DotNetTools repository](https://github.com/aspnet/DotNetTools/tree/master/src/dotnet-watch).
+`dotnet-watch` is part of the GitHub [aspnet/AspNetCore repository](https://github.com/aspnet/AspNetCore/tree/master/src/Tools/dotnet-watch).

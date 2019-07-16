@@ -1,1 +1,0 @@
-<%@ Implements Interface="System.Web.UI.ICallbackEventHandler" %>

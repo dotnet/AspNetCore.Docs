@@ -1,1 +1,0 @@
-aspnet_regiis.exe -pef section physical_directory -prov provider

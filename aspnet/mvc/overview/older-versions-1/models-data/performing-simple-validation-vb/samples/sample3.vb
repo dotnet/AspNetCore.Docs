@@ -1,1 +1,0 @@
-Public Function Create(<Bind(Exclude:="Id")> ByVal productToCreate As Product) As ActionResult

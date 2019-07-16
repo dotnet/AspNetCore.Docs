@@ -1,22 +1,15 @@
 ---
-title: ASP.NET Core MVC with EF Core - Update Related Data - 7 of 10
+title: "Tutorial: Update related data - ASP.NET MVC with EF Core"
+description: "In this tutorial you'll update related data by updating foreign key fields and navigation properties."
 author: rick-anderson
-description: In this tutorial you'll update related data by updating foreign key fields and navigation properties.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 03/27/2019
+ms.topic: tutorial
 uid: data/ef-mvc/update-related-data
 ---
 
-# ASP.NET Core MVC with EF Core - Update Related Data - 7 of 10
-
-[!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc-21.md)]
-
-::: moniker range="= aspnetcore-2.0"
-
-By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-The Contoso University sample web application demonstrates how to create ASP.NET Core MVC web applications using Entity Framework Core and Visual Studio. For information about the tutorial series, see [the first tutorial in the series](intro.md).
+# Tutorial: Update related data - ASP.NET MVC with EF Core
 
 In the previous tutorial you displayed related data; in this tutorial you'll update related data by updating foreign key fields and navigation properties.
 
@@ -26,7 +19,20 @@ The following illustrations show some of the pages that you'll work with.
 
 ![Instructor Edit page](update-related-data/_static/instructor-edit-courses.png)
 
-## Customize the Create and Edit Pages for Courses
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Customize Courses pages
+> * Add Instructors Edit page
+> * Add courses to Edit page
+> * Update Delete page
+> * Add office location and courses to Create page
+
+## Prerequisites
+
+* [Read related data](read-related-data.md)
+
+## Customize Courses pages
 
 When a new course entity is created, it must have a relationship to an existing department. To facilitate this, the scaffolded code includes controller methods and Create and Edit views that include a drop-down list for selecting the department. The drop-down list sets the `Course.DepartmentID` foreign key property, and that's all the Entity Framework needs in order to load the `Department` navigation property with the appropriate Department entity. You'll use the scaffolded code, but change it slightly to add error handling and sort the drop-down list.
 
@@ -98,7 +104,7 @@ Click **Edit** on a course in the Courses Index page.
 
 Change data on the page and click **Save**. The Courses Index page is displayed with the updated course data.
 
-## Add an Edit Page for Instructors
+## Add Instructors Edit page
 
 When you edit an instructor record, you want to be able to update the instructor's office assignment. The Instructor entity has a one-to-zero-or-one relationship with the OfficeAssignment entity, which means your code has to handle the following situations:
 
@@ -112,7 +118,7 @@ When you edit an instructor record, you want to be able to update the instructor
 
 In *InstructorsController.cs*, change the code in the HttpGet `Edit` method so that it loads the Instructor entity's `OfficeAssignment` navigation property and calls `AsNoTracking`:
 
-[!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?highlight=9,10&name=snippet_EditGetOA)]
+[!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?highlight=8-11&name=snippet_EditGetOA)]
 
 Replace the HttpPost `Edit` method with the following code to handle office assignment updates:
 
@@ -120,11 +126,11 @@ Replace the HttpPost `Edit` method with the following code to handle office assi
 
 The code does the following:
 
--  Changes the method name to `EditPost` because the signature is now the same as the HttpGet `Edit` method (the `ActionName` attribute specifies that the `/Edit/` URL is still used).
+* Changes the method name to `EditPost` because the signature is now the same as the HttpGet `Edit` method (the `ActionName` attribute specifies that the `/Edit/` URL is still used).
 
--  Gets the current Instructor entity from the database using eager loading for the `OfficeAssignment` navigation property. This is the same as what you did in the HttpGet `Edit` method.
+* Gets the current Instructor entity from the database using eager loading for the `OfficeAssignment` navigation property. This is the same as what you did in the HttpGet `Edit` method.
 
--  Updates the retrieved Instructor entity with values from the model binder. The `TryUpdateModel` overload enables you to whitelist the properties you want to include. This prevents over-posting, as explained in the [second tutorial](crud.md).
+* Updates the retrieved Instructor entity with values from the model binder. The `TryUpdateModel` overload enables you to whitelist the properties you want to include. This prevents over-posting, as explained in the [second tutorial](crud.md).
 
     <!-- Snippets don't play well with <ul> [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?range=241-244)] -->
 
@@ -133,9 +139,9 @@ The code does the following:
         instructorToUpdate,
         "",
         i => i.FirstMidName, i => i.LastName, i => i.HireDate, i => i.OfficeAssignment))
-	```
+    ```
 
--   If the office location is blank, sets the Instructor.OfficeAssignment property to null so that the related row in the OfficeAssignment table will be deleted.
+* If the office location is blank, sets the Instructor.OfficeAssignment property to null so that the related row in the OfficeAssignment table will be deleted.
 
     <!-- Snippets don't play well with <ul>  "intro/samples/cu/Controllers/InstructorsController.cs"} -->
 
@@ -146,7 +152,7 @@ The code does the following:
     }
     ```
 
-- Saves the changes to the database.
+* Saves the changes to the database.
 
 ### Update the Instructor Edit view
 
@@ -158,7 +164,7 @@ Run the app, select the **Instructors** tab, and then click **Edit** on an instr
 
 ![Instructor Edit page](update-related-data/_static/instructor-edit-office.png)
 
-## Add Course assignments to the Instructor Edit page
+## Add courses to Edit page
 
 Instructors may teach any number of courses. Now you'll enhance the Instructor Edit page by adding the ability to change course assignments using a group of check boxes, as shown in the following screen shot:
 
@@ -214,7 +220,7 @@ In *Views/Instructors/Edit.cshtml*, add a **Courses** field with an array of che
 
 <a id="notepad"></a>
 > [!NOTE]
-> When you paste the code in Visual Studio, line breaks will be changed in a way that breaks the code.  Press Ctrl+Z one time to undo the automatic formatting.  This will fix the line breaks so that they look like what you see here. The indentation doesn't have to be perfect, but the `@</tr><tr>`, `@:<td>`, `@:</td>`, and `@:</tr>` lines must each be on a single line as shown or you'll get a runtime error. With the block of new code selected, press Tab three times to line up the new code with the existing code. You can check the status of this problem [here](https://developercommunity.visualstudio.com/content/problem/147795/razor-editor-malforms-pasted-markup-and-creates-in.html).
+> When you paste the code in Visual Studio, line breaks might be changed in a way that breaks the code. If the code looks different after pasting, press Ctrl+Z one time to undo the automatic formatting. This will fix the line breaks so that they look like what you see here. The indentation doesn't have to be perfect, but the `@</tr><tr>`, `@:<td>`, `@:</td>`, and `@:</tr>` lines must each be on a single line as shown or you'll get a runtime error. With the block of new code selected, press Tab three times to line up the new code with the existing code. This problem is fixed in Visual Studio 2019.
 
 [!code-html[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=35-61)]
 
@@ -231,7 +237,7 @@ Change some course assignments and click Save. The changes you make are reflecte
 > [!NOTE]
 > The approach taken here to edit instructor course data works well when there's a limited number of courses. For collections that are much larger, a different UI and a different updating method would be required.
 
-## Update the Delete page
+## Update Delete page
 
 In *InstructorsController.cs*, delete the `DeleteConfirmed` method and insert the following code in its place.
 
@@ -239,11 +245,11 @@ In *InstructorsController.cs*, delete the `DeleteConfirmed` method and insert th
 
 This code makes the following changes:
 
-* Does eager loading for the `CourseAssignments` navigation property.  You have to include this or EF won't know about related `CourseAssignment` entities and won't delete them.  To avoid needing to read them here you could configure cascade delete in the database.
+* Does eager loading for the `CourseAssignments` navigation property. You have to include this or EF won't know about related `CourseAssignment` entities and won't delete them. To avoid needing to read them here you could configure cascade delete in the database.
 
 * If the instructor to be deleted is assigned as administrator of any departments, removes the instructor assignment from those departments.
 
-## Add office location and courses to the Create page
+## Add office location and courses to Create page
 
 In *InstructorsController.cs*, delete the HttpGet and HttpPost `Create` methods, and then add the following code in their place:
 
@@ -288,12 +294,22 @@ Test by running the app and creating an instructor.
 
 As explained in the [CRUD tutorial](crud.md), the Entity Framework implicitly implements transactions. For scenarios where you need more control -- for example, if you want to include operations done outside of Entity Framework in a transaction -- see [Transactions](/ef/core/saving/transactions).
 
-## Summary
+## Get the code
 
-You have now completed the introduction to working with related data. In the next tutorial you'll see how to handle concurrency conflicts.
+[Download or view the completed application.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-::: moniker-end
+## Next steps
 
-> [!div class="step-by-step"]
-> [Previous](read-related-data.md)
-> [Next](concurrency.md)
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Customized Courses pages
+> * Added Instructors Edit page
+> * Added courses to Edit page
+> * Updated Delete page
+> * Added office location and courses to Create page
+
+Advance to the next tutorial to learn how to handle concurrency conflicts.
+
+> [!div class="nextstepaction"]
+> [Handle concurrency conflicts](concurrency.md)

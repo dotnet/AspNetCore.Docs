@@ -10,7 +10,7 @@ namespace RazorPagesProject.Tests
 {
     #region snippet1
     public class CustomWebApplicationFactory<TStartup> 
-        : WebApplicationFactory<RazorPagesProject.Startup>
+        : WebApplicationFactory<TStartup> where TStartup: class
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
@@ -51,8 +51,8 @@ namespace RazorPagesProject.Tests
                     }
                     catch (Exception ex)
                     {
-                        logger.LogError(ex, $"An error occurred seeding the " +
-                            "database with test messages. Error: {ex.Message}");
+                        logger.LogError(ex, "An error occurred seeding the " +
+                            $"database with test messages. Error: {ex.Message}");
                     }
                 }
             });

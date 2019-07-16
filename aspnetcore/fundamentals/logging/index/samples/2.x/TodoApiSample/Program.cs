@@ -1,4 +1,4 @@
-﻿#define TemplateCode // or LogFromMain or ExpandDefault or FilterInCode or MinLevel or FilterFunction
+﻿#define TemplateCode // or LogFromMain or ExpandDefault or FilterInCode or MinLevel or FilterFunction or AzLogOptions
 
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,8 @@ using Microsoft.Extensions.Logging;
 using TodoApiSample.Core.Interfaces;
 using TodoApiSample.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.Extensions.Logging.AzureAppServices;
+using Microsoft.Extensions.Logging.Debug;
 
 namespace TodoApiSample
 {
@@ -22,19 +23,18 @@ namespace TodoApiSample
         #region snippet_TemplateCode
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+                .UseStartup<Startup>();
         #endregion
 #elif LogFromMain
         #region snippet_LogFromMain
         public static void Main(string[] args)
         {
-            var host = BuildWebHost(args);
+            var host = CreateWebHostBuilder(args).Build();
 
             var todoRepository = host.Services.GetRequiredService<ITodoRepository>();
             todoRepository.Add(new Core.Model.TodoItem() { Name = "Feed the dog" });
@@ -46,15 +46,45 @@ namespace TodoApiSample
             host.Run();
         }
         
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .ConfigureLogging(logging =>
                 {
                     logging.ClearProviders();
                     logging.AddConsole();
-                })
-                .Build();
+                });
+        #endregion
+#elif AzLogOptions
+        #region snippet_AzLogOptions
+        public static void Main(string[] args)
+        {
+            var host = CreateWebHostBuilder(args).Build();
+
+            var todoRepository = host.Services.GetRequiredService<ITodoRepository>();
+            todoRepository.Add(new Core.Model.TodoItem() { Name = "Feed the dog" });
+            todoRepository.Add(new Core.Model.TodoItem() { Name = "Walk the dog" });
+
+            var logger = host.Services.GetRequiredService<ILogger<Program>>();
+            logger.LogInformation("Seeded the database.");
+
+            host.Run();
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .ConfigureLogging(logging => logging.AddAzureWebAppDiagnostics())
+                .ConfigureServices(serviceCollection => serviceCollection
+                        .Configure<AzureFileLoggerOptions>(options =>
+                        {
+                            options.FileName = "azure-diagnostics-";
+                            options.FileSizeLimit = 50 * 1024;
+                            options.RetainedFileCountLimit = 5;
+                        }).Configure<AzureBlobLoggerOptions>(options =>
+                        {
+                            options.BlobName = "log.txt";
+                        }))
+                .UseStartup<Startup>();
         #endregion
 #elif ExpandDefault
         #region snippet_ExpandDefault
@@ -73,6 +103,7 @@ namespace TodoApiSample
                 })
                 .ConfigureLogging((hostingContext, logging) =>
                 {
+                    // Requires `using Microsoft.Extensions.Logging;`
                     logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
                     logging.AddConsole();
                     logging.AddDebug();
@@ -113,38 +144,36 @@ namespace TodoApiSample
 #elif FilterInCode
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         #region snippet_FilterInCode
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .ConfigureLogging(logging =>
                     logging.AddFilter("System", LogLevel.Debug)
-                           .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Trace))
-                .Build();
+                           .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Trace));
         #endregion
 #elif MinLevel
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         #region snippet_MinLevel
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning))
-                .Build();
+                .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning));
         #endregion
 #elif FilterFunction
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         #region snippet_FilterFunction
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
@@ -152,15 +181,14 @@ namespace TodoApiSample
                 {
                     logBuilder.AddFilter((provider, category, logLevel) =>
                     {
-                        if (provider == "Microsoft.Extensions.Logging.Console.ConsoleLoggerProvider" && 
+                        if (provider == "Microsoft.Extensions.Logging.Console.ConsoleLoggerProvider" &&
                             category == "TodoApiSample.Controllers.TodoController")
                         {
                             return false;
                         }
                         return true;
                     });
-                })
-                .Build();
+                });
         #endregion
 #endif
     }

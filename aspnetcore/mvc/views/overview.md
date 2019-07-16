@@ -3,7 +3,7 @@ title: Views in ASP.NET Core MVC
 author: ardalis
 description: Learn how views handle the app's data presentation and user interaction in ASP.NET Core MVC.
 ms.author: riande
-ms.date: 12/12/2017
+ms.date: 04/03/2019
 uid: mvc/views/overview
 ---
 # Views in ASP.NET Core MVC
@@ -28,7 +28,7 @@ Use [layouts](xref:mvc/views/layout) to provide consistent webpage sections and 
 
 ## Benefits of using views
 
-Views help to establish a [Separation of Concerns (SoC) design](http://deviq.com/separation-of-concerns/) within an MVC app by separating the user interface markup from other parts of the app. Following SoC design makes your app modular, which provides several benefits:
+Views help to establish [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) within an MVC app by separating the user interface markup from other parts of the app. Following SoC design makes your app modular, which provides several benefits:
 
 * The app is easier to maintain because it's better organized. Views are generally grouped by app feature. This makes it easier to find related views when working on a feature.
 * The parts of the app are loosely coupled. You can build and update the app's views separately from the business logic and data access components. You can modify the views of the app without necessarily having to update other parts of the app.
@@ -64,11 +64,13 @@ The `View` helper method has several overloads. You can optionally specify:
   ```csharp
   return View("Orders");
   ```
+
 * A [model](xref:mvc/models/model-binding) to pass to the view:
 
   ```csharp
   return View(Orders);
   ```
+
 * Both a view and a model:
 
   ```csharp
@@ -127,7 +129,7 @@ The most robust approach is to specify a [model](xref:mvc/models/model-binding) 
 
 Using a viewmodel to pass data to a view allows the view to take advantage of *strong* type checking. *Strong typing* (or *strongly typed*) means that every variable and constant has an explicitly defined type (for example, `string`, `int`, or `DateTime`). The validity of types used in a view is checked at compile time.
 
-[Visual Studio](https://www.visualstudio.com/vs/) and [Visual Studio Code](https://code.visualstudio.com/) list strongly typed class members using a feature called [IntelliSense](/visualstudio/ide/using-intellisense). When you want to see the properties of a viewmodel, type the variable name for the viewmodel followed by a period (`.`). This helps you write code faster with fewer errors.
+[Visual Studio](https://visualstudio.microsoft.com) and [Visual Studio Code](https://code.visualstudio.com/) list strongly typed class members using a feature called [IntelliSense](/visualstudio/ide/using-intellisense). When you want to see the properties of a viewmodel, type the variable name for the viewmodel followed by a period (`.`). This helps you write code faster with fewer errors.
 
 Specify a model using the `@model` directive. Use the model with `@Model`:
 
@@ -194,7 +196,7 @@ In addition to strongly typed views, views have access to a *weakly typed* (also
 | View and a [layout view](xref:mvc/views/layout)   | Setting the **\<title>** element content in the layout view from a view file.  |
 | [Partial view](xref:mvc/views/partial) and a view | A widget that displays data based on the webpage that the user requested.      |
 
-This collection can be referenced through either the `ViewData` or `ViewBag` properties on controllers and views. The `ViewData` property is a dictionary of weakly typed objects. The `ViewBag` property is a wrapper around `ViewData` that provides dynamic properties for the underlying `ViewData` collection.
+This collection can be referenced through either the `ViewData` or `ViewBag` properties on controllers and views. The `ViewData` property is a dictionary of weakly typed objects. The `ViewBag` property is a wrapper around `ViewData` that provides dynamic properties for the underlying `ViewData` collection. Note: Key lookups are case-insensitive for both `ViewData` and `ViewBag`.
 
 `ViewData` and `ViewBag` are dynamically resolved at runtime. Since they don't offer compile-time type checking, both are generally more error-prone than using a viewmodel. For that reason, some developers prefer to minimally or never use `ViewData` and `ViewBag`.
 

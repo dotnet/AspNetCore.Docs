@@ -5,7 +5,7 @@ description: Learn about the directory structure of published ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/11/2018
+ms.date: 06/17/2019
 uid: host-and-deploy/directory-structure
 ---
 # ASP.NET Core directory structure
@@ -22,8 +22,8 @@ The *publish* directory contains the app's deployable assets produced by the [do
 
 | App Type | Directory Structure |
 | -------- | ------------------- |
-| [Framework-dependent Deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd) | <ul><li>publish&dagger;<ul><li>Logs&dagger; (optional unless required to receive stdout logs)</li><li>Views&dagger; (MVC apps; if views aren't precompiled)</li><li>Pages&dagger; (MVC or Razor Pages apps; if pages aren't precompiled)</li><li>wwwroot&dagger;</li><li>*\.dll files</li><li>{ASSEMBLY NAME}.deps.json</li><li>{ASSEMBLY NAME}.dll</li><li>{ASSEMBLY NAME}.pdb</li><li>{ASSEMBLY NAME}.Views.dll</li><li>{ASSEMBLY NAME}.Views.pdb</li><li>{ASSEMBLY NAME}.runtimeconfig.json</li><li>web.config (IIS deployments)</li></ul></li></ul> |
-| [Self-contained Deployment](/dotnet/core/deploying/#self-contained-deployments-scd) | <ul><li>publish&dagger;<ul><li>Logs&dagger; (optional unless required to receive stdout logs)</li><li>Views&dagger; (MVC apps; if views aren't precompiled)</li><li>Pages&dagger; (MVC or Razor Pages apps; if pages aren't precompiled)</li><li>wwwroot&dagger;</li><li>\*.dll files</li><li>{ASSEMBLY NAME}.deps.json</li><li>{ASSEMBLY NAME}.dll</li><li>{ASSEMBLY NAME}.exe</li><li>{ASSEMBLY NAME}.pdb</li><li>{ASSEMBLY NAME}.Views.dll</li><li>{ASSEMBLY NAME}.Views.pdb</li><li>{ASSEMBLY NAME}.runtimeconfig.json</li><li>web.config (IIS deployments)</li></ul></li></ul> |
+| [Framework-dependent Deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd) | <ul><li>publish&dagger;<ul><li>Views&dagger; (MVC apps; if views aren't precompiled)</li><li>Pages&dagger; (MVC or Razor Pages apps; if pages aren't precompiled)</li><li>wwwroot&dagger;</li><li>*\.dll files</li><li>{ASSEMBLY NAME}.deps.json</li><li>{ASSEMBLY NAME}.dll</li><li>{ASSEMBLY NAME}.pdb</li><li>{ASSEMBLY NAME}.Views.dll</li><li>{ASSEMBLY NAME}.Views.pdb</li><li>{ASSEMBLY NAME}.runtimeconfig.json</li><li>web.config (IIS deployments)</li></ul></li></ul> |
+| [Self-contained Deployment](/dotnet/core/deploying/#self-contained-deployments-scd) | <ul><li>publish&dagger;<ul><li>Views&dagger; (MVC apps; if views aren't precompiled)</li><li>Pages&dagger; (MVC or Razor Pages apps; if pages aren't precompiled)</li><li>wwwroot&dagger;</li><li>\*.dll files</li><li>{ASSEMBLY NAME}.deps.json</li><li>{ASSEMBLY NAME}.dll</li><li>{ASSEMBLY NAME}.exe</li><li>{ASSEMBLY NAME}.pdb</li><li>{ASSEMBLY NAME}.Views.dll</li><li>{ASSEMBLY NAME}.Views.pdb</li><li>{ASSEMBLY NAME}.runtimeconfig.json</li><li>web.config (IIS deployments)</li></ul></li></ul> |
 
 &dagger;Indicates a directory
 
@@ -31,7 +31,11 @@ The *publish* directory represents the *content root path*, also called the *app
 
 The *wwwroot* directory, if present, only contains static assets.
 
-The stdout *Logs* directory can be created for the deployment using one of the following two approaches:
+::: moniker range="< aspnetcore-3.0"
+
+Creating a *Logs* folder is useful for [ASP.NET Core Module enhanced debug logging](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs). Folders in the path provided to the `<handlerSetting>` value aren't created by the module automatically and should pre-exist in the deployment to allow the module to write the debug log.
+
+A *Logs* directory can be created for the deployment using one of the following two approaches:
 
 * Add the following `<Target>` element to the project file:
 
@@ -51,6 +55,8 @@ The stdout *Logs* directory can be created for the deployment using one of the f
 * Physically create the *Logs* directory on the server in the deployment.
 
 The deployment directory requires Read/Execute permissions. The *Logs* directory requires Read/Write permissions. Additional directories where files are written require Read/Write permissions.
+
+::: moniker-end
 
 ## Additional resources
 

@@ -2,10 +2,9 @@
 title: Add validation to an ASP.NET Core Razor Page
 author: rick-anderson
 description: Discover how to add validation to a Razor Page in ASP.NET Core.
-monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/5/2018
+ms.date: 12/05/2018
 uid: tutorials/razor-pages/validation
 ---
 # Add validation to an ASP.NET Core Razor Page
@@ -23,22 +22,7 @@ A key tenet of software development is called [DRY](https://wikipedia.org/wiki/D
 
 The validation support provided by Razor Pages and Entity Framework is a good example of the DRY principle. Validation rules are declaratively specified in one place (in the model class), and the rules are enforced everywhere in the app.
 
-### Adding validation rules to the movie model
-
-Open the *Models/Movie.cs* file. [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) provides a built-in set of validation attributes that are applied declaratively to a class or property. DataAnnotations also contain formatting attributes like `DataType` that help with formatting and don't provide validation.
-
-Update the `Movie` class to take advantage of the `Required`, `StringLength`, `RegularExpression`, and `Range` validation attributes.
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateRatingDA.cs?name=snippet1)]
-
-Validation attributes specify behavior that's enforced on model properties:
-
-* The `Required` and `MinimumLength` attributes indicate that a property must have a value. However, nothing prevents a user from entering whitespace to satisfy the validation constraint for a nullable type. Non-nullable [value types](/dotnet/csharp/language-reference/keywords/value-types) (such as `decimal`, `int`, `float`, and `DateTime`) are inherently required and don't need the `Required` attribute.
-* The `RegularExpression` attribute limits the characters that the user can enter. In the preceding code, `Genre` must start with one or more capital letters and follow with zero or more letters, single or double quotes, whitespace characters, or dashes. `Rating` must start with one or more capital letters and follow with zero or more letters, numbers, single or double quotes, whitespace characters, or dashes.
-* The `Range` attribute constrains a value to a specified range.
-* The `StringLength` attribute sets the maximum length of a string, and optionally the minimum length. 
-
-Having validation rules automatically enforced by ASP.NET Core helps make an app more robust. Automatic validation on models helps protect the app because you don't have to remember to apply them when new code is added.
+[!INCLUDE[](~/includes/RP-MVC/validation.md)]
 
 ### Validation Error UI in Razor Pages
 
@@ -57,7 +41,7 @@ A significant benefit is that **no** code changes were necessary in the Create  
 The form data isn't posted to the server until there are no client-side validation errors. Verify form data isn't posted by one or more of the following approaches:
 
 * Put a break point in the `OnPostAsync` method. Submit the form (select **Create** or **Save**). The break point is never hit.
-* Use the [Fiddler tool](http://www.telerik.com/fiddler).
+* Use the [Fiddler tool](https://www.telerik.com/fiddler).
 * Use the browser developer tools to monitor network traffic.
 
 ### Server-side validation
@@ -100,7 +84,6 @@ The `DataType` Enumeration provides for many data types, such as Date, Time, Pho
 
 `DataType.Date` doesn't specify the format of the date that's displayed. By default, the data field is displayed according to the default formats based on the server's `CultureInfo`.
 
-
 The `[Column(TypeName = "decimal(18, 2)")]` data annotation is required so Entity Framework Core can correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
 The `DisplayFormat` attribute is used to explicitly specify the date format:
@@ -136,7 +119,7 @@ The following code shows combining attributes on one line:
 
 For information on deploying to Azure, see [Tutorial: Build an ASP.NET app in Azure with SQL Database](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase). These instructions are for an ASP.NET app, not an ASP.NET Core app, but the steps are the same.
 
-Thanks for completing this introduction to Razor Pages. We appreciate feedback. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) is an excellent follow up to this tutorial.
+Thanks for completing this introduction to Razor Pages. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) is an excellent follow up to this tutorial.
 
 ## Additional resources
 
@@ -144,6 +127,7 @@ Thanks for completing this introduction to Razor Pages. We appreciate feedback. 
 * <xref:fundamentals/localization>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/authoring>
+* [YouTube version of this tutorial](https://youtu.be/b63m66eu7us)
 
 > [!div class="step-by-step"]
 > [Previous: Adding a new field](xref:tutorials/razor-pages/new-field)

@@ -1,1 +1,0 @@
-var ticker = $.connection.stockTickerMini

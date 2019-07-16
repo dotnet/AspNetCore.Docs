@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn what Tag Helper Components are and how to use them in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: scaddie
-ms.date: 09/18/2018
+ms.date: 06/12/2019
 uid: mvc/views/tag-helpers/th-components
 ---
 # Tag Helper Components in ASP.NET Core
@@ -15,7 +15,7 @@ A Tag Helper Component is a Tag Helper that allows you to conditionally modify o
 
 ASP.NET Core includes two built-in Tag Helper Components: `head` and `body`. They're located in the <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> namespace and can be used in both MVC and Razor Pages. Tag Helper Components don't require registration with the app in *_ViewImports.cshtml*.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Use cases
 
@@ -56,9 +56,16 @@ The preceding code binds a [Bootstrap tooltip widget](https://getbootstrap.com/d
 
 A Tag Helper Component must be added to the app's Tag Helper Components collection. There are three ways to add to the collection:
 
-1. [Registration via services container](#registration-via-services-container)
-1. [Registration via Razor file](#registration-via-razor-file)
-1. [Registration via Page Model or controller](#registration-via-page-model-or-controller)
+* [Tag Helper Components in ASP.NET Core](#tag-helper-components-in-aspnet-core)
+  * [Use cases](#use-cases)
+    * [Inject into HTML head element](#inject-into-html-head-element)
+    * [Inject into HTML body element](#inject-into-html-body-element)
+  * [Register a Component](#register-a-component)
+    * [Registration via services container](#registration-via-services-container)
+    * [Registration via Razor file](#registration-via-razor-file)
+    * [Registration via Page Model or controller](#registration-via-page-model-or-controller)
+  * [Create a Component](#create-a-component)
+  * [Additional resources](#additional-resources)
 
 ### Registration via services container
 

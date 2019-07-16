@@ -1,4 +1,0 @@
-else
-{
-     @:Not Mobile/Get
-}

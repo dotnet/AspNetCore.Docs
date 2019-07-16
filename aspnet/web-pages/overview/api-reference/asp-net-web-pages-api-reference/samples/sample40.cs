@@ -1,1 +1,0 @@
-var userId = WebSecurity.CurrentUserId;

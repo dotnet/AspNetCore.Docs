@@ -1,4 +1,0 @@
-<authorization>
- <deny users="Jisun" />
- <deny users="?" />
-</authorization>

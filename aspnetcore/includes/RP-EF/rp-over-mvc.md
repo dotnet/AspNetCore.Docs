@@ -5,6 +5,3 @@ This tutorial teaches ASP.NET Core MVC and Entity Framework Core with controller
 * Uses more efficient queries.
 * Is more current with the latest API.
 * Covers more features.
-* Is the preferred approach for new application development.
-
-If you choose this tutorial over the [Razor Pages](xref:data/ef-rp/intro) version, let us know why in [this GitHub issue](https://github.com/aspnet/Docs/issues/6146).

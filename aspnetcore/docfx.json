@@ -3,7 +3,8 @@
     "content": [
       {
         "files": [
-          "**/*.md"
+          "**/*.md",
+          "**/*.yml"
         ],
         "exclude": [
           "**/obj/**",
@@ -13,7 +14,8 @@
           "**/includes/**",
           "**/aspnet-core-conceptual/**",
           "_site/**",
-          "***/readme.md"
+          "***/readme.md",
+          "***/license.md"
         ],
         "group": "group1",
         "src": "."
@@ -24,6 +26,7 @@
         "files": [
           "**/*.png",
           "**/*.jpg",
+          "**/*.gif",
           "**/*.svg",
           "**/*.pdf"
         ],
@@ -46,10 +49,11 @@
       "_navPath": "/foo",
       "_navRel": "/foo",
       "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
-      "feedback_github_repo": "aspnet/docs",
+      "feedback_github_repo": "aspnet/AspNetCore.Docs",
       "feedback_product_url": "https://github.com/aspnet/Home/blob/master/CONTRIBUTING.md",
       "feedback_system": "GitHub",
       "ms.prod": "aspnet-core",
+      "uhfHeaderId": "MSDocsHeader-DotNet",
       "searchScope": [
         "ASP.NET Core"
       ]
@@ -58,9 +62,11 @@
       "ms.technology": {
         "azure/**/**.md": "aspnetcore-azure",
         "client-side/**/**.md": "aspnetcore-clientside",
+        "blazor/**/**.md": "aspnetcore-blazor",
         "data/**/**.md": "aspnetcore-data",
         "fundamentals/**/**.md": "aspnetcore-fundamentals",
         "getting-started/**/**.md": "aspnetcore-getstarted",
+        "grpc/**/**.md": "aspnetcore-grpc",
         "host-and-deploy/**/**.md": "aspnetcore-hostdeploy",
         "index.md": "aspnetcore",
         "migration/**/**.md": "aspnetcore-migration",
@@ -77,10 +83,12 @@
       },
       "ms.topic": {
         "azure/**/**.md": "conceptual",
+        "blazor/**/**.md": "conceptual",
         "client-side/**/**.md": "conceptual",
         "data/**/**.md": "conceptual",
         "fundamentals/**/**.md": "conceptual",
         "getting-started/**/**.md": "tutorial",
+        "grpc/**/**.md": "conceptual",
         "host-and-deploy/**/**.md": "conceptual",
         "index.md": "conceptual",
         "migration/**/**.md": "conceptual",

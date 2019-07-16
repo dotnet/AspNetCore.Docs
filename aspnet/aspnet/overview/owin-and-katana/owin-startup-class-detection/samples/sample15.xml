@@ -1,3 +1,0 @@
-<add key="owin:appStartup" value="StartupDemo.ProductionStartup" />
-<add key="owin:appStartup" value="StartupDemo.ProductionStartup, StartupDemo" />
-<add key="owin:appStartup" value="StartupDemo.ProductionStartup.Configuration, StartupDemo" />

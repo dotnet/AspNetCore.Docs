@@ -26,7 +26,11 @@ namespace TagHelpersBuiltIn
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            #region snippet_AllowAreas
+            services.AddMvc()
+                    .AddRazorPagesOptions(options => options.AllowAreas = true);
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +54,7 @@ namespace TagHelpersBuiltIn
             app.UseMvc(routes =>
             {
                 // need route and attribute on controller: [Area("Blogs")]
-                routes.MapRoute(name: "areaRoute",
+                routes.MapRoute(name: "mvcAreaRoute",
                                 template: "{area:exists}/{controller=Home}/{action=Index}");
 
                 // default route for non-areas

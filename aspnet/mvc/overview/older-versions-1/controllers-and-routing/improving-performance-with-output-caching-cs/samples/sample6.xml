@@ -1,7 +1,0 @@
-<caching>
-<outputCacheSettings>
-    <outputCacheProfiles>
-        <add name="Cache1Hour" duration="3600" varyByParam="none"/>
-    </outputCacheProfiles>
-</outputCacheSettings>
-</caching>

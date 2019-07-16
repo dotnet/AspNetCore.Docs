@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<configuration>
- <system.web>
- ... Additional configuration markup removed for brevity ...
-
- <roleManager enabled="true" />
- <system.web>
-</configuration>

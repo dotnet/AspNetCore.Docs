@@ -25,7 +25,6 @@ We cover these concepts in this tutorial series and show you how to use them to 
 
 ## Add a controller
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 * In **Solution Explorer**, right-click **Controllers > Add > Controller**
@@ -37,14 +36,12 @@ We cover these concepts in this tutorial series and show you how to use them to 
 
 * In the **Add Empty MVC Controller dialog**, enter **HelloWorldController** and select **ADD**.
 
-<!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file *HelloWorldController.cs*.
 
   ![Contextual menu](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_file.png)
 
-<!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 In **Solution Explorer**, right-click **Controllers > Add > New File**.
@@ -57,7 +54,6 @@ Name the controller **HelloWorldController**.
 ![Add MVC controller and name it](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac.png)
 
 ---
-<!-- End of VS tabs -->
 
 Replace the contents of *Controllers/HelloWorldController.cs* with the following:
 
@@ -67,7 +63,7 @@ Every `public` method in a controller is callable as an HTTP endpoint. In the sa
 
 An HTTP endpoint is a targetable URL in the web application, such as `https://localhost:5001/HelloWorld`, and combines the protocol used: `HTTPS`, the network location of the web server (including the TCP port): `localhost:5001` and the target URI `HelloWorld`.
 
-The first comment states this is an [HTTP GET](https://www.w3schools.com/tags/ref_httpmethods.asp) method that's invoked by appending `/HelloWorld/` to the base URL. The second comment specifies an [HTTP GET](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) method that's invoked by appending `/HelloWorld/Welcome/` to the URL. Later on in the tutorial the scaffolding engine is used to generate `HTTP POST` methods which update data.
+The first comment states this is an [HTTP GET](https://www.w3schools.com/tags/ref_httpmethods.asp) method that's invoked by appending `/HelloWorld/` to the base URL. The second comment specifies an [HTTP GET](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) method that's invoked by appending `/HelloWorld/Welcome/` to the URL. Later on in the tutorial the scaffolding engine is used to generate `HTTP POST` methods which update data.
 
 Run the app in non-debug mode and append "HelloWorld" to the path in the address bar. The `Index` method returns a string.
 
@@ -101,7 +97,7 @@ Modify the code to pass some parameter information from the URL to the controlle
 The preceding code:
 
 * Uses the C# optional-parameter feature to indicate that the `numTimes` parameter defaults to 1 if no value is passed for that parameter. <!-- remove for simplified -->
-* Uses`HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript).
+* Uses `HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript).
 * Uses [Interpolated Strings](/dotnet/articles/csharp/language-reference/keywords/interpolated-strings) in `$"Hello {name}, NumTimes is: {numTimes}"`. <!-- remove for simplified -->
 
 Run the app and browse to:
@@ -125,7 +121,6 @@ This time the third URL segment matched the route parameter `id`. The `Welcome` 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
 
 In these examples the controller has been doing the "VC" portion of MVC - that is, the view and controller work. The controller is returning HTML directly. Generally you don't want controllers returning HTML directly, since that becomes very cumbersome to code and maintain. Instead you typically use a separate Razor view template file to help generate the HTML response. You do that in the next tutorial.
-
 
 > [!div class="step-by-step"]
 > [Previous](start-mvc.md)

@@ -1,1 +1,0 @@
-private SchoolContext db = new SchoolContext();

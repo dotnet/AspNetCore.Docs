@@ -1,8 +1,0 @@
-[project name].deploy.cmd [/T | /Y]
-                          [/M:<computer name>]
-                          [/A:<Basic | NTLM>]
-                          [/U:<user name>]
-                          [/P:<password>]
-                          [/L]
-                          [/G:<true | false>]
-                          [Additional MSDeploy.exe flags]

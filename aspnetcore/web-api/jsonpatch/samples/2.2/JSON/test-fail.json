@@ -1,0 +1,12 @@
+[
+  {
+    "op": "test",
+    "path": "/customerName",
+    "value": "Nancy"
+  },
+  {
+    "op": "add",
+    "path": "/customerName",
+    "value": "Barry"
+  }
+]

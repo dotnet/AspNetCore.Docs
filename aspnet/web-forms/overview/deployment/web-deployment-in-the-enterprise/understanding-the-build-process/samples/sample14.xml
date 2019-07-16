@@ -1,9 +1,0 @@
-<PropertyGroup>
-   <_Cmd>
-      %(PublishPackages.FullPath) 
-      $(_WhatifSwitch) 
-      /M:$(MSDeployComputerName) 
-      %(PublishPackages.AdditionalMSDeployParameters)
-   </_Cmd>
-</PropertyGroup>
-<Exec Command="$(_Cmd)"/>

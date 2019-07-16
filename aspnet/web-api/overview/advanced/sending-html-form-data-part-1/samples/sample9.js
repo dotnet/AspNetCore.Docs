@@ -1,1 +1,0 @@
-$.post('api/updates/simple', { "": $('#status1').val() });

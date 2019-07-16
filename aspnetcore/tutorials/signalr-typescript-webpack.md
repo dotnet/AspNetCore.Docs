@@ -2,9 +2,9 @@
 title: Use ASP.NET Core SignalR with TypeScript and Webpack
 author: ssougnez
 description: In this tutorial, you configure Webpack to bundle and build an ASP.NET Core SignalR web app whose client is written in TypeScript.
-ms.author: scaddie
+ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/30/2018
+ms.date: 04/23/2019
 uid: tutorials/signalr-typescript-webpack
 ---
 # Use ASP.NET Core SignalR with TypeScript and Webpack
@@ -22,9 +22,24 @@ In this tutorial, you learn how to:
 > * Configure the SignalR server
 > * Enable communication between client and server
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([how to download](xref:index#how-to-download-a-sample))
 
-[!INCLUDE [Prerequisites](~/includes/net-core-prereqs-vs-vsc-2.2.md)]
+## Prerequisites
+
+# [Visual Studio](#tab/visual-studio)
+
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
+* [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
+* [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* [Visual Studio Code](https://code.visualstudio.com/download)
+* [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
+* [C# for Visual Studio Code version 1.17.1 or later](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
+* [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
+
+---
 
 ## Create the ASP.NET Core web app
 
@@ -74,13 +89,13 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 1. Install the required npm packages. Execute the following command from the project root:
 
     ```console
-    npm install -D -E clean-webpack-plugin@0.1.19 css-loader@0.28.11 html-webpack-plugin@3.2.0 mini-css-extract-plugin@0.4.0 ts-loader@4.4.1 typescript@2.9.2 webpack@4.12.0 webpack-cli@3.0.6
+    npm install -D -E clean-webpack-plugin@1.0.1 css-loader@2.1.0 html-webpack-plugin@4.0.0-beta.5 mini-css-extract-plugin@0.5.0 ts-loader@5.3.3 typescript@3.3.3 webpack@4.29.3 webpack-cli@3.2.3
     ```
 
     Some command details to note:
 
     * A version number follows the `@` sign for each package name. npm installs those specific package versions.
-    * The `-E` option disables npm's default behavior of writing [semantic versioning](https://semver.org/) range operators to *package.json*. For example, `"webpack": "4.12.0"` is used instead of `"webpack": "^4.12.0"`. This option prevents unintended upgrades to newer package versions.
+    * The `-E` option disables npm's default behavior of writing [semantic versioning](https://semver.org/) range operators to *package.json*. For example, `"webpack": "4.29.3"` is used instead of `"webpack": "^4.29.3"`. This option prevents unintended upgrades to newer package versions.
 
     See the official [npm-install](https://docs.npmjs.com/cli/install) docs for more detail.
 

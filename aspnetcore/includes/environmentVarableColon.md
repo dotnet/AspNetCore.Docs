@@ -1,0 +1,1 @@
+When working with hierarchical keys in environment variables, a colon separator (`:`) may not work on all platforms (for example, Bash). A double underscore (`__`) is supported by all platforms and is replaced by a colon.

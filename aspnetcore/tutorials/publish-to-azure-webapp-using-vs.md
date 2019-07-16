@@ -9,7 +9,7 @@ uid: tutorials/publish-to-azure-webapp-using-vs
 ---
 # Publish an ASP.NET Core app to Azure with Visual Studio
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Cesar Blum Silveira](https://github.com/cesarbs)
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
@@ -121,7 +121,7 @@ Visual Studio returns to the **Create App Service** dialog.
 
 ![Configure SQL Database dialog](publish-to-azure-webapp-using-vs/_static/conf_final.png)
 
-Visual Studio creates the Web app and SQL Server on Azure. This step can take a few minutes. For information on the resources created, see [Additional resources](#additonal-resources).
+Visual Studio creates the Web app and SQL Server on Azure. This step can take a few minutes. For information on the resources created, see [Additional resources](#additional-resources).
 
 When deployment completes, select **Settings**:
 
@@ -129,8 +129,8 @@ When deployment completes, select **Settings**:
 
 On the **Settings** page of the **Publish** dialog:
 
-  * Expand **Databases** and check **Use this connection string at runtime**.
-  * Expand **Entity Framework Migrations** and check **Apply this migration on publish**.
+* Expand **Databases** and check **Use this connection string at runtime**.
+* Expand **Entity Framework Migrations** and check **Apply this migration on publish**.
 
 * Select **Save**. Visual Studio returns to the **Publish** dialog. 
 
@@ -149,6 +149,7 @@ Click **Publish**. Visual Studio publishes your app to Azure. When the deploymen
 ### Update the app
 
 * Edit the *Pages/About.cshtml* Razor page and change its contents. For example, you can modify the paragraph to say "Hello ASP.NET Core!":
+
     [!code-html[About](publish-to-azure-webapp-using-vs/sample/about.cshtml?highlight=9&range=1-9)]
 
 * Right-click on the project and select **Publish...** again.
@@ -177,8 +178,9 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 
 * <xref:host-and-deploy/azure-apps/azure-continuous-deployment>
 
-## Additonal resources
+## Additional resources
 
+* For Visual Studio Code, see [Publish profiles](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles).
 * [Azure App Service](/azure/app-service/app-service-web-overview)
 * [Azure resource groups](/azure/azure-resource-manager/resource-group-overview#resource-groups)
 * [Azure SQL Database](/azure/sql-database/)

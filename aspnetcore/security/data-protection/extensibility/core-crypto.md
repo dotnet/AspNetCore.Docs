@@ -3,7 +3,7 @@ title: Core cryptography extensibility in ASP.NET Core
 author: rick-anderson
 description: Learn about IAuthenticatedEncryptor, IAuthenticatedEncryptorDescriptor, IAuthenticatedEncryptorDescriptorDeserializer, and the top-level factory.
 ms.author: riande
-ms.date: 8/11/2017
+ms.date: 08/11/2017
 uid: security/data-protection/extensibility/core-crypto
 ---
 # Core cryptography extensibility in ASP.NET Core
@@ -21,9 +21,9 @@ The **IAuthenticatedEncryptor** interface is the basic building block of the cry
 
 As its name suggests, the type is responsible for providing authenticated encryption and decryption services. It exposes the following two APIs.
 
-* Decrypt(ArraySegment<byte> ciphertext, ArraySegment<byte> additionalAuthenticatedData) : byte[]
+* `Decrypt(ArraySegment<byte> ciphertext, ArraySegment<byte> additionalAuthenticatedData) : byte[]`
 
-* Encrypt(ArraySegment<byte> plaintext, ArraySegment<byte> additionalAuthenticatedData) : byte[]
+* `Encrypt(ArraySegment<byte> plaintext, ArraySegment<byte> additionalAuthenticatedData) : byte[]`
 
 The Encrypt method returns a blob that includes the enciphered plaintext and an authentication tag. The authentication tag must encompass the additional authenticated data (AAD), though the AAD itself need not be recoverable from the final payload. The Decrypt method validates the authentication tag and returns the deciphered payload. All failures (except ArgumentNullException and similar) should be homogenized to CryptographicException.
 

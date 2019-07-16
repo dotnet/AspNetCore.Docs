@@ -1,1 +1,0 @@
-$.connection.hub.url = '<yourbackendurl>;

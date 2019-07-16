@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.DataProtection.XmlEncryption;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 public class Program
 {
@@ -40,7 +41,7 @@ public class Program
             _escrowEncryptor = new DpapiNGXmlEncryptor(
                 "SID=S-1-5-21-1004336348-1177238915-682003330-512",
                 DpapiNGProtectionDescriptorFlags.None,
-                services);
+                new LoggerFactory());
         }
 
         public void Store(Guid keyId, XElement element)

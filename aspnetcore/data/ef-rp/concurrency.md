@@ -4,7 +4,7 @@ author: rick-anderson
 description: This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/07/2018
+ms.date: 05/31/2019
 uid: data/ef-rp/concurrency
 ---
 # Razor Pages with EF Core in ASP.NET Core - Concurrency - 8 of 8
@@ -13,7 +13,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://githu
 
 [!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
-This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time). If you run into problems you can't solve, [download or view the completed app.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
+This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time). If you run into problems you can't solve, [download or view the completed app.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
 ## Concurrency conflicts
 
@@ -89,9 +89,9 @@ To detect concurrency conflicts, a [rowversion](/sql/t-sql/data-types/rowversion
 
 The DB generates a sequential `rowversion` number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched value of `rowversion`. If the row being updated has changed:
 
- * `rowversion` doesn't match the fetched value.
- * The `Update` or `Delete` commands don't find a row because the `Where` clause includes the fetched `rowversion`.
- * A `DbUpdateConcurrencyException` is thrown.
+* `rowversion` doesn't match the fetched value.
+* The `Update` or `Delete` commands don't find a row because the `Where` clause includes the fetched `rowversion`.
+* A `DbUpdateConcurrencyException` is thrown.
 
 In EF Core, when no rows have been updated by an `Update` or `Delete` command, a concurrency exception is thrown.
 
@@ -146,6 +146,7 @@ The preceding commands:
 * Runs migrations to update the DB.
 
 <a name="scaffold"></a>
+
 ## Scaffold the Departments model
 
 # [Visual Studio](#tab/visual-studio) 
@@ -160,7 +161,7 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
   ```
 
-------
+---
 
 The preceding command scaffolds the `Department` model. Open the project in Visual Studio.
 
@@ -182,7 +183,7 @@ The following markup shows the updated page:
 
 ### Update the Edit page model
 
-Update *pages\departments\edit.cshtml.cs* with the following code:
+Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet)]
 
@@ -196,7 +197,7 @@ The following code gets the client values (the values posted to this method) and
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_try&highlight=9,18)]
 
-The follwing code adds a custom error message for each column that has DB values different from what was posted to `OnPostAsync`:
+The following code adds a custom error message for each column that has DB values different from what was posted to `OnPostAsync`:
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_err)]
 
@@ -267,7 +268,6 @@ Update *Pages/Departments/Delete.cshtml* with the following code:
 
 [!code-html[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
 
-
 The preceding markup makes the following changes:
 
 * Updates the `page` directive from `@page` to `@page "{id:int}"`.
@@ -300,6 +300,9 @@ See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 
 * [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
 * [Handle concurrency in EF Core](/ef/core/saving/concurrency)
+* [YouTube version of this tutorial(Handling Concurrency Conflicts)](https://youtu.be/EosxHTFgYps)
+* [YouTube version of this tutorial(Part 2)](https://www.youtube.com/watch?v=kcxERLnaGO0)
+* [YouTube version of this tutorial(Part 3)](https://www.youtube.com/watch?v=d4RbpfvELRs)
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/update-related-data)

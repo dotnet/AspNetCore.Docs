@@ -25,7 +25,7 @@ namespace AspNetCoreDotNetFx2._0App.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
-        private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}";
+        private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}";
 
         public ManageController(
           UserManager<ApplicationUser> userManager,
@@ -491,7 +491,7 @@ namespace AspNetCoreDotNetFx2._0App.Controllers
         private string GenerateQrCodeUri(string email, string unformattedKey)
         {
             return string.Format(
-                AuthenicatorUriFormat,
+                AuthenticatorUriFormat,
                 "AspNetCoreDotNetFx2._0App",
                 email,
                 unformattedKey);

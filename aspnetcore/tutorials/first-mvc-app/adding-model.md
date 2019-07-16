@@ -3,7 +3,7 @@ title: Add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
 ms.author: riande
-ms.date: 12/8/2017
+ms.date: 02/25/2019
 uid: tutorials/first-mvc-app/adding-model
 ---
 
@@ -21,14 +21,12 @@ In this tutorial, you write the model classes first, and EF Core creates the dat
 
 ## Add a data model class
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
 
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 
-<!-- Code -------------------------->
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * Add a class to the *Models* folder named *Movie.cs*.
@@ -36,14 +34,12 @@ Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 [!INCLUDE [model 2](~/includes/mvc-intro/model2.md)]
 
----  
-<!-- End of VS tabs -->
+---
 
 ## Scaffold the movie model
 
 In this section, the movie model is scaffolded. That is, the scaffolding tool produces pages for Create, Read, Update, and Delete (CRUD) operations for the movie model.
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 In **Solution Explorer**, right-click the *Controllers* folder **> Add > New Scaffolded Item**.
@@ -71,11 +67,10 @@ Visual Studio creates:
 
 * An Entity Framework Core [database context class](xref:data/ef-mvc/intro#create-the-database-context) (*Data/MvcMovieContext.cs*)
 * A movies controller (*Controllers/MoviesController.cs*)
-* Razor view files for Create, Delete, Details, Edit, and Index pages (<em>Views/Movies/&ast;.cshtml</em>)
+* Razor view files for Create, Delete, Details, Edit, and Index pages (*Views/Movies/\*.cshtml*)
 
 The automatic creation of the database context and [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*.
 
-<!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
 
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
@@ -136,75 +131,65 @@ You need to create the database, and you use the EF Core [Migrations](xref:data/
 
 ## Initial migration
 
-<!-- VS -------------------------->
-
-# [Visual Studio](#tab/visual-studio)
-
-In this section, the Package Manager Console (PMC) is used to:
+In this section, the following tasks are completed:
 
 * Add an initial migration.
 * Update the database with the initial migration.
 
-From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
+# [Visual Studio](#tab/visual-studio)
 
-  ![PMC menu](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
+1. From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
 
-In the PMC, enter the following commands:
+   ![PMC menu](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
 
-```PMC
-Add-Migration Initial
-Update-Database
-```
+1. In the PMC, enter the following commands:
 
-The `Add-Migration` command generates code to create the initial database schema.
-<!-- Code -------------------------->
+   ```console
+   Add-Migration Initial
+   Update-Database
+   ```
+
+   The `Add-Migration` command generates code to create the initial database schema.
+
+   The database schema is based on the model specified in the `MvcMovieContext` class. The `Initial` argument is the migration name. Any name can be used, but by convention, a name that describes the migration is used. For more information, see <xref:data/ef-mvc/migrations>.
+
+   The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE [initial migration](~/includes/RP/model3.md)]
+
 The `ef migrations add InitialCreate` command generates code to create the initial database schema.
 
----  
-<!-- End of VS tabs -->
+The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file). The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration.
 
-The schema is based on the model specified in the `DbContext` (In the *Models/MvcMovieContext.cs* file). The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
-
-The `ef database update` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file. The `Up` method creates the database.
-
-<!-- VS -------------------------->
-
-# [Visual Studio](#tab/visual-studio)
+---
 
 ## Examine the context registered with dependency injection
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with DI during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
 
-The scaffolding tool automatically created a DB context and registered it with the dependency injection container.
+# [Visual Studio](#tab/visual-studio)
 
-Examine the `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
+The scaffolding tool automatically created a DB context and registered it with the DI container.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
+Examine the following `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=14-15)]
 
 The `MvcMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The data context (`MvcMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The data context specifies which entities are included in the data model:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Data/MvcMovieContext.cs)]
 
-The preceding code creates a [`DbSet<Movie>`](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
+The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
-<!-- Code -------------------------->
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
-
-You created a DB context and registered it with the dependency injection container.
+You created a DB context and registered it with the DI container.
 
 ---
-
-The schema is based on the model specified in the `MvcMovieContext` (In the *Data/MvcMovieContext.cs* file). The `Initial` argument is used to name the migrations. Any name can be used, but by convention a name that describes the migration is used. See [Introduction to migrations](xref:data/ef-mvc/migrations#introduction-to-migrations) for more information.
-
-The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
 <a name="test"></a>
 
@@ -221,10 +206,10 @@ Login failed for user 'User-name'.
 
 You missed the [migrations step](#pmc).
 
-* Test the **Create** link.
+* Test the **Create** link. Enter and submit data.
 
   > [!NOTE]
-  > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/aspnet/Docs/issues/4076#issuecomment-326590420).
+  > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
 * Test the **Edit**, **Details**, and **Delete** links.
 
@@ -243,7 +228,7 @@ Open the *Controllers/MoviesController.cs* file and examine the constructor:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
-The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext `) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 <a name="strongly-typed-models-keyword-label"></a>
 <a name="strongly-typed-models-and-the--keyword"></a>
@@ -318,4 +303,4 @@ Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object)
 
 > [!div class="step-by-step"]
 > [Previous Adding a View](adding-view.md)
-> [Next Working with SQL](working-with-sql.md)  
+> [Next Working with SQL](working-with-sql.md)

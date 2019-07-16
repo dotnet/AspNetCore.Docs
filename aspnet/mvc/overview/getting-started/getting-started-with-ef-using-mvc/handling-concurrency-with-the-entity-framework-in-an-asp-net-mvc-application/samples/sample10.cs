@@ -1,3 +1,0 @@
-if (databaseValues.Name != currentValues.Name)
-    ModelState.AddModelError("Name", "Current value: " + databaseValues.Name);
-    // ...

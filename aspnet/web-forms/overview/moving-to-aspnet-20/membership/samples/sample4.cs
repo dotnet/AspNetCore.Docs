@@ -1,1 +1,0 @@
-string[] userRoles = ((RolePrincipal)User).GetRoles();

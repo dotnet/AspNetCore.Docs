@@ -1,1 +1,0 @@
-config.Services.Replace(typeof(ITraceManager), new MyTraceManager());

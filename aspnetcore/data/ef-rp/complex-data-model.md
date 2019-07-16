@@ -10,10 +10,6 @@ uid: data/ef-rp/complex-data-model
 
 # Razor Pages with EF Core in ASP.NET Core - Data Model - 5 of 8
 
-[!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
-
-::: moniker range=">= aspnetcore-2.1"
-
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
@@ -28,7 +24,7 @@ The entity classes for the completed data model is shown in the following illust
 ![Entity diagram](complex-data-model/_static/diagram.png)
 
 If you run into problems you can't solve, download the [completed app](
-https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
+https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
 ## Customize the data model with attributes
 
@@ -138,7 +134,7 @@ dotnet ef migrations add ColumnFirstName
 dotnet ef database update
 ```
 
-------
+---
 
 The `migrations add ColumnFirstName` command generates the following warning message:
 
@@ -219,8 +215,8 @@ If a navigation property holds multiple entities:
 Navigation property types include:
 
 * `ICollection<T>`
-*  `List<T>`
-*  `HashSet<T>`
+* `List<T>`
+* `HashSet<T>`
 
 If `ICollection<T>` is specified, EF Core creates a `HashSet<T>` collection by default.
 
@@ -263,7 +259,6 @@ The `OfficeAssignment` navigation property for the `Instructor` entity is nullab
 
 * Reference types (such as classes are nullable).
 * An instructor might not have an office assignment.
-
 
 The `OfficeAssignment` entity has a non-nullable `Instructor` navigation property because:
 
@@ -383,19 +378,18 @@ public ICollection<Course> Courses { get; set; }
 
 Note: By convention, EF Core enables cascade delete for non-nullable FKs and for many-to-many relationships. Cascading delete can result in circular cascade delete rules. Circular cascade delete rules causes an exception when a migration is added.
 
-For example, if the `Department.InstructorID` property wasn't defined as nullable:
+For example, if the `Department.InstructorID` property was defined as non-nullable:
 
-* EF Core configures a cascade delete rule to delete the instructor when the department is deleted.
-* Deleting the instructor when the department is deleted isn't the intended behavior.
+* EF Core configures a cascade delete rule to delete the department when the instructor is deleted.
+* Deleting the department when the instructor is deleted isn't the intended behavior.
+* The following fluent API would set a restrict rule instead of cascade.
 
-If business rules required the `InstructorID` property be non-nullable, use the following fluent API statement:
-
- ```csharp
- modelBuilder.Entity<Department>()
-    .HasOne(d => d.Administrator)
-    .WithMany()
-    .OnDelete(DeleteBehavior.Restrict)
- ```
+   ```csharp
+   modelBuilder.Entity<Department>()
+      .HasOne(d => d.Administrator)
+      .WithMany()
+      .OnDelete(DeleteBehavior.Restrict)
+  ```
 
 The preceding code disables cascade delete on the department-instructor relationship.
 
@@ -489,7 +483,7 @@ The preceding code adds the new entities and configures the `CourseAssignment` e
 
 ## Fluent API alternative to attributes
 
-The `OnModelCreating` method in the preceding code uses the *fluent API* to configure EF Core behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement. The [following code](/ef/core/modeling/#methods-of-configuration) is an example of the fluent API:
+The `OnModelCreating` method in the preceding code uses the *fluent API* to configure EF Core behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement. The [following code](/ef/core/modeling/#use-fluent-api-to-configure-a-model) is an example of the fluent API:
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -515,7 +509,7 @@ Some of the attributes used in the this tutorial are used for:
 * EF Core configuration only (for example, `HasKey`).
 * Validation and EF Core configuration (for example, `[StringLength(50)]`).
 
-For more information about attributes vs. fluent API, see [Methods of configuration](/ef/core/modeling/#methods-of-configuration).
+For more information about attributes vs. fluent API, see [Methods of configuration](/ef/core/modeling/).
 
 ## Entity Diagram Showing Relationships
 
@@ -535,10 +529,7 @@ Update the code in *Data/DbInitializer.cs*:
 
 [!code-csharp[](intro/samples/cu21/Data/DbInitializer.cs?name=snippet_Final)]
 
-The preceding code provides seed data for the new entities. Most of this code creates new entity objects and loads sample data. The sample data is used for testing. The preceding code creates the following many-to-many relationships:
-
-* `Enrollments`
-* `CourseAssignment`
+The preceding code provides seed data for the new entities. Most of this code creates new entity objects and loads sample data. The sample data is used for testing. See `Enrollments` and `CourseAssignments` for examples of how many-to-many join tables can be seeded.
 
 ## Add a migration
 
@@ -556,7 +547,7 @@ Add-Migration ComplexDataModel
 dotnet ef migrations add ComplexDataModel
 ```
 
-------
+---
 
 The preceding command displays a warning about possible data loss.
 
@@ -608,7 +599,7 @@ Enter the following in the command window:
 dotnet ef database update
  ```
 
-------
+---
 
 Run the app. Running the app runs the `DbInitializer.Initialize` method. The `DbInitializer.Initialize` populates the new DB.
 
@@ -655,6 +646,7 @@ Update the `ComplexDataModel` classes `Up` method:
 [!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CommentOut&highlight=9-13)]
 
 Add the following highlighted code. The new code goes after the `.CreateTable( name: "Department"` block:
+
  [!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
 
 With the preceding changes, existing `Course` rows will be related to the "Temp" department after the `ComplexDataModel` `Up` method runs.
@@ -666,7 +658,12 @@ A production app would:
 
 The next tutorial covers related data.
 
-::: moniker-end
+## Additional resources
+
+* [YouTube version of this tutorial(Part 1)](https://www.youtube.com/watch?v=0n2f0ObgCoA)
+* [YouTube version of this tutorial(Part 2)](https://www.youtube.com/watch?v=Je0Z5K1TNmY)
+
+
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/migrations)

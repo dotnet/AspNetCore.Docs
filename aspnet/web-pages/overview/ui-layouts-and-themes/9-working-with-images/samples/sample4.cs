@@ -1,1 +1,0 @@
-Path.GetFileName(photo.FileName)

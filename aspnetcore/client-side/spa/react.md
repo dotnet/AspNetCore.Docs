@@ -2,20 +2,13 @@
 title: Use the React project template with ASP.NET Core
 author: SteveSandersonMS
 description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for React and create-react-app.
-monikerRange: '>= aspnetcore-2.0'
+monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/21/2018
+ms.date: 03/07/2019
 uid: spa/react
 ---
 # Use the React project template with ASP.NET Core
-
-::: moniker range="= aspnetcore-2.0"
-
-> [!NOTE]
-> This documentation isn't about the React project template included in ASP.NET Core 2.0. It's about the newer React template to which you can update manually. The template is included in ASP.NET Core 2.1 by default.
-
-::: moniker-end
 
 The updated React project template provides a convenient starting point for ASP.NET Core apps using React and [create-react-app](https://github.com/facebookincubator/create-react-app) (CRA) conventions to implement a rich, client-side user interface (UI).
 
@@ -23,17 +16,7 @@ The template is equivalent to creating both an ASP.NET Core project to act as an
 
 ## Create a new app
 
-::: moniker range="= aspnetcore-2.0"
-
-If using ASP.NET Core 2.0, ensure you've [installed the updated React project template](xref:spa/index#installation).
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
 If you have ASP.NET Core 2.1 installed, there's no need to install the React project template.
-
-::: moniker-end
 
 Create a new project from a command prompt using the command `dotnet new react` in an empty directory. For example, the following commands create the app in a *my-new-app* directory and switch to that directory:
 
@@ -91,17 +74,32 @@ The project is configured to start its own instance of the CRA development serve
 
 There's a drawback to this default setup. Each time you modify your C# code and your ASP.NET Core app needs to restart, the CRA server restarts. A few seconds are required to start back up. If you're making frequent C# code edits and don't want to wait for the CRA server to restart, run the CRA server externally, independently of the ASP.NET Core process. To do so:
 
-1. In a command prompt, switch to the *ClientApp* subdirectory, and launch the CRA development server:
+1. Add a *.env* file to the *ClientApp* subdirectory with the following setting:
+
+    ```
+    BROWSER=none
+    ```
+
+    This will prevent your web browser from opening when starting the CRA server externally.
+
+2. In a command prompt, switch to the *ClientApp* subdirectory, and launch the CRA development server:
 
     ```console
     cd ClientApp
     npm start
     ```
 
-2. Modify your ASP.NET Core app to use the external CRA server instance instead of launching one of its own. In your *Startup* class, replace the `spa.UseReactDevelopmentServer` invocation with the following:
+3. Modify your ASP.NET Core app to use the external CRA server instance instead of launching one of its own. In your *Startup* class, replace the `spa.UseReactDevelopmentServer` invocation with the following:
 
     ```csharp
     spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
     ```
 
 When you start your ASP.NET Core app, it won't launch a CRA server. The instance you started manually is used instead. This enables it to start and restart faster. It's no longer waiting for your React app to rebuild each time.
+
+> [!IMPORTANT]
+> "Server-side rendering" is not a supported feature of this template. Our goal with this template is to meet parity with "create-react-app". As such, scenarios and features not included in a "create-react-app" project (such as SSR) are not supported and are left as an exercise for the user.
+
+## Additional resources
+
+* <xref:security/authentication/identity/spa>

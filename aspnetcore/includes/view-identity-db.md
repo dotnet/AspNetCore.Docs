@@ -9,6 +9,6 @@
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-There are many third party tools you can download to manage and view a SQLite database, for example [DB Browser for SQLite](http://sqlitebrowser.org/).
+There are many third party tools you can download to manage and view a SQLite database, for example [DB Browser for SQLite](https://sqlitebrowser.org/).
 
-------
+---

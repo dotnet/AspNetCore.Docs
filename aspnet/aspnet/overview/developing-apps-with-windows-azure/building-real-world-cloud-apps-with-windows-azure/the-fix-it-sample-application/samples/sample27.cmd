@@ -1,1 +1,0 @@
-PS C:\Sample Apps\FixIt\Automation> Get-Help -Full .\New-AzureWebsiteEnv.ps1

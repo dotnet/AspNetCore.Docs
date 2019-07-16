@@ -1,2 +1,0 @@
-if (!Page.IsValid)
-    return;

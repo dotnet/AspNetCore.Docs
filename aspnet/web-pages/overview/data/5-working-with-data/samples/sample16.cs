@@ -1,1 +1,0 @@
-var row = db.QuerySingle(selectQueryString, ProductId);

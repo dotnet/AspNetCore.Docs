@@ -19,11 +19,10 @@ Currently the `Index` method returns a string with a message that's hard-coded i
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_4)]
 
-The preceding code returns a `View` object. It uses a view template to generate an HTML response to the browser. Controller methods (also known as action methods) such as the `Index` method above, generally return an [IActionResult](/dotnet/api/microsoft.aspnetcore.mvc.iactionresult) (or a class derived from `ActionResult`), not a type like string.
+The preceding code calls the controller's <xref:Microsoft.AspNetCore.Mvc.Controller.View*> method. It uses a view template to generate an HTML response. Controller methods (also known as *action methods*), such as the `Index` method above, generally return an <xref:Microsoft.AspNetCore.Mvc.IActionResult> (or a class derived from <xref:Microsoft.AspNetCore.Mvc.ActionResult>), not a type like `string`.
 
 ## Add a view
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 * Right click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
@@ -42,7 +41,6 @@ The preceding code returns a `View` object. It uses a view template to generate 
 
 ![Add New Item dialog](adding-view/_static/add_view.png)
 
-<!-- Code -------------------------->
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Add an `Index` view for the `HelloWorldController`.
@@ -50,7 +48,6 @@ Add an `Index` view for the `HelloWorldController`.
 * Add a new folder named *Views/HelloWorld*.
 * Add a new file to the *Views/HelloWorld* folder name *Index.cshtml*.
 
-<!-- Mac -------------------------->
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Right click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
@@ -64,14 +61,13 @@ Add an `Index` view for the `HelloWorldController`.
 
 ![Add New Item dialog](adding-view/_static/add_view.png)
 
----  
-<!-- End of VS tabs -->
+---
 
 Replace the contents of the *Views/HelloWorld/Index.cshtml* Razor view file with the following:
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Navigate to `https://localhost:xxxx/HelloWorld`. The `Index` method in the `HelloWorldController` didn't do much; it ran the statement `return View();`, which specified that the method should use a view template file to render a response to the browser. Because you didn't explicitly specify the name of the view template file, MVC defaulted to using the *Index.cshtml* view file in the */Views/HelloWorld* folder. The image below shows the string "Hello from our View Template!" hard-coded in the view.
+Navigate to `https://localhost:xxxx/HelloWorld`. The `Index` method in the `HelloWorldController` didn't do much; it ran the statement `return View();`, which specified that the method should use a view template file to render a response to the browser. Because a view template file name wasn't specified, MVC defaulted to using the default view file. The default view file has the same name as the method (`Index`), so in the */Views/HelloWorld/Index.cshtml* is used. The image below shows the string "Hello from our View Template!" hard-coded in the view.
 
 ![Browser window](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
@@ -81,14 +77,14 @@ Select the menu links (**MvcMovie**, **Home**, and **Privacy**). Each page shows
 
 [Layout](xref:mvc/views/layout) templates allow you to specify the HTML container layout of your site in one place and then apply it across multiple pages in your site. Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the view-specific pages you create show up, *wrapped* in the layout page. For example, if you select the **Privacy** link, the **Views/Home/Privacy.cshtml** view is rendered inside the `RenderBody` method.
 
-## Change the title and menu link in the layout file
+## Change the title, footer, and menu link in the layout file
 
-* In the title element, change `MvcMovie` to `Movie App`.
+* In the title and footer elements, change `MvcMovie` to `Movie App`.
 * Change the anchor element `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` to `<a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App</a>`.
 
 The following markup shows the highlighted changes:
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Shared/_Layout.cshtml?highlight=6,24)]
+[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Shared/_Layout.cshtml?highlight=6,24,51)]
 
 In the preceding markup, the `asp-area` [anchor Tag Helper attribute](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) was omitted because this app is not using [Areas](xref:mvc/controllers/areas).
 
@@ -99,7 +95,7 @@ In the preceding markup, the `asp-area` [anchor Tag Helper attribute](xref:mvc/v
 
 **Note**: The `Movies` controller has not been implemented. At this point, the `Movie App` link is not functional.
 
-Save your changes and select the **Privacy** link. Notice how the title on the browser tab displays **Privacy - Movie App** instead of **Privacy - Mvc Movie**:
+Save your changes and select the **Privacy** link. Notice how the title on the browser tab displays **Privacy Policy - Movie App** instead of **Privacy Policy - Mvc Movie**:
 
 ![Privacy tab](~/tutorials/first-mvc-app/adding-view/_static/about2.png)
 
@@ -147,7 +143,7 @@ In *HelloWorldController.cs*, change the `Welcome` method to add a `Message` and
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_5)]
 
-The `ViewData` dictionary object contains data that will be passed to the view. 
+The `ViewData` dictionary object contains data that will be passed to the view.
 
 Create a Welcome view template named *Views/HelloWorld/Welcome.cshtml*.
 
@@ -163,7 +159,7 @@ Data is taken from the URL and passed to the controller using the [MVC model bin
 
 ![Privacy view showing a Welcome label and the phrase Hello Rick shown four times](~/tutorials/first-mvc-app/adding-view/_static/rick2.png)
 
-In the sample above, the `ViewData` dictionary was used to pass data from the controller to a view. Later in the tutorial, a view model is used to pass data from a controller to a view. The view model approach to passing data is generally much preferred over the `ViewData` dictionary approach. See [When to use ViewBag, ViewData, or TempData ](http://www.rachelappel.com/when-to-use-viewbag-viewdata-or-tempdata-in-asp-net-mvc-3-applications/) for more information.
+In the sample above, the `ViewData` dictionary was used to pass data from the controller to a view. Later in the tutorial, a view model is used to pass data from a controller to a view. The view model approach to passing data is generally much preferred over the `ViewData` dictionary approach. See [When to use ViewBag, ViewData, or TempData](https://www.rachelappel.com/when-to-use-viewbag-viewdata-or-tempdata-in-asp-net-mvc-3-applications/) for more information.
 
 In the next tutorial, a database of movies is created.
 

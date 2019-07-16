@@ -1,1 +1,0 @@
-config.EnableQuerySupport(new QueryableAttribute());

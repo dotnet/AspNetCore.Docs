@@ -61,7 +61,7 @@ namespace RPauth
             services.Configure<IdentityOptions>(options =>
             {
                 // Default SignIn settings.
-                options.SignIn.RequireConfirmedEmail = true;
+                options.SignIn.RequireConfirmedEmail = false;
                 options.SignIn.RequireConfirmedPhoneNumber = false;
             });
             #endregion
@@ -72,7 +72,7 @@ namespace RPauth
                 // Default User settings.
                 options.User.AllowedUserNameCharacters =
                         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-                options.User.RequireUniqueEmail = true;
+                options.User.RequireUniqueEmail = false;
 
             });
             #endregion

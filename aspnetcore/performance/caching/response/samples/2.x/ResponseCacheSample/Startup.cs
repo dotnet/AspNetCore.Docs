@@ -12,18 +12,12 @@ namespace ResponseCacheSample
         {
             services.AddMvc(options =>
             {
-                options.CacheProfiles.Add("Default",
+                options.CacheProfiles.Add("Default30",
                     new CacheProfile()
                     {
-                        Duration = 60
+                        Duration = 30
                     });
-                options.CacheProfiles.Add("Never",
-                    new CacheProfile()
-                    {
-                        Location = ResponseCacheLocation.None,
-                        NoStore = true
-                    });
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
         #endregion
 
@@ -36,17 +30,11 @@ namespace ResponseCacheSample
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
             }
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
         }
     }
 }

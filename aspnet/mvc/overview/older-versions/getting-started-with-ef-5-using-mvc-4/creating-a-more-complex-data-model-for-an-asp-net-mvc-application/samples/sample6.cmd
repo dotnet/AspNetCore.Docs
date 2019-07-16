@@ -1,2 +1,0 @@
-add-migration ColumnFirstName
-update-database

@@ -1,1 +1,0 @@
-function AuthenticationFailureCallback(error, userContext, methodName);

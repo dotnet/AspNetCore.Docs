@@ -1,4 +1,0 @@
-public Configuration()
-{
-    AutomaticMigrationsEnabled = true;
-}

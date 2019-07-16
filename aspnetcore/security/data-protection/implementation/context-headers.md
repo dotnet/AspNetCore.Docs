@@ -42,7 +42,7 @@ The context header consists of the following components:
 
 Ideally, we could pass all-zero vectors for K_E and K_H. However, we want to avoid the situation where the underlying algorithm checks for the existence of weak keys before performing any operations (notably DES and 3DES), which precludes using a simple or repeatable pattern like an all-zero vector.
 
-Instead, we use the NIST SP800-108 KDF in Counter Mode (see [NIST SP800-108](http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf), Sec. 5.1) with a zero-length key, label, and context and HMACSHA512 as the underlying PRF. We derive | K_E | + | K_H | bytes of output, then decompose the result into K_E and K_H themselves. Mathematically, this is represented as follows.
+Instead, we use the NIST SP800-108 KDF in Counter Mode (see [NIST SP800-108](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf), Sec. 5.1) with a zero-length key, label, and context and HMACSHA512 as the underlying PRF. We derive | K_E | + | K_H | bytes of output, then decompose the result into K_E and K_H themselves. Mathematically, this is represented as follows.
 
 ( K_E || K_H ) = SP800_108_CTR(prf = HMACSHA512, key = "", label = "", context = "")
 
@@ -178,14 +178,14 @@ BE 45
 
 The components break down as follows:
 
-   * the marker (00 01)
+* the marker (00 01)
 
-   * the block cipher key length (00 00 00 20)
+* the block cipher key length (00 00 00 20)
 
-   * the nonce size (00 00 00 0C)
+* the nonce size (00 00 00 0C)
 
-   * the block cipher block size (00 00 00 10)
+* the block cipher block size (00 00 00 10)
 
-   * the authentication tag size (00 00 00 10) and
+* the authentication tag size (00 00 00 10) and
 
-   * the authentication tag from running the block cipher (E7 DC - end).
+* the authentication tag from running the block cipher (E7 DC - end).

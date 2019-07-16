@@ -1,1 +1,0 @@
-exec GetProductsWithPriceGreaterThan 24.95

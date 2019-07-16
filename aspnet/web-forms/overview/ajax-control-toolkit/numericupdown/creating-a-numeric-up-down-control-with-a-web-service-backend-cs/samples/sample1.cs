@@ -1,1 +1,0 @@
-public int MethodName(int current, string tag) {}

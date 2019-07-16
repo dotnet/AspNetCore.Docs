@@ -1,1 +1,0 @@
-msbuild.exe project.csproj /t:WebPublish /p:PublishProfile=ProfileName

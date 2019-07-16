@@ -1,7 +1,0 @@
-<parameters>
-  ...  
-  <setParameter 
-    name="ContactService Service Endpoint Address" 
-    value="http://localhost/ContactManagerService" />
-  ...
-</parameters>

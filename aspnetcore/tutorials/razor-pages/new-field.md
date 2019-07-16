@@ -2,10 +2,9 @@
 title: Add a new field to a Razor Page in ASP.NET Core
 author: rick-anderson
 description: Shows how to add a new field to a Razor Page with Entity Framework Core
-monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/5/2018
+ms.date: 12/05/2018
 uid: tutorials/razor-pages/new-field
 ---
 # Add a new field to a Razor Page in ASP.NET Core
@@ -41,7 +40,7 @@ Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
 Update the following pages:
 
 * Add the `Rating` field to the Delete and Details pages.
-* Update [Create.cshtml](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml) with a `Rating` field.
+* Update [Create.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml) with a `Rating` field.
 * Add the `Rating` field to the Edit Page.
 
 The app won't work until the DB is updated to include the new field. If run now, the app throws a `SqlException`:
@@ -64,11 +63,10 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
-See the [completed SeedData.cs file](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/SeedDataRating.cs).
+See the [completed SeedData.cs file](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/SeedDataRating.cs).
 
 Build the solution.
 
-<!-- VS -------------------------->
 # [Visual Studio](#tab/visual-studio)
 
 <a name="pmc"></a>
@@ -108,45 +106,25 @@ Another option is to delete the database and use migrations to re-create the dat
   Update-Database
   ```
 
-<!-- Code -------------------------->
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-<!-- copy/paste this tab to the next. Not worth an include  -->
+### Drop and re-create the database
 
-Run the following .NET Core CLI commands:
+[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-```console
-dotnet ef migrations add Rating
-dotnet ef database update
-```
-
-The `ef migrations add` command tells the framework to:
-
-* Compare the `Movie` model with the `Movie` DB schema.
-* Create code to migrate the DB schema to the new model.
-
-The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
-
-The `ef database update` command tells the framework to apply the schema changes to the database.
-
-If you delete all the records in the DB, the initializer will seed the DB and include the `Rating` field. You can do this with the delete links in the browser or by using a SQLite tool.
-
-Another option is to delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command: 
+Delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command:
 
 ```console
 dotnet ef database update
 ```
 
-> [!NOTE]
-> Many schema change operations are not supported by the EF Core SQLite provider. For example, adding a column is supported, but removing a column is not supported. If you add a migration to remove a column, the `ef migrations add` command succeeds but the `ef database update` command fails. You can work around some of the limitations by manually writing migrations code to perform a table rebuild. A table rebuild involves renaming the existing table, creating a new table, copying data to the new table, and dropping the old table. For more information, see the following resources:
-> * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
-> * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
-> * [Data seeding](/ef/core/modeling/data-seeding)
-
----  
-<!-- End of VS tabs -->
+---
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, set a break point in the `SeedData.Initialize` method.
+
+## Additional resources
+
+* [YouTube version of this tutorial](https://youtu.be/3i7uMxiGGR8)
 
 > [!div class="step-by-step"]
 > [Previous: Adding Search](xref:tutorials/razor-pages/search)

@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to serve and secure static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/18/2018
+ms.date: 04/08/2019
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
@@ -13,11 +13,11 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Scott Addie](https://tw
 
 Static files, such as HTML, CSS, images, and JavaScript, are assets an ASP.NET Core app serves directly to clients. Some configuration is required to enable serving of these files.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/static-files/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/static-files/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Serve static files
 
-Static files are stored within your project's web root directory. The default directory is *\<content_root>/wwwroot*, but it can be changed via the [UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) method. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root-webroot) for more information.
+Static files are stored within your project's web root directory. The default directory is *\<content_root>/wwwroot*, but it can be changed via the [UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) method. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information.
 
 The app's web host must be made aware of the content root directory.
 
@@ -76,7 +76,7 @@ The parameterless `UseStaticFiles` method overload marks the files in web root a
 
 [!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_wwwroot)]
 
-In the preceding code, the tilde character `~/` points to webroot. For more information, see [Web root](xref:fundamentals/index#web-root-webroot).
+In the preceding code, the tilde character `~/` points to webroot. For more information, see [Web root](xref:fundamentals/index#web-root).
 
 ### Serve files outside of web root
 
@@ -88,7 +88,7 @@ Consider a directory hierarchy in which the static files to be served reside out
   * **js**
 * **MyStaticFiles**
   * **images**
-      * *banner1.svg*
+    * *banner1.svg*
 
 A request can access the *banner1.svg* file by configuring the Static File Middleware as follows:
 
@@ -187,7 +187,7 @@ Consider the following directory hierarchy:
   * **js**
 * **MyStaticFiles**
   * **images**
-      * *banner1.svg*
+    * *banner1.svg*
   * *default.html*
 
 The following code enables static files, default files, and directory browsing of `MyStaticFiles`:
@@ -210,7 +210,7 @@ If no default-named file exists in the *MyStaticFiles* directory, *http://\<serv
 ![Static files list](static-files/_static/db2.png)
 
 > [!NOTE]
-> `UseDefaultFiles` and `UseDirectoryBrowser` use the URL *http://\<server_address>/StaticFiles* without the trailing slash to trigger a client-side redirect to *http://\<server_address>/StaticFiles/*. Notice the addition of the trailing slash. Relative URLs within the documents are deemed invalid without a trailing slash.
+> <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> perform a client-side redirect from `http://{SERVER ADDRESS}/StaticFiles` (without a trailing slash) to `http://{SERVER ADDRESS}/StaticFiles/` (with a trailing slash). Relative URLs within the *StaticFiles* directory are invalid without a trailing slash.
 
 ## FileExtensionContentTypeProvider
 
@@ -218,7 +218,7 @@ The [FileExtensionContentTypeProvider](/dotnet/api/microsoft.aspnetcore.staticfi
 
 [!code-csharp[](static-files/samples/1x/StartupFileExtensionContentTypeProvider.cs?name=snippet_ConfigureMethod&highlight=3-12,19)]
 
-See [MIME content types](http://www.iana.org/assignments/media-types/media-types.xhtml).
+See [MIME content types](https://www.iana.org/assignments/media-types/media-types.xhtml).
 
 ## Non-standard content types
 
@@ -240,7 +240,7 @@ With the preceding code, a request for a file with an unknown content type is re
 
 * The URLs for content exposed with `UseDirectoryBrowser` and `UseStaticFiles` are subject to the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive&mdash;macOS and Linux aren't.
 
-* ASP.NET Core apps hosted in IIS use the [ASP.NET Core Module](xref:fundamentals/servers/aspnet-core-module) to forward all requests to the app, including static file requests. The IIS static file handler isn't used. It has no chance to handle requests before they're handled by the module.
+* ASP.NET Core apps hosted in IIS use the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to forward all requests to the app, including static file requests. The IIS static file handler isn't used. It has no chance to handle requests before they're handled by the module.
 
 * Complete the following steps in IIS Manager to remove the IIS static file handler at the server or website level:
     1. Navigate to the **Modules** feature.

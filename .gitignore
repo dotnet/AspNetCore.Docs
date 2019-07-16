@@ -11,6 +11,7 @@ _build/
 _site/
 Properties/
 
+# See #577
 # Use git add -f to force override .sln when required. Not needed in most cases.
 # git add -f myProj.sln
 *.sln
@@ -25,7 +26,9 @@ Project_Readme.html
 *.user
 *.userosscache
 *.sln.docstates
-*.vscode/
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

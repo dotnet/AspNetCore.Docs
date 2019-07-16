@@ -12,7 +12,8 @@ namespace GenericHostSample
         private readonly IApplicationLifetime _appLifetime;
 
         public LifetimeEventsHostedService(
-            ILogger<LifetimeEventsHostedService> logger, IApplicationLifetime appLifetime)
+            ILogger<LifetimeEventsHostedService> logger, 
+            IApplicationLifetime appLifetime)
         {
             _logger = logger;
             _appLifetime = appLifetime;

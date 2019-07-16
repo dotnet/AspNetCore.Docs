@@ -1,1 +1,0 @@
-BundleTable.EnableOptimizations = true;

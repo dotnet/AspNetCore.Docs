@@ -1,1 +1,0 @@
-msbuild.exe Publish.proj /p:ServerName=FABRIKAM\TESTWEB1

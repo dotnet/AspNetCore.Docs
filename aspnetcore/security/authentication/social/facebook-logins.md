@@ -1,17 +1,17 @@
 ---
 title: Facebook external login setup in ASP.NET Core
 author: rick-anderson
-description: This tutorial demonstrates the integration of Facebook account user authentication into an existing ASP.NET Core app.
+description: Tutorial with code examples demonstrating the integration of Facebook account user authentication into an existing ASP.NET Core app.
 ms.author: riande
-ms.custom: "mvc, seodec18"
-ms.date: 11/11/2018
+ms.custom: "seoapril2019, mvc, seodec18"
+ms.date: 03/04/2019
 uid: security/authentication/facebook-logins
 ---
 # Facebook external login setup in ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows you how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 2.0 project created on the [previous page](xref:security/authentication/social/index). Facebook authentication requires the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) NuGet package. We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com).
+This tutorial with code examples shows how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 2.0 project created on the [previous page](xref:security/authentication/social/index). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com).
 
 ## Create the app in Facebook
 
@@ -54,6 +54,8 @@ This tutorial shows you how to enable your users to sign in with their Facebook 
 
 Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret`.
 
+[!INCLUDE[](~/includes/environmentVarableColon.md)]
+
 Execute the following commands to securely store `App ID` and `App Secret` using Secret Manager:
 
 ```console
@@ -68,9 +70,9 @@ dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
 Add the Facebook service in the `ConfigureServices` method in the *Startup.cs* file:
 
 ```csharp
-services.AddIdentity<ApplicationUser, IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
+services.AddDefaultIdentity<IdentityUser>()
+        .AddDefaultUI(UIFramework.Bootstrap4)
+        .AddEntityFrameworkStores<ApplicationDbContext>();
 
 services.AddAuthentication().AddFacebook(facebookOptions =>
 {
@@ -139,6 +141,8 @@ You are now logged in using your Facebook credentials:
 * If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps
+
+* Add the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) NuGet package to your project for advanced Facebook authentication scenarios. This package isn't required to integrate Facebook external login functionality with your app. 
 
 * This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
 

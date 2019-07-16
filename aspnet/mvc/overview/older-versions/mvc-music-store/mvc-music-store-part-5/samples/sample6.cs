@@ -1,1 +1,0 @@
-ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name");

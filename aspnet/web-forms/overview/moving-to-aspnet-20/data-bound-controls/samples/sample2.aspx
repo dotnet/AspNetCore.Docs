@@ -1,1 +1,0 @@
-<asp:AdRotator ID="AdRotator1" runat="server" AdvertisementFile="App_Data/Ads.xml" />

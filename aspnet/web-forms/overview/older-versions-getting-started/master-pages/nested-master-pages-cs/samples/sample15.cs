@@ -1,1 +1,0 @@
-public partial class Admin_AdminNested : BaseMasterPage

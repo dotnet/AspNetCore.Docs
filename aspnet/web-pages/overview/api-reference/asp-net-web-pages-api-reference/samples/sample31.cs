@@ -1,1 +1,0 @@
-var dataFile = Server.MapPath("~/App_Data/data.txt");

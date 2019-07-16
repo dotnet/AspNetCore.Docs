@@ -1,1 +1,0 @@
-if (IsPost) { Response.Redirect("Posted"); }

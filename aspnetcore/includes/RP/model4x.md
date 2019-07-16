@@ -1,4 +1,5 @@
 <a name="scaffold"></a>
+
 ### Scaffold the Movie model
 
 * Run the following from the command line (in the project directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files):
@@ -8,8 +9,9 @@
   ```
 
 If you get the error:
+
   ```
-No executable found matching command "dotnet-aspnet-codegenerator"
+  No executable found matching command "dotnet-aspnet-codegenerator"
   ```
 
 Open a command shell to the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).

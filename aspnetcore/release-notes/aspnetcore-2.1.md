@@ -4,7 +4,7 @@ author: isaac2004
 description: Learn about the new features in ASP.NET Core 2.1.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/30/2018
+ms.date: 04/30/2019
 uid: aspnetcore-2.1
 ---
 # What's new in ASP.NET Core 2.1
@@ -22,7 +22,7 @@ SignalR has been rewritten for ASP.NET Core 2.1. ASP.NET Core SignalR includes a
 * A new streaming response model.
 * Support for clients based on bare WebSockets.
 
-For more information, see [ASP.NET Core SignalR](xref:signalr/index).
+For more information, see [ASP.NET Core SignalR](xref:signalr/introduction).
 
 ## Razor class libraries
 
@@ -69,7 +69,7 @@ In production, HTTPS must be explicitly configured. In 2.1, default configuratio
 
 ## GDPR
 
-ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements. For more information, see [GDPR support in ASP.NET Core](xref:security/gdpr). A [sample app](https://github.com/aspnet/Docs/tree/live/aspnetcore/security/gdpr/sample) shows how to use and lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
+ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements. For more information, see [GDPR support in ASP.NET Core](xref:security/gdpr). A [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) shows how to use and lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
 
 ## Integration tests
 
@@ -138,7 +138,12 @@ For more information, see [.NET Generic Host](xref:fundamentals/host/generic-hos
 The Single Page Application templates for Angular, React, and React with Redux are updated to use the standard project structures and build systems for each framework.
 
 The Angular template is based on the Angular CLI, and the React templates are based on create-react-app.
-For more information, see [Use the Single Page Application templates with ASP.NET Core](xref:spa/index).
+
+For more information, see:
+
+* <xref:spa/angular>
+* <xref:spa/react>
+* <xref:spa/react-with-redux>
 
 ## Razor Pages search for Razor assets
 

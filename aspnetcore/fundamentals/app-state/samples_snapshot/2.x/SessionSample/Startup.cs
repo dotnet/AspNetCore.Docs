@@ -28,12 +28,13 @@ namespace SessionSample
             services.AddDistributedMemoryCache();
 
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSession(options =>
             {
                 options.Cookie.Name = ".AdventureWorks.Session";
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.IsEssential = true;
             });
         }
         #endregion

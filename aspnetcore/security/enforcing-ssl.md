@@ -18,11 +18,32 @@ This document shows how to:
 
 No API can prevent a client from sending sensitive data on the first request.
 
+::: moniker range="< aspnetcore-3.0"
+
 > [!WARNING]
+> ## API projects
+>
 > Do **not** use [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) on Web APIs that receive sensitive information. `RequireHttpsAttribute` uses HTTP status codes to redirect browsers from HTTP to HTTPS. API clients may not understand or obey redirects from HTTP to HTTPS. Such clients may send information over HTTP. Web APIs should either:
 >
 > * Not listen on HTTP.
 > * Close the connection with status code 400 (Bad Request) and not serve the request.
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+> [!WARNING]
+> ## API projects
+>
+> Do **not** use [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) on Web APIs that receive sensitive information. `RequireHttpsAttribute` uses HTTP status codes to redirect browsers from HTTP to HTTPS. API clients may not understand or obey redirects from HTTP to HTTPS. Such clients may send information over HTTP. Web APIs should either:
+>
+> * Not listen on HTTP.
+> * Close the connection with status code 400 (Bad Request) and not serve the request.
+>
+> ## HSTS and API projects
+>
+> The default API projects don't include [HSTS](#hsts) because HSTS is generally a browser only instruction. Other callers, such as phone or desktop apps, do **not** obey the instruction. Even within browsers, a single authenticated call to an API over HTTP has risks on insecure networks. The secure approach is to configure API projects to only listen to and respond over HTTPS.
+
+::: moniker-end
 
 ## Require HTTPS
 
@@ -155,6 +176,8 @@ Requiring HTTPS globally (`options.Filters.Add(new RequireHttpsAttribute());`) i
 
 ::: moniker range=">= aspnetcore-2.1"
 
+<a name="hsts"></a>
+
 ## HTTP Strict Transport Security Protocol (HSTS)
 
 Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Security_Project), [HTTP Strict Transport Security (HSTS)](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet) is an opt-in security enhancement that's specified by a web app through the use of a response header. When a [browser that supports HSTS](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support) receives this header:
@@ -207,7 +230,7 @@ Uncheck the **Configure for HTTPS** check box.
 
 ![New ASP.NET Core Web Application dialog showing the Configure for HTTPS check box unselected.](enforcing-ssl/_static/out.png)
 
-#	[.NET Core CLI](#tab/netcore-cli) 
+# [.NET Core CLI](#tab/netcore-cli) 
 
 Use the `--no-https` option. For example
 
@@ -220,6 +243,8 @@ dotnet new webapp --no-https
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1"
+
+<a name="trust"></a>
 
 ## Trust the ASP.NET Core HTTPS development certificate on Windows and macOS
 
@@ -248,14 +273,27 @@ dotnet dev-certs https --help
 
 ## How to set up a developer certificate for Docker
 
-See [this GitHub issue](https://github.com/aspnet/Docs/issues/6199).
+See [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/6199).
 
 ::: moniker-end
+
+<a name="wsl"></a>
+
+## Trust HTTPS certificate from Windows Subsystem for Linux
+
+The Windows Subsystem for Linux (WSL) generates a HTTPS self-signed cert. To configure the Windows certificate store to trust the WSL certificate:
+
+* Run the following command to export the WSL generated certificate:
+  `dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <cryptic-password>`
+* In a WSL window, run the following command:
+  `ASPNETCORE_Kestrel__Certificates__Default__Password="<cryptic-password>" ASPNETCORE_Kestrel__Certificates__Default__Path=/mnt/c/Users/user-name/.aspnet/https/aspnetapp.pfx dotnet watch run`
+
+  The preceding command sets the environment variables so Linux uses the Windows trusted certificate.
 
 ## Additional information
 
 * <xref:host-and-deploy/proxy-load-balancer>
-* [Host ASP.NET Core on Linux with Apache: SSL configuration](xref:host-and-deploy/linux-apache#ssl-configuration)
-* [Host ASP.NET Core on Linux with Nginx: SSL configuration](xref:host-and-deploy/linux-nginx#configure-ssl)
+* [Host ASP.NET Core on Linux with Apache: HTTPS configuration](xref:host-and-deploy/linux-apache#https-configuration)
+* [Host ASP.NET Core on Linux with Nginx: HTTPS configuration](xref:host-and-deploy/linux-nginx#https-configuration)
 * [How to Set Up SSL on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
 * [OWASP HSTS browser support](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support)

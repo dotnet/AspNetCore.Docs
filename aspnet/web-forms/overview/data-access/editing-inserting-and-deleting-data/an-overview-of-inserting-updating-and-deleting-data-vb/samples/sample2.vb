@@ -1,1 +1,0 @@
-<System.ComponentModel.DataObjectMethodAttribute _ (System.ComponentModel.DataObjectMethodType.Delete, True)> _ Public Function DeleteProduct(ByVal productID As Integer) As Boolean End Function

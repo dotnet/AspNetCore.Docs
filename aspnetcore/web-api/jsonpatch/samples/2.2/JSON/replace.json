@@ -1,0 +1,15 @@
+[
+  {
+    "op": "replace",
+    "path": "/customerName",
+    "value": "Barry"
+  },
+  {
+    "op": "replace",
+    "path": "/orders/0",
+    "value": {
+      "orderName": "Order2",
+      "orderType": null
+    }
+  }
+]

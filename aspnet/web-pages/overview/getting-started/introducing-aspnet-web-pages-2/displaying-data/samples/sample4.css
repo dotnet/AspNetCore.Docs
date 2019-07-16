@@ -1,7 +1,0 @@
-@grid.GetHtml(
-    columns: grid.Columns(
-        grid.Column("Title"),
-        grid.Column("Genre"),
-        grid.Column("Year")
-    )
-)

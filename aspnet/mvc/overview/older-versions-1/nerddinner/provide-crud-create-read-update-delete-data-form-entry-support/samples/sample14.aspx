@@ -1,1 +1,0 @@
-<%= Html.TextBox("EventDate", String.Format("{0:g}", Model.EventDate)) %>

@@ -1,0 +1,65 @@
+{
+    "default": true,
+
+    "blanks-around-lists": false,
+    "blanks-around-fences": false,
+    "blanks-around-headers": true,
+    "fenced-code-language": true,
+    "first-header-h1": false,
+    "first-line-h1": false,
+    "header-increment": true,
+    "header-start-left": true,
+    "header-style": {
+        "style": "atx"
+    },
+    "hr-style": {
+        "style": "---"
+    },
+    "line-length": false,
+    "list-indent": true,
+    "list-marker-space": true,
+    "no-alt-text": true,
+    "no-bare-urls": true,
+    "no-blanks-blockquote": true,
+    "no-duplicate-header": true,
+    "no-empty-links": true,
+    "no-hard-tabs": true,
+    "no-inline-html": {
+        "allowed_elements": [
+            "h1", "h2", "h3", "h4", "h5", "h6",
+            "p", "div", "blockquote",
+            "pre",
+            "b", "i", "strong", "em", "tt", "code", "ins", "del", "sup", "sub", "kbd", "samp", "q", "var",
+            "ol", "ul", "li", "dl", "dt", "dd",
+            "table", "thead", "tbody", "tfoot", "tr", "td", "th",
+            "br", "hr",
+            "a"
+        ]
+    },
+    "no-missing-space-atx": true,
+    "no-multiple-blanks": false,
+    "no-multiple-space-atx": true,
+    "no-multiple-space-blockquote": true,
+    "no-reversed-links": true,
+    "no-space-in-code": true,
+    "no-space-in-emphasis": true,
+    "no-space-in-links": true,
+    "no-trailing-punctuation": false,
+    "no-trailing-spaces": false,
+    "ol-prefix": {
+        "style": "one_or_ordered"
+    },
+    "proper-names": {
+        "code_blocks": false,
+        "names": [
+            ".NET",
+            "ASP.NET",
+            "JavaScript",
+            "NuGet",
+            "PowerShell"
+        ]
+    },
+    "required-headers": false,
+    "single-h1": true,
+    "ul-start-left": false
+}

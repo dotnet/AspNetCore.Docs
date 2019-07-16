@@ -1,0 +1,26 @@
+﻿@page
+@model Cache4Model
+@{
+    ViewData["Title"] = "Cache 4";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Cache Profile (30 second cache)</h3>
+    </div>
+    <div class="panel-body">
+        <h4><code>Cache4Model</code> attribute:</h4>
+        <pre><code>[ResponseCache(CacheProfileName = "Default30")]</code></pre>
+        <h4><code>Startup.ConfigureServices</code>:</h4>
+        <pre><code>services.AddMvc(options =>
+{
+    options.CacheProfiles.Add("Default30",
+        new CacheProfile()
+        {
+            Duration = 30
+        });
+});</code></pre>
+    </div>
+</div>

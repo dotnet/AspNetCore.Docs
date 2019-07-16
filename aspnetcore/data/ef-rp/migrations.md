@@ -3,15 +3,11 @@ title: Razor Pages with EF Core in ASP.NET Core - Migrations - 4 of 8
 author: rick-anderson
 description: In this tutorial, you start using the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC app.
 ms.author: riande
-ms.date: 6/31/2017
+ms.date: 06/30/2017
 uid: data/ef-rp/migrations
 ---
 
 # Razor Pages with EF Core in ASP.NET Core - Migrations - 4 of 8
-
-[!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
-
-::: moniker range=">= aspnetcore-2.1"
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -20,7 +16,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 In this tutorial, the EF Core migrations feature for managing data model changes is used.
 
 If you run into problems you can't solve, download the [completed app](
-https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
+https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
 When a new app is developed, the data model changes frequently. Each time the model changes, the model gets out of sync with the database. This tutorial started by configuring the Entity Framework to create the database if it doesn't exist. Each time the data model changes:
 
@@ -56,7 +52,7 @@ Enter the following in the command window:
  dotnet ef database drop
  ```
 
-------
+---
 
 ## Create an initial migration and update the DB
 
@@ -76,7 +72,7 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-------
+---
 
 ### Examine the Up and Down methods
 
@@ -115,7 +111,7 @@ dotnet ef migrations remove
 
 For more information, see  [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
-------
+---
 
 The remove migrations command deletes the migration and ensures the snapshot is correctly reset.
 
@@ -128,7 +124,7 @@ For early development, `EnsureCreated` was used. In this tutorial, migrations ar
 * Can *not* be used with migrations.
 * Is designed for testing or rapid prototyping where the DB is dropped and re-created frequently.
 
-Remove the following line from `DbInitializer`:
+Remove `EnsureCreated`:
 
 ```csharp
 context.Database.EnsureCreated();
@@ -156,7 +152,7 @@ EF Core uses the `__MigrationsHistory` table to see if any migrations need to ru
 ## Troubleshooting
 
 Download the [completed app](
-https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part4-migrations).
+https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part4-migrations).
 
 The app generates the following exception:
 
@@ -170,10 +166,11 @@ Solution: Run `dotnet ef database update`
 
 ### Additional resources
 
+* [YouTube version of this tutorial](https://www.youtube.com/watch?v=OWSUuMLKTJo)
 * [.NET Core CLI](/ef/core/miscellaneous/cli/dotnet).
 * [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
 
-::: moniker-end
+
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/sort-filter-page)

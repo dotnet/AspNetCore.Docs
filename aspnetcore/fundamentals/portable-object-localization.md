@@ -14,7 +14,7 @@ This article walks through the steps for using Portable Object (PO) files in an 
 
 **Note:** Orchard Core isn't a Microsoft product. Consequently, Microsoft provides no support for this feature.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization) ([how to download](xref:index#how-to-download-a-sample))
 
 ## What is a PO file?
 
@@ -85,7 +85,7 @@ An `IViewLocalizer` instance is injected and used to translate the text "Hello w
 
 ### Creating a PO file
 
-Create a file named *<culture code>.po* in your application root folder. In this example, the file name is *fr.po* because the French language is used:
+Create a file named *\<culture code>.po* in your application root folder. In this example, the file name is *fr.po* because the French language is used:
 
 [!code-text[](localization/sample/POLocalization/fr.po)]
 

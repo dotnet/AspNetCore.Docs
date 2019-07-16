@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 10/26/2018
+ms.date: 06/12/2019
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -63,9 +63,9 @@ Implicit expressions **cannot** contain C# generics, as the characters inside th
 
 The preceding code generates a compiler error similar to one of the following:
 
- * The "int" element wasn't closed. All elements must be either self-closing or have a matching end tag.
- *  Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?` 
- 
+* The "int" element wasn't closed. All elements must be either self-closing or have a matching end tag.
+* Cannot convert method group 'GenericMethod' to non-delegate type 'object'. Did you intend to invoke the method?`
+
 Generic method calls must be wrapped in an [explicit Razor expression](#explicit-razor-expressions) or a [Razor code block](#razor-code-blocks).
 
 ## Explicit Razor expressions
@@ -166,6 +166,31 @@ The code renders the following HTML:
 <p>Hate cannot drive out hate, only love can do that. - Martin Luther King, Jr.</p>
 ```
 
+::: moniker range=">= aspnetcore-3.0"
+
+In code blocks, declare [local functions](/dotnet/csharp/programming-guide/classes-and-structs/local-functions) with markup to serve as templating methods:
+
+```cshtml
+@{
+    void RenderName(string name)
+    {
+        <p>Name: <strong>@name</strong></p>
+    }
+
+    RenderName("Mahatma Gandhi");
+    RenderName("Martin Luther King, Jr.");
+}
+```
+
+The code renders the following HTML:
+
+```html
+<p>Name: <strong>Mahatma Gandhi</strong></p>
+<p>Name: <strong>Martin Luther King, Jr.</strong></p>
+```
+
+::: moniker-end
+
 ### Implicit transitions
 
 The default language in a code block is C#, but the Razor Page can transition back to HTML:
@@ -193,7 +218,7 @@ Use this approach to render HTML that isn't surrounded by an HTML tag. Without a
 
 The **\<text>** tag is useful to control whitespace when rendering content:
 
-* Only the content between the **\<text>** tag is rendered. 
+* Only the content between the **\<text>** tag is rendered.
 * No whitespace before or after the **\<text>** tag appears in the HTML output.
 
 ### Explicit Line Transition with @:
@@ -331,7 +356,6 @@ The following looping statements are supported:
 
 In C#, a `using` statement is used to ensure an object is disposed. In Razor, the same mechanism is used to create HTML Helpers that contain additional content. In the following code, HTML Helpers render a form tag with the `@using` statement:
 
-
 ```cshtml
 @using (Html.BeginForm())
 {
@@ -419,6 +443,7 @@ public class _Views_Something_cshtml : RazorPage<dynamic>
 Later in this article, the section [Inspect the Razor C# class generated for a view](#inspect-the-razor-c-class-generated-for-a-view) explains how to view this generated class.
 
 <a name="using"></a>
+
 ### @using
 
 The `@using` directive adds the C# `using` directive to the generated view:
@@ -516,9 +541,66 @@ The following code is the generated Razor C# class:
 
 [!code-csharp[](razor/sample/Classes/Views_Home_Test_cshtml.cs?range=1-19)]
 
+::: moniker range=">= aspnetcore-3.0"
+
+`@functions` methods serve as templating methods when they have markup:
+
+```cshtml
+@{
+    RenderName("Mahatma Gandhi");
+    RenderName("Martin Luther King, Jr.");
+}
+
+@functions {
+    private void RenderName(string name)
+    {
+        <p>Name: <strong>@name</strong></p>
+    }
+}
+```
+
+The code renders the following HTML:
+
+```html
+<p>Name: <strong>Mahatma Gandhi</strong></p>
+<p>Name: <strong>Martin Luther King, Jr.</strong></p>
+```
+
+::: moniker-end
+
+### @attribute
+
+The `@attribute` directive adds the given attribute to the class of the generated page or view. The following example adds the `[Authorize]` attribute:
+
+```cshtml
+@attribute [Authorize]
+```
+
+> [!WARNING]
+> In ASP.NET Core 3.0 Preview 6 release, there's a known issue where `@attribute` directives don't work in *\_Imports.razor* and *\_ViewImports.cshtml* files. This will be addressed in the Preview 7 release.
+
+### @namespace
+
+The `@namespace` directive sets the namespace of the class of the generated page or view:
+
+```cshtml
+@namespace Your.Namespace.Here
+```
+
+If a page or view imports API with an `@namespace` directive, the original file's namespace is set relative to that namespace. 
+
+If *MyApp/Pages/\_ViewImports.cshtml* contains `@namespace Hello.World`, the namespace of pages or views that import the `Hello.World` namespace is set as shown in the following table.
+
+| Page (or view)                     | Namespace               |
+| ---------------------------------- | ----------------------- |
+| *MyApp/Pages/Index.cshtml*         | `Hello.World`           |
+| *MyApp/Pages/MorePages/Bar.cshtml* | `Hello.World.MorePages` |
+
+If multiple import files have the `@namespace` directive, the file closest to the page or view in the directory chain is used.
+
 ### @section
 
-The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable views to render content in different parts of the HTML page. For more information, see [Sections](xref:mvc/views/layout#layout-sections-label).
+The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable pages or views to render content in different parts of the HTML page. For more information, see [Sections](xref:mvc/views/layout#layout-sections-label).
 
 ## Templated Razor delegates
 
@@ -528,7 +610,7 @@ Razor templates allow you to define a UI snippet with the following format:
 @<tag>...</tag>
 ```
 
-The following example illustrates how to specify a templated Razor delegate as a <xref:System.Func`2>. The [dynamic type](/dotnet/csharp/programming-guide/types/using-type-dynamic) is specified for the parameter of the method that the delegate encapsulates. An [object type](/dotnet/csharp/language-reference/keywords/object) is specified as the return value of the delegate. The template is used with a <xref:System.Collections.Generic.List`1> of `Pet` that has a `Name` property.
+The following example illustrates how to specify a templated Razor delegate as a <xref:System.Func%602>. The [dynamic type](/dotnet/csharp/programming-guide/types/using-type-dynamic) is specified for the parameter of the method that the delegate encapsulates. An [object type](/dotnet/csharp/language-reference/keywords/object) is specified as the return value of the delegate. The template is used with a <xref:System.Collections.Generic.List%601> of `Pet` that has a `Name` property.
 
 ```csharp
 public class Pet
@@ -539,7 +621,7 @@ public class Pet
 
 ```cshtml
 @{
-    Func<dynamic, object> petTemplate = @<p>You have a pet named @item.Name.</p>;
+    Func<dynamic, object> petTemplate = @<p>You have a pet named <strong>@item.Name</strong>.</p>;
 
     var pets = new List<Pet>
     {
@@ -555,7 +637,7 @@ The template is rendered with `pets` supplied by a `foreach` statement:
 ```cshtml
 @foreach (var pet in pets)
 {
-    @petTemplate2(pet)
+    @petTemplate(pet)
 }
 ```
 
@@ -573,7 +655,7 @@ You can also supply an inline Razor template as an argument to a method. In the 
 @using Microsoft.AspNetCore.Html
 
 @functions {
-    public static IHtmlContent Repeat(IEnumerable<dynamic> items, int times, 
+    public static IHtmlContent Repeat(IEnumerable<dynamic> items, int times,
         Func<dynamic, IHtmlContent> template)
     {
         var html = new HtmlContentBuilder();
@@ -593,7 +675,7 @@ You can also supply an inline Razor template as an argument to a method. In the 
 
 Using the list of pets from the prior example, the `Repeat` method is called with:
 
-* <xref:System.Collections.Generic.List`1> of `Pet`.
+* <xref:System.Collections.Generic.List%601> of `Pet`.
 * Number of times to repeat each pet.
 * Inline template to use for the list items of an unordered list.
 

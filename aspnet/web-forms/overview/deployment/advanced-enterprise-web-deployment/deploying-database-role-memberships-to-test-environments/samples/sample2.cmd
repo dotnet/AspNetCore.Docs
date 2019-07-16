@@ -1,1 +1,0 @@
-sqlcmd.exe –S [Database server] –d [Database name] –i [SQL script]

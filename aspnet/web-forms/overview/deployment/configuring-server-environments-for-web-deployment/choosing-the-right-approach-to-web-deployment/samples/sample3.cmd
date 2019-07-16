@@ -1,1 +1,0 @@
-ContactManager.Mvc.deploy.cmd /y /m:TESTWEB1 /a:NTLM

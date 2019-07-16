@@ -1,1 +1,0 @@
-Dim movies = From m In db.Movies    Select m

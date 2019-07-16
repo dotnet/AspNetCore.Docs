@@ -1,1 +1,0 @@
-var cookieValue = Request.Cookies["myCookie"].Value;

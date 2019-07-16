@@ -1,3 +1,0 @@
-OAuthWebSecurity.RegisterTwitterClient(
-        consumerKey: "",
-        consumerSecret: "");

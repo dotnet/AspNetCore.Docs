@@ -11,9 +11,15 @@ namespace SampleApp
     #region snippet1
     public class StartupHostedServiceHealthCheck : IHealthCheck
     {
+        private volatile bool _startupTaskCompleted = false;
+
         public string Name => "slow_dependency_check";
 
-        public bool StartupTaskCompleted { get; set; } = false;
+        public bool StartupTaskCompleted
+        {
+            get => _startupTaskCompleted;
+            set => _startupTaskCompleted = value;
+        }
 
         public Task<HealthCheckResult> CheckHealthAsync(
             HealthCheckContext context, 

@@ -1,1 +1,0 @@
-Response.WriteFile("file.ext");

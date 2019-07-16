@@ -1,1 +1,0 @@
-void DeleteLink([FromODataUri] int key, string relatedKey, string navigationProperty);

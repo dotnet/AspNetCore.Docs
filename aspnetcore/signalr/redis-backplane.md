@@ -1,9 +1,9 @@
 ---
 title: Redis backplane for ASP.NET Core SignalR scale-out
-author: tdykstra
+author: bradygaster
 description: Learn how to set up a Redis backplane to enable scale-out for an ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/28/2018
 uid: signalr/redis-backplane
@@ -19,11 +19,14 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
 * Deploy a Redis server.
 
-  For production use, a Redis backplane is recommended only for on-premises infrastructure. To minimize latency, the Redis server should be in the same data center as the SignalR app. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane. You can use the Azure Redis Cache Service for development and test environments. For more information, see the following resources:
+  > [!IMPORTANT] 
+  > For production use, a Redis backplane is recommended only when it runs in the same data center as the SignalR app. Otherwise, network latency degrades performance. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane. You can use the Azure Redis Cache Service for development and test environments.
+
+  For more information, see the following resources:
 
   * <xref:signalr/scale>
   * [Redis documentation](https://redis.io/)
-  * [Azure Redis Cache documentation](https://docs.microsoft.com/en-us/azure/redis-cache/)
+  * [Azure Redis Cache documentation](https://docs.microsoft.com/azure/redis-cache/)
 
 ::: moniker range="= aspnetcore-2.1"
 
@@ -176,9 +179,9 @@ services.AddSignalR()
 
 ::: moniker-end
 
-## Clustering
+## Redis Clustering
 
-Clustering is a method for achieving high availability by using multiple Redis servers. Clustering isn't officially supported, but it might work.
+[Redis Clustering](https://redis.io/topics/cluster-spec) is a method for achieving high availability by using multiple Redis servers. Clustering isn't officially supported, but it might work.
 
 ## Next steps
 
@@ -187,4 +190,4 @@ For more information, see the following resources:
 * <xref:signalr/scale>
 * [Redis documentation](https://redis.io/documentation)
 * [StackExchange Redis documentation](https://stackexchange.github.io/StackExchange.Redis/)
-* [Azure Redis Cache documentation](https://docs.microsoft.com/en-us/azure/redis-cache/)
+* [Azure Redis Cache documentation](https://docs.microsoft.com/azure/redis-cache/)

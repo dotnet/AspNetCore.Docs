@@ -1,1 +1,0 @@
-WebControlType someName = (WebControlType)FormViewID.FindControl("controlID");

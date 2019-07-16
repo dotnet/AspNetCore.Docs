@@ -2,8 +2,10 @@
 title: Use multiple environments in ASP.NET Core
 author: rick-anderson
 description: Learn how to control app behavior across multiple environments in ASP.NET Core apps.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 07/03/2018
+ms.custom: mvc
+ms.date: 04/10/2019
 uid: fundamentals/environments
 ---
 # Use multiple environments in ASP.NET Core
@@ -12,7 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core configures app behavior based on the runtime environment using an environment variable.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Environments
 
@@ -25,9 +27,9 @@ The preceding code:
 * Calls [UseDeveloperExceptionPage](/dotnet/api/microsoft.aspnetcore.builder.developerexceptionpageextensions.usedeveloperexceptionpage) when `ASPNETCORE_ENVIRONMENT` is set to `Development`.
 * Calls [UseExceptionHandler](/dotnet/api/microsoft.aspnetcore.builder.exceptionhandlerextensions.useexceptionhandler) when the value of `ASPNETCORE_ENVIRONMENT` is set one of the following:
 
-    * `Staging`
-    * `Production`
-    * `Staging_2`
+  * `Staging`
+  * `Production`
+  * `Staging_2`
 
 The [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) uses the value of `IHostingEnvironment.EnvironmentName` to include or exclude markup in the element:
 
@@ -37,7 +39,7 @@ On Windows and macOS, environment variables and values aren't case sensitive. Li
 
 ### Development
 
-The development environment can enable features that shouldn't be exposed in production. For example, the ASP.NET Core templates enable the [developer exception page](xref:fundamentals/error-handling#the-developer-exception-page) in the development environment.
+The development environment can enable features that shouldn't be exposed in production. For example, the ASP.NET Core templates enable the [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page) in the development environment.
 
 The environment for local machine development can be set in the *Properties\launchSettings.json* file of the project. Environment values set in *launchSettings.json* override values set in the system environment.
 
@@ -85,8 +87,6 @@ The following JSON shows three profiles from a *launchSettings.json* file:
 }
 ```
 
-::: moniker range=">= aspnetcore-2.1"
-
 > [!NOTE]
 > The `applicationUrl` property in *launchSettings.json* can specify a list of server URLs. Use a semicolon between the URLs in the list:
 >
@@ -101,13 +101,11 @@ The following JSON shows three profiles from a *launchSettings.json* file:
 > }
 > ```
 
-::: moniker-end
-
 When the app is launched with [dotnet run](/dotnet/core/tools/dotnet-run), the first profile with `"commandName": "Project"` is used. The value of `commandName` specifies the web server to launch. `commandName` can be any one of the following:
 
-* IIS Express
-* IIS
-* Project (which launches Kestrel)
+* `IISExpress`
+* `IIS`
+* `Project` (which launches Kestrel)
 
 When an app is launched with [dotnet run](/dotnet/core/tools/dotnet-run):
 
@@ -230,7 +228,21 @@ When the `ASPNETCORE_ENVIRONMENT` environment variable is set globally, it takes
 
 **web.config**
 
-To set the `ASPNETCORE_ENVIRONMENT` environment variable with *web.config*, see the *Setting environment variables* section of <xref:host-and-deploy/aspnet-core-module#setting-environment-variables>. When the `ASPNETCORE_ENVIRONMENT` environment variable is set with *web.config*, its value overrides a setting at the system level.
+To set the `ASPNETCORE_ENVIRONMENT` environment variable with *web.config*, see the *Setting environment variables* section of <xref:host-and-deploy/aspnet-core-module#setting-environment-variables>.
+
+::: moniker range=">= aspnetcore-2.2"
+
+**Project file or publish profile**
+
+**For Windows IIS deployments:** Include the `<EnvironmentName>` property in the publish profile (*.pubxml*) or project file. This approach sets the environment in *web.config* when the project is published:
+
+```xml
+<PropertyGroup>
+  <EnvironmentName>Development</EnvironmentName>
+</PropertyGroup>
+```
+
+::: moniker-end
 
 **Per IIS Application Pool**
 
@@ -270,7 +282,7 @@ For Linux distros, use the `export` command at a command prompt for session-base
 
 To load configuration by environment, we recommend:
 
-* *appsettings* files (*appsettings.&lt;<Environment>&gt;.json). See [Configuration: File configuration provider](xref:fundamentals/configuration/index#file-configuration-provider).
+* *appsettings* files (*appsettings.\<Environment>.json*). See [Configuration: File configuration provider](xref:fundamentals/configuration/index#file-configuration-provider).
 * environment variables (set on each system where the app is hosted). See [Configuration: File configuration provider](xref:fundamentals/configuration/index#file-configuration-provider) and [Safe storage of app secrets in development: Environment variables](xref:security/app-secrets#environment-variables).
 * Secret Manager (in the Development environment only). See <xref:security/app-secrets>.
 
@@ -329,8 +341,6 @@ public class Startup
 
 Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usestartup) overload that accepts an assembly name:
 
-::: moniker range=">= aspnetcore-2.1"
-
 ```csharp
 public static void Main(string[] args)
 {
@@ -346,53 +356,11 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args)
 }
 ```
 
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-```csharp
-public static void Main(string[] args)
-{
-    CreateWebHost(args).Run();
-}
-
-public static IWebHost CreateWebHost(string[] args)
-{
-    var assemblyName = typeof(Startup).GetTypeInfo().Assembly.FullName;
-
-    return WebHost.CreateDefaultBuilder(args)
-        .UseStartup(assemblyName)
-        .Build();
-}
-```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        var assemblyName = typeof(Startup).GetTypeInfo().Assembly.FullName;
-
-        var host = new WebHostBuilder()
-            .UseStartup(assemblyName)
-            .Build();
-
-        host.Run();
-    }
-}
-```
-
-::: moniker-end
-
 ### Startup method conventions
 
 [Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) support environment-specific versions of the form `Configure<EnvironmentName>` and `Configure<EnvironmentName>Services`:
 
-[!code-csharp[](environments/sample/EnvironmentsSample/Startup.cs?name=snippet_all&highlight=15,51)]
+[!code-csharp[](environments/sample/EnvironmentsSample/Startup.cs?name=snippet_all&highlight=15,42)]
 
 ## Additional resources
 

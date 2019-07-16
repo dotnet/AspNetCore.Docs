@@ -38,7 +38,7 @@ namespace CustomFormatterDemo.Formatters
         #endregion
 
         #region writeresponse
-        public override Task WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+        public override async Task WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
         {
             IServiceProvider serviceProvider = context.HttpContext.RequestServices;
             var logger = serviceProvider.GetService(typeof(ILogger<VcardOutputFormatter>)) as ILogger;
@@ -58,7 +58,7 @@ namespace CustomFormatterDemo.Formatters
                 var contact = context.Object as Contact;
                 FormatVcard(buffer, contact, logger);
             }
-            return response.WriteAsync(buffer.ToString());
+            await response.WriteAsync(buffer.ToString());
         }
 
         private static void FormatVcard(StringBuilder buffer, Contact contact, ILogger logger)

@@ -1,6 +1,7 @@
 ﻿namespace PoliciesAuthApp1.Services.Handlers
 {
     #region snippet_PermissionHandlerClass
+    using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
@@ -16,13 +17,13 @@
             {
                 if (requirement is ReadPermission)
                 {
-                    if (IsOwner(context.User, context.Resource) || 
+                    if (IsOwner(context.User, context.Resource) ||
                         IsSponsor(context.User, context.Resource))
                     {
                         context.Succeed(requirement);
                     }
                 }
-                else if (requirement is EditPermission || 
+                else if (requirement is EditPermission ||
                          requirement is DeletePermission)
                 {
                     if (IsOwner(context.User, context.Resource))

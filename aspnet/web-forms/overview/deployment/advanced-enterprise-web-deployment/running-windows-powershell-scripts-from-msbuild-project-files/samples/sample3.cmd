@@ -1,1 +1,0 @@
-powershell.exe –command "& { [Path to script] 'parameter1' 'parameter2' ... }"

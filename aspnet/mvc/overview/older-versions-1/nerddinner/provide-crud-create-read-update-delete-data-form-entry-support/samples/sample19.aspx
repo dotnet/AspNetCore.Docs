@@ -1,1 +1,0 @@
-<%= Html.ValidationSummary("Please correct the errors and try again.") %>

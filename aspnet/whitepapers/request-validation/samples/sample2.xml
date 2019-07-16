@@ -1,5 +1,0 @@
-<configuration>
-   <system.web>
-      <pages validateRequest="false" />
-   </system.web>
-</configuration>

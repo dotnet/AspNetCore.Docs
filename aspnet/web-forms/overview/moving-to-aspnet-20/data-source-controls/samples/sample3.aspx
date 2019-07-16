@@ -1,1 +1,0 @@
-<asp:SqlDataSource id="SqlDataSource1" runat="server" DataSourceMode="DataReader" ConnectionString="<%$ ConnectionStrings:Northwind%>" SelectCommand="SELECT EmployeeID, LastName FROM Employees"> </asp:SqlDataSource><asp:DropDownList id="ListBox1" runat="server" DataTextField="LastName" DataValueField="EmployeeID" DataSourceID="SqlDataSource1"> </asp:DropDownList>

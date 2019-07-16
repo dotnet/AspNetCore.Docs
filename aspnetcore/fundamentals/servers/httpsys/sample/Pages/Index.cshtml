@@ -5,24 +5,7 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Instructions</h3>
-            </div>
-            <div class="panel-body">
-                <p>Run the app from a command prompt by executing the following command from the project's folder:</p>
-                <p><code>dotnet run</code></p>
-                <p>Logging indicates that the <code>HttpSysListener</code> is ready to receive requests:</p>
-                <p>
-                    <pre><code>info: Microsoft.AspNetCore.Server.HttpSys.HttpSysListener[0]
-    Start
-info: Microsoft.AspNetCore.Server.HttpSys.HttpSysListener[0]
-    Listening on prefix: http://localhost:5000/</code></pre>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+<hr>
+<p>Hello World from the HTTP.sys Demo!</p>
+<h2>Server Addresses</h2>
+<p>@Model.ServerAddresses</p>

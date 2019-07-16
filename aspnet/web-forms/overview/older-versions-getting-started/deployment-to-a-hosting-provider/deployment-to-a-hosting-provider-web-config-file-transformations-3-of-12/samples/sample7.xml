@@ -1,3 +1,0 @@
-<connectionStrings>
-  <add name="SchoolContext_DatabasePublish" connectionString="Data Source=|DataDirectory|School-Prod.sdf" providerName="System.Data.SqlServerCe.4.0" xdt:Transform="Insert"/>
-</connectionStrings>

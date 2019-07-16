@@ -1,6 +1,0 @@
-<profile>
-    <properties>
-        <add name="FirstName" />
-        <add name="LastName" />
-    </properties>
-</profile>

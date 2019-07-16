@@ -1,1 +1,0 @@
-return View("~/views/home/index.cshtml");

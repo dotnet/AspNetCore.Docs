@@ -1,1 +1,0 @@
-GET http://localhost/odata/Products()?$select=Name

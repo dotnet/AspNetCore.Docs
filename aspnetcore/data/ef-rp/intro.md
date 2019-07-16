@@ -3,16 +3,12 @@ title: Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 author: rick-anderson
 description: Shows how to create a Razor Pages app using Entity Framework Core
 ms.author: riande
-ms.custom: seodec18
+ms.custom: "mvc, seodec18"
 ms.date: 11/22/2018
 uid: data/ef-rp/intro
 ---
 
 # Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
-
-[!INCLUDE[2.0 version](~/includes/RP-EF/20-pdf.md)]
-
-::: moniker range=">= aspnetcore-2.1"
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -20,7 +16,7 @@ The Contoso University sample web app demonstrates how to create an ASP.NET Core
 
 The sample app is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This page is the first in a series of tutorials that explain how to build the Contoso University sample app.
 
-[Download or view the completed app.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
 ## Prerequisites
 
@@ -32,13 +28,13 @@ The sample app is a web site for a fictional Contoso University. It includes fun
 
 [!INCLUDE [](~/includes/2.1-SDK.md)]
 
-------
+---
 
 Familiarity with [Razor Pages](xref:razor-pages/index). New programmers should complete [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) before starting this series.
 
 ## Troubleshooting
 
-If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed project](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to [StackOverflow.com](https://stackoverflow.com/questions/tagged/asp.net-core) for [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
+If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed project](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to [StackOverflow.com](https://stackoverflow.com/questions/tagged/asp.net-core) for [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
 ## The Contoso University web app
 
@@ -71,7 +67,7 @@ cd ContosoUniversity
 dotnet run
 ```
 
-------
+---
 
 ## Set up the site style
 
@@ -172,9 +168,11 @@ Run the following commands to scaffold the student model.
 
 ```console
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
-dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Models.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Models.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
 ```
-------
+
+---
 
 The scaffold process created and changed the following files:
 
@@ -257,6 +255,8 @@ In the *Data* folder, create a new class file named *DbInitializer.cs* and add t
 
 [!code-csharp[](intro/samples/cu21/Data/DbInitializer.cs?name=snippet_Intro)]
 
+Note: The preceding code uses `Models` for the namespace (`namespace ContosoUniversity.Models`) rather than `Data`. `Models` is consistent with the scaffolder-generated code. For more information, see [this GitHub scaffolding issue](https://github.com/aspnet/Scaffolding/issues/822).
+
 The code checks if there are any students in the DB. If there are no students in the DB, the DB is initialized with test data. It loads test data into arrays rather than `List<T>` collections to optimize performance.
 
 The `EnsureCreated` method automatically creates the DB for the DB context. If the DB exists, `EnsureCreated` returns without modifying the DB.
@@ -269,8 +269,9 @@ Delete any student records and restart the app. If the DB is not initialized, se
 
 ## View the DB
 
+The database name is generated from the context name you provided earlier plus a dash and a GUID. Thus, the database name will be "SchoolContext-{GUID}". The GUID will be different for each user.
 Open **SQL Server Object Explorer** (SSOX) from the **View** menu in Visual Studio.
-In SSOX, click **(localdb)\MSSQLLocalDB > Databases > ContosoUniversity1**.
+In SSOX, click **(localdb)\MSSQLLocalDB > Databases > SchoolContext-{GUID}**.
 
 Expand the **Tables** node.
 
@@ -306,7 +307,11 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 In the next tutorial, basic CRUD (create, read, update, delete) operations are examined.
 
-::: moniker-end
+
+
+## Additional resources
+
+* [YouTube version of this tutorial](https://www.youtube.com/watch?v=P7iTtQnkrNs)
 
 > [!div class="step-by-step"]
 > [Next](xref:data/ef-rp/crud)

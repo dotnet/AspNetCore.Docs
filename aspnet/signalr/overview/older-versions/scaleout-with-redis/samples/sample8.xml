@@ -1,2 +1,0 @@
-redis-cli -a password
-SUBSCRIBE ChatApp

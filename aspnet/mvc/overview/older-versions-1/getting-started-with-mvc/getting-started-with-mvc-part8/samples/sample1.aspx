@@ -1,3 +1,0 @@
-<td>
-  <%: item.Rating %>
-</td>

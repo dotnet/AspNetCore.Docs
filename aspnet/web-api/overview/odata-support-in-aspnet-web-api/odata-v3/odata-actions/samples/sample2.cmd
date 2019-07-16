@@ -1,1 +1,0 @@
-http://localhost/odata/Products(1)/RateProduct

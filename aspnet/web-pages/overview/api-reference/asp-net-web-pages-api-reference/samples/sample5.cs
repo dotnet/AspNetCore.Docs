@@ -1,1 +1,0 @@
-float d = stringValue.AsFloat();

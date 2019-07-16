@@ -49,7 +49,7 @@
             </td>
         </tr>
         <tr>
-            <td>asp-area</td>
+            <td rowspan="2">asp-area</td>
             <td>
                 <code>
                     @Html.Raw(Html.Encode(@"<a asp-area=""Blogs"" asp-controller=""Home"" asp-action=""AboutBlog"">About Blog</a>"))
@@ -61,6 +61,19 @@
                    asp-controller="Home"
                    asp-action="AboutBlog">About Blog</a>
                 <!-- </snippet_AspArea> -->
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>
+                    @Html.Raw(Html.Encode(@"<a asp-area=""Sessions"" asp-page=""/Index"">View Sessions</a>"))
+                </code>
+            </td>
+            <td>
+                <!-- <snippet_AspAreaRazorPages> -->
+                <a asp-area="Sessions"
+                   asp-page="/Index">View Sessions</a>
+                <!-- </snippet_AspAreaRazorPages> -->
             </td>
         </tr>
         <tr>

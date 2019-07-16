@@ -5,7 +5,7 @@ description: Learn how to implement background tasks with hosted services in ASP
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/28/2018
+ms.date: 06/03/2019
 uid: fundamentals/host/hosted-services
 ---
 # Background tasks with hosted services in ASP.NET Core
@@ -15,15 +15,41 @@ By [Luke Latham](https://github.com/guardrex)
 In ASP.NET Core, background tasks can be implemented as *hosted services*. A hosted service is a class with background task logic that implements the <xref:Microsoft.Extensions.Hosting.IHostedService> interface. This topic provides three hosted service examples:
 
 * Background task that runs on a timer.
-* Hosted service that activates a scoped service. The scoped service can use dependency injection.
+* Hosted service that activates a [scoped service](xref:fundamentals/dependency-injection#service-lifetimes). The scoped service can use dependency injection.
 * Queued background tasks that run sequentially.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 The sample app is provided in two versions:
 
-* Web Host &ndash; The Web Host is useful for hosting web apps. The example code shown in this topic is from the Web Host version of the sample. For more information, see the [Web Host](xref:fundamentals/host/web-host) topic.
-* Generic Host &ndash; The Generic Host is new in ASP.NET Core 2.1. For more information, see the [Generic Host](xref:fundamentals/host/generic-host) topic.
+* Web Host &ndash; Web Host is useful for hosting web apps. The example code shown in this topic is from Web Host version of the sample. For more information, see the [Web Host](xref:fundamentals/host/web-host) topic.
+* Generic Host &ndash; Generic Host is new in ASP.NET Core 2.1. For more information, see the [Generic Host](xref:fundamentals/host/generic-host) topic.
+
+::: moniker range=">= aspnetcore-3.0"
+
+## Worker Service template
+
+The ASP.NET Core Worker Service template provides a starting point for writing long running service apps. To use the template as a basis for a hosted services app:
+
+# [Visual Studio](#tab/visual-studio)
+
+1. Create a new project.
+1. Select **ASP.NET Core Web Application**. Select **Next**.
+1. Provide a project name in the **Project name** field or accept the default project name. Select **Create**.
+1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected.
+1. Select the **Worker Service** template. Select **Create**.
+
+# [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
+
+Use the Worker Service (`worker`) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell. In the following example, a Worker Service app is created named `ContosoWorkerService`. A folder for the `ContosoWorkerService` app is created automatically when the command is executed.
+
+```console
+dotnet new worker -o ContosoWorkerService
+```
+
+---
+
+::: moniker-end
 
 ## Package
 
@@ -48,8 +74,8 @@ Hosted services implement the <xref:Microsoft.Extensions.Hosting.IHostedService>
 
   To extend the default five second shutdown timeout, set:
 
-  * <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*> when using the Generic Host. For more information, see <xref:fundamentals/host/generic-host#shutdown-timeout>.
-  * Shutdown timeout host configuration setting when using the Web Host. For more information, see <xref:fundamentals/host/web-host#shutdown-timeout>.
+  * <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*> when using Generic Host. For more information, see <xref:fundamentals/host/generic-host#shutdown-timeout>.
+  * Shutdown timeout host configuration setting when using Web Host. For more information, see <xref:fundamentals/host/web-host#shutdown-timeout>.
 
 The hosted service is activated once at app startup and gracefully shut down at app shutdown. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
 
@@ -65,7 +91,7 @@ The service is registered in `Startup.ConfigureServices` with the `AddHostedServ
 
 ## Consuming a scoped service in a background task
 
-To use scoped services within an `IHostedService`, create a scope. No scope is created for a hosted service by default.
+To use [scoped services](xref:fundamentals/dependency-injection#service-lifetimes) within an `IHostedService`, create a scope. No scope is created for a hosted service by default.
 
 The scoped background task service contains the background task's logic. In the following example, an <xref:Microsoft.Extensions.Logging.ILogger> is injected into the service:
 
@@ -93,7 +119,10 @@ The services are registered in `Startup.ConfigureServices`. The `IHostedService`
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample-WebHost/Startup.cs?name=snippet3)]
 
-In the Index page model class, the `IBackgroundTaskQueue` is injected into the constructor and assigned to `Queue`:
+In the Index page model class:
+
+* The `IBackgroundTaskQueue` is injected into the constructor and assigned to `Queue`.
+* An <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory> is injected and assigned to `_serviceScopeFactory`. The factory is used to create instances of <xref:Microsoft.Extensions.DependencyInjection.IServiceScope>, which is used to create services within a scope. A scope is created in order to use the app's `AppDbContext` (a [scoped service](xref:fundamentals/dependency-injection#service-lifetimes)) to write database records in the `IBackgroundTaskQueue` (a singleton service).
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample-WebHost/Pages/Index.cshtml.cs?name=snippet1)]
 
@@ -104,4 +133,4 @@ When the **Add Task** button is selected on the Index page, the `OnPostAddTask` 
 ## Additional resources
 
 * [Implement background tasks in microservices with IHostedService and the BackgroundService class](/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/background-tasks-with-ihostedservice)
-* [System.Threading.Timer](xref:System.Threading.Timer)
+* <xref:System.Threading.Timer>

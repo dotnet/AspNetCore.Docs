@@ -1,3 +1,0 @@
-<system.web>
-    <trace enabled="true"/>
-    <compilation debug="true" targetFramework="4.5">

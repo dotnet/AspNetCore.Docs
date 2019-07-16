@@ -1,1 +1,0 @@
-<asp:ContentPlaceHolder ID="MainContent" runat="server" />

@@ -11,5 +11,5 @@ Webpack completed the following tasks:
 * Mangled the generated JavaScript to reduce file size&mdash;a process known as *minification*.
 * Copied the processed JavaScript, CSS, and HTML files from *src* to the *wwwroot* directory.
 * Injected the following elements into the *wwwroot/index.html* file:
-    * A `<link>` tag, referencing the *wwwroot/main.\<hash\>.css* file. This tag is placed immediately before the closing `</head>` tag.
-    * A `<script>` tag, referencing the minified *wwwroot/main.\<hash\>.js* file. This tag is placed immediately before the closing `</body>` tag.
+  * A `<link>` tag, referencing the *wwwroot/main.\<hash\>.css* file. This tag is placed immediately before the closing `</head>` tag.
+  * A `<script>` tag, referencing the minified *wwwroot/main.\<hash\>.js* file. This tag is placed immediately before the closing `</body>` tag.

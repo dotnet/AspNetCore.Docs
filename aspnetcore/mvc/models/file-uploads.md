@@ -4,7 +4,7 @@ author: ardalis
 description: How to use model binding and streaming to upload files in ASP.NET Core MVC.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 04/06/2019
 uid: mvc/models/file-uploads
 ---
 # File uploads in ASP.NET Core
@@ -13,7 +13,7 @@ By [Steve Smith](https://ardalis.com/)
 
 ASP.NET MVC actions support uploading of one or more files using simple model binding for smaller files or streaming for larger files.
 
-[View or download sample from GitHub](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/models/file-uploads/sample/FileUploadSample)
+[View or download sample from GitHub](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/sample/FileUploadSample)
 
 ## Uploading small files with model binding
 
@@ -24,12 +24,12 @@ To upload small files, you can use a multi-part HTML form or construct a POST re
     <div class="form-group">
         <div class="col-md-10">
             <p>Upload one or more files using this form:</p>
-            <input type="file" name="files" multiple />
+            <input type="file" name="files" multiple>
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-10">
-            <input type="submit" value="Upload" />
+            <input type="submit" value="Upload">
         </div>
     </div>
 </form>
@@ -102,9 +102,10 @@ public async Task<IActionResult> Register(RegisterViewModel model)
     ViewData["ReturnUrl"] = returnUrl;
     if  (ModelState.IsValid)
     {
-        var user = new ApplicationUser {
-          UserName = model.Email,
-          Email = model.Email
+        var user = new ApplicationUser 
+        {
+            UserName = model.Email,
+            Email = model.Email
         };
         using (var memoryStream = new MemoryStream())
         {
