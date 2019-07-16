@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to serve and secure static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/08/2019
+ms.date: 07/8/2019
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
