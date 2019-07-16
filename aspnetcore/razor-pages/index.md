@@ -234,7 +234,7 @@ Properties on a `PageModel` can be decorated with the [Required](/dotnet/api/sys
 
 For more information, see [Model validation](xref:mvc/models/validation).
 
-## Manage HEAD requests with the OnGet handler
+## Manage HEAD requests with the OnHead handler
 
 HEAD requests allow you to retrieve the headers for a specific resource. Unlike GET requests, HEAD requests don't return a response body.
 
