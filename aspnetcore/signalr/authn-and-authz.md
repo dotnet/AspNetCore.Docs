@@ -248,7 +248,7 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 > [!NOTE]
-> In this example, the `DomainRestrictedRequirement` class is not only a `IAuthorizationRequirement` but also it's own `AuthorizationHandler` for that requirement. It is fine to split these into separate classes to separate concerns. Yet, in this way, there's no need to inject the `AuthorizationHandler` during Startup, since the requirement and the handler are the same thing, there's no need to inject the handler separately.
+In the preceding example, the `DomainRestrictedRequirement` class is both an `IAuthorizationRequirement` and its own `AuthorizationHandler` for that requirement. It's acceptable to split these two components into separate classes to separate concerns. A benefit of the example's approach is there's no need to inject the `AuthorizationHandler` during startup, as the requirement and the handler are the same thing.
 
 ::: moniker-end
 
