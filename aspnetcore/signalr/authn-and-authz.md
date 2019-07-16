@@ -216,7 +216,6 @@ public class DomainRestrictedRequirement :
         {
             context.Succeed(requirement);
         }
-            
         return Task.CompletedTask;
     }
 
