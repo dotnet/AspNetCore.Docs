@@ -85,6 +85,7 @@ The following diagram shows the design of the app.
    dotnet new webapi -o TodoApi
    cd TodoApi
    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.0.0-*
    cd ..
    code -r TodoApi
    ```
@@ -135,16 +136,41 @@ Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac la
 
 ---
 
-The following JSON is returned:
+JSON similar to the following is returned:
 
 ```json
-[{"date":"2019-07-16T16:27:24.1810375-06:00","temperatureC":23,"temperatureF":73,
-"summary":"Balmy"},{"date":"2019-07-17T16:27:24.1813276-06:00","temperatureC":-17,
-"temperatureF":2,"summary":"Freezing"},{"date":"2019-07-18T16:27:24.1813331-06:00",
-"temperatureC":43,"temperatureF":109,"summary":"Mild"},
-{"date":"2019-07-19T16:27:24.1813336-06:00","temperatureC":42,"temperatureF":107,
-"summary":"Hot"},{"date":"2019-07-20T16:27:24.1813339-06:00","temperatureC":42,
-"temperatureF":107,"summary":"Scorching"}]
+[
+    {
+        "date": "2019-07-16T19:04:05.7257911-06:00",
+        "temperatureC": 52,
+        "temperatureF": 125,
+        "summary": "Mild"
+    },
+    {
+        "date": "2019-07-17T19:04:05.7258461-06:00",
+        "temperatureC": 36,
+        "temperatureF": 96,
+        "summary": "Warm"
+    },
+    {
+        "date": "2019-07-18T19:04:05.7258467-06:00",
+        "temperatureC": 39,
+        "temperatureF": 102,
+        "summary": "Cool"
+    },
+    {
+        "date": "2019-07-19T19:04:05.7258471-06:00",
+        "temperatureC": 10,
+        "temperatureF": 49,
+        "summary": "Bracing"
+    },
+    {
+        "date": "2019-07-20T19:04:05.7258474-06:00",
+        "temperatureC": -1,
+        "temperatureF": 31,
+        "summary": "Chilly"
+    }
+]
 ```
 
 ## Add a model class
@@ -201,6 +227,8 @@ The *database context* is the main class that coordinates Entity Framework funct
 
   ![new folder](first-web-api-mac/_static/vs3NuGet.png)
 
+* Use the preceding instructions to add the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.
+
 ## Add the TodoContext database context
 
 * Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
@@ -221,7 +249,7 @@ In ASP.NET Core, services such as the DB context must be registered with the [de
 
 Update *Startup.cs* with the following highlighted code:
 
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup1.cs?highlight=5,8,25-26&name=snippet_all)]
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/Startup.cs?highlight=7-8,23-24&name=snippet_all)]
 
 The preceding code:
 
@@ -229,16 +257,18 @@ The preceding code:
 * Adds the database context to the DI container.
 * Specifies that the database context will use an in-memory database.
 
-## Add a controller
+## Scaffold a controller
 
 # [Visual Studio](#tab/visual-studio)
 
 * Right-click the *Controllers* folder.
-* Select **Add** > **New Item**.
-* In the **Add New Item** dialog, select the **API Controller Class** template.
-* Name the class *TodoController*, and select **Add**.
+* Select **Add** > **New Scaffolded Item**.
+* Select **API Controller with actions, using Entity Framework**, and then select **Add*.
+* In the **Add API Controller with actions, using Entity Framework** dialog:
 
-  ![Add new Item dialog with controller in search box and web api controller selected](first-web-api/_static/new_controller.png)
+  * Select **TodoItem (TodoAPI.Models)** in the **Model class**.
+  * Select **TodoContext (TodoAPI.Models)** in the **Data context class**.
+  * Select **Add**
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
