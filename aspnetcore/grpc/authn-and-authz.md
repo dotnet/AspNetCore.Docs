@@ -59,7 +59,7 @@ On the server, bearer token authentication is configured using the [JWT Bearer m
 
 In the .NET gRPC client, the token can be sent with calls as a header:
 
-```cs
+```csharp
 public bool DoAuthenticatedCall(
     Ticketer.TicketerClient client, string token)
 {
