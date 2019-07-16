@@ -38,7 +38,7 @@ public void Configure(IApplicationBuilder app)
 > [!NOTE]
 > The order in which you register the ASP.NET Core authentication middleware matters. Always call `UseAuthentication` and `UseAuthorization` after `UseRouting` and before `UseEndpoints`.
 
-Once authentication has been setup the user can be accessed in a gRPC service methods via the `ServerCallContext`.
+Once authentication has been setup, the user can be accessed in a gRPC service methods via the `ServerCallContext`.
 
 ```csharp
 public override Task<BuyTicketsResponse> BuyTickets(
@@ -75,7 +75,7 @@ public bool DoAuthenticatedCall(
 
 ### Client certificate authentication
 
-A client could alternatively provide a client certificate for authentication. [Certificate authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) happens at the TLS level, long before it ever gets to ASP.NET Core. When the request enters ASP.NET Core the [client certificate authentication package](xref:security/authentication/certauth) allows you to resolve the certificate to a `ClaimsPrincipal`.
+A client could alternatively provide a client certificate for authentication. [Certificate authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) happens at the TLS level, long before it ever gets to ASP.NET Core. When the request enters ASP.NET Core, the [client certificate authentication package](xref:security/authentication/certauth) allows you to resolve the certificate to a `ClaimsPrincipal`.
 
 In the .NET gRPC client, the client certificate is added to `HttpClientHandler` that is then used to create the gRPC client:
 
@@ -98,7 +98,7 @@ public Ticketer.TicketerClient CreateClientWithCert(
 
 ## Authorize users to access services and service methods
 
-By default, all methods in a service can be called by unauthenticated users. In order to require authentication, apply the [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) attribute to the service:
+By default, all methods in a service can be called by unauthenticated users. To require authentication, apply the [[Authorize]](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to the service:
 
 ```csharp
 [Authorize]
@@ -107,7 +107,7 @@ public class TicketerService : Ticketer.TicketerBase
 }
 ```
 
-You can use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](xref:security/authorization/policies). For example, if you have a custom authorization policy called `MyAuthorizationPolicy` you can ensure that only users matching that policy can access the service using the following code:
+You can use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](xref:security/authorization/policies). For example, if you have a custom authorization policy called `MyAuthorizationPolicy`, ensure that only users matching that policy can access the service using the following code:
 
 ```csharp
 [Authorize("MyAuthorizationPolicy")]
