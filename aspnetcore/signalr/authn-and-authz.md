@@ -222,7 +222,7 @@ public class DomainRestrictedRequirement :
     private bool IsUserAllowedToDoThis(string hubMethodName,
         string currentUsername)
     {
-        return !(currentUsername.Contains("asdf42@microsoft.com") && 
+        return !(currentUsername.Equals("asdf42@microsoft.com") && 
             hubMethodName.Equals("banUser", StringComparison.OrdinalIgnoreCase));
     }
 }
