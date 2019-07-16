@@ -86,8 +86,7 @@ The following diagram shows the design of the app.
    cd TodoApi
    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
    dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.0.0-*
-   cd ..
-   code -r TodoApi
+   code -r ../TodoApi
    ```
 
 * When a dialog box asks if you want to add required assets to the project, select **Yes**.
@@ -263,7 +262,7 @@ The preceding code:
 
 * Right-click the *Controllers* folder.
 * Select **Add** > **New Scaffolded Item**.
-* Select **API Controller with actions, using Entity Framework**, and then select **Add*.
+* Select **API Controller with actions, using Entity Framework**, and then select **Add**.
 * In the **Add API Controller with actions, using Entity Framework** dialog:
 
   * Select **TodoItem (TodoAPI.Models)** in the **Model class**.
@@ -272,33 +271,21 @@ The preceding code:
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* In the *Controllers* folder, create a class named `TodoController`.
+TODO add CLI scaffolding instructions
 
 ---
-
-* Replace the template code with the following code:
-
-  [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController2.cs?name=snippet_todo1)]
-
 The preceding code:
 
 * Defines an API controller class without methods.
 * Decorates the class with the [[ApiController]](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute. This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see <xref:web-api/index>.
 * Uses DI to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
-* Adds an item named `Item1` to the database if the database is empty. This code is in the constructor, so it runs every time there's a new HTTP request. If you delete all items, the constructor creates `Item1` again the next time an API method is called. So it may look like the deletion didn't work when it actually did work.
 
-## Add Get methods
-
-To provide an API that retrieves to-do items, add the following methods to the `TodoController` class:
-
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetAll)]
+## Examine the Get methods
 
 These methods implement two GET endpoints:
 
 * `GET /api/todo`
 * `GET /api/todo/{id}`
-
-Stop the app if it's still running. Then run it again to include the latest changes.
 
 Test the app by calling the two endpoints from a browser. For example:
 
