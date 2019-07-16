@@ -79,7 +79,7 @@ A client could alternatively provide a client certificate for authentication. [C
 
 In the .NET gRPC client, the client certificate is added to `HttpClientHandler` that is then used to create the gRPC client:
 
-```cs
+```csharp
 public Ticketer.TicketerClient CreateClientWithCert(
     string baseAddress,
     X509Certificate2 certificate)
