@@ -54,7 +54,7 @@ If targeting .NET Framework, add the [Microsoft.AspNetCore.StaticFiles](https://
 
 ::: moniker range="= aspnetcore-2.0"
 
-If targeting .NET Framework, add the [Microsoft.AspNetCorthee.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to the project. If targeting .NET Core, the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) includes this package.
+If targeting .NET Framework, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to the project. If targeting .NET Core, the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage) includes this package.
 
 ::: moniker-end
 
