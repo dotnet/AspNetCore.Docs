@@ -289,7 +289,7 @@ The preceding code:
 
 Replace the return statement in the `PostTodoItem` to use the [nameof](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/nameof) operator:
 
-[!code-csharp[](/first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
 The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
 
@@ -314,11 +314,11 @@ This tutorial uses Postman to test the web API.
 
 * Create a new request.
   * Set the HTTP method to **POST**.
-  * Set the request URL to `https://localhost:<port>/api/todo`. For example, `https://localhost:5001/api/todo`.
+  * Set the request URL to `https://localhost:<port>/api/TodoItems`. For example, `https://localhost:5001/api/TodoItems`.
 * Set **Two pane view** in Postman.
 * Select **Send**.
 
-![Postman with Get request](first-web-api/_static/2pv.png)
+![Postman with Get request](first-web-api/_static/3/2pv.png)
 
 <a name="post"></a>
 
@@ -395,14 +395,14 @@ The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribu
 
 * Start with the template string in the controller's `Route` attribute:
 
-  [!code-csharp[](/first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=TodoController&highlight=3)]
+  [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=TodoController&highlight=3)]
 
 * Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **TodoItems**Controller, so the controller name is "TodoItems". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
 * If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("products")]`), append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
 In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its`id` parameter.
 
-[!code-csharp[](/first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
 
 ## Return values
 
@@ -417,7 +417,7 @@ The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult
 
 Examine the `PutTodoItem` method:
 
-[!code-csharp[](/first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
 
 `PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
@@ -445,7 +445,7 @@ The following image shows the Postman update:
 
 Examine the `DeleteTodoItem` method:
 
-[!code-csharp[](/first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Delete)]
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Delete)]
 
 The `DeleteTodoItem` response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
 
