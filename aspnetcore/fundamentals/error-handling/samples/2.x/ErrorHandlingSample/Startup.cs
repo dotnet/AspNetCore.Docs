@@ -113,7 +113,7 @@ namespace ErrorHandlingSample
                         await context.Response.WriteAsync(new string(' ', 512)); // IE padding
                     });
                 });
-            app.UseHsts();
+                app.UseHsts();
             }
             #endregion
 #endif
