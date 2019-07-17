@@ -212,7 +212,7 @@ public class ChatHub : Hub
 }
 ```
 
-Set up the policy and register the handler in DI.
+Set up the policy and register the handler in DI:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
