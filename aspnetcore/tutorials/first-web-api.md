@@ -14,21 +14,18 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://gi
 
 This tutorial teaches the basics of building a web API with ASP.NET Core.
 
+::: moniker range=">= aspnetcore-3.0"
+
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Create a web API project.
 > * Add a model class and a database context.
-> * Add a controller.
-> * Add CRUD methods.
-> * Configure routing and URL paths.
-> * Specify return values.
+> * Scaffold a controller with CRUD methods.
+> * Configure routing, URL paths, and return values.
 > * Call the web API with Postman.
-> * Call the web API with jQuery.
 
-At the end, you have a web API that can manage "to-do" items stored in a relational database.
-
-::: moniker range=">= aspnetcore-3.0"
+At the end, you have a web API that can manage "to-do" items stored in a database.
 
 ## Overview
 
@@ -81,12 +78,7 @@ The following diagram shows the design of the app.
 
    ```console
    dotnet new webapi -o TodoApi
-   cd TodoApi
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.0.0-*
-   dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
-   dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
-   code -r ../TodoApi
+   code -r TodoApi
    ```
 
 * When a dialog box asks if you want to add required assets to the project, select **Yes**.
@@ -94,7 +86,7 @@ The following diagram shows the design of the app.
   The preceding commands:
 
     * Create a new web API project.
-    * Adds the NuGet package Microsoft.EntityFrameworkCore.SqlServer to the project.
+    * Adds the NuGet packages required for scaffolding Microsoft.EntityFrameworkCore.SqlServer to the project.
     * Opens the project in Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -271,9 +263,19 @@ The preceding code:
 Run the following commands:
 
 ```console
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
+dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.0.0-*
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
 dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext  -outDir Controllers
 ```
+
+The preceding commands:
+
+* Add NuGet packages required for scaffolding.
+* Installs the scaffolding engine (`dotnet-aspnet-codegenerator`).
+* Scaffolds the `TodoItemsController`.
 
 ---
 
@@ -452,6 +454,19 @@ See [Tutorial: Call an ASP.NET Core web API with jQuery](xref:tutorials/web-api-
 
 ::: moniker range="< aspnetcore-3.0"
 
+In this tutorial, you learn how to:
+
+> [!div class="checklist"]
+> * Create a web API project.
+> * Add a model class and a database context.
+> * Add a controller.
+> * Add CRUD methods.
+> * Configure routing and URL paths.
+> * Specify return values.
+> * Call the web API with Postman.
+> * Call the web API with jQuery.
+
+At the end, you have a web API that can manage "to-do" items stored in a relational database.
 ## Overview
 
 This tutorial creates the following API:
