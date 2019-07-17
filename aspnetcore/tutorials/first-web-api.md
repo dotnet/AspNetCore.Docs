@@ -84,6 +84,8 @@ The following diagram shows the design of the app.
    cd TodoApi
    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
    dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.0.0-*
+   dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
+   dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
    code -r ../TodoApi
    ```
 
@@ -269,11 +271,16 @@ The preceding code:
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-TODO add CLI scaffolding instructions
+Run the following commands:
+
+```console
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext  -outDir Controllers
+```
 
 ---
 
-The preceding code:
+The generated code:
 
 * Defines an API controller class without methods.
 * Decorates the class with the [[ApiController]](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute. This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see <xref:web-api/index>.
@@ -301,10 +308,13 @@ This tutorial uses Postman to test the web API.
 * Start the web app.
 * Start Postman.
 * Disable **SSL certificate verification**
-  
-  * From  **File > Settings** (**General* tab), disable **SSL certificate verification**.
+* From  **File > Settings** (**General* tab), disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the controller.
+
+<a name="post"></a>
+
+### Test PostTodoItem with Postman
 
 * Create a new request.
 * Set the HTTP method to `POST`.
@@ -329,7 +339,7 @@ This tutorial uses Postman to test the web API.
 * Select the **Headers** tab in the **Response** pane.
 * Copy the **Location** header value:
 
-  ![Headers tab of the Postman console](first-web-api/_static/3/pmc2.png)
+  ![Headers tab of the Postman console](first-web-api/_static/3/create.png)
 
 * Set the method to GET.
 * Paste the URI (for example, `https://localhost:5001/api/TodoItems/2`)
@@ -375,7 +385,7 @@ The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribu
 
 * Start with the template string in the controller's `Route` attribute:
 
-  [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=TodoController&highlight=3)]
+  [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=TodoController&highlight=1)]
 
 * Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **TodoItems**Controller, so the controller name is "TodoItems". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
 * If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("products")]`), append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
@@ -437,9 +447,11 @@ Use Postman to delete a to-do item:
 * Set the URI of the object to delete, for example `https://localhost:5001/api/TodoItems/1`
 * Select **Send**
 
-::: moniker-end
+## Call the API from jQuery
 
-xxmoniker
+See [Tutorial: Call an ASP.NET Core web API with jQuery](xref:tutorials/web-api-jquery).
+
+::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
@@ -880,24 +892,3 @@ For more information, see the following resources:
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
 * [YouTube version of this tutorial](https://www.youtube.com/watch?v=TTkhEyGBfAk)
-
-## Next steps
-
-In this tutorial, you learned how to:
-
-> [!div class="checklist"]
-> * Create a web api project.
-> * Add a model class.
-> * Create the database context.
-> * Register the database context.
-> * Add a controller.
-> * Add CRUD methods.
-> * Configure routing and URL paths.
-> * Specify return values.
-> * Call the web API with Postman.
-> * Call the web api with jQuery.
-
-Advance to the next tutorial to learn how to generate API help pages:
-
-> [!div class="nextstepaction"]
-> <xref:tutorials/get-started-with-swashbuckle>
