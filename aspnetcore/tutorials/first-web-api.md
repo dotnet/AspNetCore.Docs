@@ -340,7 +340,7 @@ This tutorial uses Postman to test the web API.
 
 * Select **Send**.
 
-  ![Postman with create request](first-web-api/_static/create.png)
+  ![Postman with create request](first-web-api/_static/3/create.png)
 
   If you get a 405 Method Not Allowed error, it's probably the result of not compiling the project after adding the `PostTodoItem` method.
 
@@ -349,7 +349,7 @@ This tutorial uses Postman to test the web API.
 * Select the **Headers** tab in the **Response** pane.
 * Copy the **Location** header value:
 
-  ![Headers tab of the Postman console](first-web-api/_static/pmc2.png)
+  ![Headers tab of the Postman console](first-web-api/_static/3/pmc2.png)
 
 * Set the method to GET.
 * Paste the URI (for example, `https://localhost:5001/api/Todo/2`)
