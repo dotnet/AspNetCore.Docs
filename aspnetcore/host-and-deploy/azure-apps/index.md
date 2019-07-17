@@ -111,7 +111,7 @@ Discover how to enable and access diagnostic logging for HTTP status codes, fail
 <xref:fundamentals/error-handling>  
 Understand common approaches to handling errors in ASP.NET Core apps.
 
-<xref:host-and-deploy/azure-apps/troubleshoot>  
+<xref:test/troubleshoot-azure-iis>  
 Learn how to diagnose issues with Azure App Service deployments with ASP.NET Core apps.
 
 <xref:host-and-deploy/azure-iis-errors-reference>  
