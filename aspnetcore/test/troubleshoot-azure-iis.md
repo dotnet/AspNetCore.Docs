@@ -23,7 +23,7 @@ Provides troubleshooting advice for apps deployed to Azure App Service.
 [Troubleshoot on IIS](#troubleshoot-on-iis)  
 Provides troubleshooting advice for apps deployed to IIS or running on IIS Express locally. The guidance applies to both Windows Server and Windows desktop deployments.
 
-[Additional advice](#additional-advice)  
+[Clear package caches](#clear-package-caches)  
 Explains how incoherent packages may break an app when performing major upgrades.
 
 [Additional resources](#additional-resources)  
