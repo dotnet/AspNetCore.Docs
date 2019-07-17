@@ -1,5 +1,5 @@
 ﻿// <snippet_SiteJs>
-const uri = "api/todo";
+const uri = "api/TodoItems";
 let todos = null;
 function getCount(data) {
   const el = $("#counter");
