@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how filters work and how to use them in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/17/2019
+ms.date: 05/08/2019
 uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
@@ -15,9 +15,8 @@ By [Kirk Larkin](https://github.com/serpent5), [Rick Anderson](https://twitter.c
 
 Built-in filters handle tasks such as:
 
-* Authorization &ndash; Prevent access to resources a user isn't authorized for.
-* Response caching &ndash; Short-circuit the request pipeline to return a cached response.
-* Error proccessing &ndash; Handle errors raised when a controller action executes.
+* Authorization (preventing access to resources a user isn't authorized for).
+* Response caching (short-circuiting the request pipeline to return a cached response).
 
 Custom filters can be created to handle cross-cutting concerns. Examples of cross-cutting concerns include error handling, caching, configuration, authorization, and logging.  Filters avoid duplicating code. For example, an error handling exception filter could consolidate error handling.
 
