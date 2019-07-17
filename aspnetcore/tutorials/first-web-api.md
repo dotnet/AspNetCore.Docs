@@ -223,9 +223,6 @@ The *database context* is the main class that coordinates Entity Framework funct
 * Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.SqlServer** in the search box.
 * Select  **Microsoft.EntityFrameworkCore.SqlServer V3.0.0-preview** in the left pane.
 * Select the **Project** check box in the right pane and then select **Install**.
-
-  ![new folder](first-web-api-mac/_static/vs3NuGet.png)
-
 * Use the preceding instructions to add the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.
 
 ## Add the TodoContext database context
