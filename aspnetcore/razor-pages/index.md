@@ -234,11 +234,11 @@ Properties on a `PageModel` can be decorated with the [Required](/dotnet/api/sys
 
 For more information, see [Model validation](xref:mvc/models/validation).
 
-## Manage HEAD requests with the OnHead handler
+## Handle HEAD requests with an OnGet handler fallback
 
 HEAD requests allow you to retrieve the headers for a specific resource. Unlike GET requests, HEAD requests don't return a response body.
 
-Ordinarily, a HEAD handler is created and called for HEAD requests: 
+Ordinarily, an `OnHead` handler is created and called for HEAD requests: 
 
 ```csharp
 public void OnHead()
@@ -247,7 +247,7 @@ public void OnHead()
 }
 ```
 
-If no HEAD handler (`OnHead`) is defined, Razor Pages falls back to calling the GET page handler (`OnGet`) in ASP.NET Core 2.1 or later. In ASP.NET Core 2.1 and 2.2, this behavior occurs with the [SetCompatibilityVersion](xref:mvc/compatibility-version) in `Startup.Configure`:
+If no `OnHead` handler is defined, Razor Pages falls back to calling the `OnGet` handler in ASP.NET Core 2.1 or later. In ASP.NET Core 2.1 and 2.2, this behavior occurs with the [SetCompatibilityVersion](xref:mvc/compatibility-version) in `Startup.Configure`:
 
 ```csharp
 services.AddMvc()
@@ -258,7 +258,7 @@ The default templates generate the `SetCompatibilityVersion` call in ASP.NET Cor
 
 `SetCompatibilityVersion` effectively sets the Razor Pages option `AllowMappingHeadRequestsToGetHandler` to `true`.
 
-Rather than opting into all 2.1 behaviors with `SetCompatibilityVersion`, you can explicitly opt-in to specific behaviors. The following code opts into the mapping HEAD requests to the GET handler.
+Rather than opting into all 2.1 behaviors with `SetCompatibilityVersion`, you can explicitly opt-in to specific behaviors. The following code opts into mapping HEAD requests to the `OnGet` handler.
 
 ```csharp
 services.AddMvc()
