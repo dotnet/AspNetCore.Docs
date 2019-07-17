@@ -8,6 +8,8 @@ ms.date: 07/11/2019
 uid: tutorials/first-web-api
 ---
 
+https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/nameof
+
 # Tutorial: Create a web API with ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
@@ -30,6 +32,8 @@ In this tutorial, you learn how to:
 
 At the end, you have a web API that can manage "to-do" items stored in a relational database.
 
+::: moniker range=">= aspnetcore-3.0"
+
 ## Overview
 
 This tutorial creates the following API:
@@ -45,8 +49,6 @@ This tutorial creates the following API:
 The following diagram shows the design of the app.
 
 ![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
-
-::: moniker range=">= aspnetcore-3.0"
 
 ## Prerequisites
 
@@ -274,61 +276,28 @@ The preceding code:
 TODO add CLI scaffolding instructions
 
 ---
+
 The preceding code:
 
 * Defines an API controller class without methods.
 * Decorates the class with the [[ApiController]](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute. This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see <xref:web-api/index>.
 * Uses DI to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
-## Examine the Get methods
+## Examine the PostTodoItem create method
 
-These methods implement two GET endpoints:
+Replace the return statement in the `PostTodoItem` to use the [nameof](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/nameof) operator:
 
-* `GET /api/todo`
-* `GET /api/todo/{id}`
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
-Test the app by calling the two endpoints from a browser. For example:
+The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
 
-* `https://localhost:<port>/api/todo`
-* `https://localhost:<port>/api/todo/1`
+The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 
-The following HTTP response is produced by the call to `GetTodoItems`:
+* Returns an HTTP 201 status code if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
+* Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the URI of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+* References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Item1",
-    "isComplete": false
-  }
-]
-```
-
-## Routing and URL paths
-
-The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
-
-* Start with the template string in the controller's `Route` attribute:
-
-  [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=TodoController&highlight=3)]
-
-* Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **Todo**Controller, so the controller name is "todo". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
-* If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("products")]`), append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
-
-In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its`id` parameter.
-
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
-
-## Return values
-
-The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
-
-`ActionResult` return types can represent a wide range of HTTP status codes. For example, `GetTodoItem` can return two different status values:
-
-* If no item matches the requested ID, the method returns a 404 [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) error code.
-* Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
-
-## Test the GetTodoItems method
+### Install Postman
 
 This tutorial uses Postman to test the web API.
 
@@ -342,28 +311,14 @@ This tutorial uses Postman to test the web API.
     > Re-enable SSL certificate verification after testing the controller.
 
 * Create a new request.
-  * Set the HTTP method to **GET**.
+  * Set the HTTP method to **POST**.
   * Set the request URL to `https://localhost:<port>/api/todo`. For example, `https://localhost:5001/api/todo`.
 * Set **Two pane view** in Postman.
 * Select **Send**.
 
 ![Postman with Get request](first-web-api/_static/2pv.png)
 
-## Add a Create method
-
-Add the following `PostTodoItem` method:
-
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
-
-The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
-
-The `CreatedAtAction` method:
-
-* Returns an HTTP 201 status code, if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
-* Adds a `Location` header to the response. The `Location` header specifies the URI of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
-* References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
-
-  [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
+<a name="post"></a>
 
 ### Test the PostTodoItem method
 
@@ -398,11 +353,69 @@ The `CreatedAtAction` method:
 * Paste the URI (for example, `https://localhost:5001/api/Todo/2`)
 * Select **Send**.
 
-## Add a PutTodoItem method
+## Examine the Get methods
 
-Add the following `PutTodoItem` method:
+These methods implement two GET endpoints:
 
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
+* `GET /api/todo`
+* `GET /api/todo/{id}`
+
+Test the app by calling the two endpoints from a browser or Postman. For example:
+
+* [https://localhost:5001/api/TodoItems](https://localhost:5001/api/todo)
+* [https://localhost:5001/api/TodoItems/1](https://localhost:5001/api/todo/1)
+
+A response similar to the following is produced by the call to `GetTodoItems`:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Item1",
+    "isComplete": false
+  }
+]
+```
+
+### Test Get with Postman
+
+* Create a new request.
+* Set the HTTP method to **GET**.
+* Set the request URL to `https://localhost:<port>/api/todo`. For example, `https://localhost:5001/api/todo`.
+* Set **Two pane view** in Postman.
+* Select **Send**.
+
+This app uses an in-memory database. If the app is stopped and started, the preceding GET request will not return any data. If no data is returned, [POST](#post) data to the app.
+
+## Routing and URL paths
+
+The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
+
+* Start with the template string in the controller's `Route` attribute:
+
+  [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoController.cs?name=TodoController&highlight=3)]
+
+* Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **TodoItems**Controller, so the controller name is "TodoItems". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
+* If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("products")]`), append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
+
+In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its`id` parameter.
+
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoController.cs?name=snippet_GetByID&highlight=1-2)]
+
+## Return values
+
+The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+
+`ActionResult` return types can represent a wide range of HTTP status codes. For example, `GetTodoItem` can return two different status values:
+
+* If no item matches the requested ID, the method returns a 404 [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) error code.
+* Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
+
+## The PutTodoItem method
+
+Examine the `PutTodoItem` method:
+
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoController.cs?name=snippet_Update)]
 
 `PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
@@ -424,13 +437,13 @@ Update the to-do item that has id = 1 and set its name to "feed fish":
 
 The following image shows the Postman update:
 
-![Postman console showing 204 (No Content) response](first-web-api/_static/pmcput.png)
+![Postman console showing 204 (No Content) response](first-web-api/_static/3/pmcput.png)
 
-## Add a DeleteTodoItem method
+## The DeleteTodoItem method
 
-Add the following `DeleteTodoItem` method:
+Examine the `DeleteTodoItem` method:
 
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Delete)]
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoController.cs?name=snippet_Delete)]
 
 The `DeleteTodoItem` response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
 
@@ -442,62 +455,27 @@ Use Postman to delete a to-do item:
 * Set the URI of the object to delete, for example `https://localhost:5001/api/todo/1`
 * Select **Send**
 
-The sample app allows you to delete all the items. However, when the last item is deleted, a new one is created by the model class constructor the next time the API is called.
-
-## Call the API with jQuery
-
-In this section, an HTML page is added that uses jQuery to call the web api. jQuery initiates the request and updates the page with the details from the API's response.
-
-Configure the app to [serve static files](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [enable default file mapping](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) by updating *Startup.cs* with the following highlighted code:
-
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup.cs?highlight=14-15&name=snippet_configure)]
-
-Create a *wwwroot* folder in the project directory.
-
-Add an HTML file named *index.html* to the *wwwroot* directory. Replace its contents with the following markup:
-
-[!code-html[](first-web-api/samples/2.2/TodoApi/wwwroot/index.html)]
-
-Add a JavaScript file named *site.js* to the *wwwroot* directory. Replace its contents with the following code:
-
-[!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_SiteJs)]
-
-A change to the ASP.NET Core project's launch settings may be required to test the HTML page locally:
-
-* Open *Properties\launchSettings.json*.
-* Remove the `launchUrl` property to force the app to open at *index.html*&mdash;the project's default file.
-
-There are several ways to get jQuery. In the preceding snippet, the library is loaded from a CDN.
-
-This sample calls all of the CRUD methods of the API. Following are explanations of the calls to the API.
-
-### Get a list of to-do items
-
-The jQuery [ajax](https://api.jquery.com/jquery.ajax/) function sends a `GET` request to the API, which returns JSON representing an array of to-do items. The `success` callback function is invoked if the request succeeds. In the callback, the DOM is updated with the to-do information.
-
-[!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_GetData)]
-
-### Add a to-do item
-
-The [ajax](https://api.jquery.com/jquery.ajax/) function sends a `POST` request with the to-do item in the request body. The `accepts` and `contentType` options are set to `application/json` to specify the media type being received and sent. The to-do item is converted to JSON by using [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify). When the API returns a successful status code, the `getData` function is invoked to update the HTML table.
-
-[!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AddItem)]
-
-### Update a to-do item
-
-Updating a to-do item is similar to adding one. The `url` changes to add the unique identifier of the item, and the `type` is `PUT`.
-
-[!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AjaxPut)]
-
-### Delete a to-do item
-
-Deleting a to-do item is accomplished by setting the `type` on the AJAX call to `DELETE` and specifying the item's unique identifier in the URL.
-
-[!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AjaxDelete)]
-
 ::: moniker-end
 
+xxmoniker
+
 ::: moniker range="< aspnetcore-3.0"
+
+## Overview
+
+This tutorial creates the following API:
+
+|API | Description | Request body | Response body |
+|--- | ---- | ---- | ---- |
+|GET /api/TodoItems | Get all to-do items | None | Array of to-do items|
+|GET /api/TodoItems/{id} | Get an item by ID | None | To-do item|
+|POST /api/TodoItems | Add a new item | To-do item | To-do item |
+|PUT /api/TodoItems/{id} | Update an existing item &nbsp; | To-do item | None |
+|DELETE /api/TodoItems/{id} &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+
+The following diagram shows the design of the app.
+
+![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
 
 ## Prerequisites
 

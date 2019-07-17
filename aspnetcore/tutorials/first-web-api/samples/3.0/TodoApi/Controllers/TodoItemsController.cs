@@ -9,6 +9,7 @@ using TodoApi.Models;
 
 namespace TodoApi.Controllers
 {
+    #region TodoController
     [Route("api/[controller]")]
     [ApiController]
     public class TodoItemsController : ControllerBase
@@ -19,6 +20,7 @@ namespace TodoApi.Controllers
         {
             _context = context;
         }
+        #endregion
 
         // GET: api/TodoItems
         [HttpGet]
@@ -27,6 +29,7 @@ namespace TodoApi.Controllers
             return await _context.TodoItems.ToListAsync();
         }
 
+        #region snippet_GetByID
         // GET: api/TodoItems/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
@@ -40,7 +43,9 @@ namespace TodoApi.Controllers
 
             return todoItem;
         }
+        #endregion
 
+        #region snippet_Update
         // PUT: api/TodoItems/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
@@ -70,7 +75,9 @@ namespace TodoApi.Controllers
 
             return NoContent();
         }
+        #endregion
 
+        #region snippet_Create
         // POST: api/TodoItems
         [HttpPost]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
@@ -78,8 +85,10 @@ namespace TodoApi.Controllers
             _context.TodoItems.Add(todoItem);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+            //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+            return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
         }
+        #endregion
 
         // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]
