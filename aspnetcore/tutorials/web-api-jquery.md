@@ -25,7 +25,7 @@ In this section, an HTML page is added that uses jQuery to call the web api. jQu
 
 Configure the app to [serve static files](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [enable default file mapping](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) by updating *Startup.cs* with the following highlighted code:
 
-[!code-csharp[](first-web-api/samples/2.2/TodoApi/StartupJquery.cs?highlight=8-9&name=snippet_configure)]
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/StartupJquery.cs?highlight=8-9&name=snippet_configure)]
 
 Create a *wwwroot* folder in the project directory.
 
