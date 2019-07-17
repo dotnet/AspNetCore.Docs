@@ -4,7 +4,6 @@ author: rick-anderson
 description: Learn how to call an ASP.NET Core web API with jQuery.
 ms.author: riande
 ms.custom: mvc
-monikerRange: '>= aspnetcore-3.0'
 ms.date: 07/20/2019
 uid: tutorials/web-api-jquery
 ---
@@ -14,6 +13,14 @@ uid: tutorials/web-api-jquery
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial shows how to call an ASP.NET Core web API with jQuery
+
+::: moniker range="< aspnetcore-3.0"
+
+For ASP.NET Core 2.2, see the 2.2 version of [Call the Web API with jQuery](xref:tutorials/first-web-api#call-the-api-with-jquery).
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 ## Prerequisites
 
@@ -74,3 +81,4 @@ Advance to the next tutorial to learn how to generate API help pages:
 
 > [!div class="nextstepaction"]
 > <xref:tutorials/get-started-with-swashbuckle>
+::: moniker-end

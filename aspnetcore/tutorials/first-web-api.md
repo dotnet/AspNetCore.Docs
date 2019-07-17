@@ -8,10 +8,6 @@ ms.date: 07/11/2019
 uid: tutorials/first-web-api
 ---
 
-https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/nameof
-
-https://developer.mozilla.org/en-US/docs/Glossary/URI
-
 # Tutorial: Create a web API with ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
@@ -22,9 +18,7 @@ In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Create a web API project.
-> * Add a model class.
-> * Create the database context.
-> * Register the database context.
+> * Add a model class and a database context.
 > * Add a controller.
 > * Add CRUD methods.
 > * Configure routing and URL paths.
@@ -287,7 +281,7 @@ The preceding code:
 
 ## Examine the PostTodoItem create method
 
-Replace the return statement in the `PostTodoItem` to use the [nameof](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/nameof) operator:
+Replace the return statement in the `PostTodoItem` to use the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator:
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
@@ -296,7 +290,7 @@ The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/dot
 The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 
 * Returns an HTTP 201 status code if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
-* Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/en-US/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+* Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 * References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
 
 ### Install Postman
