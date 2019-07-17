@@ -24,7 +24,7 @@ Provides troubleshooting advice for apps deployed to Azure App Service.
 Provides troubleshooting advice for apps deployed to IIS or running on IIS Express locally. The guidance applies to both Windows Server and Windows desktop deployments.
 
 [Clear package caches](#clear-package-caches)  
-Explains how incoherent packages may break an app when performing major upgrades.
+Explains what to do when incoherent packages break an app when performing major upgrades or changing package versions.
 
 [Additional resources](#additional-resources)  
 Lists additional troubleshooting topics.
