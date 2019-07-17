@@ -90,6 +90,7 @@ namespace TodoApi.Controllers
         }
         #endregion
 
+        #region snippet_Delete
         // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<TodoItem>> DeleteTodoItem(long id)
@@ -105,6 +106,7 @@ namespace TodoApi.Controllers
 
             return todoItem;
         }
+        #endregion
 
         private bool TodoItemExists(long id)
         {
