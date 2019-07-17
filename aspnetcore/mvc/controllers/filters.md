@@ -17,6 +17,7 @@ Built-in filters handle tasks such as:
 
 * Authorization (preventing access to resources a user isn't authorized for).
 * Response caching (short-circuiting the request pipeline to return a cached response).
+* Errors proccessing (handle errors raised when a controller action executes).
 
 Custom filters can be created to handle cross-cutting concerns. Examples of cross-cutting concerns include error handling, caching, configuration, authorization, and logging.  Filters avoid duplicating code. For example, an error handling exception filter could consolidate error handling.
 
