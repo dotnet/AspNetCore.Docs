@@ -5,7 +5,7 @@ description: Learn how to diagnose problems with Azure App Service and Internet 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/10/2019
+ms.date: 07/17/2019
 uid: test/troubleshoot-azure-iis
 ---
 # Troubleshoot ASP.NET Core on Azure App Service and IIS
@@ -33,13 +33,13 @@ Lists additional troubleshooting topics.
 
 ::: moniker range=">= aspnetcore-2.2"
 
-In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) hosting during debugging. A *502.5 - Process Failure* or a *500.30 - Start Failure* that occurs when debugging locally can be troubleshooted using the advice in this topic.
+In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) hosting during debugging. A *502.5 - Process Failure* or a *500.30 - Start Failure* that occurs when debugging locally can be diagnosed using the advice in this topic.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
-In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) hosting during debugging. A *502.5 Process Failure* that occurs when debugging locally can be troubleshooted using the advice in this topic.
+In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) hosting during debugging. A *502.5 Process Failure* that occurs when debugging locally can be diagnosed using the advice in this topic.
 
 ::: moniker-end
 
@@ -226,7 +226,7 @@ Many startup errors don't produce useful information in the Application Event Lo
 
 #### Test a 32-bit (x86) app
 
-##### Current release
+**Current release**
 
 1. `cd d:\home\site\wwwroot`
 1. Run the app:
@@ -244,7 +244,7 @@ Many startup errors don't produce useful information in the Application Event Lo
 
 The console output from the app, showing any errors, is piped to the Kudu console.
 
-##### Framework-dependent deployment running on a preview release
+**Framework-dependent deployment running on a preview release**
 
 *Requires installing the ASP.NET Core {VERSION} (x86) Runtime site extension.*
 
@@ -255,7 +255,7 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 
 #### Test a 64-bit (x64) app
 
-##### Current release
+**Current release**
 
 * If the app is a 64-bit (x64) [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
   1. `cd D:\Program Files\dotnet`
@@ -266,7 +266,7 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 
 The console output from the app, showing any errors, is piped to the Kudu console.
 
-##### Framework-dependent deployment running on a preview release
+**Framework-dependent deployment running on a preview release**
 
 *Requires installing the ASP.NET Core {VERSION} (x64) Runtime site extension.*
 
@@ -562,19 +562,17 @@ When an app *hangs* (stops responding but doesn't crash), fails during startup, 
 
 A dump can be analyzed using several approaches. For more information, see [Analyzing a User-Mode Dump File](/windows-hardware/drivers/debugger/analyzing-a-user-mode-dump-file).
 
-## Additional advice
+## Clear package caches
 
-Sometimes a functioning app fails immediately after upgrading either the .NET Core SDK on the development machine or package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
+Sometimes a functioning app fails immediately after upgrading either the .NET Core SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
 
 1. Delete the *bin* and *obj* folders.
-1. Clear the package caches at *%UserProfile%\\.nuget\\packages* and *%LocalAppData%\\Nuget\\v3-cache*.
-1. Restore and rebuild the project.
-1. Confirm that the prior deployment on the server has been completely deleted prior to redeploying the app.
+1. Clear the package caches by executing `dotnet nuget locals all --clear` from a command shell.
 
-> [!TIP]
-> A convenient way to clear package caches is to execute `dotnet nuget locals all --clear` from a command prompt.
->
-> Clearing package caches can also be accomplished by using the [nuget.exe](https://www.nuget.org/downloads) tool and executing the command `nuget locals all -clear`. *nuget.exe* isn't a bundled install with the Windows desktop operating system and must be obtained separately from the [NuGet website](https://www.nuget.org/downloads).
+   Clearing package caches can also be accomplished with the [nuget.exe](https://www.nuget.org/downloads) tool and executing the command `nuget locals all -clear`. *nuget.exe* isn't a bundled install with the Windows desktop operating system and must be obtained separately from the [NuGet website](https://www.nuget.org/downloads).
+
+1. Restore and rebuild the project.
+1. Delete all of the files in the deployment folder on the server prior to redeploying the app.
 
 ## Additional resources
 
