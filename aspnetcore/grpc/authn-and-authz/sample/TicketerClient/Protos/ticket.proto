@@ -5,9 +5,9 @@ package Ticket;
 
 service Ticketer {
   // Get available ticket count
-  rpc GetAvailableTickets (google.protobuf.Empty) returns (AvailableTicketsResponse) {};
+  rpc GetAvailableTickets (google.protobuf.Empty) returns (AvailableTicketsResponse);
   // Buy tickets
-  rpc BuyTickets (BuyTicketsRequest) returns (BuyTicketsResponse) {};
+  rpc BuyTickets (BuyTicketsRequest) returns (BuyTicketsResponse);
 }
 
 // The response message containing the available ticket count
