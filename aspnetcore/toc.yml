@@ -534,6 +534,8 @@
       uid: grpc/aspnetcore
     - name: Configuration
       uid: grpc/configuration
+    - name: Authentication and authorization
+      uid: grpc/authn-and-authz
     - name: Security considerations
       uid: grpc/security
     - name: Migrating gRPC services from C Core to ASP.NET Core
