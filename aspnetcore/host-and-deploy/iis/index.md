@@ -728,10 +728,10 @@ Learn about the directory structure of published ASP.NET Core apps.
 [Directory structure](xref:host-and-deploy/directory-structure)
 
 Discover active and inactive IIS modules for ASP.NET Core apps and how to manage IIS modules.  
-[IIS modules](xref:host-and-deploy/iis/troubleshoot)
+[IIS modules](xref:host-and-deploy/iis/modules)
 
 Learn how to diagnose problems with IIS deployments of ASP.NET Core apps.  
-[Troubleshoot](xref:host-and-deploy/iis/troubleshoot)
+[Troubleshoot](xref:test/troubleshoot-azure-iis)
 
 Distinguish common errors when hosting ASP.NET Core apps on IIS.  
 [Common errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)

@@ -75,7 +75,7 @@ Arguments:
 Options:
   --help - Show help information.
 
-REPL Commands:
+Once the REPL starts, these commands are valid:
 
 HTTP Commands:
 Use these commands to execute requests against your application.
