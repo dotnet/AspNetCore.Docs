@@ -24,7 +24,7 @@ By [Luke Latham](https://github.com/guardrex)
 | Safari, including iOS            | Current               |
 | Microsoft Internet Explorer      | Not Supported&dagger; |
 
-&dagger;Microsoft Internet Explorer doesn't support [WebAssembly](http://webassembly.org).
+&dagger;Microsoft Internet Explorer doesn't support [WebAssembly](https://webassembly.org).
 
 ### Blazor server-side
 

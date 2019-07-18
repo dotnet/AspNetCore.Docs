@@ -12,7 +12,7 @@ uid: blazor/hosting-models
 
 By [Daniel Roth](https://github.com/danroth27)
 
-Blazor is a web framework designed to run client-side in the browser on a [WebAssembly](http://webassembly.org/)-based .NET runtime (*Blazor client-side*) or server-side in ASP.NET Core (*Blazor server-side*). Regardless of the hosting model, the app and component models *are the same*.
+Blazor is a web framework designed to run client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor client-side*) or server-side in ASP.NET Core (*Blazor server-side*). Regardless of the hosting model, the app and component models *are the same*.
 
 To create a project for the hosting models described in this article, see <xref:blazor/get-started>.
 
@@ -52,7 +52,7 @@ With the server-side hosting model, the app is executed on the server from withi
 
 ![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](hosting-models/_static/server-side.png)
 
-To create a Blazor app using the server-side hosting model, use the ASP.NET Core **Blazor (server-side)** template ([dotnet new blazorserverside](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app hosts the server-side app and creates the SignalR endpoint where clients connect.
+To create a Blazor app using the server-side hosting model, use the ASP.NET Core **Blazor Server App** template ([dotnet new blazorserverside](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app hosts the server-side app and creates the SignalR endpoint where clients connect.
 
 The ASP.NET Core app references the app's `Startup` class to add:
 

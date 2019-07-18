@@ -20,7 +20,7 @@ We recommend pipelines over streams. Streams can be easier to use for some simpl
 
 - `FormReader`
 - `TextReader`
-- `TexWriter`
+- `TextWriter`
 - `HttpResponse.WriteAsync`
 
 Streams aren't going away. They continue to be used throughout .NET, and many stream types don't have pipe equivalents, like `FileStreams` and `ResponseCompression`.

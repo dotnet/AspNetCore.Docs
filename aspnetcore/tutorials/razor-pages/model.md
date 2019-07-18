@@ -75,6 +75,10 @@ In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRU
 ![Image from the previous instructions.](model/_static/add_scaffold.png)
 
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
+<!-- In the next section, change 
+(plus) sign and accept the generated name 
+to use Data, it should not use models. That will make the namespace the same for the VS version and the CLI version
+-->
 
 * In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
 * In the **Data context class** row, select the **+** (plus) sign and accept the generated name **RazorPagesMovie.Models.RazorPagesMovieContext**.

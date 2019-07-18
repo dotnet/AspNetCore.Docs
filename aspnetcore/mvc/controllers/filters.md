@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how filters work and how to use them in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/08/2019
+ms.date: 05/08/2019
 uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
@@ -253,7 +253,7 @@ In the following code, the `ServiceFilter` attribute retrieves an instance of th
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/HomeController.cs?name=snippet_ServiceFilter&highlight=1)]
 
-[ServiceFilterAttribute.IsReusable](xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.IsReusable):
+When using `ServiceFilterAttribute`, setting [ServiceFilterAttribute.IsReusable](xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.IsReusable):
 
 * Provides a hint that the filter instance *may* be reused outside of the request scope it was created within. The ASP.NET Core runtime doesn't guarantee:
 
@@ -273,7 +273,10 @@ Because `TypeFilterAttribute` types aren't resolved directly from the DI contain
 * Types that are referenced using the `TypeFilterAttribute` don't need to be registered with the DI container.  They do have their dependencies fulfilled by the DI container.
 * `TypeFilterAttribute` can optionally accept constructor arguments for the type.
 
-When using `TypeFilterAttribute`, setting `IsReusable` is a hint that the filter instance *may* be reused outside of the request scope it was created within. The ASP.NET Core runtime provides no guarantees that a single instance of the filter will be created. `IsReusable` should not be used with a filter that depends on services with a lifetime other than singleton.
+When using `TypeFilterAttribute`, setting [TypeFilterAttribute.IsReusable](xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute.IsReusable):
+* Provides hint that the filter instance *may* be reused outside of the request scope it was created within. The ASP.NET Core runtime provides no guarantees that a single instance of the filter will be created.
+
+* Should not be used with a filter that depends on services with a lifetime other than singleton.
 
 The following example shows how to pass arguments to a type using `TypeFilterAttribute`:
 

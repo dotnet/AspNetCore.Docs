@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/24/2019
+ms.date: 07/11/2019
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -15,6 +15,7 @@ By [Luke Latham](https://github.com/guardrex)
 App configuration in ASP.NET Core is based on key-value pairs established by *configuration providers*. Configuration providers read configuration data into key-value pairs from a variety of configuration sources:
 
 * Azure Key Vault
+* Azure App Configuration
 * Command-line arguments
 * Custom providers (installed or created)
 * Directory files
@@ -32,7 +33,7 @@ The *options pattern* is an extension of the configuration concepts described in
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
-## Host vs. app configuration
+## Host versus app configuration
 
 Before the app is configured and started, a *host* is configured and launched. The host is responsible for app startup and lifetime management. Both the app and the host are configured using the configuration providers described in this topic. Host configuration key-value pairs become part of the app's global configuration. For more information on how the configuration providers are used when the host is built and how configuration sources affect host configuration, see [The host](xref:fundamentals/index#host).
 
@@ -139,6 +140,7 @@ The following table shows the configuration providers available to ASP.NET Core 
 | Provider | Provides configuration from&hellip; |
 | -------- | ----------------------------------- |
 | [Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) (*Security* topics) | Azure Key Vault |
+| [Azure App Configuration Provider](/azure/azure-app-configuration/quickstart-aspnet-core-app) (Azure documentation) | Azure App Configuration |
 | [Command-line Configuration Provider](#command-line-configuration-provider) | Command-line parameters |
 | [Custom configuration provider](#custom-configuration-provider) | Custom source |
 | [Environment Variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables |
@@ -325,7 +327,7 @@ To activate environment variables configuration, call the <xref:Microsoft.Extens
 
 [Azure App Service](https://azure.microsoft.com/services/app-service/) permits you to set environment variables in the Azure Portal that can override app configuration using the Environment Variables Configuration Provider. For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
 
-`AddEnvironmentVariables` is used to load environment variables prefixed with `ASPNETCORE_` for [host configuration](#host-vs-app-configuration) when a new <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> is initialized. For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
+`AddEnvironmentVariables` is used to load environment variables prefixed with `ASPNETCORE_` for [host configuration](#host-versus-app-configuration) when a new <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> is initialized. For more information, see [Web Host: Set up a host](xref:fundamentals/host/web-host#set-up-a-host).
 
 `CreateDefaultBuilder` also loads:
 
@@ -960,7 +962,7 @@ The following configuration key-value pairs are created:
 | starship:class        | Constitution                                      |
 | starship:length       | 304.8                                             |
 | starship:commissioned | False                                             |
-| trademark             | Paramount Pictures Corp. http://www.paramount.com |
+| trademark             | Paramount Pictures Corp. https://www.paramount.com |
 
 The sample app calls `GetSection` with the `starship` key. The `starship` key-value pairs are isolated. The `Bind` method is called on the subsection passing in an instance of the `Starship` class. After binding the instance values, the instance is assigned to a property for rendering:
 
