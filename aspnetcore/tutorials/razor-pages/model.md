@@ -77,7 +77,7 @@ In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRU
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 * In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
-* In the **Data context class** row, select the **+** (plus) sign and change the generated name from **RazorPagesMovie.Models.RazorPagesMovieContext** to **RazorPagesMovie.Data.RazorPagesMovieContext**. [This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) creates the database context class in the *Data* folder, rather than the *Models* folder.
+* In the **Data context class** row, select the **+** (plus) sign and change the generated name from RazorPagesMovie.**Models**.RazorPagesMovieContext** to RazorPagesMovie.**Data**.RazorPagesMovieContext. [This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) creates the database context class in the *Data* folder, rather than the *Models* folder.
 * Select **Add**.
 
 ![Image from the previous instructions.](model/_static/3/arp.png)
