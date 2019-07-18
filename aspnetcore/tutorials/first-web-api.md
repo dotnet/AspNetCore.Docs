@@ -78,16 +78,18 @@ The following diagram shows the design of the app.
 
    ```console
    dotnet new webapi -o TodoApi
-   code -r TodoApi
+   cd TodoAPI
+   dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.0.0-*
+   code -r ../TodoApi
    ```
 
 * When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
   The preceding commands:
 
-    * Create a new web API project.
-    * Adds the NuGet packages required for scaffolding Microsoft.EntityFrameworkCore.SqlServer to the project.
-    * Opens the project in Visual Studio Code.
+  * Creates a new web API project and opens it in Visual Studio Code.
+  * Adds the NuGet packages which are required in the next section.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -263,8 +265,6 @@ The preceding code:
 Run the following commands:
 
 ```console
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.0.0-*
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
 dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
 dotnet tool install --global dotnet-aspnet-codegenerator
@@ -341,10 +341,10 @@ This tutorial uses Postman to test the web API.
   ![Headers tab of the Postman console](first-web-api/_static/3/create.png)
 
 * Set the method to GET.
-* Paste the URI (for example, `https://localhost:5001/api/TodoItems/2`)
+* Paste the URI (for example, `https://localhost:5001/api/TodoItems/1`)
 * Select **Send**.
 
-## Examine the Get methods
+## Examine the GET methods
 
 These methods implement two GET endpoints:
 
