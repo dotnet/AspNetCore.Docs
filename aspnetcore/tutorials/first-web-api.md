@@ -219,6 +219,8 @@ The *database context* is the main class that coordinates Entity Framework funct
 * Select the **Project** check box in the right pane and then select **Install**.
 * Use the preceding instructions to add the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.
 
+![NuGet Package Manager](first-web-api/_static/vs3NuGet.png)
+
 ## Add the TodoContext database context
 
 * Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
