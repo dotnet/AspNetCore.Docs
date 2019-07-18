@@ -7,7 +7,7 @@
 >* Creating a new table.
 >* Copying data from the old table to the new table.
 >* Dropping the old table.
->* Renaming the existing table.
+>* Renaming the new table.
 >
 >For more information, see the following resources:
 >
