@@ -14,3 +14,5 @@ Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
 ```console
 dotnet aspnet-codegenerator razorpage -h
 ```
+
+For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator) 

@@ -29,11 +29,30 @@ dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
 ```
 
+The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding.
+
+<a name="reg"></a>
+
+### Register the database context
+
+Add the following `using` statements at the top of *Startup.cs*:
+
+```csharp
+using RazorPagesMovie.Models;
+using Microsoft.EntityFrameworkCore;
+```
+
+Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in `Startup.ConfigureServices`.
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+
+Build the project as a check for errors.
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=5-6)]
 
 ### Add required NuGet packages
 
@@ -45,8 +64,6 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
 
 ```
-
-::: moniker-end
 
 The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding.
 
@@ -66,3 +83,4 @@ Register the database context with the [dependency injection](xref:fundamentals/
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 Build the project as a check for errors.
+::: moniker-end

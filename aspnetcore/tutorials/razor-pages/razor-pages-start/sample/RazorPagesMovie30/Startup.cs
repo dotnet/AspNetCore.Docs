@@ -26,6 +26,17 @@ namespace RazorPagesMovie
               options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
         }
         #endregion
+        /*
+        #region snippet_UseSqlite
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddRazorPages();
+
+            services.AddDbContext<RazorPagesMovieContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("MovieContext")));
+        }
+        #endregion
+    */
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
