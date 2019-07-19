@@ -21,8 +21,7 @@ This tutorial examines the Razor Pages created by scaffolding in the [previous t
 
 Examine the *Pages/Movies/Index.cshtml.cs* Page Model:
 
-razor-pages/razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/
-[!code-csharp[](razor-pages/razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs)]
+[!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs)]
 
 Razor Pages are derived from `PageModel`. By convention, the `PageModel`-derived class is called `<PageName>Model`. The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `RazorPagesMovieContext` to the page. All the scaffolded pages follow this pattern. See [Asynchronous code](xref:data/ef-rp/intro#asynchronous-code) for more information on asynchronous programing with Entity Framework.
 
@@ -30,12 +29,12 @@ When a request is made for the page, the `OnGetAsync` method returns a list of m
 
 When `OnGet` returns `void` or `OnGetAsync` returns`Task`, no return method is used. When the return type is `IActionResult` or `Task<IActionResult>`, a return statement must be provided. For example, the *Pages/Movies/Create.cshtml.cs* `OnPostAsync` method:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml.cs?name=snippet)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippet)]
 
 <a name="index"></a>
 Examine the *Pages/Movies/Index.cshtml* Razor Page:
 
-[!code-cshtml[](razor-pages/razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml)]
+[!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml)]
 
 Razor can transition from HTML into C# or into Razor-specific markup. When an `@` symbol is followed by a [Razor reserved keyword](xref:mvc/views/razor#razor-reserved-keywords), it transitions into Razor-specific markup, otherwise it transitions into C#.
 
@@ -53,7 +52,7 @@ The `DisplayNameFor` HTML Helper inspects the `Title` property referenced in the
 
 ### The @model directive
 
-[!code-cshtml[](razor-pages/razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
+[!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml?range=1-2&highlight=2)]
 
 The `@model` directive specifies the type of the model passed to the Razor Page. In the preceding example, the `@model` line makes the `PageModel`-derived class available to the Razor Page. The model is used in the `@Html.DisplayNameFor` and `@Html.DisplayFor` [HTML Helpers](/aspnet/mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs#understanding-html-helpers) on the page.
 
@@ -69,7 +68,7 @@ Select the menu links (**RazorPagesMovie**, **Home**, and **Privacy**). Each pag
 
 Consider the following code from the *Pages/Movies/Index.cshtml* file:
 
-[!code-cshtml[](razor-pages/razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml?range=1-6&highlight=4-999)]
+[!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml?range=1-6&highlight=4-999)]
 
 The preceding highlighted code is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
 
@@ -121,7 +120,7 @@ The preceding markup sets the layout file to *Pages/Shared/_Layout.cshtml* for a
 
 Examine the *Pages/Movies/Create.cshtml.cs* page model:
 
-[!code-csharp[](razor-pages/razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
+[!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
 The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize, so `Page` is returned. Later in the tutorial you see `OnGet` method initialize state. The `Page` method creates a `PageResult` object that renders the *Create.cshtml* page.
 
@@ -129,7 +128,7 @@ The `Movie` property uses the `[BindProperty]` attribute to opt-in to [model bin
 
 The `OnPostAsync` method is run when the page posts form data:
 
-[!code-csharp[](razor-pages/razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippetPost)]
+[!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippetPost)]
 
 If there are any model errors, the form is redisplayed, along with any form data posted. Most model errors can be caught on the client-side before the form is posted. An example of a model error is posting a value for the date field that cannot be converted to a date. Client-side validation and model validation are discussed later in the tutorial.
 
@@ -139,7 +138,7 @@ If there are no model errors, the data is saved, and the browser is redirected t
 
 Examine the *Pages/Movies/Create.cshtml* Razor Page file:
 
-[!code-cshtml[](razor-pages/razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml)]
+[!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml)]
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -161,7 +160,7 @@ The `<form method="post">` element is a [Form Tag Helper](xref:mvc/views/working
 
 The scaffolding engine creates Razor markup for each field in the model (except the ID) similar to the following:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages/razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml?range=15-20)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml?range=15-20)]
 
 The [Validation Tag Helpers](xref:mvc/views/working-with-forms#the-validation-tag-helpers) (`<div asp-validation-summary` and `<span asp-validation-for`) display validation errors. Validation is covered in more detail later in this series.
 

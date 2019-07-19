@@ -30,6 +30,7 @@ namespace RazorPagesMovie.Pages.Movies
         [BindProperty]
         public Movie Movie { get; set; }
 
+        #region snippet
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -43,4 +44,5 @@ namespace RazorPagesMovie.Pages.Movies
             return RedirectToPage("./Index");
         }
     }
+    #endregion
 }
