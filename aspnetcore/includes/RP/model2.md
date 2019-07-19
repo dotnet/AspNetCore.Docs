@@ -18,13 +18,22 @@ Add a connection string to the *appsettings.json* file as shown in the following
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/appsettings_SQLite.json?highlight=10-12)]
 
+### Add required NuGet packages
+
+Run the following .NET Core CLI commands to add SQLite, Entity Framework Core, and  CodeGeneration.Design to the project:
+
+```console
+dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 3.0.0-*
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
+```
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
-
-::: moniker-end
 
 ### Add required NuGet packages
 
@@ -36,6 +45,8 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
 
 ```
+
+::: moniker-end
 
 The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding.
 
