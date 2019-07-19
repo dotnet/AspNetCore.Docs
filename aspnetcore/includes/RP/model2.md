@@ -52,7 +52,7 @@ Build the project as a check for errors.
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=5-6)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-9)]
 
 ### Add required NuGet packages
 

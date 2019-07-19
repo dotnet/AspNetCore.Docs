@@ -16,7 +16,7 @@ In this section, classes are added for managing movies in a database. These clas
 
 The model classes are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
 
-[!INCLUDE[](~/includes/rp/download.md)]
+[!INCLUDE[View or download sample code](~/includes/rp/download.md)]
 
 ## Add a data model
 
@@ -77,7 +77,7 @@ In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRU
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 * In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
-* In the **Data context class** row, select the **+** (plus) sign and change the generated name from RazorPagesMovie.**Models**.RazorPagesMovieContext** to RazorPagesMovie.**Data**.RazorPagesMovieContext. [This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) creates the database context class in the *Data* folder, rather than the *Models* folder.
+* In the **Data context class** row, select the **+** (plus) sign and change the generated name from RazorPagesMovie.**Models**.RazorPagesMovieContext to RazorPagesMovie.**Data**.RazorPagesMovieContext. [This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) is not required. It creates the database context class with the correct namespace.
 * Select **Add**.
 
 ![Image from the previous instructions.](model/_static/3/arp.png)
@@ -243,8 +243,6 @@ You missed the [migrations step](#pmc).
 The next tutorial explains the files created by scaffolding.
 
 ## Additional resources
-
-* [YouTube version of this tutorial](https://www.youtube.com/watch?v=sFVIsdR_RcM)
 
 > [!div class="step-by-step"]
 > [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
