@@ -18,13 +18,6 @@ namespace RazorPagesMovie.Pages.Movies
 
         public IActionResult OnGet()
         {
-            Movie = new Movie
-            {
-                Genre = "Western",
-                Price = 1.99m,
-                ReleaseDate = DateTime.Now,
-                Title = "Conan"
-            };
             return Page();
         }
 

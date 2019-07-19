@@ -60,7 +60,12 @@ The `@model` directive specifies the type of the model passed to the Razor Page.
 
 Select the menu links (**RazorPagesMovie**, **Home**, and **Privacy**). Each page shows the same menu layout. The menu layout is implemented in the *Pages/Shared/_Layout.cshtml* file. Open the *Pages/Shared/_Layout.cshtml* file.
 
-[Layout](xref:mvc/views/layout) templates allow you to specify the HTML container layout of your site in one place and then apply it across multiple pages in your site. Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the page-specific views you create show up, *wrapped* in the layout page. For example, if you select the **Privacy** link, the **Pages/Privacy.cshtml** view is rendered inside the `RenderBody` method.
+[Layout](xref:mvc/views/layout) templates allow the HTML container layout to be:
+
+* Specified in one place.
+* Applied in multiple pages in the site.
+
+Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the page-specific views show up, *wrapped* in the layout page. For example, select the **Privacy** link and the *Pages/Privacy.cshtml* view is rendered inside the `RenderBody` method.
 
 <a name="vd"></a>
 
@@ -72,16 +77,16 @@ Consider the following code from the *Pages/Movies/Index.cshtml* file:
 
 The preceding highlighted code is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
 
-The `PageModel` base class has a `ViewData` dictionary property that can be used to add data that you want to pass to a View. You add objects into the `ViewData` dictionary using a key/value pattern. In the preceding sample, the "Title" property is added to the `ViewData` dictionary.
+The `PageModel` base class has a `ViewData` dictionary property that can be used to add data that can be passed to a View. Objects are added to the `ViewData` dictionary using a key/value pattern. In the preceding sample, the `"Title"` property is added to the `ViewData` dictionary.
 
-The "Title" property is used in the *Pages/Shared/_Layout.cshtml* file. The following markup shows the first few lines of the *_Layout.cshtml* file.
+The `"Title"` property is used in the *Pages/Shared/_Layout.cshtml* file. The following markup shows the first few lines of the *_Layout.cshtml* file.
 
 <!-- we need a snapshot copy of layout because we are
 changing in in the next step.
 -->
 [!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/NU/_Layout.cshtml?highlight=6)]
 
-The line `@*Markup removed for brevity.*@` is a Razor comment which doesn't appear in your layout file. Unlike HTML comments (`<!-- -->`), Razor comments are not sent to the client.
+The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comments (`<!-- -->`), Razor comments are not sent to the client.
 
 ### Update the layout
 
@@ -108,7 +113,7 @@ Save your changes, and test the app by clicking on the **RpMovie** link. See the
 Test the other links (**Home**, **RpMovie**, **Create**, **Edit**, and **Delete**). Each page sets the title, which you can see in the browser tab. When you bookmark a page, the title is used for the bookmark.
 
 > [!NOTE]
-> You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize your app. This [GitHub issue 4076](https://github.com/aspnet/AspNetCore.Docs/issues/4076#issuecomment-326590420) for instructions on adding decimal comma.
+> You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point, and non US-English date formats, you must take steps to globalize your app. See this [GitHub issue 4076](https://github.com/aspnet/AspNetCore.Docs/issues/4076#issuecomment-326590420) for instructions on adding decimal comma.
 
 The `Layout` property is set in the *Pages/_ViewStart.cshtml* file:
 
@@ -122,7 +127,7 @@ Examine the *Pages/Movies/Create.cshtml.cs* page model:
 
 [!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
-The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize, so `Page` is returned. Later in the tutorial you see `OnGet` method initialize state. The `Page` method creates a `PageResult` object that renders the *Create.cshtml* page.
+The `OnGet` method initializes any state needed for the page. The Create page doesn't have any state to initialize, so `Page` is returned. Later in the tutorial, an example of `OnGet` initializing state is shown. The `Page` method creates a `PageResult` object that renders the *Create.cshtml* page.
 
 The `Movie` property uses the `[BindProperty]` attribute to opt-in to [model binding](xref:mvc/models/model-binding). When the Create form posts the form values, the ASP.NET Core runtime binds the posted values to the `Movie` model.
 
@@ -142,17 +147,35 @@ Examine the *Pages/Movies/Create.cshtml* Razor Page file:
 
 # [Visual Studio](#tab/visual-studio)
 
-Visual Studio displays the `<form method="post">` tag in a distinctive bold font used for Tag Helpers:
+Visual Studio displays the following tags in a distinctive bold font used for Tag Helpers:
 
-![VS17 view of Create.cshtml page](page/_static/th.png)
+* `<form method="post">`
+* `<div asp-validation-summary="ModelOnly" class="text-danger"></div>`
+* `<label asp-for="Movie.Title" class="control-label"></label>`
+* `<input asp-for="Movie.Title" class="form-control" />`
+* `<span asp-validation-for="Movie.Title" class="text-danger"></span>`
+
+![VS17 view of Create.cshtml page](page/_static/th3.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-For more information on Tag Helpers such as `<form method="post">`, see [Tag Helpers in ASP.NET Core](xref:mvc/views/tag-helpers/intro).
+The following Tag Helpers are shown in the preceding markup:
+
+* `<form method="post">`
+* `<div asp-validation-summary="ModelOnly" class="text-danger"></div>`
+* `<label asp-for="Movie.Title" class="control-label"></label>`
+* `<input asp-for="Movie.Title" class="form-control" />`
+* `<span asp-validation-for="Movie.Title" class="text-danger"></span>`
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Visual Studio for Mac displays the `<form method="post">` tag in a distinctive bold font used for Tag Helpers.
+Visual Studio displays the following tags in a distinctive bold font used for Tag Helpers:
+
+* `<form method="post">`
+* `<div asp-validation-summary="ModelOnly" class="text-danger"></div>`
+* `<label asp-for="Movie.Title" class="control-label"></label>`
+* `<input asp-for="Movie.Title" class="form-control" />`
+* `<span asp-validation-for="Movie.Title" class="text-danger"></span>`
 
 ---
 
@@ -167,6 +190,8 @@ The [Validation Tag Helpers](xref:mvc/views/working-with-forms#the-validation-ta
 The [Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper) (`<label asp-for="Movie.Title" class="control-label"></label>`) generates the label caption and `for` attribute for the `Title` property.
 
 The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movie.Title" class="form-control">`) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client-side.
+
+For more information on Tag Helpers such as `<form method="post">`, see [Tag Helpers in ASP.NET Core](xref:mvc/views/tag-helpers/intro).
 
 ## Additional resources
 
