@@ -46,8 +46,6 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
-Build the project as a check for errors.
-
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"

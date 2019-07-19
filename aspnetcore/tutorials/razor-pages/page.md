@@ -71,13 +71,13 @@ Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the page-
 
 ### ViewData and layout
 
-Consider the following code from the *Pages/Movies/Index.cshtml* file:
+Consider the following markup from the *Pages/Movies/Index.cshtml* file:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml?range=1-6&highlight=4-999)]
 
-The preceding highlighted code is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
+The preceding highlighted markup is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
 
-The `PageModel` base class has a `ViewData` dictionary property that can be used to add data that can be passed to a View. Objects are added to the `ViewData` dictionary using a key/value pattern. In the preceding sample, the `"Title"` property is added to the `ViewData` dictionary.
+The `PageModel` base class contains a `ViewData` dictionary property that can be used to add data that and pass it to a View. Objects are added to the `ViewData` dictionary using a key/value pattern. In the preceding sample, the `"Title"` property is added to the `ViewData` dictionary.
 
 The `"Title"` property is used in the *Pages/Shared/_Layout.cshtml* file. The following markup shows the first few lines of the *_Layout.cshtml* file.
 
@@ -100,7 +100,7 @@ Find the following anchor element in the *Pages/Shared/_Layout.cshtml* file.
 <a class="navbar-brand" asp-area="" asp-page="/Index">RazorPagesMovie</a>
 ```
 
-Replace the preceding element with the following markup.
+Replace the preceding element with the following markup:
 
 ```cshtml
 <a class="navbar-brand" asp-page="/Movies/Index">RpMovie</a>
