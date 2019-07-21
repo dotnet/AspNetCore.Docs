@@ -5,7 +5,7 @@ description: How to use model binding and streaming to upload files in ASP.NET C
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/17/2019
+ms.date: 07/21/2019
 uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
@@ -534,7 +534,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 
 ### Kestrel maximum request body size
 
-The default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) Kestrel server option:
+For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) Kestrel server option:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -569,8 +569,6 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-The Kestrel limits for [maximum client connections](xref:fundamentals/servers/kestrel#maximum-client-connections) may also apply.
-
 <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) for a single page or action.
 
 In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices`:
@@ -601,6 +599,13 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
     ...
 }
 ```
+
+### Other Kestrel limits
+
+Other Kestrel limits may apply for apps hosted by Kestrel:
+
+* [Maximum client connections](xref:fundamentals/servers/kestrel#maximum-client-connections)
+* [Request and response data rates](xref:fundamentals/servers/kestrel#minimum-request-body-data-rate)
 
 ### IIS content length limit
 
