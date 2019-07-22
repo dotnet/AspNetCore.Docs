@@ -168,7 +168,7 @@ The next tutorial will clean up the presentation of the data.
 
 ::: moniker-end
 
-::: moniker range="<> aspnetcore-3.0"
+::: moniker range="> aspnetcore-3.0"
 
 [!INCLUDE[](~/includes/rp/download.md)]
 
