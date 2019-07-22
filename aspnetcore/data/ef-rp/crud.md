@@ -18,7 +18,7 @@ In this tutorial, the scaffolded CRUD (create, read, update, delete) code is rev
 
 Some developers use a service layer or repository pattern to create an abstraction layer between the UI (Razor Pages) and the data access layer. This tutorial doesn't do that. To minimize complexity and keep the tutorial focused on EF Core, EF Core code is added directly to the page model classes. 
 
-## Customize the Details page
+## Update the Details page
 
 The scaffolded code for the Students pages doesn't include enrollment data. In this section, you add enrollments to the Details page.
 
@@ -67,10 +67,6 @@ Update the `OnPostAsync` method in *Pages/Students/Create.cshtml.cs* with the fo
 
 ### TryUpdateModelAsync
 
-Examine the [TryUpdateModelAsync](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.tryupdatemodelasync#Microsoft_AspNetCore_Mvc_ControllerBase_TryUpdateModelAsync_System_Object_System_Type_System_String_) code:
-
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Create.cshtml.cs?name=snippet_TryUpdateModelAsync)]
-
 The preceding code creates a Student object and then uses posted form fields to update the Student object's properties. The [TryUpdateModelAsync](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.tryupdatemodelasync#Microsoft_AspNetCore_Mvc_ControllerBase_TryUpdateModelAsync_System_Object_System_Type_System_String_) method:
 
 * Uses the posted form values from the [PageContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.pagecontext#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_PageContext) property in the [PageModel](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel).
@@ -110,7 +106,7 @@ The following code uses the `StudentVM` view model to create a new student:
 
 The [SetValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues.setvalues#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyValues_SetValues_System_Object_) method sets the values of this object by reading values from another [PropertyValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyvalues) object. `SetValues` uses property name matching. The view model type doesn't need to be related to the model type, it just needs to have properties that match.
 
-Using `StudentVM` requires [CreateVM.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/2-crud/Pages/Students/CreateVM.cshtml) be updated to use `StudentVM` rather than `Student`.
+Using `StudentVM` requires [Create.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/2-crud/Pages/Students/CreateVM.cshtml) be updated to use `StudentVM` rather than `Student`.
 
 Run the app, and create a student entity to test the Create page.
 
@@ -154,7 +150,7 @@ In this section, you implement a custom error message when the call to `SaveChan
 
 In *Pages/Students/Delete.cshtml.cs*, add an`ErrorMessage` field:
 
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Delete.cshtml.cs?name=snippetErrorMessage&highlight=12)]
+[!code-csharp[Main](intro/samples/cu30/Pages/Students/Delete.cshtml.cs?name=snippet_ErrorMessage&highlight=12)]
 
 Replace the `OnGetAsync` method with the following code:
 
