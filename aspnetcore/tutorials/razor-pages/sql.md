@@ -34,11 +34,7 @@ The name value for the database (`Database={Database name}`) will be different f
 
 [!code-json[](razor-pages-start/sample/RazorPagesMovie30/appsettings.json)]
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
 
@@ -59,9 +55,9 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 
 * Right click on the `Movie` table and select **View Designer**:
 
-  ![Contextual menu open on Movie table](sql/_static/design.png)
+  ![Contextual menus open on Movie table](sql/_static/design.png)
 
-  ![Movie table open in Designer](sql/_static/dv.png)
+  ![Movie tables open in Designer](sql/_static/dv.png)
 
 Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
 
@@ -69,12 +65,7 @@ Note the key icon next to `ID`. By default, EF creates a property named `ID` for
 
   ![Movie table open showing table data](sql/_static/vd22.png)
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-[!INCLUDE[](~/includes/rp/sqlite.md)]
-[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE[](~/includes/rp/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
@@ -131,13 +122,7 @@ Login failed for user 'user name'.
     * If you were running VS in non-debug mode, press F5 to run in debug mode.
     * If you were running VS in debug mode, stop the debugger and press F5.
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
-
-The app shows the seeded data.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
 
@@ -145,7 +130,7 @@ The app shows the seeded data.
 
 ---
 
-The next tutorial will clean up the presentation of the data.
+The next tutorial will improve the presentation of the data.
 
 ## Additional resources
 
@@ -272,7 +257,7 @@ Login failed for user 'user name'.
 * Delete all the records in the DB. You can do this with the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 * Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
 
-  * Right click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
+  * Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
 
     ![IIS Express system tray icon](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 

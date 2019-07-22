@@ -12,7 +12,6 @@ namespace RazorPagesMovie
     {
         public static void Main(string[] args)
         {
-            //CreateHostBuilder(args).Build().Run();
             var host = CreateHostBuilder(args).Build();
 
             using (var scope = host.Services.CreateScope())
@@ -23,7 +22,6 @@ namespace RazorPagesMovie
                 {
                     var context = services.
                         GetRequiredService<RazorPagesMovieContext>();
-                    //context.Database.Migrate();
                     SeedData.Initialize(services);
                 }
                 catch (Exception ex)
