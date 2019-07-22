@@ -177,7 +177,7 @@ Since the view doesn't have a collection of Course entities, the model binder ca
 
 If no check boxes were selected, the code in `UpdateInstructorCourses` initializes the `CourseAssignments` navigation property with an empty collection and returns:
 
-[!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cshtml.cs?name=snippet_IfNull)]
+[!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_IfNull)]
 
 The code then loops through all courses in the database and checks each course against the ones currently assigned to the instructor versus the ones that were selected in the view. To facilitate efficient lookups, the latter two collections are stored in `HashSet` objects.
 

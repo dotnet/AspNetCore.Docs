@@ -77,7 +77,7 @@ When an`IQueryable` is created or modified, no query is sent to the database. Th
 
 Replace the code in *Students/Index.cshtml*, with the following code. The changes are highlighted.
 
-[!code-cshtml[Main](intro/samples/cu30/3-sorting/Pages/Students/Index1.cshtml?highlight=17-19,25-27)]
+[!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml?highlight=17-19,25-27)]
 
 The preceding code:
 
