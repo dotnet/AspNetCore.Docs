@@ -82,7 +82,7 @@ There are downsides to server-side hosting:
 
 Blazor server-side apps require an active SignalR connection to the server. If the connection is lost, the app attempts to reconnect to the server. As long as the client's state is still in memory, the client session resumes without losing state.
  
-When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry. To customize the UI, define an element with `components-reconnect-modal` as its `id`. The client updates this element with one of the following CSS classes based on the state of the connection:
+When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry. To customize the UI, define an element with `components-reconnect-modal` as its `id` in the *_Host.cshtml* Razor page. The client updates this element with one of the following CSS classes based on the state of the connection:
  
 * `components-reconnect-show` &ndash; Show the UI to indicate the connection was lost and the client is attempting to reconnect.
 * `components-reconnect-hide` &ndash; The client has an active connection, hide the UI.
