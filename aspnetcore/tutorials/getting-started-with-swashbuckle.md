@@ -39,15 +39,17 @@ Swashbuckle can be added with the following approaches:
 * From the **Manage NuGet Packages** dialog:
   * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
   * Set the **Package source** to "nuget.org"
+  * Ensure the "Include prerelease" option is enabled
   * Enter "Swashbuckle.AspNetCore" in the search box
-  * Select the "Swashbuckle.AspNetCore" package from the **Browse** tab and click **Install**
+  * Select the latest "Swashbuckle.AspNetCore" package from the **Browse** tab and click **Install**
 
 ### [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Right-click the *Packages* folder in **Solution Pad** > **Add Packages...**
 * Set the **Add Packages** window's **Source** drop-down to "nuget.org"
+* Ensure the "Show pre-release packages" option is enabled
 * Enter "Swashbuckle.AspNetCore" in the search box
-* Select the "Swashbuckle.AspNetCore" package from the results pane and click **Add Package**
+* Select the latest "Swashbuckle.AspNetCore" package from the results pane and click **Add Package**
 
 ### [Visual Studio Code](#tab/visual-studio-code)
 
