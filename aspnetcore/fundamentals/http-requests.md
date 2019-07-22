@@ -5,7 +5,7 @@ description: Learn about using the IHttpClientFactory interface to manage logica
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/10/2019
+ms.date: 07/22/2019
 uid: fundamentals/http-requests
 ---
 # Make HTTP requests using IHttpClientFactory in ASP.NET Core
@@ -271,6 +271,95 @@ It may be necessary to control the configuration of the inner `HttpMessageHandle
 An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
 
 [!code-csharp[Main](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet12)]
+
+## Use IHttpClientFactory in a console app
+
+In a console app, add the following package references to the project:
+
+* [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting)
+* [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http)
+
+In the following example:
+
+* <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](xref:fundamentals/host/generic-host) service container.
+* `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
+* `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
+
+```csharp
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var builder = new HostBuilder()
+            .ConfigureServices((hostContext, services) =>
+            {
+                services.AddHttpClient();
+                services.AddTransient<IMyService, MyService>();
+            }).UseConsoleLifetime();
+
+        var host = builder.Build();
+
+        using (var serviceScope = host.Services.CreateScope())
+        {
+            var services = serviceScope.ServiceProvider;
+
+            try
+            {
+                var myService = services.GetRequiredService<IMyService>();
+
+                Console.WriteLine(myService.GetPage().Result.Substring(0, 500));
+            }
+            catch (Exception ex)
+            {
+                var logger = services.GetRequiredService<ILogger<Program>>();
+                logger.LogError(ex, "An error occurred.");
+            }
+        }
+
+        host.RunAsync();
+    }
+
+    public interface IMyService
+    {
+        Task<string> GetPage();
+    }
+
+    public class MyService : IMyService
+    {
+        private readonly IHttpClientFactory _clientFactory;
+
+        public MyService(IHttpClientFactory clientFactory)
+        {
+            _clientFactory = clientFactory;
+        }
+
+        public async Task<string> GetPage()
+        {
+            // Content from BBC One: Dr. Who website (©BBC)
+            var request = new HttpRequestMessage(HttpMethod.Get, 
+                "https://www.bbc.co.uk/programmes/b006q2x0");
+            var client = _clientFactory.CreateClient();
+            var response = await client.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                return $"StatusCode: {response.StatusCode}";
+            }
+        }
+    }
+}
+```
 
 ## Additional resources
 
