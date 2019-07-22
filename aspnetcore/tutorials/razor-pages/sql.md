@@ -20,20 +20,11 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 ---
-
-For more information on the methods used in `ConfigureServices`, see:
-
-* [EU General Data Protection Regulation (GDPR) support in ASP.NET Core](xref:security/gdpr) for `CookiePolicyOptions`.
-* [SetCompatibilityVersion](xref:mvc/compatibility-version)
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file.
 
@@ -154,10 +145,6 @@ The app shows the seeded data.
 
 ---
 
-The app shows the seeded data:
-
-![Movie application open in Chrome showing movie data](sql/_static/m55.png)
-
 The next tutorial will clean up the presentation of the data.
 
 ## Additional resources
@@ -178,11 +165,7 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
