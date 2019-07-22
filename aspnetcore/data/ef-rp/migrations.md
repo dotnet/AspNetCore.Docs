@@ -187,7 +187,7 @@ Drop-Database
 
 Run `Get-Help about_EntityFrameworkCore` from the PMC to get help information.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Open a command window and navigate to the project folder. The project folder contains the *Startup.cs* file.
 
@@ -210,7 +210,7 @@ Add-Migration InitialCreate
 Update-Database
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 ```console
 dotnet ef migrations add InitialCreate
@@ -248,7 +248,7 @@ To delete a migration, use the following command:
 
 Remove-Migration
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 ```console
 dotnet ef migrations remove

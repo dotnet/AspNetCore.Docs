@@ -671,7 +671,7 @@ In the `ComplexDataModel` migration class, update the `Up` method:
 * Open the *{timestamp}_ComplexDataModel.cs* file.
 * Comment out the line of code that adds the `DepartmentID` column to the `Course` table.
 
-[!code-csharp[](intro/samples/cu30snapshots/5-complex/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CommentOut&highlight=9-13)]
+[!code-csharp[](intro/samples/cu30snapshots/5-complex/Migrations/ComplexDataModel.cs?name=snippet_CommentOut&highlight=9-13)]
 
 Add the following highlighted code. The new code goes after the `.CreateTable( name: "Department"` block:
 
@@ -832,7 +832,7 @@ Add-Migration ColumnFirstName
 Update-Database
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 ```console
 dotnet ef migrations add ColumnFirstName
@@ -1246,7 +1246,7 @@ Build the project.
 Add-Migration ComplexDataModel
 ```
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 ```console
 dotnet ef migrations add ComplexDataModel
@@ -1293,7 +1293,7 @@ Update-Database
 
 Run `Get-Help about_EntityFrameworkCore` from the PMC to get help information.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Open a command window and navigate to the project folder. The project folder contains the *Startup.cs* file.
 

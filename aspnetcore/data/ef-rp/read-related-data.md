@@ -102,7 +102,7 @@ The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance beca
 
 Update *Pages/Courses/Index.cshtml* with the following highlighted markup:
 
-[!code-html[](intro/samples/cu30snapshots/6-related/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
+[!code-html[](intro/samples/cu30/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
 The following changes have been made to the scaffolded code:
 
@@ -409,7 +409,7 @@ To display the name of the assigned department in a list of courses:
 
 Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Course` for the model class.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [Visual Studio Code](#tab/visual-studio-code)
 
  Run the following command:
 
@@ -496,7 +496,7 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 
 Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Instructor` for the model class.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [Visual Studio Code](#tab/visual-studio-code)
 
  Run the following command:
 

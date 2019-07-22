@@ -153,7 +153,7 @@ Build the project.
   * Creates the *Migrations/{time stamp}_RowVersion.cs* migration file.
   * Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following highlighted code to the `BuildModel` method:
 
-    [!code-csharp[](intro/samples/cu30snapshots/8-concurrency/Migrations/SchoolContextModelSnapshot2.cs?name=snippet&highlight=14-16)]
+    [!code-csharp[](intro/samples/cu30/Migrations/SchoolContextModelSnapshot.cs?name=snippet_Department&highlight=14-16)]
 
 * Run the following command in the PMC:
 
@@ -178,7 +178,7 @@ Build the project.
 
 * Open the `Migrations/<timestamp>_RowVersion.cs` file and add the highlighted code:
 
-  [!code-csharp[](intro/samples/cu30snapshots/8-concurrency/Migrations/RowVersion.cs?highlight=16-42)]
+  [!code-csharp[](intro/samples/cu30snapshots/8-concurrency/Migrations/RowVersionSQLite.cs?highlight=16-42)]
 
 * Run the following command in a terminal:
 
@@ -196,7 +196,8 @@ Build the project.
 
 * Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) with the following exceptions:
 
-  * Use `Department` for the model class.
+* Create a *Pages/Departments* folder.  
+* Use `Department` for the model class.
   * Use the existing context class instead of creating a new one.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -229,31 +230,31 @@ Update the Index page:
 
 The following markup shows the updated page:
 
-[!code-html[](intro/samples/cu30snapshots/8-concurrency/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
+[!code-html[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
 
 ### Update the Edit page model
 
 Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30snapshots/8-concurrency/Pages/Departments/Edit.cshtml.cs?name=snippet)]
+[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet)]
 
 To detect a concurrency issue, the [OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value from the entity it was fetched. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
 
-[!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_rv&highlight=24-999)]
+[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_rv&highlight=24-999)]
 
 In the preceding code, `Department.RowVersion` is the value when the entity was fetched. `OriginalValue` is the value in the database when `FirstOrDefaultAsync` was called in this method.
 
 The following code gets the client values (the values posted to this method) and the database values:
 
-[!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_try&highlight=9,18)]
+[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_try&highlight=9,18)]
 
 The following code adds a custom error message for each column that has database values different from what was posted to `OnPostAsync`:
 
-[!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_err)]
+[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_err)]
 
 The following highlighted code sets the `RowVersion` value to the new value retrieved from the database. The next time the user clicks **Save**, only concurrency errors that happen since the last display of the Edit page will be caught.
 
-[!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_try&highlight=23)]
+[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_try&highlight=23)]
 
 The `ModelState.Remove` statement is required because `ModelState` has the old `RowVersion` value. In the Razor Page, the `ModelState` value for a field takes precedence over the model property values when both are present.
 
@@ -261,7 +262,7 @@ The `ModelState.Remove` statement is required because `ModelState` has the old `
 
 Update *Pages/Departments/Edit.cshtml* with the following markup:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
+[!code-html[](intro/samples/cu30/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
 The preceding markup:
 
@@ -304,7 +305,7 @@ Click **Save** again. The value you entered in the second browser tab is saved. 
 
 Update the Delete page model with the following code:
 
-[!code-csharp[](intro/samples/cu/Pages/Departments/Delete.cshtml.cs)]
+[!code-csharp[](intro/samples/cu30/Pages/Departments/Delete.cshtml.cs)]
 
 The Delete page detects concurrency conflicts when the entity has changed after it was fetched. `Department.RowVersion` is the row version when the entity was fetched. When EF Core creates the SQL DELETE command, it includes a WHERE clause with `RowVersion`. If the SQL DELETE command results in zero rows affected:
 
@@ -316,7 +317,7 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 
 Update *Pages/Departments/Delete.cshtml* with the following code:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
+[!code-html[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
 
 The preceding markup makes the following changes:
 
@@ -343,8 +344,6 @@ Change the budget in the first browser tab and click **Save**.
 The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it's displayed on the second postback in the other tab.
 
 Delete the test department from the second tab. A concurrency error is display with the current values from the database. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.department has been deleted.
-
-See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 
 ## Additional resources
 
@@ -503,7 +502,7 @@ The preceding commands:
 
 Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Department` for the model class.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [Visual Studio Code](#tab/visual-studio-code)
 
  Run the following command:
 
