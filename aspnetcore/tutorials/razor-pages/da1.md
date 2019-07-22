@@ -20,7 +20,7 @@ The scaffolded movie app has a good start, but the presentation isn't ideal. **R
 
 Open the *Models/Movie.cs* file and add the highlighted lines shown in the following code:
 
-[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateFixed.cs?name=snippet_1&highlight=12,17)]
+[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateFixed.cs?name=snippet_1&highlight=12,17)]
 
 The `[Column(TypeName = "decimal(18, 2)")]` data annotation enables Entity Framework Core to correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
@@ -75,7 +75,7 @@ With the `@page "{id:int}"` directive, the break point is never hit. The routing
 
 Although not recommended, you could write the `OnGetAsync` method (in *Pages/Movies/Delete.cshtml.cs*) as:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Delete.cshtml.cs?name=snippet)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Delete.cshtml.cs?name=snippet)]
 
 Test the preceding code:
 
@@ -87,7 +87,7 @@ Test the preceding code:
 
 Review the `OnPostAsync` method in the *Pages/Movies/Edit.cshtml.cs* file:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Edit.cshtml.cs?name=snippet)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Edit.cshtml.cs?name=snippet)]
 
 The previous code detects concurrency exceptions when the one client deletes the movie and the other client posts changes to the movie.
 
