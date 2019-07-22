@@ -304,7 +304,7 @@ Update the query in the `OnGetAsync` method in *Pages/Instructors/Index.cshtml.c
 
 Update *Pages/Instructors/Index.cshtml*. Add the following markup to the end of the file:
 
-[!code-html[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index.cshtml?range=103-)]
+[!code-html[](intro/samples/cu30/Pages/Instructors/Index.cshtml?range=103-)]
 
 The preceding markup displays a list of the students who are enrolled in the selected course.
 

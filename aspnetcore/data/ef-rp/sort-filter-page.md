@@ -77,7 +77,7 @@ When an`IQueryable` is created or modified, no query is sent to the database. Th
 
 Replace the code in *Students/Index.cshtml*, with the following code. The changes are highlighted.
 
-[!code-cshtml[Main](intro/samples/cu30/sorting/Pages/Students/Index1.cshtml?highlight=17-19,25-27)]
+[!code-cshtml[Main](intro/samples/cu30/3-sorting/Pages/Students/Index1.cshtml?highlight=17-19,25-27)]
 
 The preceding code:
 
@@ -334,7 +334,7 @@ The method uses LINQ to Entities to specify the column to sort by. The code init
 
 Replace the code in *Students/Index.cshtml*, with the following highlighted code:
 
-[!code-html[](intro/samples/cu30/Pages/Students/Index2.cshtml?highlight=17-19,25-27)]
+[!code-html[](intro/samples/cu21/Pages/Students/Index2.cshtml?highlight=17-19,25-27)]
 
 The preceding code:
 
@@ -390,7 +390,7 @@ There's a performance penalty for calling `ToUpper`. The `ToUpper` code adds a f
 
 In *Pages/Students/Index.cshtml*, add the following highlighted code to create a **Search** button and assorted chrome.
 
-[!code-html[](intro/samples/cu30/Pages/Students/Index3.cshtml?highlight=14-23&range=1-25)]
+[!code-html[](intro/samples/cu21/Pages/Students/Index3.cshtml?highlight=14-23&range=1-25)]
 
 The preceding code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST. With POST, the parameters are passed in the HTTP message body and not in the URL. When HTTP GET is used, the form data is passed in the URL as query strings. Passing the data with query strings enables users to bookmark the URL. The [W3C guidelines](https://www.w3.org/2001/tag/doc/whenToUseGet.html) recommend that GET should be used when the action doesn't result in an update.
 

@@ -183,11 +183,11 @@ The code then loops through all courses in the database and checks each course a
 
 If the check box for a course was selected but the course isn't in the `Instructor.CourseAssignments` navigation property, the course is added to the collection in the navigation property.
 
-[!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cshtml.cs?name=snippet_UpdateCourses)]
+[!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_UpdateCourses)]
 
 If the check box for a course wasn't selected, but the course is in the `Instructor.CourseAssignments` navigation property, the course is removed from the navigation property.
 
-[!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cshtml.cs?name=snippet_UpdateCoursesElse)]
+[!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_UpdateCoursesElse)]
 
 Update the instructor Razor View:
 
