@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to configure custom storage providers for ASP.NET Core Identity.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 07/23/2019
 uid: security/authentication/identity-custom-storage-providers
 ---
 # Custom storage providers for ASP.NET Core Identity
@@ -31,7 +31,6 @@ When using the .NET Core CLI, add `-au Individual`:
 
 ```console
 dotnet new mvc -au Individual
-dotnet new webapi -au Individual
 ```
 
 ## The ASP.NET Core Identity architecture
