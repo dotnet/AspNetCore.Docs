@@ -12,7 +12,7 @@ uid: host-and-deploy/iis/development-time-iis-support
 
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti) and [Luke Latham](https://github.com/guardrex)
 
-This article describes [Visual Studio](https://www.visualstudio.com/vs/) support for debugging ASP.NET Core apps running with IIS on Windows Server. This topic walks through enabling this scenario and setting up a project.
+This article describes [Visual Studio](https://visualstudio.microsoft.com) support for debugging ASP.NET Core apps running with IIS on Windows Server. This topic walks through enabling this scenario and setting up a project.
 
 ## Prerequisites
 
@@ -102,7 +102,7 @@ Create a new launch profile to add development-time IIS support:
 
 ::: moniker-end
 
-When not using Visual Studio, manually add a launch profile to the [launchSettings.json](http://json.schemastore.org/launchsettings) file in the *Properties* folder. The following example configures the profile to use the HTTPS protocol:
+When not using Visual Studio, manually add a launch profile to the [launchSettings.json](https://json.schemastore.org/launchsettings) file in the *Properties* folder. The following example configures the profile to use the HTTPS protocol:
 
 ```json
 {

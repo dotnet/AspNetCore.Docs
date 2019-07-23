@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to use the published .NET Core Docker images from the Docker Registry. Pull images and build your own images.
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 04/09/2019
+ms.date: 06/18/2019
 uid: host-and-deploy/docker/building-net-docker-images
 ---
 
@@ -42,14 +42,14 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 * Docker client 18.03 or later
 
   * Linux distributions
-     * [CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
-     * [Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
-     * [Fedora](https://docs.docker.com/install/linux/docker-ce/fedora/)
-     * [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+    * [CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
+    * [Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
+    * [Fedora](https://docs.docker.com/install/linux/docker-ce/fedora/)
+    * [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
   * [macOS](https://docs.docker.com/docker-for-mac/install/)
   * [Windows](https://docs.docker.com/docker-for-windows/install/)
 
-* [git](https://git-scm.com/download)
+* [Git](https://git-scm.com/download)
 
 ## Download the sample app
 
@@ -135,7 +135,7 @@ In some scenarios, you might want to deploy an app to a container by copying to 
 
 * Navigate to the project folder at *dotnet-docker/samples/aspnetapp/aspnetapp*.
 
-* Run the [dotnet publish](https://docs.microsoft.com/dotnet/core/tools/dotnet-publish.md) command:
+* Run the [dotnet publish](/dotnet/core/tools/dotnet-publish) command:
 
   ```console
   dotnet publish -c Release -o published
@@ -206,7 +206,7 @@ In this tutorial, you:
 > * Run the sample with in Windows containers
 > * Built and deployed manually
 
-Next, learn about the tools Visual Studio has for working with Docker.
+The Git repository that contains the sample app also includes documentation. For an overview of the resources available in the repository, see [the README file](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md). In particular, learn how to implement HTTPS:
 
 > [!div class="nextstepaction"]
-> <xref:host-and-deploy/docker/visual-studio-tools-for-docker>
+> [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/aspnetcore-docker-https-development.md)

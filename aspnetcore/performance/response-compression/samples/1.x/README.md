@@ -1,6 +1,6 @@
 # Response compression sample application (ASP.NET Core 1.x)
 
-This sample illustrates the use of ASP.NET Core 1.x Response Compression Middleware to compress HTTP responses for. The sample demonstrates Gzip and custom compression providers for text and image responses and shows how to add a MIME type for compression. For the ASP.NET Core 2.x sample, see [Response compression sample application (ASP.NET Core 2.x)](https://github.com/aspnet/Docs/tree/master/aspnetcore/performance/response-compression/samples/2.x).
+This sample illustrates the use of ASP.NET Core 1.x Response Compression Middleware to compress HTTP responses for. The sample demonstrates Gzip and custom compression providers for text and image responses and shows how to add a MIME type for compression. For the ASP.NET Core 2.x sample, see [Response compression sample application (ASP.NET Core 2.x)](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/response-compression/samples/2.x).
 
 ## Examples in this sample
 
@@ -17,6 +17,6 @@ When the request includes the `Accept-Encoding` header, the sample adds a `Vary:
 
 ## Using the sample
 
-1. Make a request using [Fiddler](http://www.telerik.com/fiddler), [Firebug](http://getfirebug.com/), or [Postman](https://www.getpostman.com/) to the application without an `Accept-Encoding` header and note the response payload, response size, and response headers.
+1. Make a request using [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/), or [Postman](https://www.getpostman.com/) to the application without an `Accept-Encoding` header and note the response payload, response size, and response headers.
 1. Add an `Accept-Encoding: gzip` header and note the compressed response size and response headers. You see the response size drop, and the `Content-Encoding: gzip` response header is included by the sample app. When you look at the response body for the Lorem Ipsum or **testfile1kb.txt** response, you see that the text is compressed and unreadable.
 1. Add an `Accept-Encoding: mycustomcompression` header and note the response headers. The `CustomCompressionProvider` is an empty implementation that doesn't actually compress the response, but you can create a custom compression stream wrapper for the `CreateStream()` method.

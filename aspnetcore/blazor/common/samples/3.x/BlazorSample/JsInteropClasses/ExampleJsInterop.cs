@@ -22,7 +22,7 @@ namespace BlazorSample.JsInteropClasses
             // sayHello is implemented in wwwroot/exampleJsInterop.js
             return _jsRuntime.InvokeAsync<object>(
                 "exampleJsFunctions.sayHello",
-                new DotNetObjectRef(new HelloHelper(name)));
+                DotNetObjectRef.Create(new HelloHelper(name)));
         }
     }
     #endregion

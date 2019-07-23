@@ -1,20 +1,18 @@
 ---
-title: Configure the Linker for Blazor
+title: Configure the Linker for ASP.NET Core Blazor
 author: guardrex
 description: Learn how to control the Intermediate Language (IL) Linker when building a Blazor app.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/15/2019
+ms.date: 07/02/2019
 uid: host-and-deploy/blazor/configure-linker
 ---
-# Configure the Linker for Blazor
+# Configure the Linker for ASP.NET Core Blazor
 
 By [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/razor-components-preview-notice.md)]
-
-Blazor performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during each Release mode build to remove unnecessary IL from the app's output assemblies.
+Blazor performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a Release build to remove unnecessary IL from the app's output assemblies.
 
 Control assembly linking using either of the following approaches:
 
@@ -23,7 +21,7 @@ Control assembly linking using either of the following approaches:
 
 ## Disable linking with a MSBuild property
 
-Linking is enabled by default in Release mode when an app is built, which includes publishing. To disable linking for all assemblies, set the `<BlazorLinkOnBuild>` MSBuild property to `false` in the project file:
+Linking is enabled by default in Release mode when an app is built, which includes publishing. To disable linking for all assemblies, set the `BlazorLinkOnBuild` MSBuild property to `false` in the project file:
 
 ```xml
 <PropertyGroup>

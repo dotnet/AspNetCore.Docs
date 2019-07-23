@@ -4,7 +4,7 @@ author: CamSoper
 description: Monitoring and debugging your code as part of a DevOps solution with ASP.NET Core and Azure
 ms.author: casoper
 ms.custom: "mvc, seodec18"
-ms.date: 10/24/2018
+ms.date: 07/10/2019
 uid: azure/devops/monitor
 ---
 # Monitor and debug
@@ -129,7 +129,7 @@ In this section, you completed the following tasks:
 
 ## Additional reading
 
-* <xref:host-and-deploy/azure-apps/troubleshoot>
+* <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>
 * [Monitor Azure web app performance with Application Insights](/azure/application-insights/app-insights-azure-web-apps)
 * [Enable diagnostics logging for web apps in Azure App Service](/azure/app-service/web-sites-enable-diagnostic-log)

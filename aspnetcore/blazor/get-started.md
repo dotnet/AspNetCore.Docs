@@ -1,135 +1,132 @@
 ---
-title: Get started with Blazor
+title: Get started with ASP.NET Core Blazor
 author: guardrex
-description: Learn how to get started with Blazor.
+description: Get started with Blazor by building a Blazor app with the tooling of your choice.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/15/2019
+ms.date: 07/23/2019
 uid: blazor/get-started
 ---
-# Get started with Blazor
+# Get started with ASP.NET Core Blazor
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
-Get started with Blazor following either of the following experiences:
-
-* [Server-side Razor Components](#server-side-razor-components-experience)
-* [Client-side Blazor](#client-side-blazor-experience)
-
-## Server-side Razor Components experience
-
-# [Visual Studio](#tab/visual-studio)
-
-Prerequisites:
-
-[!INCLUDE[](~/includes/net-core-prereqs-vs-3.0.md)]
-
-To create your first Razor Components project in Visual Studio:
+Get started with Blazor:
 
 1. Install the latest [.NET Core 3.0 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) release.
-1. Enable Visual Studio to use preview SDKs:
-   1. Open **Tools** > **Options** in the menu bar.
-   1. Open the **Projects and Solutions** node. Open the **.NET Core** tab.
-   1. Check the box for **Use previews of the .NET Core SDK**. Select **OK**.
-1. Create a new project.
-1. Select **ASP.NET Core Web Application**. Select **Next**.
-1. Provide a name in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
-1. Make sure **.NET Core** and **ASP.NET Core 3.0** are selected at the top.
-1. Choose the **Razor Components** template and select **Create**.
-1. Press **F5** to run the app.
 
-<!--
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-Prerequisites:
-
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.0.md)]
-
-To create your first Razor Components project in Visual Studio Code:
-
-1. Execute the following command from a command shell:
+1. Install the Blazor templates by running the following command in a command shell:
 
    ```console
-   dotnet new razorcomponents -o WebApplication1
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview7.19365.7
    ```
 
-1. Open the *WebApplication1* folder in Visual Studio Code.
+1. Follow the guidance for your choice of tooling:
 
-1. Add a *.vscode* folder.
+   # [Visual Studio](#tab/visual-studio)
 
-1. Add a *tasks.json* file to the *.vscode* folder with the following content:
+   1\. Install the latest [Visual Studio preview](https://visualstudio.com/vs/preview) with the **ASP.NET and web development** workload.
 
-   [!code-json[](get-started/samples_snapshot/3.x/tasks.json)]
+   2\. Install the latest [Blazor extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
 
-1. Add a *launch.json* file to the *.vscode* folder with the following content:
+   3\. Create a new project.
 
-   [!code-json[](get-started/samples_snapshot/3.x/launch.json)]
+   4\. Select **ASP.NET Core Web Application**. Select **Next**.
 
-1. Execute the app using the Visual Studio Code debugger.
+   5\. Provide a project name in the **Project name** field or accept the default project name. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
 
-1. In a browser, navigate to `https://localhost:5001`.
+   6\. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+   7\. For a Blazor client-side experience, choose the **Blazor WebAssembly App** template. For a Blazor server-side experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
 
-.NET Core 3.0 will be supported with Visual Studio for Mac version 8.0 or later. Visual Studio for Mac version 8.0 Preview isn't available at this time.
+   8\. Press **F5** to run the app.
 
-Use the [.NET Core CLI version of this topic](xref:blazor/get-started?tabs=netcore-cli) on macOS.
+   # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
+   1\. Install [Visual Studio Code](https://code.visualstudio.com/).
 
-To create your first project Razor Components project in Visual Studio for Mac:
+   2\. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
 
-1. Select **File** > **New Solution** or **New Project**.
-1. In the sidebar, select **.NET Core** > **App**.
-1. Select **ASP.NET Core Razor Components** and select **Next**.
-1. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
-1. In the **Project Name** field, enter `WebApplication1`. Select **Create**.
-1. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Running with the debugger isn't supported at this time.
+   3\. For a Blazor client-side experience, execute the following command in a command shell:
 
--->
+      ```console
+      dotnet new blazor -o WebApplication1
+      ```
 
-# [.NET Core CLI](#tab/netcore-cli/)
+      For a Blazor server-side experience, execute the following command in a command shell:
 
-Prerequisites:
+      ```console
+      dotnet new blazorserverside -o WebApplication1
+      ```
 
-* [.NET Core SDK 3.0 Preview](https://dotnet.microsoft.com/download/dotnet-core/3.0)
+      For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
 
-1. To create your first Razor Components project from a command shell:
+   4\. Open the *WebApplication1* folder in Visual Studio Code.
+
+   5\. For a Blazor server-side project, the IDE requests that you add assets to build and debug the project. Select **Yes**.
+
+   6\. If using a Blazor server-side app, run the app using the Visual Studio Code debugger. If using a Blazor client-side app, execute `dotnet run` from the app's project folder.
+
+   7\. In a browser, navigate to `https://localhost:5001`.
+
+   <!--
+
+   # [Visual Studio for Mac](#tab/visual-studio-mac)
+
+   1\. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). Switch the [Update channel to Preview](/visualstudio/mac/install-preview).
+
+   2\. Select **File** > **New Solution** or **New Project**.
+
+   3\. In the sidebar, select **.NET Core** > **App**.
+
+   4\. For a Blazor server-side experience, select the **ASP.NET Core Blazor Server App** template. For a Blazor client-side experience, select the **ASP.NET Core Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
+
+   5\. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
+
+   6\. In the **Project Name** field, enter `WebApplication1`. Select **Create**.
+
+   7\. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Running with the debugger isn't supported at this time.
+
+   -->
+
+   # [.NET Core CLI](#tab/netcore-cli/)
+
+   For a Blazor client-side experience, execute the following commands in a command shell:
 
    ```console
-   dotnet new razorcomponents -o WebApplication1
+   dotnet new blazor -o WebApplication1
    cd WebApplication1
    dotnet run
    ```
 
-1. In a browser, navigate to `https://localhost:5001`.
+   For a Blazor server-side experience, execute the following commands in a command shell:
 
----
+   ```console
+   dotnet new blazorserverside -o WebApplication1
+   cd WebApplication1
+   dotnet run
+   ```
 
-Razor Components are authored using Razor syntax but are compiled differently than Razor Pages and MVC views. The *.razor* file extension is used to specify a Razor Component. Razor Pages and MVC views continue to use the *.cshtml* file extension.
+   For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
 
-> [!NOTE]
-> Razor Components can be authored using the *.cshtml* file extension as long as those files are identified as Razor Component files using the `_RazorComponentInclude` MSBuild property. For example, an app created using the Razor Component template specifies that all *.cshtml* files under the *Components* folder should be treated as Razor Components:
->
-> ```xml
-> <_RazorComponentInclude>Components\**\*.cshtml</_RazorComponentInclude>
-> ```
+   In a browser, navigate to `https://localhost:5001`.
 
-When the app is run, multiple pages are available from tabs in the sidebar:
+   ---
+
+Multiple pages are available from tabs in the sidebar:
 
 * Home
 * Counter
 * Fetch data
 
-On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript, but Razor Components provides a better approach using C#.
+On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript, but Razor components provide a better approach using C#.
 
-*WebApplication1/Components/Pages/Counter.razor*:
+*Pages/Counter.razor*:
 
-[!code-cshtml[](get-started/samples_snapshot/3.x/Counter1.razor)]
+[!code-cshtml[](get-started/samples_snapshot/3.x/Counter1.razor?highlight=7,12-15)]
 
-A request for `/counter` in the browser, as specified by the `@page` directive at the top, causes the Counter component to render its content. Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.
+A request for `/counter` in the browser, as specified by the `@page` directive at the top, causes the `Counter` component to render its content. Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.
 
 Each time the **Click me** button is selected:
 
@@ -140,184 +137,35 @@ Each time the **Click me** button is selected:
 
 The runtime compares the new content to the previous content and only applies the changed content to the Document Object Model (DOM).
 
-Add a component to another component using an HTML-like syntax. Component parameters are specified using attributes or child content. For example, a Counter component can be added to the app's homepage by adding a `<Counter />` element to the Index component.
+Add a component to another component using HTML syntax. For example, add the `Counter` component to the app's homepage by adding a `<Counter />` element to the `Index` component.
 
-*WebApplication1/Components/Pages/Index.razor*:
+*Pages/Index.razor*:
 
 [!code-cshtml[](get-started/samples_snapshot/3.x/Index1.razor?highlight=7)]
 
-Run the app. The homepage has its own counter.
+Run the app. The homepage has its own counter provided by the `Counter` component.
 
-To add a parameter to the Counter component, update the component's `@functions` block:
+Component parameters are specified using attributes or [child content](xref:blazor/components#child-content), which allow you to set properties on the child component. To add a parameter to the `Counter` component, update the component's `@code` block:
 
-* Add a property for `IncrementAmount` decorated with the `[Parameter]` attribute.
+* Add a property for `IncrementAmount` with a `[Parameter]` attribute.
 * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
 
-*WebApplication1/Components/Pages/Counter.razor*:
+*Pages/Counter.razor*:
 
-[!code-cshtml[](get-started/samples_snapshot/3.x/Counter2.razor?highlight=4-5,9)]
+[!code-cshtml[](get-started/samples_snapshot/3.x/Counter2.razor?highlight=12-13,17)]
 
-Specify an `IncrementAmount` parameter in the Home component's `<Counter>` element using an attribute.
+Specify the `IncrementAmount` in the `Index` component's `<Counter>` element using an attribute.
 
-*WebApplication1/Components/Pages/Index.razor*:
+*Pages/Index.razor*:
 
-[!code-cshtml[](get-started/samples_snapshot/3.x/Index2.razor)]
+[!code-cshtml[](get-started/samples_snapshot/3.x/Index2.razor?highlight=7)]
 
-Run the app. The homepage has its own counter that increments by ten each time the **Click me** button is selected.
-
-## Client-side Blazor experience
-
-[!INCLUDE[](~/includes/razor-components-preview-notice.md)]
-
-# [Visual Studio](#tab/visual-studio)
-
-Prerequisites:
-
-[!INCLUDE[](~/includes/net-core-prereqs-vs-3.0.md)]
-
-To create your first Blazor project in Visual Studio:
-
-1. Install the latest [.NET Core 3.0 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) release.
-1. Enable Visual Studio to use preview SDKs:
-   1. Open **Tools** > **Options** in the menu bar.
-   1. Open the **Projects and Solutions** node. Open the **.NET Core** tab.
-   1. Check the box for **Use previews of the .NET Core SDK**. Select **OK**.
-1. Install the latest [Blazor extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
-1. Make the Blazor templates available for use with the .NET Core CLI by running the following command in a command shell:
-
-   ```console
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::0.9.0-preview3-19154-02
-   ```
-
-1. Create a new project.
-1. Select **ASP.NET Core Web Application**. Select **Next**.
-1. Provide a name in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
-1. Make sure **.NET Core** and **ASP.NET Core 3.0** are selected at the top.
-1. Select the **Blazor** template and select **Create**.
-1. Press **F5** to run the app.
-
-Congratulations! You just ran your first Blazor app!
-
-<!--
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-Prerequisites:
-
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.0.md)]
-
-To create your first Blazor project in Visual Studio Code:
-
-1. Execute the following command in a command shell:
-
-   ```console
-   dotnet new blazor -o WebApplication1
-   ```
-
-1. Open the *WebApplication1* folder in Visual Studio Code.
-
-1. Visual Studio code offers to create assets to build and debug the app, which includes the *tasks.json* and *launch.json* files. Select **Yes** to add the assets.
-
-1. Execute the app using the Visual Studio Code debugger.
-
-1. In a browser, navigate to `https://localhost:5001`.
-
-Congratulations! You just ran your first Blazor app!
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-.NET Core 3.0 will be supported with Visual Studio for Mac version 8.0 or later. Visual Studio for Mac version 8.0 Preview isn't available at this time.
-
-Use the [.NET Core CLI version of this topic](xref:blazor/get-started?tabs=netcore-cli) on macOS.
-
-[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
-
-To create your first project Blazor project in Visual Studio for Mac:
-
-1. Select **File** > **New Solution** or **New Project**.
-1. In the sidebar, select **.NET Core** > **App**.
-1. Select **Blazor** and select **Next**.
-1. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
-1. In the **Project Name** field, enter `WebApplication1`. Select **Create**.
-1. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Running with the debugger isn't supported at this time.
-
-Congratulations! You just ran your first Blazor app!
--->
-
-# [.NET Core CLI](#tab/netcore-cli/)
-
-Prerequisites:
-
-* [.NET Core SDK 3.0 Preview](https://dotnet.microsoft.com/download/dotnet-core/3.0)
-
-1. Add the Blazor templates by running the following command in a command shell:
-
-   ```console
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::0.9.0-preview3-19154-02
-   ```
-
-1. Create your first Blazor project in a command shell:
-
-   ```console
-   dotnet new blazor -o WebApplication1
-   cd WebApplication1
-   dotnet run
-   ```
-
-1. In a browser, navigate to `https://localhost:5001`.
-
-Congratulations! You just ran your first Blazor app!
-
----
-
-When the app is run, multiple pages are available from tabs in the sidebar:
-
-* Home
-* Counter
-* Fetch data
-
-On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript, but Blazor provides a better approach using C#.
-
-*Pages/Counter.cshtml*:
-
-[!code-cshtml[](get-started/samples_snapshot/3.x/Counter1.cshtml)]
-
-A request for `/counter` in the browser, as specified by the `@page` directive at the top, causes the Counter component to render its content. Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.
-
-Each time the **Click me** button is selected:
-
-* The `onclick` event is fired.
-* The `IncrementCount` method is called.
-* The `currentCount` is incremented.
-* The component is rendered again.
-
-The runtime compares the new content to the previous content and only applies the changed content to the Document Object Model (DOM).
-
-Add a component to another component using an HTML-like syntax. Component parameters are specified using attributes or child content. For example, a Counter component can be added to the app's homepage by adding a `<Counter />` element to the Index component.
-
-In *Pages/Index.cshtml*, replace the Survey Prompt component with a Counter component:
-
-[!code-cshtml[](get-started/samples_snapshot/3.x/Index1.cshtml?highlight=7)]
-
-Run the app. The homepage has its own counter.
-
-To add a parameter to the Counter component, update the component's `@functions` block:
-
-* Add a property for `IncrementAmount` decorated with the `[Parameter]` attribute.
-* Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
-
-*Pages/Counter.cshtml*:
-
-[!code-cshtml[](get-started/samples_snapshot/3.x/Counter2.cshtml?highlight=4-5,9)]
-
-Specify an `IncrementAmount` parameter in the Home component's `<Counter>` element using an attribute.
-
-*Pages/Index.cshtml*:
-
-[!code-cshtml[](get-started/samples_snapshot/3.x/Index2.cshtml)]
-
-Run the app. The homepage has its own counter that increments by ten each time the **Click me** button is selected.
+Run the app. The `Index` component has its own counter that increments by ten each time the **Click me** button is selected. The `Counter` component (*Counter.razor*) at `/counter` continues to increment by one.
 
 ## Next steps
 
 <xref:tutorials/first-blazor-app>
+
+## Additional resources
+
+* <xref:signalr/introduction>

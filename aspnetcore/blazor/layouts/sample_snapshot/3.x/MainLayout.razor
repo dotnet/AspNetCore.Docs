@@ -1,0 +1,23 @@
+@inherits LayoutComponentBase
+
+<header>
+    <h1>Doctor Who&trade; Episode Database</h1>
+</header>
+
+<nav>
+    <a href="masterlist">Master Episode List</a>
+    <a href="search">Search</a>
+    <a href="new">Add Episode</a>
+</nav>
+
+@Body
+
+<footer>
+    @TrademarkMessage
+</footer>
+
+@code {
+    public string TrademarkMessage { get; set; } = 
+        "Doctor Who is a registered trademark of the BBC. " +
+        "https://www.doctorwho.tv/";
+}

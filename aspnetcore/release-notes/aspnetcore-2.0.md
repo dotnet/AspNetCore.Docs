@@ -3,7 +3,8 @@ title: What's new in ASP.NET Core 2.0
 author: rick-anderson
 description: Learn about the new features in ASP.NET Core 2.0.
 ms.author: riande
-ms.date: 07/10/2017
+ms.custom: mvc
+ms.date: 05/28/2019
 uid: aspnetcore-2.0
 ---
 
@@ -42,7 +43,7 @@ The `Microsoft.AspNetCore.All` metapackage targets .NET Core 2.0 only, because i
 
 An `IConfiguration` instance is added to the services container by default in ASP.NET Core 2.0. `IConfiguration` in the services container makes it easier for applications to retrieve configuration values from the container.
 
-For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3387).
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/3387).
 
 ## Logging update
 
@@ -54,10 +55,9 @@ For more information, see [Introduction to Logging](xref:fundamentals/logging/in
 
 A new authentication model makes it easier to configure authentication for an application using DI.
 
-New templates are available for configuring authentication for web apps and web APIs using [Azure AD B2C]
-(https://azure.microsoft.com/services/active-directory-b2c/).
+New templates are available for configuring authentication for web apps and web APIs using [Azure AD B2C](https://azure.microsoft.com/services/active-directory-b2c/).
 
-For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3054).
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/3054).
 
 ## Identity update
 
@@ -71,7 +71,7 @@ For more information on authentication changes in 2.0, see the following resourc
 
 ## SPA templates
 
-Single Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get the other templates, see [Create a new SPA project](xref:client-side/spa-services#creating-a-new-project). For information about how to build a SPA in ASP.NET Core, see [Use JavaScriptServices for Creating Single Page Applications](xref:client-side/spa-services).
+Single Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get the other templates, see [Create a new SPA project](xref:client-side/spa-services#create-a-new-project). For information about how to build a SPA in ASP.NET Core, see <xref:client-side/spa-services>.
 
 ## Kestrel improvements
 
@@ -109,7 +109,7 @@ Hosting environments can now inject extra package dependencies and execute code 
 
 In ASP.NET Core 2.0, this feature is used to automatically enable Application Insights diagnostics when debugging in Visual Studio and (after opting in) when running in Azure App Services. As a result, the project templates no longer add Application Insights packages and code by default.
 
-For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/Docs/issues/3389).
+For information about the status of planned documentation, see the [GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/3389).
 
 ## Automatic use of anti-forgery tokens
 
