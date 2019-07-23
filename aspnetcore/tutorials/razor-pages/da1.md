@@ -20,7 +20,7 @@ The scaffolded movie app has a good start, but the presentation isn't ideal. **R
 
 Open the *Models/Movie.cs* file and add the highlighted lines shown in the following code:
 
-[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateFixed.cs?name=snippet_1&highlight=12,17)]
+[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateFixed.cs?name=snippet_1&highlight=3,12,17)]
 
 The `[Column(TypeName = "decimal(18, 2)")]` data annotation enables Entity Framework Core to correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
@@ -104,13 +104,11 @@ Production code may want to detect concurrency conflicts. See [Handle concurrenc
 
 Examine the *Pages/Movies/Edit.cshtml.cs* file:
 
-C:\GH\aspnet\docs\8\AspNetCore.Docs\aspnetcore\tutorials\razor-pages\razor-pages-start\sample\RazorPagesMovie30\SnapShots\Edit.cshtml.cs
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Edit21.cshtml.cs?name=snippet2)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/SnapShots/Edit.cshtml.cs?name=snippet2)]
 
 When an HTTP GET request is made to the Movies/Edit page (for example, `http://localhost:5000/Movies/Edit/2`):
 
-* The `OnGetAsync` method fetches the movie from the database and returns the `Page` method. 
+* The `OnGetAsync` method fetches the movie from the database and returns the `Page` method.
 * The `Page` method renders the *Pages/Movies/Edit.cshtml* Razor Page. The *Pages/Movies/Edit.cshtml* file contains the model directive (`@model RazorPagesMovie.Pages.Movies.EditModel`), which makes the movie model available on the page.
 * The Edit form is displayed with the values from the movie.
 
@@ -123,12 +121,10 @@ When the Movies/Edit page is posted:
   public Movie Movie { get; set; }
   ```
 
-* If there are errors in the model state (for example, `ReleaseDate` cannot be converted to a date), the form is displayed with the submitted values.
+* If there are errors in the model state (for example, `ReleaseDate` cannot be converted to a date), the form is redisplayed with the submitted values.
 * If there are no model errors, the movie is saved.
 
 The HTTP GET methods in the Index, Create, and Delete Razor pages follow a similar pattern. The HTTP POST `OnPostAsync` method in the Create Razor Page follows a similar pattern to the `OnPostAsync` method in the Edit Razor Page.
-
-Search is added in the next tutorial.
 
 ## Additional resources
 
@@ -148,7 +144,7 @@ The scaffolded movie app has a good start, but the presentation isn't ideal. **R
 
 Open the *Models/Movie.cs* file and add the highlighted lines shown in the following code:
 
-[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateFixed.cs?name=snippet_1&highlight=12,17)]
+[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateFixed.cs?name=snippet_1&highlight=3,12,17)]
 
 The `[Column(TypeName = "decimal(18, 2)")]` data annotation enables Entity Framework Core to correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
