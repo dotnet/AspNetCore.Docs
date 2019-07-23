@@ -186,7 +186,7 @@ Update *Models/Student.cs* with the following code:
 
 ### The Required attribute
 
-The `Required` attribute makes the name properties required fields. The `Required` attribute isn't needed for non-nullable types such as value types (such as `DateTime`, `int`, and `double`). Types that can't be null are automatically treated as required fields.
+The `Required` attribute makes the name properties required fields. The `Required` attribute isn't needed for non-nullable types such as value types (for example, `DateTime`, `int`, and `double`). Types that can't be null are automatically treated as required fields.
 
 The `Required` attribute could be replaced with a minimum length parameter in the `StringLength` attribute:
 
@@ -218,7 +218,7 @@ Multiple attributes can be on one line. The `HireDate` attributes could be writt
 [DataType(DataType.Date),Display(Name = "Hire Date"),DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 ```
 
-### navigation properties
+### Navigation properties
 
 The `CourseAssignments` and `OfficeAssignment` properties are navigation properties.
 
@@ -509,7 +509,7 @@ The preceding diagram shows:
 
 Update the code in *Data/DbInitializer.cs*:
 
-[!code-csharp[](intro/samples/cu30/Data/DbInitializer.cs?name=snippet_Final)]
+[!code-csharp[](intro/samples/cu30/Data/DbInitializer.cs)]
 
 The preceding code provides seed data for the new entities. Most of this code creates new entity objects and loads sample data. The sample data is used for testing. See `Enrollments` and `CourseAssignments` for examples of how many-to-many join tables can be seeded.
 
@@ -571,16 +571,18 @@ In the next section, you'll see what to do about this error.
 
 ## Apply the migration or drop and re-create
 
-Now that you have an existing database, you need to think about how to apply future changes to it. This tutorial shows two approaches:
+Now that you have an existing database, you need to think about how to apply changes to it. This tutorial shows two alternatives:
 
-* [Drop and re-create the database](#drop)
-* [Apply the migration to the existing database](#applyexisting). While this method is more complex and time-consuming, it's the preferred approach for real-world, production environments. **Note**: The apply-migration instructions are optional and are only for SQL Server, not SQLite. For SQLite, do the drop and re-create steps and skip the apply-migration section. If you're using SQL Server and want to follow the apply-migration steps, **don't do the drop and re-create steps**. 
+* [Drop and re-create the database](#drop). Choose this section if you're using SQLite.
+* [Apply the migration to the existing database](#applyexisting). Choose this section if you're using SQL Server LocalDB.
+
+While the apply-migration method is more complex and time-consuming, it's the preferred approach for real-world, production environments. The apply-migration instructions work for SQL Server only, **not for SQLite**. 
 
 <a name="drop"></a>
 
 ## Drop and re-create the database
 
-**Skip this section** if you are using SQL Server and want to do the apply-migrations approach in the following section.
+**Skip this section** if you're using SQL Server and want to do the apply-migrations approach in the following section.
 
 To force EF Core to create a new database, drop and update the database:
 
@@ -649,7 +651,7 @@ Use your SQLite tool to examine the database:
 
 ## Apply the migration
 
-This section is optional. These steps work only if you skipped the preceding [Drop and re-create the database](#drop) section.
+This section is optional. These steps work only for SQL Server LocalDB and only if you skipped the preceding [Drop and re-create the database](#drop) section.
 
 When migrations are run with existing data, there may be FK constraints that are not satisfied with the existing data. With production data, steps must be taken to migrate the existing data. This section provides an example of fixing FK constraint violations. Don't make these code changes without a backup. Don't make these code changes if you completed the preceding [Drop and re-create the database](#drop) section.
 
