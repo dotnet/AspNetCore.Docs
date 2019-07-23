@@ -55,8 +55,7 @@ namespace ClientIpAspNetCore
 
             app.UseStaticFiles();
 
-            app.UseMiddleware<AdminSafeListMiddleware>(
-                Configuration["AdminSafeList"]);
+            app.UseMiddleware<AdminSafeListMiddleware>(Configuration["AdminSafeList"]);
             app.UseMvc();
         }
         #endregion
