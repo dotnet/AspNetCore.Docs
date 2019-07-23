@@ -101,12 +101,15 @@ public Ticketer.TicketerClient CreateClientWithCert(
 
 ### Other authentication mechanisms
 
-In addition to bearer token and client certificate authentication, all ASP.NET Core supported authentication mechanisms such as OAuth, OpenID and Negotiate should work with gRPC. Visit [ASP.NET Core authentication](xref:security/authentication/identity) for more information for configuring authentication on the server side.
+In addition to bearer token and client certificate authentication, most ASP.NET Core supported authentication mechanisms such as OAuth and OpenID should work with gRPC. Visit [ASP.NET Core authentication](xref:security/authentication/identity) for more information for configuring authentication on the server side.
 
 Client side configuration will depend on the authentication mechanism you are using. The previous bearer token and client certificate authentication examples show a couple of ways the gRPC client can be configured to send authentication metadata with gRPC calls:
 
 * Strongly typed gRPC clients use `HttpClient` internally. Authentication can be configured on [`HttpClientHandler`](/dotnet/api/system.net.http.httpclienthandler), or by adding custom [`HttpMessageHandler`](/dotnet/api/system.net.http.httpmessagehandler) instances to the `HttpClient`.
 * Each gRPC call has an optional `CallOptions` argument. Custom headers can be sent using the option's headers collection.
+
+> [!NOTE]
+> Windows Authentication (NTLM/Kerberos/Negotiate) isn't supported with HTTP/2. gRPC requires HTTP/2 and can't be used with Windows Authentication.
 
 ## Authorize users to access services and service methods
 
