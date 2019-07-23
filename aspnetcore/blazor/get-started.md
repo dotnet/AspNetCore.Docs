@@ -39,7 +39,7 @@ Get started with Blazor:
    6\. Press **F5** to run the app.
 
    > [!NOTE]
-   > If you installed the Blazor Visual Studio extension for a prior preview release of ASP.NET Core Blazor (Preview 6 or earlier), you can uninstall the extension at Preview 7. Installing the Blazor templates on the command-line is now sufficient to surface the templates in Visual Studio.
+   > If you installed the Blazor Visual Studio extension for a prior preview release of ASP.NET Core Blazor (Preview 6 or earlier), you can uninstall the extension at Preview 7. Installing the Blazor templates in a command shell is now sufficient to surface the templates in Visual Studio.
 
    # [Visual Studio Code](#tab/visual-studio-code)
 
