@@ -96,7 +96,7 @@ To add filtering to the Students Index page:
 * A text box and a submit button is added to the Razor Page. The text box supplies a search string on the first or last name.
 * The page model is updated to use the text box value.
 
-### Add filtering functionality to the Index method
+### Update the OnGetAsync method
 
 Update the *Students/Index.cshtml.cs* `OnGetAsync` with the following code:
 
@@ -125,11 +125,11 @@ There's a performance penalty for calling `ToUpper`. The `ToUpper` code adds a f
 
 For information about SQLite, see [How to use case-insensitive query with Sqlite provider](https://github.com/aspnet/EntityFrameworkCore/issues/11414).
 
-### Add a Search Box to the Student Index page
+### Update the Razor page
 
 In *Pages/Students/Index.cshtml*, add the following highlighted code to create a **Search** button and assorted chrome.
 
-[!code-html[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml?highlight=14-23&range=1-25)]
+[!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml?highlight=14-23&range=1-25)]
 
 The preceding code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST. With POST, the parameters are passed in the HTTP message body and not in the URL. When HTTP GET is used, the form data is passed in the URL as query strings. Passing the data with query strings enables users to bookmark the URL. The [W3C guidelines](https://www.w3.org/2001/tag/doc/whenToUseGet.html) recommend that GET should be used when the action doesn't result in an update.
 
@@ -149,11 +149,13 @@ If the page is bookmarked, the bookmark contains the URL to the page and the `Se
 
 Currently, when a column heading sort link is selected, the filter value from the **Search** box is lost. The lost filter value is fixed in the next section.
 
-## Add paging functionality to the Students Index page
+## Add paging to the Students Index page
 
 In this section, a `PaginatedList` class is created to support paging. The `PaginatedList` class uses `Skip` and `Take` statements to filter data on the server instead of retrieving all rows of the table. The following illustration shows the paging buttons.
 
 ![Students index page with paging links](sort-filter-page/_static/paging.png)
+
+### Create the PaginatedList class
 
 In the project folder, create `PaginatedList.cs` with the following code:
 
@@ -163,13 +165,13 @@ The `CreateAsync` method in the preceding code takes page size and page number a
 
 The `CreateAsync` method is used to create the `PaginatedList<T>`. A constructor can't create the `PaginatedList<T>` object, constructors can't run asynchronous code.
 
-## Add paging functionality to the Index method
+## Add paging functionality to the PageModel class
 
 In *Students/Index.cshtml.cs*, update the type of the `Students` property from `IList<Student>` to `PaginatedList<Student>`:
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPageType)]
 
-In *Students/Index.cshtml.cs*, replace the `OnGetAsync` method with the following code:
+Replace the `OnGetAsync` method with the following code.  The changes are highlighted:
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage&highlight=1-4,7-14,41-999)]
 
@@ -204,19 +206,19 @@ The `PaginatedList.CreateAsync` method converts the student query to a single pa
 
 The two question marks in `PaginatedList.CreateAsync` represent the [null-coalescing operator](/dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type. The expression `(pageIndex ?? 1)` means return the value of `pageIndex` if it has a value. If `pageIndex` doesn't have a value, return 1.
 
-## Add paging links to the Students Razor Page
+### Add paging links to the Razor Page
 
 Update the markup in *Students/Index.cshtml*. The changes are highlighted:
 
-[!code-html[Main](intro/samples/cu30/Pages/Students/Index.cshtml?highlight=28-31,37-40,68-999)]
+[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?highlight=28-31,37-40,68-999)]
 
 The column header links use the query string to pass the current search string to the `OnGetAsync` method so that the user can sort within filter results:
 
-[!code-html[Main](intro/samples/cu30/Pages/Students/Index.cshtml?range=28-31)]
+[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?range=28-31)]
 
 The paging buttons are displayed by tag helpers:
 
-[!code-html[Main](intro/samples/cu30/Pages/Students/Index.cshtml?range=72-)]
+[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?range=72-)]
 
 Run the app and navigate to the students page.
 
@@ -253,7 +255,7 @@ The LINQ statement groups the student entities by enrollment date, calculates th
 
 Create a *Pages/About.cshtml* file with the following code:
 
-[!code-html[Main](intro/samples/cu30/Pages/About.cshtml)]
+[!code-cshtml[Main](intro/samples/cu30/Pages/About.cshtml)]
 
 Run the app and navigate to the About page. The count of students for each enrollment date is displayed in a table.
 
