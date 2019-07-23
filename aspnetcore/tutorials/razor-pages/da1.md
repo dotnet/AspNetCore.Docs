@@ -73,7 +73,7 @@ To test the behavior of `@page "{id:int?}"`:
 
 With the `@page "{id:int}"` directive, the break point is never hit. The routing engine returns HTTP 404. Using `@page "{id:int?}"`, the `OnGetAsync` method returns `NotFound` (HTTP 404).
 
-Although not recommended, you could write the `OnGetAsync` method (in *Pages/Movies/Delete.cshtml.cs*) as:
+Although not recommended, you could write `OnGetAsync` (in *Pages/Movies/Delete.cshtml.cs*) as:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Delete.cshtml.cs?name=snippet)]
 
