@@ -826,9 +826,9 @@
           uid: security/authentication/identity-enable-qrcodes
         - name: Two-factor authentication with SMS
           uid: security/authentication/2fa
-        - name: Use Cookie Authentication without Identity
+        - name: Use cookie authentication without Identity
           uid: security/authentication/cookie
-        - name: Use social Authentication without Identity
+        - name: Use social authentication without Identity
           uid: security/authentication/social/social-without-identity
         - name: Azure Active Directory
           items:
