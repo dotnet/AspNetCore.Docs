@@ -30,18 +30,16 @@ Get started with Blazor:
 
    2\. Create a new project.
 
-   3\. Select **ASP.NET Core Web Application**. Select **Next**.
+   3\. Select **Blazor App**. Select **Next**.
 
    4\. Provide a project name in the **Project name** field or accept the default project name. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
 
-   5\. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected.
+   5\. For a Blazor client-side experience, choose the **Blazor (client-side)** template. For a Blazor server-side experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
 
-   6\. For a Blazor client-side experience, choose the **Blazor WebAssembly App** template. For a Blazor server-side experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
-
-   7\. Press **F5** to run the app.
+   6\. Press **F5** to run the app.
 
    > [!NOTE]
-   > If you installed the Blazor Visual Studio extension for a prior preview release of ASP.NET Core Blazor (Preview 6 or earlier), you can uninstall the extension at Preview 7. Installing the Blazor templates in an earlier step surfaces the templates in Visual Studio.
+   > If you installed the Blazor Visual Studio extension for a prior preview release of ASP.NET Core Blazor (Preview 6 or earlier), you can uninstall the extension at Preview 7. Installing the Blazor templates on the command-line is now sufficient to surface the templates in Visual Studio.
 
    # [Visual Studio Code](#tab/visual-studio-code)
 
