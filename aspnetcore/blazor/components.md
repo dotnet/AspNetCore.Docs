@@ -172,7 +172,7 @@ The rendered `<input>` elements using both approaches is identical:
        size="50">
 ```
 
-To accept arbitrary attributes, define a component parameter using the `[Parameter]` attribute with the `CaptureUnmatchedAttributes` property set to `true`. The type of the parameter must be assignable from `Dictionary<string, object>`. Using `IEnumerable<KeyValuePair<string, object>>` and `IReadOnlyDictionary<string, object>` are also options in this scenario.
+To accept arbitrary attributes, define a component parameter using the `[Parameter]` attribute with the `CaptureUnmatchedAttributes` property set to `true`. The type of the parameter must be assignable from `Dictionary<string, object>` with string keys. Using `IEnumerable<KeyValuePair<string, object>>` and `IReadOnlyDictionary<string, object>` are also options in this scenario.
 
 ```cshtml
 @code {
