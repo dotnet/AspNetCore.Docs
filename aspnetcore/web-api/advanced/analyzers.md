@@ -3,7 +3,7 @@ title: Use web API analyzers
 author: pranavkm
 description: Learn about the web API analyzers in Microsoft.AspNetCore.Mvc.Api.Analyzers.
 monikerRange: '>= aspnetcore-2.2'
-ms.author: pranavkm
+ms.author: prkrishn
 ms.custom: mvc
 ms.date: 12/14/2018
 uid: web-api/advanced/analyzers

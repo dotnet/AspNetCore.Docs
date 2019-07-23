@@ -245,7 +245,7 @@ This section describes deploying the app to Azure websites using a certificate s
 
 To deploy to Azure Websites, deploy the app following the steps in [Deploy the app to Azure](xref:tutorials/publish-to-azure-webapp-using-vs#deploy-the-app-to-azure) to create the necessary Azure resources and deploy the app to production.
 
-After following the preceding instructions, the app is deployed to Azure but isn't yet functional. The certificate used by the app still needs to be set up. Locate the thumbprint for the certificate to be used, and follow the steps described in [Load your certificates](/azure/app-service/app-service-web-ssl-cert-load#load-your-certificates).
+After following the preceding instructions, the app is deployed to Azure but isn't yet functional. The certificate used by the app still needs to be set up. Locate the thumbprint for the certificate to be used, and follow the steps described in [Load your certificates](/azure/app-service/app-service-web-ssl-cert-load#load-the-certificate-in-code).
 
 While these steps mention SSL, there's a **Private certificates** section on the portal where you can upload the provisioned certificate to use with the app.
 

@@ -179,9 +179,9 @@ services.AddSignalR()
 
 ::: moniker-end
 
-## Clustering
+## Redis Clustering
 
-Clustering is a method for achieving high availability by using multiple Redis servers. Clustering isn't officially supported, but it might work.
+[Redis Clustering](https://redis.io/topics/cluster-spec) is a method for achieving high availability by using multiple Redis servers. Clustering isn't officially supported, but it might work.
 
 ## Next steps
 

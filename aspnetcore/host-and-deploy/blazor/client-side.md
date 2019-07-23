@@ -1,14 +1,14 @@
 ---
-title: Host and deploy Blazor client-side
+title: Host and deploy ASP.NET Core Blazor client-side
 author: guardrex
 description: Learn how to host and deploy a Blazor app using ASP.NET Core, Content Delivery Networks (CDN), file servers, and GitHub Pages.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/21/2019
+ms.date: 07/10/2019
 uid: host-and-deploy/blazor/client-side
 ---
-# Host and deploy Blazor client-side
+# Host and deploy ASP.NET Core Blazor client-side
 
 By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
 
@@ -100,19 +100,19 @@ Blazor performs Intermediate Language (IL) linking on each build to remove unnec
 
 ## Rewrite URLs for correct routing
 
-Routing requests for page components in a client-side app isn't as simple as routing requests to a server-side, hosted app. Consider a client-side app with two pages:
+Routing requests for page components in a client-side app isn't as simple as routing requests to a server-side, hosted app. Consider a client-side app with two components:
 
-* **_Main.razor** &ndash; Loads at the root of the app and contains a link to the About page (`href="About"`).
-* **_About.razor** &ndash; About page.
+* *Main.razor* &ndash; Loads at the root of the app and contains a link to the `About` component (`href="About"`).
+* *About.razor* &ndash; `About` component.
 
 When the app's default document is requested using the browser's address bar (for example, `https://www.contoso.com/`):
 
 1. The browser makes a request.
 1. The default page is returned, which is usually *index.html*.
 1. *index.html* bootstraps the app.
-1. Blazor's router loads, and the Razor Main page (*Main.razor*) is displayed.
+1. Blazor's router loads, and the Razor `Main` component is rendered.
 
-On the Main page, selecting the link to the About page loads the About page. Selecting the link to the About page works on the client because the Blazor router stops the browser from making a request on the Internet to `www.contoso.com` for `About` and serves the About page itself. All of the requests for internal pages *within the client-side app* work the same way: Requests don't trigger browser-based requests to server-hosted resources on the Internet. The router handles the requests internally.
+In the Main page, selecting the link to the `About` component works on the client because the Blazor router stops the browser from making a request on the Internet to `www.contoso.com` for `About` and serves the rendered `About` component itself. All of the requests for internal endpoints *within the client-side app* work the same way: Requests don't trigger browser-based requests to server-hosted resources on the Internet. The router handles the requests internally.
 
 If a request is made using the browser's address bar for `www.contoso.com/About`, the request fails. No such resource exists on the app's Internet host, so a *404 - Not Found* response is returned.
 
@@ -142,7 +142,7 @@ The app responds locally at `http://localhost:port/CoolApp`.
 
 For more information, see the section on the [path base host configuration value](#path-base).
 
-If an app uses the [client-side hosting model](xref:blazor/hosting-models#client-side) (based on the **Blazor** project template; the `blazor` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command) and is hosted as an IIS sub-application in an ASP.NET Core app, it's important to disable the inherited ASP.NET Core Module handler or make sure the root (parent) app's `<handlers>` section in the *web.config* file isn't inherited by the sub-app.
+If an app uses the [client-side hosting model](xref:blazor/hosting-models#client-side) (based on the **Blazor (client-side)** project template, the `blazor` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command) and is hosted as an IIS sub-app in an ASP.NET Core app, it's important to disable the inherited ASP.NET Core Module handler or make sure the root (parent) app's `<handlers>` section in the *web.config* file isn't inherited by the sub-app.
 
 Remove the handler in the app's published *web.config* file by adding a `<handlers>` section to the file:
 
@@ -172,7 +172,7 @@ Removing the handler or disabling inheritance is performed in addition to config
 
 ## Hosted deployment with ASP.NET Core
 
-A *hosted deployment* serves the client-side Blazor app to browsers from an [ASP.NET Core app](xref:index) that runs on a server.
+A *hosted deployment* serves the Blazor client-side app to browsers from an [ASP.NET Core app](xref:index) that runs on a web server.
 
 The Blazor app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor (ASP.NET Core hosted)** project template (`blazorhosted` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command).
 
@@ -182,7 +182,7 @@ For information on deploying to Azure App Service, see <xref:tutorials/publish-t
 
 ## Standalone deployment
 
-A *standalone deployment* serves the client-side Blazor app as a set of static files that are requested directly by clients. Any static file server is able to serve the Blazor app.
+A *standalone deployment* serves the Blazor client-side app as a set of static files that are requested directly by clients. Any static file server is able to serve the Blazor app.
 
 Standalone deployment assets are published to the *bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist* folder.
 
@@ -227,7 +227,7 @@ Set the website's **Physical path** to the app's folder. The folder contains:
 
 If a *500 - Internal Server Error* is received and IIS Manager throws errors when attempting to access the website's configuration, confirm that the URL Rewrite Module is installed. When the module isn't installed, the *web.config* file can't be parsed by IIS. This prevents the IIS Manager from loading the website's configuration and the website from serving Blazor's static files.
 
-For more information on troubleshooting deployments to IIS, see <xref:host-and-deploy/iis/troubleshoot>.
+For more information on troubleshooting deployments to IIS, see <xref:test/troubleshoot-azure-iis>.
 
 ### Azure Storage
 
@@ -236,7 +236,7 @@ Azure Storage static file hosting allows serverless Blazor app hosting. Custom d
 When the blob service is enabled for static website hosting on a storage account:
 
 * Set the **Index document name** to `index.html`.
-* Set the **Error document path** to `index.html`. Razor Components and other non-file endpoints don't reside at physical paths in the static content stored by the blob service. When a request for one of these resources is received that the Blazor router should handle, the *404 - Not Found* error generated by the blob service routes the request to the **Error document path**. The *index.html* blob is returned, and the Blazor router loads and processes the path.
+* Set the **Error document path** to `index.html`. Razor components and other non-file endpoints don't reside at physical paths in the static content stored by the blob service. When a request for one of these resources is received that the Blazor router should handle, the *404 - Not Found* error generated by the blob service routes the request to the **Error document path**. The *index.html* blob is returned, and the Blazor router loads and processes the path.
 
 For more information, see [Static website hosting in Azure Storage](/azure/storage/blobs/storage-blob-static-website).
 
@@ -274,6 +274,6 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 ### GitHub Pages
 
-To handle URL rewrites, add a *404.html* file with a script that handles redirecting the request to the *index.html* page. For an example implementation provided by the community, see [Single Page Apps for GitHub Pages](http://spa-github-pages.rafrex.com/) ([rafrex/spa-github-pages on GitHub](https://github.com/rafrex/spa-github-pages#readme)). An example using the community approach can be seen at [blazor-demo/blazor-demo.github.io on GitHub](https://github.com/blazor-demo/blazor-demo.github.io) ([live site](https://blazor-demo.github.io/)).
+To handle URL rewrites, add a *404.html* file with a script that handles redirecting the request to the *index.html* page. For an example implementation provided by the community, see [Single Page Apps for GitHub Pages](https://spa-github-pages.rafrex.com/) ([rafrex/spa-github-pages on GitHub](https://github.com/rafrex/spa-github-pages#readme)). An example using the community approach can be seen at [blazor-demo/blazor-demo.github.io on GitHub](https://github.com/blazor-demo/blazor-demo.github.io) ([live site](https://blazor-demo.github.io/)).
 
 When using a project site instead of an organization site, add or update the `<base>` tag in *index.html*. Set the `href` attribute value to the GitHub repository name with a trailing slash (for example, `my-repository/`.

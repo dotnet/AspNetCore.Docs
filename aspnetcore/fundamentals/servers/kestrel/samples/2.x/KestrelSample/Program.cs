@@ -1,6 +1,6 @@
 ﻿#define DefaultBuilder
 // Define any of the following for the scenarios described in the Kestrel topic:
-// DefaultBuilder Limits TCPSocket UnixSocket FileDescriptor Port0
+// DefaultBuilder Limits TCPSocket UnixSocket FileDescriptor Port0 SyncIO
 // The following require an X.509 certificate:
 // TCPSocket UnixSocket FileDescriptor Limits
 
@@ -131,6 +131,21 @@ namespace KestrelSample
                 .ConfigureKestrel((context, options) =>
                 {
                     options.Listen(IPAddress.Loopback, 0);
+                });
+                #endregion
+#elif SyncIO
+        public static void Main(string[] args)
+        {
+            CreateWebHostBuilder(args).Build().Run();
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                #region snippet_SyncIO
+                .ConfigureKestrel((context, options) =>
+                {
+                    options.AllowSynchronousIO = true;
                 });
                 #endregion
 #endif

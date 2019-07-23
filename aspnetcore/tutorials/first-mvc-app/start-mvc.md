@@ -26,8 +26,21 @@ At the end, you have an app that can manage and display movie data.
 
 [!INCLUDE[](~/includes/mvc-intro/download.md)]
 
-[!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
+## Prerequisites
 
+# [Visual Studio](#tab/visual-studio)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vs2019-2.2.md)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-2.2.md)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!INCLUDE[](~/includes/net-core-prereqs-mac-2.2.md)]
+
+---
 ## Create a web app
 
 # [Visual Studio](#tab/visual-studio)

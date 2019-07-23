@@ -70,6 +70,9 @@
               uid: tutorials/first-mvc-app/validation
             - name: Examine the Details and Delete methods
               uid: tutorials/first-mvc-app/details
+        - name: Blazor
+          displayName: tutorial
+          uid: tutorials/first-blazor-app
     - name: Web API apps
       items:
         - name: Create a web API
@@ -189,6 +192,8 @@
       uid: fundamentals/http-requests
     - name: Static files
       uid: fundamentals/static-files
+    - name: aspnet-codegenerator
+      uid: fundamentals/tools/dotnet-aspnet-codegenerator
 - name: Web apps
   items:
     - name: Razor Pages
@@ -217,8 +222,6 @@
               uid: tutorials/razor-pages/validation
         - name: Filters
           uid: razor-pages/filter
-        - name: Razor Class Libraries
-          uid: razor-pages/ui-class
         - name: Route and app conventions
           uid: razor-pages/razor-pages-conventions
         - name: Upload files
@@ -295,9 +298,13 @@
           uid: blazor/routing
         - name: JavaScript interop
           uid: blazor/javascript-interop
+        - name: Security and Identity
+          uid: security/blazor/index
         - name: Debug
           uid: blazor/debug
-        - name: Host and deploy
+        - name: Call a web API
+          uid: blazor/call-web-api
+        - name: Hosting and deployment
           items:
             - name: Overview
               uid: host-and-deploy/blazor/index
@@ -341,6 +348,8 @@
       uid: mvc/views/layout
     - name: Razor syntax
       uid: mvc/views/razor
+    - name: Razor class libraries
+      uid: razor-pages/ui-class
     - name: Tag Helpers
       uid: mvc/views/tag-helpers/builtin-th/Index
       items:
@@ -422,6 +431,8 @@
       uid: web-api/advanced/analyzers
     - name: Conventions
       uid: web-api/advanced/conventions
+    - name: Test APIs with HTTP REPL
+      uid: web-api/http-repl
 - name: Real-time apps
   displayName: signalr
   items:
@@ -450,9 +461,6 @@
           displayName: signalr
         - name: Users and groups
           uid: signalr/groups
-          displayName: signalr
-        - name: Publish to Azure
-          uid: signalr/publish-to-azure-web-app
           displayName: signalr
         - name: API design considerations
           uid: signalr/api-design
@@ -484,9 +492,9 @@
         - name: Overview
           displayName: signalr
           uid: signalr/scale
-        - name: Azure SignalR Service
+        - name: Azure App Service
+          uid: signalr/publish-to-azure-web-app
           displayName: signalr
-          href: /azure/azure-signalr/signalr-overview?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Redis backplane
           displayName: signalr
           uid: signalr/redis-backplane
@@ -526,6 +534,10 @@
       uid: grpc/aspnetcore
     - name: Configuration
       uid: grpc/configuration
+    - name: Authentication and authorization
+      uid: grpc/authn-and-authz
+    - name: Security considerations
+      uid: grpc/security
     - name: Migrating gRPC services from C Core to ASP.NET Core
       uid: grpc/migration
     - name: Comparing gRPC services with HTTP APIs
@@ -552,6 +564,10 @@
       uid: test/troubleshoot
     - name: Logging
       uid: fundamentals/logging/index
+    - name: Troubleshoot Azure and IIS
+      uid: test/troubleshoot-azure-iis
+    - name: Azure and IIS errors reference
+      uid: host-and-deploy/azure-iis-errors-reference
 - name: Data access
   items:
     - name: Tutorials
@@ -648,7 +664,7 @@
           uid: host-and-deploy/aspnet-core-module
         - name: Troubleshoot
           displayName: azure, deploy, publish
-          uid: host-and-deploy/azure-apps/troubleshoot
+          uid: test/troubleshoot-azure-iis
         - name: Errors reference
           displayName: azure, deploy, publish
           uid: host-and-deploy/azure-iis-errors-reference
@@ -689,7 +705,7 @@
           uid: host-and-deploy/iis/modules
         - name: Troubleshoot
           displayName: deploy, publish
-          uid: host-and-deploy/iis/troubleshoot
+          uid: test/troubleshoot-azure-iis
         - name: Errors reference
           displayName: deploy, publish
           uid: host-and-deploy/azure-iis-errors-reference
@@ -810,8 +826,10 @@
           uid: security/authentication/identity-enable-qrcodes
         - name: Two-factor authentication with SMS
           uid: security/authentication/2fa
-        - name: Use Cookie Authentication without Identity
+        - name: Use cookie authentication without Identity
           uid: security/authentication/cookie
+        - name: Use social authentication without Identity
+          uid: security/authentication/social/social-without-identity
         - name: Azure Active Directory
           items:
             - name: Overview
@@ -957,6 +975,8 @@
       uid: security/ip-safelist
     - name: Application security - OWASP
       href: https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/DotNet_Security_Cheat_Sheet.md
+    - name: Blazor
+      uid: security/blazor/index
 - name: Performance
   items:
     - name: Overview
@@ -971,6 +991,8 @@
           uid: performance/caching/distributed
         - name: Response caching middleware
           uid: performance/caching/middleware
+        - name: Object reuse with ObjectPool
+          uid: performance/ObjectPool
     - name: Response compression
       uid: performance/response-compression
     - name: Diagnostic tools
