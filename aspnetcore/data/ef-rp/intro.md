@@ -88,11 +88,11 @@ Set up the site header, footer, and menu by updating *Pages/Shared/_Layout.cshtm
 
 The changes are highlighted. Not all of the code in the file is displayed, so don't copy and paste the entire snippet.
 
-[!code-html[Main](intro/samples/cu30/Pages/Shared/_Layout.cshtml?highlight=6,24,31-45,60)]
+[!code-cshtml[Main](intro/samples/cu30/Pages/Shared/_Layout.cshtml?highlight=6,24,31-45,60)]
 
 In *Pages/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET Core with text about this app:
 
-[!code-html[Main](intro/samples/cu30/Pages/Index.cshtml)]
+[!code-cshtml[Main](intro/samples/cu30/Pages/Index.cshtml)]
 
 Run the app to verify that the home page appears.
 
@@ -262,7 +262,7 @@ The highlighted code creates a [DbSet\<TEntity>](/dotnet/api/microsoft.entityfra
 
 Since an entity set contains multiple entities, the DBSet properties should be plural names. Since the scaffolder used singular Student as DBSet property name, the preceding step changed it to plural. To make the Razor Pages code match the new DBSet name, make a global change across the whole project of `_context.Student` to `_context.Students`.  There are 8 occurrences.
 
-## Examine Startup.cs
+## Startup.cs
 
 ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core database context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
@@ -310,7 +310,7 @@ Later in the tutorial the database that was created by `EnsureCreated` is delete
 * Select the **Students** link and then **Create New**.
 * Test the Edit, Details, and Delete links.
 
-## Initialize the database with test data
+## Seed the database
 
 The `EnsureCreated` method creates an empty database. This section adds code that populates the database with test data.
 
@@ -349,8 +349,6 @@ The `EnsureCreated` method creates an empty database. This section adds code tha
 ## View the database
 
 # [Visual Studio](#tab/visual-studio)
-
-You can view the database in **SQL Server Object Explorer** (SSOX):
 
 * Open SSOX from the **View** menu in Visual Studio.
 * In SSOX, select **(localdb)\MSSQLLocalDB > Databases > SchoolContext-{GUID}**. The database name is generated from the context name you provided earlier plus a dash and a GUID.

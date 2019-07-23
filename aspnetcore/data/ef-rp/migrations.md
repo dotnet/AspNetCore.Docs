@@ -15,19 +15,15 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 ::: moniker range=">= aspnetcore-3.0"
 
-This tutorial intoduces the EF Core migrations feature for managing data model changes.
+This tutorial introduces the EF Core migrations feature for managing data model changes.
 
-When a new app is developed, the data model changes frequently. Each time the model changes, the model gets out of sync with the database. This tutorial series started by configuring the Entity Framework to create the database if it doesn't exist. Each time the data model changes:
-
-* The database is dropped.
-* EF creates a new one that matches the model.
-* The app seeds the database with test data.
+When a new app is developed, the data model changes frequently. Each time the model changes, the model gets out of sync with the database. This tutorial series started by configuring the Entity Framework to create the database if it doesn't exist. Each time the data model changes, you have to drop the database. The next time the app runs, the call to `EnsureCreated` re-creates the database to match the new data model. The `DbInitializer` class then runs to seed the new database.
 
 This approach to keeping the database in sync with the data model works well until you deploy the app to production. When the app is running in production, it's usually storing data that needs to be maintained. The app can't start with a test database each time a change is made (such as adding a new column). The EF Core Migrations feature solves this problem by enabling EF Core to update the database schema instead of creating a new database.
 
 Rather than dropping and recreating the database when the data model changes, migrations updates the schema and retains existing data.
 
-[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
+[!INCLUDE[](~/includes/sqlite-warn.md)]
 
 ## Drop the database
 

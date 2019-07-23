@@ -57,7 +57,7 @@ namespace ContosoUniversity.Pages.Students
                     break;
             }
 
-            #region snippet_SortOnlyRtm
+            #region snippet_SortOnlyRtn
             Students = await studentsIQ.AsNoTracking().ToListAsync();
             #endregion
         }

@@ -1,7 +1,7 @@
 ---
 title: Razor Pages with EF Core in ASP.NET Core - Sort, Filter, Paging - 3 of 8
 author: rick-anderson
-description: In this tutorial you'll add sorting, filtering, and paging functionality to page using ASP.NET Core and Entity Framework Core.
+description: In this tutorial you'll add sorting, filtering, and paging functionality to a Razor page using ASP.NET Core and Entity Framework Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
@@ -16,13 +16,13 @@ By [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.c
 
 ::: moniker range=">= aspnetcore-3.0"
 
-This tutorial adds sorting, filtering, grouping, and paging functionality to the Students pages.
+This tutorial adds sorting, filtering, and paging functionality to the Students pages.
 
 The following illustration shows a completed page. The column headings are clickable links to sort the column. Click a column heading repeatedly to switch between ascending and descending sort order.
 
 ![Students index page](sort-filter-page/_static/paging.png)
 
-## Add sorting to the Index page
+## Add sorting
 
 Add the following highlighted properties to the *Pages/Students/Index.cshtml.cs* `PageModel` to contain the sorting parameters:
 
@@ -89,7 +89,7 @@ To verify that sorting works:
 * Run the app and select the **Students** tab.
 * Click the column headings.
 
-## Add a Search Box to the Students Index page
+## Add filtering
 
 To add filtering to the Students Index page:
 
@@ -149,7 +149,7 @@ If the page is bookmarked, the bookmark contains the URL to the page and the `Se
 
 Currently, when a column heading sort link is selected, the filter value from the **Search** box is lost. The lost filter value is fixed in the next section.
 
-## Add paging to the Students Index page
+## Add paging
 
 In this section, a `PaginatedList` class is created to support paging. The `PaginatedList` class uses `Skip` and `Take` statements to filter data on the server instead of retrieving all rows of the table. The following illustration shows the paging buttons.
 
@@ -165,7 +165,7 @@ The `CreateAsync` method in the preceding code takes page size and page number a
 
 The `CreateAsync` method is used to create the `PaginatedList<T>`. A constructor can't create the `PaginatedList<T>` object, constructors can't run asynchronous code.
 
-## Add paging functionality to the PageModel class
+### Add paging to the PageModel class
 
 In *Students/Index.cshtml.cs*, update the type of the `Students` property from `IList<Student>` to `PaginatedList<Student>`:
 
