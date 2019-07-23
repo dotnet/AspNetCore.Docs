@@ -26,7 +26,7 @@ The scaffolded code for the Course Create and Edit pages has a Department drop-d
 
 Create a *Pages/Courses/DepartmentNamePageModel.cs* file with the following code:
 
-[!code-csharp[](intro/samples/cu30/Pages/Courses/DepartmentNamePageModel.cs?highlight=9,11,20-21)]
+[!code-csharp[](intro/samples/cu30/Pages/Courses/DepartmentNamePageModel.cs)]
 
 The preceding code creates a [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0) to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
 
@@ -40,17 +40,15 @@ When a new course entity is created, it must have a relationship to an existing 
 
 Update the Create page model with the following code:
 
-[!code-csharp[](intro/samples/cu30/Pages/Courses/Create.cshtml.cs?highlight=7,18,32-999)]
+[!code-csharp[](intro/samples/cu30/Pages/Courses/Create.cshtml.cs?highlight=7,18,27-41)]
 
 The preceding code:
 
 * Derives from `DepartmentNamePageModel`.
 * Uses `TryUpdateModelAsync` to prevent [overposting](xref:data/ef-rp/crud#overposting).
-* Replaces `ViewData["DepartmentID"]` with `DepartmentNameSL` (from the base class).
+* Removes `ViewData["DepartmentID"]`. `DepartmentNameSL` from the base class is a strongly typed model and will be used by the Razor page. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).
 
-`ViewData["DepartmentID"]` is replaced with the strongly typed `DepartmentNameSL`. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).
-
-### Update the Courses Create page
+### Update the Courses Create Razor page
 
 Update *Pages/Courses/Create.cshtml* with the following markup:
 
@@ -73,7 +71,7 @@ Test the Create page. The Create page displays the department name rather than t
 
 Update the edit page model with the following code:
 
-[!code-csharp[](intro/samples/cu30/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40,47-999)]
+[!code-csharp[](intro/samples/cu30/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40-61)]
 
 The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which selects the department specified in the drop-down list.
 
@@ -127,7 +125,7 @@ When editing an instructor record, you may want to update the instructor's offic
 
 Update the instructors Edit page model with the following code:
 
-[!code-csharp[](intro/samples/cu30snapshots/7-related/Pages/Instructors/Edit1.cshtml.cs?name=snippet&highlight=20-23,32,39-999)]
+[!code-csharp[](intro/samples/cu30snapshots/7-related/Pages/Instructors/Edit1.cshtml.cs?name=snippet&highlight=20-23,32-62)]
 
 The preceding code:
 
@@ -159,19 +157,13 @@ Create *SchoolViewModels/AssignedCourseData.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Models/SchoolViewModels/AssignedCourseData.cs)]
 
-The `AssignedCourseData` class contains data to create the check boxes for assigned courses by an instructor.
+The `AssignedCourseData` class contains data to create the check boxes for courses assigned to an instructor.
 
 Create the *Pages/Instructors/InstructorCoursesPageModel.cs* base class:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cs)]
 
-The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](/dotnet/api/system.collections.generic.hashset-1) is used to create efficient lookups.
-
-### Instructors Edit page model
-
-Update the instructor Edit page model with the following code:
-
-[!code-csharp[](intro/samples/cu30/Pages/Instructors/Edit.cshtml.cs?name=snippet&highlight=1,20-24,30,34,41-64)]
+The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](/dotnet/api/system.collections.generic.hashset-1) is used for efficient lookups.
 
 Since the view doesn't have a collection of Course entities, the model binder can't automatically update the `CourseAssignments` navigation property. Instead of using the model binder to update the `CourseAssignments` navigation property, you do that in the new `UpdateInstructorCourses` method. Therefore you need to exclude the `CourseAssignments` property from model binding. This doesn't require any change to the code that calls `TryUpdateModel` because you're using the whitelisting overload and `CourseAssignments` isn't in the include list.
 
@@ -189,7 +181,13 @@ If the check box for a course wasn't selected, but the course is in the `Instruc
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_UpdateCoursesElse)]
 
-Update the instructor Razor View:
+### Instructors Edit page model
+
+Update the instructor Edit page model with the following code:
+
+[!code-csharp[](intro/samples/cu30/Pages/Instructors/Edit.cshtml.cs?name=snippet&highlight=1,20-24,30,34,41-45,52-69)]
+
+Update the Instructor Edit Razor page:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Instructors/Edit.cshtml?highlight=34-59)]
 
@@ -219,7 +217,7 @@ Test the instructor Create page.
 
 Update the Delete page model with the following code:
 
-[!code-csharp[](intro/samples/cu/Pages/Instructors/Delete.cshtml.cs?highlight=5,40-999)]
+[!code-csharp[](intro/samples/cu/Pages/Instructors/Delete.cshtml.cs?highlight=5,40-52)]
 
 The preceding code makes the following changes:
 

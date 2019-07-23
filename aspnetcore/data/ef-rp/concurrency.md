@@ -194,7 +194,7 @@ Build the project.
 
 # [Visual Studio](#tab/visual-studio)
 
-* Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) with the following exceptions:
+* Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
 
 * Create a *Pages/Departments* folder.  
 * Use `Department` for the model class.
@@ -500,7 +500,7 @@ The preceding commands:
 
 # [Visual Studio](#tab/visual-studio) 
 
-Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Department` for the model class.
+Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-student-pages) and use `Department` for the model class.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 

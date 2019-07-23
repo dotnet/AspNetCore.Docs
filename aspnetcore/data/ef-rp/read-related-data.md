@@ -24,7 +24,7 @@ The following illustrations show the completed pages for this tutorial:
 
 ![Instructors Index page](read-related-data/_static/instructors-index.png)
 
-## Eager, explicit, and lazy Loading of related data
+## Eager, explicit, and lazy loading
 
 There are several ways that EF Core can load related data into the navigation properties of an entity:
 
@@ -66,7 +66,7 @@ To display the name of the assigned department for a course:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) with the following exceptions:
+* Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
 
   * Create a *Pages/Courses* folder.
   * Use `Course` for the model class.
@@ -76,7 +76,7 @@ To display the name of the assigned department for a course:
 
 * Create a *Courses* folder in the *Pages* folder.
 
-* Run the following commands to scaffold the Course model.
+* Run the following command to scaffold the Course pages.
 
   On Linux or macOS:
 
@@ -84,7 +84,7 @@ To display the name of the assigned department for a course:
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages/Courses --referenceScriptLibraries
   ```
 
-  On Windows, use the same commands but replace *Pages\Courses* with *Pages\\Courses*. (Replace the forward slash with a backslash.)
+  On Windows, use the same commands but replace *Pages/Courses* with *Pages\Courses*. (Replace the forward slash with a backslash.)
 
 ---
 
@@ -102,7 +102,7 @@ The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance beca
 
 Update *Pages/Courses/Index.cshtml* with the following highlighted markup:
 
-[!code-html[](intro/samples/cu30/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
+[!code-cshtml[](intro/samples/cu30/Pages/Courses/Index.cshtml?highlight=5,8,16-18,34-36,44)]
 
 The following changes have been made to the scaffolded code:
 
@@ -130,7 +130,7 @@ The `Select` method loads only the related data needed. For single items, like t
 
 The following code loads related data with the `Select` method:
 
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=4)]
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=6)]
 
 The `CourseViewModel`:
 
@@ -159,11 +159,11 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 
 [!code-csharp[](intro/samples/cu30/Models/SchoolViewModels/InstructorIndexData.cs)]
 
-### Scaffold the Instructor model
+### Scaffold the Instructor pages
 
 # [Visual Studio](#tab/visual-studio)
 
-* Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) with the following exceptions:
+* Follow the instructions in [Scaffold the student pages](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
 
   * Create a *Pages/Instructors* folder.
   * Use `Instructor` for the model class.
@@ -175,19 +175,19 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 
 * Run the following command to scaffold the Course model.
 
-  On Linux or macOS
+  On Linux or macOS:
 
   ```console
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages/Instructors --referenceScriptLibraries
   ```
 
-  On Windows, use the same command but replace *Pages\Instructors* with *Pages\\Instructors*. (Replace the forward slash with a backslash.)
+  On Windows, use the same command but replace *Pages/Instructors* with *Pages\Instructors*. (Replace the forward slash with a backslash.)
 
 ---
 
 Replace *Pages/Instructors/Index.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,18-99)]
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,19-37)]
 
 The `OnGetAsync` method accepts optional route data for the ID of the selected instructor.
 
@@ -204,7 +204,7 @@ The query has two includes:
 
 Update *Pages/Instructors/Index.cshtml* with the following markup:
 
-[!code-html[](intro/samples/cu30/Pages/Instructors/Index.cshtml?range=1-65&highlight=1,5,8,16-21,25-32,43-57)]
+[!code-cshtml[](intro/samples/cu30/Pages/Instructors/Index.cshtml?range=1-65&highlight=1,5,8,16-21,25-32,42-56)]
 
 The preceding markup makes the following changes:
 
@@ -255,7 +255,7 @@ Click on the **Select** link for an instructor. The row style changes.
 
 Update the `OnGetAsync` method in *Pages/Instructors/Index.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index2.cshtml.cs?name=snippet_OnGetAsync&highlight=1,8,16-999)]
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index2.cshtml.cs?name=snippet_OnGetAsync&highlight=1,8,16-25)]
 
 Add `public int CourseID { get; set; }`
 
@@ -284,9 +284,9 @@ The following code populates the view model's `Enrollments` property when a cour
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index2.cshtml.cs?name=snippet_courseID)]
 
-Add the following markup to the end of the *Pages/Instructors/Index.cshtml* Razor Page:
+Add the following highlighted markup to the end of the *Pages/Instructors/Index.cshtml* Razor Page:
 
-[!code-html[](intro/samples/cu/Pages/Instructors/Index.cshtml?range=60-102&highlight=7-999)]
+[!code-cshtml[](intro/samples/cu/Pages/Instructors/Index.cshtml?range=60-102&highlight=7-42)]
 
 The preceding markup displays a list of courses related to an instructor when an instructor is selected.
 
@@ -304,7 +304,7 @@ Update the query in the `OnGetAsync` method in *Pages/Instructors/Index.cshtml.c
 
 Update *Pages/Instructors/Index.cshtml*. Add the following markup to the end of the file:
 
-[!code-html[](intro/samples/cu30/Pages/Instructors/Index.cshtml?range=103-)]
+[!code-cshtml[](intro/samples/cu30/Pages/Instructors/Index.cshtml?range=103-)]
 
 The preceding markup displays a list of the students who are enrolled in the selected course.
 
@@ -318,7 +318,7 @@ The `Single` method can pass in the `Where` condition instead of calling the `Wh
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/IndexSingle.cshtml.cs?name=snippet_single&highlight=21-22,30-31)]
 
-The preceding `Single` approach provides no benefits over using `Where`. Some developers prefer the `Single` approach style.
+Use of `Single` with a Where condition is a matter of personal preference. It provides no benefits over using the `Where` method.
 
 ## Explicit loading
 
@@ -407,7 +407,7 @@ To display the name of the assigned department in a list of courses:
 
 # [Visual Studio](#tab/visual-studio) 
 
-Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Course` for the model class.
+Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-student-pages) and use `Course` for the model class.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -494,7 +494,7 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 
 # [Visual Studio](#tab/visual-studio) 
 
-Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Instructor` for the model class.
+Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-student-pages) and use `Instructor` for the model class.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 

@@ -43,14 +43,19 @@ namespace ContosoUniversity.Pages.Instructors
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (!ModelState.IsValid)
+            if (id == null)
             {
-                return Page();
+                return NotFound();
             }
 
             var instructorToUpdate = await _context.Instructors
                 .Include(i => i.OfficeAssignment)
                 .FirstOrDefaultAsync(s => s.ID == id);
+
+            if (instructorToUpdate == null)
+            {
+                return NotFound();
+            }
 
             if (await TryUpdateModelAsync<Instructor>(
                 instructorToUpdate,
@@ -66,7 +71,6 @@ namespace ContosoUniversity.Pages.Instructors
                 await _context.SaveChangesAsync();
             }
             return RedirectToPage("./Index");
-
         }
     }
 #endregion
