@@ -103,7 +103,7 @@ public Ticketer.TicketerClient CreateClientWithCert(
 
 Many ASP.NET Core supported authentication mechanisms work with gRPC:
 
-* OAuth
+* OAuth 2.0
 * OpenID Connect
 * IdentityServer
 * WS-Federation
