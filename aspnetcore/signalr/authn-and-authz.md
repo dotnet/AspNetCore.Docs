@@ -253,4 +253,4 @@ In the preceding example, the `DomainRestrictedRequirement` class is both an `IA
 ## Additional resources
 
 * [Bearer Token Authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
-* [Resource based Authorization](xref:security/authorization/resourcebased)
+* [Resource-based Authorization](xref:security/authorization/resourcebased)
