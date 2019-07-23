@@ -1,14 +1,14 @@
 ---
-title: "Tutorial: Create a web API with ASP.NET Core MVC"
+title: "Tutorial: Create a web API with ASP.NET Core"
 author: rick-anderson
-description: Build a web API with ASP.NET Core MVC
+description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/4/2019
+ms.date: 07/11/2019
 uid: tutorials/first-web-api
 ---
 
-# Tutorial: Create a web API with ASP.NET Core MVC
+# Tutorial: Create a web API with ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
 
@@ -44,24 +44,39 @@ This tutorial creates the following API:
 
 The following diagram shows the design of the app.
 
-![The client is represented by a box on the left and submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
+![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
 
-[!INCLUDE[](~/includes/net-core-prereqs-all-2.2.md)]
+## Prerequisites
+
+# [Visual Studio](#tab/visual-studio)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vs2019-2.2.md)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-2.2.md)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!INCLUDE[](~/includes/net-core-prereqs-mac-2.2.md)]
+
+---
 
 ## Create a web project
 
 # [Visual Studio](#tab/visual-studio)
 
 * From the **File** menu, select **New** > **Project**.
-* Select the **ASP.NET Core Web Application** template. Name the project *TodoApi* and click **OK**.
-* In the **New ASP.NET Core Web Application - TodoApi** dialog, choose the ASP.NET Core version. Select the **API** template and click **OK**. Do **not** select **Enable Docker Support**.
+* Select the **ASP.NET Core Web Application** template and click **Next**.
+* Name the project *TodoApi* and click **Create**.
+* In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 2.2** are selected. Select the **API** template and click **Create**. **Don't** select **Enable Docker Support**.
 
 ![VS new project dialog](first-web-api/_static/vs.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Change directories (`cd`) to the folder which will contain the project folder.
+* Change directories (`cd`) to the folder that will contain the project folder.
 * Run the following commands:
 
    ```console
@@ -79,7 +94,7 @@ The following diagram shows the design of the app.
 
   ![macOS New solution](first-web-api-mac/_static/sln.png)
 
-* Select **.NET Core App** > **ASP.NET Core Web API** > **Next**.
+* Select **.NET Core** > **App** > **API** > **Next**.
 
   ![macOS New project dialog](first-web-api-mac/_static/1.png)
   
@@ -107,7 +122,7 @@ Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localh
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start With Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/api/values` to the URL (change the URL to `https://localhost:<port>/api/values`).
+Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/api/values` to the URL (change the URL to `https://localhost:<port>/api/values`).
 
 ---
 
@@ -226,6 +241,8 @@ These methods implement two GET endpoints:
 * `GET /api/todo`
 * `GET /api/todo/{id}`
 
+Stop the app if it's still running. Then run it again to include the latest changes.
+
 Test the app by calling the two endpoints from a browser. For example:
 
 * `https://localhost:<port>/api/todo`
@@ -271,7 +288,7 @@ The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult
 
 This tutorial uses Postman to test the web API.
 
-* Install [Postman](https://www.getpostman.com/apps)
+* Install [Postman](https://www.getpostman.com/downloads/)
 * Start the web app.
 * Start Postman.
 * Disable **SSL certificate verification**
@@ -345,11 +362,11 @@ Add the following `PutTodoItem` method:
 
 `PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
-If you get an error calling `PutTodoItem`, call `GET` to ensure there is an item in the database.
+If you get an error calling `PutTodoItem`, call `GET` to ensure there's an item in the database.
 
 ### Test the PutTodoItem method
 
-This sample uses an in-memory database that must be initialed each time the app is started. There must be an item in the database before you make a PUT call. Call GET to insure there is an item in the database before making a PUT call.
+This sample uses an in-memory database that must be initialed each time the app is started. There must be an item in the database before you make a PUT call. Call GET to insure there's an item in the database before making a PUT call.
 
 Update the to-do item that has id = 1 and set its name to "feed fish":
 
@@ -381,13 +398,13 @@ Use Postman to delete a to-do item:
 * Set the URI of the object to delete, for example `https://localhost:5001/api/todo/1`
 * Select **Send**
 
-The sample app allows you to delete all the items, but when the last item is deleted, a new one is created by the model class constructor the next time the API is called.
+The sample app allows you to delete all the items. However, when the last item is deleted, a new one is created by the model class constructor the next time the API is called.
 
 ## Call the API with jQuery
 
 In this section, an HTML page is added that uses jQuery to call the web api. jQuery initiates the request and updates the page with the details from the API's response.
 
-Configure the app to [serve static files](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [enable default file mapping](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_):
+Configure the app to [serve static files](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [enable default file mapping](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) by updating *Startup.cs* with the following highlighted code:
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup.cs?highlight=14-15&name=snippet_configure)]
 
@@ -449,7 +466,7 @@ For more information, see the following resources:
 * <xref:web-api/action-return-types>
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
-* [Youtube version of this tutorial](https://www.youtube.com/watch?v=TTkhEyGBfAk)
+* [YouTube version of this tutorial](https://www.youtube.com/watch?v=TTkhEyGBfAk)
 
 ## Next steps
 

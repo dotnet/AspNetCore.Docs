@@ -392,7 +392,7 @@ This code adds the new entities and configures the CourseAssignment entity's com
 
 ## About a fluent API alternative
 
-The code in the `OnModelCreating` method of the `DbContext` class uses the *fluent API* to configure EF behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement, as in this example from the [EF Core documentation](/ef/core/modeling/#methods-of-configuration):
+The code in the `OnModelCreating` method of the `DbContext` class uses the *fluent API* to configure EF behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement, as in this example from the [EF Core documentation](/ef/core/modeling/#use-fluent-api-to-configure-a-model):
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -407,7 +407,7 @@ In this tutorial, you're using the fluent API only for database mapping that you
 
 Some developers prefer to use the fluent API exclusively so that they can keep their entity classes "clean." You can mix attributes and fluent API if you want, and there are a few customizations that can only be done by using fluent API, but in general the recommended practice is to choose one of these two approaches and use that consistently as much as possible. If you do use both, note that wherever there's a conflict, Fluent API overrides attributes.
 
-For more information about attributes vs. fluent API, see [Methods of configuration](/ef/core/modeling/#methods-of-configuration).
+For more information about attributes vs. fluent API, see [Methods of configuration](/ef/core/modeling/).
 
 ## Entity Diagram Showing Relationships
 

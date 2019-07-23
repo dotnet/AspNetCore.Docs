@@ -6,10 +6,10 @@ To delay JavaScript interop calls until after the connection with the browser is
 @using Microsoft.JSInterop
 @inject IJSRuntime JSRuntime
 
-<input ref="myInput" value="Value set during render" />
+<input @ref="myInput" value="Value set during render" />
 
-@functions {
-    ElementRef myInput;
+@code {
+    private ElementRef myInput;
 
     protected override void OnAfterRender()
     {
@@ -19,11 +19,9 @@ To delay JavaScript interop calls until after the connection with the browser is
 }
 ```
 
-This following component demonstrates how to use JavaScript interop as part of a component's initialization logic in a way that's compatible with prerendering.
+The following component demonstrates how to use JavaScript interop as part of a component's initialization logic in a way that's compatible with prerendering. The component shows that it's possible to trigger a rendering update from inside `OnAfterRenderAsync`. The developer must avoid creating an infinite loop in this scenario.
 
-The component shows that it's possible to trigger a rendering update from inside `OnAfterRenderAsync`. For this scenario. the developer must avoid creating an infinite loop.
-
-Where `JSRuntime.InvokeAsync` is called, `ElementRef` is only used in `OnAfterRenderAsync` and not any earlier lifecycle method because there's no JavaScript element until after the component is rendered.
+Where `JSRuntime.InvokeAsync` is called, `ElementRef` is only used in `OnAfterRenderAsync` and not in any earlier lifecycle method because there's no JavaScript element until after the component is rendered.
 
 `StateHasChanged` is called to rerender the component with the new state obtained from the JavaScript interop call. The code doesn't create an infinite loop because `StateHasChanged` is only called when `infoFromJs` is `null`.
 
@@ -41,12 +39,12 @@ Where `JSRuntime.InvokeAsync` is called, `ElementRef` is only used in `OnAfterRe
 
 <p>
     Set value via JS interop call:
-    <input id="val-set-by-interop" ref="@myElem" />
+    <input id="val-set-by-interop" @ref="myElem" />
 </p>
 
-@functions {
-    string infoFromJs;
-    ElementRef myElem;
+@code {
+    private string infoFromJs;
+    private ElementRef myElem;
 
     protected override async Task OnAfterRenderAsync()
     {
@@ -89,10 +87,10 @@ To conditionally render different content based on whether the app is currently 
 <p>
     Clicks:
     <strong id="count">@count</strong>
-    <button id="increment-count" onclick="@(() => count++)">Click me</button>
+    <button id="increment-count" @onclick="@(() => count++)">Click me</button>
 </p>
 
-@functions {
+@code {
     private int count;
 }
 ```

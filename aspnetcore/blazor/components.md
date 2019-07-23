@@ -1,16 +1,16 @@
 ---
-title: Create and use Razor components
+title: Create and use ASP.NET Core Razor components
 author: guardrex
 description: Learn how to create and use Razor components, including how to bind to data, handle events, and manage component life cycles.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/02/2019
+ms.date: 07/05/2019
 uid: blazor/components
 ---
-# Create and use Razor components
+# Create and use ASP.NET Core Razor components
 
-By [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), and [Morné Zaayman](https://github.com/MorneZaayman)
+By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -18,7 +18,7 @@ Blazor apps are built using *components*. A component is a self-contained chunk 
 
 ## Component classes
 
-Components are implemented in [Razor](xref:mvc/views/razor) component files (*.razor*) using a combination of C# and HTML markup.
+Components are implemented in [Razor](xref:mvc/views/razor) component files (*.razor*) using a combination of C# and HTML markup. A component in Blazor is formally referred to as a *Razor component*.
 
 Components can be authored using the *.cshtml* file extension as long as the files are identified as Razor component files using the `_RazorComponentInclude` MSBuild property. For example, an app that specifies that all *.cshtml* files under the *Pages* folder should be treated as Razor components files:
 
@@ -28,7 +28,10 @@ Components can be authored using the *.cshtml* file extension as long as the fil
 
 The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When an app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
 
-Members of the component class are defined in an `@functions` block (more than one `@functions` block is permissible). In the `@functions` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic.
+Members of the component class are defined in an `@code` block. In the `@code` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic. More than one `@code` block is permissible.
+
+> [!NOTE]
+> In previous versions of ASP.NET Core, `@functions` blocks were used for the same purpose as `@code` blocks. `@functions` blocks continue to work, but we recommend using the `@code` directive.
 
 Component members can then be used as part of the component's rendering logic using C# expressions that start with `@`. For example, a C# field is rendered by prefixing `@` to the field name. The following example evaluates and renders:
 
@@ -38,7 +41,7 @@ Component members can then be used as part of the component's rendering logic us
 ```cshtml
 <h1 style="font-style:@_headingFontStyle">@_headingText</h1>
 
-@functions {
+@code {
     private string _headingFontStyle = "italic";
     private string _headingText = "Put on your new Blazor!";
 }
@@ -46,12 +49,15 @@ Component members can then be used as part of the component's rendering logic us
 
 After the component is initially rendered, the component regenerates its render tree in response to events. Blazor then compares the new render tree against the previous one and applies any modifications to the browser's Document Object Model (DOM).
 
+Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the *Pages* folder. Non-page components are frequently placed in the *Shared* folder or a custom folder added to the project. To use a custom folder, either add the custom folder's namespace to the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `WebApplication`:
+
+```cshtml
+@using WebApplication.Components
+```
+
 ## Integrate components into Razor Pages and MVC apps
 
-Use components with existing Razor Pages and MVC apps. There's no need to rewrite existing pages or views to use Razor components. When the page or view is rendered, components are prerendered&dagger; at the same time. 
-
-> [!NOTE]
-> &dagger;Server-side prerendering is enabled for Blazor server-side apps by default. Client-side Blazor apps will support prerendering in the upcoming Preview 5 release. For more information, see [Update templates/middleware to use MapFallbackToPage/File](https://github.com/aspnet/AspNetCore/issues/8852).
+Use components with existing Razor Pages and MVC apps. There's no need to rewrite existing pages or views to use Razor components. When the page or view is rendered, components are prerendered at the same time.
 
 To render a component from a page or view, use the `RenderComponentAsync<TComponent>` HTML helper method:
 
@@ -69,126 +75,104 @@ For more information on how components are rendered and component state is manag
 
 Components can include other components by declaring them using HTML element syntax. The markup for using a component looks like an HTML tag where the name of the tag is the component type.
 
-The following markup in *Index.razor* renders a `HeadingComponent` instance, which exists in another file, *HeadingComponent.razor*:
+The following markup in *Index.razor* renders a `HeadingComponent` instance:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/Index.razor?name=snippet_HeadingComponent)]
 
+*Components/HeadingComponent.razor*:
+
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/HeadingComponent.razor)]
+
 ## Component parameters
 
-Components can have *component parameters*, which are defined using *non-public* properties on the component class with the `[Parameter]` attribute. Use attributes to specify arguments for a component in markup.
+Components can have *component parameters*, which are defined using properties (usually *non-public*) on the component class with the `[Parameter]` attribute. Use attributes to specify arguments for a component in markup.
 
-In the following example, the `ParentComponent` sets the value of the `Title` property of the `ChildComponent`:
+*Components/ChildComponent.razor*:
 
-*Parent component*:
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ChildComponent.razor?highlight=11-12)]
+
+In the following example, the `ParentComponent` sets the value of the `Title` property of the `ChildComponent`.
+
+*Pages/ParentComponent.razor*:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=5-6)]
 
-*Child component*:
-
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.razor?highlight=11-12)]
-
 ## Child content
 
-Components can set the content of another component. The assigning component provides the content between the tags that specify the receiving component. For example, a `ParentComponent` can provide content for rendering by a Child component by placing the content inside `<ChildComponent>` tags.
+Components can set the content of another component. The assigning component provides the content between the tags that specify the receiving component.
 
-*Parent component*:
+In the following example, the `ChildComponent` has a `ChildContent` property that represents a `RenderFragment`. The value of `ChildContent` is positioned in the component's markup where the content should be rendered. The value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=7-8)]
+*Components/ChildComponent.razor*:
 
-The Child component has a `ChildContent` property that represents a `RenderFragment`. The value of `ChildContent` is positioned in the child component's markup where the content should be rendered. In the following example, the value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
-
-*Child component*:
-
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.razor?highlight=3,14-15)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ChildComponent.razor?highlight=3,14-15)]
 
 > [!NOTE]
 > The property receiving the `RenderFragment` content must be named `ChildContent` by convention.
 
+The following `ParentComponent` can provide content for rendering the `ChildComponent` by placing the content inside the `<ChildComponent>` tags.
+
+*Pages/ParentComponent.razor*:
+
+[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=7-8)]
+
 ## Data binding
 
-Data binding to both components and DOM elements is accomplished with the `bind` attribute. The following example binds the `_italicsCheck` field to the check box's checked state:
+Data binding to both components and DOM elements is accomplished with the `@bind` attribute. The following example binds the `_italicsCheck` field to the check box's checked state:
 
 ```cshtml
 <input type="checkbox" class="form-check-input" id="italicsCheck" 
-    bind="@_italicsCheck">
+    @bind="_italicsCheck" />
 ```
 
 When the check box is selected and cleared, the property's value is updated to `true` and `false`, respectively.
 
 The check box is updated in the UI only when the component is rendered, not in response to changing the property's value. Since components render themselves after event handler code executes, property updates are usually reflected in the UI immediately.
 
-Using `bind` with a `CurrentValue` property (`<input bind="@CurrentValue">`) is essentially equivalent to the following:
+Using `@bind` with a `CurrentValue` property (`<input @bind="CurrentValue" />`) is essentially equivalent to the following:
 
 ```cshtml
 <input value="@CurrentValue" 
-    onchange="@((UIChangeEventArgs __e) => CurrentValue = __e.Value)">
+    @onchange="@((UIChangeEventArgs __e) => CurrentValue = __e.Value)" />
 ```
 
-When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `bind` handles a few cases where type conversions are performed. In principle, `bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
+When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `@bind` handles a few cases where type conversions are performed. In principle, `@bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-In addition to `onchange`, the property can be bound using other events like `oninput` by being more explicit about what to bind to:
+In addition to handling `onchange` events with `@bind` syntax, a property or field can be bound using other events by specifying an `@bind-value` attribute with an `event` parameter. The following example binds the `CurrentValue` property for the `oninput` event:
 
 ```cshtml
-<input type="text" bind-value-oninput="@CurrentValue">
+<input @bind-value="CurrentValue" @bind-value:event="oninput" />
 ```
 
-Unlike `onchange`, `oninput` fires for every character that is input into the text box.
+Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
 **Format strings**
 
 Data binding works with <xref:System.DateTime> format strings. Other format expressions, such as currency or number formats, aren't available at this time.
 
 ```cshtml
-<input bind="@StartDate" format-value="yyyy-MM-dd">
+<input @bind="StartDate" @bind:format="yyyy-MM-dd" />
 
-@functions {
+@code {
     [Parameter]
     private DateTime StartDate { get; set; } = new DateTime(2020, 1, 1);
 }
 ```
 
-The `format-value` attribute specifies the date format to apply to the `value` of the `input` element. The format is also used to parse the value when an `onchange` event occurs.
+The `@bind:format` attribute specifies the date format to apply to the `value` of the `<input>` element. The format is also used to parse the value when an `onchange` event occurs.
 
 **Component parameters**
 
-Binding also recognizes component parameters, where `bind-{property}` can bind a property value across components.
+Binding also recognizes component parameters, where `@bind-{property}` can bind a property value across components.
 
-The following component uses `ChildComponent` and binds the `ParentYear` parameter from the parent to the `Year` parameter on the child component:
-
-Parent component:
-
-```cshtml
-@page "/ParentComponent"
-
-<h1>Parent Component</h1>
-
-<p>ParentYear: @ParentYear</p>
-
-<ChildComponent bind-Year="@ParentYear" />
-
-<button class="btn btn-primary" onclick="@ChangeTheYear">
-    Change Year to 1986
-</button>
-
-@functions {
-    [Parameter]
-    private int ParentYear { get; set; } = 1978;
-
-    private void ChangeTheYear()
-    {
-        ParentYear = 1986;
-    }
-}
-```
-
-Child component:
+The following child component (`ChildComponent`) has a `Year` component parameter and `YearChanged` callback:
 
 ```cshtml
 <h2>Child Component</h2>
 
 <p>Year: @Year</p>
 
-@functions {
+@code {
     [Parameter]
     private int Year { get; set; }
 
@@ -198,6 +182,32 @@ Child component:
 ```
 
 `EventCallback<T>` is explained in the [EventCallback](#eventcallback) section.
+
+The following parent component uses `ChildComponent` and binds the `ParentYear` parameter from the parent to the `Year` parameter on the child component:
+
+```cshtml
+@page "/ParentComponent"
+
+<h1>Parent Component</h1>
+
+<p>ParentYear: @ParentYear</p>
+
+<ChildComponent @bind-Year="ParentYear" />
+
+<button class="btn btn-primary" @onclick="ChangeTheYear">
+    Change Year to 1986
+</button>
+
+@code {
+    [Parameter]
+    private int ParentYear { get; set; } = 1978;
+
+    private void ChangeTheYear()
+    {
+        ParentYear = 1986;
+    }
+}
+```
 
 Loading the `ParentComponent` produces the following markup:
 
@@ -225,26 +235,30 @@ If the value of the `ParentYear` property is changed by selecting the button in 
 
 The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
-By convention, `<ChildComponent bind-Year="@ParentYear" />` is essentially equivalent to writing,
+By convention, `<ChildComponent @bind-Year="ParentYear" />` is essentially equivalent to writing:
 
 ```cshtml
-<ChildComponent bind-Year-YearChanged="@ParentYear" />
+<ChildComponent @bind-Year="ParentYear" @bind-Year:event="YearChanged" />
 ```
 
-In general, a property can be bound to a corresponding event handler using `bind-property-event` attribute.
+In general, a property can be bound to a corresponding event handler using `@bind-property:event` attribute. For example, the property `MyProp` can be bound to `MyEventHandler` using the following two attributes:
+
+```cshtml
+<MyComponent @bind-MyProp="MyValue" @bind-MyProp:event="MyEventHandler" />
+```
 
 ## Event handling
 
-Razor components provide event handling features. For an HTML element attribute named `on<event>` (for example, `onclick`, `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name always starts with `on`.
+Razor components provide event handling features. For an HTML element attribute named `on<event>` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name always starts with `@on`.
 
 The following code calls the `UpdateHeading` method when the button is selected in the UI:
 
 ```cshtml
-<button class="btn btn-primary" onclick="@UpdateHeading">
+<button class="btn btn-primary" @onclick="UpdateHeading">
     Update heading
 </button>
 
-@functions {
+@code {
     private void UpdateHeading(UIMouseEventArgs e)
     {
         ...
@@ -252,13 +266,13 @@ The following code calls the `UpdateHeading` method when the button is selected 
 }
 ```
 
-The following code calls the `CheckboxChanged` method when the check box is changed in the UI:
+The following code calls the `CheckChanged` method when the check box is changed in the UI:
 
 ```cshtml
-<input type="checkbox" class="form-check-input" onchange="@CheckboxChanged">
+<input type="checkbox" class="form-check-input" @onchange="CheckboxChanged" />
 
-@functions {
-    private void CheckboxChanged()
+@code {
+    private void CheckChanged()
     {
         ...
     }
@@ -267,12 +281,14 @@ The following code calls the `CheckboxChanged` method when the check box is chan
 
 Event handlers can also be asynchronous and return a <xref:System.Threading.Tasks.Task>. There's no need to manually call `StateHasChanged()`. Exceptions are logged when they occur.
 
+In the following example, `UpdateHeading` is called asynchronously when the button is selected:
+
 ```cshtml
-<button class="btn btn-primary" onclick="@UpdateHeading">
+<button class="btn btn-primary" @onclick="UpdateHeading">
     Update heading
 </button>
 
-@functions {
+@code {
     private async Task UpdateHeading(UIMouseEventArgs e)
     {
         ...
@@ -282,17 +298,28 @@ Event handlers can also be asynchronous and return a <xref:System.Threading.Task
 
 For some events, event-specific event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
 
-The list of supported event arguments is:
+Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) are shown in the following table.
 
-* UIEventArgs
-* UIChangeEventArgs
-* UIKeyboardEventArgs
-* UIMouseEventArgs
+| Event | Class |
+| ----- | ----- |
+| Clipboard | `UIClipboardEventArgs` |
+| Drag  | `UIDragEventArgs` &ndash; `DataTransfer` is used to hold the dragged data during a drag and drop operation and may hold one or more `UIDataTransferItem`. `UIDataTransferItem` represents one drag data item. |
+| Error | `UIErrorEventArgs` |
+| Focus | `UIFocusEventArgs` &ndash; Doesn't include support for `relatedTarget`. |
+| `<input>` change | `UIChangeEventArgs` |
+| Keyboard | `UIKeyboardEventArgs` |
+| Mouse | `UIMouseEventArgs` |
+| Mouse pointer | `UIPointerEventArgs` |
+| Mouse wheel | `UIWheelEventArgs` |
+| Progress | `UIProgressEventArgs` |
+| Touch | `UITouchEventArgs` &ndash; `UITouchPoint` represents a single contact point on a touch-sensitive device. |
 
+For information on the properties and event handling behavior of the events in the preceding table, see [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) in the reference source.
+  
 Lambda expressions can also be used:
 
 ```cshtml
-<button onclick="@(e => Console.WriteLine("Hello, world!"))">Say hello</button>
+<button @onclick="@(e => Console.WriteLine("Hello, world!"))">Say hello</button>
 ```
 
 It's often convenient to close over additional values, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` passing an event argument (`UIMouseEventArgs`) and its button number (`buttonNumber`) when selected in the UI:
@@ -305,12 +332,12 @@ It's often convenient to close over additional values, such as when iterating ov
     var buttonNumber = i;
 
     <button class="btn btn-primary"
-            onclick="@(e => UpdateHeading(e, buttonNumber))">
+            @onclick="@(e => UpdateHeading(e, buttonNumber))">
         Button #@i
     </button>
 }
 
-@functions {
+@code {
     private string message = "Select a button to learn its position.";
 
     private void UpdateHeading(UIMouseEventArgs e, int buttonNumber)
@@ -328,18 +355,18 @@ It's often convenient to close over additional values, such as when iterating ov
 
 A common scenario with nested components is the desire to run a parent component's method when a child component event occurs&mdash;for example, when an `onclick` event occurs in the child. To expose events across components, use an `EventCallback`. A parent component can assign a callback method to a child component's `EventCallback`.
 
-The Child component in the sample app demonstrates how a button's `onclick` handler is set up to receive an `EventCallback` delegate from the sample's Parent component. The `EventCallback` is typed with `UIMouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device:
+The `ChildComponent` in the sample app demonstrates how a button's `onclick` handler is set up to receive an `EventCallback` delegate from the sample's `ParentComponent`. The `EventCallback` is typed with `UIMouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ChildComponent.razor?highlight=5-7,17-18)]
+[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ChildComponent.razor?highlight=5-7,17-18)]
 
-The Parent component sets the child's `EventCallback<T>` to its `ShowMessage` method:
+The `ParentComponent` sets the child's `EventCallback<T>` to its `ShowMessage` method:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=6,16-19)]
 
-When the button is selected in the Child component:
+When the button is selected in the `ChildComponent`:
 
-* The Parent component's `ShowMessage` method is called. `messageText` is updated and displayed in the Parent component.
-* A call to `StateHasChanged` isn't required in the callback's method (`ShowMessage`). `StateHasChanged` is called automatically to rerender the Parent component, just as child events trigger component rerendering in event handlers that execute within the child.
+* The `ParentComponent`'s `ShowMessage` method is called. `messageText` is updated and displayed in the `ParentComponent`.
+* A call to `StateHasChanged` isn't required in the callback's method (`ShowMessage`). `StateHasChanged` is called automatically to rerender the `ParentComponent`, just as child events trigger component rerendering in event handlers that execute within the child.
 
 `EventCallback` and `EventCallback<T>` permit asynchronous delegates. `EventCallback<T>` is strongly typed and requires a specific argument type. `EventCallback` is weakly typed and allows any argument type.
 
@@ -349,9 +376,9 @@ When the button is selected in the Child component:
 @{ var message = "Default Text"; }
 
 <ChildComponent 
-    OnClick="@(async () => { await Task.Yield(); messageText = "Blaze It!"; }" />
+    OnClick="@(async () => { await Task.Yield(); messageText = "Blaze It!"; })" />
 
-@function {
+@code {
     private string messageText;
 }
 ```
@@ -362,18 +389,18 @@ Invoke an `EventCallback` or `EventCallback<T>` with `InvokeAsync` and await the
 await callback.InvokeAsync(arg);
 ```
 
-Use `EventCallback` and `EventCallback<T>` for event handling and binding component parameters. Don't use `EventCallback` and `EventCallback<T>` for child content&mdash;continue to use `RenderFragment` and `RenderFragment<T>` for child content.
+Use `EventCallback` and `EventCallback<T>` for event handling and binding component parameters.
 
-Prefer the strongly typed `EventCallback<T>`, which provides better error feedback to users of the component. Similar to other UI event handlers, specifying the event parameter is optional. Use `EventCallback` when there's no value passed to the callback.
+Prefer the strongly typed `EventCallback<T>` over `EventCallback`. `EventCallback<T>` provides better error feedback to users of the component. Similar to other UI event handlers, specifying the event parameter is optional. Use `EventCallback` when there's no value passed to the callback.
 
 ## Capture references to components
 
-Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference, add a `ref` attribute to the child component and then define a field with the same name and the same type as the child component.
+Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference, add a `@ref` attribute to the child component and then define a field with the same name and the same type as the child component.
 
 ```cshtml
-<MyLoginDialog ref="loginDialog" ... />
+<MyLoginDialog @ref="loginDialog" ... />
 
-@functions {
+@code {
     private MyLoginDialog loginDialog;
 
     private void OnSomething()
@@ -391,7 +418,81 @@ When the component is rendered, the `loginDialog` field is populated with the `M
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/javascript-interop#capture-references-to-elements), it isn't a [JavaScript interop](xref:blazor/javascript-interop) feature. Component references aren't passed to JavaScript code&mdash;they're only used in .NET code.
 
 > [!NOTE]
-> Do **not** use component references to mutate the state of child components. Instead, use normal declarative parameters to pass data to child components. This causes child components to rerender at the correct times automatically.
+> Do **not** use component references to mutate the state of child components. Instead, use normal declarative parameters to pass data to child components. Use of normal declarative parameters result in child components that rerender at the correct times automatically.
+
+## Use @key to control the preservation of elements and components
+
+When rendering a list of elements or components and the elements or components subsequently change, Blazor's diffing algorithm must decide which of the previous elements or components can be retained and how model objects should map to them. Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.
+
+Consider the following example:
+
+```csharp
+@foreach (var person in People)
+{
+    <DetailsEditor Details="@person.Details" />
+}
+
+@code {
+    [Parameter]
+    private IEnumerable<Person> People { get; set; }
+}
+```
+
+The contents of the `People` collection may change with inserted, deleted, or re-ordered entries. When the component rerenders, the `<DetailsEditor>` component may change to receive different `Details` parameter values. This may cause more complex rerendering than expected. In some cases, rerendering can lead to visible behavior differences, such as lost element focus.
+
+The mapping process can be controlled with the `@key` directive attribute. `@key` causes the diffing algorithm to guarantee preservation of elements or components based on the key's value:
+
+```csharp
+@foreach (var person in People)
+{
+    <DetailsEditor @key="@person" Details="@person.Details" />
+}
+
+@code {
+    [Parameter]
+    private IEnumerable<Person> People { get; set; }
+}
+```
+
+When the `People` collection changes, the diffing algorithm retains the association between `<DetailsEditor>` instances and `person` instances:
+
+* If a `Person` is deleted from the `People` list, only the corresponding `<DetailsEditor>` instance is removed from the UI. Other instances are left unchanged.
+* If a `Person` is inserted at some position in the list, one new `<DetailsEditor>` instance is inserted at that corresponding position. Other instances are left unchanged.
+* If `Person` entries are re-ordered, the corresponding `<DetailsEditor>` instances are preserved and re-ordered in the UI.
+
+In some scenarios, use of `@key` minimizes the complexity of rerendering and avoids potential issues with stateful parts of the DOM changing, such as focus position.
+
+> [!IMPORTANT]
+> Keys are local to each container element or component. Keys aren't compared globally across the document.
+
+### When to use @key
+
+Typically, it makes sense to use `@key` whenever a list is rendered (for example, in a `@foreach` block) and a suitable value exists to define the `@key`.
+
+You can also use `@key` to prevent Blazor from preserving an element or component subtree when an object changes:
+
+```cshtml
+<div @key="@currentPerson">
+    ... content that depends on @currentPerson ...
+</div>
+```
+
+If `@currentPerson` changes, the `@key` attribute directive forces Blazor to discard the entire `<div>` and its descendants and rebuild the subtree within the UI with new elements and components. This can be useful if you need to guarantee that no UI state is preserved when `@currentPerson` changes.
+
+### When not to use @key
+
+There's a performance cost when diffing with `@key`. The performance cost isn't large, but only specify `@key` if controlling the element or component preservation rules benefit the app.
+
+Even if `@key` isn't used, Blazor preserves child element and component instances as much as possible. The only advantage to using `@key` is control over *how* model instances are mapped to the preserved component instances, instead of the diffing algorithm selecting the mapping.
+
+### What values to use for @key
+
+Generally, it makes sense to supply one of the following kinds of value for `@key`:
+
+* Model object instances (for example, a `Person` instance as in the earlier example). This ensures preservation based on object reference equality.
+* Unique identifiers (for example, primary key values of type `int`, `string`, or `Guid`).
+
+Avoid supplying a value that can clash unexpectedly. If `@key="@someObject.GetHashCode()"` is supplied, unexpected clashes may occur because the hash codes of unrelated objects can be the same. If clashing `@key` values are requested within the same parent, the `@key` values won't be honored.
 
 ## Lifecycle methods
 
@@ -445,6 +546,18 @@ protected override void OnAfterRender()
 }
 ```
 
+### Handle incomplete async actions at render
+
+Asynchronous actions performed in lifecycle events may not have completed before the component is rendered. Objects might be `null` or incompletely populated with data while the lifecycle method is executing. Provide rendering logic to confirm that objects are initialized. Render placeholder UI elements (for example, a loading message) while objects are `null`.
+
+In the `FetchData` component of the Blazor templates, `OnInitAsync` is overridden to asychronously receive forecast data (`forecasts`). When `forecasts` is `null`, a loading message is displayed to the user. After the `Task` returned by `OnInitAsync` completes, the component is rerendered with the updated state.
+
+*Pages/FetchData.razor*:
+
+[!code-cshtml[](components/samples_snapshot/3.x/FetchData.razor?highlight=9)]
+
+### Execute code before parameters are set
+
 `SetParameters` can be overridden to execute code before parameters are set:
 
 ```csharp
@@ -457,6 +570,8 @@ public override void SetParameters(ParameterCollection parameters)
 ```
 
 If `base.SetParameters` isn't invoked, the custom code can interpret the incoming parameters value in any way required. For example, the incoming parameters aren't required to be assigned to the properties on the class.
+
+### Suppress refreshing of the UI
 
 `ShouldRender` can be overridden to suppress refreshing of the UI. If the implementation returns `true`, the UI is refreshed. Even if `ShouldRender` is overridden, the component is always initially rendered.
 
@@ -479,7 +594,7 @@ If a component implements <xref:System.IDisposable>, the [Dispose method](/dotne
 
 ...
 
-@functions {
+@code {
     public void Dispose()
     {
         ...
@@ -513,7 +628,7 @@ Component files mix HTML markup and C# processing code in the same file. The `@i
 
 The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) shows how a component can inherit a base class, `BlazorRocksBase`, to provide the component's properties and methods.
 
-*Blazor Rocks component*:
+*Pages/BlazorRocks.razor*:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRocks.razor?name=snippet_BlazorRocks)]
 
@@ -565,24 +680,27 @@ Razor directives are shown in the following table.
 
 | Directive | Description |
 | --------- | ----------- |
-| [\@functions](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. |
+| [\@code](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. `@code` is an alias of `@functions`. `@code` is recommended over `@functions`. More than one `@code` block is permissible. |
+| [\@functions](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. Choose `@code` over `@functions` for C# code blocks. |
 | `@implements` | Implements an interface for the generated component class. |
 | [\@inherits](xref:mvc/views/razor#section-3) | Provides full control of the class that the component inherits. |
 | [\@inject](xref:mvc/views/razor#section-4) | Enables service injection from the [service container](xref:fundamentals/dependency-injection). For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection). |
 | `@layout` | Specifies a layout component. Layout components are used to avoid code duplication and inconsistency. |
 | [\@page](xref:razor-pages/index#razor-pages) | Specifies that the component should handle requests directly. The `@page` directive can be specified with a route and optional parameters. Unlike Razor Pages, the `@page` directive doesn't need to be the first directive at the top of the file. For more information, see [Routing](xref:blazor/routing). |
 | [\@using](xref:mvc/views/razor#using) | Adds the C# `using` directive to the generated component class. This also brings all the components defined in that namespace into scope. |
+| [\@namespace](xref:mvc/views/razor#section-6) | Sets the namespace of the generated component class. |
+| [\@attribute](xref:mvc/views/razor#section-7) | Adds an attribute to the generated component class. |
 
-**Conditional attributes**
+**Conditional HTML element attributes**
 
-Attributes are conditionally rendered based on the .NET value. If the value is `false` or `null`,  the attribute isn't rendered. If the value is `true`, the attribute is rendered minimized.
+HTML element attributes are conditionally rendered based on the .NET value. If the value is `false` or `null`, the attribute isn't rendered. If the value is `true`, the attribute is rendered minimized.
 
-In the following example, `IsCompleted` determines if `checked` is rendered in the control's markup:
+In the following example, `IsCompleted` determines if `checked` is rendered in the element's markup:
 
 ```cshtml
-<input type="checkbox" checked="@IsCompleted">
+<input type="checkbox" checked="@IsCompleted" />
 
-@functions {
+@code {
     [Parameter]
     private bool IsCompleted { get; set; }
 }
@@ -591,13 +709,13 @@ In the following example, `IsCompleted` determines if `checked` is rendered in t
 If `IsCompleted` is `true`, the check box is rendered as:
 
 ```html
-<input type="checkbox" checked>
+<input type="checkbox" checked />
 ```
 
 If `IsCompleted` is `false`, the check box is rendered as:
 
 ```html
-<input type="checkbox">
+<input type="checkbox" />
 ```
 
 **Additional information on Razor**
@@ -616,7 +734,7 @@ The following example shows using the `MarkupString` type to add a block of stat
 ```html
 @((MarkupString)myMarkup)
 
-@functions {
+@code {
     private string myMarkup = 
         "<p class='markup'>This is a <em>markup string</em>.</p>";
 }
@@ -633,7 +751,7 @@ Templated components are components that accept one or more UI templates as para
 
 A templated component is defined by specifying one or more component parameters of type `RenderFragment` or `RenderFragment<T>`. A render fragment represents a segment of UI that is rendered by the component. A render fragment optionally takes a parameter that can be specified when the render fragment is invoked.
 
-*Table Template component*:
+`TableTemplate` component:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/TableTemplate.razor)]
 
@@ -686,9 +804,7 @@ Alternatively, you can specify the `Context` attribute on the component element.
 
 ### Generic-typed components
 
-Templated components are often generically typed. For example, a generic List View Template component can be used to render `IEnumerable<T>` values. To define a generic component, use the `@typeparam` directive to specify type parameters.
-
-*ListView Template component*:
+Templated components are often generically typed. For example, a generic `ListViewTemplate` component can be used to render `IEnumerable<T>` values. To define a generic component, use the `@typeparam` directive to specify type parameters:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/ListViewTemplate.razor)]
 
@@ -718,7 +834,7 @@ In some scenarios, it's inconvenient to flow data from an ancestor component to 
 
 ### Theme example
 
-In the following *Theme* example from the sample app, the `ThemeInfo` class specifies the theme information to flow down the component hierarchy so that all of the buttons within a given part of the app share the same style.
+In the following example from the sample app, the `ThemeInfo` class specifies the theme information to flow down the component hierarchy so that all of the buttons within a given part of the app share the same style.
 
 *UIThemeClasses/ThemeInfo.cs*:
 
@@ -729,11 +845,11 @@ public class ThemeInfo
 }
 ```
 
-An ancestor component can provide a cascading value using the Cascading Value component. The Cascading Value component wraps a subtree of the component hierarchy and supplies a single value to all components within that subtree.
+An ancestor component can provide a cascading value using the Cascading Value component. The `CascadingValue` component wraps a subtree of the component hierarchy and supplies a single value to all components within that subtree.
 
 For example, the sample app specifies theme information (`ThemeInfo`) in one of the app's layouts as a cascading parameter for all components that make up the layout body of the `@Body` property. `ButtonClass` is assigned a value of `btn-success` in the layout component. Any descendent component can consume this property through the `ThemeInfo` cascading object.
 
-*Cascading Values Parameters Layout component*:
+`CascadingValuesParametersLayout` component:
 
 ```cshtml
 @inherits LayoutComponentBase
@@ -754,7 +870,7 @@ For example, the sample app specifies theme information (`ThemeInfo`) in one of 
     </div>
 </div>
 
-@functions {
+@code {
     private ThemeInfo theme = new ThemeInfo { ButtonClass = "btn-success" };
 }
 ```
@@ -772,9 +888,9 @@ Binding with a string name value is relevant if you have multiple cascading valu
 
 Cascading values are bound to cascading parameters by type.
 
-In the sample app, the Cascading Values Parameters Theme component binds the `ThemeInfo` cascading value to a cascading parameter. The parameter is used to set the CSS class for one of the buttons displayed by the component.
+In the sample app, the `CascadingValuesParametersTheme` component binds the `ThemeInfo` cascading value to a cascading parameter. The parameter is used to set the CSS class for one of the buttons displayed by the component.
 
-*Cascading Values Parameters Theme component*:
+`CascadingValuesParametersTheme` component:
 
 ```cshtml
 @page "/cascadingvaluesparameterstheme"
@@ -786,21 +902,22 @@ In the sample app, the Cascading Values Parameters Theme component binds the `Th
 <p>Current count: @currentCount</p>
 
 <p>
-    <button class="btn" onclick="@IncrementCount">
+    <button class="btn" @onclick="IncrementCount">
         Increment Counter (Unthemed)
     </button>
 </p>
 
 <p>
-    <button class="btn @ThemeInfo.ButtonClass" onclick="@IncrementCount">
+    <button class="btn @ThemeInfo.ButtonClass" @onclick="IncrementCount">
         Increment Counter (Themed)
     </button>
 </p>
 
-@functions {
+@code {
     private int currentCount = 0;
 
-    [CascadingParameter] protected ThemeInfo ThemeInfo { get; set; }
+    [CascadingParameter]
+    protected ThemeInfo ThemeInfo { get; set; }
 
     private void IncrementCount()
     {
@@ -817,19 +934,19 @@ The sample app has an `ITab` interface that tabs implement:
 
 [!code-cs[](common/samples/3.x/BlazorSample/UIInterfaces/ITab.cs)]
 
-The Cascading Values Parameters TabSet component uses the Tab Set component, which contains several Tab components:
+The `CascadingValuesParametersTabSet` component uses the `TabSet` component, which contains several `Tab` components:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/CascadingValuesParametersTabSet.razor?name=snippet_TabSet)]
 
-The child Tab components aren't explicitly passed as parameters to the Tab Set. Instead, the child Tab components are part of the child content of the Tab Set. However, the Tab Set still needs to know about each Tab component so that it can render the headers and the active tab. To enable this coordination without requiring additional code, the Tab Set component *can provide itself as a cascading value* that is then picked up by the descendent Tab components.
+The child `Tab` components aren't explicitly passed as parameters to the `TabSet`. Instead, the child `Tab` components are part of the child content of the `TabSet`. However, the `TabSet` still needs to know about each `Tab` component so that it can render the headers and the active tab. To enable this coordination without requiring additional code, the `TabSet` component *can provide itself as a cascading value* that is then picked up by the descendent `Tab` components.
 
-*TabSet component*:
+`TabSet` component:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/TabSet.razor)]
 
-The descendent Tab components capture the containing Tab Set as a cascading parameter, so the Tab components add themselves to the Tab Set and coordinate on which tab is active.
+The descendent `Tab` components capture the containing `TabSet` as a cascading parameter, so the `Tab` components add themselves to the `TabSet` and coordinate on which tab is active.
 
-*Tab component*:
+`Tab` component:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/Tab.razor)]
 
@@ -838,34 +955,34 @@ The descendent Tab components capture the containing Tab Set as a cascading para
 Render fragments can be defined using Razor template syntax. Razor templates are a way to define a UI snippet and assume the following format:
 
 ```cshtml
-@<tag>...</tag>
+@<{HTML tag}>...</{HTML tag}>
 ```
 
-The following example illustrates how to specify `RenderFragment` and `RenderFragment<T>` values.
-
-*Razor Templates component*:
+The following example illustrates how to specify `RenderFragment` and `RenderFragment<T>` values and render templates directly in a component. Render fragments can also be passed as arguments to [templated components](#templated-components).
 
 ```cshtml
-@{
-    RenderFragment template = @<p>The time is @DateTime.Now.</p>;
-    RenderFragment<Pet> petTemplate = (pet) => @<p>Your pet's name is @pet.Name.</p>;
+@timeTemplate
+
+@petTemplate(new Pet { Name = "Rex" })
+
+@code {
+    private RenderFragment timeTemplate = @<p>The time is @DateTime.Now.</p>;
+    private RenderFragment<Pet> petTemplate = 
+        (pet) => @<p>Your pet's name is @pet.Name.</p>;
+
+    private class Pet
+    {
+        public string Name { get; set; }
+    }
 }
 ```
 
-Render fragments defined using Razor templates can be passed as arguments to templated components or rendered directly. For example, the previous templates are directly rendered with the following Razor markup:
+Rendered output of the preceding code:
 
-```cshtml
-@template
+```html
+<p>The time is 10/04/2018 01:26:52.</p>
 
-@petTemplate(new Pet { Name = "Rex" })
-```
-
-Rendered output:
-
-```
-The time is 10/04/2018 01:26:52.
-
-Your pet's name is Rex.
+<p>Your pet's name is Rex.</p>
 ```
 
 ## Manual RenderTreeBuilder logic
@@ -875,23 +992,23 @@ Your pet's name is Rex.
 > [!NOTE]
 > Use of `RenderTreeBuilder` to create components is an advanced scenario. A malformed component (for example, an unclosed markup tag) can result in undefined behavior.
 
-Consider the following Pet Details component, which can be manually built into another component:
+Consider the following `PetDetails` component, which can be manually built into another component:
 
 ```cshtml
 <h2>Pet Details Component</h2>
 
-<p>@PetDetailsQuote<p>
+<p>@PetDetailsQuote</p>
 
-@functions
+@code
 {
     [Parameter]
-    string PetDetailsQuote { get; set; }
+    private string PetDetailsQuote { get; set; }
 }
 ```
 
-In the following example, the loop in the `CreateComponent` method generates three Pet Details components. When calling `RenderTreeBuilder` methods to create the components (`OpenComponent` and `AddAttribute`), sequence numbers are source code line numbers. The Blazor difference algorithm relies on the sequence numbers corresponding to distinct lines of code, not distinct call invocations. When creating a component with `RenderTreeBuilder` methods, hardcode the arguments for sequence numbers. **Using a calculation or counter to generate the sequence number can lead to poor performance.**
+In the following example, the loop in the `CreateComponent` method generates three `PetDetails` components. When calling `RenderTreeBuilder` methods to create the components (`OpenComponent` and `AddAttribute`), sequence numbers are source code line numbers. The Blazor difference algorithm relies on the sequence numbers corresponding to distinct lines of code, not distinct call invocations. When creating a component with `RenderTreeBuilder` methods, hardcode the arguments for sequence numbers. **Using a calculation or counter to generate the sequence number can lead to poor performance.** For more information, see the [Sequence numbers relate to code line numbers and not execution order](#sequence-numbers-relate-to-code-line-numbers-and-not-execution-order) section.
 
-*Built Content component*:
+`BuiltContent` component:
 
 ```cshtml
 @page "/BuiltContent"
@@ -900,11 +1017,11 @@ In the following example, the loop in the `CreateComponent` method generates thr
 
 @CustomRender
 
-<button type="button" onclick="@RenderComponent">
+<button type="button" @onclick="RenderComponent">
     Create three Pet Details components
 </button>
 
-@functions {
+@code {
     private RenderFragment CustomRender { get; set; }
     
     private RenderFragment CreateComponent() => builder =>
@@ -923,3 +1040,93 @@ In the following example, the loop in the `CreateComponent` method generates thr
     }
 }
 ```
+
+### Sequence numbers relate to code line numbers and not execution order
+
+Blazor `.razor` files are always compiled. This is potentially a great advantage for `.razor` because the compile step can be used to inject information that improve app performance at runtime.
+
+A key example of these improvements involve *sequence numbers*. Sequence numbers indicate to the runtime which outputs came from which distinct and ordered lines of code. The runtime uses this information to generate efficient tree diffs in linear time, which is far faster than is normally possible for a general tree diff algorithm.
+
+Consider the following simple `.razor` file:
+
+```cshtml
+@if (someFlag)
+{
+    <text>First</text>
+}
+
+Second
+```
+
+The preceding code compiles to something like the following:
+
+```csharp
+if (someFlag)
+{
+    builder.AddContent(0, "First");
+}
+
+builder.AddContent(1, "Second");
+```
+
+When the code executes for the first time, if `someFlag` is `true`, the builder receives:
+
+| Sequence | Type      | Data   |
+| :------: | --------- | :----: |
+| 0        | Text node | First  |
+| 1        | Text node | Second |
+
+Imagine that `someFlag` becomes `false`, and the markup is rendered again. This time, the builder receives:
+
+| Sequence | Type       | Data   |
+| :------: | ---------- | :----: |
+| 1        | Text node  | Second |
+
+When the runtime performs a diff, it sees that the item at sequence `0` was removed, so it generates the following trivial *edit script*:
+
+* Remove the first text node.
+
+#### What goes wrong if you generate sequence numbers programmatically
+
+Imagine instead that you wrote the following render tree builder logic:
+
+```csharp
+var seq = 0;
+
+if (someFlag)
+{
+    builder.AddContent(seq++, "First");
+}
+
+builder.AddContent(seq++, "Second");
+```
+
+Now, the first output is:
+
+| Sequence | Type      | Data   |
+| :------: | --------- | :----: |
+| 0        | Text node | First  |
+| 1        | Text node | Second |
+
+This outcome is identical to the prior case, so no negative issues exist. `someFlag` is `false` on the second rendering, and the output is:
+
+| Sequence | Type      | Data   |
+| :------: | --------- | ------ |
+| 0        | Text node | Second |
+
+This time, the diff algorithm sees that *two* changes have occurred, and the algorithm generates the following edit script:
+
+* Change the value of the first text node to `Second`.
+* Remove the second text node.
+
+Generating the sequence numbers has lost all the useful information about where the `if/else` branches and loops were present in the original code. This results in a diff **twice as long** as before.
+
+This is a trivial example. In more realistic cases with complex and deeply nested structures, and especially with loops, the performance cost is more severe. Instead of immediately identifying which loop blocks or branches have been inserted or removed, the diff algorithm has to recurse deeply into the render trees and usually build far longer edit scripts because it is misinformed about how the old and new structures relate to each other.
+
+#### Guidance and conclusions
+
+* App performance suffers if sequence numbers are generated dynamically.
+* The framework can't create its own sequence numbers automatically at runtime because the necessary information doesn't exist unless it's captured at compile time.
+* Don't write long blocks of manually-implemented `RenderTreeBuilder` logic. Prefer `.razor` files and allow the compiler to deal with the sequence numbers.
+* If sequence numbers are hardcoded, the diff algorithm only requires that sequence numbers increase in value. The initial value and gaps are irrelevant. One legitimate option is to use the code line number as the sequence number, or start from zero and increase by ones or hundreds (or any preferred interval). 
+* Blazor uses sequence numbers, while other tree-diffing UI frameworks don't use them. Diffing is far faster when sequence numbers are used, and Blazor has the advantage of a compile step that deals with sequence numbers automatically for developers authoring `.razor` files.

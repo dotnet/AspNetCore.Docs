@@ -10,7 +10,7 @@ uid: mvc/views/tag-helpers/builtin-th/Index
 
 # ASP.NET Core built-in Tag Helpers
 
-By [Peter Kellner](http://peterkellner.net)
+By [Peter Kellner](https://peterkellner.net)
 
 For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
 

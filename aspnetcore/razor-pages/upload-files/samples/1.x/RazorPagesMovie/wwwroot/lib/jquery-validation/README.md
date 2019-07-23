@@ -52,7 +52,7 @@ define(["jquery", "jquery.validate"], function( $ ) {
 });
 ```
 
-For more information on how to setup a rules and customizations, [check the documentation](http://jqueryvalidation.org/documentation/).
+For more information on how to setup a rules and customizations, [check the documentation](https://jqueryvalidation.org/documentation/).
 
 ## Reporting issues and contributing code
 

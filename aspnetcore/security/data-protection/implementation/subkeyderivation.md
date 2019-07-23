@@ -31,7 +31,7 @@ Because the AAD is unique for the tuple of all three components, we can use it t
 
 ( K_E, K_H ) = SP800_108_CTR_HMACSHA512(K_M, AAD, contextHeader || keyModifier)
 
-Here, we're calling the NIST SP800-108 KDF in Counter Mode (see [NIST SP800-108](http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf), Sec. 5.1) with the following parameters:
+Here, we're calling the NIST SP800-108 KDF in Counter Mode (see [NIST SP800-108](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf), Sec. 5.1) with the following parameters:
 
 * Key derivation key (KDK) = K_M
 

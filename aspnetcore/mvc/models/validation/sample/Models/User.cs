@@ -10,9 +10,9 @@ namespace ValidationSample.Models
         #endregion
 
         #region snippet_UserNameProperties
-        [Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(LastName))]
-        public string FirstName { get; set; }
         [Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(FirstName))]
+        public string FirstName { get; set; }
+        [Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(LastName))]
         public string LastName { get; set; }
         #endregion
 

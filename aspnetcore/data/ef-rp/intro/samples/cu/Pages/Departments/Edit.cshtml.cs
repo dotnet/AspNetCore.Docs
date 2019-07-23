@@ -58,7 +58,7 @@ namespace ContosoUniversity.Pages.Departments
             // null means Department was deleted by another user.
             if (departmentToUpdate == null)
             {
-                return await HandleDeletedDepartment();
+                return HandleDeletedDepartment();
             }
 
             // Update the RowVersion to the value when this entity was
@@ -112,13 +112,13 @@ namespace ContosoUniversity.Pages.Departments
             return Page();
         }
 
-       private async Task<IActionResult> HandleDeletedDepartment()
+        private IActionResult HandleDeletedDepartment()
         {
-            Department deletedDepartment = new Department();
+            var deletedDepartment = new Department();
             // ModelState contains the posted data because of the deletion error and will overide the Department instance values when displaying Page().
             ModelState.AddModelError(string.Empty,
                 "Unable to save. The department was deleted by another user.");
-            InstructorNameSL = new SelectList(_context.Instructors, "ID", "FullName", Department.InstructorID); 
+            InstructorNameSL = new SelectList(_context.Instructors, "ID", "FullName", Department.InstructorID);
             return Page();
         }
 

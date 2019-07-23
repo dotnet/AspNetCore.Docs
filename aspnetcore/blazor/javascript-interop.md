@@ -1,14 +1,14 @@
 ---
-title: Blazor JavaScript interop
+title: ASP.NET Core Blazor JavaScript interop
 author: guardrex
 description: Learn how to invoke JavaScript functions from .NET and .NET methods from JavaScript in Blazor apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/25/2019
+ms.date: 07/02/2019
 uid: blazor/javascript-interop
 ---
-# Blazor JavaScript interop
+# ASP.NET Core Blazor JavaScript interop
 
 By [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), and [Luke Latham](https://github.com/guardrex)
 
@@ -28,11 +28,11 @@ For server-side apps:
 
 The following example is based on [TextDecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder), an experimental JavaScript-based decoder. The example demonstrates how to invoke a JavaScript function from a C# method. The JavaScript function accepts a byte array from a C# method, decodes the array, and returns the text to the component for display.
 
-Inside the `<head>` element of *wwwroot/index.html*, provide a function that uses `TextDecoder` to decode a passed array:
+Inside the `<head>` element of *wwwroot/index.html* (Blazor client-side) or *Pages/_Host.cshtml* (Blazor server-side), provide a function that uses `TextDecoder` to decode a passed array:
 
 [!code-html[](javascript-interop/samples_snapshot/index-script.html)]
 
-JavaScript code, such as the code shown in the preceding example, can also be loaded from a JavaScript file (*.js*) with a reference to the script file in the *wwwroot/index.html* file:
+JavaScript code, such as the code shown in the preceding example, can also be loaded from a JavaScript file (*.js*) with a reference to the script file:
 
 ```html
 <script src="exampleJsInterop.js"></script>
@@ -71,9 +71,15 @@ In the client-side sample app that accompanies this topic, two JavaScript functi
 
 [!code-javascript[](./common/samples/3.x/BlazorSample/wwwroot/exampleJsInterop.js?highlight=2-7)]
 
-Place the `<script>` tag that references the JavaScript file in the *wwwroot/index.html* file:
+Place the `<script>` tag that references the JavaScript file in the *wwwroot/index.html* file (Blazor client-side) or *Pages/_Host.cshtml* file (Blazor server-side).
+
+*wwwroot/index.html* (Blazor client-side):
 
 [!code-html[](./common/samples/3.x/BlazorSample/wwwroot/index.html?highlight=15)]
+
+*Pages/_Host.cshtml* (Blazor server-side):
+
+[!code-cshtml[](javascript-interop/samples_snapshot/_Host.cshtml?highlight=29)]
 
 Don't place a `<script>` tag in a component file because the `<script>` tag can't be updated dynamically.
 
@@ -95,6 +101,10 @@ The sample app includes a component to demonstrate JavaScript interop. The compo
 1. The `showPrompt` function accepts user input (the user's name), which is HTML-encoded and returned to the component. The component stores the user's name in a local variable, `name`.
 1. The string stored in `name` is incorporated into a welcome message, which is passed to a JavaScript function, `displayWelcome`, which renders the welcome message into a heading tag.
 
+## Call a void JavaScript function
+
+JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) are called with `IJSRuntime.InvokeAsync<object>`, which returns `null`.
+
 ## Detect when a Blazor app is prerendering
  
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
@@ -105,21 +115,21 @@ Some [JavaScript interop](xref:blazor/javascript-interop) scenarios require refe
 
 You can capture references to HTML elements in a component using the following approach:
 
-* Add a `ref` attribute to the HTML element.
-* Define a field of type `ElementRef` whose name matches the value of the `ref` attribute.
+* Add a `@ref` attribute to the HTML element.
+* Define a field of type `ElementRef` whose name matches the value of the `@ref` attribute.
 
 The following example shows capturing a reference to the `username` `<input>` element:
 
 ```cshtml
-<input ref="username" ...>
+<input @ref="username" ... />
 
-@functions {
+@code {
     ElementRef username;
 }
 ```
 
 > [!NOTE]
-> Do **not** use captured element references as a way of populating the DOM. Doing so may interfere with the declarative rendering model.
+> Do **not** use captured element references as a way of populating or manipulating the DOM when Blazor interacts with the elements referenced. Doing so may interfere with the declarative rendering model.
 
 As far as .NET code is concerned, an `ElementRef` is an opaque handle. The *only* thing you can do with `ElementRef` is pass it through to JavaScript code via JavaScript interop. When you do so, the JavaScript-side code receives an `HTMLElement` instance, which it can use with normal DOM APIs.
 
@@ -154,13 +164,13 @@ The method is called directly on the object. The following example assumes that 
 [!code-cshtml[](javascript-interop/samples_snapshot/component2.razor?highlight=1,4,8,12)]
 
 > [!IMPORTANT]
-> The `username` variable is only populated after the component renders and its output includes the `>` element. If you try to pass an unpopulated `ElementRef` to JavaScript code, the JavaScript code receives `null`. To manipulate element references after the component has finished rendering (to set the initial focus on an element) use the `OnAfterRenderAsync` or `OnAfterRender` [component lifecycle methods](xref:blazor/components#lifecycle-methods).
+> The `username` variable is only populated after the component is rendered. If an unpopulated `ElementRef` is passed to JavaScript code, the JavaScript code receives a value of `null`. To manipulate element references after the component has finished rendering (to set the initial focus on an element) use the `OnAfterRenderAsync` or `OnAfterRender` [component lifecycle methods](xref:blazor/components#lifecycle-methods).
 
 ## Invoke .NET methods from JavaScript functions
 
 ### Static .NET method call
 
-To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support server-side scenarios. To invoke a .NET method from JavaScript, the .NET method must be public, static, and have the the `[JSInvokable]` attribute. By default, the method identifier is the method name, but you can specify a different identifier using the `JSInvokableAttribute` constructor. Calling open generic methods isn't currently supported.
+To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support server-side scenarios. To invoke a .NET method from JavaScript, the .NET method must be public, static, and have the `[JSInvokable]` attribute. By default, the method identifier is the method name, but you can specify a different identifier using the `JSInvokableAttribute` constructor. Calling open generic methods isn't currently supported.
 
 The sample app includes a C# method to return an array of `int`s. The `JSInvokable` attribute is applied to the method.
 
@@ -228,6 +238,6 @@ JavaScript interop code can be included in a class library, which allows you to 
 
 The class library handles embedding JavaScript resources in the built assembly. The JavaScript files are placed in the *wwwroot* folder. The tooling takes care of embedding the resources when the library is built.
 
-The built NuGet package is referenced in the project file of the app just as any normal NuGet package is referenced. After the app is restored, app code can call into JavaScript as if it were C#.
+The built NuGet package is referenced in the app's project file the same way that any NuGet package is referenced. After the package is restored, app code can call into JavaScript as if it were C#.
 
 For more information, see <xref:blazor/class-libraries>.

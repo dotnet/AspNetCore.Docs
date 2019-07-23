@@ -5,7 +5,7 @@ description: Learn how to use authentication and authorization in ASP.NET Core S
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 05/09/2019
+ms.date: 07/15/2019
 uid: signalr/authn-and-authz
 ---
 
@@ -152,7 +152,7 @@ You can use the constructor arguments and properties of the `[Authorize]` attrib
 
 ```csharp
 [Authorize("MyAuthorizationPolicy")]
-public class ChatHub: Hub
+public class ChatHub : Hub
 {
 }
 ```
@@ -161,7 +161,7 @@ Individual hub methods can have the `[Authorize]` attribute applied as well. If 
 
 ```csharp
 [Authorize]
-public class ChatHub: Hub
+public class ChatHub : Hub
 {
     public async Task Send(string message)
     {
@@ -176,6 +176,81 @@ public class ChatHub: Hub
 }
 ```
 
+::: moniker range=">= aspnetcore-3.0"
+
+### Use authorization handlers to customize hub method authorization
+
+SignalR provides a custom resource to authorization handlers when a hub method requires authorization. The resource is an instance of `HubInvocationContext`. The `HubInvocationContext` includes the `HubCallerContext`, the name of the hub method being invoked, and the arguments to the hub method.
+
+Consider the example of a chat room allowing multiple organization sign-in via Azure Active Directory. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization should be able to ban users or view users' chat histories. Furthermore, we might want to restrict certain functionality from certain users. Using the updated features in ASP.NET Core 3.0, this is entirely possible. Note how the `DomainRestrictedRequirement` serves as a custom `IAuthorizationRequirement`. Now that the `HubInvocationContext` resource parameter is being passed in, the internal logic can inspect the context in which the Hub is being called and make decisions on allowing the user to execute individual Hub methods.
+
+```csharp
+[Authorize]
+public class ChatHub : Hub
+{
+    public void SendMessage(string message)
+    {
+    }
+
+    [Authorize("DomainRestricted")]
+    public void BanUser(string username)
+    {
+    }
+
+    [Authorize("DomainRestricted")]
+    public void ViewUserHistory(string username)
+    {
+    }
+}
+
+public class DomainRestrictedRequirement : 
+    AuthorizationHandler<DomainRestrictedRequirement, HubInvocationContext>, 
+    IAuthorizationRequirement
+{
+    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
+        DomainRestrictedRequirement requirement, 
+        HubInvocationContext resource)
+    {
+        if (IsUserAllowedToDoThis(resource.HubMethodName, context.User.Identity.Name) && 
+            context.User.Identity.Name.EndsWith("@microsoft.com"))
+        {
+            context.Succeed(requirement);
+        }
+        return Task.CompletedTask;
+    }
+
+    private bool IsUserAllowedToDoThis(string hubMethodName,
+        string currentUsername)
+    {
+        return !(currentUsername.Equals("asdf42@microsoft.com") && 
+            hubMethodName.Equals("banUser", StringComparison.OrdinalIgnoreCase));
+    }
+}
+```
+
+In `Startup.ConfigureServices`, add the new policy, providing the custom `DomainRestrictedRequirement` requirement as a parameter to create the `DomainRestricted` policy.
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    // ... other services ...
+
+    services
+        .AddAuthorization(options =>
+        {
+            options.AddPolicy("DomainRestricted", policy =>
+            {
+                policy.Requirements.Add(new DomainRestrictedRequirement());
+            });
+        });
+}
+```
+
+In the preceding example, the `DomainRestrictedRequirement` class is both an `IAuthorizationRequirement` and its own `AuthorizationHandler` for that requirement. It's acceptable to split these two components into separate classes to separate concerns. A benefit of the example's approach is there's no need to inject the `AuthorizationHandler` during startup, as the requirement and the handler are the same thing.
+
+::: moniker-end
+
 ## Additional resources
 
 * [Bearer Token Authentication in ASP.NET Core](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
+* [Resource-based Authorization](xref:security/authorization/resourcebased)

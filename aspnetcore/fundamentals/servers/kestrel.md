@@ -2,20 +2,15 @@
 title: Kestrel web server implementation in ASP.NET Core
 author: guardrex
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 03/28/2019
+ms.date: 06/24/2019
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
 
 By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
-
-::: moniker range="<= aspnetcore-1.1"
-
-For the 1.1 version of this topic, download [Kestrel web server implementation in ASP.NET Core (version 1.1, PDF)](https://webpifeed.blob.core.windows.net/webpifeed/Partners/Kestrel_1.1.pdf).
-
-::: moniker-end
 
 Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the web server that's included by default in ASP.NET Core project templates.
 
@@ -68,7 +63,7 @@ HTTP/2 is disabled by default. For more information on configuration, see the [K
 
 ## When to use Kestrel with a reverse proxy
 
-You can use Kestrel by itself or with a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](http://nginx.org), or [Apache](https://httpd.apache.org/). A reverse proxy server receives HTTP requests from the network and forwards them to Kestrel.
+Kestrel can be used by itself or with a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](https://nginx.org), or [Apache](https://httpd.apache.org/). A reverse proxy server receives HTTP requests from the network and forwards them to Kestrel.
 
 Kestrel used as an edge (Internet-facing) web server:
 
@@ -160,9 +155,41 @@ The Kestrel web server has constraint configuration options that are especially 
 
 Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits> property of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> class. The `Limits` property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
 
+The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> namespace:
+
+```csharp
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+```
+
+### Keep-alive timeout
+
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.KeepAliveTimeout>
+
+Gets or sets the [keep-alive timeout](https://tools.ietf.org/html/rfc7230#section-6.5). Defaults to 2 minutes.
+
+::: moniker range=">= aspnetcore-2.2"
+
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=15)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup<Startup>()
+        .UseKestrel(options =>
+        {
+            options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
+        });
+```
+
+::: moniker-end
+
 ### Maximum client connections
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections>  
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections>
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentUpgradedConnections>
 
 The maximum number of concurrent open TCP connections can be set for the entire app with the following code:
@@ -252,9 +279,11 @@ You can override the setting on a specific request in middleware:
 
 An exception is thrown if you attempt to configure the limit on a request after the app has started to read the request. There's an `IsReadOnly` property that indicates if the `MaxRequestBodySize` property is in read-only state, meaning it's too late to configure the limit.
 
+When an app is run [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), Kestrel's request body size limit is disabled because IIS already sets the limit.
+
 ### Minimum request body data rate
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>  
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinResponseDataRate>
 
 Kestrel checks every second if data is arriving at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time that Kestrel gives the client to increase its send rate up to the minimum; the rate isn't checked during that time. The grace period helps avoid dropping connections that are initially sending data at a slow rate due to TCP slow-start.
@@ -292,9 +321,43 @@ You can override the minimum rate limits per request in middleware:
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=6-21)]
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
+
+The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature> referenced in the prior sample is not present in `HttpContext.Features` for HTTP/2 requests because modifying rate limits on a per-request basis is generally not supported for HTTP/2 due to the protocol's support for request multiplexing. However, the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature> is still present `HttpContext.Features` for HTTP/2 requests, because the read rate limit can still be *disabled entirely* on a per-request basis by setting `IHttpMinRequestBodyDataRateFeature.MinDataRate` to `null` even for an HTTP/2 request. Attempting to read `IHttpMinRequestBodyDataRateFeature.MinDataRate` or attempting to set it to a value other than `null` will result in a `NotSupportedException` being thrown given an HTTP/2 request.
+
+Server-wide rate limits configured via `KestrelServerOptions.Limits` still apply to both HTTP/1.x and HTTP/2 connections.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
 
 Neither rate feature referenced in the prior sample are present in `HttpContext.Features` for HTTP/2 requests because modifying rate limits on a per-request basis isn't supported for HTTP/2 due to the protocol's support for request multiplexing. Server-wide rate limits configured via `KestrelServerOptions.Limits` still apply to both HTTP/1.x and HTTP/2 connections.
+
+::: moniker-end
+
+### Request headers timeout
+
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout>
+
+Gets or sets the maximum amount of time the server spends receiving request headers. Defaults to 30 seconds.
+
+::: moniker range=">= aspnetcore-2.2"
+
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=16)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup<Startup>()
+        .UseKestrel(options =>
+        {
+            options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(1);
+        });
+```
 
 ::: moniker-end
 
@@ -395,6 +458,47 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 ```
 
 The default value is 96 KB (98,304).
+
+::: moniker-end
+
+### Synchronous IO
+
+::: moniker range=">= aspnetcore-3.0"
+
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous IO is allowed for the request and response. The default value is `false`.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous IO is allowed for the request and response. The  default value is `true`.
+
+::: moniker-end
+
+> [!WARNING]
+> A large number of blocking synchronous IO operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous IO.
+
+::: moniker range=">= aspnetcore-2.2"
+
+The following example enables synchronous IO:
+
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_SyncIO&highlight=3)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
+The following example disables synchronous IO:
+
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup<Startup>()
+        .UseKestrel(options =>
+        {
+            options.AllowSynchronousIO = false;
+        });
+```
 
 ::: moniker-end
 
@@ -578,7 +682,7 @@ In the following *appsettings.json* example:
 ```json
 {
 "Kestrel": {
-  "EndPoints": {
+  "Endpoints": {
     "Http": {
       "Url": "http://localhost:5000"
     },
@@ -595,7 +699,7 @@ In the following *appsettings.json* example:
       "Url": "https://localhost:5002",
       "Certificate": {
         "Subject": "<subject; required>",
-        "Store": "<certificate store; defaults to My>",
+        "Store": "<certificate store; required>",
         "Location": "<location; defaults to CurrentUser>",
         "AllowInvalid": "<true or false; defaults to false>"
       }
@@ -628,7 +732,7 @@ An alternative to using **Path** and **Password** for any certificate node is to
 ```json
 "Default": {
   "Subject": "<subject; required>",
-  "Store": "<cert store; defaults to My>",
+  "Store": "<cert store; required>",
   "Location": "<location; defaults to CurrentUser>",
   "AllowInvalid": "<true or false; defaults to false>"
 }
@@ -698,13 +802,13 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 listenOptions.UseHttps(httpsOptions =>
                 {
                     var localhostCert = CertificateLoader.LoadFromStoreCert(
-                        "localhost", "My", StoreLocation.CurrentUser, 
+                        "localhost", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var exampleCert = CertificateLoader.LoadFromStoreCert(
-                        "example.com", "My", StoreLocation.CurrentUser, 
+                        "example.com", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var subExampleCert = CertificateLoader.LoadFromStoreCert(
-                        "sub.example.com", "My", StoreLocation.CurrentUser, 
+                        "sub.example.com", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var certs = new Dictionary<string, X509Certificate2>(
                         StringComparer.OrdinalIgnoreCase);
@@ -741,13 +845,13 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 listenOptions.UseHttps(httpsOptions =>
                 {
                     var localhostCert = CertificateLoader.LoadFromStoreCert(
-                        "localhost", "My", StoreLocation.CurrentUser, 
+                        "localhost", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var exampleCert = CertificateLoader.LoadFromStoreCert(
-                        "example.com", "My", StoreLocation.CurrentUser, 
+                        "example.com", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var subExampleCert = CertificateLoader.LoadFromStoreCert(
-                        "sub.example.com", "My", StoreLocation.CurrentUser, 
+                        "sub.example.com", "My", StoreLocation.CurrentUser,
                         allowInvalid: true);
                     var certs = new Dictionary<string, X509Certificate2>(
                         StringComparer.OrdinalIgnoreCase);
@@ -954,13 +1058,13 @@ private class TlsFilterAdapter : IConnectionAdapter
     {
         var tlsFeature = context.Features.Get<ITlsHandshakeFeature>();
 
-        // Throw NotSupportedException for any cipher algorithm that you don't 
-        // wish to support. Alternatively, define and compare 
-        // ITlsHandshakeFeature.CipherAlgorithm to a list of acceptable cipher 
+        // Throw NotSupportedException for any cipher algorithm that you don't
+        // wish to support. Alternatively, define and compare
+        // ITlsHandshakeFeature.CipherAlgorithm to a list of acceptable cipher
         // suites.
         //
-        // A ITlsHandshakeFeature.CipherAlgorithm of CipherAlgorithmType.Null 
-        // indicates that no cipher algorithm supported by Kestrel matches the 
+        // A ITlsHandshakeFeature.CipherAlgorithm of CipherAlgorithmType.Null
+        // indicates that no cipher algorithm supported by Kestrel matches the
         // requested algorithm(s).
         if (tlsFeature.CipherAlgorithm == CipherAlgorithmType.Null)
         {
@@ -995,7 +1099,7 @@ In the following *appsettings.json* example, a default connection protocol (HTTP
 ```json
 {
   "Kestrel": {
-    "EndPointDefaults": {
+    "EndpointDefaults": {
       "Protocols": "Http1AndHttp2"
     }
   }
@@ -1007,7 +1111,7 @@ The following configuration file example establishes a connection protocol for a
 ```json
 {
   "Kestrel": {
-    "EndPoints": {
+    "Endpoints": {
       "HttpsDefaultCert": {
         "Url": "https://localhost:5001",
         "Protocols": "Http1AndHttp2"
@@ -1033,7 +1137,7 @@ For ASP.NET Core 2.1 or later projects that use the [Microsoft.AspNetCore.App me
 * Add a dependency for the [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) package to the app's project file:
 
     ```xml
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv" 
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv"
                       Version="<LATEST_VERSION>" />
     ```
 

@@ -3,7 +3,7 @@ title: Razor Pages with EF Core in ASP.NET Core - CRUD - 2 of 8
 author: rick-anderson
 description: Shows how to create,read,update,delete with EF Core
 ms.author: riande
-ms.date: 6/31/2017
+ms.date: 06/30/2017
 uid: data/ef-rp/crud
 ---
 # Razor Pages with EF Core in ASP.NET Core - CRUD - 2 of 8
@@ -118,7 +118,7 @@ In the preceding code, `TryUpdateModelAsync<Student>` tries to update the `empty
 In the preceding sample:
 
 * The second argument (`"student", // Prefix`) is the prefix uses to look up values. It's not case sensitive.
-* The posted form values are converted to the types in the `Student` model using [model binding](xref:mvc/models/model-binding#how-model-binding-works).
+* The posted form values are converted to the types in the `Student` model using [model binding](xref:mvc/models/model-binding).
 
 <a id="overpost"></a>
 

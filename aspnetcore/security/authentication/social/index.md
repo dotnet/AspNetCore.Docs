@@ -4,7 +4,7 @@ author: rick-anderson
 description: This tutorial demonstrates how to build an ASP.NET Core 2.x app using OAuth 2.0 with external authentication providers.
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/19/2019
+ms.date: 05/10/2019
 uid: security/authentication/social/index
 ---
 # Facebook, Google, and external provider authentication in ASP.NET Core
@@ -27,10 +27,12 @@ For examples of how social logins can drive traffic and customer conversions, se
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio **File** menu, select **New** > **Project**.
-* Create a new ASP.NET Core Web Application.
-* Select **ASP.NET Core 2.2** in the dropdown, and then select **Web Application**.
-* Select **Change Authentication** and set authentication to **Individual User Accounts**.
+* Create a new project.
+* Select **ASP.NET Core Web Application** and **Next**.
+* Provide a **Project name** and confirm or change the **Location**. Select **Create**.
+* Select **ASP.NET Core 2.2** in the drop down. Select **Web Application** in the template list.
+* Under **Authentication**, select **Change** and set the authentication to **Individual User Accounts**. Select **OK**.
+* In the **Create a new ASP.NET Core Web Application** window, select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -50,27 +52,14 @@ For examples of how social logins can drive traffic and customer conversions, se
   * `-au Individual` creates the code for Individual authentication.
   * The `code` command opens the *WebApp1* folder in a new instance of Visual Studio Code.
 
-  A dialog box appears with **Required assets to build and debug are missing from 'WebApp1'. Add them?**
-
-* Select **Yes**
+* A dialog box appears with **Required assets to build and debug are missing from 'WebApp1'. Add them?** Select **Yes**.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-From a terminal, run the following command:
-
-<!-- TODO: update these instruction once mac support 2.2 projects -->
-
-```console
-dotnet new webapp -o WebApp1 -au Individual
-```
-
-The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create a Razor Pages project.
-
-## Open the project
-
-From Visual Studio, select **File > Open**, and then select the *WebApp1.csproj* file.
-
-<!-- End of VS tabs -->
+* Select **File** > **New Solution**.
+* Select **.NET Core** > **App** in the sidebar. Select the **Web Application** template. Select **Next**.
+* Set the **Target Framework** drop down to **.NET Core 2.2**. Select **Next**.
+* Provide a **Project Name**. Confirm or change the **Location**. Select **Create**.
 
 ---
 

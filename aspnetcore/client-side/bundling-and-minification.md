@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn how to optimize static resources in an ASP.NET Core web application by applying bundling and minification techniques.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 05/10/2019
+ms.date: 06/17/2019
 uid: client-side/bundling-and-minification
 ---
 # Bundle and minify static assets in ASP.NET Core
@@ -80,7 +80,7 @@ The *bundleconfig.json* file defines the options for each bundle. In the precedi
 Configuration options include:
 
 * `outputFileName`: The name of the bundle file to output. Can contain a relative path from the *bundleconfig.json* file. **required**
-* `inputFiles`: An array of files to bundle together. These are relative paths to the configuration file. **optional**, *an empty value results in an empty output file. [globbing](http://www.tldp.org/LDP/abs/html/globbingref.html) patterns are supported.
+* `inputFiles`: An array of files to bundle together. These are relative paths to the configuration file. **optional**, *an empty value results in an empty output file. [globbing](https://www.tldp.org/LDP/abs/html/globbingref.html) patterns are supported.
 * `minify`: The minification options for the output type. **optional**, *default - `minify: { enabled: true }`*
   * Configuration options are available per output file type.
     * [CSS Minifier](https://github.com/madskristensen/BundlerMinifier/wiki/cssminifier)
@@ -280,6 +280,9 @@ The *gulpfile.js* file reads the *bundleconfig.json* file for the inputs, output
 If Visual Studio and/or the Bundler & Minifier extension aren't available, convert manually.
 
 Add a *package.json* file, with the following `devDependencies`, to the project root:
+
+> [!WARNING]
+> The `gulp-uglify` module doesn't support ECMAScript (ES) 2015 / ES6 and later. Install [gulp-terser](https://www.npmjs.com/package/gulp-terser) instead of `gulp-uglify` to use ES2015 / ES6 or later.
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/package.json?range=5-13)]
 

@@ -7,12 +7,12 @@ using System.Globalization;
 
 namespace Culture
 {
-#region snippet1
+    #region snippet1
     public class Startup
     {
         public void Configure(IApplicationBuilder app)
         {
-            app.Use((context, next) =>
+            app.Use(async (context, next) =>
             {
                 var cultureQuery = context.Request.Query["culture"];
                 if (!string.IsNullOrWhiteSpace(cultureQuery))
@@ -24,7 +24,7 @@ namespace Culture
                 }
 
                 // Call the next delegate/middleware in the pipeline
-                return next();
+                await next();
             });
 
             app.Run(async (context) =>
@@ -35,6 +35,6 @@ namespace Culture
 
         }
     }
-#endregion
+    #endregion
 }
 #endif

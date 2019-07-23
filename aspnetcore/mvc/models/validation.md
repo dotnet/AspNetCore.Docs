@@ -116,7 +116,9 @@ To implement remote validation:
 1. In the model class, annotate the property with a `[Remote]` attribute that points to the validation action method, as shown in the following example:
 
    [!code-csharp[](validation/sample/Models/User.cs?name=snippet_UserEmailProperty)]
-
+ 
+   The `[Remote]` attribute is in the `Microsoft.AspNetCore.Mvc` namespace. Install the [Microsoft.AspNetCore.Mvc.ViewFeatures](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.ViewFeatures) NuGet package if you're not using the `Microsoft.AspNetCore.App` or `Microsoft.AspNetCore.All` metapackage.
+   
 ### Additional fields
 
 The `AdditionalFields` property of the `[Remote]` attribute lets you validate combinations of fields against data on the server. For example, if the `User` model had `FirstName` and `LastName` properties, you might want to verify that no existing users already have that pair of names. The following example shows how to use `AdditionalFields`:
@@ -307,7 +309,7 @@ Custom client-side validation is done by generating `data-` HTML attributes that
 
 [!code-javascript[](validation/sample/wwwroot/js/classicMovieValidator.js?name=snippet_UnobtrusiveValidation)]
 
-For information about how to write adapters, see the [jQuery Validate documentation](http://jqueryvalidation.org/documentation/).
+For information about how to write adapters, see the [jQuery Validate documentation](https://jqueryvalidation.org/documentation/).
 
 The use of an adapter for a given field is triggered by `data-` attributes that:
 

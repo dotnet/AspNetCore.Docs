@@ -58,6 +58,7 @@
         <section>
             <h4>Use another service to log in.</h4>
             <hr />
+            <!-- <snippet_GetExtAuthNSchemesAsync> -->
             @{
                 var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
                 if (loginProviders.Count == 0)
@@ -83,6 +84,7 @@
                     </form>
                 }
             }
+            <!-- </snippet_GetExtAuthNSchemesAsync> -->
         </section>
     </div>
 </div>

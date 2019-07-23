@@ -4,7 +4,7 @@ author: rick-anderson
 description: This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/07/2018
+ms.date: 05/31/2019
 uid: data/ef-rp/concurrency
 ---
 # Razor Pages with EF Core in ASP.NET Core - Concurrency - 8 of 8
@@ -183,7 +183,7 @@ The following markup shows the updated page:
 
 ### Update the Edit page model
 
-Update *pages\departments\edit.cshtml.cs* with the following code:
+Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet)]
 

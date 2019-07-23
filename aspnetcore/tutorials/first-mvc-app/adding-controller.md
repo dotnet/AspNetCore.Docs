@@ -63,7 +63,7 @@ Every `public` method in a controller is callable as an HTTP endpoint. In the sa
 
 An HTTP endpoint is a targetable URL in the web application, such as `https://localhost:5001/HelloWorld`, and combines the protocol used: `HTTPS`, the network location of the web server (including the TCP port): `localhost:5001` and the target URI `HelloWorld`.
 
-The first comment states this is an [HTTP GET](https://www.w3schools.com/tags/ref_httpmethods.asp) method that's invoked by appending `/HelloWorld/` to the base URL. The second comment specifies an [HTTP GET](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) method that's invoked by appending `/HelloWorld/Welcome/` to the URL. Later on in the tutorial the scaffolding engine is used to generate `HTTP POST` methods which update data.
+The first comment states this is an [HTTP GET](https://www.w3schools.com/tags/ref_httpmethods.asp) method that's invoked by appending `/HelloWorld/` to the base URL. The second comment specifies an [HTTP GET](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) method that's invoked by appending `/HelloWorld/Welcome/` to the URL. Later on in the tutorial the scaffolding engine is used to generate `HTTP POST` methods which update data.
 
 Run the app in non-debug mode and append "HelloWorld" to the path in the address bar. The `Index` method returns a string.
 
@@ -97,7 +97,7 @@ Modify the code to pass some parameter information from the URL to the controlle
 The preceding code:
 
 * Uses the C# optional-parameter feature to indicate that the `numTimes` parameter defaults to 1 if no value is passed for that parameter. <!-- remove for simplified -->
-* Uses`HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript).
+* Uses `HtmlEncoder.Default.Encode` to protect the app from malicious input (namely JavaScript).
 * Uses [Interpolated Strings](/dotnet/articles/csharp/language-reference/keywords/interpolated-strings) in `$"Hello {name}, NumTimes is: {numTimes}"`. <!-- remove for simplified -->
 
 Run the app and browse to:

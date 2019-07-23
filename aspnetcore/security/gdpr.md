@@ -2,10 +2,9 @@
 title: General Data Protection Regulation (GDPR) support in ASP.NET Core
 author: rick-anderson
 description: Learn how to access the GDPR extension points in a ASP.NET Core web app.
-monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/29/2018
+ms.date: 07/11/2019
 uid: security/gdpr
 ---
 # EU General Data Protection Regulation (GDPR) support in ASP.NET Core
@@ -13,6 +12,31 @@ uid: security/gdpr
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements:
+
+::: moniker range=">= aspnetcore-3.0"
+
+* The project templates include extension points and stubbed markup that you can replace with your privacy and cookie use policy.
+* The *Pages/Privacy.cshtml* page or *Views/Home/Privacy.cshtml* view provides a page to detail your site's privacy policy.
+
+To enable the default cookie consent feature like that found in the ASP.NET Core 2.2 templates in an ASP.NET Core 3.0 template generated app:
+
+* Add [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) too `Startup.ConfigureServices` and [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) to `Startup.Configure`:
+
+  [!code-csharp[Main](gdpr/sample/RP3.0/Startup.cs?name=snippet1&highlight=12-19,38)]
+
+* Add the cookie consent partial to the *_Layout.cshtml* file:
+
+  [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_Layout.cshtml?name=snippet&highlight=4)]
+
+* Add the *\_CookieConsentPartial.cshtml* file to the project:
+
+  [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_CookieConsentPartial.cshtml)]
+
+* Select the ASP.NET Core 2.2 version of this article to read about the cookie consent feature.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
 
 * The project templates include extension points and stubbed markup that you can replace with your privacy and cookie use policy.
 * A cookie consent feature allows you to ask for (and track) consent from your users for storing personal information. If a user hasn't consented to data collection and the app has [CheckConsentNeeded](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions.checkconsentneeded) set to `true`, non-essential cookies aren't sent to the browser.
@@ -24,13 +48,13 @@ The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) ([how to download](xref:index#how-to-download-a-sample))
 
-## ASP.NET Core GDPR support in template generated code
+## ASP.NET Core GDPR support in template-generated code
 
 Razor Pages and MVC projects created with the project templates include the following GDPR support:
 
-* [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) and [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) are set in `Startup`.
-* The *_CookieConsentPartial.cshtml* [partial view](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper).
-* The *Pages/Privacy.cshtml* page or *Views/Home/Privacy.cshtml* view provides a page to detail your site's privacy policy. The *_CookieConsentPartial.cshtml* file generates a link to the Privacy page.
+* [CookiePolicyOptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) and [UseCookiePolicy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) are set in the `Startup` class.
+* The *\_CookieConsentPartial.cshtml* [partial view](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper). An **Accept** button is included in this file. When the user clicks the **Accept** button, consent to store cookies is provided.
+* The *Pages/Privacy.cshtml* page or *Views/Home/Privacy.cshtml* view provides a page to detail your site's privacy policy. The *\_CookieConsentPartial.cshtml* file generates a link to the Privacy page.
 * For apps created with individual user accounts, the Manage page provides links to download and delete [personal user data](#pd).
 
 ### CookiePolicyOptions and UseCookiePolicy
@@ -43,35 +67,35 @@ Razor Pages and MVC projects created with the project templates include the foll
 
 [!code-csharp[](gdpr/sample/Startup.cs?name=snippet1&highlight=51)]
 
-### _CookieConsentPartial.cshtml partial view
+### \_CookieConsentPartial.cshtml partial view
 
-The *_CookieConsentPartial.cshtml* partial view:
+The *\_CookieConsentPartial.cshtml* partial view:
 
-[!code-html[](gdpr/sample/RP/Pages/Shared/_CookieConsentPartial.cshtml)]
+[!code-html[](gdpr/sample/RP2.2/Pages/Shared/_CookieConsentPartial.cshtml)]
 
 This partial:
 
-* Obtains the state of tracking for the user. If the app is configured to require consent, the user must consent before cookies can be tracked. If consent is required, the cookie consent panel is fixed at top of the navigation bar created by the *_Layout.cshtml* file.
+* Obtains the state of tracking for the user. If the app is configured to require consent, the user must consent before cookies can be tracked. If consent is required, the cookie consent panel is fixed at top of the navigation bar created by the *\_Layout.cshtml* file.
 * Provides an HTML `<p>` element to summarize your privacy and cookie use policy.
 * Provides a link to Privacy page or view where you can detail your site's privacy policy.
 
 ## Essential cookies
 
-If consent has not been given, only cookies marked essential are sent to the browser. The following code makes a cookie essential:
+If consent to store cookies hasn't been provided, only cookies marked essential are sent to the browser. The following code makes a cookie essential:
 
-[!code-csharp[Main](gdpr/sample/RP/Pages/Cookie.cshtml.cs?name=snippet1&highlight=5)]
+[!code-csharp[Main](gdpr/sample/RP2.2/Pages/Cookie.cshtml.cs?name=snippet1&highlight=5)]
 
 <a name="tempdata"></a>
 
-## Tempdata provider and session state cookies are not essential
+### TempData provider and session state cookies aren't essential
 
-The [Tempdata provider](xref:fundamentals/app-state#tempdata) cookie isn't essential. If tracking is disabled, the Tempdata provider isn't functional. To enable the Tempdata provider when tracking is disabled, mark the TempData cookie as essential in `Startup.ConfigureServices`:
+The [TempData provider](xref:fundamentals/app-state#tempdata) cookie isn't essential. If tracking is disabled, the TempData provider isn't functional. To enable the TempData provider when tracking is disabled, mark the TempData cookie as essential in `Startup.ConfigureServices`:
 
-[!code-csharp[Main](gdpr/sample/RP/Startup.cs?name=snippet1)]
+[!code-csharp[Main](gdpr/sample/RP2.2/Startup.cs?name=snippet1)]
 
 [Session state](xref:fundamentals/app-state) cookies are not essential. Session state isn't functional when tracking is disabled. The following code makes session cookies essential:
 
-[!code-csharp[](gdpr/sample/RP/Startup.cs?name=snippet2)]
+[!code-csharp[](gdpr/sample/RP2.2/Startup.cs?name=snippet2)]
 
 <a name="pd"></a>
 
@@ -89,6 +113,8 @@ Notes:
 * The **Delete** and **Download** links only act on the default identity data. Apps that create custom user data must be extended to delete/download the custom user data. For more information, see [Add, download, and delete custom user data to Identity](xref:security/authentication/add-user-data).
 * Saved tokens for the user that are stored in the Identity database table `AspNetUserTokens` are deleted when the user is deleted via the cascading delete behavior due to the [foreign key](https://github.com/aspnet/Identity/blob/release/2.1/src/EF/IdentityUserContext.cs#L152).
 * [External provider authentication](xref:security/authentication/social/index), such as Facebook and Google, isn't available before the cookie policy is accepted.
+
+::: moniker-end
 
 ## Encryption at rest
 
