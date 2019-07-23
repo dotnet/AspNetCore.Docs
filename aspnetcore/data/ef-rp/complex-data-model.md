@@ -27,7 +27,7 @@ The completed data model is shown in the following illustration:
 
 ## The Student entity
 
-This section makes a number of formatting and validation changes to the Student entity.
+![Student entity](complex-data-model/_static/student-entity.png)
 
 ### The DataType attribute
 
@@ -72,7 +72,7 @@ also provides client-side and server-side validation. The minimum value has no i
 
 Update the `Student` model with the following code:
 
-[!code-csharp[](intro/samples/cu30snapshots/5-complex/Models/Student1.cs?name=snippet_StringLength&highlight=10,12)]
+[!code-csharp[](intro/samples/cu30snapshots/5-complex/Models/Student1.cs?name=snippet_StringLength&highlight=4,6)]
 
 The preceding code limits names to no more than 50 characters. The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute is used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
@@ -175,7 +175,7 @@ dotnet ef database update
 
 ---
 
-> [Note]
+> [!Note]
 > In the following sections, building the app at some stages generates compiler errors. The instructions specify when to build the app.
 
 ### Finish Student entity updates
@@ -378,7 +378,7 @@ In this scenario, a restrict rule would make more sense. The following fluent AP
      .OnDelete(DeleteBehavior.Restrict)
   ```
 
-## Update the Enrollment entity
+## The Enrollment entity
 
 An enrollment record is for one course taken by one student.
 
@@ -493,7 +493,7 @@ Some of the attributes used in this tutorial are used for:
 
 For more information about attributes vs. fluent API, see [Methods of configuration](/ef/core/modeling/).
 
-## Entity Diagram Showing Relationships
+## Entity diagram
 
 The following illustration shows the diagram that EF Power Tools create for the completed School model.
 
@@ -505,7 +505,7 @@ The preceding diagram shows:
 * The one-to-zero-or-one relationship line (1 to 0..1) between the `Instructor` and `OfficeAssignment` entities.
 * The zero-or-one-to-many relationship line (0..1 to *) between the `Instructor` and `Department` entities.
 
-## Seed the database with Test Data
+## Seed the database
 
 Update the code in *Data/DbInitializer.cs*:
 

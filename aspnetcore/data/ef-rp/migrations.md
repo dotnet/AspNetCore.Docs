@@ -27,11 +27,13 @@ This approach to keeping the database in sync with the data model works well unt
 
 Rather than dropping and recreating the database when the data model changes, migrations updates the schema and retains existing data.
 
+[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
+
 ## Drop the database
 
 # [Visual Studio](#tab/visual-studio)
 
-Use **SQL Server Object Explorer** (SSOX) or run the following command in the **Package Manager Console** (PMC):
+Use **SQL Server Object Explorer** (SSOX) to delete the database, or run the following command in the **Package Manager Console** (PMC):
 
 ```powershell
 Drop-Database
@@ -39,15 +41,15 @@ Drop-Database
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Run the following command at a command prompt to install the EF CLI tools:
+* Run the following command at a command prompt to install the EF CLI tools:
 
-```console
-dotnet tool install --global dotnet-ef --version 3.0.0-*
-```
+  ```console
+  dotnet tool install --global dotnet-ef --version 3.0.0-*
+  ```
 
-In the command prompt navigate to the project folder. The project folder contains the *ContosoUniversity.csproj* file.
+* In the command prompt navigate to the project folder. The project folder contains the *ContosoUniversity.csproj* file.
 
-Run the following command:
+* Delete the *CU.db* file, or run the following command:
 
 ```console
 dotnet ef database drop
@@ -75,11 +77,9 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
-
 ---
 
-## Examine the Up and Down methods
+## Up and Down methods
 
 The EF Core `migrations add` command  generated code to create the database. This migrations code is in the *Migrations\<timestamp>_InitialCreate.cs* file. The `Up` method of the `InitialCreate` class creates the database tables that correspond to the data model entity sets. The `Down` method deletes them, as shown in the following example:
 
@@ -95,7 +95,7 @@ The preceding code is for the initial migration. The code:
 
 The migration name parameter ("InitialCreate" in the example) is used for the file name. The migration name can be any valid file name. It's best to choose a word or phrase that summarizes what is being done in the migration. For example, a migration that added a department table might be called "AddDepartmentTable."
 
-## Examine the database
+## The migrations history table
 
 * Use SSOX or your SQLite tool to inspect the database.
 * Notice the addition of an `__EFMigrationsHistory` table. The `__EFMigrationsHistory` table keeps track of which migrations have been applied to the database.
@@ -107,7 +107,7 @@ Migrations creates a *snapshot* of the current data model in *Migrations/SchoolC
 
 Because the snapshot file tracks the state of the data model, you can't delete a migration by deleting the `<timestamp>_<migrationname>.cs` file. To back out the most recent migration, you have to use the `migrations remove` command. That command deletes the migration and ensures the snapshot is correctly reset. For more information, see [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
-## Remove EnsureCreated and test the app
+## Remove EnsureCreated
 
 This tutorial series started by using `EnsureCreated`. `EnsureCreated` doesn't create a migrations history table and so can't be used with migrations. It's designed for testing or rapid prototyping where the database is dropped and re-created frequently.
 
@@ -131,7 +131,7 @@ Database migration should be done as part of deployment, and in a controlled way
 
 ## Troubleshooting
 
-If the app generates the following exception:
+If the app uses SQL Server LocalDB and displays the following exception:
 
 ```text
 SqlException: Cannot open database "ContosoUniversity" requested by the login.
