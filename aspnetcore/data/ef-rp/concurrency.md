@@ -24,10 +24,13 @@ A concurrency conflict occurs when:
 * A user navigates to the edit page for an entity.
 * Another user updates the same entity before the first user's change is written to the database.
 
-If concurrency detection isn't enabled, when concurrent updates occur:
+If concurrency detection isn't enabled, whoever updates the database last overwrites the other user's changes. In many applications, this risk is acceptable: if there are few users, or few updates, or if isn't really critical if some changes are overwritten, the cost of programming for concurrency might outweigh the benefit.
 
-* The last update wins. That is, the last update values are saved to the database.
-* The first update is lost.
+### Pessimistic concurrency (locking)
+
+One way to prevent concurrency conflicts is to use database locks. This is called pessimistic concurrency. For example, before the app reads a database row that it intends to update, it requests a lock. Once a row is locked for update access, no other users are allowed to lock the row until the first lock is released.
+
+Managing locks has disadvantages. It can be complex to program. It requires significant database management resources, and it can cause performance problems as the number of users of an application increases. For these reasons, not all database management systems support pessimistic concurrency. Entity Framework Core provides no built-in support for it, and this tutorial doesn't show you how to implement it.
 
 ### Optimistic concurrency
 
@@ -65,62 +68,44 @@ John clicks **Save** on an Edit page that still shows a budget of $350,000.00. W
 
   This is called a *Store Wins* scenario. (The data-store values take precedence over the values submitted by the client.) You implement the Store Wins scenario in this tutorial. This method ensures that no changes are overwritten without a user being alerted.
 
-## Handling concurrency 
+## Concurrency conflict detection in EF Core
 
-When a property is configured as a [concurrency token](/ef/core/modeling/concurrency):
+EF Core throws `DbConcurrencyException` exceptions when it detects conflicts. The data model has to be configured to enable conflict detection. Options for enabling conflict detection include the following:
 
-* EF Core verifies that property has not been modified after it was fetched. The check occurs when [SaveChanges](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechanges?view=efcore-2.0#Microsoft_EntityFrameworkCore_DbContext_SaveChanges) or [SaveChangesAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_) is called.
-* If the property has been changed after it was fetched, a [DbUpdateConcurrencyException](/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception?view=efcore-2.0) is thrown. 
+* Configure EF Core to include the original values of columns configured as [concurrency tokens](/ef/core/modeling/concurrency) in the Where clause of Update and Delete commands.
 
-The database and data model must be configured to support throwing `DbUpdateConcurrencyException`.
+  When `SaveChanges` is called, the Where clause looks for the original values of any properties annotated with the [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute) attribute. The update statement won't return a row to update if any of the concurrency token properties changed since the row was first read. EF Core interprets that as a concurrency conflict. For database tables that have many columns, this approach can result in very large Where clauses, and can require large amounts of state. Therefore this approach is generally not recommended, and it isn't the method used in this tutorial.
 
-### Detecting concurrency conflicts on a property
+* In the database table, include a tracking column that can be used to determine when a row has been changed.
 
-Concurrency conflicts can be detected at the property level with the [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute?view=netcore-2.0) attribute. The attribute can be applied to multiple properties on the model. For more information, see [Data Annotations-ConcurrencyCheck](/ef/core/modeling/concurrency#data-annotations).
+  For example, in a SQL Server database, the data type of the tracking column is `rowversion`. The `rowversion` value is a sequential number that's incremented each time the row is updated. In an Update or Delete command, the Where clause includes the original value of the tracking column (the original row version number). If the row being updated has been changed by another user, the value in the `rowversion` column is different than the original value, so the Update or Delete statement can't find the row to update because of the Where clause. EF Core throws a concurrency exception when no rows are affected by an Update or Delete command.
 
-The `[ConcurrencyCheck]` attribute isn't used in this tutorial.
-
-### Detecting concurrency conflicts on a row
-
-To detect concurrency conflicts, a tracking column is added to the model.  
-
-# [Visual Studio](#tab/visual-studio)
-
-The tracking column is used to determine if an entity has been changed since it was fetched from the database. The [rowversion](/sql/t-sql/data-types/rowversion-transact-sql) column type is specific to SQL Server.
-
-The database generates a sequential row version number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched row version value. If the row being updated has changed since it was fetched:
-
-* The current row version value doesn't match the fetched value.
-* The `Update` or `Delete` commands don't find a row because the `Where` clause looks for the fetched row version value.
-* A `DbUpdateConcurrencyException` is thrown.
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-The tracking column is used to determine if an entity has been changed since it was fetched from the database.
-
-Database triggers update the RowVersion column with a new random byte array whenever a row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched value of the RowVersion column. If the row being updated has changed since it was fetched:
-
-* The current RowVersion value doesn't match the fetched value.
-* The `Update` or `Delete` commands don't find a row because the `Where` clause looks for the fetched RowVersion value.
-* A `DbUpdateConcurrencyException` is thrown.
-
----
-
-### Add a tracking property to the Department entity
+## Add a tracking column
 
 In *Models/Department.cs*, add a tracking property named RowVersion:
 
 [!code-csharp[](intro/samples/cu30snapshots/8-concurrency/Models/Department.cs?name=snippet_Final&highlight=26,27)]
 
-The [Timestamp](/dotnet/api/system.componentmodel.dataannotations.timestampattribute) attribute specifies that this column is included in the `Where` clause of `Update` and `Delete` commands.
-
-The fluent API can also specify the tracking property:
+The [Timestamp](/dotnet/api/system.componentmodel.dataannotations.timestampattribute) attribute is what identifies the column as a concurrency tracking column. The fluent API is an alternative way to specify the tracking property:
 
 ```csharp
 modelBuilder.Entity<Department>()
   .Property<byte[]>("RowVersion")
   .IsRowVersion();
 ```
+
+# [Visual Studio](#tab/visual-studio)
+
+For a SQL Server database, the `[Timestamp]` attribute on an entity property defined as byte array:
+
+* Causes the column to be included in DELETE and UPDATE WHERE clauses.
+* Sets the column type in the database to [rowversion](/sql/t-sql/data-types/rowversion-transact-sql).
+
+The database generates a sequential row version number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched row version value. If the row being updated has changed since it was fetched:
+
+* The current row version value doesn't match the fetched value.
+* The `Update` or `Delete` commands don't find a row because the `Where` clause looks for the fetched row version value.
+* A `DbUpdateConcurrencyException` is thrown.
 
 The following code shows a portion of the T-SQL generated by EF Core when the Department name is updated:
 
@@ -133,6 +118,21 @@ The following highlighted code shows the T-SQL that verifies exactly one row was
 [!code-sql[](intro/samples/cu30snapshots/8-concurrency/sql.txt?highlight=4-6)]
 
 [@@ROWCOUNT](/sql/t-sql/functions/rowcount-transact-sql) returns the number of rows affected by the last statement. In no rows are updated, EF Core throws a `DbUpdateConcurrencyException`.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+For a SQLite database, the `[Timestamp]` attribute on an entity property defined as byte array:
+
+* Causes the column to be included in DELETE and UPDATE WHERE clauses.
+* Maps to a BLOB column type.
+
+Database triggers update the RowVersion column with a new random byte array whenever a row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched value of the RowVersion column. If the row being updated has changed since it was fetched:
+
+* The current row version value doesn't match the fetched value.
+* The `Update` or `Delete` commands don't find a row because the `Where` clause looks for the fetched row version value.
+* A `DbUpdateConcurrencyException` is thrown.
+
+---
 
 ### Update the database
 
@@ -190,7 +190,7 @@ Build the project.
 
 <a name="scaffold"></a>
 
-## Scaffold the Departments model
+## Scaffold Departments pages
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -204,7 +204,7 @@ Build the project.
 
 * Create a *Departments* folder in the *Pages* folder.
 
-* Run the following commands to scaffold the Department model.
+* Run the following command to scaffold the Department model.
 
   On Linux or macOS:
 
@@ -218,7 +218,7 @@ Build the project.
 
 Build the project.
 
-### Update the Departments Index page
+## Update the Index page
 
 The scaffolding tool created a `RowVersion` column for the Index page, but that field shouldn't be displayed. In this tutorial, the last byte of the `RowVersion` is displayed to help show how concurrency handling works. The last byte isn't guaranteed to be unique. A real app wouldn't display `RowVersion` or the last byte of `RowVersion`.
 
@@ -232,7 +232,7 @@ The following markup shows the updated page:
 
 [!code-html[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
 
-### Update the Edit page model
+## Update the Edit page model
 
 Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
@@ -262,7 +262,7 @@ The following highlighted code sets the `RowVersion` value to the new value retr
 
 The `ModelState.Remove` statement is required because `ModelState` has the old `RowVersion` value. In the Razor Page, the `ModelState` value for a field takes precedence over the model property values when both are present.
 
-## Update the Edit page
+### Update the Razor page
 
 Update *Pages/Departments/Edit.cshtml* with the following markup:
 
@@ -275,7 +275,7 @@ The preceding markup:
 * Displays the last byte of `RowVersion` for debugging purposes.
 * Replaces `ViewData` with the strongly-typed `InstructorNameSL`.
 
-## Test concurrency conflicts with the Edit page
+### Test concurrency conflicts with the Edit page
 
 Open two browsers instances of Edit on the English department:
 
@@ -317,7 +317,7 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 * A DbUpdateConcurrencyException exception is thrown.
 * `OnGetAsync` is called with the `concurrencyError`.
 
-### Update the Delete page
+### Update the Delete Razor page
 
 Update *Pages/Departments/Delete.cshtml* with the following code:
 
@@ -331,7 +331,7 @@ The preceding markup makes the following changes:
 * Changes `RowVersion` to display the last byte.
 * Adds a hidden row version. `RowVersion` must be added so postgit add back binds the value.
 
-### Test concurrency conflicts with the Delete page
+### Test concurrency conflicts
 
 Create a test department.
 
