@@ -5,7 +5,7 @@ description: Learn how to use authentication and authorization in ASP.NET Core S
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 05/09/2019
+ms.date: 07/15/2019
 uid: signalr/authn-and-authz
 ---
 
@@ -182,52 +182,71 @@ public class ChatHub : Hub
 
 SignalR provides a custom resource to authorization handlers when a hub method requires authorization. The resource is an instance of `HubInvocationContext`. The `HubInvocationContext` includes the `HubCallerContext`, the name of the hub method being invoked, and the arguments to the hub method.
 
-The following example shows a custom handler that only allows users with the same name as the hub method to invoke the method.
+Consider the example of a chat room allowing multiple organization sign-in via Azure Active Directory. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization should be able to ban users or view users' chat histories. Furthermore, we might want to restrict certain functionality from certain users. Using the updated features in ASP.NET Core 3.0, this is entirely possible. Note how the `DomainRestrictedRequirement` serves as a custom `IAuthorizationRequirement`. Now that the `HubInvocationContext` resource parameter is being passed in, the internal logic can inspect the context in which the Hub is being called and make decisions on allowing the user to execute individual Hub methods.
 
 ```csharp
-public class HubMethodAuthorizationHandler :
-    AuthorizationHandler<HubMethodRequirement, HubInvocationContext>
+[Authorize]
+public class ChatHub : Hub
 {
-    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
-                                                   HubMethodRequirement requirement,
-                                                   HubInvocationContext resource)
+    public void SendMessage(string message)
     {
-        if (context.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value == resource.HubMethodName)
-        {
-            context.Succeed(requirement);
-        }
+    }
 
-        return Task.CompletedTask;
+    [Authorize("DomainRestricted")]
+    public void BanUser(string username)
+    {
+    }
+
+    [Authorize("DomainRestricted")]
+    public void ViewUserHistory(string username)
+    {
     }
 }
 
-public class HubMethodRequirement : IAuthorizationRequirement { }
-
-public class ChatHub : Hub
+public class DomainRestrictedRequirement : 
+    AuthorizationHandler<DomainRestrictedRequirement, HubInvocationContext>, 
+    IAuthorizationRequirement
 {
-    [Authorize("NamedMethod")]
-    public void Steve()
+    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
+        DomainRestrictedRequirement requirement, 
+        HubInvocationContext resource)
     {
+        if (IsUserAllowedToDoThis(resource.HubMethodName, context.User.Identity.Name) && 
+            context.User.Identity.Name.EndsWith("@microsoft.com"))
+        {
+            context.Succeed(requirement);
+        }
+        return Task.CompletedTask;
+    }
+
+    private bool IsUserAllowedToDoThis(string hubMethodName,
+        string currentUsername)
+    {
+        return !(currentUsername.Equals("asdf42@microsoft.com") && 
+            hubMethodName.Equals("banUser", StringComparison.OrdinalIgnoreCase));
     }
 }
 ```
 
-Set up the policy and register the handler in DI:
+In `Startup.ConfigureServices`, add the new policy, providing the custom `DomainRestrictedRequirement` requirement as a parameter to create the `DomainRestricted` policy.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     // ... other services ...
 
-    services.AddAuthorization(options =>
-    {
-        options.AddPolicy("NamedMethod", policy =>
-            policy.Requirements.Add(new HubMethodRequirement()));
-    });
-
-    services.AddSingleton<IAuthorizationHandler, HubMethodAuthorizationHandler>();
+    services
+        .AddAuthorization(options =>
+        {
+            options.AddPolicy("DomainRestricted", policy =>
+            {
+                policy.Requirements.Add(new DomainRestrictedRequirement());
+            });
+        });
 }
 ```
+
+In the preceding example, the `DomainRestrictedRequirement` class is both an `IAuthorizationRequirement` and its own `AuthorizationHandler` for that requirement. It's acceptable to split these two components into separate classes to separate concerns. A benefit of the example's approach is there's no need to inject the `AuthorizationHandler` during startup, as the requirement and the handler are the same thing.
 
 ::: moniker-end
 
