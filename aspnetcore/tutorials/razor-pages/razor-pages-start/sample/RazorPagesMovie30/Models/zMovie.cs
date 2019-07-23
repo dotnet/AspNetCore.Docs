@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if NEVER
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace RazorPagesMovie.Models
@@ -14,3 +15,4 @@ namespace RazorPagesMovie.Models
         public decimal Price { get; set; }
     }
 }
+#endif
