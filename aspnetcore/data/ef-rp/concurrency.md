@@ -212,7 +212,7 @@ Build the project.
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages/Courses --referenceScriptLibraries
   ```
 
-  On Windows, use the same commands but replace *Pages\Courses* with *Pages\\Courses*. (Replace the forward slash with a backslash.)
+  On Windows, use the same commands but replace *Pages/Courses* with *Pages\Courses*. (Replace the forward slash with a backslash.)
 
 ---
 
@@ -220,7 +220,7 @@ Build the project.
 
 ### Update the Departments Index page
 
-The scaffolding engine created a `RowVersion` column for the Index page, but that field shouldn't be displayed. In this tutorial, the last byte of the `RowVersion` is displayed to help understand concurrency. The last byte isn't guaranteed to be unique. A real app wouldn't display `RowVersion` or the last byte of `RowVersion`.
+The scaffolding tool created a `RowVersion` column for the Index page, but that field shouldn't be displayed. In this tutorial, the last byte of the `RowVersion` is displayed to help show how concurrency handling works. The last byte isn't guaranteed to be unique. A real app wouldn't display `RowVersion` or the last byte of `RowVersion`.
 
 Update the Index page:
 
@@ -240,11 +240,15 @@ Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
 To detect a concurrency issue, the [OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value from the entity it was fetched. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
 
-[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_rv&highlight=24-999)]
+[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_rv&highlight=24-25)]
 
-In the preceding code, `Department.RowVersion` is the value when the entity was fetched. `OriginalValue` is the value in the database when `FirstOrDefaultAsync` was called in this method.
+In the preceding code:
 
-The following code gets the client values (the values posted to this method) and the database values:
+* The value in `Department.RowVersion` is what was in the entity when it was originally fetched in the Get request for the Edit page. The value is provided to the `OnPost` method by a hidden field in the Razor page that displays the entity to be deleted. The hidden field value is copied to `Department.RowVersion` by the model binder.
+* `OriginalValue` is what EF Core will use in the Where clause. Before the highlighted line of code executes, `OriginalValue` has the value that was in the database when `FirstOrDefaultAsync` was called in this method, which might be different from what was displayed on the Edit page.
+* The highlighted code makes sure that EF Core uses the original `RowVersion` value from the displayed `Department` entity in the SQL UPDATE statement's Where clause.
+
+When a concurrency error happens, the following code gets the client values (the values posted to this method) and the database values:
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_try&highlight=9,18)]
 

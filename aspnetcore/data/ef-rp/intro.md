@@ -208,7 +208,7 @@ The following packages are automatically installed:
   dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
   ```
 
-  **On Windows**, use the same commands but replace *Pages\Students* with *Pages\\Students*. (Replace the forward slash with a backslash.)
+  **On Windows**, use the same commands but replace *Pages/Students* with *Pages\Students*. (Replace the forward slash with a backslash.)
 
 ---
 
