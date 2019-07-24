@@ -136,7 +136,7 @@ The DataAnnotations applied to the class change the schema. For example, the Dat
 * Limits the characters to 60.
 * Doesn't allow a `null` value.
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDAmult.cs?name=snippet11)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet11)]
 
 The preceding schema changes don't cause EF to throw an exception.
 
