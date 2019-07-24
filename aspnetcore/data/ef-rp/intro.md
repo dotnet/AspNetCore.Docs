@@ -184,7 +184,7 @@ The following packages are automatically installed:
 
 * Make the following highlighted changes in the *ContosoUniversity.csproj* file:
 
-  [!code-xml[Main](intro/samples/cu30snapshots/1-intro/ContosoUniversitySQLite.csproj?highlight=8-16)]
+  [!code-xml[Main](intro/samples/cu30/ContosoUniversitySQLite.csproj?highlight=8-16)]
 
   This change installs these packages. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
 
@@ -238,7 +238,7 @@ LocalDB is a lightweight version of the SQL Server Express Database Engine and i
 
 The scaffolded connection string specifies a SQL Server LocalDB database. To use SQLite instead, open *appSettings.json* and replace the LocalDB connection string with a SQLite one:
 
-[!code-json[Main](intro/samples/cu30snapshots/1-intro/appsettingsSQLite.json?highlight=11)]
+[!code-json[Main](intro/samples/cu30/appsettingsSQLite.json?highlight=11)]
 
 ---
 
@@ -265,19 +265,19 @@ The scaffolding tool automatically registered the context class with the depende
 
 # [Visual Studio](#tab/visual-studio)
 
-* Examine the `ConfigureServices` method in *Startup.cs*. The highlighted lines were added by the scaffolder:
+* In the `ConfigureServices` method, the highlighted lines were added by the scaffolder:
 
-  [!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=13-14)]
+  [!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Examine the `ConfigureServices` method in *Startup.cs*. The highlighted lines were added by the scaffolder:
+* In the `ConfigureServices` method, the highlighted lines were added by the scaffolder:
 
-  [!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=13-14)]
+  [!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
 
 * Change `UseSqlServer` to `UseSqlite`.
 
-  [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=13-14)]
+  [!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=12-13)]
 
 ---
 
