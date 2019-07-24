@@ -362,7 +362,7 @@ A department may have many courses, so there's a Courses navigation property:
 public ICollection<Course> Courses { get; set; }
 ```
 
-Note: By convention, EF Core enables cascade delete for non-nullable FKs and for many-to-many relationships. Cascading delete can result in circular cascade delete rules. Circular cascade delete rules cause an exception when a migration is added.
+By convention, EF Core enables cascade delete for non-nullable FKs and for many-to-many relationships. Cascading delete can result in circular cascade delete rules. Circular cascade delete rules cause an exception when a migration is added.
 
 For example, if the `Department.InstructorID` property was defined as non-nullable:
 
@@ -386,7 +386,7 @@ An enrollment record is for one course taken by one student.
 
 Update *Models/Enrollment.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30/Models/Enrollment.cs?name=snippet_Final&highlight=1-2,16)]
+[!code-csharp[](intro/samples/cu30/Models/Enrollment.cs?highlight=1-2,16)]
 
 ### Foreign key and navigation properties
 
