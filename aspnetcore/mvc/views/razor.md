@@ -660,7 +660,7 @@ In the following example, additional attributes are captured in a dictionary and
         };
 ```
 
-The type of the parameter must implement `IEnumerable<KeyValuePair<string, object>>`.
+The type must implement `IEnumerable<KeyValuePair<string, object>>` with string keys.
 
 The preceding code renders the following HTML markup:
 
