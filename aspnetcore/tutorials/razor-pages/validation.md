@@ -50,9 +50,9 @@ When JavaScript is disabled in the browser, submitting the form with errors will
 
 Optional, test server-side validation:
 
-* Disable JavaScript in the browser. You can do this using your browser's developer tools. If you can't disable JavaScript in the browser, try another browser.
+* Disable JavaScript in the browser. You can disable JavaScript using browser's developer tools. If you can't disable JavaScript in the browser, try another browser.
 * Set a break point in the `OnPostAsync` method of the Create or Edit page.
-* Submit a form with validation errors.
+* Submit a form with invalid data.
 * Verify the model state is invalid:
 
   ```csharp
@@ -62,7 +62,7 @@ Optional, test server-side validation:
    }
   ```
 
-The following code shows a portion of the *Create.cshtml* page that you scaffolded earlier in the tutorial. It's used by the Create and Edit pages to display the initial form and to redisplay the form in the event of an error.
+The following code shows a portion of the *Create.cshtml* page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to display the initial form and to redisplay the form in the event of an error.
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?range=14-20)]
 
@@ -117,7 +117,7 @@ The following code shows combining attributes on one line:
 
 ### Apply migrations
 
-The database currently has the following schema:
+The `Movie` table currently has the following schema:
 
 ``` sql
 CREATE TABLE [dbo].[Movie] (
@@ -133,14 +133,12 @@ CREATE TABLE [dbo].[Movie] (
 
 The DataAnnotations applied to the class change the schema. For example, the DataAnnotations applied to the `Title` field:
 
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet11)]
+
 * Limits the characters to 60.
 * Doesn't allow a `null` value.
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet11)]
-
-The preceding schema changes don't cause EF to throw an exception.
-
-Create a migration so the schema is consistent with the model.
+The preceding schema changes don't cause EF to throw an exception. However, create a migration so the schema is consistent with the model.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -152,7 +150,7 @@ Add-Migration New_DataAnnotations
 Update-Database
 ```
 
-Examine the `Up` methods of the `New_DataAnnotations` class:
+`Update-Database` runs the `Up` methods of the `New_DataAnnotations` class. Examine the `Up` method:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Migrations/20190724163003_New_DataAnnotations.cs?name=snippet)]
 
@@ -172,7 +170,7 @@ dotnet ef database update
 
 ---
 
-The updated database has the following schema:
+The updated `Movie` table has the following schema:
 
 ``` sql
 CREATE TABLE [dbo].[Movie] (
