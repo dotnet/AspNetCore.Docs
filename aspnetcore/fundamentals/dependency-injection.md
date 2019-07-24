@@ -5,7 +5,7 @@ description: Learn how ASP.NET Core implements dependency injection and how to u
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/09/2019
+ms.date: 07/24/2019
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -468,31 +468,37 @@ The factory method of single service, such as the second argument to [AddSinglet
   **Incorrect:**
 
   ```csharp
-  public void MyMethod()
+  public class MyClass()
   {
-      var options = 
-          _services.GetService<IOptionsMonitor<MyOptions>>();
-      var option = options.CurrentValue.Option;
+      public void MyMethod()
+      {
+          var optionsMonitor = 
+              _services.GetService<IOptionsMonitor<MyOptions>>();
+          var option = optionsMonitor.CurrentValue.Option;
 
-      ...
+          ...
+      }
   }
   ```
 
   **Correct**:
 
   ```csharp
-  private readonly MyOptions _options;
-
-  public MyClass(IOptionsMonitor<MyOptions> options)
+  public class MyClass
   {
-      _options = options.CurrentValue;
-  }
+      private readonly IOptionsMonitor<MyOptions> _optionsMonitor;
 
-  public void MyMethod()
-  {
-      var option = _options.Option;
+      public MyClass(IOptionsMonitor<MyOptions> optionsMonitor)
+      {
+          _optionsMonitor = optionsMonitor;
+      }
 
-      ...
+      public void MyMethod()
+      {
+          var option = _optionsMonitor.CurrentValue.Option;
+
+          ...
+      }
   }
   ```
 

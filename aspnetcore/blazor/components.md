@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/23/2019
+ms.date: 07/24/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -154,9 +154,10 @@ In the following example, the first `<input>` element (`id="useIndividualParams"
             { "required", "true" }, 
             { "size", "50" }
         };
+}
 ```
 
-The type of the parameter must be assignable from `Dictionary<string, object>` with string keys. Using `IEnumerable<KeyValuePair<string, object>>` and `IReadOnlyDictionary<string, object>` are also options in this scenario.
+The type of the parameter must implement `IEnumerable<KeyValuePair<string, object>>` with string keys. Using `IReadOnlyDictionary<string, object>` is also an option in this scenario.
 
 The rendered `<input>` elements using both approaches is identical:
 
@@ -183,7 +184,7 @@ To accept arbitrary attributes, define a component parameter using the `[Paramet
 }
 ```
 
-The `CaptureUnmatchedAttributes` property on `[Parameter]` allows that parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with `CaptureUnmatchedAttributes`.
+The `CaptureUnmatchedAttributes` property on `[Parameter]` allows the parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with `CaptureUnmatchedAttributes`. The property type used with `CaptureUnmatchedAttributes` must be assignable from `Dictionary<string, object>` with string keys. `IEnumerable<KeyValuePair<string, object>>` or `IReadOnlyDictionary<string, object>` are also options in this scenario.
 
 ## Data binding
 

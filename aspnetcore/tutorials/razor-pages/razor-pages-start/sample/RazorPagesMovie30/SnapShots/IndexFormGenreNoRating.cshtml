@@ -22,6 +22,7 @@
 </form>
 
 <table class="table">
+    @*Markup removed for brevity.*@
 
     <thead>
         <tr>
@@ -36,9 +37,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Movie[0].Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Rating)
             </th>
             <th></th>
         </tr>
@@ -58,9 +56,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rating)
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
