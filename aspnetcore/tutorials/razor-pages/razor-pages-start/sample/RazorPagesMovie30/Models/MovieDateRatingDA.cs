@@ -1,4 +1,4 @@
-﻿//#define MovieDateRatingDA
+﻿#define MovieDateRatingDA
 #if MovieDateRatingDA
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -11,9 +11,11 @@ namespace RazorPagesMovie.Models
     {
         public int ID { get; set; }
 
+        #region snippet11
         [StringLength(60, MinimumLength = 3)]
         [Required]
         public string Title { get; set; }
+        #endregion
 
         #region snippet2
         [Display(Name = "Release Date")]
