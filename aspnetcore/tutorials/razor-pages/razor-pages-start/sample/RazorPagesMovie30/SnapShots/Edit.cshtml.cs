@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿#if Never
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RazorPagesMovie.Pages.Movies
 {
+#region snippet2
     public class EditModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
@@ -39,7 +38,6 @@ namespace RazorPagesMovie.Pages.Movies
             return Page();
         }
 
-        #region snippet
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -72,6 +70,7 @@ namespace RazorPagesMovie.Pages.Movies
         {
             return _context.Movie.Any(e => e.ID == id);
         }
-        #endregion
+#endregion
     }
 }
+#endif

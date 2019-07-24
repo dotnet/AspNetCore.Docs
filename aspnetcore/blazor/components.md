@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/05/2019
+ms.date: 07/23/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -115,6 +115,75 @@ The following `ParentComponent` can provide content for rendering the `ChildComp
 *Pages/ParentComponent.razor*:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=7-8)]
+
+## Attribute splatting and arbitrary parameters
+
+Components can capture and render additional attributes in addition to the component's declared parameters. Additional attributes can be captured in a dictionary and then *splatted* onto an element when the component is rendered using the `@attributes` Razor directive. This scenario is useful when defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.
+
+In the following example, the first `<input>` element (`id="useIndividualParams"`) uses individual component parameters, while the second `<input>` element (`id="useAttributesDict"`) uses attribute splatting:
+
+```cshtml
+<input id="useIndividualParams"
+       maxlength="@Maxlength"
+       placeholder="@Placeholder"
+       required="@Required"
+       size="@Size" />
+
+<input id="useAttributesDict"
+       @attributes="InputAttributes" />
+
+@code {
+    [Parameter]
+    private string Maxlength { get; set; } = "10";
+
+    [Parameter]
+    private string Placeholder { get; set; } = "Input placeholder text";
+
+    [Parameter]
+    private string Required { get; set; } = "required";
+
+    [Parameter]
+    private string Size { get; set; } = "50";
+
+    [Parameter]
+    private Dictionary<string, object> InputAttributes { get; set; } =
+        new Dictionary<string, object>()
+        {
+            { "maxlength", "10" }, 
+            { "placeholder", "Input placeholder text" }, 
+            { "required", "true" }, 
+            { "size", "50" }
+        };
+```
+
+The type of the parameter must be assignable from `Dictionary<string, object>` with string keys. Using `IEnumerable<KeyValuePair<string, object>>` and `IReadOnlyDictionary<string, object>` are also options in this scenario.
+
+The rendered `<input>` elements using both approaches is identical:
+
+```html
+<input id="useIndividualParams"
+       maxlength="10"
+       placeholder="Input placeholder text"
+       required="required"
+       size="50">
+
+<input id="useAttributesDict"
+       maxlength="10"
+       placeholder="Input placeholder text"
+       required="true"
+       size="50">
+```
+
+To accept arbitrary attributes, define a component parameter using the `[Parameter]` attribute with the `CaptureUnmatchedAttributes` property set to `true`:
+
+```cshtml
+@code {
+    [Parameter(CaptureUnmatchedAttributes = true)]
+    private Dictionary<string, object> InputAttributes { get; set; }
+}
+```
+
+The `CaptureUnmatchedAttributes` property on `[Parameter]` allows that parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with `CaptureUnmatchedAttributes`.
 
 ## Data binding
 
