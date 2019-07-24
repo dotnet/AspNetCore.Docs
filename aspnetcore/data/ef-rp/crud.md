@@ -16,6 +16,8 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
+## No repository
+
 Some developers use a service layer or repository pattern to create an abstraction layer between the UI (Razor Pages) and the data access layer. This tutorial doesn't do that. To minimize complexity and keep the tutorial focused on EF Core, EF Core code is added directly to the page model classes. 
 
 ## Update the Details page
@@ -74,6 +76,8 @@ The preceding code creates a Student object and then uses posted form fields to 
 * Looks for form fields with a "student" prefix. For example, `Student.FirstMidName`. It's not case sensitive.
 * Uses the [model binding](xref:mvc/models/model-binding) system to convert form values from strings to the types in the `Student` model. For example, `EnrollmentDate` has to be converted to DateTime.
 
+Run the app, and create a student entity to test the Create page.
+
 ## Overposting
 
 Using `TryUpdateModel` to update fields with posted values is a security best practice because it prevents overposting. For example, suppose the Student entity includes a `Secret` property that this web page shouldn't update or add:
@@ -108,13 +112,11 @@ The [SetValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propert
 
 Using `StudentVM` requires [Create.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/2-crud/Pages/Students/CreateVM.cshtml) be updated to use `StudentVM` rather than `Student`.
 
-Run the app, and create a student entity to test the Create page.
-
 ## Update the Edit page
 
-In *Pages/Students/Edit.cshtml.cs*, replace the `OnGetAsync` and `OnPostAsync` methods with the following code. The changes that differ from the Create page changes are highlighted:
+In *Pages/Students/Edit.cshtml.cs*, replace the `OnGetAsync` and `OnPostAsync` methods with the following code.
 
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Edit.cshtml.cs?name=snippet_OnGetPost&highlight=8,24)]
+[!code-csharp[Main](intro/samples/cu30/Pages/Students/Edit.cshtml.cs?name=snippet_OnGetPost)]
 
 The code changes are similar to the Create page with a few exceptions:
 

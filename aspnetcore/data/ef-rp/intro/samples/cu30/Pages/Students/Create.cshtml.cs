@@ -30,11 +30,6 @@ namespace ContosoUniversity.Pages.Students
         #region snippet_OnPostAsync
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
             #region snippet_TryUpdateModelAsync
             var emptyStudent = new Student();
 
@@ -49,7 +44,7 @@ namespace ContosoUniversity.Pages.Students
             }
             #endregion
 
-            return null;
+            return Page();
         }
         #endregion
     }

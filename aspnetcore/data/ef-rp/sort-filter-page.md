@@ -123,7 +123,7 @@ Calling `Contains` on an `IQueryable` is usually preferable for performance reas
 
 There's a performance penalty for calling `ToUpper`. The `ToUpper` code adds a function in the WHERE clause of the TSQL SELECT statement. The added function prevents the optimizer from using an index. Given that SQL is installed as case-insensitive, it's best to avoid the `ToUpper` call when it's not needed.
 
-For information about SQLite, see [How to use case-insensitive query with Sqlite provider](https://github.com/aspnet/EntityFrameworkCore/issues/11414).
+For more information, see [How to use case-insensitive query with Sqlite provider](https://github.com/aspnet/EntityFrameworkCore/issues/11414).
 
 ### Update the Razor page
 
@@ -173,7 +173,7 @@ In *Students/Index.cshtml.cs*, update the type of the `Students` property from `
 
 Replace the `OnGetAsync` method with the following code.  The changes are highlighted:
 
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage&highlight=1-4,7-14,41-999)]
+[!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_SortFilterPage&highlight=1-4,7-14,41-43)]
 
 The preceding code adds the page index, the current `sortOrder`, and the `currentFilter` to the method signature.
 
@@ -210,7 +210,7 @@ The two question marks in `PaginatedList.CreateAsync` represent the [null-coales
 
 Update the markup in *Students/Index.cshtml*. The changes are highlighted:
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?highlight=28-31,37-40,68-999)]
+[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?highlight=28-31,37-40,68-86)]
 
 The column header links use the query string to pass the current search string to the `OnGetAsync` method so that the user can sort within filter results:
 
