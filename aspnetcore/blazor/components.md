@@ -184,7 +184,7 @@ To accept arbitrary attributes, define a component parameter using the `[Paramet
 }
 ```
 
-The `CaptureUnmatchedAttributes` property on `[Parameter]` allows the parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with `CaptureUnmatchedAttributes`. The type of the parameter must be assignable from `Dictionary<string, object>` with string keys.
+The `CaptureUnmatchedAttributes` property on `[Parameter]` allows the parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with `CaptureUnmatchedAttributes`. The type of property used with `CaptureUnmatchedAttributes` must be assignable from `Dictionary<string, object>` with string keys. `IEnumerable<KeyValuePair<string, object>>` or `IReadOnlyDictionary<string, object>` are also options in this scenario.
 
 ## Data binding
 
