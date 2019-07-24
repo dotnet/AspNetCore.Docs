@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/23/2019
+ms.date: 07/24/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -154,6 +154,7 @@ In the following example, the first `<input>` element (`id="useIndividualParams"
             { "required", "true" }, 
             { "size", "50" }
         };
+}
 ```
 
 The type of the parameter must be assignable from `Dictionary<string, object>` with string keys. Using `IEnumerable<KeyValuePair<string, object>>` and `IReadOnlyDictionary<string, object>` are also options in this scenario.
