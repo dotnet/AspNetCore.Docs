@@ -468,31 +468,37 @@ The factory method of single service, such as the second argument to [AddSinglet
   **Incorrect:**
 
   ```csharp
-  public void MyMethod()
+  public class MyClass()
   {
-      var optionsMonitor = 
-          _services.GetService<IOptionsMonitor<MyOptions>>();
-      var option = optionsMonitor.CurrentValue.Option;
+      public void MyMethod()
+      {
+          var optionsMonitor = 
+              _services.GetService<IOptionsMonitor<MyOptions>>();
+          var option = optionsMonitor.CurrentValue.Option;
 
-      ...
+          ...
+      }
   }
   ```
 
   **Correct**:
 
   ```csharp
-  private readonly IOptionsMonitor<MyOptions> _optionsMonitor;
-
-  public MyClass(IOptionsMonitor<MyOptions> optionsMonitor)
+  public class MyClass
   {
-      _optionsMonitor = optionsMonitor;
-  }
+      private readonly IOptionsMonitor<MyOptions> _optionsMonitor;
 
-  public void MyMethod()
-  {
-      var option = _optionsMonitor.CurrentValue.Option;
+      public MyClass(IOptionsMonitor<MyOptions> optionsMonitor)
+      {
+          _optionsMonitor = optionsMonitor;
+      }
 
-      ...
+      public void MyMethod()
+      {
+          var option = _optionsMonitor.CurrentValue.Option;
+
+          ...
+      }
   }
   ```
 
