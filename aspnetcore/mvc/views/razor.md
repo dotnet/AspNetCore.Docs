@@ -452,40 +452,14 @@ The `@attribute` directive adds the given attribute to the class of the generate
 
 ::: moniker range=">= aspnetcore-3.0"
 
-### @attributes
-
-Elements can capture and render additional attributes in addition to the element's declared parameters using the `@attributes` Razor directive. This scenario is useful when defining an element that supports a variety of customizations.
-
-In the following example, additional attributes are captured in a dictionary and then applied onto the `<input>` element when the element is rendered:
-
-```cshtml
-<input @attributes="InputAttributes" />
-
-@code {
-    private Dictionary<string, object> InputAttributes { get; set; } =
-        new Dictionary<string, object>()
-        {
-            { "maxlength", "10" }, 
-            { "placeholder", "Placeholder text" }, 
-            { "required", "true" }, 
-            { "size", "50" }
-        };
-```
-
-The type of the parameter must be assignable from `Dictionary<string, object>` with string keys. Using `IEnumerable<KeyValuePair<string, object>>` and `IReadOnlyDictionary<string, object>` are also options in this scenario.
-
-The preceding code renders the following HTML markup:
-
-```html
-<input maxlength="10" placeholder="Placeholder text" required="required" size="50">
-```
-
 ### @code
 
-The `@code` directive enables a Razor Page to add a C# code block to a view:
+The `@code` directive enables a Razor Page to add C# members (fields, properties, and methods) to a view:
 
 ```cshtml
-@functions { // C# Code }
+@functions {
+    // C# members
+}
 ```
 
 For example:
@@ -540,10 +514,12 @@ The code renders the following HTML:
 
 ### @functions
 
-The `@functions` directive enables a Razor Page to add a C# code block to a view:
+The `@functions` directive enables a Razor Page to add C# members (fields, properties, and methods) to a view:
 
 ```cshtml
-@functions { // C# Code }
+@functions {
+    // C# members
+}
 ```
 
 For example:
@@ -605,7 +581,7 @@ The `@inject` directive enables the Razor Page to inject a service from the [ser
 
 ### @model
 
-The `@model` directive specifies the type of the model passed to a view:
+The `@model` directive is an MVC scenario that specifies the type of the model passed to a view:
 
 ```cshtml
 @model TypeNameOfModel
@@ -661,6 +637,38 @@ The `@section` directive is used in conjunction with the [layout](xref:mvc/views
 The `@using` directive adds the C# `using` directive to the generated view:
 
 [!code-cshtml[](razor/sample/Views/Home/Contact9.cshtml)]
+
+::: moniker range=">= aspnetcore-3.0"
+
+## Directive attributes
+
+Elements can capture and render additional attributes in addition to the element's declared parameters using the `@attributes` Razor directive. This scenario is useful when defining an element that supports a variety of customizations.
+
+In the following example, additional attributes are captured in a dictionary and then applied onto the `<input>` element when the element is rendered:
+
+```cshtml
+<input @attributes="InputAttributes" />
+
+@code {
+    private Dictionary<string, object> InputAttributes { get; set; } =
+        new Dictionary<string, object>()
+        {
+            { "maxlength", "10" }, 
+            { "placeholder", "Placeholder text" }, 
+            { "required", "true" }, 
+            { "size", "50" }
+        };
+```
+
+The type of the parameter must implement `IEnumerable<KeyValuePair<string, object>>`.
+
+The preceding code renders the following HTML markup:
+
+```html
+<input maxlength="10" placeholder="Placeholder text" required="required" size="50">
+```
+
+::: moniker-end
 
 ## Templated Razor delegates
 
