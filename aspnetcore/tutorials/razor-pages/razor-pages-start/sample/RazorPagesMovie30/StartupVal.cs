@@ -19,15 +19,15 @@ namespace RazorPagesMovie
         public IConfiguration Configuration { get; }
 
         #region snippet_ConfigureServices
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.Configure<HtmlHelperOptions>(o => o.ClientValidationEnabled = false);
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddRazorPages();
 
-            services.AddRazorPages();
+    services.Configure<HtmlHelperOptions>(o => o.ClientValidationEnabled = false);
 
-            services.AddDbContext<RazorPagesMovieContext>(options =>
-              options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
-        }
+    services.AddDbContext<RazorPagesMovieContext>(options =>
+      options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
+}
         #endregion
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -117,6 +117,15 @@ The following code shows combining attributes on one line:
 
 ### Apply migrations
 
+The DataAnnotations applied to the class change the schema. For example, the DataAnnotations applied to the `Title` field:
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet11)]
+
+* Limits the characters to 60.
+* Doesn't allow a `null` value.
+
+# [Visual Studio](#tab/visual-studio)
+
 The `Movie` table currently has the following schema:
 
 ``` sql
@@ -131,16 +140,7 @@ CREATE TABLE [dbo].[Movie] (
 );
 ```
 
-The DataAnnotations applied to the class change the schema. For example, the DataAnnotations applied to the `Title` field:
-
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet11)]
-
-* Limits the characters to 60.
-* Doesn't allow a `null` value.
-
 The preceding schema changes don't cause EF to throw an exception. However, create a migration so the schema is consistent with the model.
-
-# [Visual Studio](#tab/visual-studio)
 
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 In the PMC, enter the following commands:
@@ -153,22 +153,6 @@ Update-Database
 `Update-Database` runs the `Up` methods of the `New_DataAnnotations` class. Examine the `Up` method:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Migrations/20190724163003_New_DataAnnotations.cs?name=snippet)]
-
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-
-### Drop and re-create the database
-
-[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
-
-Delete the migration folder.  Use the following commands to recreate the database.
-
-```console
-dotnet ef database drop
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
-
----
 
 The updated `Movie` table has the following schema:
 
@@ -183,6 +167,12 @@ CREATE TABLE [dbo].[Movie] (
     CONSTRAINT [PK_Movie] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 ```
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+Migrations are not required for SQLite.
+
+---
 
 ### Publish to Azure
 
