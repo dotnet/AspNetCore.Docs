@@ -114,7 +114,7 @@ Another option is to delete the database and use migrations to re-create the dat
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Delete the database and migration files.  Use migrations to re-create the database:
+Delete the migration folder.  Use the following commands to recreate the database.
 
 ```console
 dotnet ef database drop

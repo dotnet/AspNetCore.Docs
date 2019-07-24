@@ -162,7 +162,7 @@ Examine the `Up` methods of the `New_DataAnnotations` class:
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Delete the database and migration files.  Use migrations to re-create the database:
+Delete the migration folder.  Use the following commands to recreate the database.
 
 ```console
 dotnet ef database drop
