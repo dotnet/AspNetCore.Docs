@@ -19,10 +19,11 @@ namespace RazorPagesMovie.Pages.Movies
         {
             Movie = new Movie
             {
-                Genre = "Western",
+                Genre = "Action",
                 Price = 1.99m,
                 ReleaseDate = DateTime.Now,
                 Title = "Conan"
+                , Rating = "R"
             };
             return Page();
         }
