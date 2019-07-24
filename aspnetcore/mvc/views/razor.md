@@ -450,68 +450,6 @@ The `@attribute` directive adds the given attribute to the class of the generate
 @attribute [Authorize]
 ```
 
-::: moniker range=">= aspnetcore-3.0"
-
-### @code
-
-The `@code` directive enables a Razor Page to add C# members (fields, properties, and methods) to a view:
-
-```cshtml
-@functions {
-    // C# members
-}
-```
-
-For example:
-
-```cshtml
-<div>From method: @GetHello()</div> 
-
-@code {
-    public string GetHello()
-    {
-        return "Hello";
-    }
-}
-```
-
-The code generates the following HTML markup:
-
-```html
-<div>From method: Hello</div>
-```
-
-`@code` methods serve as templating methods when they have markup:
-
-```cshtml
-@{
-    RenderName("Mahatma Gandhi");
-    RenderName("Martin Luther King, Jr.");
-}
-
-@code {
-    private void RenderName(string name)
-    {
-        <p>Name: <strong>@name</strong></p>
-    }
-}
-```
-
-The code renders the following HTML:
-
-```html
-<p>Name: <strong>Mahatma Gandhi</strong></p>
-<p>Name: <strong>Martin Luther King, Jr.</strong></p>
-```
-
-### @functions
-
-`@code` is an alias of `@functions`. `@code` is recommended over `@functions`.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
 ### @functions
 
 The `@functions` directive enables a Razor Page to add C# members (fields, properties, and methods) to a view:
@@ -535,6 +473,31 @@ The code generates the following HTML markup:
 The following code is the generated Razor C# class:
 
 [!code-csharp[](razor/sample/Classes/Views_Home_Test_cshtml.cs?range=1-19)]
+
+::: moniker range=">= aspnetcore-3.0"
+
+`@functions` methods serve as templating methods when they have markup:
+
+```cshtml
+@{
+    RenderName("Mahatma Gandhi");
+    RenderName("Martin Luther King, Jr.");
+}
+
+@functions {
+    private void RenderName(string name)
+    {
+        <p>Name: <strong>@name</strong></p>
+    }
+}
+```
+
+The code renders the following HTML:
+
+```html
+<p>Name: <strong>Mahatma Gandhi</strong></p>
+<p>Name: <strong>Martin Luther King, Jr.</strong></p>
+```
 
 ::: moniker-end
 
