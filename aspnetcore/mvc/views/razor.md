@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 06/12/2019
+ms.date: 07/24/2019
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -442,41 +442,125 @@ public class _Views_Something_cshtml : RazorPage<dynamic>
 
 Later in this article, the section [Inspect the Razor C# class generated for a view](#inspect-the-razor-c-class-generated-for-a-view) explains how to view this generated class.
 
-<a name="using"></a>
+### @attribute
 
-### @using
-
-The `@using` directive adds the C# `using` directive to the generated view:
-
-[!code-cshtml[](razor/sample/Views/Home/Contact9.cshtml)]
-
-### @model
-
-The `@model` directive specifies the type of the model passed to a view:
+The `@attribute` directive adds the given attribute to the class of the generated page or view. The following example adds the `[Authorize]` attribute:
 
 ```cshtml
-@model TypeNameOfModel
+@attribute [Authorize]
 ```
 
-In an ASP.NET Core MVC app created with individual user accounts, the *Views/Account/Login.cshtml* view contains the following model declaration:
+::: moniker range=">= aspnetcore-3.0"
+
+### @attributes
+
+Elements can capture and render additional attributes in addition to the elements's declared parameters using the `@attributes` Razor directive. This scenario is useful when defining an element that supports a variety of customizations.
+
+In the following example, additional attributes are captured in a dictionary and then applied onto the `<input>` element when the element is rendered:
 
 ```cshtml
-@model LoginViewModel
+<input @attributes="InputAttributes" />
+
+@code {
+    private Dictionary<string, object> InputAttributes { get; set; } =
+        new Dictionary<string, object>()
+        {
+            { "maxlength", "10" }, 
+            { "placeholder", "Placeholder text" }, 
+            { "required", "true" }, 
+            { "size", "50" }
+        };
 ```
 
-The class generated inherits from `RazorPage<dynamic>`:
+The type of the parameter must be assignable from `Dictionary<string, object>` with string keys. Using `IEnumerable<KeyValuePair<string, object>>` and `IReadOnlyDictionary<string, object>` are also options in this scenario.
 
-```csharp
-public class _Views_Account_Login_cshtml : RazorPage<LoginViewModel>
+The preceding code renders the following HTML markup:
+
+```html
+<input maxlength="10" placeholder="Placeholder text" required="required" size="50">
 ```
 
-Razor exposes a `Model` property for accessing the model passed to the view:
+### @code
+
+The `@code` directive enables a Razor Page to add a C# code block to a view:
 
 ```cshtml
-<div>The Login Email: @Model.Email</div>
+@functions { // C# Code }
 ```
 
-The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If the `@model` directive isn't specified, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the &commat;model keyword](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
+For example:
+
+```cshtml
+<div>From method: @GetHello()</div> 
+
+@code {
+    public string GetHello()
+    {
+        return "Hello";
+    }
+}
+```
+
+The code generates the following HTML markup:
+
+```html
+<div>From method: Hello</div>
+```
+
+`@code` methods serve as templating methods when they have markup:
+
+```cshtml
+@{
+    RenderName("Mahatma Gandhi");
+    RenderName("Martin Luther King, Jr.");
+}
+
+@code {
+    private void RenderName(string name)
+    {
+        <p>Name: <strong>@name</strong></p>
+    }
+}
+```
+
+The code renders the following HTML:
+
+```html
+<p>Name: <strong>Mahatma Gandhi</strong></p>
+<p>Name: <strong>Martin Luther King, Jr.</strong></p>
+```
+
+### @functions
+
+`@code` is an alias of `@functions`. `@code` is recommended over `@functions`.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+### @functions
+
+The `@functions` directive enables a Razor Page to add a C# code block to a view:
+
+```cshtml
+@functions { // C# Code }
+```
+
+For example:
+
+[!code-cshtml[](razor/sample/Views/Home/Contact6.cshtml)]
+
+The code generates the following HTML markup:
+
+```html
+<div>From method: Hello</div>
+```
+
+The following code is the generated Razor C# class:
+
+[!code-csharp[](razor/sample/Classes/Views_Home_Test_cshtml.cs?range=1-19)]
+
+::: moniker-end
 
 ### @inherits
 
@@ -519,62 +603,33 @@ If "rick@contoso.com" is passed in the model, the view generates the following H
 
 The `@inject` directive enables the Razor Page to inject a service from the [service container](xref:fundamentals/dependency-injection) into a view. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
 
-### @functions
+### @model
 
-The `@functions` directive enables a Razor Page to add a C# code block to a view:
-
-```cshtml
-@functions { // C# Code }
-```
-
-For example:
-
-[!code-cshtml[](razor/sample/Views/Home/Contact6.cshtml)]
-
-The code generates the following HTML markup:
-
-```html
-<div>From method: Hello</div>
-```
-
-The following code is the generated Razor C# class:
-
-[!code-csharp[](razor/sample/Classes/Views_Home_Test_cshtml.cs?range=1-19)]
-
-::: moniker range=">= aspnetcore-3.0"
-
-`@functions` methods serve as templating methods when they have markup:
+The `@model` directive specifies the type of the model passed to a view:
 
 ```cshtml
-@{
-    RenderName("Mahatma Gandhi");
-    RenderName("Martin Luther King, Jr.");
-}
-
-@functions {
-    private void RenderName(string name)
-    {
-        <p>Name: <strong>@name</strong></p>
-    }
-}
+@model TypeNameOfModel
 ```
 
-The code renders the following HTML:
-
-```html
-<p>Name: <strong>Mahatma Gandhi</strong></p>
-<p>Name: <strong>Martin Luther King, Jr.</strong></p>
-```
-
-::: moniker-end
-
-### @attribute
-
-The `@attribute` directive adds the given attribute to the class of the generated page or view. The following example adds the `[Authorize]` attribute:
+In an ASP.NET Core MVC app created with individual user accounts, the *Views/Account/Login.cshtml* view contains the following model declaration:
 
 ```cshtml
-@attribute [Authorize]
+@model LoginViewModel
 ```
+
+The class generated inherits from `RazorPage<dynamic>`:
+
+```csharp
+public class _Views_Account_Login_cshtml : RazorPage<LoginViewModel>
+```
+
+Razor exposes a `Model` property for accessing the model passed to the view:
+
+```cshtml
+<div>The Login Email: @Model.Email</div>
+```
+
+The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If the `@model` directive isn't specified, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the &commat;model keyword](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
 
 ### @namespace
 
@@ -598,6 +653,14 @@ If multiple import files have the `@namespace` directive, the file closest to th
 ### @section
 
 The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable pages or views to render content in different parts of the HTML page. For more information, see [Sections](xref:mvc/views/layout#layout-sections-label).
+
+<a name="using"></a>
+
+### @using
+
+The `@using` directive adds the C# `using` directive to the generated view:
+
+[!code-cshtml[](razor/sample/Views/Home/Contact9.cshtml)]
 
 ## Templated Razor delegates
 
