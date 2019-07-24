@@ -68,7 +68,7 @@ John clicks **Save** on an Edit page that still shows a budget of $350,000.00. W
 
   This is called a *Store Wins* scenario. (The data-store values take precedence over the values submitted by the client.) You implement the Store Wins scenario in this tutorial. This method ensures that no changes are overwritten without a user being alerted.
 
-## Concurrency conflict detection in EF Core
+## Conflict detection in EF Core
 
 EF Core throws `DbConcurrencyException` exceptions when it detects conflicts. The data model has to be configured to enable conflict detection. Options for enabling conflict detection include the following:
 
@@ -80,7 +80,7 @@ EF Core throws `DbConcurrencyException` exceptions when it detects conflicts. Th
 
   For example, in a SQL Server database, the data type of the tracking column is `rowversion`. The `rowversion` value is a sequential number that's incremented each time the row is updated. In an Update or Delete command, the Where clause includes the original value of the tracking column (the original row version number). If the row being updated has been changed by another user, the value in the `rowversion` column is different than the original value, so the Update or Delete statement can't find the row to update because of the Where clause. EF Core throws a concurrency exception when no rows are affected by an Update or Delete command.
 
-## Add a tracking column
+## Add a tracking prooperty
 
 In *Models/Department.cs*, add a tracking property named RowVersion:
 
