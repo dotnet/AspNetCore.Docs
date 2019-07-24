@@ -36,15 +36,13 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 The Visual Studio instructions use [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb), a version of SQL Server Express that runs only on Windows.
 
-The Visual Studio Code instructions use [SQLite](https://www.sqlite.org/), a cross-platform database engine. With minor adjustments to the instructions, you can use SQLite with Visual Studio or LocalDB with Visual Studio Code on Windows.
+The Visual Studio Code instructions use [SQLite](https://www.sqlite.org/), a cross-platform database engine.
 
-SQLite functionality for changing the database schema is more limited than SQL Server. Changing the data model for a production app involves more work to update the database schema and is more error-prone. For more information, see [the Migrations tutorial in this series](xref:data/ef-rp/migrations).
-
-If you choose SQLite, download and install a third-party tool for managing and viewing a SQLite database, such as [DB Browser for SQLite](https://sqlitebrowser.org/).
+If you choose to use SQLite, download and install a third-party tool for managing and viewing a SQLite database, such as [DB Browser for SQLite](https://sqlitebrowser.org/).
 
 ## Troubleshooting
 
-If you run into a problem you can't resolve, start by comparing your code to the [completed project](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to StackOverflow.com, using the [ASP.NET Core tag](https://stackoverflow.com/questions/tagged/asp.net-core) or the [EF Core tag](https://stackoverflow.com/questions/tagged/entity-framework-core).
+If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to StackOverflow.com, using the [ASP.NET Core tag](https://stackoverflow.com/questions/tagged/asp.net-core) or the [EF Core tag](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
 ## The sample app
 
@@ -84,11 +82,11 @@ Set up the site header, footer, and menu by updating *Pages/Shared/_Layout.cshtm
 
 * Change each occurrence of "ContosoUniversity" to "Contoso University". There are three occurrences.
 
-* Delete the **Privacy** menu entry, and add entries for **Students**, **Courses**, **Instructors**, and **Departments**.
+* Delete the **Home** and **Privacy** menu entries, and add entries for **About**, **Students**, **Courses**, **Instructors**, and **Departments**.
 
 The changes are highlighted. Not all of the code in the file is displayed, so don't copy and paste the entire snippet.
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Shared/_Layout.cshtml?highlight=6,24,31-45,60)]
+[!code-cshtml[Main](intro/samples/cu30/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
 
 In *Pages/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET Core with text about this app:
 
@@ -102,10 +100,7 @@ The following sections create a simple data model:
 
 ![Course-Enrollment-Student data model diagram](intro/_static/data-model-diagram.png)
 
-A student can enroll in any number of courses, and a course can have any number of students enrolled in it. In other words:
-
-* A `Student` entity can have any number of related `Enrollment` entities.
-* A `Course` entity can have any number of related `Enrollment` entities.
+A student can enroll in any number of courses, and a course can have any number of students enrolled in it.
 
 ## The Student entity
 
@@ -155,7 +150,7 @@ The `Enrollments` property is a navigation property. A `Course` entity can be re
 
 The `DatabaseGenerated` attribute allows the app to specify the primary key rather than having the database generate it.
 
-* Build the project to validate that there are no errors.
+Build the project to validate that there are no errors.
 
 ## Scaffold Student pages
 
@@ -253,7 +248,7 @@ The main class that coordinates EF Core functionality for a given data model is 
 
 Update *SchoolContext.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=12-14)]
+[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=12-21)]
 
 The highlighted code creates a [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for each entity set. In EF Core terminology:
 
@@ -301,8 +296,9 @@ The [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.dat
 * Run the app.
 * `EnsureCreated` creates a database with the new schema.
 
-This workflow works well early in development when the schema is rapidly evolving, as long as you don't need to preserve data. The situation is different when data that has been entered into the database needs to be preserved. When that is the case, use migrations. 
-Later in the tutorial the database that was created by `EnsureCreated` is deleted and migrations are used. A database that is created by `EnsureCreated` can't be updated by using migrations.
+This workflow works well early in development when the schema is rapidly evolving, as long as you don't need to preserve data. The situation is different when data that has been entered into the database needs to be preserved. When that is the case, use migrations.
+
+Later in the tutorial series, you'll delete the database that was created by `EnsureCreated` and use migrations instead. A database that is created by `EnsureCreated` can't be updated by using migrations.
 
 ### Test the app
 
@@ -357,7 +353,7 @@ The `EnsureCreated` method creates an empty database. This section adds code tha
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Third-party [tools for working with SQLite databases](https://www2.bing.com/search?q=sqlite+tools) are available. The database file is named *CU.db* and is located in the project folder.
+Use your SQLite tool to view the database schema and seeded data. The database file is named *CU.db* and is located in the project folder.
 
 ---
 
