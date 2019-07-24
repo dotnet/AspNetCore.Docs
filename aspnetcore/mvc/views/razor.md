@@ -454,7 +454,7 @@ The `@attribute` directive adds the given attribute to the class of the generate
 
 ### @attributes
 
-Elements can capture and render additional attributes in addition to the elements's declared parameters using the `@attributes` Razor directive. This scenario is useful when defining an element that supports a variety of customizations.
+Elements can capture and render additional attributes in addition to the element's declared parameters using the `@attributes` Razor directive. This scenario is useful when defining an element that supports a variety of customizations.
 
 In the following example, additional attributes are captured in a dictionary and then applied onto the `<input>` element when the element is rendered:
 
