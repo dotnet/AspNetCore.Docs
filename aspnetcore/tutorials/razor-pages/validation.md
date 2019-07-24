@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover how to add validation to a Razor Page in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2018
+ms.date: 7/23/2019
 uid: tutorials/razor-pages/validation
 ---
 # Add validation to an ASP.NET Core Razor Page
@@ -111,13 +111,84 @@ It's generally not a good practice to compile hard dates in your models, so usin
 
 The following code shows combining attributes on one line:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateRatingDAmult.cs?name=snippet1)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) shows advanced EF Core operations with Razor Pages.
 
+### Apply migrations
+
+The database currently has the following schema:
+
+``` sql
+CREATE TABLE [dbo].[Movie] (
+    [ID]          INT             IDENTITY (1, 1) NOT NULL,
+    [Title]       NVARCHAR (MAX)  NULL,
+    [ReleaseDate] DATETIME2 (7)   NOT NULL,
+    [Genre]       NVARCHAR (MAX)  NULL,
+    [Price]       DECIMAL (18, 2) NOT NULL,
+    [Rating]      NVARCHAR (MAX)  NULL,
+    CONSTRAINT [PK_Movie] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+```
+
+The DataAnnotations applied to the class change the schema. For example, the DataAnnotations applied to the `Title` field:
+
+* Limits the characters to 60.
+* Doesn't allow a `null` value.
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDAmult.cs?name=snippet11)]
+
+The preceding schema changes don't cause EF to throw an exception.
+
+Create a migration so the schema is consistent with the model.
+
+# [Visual Studio](#tab/visual-studio)
+
+From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
+In the PMC, enter the following commands:
+
+```powershell
+Add-Migration New_DataAnnotations
+Update-Database
+```
+
+Examine the `Up` methods of the `New_DataAnnotations` class:
+
+[!code-csharp[](razor-pages/razor-pages-start/sample/RazorPagesMovie30/Migrations/20190724163003_New_DataAnnotations.cs?name=snippet)]
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+### Drop and re-create the database
+
+[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
+
+Delete the database and migration files.  Use migrations to re-create the database:
+
+```console
+dotnet ef database drop
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+
+---
+
+The updated database has the following schema:
+
+``` sql
+CREATE TABLE [dbo].[Movie] (
+    [ID]          INT             IDENTITY (1, 1) NOT NULL,
+    [Title]       NVARCHAR (60)   NOT NULL,
+    [ReleaseDate] DATETIME2 (7)   NOT NULL,
+    [Genre]       NVARCHAR (30)   NOT NULL,
+    [Price]       DECIMAL (18, 2) NOT NULL,
+    [Rating]      NVARCHAR (5)    NOT NULL,
+    CONSTRAINT [PK_Movie] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+```
+
 ### Publish to Azure
 
-For information on deploying to Azure, see [Tutorial: Build an ASP.NET app in Azure with SQL Database](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase). These instructions are for an ASP.NET app, not an ASP.NET Core app, but the steps are the same.
+For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app in Azure with SQL Database](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
 
 Thanks for completing this introduction to Razor Pages. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) is an excellent follow up to this tutorial.
 

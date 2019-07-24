@@ -114,9 +114,11 @@ Another option is to delete the database and use migrations to re-create the dat
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command:
+Delete the database and migration files.  Use migrations to re-create the database:
 
 ```console
+dotnet ef database drop
+dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
