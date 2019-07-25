@@ -22,7 +22,7 @@ This tutorial shows how to update related data. The following illustrations show
 
 ## Create a base class
 
-The scaffolded code for the Course Create and Edit pages has a Department drop-down list that shows Department ID (an integer). The drop-down should show the Department name, so both of these pages need a list of department names. To provide that list, use a common base class for the Create and Edit pages.
+The scaffolded code for the Course Create and Edit pages has a Department drop-down list that shows Department ID (an integer). The drop-down should show the Department name, so both of these pages need a list of department names. To provide that list, use a base class for the Create and Edit pages.
 
 Create a *Pages/Courses/DepartmentNamePageModel.cs* file with the following code:
 
@@ -32,9 +32,9 @@ The preceding code creates a [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.r
 
 The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
-## Customize the Courses Pages
+## Customize the Courses pages
 
-When a new course entity is created, it must have a relationship to an existing department. To add a department while creating a course, the base class for Create and Edit contains a drop-down list for selecting the department. The drop-down list sets the `Course.DepartmentID` foreign key (FK) property. EF Core uses the `Course.DepartmentID` FK to load the `Department` navigation property.
+A Course is assigned to a Department. The base class for the Create and Edit pages provides a `SelectList` for selecting the department. The drop-down list that uses the `SelectList` sets the `Course.DepartmentID` foreign key (FK) property. EF Core uses the `Course.DepartmentID` FK to load the `Department` navigation property.
 
 ![Create course](update-related-data/_static/ddl.png)
 
@@ -71,7 +71,7 @@ Test the Create page. The Create page displays the department name rather than t
 
 Update the edit page model with the following code:
 
-[!code-csharp[](intro/samples/cu30/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40-61)]
+[!code-csharp[](intro/samples/cu30/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40-66)]
 
 The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which selects the department specified in the drop-down list.
 
@@ -86,8 +86,6 @@ The preceding markup makes the following changes:
 * Replaces `"ViewBag.DepartmentID"` with `DepartmentNameSL` (from the base class).
 
 The page contains a hidden field (`<input type="hidden">`) for the course number. Adding a `<label>` tag helper with `asp-for="Course.CourseID"` doesn't eliminate the need for the hidden field. `<input type="hidden">` is required for the course number to be included in the posted data when the user clicks **Save**.
-
-Test the updated code. Create, edit, and delete a course.
 
 ## Add AsNoTracking to the Details and Delete page models
 
@@ -161,7 +159,7 @@ The `AssignedCourseData` class contains data to create the check boxes for cours
 
 Create the *Pages/Instructors/InstructorCoursesPageModel.cs* base class:
 
-[!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cs)]
+[!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_All)]
 
 The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](/dotnet/api/system.collections.generic.hashset-1) is used for efficient lookups.
 

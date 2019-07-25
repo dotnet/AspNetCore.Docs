@@ -39,6 +39,11 @@ namespace ContosoUniversity.Pages.Courses
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             var courseToUpdate = await _context.Courses.FindAsync(id);
 
             if (courseToUpdate == null)

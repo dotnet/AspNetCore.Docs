@@ -1,3 +1,4 @@
+#region snippet_All
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using ContosoUniversity.Models.SchoolViewModels;
@@ -77,3 +78,4 @@ namespace ContosoUniversity.Pages.Instructors
         }
     }
 }
+#endregion

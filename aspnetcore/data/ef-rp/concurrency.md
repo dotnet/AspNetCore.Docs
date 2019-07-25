@@ -28,9 +28,9 @@ If concurrency detection isn't enabled, whoever updates the database last overwr
 
 ### Pessimistic concurrency (locking)
 
-One way to prevent concurrency conflicts is to use database locks. This is called pessimistic concurrency. For example, before the app reads a database row that it intends to update, it requests a lock. Once a row is locked for update access, no other users are allowed to lock the row until the first lock is released.
+One way to prevent concurrency conflicts is to use database locks. This is called pessimistic concurrency. Before the app reads a database row that it intends to update, it requests a lock. Once a row is locked for update access, no other users are allowed to lock the row until the first lock is released.
 
-Managing locks has disadvantages. It can be complex to program. It requires significant database management resources, and it can cause performance problems as the number of users of an application increases. For these reasons, not all database management systems support pessimistic concurrency. Entity Framework Core provides no built-in support for it, and this tutorial doesn't show you how to implement it.
+Managing locks has disadvantages. It can be complex to program and can cause performance problems as the number of users increases. Entity Framework Core provides no built-in support for it, and this tutorial doesn't show how to implement it.
 
 ### Optimistic concurrency
 
@@ -74,17 +74,17 @@ EF Core throws `DbConcurrencyException` exceptions when it detects conflicts. Th
 
 * Configure EF Core to include the original values of columns configured as [concurrency tokens](/ef/core/modeling/concurrency) in the Where clause of Update and Delete commands.
 
-  When `SaveChanges` is called, the Where clause looks for the original values of any properties annotated with the [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute) attribute. The update statement won't return a row to update if any of the concurrency token properties changed since the row was first read. EF Core interprets that as a concurrency conflict. For database tables that have many columns, this approach can result in very large Where clauses, and can require large amounts of state. Therefore this approach is generally not recommended, and it isn't the method used in this tutorial.
+  When `SaveChanges` is called, the Where clause looks for the original values of any properties annotated with the [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute) attribute. The update statement won't find a row to update if any of the concurrency token properties changed since the row was first read. EF Core interprets that as a concurrency conflict. For database tables that have many columns, this approach can result in very large Where clauses, and can require large amounts of state. Therefore this approach is generally not recommended, and it isn't the method used in this tutorial.
 
 * In the database table, include a tracking column that can be used to determine when a row has been changed.
 
-  For example, in a SQL Server database, the data type of the tracking column is `rowversion`. The `rowversion` value is a sequential number that's incremented each time the row is updated. In an Update or Delete command, the Where clause includes the original value of the tracking column (the original row version number). If the row being updated has been changed by another user, the value in the `rowversion` column is different than the original value, so the Update or Delete statement can't find the row to update because of the Where clause. EF Core throws a concurrency exception when no rows are affected by an Update or Delete command.
+  In a SQL Server database, the data type of the tracking column is `rowversion`. The `rowversion` value is a sequential number that's incremented each time the row is updated. In an Update or Delete command, the Where clause includes the original value of the tracking column (the original row version number). If the row being updated has been changed by another user, the value in the `rowversion` column is different than the original value. In that case, the Update or Delete statement can't find the row to update because of the Where clause. EF Core throws a concurrency exception when no rows are affected by an Update or Delete command.
 
-## Add a tracking prooperty
+## Add a tracking property
 
 In *Models/Department.cs*, add a tracking property named RowVersion:
 
-[!code-csharp[](intro/samples/cu30snapshots/8-concurrency/Models/Department.cs?name=snippet_Final&highlight=26,27)]
+[!code-csharp[](intro/samples/cu30/Models/Department.cs?highlight=26,27)]
 
 The [Timestamp](/dotnet/api/system.componentmodel.dataannotations.timestampattribute) attribute is what identifies the column as a concurrency tracking column. The fluent API is an alternative way to specify the tracking property:
 
@@ -129,7 +129,7 @@ For a SQLite database, the `[Timestamp]` attribute on an entity property defined
 Database triggers update the RowVersion column with a new random byte array whenever a row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched value of the RowVersion column. If the row being updated has changed since it was fetched:
 
 * The current row version value doesn't match the fetched value.
-* The `Update` or `Delete` commands don't find a row because the `Where` clause looks for the fetched row version value.
+* The `Update` or `Delete` command doesn't find a row because the `Where` clause looks for the original row version value.
 * A `DbUpdateConcurrencyException` is thrown.
 
 ---
@@ -174,11 +174,16 @@ Build the project.
 * Creates the *Migrations/{time stamp}_RowVersion.cs* migration file.
 * Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following highlighted code to the `BuildModel` method:
 
-  [!code-csharp[](intro/samples/cu30snapshots/8-concurrency/Migrations/SchoolContextModelSnapshot2.cs?name=snippet&highlight=14-16)]
+  [!code-csharp[](intro/samples/cu30/Migrations/SchoolContextModelSnapshot.cs?name=snippet&highlight=14-16)]
 
 * Open the `Migrations/<timestamp>_RowVersion.cs` file and add the highlighted code:
 
-  [!code-csharp[](intro/samples/cu30snapshots/8-concurrency/Migrations/RowVersionSQLite.cs?highlight=16-42)]
+  [!code-csharp[](intro/samples/cu30/MigrationsSQLite/RowVersion.cs?highlight=16-42)]
+
+  The preceding code:
+
+  * Updates existing rows with random blob values.
+  * Adds database triggers that set the RowVersion column to a random blob value whenever a row is updated.
 
 * Run the following command in a terminal:
 
@@ -209,10 +214,10 @@ Build the project.
   On Linux or macOS:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages/Courses --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages/Departments --referenceScriptLibraries
   ```
 
-  On Windows, use the same commands but replace *Pages/Courses* with *Pages\Courses*. (Replace the forward slash with a backslash.)
+  On Windows, use the same commands but replace *Pages/Departments* with *Pages\Departments*. (Replace the forward slash with a backslash.)
 
 ---
 
@@ -220,12 +225,12 @@ Build the project.
 
 ## Update the Index page
 
-The scaffolding tool created a `RowVersion` column for the Index page, but that field shouldn't be displayed. In this tutorial, the last byte of the `RowVersion` is displayed to help show how concurrency handling works. The last byte isn't guaranteed to be unique. A real app wouldn't display `RowVersion` or the last byte of `RowVersion`.
+The scaffolding tool created a `RowVersion` column for the Index page, but that field wouldn't be displayed in a production app. In this tutorial, the last byte of the `RowVersion` is displayed to help show how concurrency handling works. The last byte isn't guaranteed to be unique by itself.
 
 Update the Index page:
 
 * Replace Index with Departments.
-* Replace the markup containing `RowVersion` with the last byte of `RowVersion`.
+* Change the markup containing `RowVersion` to show just the last byte of the byte array.
 * Replace FirstMidName with FullName.
 
 The following markup shows the updated page:
@@ -238,13 +243,13 @@ Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet)]
 
-To detect a concurrency issue, the [OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value from the entity it was fetched. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
+The [OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value from the entity when it was fetched in the `OnGet` method. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_rv&highlight=24-25)]
 
 In the preceding code:
 
-* The value in `Department.RowVersion` is what was in the entity when it was originally fetched in the Get request for the Edit page. The value is provided to the `OnPost` method by a hidden field in the Razor page that displays the entity to be deleted. The hidden field value is copied to `Department.RowVersion` by the model binder.
+* The value in `Department.RowVersion` is what was in the entity when it was originally fetched in the Get request for the Edit page. The value is provided to the `OnPost` method by a hidden field in the Razor page that displays the entity to be edited. The hidden field value is copied to `Department.RowVersion` by the model binder.
 * `OriginalValue` is what EF Core will use in the Where clause. Before the highlighted line of code executes, `OriginalValue` has the value that was in the database when `FirstOrDefaultAsync` was called in this method, which might be different from what was displayed on the Edit page.
 * The highlighted code makes sure that EF Core uses the original `RowVersion` value from the displayed `Department` entity in the SQL UPDATE statement's Where clause.
 
