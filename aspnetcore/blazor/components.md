@@ -175,16 +175,16 @@ The rendered `<input>` elements using both approaches is identical:
        size="50">
 ```
 
-To accept arbitrary attributes, define a component parameter using the `[Parameter]` attribute with the `CaptureUnmatchedAttributes` property set to `true`:
+To accept arbitrary attributes, define a component parameter using the `[Parameter]` attribute with the `CaptureUnmatchedValues` property set to `true`:
 
 ```cshtml
 @code {
-    [Parameter(CaptureUnmatchedAttributes = true)]
+    [Parameter(CaptureUnmatchedValues = true)]
     private Dictionary<string, object> InputAttributes { get; set; }
 }
 ```
 
-The `CaptureUnmatchedAttributes` property on `[Parameter]` allows the parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with `CaptureUnmatchedAttributes`. The property type used with `CaptureUnmatchedAttributes` must be assignable from `Dictionary<string, object>` with string keys. `IEnumerable<KeyValuePair<string, object>>` or `IReadOnlyDictionary<string, object>` are also options in this scenario.
+The `CaptureUnmatchedValues` property on `[Parameter]` allows the parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with `CaptureUnmatchedValues`. The property type used with `CaptureUnmatchedValues` must be assignable from `Dictionary<string, object>` with string keys. `IEnumerable<KeyValuePair<string, object>>` or `IReadOnlyDictionary<string, object>` are also options in this scenario.
 
 ## Data binding
 
