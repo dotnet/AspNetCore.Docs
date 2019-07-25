@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to use authentication and authorization in gRPC for ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 06/07/2019
+ms.date: 07/26/2019
 uid: grpc/authn-and-authz
 ---
 
@@ -103,13 +103,13 @@ public Ticketer.TicketerClient CreateClientWithCert(
 
 Many ASP.NET Core supported authentication mechanisms work with gRPC:
 
+* Azure Active Directory
+* Client Certificate
+* IdentityServer
+* JWT Token
 * OAuth 2.0
 * OpenID Connect
-* IdentityServer
 * WS-Federation
-* Azure Active Directory
-* JWT Token
-* Client Certificate
 
 For more information on configuring authentication on the server, see [ASP.NET Core authentication](xref:security/authentication/identity).
 
