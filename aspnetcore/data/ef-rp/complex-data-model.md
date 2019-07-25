@@ -61,9 +61,7 @@ The `DisplayFormat` attribute can be used by itself. It's generally a good idea 
 
 For more information, see the [\<input> Tag Helper documentation](xref:mvc/views/working-with-forms#the-input-tag-helper).
 
-Run the app. Navigate to the Students Index page. Times are no longer displayed. Every view that uses the `Student` model displays the date without time.
-
-![Students index page showing dates without times](complex-data-model/_static/dates-no-times.png)
+Run the app and navigate to the Students Index page. Times are no longer displayed. Every view that uses the `Student` model displays the date without time.
 
 ### The StringLength attribute
 
@@ -83,10 +81,7 @@ The preceding code limits names to no more than 50 characters. The `StringLength
 Run the app:
 
 * Navigate to the Students page.
-* Select **Create New**, and enter a name longer than 50 characters.
-* Select **Create**, client-side validation shows an error message.
-
-![Students index page showing string length errors](complex-data-model/_static/string-length-errors.png)
+* Select **Create New**, and try to enter a name longer than 50 characters.
 
 # [Visual Studio](#tab/visual-studio)
 
