@@ -1,18 +1,18 @@
 ---
 title: Handle errors in ASP.NET Core Blazor apps
 author: guardrex
-description: Discover how ASP.NET Core Blazor how Blazor manages unhandled exceptions and how to develop apps to detect and handle errors.
+description: Discover how ASP.NET Core Blazor how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/20/2019
+ms.date: 07/25/2019
 uid: blazor/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps
 
 By [Steve Sanderson](https://github.com/SteveSandersonMS) and [Luke Latham](https://github.com/guardrex)
 
-This article describes how Blazor manages unhandled exceptions and how to develop apps to detect and handle errors.
+This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
 ## How the Blazor framework reacts to unhandled exceptions
 
@@ -30,40 +30,6 @@ The reason for terminating a circuit for most unhandled exceptions is that an un
 ## Manage unhandled exceptions in developer code
 
 If you want users to be able to continue using an app after an error occurs (for example, when loading or saving data), develop the app with error handling logic. C# [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statements are useful in error handling scenarios and are a suggested approach in later sections of this article that describe potential sources of unhandled exceptions.
-
-The structure of a `try-catch` statement includes two *blocks* of code:
-
-* The `try` block contains code that may throw an exception.
-* The `catch` block contains code that executes when an exception occurs in the `try` block.
-
-```csharp
-try
-{
-    ...
-}
-catch (Exception ex)
-{
-    ...
-}
-```
-
-In many C# development scenarios, trapping *all exceptions* with <xref:System.Exception?displayProperty=fullName> isn't considered a *best practice*. Usually, a more specific exception is trapped because:
-
-* You should only catch those exceptions that you know how to recover from.
-* Specific exceptions can be handled in a fine-grained manner:
-  * Specific method calls and property settings can be made by the app for a specific error condition.
-  * Specific error messages can be logged and shown to the user.
-
-In Blazor exception scenarios, however, we recommend trapping all exceptions in components where unhandled exceptions may occur. Trapping all exceptions provides an opportunity to:
-
-* Update the rendered component UI with a general exception message for the user.
-* Log a general exception for debugging.
-
-This approach usually avoids a circuit failure and allows a user to continue interacting with a component.
-
-`try-catch` statements can be nested inside of other `try-catch` statements. When nested statements are used, more specific exceptions can be caught before the most general type of exception is trapped with `System.Exception`.
-
-For more information on `try-catch` statements, including how to nest statements, see the [try-catch statement guidance in the C# language reference](/dotnet/csharp/language-reference/keywords/try-catch).
 
 Be careful not to disclose sensitive information to end users. Under normal conditions in a production app, don't render framework exception messages or stack traces in the UI, as doing so may help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
@@ -91,7 +57,7 @@ Framework and app code may trigger unhandled exceptions in any of the following 
 
 ### Component instantiation
 
-When Blazor creates an instance of a component, it invokes the component's constructor and the constructors for any DI services supplied to the component's constructor via the [@inject](xref:blazor/dependency-injection#request-a-service-in-a-component) directive or the [[Inject]](xref:blazor/dependency-injection#request-a-service-in-a-component) attribute. If any of the executed constructors throw an exception, or if a setter for any `[Inject]` properties throw an exception, it's fatal to the circuit because it's impossible for the framework to instantiate the component.
+When Blazor creates an instance of a component, it invokes the component's constructor and the constructors for any DI services supplied to the component's constructor via the [@inject](xref:blazor/dependency-injection#request-a-service-in-a-component) directive or the [[Inject]](xref:blazor/dependency-injection#request-a-service-in-a-component) attribute. If any of the executed constructors throw an exception, or if a setter for any `[Inject]` properties throw an exception, it's fatal to the circuit because it's impossible for the framework to instantiate the component. If constructor logic may throw exceptions, the app should trap exceptions using a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
 ### Lifecycle methods
 
@@ -178,7 +144,7 @@ Blazor components can be prerendered using `Html.RenderComponentAsync` so that t
 
 If any component throws an unhandled exception during prerendering, for example during a lifecycle method or in rendering logic, it's fatal to the circuit. Additionally, the exception is thrown up the call stack from the `Html.RenderComponentAsync` call, so the entire HTTP request fails unless the exception is explicitly caught by developer code.
 
-Under normal circumstances when prerendering fails, continuing to build and render the component doesn't make sense given that a working component can't be rendered for the user. To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging.
+Under normal circumstances when prerendering fails, continuing to build and render the component doesn't make sense given that a working component can't be rendered for the user. To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging. Instead of wrapping the call to `RenderComponentAsync` in a `try-catch` statement, place error handling logic in the component rendered by `RenderComponentAsync`.
 
 ## Advanced scenarios
 
@@ -197,7 +163,7 @@ Infinite loops during rendering causes the rendering process to continue forever
 * Consume as much CPU time as permitted by the operating system, indefinitely.
 * Consume an unlimited amount of server memory, which is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
 
-To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions or enforces invariants (provide logic that imposes a strict specification on recursive sections of code to prevent such code from executing infinitely).
+To avoid infinite recursion patterns, ensure that recursive rendering code contains suitable stopping conditions.
 
 ### Custom render tree logic
 
