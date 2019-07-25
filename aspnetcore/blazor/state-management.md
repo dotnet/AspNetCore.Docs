@@ -5,7 +5,7 @@ description: Learn how to persist state in Blazor server-side apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/20/2019
+ms.date: 07/25/2019
 uid: blazor/state-management
 ---
 # ASP.NET Core Blazor state management
@@ -30,7 +30,7 @@ If a user experiences a temporary network connection loss, Blazor attempts to re
 However, reconnecting a user to their original circuit in the server's memory isn't always possible:
 
 * The server can't retain a disconnected circuit forever. The server must release a disconnected circuit after a timeout or when the server is under memory pressure. The timeout and retention limits are configurable.
-* In multiserver, load-balanced deployment environments, any server processing requests may become available at any given time. Individual servers may fail or be automatically removed when no longer required to handle the overall volume of requests.
+* In multiserver, load-balanced deployment environments, any server processing requests may become unavailable at any given time. Individual servers may fail or be automatically removed when no longer required to handle the overall volume of requests. The original server may not be available when the user attempts to reconnect.
 * The user might close and reopen their browser or reload the page, which removes any state held in the browser's memory, such as values set through JavaScript interop calls.
 
 When a user can't be reconnected to their original circuit, the user receives a new circuit with an empty state. This is equivalent to closing and re-opening a desktop app.
@@ -160,7 +160,7 @@ private async Task IncrementCount()
 
 In larger, more realistic apps, storage of individual fields is an unlikely scenario. Apps are more likely to store entire model objects that include complex state. `ProtectedSessionStore` automatically JSON serializes and deserializes any data provided.
 
-In the preceding code example, the `currentCount` data is stored as `sessionStorage['count']` in the user's browser. If `sessionStorage['count']` is evaluated in the browser's developer console, the data isn't stored in plaintext but rather is protected using ASP.NET Core's [Data Protection](xref:security/data-protection/introduction).
+In the preceding code example, the `currentCount` data is stored as `sessionStorage['count']` in the user's browser. The data isn't stored in plaintext but rather is protected using ASP.NET Core's [Data Protection](xref:security/data-protection/introduction). The encrypted data can be seen if `sessionStorage['count']` is evaluated in the browser's developer console.
 
 To recover the `currentCount` data if the user returns to the `Counter` component later (including if they're on an entirely new circuit), use `ProtectedSessionStore.GetAsync`:
 
