@@ -20,7 +20,7 @@ This tutorial adds sorting, filtering, and paging functionality to the Students 
 
 The following illustration shows a completed page. The column headings are clickable links to sort the column. Click a column heading repeatedly to switch between ascending and descending sort order.
 
-![Students index page](sort-filter-page/_static/paging.png)
+![Students index page](sort-filter-page/_static/paging30.png)
 
 ## Add sorting
 
@@ -153,7 +153,7 @@ Currently, when a column heading sort link is selected, the filter value from th
 
 In this section, a `PaginatedList` class is created to support paging. The `PaginatedList` class uses `Skip` and `Take` statements to filter data on the server instead of retrieving all rows of the table. The following illustration shows the paging buttons.
 
-![Students index page with paging links](sort-filter-page/_static/paging.png)
+![Students index page with paging links](sort-filter-page/_static/paging30.png)
 
 ### Create the PaginatedList class
 
@@ -225,7 +225,7 @@ Run the app and navigate to the students page.
 * To make sure paging works, click the paging links in different sort orders.
 * To verify that paging works correctly with sorting and filtering, enter a search string and try paging.
 
-![students index page with paging links](sort-filter-page/_static/paging.png)
+![students index page with paging links](sort-filter-page/_static/paging30.png)
 
 <!-- Group by function not working in EF Core 3.0
 ## Create an About page
@@ -259,7 +259,7 @@ Create a *Pages/About.cshtml* file with the following code:
 
 Run the app and navigate to the About page. The count of students for each enrollment date is displayed in a table.
 
-![About page](sort-filter-page/_static/about.png)
+![About page](sort-filter-page/_static/about30.png)
 
 -->
 

@@ -48,9 +48,9 @@ If you run into a problem you can't resolve, compare your code to the [completed
 
 The app built in these tutorials is a basic university web site. Users can view and update student, course, and instructor information. Here are a few of the screens created in the tutorial.
 
-![Students Index page](intro/_static/students-index.png)
+![Students Index page](intro/_static/students-index30.png)
 
-![Students Edit page](intro/_static/student-edit.png)
+![Students Edit page](intro/_static/student-edit30.png)
 
 The UI style of this site is based on the built-in project templates. The tutorial's focus is on how to use EF Core, not how to customize the UI.
 
@@ -207,8 +207,6 @@ In this section, you use the ASP.NET Core scaffolding tool to generate:
   * Change the data context class folder from *Models* to *Data*
   * Change the data context class name from *ContosoUniversityContext* to *SchoolContext*.
   * Make sure the context class is *ContosoUniversity.Data.SchoolContext*, and select **Add**.
-
-  ![Scaffolding dialog](intro/_static/s1.png)
 
 The following packages are automatically installed:
 

@@ -17,8 +17,8 @@ By [Tom Dykstra](https://github.com/tdykstra), and [Rick Anderson](https://twitt
 
 This tutorial shows how to update related data. The following illustrations shows some of the completed pages.
 
-![Course Edit page](update-related-data/_static/course-edit.png)
-![Instructor Edit page](update-related-data/_static/instructor-edit-courses.png)
+![Course Edit page](update-related-data/_static/course-edit30.png)
+![Instructor Edit page](update-related-data/_static/instructor-edit-courses30.png)
 
 ## Create a base class
 
@@ -36,7 +36,7 @@ The Create and Edit page model classes will derive from `DepartmentNamePageModel
 
 A Course is assigned to a Department. The base class for the Create and Edit pages provides a `SelectList` for selecting the department. The drop-down list that uses the `SelectList` sets the `Course.DepartmentID` foreign key (FK) property. EF Core uses the `Course.DepartmentID` FK to load the `Department` navigation property.
 
-![Create course](update-related-data/_static/ddl.png)
+![Create course](update-related-data/_static/ddl30.png)
 
 Update the Create page model with the following code:
 
@@ -143,7 +143,7 @@ Verify you can change an instructors office location.
 
 Instructors may teach any number of courses. In this section, you add the ability to change course assignments. The following image shows the updated instructor Edit page:
 
-![Instructor Edit page with courses](update-related-data/_static/instructor-edit-courses.png)
+![Instructor Edit page with courses](update-related-data/_static/instructor-edit-courses30.png)
 
 `Course`-`Instructor` is a many-to-many relationship. To add and remove relationships, you add and remove entities from the `CourseAssignments` join entity set.
 

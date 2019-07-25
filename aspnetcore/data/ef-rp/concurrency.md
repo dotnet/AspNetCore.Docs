@@ -36,15 +36,13 @@ Managing locks has disadvantages. It can be complex to program and can cause per
 
 Optimistic concurrency allows concurrency conflicts to happen, and then reacts appropriately when they do. For example, Jane visits the Department edit page and changes the budget for the English department from $350,000.00 to $0.00.
 
-![Changing budget to 0](concurrency/_static/change-budget.png)
+![Changing budget to 0](concurrency/_static/change-budget30.png)
 
 Before Jane clicks **Save**, John visits the same page and changes the Start Date field from 9/1/2007 to 9/1/2013.
 
-![Changing start date to 2013](concurrency/_static/change-date.png)
+![Changing start date to 2013](concurrency/_static/change-date30.png)
 
-Jane clicks **Save** first and sees her change when the browser displays the Index page.
-
-![Budget changed to zero](concurrency/_static/budget-zero.png)
+Jane clicks **Save** first and sees her change take effect, since the browser displays the Index page with zero as the Budget amount.
 
 John clicks **Save** on an Edit page that still shows a budget of $350,000.00. What happens next is determined by how you handle concurrency conflicts:
 
@@ -292,21 +290,19 @@ The two browser tabs display the same information.
 
 Change the name in the first browser tab and click **Save**.
 
-![Department Edit page 1 after change](concurrency/_static/edit-after-change-1.png)
+![Department Edit page 1 after change](concurrency/_static/edit-after-change-130.png)
 
 The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it's displayed on the second postback in the other tab.
 
 Change a different field in the second browser tab.
 
-![Department Edit page 2 after change](concurrency/_static/edit-after-change-2.png)
+![Department Edit page 2 after change](concurrency/_static/edit-after-change-230.png)
 
 Click **Save**. You see error messages for all fields that don't match the database values:
 
-![Department Edit page error message](concurrency/_static/edit-error.png)
+![Department Edit page error message](concurrency/_static/edit-error30.png)
 
 This browser window didn't intend to change the Name field. Copy and paste the current value (Languages) into the Name field. Tab out. Client-side validation removes the error message.
-
-![Department Edit page error message](concurrency/_static/cv.png)
 
 Click **Save** again. The value you entered in the second browser tab is saved. You see the saved values in the Index page.
 

@@ -20,9 +20,9 @@ This tutorial shows how to read and display related data. Related data is data t
 
 The following illustrations show the completed pages for this tutorial:
 
-![Courses Index page](read-related-data/_static/courses-index.png)
+![Courses Index page](read-related-data/_static/courses-index30.png)
 
-![Instructors Index page](read-related-data/_static/instructors-index.png)
+![Instructors Index page](read-related-data/_static/instructors-index30.png)
 
 ## Eager, explicit, and lazy loading
 
@@ -116,7 +116,7 @@ The following changes have been made to the scaffolded code:
 
 Run the app and select the **Courses** tab to see the list with department names.
 
-![Courses Index page](read-related-data/_static/courses-index.png)
+![Courses Index page](read-related-data/_static/courses-index30.png)
 
 <a name="select"></a>
 
@@ -143,7 +143,7 @@ See [IndexSelect.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/a
 This section scaffolds Instructors pages and adds related Courses and Enrollments to the Instructors Index page.
 
 <a name="IP"></a>
-![Instructors Index page](read-related-data/_static/instructors-index.png)
+![Instructors Index page](read-related-data/_static/instructors-index30.png)
 
 This page reads and displays related data in the following ways:
 
@@ -244,8 +244,6 @@ The preceding markup makes the following changes:
 
 Run the app and select the **Instructors** tab. The page displays the `Location` (office) from the related `OfficeAssignment` entity. If OfficeAssignment` is null, an empty table cell is displayed.
 
-![Instructors Index page nothing selected](read-related-data/_static/instructors-index-no-selection.png)
-
 Click on the **Select** link for an instructor. The row style changes.
 
 ### Add courses taught by selected instructor
@@ -286,8 +284,6 @@ The preceding markup displays a list of courses related to an instructor when an
 
 Test the app. Click on a **Select** link on the instructors page.
 
-![Instructors Index page instructor selected](read-related-data/_static/instructors-index-instructor-selected.png)
-
 ### Show student data
 
 In this section, the app is updated to show the student data for a selected course.
@@ -304,7 +300,7 @@ The preceding markup displays a list of the students who are enrolled in the sel
 
 Refresh the page and select an instructor. Select a course to see the list of enrolled students and their grades.
 
-![Instructors Index page instructor and course selected](read-related-data/_static/instructors-index.png)
+![Instructors Index page instructor and course selected](read-related-data/_static/instructors-index30.png)
 
 ## Using Single
 
@@ -565,8 +561,6 @@ The preceding markup makes the following changes:
 
 Run the app and select the **Instructors** tab. The page displays the `Location` (office) from the related `OfficeAssignment` entity. If OfficeAssignment` is null, an empty table cell is displayed.
 
-![Instructors Index page nothing selected](read-related-data/_static/instructors-index-no-selection.png)
-
 Click on the **Select** link. The row style changes.
 
 ### Add courses taught by selected instructor
@@ -609,8 +603,6 @@ Add the following markup to the end of the *Pages/Instructors/Index.cshtml* Razo
 The preceding markup displays a list of courses related to an instructor when an instructor is selected.
 
 Test the app. Click on a **Select** link on the instructors page.
-
-![Instructors Index page instructor selected](read-related-data/_static/instructors-index-instructor-selected.png)
 
 ### Show student data
 
