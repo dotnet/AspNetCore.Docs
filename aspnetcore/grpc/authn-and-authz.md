@@ -119,7 +119,7 @@ Configuring the gRPC client to use authentication will depend on the authenticat
 * Each gRPC call has an optional `CallOptions` argument. Custom headers can be sent using the option's headers collection.
 
 > [!NOTE]
-> Windows Authentication (NTLM/Kerberos/Negotiate) can't be used with gRPC. gRPC requires HTTP/2 and HTTP/2 does not support Windows Authentication.
+> Windows Authentication (NTLM/Kerberos/Negotiate) can't be used with gRPC. gRPC requires HTTP/2, and HTTP/2 doesn't support Windows Authentication.
 
 ## Authorize users to access services and service methods
 
