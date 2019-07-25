@@ -146,19 +146,6 @@ Build the project.
   Add-Migration RowVersion
   ```
 
-  This command:
-
-  * Creates the *Migrations/{time stamp}_RowVersion.cs* migration file.
-  * Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following highlighted code to the `BuildModel` method:
-
-    [!code-csharp[](intro/samples/cu30/Migrations/SchoolContextModelSnapshot.cs?name=snippet_Department&highlight=14-16)]
-
-* Run the following command in the PMC:
-
-  ```powershell
-  Update-Database
-  ```
-
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Run the following command in a terminal:
@@ -167,12 +154,24 @@ Build the project.
   dotnet ef migrations add RowVersion
   ```
 
-  This command:
+---
+
+This command:
 
 * Creates the *Migrations/{time stamp}_RowVersion.cs* migration file.
 * Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following highlighted code to the `BuildModel` method:
 
-  [!code-csharp[](intro/samples/cu30/Migrations/SchoolContextModelSnapshot.cs?name=snippet&highlight=14-16)]
+  [!code-csharp[](intro/samples/cu30/Migrations/SchoolContextModelSnapshot.cs?name=snippet_Department&highlight=15-17)]
+
+# [Visual Studio](#tab/visual-studio)
+
+* Run the following command in the PMC:
+
+  ```powershell
+  Update-Database
+  ```
+
+# [Visual Studio Code](#tab/visual-studio-code)
 
 * Open the `Migrations/<timestamp>_RowVersion.cs` file and add the highlighted code:
 
