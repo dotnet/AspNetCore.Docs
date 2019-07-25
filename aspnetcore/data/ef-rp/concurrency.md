@@ -178,7 +178,7 @@ Build the project.
 
 * Open the `Migrations/<timestamp>_RowVersion.cs` file and add the highlighted code:
 
-  [!code-csharp[](intro/samples/cu30/MigrationsSQLite/RowVersion.cs?highlight=16-42)]
+  [!code-csharp[](intro/samples/cu30/MigrationsSQLite/20190722151951_RowVersion.cs?highlight=16-42)]
 
   The preceding code:
 
