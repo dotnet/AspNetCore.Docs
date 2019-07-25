@@ -84,7 +84,7 @@ To display the name of the assigned department for a course:
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages/Courses --referenceScriptLibraries
   ```
 
-  On Windows, use the same commands but replace *Pages/Courses* with *Pages\Courses*. (Replace the forward slash with a backslash.)
+  On Windows, use the same command but replace *Pages/Courses* with *Pages\Courses*. (Replace the forward slash with a backslash.)
 
 ---
 
@@ -98,7 +98,7 @@ To display the name of the assigned department for a course:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Index.cshtml.cs?name=snippet_RevisedIndexMethod)]
 
-The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities are not tracked because they're not updated in the current context.
+The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities don't need to be tracked because they're not updated in the current context.
 
 Update *Pages/Courses/Index.cshtml* with the following highlighted markup:
 
@@ -148,8 +148,8 @@ This section scaffolds Instructors pages and adds related Courses and Enrollment
 This page reads and displays related data in the following ways:
 
 * The list of instructors displays related data from the `OfficeAssignment` entity (Office in the preceding image). The `Instructor` and `OfficeAssignment` entities are in a one-to-zero-or-one relationship. Eager loading is used for the `OfficeAssignment` entities. Eager loading is typically more efficient when the related data needs to be displayed. In this case, office assignments for the instructors are displayed.
-* When the user selects an instructor (Harui in the preceding image), related `Course` entities are displayed. The `Instructor` and `Course` entities are in a many-to-many relationship. Eager loading is used for the `Course` entities and their related `Department` entities. In this case, separate queries might be more efficient because only courses for the selected instructor are needed. This example shows how to use eager loading for navigation properties in entities that are in navigation properties.
-* When the user selects a course (Chemistry in the preceding image), related data from the `Enrollments` entity is displayed. In the preceding image, student name and grade are displayed. The `Course` and `Enrollment` entities are in a one-to-many relationship.
+* When the user selects an instructor, related `Course` entities are displayed. The `Instructor` and `Course` entities are in a many-to-many relationship. Eager loading is used for the `Course` entities and their related `Department` entities. In this case, separate queries might be more efficient because only courses for the selected instructor are needed. This example shows how to use eager loading for navigation properties in entities that are in navigation properties.
+* When the user selects a course, related data from the `Enrollments` entity is displayed. In the preceding image, student name and grade are displayed. The `Course` and `Enrollment` entities are in a one-to-many relationship.
 
 ### Create a view model
 
@@ -173,12 +173,12 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 
 * Create an *Instructors* folder in the *Pages* folder.
 
-* Run the following command to scaffold the Course model.
+* Run the following command to scaffold the Instructor pages.
 
   On Linux or macOS:
 
   ```console
-  dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages/Instructors --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages/Instructors --referenceScriptLibraries
   ```
 
   On Windows, use the same command but replace *Pages/Instructors* with *Pages\Instructors*. (Replace the forward slash with a backslash.)
@@ -195,10 +195,7 @@ Examine the query in the *Pages/Instructors/Index.cshtml.cs* file:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_ThenInclude)]
 
-The query has two includes:
-
-* `OfficeAssignment`: Displayed in the [instructors view](#IP).
-* `CourseAssignments`: Which brings in the courses taught.
+The code specifies eager loading for the `Instructor.OfficeAssignment` and the `Instructor.CourseAssignments` navigation properties. Within the `CourseAssignments` property, the `Course` property is loaded.
 
 ### Update the instructors Index page
 
@@ -255,7 +252,7 @@ Click on the **Select** link for an instructor. The row style changes.
 
 Update the `OnGetAsync` method in *Pages/Instructors/Index.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index2.cshtml.cs?name=snippet_OnGetAsync&highlight=1,8,16-25)]
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index2.cshtml.cs?name=snippet_OnGetAsync&highlight=1,8,16-26)]
 
 Add `public int CourseID { get; set; }`
 
@@ -265,20 +262,17 @@ Examine the updated query:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index2.cshtml.cs?name=snippet_ThenInclude)]
 
-The preceding query adds the `Department` entities.
+The preceding query adds eager loading for the `Course.Department` property.
 
 The following code executes when an instructor is selected (`id != null`). The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is loaded with the `Course` entities from that instructor's `CourseAssignments` navigation property.
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index2.cshtml.cs?name=snippet_ID)]
 
-The `Where` method returns a collection. In the preceding `Where` method, only a single `Instructor` entity is returned. The `Single` method converts the collection into a single `Instructor` entity. The `Instructor` entity provides access to the `CourseAssignments` property. `CourseAssignments` provides access to the related `Course` entities.
+The `Where` method returns a collection. But in this case, the filter will select a single entity. so the `Single` method is called to convert the collection into a single `Instructor` entity. The `Instructor` entity provides access to the `CourseAssignments` property. `CourseAssignments` provides access to the related `Course` entities.
 
 ![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
 
-The `Single` method is used on a collection when the collection has only one item. The `Single` method throws an exception if the collection is empty or if there's more than one item. An alternative is `SingleOrDefault`, which returns a default value (null in this case) if the collection is empty. Using `SingleOrDefault` on an empty collection:
-
-* Results in an exception (from trying to find a `Courses` property on a null reference).
-* The exception message would less clearly indicate the cause of the problem.
+The `Single` method is used on a collection when the collection has only one item. The `Single` method throws an exception if the collection is empty or if there's more than one item. An alternative is `SingleOrDefault`, which returns a default value (null in this case) if the collection is empty.
 
 The following code populates the view model's `Enrollments` property when a course is selected:
 
@@ -286,7 +280,7 @@ The following code populates the view model's `Enrollments` property when a cour
 
 Add the following highlighted markup to the end of the *Pages/Instructors/Index.cshtml* Razor Page:
 
-[!code-cshtml[](intro/samples/cu/Pages/Instructors/Index.cshtml?range=60-102&highlight=7-42)]
+[!code-cshtml[](intro/samples/cu/Pages/Instructors/Index.cshtml?range=60-102&highlight=8-43)]
 
 The preceding markup displays a list of courses related to an instructor when an instructor is selected.
 

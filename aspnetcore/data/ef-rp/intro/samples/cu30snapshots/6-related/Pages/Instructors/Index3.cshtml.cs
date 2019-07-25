@@ -26,17 +26,17 @@ namespace ContosoUniversity.Pages.Instructors
             InstructorData = new InstructorIndexData();
 #region snippet_ThenInclude
             InstructorData.Instructors = await _context.Instructors
-                  .Include(i => i.OfficeAssignment)                 
-                  .Include(i => i.CourseAssignments)
+                .Include(i => i.OfficeAssignment)                 
+                .Include(i => i.CourseAssignments)
                     .ThenInclude(i => i.Course)
                         .ThenInclude(i => i.Department)
-                    .Include(i => i.CourseAssignments)
-                        .ThenInclude(i => i.Course)
-                            .ThenInclude(i => i.Enrollments)
-                                .ThenInclude(i => i.Student)
-                  .AsNoTracking()
-                  .OrderBy(i => i.LastName)
-                  .ToListAsync();
+                .Include(i => i.CourseAssignments)
+                    .ThenInclude(i => i.Course)
+                        .ThenInclude(i => i.Enrollments)
+                            .ThenInclude(i => i.Student)
+                .AsNoTracking()
+                .OrderBy(i => i.LastName)
+                .ToListAsync();
 #endregion
 
             if (id != null)
