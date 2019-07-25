@@ -499,7 +499,7 @@ The preceding commands:
 * Adds the *Migrations/{time stamp}_RowVersion.cs* migration file.
 * Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following highlighted code to the `BuildModel` method:
 
-  [!code-csharp[](intro/samples/cu/Migrations/SchoolContextModelSnapshot2.cs?name=snippet&highlight=14-16)]
+  [!code-csharp[](intro/samples/cu/Migrations/SchoolContextModelSnapshot.cs?name=snippet&highlight=14-16)]
 
 * Runs migrations to update the DB.
 
