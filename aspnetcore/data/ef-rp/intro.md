@@ -54,6 +54,43 @@ The app built in these tutorials is a basic university web site. Users can view 
 
 The UI style of this site is based on the built-in project templates. The tutorial's focus is on how to use EF Core, not how to customize the UI.
 
+Follow the link at the top of the page to get the source code for the completed project. The cu30 folder has the code for this version of the tutorial. Files that reflect the state of the code for tutorials 1-7 can be found in the cu30snapshots folder. To run the app, download it and follow the instructions for Visual Studio (LocalDb) or Visual Studio Code (SQLite).
+
+# [Visual Studio](#tab/visual-studio)
+
+* Build the project.
+* In Package Manager Console (PMC) run the following command:
+
+  ```powershell
+  Update-Database
+  ```
+
+* Run the project to seed the database.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Delete *ContosoUniversity.csproj*, and rename *ContosoUniversitySQLite.csproj* to *ContosoUniversity.csproj*.
+* Delete *Startup.cs*, and rename *StartupSQLite.cs* to *Startup.cs*.
+* Delete *appSettings.json*, and rename *appSettingsSQLite.json* to *appSettings.json*.
+* Delete the *Migrations* folder, and rename *MigrationsSQL* to *Migrations*.
+* Build the project.
+* At a command prompt in the project folder, run the following commands:
+
+  ```console
+  dotnet tool install --global dotnet-ef --version 3.0.0-*
+  dotnet ef database update
+  ```
+
+* In your SQLite tool, run the following SQL statement:
+
+  ```sql
+  UPDATE Department SET RowVersion = randomblob(8)
+  ```
+
+* Run the project to seed the database.
+
+---
+
 ## Create the web app project
 
 # [Visual Studio](#tab/visual-studio)

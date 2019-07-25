@@ -12,6 +12,34 @@ namespace ContosoUniversity.Migrations
                 table: "Department",
                 rowVersion: true,
                 nullable: true);
+
+            migrationBuilder.Sql(
+            @"
+                UPDATE Department
+                SET RowVersion = randomblob(8)
+            ");
+
+            migrationBuilder.Sql(
+            @"
+                CREATE TRIGGER SetRowVersionOnUpdate
+                AFTER UPDATE ON Department
+                BEGIN
+                    UPDATE Department
+                    SET RowVersion = randomblob(8)
+                    WHERE rowid = NEW.rowid;
+                END
+            ");
+
+            migrationBuilder.Sql(
+            @"
+                CREATE TRIGGER SetRowVersionOnInsert
+                AFTER INSERT ON Department
+                BEGIN
+                    UPDATE Department
+                    SET RowVersion = randomblob(8)
+                    WHERE rowid = NEW.rowid;
+                END
+            ");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
