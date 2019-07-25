@@ -5,7 +5,7 @@ description: Overview of ASP.NET Core SignalR JavaScript client.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 04/17/2019
+ms.date: 06/28/2019
 uid: signalr/javascript-client
 ---
 # ASP.NET Core SignalR JavaScript client
@@ -20,12 +20,27 @@ The ASP.NET Core SignalR JavaScript client library enables developers to call se
 
 The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs.com/) package. If you're using Visual Studio, run `npm install` from the **Package Manager Console** while in the root folder. For Visual Studio Code, run the command from the **Integrated Terminal**.
 
+::: moniker range=">= aspnetcore-3.0"
+
+  ```console
+  npm init -y
+  npm install @microsoft/signalr
+  ```
+
+npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
   ```console
   npm init -y
   npm install @aspnet/signalr
   ```
 
 npm installs the package contents in the *node_modules\\@aspnet\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
+
+::: moniker-end
 
 ## Use the SignalR JavaScript client
 
@@ -202,9 +217,9 @@ If the second reconnect attempt fails, the third reconnect attempt will start in
 
 The custom behavior then diverges again from the default behavior by stopping after the third reconnect attempt failure instead of trying one more reconnect attempt in another 30 seconds like it would in the default configuration.
 
-If you want even more control over the timing and number of automatic reconnect attempts, `withAutomaticReconnect` accepts an object implementing the `IReconnectPolicy` interface, which has a single method named `nextRetryDelayInMilliseconds`.
+If you want even more control over the timing and number of automatic reconnect attempts, `withAutomaticReconnect` accepts an object implementing the `IRetryPolicy` interface, which has a single method named `nextRetryDelayInMilliseconds`.
 
-`nextRetryDelayInMilliseconds` takes two arguments, `previousRetryCount` and `elapsedMilliseconds`, which are both numbers. Before the first reconnect attempt, both `previousRetryCount` and `elapsedMilliseconds` will be zero. After each failed retry attempt, `previousRetryCount` will be incremented by one and `elapsedMilliseconds` will be updated to reflect the amount of time spent reconnecting so far in milliseconds.
+`nextRetryDelayInMilliseconds` takes a single argument with the type `RetryContext`. The `RetryContext` has three properties: `previousRetryCount`, `elapsedMilliseconds` and `retryReason` which are a `number`, a `number` and an `Error` respectively. Before the first reconnect attempt, both `previousRetryCount` and `elapsedMilliseconds` will be zero, and the `retryReason` will be the Error that caused the connection to be lost. After each failed retry attempt, `previousRetryCount` will be incremented by one, `elapsedMilliseconds` will be updated to reflect the amount of time spent reconnecting so far in milliseconds, and the `retryReason` will be the Error that caused the last reconnect attempt to fail.
 
 `nextRetryDelayInMilliseconds` must return either a number representing the number of milliseconds to wait before the next reconnect attempt or `null` if the `HubConnection` should stop reconnecting.
 
@@ -212,17 +227,16 @@ If you want even more control over the timing and number of automatic reconnect 
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("/chatHub")
     .withAutomaticReconnect({
-        nextRetryDelayInMilliseconds: (previousRetryCount, elapsedMilliseconds) => {
-            if (elapsedMilliseconds < 60000) {
-                // If we've been reconnecting for less than 60 seconds so far,
-                // wait between 0 and 10 seconds before the next reconnect attempt.
-                return Math.random() * 10000;
-            } else {
-                // If we've been reconnecting for more than 60 seconds so far, stop reconnecting.
-                return null;
-            }
-        }
-    })
+        nextRetryDelayInMilliseconds: retryContext => {
+          if (retryContext.elapsedMilliseconds < 60000) {
+            // If we've been reconnecting for less than 60 seconds so far,
+            // wait between 0 and 10 seconds before the next reconnect attempt.
+            return Math.random() * 10000;
+          } else {
+            // If we've been reconnecting for more than 60 seconds so far, stop reconnecting.
+            return null;
+          }
+        })
     .build();
 ```
 

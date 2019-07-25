@@ -5,7 +5,7 @@ description: Learn how to host ASP.NET Core apps on Windows Server Internet Info
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2019
+ms.date: 07/16/2019
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
@@ -332,7 +332,7 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
 
 ## Create the IIS site
 
-1. On the hosting system, create a folder to contain the app's published folders and files. An app's deployment layout is described in the [Directory Structure](xref:host-and-deploy/directory-structure) topic.
+1. On the hosting system, create a folder to contain the app's published folders and files. In a following step, the folder's path is provided to IIS as the physical path to the app. For more information on an app's deployment folder and file layout, see <xref:host-and-deploy/directory-structure>.
 
 1. In IIS Manager, open the server's node in the **Connections** panel. Right-click the **Sites** folder. Select **Add Website** from the contextual menu.
 
@@ -366,11 +366,11 @@ For more information, see [Configure Windows authentication](xref:security/authe
 
 ## Deploy the app
 
-Deploy the app to the folder created on the hosting system. [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) is the recommended mechanism for deployment.
+Deploy the app to the IIS **Physical path** folder that was established in the [Create the IIS site](#create-the-iis-site) section. [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) is the recommended mechanism for deployment, but several options exist for moving the app from the project's *publish* folder to the hosting system's deployment folder.
 
 ### Web Deploy with Visual Studio
 
-See the [Visual Studio publish profiles for ASP.NET Core app deployment](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles) topic to learn how to create a publish profile for use with Web Deploy. If the hosting provider provides a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish** dialog.
+See the [Visual Studio publish profiles for ASP.NET Core app deployment](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles) topic to learn how to create a publish profile for use with Web Deploy. If the hosting provider provides a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish** dialog:
 
 ![Publish dialog page](index/_static/pub-dialog.png)
 
@@ -380,11 +380,15 @@ See the [Visual Studio publish profiles for ASP.NET Core app deployment](xref:ho
 
 ### Alternatives to Web Deploy
 
-Use any of several methods to move the app to the hosting system, such as manual copy, Xcopy, Robocopy, or PowerShell.
+Use any of several methods to move the app to the hosting system, such as manual copy, [Xcopy](/windows-server/administration/windows-commands/xcopy), [Robocopy](/windows-server/administration/windows-commands/robocopy), or [PowerShell](/powershell/).
 
 For more information on ASP.NET Core deployment to IIS, see the [Deployment resources for IIS administrators](#deployment-resources-for-iis-administrators) section.
 
 ## Browse the website
+
+After the app is deployed to the hosting system, make a request to one of the app's public endpoints.
+
+In the following example, the site is bound to an IIS **Host name** of `www.mysite.com` on **Port** `80`. A request is made to `http://www.mysite.com`:
 
 ![The Microsoft Edge browser has loaded the IIS startup page.](index/_static/browsewebsite.png)
 
@@ -724,10 +728,10 @@ Learn about the directory structure of published ASP.NET Core apps.
 [Directory structure](xref:host-and-deploy/directory-structure)
 
 Discover active and inactive IIS modules for ASP.NET Core apps and how to manage IIS modules.  
-[IIS modules](xref:host-and-deploy/iis/troubleshoot)
+[IIS modules](xref:host-and-deploy/iis/modules)
 
 Learn how to diagnose problems with IIS deployments of ASP.NET Core apps.  
-[Troubleshoot](xref:host-and-deploy/iis/troubleshoot)
+[Troubleshoot](xref:test/troubleshoot-azure-iis)
 
 Distinguish common errors when hosting ASP.NET Core apps on IIS.  
 [Common errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)

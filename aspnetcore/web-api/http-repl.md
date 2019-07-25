@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/12/2019
+ms.date: 07/25/2019
 uid: web-api/http-repl
 ---
 # Test web APIs with the HTTP REPL
@@ -15,7 +15,8 @@ By [Scott Addie](https://twitter.com/Scott_Addie)
 The HTTP Read-Eval-Print Loop (REPL) is:
 
 * A lightweight, cross-platform command-line tool that's supported everywhere .NET Core is supported.
-* Used for making HTTP requests to test ASP.NET Core web APIs and view their results.
+* Used for making HTTP requests to test ASP.NET Core web APIs (and non-ASP.NET Core web APIs) and view their results.
+* Capable of testing web APIs hosted in any environment, including localhost and Azure App Service.
 
 The following [HTTP verbs](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods) are supported:
 
@@ -38,13 +39,10 @@ To follow along, [view or download the sample ASP.NET Core web API](https://gith
 To install the HTTP REPL, run the following command:
 
 ```console
-dotnet tool install -g dotnet-httprepl
-    --version 2.2.0-*
-    --add-source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json
+dotnet tool install -g Microsoft.dotnet-httprepl --version "3.0.0-*"
 ```
 
-A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [dotnet-httprepl](https://dotnet.myget.org/feed/dotnet-core/package/nuget/dotnet-httprepl
-) NuGet package hosted on MyGet.
+A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl) NuGet package.
 
 ## Usage
 
@@ -67,53 +65,54 @@ dotnet httprepl --help
 The following output is displayed:
 
 ```console
-Usage: dotnet httprepl [<BASE_ADDRESS>] [options]
+Usage:
+  dotnet httprepl [<BASE_ADDRESS>] [options]
 
 Arguments:
   <BASE_ADDRESS> - The initial base address for the REPL.
 
 Options:
-  --help - Show help information.
+  -h|--help - Show help information.
 
-REPL Commands:
+Once the REPL starts, these commands are valid:
 
 HTTP Commands:
 Use these commands to execute requests against your application.
 
-GET            Issues a GET request.
-POST           Issues a POST request.
-PUT            Issues a PUT request.
-DELETE         Issues a DELETE request.
-PATCH          Issues a PATCH request.
-HEAD           Issues a HEAD request.
-OPTIONS        Issues an OPTIONS request.
+GET            get - Issues a GET request
+POST           post - Issues a POST request
+PUT            put - Issues a PUT request
+DELETE         delete - Issues a DELETE request
+PATCH          patch - Issues a PATCH request
+HEAD           head - Issues a HEAD request
+OPTIONS        options - Issues a OPTIONS request
 
 set header     Sets or clears a header for all requests. e.g. `set header content-type application/json`
-
 
 Navigation Commands:
 The REPL allows you to navigate your URL space and focus on specific APIs that you are working on.
 
 set base       Set the base URI. e.g. `set base http://locahost:5000`
-set swagger    Set the URI, relative to your base if set, of the Swagger document for this API. e.g. `set swagger /swagger/v1/swagger.json`
-ls             Show all endpoints for the current path.
-cd             Append the given directory to the currently selected path, or move up a path when using `cd ..`.
+set swagger    Sets the swagger document to use for information about the current server
+ls             Show all endpoints for the current path
+cd             Append the given directory to the currently selected path, or move up a path when using `cd ..`
 
 Shell Commands:
 Use these commands to interact with the REPL shell.
 
-clear          Removes all text from the shell.
-echo [on/off]  Turns request echoing on or off, show the request that was made when using request commands.
-exit           Exit the shell.
+clear          Removes all text from the shell
+echo [on/off]  Turns request echoing on or off, show the request that was made when using request commands
+exit           Exit the shell
 
 REPL Customization Commands:
 Use these commands to customize the REPL behavior.
 
-pref [get/set] Allows viewing or changing preferences, e.g. 'pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`
-run            Runs the script at the given path. A script is a set of commands that can be typed with one command per line.
-ui             Displays the Swagger UI page, if available, in the default browser.
+pref [get/set] Allows viewing or changing preferences, e.g. 'pref set editor.command.default 'C:\\Program Files\\Microsoft VS Code\\Code.exe'`
+run            Runs the script at the given path. A script is a set of commands that can be typed with one command per line
+ui             Displays the Swagger UI page, if available, in the default browser
 
-Use help <COMMAND> to learn more details about individual commands. e.g. `help get`
+Use `help <COMMAND>` for more detail on an individual command. e.g. `help get`.
+For detailed tool info, see https://aka.ms/http-repl-doc.
 ```
 
 The HTTP REPL offers command completion. Pressing the <kbd>Tab</kbd> key iterates through the list of commands that complete the characters or API endpoint that you typed. The following sections outline the available CLI commands.

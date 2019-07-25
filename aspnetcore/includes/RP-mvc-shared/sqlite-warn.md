@@ -4,13 +4,14 @@
 >
 >The workaround for the SQLite limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
 >
->* Renaming the existing table.
 >* Creating a new table.
 >* Copying data from the old table to the new table.
 >* Dropping the old table.
+>* Renaming the new table.
 >
 >For more information, see the following resources:
 >
 > * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
 > * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
 > * [Data seeding](/ef/core/modeling/data-seeding)
+  * [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)

@@ -7,7 +7,7 @@
 
 <h2>Invoke JavaScript functions from .NET methods</h2>
 
-<button type="button" class="btn btn-primary" @onclick="@TriggerJsPrompt">
+<button type="button" class="btn btn-primary" @onclick="TriggerJsPrompt">
     Trigger JavaScript Prompt
 </button>
 
@@ -48,7 +48,7 @@
 
 <!-- <snippet_JSInterop2> -->
 <button type="button" class="btn btn-primary"
-        @onclick="exampleJsFunctions.returnArrayAsyncJs()">
+        onclick="exampleJsFunctions.returnArrayAsyncJs()">
     Trigger .NET static method ReturnArrayAsync
 </button>
 
@@ -62,7 +62,7 @@
 <!-- </snippet_JSInterop2> -->
 
 <!-- <snippet_JSInterop3> -->
-<button type="button" class="btn btn-primary" @onclick="@TriggerNetInstanceMethod">
+<button type="button" class="btn btn-primary" @onclick="TriggerNetInstanceMethod">
     Trigger .NET instance method HelloHelper.SayHello
 </button>
 

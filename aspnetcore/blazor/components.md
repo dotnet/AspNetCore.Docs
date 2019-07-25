@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/05/2019
+ms.date: 07/24/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -116,6 +116,76 @@ The following `ParentComponent` can provide content for rendering the `ChildComp
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=7-8)]
 
+## Attribute splatting and arbitrary parameters
+
+Components can capture and render additional attributes in addition to the component's declared parameters. Additional attributes can be captured in a dictionary and then *splatted* onto an element when the component is rendered using the `@attributes` Razor directive. This scenario is useful when defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.
+
+In the following example, the first `<input>` element (`id="useIndividualParams"`) uses individual component parameters, while the second `<input>` element (`id="useAttributesDict"`) uses attribute splatting:
+
+```cshtml
+<input id="useIndividualParams"
+       maxlength="@Maxlength"
+       placeholder="@Placeholder"
+       required="@Required"
+       size="@Size" />
+
+<input id="useAttributesDict"
+       @attributes="InputAttributes" />
+
+@code {
+    [Parameter]
+    private string Maxlength { get; set; } = "10";
+
+    [Parameter]
+    private string Placeholder { get; set; } = "Input placeholder text";
+
+    [Parameter]
+    private string Required { get; set; } = "required";
+
+    [Parameter]
+    private string Size { get; set; } = "50";
+
+    [Parameter]
+    private Dictionary<string, object> InputAttributes { get; set; } =
+        new Dictionary<string, object>()
+        {
+            { "maxlength", "10" }, 
+            { "placeholder", "Input placeholder text" }, 
+            { "required", "true" }, 
+            { "size", "50" }
+        };
+}
+```
+
+The type of the parameter must implement `IEnumerable<KeyValuePair<string, object>>` with string keys. Using `IReadOnlyDictionary<string, object>` is also an option in this scenario.
+
+The rendered `<input>` elements using both approaches is identical:
+
+```html
+<input id="useIndividualParams"
+       maxlength="10"
+       placeholder="Input placeholder text"
+       required="required"
+       size="50">
+
+<input id="useAttributesDict"
+       maxlength="10"
+       placeholder="Input placeholder text"
+       required="true"
+       size="50">
+```
+
+To accept arbitrary attributes, define a component parameter using the `[Parameter]` attribute with the `CaptureUnmatchedValues` property set to `true`:
+
+```cshtml
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    private Dictionary<string, object> InputAttributes { get; set; }
+}
+```
+
+The `CaptureUnmatchedValues` property on `[Parameter]` allows the parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with `CaptureUnmatchedValues`. The property type used with `CaptureUnmatchedValues` must be assignable from `Dictionary<string, object>` with string keys. `IEnumerable<KeyValuePair<string, object>>` or `IReadOnlyDictionary<string, object>` are also options in this scenario.
+
 ## Data binding
 
 Data binding to both components and DOM elements is accomplished with the `@bind` attribute. The following example binds the `_italicsCheck` field to the check box's checked state:
@@ -194,7 +264,7 @@ The following parent component uses `ChildComponent` and binds the `ParentYear` 
 
 <ChildComponent @bind-Year="ParentYear" />
 
-<button class="btn btn-primary" @onclick="@ChangeTheYear">
+<button class="btn btn-primary" @onclick="ChangeTheYear">
     Change Year to 1986
 </button>
 
@@ -254,7 +324,7 @@ Razor components provide event handling features. For an HTML element attribute 
 The following code calls the `UpdateHeading` method when the button is selected in the UI:
 
 ```cshtml
-<button class="btn btn-primary" @onclick="@UpdateHeading">
+<button class="btn btn-primary" @onclick="UpdateHeading">
     Update heading
 </button>
 
@@ -269,7 +339,7 @@ The following code calls the `UpdateHeading` method when the button is selected 
 The following code calls the `CheckChanged` method when the check box is changed in the UI:
 
 ```cshtml
-<input type="checkbox" class="form-check-input" @onchange="@CheckChanged" />
+<input type="checkbox" class="form-check-input" @onchange="CheckboxChanged" />
 
 @code {
     private void CheckChanged()
@@ -284,7 +354,7 @@ Event handlers can also be asynchronous and return a <xref:System.Threading.Task
 In the following example, `UpdateHeading` is called asynchronously when the button is selected:
 
 ```cshtml
-<button class="btn btn-primary" @onclick="@UpdateHeading">
+<button class="btn btn-primary" @onclick="UpdateHeading">
     Update heading
 </button>
 
@@ -902,13 +972,13 @@ In the sample app, the `CascadingValuesParametersTheme` component binds the `The
 <p>Current count: @currentCount</p>
 
 <p>
-    <button class="btn" @onclick="@IncrementCount">
+    <button class="btn" @onclick="IncrementCount">
         Increment Counter (Unthemed)
     </button>
 </p>
 
 <p>
-    <button class="btn @ThemeInfo.ButtonClass" @onclick="@IncrementCount">
+    <button class="btn @ThemeInfo.ButtonClass" @onclick="IncrementCount">
         Increment Counter (Themed)
     </button>
 </p>
@@ -1017,7 +1087,7 @@ In the following example, the loop in the `CreateComponent` method generates thr
 
 @CustomRender
 
-<button type="button" @onclick="@RenderComponent">
+<button type="button" @onclick="RenderComponent">
     Create three Pet Details components
 </button>
 

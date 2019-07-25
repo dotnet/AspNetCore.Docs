@@ -5,7 +5,7 @@ description: Obtain troubleshooting advice for common errors when hosting ASP.NE
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/12/2019
+ms.date: 07/10/2019
 uid: host-and-deploy/azure-iis-errors-reference
 ---
 # Common errors reference for Azure App Service and IIS with ASP.NET Core
@@ -18,12 +18,12 @@ Collect the following information:
 
 * Browser behavior (status code and error message)
 * Application Event Log entries
-  * Azure App Service &ndash; See <xref:host-and-deploy/azure-apps/troubleshoot>.
+  * Azure App Service &ndash; See <xref:test/troubleshoot-azure-iis>.
   * IIS
     1. Select **Start** on the **Windows** menu, type *Event Viewer*, and press **Enter**.
     1. After the **Event Viewer** opens, expand **Windows Logs** > **Application** in the sidebar.
 * ASP.NET Core Module stdout and debug log entries
-  * Azure App Service &ndash; See <xref:host-and-deploy/azure-apps/troubleshoot>.
+  * Azure App Service &ndash; See <xref:test/troubleshoot-azure-iis>.
   * IIS &ndash; Follow the instructions in the [Log creation and redirection](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) and [Enhanced diagnostic logs](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) sections of the ASP.NET Core Module topic.
 
 Compare error information to the following common errors. If a match is found, follow the troubleshooting advice.
@@ -115,7 +115,7 @@ For an x86 framework-dependent deployment (`<PlatformTarget>x86</PlatformTarget>
 
 Troubleshooting:
 
-* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see [Troubleshoot (IIS)](xref:host-and-deploy/iis/troubleshoot) or [Troubleshoot (Azure App Service)](xref:host-and-deploy/azure-apps/troubleshoot).
+* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see <xref:test/troubleshoot-azure-iis>.
 
 * If this exception occurs for an Azure Apps deployment when upgrading an app and deploying newer assemblies, manually delete all files from the prior deployment. Lingering incompatible assemblies can result in a `System.BadImageFormatException` exception when deploying an upgraded app.
 
@@ -225,7 +225,7 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see [Troubleshoot (IIS)](xref:host-and-deploy/iis/troubleshoot) or [Troubleshoot (Azure App Service)](xref:host-and-deploy/azure-apps/troubleshoot).
+* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see <xref:test/troubleshoot-azure-iis>.
 
 * Check the *processPath* attribute on the `<aspNetCore>` element in *web.config* to confirm that it's `dotnet` for a framework-dependent deployment (FDD) or `.\{ASSEMBLY}.exe` for a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
 
@@ -271,7 +271,7 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see [Troubleshoot (IIS)](xref:host-and-deploy/iis/troubleshoot) or [Troubleshoot (Azure App Service)](xref:host-and-deploy/azure-apps/troubleshoot).
+* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see <xref:test/troubleshoot-azure-iis>.
 
 * Examine the *arguments* attribute on the `<aspNetCore>` element in *web.config* to confirm that it's either (a) `.\{ASSEMBLY}.dll` for a framework-dependent deployment (FDD); or (b) not present, an empty string (`arguments=""`), or a list of the app's arguments (`arguments="{ARGUMENT_1}, {ARGUMENT_2}, ... {ARGUMENT_X}"`) for a self-contained deployment (SCD).
 
@@ -401,6 +401,5 @@ The process failed to start, most likely due to an app configuration or programm
 
 For more information, see the following topics:
 
-* <xref:host-and-deploy/iis/troubleshoot>
-* <xref:host-and-deploy/azure-apps/troubleshoot>
+* <xref:test/troubleshoot-azure-iis>
 * <xref:test/troubleshoot>

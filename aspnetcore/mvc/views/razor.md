@@ -576,9 +576,6 @@ The `@attribute` directive adds the given attribute to the class of the generate
 @attribute [Authorize]
 ```
 
-> [!WARNING]
-> In ASP.NET Core 3.0 Preview 6 release, there's a known issue where `@attribute` directives don't work in *\_Imports.razor* and *\_ViewImports.cshtml* files. This will be addressed in the Preview 7 release.
-
 ### @namespace
 
 The `@namespace` directive sets the namespace of the class of the generated page or view:

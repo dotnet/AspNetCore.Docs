@@ -195,8 +195,6 @@
       uid: fundamentals/http-requests
     - name: Static files
       uid: fundamentals/static-files
-    - name: Code generator
-      uid: fundamentals/tools/dotnet-aspnet-codegenerator
 - name: Web apps
   items:
     - name: Razor Pages
@@ -406,6 +404,8 @@
           uid: mvc/controllers/areas
         - name: App parts
           uid: mvc/extensibility/app-parts
+        - name: aspnet-codegenerator
+          uid: fundamentals/tools/dotnet-aspnet-codegenerator
 - name: Web API apps
   items:
     - name: Overview
@@ -537,6 +537,10 @@
       uid: grpc/aspnetcore
     - name: Configuration
       uid: grpc/configuration
+    - name: Authentication and authorization
+      uid: grpc/authn-and-authz
+    - name: Security considerations
+      uid: grpc/security
     - name: Migrating gRPC services from C Core to ASP.NET Core
       uid: grpc/migration
     - name: Comparing gRPC services with HTTP APIs
@@ -563,6 +567,10 @@
       uid: test/troubleshoot
     - name: Logging
       uid: fundamentals/logging/index
+    - name: Troubleshoot Azure and IIS
+      uid: test/troubleshoot-azure-iis
+    - name: Azure and IIS errors reference
+      uid: host-and-deploy/azure-iis-errors-reference
 - name: Data access
   items:
     - name: Tutorials
@@ -659,7 +667,7 @@
           uid: host-and-deploy/aspnet-core-module
         - name: Troubleshoot
           displayName: azure, deploy, publish
-          uid: host-and-deploy/azure-apps/troubleshoot
+          uid: test/troubleshoot-azure-iis
         - name: Errors reference
           displayName: azure, deploy, publish
           uid: host-and-deploy/azure-iis-errors-reference
@@ -700,7 +708,7 @@
           uid: host-and-deploy/iis/modules
         - name: Troubleshoot
           displayName: deploy, publish
-          uid: host-and-deploy/iis/troubleshoot
+          uid: test/troubleshoot-azure-iis
         - name: Errors reference
           displayName: deploy, publish
           uid: host-and-deploy/azure-iis-errors-reference
@@ -821,9 +829,9 @@
           uid: security/authentication/identity-enable-qrcodes
         - name: Two-factor authentication with SMS
           uid: security/authentication/2fa
-        - name: Use Cookie Authentication without Identity
+        - name: Use cookie authentication without Identity
           uid: security/authentication/cookie
-        - name: Use social Authentication without Identity
+        - name: Use social authentication without Identity
           uid: security/authentication/social/social-without-identity
         - name: Azure Active Directory
           items:
