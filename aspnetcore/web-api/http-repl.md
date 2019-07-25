@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/23/2019
+ms.date: 07/25/2019
 uid: web-api/http-repl
 ---
 # Test web APIs with the HTTP REPL
@@ -15,7 +15,8 @@ By [Scott Addie](https://twitter.com/Scott_Addie)
 The HTTP Read-Eval-Print Loop (REPL) is:
 
 * A lightweight, cross-platform command-line tool that's supported everywhere .NET Core is supported.
-* Used for making HTTP requests to test ASP.NET Core web APIs and view their results.
+* Used for making HTTP requests to test ASP.NET Core web APIs (and non-ASP.NET Core web APIs) and view their results.
+* Capable of testing web APIs hosted in any environment, including localhost and Azure App Service.
 
 The following [HTTP verbs](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods) are supported:
 
