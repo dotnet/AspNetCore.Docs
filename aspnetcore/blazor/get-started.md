@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/23/2019
+ms.date: 07/26/2019
 uid: blazor/get-started
 ---
 # Get started with ASP.NET Core Blazor
@@ -146,7 +146,7 @@ Run the app. The homepage has its own counter provided by the `Counter` componen
 
 Component parameters are specified using attributes or [child content](xref:blazor/components#child-content), which allow you to set properties on the child component. To add a parameter to the `Counter` component, update the component's `@code` block:
 
-* Add a property for `IncrementAmount` with a `[Parameter]` attribute.
+* Add a public property for `IncrementAmount` with a `[Parameter]` attribute.
 * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
 
 *Pages/Counter.razor*:
