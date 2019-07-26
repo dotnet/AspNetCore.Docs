@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 06/12/2019
+ms.date: 07/25/2019
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -204,7 +204,7 @@ The default language in a code block is C#, but the Razor Page can transition ba
 
 ### Explicit delimited transition
 
-To define a subsection of a code block that should render HTML, surround the characters for rendering with the Razor **\<text>** tag:
+To define a subsection of a code block that should render HTML, surround the characters for rendering with the Razor `<text>` tag:
 
 ```cshtml
 @for (var i = 0; i < people.Length; i++)
@@ -216,12 +216,12 @@ To define a subsection of a code block that should render HTML, surround the cha
 
 Use this approach to render HTML that isn't surrounded by an HTML tag. Without an HTML or Razor tag, a Razor runtime error occurs.
 
-The **\<text>** tag is useful to control whitespace when rendering content:
+The `<text>` tag is useful to control whitespace when rendering content:
 
-* Only the content between the **\<text>** tag is rendered.
-* No whitespace before or after the **\<text>** tag appears in the HTML output.
+* Only the content between the `<text>` tag is rendered.
+* No whitespace before or after the `<text>` tag appears in the HTML output.
 
-### Explicit Line Transition with @:
+### Explicit line transition with \@&colon;
 
 To render the rest of an entire line as HTML inside a code block, use the `@:` syntax:
 
@@ -241,7 +241,7 @@ Warning: Extra `@` characters in a Razor file can cause compiler errors at state
 
 Control structures are an extension of code blocks. All aspects of code blocks (transitioning to markup, inline C#) also apply to the following structures:
 
-### Conditionals @if, else if, else, and @switch
+### Conditionals \@if, else if, else, and \@switch
 
 `@if` controls when code runs:
 
@@ -286,7 +286,7 @@ The following markup shows how to use a switch statement:
 }
 ```
 
-### Looping @for, @foreach, @while, and @do while
+### Looping \@for, \@foreach, \@while, and \@do while
 
 Templated HTML can be rendered with looping control statements. To render a list of people:
 
@@ -352,7 +352,7 @@ The following looping statements are supported:
 } while (i < people.Length);
 ```
 
-### Compound @using
+### Compound \@using
 
 In C#, a `using` statement is used to ensure an object is disposed. In Razor, the same mechanism is used to create HTML Helpers that contain additional content. In the following code, HTML Helpers render a form tag with the `@using` statement:
 
@@ -369,13 +369,13 @@ In C#, a `using` statement is used to ensure an object is disposed. In Razor, th
 
 Scope-level actions can be performed with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
 
-### @try, catch, finally
+### \@try, catch, finally
 
 Exception handling is similar to C#:
 
 [!code-cshtml[](razor/sample/Views/Home/Contact7.cshtml)]
 
-### @lock
+### \@lock
 
 Razor has the capability to protect critical sections with lock statements:
 
@@ -442,90 +442,46 @@ public class _Views_Something_cshtml : RazorPage<dynamic>
 
 Later in this article, the section [Inspect the Razor C# class generated for a view](#inspect-the-razor-c-class-generated-for-a-view) explains how to view this generated class.
 
-<a name="using"></a>
+### \@attribute
 
-### @using
-
-The `@using` directive adds the C# `using` directive to the generated view:
-
-[!code-cshtml[](razor/sample/Views/Home/Contact9.cshtml)]
-
-### @model
-
-The `@model` directive specifies the type of the model passed to a view:
+The `@attribute` directive adds the given attribute to the class of the generated page or view. The following example adds the `[Authorize]` attribute:
 
 ```cshtml
-@model TypeNameOfModel
+@attribute [Authorize]
 ```
 
-In an ASP.NET Core MVC app created with individual user accounts, the *Views/Account/Login.cshtml* view contains the following model declaration:
+::: moniker range=">= aspnetcore-3.0"
+
+### \@code
+
+The `@code` directive enables a [Razor component](xref:blazor/components) to add C# members (fields, properties, and methods) to a component:
 
 ```cshtml
-@model LoginViewModel
+@code {
+    // C# members
+}
 ```
 
-The class generated inherits from `RazorPage<dynamic>`:
+`@code` is an alias of [@functions](#functions) and recommended over `@functions` for Razor components. More than one `@code` directive is permissible.
 
-```csharp
-public class _Views_Account_Login_cshtml : RazorPage<LoginViewModel>
-```
+::: moniker-end
 
-Razor exposes a `Model` property for accessing the model passed to the view:
+### \@functions
+
+The `@functions` directive enables a Razor Page to add C# members (fields, properties, and methods) to a view:
 
 ```cshtml
-<div>The Login Email: @Model.Email</div>
+@functions {
+    // C# members
+}
 ```
 
-The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If the `@model` directive isn't specified, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the &commat;model keyword](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
+::: moniker range=">= aspnetcore-3.0"
 
-### @inherits
+> [!NOTE]
+> In [Razor components](xref:blazor/components), use `@code` over `@functions` to add C# members.
 
-The `@inherits` directive provides full control of the class the view inherits:
-
-```cshtml
-@inherits TypeNameOfClassToInheritFrom
-```
-
-The following code is a custom Razor page type:
-
-[!code-csharp[](razor/sample/Classes/CustomRazorPage.cs)]
-
-The `CustomText` is displayed in a view:
-
-[!code-cshtml[](razor/sample/Views/Home/Contact10.cshtml)]
-
-The code renders the following HTML:
-
-```html
-<div>Custom text: Gardyloo! - A Scottish warning yelled from a window before dumping a slop bucket on the street below.</div>
-```
-
- `@model` and `@inherits` can be used in the same view. `@inherits` can be in a *_ViewImports.cshtml* file that the view imports:
-
-[!code-cshtml[](razor/sample/Views/_ViewImportsModel.cshtml)]
-
-The following code is an example of a strongly-typed view:
-
-[!code-cshtml[](razor/sample/Views/Home/Login1.cshtml)]
-
-If "rick@contoso.com" is passed in the model, the view generates the following HTML markup:
-
-```html
-<div>The Login Email: rick@contoso.com</div>
-<div>Custom text: Gardyloo! - A Scottish warning yelled from a window before dumping a slop bucket on the street below.</div>
-```
-
-### @inject
-
-The `@inject` directive enables the Razor Page to inject a service from the [service container](xref:fundamentals/dependency-injection) into a view. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
-
-### @functions
-
-The `@functions` directive enables a Razor Page to add a C# code block to a view:
-
-```cshtml
-@functions { // C# Code }
-```
+::: moniker-end
 
 For example:
 
@@ -568,15 +524,114 @@ The code renders the following HTML:
 
 ::: moniker-end
 
-### @attribute
+### \@implements
 
-The `@attribute` directive adds the given attribute to the class of the generated page or view. The following example adds the `[Authorize]` attribute:
+Implements an interface for the generated component class.
+
+The following [Razor component](xref:blazor/components) implements <xref:System.IDisposable?displayProperty=fullName> so that the component can call the <xref:System.IDisposable.Dispose*> method:
 
 ```cshtml
-@attribute [Authorize]
+@page "/my-component"
+@implements IDisposable
+
+<h1>Example</h1>
+
+@code {
+    private bool _isDisposed;
+
+    protected override void OnInitialized()
+    {
+        ...
+    }
+
+    public void Dispose() => _isDisposed = true;
+}
 ```
 
-### @namespace
+### \@inherits
+
+The `@inherits` directive provides full control of the class the view inherits:
+
+```cshtml
+@inherits TypeNameOfClassToInheritFrom
+```
+
+The following code is a custom Razor page type:
+
+[!code-csharp[](razor/sample/Classes/CustomRazorPage.cs)]
+
+The `CustomText` is displayed in a view:
+
+[!code-cshtml[](razor/sample/Views/Home/Contact10.cshtml)]
+
+The code renders the following HTML:
+
+```html
+<div>
+    Custom text: Gardyloo! - A Scottish warning yelled from a window before dumping
+    a slop bucket on the street below.
+</div>
+```
+
+ `@model` and `@inherits` can be used in the same view. `@inherits` can be in a *_ViewImports.cshtml* file that the view imports:
+
+[!code-cshtml[](razor/sample/Views/_ViewImportsModel.cshtml)]
+
+The following code is an example of a strongly-typed view:
+
+[!code-cshtml[](razor/sample/Views/Home/Login1.cshtml)]
+
+If "rick@contoso.com" is passed in the model, the view generates the following HTML markup:
+
+```html
+<div>The Login Email: rick@contoso.com</div>
+<div>
+    Custom text: Gardyloo! - A Scottish warning yelled from a window before dumping
+    a slop bucket on the street below.
+</div>
+```
+
+### \@inject
+
+The `@inject` directive enables the Razor Page to inject a service from the [service container](xref:fundamentals/dependency-injection) into a view. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
+
+::: moniker range=">= aspnetcore-3.0"
+
+### \@layout
+
+Specifies a layout Razor component. Layout components are used to avoid code duplication and inconsistency. For more information, see <xref:blazor/layouts>.
+
+::: moniker-end
+
+### \@model
+
+The `@model` directive is an MVC scenario that specifies the type of the model passed to a view:
+
+```cshtml
+@model TypeNameOfModel
+```
+
+In an ASP.NET Core MVC app created with individual user accounts, the *Views/Account/Login.cshtml* view contains the following model declaration:
+
+```cshtml
+@model LoginViewModel
+```
+
+The class generated inherits from `RazorPage<dynamic>`:
+
+```csharp
+public class _Views_Account_Login_cshtml : RazorPage<LoginViewModel>
+```
+
+Razor exposes a `Model` property for accessing the model passed to the view:
+
+```cshtml
+<div>The Login Email: @Model.Email</div>
+```
+
+The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If the `@model` directive isn't specified, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the \@model keyword](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
+
+### \@namespace
 
 The `@namespace` directive sets the namespace of the class of the generated page or view:
 
@@ -595,9 +650,214 @@ If *MyApp/Pages/\_ViewImports.cshtml* contains `@namespace Hello.World`, the nam
 
 If multiple import files have the `@namespace` directive, the file closest to the page or view in the directory chain is used.
 
-### @section
+### \@page
 
-The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable pages or views to render content in different parts of the HTML page. For more information, see [Sections](xref:mvc/views/layout#layout-sections-label).
+::: moniker range=">= aspnetcore-3.0"
+
+The `@page` directive:
+
+* Turns a file into an MVC action, which means that the file handles requests directly, without going through a controller. For more information, see <xref:razor-pages/index>.
+* Specifies that a Razor component should handle requests directly. For more information, see <xref:blazor/routing>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+The `@page` directive turns a file into an MVC action, which means that the file handles requests directly, without going through a controller. For more information, see <xref:razor-pages/index>.
+
+::: moniker-end
+
+### \@section
+
+The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable pages or views to render content in different parts of the HTML page. For more information, see <xref:mvc/views/layout>.
+
+### \@using
+
+The `@using` directive adds the C# `using` directive to the generated view:
+
+[!code-cshtml[](razor/sample/Views/Home/Contact9.cshtml)]
+
+::: moniker range=">= aspnetcore-3.0"
+
+In [Razor components](xref:blazor/components), `@using` also controls which components are in scope.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+## Directive attributes
+
+### \@attributes
+
+Elements can capture and render additional attributes in addition to the element's declared parameters using the `@attributes` Razor directive. This scenario is useful when defining an element that supports a variety of customizations.
+
+In the following example, additional attributes are captured in a dictionary and then applied onto the `<input>` element when the element is rendered:
+
+```cshtml
+<input @attributes="InputAttributes" />
+
+@functions {
+    private Dictionary<string, object> InputAttributes { get; set; } =
+        new Dictionary<string, object>()
+        {
+            { "maxlength", "10" }, 
+            { "placeholder", "Placeholder text" }, 
+            { "required", "true" }, 
+            { "size", "50" }
+        };
+```
+
+The type must implement `IEnumerable<KeyValuePair<string, object>>` with string keys.
+
+The preceding code renders the following HTML markup:
+
+```html
+<input maxlength="10" placeholder="Placeholder text" required="required" size="50">
+```
+
+### \@bind
+
+**\@bind**
+
+Data binding is accomplished with the `@bind` attribute. The following example binds the `_check` field to the check box's checked state:
+
+```cshtml
+<input type="checkbox" @bind="_check" />
+```
+
+When the check box is selected and cleared, the property's value is updated to `true` and `false`, respectively.
+
+**\@bind-{property}**
+
+Binding recognizes Razor component parameters, where `@bind-{property}` can bind a property value across components. For more information, see <xref:blazor/components#data-binding>.
+
+**\@bind-value / \@bind-value:event**
+
+In addition to handling [onchange](#onevent) events with `@bind` syntax, a property or field can be bound using other events by specifying an `@bind-value` attribute with an `event` parameter. The following example binds the `CurrentValue` property for the `oninput` event:
+
+```cshtml
+<input @bind-value="CurrentValue" @bind-value:event="oninput" />
+```
+
+**\@bind:format**
+
+Data binding works with <xref:System.DateTime> format strings using `@bind:format`. Other format expressions, such as currency or number formats, aren't available at this time.
+
+```cshtml
+<input @bind="StartDate" @bind:format="yyyy-MM-dd" />
+
+@functions {
+    private DateTime _startDate = new DateTime(2020, 1, 1);
+}
+```
+
+The `@bind:format` attribute specifies the date format to apply to the `value` of the `<input>` element. The format is also used to parse the value when an `onchange` event occurs.
+
+### \@on{event}
+
+Razor provides event handling features. For an HTML element attribute named `on{event}` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor treats the attribute's value as an event handler. The attribute's name always starts with `@on`.
+
+The following HTML events are available:
+
+* `@onchange`
+* `@onclick`
+* `@oninput`
+* `@onsubmit`
+
+The following code calls the `UpdateHeading` method when the button is selected in the UI:
+
+```cshtml
+<button class="btn btn-primary" @onclick="UpdateHeading">
+    Update heading
+</button>
+
+@functions {
+    private void UpdateHeading(UIMouseEventArgs e)
+    {
+        ...
+    }
+}
+```
+
+Event handlers can also be asynchronous and return a <xref:System.Threading.Tasks.Task>:
+
+```
+@functions {
+    private async Task UpdateHeading(UIMouseEventArgs e)
+    {
+        ...
+    }
+}
+```
+
+**Event argument types**
+
+For some events, event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
+
+Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) are shown in the following table.
+
+| Event | Class |
+| ----- | ----- |
+| Clipboard | `UIClipboardEventArgs` |
+| Drag  | `UIDragEventArgs` &ndash; `DataTransfer` is used to hold the dragged data during a drag and drop operation and may hold one or more `UIDataTransferItem`. `UIDataTransferItem` represents one drag data item. |
+| Error | `UIErrorEventArgs` |
+| Focus | `UIFocusEventArgs` &ndash; Doesn't include support for `relatedTarget`. |
+| `<input>` change | `UIChangeEventArgs` |
+| Keyboard | `UIKeyboardEventArgs` |
+| Mouse | `UIMouseEventArgs` |
+| Mouse pointer | `UIPointerEventArgs` |
+| Mouse wheel | `UIWheelEventArgs` |
+| Progress | `UIProgressEventArgs` |
+| Touch | `UITouchEventArgs` &ndash; `UITouchPoint` represents a single contact point on a touch-sensitive device. |
+
+For information on the properties and event handling behavior of the events in the preceding table, see [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) in the reference source.
+
+**Lambda expressions**
+
+Lambda expressions can also be used:
+
+```cshtml
+<button @onclick="@(e => Console.WriteLine("Hello, world!"))">Say hello</button>
+```
+
+It's often convenient to close over additional values, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` passing an event argument (`UIMouseEventArgs`) and its button number (`buttonNumber`) when selected in the UI:
+
+```cshtml
+<h2>@message</h2>
+
+@for (var i = 1; i < 4; i++)
+{
+    var buttonNumber = i;
+
+    <button class="btn btn-primary"
+            @onclick="@(e => UpdateHeading(e, buttonNumber))">
+        Button #@i
+    </button>
+}
+
+@code {
+    private string message = "Select a button to learn its position.";
+
+    private void UpdateHeading(UIMouseEventArgs e, int buttonNumber)
+    {
+        message = $"You selected Button #{buttonNumber} at " +
+            $"mouse position: {e.ClientX} X {e.ClientY}.";
+    }
+}
+```
+
+> [!NOTE]
+> Do **not** use the loop variable (`i`) in a `for` loop directly in a lambda expression. Otherwise the same variable is used by all lambda expressions causing `i`'s value to be the same in all lambdas. Always capture its value in a local variable (`buttonNumber` in the preceding example) and then use it.
+
+### \@key
+
+The `@key` directive attribute causes the Razor components diffing algorithm to guarantee preservation of elements or components based on the key's value. For more information, see <xref:blazor/components#use-key-to-control-the-preservation-of-elements-and-components>.
+
+### \@ref
+
+Razor component references (`@ref`) provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. For more information, see <xref:blazor/components#capture-references-to-components>.
+
+::: moniker-end
 
 ## Templated Razor delegates
 
@@ -704,9 +964,9 @@ There are three directives that pertain to [Tag Helpers](xref:mvc/views/tag-help
 
 | Directive | Function |
 | --------- | -------- |
-| [&commat;addTagHelper](xref:mvc/views/tag-helpers/intro#add-helper-label) | Makes Tag Helpers available to a view. |
-| [&commat;removeTagHelper](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Removes Tag Helpers previously added from a view. |
-| [&commat;tagHelperPrefix](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Specifies a tag prefix to enable Tag Helper support and to make Tag Helper usage explicit. |
+| [\@addTagHelper](xref:mvc/views/tag-helpers/intro#add-helper-label) | Makes Tag Helpers available to a view. |
+| [\@removeTagHelper](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Removes Tag Helpers previously added from a view. |
+| [\@tagHelperPrefix](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Specifies a tag prefix to enable Tag Helper support and to make Tag Helper usage explicit. |
 
 ## Razor reserved keywords
 

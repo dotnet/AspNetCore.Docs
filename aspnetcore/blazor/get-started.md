@@ -144,7 +144,7 @@ Add a component to another component using HTML syntax. For example, add the `Co
 
 Run the app. The homepage has its own counter provided by the `Counter` component.
 
-Component parameters are specified using attributes or [child content](xref:blazor/components#child-content), which allow you to set properties on the child component. To add a parameter to the `Counter` component, update the component's `@code` block:
+Component parameters are specified using attributes or [child content](xref:blazor/components#child-content), which allow you to set properties on the child component. To add a parameter to the `Counter` component, update the component's `@code` directive:
 
 * Add a property for `IncrementAmount` with a `[Parameter]` attribute.
 * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
