@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to use authentication and authorization in gRPC for ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 06/07/2019
+ms.date: 07/26/2019
 uid: grpc/authn-and-authz
 ---
 
@@ -101,12 +101,25 @@ public Ticketer.TicketerClient CreateClientWithCert(
 
 ### Other authentication mechanisms
 
-In addition to bearer token and client certificate authentication, all ASP.NET Core supported authentication mechanisms such as OAuth, OpenID and Negotiate should work with gRPC. Visit [ASP.NET Core authentication](xref:security/authentication/identity) for more information for configuring authentication on the server side.
+Many ASP.NET Core supported authentication mechanisms work with gRPC:
 
-Client side configuration will depend on the authentication mechanism you are using. The previous bearer token and client certificate authentication examples show a couple of ways the gRPC client can be configured to send authentication metadata with gRPC calls:
+* Azure Active Directory
+* Client Certificate
+* IdentityServer
+* JWT Token
+* OAuth 2.0
+* OpenID Connect
+* WS-Federation
+
+For more information on configuring authentication on the server, see [ASP.NET Core authentication](xref:security/authentication/identity).
+
+Configuring the gRPC client to use authentication will depend on the authentication mechanism you are using. The previous bearer token and client certificate examples show a couple of ways the gRPC client can be configured to send authentication metadata with gRPC calls:
 
 * Strongly typed gRPC clients use `HttpClient` internally. Authentication can be configured on [`HttpClientHandler`](/dotnet/api/system.net.http.httpclienthandler), or by adding custom [`HttpMessageHandler`](/dotnet/api/system.net.http.httpmessagehandler) instances to the `HttpClient`.
 * Each gRPC call has an optional `CallOptions` argument. Custom headers can be sent using the option's headers collection.
+
+> [!NOTE]
+> Windows Authentication (NTLM/Kerberos/Negotiate) can't be used with gRPC. gRPC requires HTTP/2, and HTTP/2 doesn't support Windows Authentication.
 
 ## Authorize users to access services and service methods
 
