@@ -91,7 +91,7 @@ namespace BlazorSample.UIInterfaces
 
 @@code {
     [Parameter]
-    private RenderFragment ChildContent { get; set; }
+    public RenderFragment ChildContent { get; set; }
 
     public ITab ActiveTab { get; private set; }
 
@@ -140,10 +140,10 @@ namespace BlazorSample.UIInterfaces
     private TabSet ContainerTabSet { get; set; }
 
     [Parameter]
-    private string Title { get; set; }
+    public string Title { get; set; }
 
     [Parameter]
-    public RenderFragment ChildContent { get; private set; }
+    public RenderFragment ChildContent { get; set; }
 
     private string TitleCssClass => ContainerTabSet.ActiveTab == this ? "active" : null;
 
