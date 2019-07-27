@@ -101,7 +101,7 @@ In the following example, the `ParentComponent` sets the value of the `Title` pr
 
 Components can set the content of another component. The assigning component provides the content between the tags that specify the receiving component.
 
-In the following example, the `ChildComponent` has a `ChildContent` property that represents a `RenderFragment`. The value of `ChildContent` is positioned in the component's markup where the content should be rendered. The value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
+In the following example, the `ChildComponent` has a `ChildContent` property that represents a `RenderFragment`, which represents a segment of UI to render. The value of `ChildContent` is positioned in the component's markup where the content should be rendered. The value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
 
 *Components/ChildComponent.razor*:
 
@@ -808,7 +808,7 @@ Templated components are components that accept one or more UI templates as para
 
 ### Template parameters
 
-A templated component is defined by specifying one or more component parameters of type `RenderFragment` or `RenderFragment<T>`. A render fragment represents a segment of UI that is rendered by the component. A render fragment optionally takes a parameter that can be specified when the render fragment is invoked.
+A templated component is defined by specifying one or more component parameters of type `RenderFragment` or `RenderFragment<T>`. A render fragment represents a segment of UI to render. `RenderFragment<T>` takes a type parameter that can be specified when the render fragment is invoked.
 
 `TableTemplate` component:
 
