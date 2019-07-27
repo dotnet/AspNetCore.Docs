@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/25/2019
+ms.date: 07/29/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -366,7 +366,35 @@ In the following example, `UpdateHeading` is called asynchronously when the butt
 }
 ```
 
-For some events, event argument types are permitted. For more information, see [@on{event}](xref:mvc/views/razor#onevent) in the Razor syntax article.
+Lambda expressions can also be used:
+
+```cshtml
+<button @onclick="@(e => Console.WriteLine("Hello, world!"))">Say hello</button>
+```
+
+### Event argument types
+
+For some events, event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
+
+Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) are shown in the following table.
+
+| Event | Class |
+| ----- | ----- |
+| Clipboard | `UIClipboardEventArgs` |
+| Drag  | `UIDragEventArgs` &ndash; `DataTransfer` is used to hold the dragged data during a drag and drop operation and may hold one or more `UIDataTransferItem`. `UIDataTransferItem` represents one drag data item. |
+| Error | `UIErrorEventArgs` |
+| Focus | `UIFocusEventArgs` &ndash; Doesn't include support for `relatedTarget`. |
+| `<input>` change | `UIChangeEventArgs` |
+| Keyboard | `UIKeyboardEventArgs` |
+| Mouse | `UIMouseEventArgs` |
+| Mouse pointer | `UIPointerEventArgs` |
+| Mouse wheel | `UIWheelEventArgs` |
+| Progress | `UIProgressEventArgs` |
+| Touch | `UITouchEventArgs` &ndash; `UITouchPoint` represents a single contact point on a touch-sensitive device. |
+
+For information on the properties and event handling behavior of the events in the preceding table, see [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) in the reference source.
+
+### Lambda expressions
 
 Lambda expressions can also be used:
 
@@ -374,7 +402,34 @@ Lambda expressions can also be used:
 <button @onclick="@(e => Console.WriteLine("Hello, world!"))">Say hello</button>
 ```
 
-For more information, see [@on{event}](xref:mvc/views/razor#onevent) in the Razor syntax article.
+It's often convenient to close over additional values, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` passing an event argument (`UIMouseEventArgs`) and its button number (`buttonNumber`) when selected in the UI:
+
+```cshtml
+<h2>@message</h2>
+
+@for (var i = 1; i < 4; i++)
+{
+    var buttonNumber = i;
+
+    <button class="btn btn-primary"
+            @onclick="@(e => UpdateHeading(e, buttonNumber))">
+        Button #@i
+    </button>
+}
+
+@code {
+    private string message = "Select a button to learn its position.";
+
+    private void UpdateHeading(UIMouseEventArgs e, int buttonNumber)
+    {
+        message = $"You selected Button #{buttonNumber} at " +
+            $"mouse position: {e.ClientX} X {e.ClientY}.";
+    }
+}
+```
+
+> [!NOTE]
+> Do **not** use the loop variable (`i`) in a `for` loop directly in a lambda expression. Otherwise the same variable is used by all lambda expressions causing `i`'s value to be the same in all lambdas. Always capture its value in a local variable (`buttonNumber` in the preceding example) and then use it.
 
 ### EventCallback
 

@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 07/25/2019
+ms.date: 07/29/2019
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -360,14 +360,11 @@ In C#, a `using` statement is used to ensure an object is disposed. In Razor, th
 @using (Html.BeginForm())
 {
     <div>
-        email:
-        <input type="email" id="Email" value="">
+        Email: <input type="email" id="Email" value="">
         <button>Register</button>
     </div>
 }
 ```
-
-Scope-level actions can be performed with [Tag Helpers](xref:mvc/views/tag-helpers/intro).
 
 ### \@try, catch, finally
 
@@ -458,11 +455,11 @@ The `@code` directive enables a [Razor component](xref:blazor/components) to add
 
 ```cshtml
 @code {
-    // C# members
+    // C# members (fields, properties, and methods)
 }
 ```
 
-`@code` is an alias of [@functions](#functions) and recommended over `@functions` for Razor components. More than one `@code` directive is permissible.
+For Razor components, `@code` is an alias of [@functions](#functions) and recommended over `@functions`. More than one `@code` directive is permissible.
 
 ::: moniker-end
 
@@ -472,7 +469,7 @@ The `@functions` directive enables a Razor Page to add C# members (fields, prope
 
 ```cshtml
 @functions {
-    // C# members
+    // C# members (fields, properties, and methods)
 }
 ```
 
@@ -599,19 +596,23 @@ The `@inject` directive enables the Razor Page to inject a service from the [ser
 
 ### \@layout
 
+*This scenario only applies to Razor components (.razor).*
+
 Specifies a layout Razor component. Layout components are used to avoid code duplication and inconsistency. For more information, see <xref:blazor/layouts>.
 
 ::: moniker-end
 
 ### \@model
 
-The `@model` directive is an MVC scenario that specifies the type of the model passed to a view:
+*This scenario only applies to MVC views and Razor Pages (.cshtml).*
+
+The `@model` directive specifies the type of the model passed to a view or page:
 
 ```cshtml
 @model TypeNameOfModel
 ```
 
-In an ASP.NET Core MVC app created with individual user accounts, the *Views/Account/Login.cshtml* view contains the following model declaration:
+In an ASP.NET Core MVC or Razor Pages app created with individual user accounts, *Views/Account/Login.cshtml* contains the following model declaration:
 
 ```cshtml
 @model LoginViewModel
@@ -629,32 +630,42 @@ Razor exposes a `Model` property for accessing the model passed to the view:
 <div>The Login Email: @Model.Email</div>
 ```
 
-The `@model` directive specifies the type of this property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If the `@model` directive isn't specified, the `Model` property is of type `dynamic`. The value of the model is passed from the controller to the view. For more information, see [Strongly typed models and the \@model keyword](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
+The `@model` directive specifies the type of the `Model` property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If the `@model` directive isn't specified, the `Model` property is of type `dynamic`. For more information, see [Strongly typed models and the @model keyword](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
 
 ### \@namespace
 
-The `@namespace` directive sets the namespace of the class of the generated page or view:
+The `@namespace` directive:
+
+* Sets the namespace of the class of the generated Razor page, MVC view, or Razor component.
+* Sets the root derived namespaces of a pages, views, or components classes from the closest imports file in the directory tree, *_ViewImports.cshtml* (views or pages) or *_Imports.razor* (Razor components).
 
 ```cshtml
 @namespace Your.Namespace.Here
 ```
 
-If a page or view imports API with an `@namespace` directive, the original file's namespace is set relative to that namespace. 
+For the Razor Pages example shown in the following table, the imports file at *Pages/_ViewImports.cshtml* contains `@namespace Hello.World`. The namespace of pages in the *Pages* folder that import the `Hello.World` namespace use `Hello.World` as the root of their derived namespaces. The same relationships apply to import files used with MVC views and Razor components.
 
-If *MyApp/Pages/\_ViewImports.cshtml* contains `@namespace Hello.World`, the namespace of pages or views that import the `Hello.World` namespace is set as shown in the following table.
+| Page                                        | Namespace                             |
+| ------------------------------------------- | ------------------------------------- |
+| *Pages/Index.cshtml*                        | `Hello.World`                         |
+| *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages`               |
+| *Pages/MorePages/EvenMorePages/Page.cshtml* | `Hello.World.MorePages.EvenMorePages` |
 
-| Page (or view)                     | Namespace               |
-| ---------------------------------- | ----------------------- |
-| *MyApp/Pages/Index.cshtml*         | `Hello.World`           |
-| *MyApp/Pages/MorePages/Bar.cshtml* | `Hello.World.MorePages` |
+When multiple import files have a `@namespace` directive, the file closest to the page, view, or component in the directory tree is used to set the root namespace.
 
-If multiple import files have the `@namespace` directive, the file closest to the page or view in the directory chain is used.
+If the *EvenMorePages* folder in the preceding example has an imports file with `@namespace Another.Planet` (or the *Pages/MorePages/EvenMorePages/Page.cshtml* file contains `@namespace Another.Planet`), the result is shown in the following table.
+
+| Page                                        | Namespace               |
+| ------------------------------------------- | ----------------------- |
+| *Pages/Index.cshtml*                        | `Hello.World`           |
+| *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages` |
+| *Pages/MorePages/EvenMorePages/Page.cshtml* | `Another.Planet`        |
 
 ### \@page
 
 ::: moniker range=">= aspnetcore-3.0"
 
-The `@page` directive:
+The `@page` directive has different effects depending on the type of the file where it appears. The directive:
 
 * Turns a file into an MVC action, which means that the file handles requests directly, without going through a controller. For more information, see <xref:razor-pages/index>.
 * Specifies that a Razor component should handle requests directly. For more information, see <xref:blazor/routing>.
@@ -669,7 +680,9 @@ The `@page` directive turns a file into an MVC action, which means that the file
 
 ### \@section
 
-The `@section` directive is used in conjunction with the [layout](xref:mvc/views/layout) to enable pages or views to render content in different parts of the HTML page. For more information, see <xref:mvc/views/layout>.
+*This scenario only applies to MVC views and Razor Pages (.cshtml).*
+
+The `@section` directive is used in conjunction with [layouts](xref:mvc/views/layout) to enable pages or views to render content in different parts of the HTML page. For more information, see <xref:mvc/views/layout>.
 
 ### \@using
 
@@ -687,175 +700,37 @@ In [Razor components](xref:blazor/components), `@using` also controls which comp
 
 ## Directive attributes
 
+*Directive attribute scenarios in this section only apply to Razor components (.razor).*
+
 ### \@attributes
 
-Elements can capture and render additional attributes in addition to the element's declared parameters using the `@attributes` Razor directive. This scenario is useful when defining an element that supports a variety of customizations.
+*This scenario only applies to Razor components (.razor).*
 
-In the following example, additional attributes are captured in a dictionary and then applied onto the `<input>` element when the element is rendered:
-
-```cshtml
-<input @attributes="InputAttributes" />
-
-@functions {
-    private Dictionary<string, object> InputAttributes { get; set; } =
-        new Dictionary<string, object>()
-        {
-            { "maxlength", "10" }, 
-            { "placeholder", "Placeholder text" }, 
-            { "required", "true" }, 
-            { "size", "50" }
-        };
-```
-
-The type must implement `IEnumerable<KeyValuePair<string, object>>` with string keys.
-
-The preceding code renders the following HTML markup:
-
-```html
-<input maxlength="10" placeholder="Placeholder text" required="required" size="50">
-```
+A component can capture and render additional attributes in addition to the component's declared parameters using the `@attributes` Razor directive. For more information, see <xref:blazor/components#attribute-splatting-and-arbitrary-parameters>.
 
 ### \@bind
 
-**\@bind**
+*This scenario only applies to Razor components (.razor).*
 
-Data binding is accomplished with the `@bind` attribute. The following example binds the `_check` field to the check box's checked state:
-
-```cshtml
-<input type="checkbox" @bind="_check" />
-```
-
-When the check box is selected and cleared, the property's value is updated to `true` and `false`, respectively.
-
-**\@bind-{property}**
-
-Binding recognizes Razor component parameters, where `@bind-{property}` can bind a property value across components. For more information, see <xref:blazor/components#data-binding>.
-
-**\@bind-value / \@bind-value:event**
-
-In addition to handling [onchange](#onevent) events with `@bind` syntax, a property or field can be bound using other events by specifying an `@bind-value` attribute with an `event` parameter. The following example binds the `CurrentValue` property for the `oninput` event:
-
-```cshtml
-<input @bind-value="CurrentValue" @bind-value:event="oninput" />
-```
-
-**\@bind:format**
-
-Data binding works with <xref:System.DateTime> format strings using `@bind:format`. Other format expressions, such as currency or number formats, aren't available at this time.
-
-```cshtml
-<input @bind="StartDate" @bind:format="yyyy-MM-dd" />
-
-@functions {
-    private DateTime _startDate = new DateTime(2020, 1, 1);
-}
-```
-
-The `@bind:format` attribute specifies the date format to apply to the `value` of the `<input>` element. The format is also used to parse the value when an `onchange` event occurs.
+Data binding in components is accomplished with the `@bind` attribute. For more information, see <xref:blazor/components#data-binding>.
 
 ### \@on{event}
 
-Razor provides event handling features. For an HTML element attribute named `on{event}` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor treats the attribute's value as an event handler. The attribute's name always starts with `@on`.
+*This scenario only applies to Razor components (.razor).*
 
-The following HTML events are available:
-
-* `@onchange`
-* `@onclick`
-* `@oninput`
-* `@onsubmit`
-
-The following code calls the `UpdateHeading` method when the button is selected in the UI:
-
-```cshtml
-<button class="btn btn-primary" @onclick="UpdateHeading">
-    Update heading
-</button>
-
-@functions {
-    private void UpdateHeading(UIMouseEventArgs e)
-    {
-        ...
-    }
-}
-```
-
-Event handlers can also be asynchronous and return a <xref:System.Threading.Tasks.Task>:
-
-```
-@functions {
-    private async Task UpdateHeading(UIMouseEventArgs e)
-    {
-        ...
-    }
-}
-```
-
-**Event argument types**
-
-For some events, event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
-
-Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) are shown in the following table.
-
-| Event | Class |
-| ----- | ----- |
-| Clipboard | `UIClipboardEventArgs` |
-| Drag  | `UIDragEventArgs` &ndash; `DataTransfer` is used to hold the dragged data during a drag and drop operation and may hold one or more `UIDataTransferItem`. `UIDataTransferItem` represents one drag data item. |
-| Error | `UIErrorEventArgs` |
-| Focus | `UIFocusEventArgs` &ndash; Doesn't include support for `relatedTarget`. |
-| `<input>` change | `UIChangeEventArgs` |
-| Keyboard | `UIKeyboardEventArgs` |
-| Mouse | `UIMouseEventArgs` |
-| Mouse pointer | `UIPointerEventArgs` |
-| Mouse wheel | `UIWheelEventArgs` |
-| Progress | `UIProgressEventArgs` |
-| Touch | `UITouchEventArgs` &ndash; `UITouchPoint` represents a single contact point on a touch-sensitive device. |
-
-For information on the properties and event handling behavior of the events in the preceding table, see [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) in the reference source.
-
-**Lambda expressions**
-
-Lambda expressions can also be used:
-
-```cshtml
-<button @onclick="@(e => Console.WriteLine("Hello, world!"))">Say hello</button>
-```
-
-It's often convenient to close over additional values, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` passing an event argument (`UIMouseEventArgs`) and its button number (`buttonNumber`) when selected in the UI:
-
-```cshtml
-<h2>@message</h2>
-
-@for (var i = 1; i < 4; i++)
-{
-    var buttonNumber = i;
-
-    <button class="btn btn-primary"
-            @onclick="@(e => UpdateHeading(e, buttonNumber))">
-        Button #@i
-    </button>
-}
-
-@code {
-    private string message = "Select a button to learn its position.";
-
-    private void UpdateHeading(UIMouseEventArgs e, int buttonNumber)
-    {
-        message = $"You selected Button #{buttonNumber} at " +
-            $"mouse position: {e.ClientX} X {e.ClientY}.";
-    }
-}
-```
-
-> [!NOTE]
-> Do **not** use the loop variable (`i`) in a `for` loop directly in a lambda expression. Otherwise the same variable is used by all lambda expressions causing `i`'s value to be the same in all lambdas. Always capture its value in a local variable (`buttonNumber` in the preceding example) and then use it.
+Razor provides event handling features for components. For more information, see <xref:blazor/components#event-handling>.
 
 ### \@key
 
-The `@key` directive attribute causes the Razor components diffing algorithm to guarantee preservation of elements or components based on the key's value. For more information, see <xref:blazor/components#use-key-to-control-the-preservation-of-elements-and-components>.
+*This scenario only applies to Razor components (.razor).*
+
+The `@key` directive attribute causes the components diffing algorithm to guarantee preservation of elements or components based on the key's value. For more information, see <xref:blazor/components#use-key-to-control-the-preservation-of-elements-and-components>.
 
 ### \@ref
 
-Razor component references (`@ref`) provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. For more information, see <xref:blazor/components#capture-references-to-components>.
+*This scenario only applies to Razor components (.razor).*
+
+Component references (`@ref`) provide a way to reference a component instance so that you can issue commands to that instance. For more information, see <xref:blazor/components#capture-references-to-components>.
 
 ::: moniker-end
 
@@ -960,13 +835,15 @@ Rendered output:
 
 ## Tag Helpers
 
+*This scenario only applies to MVC views and Razor Pages (.cshtml).*
+
 There are three directives that pertain to [Tag Helpers](xref:mvc/views/tag-helpers/intro).
 
 | Directive | Function |
 | --------- | -------- |
-| [\@addTagHelper](xref:mvc/views/tag-helpers/intro#add-helper-label) | Makes Tag Helpers available to a view. |
-| [\@removeTagHelper](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Removes Tag Helpers previously added from a view. |
-| [\@tagHelperPrefix](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Specifies a tag prefix to enable Tag Helper support and to make Tag Helper usage explicit. |
+| [@addTagHelper](xref:mvc/views/tag-helpers/intro#add-helper-label) | Makes Tag Helpers available to a view. |
+| [@removeTagHelper](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Removes Tag Helpers previously added from a view. |
+| [@tagHelperPrefix](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Specifies a tag prefix to enable Tag Helper support and to make Tag Helper usage explicit. |
 
 ## Razor reserved keywords
 
