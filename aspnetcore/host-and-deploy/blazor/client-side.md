@@ -174,7 +174,7 @@ Removing the handler or disabling inheritance is performed in addition to config
 
 A *hosted deployment* serves the Blazor client-side app to browsers from an [ASP.NET Core app](xref:index) that runs on a web server.
 
-The Blazor app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor WebAssembly App** project template (`blazorwasm` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command) with the **Hosted** option set to true.
+The Blazor app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor WebAssembly App** project template (`blazorwasm` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command) with the **Hosted** option selected.
 
 For more information on ASP.NET Core app hosting and deployment, see <xref:host-and-deploy/index>.
 
