@@ -557,7 +557,7 @@ The logger methods have overloads that let you pass in an exception, as in the f
 
 ::: moniker-end
 
-::: moniker range="<> aspnetcore-3.0"
+::: moniker range="< aspnetcore-3.0"
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LogException&highlight=3)]
 
@@ -851,13 +851,13 @@ To use this provider, an app has to run on the .NET Framework (rather than .NET 
 
 The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. The provider package is available for apps targeting .NET Core 1.1 or later.
 
-::: moniker range=">>= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.0"
 
 The provider package isn't included in the shared framework. To use the provider, install the package.
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.1 < aspnetcore-2.2"
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
 The provider package isn't included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). To use the provider, install the package.
 
