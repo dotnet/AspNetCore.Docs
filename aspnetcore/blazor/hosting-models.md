@@ -22,11 +22,7 @@ The principal hosting model for Blazor is running client-side in the browser on 
 
 ![Blazor client-side: The Blazor app runs on a UI thread inside the browser.](hosting-models/_static/client-side.png)
 
-To create a Blazor app using the client-side hosting model, use the following template:
-
-* **Blazor WebAssembly App** ([dotnet new blazorwasm](/dotnet/core/tools/dotnet-new)) &ndash; Deployed as a set of static files.
-
-In the above template, there is a **Hosted** option which configiures the application to use a ASP.NET Core server backend. The ASP.NET Core app serves the Blazor app to clients. The Blazor client-side app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction).
+To create a Blazor app using the client-side hosting model, use the **Blazor WebAssembly App** template ([dotnet new blazorwasm](/dotnet/core/tools/dotnet-new)). After selecting the **Blazor WebAssembly App** template, select the **Hosted** option to configure the app to use an ASP.NET Core server backend ([dotnet new blazorwasm --hosted](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app serves the Blazor app to clients. The Blazor client-side app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction).
 
 The templates include the *blazor.webassembly.js* script that handles:
 
