@@ -51,7 +51,7 @@ namespace ContosoUniversity.Pages.Instructors
             if (courseID != null)
             {
                 CourseID = courseID.Value;
-                InstructorData.Enrollments = Instructor.Courses.Where(
+                InstructorData.Enrollments = InstructorData.Courses.Where(
                     x => x.CourseID == courseID).Single().Enrollments;
             }
 #endregion
