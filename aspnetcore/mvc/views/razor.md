@@ -10,7 +10,7 @@ uid: mvc/views/razor
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Luke Latham](https://github.com/guardrex), [Taylor Mullen](https://twitter.com/ntaylormullen), and [Dan Vicarel](https://github.com/Rabadash8820)
 
-Razor is a markup syntax for embedding server-based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a *.cshtml* file extension.
+Razor is a markup syntax for embedding server-based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a *.cshtml* file extension. Razor is also found in [Razor components](xref:blazor/components) files (*.razor*).
 
 ## Rendering HTML
 
@@ -235,7 +235,8 @@ To render the rest of an entire line as HTML inside a code block, use the `@:` s
 
 Without the `@:` in the code, a Razor runtime error is generated.
 
-Warning: Extra `@` characters in a Razor file can cause compiler errors at statements later in the block. These compiler errors can be difficult to understand because the actual error occurs before the reported error. This error is common after combining multiple implicit/explicit expressions into a single code block.
+> [!WARNING]
+> Extra `@` characters in a Razor file can cause compiler errors at statements later in the block. These compiler errors can be difficult to understand because the actual error occurs before the reported error. This error is common after combining multiple implicit/explicit expressions into a single code block.
 
 ## Control structures
 
@@ -354,7 +355,7 @@ The following looping statements are supported:
 
 ### Compound \@using
 
-In C#, a `using` statement is used to ensure an object is disposed. In Razor, the same mechanism is used to create HTML Helpers that contain additional content. In the following code, HTML Helpers render a form tag with the `@using` statement:
+In C#, a `using` statement is used to ensure an object is disposed. In Razor, the same mechanism is used to create HTML Helpers that contain additional content. In the following code, HTML Helpers render a `<form>` tag with the `@using` statement:
 
 ```cshtml
 @using (Html.BeginForm())
@@ -523,7 +524,7 @@ The code renders the following HTML:
 
 ### \@implements
 
-Implements an interface for the generated component class.
+The `@implements` directive implements an interface for the generated component class.
 
 The following [Razor component](xref:blazor/components) implements <xref:System.IDisposable?displayProperty=fullName> so that the component can call the <xref:System.IDisposable.Dispose*> method:
 
@@ -598,7 +599,7 @@ The `@inject` directive enables the Razor Page to inject a service from the [ser
 
 *This scenario only applies to Razor components (.razor).*
 
-Specifies a layout Razor component. Layout components are used to avoid code duplication and inconsistency. For more information, see <xref:blazor/layouts>.
+The `@layout` directive specifies a layout for a Razor component. Layout components are used to avoid code duplication and inconsistency. For more information, see <xref:blazor/layouts>.
 
 ::: moniker-end
 
@@ -682,7 +683,7 @@ The `@page` directive turns a file into an MVC action, which means that the file
 
 *This scenario only applies to MVC views and Razor Pages (.cshtml).*
 
-The `@section` directive is used in conjunction with [layouts](xref:mvc/views/layout) to enable pages or views to render content in different parts of the HTML page. For more information, see <xref:mvc/views/layout>.
+The `@section` directive is used in conjunction with [MVC and Razor Pages layouts](xref:mvc/views/layout) to enable views or pages to render content in different parts of the HTML page. For more information, see <xref:mvc/views/layout>.
 
 ### \@using
 
@@ -849,7 +850,7 @@ There are three directives that pertain to [Tag Helpers](xref:mvc/views/tag-help
 
 ### Razor keywords
 
-* page (Requires ASP.NET Core 2.0 and later)
+* page (Requires ASP.NET Core 2.1 or later)
 * namespace
 * functions
 * inherits
