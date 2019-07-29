@@ -14,13 +14,453 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://gi
 
 This tutorial teaches the basics of building a web API with ASP.NET Core.
 
+::: moniker range=">= aspnetcore-3.0"
+
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Create a web API project.
-> * Add a model class.
-> * Create the database context.
-> * Register the database context.
+> * Add a model class and a database context.
+> * Scaffold a controller with CRUD methods.
+> * Configure routing, URL paths, and return values.
+> * Call the web API with Postman.
+
+At the end, you have a web API that can manage "to-do" items stored in a database.
+
+## Overview
+
+This tutorial creates the following API:
+
+|API | Description | Request body | Response body |
+|--- | ---- | ---- | ---- |
+|GET /api/TodoItems | Get all to-do items | None | Array of to-do items|
+|GET /api/TodoItems/{id} | Get an item by ID | None | To-do item|
+|POST /api/TodoItems | Add a new item | To-do item | To-do item |
+|PUT /api/TodoItems/{id} | Update an existing item &nbsp; | To-do item | None |
+|DELETE /api/TodoItems/{id} &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+
+The following diagram shows the design of the app.
+
+![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](first-web-api/_static/architecture.png)
+
+## Prerequisites
+
+# [Visual Studio](#tab/visual-studio)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vs-3.0.md)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.0.md)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
+
+---
+
+## Create a web project
+
+# [Visual Studio](#tab/visual-studio)
+
+* From the **File** menu, select **New** > **Project**.
+* Select the **ASP.NET Core Web Application** template and click **Next**.
+* Name the project *TodoApi* and click **Create**.
+* In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected. Select the **API** template and click **Create**. **Don't** select **Enable Docker Support**.
+
+![VS new project dialog](first-web-api/_static/vs3.png)
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Change directories (`cd`) to the folder that will contain the project folder.
+* Run the following commands:
+
+   ```console
+   dotnet new webapi -o TodoApi
+   cd TodoAPI
+   dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.0.0-*
+   code -r ../TodoApi
+   ```
+
+* When a dialog box asks if you want to add required assets to the project, select **Yes**.
+
+  The preceding commands:
+
+  * Creates a new web API project and opens it in Visual Studio Code.
+  * Adds the NuGet packages which are required in the next section.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Select **File** > **New Solution**.
+
+  ![macOS New solution](first-web-api-mac/_static/sln.png)
+
+* Select **.NET Core** > **App** > **API** > **Next**.
+
+  ![macOS New project dialog](first-web-api-mac/_static/1.png)
+  
+* In the **Configure your new ASP.NET Core Web API** dialog, select **Target Framework** of **.NET Core 3.0*.
+
+* Enter *TodoApi* for the **Project Name** and then select **Create**.
+
+  ![config dialog](first-web-api-mac/_static/2.png)
+
+---
+
+### Test the API
+
+The project template creates a `WeatherForecast` API. Call the `Get` method from a browser to test the app.
+
+# [Visual Studio](#tab/visual-studio)
+
+Press Ctrl+F5 to run the app. Visual Studio launches a browser and navigates to `https://localhost:<port>/WeatherForecast`, where `<port>` is a randomly chosen port number.
+
+If you get a dialog box that asks if you should trust the IIS Express certificate, select **Yes**. In the **Security Warning** dialog that appears next, select **Yes**.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001/WeatherForecast](https://localhost:5001/WeatherForecast).
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/WeatherForecast` to the URL (change the URL to `https://localhost:<port>/WeatherForecast`).
+
+---
+
+JSON similar to the following is returned:
+
+```json
+[
+    {
+        "date": "2019-07-16T19:04:05.7257911-06:00",
+        "temperatureC": 52,
+        "temperatureF": 125,
+        "summary": "Mild"
+    },
+    {
+        "date": "2019-07-17T19:04:05.7258461-06:00",
+        "temperatureC": 36,
+        "temperatureF": 96,
+        "summary": "Warm"
+    },
+    {
+        "date": "2019-07-18T19:04:05.7258467-06:00",
+        "temperatureC": 39,
+        "temperatureF": 102,
+        "summary": "Cool"
+    },
+    {
+        "date": "2019-07-19T19:04:05.7258471-06:00",
+        "temperatureC": 10,
+        "temperatureF": 49,
+        "summary": "Bracing"
+    },
+    {
+        "date": "2019-07-20T19:04:05.7258474-06:00",
+        "temperatureC": -1,
+        "temperatureF": 31,
+        "summary": "Chilly"
+    }
+]
+```
+
+## Add a model class
+
+A *model* is a set of classes that represent the data that the app manages. The model for this app is a single `TodoItem` class.
+
+# [Visual Studio](#tab/visual-studio)
+
+* In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+
+* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
+
+* Replace the template code with the following code:
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Add a folder named *Models*.
+
+* Add a `TodoItem` class to the *Models* folder with the following code:
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+
+  ![new folder](first-web-api-mac/_static/folder.png)
+
+* Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
+
+* Name the class *TodoItem*, and then click **New**.
+
+* Replace the template code with the following code:
+
+---
+
+  [!code-csharp[](first-web-api/samples/3.0/TodoApi/Models/TodoItem.cs)]
+
+The `Id` property functions as the unique key in a relational database.
+
+Model classes can go anywhere in the project, but the *Models* folder is used by convention.
+
+## Add a database context
+
+The *database context* is the main class that coordinates Entity Framework functionality for a data model. This class is created by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class.
+
+# [Visual Studio](#tab/visual-studio)
+
+### Add Microsoft.EntityFrameworkCore.SqlServer
+
+* From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
+* Select the **Include prerelease** checkbox.
+* Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.SqlServer** in the search box.
+* Select  **Microsoft.EntityFrameworkCore.SqlServer V3.0.0-preview** in the left pane.
+* Select the **Project** check box in the right pane and then select **Install**.
+* Use the preceding instructions to add the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.
+
+![NuGet Package Manager](first-web-api/_static/vs3NuGet.png)
+
+## Add the TodoContext database context
+
+* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+* Add a `TodoContext` class to the *Models* folder.
+
+---
+
+* Enter the following code:
+
+  [!code-csharp[](first-web-api/samples/3.0/TodoApi/Models/TodoContext.cs)]
+
+## Register the database context
+
+In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
+
+Update *Startup.cs* with the following highlighted code:
+
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/Startup.cs?highlight=7-8,23-24&name=snippet_all)]
+
+The preceding code:
+
+* Removes unused `using` declarations.
+* Adds the database context to the DI container.
+* Specifies that the database context will use an in-memory database.
+
+## Scaffold a controller
+
+# [Visual Studio](#tab/visual-studio)
+
+* Right-click the *Controllers* folder.
+* Select **Add** > **New Scaffolded Item**.
+* Select **API Controller with actions, using Entity Framework**, and then select **Add**.
+* In the **Add API Controller with actions, using Entity Framework** dialog:
+
+  * Select **TodoItem (TodoAPI.Models)** in the **Model class**.
+  * Select **TodoContext (TodoAPI.Models)** in the **Data context class**.
+  * Select **Add**
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+Run the following commands:
+
+```console
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext  -outDir Controllers
+```
+
+The preceding commands:
+
+* Add NuGet packages required for scaffolding.
+* Installs the scaffolding engine (`dotnet-aspnet-codegenerator`).
+* Scaffolds the `TodoItemsController`.
+
+---
+
+The generated code:
+
+* Defines an API controller class without methods.
+* Decorates the class with the [[ApiController]](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute. This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see <xref:web-api/index>.
+* Uses DI to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+
+## Examine the PostTodoItem create method
+
+Replace the return statement in the `PostTodoItem` to use the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator:
+
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
+
+The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
+
+The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
+
+* Returns an HTTP 201 status code if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
+* Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+* References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
+
+### Install Postman
+
+This tutorial uses Postman to test the web API.
+
+* Install [Postman](https://www.getpostman.com/downloads/)
+* Start the web app.
+* Start Postman.
+* Disable **SSL certificate verification**
+* From  **File > Settings** (**General* tab), disable **SSL certificate verification**.
+    > [!WARNING]
+    > Re-enable SSL certificate verification after testing the controller.
+
+<a name="post"></a>
+
+### Test PostTodoItem with Postman
+
+* Create a new request.
+* Set the HTTP method to `POST`.
+* Select the **Body** tab.
+* Select the **raw** radio button.
+* Set the type to **JSON (application/json)**.
+* In the request body enter JSON for a to-do item:
+
+    ```json
+    {
+      "name":"walk dog",
+      "isComplete":true
+    }
+    ```
+
+* Select **Send**.
+
+  ![Postman with create request](first-web-api/_static/3/create.png)
+
+### Test the location header URI
+
+* Select the **Headers** tab in the **Response** pane.
+* Copy the **Location** header value:
+
+  ![Headers tab of the Postman console](first-web-api/_static/3/create.png)
+
+* Set the method to GET.
+* Paste the URI (for example, `https://localhost:5001/api/TodoItems/1`)
+* Select **Send**.
+
+## Examine the GET methods
+
+These methods implement two GET endpoints:
+
+* `GET /api/TodoItems`
+* `GET /api/TodoItems/{id}`
+
+Test the app by calling the two endpoints from a browser or Postman. For example:
+
+* [https://localhost:5001/api/TodoItems](https://localhost:5001/api/TodoItems)
+* [https://localhost:5001/api/TodoItems/1](https://localhost:5001/api/TodoItems/1)
+
+A response similar to the following is produced by the call to `GetTodoItems`:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Item1",
+    "isComplete": false
+  }
+]
+```
+
+### Test Get with Postman
+
+* Create a new request.
+* Set the HTTP method to **GET**.
+* Set the request URL to `https://localhost:<port>/api/TodoItems`. For example, `https://localhost:5001/api/TodoItems`.
+* Set **Two pane view** in Postman.
+* Select **Send**.
+
+This app uses an in-memory database. If the app is stopped and started, the preceding GET request will not return any data. If no data is returned, [POST](#post) data to the app.
+
+## Routing and URL paths
+
+The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
+
+* Start with the template string in the controller's `Route` attribute:
+
+  [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=TodoController&highlight=1)]
+
+* Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **TodoItems**Controller, so the controller name is "TodoItems". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
+* If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("products")]`), append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
+
+In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its`id` parameter.
+
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
+
+## Return values
+
+The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+
+`ActionResult` return types can represent a wide range of HTTP status codes. For example, `GetTodoItem` can return two different status values:
+
+* If no item matches the requested ID, the method returns a 404 [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) error code.
+* Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
+
+## The PutTodoItem method
+
+Examine the `PutTodoItem` method:
+
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
+
+`PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
+
+If you get an error calling `PutTodoItem`, call `GET` to ensure there's an item in the database.
+
+### Test the PutTodoItem method
+
+This sample uses an in-memory database that must be initialed each time the app is started. There must be an item in the database before you make a PUT call. Call GET to insure there's an item in the database before making a PUT call.
+
+Update the to-do item that has ID = 1 and set its name to "feed fish":
+
+```json
+  {
+    "ID":1,
+    "name":"feed fish",
+    "isComplete":true
+  }
+```
+
+The following image shows the Postman update:
+
+![Postman console showing 204 (No Content) response](first-web-api/_static/3/pmcput.png)
+
+## The DeleteTodoItem method
+
+Examine the `DeleteTodoItem` method:
+
+[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Delete)]
+
+The `DeleteTodoItem` response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
+
+### Test the DeleteTodoItem method
+
+Use Postman to delete a to-do item:
+
+* Set the method to `DELETE`.
+* Set the URI of the object to delete, for example `https://localhost:5001/api/TodoItems/1`
+* Select **Send**
+
+## Call the API from jQuery
+
+See [Tutorial: Call an ASP.NET Core web API with jQuery](xref:tutorials/web-api-jquery).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+In this tutorial, you learn how to:
+
+> [!div class="checklist"]
+> * Create a web API project.
+> * Add a model class and a database context.
 > * Add a controller.
 > * Add CRUD methods.
 > * Configure routing and URL paths.
@@ -29,18 +469,17 @@ In this tutorial, you learn how to:
 > * Call the web API with jQuery.
 
 At the end, you have a web API that can manage "to-do" items stored in a relational database.
-
 ## Overview
 
 This tutorial creates the following API:
 
 |API | Description | Request body | Response body |
 |--- | ---- | ---- | ---- |
-|GET /api/todo | Get all to-do items | None | Array of to-do items|
-|GET /api/todo/{id} | Get an item by ID | None | To-do item|
-|POST /api/todo | Add a new item | To-do item | To-do item |
-|PUT /api/todo/{id} | Update an existing item &nbsp; | To-do item | None |
-|DELETE /api/todo/{id} &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+|GET /api/TodoItems | Get all to-do items | None | Array of to-do items|
+|GET /api/TodoItems/{id} | Get an item by ID | None | To-do item|
+|POST /api/TodoItems | Add a new item | To-do item | To-do item |
+|PUT /api/TodoItems/{id} | Update an existing item &nbsp; | To-do item | None |
+|DELETE /api/TodoItems/{id} &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
 
 The following diagram shows the design of the app.
 
@@ -408,9 +847,7 @@ Configure the app to [serve static files](/dotnet/api/microsoft.aspnetcore.build
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Startup.cs?highlight=14-15&name=snippet_configure)]
 
-::: moniker range=">= aspnetcore-2.2"
 Create a *wwwroot* folder in the project directory.
-::: moniker-end
 
 Add an HTML file named *index.html* to the *wwwroot* directory. Replace its contents with the following markup:
 
@@ -453,6 +890,8 @@ Deleting a to-do item is accomplished by setting the `type` on the AJAX call to 
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AjaxDelete)]
 
+::: moniker-end
+
 ## Additional resources
 
 [View or download sample code for this tutorial](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
@@ -467,24 +906,3 @@ For more information, see the following resources:
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
 * [YouTube version of this tutorial](https://www.youtube.com/watch?v=TTkhEyGBfAk)
-
-## Next steps
-
-In this tutorial, you learned how to:
-
-> [!div class="checklist"]
-> * Create a web api project.
-> * Add a model class.
-> * Create the database context.
-> * Register the database context.
-> * Add a controller.
-> * Add CRUD methods.
-> * Configure routing and URL paths.
-> * Specify return values.
-> * Call the web API with Postman.
-> * Call the web api with jQuery.
-
-Advance to the next tutorial to learn how to generate API help pages:
-
-> [!div class="nextstepaction"]
-> <xref:tutorials/get-started-with-swashbuckle>
