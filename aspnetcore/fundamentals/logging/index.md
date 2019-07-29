@@ -147,7 +147,7 @@ The preceding highlighted code is a `Func` that runs the first time the DI conta
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.0"
+::: moniker range="< aspnetcore-3.0"
 
 ### Create logs in Startup
 
@@ -155,7 +155,7 @@ To write logs in the `Startup` class, include an `ILogger` parameter in the cons
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,5,8,20,27)]
 
-### Create logs in Program
+### Create logs in the Program class
 
 To write logs in the `Program` class, get an `ILogger` instance from DI:
 
@@ -756,9 +756,9 @@ The following code enables scopes for the console provider:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-::: moniker-end
+[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_Scopes&highlight=6)]
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_Scopes&highlight=4)]
+::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
@@ -891,7 +891,7 @@ logging.AddAzureWebAppDiagnostics();
 
 To configure provider settings, use <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureFileLoggerOptions> and <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureBlobLoggerOptions>, as shown in the following example:
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_AzLogOptions&highlight=19-27)]
+[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_AzLogOptions&highlight=17-27)]
 
 ::: moniker-end
 

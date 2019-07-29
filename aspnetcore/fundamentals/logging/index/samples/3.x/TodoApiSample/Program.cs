@@ -1,4 +1,4 @@
-﻿#define TemplateCode // LogFromMain or ExpandDefault or FilterInCode or MinLevel or FilterFunction or AzLogOptions or Scopes
+﻿#define AzLogOptions// TemplateCode // LogFromMain or ExpandDefault or FilterInCode or MinLevel or FilterFunction or AzLogOptions or Scopes
 
 using System;
 using System.Collections.Generic;
@@ -85,20 +85,20 @@ namespace TodoApiSample
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureLogging(logging => logging.AddAzureWebAppDiagnostics())
+                    .ConfigureServices(serviceCollection => serviceCollection
+                    .Configure<AzureFileLoggerOptions>(options =>
+                    {
+                        options.FileName = "azure-diagnostics-";
+                        options.FileSizeLimit = 50 * 1024;
+                        options.RetainedFileCountLimit = 5;
+                    }).Configure<AzureBlobLoggerOptions>(options =>
+                    {
+                        options.BlobName = "log.txt";
+                    }))
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.ConfigureLogging(logging => logging.AddAzureWebAppDiagnostics())
-                        .ConfigureServices(serviceCollection => serviceCollection
-                        .Configure<AzureFileLoggerOptions>(options =>
-                        {
-                            options.FileName = "azure-diagnostics-";
-                            options.FileSizeLimit = 50 * 1024;
-                            options.RetainedFileCountLimit = 5;
-                        }).Configure<AzureBlobLoggerOptions>(options =>
-                        {
-                            options.BlobName = "log.txt";
-                        }))
-                        .UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>();
                 });
         #endregion
 #elif Scopes
