@@ -37,7 +37,7 @@ The default project template calls <xref:Microsoft.Extensions.Hosting.Host.Creat
 
 You can replace the default providers with your own choices. Call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A>, and add the providers you want.
 
-[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_AddProvider&highlight=5)]
+[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_AddProvider&highlight=5)]
 
 ::: moniker-end
 
@@ -67,51 +67,64 @@ Learn more about [built-in logging providers](#built-in-logging-providers) and [
 
 ## Create logs
 
-Get an <xref:Microsoft.Extensions.Logging.ILogger%601> object from DI.
+To create logs, get an <xref:Microsoft.Extensions.Logging.ILogger%601> object from DI.
+
+The following Razor Pages example creates a logger with `TodoApiSample.Pages.AboutModel` as the *category*. 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-The following controller example creates `Information` and `Warning` logs. The *category* is `TodoApiSample.Controllers.TodoController` (the fully qualified class name of `TodoController` in the sample app):
+[!code-csharp[](index/samples/3.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_LoggerDI&highlight=3,5,7)]
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=4,7)]
+::: moniker-end
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+::: moniker range="< aspnetcore-3.0"
 
-The following Razor Pages example creates logs with `Information` as the *level* and `TodoApiSample.Pages.AboutModel` as the *category*:
+[!code-csharp[](index/samples/2.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_LoggerDI&highlight=3,5,7)]
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_LoggerDI&highlight=3, 7)]
+::: moniker-end
+
+The logger is used to create logs with `Information` as the *level*. 
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=4)]
 
 ::: moniker-end
-??
+
 ::: moniker range="< aspnetcore-3.0"
-
-The following controller example creates `Information` and `Warning` logs. The *category* is `TodoApiSample.Controllers.TodoController` (the fully qualified class name of `TodoController` in the sample app):
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=4,7)]
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
-
-The following Razor Pages example creates logs with `Information` as the *level* and `TodoApiSample.Pages.AboutModel` as the *category*:
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_LoggerDI&highlight=3, 7)]
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=4)]
 
 ::: moniker-end
 
+
 The Log *level* indicates the severity of the logged event. The log *category* is a string that is associated with each log. The `ILogger<T>` instance creates logs that have the fully qualified name of type `T` as the category. [Levels](#log-level) and [categories](#log-category) are explained in more detail later in this article. 
+
+The following controller example creates a logger with `TodoApiSample.Pages.AboutModel` as the *category*. The logger is used to create logs with `Information` and `Warning` as the *level*. 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-### Create logs in Program
+[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=4,7)]
+
+[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=4,7)]
+
+[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+### Create logs in the Program class
 
 To write logs in the `Program` class, get an `ILogger` instance from DI after building the host:
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=9,10)]
 
-### Create logs in Startup
+### Create logs in the Startup class
 
 To write logs in the `Startup.Configure` method, include an `ILogger` parameter in the method signature:
 
@@ -126,14 +139,11 @@ The reason for this restriction is that logging depends on DI and on configurati
 
 Constructor injection of a logger into `Startup` works in earlier versions of ASP.NET Core because a separate DI container is created for the Web Host. For information about why only one container is created for the Generic Host, see the [breaking change announcement](https://github.com/aspnet/Announcements/issues/353).
 
-If you need to configure a service that depends on `ILogger<T>`, you can still do that:
+If you need to configure a service that depends on `ILogger<T>`, you can still do that by using constructor injection or by providing a factory method. The factory method approach is recommended only if there is no other option. For example, suppose you need to fill a property with a service from DI:
 
-* Use constructor injection.
-* Provide a factory method. This approach is recommended only if there is no other option. For example, suppose you need to fill a property with a DI injected service:
+[!code-csharp[](index/samples/3.x/TodoApiSample/Startup.cs?name=snippet_ConfigureServices&highlight=6-10)]
 
-  [!code-csharp[](index/samples/3.x/TodoApiSample/Startup.cs?name=snippet_ConfigureServices&highlight=6-10)]
-
-  The preceding highlighted code is a `func` that runs the first time the DI container needs to construct an instance of `MyService`. You can access any of the registered services in this way.
+The preceding highlighted code is a `Func` that runs the first time the DI container needs to construct an instance of `MyService`. You can access any of the registered services in this way.
 
 ::: moniker-end
 
