@@ -696,13 +696,13 @@ A filter function is invoked for all providers and categories that don't have ru
 
 ::: moniker range=">= aspnetcore-3.0"
 
-!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_FilterFunction&highlight=5-13)]
+!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_FilterFunction)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_FilterFunction&highlight=5-13)]
+!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_FilterFunction)]
 
 ::: moniker-end
 
