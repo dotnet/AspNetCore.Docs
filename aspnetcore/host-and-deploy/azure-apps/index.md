@@ -5,7 +5,7 @@ description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/16/2019
+ms.date: 07/28/2019
 uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
@@ -35,6 +35,9 @@ Set up a CI build for an ASP.NET Core app, then create a continuous deployment r
 
 [Azure Web App sandbox](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)  
 Discover Azure App Service runtime execution limitations enforced by the Azure Apps platform.
+
+<xref:test/troubleshoot>  
+Understand and troubleshoot warnings and errors with ASP.NET Core projects.
 
 ## Application configuration
 
