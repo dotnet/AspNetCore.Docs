@@ -34,7 +34,7 @@ Get started with Blazor:
 
    4\. Provide a project name in the **Project name** field or accept the default project name. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
 
-   5\. For a Blazor client-side experience, choose the **Blazor (client-side)** template. For a Blazor server-side experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
+   5\. For a Blazor client-side experience, choose the **Blazor WebAssembly App** template. For a Blazor server-side experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
 
    6\. Press **F5** to run the app.
 
@@ -50,13 +50,13 @@ Get started with Blazor:
    3\. For a Blazor client-side experience, execute the following command in a command shell:
 
       ```console
-      dotnet new blazor -o WebApplication1
+      dotnet new blazorwasm -o WebApplication1
       ```
 
       For a Blazor server-side experience, execute the following command in a command shell:
 
       ```console
-      dotnet new blazorserverside -o WebApplication1
+      dotnet new blazorserver -o WebApplication1
       ```
 
       For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
@@ -79,7 +79,7 @@ Get started with Blazor:
 
    3\. In the sidebar, select **.NET Core** > **App**.
 
-   4\. For a Blazor server-side experience, select the **ASP.NET Core Blazor Server App** template. For a Blazor client-side experience, select the **ASP.NET Core Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
+   4\. For a Blazor server-side experience, select the **Blazor Server App** template. For a Blazor client-side experience, select the **Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
 
    5\. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
 
@@ -94,7 +94,7 @@ Get started with Blazor:
    For a Blazor client-side experience, execute the following commands in a command shell:
 
    ```console
-   dotnet new blazor -o WebApplication1
+   dotnet new blazorwasm -o WebApplication1
    cd WebApplication1
    dotnet run
    ```
@@ -102,7 +102,7 @@ Get started with Blazor:
    For a Blazor server-side experience, execute the following commands in a command shell:
 
    ```console
-   dotnet new blazorserverside -o WebApplication1
+   dotnet new blazorserver -o WebApplication1
    cd WebApplication1
    dotnet run
    ```
