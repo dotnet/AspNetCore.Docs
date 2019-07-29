@@ -46,14 +46,14 @@ namespace ContosoUniversity.Pages.Instructors
                 InstructorID = id.Value;
                 Instructor instructor = Instructor.Instructors.Single(
                     i => i.ID == id.Value);
-                Instructor.Courses = instructor.CourseAssignments.Select(
+                InstructorData.Courses = instructor.CourseAssignments.Select(
                     s => s.Course);
             }
 
             if (courseID != null)
             {
                 CourseID = courseID.Value;
-                Instructor.Enrollments = Instructor.Courses.Single(
+                Instructor.Enrollments = InstructorData.Courses.Single(
                     x => x.CourseID == courseID).Enrollments;
             }
         }
