@@ -170,7 +170,7 @@ namespace TodoApiSample
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                #region snippet_FilterFunction
+        #region snippet_FilterFunction
                 .ConfigureLogging(logBuilder =>
                 {
                     logBuilder.AddFilter((provider, category, logLevel) =>
@@ -183,7 +183,7 @@ namespace TodoApiSample
                         return true;
                     });
                 })
-                #endregion
+        #endregion
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
