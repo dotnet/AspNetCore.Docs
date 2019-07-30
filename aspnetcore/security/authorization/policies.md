@@ -96,7 +96,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> or `[Authorize(Policy = "Something"]` for authorization.
+Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> or `[Authorize(Policy = "Something")]` for authorization.
 
 ## Applying policies to MVC controllers
 
