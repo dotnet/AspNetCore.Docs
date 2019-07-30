@@ -114,6 +114,10 @@ For more information, see [Routing to controller actions](xref:mvc/controllers/r
 
 To share a common layout for the entire app, move the *_ViewStart.cshtml* to the application root folder.
 
+### _ViewImports.cshtml
+
+In its standard location */Views/_ViewImports.cshtml* does not apply to areas. To use common [tag helpers](xref:mvc/views/tag-helpers/intro), `@using` or `@inject` in your area, ensure a proper *_ViewImports.cshtml* file [applies to your area views](xref:/mvc/views/layout#importing-shared-directives). If you want the same behavior in all your views, just move */Views/_ViewImports.cshtml* to application root.
+
 <a name="rename"></a>
 
 ### Change default area folder where views are stored
