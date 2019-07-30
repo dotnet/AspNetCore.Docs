@@ -2,7 +2,7 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using GrpcGreeter;
+using Greet;
 using Grpc.Net.Client;
 
 namespace GrpcGreeterClient

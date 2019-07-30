@@ -3,7 +3,7 @@ title: Layout in ASP.NET Core
 author: ardalis
 description: Learn how to use common layouts, share directives, and run common code before rendering views in an ASP.NET Core app.
 ms.author: riande
-ms.date: 02/26/2019
+ms.date: 07/30/2019
 uid: mvc/views/layout
 ---
 # Layout in ASP.NET Core
@@ -29,15 +29,15 @@ Most web apps have a common layout that provides the user with a consistent expe
 
 Common HTML structures such as scripts and stylesheets are also frequently used by many pages within an app. All of these shared elements may be defined in a *layout* file, which can then be referenced by any view used within the app. Layouts reduce duplicate code in views.
 
-By convention, the default layout for an ASP.NET Core app is named *_Layout.cshtml*. The layout file for new ASP.NET Core projects created with the templates:
+By convention, the default layout for an ASP.NET Core app is named *_Layout.cshtml*. The layout files for new ASP.NET Core projects created with the templates are:
 
 * Razor Pages: *Pages/Shared/_Layout.cshtml*
 
-  ![pages folder in solutions explorer](layout/_static/rp-web-project-views.png)
+  ![Pages folder in Solution Explorer](layout/_static/rp-web-project-views.png)
 
 * Controller with views: *Views/Shared/_Layout.cshtml*
 
- ![views folder in solutions explorer](layout/_static/mvc-web-project-views.png)
+  ![Views folder in Solution Explorer](layout/_static/mvc-web-project-views.png)
 
 The layout defines a top level template for views in the app. Apps don't require a layout. Apps can define more than one layout, with different views specifying different layouts.
 
