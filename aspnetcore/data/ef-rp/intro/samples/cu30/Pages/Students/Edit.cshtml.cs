@@ -40,13 +40,8 @@ namespace ContosoUniversity.Pages.Students
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var studentToUpdate = await _context.Students.FindAsync(id);
 
             if (studentToUpdate == null)
