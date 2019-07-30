@@ -1,5 +1,4 @@
-﻿#define SortFilterPage // SortFilter //SortOnly // first 
-
+﻿#region snippet_All
 using ContosoUniversity.Models;
 using ContosoUniversity.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Students
 {
-    #region snippet1
     public class IndexModel : PageModel
     {
         private readonly SchoolContext _context;
@@ -27,104 +25,14 @@ namespace ContosoUniversity.Pages.Students
         public string CurrentSort { get; set; }
         #endregion
 
-#if SortFilterPage
-        #region snippet_SortFilterPageType
         public PaginatedList<Student> Students { get; set; }
-        #endregion
-#else
-        public IList<Student> Students { get; set; }
-#endif
 
-#if first
-        #region snippet_ScaffoldedIndex
-        public async Task OnGetAsync()
-        {
-            Student = await _context.Students.ToListAsync();
-        }
-        #endregion
-#endif
-
-#if SortOnly
-        #region snippet_SortOnly
-        public async Task OnGetAsync(string sortOrder)
-        {
-        #region snippet_Ternary
-            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
-        #endregion
-
-            IQueryable<Student> studentsIQ = from s in _context.Students
-                                            select s;
-
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    studentsIQ = studentsIQ.OrderByDescending(s => s.LastName);
-                    break;
-                case "Date":
-                    studentsIQ = studentsIQ.OrderBy(s => s.EnrollmentDate);
-                    break;
-                case "date_desc":
-                    studentsIQ = studentsIQ.OrderByDescending(s => s.EnrollmentDate);
-                    break;
-                default:
-                    studentsIQ = studentsIQ.OrderBy(s => s.LastName);
-                    break;
-            }
-
-        #region snippet_SortOnlyRtn
-            Students = await studentsIQ.AsNoTracking().ToListAsync();
-        #endregion
-        }
-        #endregion
-#endif
-#if SortFilter
-        #region snippet_SortFilter
-        public async Task OnGetAsync(string sortOrder, string searchString)
-        {
-            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
-            CurrentFilter = searchString;
-
-            IQueryable<Student> studentsIQ = from s in _context.Students
-                                            select s;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                studentsIQ = studentsIQ.Where(s => s.LastName.Contains(searchString)
-                                       || s.FirstMidName.Contains(searchString));
-            }
-
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    studentsIQ = studentsIQ.OrderByDescending(s => s.LastName);
-                    break;
-                case "Date":
-                    studentsIQ = studentsIQ.OrderBy(s => s.EnrollmentDate);
-                    break;
-                case "date_desc":
-                    studentsIQ = studentsIQ.OrderByDescending(s => s.EnrollmentDate);
-                    break;
-                default:
-                    studentsIQ = studentsIQ.OrderBy(s => s.LastName);
-                    break;
-            }
-
-            Students = await studentsIQ.AsNoTracking().ToListAsync();
-        }
-        #endregion
-#endif
-#if SortFilterPage
-        #region snippet_SortFilterPage
-        #region snippet_SortFilterPage2
         public async Task OnGetAsync(string sortOrder,
             string currentFilter, string searchString, int? pageIndex)
-        #endregion
         {
             CurrentSort = sortOrder;
             NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             DateSort = sortOrder == "Date" ? "date_desc" : "Date";
-            #region snippet_SortFilterPage3
             if (searchString != null)
             {
                 pageIndex = 1;
@@ -133,7 +41,6 @@ namespace ContosoUniversity.Pages.Students
             {
                 searchString = currentFilter;
             }
-            #endregion
 
             CurrentFilter = searchString;
 
@@ -161,12 +68,9 @@ namespace ContosoUniversity.Pages.Students
             }
 
             int pageSize = 3;
-            #region snippet_SortFilterPage4
             Students = await PaginatedList<Student>.CreateAsync(
                 studentsIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
-            #endregion
         }
-        #endregion
-#endif
     }
 }
+#endregion

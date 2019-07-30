@@ -1,3 +1,4 @@
+#region snippet_All
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,6 @@ using ContosoUniversity.Models;
 
 namespace ContosoUniversity.Pages.Students
 {
-    #region snippet1
     public class IndexModel : PageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
@@ -24,13 +24,9 @@ namespace ContosoUniversity.Pages.Students
         public string DateSort { get; set; }
         public string CurrentFilter { get; set; }
         public string CurrentSort { get; set; }
-        #endregion
 
-        #region snippet2
         public IList<Student> Students { get;set; }
-        #endregion
 
-        #region snippet_SortOnly
         public async Task OnGetAsync(string sortOrder)
         {
             #region snippet_Ternary
@@ -38,6 +34,7 @@ namespace ContosoUniversity.Pages.Students
             DateSort = sortOrder == "Date" ? "date_desc" : "Date";
             #endregion
 
+            #region snippet_IQueryable
             IQueryable<Student> studentsIQ = from s in _context.Students
                                             select s;
 
@@ -60,7 +57,8 @@ namespace ContosoUniversity.Pages.Students
             #region snippet_SortOnlyRtn
             Students = await studentsIQ.AsNoTracking().ToListAsync();
             #endregion
+            #endregion
         }
-        #endregion
     }
 }
+#endregion
