@@ -54,7 +54,7 @@ The app built in these tutorials is a basic university web site. Users can view 
 
 The UI style of this site is based on the built-in project templates. The tutorial's focus is on how to use EF Core, not how to customize the UI.
 
-Follow the link at the top of the page to get the source code for the completed project. The cu30 folder has the code for this version of the tutorial. Files that reflect the state of the code for tutorials 1-7 can be found in the cu30snapshots folder. To run the app, download it and follow the instructions for Visual Studio (LocalDb) or Visual Studio Code (SQLite).
+Follow the link at the top of the page to get the source code for the completed project. The *cu30* folder has the code for the ASP.NET Core 3.0 version of the tutorial. Files that reflect the state of the code for tutorials 1-7 can be found in the *cu30snapshots* folder. The following instructions explain how to run the app after downloading it.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -121,7 +121,7 @@ Set up the site header, footer, and menu by updating *Pages/Shared/_Layout.cshtm
 
 * Delete the **Home** and **Privacy** menu entries, and add entries for **About**, **Students**, **Courses**, **Instructors**, and **Departments**.
 
-The changes are highlighted. Not all of the code in the file is displayed, so don't copy and paste the entire snippet.
+The changes are highlighted.
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
 
@@ -133,7 +133,7 @@ Run the app to verify that the home page appears.
 
 ## The data model
 
-The following sections create a simple data model:
+The following sections create a data model:
 
 ![Course-Enrollment-Student data model diagram](intro/_static/data-model-diagram.png)
 
@@ -167,7 +167,7 @@ In the *Models* folder, create *Enrollment.cs* with the following code:
 
 The `EnrollmentID` property is the primary key; this entity uses the `classnameID` pattern instead of `ID` by itself. For a production data model, choose one pattern and use it consistently. This tutorial uses both just to illustrate that both work. Using `ID` without `classname` makes it easier to implement some kinds of data model changes.
 
-The `Grade` property is an `enum`. The question mark after the `Grade` type declaration indicates that the `Grade` property is nullable. A grade that's null is different from a zero grade&mdash;null means a grade isn't known or hasn't been assigned yet.
+The `Grade` property is an `enum`. The question mark after the `Grade` type declaration indicates that the `Grade` property is [nullable](https://docs.microsoft.com/dotnet/csharp/programming-guide/nullable-types/). A grade that's null is different from a zero grade&mdash;null means a grade isn't known or hasn't been assigned yet.
 
 The `StudentID` property is a foreign key, and the corresponding navigation property is `Student`. An `Enrollment` entity is associated with one `Student` entity, so the property contains a single `Student` entity.
 
@@ -187,7 +187,7 @@ The `Enrollments` property is a navigation property. A `Course` entity can be re
 
 The `DatabaseGenerated` attribute allows the app to specify the primary key rather than having the database generate it.
 
-Build the project to validate that there are no errors.
+Build the project to validate that there are no compiler errors.
 
 ## Scaffold Student pages
 
@@ -204,9 +204,8 @@ In this section, you use the ASP.NET Core scaffolding tool to generate:
 * In the **Add Razor Pages using Entity Framework (CRUD)** dialog:
   * In the **Model class** drop-down, select **Student (ContosoUniversity.Models)**.
   * In the **Data context class** row, select the **+** (plus) sign.
-  * Change the data context class folder from *Models* to *Data*
-  * Change the data context class name from *ContosoUniversityContext* to *SchoolContext*.
-  * Make sure the context class is *ContosoUniversity.Data.SchoolContext*, and select **Add**.
+  * Change the data context name from *ContosoUniversity.Models.ContosoUniversityContext* to *ContosoUniversity.Data.SchoolContext*. This puts the context class in the *Data* folder instead of the *Models* folder.
+  * Select **Add**.
 
 The following packages are automatically installed:
 
@@ -217,44 +216,52 @@ The following packages are automatically installed:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Make the following highlighted changes in the *ContosoUniversity.csproj* file:
+* Run the following .NET Core CLI commands to install required NuGet packages:
 
-  [!code-xml[Main](intro/samples/cu30/ContosoUniversitySQLite.csproj?highlight=8-16)]
+  ```console
+  dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 3.0.0-*
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
+  dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
+  dotnet add package Microsoft.EntityFrameworkCore.Tools --version 3.0.0-*
+  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
+  dotnet add package Microsoft.Extensions.Logging.Debug --version 3.0.0-*
 
-  This change installs these packages. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
+  The Microsoft.VisualStudio.Web.CodeGeneration.Design package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
 
 * Create a *Students* folder in the *Pages* folder.
 
-* Run the following commands that:
-  * Restore the packages that were added to the project file.
-  * Install the scaffolding tool.
-  * Scaffold the student model.
-
-  **On Linux or macOS**
+* Run the following command to install the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
   ```console
-  dotnet restore
   dotnet tool install --global dotnet-aspnet-codegenerator --version 3.0.0-*
+  ```
+
+* Run the following command to scaffold Student pages.
+
+  **On Windows**
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
+  ```
+
+  **On macOS or Linux**
+
+  ```console
   dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
   ```
 
-  **On Windows**, use the same commands but replace *Pages/Students* with *Pages\Students*. (Replace the forward slash with a backslash.)
-
 ---
 
-If you have a problem with the preceding step:
-
-* Build the project and retry the scaffold step.
-* For more help, see [Scaffold the movie model](xref:tutorials/razor-pages/model#scaffold-the-movie-model).
+If you have a problem with the preceding step, build the project and retry the scaffold step.
 
 The scaffolding process:
 
 * Creates Razor pages in the *Pages/Students* folder:
-  * *Create.cshtml* and *.cs*
-  * *Delete.cshtml* and *.cs*
-  * *Details.cshtml* and *.cs*
-  * *Edit.cshtml* and *.cs*
-  * *Index.cshtml* and *.cs*
+  * *Create.cshtml* and *Create.cshtml.cs*
+  * *Delete.cshtml* and *Delete.cshtml.cs*
+  * *Details.cshtml* and *Details.cshtml.cs*
+  * *Edit.cshtml* and *Edit.cshtml.cs*
+  * *Index.cshtml* and *Index.cshtml.cs*
 * Creates *SchoolContext.cs* in the *Data* folder.
 * Adds the context to dependency injection in *Startup.cs*.
 * Adds a database connection string to *appsettings.json*.
@@ -271,13 +278,13 @@ LocalDB is a lightweight version of the SQL Server Express Database Engine and i
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-The scaffolded connection string specifies a SQL Server LocalDB database. To use SQLite instead, open *appSettings.json* and replace the LocalDB connection string with a SQLite one:
+Change the connection string to point to a SQLite database file named *CU.db*:
 
 [!code-json[Main](intro/samples/cu30/appsettingsSQLite.json?highlight=11)]
 
 ---
 
-## Update the context class
+## Update the database context class
 
 The main class that coordinates EF Core functionality for a given data model is the database context class. The context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
 
@@ -291,6 +298,8 @@ The highlighted code creates a [DbSet\<TEntity>](/dotnet/api/microsoft.entityfra
 * An entity corresponds to a row in the table.
 
 Since an entity set contains multiple entities, the DBSet properties should be plural names. Since the scaffolder used singular Student as DBSet property name, the preceding step changed it to plural. To make the Razor Pages code match the new DBSet name, make a global change across the whole project of `_context.Student` to `_context.Students`.  There are 8 occurrences.
+
+Build the project to verify there are no compiler errors.
 
 ## Startup.cs
 
@@ -381,10 +390,11 @@ The `EnsureCreated` method creates an empty database. This section adds code tha
 
 # [Visual Studio](#tab/visual-studio)
 
-* Open SSOX from the **View** menu in Visual Studio.
+* Open **SQL Server Object Explorer** (SSOX) from the **View** menu in Visual Studio.
 * In SSOX, select **(localdb)\MSSQLLocalDB > Databases > SchoolContext-{GUID}**. The database name is generated from the context name you provided earlier plus a dash and a GUID.
 * Expand the **Tables** node.
 * Right-click the **Student** table and click **View Data** to see the columns created and the rows inserted into the table.
+* Right-click the **Student** table and click **View Code** to see how the `Student` model maps to the `Student` table schema.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -615,7 +625,7 @@ The scaffolding tool automatically created a DB Context and registered it with t
 
 Examine the `ConfigureServices` method in *Startup.cs*. The highlighted line was added by the scaffolder:
 
-[!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=13-14)]
+[!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=5-6)]
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
