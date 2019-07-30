@@ -452,6 +452,8 @@ The `@attribute` directive adds the given attribute to the class of the generate
 
 ### \@code
 
+*This scenario only applies to Razor components (.razor).*
+
 The `@code` directive enables a [Razor component](xref:blazor/components) to add C# members (fields, properties, and methods) to a component:
 
 ```cshtml
@@ -520,31 +522,27 @@ The code renders the following HTML:
 <p>Name: <strong>Martin Luther King, Jr.</strong></p>
 ```
 
-::: moniker-end
-
 ### \@implements
 
-The `@implements` directive implements an interface for the generated component class.
+The `@implements` directive implements an interface for the generated class.
 
-The following [Razor component](xref:blazor/components) implements <xref:System.IDisposable?displayProperty=fullName> so that the component can call the <xref:System.IDisposable.Dispose*> method:
+The following example implements <xref:System.IDisposable?displayProperty=fullName> so that the <xref:System.IDisposable.Dispose*> method can be called:
 
 ```cshtml
-@page "/my-component"
 @implements IDisposable
 
 <h1>Example</h1>
 
-@code {
+@functions {
     private bool _isDisposed;
 
-    protected override void OnInitialized()
-    {
-        ...
-    }
+    ...
 
     public void Dispose() => _isDisposed = true;
 }
 ```
+
+::: moniker-end
 
 ### \@inherits
 
