@@ -90,7 +90,7 @@ Kestrel doesn't support HTTP/2 with [Transport Layer Security (TLS)](https://too
 
 To workaround this issue you must configure Kestrel and the gRPC client to use HTTP/2 **without** TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption.
 
-Kestrel must configure a HTTP/2 endpoint that does use TLS in `Program.cs`:
+Kestrel must configure a HTTP/2 endpoint without TLS in `Program.cs`:
 
 ```cs
 public static IHostBuilder CreateHostBuilder(string[] args) =>
