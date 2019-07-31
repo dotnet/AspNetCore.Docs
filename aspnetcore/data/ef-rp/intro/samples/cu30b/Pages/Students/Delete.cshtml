@@ -7,6 +7,8 @@
 
 <h1>Delete</h1>
 
+<p class="text-danger">@Model.ErrorMessage</p>
+
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Student</h4>
@@ -31,7 +33,7 @@
             @Html.DisplayFor(model => model.Student.EnrollmentDate)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Student.ID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
