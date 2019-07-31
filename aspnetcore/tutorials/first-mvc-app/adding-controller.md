@@ -77,14 +77,7 @@ MVC invokes controller classes (and the action methods within them) depending on
 
 The routing format is set in the `Configure` method in *Startup.cs* file.
 
-~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs
-
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
-
-<!-- 
-Add link to explain lambda.
-Remove link for simplified tutorial.
--->
 
 When you browse to the app and don't supply any URL segments, it defaults to the "Home" controller and the "Index" method specified in the template line highlighted above.
 
@@ -124,7 +117,7 @@ This time the third URL segment matched the route parameter `id`. The `Welcome` 
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 
-In these examples the controller has been doing the "VC" portion of MVC - that is, the view and controller work. The controller is returning HTML directly. Generally you don't want controllers returning HTML directly, since that becomes very cumbersome to code and maintain. Instead you typically use a separate Razor view template file to help generate the HTML response. You do that in the next tutorial.
+In these examples the controller has been doing the "VC" portion of MVC - that is, the **V**iew and the **C**ontroller work. The controller is returning HTML directly. Generally you don't want controllers returning HTML directly, since that becomes very cumbersome to code and maintain. Instead you typically use a separate Razor view template file to generate the HTML response. You do that in the next tutorial.
 
 > [!div class="step-by-step"]
 > [Previous](start-mvc.md)
