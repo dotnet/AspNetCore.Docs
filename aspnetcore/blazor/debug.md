@@ -34,7 +34,7 @@ Development of further debugging scenarios is an on-going focus of the engineeri
 
 ## Procedure
 
-To debug a Blazor client-side app in Chrome:
+To debug a Blazor client-side app in Chrome or Edge:
 
 1. Run a Blazor client-side app in `Debug` configuration. Pass the `--configuration Debug` option to the [dotnet run](/dotnet/core/tools/dotnet-run) command: `dotnet run --configuration Debug`.
 1. Access the app in Chrome (version 70 or later) or with a Microsoft Edge preview ([Edge Dev Channel](https://www.microsoftedgeinsider.com)).
