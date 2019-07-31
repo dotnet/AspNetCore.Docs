@@ -1,4 +1,5 @@
-﻿using System;
+﻿#region snippet_All
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +11,6 @@ using ContosoUniversity.Models;
 
 namespace ContosoUniversity.Pages.Students
 {
-    #region snippet_ErrorMessage
     public class DeleteModel : PageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
@@ -23,8 +23,7 @@ namespace ContosoUniversity.Pages.Students
         [BindProperty]
         public Student Student { get; set; }
         public string ErrorMessage { get; set; }
-        #endregion
-        #region snippet_OnGetAsync
+
         public async Task<IActionResult> OnGetAsync(int? id, bool? saveChangesError = false)
         {
             if (id == null)
@@ -48,9 +47,7 @@ namespace ContosoUniversity.Pages.Students
 
             return Page();
         }
-        #endregion
 
-        #region snippet_OnPostAsync
         public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (id == null)
@@ -78,6 +75,5 @@ namespace ContosoUniversity.Pages.Students
                                      new { id, saveChangesError = true });
             }
         }
-        #endregion
     }
 }

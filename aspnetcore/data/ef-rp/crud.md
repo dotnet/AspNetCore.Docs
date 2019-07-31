@@ -26,11 +26,11 @@ The scaffolded code for the Students pages doesn't include enrollment data. In t
 
 ### Read enrollments
 
-To display a student's enrollment data on the page, you need to read it. The scaffolded code in *Pages/Students/Details.cshtml.cs* reads only the Student data, not the Enrollment data:
+To display a student's enrollment data on the page, you need to read it. The scaffolded code in *Pages/Students/Details.cshtml.cs* reads only the Student data, without the Enrollment data:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/2-crud/Pages/Students/Details1.cshtml.cs?name=snippet_OnGetAsync&highlight=8)]
 
-Add the following highlighted code to read enrollment data for the selected student:
+Replace the `OnGetAsync` method with the following code to read enrollment data for the selected student. The changes are highlighted.
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Details.cshtml.cs?name=snippet_OnGetAsync&highlight=8-12)]
 
@@ -40,7 +40,7 @@ The [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkquer
 
 ### Display enrollments
 
-Open *Pages/Students/Details.cshtml*. Add the following highlighted code to display a list of enrollments:
+Replace the code in *Pages/Students/Details.cshtml* with the following code to display a list of enrollments. The changes are highlighted.
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Details.cshtml?highlight=32-53)]
 
@@ -61,7 +61,7 @@ The URL for the Details page is `https://localhost:<port>/Students/Details?id=1`
 
 ## Update the Create page
 
-The scaffolded `OnPostAsync` code for the Create page is vulnerable to [overposting](#overposting). Update the `OnPostAsync` method in *Pages/Students/Create.cshtml.cs* with the following code:
+The scaffolded `OnPostAsync` code for the Create page is vulnerable to [overposting](#overposting). Replace the `OnPostAsync` method in *Pages/Students/Create.cshtml.cs* with the following code.
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
@@ -150,28 +150,20 @@ In a web app, the `DbContext` that reads an entity and displays the data is disp
 
 In this section, you implement a custom error message when the call to `SaveChanges` fails.
 
-In *Pages/Students/Delete.cshtml.cs*, add an`ErrorMessage` field:
+Replace the code in *Pages/Students/Delete.cshtml.cs* with the following code. The changes are highlighted.
 
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Delete.cshtml.cs?name=snippet_ErrorMessage&highlight=12)]
+[!code-csharp[Main](intro/samples/cu30/Pages/Students/Delete.cshtml.cs?name=snippet_All&highlight=24,26,35,42-45,73-74)]
 
-Replace the `OnGetAsync` method with the following code:
+The preceding code adds the optional parameter `saveChangesError` to the `OnGetAsync` method signature. `saveChangesError` indicates whether the method was called after a failure to delete the student object. The delete operation might fail because of transient network problems. Transient network errors are more likely when the database is in the cloud. The `saveChangesError` parameter is false when the Delete page `OnGetAsync` is called from the UI. When `OnGetAsync` is called by `OnPostAsync` (because the delete operation failed), the `saveChangesError` parameter is true.
 
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Delete.cshtml.cs?name=snippet_OnGetAsync&highlight=1,9,17-20)]
-
-The preceding code adds the optional parameter `saveChangesError` to the method signature. `saveChangesError` indicates whether the method was called after a failure to delete the student object. The delete operation might fail because of transient network problems. Transient network errors are more likely when the database is in the cloud. The `saveChangesError` parameter is false when the Delete page `OnGetAsync` is called from the UI. When `OnGetAsync` is called by `OnPostAsync` (because the delete operation failed), the `saveChangesError` parameter is true.
-
-Replace the `OnPostAsync` method with the following code:
-
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Delete.cshtml.cs?name=snippet_OnPostAsync)]
-
-The preceding code retrieves the selected entity, then calls the [Remove](/dotnet/api/microsoft.entityframeworkcore.dbcontext.remove#Microsoft_EntityFrameworkCore_DbContext_Remove_System_Object_) method to set the entity's status to `Deleted`. When `SaveChanges` is called, a SQL DELETE command is generated. If `Remove` fails:
+The `OnPostAsync` method retrieves the selected entity, then calls the [Remove](/dotnet/api/microsoft.entityframeworkcore.dbcontext.remove#Microsoft_EntityFrameworkCore_DbContext_Remove_System_Object_) method to set the entity's status to `Deleted`. When `SaveChanges` is called, a SQL DELETE command is generated. If `Remove` fails:
 
 * The database exception is caught.
 * The Delete pages `OnGetAsync` method is called with `saveChangesError=true`.
 
 Add an error message to the Delete Razor Page (*Pages/Students/Delete.cshtml*):
 
-[!code-cshtml[Main](intro/samples/cu21/Pages/Students/Delete.cshtml?range=1-13&highlight=10)]
+[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?&highlight=10)]
 
 Run the app and delete a student to test the Delete page.
 
