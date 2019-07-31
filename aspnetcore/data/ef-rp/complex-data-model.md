@@ -180,13 +180,13 @@ SqliteException: SQLite Error 1: 'no such column: s.FirstName'.
   SQLite does not support this migration operation ('AlterColumnOperation'). For more information, see http://go.microsoft.com/fwlink/?LinkId=723262.
   ```
 
-For this tutorial, the way to get past this error is to delete and re-create the initial migration. For more information, see the SQLite warning note at the top of the [migrations tutorial](xref:data/ef-rp/migations).
+For this tutorial, the way to get past this error is to delete and re-create the initial migration. For more information, see the SQLite warning note at the top of the [migrations tutorial](xref:data/ef-rp/migrations).
 
 * Delete the *Migrations* folder.
 * Run the following commands to drop the database, create a new initial migration, and apply the migration:
 
 ```console
-dotnet ef database drop
+dotnet ef database drop --force
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
@@ -606,7 +606,7 @@ To force EF Core to create a new database, drop and update the database:
 * Run the following command:
 
   ```console
-  dotnet ef database drop
+  dotnet ef database drop --force
   ```
 
 * Delete the *Migrations* folder, then run the following command:
@@ -676,7 +676,7 @@ In the `ComplexDataModel` migration class, update the `Up` method:
 Add the following highlighted code. The new code goes after the `.CreateTable( name: "Department"` block:
 
 [!code-csharp[](intro/samples/cu30snapshots/5-complex/Migrations/
-ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
+ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=23-31)]
 
 With the preceding changes, existing `Course` rows will be related to the "Temp" department after the `ComplexDataModel.Up` method runs.
 

@@ -54,9 +54,11 @@ The app built in these tutorials is a basic university web site. Users can view 
 
 The UI style of this site is based on the built-in project templates. The tutorial's focus is on how to use EF Core, not how to customize the UI.
 
-Follow the link at the top of the page to get the source code for the completed project. The *cu30* folder has the code for the ASP.NET Core 3.0 version of the tutorial. Files that reflect the state of the code for tutorials 1-7 can be found in the *cu30snapshots* folder. The following instructions explain how to run the app after downloading it.
+Follow the link at the top of the page to get the source code for the completed project. The *cu30* folder has the code for the ASP.NET Core 3.0 version of the tutorial. Files that reflect the state of the code for tutorials 1-7 can be found in the *cu30snapshots* folder.
 
 # [Visual Studio](#tab/visual-studio)
+
+To run the app after downloading the completed project:
 
 * Build the project.
 * In Package Manager Console (PMC) run the following command:
@@ -68,6 +70,8 @@ Follow the link at the top of the page to get the source code for the completed 
 * Run the project to seed the database.
 
 # [Visual Studio Code](#tab/visual-studio-code)
+
+To run the app after downloading the completed project:
 
 * Delete *ContosoUniversity.csproj*, and rename *ContosoUniversitySQLite.csproj* to *ContosoUniversity.csproj*.
 * Delete *Startup.cs*, and rename *StartupSQLite.cs* to *Startup.cs*.
@@ -298,7 +302,9 @@ The highlighted code creates a [DbSet\<TEntity>](/dotnet/api/microsoft.entityfra
 * An entity set typically corresponds to a database table.
 * An entity corresponds to a row in the table.
 
-Since an entity set contains multiple entities, the DBSet properties should be plural names. Since the scaffolder used singular Student as DBSet property name, the preceding step changed it to plural. To make the Razor Pages code match the new DBSet name, make a global change across the whole project of `_context.Student` to `_context.Students`.  There are 8 occurrences.
+Since an entity set contains multiple entities, the DBSet properties should be plural names. Since the scaffolder used singular Student as DBSet property name, the preceding step changed it to plural.
+
+To make the Razor Pages code match the new DBSet name, make a global change across the whole project of `_context.Student` to `_context.Students`.  There are 8 occurrences.
 
 Build the project to verify there are no compiler errors.
 

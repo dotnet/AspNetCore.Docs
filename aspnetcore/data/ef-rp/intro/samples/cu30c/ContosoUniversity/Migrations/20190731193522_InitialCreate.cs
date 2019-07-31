@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ContosoUniversity.Migrations
@@ -25,7 +26,7 @@ namespace ContosoUniversity.Migrations
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     LastName = table.Column<string>(nullable: true),
                     FirstMidName = table.Column<string>(nullable: true),
                     EnrollmentDate = table.Column<DateTime>(nullable: false)
@@ -40,7 +41,7 @@ namespace ContosoUniversity.Migrations
                 columns: table => new
                 {
                     EnrollmentID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CourseID = table.Column<int>(nullable: false),
                     StudentID = table.Column<int>(nullable: false),
                     Grade = table.Column<int>(nullable: true)
