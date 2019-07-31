@@ -1,65 +1,63 @@
-@page
-@model ContosoUniversity.Pages.Students.IndexModel
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using ContosoUniversity.Data;
+using ContosoUniversity.Models;
 
-@{
-    ViewData["Title"] = "Students";
-}
+namespace ContosoUniversity.Pages.Students
+{
+    public class IndexModel : PageModel
+    {
+        private readonly SchoolContext _context;
 
-<h2>Students</h2>
-
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-
-<form asp-page="./Index" method="get">
-    <div class="form-actions no-color">
-        <p>
-            Find by name:
-            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
-            <input type="submit" value="Search" class="btn btn-primary" /> |
-            <a asp-page="./Index">Back to full List</a>
-        </p>
-    </div>
-</form>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
-                    @Html.DisplayNameFor(model => model.Students[0].LastName)
-                </a>
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Students[0].FirstMidName)
-            </th>
-            <th>
-                <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
-                    @Html.DisplayNameFor(model => model.Students[0].EnrollmentDate)
-                </a>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Students)
+        public IndexModel(SchoolContext context)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstMidName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                </td>
-            </tr>
+            _context = context;
         }
-    </tbody>
-</table>
+
+        public string NameSort { get; set; }
+        public string DateSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public string CurrentSort { get; set; }
+
+        public IList<Student> Students { get; set; }
+
+        public async Task OnGetAsync(string sortOrder, string searchString)
+        {
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+
+            CurrentFilter = searchString;
+            
+            IQueryable<Student> studentsIQ = from s in _context.Students
+                                            select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                studentsIQ = studentsIQ.Where(s => s.LastName.Contains(searchString)
+                                       || s.FirstMidName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    studentsIQ = studentsIQ.OrderByDescending(s => s.LastName);
+                    break;
+                case "Date":
+                    studentsIQ = studentsIQ.OrderBy(s => s.EnrollmentDate);
+                    break;
+                case "date_desc":
+                    studentsIQ = studentsIQ.OrderByDescending(s => s.EnrollmentDate);
+                    break;
+                default:
+                    studentsIQ = studentsIQ.OrderBy(s => s.LastName);
+                    break;
+            }
+
+            Students = await studentsIQ.AsNoTracking().ToListAsync();
+        }
+    }
+}
