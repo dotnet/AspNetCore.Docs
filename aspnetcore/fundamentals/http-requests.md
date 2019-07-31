@@ -324,8 +324,6 @@ class Program
             }
         }
 
-        await host.RunAsync();
-
         return 0;
     }
 
