@@ -141,10 +141,10 @@ The following table describes options for configuring ASP.NET Core SignalR's adv
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
-| `ApplicationMaxBufferSize` | 32 KB | The maximum number of bytes received from the client that the server buffers before applying backpressure. Increasing this value allows the server to receive larger messages more quickly without applying backpressure, but can negatively impact memory consumption. |
+| `ApplicationMaxBufferSize` | 32 KB | The maximum number of bytes received from the client that the server buffers before applying backpressure. Increasing this value allows the server to receive larger messages more quickly without applying backpressure, but can increase memory consumption. |
 | `AuthorizationData` | Data automatically gathered from the `Authorize` attributes applied to the Hub class. | A list of [IAuthorizeData](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizedata) objects used to determine if a client is authorized to connect to the hub. |
-| `TransportMaxBufferSize` | 32 KB | The maximum number of bytes sent by the app that the server buffers before applying backpressure. Increasing this value allows the server to send larger messages more quickly without applying backpressure, but can negatively impact memory consumption. |
-| `Transports` | All Transports are enabled. | A bitmask of `HttpTransportType` values that can restrict the transports a client can use to connect. |
+| `TransportMaxBufferSize` | 32 KB | The maximum number of bytes sent by the app that the server buffers before observing backpressure. Increasing this value allows the server to buffer larger messages more quickly without awaiting backpressure, but can increase memory consumption. |
+| `Transports` | All Transports are enabled. | A bit flags enum of `HttpTransportType` values that can restrict the transports a client can use to connect. |
 | `LongPolling` | See below. | Additional options specific to the Long Polling transport. |
 | `WebSockets` | See below. | Additional options specific to the WebSockets transport. |
 
