@@ -119,7 +119,7 @@ var client = GrpcClient.Create<Greeter.GreeterClient>(httpClient);
 ```
 
 > [!WARNING]
-> HTTP/2 without [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) should only be used during app development. Production applications should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
+> HTTP/2 without TLS should only be used during app development. Production applications should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
 
 ## Additional resources
 
