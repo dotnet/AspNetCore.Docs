@@ -42,7 +42,7 @@ The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribu
 * The `mailto:` link is automatically created for `DataType.EmailAddress`.
 * The date selector is provided for `DataType.Date` in most browsers.
 
-The `DataType` attribute emits HTML 5 `data-` (pronounced data dash) attributes that HTML 5 browsers consume. The `DataType` attributes don't provide validation.
+The `DataType` attribute emits HTML 5 `data-` (pronounced data dash) attributes. The `DataType` attributes don't provide validation.
 
 `DataType.Date` doesn't specify the format of the date that's displayed. By default, the date field is displayed according to the default formats based on the server's [CultureInfo](xref:fundamentals/localization#provide-localized-resources-for-the-languages-and-cultures-you-support).
 
