@@ -168,7 +168,7 @@ In the next tutorial, a database of movies is created.
 
 ::: moniker-end
 
-::: moniker range="> aspnetcore-3.0"
+::: moniker range="< aspnetcore-3.0"
 
 In this section you modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files to cleanly encapsulate the process of generating HTML responses to a client.
 
