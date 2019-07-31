@@ -314,7 +314,6 @@ class Program
             {
                 var myService = services.GetRequiredService<IMyService>();
                 var pageContent = await myService.GetPage();
-
                 Console.WriteLine(pageContent.Substring(0, 500));
             }
             catch (Exception ex)
