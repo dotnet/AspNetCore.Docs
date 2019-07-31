@@ -94,7 +94,7 @@ To add filtering to the Students Index page:
 
 Replace the code in *Students/Index.cshtml.cs* with the following code to add filtering:
 
-[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml.cs?name=snippet_All&highlight=28,35,39-61)]
+[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml.cs?name=snippet_All&highlight=29,33,37-41)]
 
 The preceding code:
 
