@@ -29,13 +29,13 @@ The completed data model is shown in the following illustration:
 
 ![Student entity](complex-data-model/_static/student-entity.png)
 
-### The DataType attribute
+Replace the code in *Models/Student.cs* with the following code:
+
+[!code-csharp[](intro/samples/cu30/Models/Student.cs)]
+
+### The DataType and DisplayFormat attributes
 
 The student pages currently displays the time of day with the enrollment date. Typically, date fields show only the date and not the time.
-
-Update *Models/Student.cs* with the following highlighted code:
-
-[!code-csharp[](intro/samples/cu30snapshots/5-complex/Models/Student1.cs?name=snippet_DataType&highlight=1,8-9)]
 
 The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
 
@@ -68,20 +68,15 @@ Run the app and navigate to the Students Index page. Times are no longer display
 Data validation rules and validation error messages can be specified with attributes. The [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1) attribute specifies the minimum and maximum length of characters that are allowed in a data field. The `StringLength` attribute
 also provides client-side and server-side validation. The minimum value has no impact on the database schema.
 
-Update the `Student` model with the following code:
+```csharp
+[StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
+```
 
-[!code-csharp[](intro/samples/cu30snapshots/5-complex/Models/Student1.cs?name=snippet_StringLength&highlight=4,6)]
-
-The preceding code limits names to no more than 50 characters. The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute is used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
+The preceding code limits names to no more than 50 characters. The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute can be used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
 ```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
 ```
-
-Run the app:
-
-* Navigate to the Students page.
-* Select **Create New**, and try to enter a name longer than 50 characters.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -101,21 +96,40 @@ In your SQLite tool, examine the column definitions for the `Student` table. The
 
 Attributes can control how classes and properties are mapped to the database. In this section, the `Column` attribute is used to map the name of the `FirstMidName` property to "FirstName" in the database.
 
-When the database is created, property names on the model are used for column names (except when the `Column` attribute is used).
+```csharp
+[Column("FirstName")]
+public string FirstMidName { get; set; }
+```
 
-The `Student` model uses `FirstMidName` for the first-name field because the field might also contain a middle name.
+When the database is created, property names on the model are used for column names (except when the `Column` attribute is used). The `Student` model uses `FirstMidName` for the first-name field because the field might also contain a middle name.
 
-Update the *Student.cs* file with the following highlighted code:
+With the `[Column]` attribute, `Student.FirstMidName` in the data model maps to the `FirstName` column of the `Student` table. The addition of the `Column` attribute changes the model backing the `SchoolContext`. The model backing the `SchoolContext` no longer matches the database. 
 
-[!code-csharp[](intro/samples/cu30snapshots/5-complex/Models/Student1.cs?name=snippet_Column&highlight=1,11)]
+### The Required attribute
 
-With the preceding change, `Student.FirstMidName` in the app maps to the `FirstName` column of the `Student` table.
+The `Required` attribute makes the name properties required fields. The `Required` attribute isn't needed for non-nullable types such as value types (for example, `DateTime`, `int`, and `double`). Types that can't be null are automatically treated as required fields.
 
-The addition of the `Column` attribute changes the model backing the `SchoolContext`. The model backing the `SchoolContext` no longer matches the database. 
+The `Required` attribute could be replaced with a minimum length parameter in the `StringLength` attribute:
+
+```csharp
+[Display(Name = "Last Name")]
+[StringLength(50, MinimumLength=1)]
+public string LastName { get; set; }
+```
+
+### The Display attribute
+
+The `Display` attribute specifies that the caption for the text boxes should be "First Name", "Last Name", "Full Name", and "Enrollment Date." The default captions had no space dividing the words, for example "Lastname."
+
+### The FullName calculated property
+
+`FullName` is a calculated property that returns a value that's created by concatenating two other properties. `FullName` cannot be set, so it has only a get accessor. No `FullName` column is created in the database.
+
+Run the app and go to the Students page. An exception is thrown. The `[Column]` attribute causes EF to expect to find a column named `FirstName`, but the column name in the database is still `FirstMidName`.
 
 # [Visual Studio](#tab/visual-studio)
 
-Run the app and go to the Students page. An exception is thrown:
+The error message is similar to the following example:
 
 ```
 SqlException: Invalid column name 'FirstName'.
@@ -139,6 +153,8 @@ Please review the migration for accuracy.
 The warning is generated because the name fields are now limited to 50 characters. If a name in the database had more than 50 characters, the 51 to last character would be lost.
 
 * Run the app and go to the Students page.
+* Notice that times are not input or displayed along with dates.
+* Select **Create New**, and try to enter a name longer than 50 characters.
 
 * Open the Student table in SSOX:
 
@@ -148,7 +164,7 @@ The warning is generated because the name fields are now limited to 50 character
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Run the app and go to the Students page. An exception is thrown:
+The error message is similar to the following example:
 
 ```
 SqliteException: SQLite Error 1: 'no such column: s.FirstName'.
@@ -165,6 +181,8 @@ dotnet ef database update
 ```
 
 * Run the app and go to the Students page.
+* Notice that times are not input or displayed along with dates.
+* Select **Create New**, and try to enter a name longer than 50 characters.
 
 * Examine the Student table in your SQLite tool. The column that was FirstMidName is now FirstName.
 
@@ -172,32 +190,6 @@ dotnet ef database update
 
 > [!Note]
 > In the following sections, building the app at some stages generates compiler errors. The instructions specify when to build the app.
-
-### Finish Student entity updates
-
-Update *Models/Student.cs* with the following code:
-
-[!code-csharp[](intro/samples/cu30/Models/Student.cs?highlight=11,13,15,18,22,24-31)]
-
-### The Required attribute
-
-The `Required` attribute makes the name properties required fields. The `Required` attribute isn't needed for non-nullable types such as value types (for example, `DateTime`, `int`, and `double`). Types that can't be null are automatically treated as required fields.
-
-The `Required` attribute could be replaced with a minimum length parameter in the `StringLength` attribute:
-
-```csharp
-[Display(Name = "Last Name")]
-[StringLength(50, MinimumLength=1)]
-public string LastName { get; set; }
-```
-
-### The Display attribute
-
-The `Display` attribute specifies that the caption for the text boxes should be "First Name", "Last Name", "Full Name", and "Enrollment Date." The default captions had no space dividing the words, for example "Lastname."
-
-### The FullName calculated property
-
-`FullName` is a calculated property that returns a value that's created by concatenating two other properties. `FullName` cannot be set, so it has only a get accessor. No `FullName` column is created in the database.
 
 ## The Instructor Entity
 
