@@ -165,7 +165,7 @@ The `CreateAsync` method is used to create the `PaginatedList<T>`. A constructor
 
 Replace the code in *Students/Index.cshtml.cs* to add paging.
 
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=29-30,32,35-42,69-71)]
+[!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=27,29-30,32,35-42,69-71)]
 
 The preceding code:
 
@@ -184,7 +184,7 @@ When a paging link is clicked, the page index variable contains the page number 
 
 The `CurrentSort` property provides the Razor Page with the current sort order. The current sort order must be included in the paging links to keep the sort order while paging.
 
-The `CurrentFilter` provides the Razor Page with the current filter string. The `CurrentFilter` value:
+The `CurrentFilter` property provides the Razor Page with the current filter string. The `CurrentFilter` value:
 
 * Must be included in the paging links in order to maintain the filter settings during paging.
 * Must be restored to the text box when the page is redisplayed.
@@ -196,7 +196,7 @@ If the search string is changed while paging, the page is reset to 1. The page h
 
   The `PaginatedList.CreateAsync` method converts the student query to a single page of students in a collection type that supports paging. That single page of students is passed to the Razor Page.
 
-  The two question marks in `PaginatedList.CreateAsync` represent the [null-coalescing operator](/dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type. The expression `(pageIndex ?? 1)` means return the value of `pageIndex` if it has a value. If `pageIndex` doesn't have a value, return 1.
+  The two question marks after `pageIndex` in the `PaginatedList.CreateAsync` call represent the [null-coalescing operator](/dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type. The expression `(pageIndex ?? 1)` means return the value of `pageIndex` if it has a value. If `pageIndex` doesn't have a value, return 1.
 
 ### Add paging links to the Razor Page
 
