@@ -202,15 +202,15 @@ If the search string is changed while paging, the page is reset to 1. The page h
 
 Replace the markup in *Students/Index.cshtml* with the following markup. The changes are highlighted:
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?highlight=28-31,37-40,68-86)]
+[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?highlight=29-32,38-41,69-87)]
 
 The column header links use the query string to pass the current search string to the `OnGetAsync` method:
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?range=28-31)]
+[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?range=29-32)]
 
 The paging buttons are displayed by tag helpers:
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?range=72-86)]
+[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?range=73-87)]
 
 Run the app and navigate to the students page.
 
