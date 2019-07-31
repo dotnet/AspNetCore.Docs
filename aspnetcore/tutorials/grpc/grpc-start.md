@@ -119,7 +119,7 @@ info: Microsoft.Hosting.Lifetime[0]
 ```
 
 > [!NOTE]
-> Additional configuration is required to successfully run gRPC services with ASP.NET Core on macOS. Visit [gRPC and ASP.NET Core on macOS](xref:grpc/aspnetcore#grpc-and-asp-net-core-on-macos) for more information.
+> Additional configuration is required to successfully run gRPC services with ASP.NET Core on macOS. Visit [gRPC and ASP.NET Core on macOS](xref:grpc/aspnetcore#grpc-and-aspnet-core-on-macos) for more information.
 
 ### Examine the project files
 
