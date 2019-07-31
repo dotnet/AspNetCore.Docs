@@ -152,7 +152,7 @@ In this section, you implement a custom error message when the call to `SaveChan
 
 Replace the code in *Pages/Students/Delete.cshtml.cs* with the following code. The changes are highlighted.
 
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Delete.cshtml.cs?name=snippet_All&highlight=24,26,35,42-45,73-74)]
+[!code-csharp[Main](intro/samples/cu30/Pages/Students/Delete.cshtml.cs?name=snippet_All&highlight=24,26,34,42-45,56-74)]
 
 The preceding code adds the optional parameter `saveChangesError` to the `OnGetAsync` method signature. `saveChangesError` indicates whether the method was called after a failure to delete the student object. The delete operation might fail because of transient network problems. Transient network errors are more likely when the database is in the cloud. The `saveChangesError` parameter is false when the Delete page `OnGetAsync` is called from the UI. When `OnGetAsync` is called by `OnPostAsync` (because the delete operation failed), the `saveChangesError` parameter is true.
 
