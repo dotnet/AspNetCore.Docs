@@ -88,7 +88,7 @@ Kestrel doesn't support HTTP/2 with [Transport Layer Security (TLS)](https://too
 
 > Unable to bind to https://localhost:5001 on the IPv4 loopback interface: 'HTTP/2 over TLS is not supported on OSX due to missing ALPN support.'.
 
-To workaround this issue you must configure Kestrel and the gRPC client to use HTTP/2 **without** TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption.
+To work around this issue, configure Kestrel and the gRPC client to use HTTP/2 **without** TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption.
 
 Kestrel must configure a HTTP/2 endpoint without TLS in `Program.cs`:
 
