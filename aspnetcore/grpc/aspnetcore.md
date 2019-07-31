@@ -84,7 +84,7 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 
 ## gRPC and ASP.NET Core on macOS
 
-Kestrel doesn't support HTTP/2 with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) on macOS. The ASP.NET Core gRPC template and samples use TLS by default, and you will see this error message when you attempt to start the gRPC server:
+Kestrel doesn't support HTTP/2 with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) on macOS. The ASP.NET Core gRPC template and samples use TLS by default. You'll see the following error message when you attempt to start the gRPC server:
 
 > Unable to bind to https://localhost:5001 on the IPv4 loopback interface: 'HTTP/2 over TLS is not supported on OSX due to missing ALPN support.'.
 
