@@ -65,7 +65,7 @@ The following table describes options for configuring SignalR hubs:
 | `SupportedProtocols` | All installed protocols | Protocols supported by this hub. By default, all protocols registered on the server are allowed, but protocols can be removed from this list to disable specific protocols for individual hubs. |
 | `EnableDetailedErrors` | `false` | If `true`, detailed exception messages are returned to clients when an exception is thrown in a Hub method. The default is `false`, as these exception messages can contain sensitive information. |
 | `StreamBufferCapacity` | `10` | The maximum number of items that can be buffered for client upload streams. If this limit is reached, the processing of invocations is blocked until the server processes stream items.|
-| `MaximumReceiveMessageSize` | 32 KB | The maximum message size of a single incoming hub message. |
+| `MaximumReceiveMessageSize` | 32 KB | Maximum size of a single incoming hub message. |
 
 ::: moniker-end
 
