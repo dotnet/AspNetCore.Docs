@@ -234,7 +234,7 @@ In the *SchoolViewModels* folder, add a *EnrollmentDateGroup.cs* with the follow
 
 [!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### Update the About page model
+### Create the page model
 
 Create a *Pages/About.cshtml.cs* file with the following code:
 
@@ -242,7 +242,7 @@ Create a *Pages/About.cshtml.cs* file with the following code:
 
 The LINQ statement groups the student entities by enrollment date, calculates the number of entities in each group, and stores the results in a collection of `EnrollmentDateGroup` view model objects.
 
-### Update the About Razor Page
+### Create the Razor Page
 
 Create a *Pages/About.cshtml* file with the following code:
 
