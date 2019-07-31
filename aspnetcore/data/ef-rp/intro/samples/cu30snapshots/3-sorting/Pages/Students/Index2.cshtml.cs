@@ -27,26 +27,20 @@ namespace ContosoUniversity.Pages.Students
 
         public IList<Student> Students { get; set; }
 
-        #region snippet_OnGet
         public async Task OnGetAsync(string sortOrder, string searchString)
-        #endregion
         {
             NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             DateSort = sortOrder == "Date" ? "date_desc" : "Date";
 
-            #region snippet_Filter
             CurrentFilter = searchString;
-            #endregion
             
             IQueryable<Student> studentsIQ = from s in _context.Students
                                             select s;
-            #region snippet_Where
             if (!String.IsNullOrEmpty(searchString))
             {
                 studentsIQ = studentsIQ.Where(s => s.LastName.Contains(searchString)
                                        || s.FirstMidName.Contains(searchString));
             }
-            #endregion
 
             switch (sortOrder)
             {
@@ -66,7 +60,6 @@ namespace ContosoUniversity.Pages.Students
 
             Students = await studentsIQ.AsNoTracking().ToListAsync();
         }
-        #endregion
     }
 }
 #endregion
