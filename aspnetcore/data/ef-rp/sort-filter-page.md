@@ -24,7 +24,7 @@ The following illustration shows a completed page. The column headings are click
 
 ## Add sorting
 
-Replace the code in *Pages/Students/Index.cshtml.cs* with the following code.
+Replace the code in *Pages/Students/Index.cshtml.cs* with the following code to add sorting.
 
 [!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_All&highlight=22-25,27,29-53)]
 
@@ -44,7 +44,7 @@ When the Index page is requested from the **Students** link, there's no query st
 
 [!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_Ternary)]
 
-The code uses the C# conditional operator [?:](/dotnet/csharp/language-reference/operators/conditional-operator). The `?:` is a ternary operator (it takes three operands). The first line specifies that when `sortOrder` is null or empty, `NameSort` is set to "name_desc." If `sortOrder` is **not** null or empty, `NameSort` is set to an empty string.
+The code uses the C# conditional operator [?:](/dotnet/csharp/language-reference/operators/conditional-operator). The `?:` operator is a ternary operator (it takes three operands). The first line specifies that when `sortOrder` is null or empty, `NameSort` is set to "name_desc." If `sortOrder` is **not** null or empty, `NameSort` is set to an empty string.
 
 These two statements enable the page to set the column heading hyperlinks as follows:
 
@@ -69,12 +69,14 @@ When an`IQueryable` is created or modified, no query is sent to the database. Th
 
 Replace the code in *Students/Index.cshtml*, with the following code. The changes are highlighted.
 
-[!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml?highlight=17-19,25-27)]
+[!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml?highlight=5,8,17-19,22,25-27,35)]
 
 The preceding code:
 
 * Adds hyperlinks to the `LastName` and `EnrollmentDate` column headings.
 * Uses the information in `NameSort` and `DateSort` to set up hyperlinks with the current sort order values.
+* Changes the page heading from Index to Students.
+* Changes `Model.Student` to `Model.Students`.
 
 To verify that sorting works:
 
