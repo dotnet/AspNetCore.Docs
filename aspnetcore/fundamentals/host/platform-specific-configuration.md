@@ -5,7 +5,7 @@ description: Discover how to enhance an ASP.NET Core app from an external assemb
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 07/22/2019
+ms.date: 07/31/2019
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Use hosting startup assemblies in ASP.NET Core
@@ -389,11 +389,3 @@ dotnet nuget locals all --clear
    * The runtime store path to the `DOTNET_SHARED_STORE` environment variable.
 1. Run the sample app.
 1. Request the `/services` endpoint to see the app's registered services. Request the `/diag` endpoint to see the diagnostic information.
-
-::: moniker range=">= aspnetcore-2.2"
-
-## Additional resources
-
-* [Injecting code prior to executing the Main method](/dotnet/core/whats-new/dotnet-core-2-2#runtime)
-
-::: moniker-end
