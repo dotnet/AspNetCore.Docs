@@ -36,7 +36,7 @@ namespace ContosoUniversity.Pages.Students
 
             #region snippet_Filter
             CurrentFilter = searchString;
-            #end-region
+            #endregion
             
             IQueryable<Student> studentsIQ = from s in _context.Students
                                             select s;

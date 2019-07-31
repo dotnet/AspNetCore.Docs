@@ -1,11 +1,12 @@
-using ContosoUniversity.Models;
-using ContosoUniversity.Data;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using ContosoUniversity.Data;
+using ContosoUniversity.Models;
 
 namespace ContosoUniversity.Pages.Students
 {
@@ -25,21 +26,13 @@ namespace ContosoUniversity.Pages.Students
 
         public IList<Student> Students { get; set; }
 
-        public async Task OnGetAsync(string sortOrder, string searchString)
+        public async Task OnGetAsync(string sortOrder)
         {
             NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             DateSort = sortOrder == "Date" ? "date_desc" : "Date";
 
-            CurrentFilter = searchString;
-            #end-region
-            
             IQueryable<Student> studentsIQ = from s in _context.Students
                                             select s;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                studentsIQ = studentsIQ.Where(s => s.LastName.Contains(searchString)
-                                       || s.FirstMidName.Contains(searchString));
-            }
 
             switch (sortOrder)
             {
