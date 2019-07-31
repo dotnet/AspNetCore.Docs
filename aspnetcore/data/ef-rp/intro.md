@@ -225,6 +225,7 @@ The following packages are automatically installed:
   dotnet add package Microsoft.EntityFrameworkCore.Tools --version 3.0.0-*
   dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
   dotnet add package Microsoft.Extensions.Logging.Debug --version 3.0.0-*
+  ```
 
   The Microsoft.VisualStudio.Web.CodeGeneration.Design package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
 
@@ -311,17 +312,13 @@ The scaffolding tool automatically registered the context class with the depende
 
 * In the `ConfigureServices` method, the highlighted lines were added by the scaffolder:
 
-  [!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
+  [!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* In the `ConfigureServices` method, the highlighted lines were added by the scaffolder:
+* In the `ConfigureServices` method, make sure the code added by the scaffolder calls `UseSqlite`.
 
-  [!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=12-13)]
-
-* Change `UseSqlServer` to `UseSqlite`.
-
-  [!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=12-13)]
+  [!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
 ---
 
