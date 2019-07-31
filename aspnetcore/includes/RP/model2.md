@@ -29,7 +29,7 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.
 dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
 ```
-
+Note: Make sure you are using the terminal for the RazorPagesMovie project: Right click the project name in the design/layout bar and go to Tools>Open in Terminal.
 The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding.
 
 <a name="reg"></a>
