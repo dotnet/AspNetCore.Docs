@@ -5,7 +5,7 @@ description: Learn about using the IHttpClientFactory interface to manage logica
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/22/2019
+ms.date: 07/31/2019
 uid: fundamentals/http-requests
 ---
 # Make HTTP requests using IHttpClientFactory in ASP.NET Core
@@ -295,7 +295,7 @@ using Microsoft.Extensions.Logging;
 
 class Program
 {
-    static void Main(string[] args)
+    static async Task<int> Main(string[] args)
     {
         var builder = new HostBuilder()
             .ConfigureServices((hostContext, services) =>
@@ -313,8 +313,9 @@ class Program
             try
             {
                 var myService = services.GetRequiredService<IMyService>();
+                var pageContent = await myService.GetPage();
 
-                Console.WriteLine(myService.GetPage().Result.Substring(0, 500));
+                Console.WriteLine(pageContent.Substring(0, 500));
             }
             catch (Exception ex)
             {
@@ -323,7 +324,9 @@ class Program
             }
         }
 
-        host.RunAsync();
+        await host.RunAsync();
+
+        return 0;
     }
 
     public interface IMyService
@@ -343,7 +346,7 @@ class Program
         public async Task<string> GetPage()
         {
             // Content from BBC One: Dr. Who website (©BBC)
-            var request = new HttpRequestMessage(HttpMethod.Get, 
+            var request = new HttpRequestMessage(HttpMethod.Get,
                 "https://www.bbc.co.uk/programmes/b006q2x0");
             var client = _clientFactory.CreateClient();
             var response = await client.SendAsync(request);
