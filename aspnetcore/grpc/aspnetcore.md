@@ -106,7 +106,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-The gRPC client must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to true and use `http` in the server address:
+The gRPC client must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true` and use `http` in the server address:
 
 ```csharp
 // This switch must be set before creating the HttpClient.
