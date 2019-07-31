@@ -32,13 +32,19 @@ You *can't*:
 
 Development of further debugging scenarios is an on-going focus of the engineering team.
 
+## Prerequisites
+
+Either of the following browsers:
+
+* Google Chrome (version 70 or later)
+* Microsoft Edge preview ([Edge Dev Channel](https://www.microsoftedgeinsider.com))
+
 ## Procedure
 
-To debug a Blazor client-side app in Chrome or Edge:
-
 1. Run a Blazor client-side app in `Debug` configuration. Pass the `--configuration Debug` option to the [dotnet run](/dotnet/core/tools/dotnet-run) command: `dotnet run --configuration Debug`.
-1. Access the app in Chrome (version 70 or later) or with a Microsoft Edge preview ([Edge Dev Channel](https://www.microsoftedgeinsider.com)).
-1. With the keyboard focus on the app (not in the developer tools panel, which you should probably close for a less confusing debugging experience), select the following Blazor-specific keyboard shortcut:
+1. Access the app in the browser.
+1. Place the keyboard focus on the app, not the developer tools panel. The developer tools panel can be closed when debugging is initiated.
+1. Select the following Blazor-specific keyboard shortcut:
    * `Shift+Alt+D` on Windows/Linux
    * `Shift+Cmd+D` on macOS
 
