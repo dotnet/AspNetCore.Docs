@@ -82,6 +82,45 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 
 [!code-csharp[](~/grpc/aspnetcore/sample/GrcpService/GreeterService2.cs?highlight=6-7&name=snippet)]
 
+## gRPC and ASP.NET Core on macOS
+
+Kestrel on macOS doesn't support HTTP/2 with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). The ASP.NET Core gRPC template and samples use TLS by default, and you will see this error message when you attempt to start the gRPC server:
+
+> Unable to bind to https://localhost:5001 on the IPv4 loopback interface: 'HTTP/2 over TLS is not supported on OSX due to missing ALPN support.'.
+
+To workaround this issue you must configure Kestrel and the gRPC client to use HTTP/2 **without** TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption.
+
+Update `Program.cs` on the server setup a Kestrel HTTP/2 endpoint without TLS:
+
+```cs
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.ConfigureKestrel(options =>
+            {
+                // Setup a HTTP/2 endpoint without TLS
+                options.ListenLocalhost(5001, o => o.Protocols = HttpProtocols.Http2);
+            });
+            webBuilder.UseStartup<Startup>();
+        });
+```
+
+The gRPC caller must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to true and use `http` in the server address:
+
+```csharp
+// This switch must be set before creating the HttpClient.
+AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+
+var httpClient = new HttpClient();
+// The port number(5001) must match the port of the gRPC server.
+httpClient.BaseAddress = new Uri("http://localhost:5001");
+var client = GrpcClient.Create<Greeter.GreeterClient>(httpClient);
+```
+
+> [!WARNING]
+> HTTP/2 without [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) should only be used during app development. Production applications should always use transport security. Visit [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security) for more information.
+
 ## Additional resources
 
 * <xref:tutorials/grpc/grpc-start>
