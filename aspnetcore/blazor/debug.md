@@ -34,7 +34,7 @@ Development of further debugging scenarios is an on-going focus of the engineeri
 
 ## Prerequisites
 
-Either of the following browsers:
+Debugging requires either of the following browsers:
 
 * Google Chrome (version 70 or later)
 * Microsoft Edge preview ([Edge Dev Channel](https://www.microsoftedgeinsider.com))
