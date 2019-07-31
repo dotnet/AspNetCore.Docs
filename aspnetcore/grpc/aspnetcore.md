@@ -90,7 +90,7 @@ Kestrel doesn't support HTTP/2 with [Transport Layer Security (TLS)](https://too
 
 To workaround this issue you must configure Kestrel and the gRPC client to use HTTP/2 **without** TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption.
 
-The gRPC server must configure a HTTP/2 endpoint that does use TLS in `Program.cs`:
+Kestrel must configure a HTTP/2 endpoint that does use TLS in `Program.cs`:
 
 ```cs
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -100,7 +100,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
             webBuilder.ConfigureKestrel(options =>
             {
                 // Setup a HTTP/2 endpoint without TLS.
-                options.ListenLocalhost(5001, o => o.Protocols = HttpProtocols.Http2);
+                options.ListenLocalhost(5000, o => o.Protocols = HttpProtocols.Http2);
             });
             webBuilder.UseStartup<Startup>();
         });
@@ -113,8 +113,8 @@ The gRPC client must set the `System.Net.Http.SocketsHttpHandler.Http2Unencrypte
 AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
 var httpClient = new HttpClient();
-// The port number(5001) must match the port of the gRPC server.
-httpClient.BaseAddress = new Uri("http://localhost:5001");
+// The port number(5000) must match the port of the gRPC server.
+httpClient.BaseAddress = new Uri("http://localhost:5000");
 var client = GrpcClient.Create<Greeter.GreeterClient>(httpClient);
 ```
 
