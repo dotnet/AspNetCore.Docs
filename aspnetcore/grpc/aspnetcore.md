@@ -92,7 +92,7 @@ To workaround this issue you must configure Kestrel and the gRPC client to use H
 
 Kestrel must configure a HTTP/2 endpoint without TLS in `Program.cs`:
 
-```cs
+```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
         .ConfigureWebHostDefaults(webBuilder =>
