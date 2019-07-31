@@ -3,7 +3,7 @@ title: Add a view to an ASP.NET Core MVC app
 author: rick-anderson
 description: Adding a view to a simple ASP.NET Core MVC app
 ms.author: riande
-ms.date: 03/04/2017
+ms.date: 8/04/2019
 uid: tutorials/first-mvc-app/adding-view
 ---
 
