@@ -23,7 +23,6 @@ namespace ContosoUniversity.Pages.Students
         public string DateSort { get; set; }
         public string CurrentFilter { get; set; }
         public string CurrentSort { get; set; }
-        #endregion
 
         public IList<Student> Students { get; set; }
 
