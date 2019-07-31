@@ -13,9 +13,9 @@ namespace ContosoUniversity.Pages.Students
 {
     public class IndexModel : PageModel
     {
-        private readonly ContosoUniversity.Data.SchoolContext _context;
+        private readonly SchoolContext _context;
 
-        public IndexModel(ContosoUniversity.Data.SchoolContext context)
+        public IndexModel(SchoolContext context)
         {
             _context = context;
         }
@@ -25,7 +25,7 @@ namespace ContosoUniversity.Pages.Students
         public string CurrentFilter { get; set; }
         public string CurrentSort { get; set; }
 
-        public IList<Student> Students { get;set; }
+        public IList<Student> Students { get; set; }
 
         public async Task OnGetAsync(string sortOrder)
         {
