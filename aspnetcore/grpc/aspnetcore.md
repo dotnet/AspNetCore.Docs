@@ -86,7 +86,7 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 
 Kestrel doesn't support HTTP/2 with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) on macOS. The ASP.NET Core gRPC template and samples use TLS by default. You'll see the following error message when you attempt to start the gRPC server:
 
-> Unable to bind to https://localhost:5001 on the IPv4 loopback interface: 'HTTP/2 over TLS is not supported on OSX due to missing ALPN support.'.
+> Unable to bind to https://localhost:5001 on the IPv4 loopback interface: 'HTTP/2 over TLS is not supported on macOS due to missing ALPN support.'.
 
 To work around this issue, configure Kestrel and the gRPC client to use HTTP/2 **without** TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption.
 
