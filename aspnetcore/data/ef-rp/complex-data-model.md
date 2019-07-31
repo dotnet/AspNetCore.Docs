@@ -61,8 +61,6 @@ The `DisplayFormat` attribute can be used by itself. It's generally a good idea 
 
 For more information, see the [\<input> Tag Helper documentation](xref:mvc/views/working-with-forms#the-input-tag-helper).
 
-Run the app and navigate to the Students Index page. Times are no longer displayed. Every view that uses the `Student` model displays the date without time.
-
 ### The StringLength attribute
 
 Data validation rules and validation error messages can be specified with attributes. The [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1) attribute specifies the minimum and maximum length of characters that are allowed in a data field. The `StringLength` attribute
@@ -94,7 +92,7 @@ In your SQLite tool, examine the column definitions for the `Student` table. The
 
 ### The Column attribute
 
-Attributes can control how classes and properties are mapped to the database. In this section, the `Column` attribute is used to map the name of the `FirstMidName` property to "FirstName" in the database.
+Attributes can control how classes and properties are mapped to the database. In the `Student` model, the `Column` attribute is used to map the name of the `FirstMidName` property to "FirstName" in the database.
 
 ```csharp
 [Column("FirstName")]
@@ -125,6 +123,8 @@ The `Display` attribute specifies that the caption for the text boxes should be 
 
 `FullName` is a calculated property that returns a value that's created by concatenating two other properties. `FullName` cannot be set, so it has only a get accessor. No `FullName` column is created in the database.
 
+### Create a migration
+
 Run the app and go to the Students page. An exception is thrown. The `[Column]` attribute causes EF to expect to find a column named `FirstName`, but the column name in the database is still `FirstMidName`.
 
 # [Visual Studio](#tab/visual-studio)
@@ -138,29 +138,25 @@ SqlException: Invalid column name 'FirstName'.
 * Build the project.
 * In the PMC, enter the following commands to create a new migration and update the database:
 
-```powershell
-Add-Migration ColumnFirstName
-Update-Database
-```
+  ```powershell
+  Add-Migration ColumnFirstName
+  Update-Database
+  ```
 
-The first of these commands generates the following warning message:
+  The first of these commands generates the following warning message:
 
-```text
-An operation was scaffolded that may result in the loss of data.
-Please review the migration for accuracy.
-```
+  ```text
+  An operation was scaffolded that may result in the loss of data.
+  Please review the migration for accuracy.
+  ```
 
-The warning is generated because the name fields are now limited to 50 characters. If a name in the database had more than 50 characters, the 51 to last character would be lost.
-
-* Run the app and go to the Students page.
-* Notice that times are not input or displayed along with dates.
-* Select **Create New**, and try to enter a name longer than 50 characters.
+  The warning is generated because the name fields are now limited to 50 characters. If a name in the database had more than 50 characters, the 51 to last character would be lost.
 
 * Open the Student table in SSOX:
 
   ![Students table in SSOX after migrations](complex-data-model/_static/ssox-after-migration.png)
 
-  Before migration was applied, the name columns were of type [nvarchar(MAX)](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql). The name columns are now `nvarchar(50)`. The column name has changed from `FirstMidName` to `FirstName`.
+  Before the migration was applied, the name columns were of type [nvarchar(MAX)](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql). The name columns are now `nvarchar(50)`. The column name has changed from `FirstMidName` to `FirstName`.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -170,23 +166,38 @@ The error message is similar to the following example:
 SqliteException: SQLite Error 1: 'no such column: s.FirstName'.
 ```
 
-To update the database:
-
 * Build the project.
 * Open a command window in the project folder. Enter the following commands to create a new migration and update the database:
 
+  ```console
+  dotnet ef migrations add ColumnFirstName
+  dotnet ef database update
+  ```
+
+  The database update command displays an error like the following example:
+
+  ```text
+  SQLite does not support this migration operation ('AlterColumnOperation'). For more information, see http://go.microsoft.com/fwlink/?LinkId=723262.
+  ```
+
+For this tutorial, the way to get past this error is to delete and re-create the initial migration. For more information, see the SQLite warning note at the top of the [migrations tutorial](xref:data/ef-rp/migations).
+
+* Delete the *Migrations* folder.
+* Run the following commands to drop the database, create a new initial migration, and apply the migration:
+
 ```console
-dotnet ef migrations add ColumnFirstName
+dotnet ef database drop
+dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
-
-* Run the app and go to the Students page.
-* Notice that times are not input or displayed along with dates.
-* Select **Create New**, and try to enter a name longer than 50 characters.
 
 * Examine the Student table in your SQLite tool. The column that was FirstMidName is now FirstName.
 
 ---
+
+* Run the app and go to the Students page.
+* Notice that times are not input or displayed along with dates.
+* Select **Create New**, and try to enter a name longer than 50 characters.
 
 > [!Note]
 > In the following sections, building the app at some stages generates compiler errors. The instructions specify when to build the app.
