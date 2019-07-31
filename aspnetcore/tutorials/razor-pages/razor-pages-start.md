@@ -128,7 +128,7 @@ From Visual Studio, select **File > Open**, and then select the *RazorPagesMovie
 
   [!INCLUDE[](~/includes/trustCertMac.md)]
 
-* Press **Cmd-Opt-F5** to run without the debugger.
+* Press **Alt-Cmd-Enter** to run without the debugger. Alternatively, navigate to the menu bar and go to Run>Start Without Debugging.
 
   Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`.
 
