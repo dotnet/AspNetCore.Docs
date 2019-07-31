@@ -88,7 +88,7 @@ Remove link for simplified tutorial.
 
 When you browse to the app and don't supply any URL segments, it defaults to the "Home" controller and the "Index" method specified in the template line highlighted above.
 
-The first URL segment determines the controller class to run. So `localhost:xxxx/HelloWorld` maps to the `HelloWorldController` class. The second part of the URL segment determines the action method on the class. So `localhost:xxxx/HelloWorld/Index` would cause the `Index` method of the `HelloWorldController` class to run. Notice that you only had to browse to `localhost:xxxx/HelloWorld` and the `Index` method was called by default. This is because `Index` is the default method that will be called on a controller if a method name isn't explicitly specified. The third part of the URL segment ( `id`) is for route data. Route data is explained later in the tutorial.
+The first URL segment determines the controller class to run. So `localhost:xxxx/HelloWorld` maps to the **HelloWorld**Controller class. The second part of the URL segment determines the action method on the class. So `localhost:xxxx/HelloWorld/Index` would cause the `Index` method of the `HelloWorldController` class to run. Notice that you only had to browse to `localhost:xxxx/HelloWorld` and the `Index` method was called by default. That's because `Index` is the default method that will be called on a controller if a method name isn't explicitly specified. The third part of the URL segment ( `id`) is for route data. Route data is explained later in the tutorial.
 
 Browse to `https://localhost:xxxx/HelloWorld/Welcome`. The `Welcome` method runs and returns the string `This is the Welcome action method...`. For this URL, the controller is `HelloWorld` and `Welcome` is the action method. You haven't used the `[Parameters]` part of the URL yet.
 
@@ -120,9 +120,9 @@ Replace the `Welcome` method with the following code:
 
 Run the app and enter the following URL: `https://localhost:xxx/HelloWorld/Welcome/3?name=Rick`
 
-This time the third URL segment matched the route parameter `id`. The `Welcome` method contains a parameter `id` that matched the URL template in the `MapRoute` method. The trailing `?` (in `id?`) indicates the `id` parameter is optional.
+This time the third URL segment matched the route parameter `id`. The `Welcome` method contains a parameter `id` that matched the URL template in the `MapControllerRoute` method. The trailing `?` (in `id?`) indicates the `id` parameter is optional.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 
 In these examples the controller has been doing the "VC" portion of MVC - that is, the view and controller work. The controller is returning HTML directly. Generally you don't want controllers returning HTML directly, since that becomes very cumbersome to code and maintain. Instead you typically use a separate Razor view template file to help generate the HTML response. You do that in the next tutorial.
 
