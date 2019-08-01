@@ -2,6 +2,7 @@
 
 ### Add a database context class
 
+In the RazorPagesMovie project, create a new folder called *Data*. 
 Add the following `RazorPagesMovieContext` class to the *Data* folder:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
@@ -20,7 +21,7 @@ Add a connection string to the *appsettings.json* file as shown in the following
 
 ### Add required NuGet packages
 
-Run the following .NET Core CLI commands to add SQLite, Entity Framework Core, and  CodeGeneration.Design to the project:
+Open a terminal for the RazorPagesMovie project.  Right click the project name in the design/layout bar and go to **Tools > Open** in Terminal. Run the following .NET Core CLI commands in the Termial. The commands add SQLite, Entity Framework Core, and  CodeGeneration.Design to the project:
 
 ```console
 dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 3.0.0-*

@@ -218,7 +218,7 @@ Add an `Index` view for the `HelloWorldController`.
   * Type *Index.cshtml* in the **Name** box.
   * Select **New**.
 
-![Add New Item dialog](adding-view/_static/add_view.png)
+![Add New Item dialog](adding-view/_static/add_view_mac.png)
 
 ---
 
