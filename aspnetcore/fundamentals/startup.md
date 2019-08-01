@@ -22,13 +22,26 @@ ASP.NET Core apps use a `Startup` class, which is named `Startup` by convention.
 
 `ConfigureServices` and `Configure` are called by the ASP.NET Core runtime when the app starts:
 
-[!code-csharp[](startup/sample_snapshot/Startup1.cs?highlight=4,10)]
+[!code-csharp[](startup/sample_snapshot/Startup1.cs)]
+
+::: moniker range="< aspnetcore-3.0"
 
 The `Startup` class is specified to the app when the app's [host](xref:fundamentals/index#host) is built. The app's host is built when `Build` is called on the host builder in the `Program` class. The `Startup` class is usually specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
 
 [!code-csharp[](startup/sample_snapshot/Program3.cs?name=snippet_Program&highlight=10)]
 
-The host provides services that are available to the `Startup` class constructor. The app adds additional services via `ConfigureServices`. Both the host and app services are then available in `Configure` and throughout the app.
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+The `Startup` class is specified to the app when the app's [host](xref:fundamentals/index#host) is built. The app's host is built when `Build` is called on the host builder in the `Program` class. The `Startup` class is usually specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
+
+startup/3.0_samples/Program.cs
+[!code-csharp[](startup/3.0_samples/Program.cs?name=snippet_Program&highlight=12)]
+
+::: moniker-end
+
+The host provides services that are available to the `Startup` class constructor. The app adds additional services via `ConfigureServices`. Both the host and app services are available in `Configure` and throughout the app.
 
 A common use of [dependency injection](xref:fundamentals/dependency-injection) into the `Startup` class is to inject:
 
@@ -56,11 +69,26 @@ The host may configure some services before `Startup` methods are called. For mo
 
 For features that require substantial setup, there are `Add{Service}` extension methods on <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. A typical ASP.NET Core app registers services for Entity Framework, Identity, and MVC:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](~/security/authentication/accconfirm/sample/WebPWrecover30/Services/EmailSender.cs)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](startup/sample_snapshot/Startup3.cs)]
+
+::: moniker-end
+
 
 Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
 
+::: moniker range="< aspnetcore-3.0"
+
 See [SetCompatibilityVersion](xref:mvc/compatibility-version) for more information on `SetCompatibilityVersion`.
+
+::: moniker-end
 
 ## The Configure method
 
