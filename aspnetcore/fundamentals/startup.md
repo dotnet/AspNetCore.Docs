@@ -24,9 +24,9 @@ ASP.NET Core apps use a `Startup` class, which is named `Startup` by convention.
 
 [!code-csharp[](startup/sample_snapshot/Startup1.cs)]
 
-::: moniker range="< aspnetcore-3.0"
-
 The `Startup` class is specified to the app when the app's [host](xref:fundamentals/index#host) is built. The app's host is built when `Build` is called on the host builder in the `Program` class. The `Startup` class is usually specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
+
+::: moniker range="< aspnetcore-3.0"
 
 [!code-csharp[](startup/sample_snapshot/Program3.cs?name=snippet_Program&highlight=10)]
 
@@ -34,9 +34,7 @@ The `Startup` class is specified to the app when the app's [host](xref:fundament
 
 ::: moniker range=">= aspnetcore-3.0"
 
-The `Startup` class is specified to the app when the app's [host](xref:fundamentals/index#host) is built. The app's host is built when `Build` is called on the host builder in the `Program` class. The `Startup` class is usually specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
-
-[!code-csharp[](startup/3.0_samples/Program1.cs?name=snippet_Program)]
+[!code-csharp[](startup/3.0_samples/Program3.cs?name=snippet_Program)]
 
 ::: moniker-end
 
