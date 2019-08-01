@@ -2,10 +2,9 @@
 title: App startup in ASP.NET Core
 author: tdykstra
 description: Learn how the Startup class in ASP.NET Core configures services and the app's request pipeline.
-monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 01/17/2019
+ms.date: 8/7/2019
 uid: fundamentals/startup
 ---
 # App startup in ASP.NET Core
