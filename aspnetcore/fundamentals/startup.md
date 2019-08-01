@@ -36,7 +36,7 @@ The `Startup` class is specified to the app when the app's [host](xref:fundament
 
 The `Startup` class is specified to the app when the app's [host](xref:fundamentals/index#host) is built. The app's host is built when `Build` is called on the host builder in the `Program` class. The `Startup` class is usually specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
 
-[!code-csharp[](startup/3.0_samples/Program1.cs?name=snippet_Program&highlight=12)]
+[!code-csharp[](startup/3.0_samples/Program1.cs?name=snippet_Program)]
 
 ::: moniker-end
 
@@ -80,7 +80,7 @@ For features that require substantial setup, there are `Add{Service}` extension 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](~/security/authentication/accconfirm/sample/WebPWrecover30/Services/EmailSender.cs)]
+[!code-csharp[](~/security/authentication/accconfirm/sample/WebPWrecover30/Startup.cs?name=snippet1)]
 
 ::: moniker-end
 
