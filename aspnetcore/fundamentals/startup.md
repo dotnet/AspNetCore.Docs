@@ -114,7 +114,7 @@ The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeli
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](startup/3.0_samples/Startup1.cs?name=sample_snapshot)]
+[!code-csharp[](startup/3.0_samples/Startup4.cs?name=sample_snapshot)]
 
 ::: moniker-end
 

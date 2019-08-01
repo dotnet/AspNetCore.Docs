@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace WebApplication17
 {
-    #region snippet
+    #region sample_snapshot
     public class Startup
     {
         private readonly IWebHostEnvironment _env;
