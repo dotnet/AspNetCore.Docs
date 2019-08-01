@@ -26,10 +26,14 @@ This tutorial covers the following subjects:
 * [.NET Core SDK](/dotnet/core/sdk) installed on the development machine.
 * Windows Server configured with the **Web Server (IIS)** server role. If your server isn't configured to host websites with IIS, follow the guidance in the *IIS configuration* section of the <xref:host-and-deploy/iis/index#iis-configuration> article and then return to this tutorial.
 
-> [!IMPORTANT]
-> IIS configuration and website security involve advanced concepts that aren't covered by this tutorial. Consult the IIS guidance in the [Microsoft IIS documentation](https://www.iis.net/) before hosting production apps on IIS.
+> [!WARNING]
+> **IIS configuration and website security involve concepts that aren't covered by this tutorial.** Consult the IIS guidance in the [Microsoft IIS documentation](https://www.iis.net/) and the [ASP.NET Core article on hosting with IIS](xref:host-and-deploy/iis/index) before hosting production apps on IIS.
 >
-> To focus on IIS deployment concepts, this tutorial deploys an app without HTTPS security configured in IIS. For more information on hosting an app enabled for HTTPS protocol, see the security topics in the [Additional resources](#additional-resources) section of this article. Detailed guidance for hosting ASP.NET Core apps is provided in the <xref:host-and-deploy/iis/index> article.
+> Important scenarios for IIS hosting not covered by this tutorial include:
+>
+> * [Creation of a registry hive for ASP.NET Core Data Protection](xref:host-and-deploy/iis/index#data-protection)
+> * [Configuration of the app pool's Access Control List (ACL)](xref:host-and-deploy/iis/index#application-pool-identity)
+> * To focus on IIS deployment concepts, this tutorial deploys an app without HTTPS security configured in IIS. For more information on hosting an app enabled for HTTPS protocol, see the security topics in the [Additional resources](#additional-resources) section of this article. Further guidance for hosting ASP.NET Core apps is provided in the <xref:host-and-deploy/iis/index> article.
 
 ## Install the .NET Core Hosting Bundle
 
