@@ -77,6 +77,8 @@ For more information on how components are rendered and component state is manag
 
 Components can include other components by declaring them using HTML element syntax. The markup for using a component looks like an HTML tag where the name of the tag is the component type.
 
+Attribute binding is case sensitive. For example, `@bind` is valid, and `@Bind` is invalid.
+
 The following markup in *Index.razor* renders a `HeadingComponent` instance:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/Index.razor?name=snippet_HeadingComponent)]
