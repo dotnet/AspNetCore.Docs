@@ -5,7 +5,7 @@ description: Learn how to use the Azure Key Vault Configuration Provider to conf
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/13/2019
+ms.date: 08/01/2019
 uid: security/key-vault-configuration
 ---
 # Azure Key Vault Configuration Provider in ASP.NET Core
@@ -300,7 +300,7 @@ Configuration.Reload();
 
 ## Disabled and expired secrets
 
-Disabled and expired secrets throw a `KeyVaultClientException`. To prevent your app from throwing, replace your app or update the disabled/expired secret.
+Disabled and expired secrets throw a `KeyVaultClientException` at runtime. To prevent the app from throwing, provide the configuration using a different configuration provider or update the disabled or expired secret.
 
 ## Troubleshoot
 
