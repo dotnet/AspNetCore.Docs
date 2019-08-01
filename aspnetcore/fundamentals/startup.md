@@ -36,8 +36,7 @@ The `Startup` class is specified to the app when the app's [host](xref:fundament
 
 The `Startup` class is specified to the app when the app's [host](xref:fundamentals/index#host) is built. The app's host is built when `Build` is called on the host builder in the `Program` class. The `Startup` class is usually specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
 
-startup/3.0_samples/Program.cs
-[!code-csharp[](startup/3.0_samples/Program.cs?name=snippet_Program&highlight=12)]
+[!code-csharp[](startup/3.0_samples/Program1.cs?name=snippet_Program&highlight=12)]
 
 ::: moniker-end
 
@@ -49,7 +48,17 @@ A common use of [dependency injection](xref:fundamentals/dependency-injection) i
 * <xref:Microsoft.Extensions.Configuration.IConfiguration> to read configuration.
 * <xref:Microsoft.Extensions.Logging.ILoggerFactory> to create a logger in `Startup.ConfigureServices`.
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](startup/3.0_samples/Startup2.cs?name=sample_snapshot)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](startup/sample_snapshot/Startup2.cs?highlight=7-8)]
+
+::: moniker-end
 
 An alternative to injecting `IHostingEnvironment` is to use a conventions-based approach. When the app defines separate `Startup` classes for different environments (for example, `StartupDevelopment`), the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](xref:fundamentals/environments#environment-based-startup-class-and-methods).
 
@@ -81,7 +90,6 @@ For features that require substantial setup, there are `Add{Service}` extension 
 
 ::: moniker-end
 
-
 Adding services to the service container makes them available within the app and in the `Configure` method. The services are resolved via [dependency injection](xref:fundamentals/dependency-injection) or from <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
 
 ::: moniker range="< aspnetcore-3.0"
@@ -104,7 +112,17 @@ The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeli
 * [General Data Protection Regulation (GDPR)](xref:security/gdpr)
 * ASP.NET Core [MVC](xref:mvc/overview) and [Razor Pages](xref:razor-pages/index)
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](startup/3.0_samples/Startup1.cs?name=sample_snapshot)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](startup/sample_snapshot/Startup4.cs)]
+
+::: moniker-end
 
 Each `Use` extension method adds one or more middleware components to the request pipeline. For instance, the `UseMvc` extension method adds [Routing Middleware](xref:fundamentals/routing) to the request pipeline and configures [MVC](xref:mvc/overview) as the default handler.
 
