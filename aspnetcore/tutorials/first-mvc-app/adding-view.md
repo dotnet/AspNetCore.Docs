@@ -3,7 +3,7 @@ title: Add a view to an ASP.NET Core MVC app
 author: rick-anderson
 description: Adding a view to a simple ASP.NET Core MVC app
 ms.author: riande
-ms.date: 03/04/2017
+ms.date: 8/04/2019
 uid: tutorials/first-mvc-app/adding-view
 ---
 
@@ -61,7 +61,7 @@ Add an `Index` view for the `HelloWorldController`.
   * Type *Index.cshtml* in the **Name** box.
   * Select **New**.
 
-![Add New Item dialog](adding-view/_static/add_view.png)
+![Add New Item dialog](adding-view/_static/add_view_mac.png)
 
 ---
 
