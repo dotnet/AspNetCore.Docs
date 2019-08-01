@@ -85,7 +85,7 @@ The following markup in *Index.razor* renders a `HeadingComponent` instance:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/HeadingComponent.razor)]
 
-If a component contains an HTML element with an uppercase first letter that doesn't match a component name, a warning is emitted indicating that an element has an unexpected name&mdash;adding an `@using` statement for the component's namespace overrides the warning.
+If a component contains an HTML element with an uppercase first letter that doesn't match a component name, a warning is emitted indicating that the element has an unexpected name. Adding an `@using` statement for the component's namespace makes the component available, which removes the warning.
 
 ## Component parameters
 
