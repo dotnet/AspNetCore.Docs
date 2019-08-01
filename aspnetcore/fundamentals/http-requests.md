@@ -15,7 +15,7 @@ By [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/r
 An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to configure and create <xref:System.Net.Http.HttpClient> instances in an app. It offers the following benefits:
 
 * Provides a central location for naming and configuring logical `HttpClient` instances. For example, a *github* client can be registered and configured to access [GitHub](https://github.com/). A default client can be registered for other purposes.
-* Codifies the concept of outgoing middleware via delegating handlers in `HttpClient` and provides extensions for Polly based middleware to take advantage of that.
+* Codifies the concept of outgoing middleware via delegating handlers in `HttpClient` and provides extensions for Polly-based middleware to take advantage of that.
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances to avoid common DNS problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
@@ -199,13 +199,13 @@ Use one of the following approaches to share per-request state with message hand
 * Use `IHttpContextAccessor` to access the current request.
 * Create a custom `AsyncLocal` storage object to pass the data.
 
-## Use Polly based handlers
+## Use Polly-based handlers
 
 `IHttpClientFactory` integrates with a popular third-party library called [Polly](https://github.com/App-vNext/Polly). Polly is a comprehensive resilience and transient fault-handling library for .NET. It allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
 
 Extension methods are provided to enable the use of Polly policies with configured `HttpClient` instances. The Polly extensions:
 
-* Support adding Polly based handlers to clients.
+* Support adding Polly-based handlers to clients.
 * Can be used after installing the [Microsoft.Extensions.Http.Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/) NuGet package. The package isn't included in the ASP.NET Core shared framework.
 
 ### Handle transient faults
@@ -220,7 +220,7 @@ In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests 
 
 ### Dynamically select policies
 
-Additional extension methods exist which can be used to add Polly based handlers. One such extension is `AddPolicyHandler`, which has multiple overloads. One overload allows the request to be inspected when defining which policy to apply:
+Additional extension methods exist which can be used to add Polly-based handlers. One such extension is `AddPolicyHandler`, which has multiple overloads. One overload allows the request to be inspected when defining which policy to apply:
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet8)]
 
