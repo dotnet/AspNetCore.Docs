@@ -15,7 +15,7 @@ By [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/r
 An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to configure and create <xref:System.Net.Http.HttpClient> instances in an app. It offers the following benefits:
 
 * Provides a central location for naming and configuring logical `HttpClient` instances. For example, a *github* client can be registered and configured to access [GitHub](https://github.com/). A default client can be registered for other purposes.
-* Codifies the concept of outgoing middleware via delegating handlers in `HttpClient` and provides extensions for Polly-based middleware to take advantage of that.
+* Codifies the concept of outgoing middleware via delegating handlers in `HttpClient` and provides extensions for Polly based middleware to take advantage of that.
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances to avoid common DNS problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
@@ -70,7 +70,12 @@ In the preceding code, the request doesn't need to specify a hostname. It can pa
 
 ### Typed clients
 
-Typed clients provide the same capabilities as named clients without the need to use strings as keys. The typed client approach provides IntelliSense and compiler help when consuming clients. They provide a single location to configure and interact with a particular `HttpClient`. For example, a single typed client might be used for a single backend endpoint and encapsulate all logic dealing with that endpoint. Another advantage is that they work with DI and can be injected where required in your app.
+Typed clients:
+
+* Provide the same capabilities as named clients without the need to use strings as keys.
+* Provides IntelliSense and compiler help when consuming clients.
+* Provide a single location to configure and interact with a particular `HttpClient`. For example, a single typed client might be used for a single backend endpoint and encapsulate all logic dealing with that endpoint.
+* Work with DI and can be injected where required in your app.
 
 A typed client accepts a `HttpClient` parameter in its constructor:
 
@@ -175,7 +180,10 @@ Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilde
 
 ::: moniker range="< aspnetcore-2.2"
 
-In the preceding code, the `ValidateHeaderHandler` is registered with DI. The handler **must** be registered in DI as a transient service, never scoped. If the handler is registered as a scoped service and any services that the handler depends upon are disposable, the handler's services could be disposed before the handler goes out of scope, which would cause the handler to fail.
+In the preceding code, the `ValidateHeaderHandler` is registered with DI. The handler **must** be registered in DI as a transient service, never scoped. If the handler is registered as a scoped service and any services that the handler depends upon are disposable:
+
+* The handler's services could be disposed before the handler goes out of scope.
+* The disposed handler services causes the handler to fail.
 
 Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> can be called, passing in the handler type.
 
@@ -191,13 +199,13 @@ Use one of the following approaches to share per-request state with message hand
 * Use `IHttpContextAccessor` to access the current request.
 * Create a custom `AsyncLocal` storage object to pass the data.
 
-## Use Polly-based handlers
+## Use Polly based handlers
 
 `IHttpClientFactory` integrates with a popular third-party library called [Polly](https://github.com/App-vNext/Polly). Polly is a comprehensive resilience and transient fault-handling library for .NET. It allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
 
 Extension methods are provided to enable the use of Polly policies with configured `HttpClient` instances. The Polly extensions:
 
-* Support adding Polly-based handlers to clients.
+* Support adding Polly based handlers to clients.
 * Can be used after installing the [Microsoft.Extensions.Http.Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/) NuGet package. The package isn't included in the ASP.NET Core shared framework.
 
 ### Handle transient faults
@@ -212,7 +220,7 @@ In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests 
 
 ### Dynamically select policies
 
-Additional extension methods exist which can be used to add Polly-based handlers. One such extension is `AddPolicyHandler`, which has multiple overloads. One overload allows the request to be inspected when defining which policy to apply:
+Additional extension methods exist which can be used to add Polly based handlers. One such extension is `AddPolicyHandler`, which has multiple overloads. One overload allows the request to be inspected when defining which policy to apply:
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet8)]
 
