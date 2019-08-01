@@ -5,7 +5,7 @@ description: Learn about using the IHttpClientFactory interface to manage logica
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/31/2019
+ms.date: 08/01/2019
 uid: fundamentals/http-requests
 ---
 # Make HTTP requests using IHttpClientFactory in ASP.NET Core
@@ -157,7 +157,7 @@ public class ValuesController : ControllerBase
 
 To create a handler, define a class deriving from <xref:System.Net.Http.DelegatingHandler>. Override the `SendAsync` method to execute code before passing the request to the next handler in the pipeline:
 
-[!code-csharp[Main](http-requests/samples/2.x/HttpClientFactorySample/Handlers/ValidateHeaderHandler.cs?name=snippet1)]
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Handlers/ValidateHeaderHandler.cs?name=snippet1)]
 
 The preceding code defines a basic handler. It checks to see if an `X-API-KEY` header has been included on the request. If the header is missing, it can avoid the HTTP call and return a suitable response.
 
@@ -206,7 +206,7 @@ Most common faults occur when external HTTP calls are transient. A convenient ex
 
 The `AddTransientHttpErrorPolicy` extension can be used within `Startup.ConfigureServices`. The extension provides access to a `PolicyBuilder` object configured to handle errors representing a possible transient fault:
 
-[!code-csharp[Main](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet7)]
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet7)]
 
 In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests are retried up to three times with a delay of 600 ms between attempts.
 
@@ -214,7 +214,7 @@ In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests 
 
 Additional extension methods exist which can be used to add Polly-based handlers. One such extension is `AddPolicyHandler`, which has multiple overloads. One overload allows the request to be inspected when defining which policy to apply:
 
-[!code-csharp[Main](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet8)]
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet8)]
 
 In the preceding code, if the outgoing request is an HTTP GET, a 10-second timeout is applied. For any other HTTP method, a 30-second timeout is used.
 
@@ -222,7 +222,7 @@ In the preceding code, if the outgoing request is an HTTP GET, a 10-second timeo
 
 It's common to nest Polly policies to provide enhanced functionality:
 
-[!code-csharp[Main](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet9)]
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet9)]
 
 In the preceding example, two handlers are added. The first uses the `AddTransientHttpErrorPolicy` extension to add a retry policy. Failed requests are retried up to three times. The second call to `AddTransientHttpErrorPolicy` adds a circuit breaker policy. Further external requests are blocked for 30 seconds if five failed attempts occur sequentially. Circuit breaker policies are stateful. All calls through this client share the same circuit state.
 
@@ -230,7 +230,7 @@ In the preceding example, two handlers are added. The first uses the `AddTransie
 
 An approach to managing regularly used policies is to define them once and register them with a `PolicyRegistry`. An extension method is provided which allows a handler to be added using a policy from the registry:
 
-[!code-csharp[Main](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet10)]
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet10)]
 
 In the preceding code, two policies are registered when the `PolicyRegistry` is added to the `ServiceCollection`. To use a policy from the registry, the `AddPolicyHandlerFromRegistry` method is used, passing the name of the policy to apply.
 
@@ -246,7 +246,7 @@ Pooling of handlers is desirable as each handler typically manages its own under
 
 The default handler lifetime is two minutes. The default value can be overridden on a per named client basis. To override it, call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.SetHandlerLifetime*> on the `IHttpClientBuilder` that is returned when creating the client:
 
-[!code-csharp[Main](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet11)]
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet11)]
 
 Disposal of the client isn't required. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances. The `HttpClient` instances can generally be treated as .NET objects not requiring disposal.
 
@@ -270,7 +270,7 @@ It may be necessary to control the configuration of the inner `HttpMessageHandle
 
 An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
 
-[!code-csharp[Main](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet12)]
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet12)]
 
 ## Use IHttpClientFactory in a console app
 
@@ -285,81 +285,17 @@ In the following example:
 * `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
 * `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
 
-```csharp
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+::: moniker range=">= aspnetcore-3.0"
 
-class Program
-{
-    static async Task<int> Main(string[] args)
-    {
-        var builder = new HostBuilder()
-            .ConfigureServices((hostContext, services) =>
-            {
-                services.AddHttpClient();
-                services.AddTransient<IMyService, MyService>();
-            }).UseConsoleLifetime();
+[!code-csharp[](http-requests/samples/3.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
 
-        var host = builder.Build();
+::: moniker-end
 
-        using (var serviceScope = host.Services.CreateScope())
-        {
-            var services = serviceScope.ServiceProvider;
+::: moniker range="< aspnetcore-3.0"
 
-            try
-            {
-                var myService = services.GetRequiredService<IMyService>();
-                var pageContent = await myService.GetPage();
-                Console.WriteLine(pageContent.Substring(0, 500));
-            }
-            catch (Exception ex)
-            {
-                var logger = services.GetRequiredService<ILogger<Program>>();
-                logger.LogError(ex, "An error occurred.");
-            }
-        }
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
 
-        return 0;
-    }
-
-    public interface IMyService
-    {
-        Task<string> GetPage();
-    }
-
-    public class MyService : IMyService
-    {
-        private readonly IHttpClientFactory _clientFactory;
-
-        public MyService(IHttpClientFactory clientFactory)
-        {
-            _clientFactory = clientFactory;
-        }
-
-        public async Task<string> GetPage()
-        {
-            // Content from BBC One: Dr. Who website (©BBC)
-            var request = new HttpRequestMessage(HttpMethod.Get,
-                "https://www.bbc.co.uk/programmes/b006q2x0");
-            var client = _clientFactory.CreateClient();
-            var response = await client.SendAsync(request);
-
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsStringAsync();
-            }
-            else
-            {
-                return $"StatusCode: {response.StatusCode}";
-            }
-        }
-    }
-}
-```
+::: moniker-end
 
 ## Additional resources
 
