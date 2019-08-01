@@ -70,7 +70,12 @@ In the preceding code, the request doesn't need to specify a hostname. It can pa
 
 ### Typed clients
 
-Typed clients provide the same capabilities as named clients without the need to use strings as keys. The typed client approach provides IntelliSense and compiler help when consuming clients. They provide a single location to configure and interact with a particular `HttpClient`. For example, a single typed client might be used for a single backend endpoint and encapsulate all logic dealing with that endpoint. Another advantage is that they work with DI and can be injected where required in your app.
+Typed clients:
+
+* Provide the same capabilities as named clients without the need to use strings as keys.
+* Provides IntelliSense and compiler help when consuming clients.
+* Provide a single location to configure and interact with a particular `HttpClient`. For example, a single typed client might be used for a single backend endpoint and encapsulate all logic dealing with that endpoint.
+* Work with DI and can be injected where required in your app.
 
 A typed client accepts a `HttpClient` parameter in its constructor:
 
@@ -175,7 +180,10 @@ Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilde
 
 ::: moniker range="< aspnetcore-2.2"
 
-In the preceding code, the `ValidateHeaderHandler` is registered with DI. The handler **must** be registered in DI as a transient service, never scoped. If the handler is registered as a scoped service and any services that the handler depends upon are disposable, the handler's services could be disposed before the handler goes out of scope, which would cause the handler to fail.
+In the preceding code, the `ValidateHeaderHandler` is registered with DI. The handler **must** be registered in DI as a transient service, never scoped. If the handler is registered as a scoped service and any services that the handler depends upon are disposable:
+
+* The handler's services could be disposed before the handler goes out of scope.
+* The disposed handler services causes the handler to fail.
 
 Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> can be called, passing in the handler type.
 
