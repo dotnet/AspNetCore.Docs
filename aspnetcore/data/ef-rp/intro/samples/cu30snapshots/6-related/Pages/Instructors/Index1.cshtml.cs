@@ -19,24 +19,45 @@ namespace ContosoUniversity.Pages.Instructors
 
         public InstructorIndexData InstructorData { get; set; }
         public int InstructorID { get; set; }
+        public int CourseID { get; set; }
 
-        public async Task OnGetAsync(int? id)
+        public async Task OnGetAsync(int? id, int? courseID)
         {
             InstructorData = new InstructorIndexData();
-#region snippet_ThenInclude
+            #region snippet_EagerLoading
             InstructorData.Instructors = await _context.Instructors
-                  .Include(i => i.OfficeAssignment)
-                  .Include(i => i.CourseAssignments)
+                .Include(i => i.OfficeAssignment)                 
+                .Include(i => i.CourseAssignments)
                     .ThenInclude(i => i.Course)
-                  .AsNoTracking()
-                  .OrderBy(i => i.LastName)
-                  .ToListAsync();
-#endregion
+                        .ThenInclude(i => i.Department)
+                .Include(i => i.CourseAssignments)
+                    .ThenInclude(i => i.Course)
+                        .ThenInclude(i => i.Enrollments)
+                            .ThenInclude(i => i.Student)
+                .AsNoTracking()
+                .OrderBy(i => i.LastName)
+                .ToListAsync();
+            #endregion
 
+            #region snippet_SelectInstructor
             if (id != null)
             {
                 InstructorID = id.Value;
-            }           
+                Instructor instructor = InstructorData.Instructors
+                    .Where(i => i.ID == id.Value).Single();
+                InstructorData.Courses = instructor.CourseAssignments.Select(s => s.Course);
+            }
+            #endregion
+
+            #region snippet_SelectCourse
+            if (courseID != null)
+            {
+                CourseID = courseID.Value;
+                var selectedCourse = InstructorData.Courses
+                    .Where(x => x.CourseID == courseID).Single();
+                InstructorData.Enrollments = selectedCourse.Enrollments;
+            }
+            #endregion
         }
     }
 }

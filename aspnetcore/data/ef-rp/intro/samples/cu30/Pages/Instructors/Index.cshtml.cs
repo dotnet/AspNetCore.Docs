@@ -1,4 +1,3 @@
-#region snippet_all
 using ContosoUniversity.Models;
 using ContosoUniversity.Models.SchoolViewModels;  // Add VM
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -21,36 +20,35 @@ namespace ContosoUniversity.Pages.Instructors
         public int InstructorID { get; set; }
         public int CourseID { get; set; }
 
-#region snippet_OnGetAsync
         public async Task OnGetAsync(int? id, int? courseID)
         {
             InstructorData = new InstructorIndexData();
             InstructorData.Instructors = await _context.Instructors
-                  .Include(i => i.OfficeAssignment)                 
-                  .Include(i => i.CourseAssignments)
+                .Include(i => i.OfficeAssignment)                 
+                .Include(i => i.CourseAssignments)
                     .ThenInclude(i => i.Course)
                         .ThenInclude(i => i.Department)
-                    //.Include(i => i.CourseAssignments)
-                    //    .ThenInclude(i => i.Course)
-                    //        .ThenInclude(i => i.Enrollments)
-                    //            .ThenInclude(i => i.Student)
-                 // .AsNoTracking()
-                  .OrderBy(i => i.LastName)
-                  .ToListAsync();
-
+                //.Include(i => i.CourseAssignments)
+                //    .ThenInclude(i => i.Course)
+                //        .ThenInclude(i => i.Enrollments)
+                //            .ThenInclude(i => i.Student)
+                //.AsNoTracking()
+                .OrderBy(i => i.LastName)
+                .ToListAsync();
 
             if (id != null)
             {
                 InstructorID = id.Value;
-                Instructor instructor = InstructorData.Instructors.Where(
-                    i => i.ID == id.Value).Single();
+                Instructor instructor = InstructorData.Instructors
+                    .Where(i => i.ID == id.Value).Single();
                 InstructorData.Courses = instructor.CourseAssignments.Select(s => s.Course);
             }
 
             if (courseID != null)
             {
                 CourseID = courseID.Value;
-                var selectedCourse = InstructorData.Courses.Where(x => x.CourseID == courseID).Single();
+                var selectedCourse = InstructorData.Courses
+                    .Where(x => x.CourseID == courseID).Single();
                 await _context.Entry(selectedCourse).Collection(x => x.Enrollments).LoadAsync();
                 foreach (Enrollment enrollment in selectedCourse.Enrollments)
                 {
@@ -59,7 +57,5 @@ namespace ContosoUniversity.Pages.Instructors
                 InstructorData.Enrollments = selectedCourse.Enrollments;
             }
         }
-#endregion
     }
 }
-#endregion

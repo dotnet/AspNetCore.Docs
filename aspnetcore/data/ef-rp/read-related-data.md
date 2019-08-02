@@ -78,13 +78,17 @@ To display the name of the assigned department for a course:
 
 * Run the following command to scaffold the Course pages.
 
-  On Linux or macOS:
+  **On Windows:**
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
+  ```
+
+  **On Linux or macOS:**
 
   ```console
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages/Courses --referenceScriptLibraries
   ```
-
-  On Windows, use the same command but replace *Pages/Courses* with *Pages\Courses*. (Replace the forward slash with a backslash.)
 
 ---
 
@@ -100,7 +104,7 @@ To display the name of the assigned department for a course:
 
 The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities don't need to be tracked because they're not updated in the current context.
 
-Update *Pages/Courses/Index.cshtml* with the following highlighted markup:
+Replace the code in *Pages/Courses/Index.cshtml* with the following code. The changes are highlighted.
 
 [!code-cshtml[](intro/samples/cu30/Pages/Courses/Index.cshtml?highlight=5,8,16-18,34-36,44)]
 
@@ -175,33 +179,62 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 
 * Run the following command to scaffold the Instructor pages.
 
-  On Linux or macOS:
+  **On Windows:**
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
+  ```
+
+  **On Linux or macOS:**
 
   ```console
   dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages/Instructors --referenceScriptLibraries
   ```
 
-  On Windows, use the same command but replace *Pages/Instructors* with *Pages\Instructors*. (Replace the forward slash with a backslash.)
-
 ---
 
-Replace *Pages/Instructors/Index.cshtml.cs* with the following code:
+Replace the code in *Pages/Instructors/Index.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,19-37)]
+[!code-csharp[](intro/samples/cu30snapshots/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,19-37)]
 
 The `OnGetAsync` method accepts optional route data for the ID of the selected instructor.
 
 Examine the query in the *Pages/Instructors/Index.cshtml.cs* file:
 
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_ThenInclude)]
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_EagerLoading)]
 
-The code specifies eager loading for the `Instructor.OfficeAssignment` and the `Instructor.CourseAssignments` navigation properties. Within the `CourseAssignments` property, the `Course` property is loaded.
+The code specifies eager loading for the the following navigation properties:
+
+* `Instructor.OfficeAssignment`
+* `Instructor.CourseAssignments`
+  * `CourseAssignments.Course`
+    * `Course.Department`
+    * `Course.Enrollments`
+      * `Enrollment.Student`
+
+Notice the repetition of `Include` and `ThenInclude` methods for `CourseAssignments` and `Course`. This repetition is necessary to specify eager loading for two navigation properties of the Course entity.
+
+The following code executes when an instructor is selected (`id != null`).
+
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_SelectCourse)]
+
+The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is loaded with the `Course` entities from that instructor's `CourseAssignments` navigation property.
+
+The `Where` method returns a collection. But in this case, the filter will select a single entity. so the `Single` method is called to convert the collection into a single `Instructor` entity. The `Instructor` entity provides access to the `CourseAssignments` property. `CourseAssignments` provides access to the related `Course` entities.
+
+![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
+
+The `Single` method is used on a collection when the collection has only one item. The `Single` method throws an exception if the collection is empty or if there's more than one item. An alternative is `SingleOrDefault`, which returns a default value (null in this case) if the collection is empty.
+
+The following code populates the view model's `Enrollments` property when a course is selected:
+
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_SelectedCourse)]
 
 ### Update the instructors Index page
 
-Update *Pages/Instructors/Index.cshtml* with the following markup:
+Replace the code in *Pages/Instructors/Index.cshtml* with the following code. The changes are highlighted.
 
-[!code-cshtml[](intro/samples/cu30/Pages/Instructors/Index.cshtml?range=1-65&highlight=1,5,8,16-21,25-32,42-56)]
+[!code-cshtml[](intro/samples/cu30/Pages/Instructors/Index.cshtml?highlight=1,5,8,16-21,25-32,42-)]
 
 The preceding markup makes the following changes:
 
@@ -213,8 +246,8 @@ The preceding markup makes the following changes:
 
   `http://localhost:1234/Instructors/2`
 
-* Page title is **Instructors**.
-* Added an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` isn't null. Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.
+* Changes the page title to **Instructors**.
+* Adds an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` isn't null. Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.
 
   ```html
   @if (item.OfficeAssignment != null)
@@ -223,9 +256,9 @@ The preceding markup makes the following changes:
   }
   ```
 
-* Added a **Courses** column that displays courses taught by each instructor. See [Explicit Line Transition with `@:`](xref:mvc/views/razor#explicit-line-transition-with-) for more about this razor syntax.
+* Adds a **Courses** column that displays courses taught by each instructor. See [Explicit Line Transition with `@:`](xref:mvc/views/razor#explicit-line-transition-with-) for more about this razor syntax.
 
-* Added code that dynamically adds `class="success"` to the `tr` element of the selected instructor. This sets a background color for the selected row using a Bootstrap class.
+* Adds code that dynamically adds `class="success"` to the `tr` element of the selected instructor and course. This sets a background color for the selected row using a Bootstrap class.
 
   ```html
   string selectedRow = "";
@@ -244,61 +277,9 @@ The preceding markup makes the following changes:
 
 Run the app and select the **Instructors** tab. The page displays the `Location` (office) from the related `OfficeAssignment` entity. If OfficeAssignment` is null, an empty table cell is displayed.
 
-Click on the **Select** link for an instructor. The row style changes.
+Click on the **Select** link for an instructor. The row style changes and courses assigned to that instructor are displayed.
 
-### Add courses taught by selected instructor
-
-Update the `OnGetAsync` method in *Pages/Instructors/Index.cshtml.cs* with the following code:
-
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index2.cshtml.cs?name=snippet_OnGetAsync&highlight=1,8,16-26)]
-
-Add `public int CourseID { get; set; }`
-
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index2.cshtml.cs?name=snippet_1&highlight=12)]
-
-Examine the updated query:
-
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index2.cshtml.cs?name=snippet_ThenInclude)]
-
-The preceding query adds eager loading for the `Course.Department` property.
-
-The following code executes when an instructor is selected (`id != null`). The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is loaded with the `Course` entities from that instructor's `CourseAssignments` navigation property.
-
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index2.cshtml.cs?name=snippet_ID)]
-
-The `Where` method returns a collection. But in this case, the filter will select a single entity. so the `Single` method is called to convert the collection into a single `Instructor` entity. The `Instructor` entity provides access to the `CourseAssignments` property. `CourseAssignments` provides access to the related `Course` entities.
-
-![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
-
-The `Single` method is used on a collection when the collection has only one item. The `Single` method throws an exception if the collection is empty or if there's more than one item. An alternative is `SingleOrDefault`, which returns a default value (null in this case) if the collection is empty.
-
-The following code populates the view model's `Enrollments` property when a course is selected:
-
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index2.cshtml.cs?name=snippet_courseID)]
-
-Add the following highlighted markup to the end of the *Pages/Instructors/Index.cshtml* Razor Page:
-
-[!code-cshtml[](intro/samples/cu/Pages/Instructors/Index.cshtml?range=60-102&highlight=8-43)]
-
-The preceding markup displays a list of courses related to an instructor when an instructor is selected.
-
-Test the app. Click on a **Select** link on the instructors page.
-
-### Show student data
-
-In this section, the app is updated to show the student data for a selected course.
-
-Update the query in the `OnGetAsync` method in *Pages/Instructors/Index.cshtml.cs* with the following code:
-
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index3.cshtml.cs?name=snippet_ThenInclude&highlight=6-9)]
-
-Update *Pages/Instructors/Index.cshtml*. Add the following markup to the end of the file:
-
-[!code-cshtml[](intro/samples/cu30/Pages/Instructors/Index.cshtml?range=103-)]
-
-The preceding markup displays a list of the students who are enrolled in the selected course.
-
-Refresh the page and select an instructor. Select a course to see the list of enrolled students and their grades.
+Select a course to see the list of enrolled students and their grades.
 
 ![Instructors Index page instructor and course selected](read-related-data/_static/instructors-index30.png)
 
@@ -314,20 +295,20 @@ Use of `Single` with a Where condition is a matter of personal preference. It pr
 
 The current code specifies eager loading for `Enrollments` and `Students`:
 
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index3.cshtml.cs?name=snippet_ThenInclude&highlight=6-9)]
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_EagerLoading&highlight=6-9)]
 
 Suppose users rarely want to see enrollments in a course. In that case, an optimization would be to only load the enrollment data if it's requested. In this section, the `OnGetAsync` is updated to use explicit loading of `Enrollments` and `Students`.
 
-Update the `OnGetAsync` with the following code:
+Replace the code in *Pages/Instructors/Index.cshtml.cs* with the following code. The changes are highlighted.
 
-[!code-csharp[](intro/samples/cu30/Pages/Instructors/Index.cshtml.cs?name=snippet_OnGetAsync&highlight=9-13,29-35)]
+[!code-csharp[](intro/samples/cu30/Pages/Instructors/Index.cshtml.cs?name=snippet_All&highlight=31-35,52-56)]
 
-The preceding code drops the *ThenInclude* method calls for enrollment and student data. If a course is selected, the highlighted code retrieves:
+The preceding code drops the *ThenInclude* method calls for enrollment and student data. If a course is selected, the explicit loading code retrieves:
 
 * The `Enrollment` entities for the selected course.
 * The `Student` entities for each `Enrollment`.
 
-Notice the preceding code comments out `.AsNoTracking()`. Navigation properties can only be explicitly loaded for tracked entities.
+Notice that the preceding code comments out `.AsNoTracking()`. Navigation properties can only be explicitly loaded for tracked entities.
 
 Test the app. From a users perspective, the app behaves identically to the previous version.
 
