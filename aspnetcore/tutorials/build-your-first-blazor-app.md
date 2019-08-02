@@ -30,7 +30,7 @@ Follow the guidance in the <xref:blazor/get-started> article to create a Blazor 
 
    The UI of the `Counter` component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). The HTML markup and C# rendering logic are converted into a component class at build time. The name of the generated .NET class matches the file name.
 
-   Members of the component class are defined in an `@code` directive. In the `@code` directive, component state (properties, fields) and methods are specified for event handling or for defining other component logic. These members are then used as part of the component's rendering logic and for handling events.
+   Members of the component class are defined in an `@code` block. In the `@code` block, component state (properties, fields) and methods are specified for event handling or for defining other component logic. These members are then used as part of the component's rendering logic and for handling events.
 
    When the **Click me** button is selected:
 
@@ -152,7 +152,7 @@ Add a new component to the app that implements a simple todo list.
 
 1. Return to the `Todo` component (*Pages/Todo.razor*):
 
-   * Add a field for the todo items in an `@code` directive. The `Todo` component uses this field to maintain the state of the todo list.
+   * Add a field for the todo items in an `@code` block. The `Todo` component uses this field to maintain the state of the todo list.
    * Add unordered list markup and a `foreach` loop to render each todo item as a list item (`<li>`).
 
    [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo4.razor?highlight=5-10,12-14)]
@@ -167,7 +167,7 @@ Add a new component to the app that implements a simple todo list.
 
    [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo6.razor?highlight=2,7-10)]
 
-1. To get the title of the new todo item, add a `newTodo` string field at the top of the `@code` directive and bind it to the value of the text input using the `bind` attribute in the `<input>` element:
+1. To get the title of the new todo item, add a `newTodo` string field at the top of the `@code` block and bind it to the value of the text input using the `bind` attribute in the `<input>` element:
 
    [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo7.razor?highlight=2)]
 

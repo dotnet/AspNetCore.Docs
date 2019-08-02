@@ -454,7 +454,7 @@ The `@attribute` directive adds the given attribute to the class of the generate
 
 *This scenario only applies to Razor components (.razor).*
 
-The `@code` directive enables a [Razor component](xref:blazor/components) to add C# members (fields, properties, and methods) to a component:
+The `@code` block enables a [Razor component](xref:blazor/components) to add C# members (fields, properties, and methods) to a component:
 
 ```cshtml
 @code {
@@ -462,13 +462,13 @@ The `@code` directive enables a [Razor component](xref:blazor/components) to add
 }
 ```
 
-For Razor components, `@code` is an alias of [@functions](#functions) and recommended over `@functions`. More than one `@code` directive is permissible.
+For Razor components, `@code` is an alias of [@functions](#functions) and recommended over `@functions`. More than one `@code` block is permissible.
 
 ::: moniker-end
 
 ### \@functions
 
-The `@functions` directive enables a Razor Page to add C# members (fields, properties, and methods) to a view:
+The `@functions` blocks enables a Razor Page to add C# members (fields, properties, and methods) to a view:
 
 ```cshtml
 @functions {

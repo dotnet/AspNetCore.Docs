@@ -28,10 +28,10 @@ Components can be authored using the *.cshtml* file extension as long as the fil
 
 The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When an app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
 
-Members of the component class are defined in an `@code` directive. In the `@code` directive, component state (properties, fields) is specified with methods for event handling or for defining other component logic. More than one `@code` directive is permissible.
+Members of the component class are defined in an `@code` block. In the `@code` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic. More than one `@code` block is permissible.
 
 > [!NOTE]
-> In prior previews of ASP.NET Core 3.0, `@functions` directives were used for the same purpose as `@code` directives in Razor components. `@functions` directives continue to function in Razor components, but we recommend using the `@code` directive in ASP.NET Core 3.0 Preview 6 or later.
+> In prior previews of ASP.NET Core 3.0, `@functions` blocks were used for the same purpose as `@code` blocks in Razor components. `@functions` blocks continue to function in Razor components, but we recommend using the `@code` block in ASP.NET Core 3.0 Preview 6 or later.
 
 Component members can be used as part of the component's rendering logic using C# expressions that start with `@`. For example, a C# field is rendered by prefixing `@` to the field name. The following example evaluates and renders:
 
