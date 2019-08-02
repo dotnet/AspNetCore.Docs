@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/14/2019
+ms.date: 07/31/2019
 uid: blazor/debug
 ---
 # Debug ASP.NET Core Blazor
@@ -32,15 +32,21 @@ You *can't*:
 
 Development of further debugging scenarios is an on-going focus of the engineering team.
 
+## Prerequisites
+
+Debugging requires either of the following browsers:
+
+* Google Chrome (version 70 or later)
+* Microsoft Edge preview ([Edge Dev Channel](https://www.microsoftedgeinsider.com))
+
 ## Procedure
 
-To debug a Blazor client-side app in Chrome:
-
-* Build a Blazor app in `Debug` configuration (the default for unpublished apps).
-* Run the Blazor app in Chrome (version 70 or later).
-* With the keyboard focus on the app (not in the developer tools panel, which you should probably close for a less confusing debugging experience), select the following Blazor-specific keyboard shortcut:
-  * `Shift+Alt+D` on Windows/Linux
-  * `Shift+Cmd+D` on macOS
+1. Run a Blazor client-side app in `Debug` configuration. Pass the `--configuration Debug` option to the [dotnet run](/dotnet/core/tools/dotnet-run) command: `dotnet run --configuration Debug`.
+1. Access the app in the browser.
+1. Place the keyboard focus on the app, not the developer tools panel. The developer tools panel can be closed when debugging is initiated.
+1. Select the following Blazor-specific keyboard shortcut:
+   * `Shift+Alt+D` on Windows/Linux
+   * `Shift+Cmd+D` on macOS
 
 ## Enable remote debugging
 
