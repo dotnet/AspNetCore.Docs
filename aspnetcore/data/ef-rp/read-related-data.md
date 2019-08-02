@@ -195,7 +195,7 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 
 Replace the code in *Pages/Instructors/Index.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30snapshots/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,19-37)]
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,19-37)]
 
 The `OnGetAsync` method accepts optional route data for the ID of the selected instructor.
 
@@ -216,7 +216,7 @@ Notice the repetition of `Include` and `ThenInclude` methods for `CourseAssignme
 
 The following code executes when an instructor is selected (`id != null`).
 
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_SelectCourse)]
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_SelectInstructor)]
 
 The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is loaded with the `Course` entities from that instructor's `CourseAssignments` navigation property.
 
@@ -228,7 +228,7 @@ The `Single` method is used on a collection when the collection has only one ite
 
 The following code populates the view model's `Enrollments` property when a course is selected:
 
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_SelectedCourse)]
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_SelectCourse)]
 
 ### Update the instructors Index page
 
