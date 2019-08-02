@@ -315,7 +315,7 @@ The preceding code drops the *ThenInclude* method calls for enrollment and stude
 
 Notice that the preceding code comments out `.AsNoTracking()`. Navigation properties can only be explicitly loaded for tracked entities.
 
-Test the app. From a users perspective, the app behaves identically to the previous version.
+Test the app. From a user's perspective, the app behaves identically to the previous version.
 
 ## Next steps
 
