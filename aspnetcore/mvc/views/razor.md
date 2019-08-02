@@ -468,7 +468,7 @@ For Razor components, `@code` is an alias of [@functions](#functions) and recomm
 
 ### \@functions
 
-The `@functions` blocks enables a Razor Page to add C# members (fields, properties, and methods) to a view:
+The `@functions` directive enables adding C# members (fields, properties, and methods) to the generated class:
 
 ```cshtml
 @functions {
