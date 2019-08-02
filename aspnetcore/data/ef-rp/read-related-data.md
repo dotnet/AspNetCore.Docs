@@ -196,7 +196,7 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 
 Replace the code in *Pages/Instructors/Index.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,19-37)]
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,19-53)]
 
 The `OnGetAsync` method accepts optional route data for the ID of the selected instructor.
 
@@ -213,7 +213,7 @@ The code specifies eager loading for the the following navigation properties:
     * `Course.Enrollments`
       * `Enrollment.Student`
 
-Notice the repetition of `Include` and `ThenInclude` methods for `CourseAssignments` and `Course`. This repetition is necessary to specify eager loading for two navigation properties of the Course entity.
+Notice the repetition of `Include` and `ThenInclude` methods for `CourseAssignments` and `Course`. This repetition is necessary to specify eager loading for two navigation properties of the `Course` entity.
 
 The following code executes when an instructor is selected (`id != null`).
 
@@ -235,7 +235,7 @@ The following code populates the view model's `Enrollments` property when a cour
 
 Replace the code in *Pages/Instructors/Index.cshtml* with the following code. The changes are highlighted.
 
-[!code-cshtml[](intro/samples/cu30/Pages/Instructors/Index.cshtml?highlight=1,5,8,16-21,25-32,42-)]
+[!code-cshtml[](intro/samples/cu30/Pages/Instructors/Index.cshtml?highlight=1,5,8,16-21,25-32,43-57,67-102,104-125)]
 
 The preceding markup makes the following changes:
 
@@ -270,11 +270,15 @@ The preceding markup makes the following changes:
   <tr class="@selectedRow">
   ```
 
-* Added a new hyperlink labeled **Select**. This link sends the selected instructor's ID to the `Index` method and sets a background color.
+* Adds a new hyperlink labeled **Select**. This link sends the selected instructor's ID to the `Index` method and sets a background color.
 
   ```html
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
   ```
+
+* Adds a table of courses for the selected Instructor.
+
+* Adds a table of student enrollments for the selected course.
 
 Run the app and select the **Instructors** tab. The page displays the `Location` (office) from the related `OfficeAssignment` entity. If OfficeAssignment` is null, an empty table cell is displayed.
 
@@ -302,7 +306,7 @@ Suppose users rarely want to see enrollments in a course. In that case, an optim
 
 Replace the code in *Pages/Instructors/Index.cshtml.cs* with the following code. The changes are highlighted.
 
-[!code-csharp[](intro/samples/cu30/Pages/Instructors/Index.cshtml.cs?name=snippet_All&highlight=31-35,52-56)]
+[!code-csharp[](intro/samples/cu30/Pages/Instructors/Index.cshtml.cs?highlight=31-35,52-56)]
 
 The preceding code drops the *ThenInclude* method calls for enrollment and student data. If a course is selected, the explicit loading code retrieves:
 
