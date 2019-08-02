@@ -1,4 +1,4 @@
-﻿using FormsTagHelper.ViewModels;
+using FormsTagHelper.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FormsTagHelper.Controllers
@@ -18,8 +18,8 @@ namespace FormsTagHelper.Controllers
         {
             if (ModelState.IsValid)
             {
-                var msg = model.Country +  " selected";
-                return RedirectToAction("IndexSuccess", new { message = msg});
+                var msg = model.Country + " selected";
+                return RedirectToAction("IndexSuccess", new { message = msg });
             }
 
             // If we got this far, something failed; redisplay form.
@@ -38,7 +38,7 @@ namespace FormsTagHelper.Controllers
         {
             if (ModelState.IsValid)
             {
-                string strCountriesSelected="";
+                string strCountriesSelected = "";
                 foreach (string s in model.CountryCodes)
                 {
                     strCountriesSelected = strCountriesSelected + " " + s;
@@ -63,7 +63,7 @@ namespace FormsTagHelper.Controllers
             if (ModelState.IsValid)
             {
                 var msg = model.Country + " selected";
-                return RedirectToAction("IndexSuccess", new { message = msg});
+                return RedirectToAction("IndexSuccess", new { message = msg });
             }
 
             return View(model);
@@ -83,7 +83,7 @@ namespace FormsTagHelper.Controllers
             if (ModelState.IsValid)
             {
                 var msg = model.EnumCountry + " selected";
-                return RedirectToAction("IndexSuccess", new { message = msg});
+                return RedirectToAction("IndexSuccess", new { message = msg });
             }
 
             return View(model);
@@ -128,5 +128,13 @@ namespace FormsTagHelper.Controllers
             ViewData["Message"] = message;
             return View();
         }
+        #region snippetNone
+        public IActionResult IndexNone()
+        {
+            var model = new CountryViewModel();
+            model.Insert(0, new SelectListItem("<none>", ""));
+            return View(model);
+        }
+        # endregion
     }
 }
