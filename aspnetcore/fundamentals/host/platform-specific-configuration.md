@@ -5,7 +5,7 @@ description: Discover how to enhance an ASP.NET Core app from an external assemb
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 07/31/2019
+ms.date: 08/02/2019
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Use hosting startup assemblies in ASP.NET Core
@@ -315,9 +315,11 @@ For more information on NuGet packages and the runtime store, see the following 
 
 A hosting startup enhancement can be provided by a *bin*-deployed assembly in the enhanced app. The hosting startup types provided by the assembly are made available to the app using one of the following approaches:
 
-* The enhanced app's project file makes an assembly reference to the hosting startup (a compile-time reference). With the compile-time reference in place, the hosting startup assembly and all of its dependencies are incorporated into the app's dependency file (*.deps.json*). This approach applies when the deployment scenario calls for moving the compiled hosting startup library's assembly (DLL file) to the consuming project or to a location accessible by the consuming project and a compile-time reference is made to the hosting startup's assembly.
+* The enhanced app's project file makes an assembly reference to the hosting startup (a compile-time reference). With the compile-time reference in place, the hosting startup assembly and all of its dependencies are incorporated into the app's dependency file (*.deps.json*). This approach applies when the deployment scenario calls for making a compile-time reference to the hosting startup's assembly (*.dll* file) and moving the assembly to either:
+  * The consuming project.
+  * A location accessible by the consuming project.
 * The hosting startup's dependencies file is made available to the enhanced app as described in the [Runtime store](#runtime-store) section (without a compile-time reference).
-* When targeting the .NET Framework, the assembly is loadable in the default load context, which on .NET Framework means that the assembly is at either of the following locations:
+* When targeting the .NET Framework, the assembly is loadable in the default load context, which on .NET Framework means that the assembly is located at either of the following locations:
   * Application base path &ndash; The *bin* folder where the app's executable (*.exe*) is located.
   * Global Assembly Cache (GAC) &ndash; The GAC stores assemblies that several .NET Framework apps share. For more information, see [How to: Install an assembly into the global assembly cache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) in the .NET Framework documentation.
 
