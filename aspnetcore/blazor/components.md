@@ -366,12 +366,6 @@ In the following example, `UpdateHeading` is called asynchronously when the butt
 }
 ```
 
-Lambda expressions can also be used:
-
-```cshtml
-<button @onclick="@(e => Console.WriteLine("Hello, world!"))">Say hello</button>
-```
-
 ### Event argument types
 
 For some events, event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
