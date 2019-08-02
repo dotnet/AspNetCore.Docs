@@ -69,6 +69,8 @@ You can copy/paste the previous "form group" and let intelliSense help you updat
 
 ---
 
+Update the the remaining templates.
+
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
 
 [!code-csharp[](start-mvc/sample/MvcMovie/Models/SeedDataRating.cs?name=snippet1&highlight=6)]
