@@ -128,5 +128,12 @@ namespace FormsTagHelper.Controllers
             ViewData["Message"] = message;
             return View();
         }
+        
+        public IActionResult IndexNone()
+        {
+            var model = new CountryViewModel();
+            model.Insert(0, new SelectListItem("<none>", ""));
+            return View(model);
+        }
     }
 }
