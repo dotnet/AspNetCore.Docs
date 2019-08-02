@@ -321,6 +321,14 @@ Use the view component Tag Helper in the Razor markup file:
 
 The method signature of `PriorityList.Invoke` is synchronous, but Razor finds and calls the method with `Component.InvokeAsync` in the markup file.
 
+## All view component parameters are required
+
+Each parameter in a view component is a required attribute. See [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/5011). If any  parameter is omitted:
+
+* The `InvokeAsync` method signature won't match, therefore the method won't execute.
+* The ViewComponent won't render any markup.
+* No errors will be thrown.
+
 ## Additional resources
 
 * [Dependency injection into views](xref:mvc/views/dependency-injection)
