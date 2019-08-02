@@ -339,7 +339,7 @@ The following code calls the `UpdateHeading` method when the button is selected 
 The following code calls the `CheckChanged` method when the check box is changed in the UI:
 
 ```cshtml
-<input type="checkbox" class="form-check-input" @onchange="CheckboxChanged" />
+<input type="checkbox" class="form-check-input" @onchange="CheckChanged" />
 
 @code {
     private void CheckChanged()
