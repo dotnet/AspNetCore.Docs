@@ -134,7 +134,18 @@ For more information on how to use `IApplicationBuilder` and the order of middle
 
 To configure services and the request processing pipeline without using a `Startup` class, call `ConfigureServices` and `Configure` convenience methods on the host builder. Multiple calls to `ConfigureServices` append to one another. If multiple `Configure` method calls exist, the last `Configure` call is used.
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](startup/3.0_samples/Program1.cs?name=snippet)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](startup/sample_snapshot/Program1.cs?highlight=16,20)]
+
+::: moniker-end
+
 
 ## Extend Startup with startup filters
 
