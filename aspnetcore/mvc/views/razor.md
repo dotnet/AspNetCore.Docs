@@ -666,7 +666,7 @@ If the *EvenMorePages* folder in the preceding example has an imports file with 
 
 The `@page` directive has different effects depending on the type of the file where it appears. The directive:
 
-* Turns a file into an MVC action, which means that the file handles requests directly, without going through a controller. For more information, see <xref:razor-pages/index>.
+* In in a *.cshtml* file indicates that the file is a Razor Page. For more information, see <xref:razor-pages/index>.
 * Specifies that a Razor component should handle requests directly. For more information, see <xref:blazor/routing>.
 
 ::: moniker-end
