@@ -62,11 +62,11 @@ To display the name of the assigned department for a course:
 
 <a name="scaffold"></a>
 
-### Scaffold the Course model
+### Scaffold Course pages
 
 # [Visual Studio](#tab/visual-studio)
 
-* Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
+* Follow the instructions in [Scaffold Student pages](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
 
   * Create a *Pages/Courses* folder.
   * Use `Course` for the model class.
@@ -98,19 +98,20 @@ To display the name of the assigned department for a course:
 
 ### Display the department name
 
-* Update the `OnGetAsync` method with the following code:
+* Replace the code in Pages/Courses/Index.cshtml.cs with th following code:
 
-[!code-csharp[](intro/samples/cu/Pages/Courses/Index.cshtml.cs?name=snippet_RevisedIndexMethod)]
+[!code-csharp[](intro/samples/cu/Pages/Courses/Index.cshtml.cs?highlight=22,28)]
 
-The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities don't need to be tracked because they're not updated in the current context.
+The preceding code changes the `Course` property to `Courses` and adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities don't need to be tracked because they're not updated in the current context.
 
 Replace the code in *Pages/Courses/Index.cshtml* with the following code. The changes are highlighted.
 
-[!code-cshtml[](intro/samples/cu30/Pages/Courses/Index.cshtml?highlight=5,8,16-18,34-36,44)]
+[!code-cshtml[](intro/samples/cu30/Pages/Courses/Index.cshtml?highlight=5,8,16-18,20,23,26,32,34-36,44)]
 
 The following changes have been made to the scaffolded code:
 
 * Changed the heading from Index to Courses.
+* Changed the `Course` property name to `Courses`.
 * Added a **Number** column that shows the `CourseID` property value. By default, primary keys aren't scaffolded because normally they're meaningless to end users. However, in this case the primary key is meaningful.
 * Changed the **Department** column to display the department name. The code displays the `Name` property of the `Department` entity that's loaded into the `Department` navigation property:
 
@@ -144,7 +145,7 @@ See [IndexSelect.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/a
 
 ## Create an Instructors page that shows Courses and Enrollments
 
-This section scaffolds Instructors pages and adds related Courses and Enrollments to the Instructors Index page.
+This section scaffolds Instructor pages and adds related Courses and Enrollments to the Instructors Index page.
 
 <a name="IP"></a>
 ![Instructors Index page](read-related-data/_static/instructors-index30.png)
@@ -163,7 +164,7 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 
 [!code-csharp[](intro/samples/cu30/Models/SchoolViewModels/InstructorIndexData.cs)]
 
-### Scaffold the Instructor pages
+### Scaffold Instructor pages
 
 # [Visual Studio](#tab/visual-studio)
 
