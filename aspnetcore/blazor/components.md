@@ -20,6 +20,8 @@ Blazor apps are built using *components*. A component is a self-contained chunk 
 
 Components are implemented in [Razor](xref:mvc/views/razor) component files (*.razor*) using a combination of C# and HTML markup. A component in Blazor is formally referred to as a *Razor component*.
 
+A component's name must start with an uppercase character. For example, *MyCoolComponent.razor* is valid, and *myCoolComponent.razor* is invalid.
+
 Components can be authored using the *.cshtml* file extension as long as the files are identified as Razor component files using the `_RazorComponentInclude` MSBuild property. For example, an app that specifies that all *.cshtml* files under the *Pages* folder should be treated as Razor components files:
 
 ```xml
@@ -71,9 +73,11 @@ While pages and views can use components, the converse isn't true. Components ca
 
 For more information on how components are rendered and component state is managed in Blazor server-side apps, see the <xref:blazor/hosting-models> article.
 
-## Using components
+## Use components
 
 Components can include other components by declaring them using HTML element syntax. The markup for using a component looks like an HTML tag where the name of the tag is the component type.
+
+Attribute binding is case sensitive. For example, `@bind` is valid, and `@Bind` is invalid.
 
 The following markup in *Index.razor* renders a `HeadingComponent` instance:
 
@@ -82,6 +86,8 @@ The following markup in *Index.razor* renders a `HeadingComponent` instance:
 *Components/HeadingComponent.razor*:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/HeadingComponent.razor)]
+
+If a component contains an HTML element with an uppercase first letter that doesn't match a component name, a warning is emitted indicating that the element has an unexpected name. Adding an `@using` statement for the component's namespace makes the component available, which removes the warning.
 
 ## Component parameters
 
