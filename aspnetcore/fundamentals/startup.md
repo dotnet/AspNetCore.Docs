@@ -191,7 +191,7 @@ The `IStartupFilter` is registered in the service container in <xref:Microsoft.A
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](startup/3.0_samples/StartupFilterSample/Program.cs?name=snippet&highlight=119)]
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/Program.cs?name=snippet&highlight=18-19)]
 
 ::: moniker-end
 
