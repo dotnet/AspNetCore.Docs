@@ -32,7 +32,7 @@ The preceding code creates a [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.r
 
 The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
-## Customize the Courses pages
+## Customize the Course pages
 
 A Course is assigned to a Department. The base class for the Create and Edit pages provides a `SelectList` for selecting the department. The drop-down list that uses the `SelectList` sets the `Course.DepartmentID` foreign key (FK) property. EF Core uses the `Course.DepartmentID` FK to load the `Department` navigation property.
 
@@ -58,7 +58,7 @@ The preceding code makes the following changes:
 
 * Changes the caption from **DepartmentID** to **Department**.
 * Replaces `"ViewBag.DepartmentID"` with `DepartmentNameSL` (from the base class).
-* Adds the "Select Department" option. This change renders "Select Department" rather than the first department.
+* Adds the "Select Department" option. This change renders "Select Department" in the drop-down when no department has been selected yet, rather than the first department.
 * Adds a validation message when the department isn't selected.
 
 The Razor Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):
@@ -69,11 +69,11 @@ Test the Create page. The Create page displays the department name rather than t
 
 ### Update the Courses Edit page.
 
-Update *Pages/Courses/Edit.cshtml.cs* with the following code:
+Replace the code in *Pages/Courses/Edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40-66)]
 
-The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which selects the department specified in the drop-down list.
+The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which selects that department in the drop-down list.
 
 Update *Pages/Courses/Edit.cshtml* with the following code:
 
@@ -82,26 +82,32 @@ Update *Pages/Courses/Edit.cshtml* with the following code:
 The preceding code makes the following changes:
 
 * Displays the course ID. Generally the Primary Key (PK) of an entity isn't displayed. PKs are usually meaningless to users. In this case, the PK is the course number.
-* Changes the caption from **DepartmentID** to **Department**.
+* Changes the caption for the Department drop-down from **DepartmentID** to **Department**.
 * Replaces `"ViewBag.DepartmentID"` with `DepartmentNameSL` (from the base class).
 
 The page contains a hidden field (`<input type="hidden">`) for the course number. Adding a `<label>` tag helper with `asp-for="Course.CourseID"` doesn't eliminate the need for the hidden field. `<input type="hidden">` is required for the course number to be included in the posted data when the user clicks **Save**.
 
-## Add AsNoTracking to the Details and Delete page models
+## Update the Details and Delete page models
 
-[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking isn't required. Add `AsNoTracking` to the `OnGetAsync` and `OnPostAsync` methods in the *Pages/Courses/Delete.cshtml.cs* file:
+[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking isn't required.
 
-[!code-csharp[](intro/samples/cu30/Pages/Courses/Delete.cshtml.cs?highlight=41,43,60,61)]
+Replace the code in *Pages/Courses/Delete.cshtml.cs* with the following code to add `AsNoTracking`:
 
-Make the same change to the `OnGetAsync` method in the *Pages/Courses/Details.cshtml.cs* file
+[!code-csharp[](intro/samples/cu30/Pages/Courses/Delete.cshtml.cs?highlight=29,48-49)]
+
+Make the same change to the `OnGetAsync` method in the *Pages/Courses/Details.cshtml.cs* file:
+
+[!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=32)]
 
 ### Modify the Delete and Details pages
 
-Update the Delete Razor page with the following code:
+Replace the code in *Pages/Courses/Delete.cshtml* with the following code:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Courses/Delete.cshtml?highlight=15-20,37)]
 
 Make the same changes to the Details page.
+
+[!code-cshtml[](intro/samples/cu30/Pages/Courses/Details.cshtml?highlight=14-19,36)]
 
 ### Test the Course pages
 
