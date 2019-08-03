@@ -44,9 +44,7 @@ namespace ContosoUniversity.Pages.Courses
                 return NotFound();
             }
 
-            Course = await _context.Courses
-                .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.CourseID == id);
+            Course = await _context.Courses.FindAsync(id);
 
             if (Course != null)
             {

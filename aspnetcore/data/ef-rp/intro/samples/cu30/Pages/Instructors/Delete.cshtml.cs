@@ -26,7 +26,7 @@ namespace ContosoUniversity.Pages.Instructors
                 return NotFound();
             }
 
-            Instructor = await _context.Instructors.SingleAsync(m => m.ID == id);
+            Instructor = await _context.Instructors.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Instructor == null)
             {
@@ -35,11 +35,21 @@ namespace ContosoUniversity.Pages.Instructors
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             Instructor instructor = await _context.Instructors
                 .Include(i => i.CourseAssignments)
                 .SingleAsync(i => i.ID == id);
+
+            if (instructor == null)
+            {
+                return RedirectToPage("./Index");
+            }
 
             var departments = await _context.Departments
                 .Where(d => d.InstructorID == id)

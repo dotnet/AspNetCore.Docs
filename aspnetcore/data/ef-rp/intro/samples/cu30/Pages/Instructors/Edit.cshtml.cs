@@ -1,3 +1,4 @@
+#region snippet_All
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Instructors
 {
-    #region snippet
     public class EditModel : InstructorCoursesPageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
@@ -78,5 +78,6 @@ namespace ContosoUniversity.Pages.Instructors
             return Page();
         }
     }
-    #endregion
 }
+#endregion
+

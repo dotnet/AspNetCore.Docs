@@ -93,9 +93,9 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 Replace the code in *Pages/Courses/Delete.cshtml.cs* with the following code to add `AsNoTracking`:
 
-[!code-csharp[](intro/samples/cu30/Pages/Courses/Delete.cshtml.cs?highlight=29,48-49)]
+[!code-csharp[](intro/samples/cu30/Pages/Courses/Delete.cshtml.cs?highlight=29)]
 
-Make the same change to the `OnGetAsync` method in the *Pages/Courses/Details.cshtml.cs* file:
+Make the same change in the *Pages/Courses/Details.cshtml.cs* file:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=32)]
 
@@ -119,13 +119,11 @@ The following sections update the instructor pages.
 
 ## Add Course assignments to the instructor Edit page
 
-Instructors may teach any number of courses. The following image shows the instructor Edit page with an array of checkboxes:
+Instructors may teach any number of courses. The following image shows the instructor Edit page with an array of course checkboxes.
 
 ![Instructor Edit page with courses](update-related-data/_static/instructor-edit-courses30.png)
 
-`Course`-`Instructor` is a many-to-many relationship. To add and remove relationships, you add and remove entities from the `CourseAssignments` join entity set.
-
-Checkboxes enable changes to courses an instructor is assigned to. A checkbox is displayed for every course in the database. Courses that the instructor is assigned to are selected. The user can select or clear check boxes to change course assignments. If the number of courses were much greater, a different UI might work better. But the method of managing a many-to-many relationship shown here wouldn't change. To create or delete relationships, you manipulate a join entity.
+The checkboxes enable changes to courses an instructor is assigned to. A checkbox is displayed for every course in the database. Courses that the instructor is assigned to are selected. The user can select or clear checkboxes to change course assignments. If the number of courses were much greater, a different UI might work better. But the method of managing a many-to-many relationship shown here wouldn't change. To create or delete relationships, you manipulate a join entity.
 
 ### Add classes to support Create and Edit instructor pages
 
@@ -159,7 +157,7 @@ If the check box for a course wasn't selected, but the course is in the `Instruc
 
 ### Add office location
 
-Another relationship the edit page has to handle is the one-to-zero-or-one relationship tha the Instructor entity has with the `OfficeAssignment` entity. The instructor edit code must handle the following scenarios: 
+Another relationship the edit page has to handle is the one-to-zero-or-one relationship that the Instructor entity has with the `OfficeAssignment` entity. The instructor edit code must handle the following scenarios: 
 
 * If the user clears the office assignment, delete the `OfficeAssignment` entity.
 * If the user enters an office assignment and it was empty, create a new `OfficeAssignment` entity.
@@ -169,15 +167,18 @@ Another relationship the edit page has to handle is the one-to-zero-or-one relat
 
 Replace the code in *Pages/Instructors/Edit.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30/Pages/Instructors/Edit.cshtml.cs?name=snippet&highlight=1,20-24,30,34,41-45,52-69)]
+[!code-csharp[](intro/samples/cu30/Pages/Instructors/Edit.cshtml.cs?name=snippet_All&highlight=14,28-32,38,42-77)]
 
 The preceding code:
 
 * Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment`, `CourseAssignment`, and `CourseAssignment.Course` navigation properties.
 * Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](xref:data/ef-rp/crud#overposting).
 * If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
+* Calls `PopulateAssignedCourseData` in `OnGetAsync` to provide information for the checkboxes using the `AssignedCourseData` view model class.
+* Calls `UpdateInstructorCourses` in `OnPostAsync` to apply information from the checkboxes to the Instructor entity being edited.
+* Calls `PopulateAssignedCourseData` and `UpdateInstructorCourses` in `OnPostAsync` if `TryUpdateModel` fails, to restore the data entered on the page when it is redisplayed.
 
-Update the Instructor Edit Razor page:
+Replace the code in *Pages/Instructors/Edit.cshtml* wih the following code:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Instructors/Edit.cshtml?highlight=29-59)]
 
@@ -191,7 +192,7 @@ Note: The approach taken here to edit instructor course data works well when the
 
 ### Update the instructor Create page
 
-Update the instructor Create page model and Razor page with code similar to the Edit page:
+Update the Instructor Create page model and Razor page with code similar to the Edit page:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Create.cshtml.cs)]
 
@@ -203,7 +204,7 @@ Test the instructor Create page.
 
 Replace the code in *Pages/Instructors/Delete.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30/Pages/Instructors/Delete.cshtml.cs?highlight=5,40-52)]
+[!code-csharp[](intro/samples/cu30/Pages/Instructors/Delete.cshtml.cs?highlight=5,38-62)]
 
 The preceding code makes the following changes:
 
