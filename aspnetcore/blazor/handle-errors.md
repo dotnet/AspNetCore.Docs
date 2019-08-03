@@ -57,7 +57,7 @@ Framework and app code may trigger unhandled exceptions in any of the following 
 
 ### Component instantiation
 
-When Blazor creates an instance of a component, it invokes the component's constructor and the constructors for any DI services supplied to the component's constructor via the [@inject](xref:blazor/dependency-injection#request-a-service-in-a-component) directive or the [[Inject]](xref:blazor/dependency-injection#request-a-service-in-a-component) attribute. If any of the executed constructors throw an exception or a setter for any `[Inject]` properties throw an exception, the exception is fatal to the circuit because the framework can't instantiate the component. If constructor logic may throw exceptions, the app should trap exceptions using a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
+When Blazor creates an instance of a component, it invokes the component's constructor and the constructors for any DI services supplied to the component's constructor via the [@inject](xref:blazor/dependency-injection#request-a-service-in-a-component) directive or the [[Inject]](xref:blazor/dependency-injection#request-a-service-in-a-component) attribute. If any executed constructor or a setter for any `[Inject]` property throws an exception, the exception is fatal to the circuit because the framework can't instantiate the component. If constructor logic may throw exceptions, the app should trap exceptions using a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
 ### Lifecycle methods
 
