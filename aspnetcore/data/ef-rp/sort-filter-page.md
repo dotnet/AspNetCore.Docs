@@ -200,7 +200,7 @@ If the search string is changed while paging, the page is reset to 1. The page h
 
 ### Add paging links to the Razor Page
 
-Replace the markup in *Students/Index.cshtml* with the following markup. The changes are highlighted:
+Replace the code in *Students/Index.cshtml* with the following code. The changes are highlighted:
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?highlight=29-32,38-41,69-87)]
 
@@ -219,7 +219,7 @@ Run the app and navigate to the students page.
 
 ![students index page with paging links](sort-filter-page/_static/paging30.png)
 
-## Create an About page
+## Add grouping
 
 This section creates an About page that displays how many students have enrolled for each enrollment date. The update uses grouping and includes the following steps:
 
@@ -228,9 +228,9 @@ This section creates an About page that displays how many students have enrolled
 
 ### Create the view model
 
-Create a *SchoolViewModels* folder in the *Models* folder.
+Create a *Models/SchoolViewModels* folder.
 
-In the *SchoolViewModels* folder, add a *EnrollmentDateGroup.cs* with the following code:
+Create *SchoolViewModels/EnrollmentDateGroup.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 

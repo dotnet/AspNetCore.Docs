@@ -1,4 +1,4 @@
-#region snippet
+#region snippet_All
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -43,7 +43,7 @@ namespace ContosoUniversity.Pages.Departments
             return Page();
         }
 
-        #region snippet_rv
+        #region snippet_RowVersion
         public async Task<IActionResult> OnPostAsync(int id)
         {
             if (!ModelState.IsValid)
@@ -55,28 +55,21 @@ namespace ContosoUniversity.Pages.Departments
                 .Include(i => i.Administrator)
                 .FirstOrDefaultAsync(m => m.DepartmentID == id);
 
-            // null means Department was deleted by another user.
             if (departmentToUpdate == null)
             {
                 return HandleDeletedDepartment();
             }
 
-            // Update the RowVersion to the value when this entity was
-            // fetched. If the entity has been updated after it was
-            // fetched, RowVersion won't match the DB RowVersion and
-            // a DbUpdateConcurrencyException is thrown.
-            // A second postback will make them match, unless a new 
-            // concurrency issue happens.
             _context.Entry(departmentToUpdate)
                 .Property("RowVersion").OriginalValue = Department.RowVersion;
             #endregion
 
+            #region snippet_TryUpdateModel
             if (await TryUpdateModelAsync<Department>(
                 departmentToUpdate,
                 "Department",
                 s => s.Name, s => s.StartDate, s => s.Budget, s => s.InstructorID))
             {
-                #region snippet_try
                 try
                 {
                     await _context.SaveChangesAsync();
@@ -100,7 +93,7 @@ namespace ContosoUniversity.Pages.Departments
                     // Save the current RowVersion so next postback
                     // matches unless an new concurrency issue happens.
                     Department.RowVersion = (byte[])dbValues.RowVersion;
-                    // Must clear the model error for the next postback.
+                    // Clear the model error for the next postback.
                     ModelState.Remove("Department.RowVersion");
                 }
                 #endregion
@@ -115,14 +108,15 @@ namespace ContosoUniversity.Pages.Departments
         private IActionResult HandleDeletedDepartment()
         {
             var deletedDepartment = new Department();
-            // ModelState contains the posted data because of the deletion error and will overide the Department instance values when displaying Page().
+            // ModelState contains the posted data because of the deletion error
+            // and will overide the Department instance values when displaying Page().
             ModelState.AddModelError(string.Empty,
                 "Unable to save. The department was deleted by another user.");
             InstructorNameSL = new SelectList(_context.Instructors, "ID", "FullName", Department.InstructorID);
             return Page();
         }
 
-        #region snippet_err
+        #region snippet_Error
         private async Task setDbErrorMessage(Department dbValues,
                 Department clientValues, SchoolContext context)
         {

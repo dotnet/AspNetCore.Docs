@@ -149,7 +149,7 @@ A student can enroll in any number of courses, and a course can have any number 
 
 * Create a *Models* folder in the project folder. 
 
-* In the *Models* folder, create a class file named *Student.cs* with the following code:
+* Create a class file *Models/Student.cs* with the following code:
 
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Student.cs)]
 
@@ -165,7 +165,7 @@ The `Enrollments` property is defined as `ICollection<Enrollment>` because there
 
 ![Enrollment entity diagram](intro/_static/enrollment-entity.png)
 
-In the *Models* folder, create *Enrollment.cs* with the following code:
+Create *Models/Enrollment.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Enrollment.cs)]
 
@@ -183,7 +183,7 @@ EF Core interprets a property as a foreign key if it's named `<navigation proper
 
 ![Course entity diagram](intro/_static/course-entity.png)
 
-In the *Models* folder, create *Course.cs* with the following code:
+Create *Models/Course.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Course.cs)]
 
@@ -233,7 +233,7 @@ The following packages are automatically installed:
 
   The Microsoft.VisualStudio.Web.CodeGeneration.Design package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
 
-* Create a *Students* folder in the *Pages* folder.
+* Create a *Pages/Students* folder.
 
 * Run the following command to install the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
@@ -267,7 +267,7 @@ The scaffolding process:
   * *Details.cshtml* and *Details.cshtml.cs*
   * *Edit.cshtml* and *Edit.cshtml.cs*
   * *Index.cshtml* and *Index.cshtml.cs*
-* Creates *SchoolContext.cs* in the *Data* folder.
+* Creates *Data/SchoolContext.cs*.
 * Adds the context to dependency injection in *Startup.cs*.
 * Adds a database connection string to *appsettings.json*.
 
@@ -357,7 +357,7 @@ Later in the tutorial series, you'll delete the database that was created by `En
 
 The `EnsureCreated` method creates an empty database. This section adds code that populates the database with test data.
 
-* In the *Data* folder, create a new class file named *DbInitializer.cs* and add the following code:
+Create *Data/DbInitializer.cs* with the following code:
 
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/DbInitializer.cs)]
 

@@ -192,11 +192,11 @@ This command:
 
 <a name="scaffold"></a>
 
-## Scaffold Departments pages
+## Scaffold Department pages
 
 # [Visual Studio](#tab/visual-studio)
 
-* Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
+* Follow the instructions in [Scaffold Student pages](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
 
 * Create a *Pages/Departments* folder.  
 * Use `Department` for the model class.
@@ -204,17 +204,21 @@ This command:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Create a *Departments* folder in the *Pages* folder.
+* Create a *Pages/Departments* folder.
 
-* Run the following command to scaffold the Department model.
+* Run the following command to scaffold the Department pages.
 
-  On Linux or macOS:
+  **On Windows:**
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
+  ```
+
+  **On Linux or macOS:**
 
   ```console
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages/Departments --referenceScriptLibraries
   ```
-
-  On Windows, use the same commands but replace *Pages/Departments* with *Pages\Departments*. (Replace the forward slash with a backslash.)
 
 ---
 
@@ -227,10 +231,10 @@ The scaffolding tool created a `RowVersion` column for the Index page, but that 
 Update the Index page:
 
 * Replace Index with Departments.
-* Change the markup containing `RowVersion` to show just the last byte of the byte array.
+* Change the code containing `RowVersion` to show just the last byte of the byte array.
 * Replace FirstMidName with FullName.
 
-The following markup shows the updated page:
+The following code shows the updated page:
 
 [!code-html[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
 
@@ -238,39 +242,39 @@ The following markup shows the updated page:
 
 Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet)]
+[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_All)]
 
 The [OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value from the entity when it was fetched in the `OnGet` method. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
 
-[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_rv&highlight=24-25)]
+[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_RowVersion&highlight=24-25)]
 
-In the preceding code:
+In the preceding highlighted code:
 
 * The value in `Department.RowVersion` is what was in the entity when it was originally fetched in the Get request for the Edit page. The value is provided to the `OnPost` method by a hidden field in the Razor page that displays the entity to be edited. The hidden field value is copied to `Department.RowVersion` by the model binder.
 * `OriginalValue` is what EF Core will use in the Where clause. Before the highlighted line of code executes, `OriginalValue` has the value that was in the database when `FirstOrDefaultAsync` was called in this method, which might be different from what was displayed on the Edit page.
 * The highlighted code makes sure that EF Core uses the original `RowVersion` value from the displayed `Department` entity in the SQL UPDATE statement's Where clause.
 
-When a concurrency error happens, the following code gets the client values (the values posted to this method) and the database values:
+When a concurrency error happens, the following highlighted code gets the client values (the values posted to this method) and the database values.
 
-[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_try&highlight=9,18)]
+[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_TryUpdateModel&highlight=14,23)]
 
 The following code adds a custom error message for each column that has database values different from what was posted to `OnPostAsync`:
 
-[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_err)]
+[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_Error)]
 
 The following highlighted code sets the `RowVersion` value to the new value retrieved from the database. The next time the user clicks **Save**, only concurrency errors that happen since the last display of the Edit page will be caught.
 
-[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_try&highlight=23)]
+[!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_TryUpdateModel&highlight=23)]
 
 The `ModelState.Remove` statement is required because `ModelState` has the old `RowVersion` value. In the Razor Page, the `ModelState` value for a field takes precedence over the model property values when both are present.
 
 ### Update the Razor page
 
-Update *Pages/Departments/Edit.cshtml* with the following markup:
+Update *Pages/Departments/Edit.cshtml* with the following code:
 
 [!code-html[](intro/samples/cu30/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
-The preceding markup:
+The preceding code:
 
 * Updates the `page` directive from `@page` to `@page "{id:int}"`.
 * Adds a hidden row version. `RowVersion` must be added so post back binds the value.
@@ -307,7 +311,7 @@ Click **Save** again. The value you entered in the second browser tab is saved. 
 
 ## Update the Delete page
 
-Update the Delete page model with the following code:
+Replace the code in *Pages/Departments/Delete.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Delete.cshtml.cs)]
 
@@ -323,7 +327,7 @@ Update *Pages/Departments/Delete.cshtml* with the following code:
 
 [!code-html[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
 
-The preceding markup makes the following changes:
+The preceding code makes the following changes:
 
 * Updates the `page` directive from `@page` to `@page "{id:int}"`.
 * Adds an error message.
@@ -621,7 +625,7 @@ Update *Pages/Departments/Delete.cshtml* with the following code:
 
 [!code-html[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
 
-The preceding markup makes the following changes:
+The preceding code makes the following changes:
 
 * Updates the `page` directive from `@page` to `@page "{id:int}"`.
 * Adds an error message.

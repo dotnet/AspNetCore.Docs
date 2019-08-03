@@ -21,7 +21,7 @@ namespace ContosoUniversity.Pages.Courses
 
         public Course Course { get; set; }
 
-        #region snippet
+        #region snippet_OnGetAsync
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)

@@ -74,7 +74,7 @@ To display the name of the assigned department for a course:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Create a *Courses* folder in the *Pages* folder.
+* Create a *Pages/Courses* folder.
 
 * Run the following command to scaffold the Course pages.
 
@@ -160,7 +160,7 @@ This page reads and displays related data in the following ways:
 
 The instructors page shows data from three different tables. A view model is needed that includes three properties representing the three tables.
 
-In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the following code:
+Create *SchoolViewModels/InstructorIndexData.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Models/SchoolViewModels/InstructorIndexData.cs)]
 
@@ -176,7 +176,7 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Create an *Instructors* folder in the *Pages* folder.
+* Create a *Pages/Instructors* folder .
 
 * Run the following command to scaffold the Instructor pages.
 
@@ -237,7 +237,7 @@ Replace the code in *Pages/Instructors/Index.cshtml* with the following code. Th
 
 [!code-cshtml[](intro/samples/cu30/Pages/Instructors/Index.cshtml?highlight=1,5,8,16-21,25-32,43-57,67-102,104-125)]
 
-The preceding markup makes the following changes:
+The preceding code makes the following changes:
 
 * Updates the `page` directive from `@page` to `@page "{id:int?}"`. `"{id:int?}"` is a route template. The route template changes integer query strings in the URL to route data. For example, clicking on the **Select** link for an instructor with only the `@page` directive produces a URL like the following:
 

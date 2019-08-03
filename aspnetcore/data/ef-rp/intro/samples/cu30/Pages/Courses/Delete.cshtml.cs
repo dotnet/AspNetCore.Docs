@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Courses
 {
-    #region snippet
     public class DeleteModel : PageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
@@ -58,5 +57,4 @@ namespace ContosoUniversity.Pages.Courses
             return RedirectToPage("./Index");
         }
     }
-    #endregion
 }
