@@ -29,13 +29,13 @@ The reason for terminating a circuit for most unhandled exceptions is that an un
 
 ## Manage unhandled exceptions in developer code
 
-If you want users to be able to continue using an app after an error occurs (for example, when loading or saving data), develop the app with error handling logic. C# [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statements are useful in error handling scenarios and are a suggested approach in later sections of this article that describe potential sources of unhandled exceptions.
+If you want users to be able to continue using an app after an error occurs (for example, when loading or saving data), develop the app with error handling logic. Later sections of this article describe potential sources of unhandled exceptions.
 
 Be careful not to disclose sensitive information to end users. Under normal conditions in a production app, don't render framework exception messages or stack traces in the UI, as doing so may help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
 ## Log errors with a persistent provider
 
-If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. By default, template-based ASP.NET Core Blazor apps log to console output with the Console Logging Provider. Consider logging to a more permanent location with a provider that manages log size and log rotation. For more information, see <xref:fundamentals/logging/index>.
+If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. By default, Blazor apps log to console output with the Console Logging Provider. Consider logging to a more permanent location with a provider that manages log size and log rotation. For more information, see <xref:fundamentals/logging/index>.
 
 During development, Blazor usually sends the full details of exceptions to the browser's console to aid in debugging. In production, detailed errors in the browser's console are disabled by default, which means that errors aren't sent to clients but the exception's full details are still logged server-side. For more information, see <xref:fundamentals/error-handling>.
 
