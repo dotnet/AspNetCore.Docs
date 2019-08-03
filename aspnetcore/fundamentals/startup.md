@@ -36,7 +36,7 @@ The preceding sample is for [Razor Pages](xref:razor-pages/index); the MVC versi
 
 ::: moniker-end
 
-The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is usually specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
+The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is typically specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
 
 ::: moniker range="< aspnetcore-3.0"
 
