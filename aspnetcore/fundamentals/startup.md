@@ -36,7 +36,7 @@ The preceding sample is for [Razor Pages](xref:razor-pages/index); the MVC versi
 
 ::: moniker-end
 
-The `Startup` class is specified to the app when the app's [host](xref:fundamentals/index#host) is built. The app's host is built when `Build` is called on the host builder in the `Program` class. The `Startup` class is usually specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
+The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is usually specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
 
 ::: moniker range="< aspnetcore-3.0"
 
@@ -72,7 +72,7 @@ A common use of [dependency injection](xref:fundamentals/dependency-injection) i
 
 An alternative to injecting `IHostingEnvironment` is to use a conventions-based approach. When the app defines separate `Startup` classes for different environments (for example, `StartupDevelopment`), the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](xref:fundamentals/environments#environment-based-startup-class-and-methods).
 
-To learn more about the host, see [The host](xref:fundamentals/index#host). For information on handling errors during startup, see [Startup exception handling](xref:fundamentals/error-handling#startup-exception-handling).
+See [The host](xref:fundamentals/index#host) for more information on the host. For information on handling errors during startup, see [Startup exception handling](xref:fundamentals/error-handling#startup-exception-handling).
 
 ## The ConfigureServices method
 
@@ -86,7 +86,7 @@ The typical pattern is to call all the `Add{Service}` methods and then call all 
 
 The host may configure some services before `Startup` methods are called. For more information, see [The host](xref:fundamentals/index#host).
 
-For features that require substantial setup, there are `Add{Service}` extension methods on <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. A typical ASP.NET Core app registers services for Entity Framework, Identity, and MVC:
+For features that require substantial setup, there are `Add{Service}` extension methods on <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. A typical ASP.NET Core app registers services for Entity Framework, Identity, and MVC or Razor Pages:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -130,12 +130,17 @@ The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeli
 * [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts)
 * [HTTPS redirection](xref:security/enforcing-ssl)
 * [Static files](xref:fundamentals/static-files)
-* [General Data Protection Regulation (GDPR)](xref:security/gdpr)
 * ASP.NET Core [MVC](xref:mvc/overview) and [Razor Pages](xref:razor-pages/index)
+
+::: moniker range="< aspnetcore-3.0"
+
+* [General Data Protection Regulation (GDPR)](xref:security/gdpr)
+
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](startup/3.0_samples/Startup4.cs?name=sample_snapshot)]
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/Startup.cs?name=snippet)]
 
 ::: moniker-end
 
@@ -153,7 +158,7 @@ Additional services, such as `IHostingEnvironment` and `ILoggerFactory`, can be 
 
 For more information on how to use `IApplicationBuilder` and the order of middleware processing, see <xref:fundamentals/middleware/index>.
 
-## Convenience methods
+## Configure services without Startup
 
 To configure services and the request processing pipeline without using a `Startup` class, call `ConfigureServices` and `Configure` convenience methods on the host builder. Multiple calls to `ConfigureServices` append to one another. If multiple `Configure` method calls exist, the last `Configure` call is used.
 
@@ -177,9 +182,7 @@ Use <xref:Microsoft.AspNetCore.Hosting.IStartupFilter> to configure middleware a
 
 Each `IStartupFilter` implements one or more middlewares in the request pipeline. The filters are invoked in the order they were added to the service container. Filters may add middleware before or after passing control to the next filter, thus they append to the beginning or end of the app pipeline.
 
-The following example demonstrates how to register a middleware with `IStartupFilter`.
-
-The `RequestSetOptionsMiddleware` middleware sets an options value from a query string parameter:
+The following example demonstrates how to register a middleware with `IStartupFilter`. The `RequestSetOptionsMiddleware` middleware sets an options value from a query string parameter:
 
 [!code-csharp[](startup/sample_snapshot/RequestSetOptionsMiddleware.cs?name=snippet1&highlight=21)]
 
@@ -208,7 +211,8 @@ Middleware execution order is set by the order of `IStartupFilter` registrations
 * Multiple `IStartupFilter` implementations may interact with the same objects. If ordering is important, order their `IStartupFilter` service registrations to match the order that their middlewares should run.
 * Libraries may add middleware with one or more `IStartupFilter` implementations that run before or after other app middleware registered with `IStartupFilter`. To invoke an `IStartupFilter` middleware before a middleware added by a library's `IStartupFilter`:
 
-  * Position the service registration before the library is added to the service container.   * To invoke afterward, position the service registration after the library is added.
+  * Position the service registration before the library is added to the service container.
+  * To invoke afterward, position the service registration after the library is added.
 
 ## Add configuration at startup from an external assembly
 
