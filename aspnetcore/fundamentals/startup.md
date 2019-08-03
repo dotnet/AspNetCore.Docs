@@ -9,7 +9,7 @@ uid: fundamentals/startup
 ---
 # App startup in ASP.NET Core
 
-By [Tom Dykstra](https://github.com/tdykstra), [Luke Latham](https://github.com/guardrex), and [Steve Smith](https://ardalis.com)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), [Luke Latham](https://github.com/guardrex), and [Steve Smith](https://ardalis.com)
 
 The `Startup` class configures services and the app's request pipeline.
 
@@ -22,7 +22,19 @@ ASP.NET Core apps use a `Startup` class, which is named `Startup` by convention.
 
 `ConfigureServices` and `Configure` are called by the ASP.NET Core runtime when the app starts:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](startup/3.0_samples/Startup1.cs)]
+
+The preceding sample is for [Razor Pages](xref:razor-pages/index); the MVC version is similar.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](startup/sample_snapshot/Startup1.cs)]
+
+::: moniker-end
 
 The `Startup` class is specified to the app when the app's [host](xref:fundamentals/index#host) is built. The app's host is built when `Build` is called on the host builder in the `Program` class. The `Startup` class is usually specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
 
@@ -78,8 +90,19 @@ For features that require substantial setup, there are `Add{Service}` extension 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](~/security/authentication/accconfirm/sample/WebPWrecover30/Startup.cs?name=snippet1)]
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlServer(
+            Configuration.GetConnectionString("DefaultConnection")));
+    services.AddDefaultIdentity<IdentityUser>(options => 
+                   options.SignIn.RequireConfirmedAccount = true)
+        .AddEntityFrameworkStores<ApplicationDbContext>();
 
+    services.AddRazorPages();
+}
+```
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -122,11 +145,11 @@ The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeli
 
 ::: moniker-end
 
-Each `Use` extension method adds one or more middleware components to the request pipeline. For instance, the `UseMvc` extension method adds [Routing Middleware](xref:fundamentals/routing) to the request pipeline and configures [MVC](xref:mvc/overview) as the default handler.
+Each `Use` extension method adds one or more middleware components to the request pipeline. For instance, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> configures [middleware](xref:fundamentals/middleware/index) to serve [static files](xref:undamentals/static-files).
 
 Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline or short-circuiting the chain, if appropriate. If short-circuiting doesn't occur along the middleware chain, each middleware has a second chance to process the request before it's sent to the client.
 
-Additional services, such as `IHostingEnvironment` and `ILoggerFactory`, may also be specified in the `Configure` method signature. When specified, additional services are injected if they're available.
+Additional services, such as `IHostingEnvironment` and `ILoggerFactory`, can be specified in the `Configure` method signature. These services are injected if they're available.
 
 For more information on how to use `IApplicationBuilder` and the order of middleware processing, see <xref:fundamentals/middleware/index>.
 
@@ -145,7 +168,6 @@ To configure services and the request processing pipeline without using a `Start
 [!code-csharp[](startup/sample_snapshot/Program1.cs?highlight=16,20)]
 
 ::: moniker-end
-
 
 ## Extend Startup with startup filters
 

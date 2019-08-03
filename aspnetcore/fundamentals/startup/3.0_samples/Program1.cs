@@ -47,8 +47,7 @@ namespace WebApplication18
                         app.UseHsts();
                     }
 
-                    var configValue = config["subsection:suboption1"];
-
+                    var configValue = config["MyConfigKey"];
                 }
                 );
             });
