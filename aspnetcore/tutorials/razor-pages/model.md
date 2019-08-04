@@ -93,7 +93,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 * Install the scaffolding tool:
 
   ```console
-   dotnet tool install --global dotnet-aspnet-codegenerator
+   dotnet tool install --global dotnet-aspnet-codegenerator --version 3.0.0-*
    ```
 
 * **For Windows**: Run the following command:
@@ -116,7 +116,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 * Install the scaffolding tool:
 
   ```console
-   dotnet tool install --global dotnet-aspnet-codegenerator
+   dotnet tool install --global dotnet-aspnet-codegenerator --version 3.0.0-*
    ```
 
 * Run the following command:
