@@ -28,14 +28,14 @@ This article lists the two main extensibility points that localization APIs prov
 
 ## Localization Culture Providers
 
-ASP.NET Core localization APIs have four providers by default. These providers determine the current culture of executing request:
+ASP.NET Core localization APIs have four default providers that can determine the current culture of an executing request:
 
 * <xref:Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider>
 * <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider>
 * <xref:Microsoft.AspNetCore.Localization.AcceptLanguageHeaderRequestCultureProvider>
 * <xref:Microsoft.AspNetCore.Localization.CustomRequestCultureProvider>
 
-All of the preceding providers are described in detail in the [Localization Middleware](xref:fundamentals/localization) documentation. If these providers don't meet your needs, build a custom provider using one of the following approaches:
+The preceding providers are described in detail in the [Localization Middleware](xref:fundamentals/localization) documentation. If the default providers don't meet your needs, build a custom provider using one of the following approaches:
 
 ### Using CustomRequestCultureProvider
 
@@ -73,6 +73,7 @@ options.RequestCultureProviders.Insert(0,
     var currentCulture = "en";
     var segments = context.Request.Path.Value.Split(new char[] { '/' }, 
         StringSplitOptions.RemoveEmptyEntries);
+
     if (segments.Length > 1 && segments[0].Length == 2)
     {
         currentCulture = segments[0];
@@ -90,7 +91,7 @@ options.RequestCultureProviders.Insert(0,
 
 A new implementation of <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> can be created that determines the request culture information from a custom source. For example, the custom source can be a configuration file or database.
 
-The following example shows `AppSettingsRequestCultureProvider`, which extend the <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> to determines the request culture information from *appsettings.json*:
+The following example shows `AppSettingsRequestCultureProvider`, which extends the <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> to determine the request culture information from *appsettings.json*:
 
 ```csharp
 public class AppSettingsRequestCultureProvider : RequestCultureProvider
@@ -138,7 +139,7 @@ ASP.NET Core localization provides <xref:Microsoft.Extensions.Localization.Resou
 
 You aren't limited to using `resx` files. By implementing `IStringLocalized`, any data source can be used.
 
-Here are some examples of projects that implement <xref:Microsoft.Extensions.Localization.IStringLocalizer>: 
+The following are some examples of projects that implement <xref:Microsoft.Extensions.Localization.IStringLocalizer>: 
 
 * [EFStringLocalizer](https://github.com/aspnet/Entropy/tree/master/samples/Localization.EntityFramework)
 * [JsonStringLocalizer](https://github.com/hishamco/My.Extensions.Localization.Json)
