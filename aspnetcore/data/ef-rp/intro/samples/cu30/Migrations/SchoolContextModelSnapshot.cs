@@ -15,7 +15,7 @@ namespace ContosoUniversity.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0-preview6.19304.10")
+                .HasAnnotation("ProductVersion", "3.0.0-preview7.19362.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -49,7 +49,7 @@ namespace ContosoUniversity.Migrations
 
                     b.ToTable("CourseAssignment");
                 });
-            #region snippet_Department
+
             modelBuilder.Entity("ContosoUniversity.Models.Department", b =>
                 {
                     b.Property<int>("DepartmentID")
@@ -76,7 +76,6 @@ namespace ContosoUniversity.Migrations
 
                     b.ToTable("Department");
                 });
-            #endregion
 
             modelBuilder.Entity("ContosoUniversity.Models.Enrollment", b =>
                 {

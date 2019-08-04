@@ -19,7 +19,7 @@ namespace ContosoUniversity.Pages.Courses
             _context = context;
         }
 
-        public IList<Course> Courses { get;set; }
+        public IList<Course> Courses { get; set; }
 
         public async Task OnGetAsync()
         {

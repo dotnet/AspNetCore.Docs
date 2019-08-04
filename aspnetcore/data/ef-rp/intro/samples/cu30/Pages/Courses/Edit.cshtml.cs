@@ -33,7 +33,7 @@ namespace ContosoUniversity.Pages.Courses
             }
 
             // Select current DepartmentID.
-            PopulateDepartmentsDropDownList(_context,Course.DepartmentID);
+            PopulateDepartmentsDropDownList(_context, Course.DepartmentID);
             return Page();
         }
 
