@@ -186,8 +186,8 @@ Install-Package Grpc.Tools
 
 * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
 * Select the **Browse** tab.
-* Enter **Grpc.Core** in the search box.
-* Select the **Grpc.Core** package from the **Browse** tab and select **Install**.
+* Enter **Grpc.Net.Client** in the search box.
+* Select the **Grpc.Net.Client** package from the **Browse** tab and select **Install**.
 * Repeat for `Google.Protobuf` and `Grpc.Tools`.
 
 ### [Visual Studio Code](#tab/visual-studio-code)
@@ -263,7 +263,7 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 ### [Visual Studio](#tab/visual-studio)
 
 * In the Greeter service, press `Ctrl+F5` to start the server without the debugger.
-* In the `GrpcGreeterClient` project, press `Ctrl+F5` to start the server without the debugger.
+* In the `GrpcGreeterClient` project, press `Ctrl+F5` to start the client without the debugger.
 
 ### [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 

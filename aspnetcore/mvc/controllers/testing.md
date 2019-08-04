@@ -5,7 +5,7 @@ description: Learn how to test controller logic in ASP.NET Core with Moq and xUn
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/06/2019
+ms.date: 08/03/2019
 uid: mvc/controllers/testing
 ---
 # Test controller logic in ASP.NET Core
@@ -14,7 +14,7 @@ By [Steve Smith](https://ardalis.com/)
 
 [Controllers](xref:mvc/controllers/actions) play a central role in any ASP.NET Core MVC app. As such, you should have confidence that controllers behave as intended. Automated tests can detect errors before the app is deployed to a production environment.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/testing/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/testing/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Unit tests of controller logic
 
