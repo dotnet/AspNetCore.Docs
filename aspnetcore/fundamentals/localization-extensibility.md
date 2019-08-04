@@ -139,7 +139,7 @@ ASP.NET Core localization provides <xref:Microsoft.Extensions.Localization.Resou
 
 You aren't limited to using `resx` files. By implementing `IStringLocalized`, any data source can be used.
 
-The following are some examples of projects that implement <xref:Microsoft.Extensions.Localization.IStringLocalizer>: 
+The following example projects implement <xref:Microsoft.Extensions.Localization.IStringLocalizer>: 
 
 * [EFStringLocalizer](https://github.com/aspnet/Entropy/tree/master/samples/Localization.EntityFramework)
 * [JsonStringLocalizer](https://github.com/hishamco/My.Extensions.Localization.Json)
