@@ -263,7 +263,7 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 ### [Visual Studio](#tab/visual-studio)
 
 * In the Greeter service, press `Ctrl+F5` to start the server without the debugger.
-* In the `GrpcGreeterClient` project, press `Ctrl+F5` to start the server without the debugger.
+* In the `GrpcGreeterClient` project, press `Ctrl+F5` to start the client without the debugger.
 
 ### [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
