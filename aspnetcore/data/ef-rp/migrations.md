@@ -79,7 +79,7 @@ dotnet ef database update
 
 The EF Core `migrations add` command generated code to create the database. This migrations code is in the *Migrations\<timestamp>_InitialCreate.cs* file. The `Up` method of the `InitialCreate` class creates the database tables that correspond to the data model entity sets. The `Down` method deletes them, as shown in the following example:
 
-[!code-csharp[](intro/samples/cu30/Migrations/20190720175847_InitialCreate.cs)]
+[!code-csharp[](intro/samples/cu30/Migrations/20190731193522_InitialCreate.cs)]
 
 The preceding code is for the initial migration. The code:
 
