@@ -37,7 +37,7 @@ ASP.NET Core localization APIs have four default providers that can determine th
 
 The preceding providers are described in detail in the [Localization Middleware](xref:fundamentals/localization) documentation. If the default providers don't meet your needs, build a custom provider using one of the following approaches:
 
-### Using CustomRequestCultureProvider
+### Use CustomRequestCultureProvider
 
 <xref:Microsoft.AspNetCore.Localization.CustomRequestCultureProvider> provides a custom <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> that uses a simple delegate to determine the current localization culture:
 
