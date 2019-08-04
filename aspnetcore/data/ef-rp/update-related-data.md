@@ -1,7 +1,7 @@
 ---
 title: Razor Pages with EF Core in ASP.NET Core - Update Related Data - 7 of 8
 author: rick-anderson
-description: In this tutorial you'll update related data by updating foreign key fields and navigation properties.
+description: In this tutorial, you'll update related data by updating foreign key fields and navigation properties.
 ms.author: riande
 ms.date: 07/22/2019
 uid: data/ef-rp/update-related-data
@@ -15,14 +15,16 @@ By [Tom Dykstra](https://github.com/tdykstra), and [Rick Anderson](https://twitt
 
 ::: moniker range=">= aspnetcore-3.0"
 
-This tutorial shows how to update related data. The following illustrations shows some of the completed pages.
+This tutorial shows how to update related data. The following illustrations show some of the completed pages.
 
 ![Course Edit page](update-related-data/_static/course-edit30.png)
 ![Instructor Edit page](update-related-data/_static/instructor-edit-courses30.png)
 
-## Create a base class
+## Update the Course Create and Edit pages
 
 The scaffolded code for the Course Create and Edit pages has a Department drop-down list that shows Department ID (an integer). The drop-down should show the Department name, so both of these pages need a list of department names. To provide that list, use a base class for the Create and Edit pages.
+
+### Create a base class for Course Create and Edit
 
 Create a *Pages/Courses/DepartmentNamePageModel.cs* file with the following code:
 
@@ -32,7 +34,7 @@ The preceding code creates a [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.r
 
 The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
-## Customize the Course pages
+### Update the Course Create page model
 
 A Course is assigned to a Department. The base class for the Create and Edit pages provides a `SelectList` for selecting the department. The drop-down list that uses the `SelectList` sets the `Course.DepartmentID` foreign key (FK) property. EF Core uses the `Course.DepartmentID` FK to load the `Department` navigation property.
 
@@ -48,7 +50,7 @@ The preceding code:
 * Uses `TryUpdateModelAsync` to prevent [overposting](xref:data/ef-rp/crud#overposting).
 * Removes `ViewData["DepartmentID"]`. `DepartmentNameSL` from the base class is a strongly typed model and will be used by the Razor page. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).
 
-### Update the Courses Create Razor page
+### Update the Course Create Razor page
 
 Update *Pages/Courses/Create.cshtml* with the following code:
 
@@ -67,13 +69,15 @@ The Razor Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#th
 
 Test the Create page. The Create page displays the department name rather than the department ID.
 
-### Update the Courses Edit page.
+### Update the Course Edit page model
 
 Replace the code in *Pages/Courses/Edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40-66)]
 
 The changes are similar to those made in the Create page model. In the preceding code, `PopulateDepartmentsDropDownList` passes in the department ID, which selects that department in the drop-down list.
+
+### Update the Course Edit Razor page
 
 Update *Pages/Courses/Edit.cshtml* with the following code:
 
@@ -87,9 +91,11 @@ The preceding code makes the following changes:
 
 The page contains a hidden field (`<input type="hidden">`) for the course number. Adding a `<label>` tag helper with `asp-for="Course.CourseID"` doesn't eliminate the need for the hidden field. `<input type="hidden">` is required for the course number to be included in the posted data when the user clicks **Save**.
 
-## Update the Details and Delete page models
+## Update the Course Details and Delete pages
 
 [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking isn't required.
+
+### Update the Course page models
 
 Replace the code in *Pages/Courses/Delete.cshtml.cs* with the following code to add `AsNoTracking`:
 
@@ -97,9 +103,9 @@ Replace the code in *Pages/Courses/Delete.cshtml.cs* with the following code to 
 
 Make the same change in the *Pages/Courses/Details.cshtml.cs* file:
 
-[!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=32)]
+[!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=29)]
 
-### Modify the Delete and Details pages
+### Update the Course Razor pages
 
 Replace the code in *Pages/Courses/Delete.cshtml* with the following code:
 
@@ -109,15 +115,13 @@ Make the same changes to the Details page.
 
 [!code-cshtml[](intro/samples/cu30/Pages/Courses/Details.cshtml?highlight=14-19,36)]
 
-### Test the Course pages
+## Test the Course pages
 
-Test create, edit, details, and delete.
+Test the create, edit, details, and delete pages.
 
-## Update the instructor pages
+## Update the instructor Create and Edit pages
 
 The following sections update the instructor pages.
-
-## Add Course assignments to the instructor Edit page
 
 Instructors may teach any number of courses. The following image shows the instructor Edit page with an array of course checkboxes.
 
@@ -125,13 +129,15 @@ Instructors may teach any number of courses. The following image shows the instr
 
 The checkboxes enable changes to courses an instructor is assigned to. A checkbox is displayed for every course in the database. Courses that the instructor is assigned to are selected. The user can select or clear checkboxes to change course assignments. If the number of courses were much greater, a different UI might work better. But the method of managing a many-to-many relationship shown here wouldn't change. To create or delete relationships, you manipulate a join entity.
 
-### Add classes to support Create and Edit instructor pages
+### Create a class for assigned courses data
 
 Create *SchoolViewModels/AssignedCourseData.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Models/SchoolViewModels/AssignedCourseData.cs)]
 
 The `AssignedCourseData` class contains data to create the check boxes for courses assigned to an instructor.
+
+### Create an Instructor page model base class
 
 Create the *Pages/Instructors/InstructorCoursesPageModel.cs* base class:
 
@@ -155,7 +161,7 @@ If the check box for a course wasn't selected, but the course is in the `Instruc
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_UpdateCoursesElse)]
 
-### Add office location
+### Handle office location
 
 Another relationship the edit page has to handle is the one-to-zero-or-one relationship that the Instructor entity has with the `OfficeAssignment` entity. The instructor edit code must handle the following scenarios: 
 
@@ -163,7 +169,7 @@ Another relationship the edit page has to handle is the one-to-zero-or-one relat
 * If the user enters an office assignment and it was empty, create a new `OfficeAssignment` entity.
 * If the user changes the office assignment, update the `OfficeAssignment` entity.
 
-### Instructor Edit page model
+### Update the Instructor Edit page model
 
 Replace the code in *Pages/Instructors/Edit.cshtml.cs* with the following code:
 
@@ -176,9 +182,11 @@ The preceding code:
 * If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
 * Calls `PopulateAssignedCourseData` in `OnGetAsync` to provide information for the checkboxes using the `AssignedCourseData` view model class.
 * Calls `UpdateInstructorCourses` in `OnPostAsync` to apply information from the checkboxes to the Instructor entity being edited.
-* Calls `PopulateAssignedCourseData` and `UpdateInstructorCourses` in `OnPostAsync` if `TryUpdateModel` fails, to restore the data entered on the page when it is redisplayed.
+* Calls `PopulateAssignedCourseData` and `UpdateInstructorCourses` in `OnPostAsync` if `TryUpdateModel` fails. These method calls restore the assigned course data entered on the page when it is redisplayed with an error message.
 
-Replace the code in *Pages/Instructors/Edit.cshtml* wih the following code:
+### Update the Instructor Edit Razor page
+
+Replace the code in *Pages/Instructors/Edit.cshtml* with the following code:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Instructors/Edit.cshtml?highlight=29-59)]
 
@@ -190,7 +198,7 @@ Run the app and test the updated Instructors Edit page. Change some course assig
 
 Note: The approach taken here to edit instructor course data works well when there's a limited number of courses. For collections that are much larger, a different UI and a different updating method would be more useable and efficient.
 
-### Update the instructor Create page
+### Update the Instructor Create page
 
 Update the Instructor Create page model and Razor page with code similar to the Edit page:
 
@@ -200,7 +208,7 @@ Update the Instructor Create page model and Razor page with code similar to the 
 
 Test the instructor Create page.
 
-## Update the Delete page
+## Update the Instructor Delete page
 
 Replace the code in *Pages/Instructors/Delete.cshtml.cs* with the following code:
 

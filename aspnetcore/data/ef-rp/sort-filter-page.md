@@ -26,7 +26,7 @@ The following illustration shows a completed page. The column headings are click
 
 Replace the code in *Pages/Students/Index.cshtml.cs* with the following code to add sorting.
 
-[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_All&highlight=22-25,27,29-53)]
+[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_All&highlight=21-24,26,28-52)]
 
 The preceding code:
 
@@ -94,7 +94,7 @@ To add filtering to the Students Index page:
 
 Replace the code in *Students/Index.cshtml.cs* with the following code to add filtering:
 
-[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml.cs?name=snippet_All&highlight=29,34,38-42)]
+[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml.cs?name=snippet_All&highlight=28,33,37-41)]
 
 The preceding code:
 
@@ -123,7 +123,7 @@ For more information, see [How to use case-insensitive query with Sqlite provide
 
 ### Update the Razor page
 
-Replce the code in *Pages/Students/Index.cshtml* to create a **Search** button and assorted chrome.
+Replace the code in *Pages/Students/Index.cshtml* to create a **Search** button and assorted chrome.
 
 [!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml?highlight=14-23)]
 
@@ -165,7 +165,7 @@ The `CreateAsync` method is used to create the `PaginatedList<T>`. A constructor
 
 Replace the code in *Students/Index.cshtml.cs* to add paging.
 
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=27,29-30,32,35-42,69-71)]
+[!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=26,28-29,31,34-41,68-70)]
 
 The preceding code:
 

@@ -24,7 +24,7 @@ A concurrency conflict occurs when:
 * A user navigates to the edit page for an entity.
 * Another user updates the same entity before the first user's change is written to the database.
 
-If concurrency detection isn't enabled, whoever updates the database last overwrites the other user's changes. In many applications, this risk is acceptable: if there are few users, or few updates, or if isn't really critical if some changes are overwritten, the cost of programming for concurrency might outweigh the benefit.
+If concurrency detection isn't enabled, whoever updates the database last overwrites the other user's changes. If this risk is acceptable, the cost of programming for concurrency might outweigh the benefit.
 
 ### Pessimistic concurrency (locking)
 
@@ -115,7 +115,7 @@ The following highlighted code shows the T-SQL that verifies exactly one row was
 
 [!code-sql[](intro/samples/cu30snapshots/8-concurrency/sql.txt?highlight=4-6)]
 
-[@@ROWCOUNT](/sql/t-sql/functions/rowcount-transact-sql) returns the number of rows affected by the last statement. In no rows are updated, EF Core throws a `DbUpdateConcurrencyException`.
+[@@ROWCOUNT](/sql/t-sql/functions/rowcount-transact-sql) returns the number of rows affected by the last statement. If no rows are updated, EF Core throws a `DbUpdateConcurrencyException`.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 

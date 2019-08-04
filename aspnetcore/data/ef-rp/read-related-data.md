@@ -176,7 +176,7 @@ Create *SchoolViewModels/InstructorIndexData.cs* with the following code:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Create a *Pages/Instructors* folder .
+* Create a *Pages/Instructors* folder.
 
 * Run the following command to scaffold the Instructor pages.
 
@@ -204,7 +204,7 @@ Examine the query in the *Pages/Instructors/Index.cshtml.cs* file:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_EagerLoading)]
 
-The code specifies eager loading for the the following navigation properties:
+The code specifies eager loading for the following navigation properties:
 
 * `Instructor.OfficeAssignment`
 * `Instructor.CourseAssignments`
@@ -352,7 +352,7 @@ There are several ways that EF Core can load related data into the navigation pr
   * One query for the main query 
   * One query for each collection "edge" in the load tree.
 
-* Separate queries with `Load`: The data can be retrieved in separate queries, and EF Core "fixes up" the navigation properties. "fixes up" means that EF Core automatically populates the navigation properties. Separate queries with `Load` is more like explict loading than eager loading.
+* Separate queries with `Load`: The data can be retrieved in separate queries, and EF Core "fixes up" the navigation properties. "fixes up" means that EF Core automatically populates the navigation properties. Separate queries with `Load` is more like explicit loading than eager loading.
 
   ![Separate queries example](read-related-data/_static/separate-queries.png)
 

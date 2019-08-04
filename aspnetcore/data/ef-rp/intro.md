@@ -203,7 +203,7 @@ In this section, you use the ASP.NET Core scaffolding tool to generate:
 # [Visual Studio](#tab/visual-studio)
 
 * Create a *Students* folder in the *Pages* folder.
-* In **Solution Explorer**, right click the *Pages/Students* folder and select **Add** > **New Scaffolded Item**.
+* In **Solution Explorer**, right-click the *Pages/Students* folder and select **Add** > **New Scaffolded Item**.
 * In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **ADD**.
 * In the **Add Razor Pages using Entity Framework (CRUD)** dialog:
   * In the **Model class** drop-down, select **Student (ContosoUniversity.Models)**.

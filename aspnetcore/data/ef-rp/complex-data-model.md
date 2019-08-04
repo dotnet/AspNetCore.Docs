@@ -35,7 +35,7 @@ Replace the code in *Models/Student.cs* with the following code:
 
 ### The DataType and DisplayFormat attributes
 
-The student pages currently displays the time of day with the enrollment date. Typically, date fields show only the date and not the time.
+The student pages currently display the time of day with the enrollment date. Typically, date fields show only the date and not the time.
 
 The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
 
@@ -86,7 +86,7 @@ The preceding image shows the schema for the `Student` table. The name fields ha
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-In your SQLite tool, examine the column definitions for the `Student` table. The name fields have type `Text`. Notice that the first name field is called FirstMidName. In the next section you'll change the name of that column to FirstName.
+In your SQLite tool, examine the column definitions for the `Student` table. The name fields have type `Text`. Notice that the first name field is called FirstMidName. In the next section, you'll change the name of that column to FirstName.
 
 ---
 
@@ -259,7 +259,7 @@ By default, EF Core treats the key as non-database-generated because the column 
 
 The `Instructor.OfficeAssignment` navigation property can be null because there might not be an `OfficeAssignment` row for a given instructor. An instructor might not have an office assignment.
 
-The `OfficeAssignment.Instructor` navigation property will always have an instructor entity because because the foreign key `InstructorID` type is `int`, a non-nullable value type. An office assignment can't exist without an instructor.
+The `OfficeAssignment.Instructor` navigation property will always have an instructor entity because the foreign key `InstructorID` type is `int`, a non-nullable value type. An office assignment can't exist without an instructor.
 
 When an `Instructor` entity has a related `OfficeAssignment` entity, each entity has a reference to the other one in its navigation property.
 
@@ -273,7 +273,7 @@ Update *Models/Course.cs* with the following code:
 
 The `Course` entity has a foreign key (FK) property `DepartmentID`. `DepartmentID` points to the related `Department` entity. The `Course` entity has a `Department` navigation property.
 
-EF Core doesn't require a FK property for a data model when the model has a navigation property for a related entity. EF Core automatically creates FKs in the database wherever they're needed. EF Core creates [shadow properties](/ef/core/modeling/shadow-properties) for automatically created FKs. However, explicitly including the FK in the data model can make updates simpler and more efficient. For example, consider a model where the FK property `DepartmentID` is *not* included. When a course entity is fetched to edit:
+EF Core doesn't require a foreign key property for a data model when the model has a navigation property for a related entity. EF Core automatically creates FKs in the database wherever they're needed. EF Core creates [shadow properties](/ef/core/modeling/shadow-properties) for automatically created FKs. However, explicitly including the FK in the data model can make updates simpler and more efficient. For example, consider a model where the FK property `DepartmentID` is *not* included. When a course entity is fetched to edit:
 
 * The `Department` property is null if it's not explicitly loaded.
 * To update the course entity, the `Department` entity must first be fetched.
@@ -580,7 +580,7 @@ While the apply-migration method is more complex and time-consuming, it's the pr
 
 ## Drop and re-create the database
 
-**Skip this section** if you're using SQL Server and want to do the apply-migrations approach in the following section.
+**Skip this section** if you're using SQL Server and want to do the apply-migration approach in the following section.
 
 To force EF Core to create a new database, drop and update the database:
 
@@ -724,7 +724,7 @@ The previous tutorials worked with a basic data model that was composed of three
 * More entities and relationships are added.
 * The data model is customized by specifying formatting, validation, and database mapping rules.
 
-The entity classes for the completed data model is shown in the following illustration:
+The entity classes for the completed data model are shown in the following illustration:
 
 ![Entity diagram](complex-data-model/_static/diagram.png)
 
