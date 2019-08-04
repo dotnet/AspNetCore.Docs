@@ -2,8 +2,10 @@
 title: Localization Extensibility
 author: hishamco
 description: Learn how to extend the localization APIs in ASP.NET Core apps.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 8/27/2019
+ms.custom: mvc
+ms.date: 08/03/2019
 uid: fundamentals/localization-extensibility
 ---
 # Localization Extensibility
@@ -12,37 +14,43 @@ By [Hisham Bin Ateya](https://github.com/hishamco)
 
 This article:
 
-* lists the extensibility points on the localization APIs.
+* Lists the extensibility points on the localization APIs.
 * Provides instructions on how to extend ASP.NET Core app localization.
 
 ## Extensible Points in Localization APIs
 
-ASP.NET Core localization APIs are built to be extensible. Extensibility allows developers to customize the localization according to their needs. For instance [OrchardCore](https://github.com/orchardCMS/OrchardCore/) has a `POStringLocalizer`. `POStringLocalizer` describes in detail using [Portable Object localization](fundamentals/portable-object-localization) to use `PO` files to store localization resources.
+ASP.NET Core localization APIs are built to be extensible. Extensibility allows developers to customize the localization according to their needs. For instance, [OrchardCore](https://github.com/orchardCMS/OrchardCore/) has a `POStringLocalizer`. `POStringLocalizer` describes in detail using [Portable Object localization](xref:fundamentals/portable-object-localization) to use `PO` files to store localization resources.
 
-This article lists the two main extensibility points that localization APIs have: `RequestCultureProvider` and `IStringLocalizer`.
+This article lists the two main extensibility points that localization APIs provide: 
+
+* <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider>
+* <xref:Microsoft.Extensions.Localization.IStringLocalizer>
 
 ## Localization Culture Providers
 
-ASP.NET Core localization APIs has four providers by defult. These determine the current culture of executing request:
+ASP.NET Core localization APIs have four default providers that can determine the current culture of an executing request:
 
-* `QueryStringRequestCultureProvider`
-* `CookieRequestCultureProvider`
-* `AcceptLanguageHeaderRequestCultureProvider`
-* `CustomRequestCultureProvider`
+* <xref:Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider>
+* <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider>
+* <xref:Microsoft.AspNetCore.Localization.AcceptLanguageHeaderRequestCultureProvider>
+* <xref:Microsoft.AspNetCore.Localization.CustomRequestCultureProvider>
 
-All the preceding providers are described in detail in the [Localization middleware](fundamentals/localization) documentation. If these providers don't meet your needs, you can build a custom provider using one of the following:
+The preceding providers are described in detail in the [Localization Middleware](xref:fundamentals/localization) documentation. If the default providers don't meet your needs, build a custom provider using one of the following approaches:
 
-### Using `CustomRequestCultureProvider`
+### Use CustomRequestCultureProvider
 
-[CustomRequestCultureProvider](/dotnet/api/microsoft.aspnetcore.localization.customrequestcultureprovider?view=aspnetcore-2.1) provides a custom `RequestCultureProvider` that uses a simple delegate to determine the current localization culture.
+<xref:Microsoft.AspNetCore.Localization.CustomRequestCultureProvider> provides a custom <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> that uses a simple delegate to determine the current localization culture:
 
 ::: moniker range=">= aspnetcore-2.2"
 
 ```csharp
-options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async context =>
+options.AddInitialRequestCultureProvider(
+    new CustomRequestCultureProvider(async context =>
 {
     var currentCulture = "en";
-    var segments = context.Request.Path.Value.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+    var segments = context.Request.Path.Value.Split(new char[] { '/' }, 
+        StringSplitOptions.RemoveEmptyEntries);
+
     if (segments.Length > 1 && segments[0].Length == 2)
     {
         currentCulture = segments[0];
@@ -53,15 +61,19 @@ options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async 
     return Task.FromResult(requestCulture);
 }));
 ```
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
 
 ```csharp
-options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
+options.RequestCultureProviders.Insert(0, 
+    new CustomRequestCultureProvider(async context =>
 {
     var currentCulture = "en";
-    var segments = context.Request.Path.Value.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+    var segments = context.Request.Path.Value.Split(new char[] { '/' }, 
+        StringSplitOptions.RemoveEmptyEntries);
+
     if (segments.Length > 1 && segments[0].Length == 2)
     {
         currentCulture = segments[0];
@@ -72,13 +84,14 @@ options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async
     return Task.FromResult(requestCulture);
 }));
 ```
+
 ::: moniker-end
 
-### Using a new implemetation of `RequestCultureProvider`
+### Use a new implemetation of RequestCultureProvider
 
-The developer can create a new implementation of `RequestCultureProvider` that determines the request culture information from a custom source. For example, the custom source can be a configuration file, database, etc.
+A new implementation of <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> can be created that determines the request culture information from a custom source. For example, the custom source can be a configuration file or database.
 
-The following example shows `AppSettingsRequestCultureProvider` which extend the `RequestCultureProvider` to determines the request culture information from `appsettings.json`.
+The following example shows `AppSettingsRequestCultureProvider`, which extends the <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> to determine the request culture information from *appsettings.json*:
 
 ```csharp
 public class AppSettingsRequestCultureProvider : RequestCultureProvider
@@ -120,13 +133,13 @@ public class AppSettingsRequestCultureProvider : RequestCultureProvider
 }
 ```
 
-## Localization Resources
+## Localization resources
 
-ASP.NET Core localization provides `ResourceManagerStringLocalizer`. `ResourceManagerStringLocalizer` is an implementation of `IStringLocalizer` that is uses `resx` to store localization resources.
+ASP.NET Core localization provides <xref:Microsoft.Extensions.Localization.ResourceManagerStringLocalizer>. <xref:Microsoft.Extensions.Localization.ResourceManagerStringLocalizer> is an implementation of <xref:Microsoft.Extensions.Localization.IStringLocalizer> that is uses `resx` to store localization resources.
 
-You are not limited to using `resx` files. By implementing `IStringLocalized`, any data-source can be used.
+You aren't limited to using `resx` files. By implementing `IStringLocalized`, any data source can be used.
 
-Here are some examples of projects which implement `IStringLocalizer`: 
+The following example projects implement <xref:Microsoft.Extensions.Localization.IStringLocalizer>: 
 
 * [EFStringLocalizer](https://github.com/aspnet/Entropy/tree/master/samples/Localization.EntityFramework)
 * [JsonStringLocalizer](https://github.com/hishamco/My.Extensions.Localization.Json)
