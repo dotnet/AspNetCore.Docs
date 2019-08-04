@@ -19,18 +19,19 @@ Add a connection string to the *appsettings.json* file as shown in the following
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/appsettings_SQLite.json?highlight=10-12)]
 
-### Add required NuGet packages
+### Add NuGet packages and EF tools
 
-Open a terminal for the RazorPagesMovie project.  Right click the project name in the design/layout bar and go to **Tools > Open** in Terminal. Run the following .NET Core CLI commands in the Termial. The commands add SQLite, Entity Framework Core, and  CodeGeneration.Design to the project:
+Open a terminal for the RazorPagesMovie project.  Right click the project name in the design/layout bar and go to **Tools > Open** in Terminal. Run the following .NET Core CLI commands in the Termial:
 
 ```console
+dotnet tool install --global dotnet-ef --version 3.0.0-*
 dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 3.0.0-*
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
 dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
 ```
 
-The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding.
+The preceding commands add Entity Framework Core Tools for the .NET CLI and several packages to the project. The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding.
 
 <a name="reg"></a>
 
