@@ -186,7 +186,7 @@ Install-Package Grpc.Tools
 
 * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
 * Select the **Browse** tab.
-* Enter **Grpc.Core** in the search box.
+* Enter **Grpc.Net.Client** in the search box.
 * Select the **Grpc.Core** package from the **Browse** tab and select **Install**.
 * Repeat for `Google.Protobuf` and `Grpc.Tools`.
 
