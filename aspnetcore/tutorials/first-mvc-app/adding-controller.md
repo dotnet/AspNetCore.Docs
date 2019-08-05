@@ -230,7 +230,7 @@ Replace the `Welcome` method with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_3)]
 
-Run the app and enter the following URL: `https://localhost:xxx/HelloWorld/Welcome/3?name=Rick`
+Run the app and enter the following URL: `https://localhost:xxxx/HelloWorld/Welcome/3?name=Rick`
 
 This time the third URL segment matched the route parameter `id`. The `Welcome` method contains a parameter `id` that matched the URL template in the `MapRoute` method. The trailing `?` (in `id?`) indicates the `id` parameter is optional.
 
