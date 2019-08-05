@@ -756,7 +756,7 @@ This tutorial uses Postman to test the web API.
 
 ## Add a Create method
 
-Add the following `PostTodoItem` method:
+Add the following `PostTodoItem` method inside of *Controllers/TodoController.cs*: 
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 
