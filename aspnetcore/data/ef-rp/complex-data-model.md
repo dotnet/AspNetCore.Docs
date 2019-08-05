@@ -33,9 +33,26 @@ Replace the code in *Models/Student.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Models/Student.cs)]
 
-### The DataType and DisplayFormat attributes
+The preceding code adds a `FullName` property and adds the following attributes to existing properties:
 
-The student pages currently display the time of day with the enrollment date. Typically, date fields show only the date and not the time.
+* [[DataType]](#the-datatype-attribute)
+* [DisplayFormat]](#the-displayformat-attribute)
+* [[StringLength]](#the-stringlength-attribute)
+* [[Column]](#the-column-attribute)
+* [[Required]](#the-required-attribute)
+* [[Display]](#the-display-attribute)
+
+### The FullName calculated property
+
+`FullName` is a calculated property that returns a value that's created by concatenating two other properties. `FullName` cannot be set, so it has only a get accessor. No `FullName` column is created in the database.
+
+### The DataType attribute
+
+```csharp
+[DataType(DataType.Date)]
+```
+
+For student enrollment dates, all of the pages currently display the time of day along with the date, although only the date is relevant. By using data annotation attributes, you can make one code change that will fix the display format in every page that shows the data. 
 
 The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
 
@@ -44,15 +61,15 @@ The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribu
 
 The `DataType` attribute emits HTML 5 `data-` (pronounced data dash) attributes. The `DataType` attributes don't provide validation.
 
-`DataType.Date` doesn't specify the format of the date that's displayed. By default, the date field is displayed according to the default formats based on the server's [CultureInfo](xref:fundamentals/localization#provide-localized-resources-for-the-languages-and-cultures-you-support).
-
-The `DisplayFormat` attribute is used to explicitly specify the date format:
+### The DisplayFormat attribute
 
 ```csharp
 [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 ```
 
-The `ApplyFormatInEditMode` setting specifies that the formatting should also be applied to the edit UI. Some fields shouldn't use `ApplyFormatInEditMode`. For example, the currency symbol should generally not be displayed in an edit text box.
+`DataType.Date` doesn't specify the format of the date that's displayed. By default, the date field is displayed according to the default formats based on the server's [CultureInfo](xref:fundamentals/localization#provide-localized-resources-for-the-languages-and-cultures-you-support).
+
+The `DisplayFormat` attribute is used to explicitly specify the date format. The `ApplyFormatInEditMode` setting specifies that the formatting should also be applied to the edit UI. Some fields shouldn't use `ApplyFormatInEditMode`. For example, the currency symbol should generally not be displayed in an edit text box.
 
 The `DisplayFormat` attribute can be used by itself. It's generally a good idea to use the `DataType` attribute with the `DisplayFormat` attribute. The `DataType` attribute conveys the semantics of the data as opposed to how to render it on a screen. The `DataType` attribute provides the following benefits that are not available in `DisplayFormat`:
 
@@ -63,14 +80,15 @@ For more information, see the [\<input> Tag Helper documentation](xref:mvc/views
 
 ### The StringLength attribute
 
-Data validation rules and validation error messages can be specified with attributes. The [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1) attribute specifies the minimum and maximum length of characters that are allowed in a data field. The `StringLength` attribute
-also provides client-side and server-side validation. The minimum value has no impact on the database schema.
-
 ```csharp
 [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
 ```
 
-The preceding code limits names to no more than 50 characters. The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute can be used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
+Data validation rules and validation error messages can be specified with attributes. The [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1) attribute specifies the minimum and maximum length of characters that are allowed in a data field. The code shown limits names to no more than 50 characters. An example that sets the minimum string length is shown [later](#the-required-attribute).
+
+The `StringLength` attribute also provides client-side and server-side validation. The minimum value has no impact on the database schema.
+
+The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute can be used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
 ```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
@@ -92,18 +110,22 @@ In your SQLite tool, examine the column definitions for the `Student` table. The
 
 ### The Column attribute
 
-Attributes can control how classes and properties are mapped to the database. In the `Student` model, the `Column` attribute is used to map the name of the `FirstMidName` property to "FirstName" in the database.
-
 ```csharp
 [Column("FirstName")]
 public string FirstMidName { get; set; }
 ```
 
+Attributes can control how classes and properties are mapped to the database. In the `Student` model, the `Column` attribute is used to map the name of the `FirstMidName` property to "FirstName" in the database.
+
 When the database is created, property names on the model are used for column names (except when the `Column` attribute is used). The `Student` model uses `FirstMidName` for the first-name field because the field might also contain a middle name.
 
-With the `[Column]` attribute, `Student.FirstMidName` in the data model maps to the `FirstName` column of the `Student` table. The addition of the `Column` attribute changes the model backing the `SchoolContext`. The model backing the `SchoolContext` no longer matches the database. 
+With the `[Column]` attribute, `Student.FirstMidName` in the data model maps to the `FirstName` column of the `Student` table. The addition of the `Column` attribute changes the model backing the `SchoolContext`. The model backing the `SchoolContext` no longer matches the database. That discrepancy will be resolved by adding a migration later in this tutorial.
 
 ### The Required attribute
+
+```csharp
+[Required]
+```
 
 The `Required` attribute makes the name properties required fields. The `Required` attribute isn't needed for non-nullable types such as value types (for example, `DateTime`, `int`, and `double`). Types that can't be null are automatically treated as required fields.
 
@@ -117,11 +139,11 @@ public string LastName { get; set; }
 
 ### The Display attribute
 
+```csharp
+[Display(Name = "Last Name")]
+```
+
 The `Display` attribute specifies that the caption for the text boxes should be "First Name", "Last Name", "Full Name", and "Enrollment Date." The default captions had no space dividing the words, for example "Lastname."
-
-### The FullName calculated property
-
-`FullName` is a calculated property that returns a value that's created by concatenating two other properties. `FullName` cannot be set, so it has only a get accessor. No `FullName` column is created in the database.
 
 ### Create a migration
 
@@ -360,14 +382,9 @@ A department may have many courses, so there's a Courses navigation property:
 public ICollection<Course> Courses { get; set; }
 ```
 
-By convention, EF Core enables cascade delete for non-nullable FKs and for many-to-many relationships. Cascading delete can result in circular cascade delete rules. Circular cascade delete rules cause an exception when a migration is added.
+By convention, EF Core enables cascade delete for non-nullable FKs and for many-to-many relationships. This default behavior can result in circular cascade delete rules. Circular cascade delete rules cause an exception when a migration is added.
 
-For example, if the `Department.InstructorID` property was defined as non-nullable:
-
-* EF Core configures a cascade delete rule to delete the department when the instructor is deleted.
-* Deleting the department when the instructor is deleted isn't the intended behavior.
-
-In this scenario, a restrict rule would make more sense. The following fluent API would set a restrict rule and disable cascade delete.
+For example, if the `Department.InstructorID` property was defined as non-nullable, EF Core would configure a cascade delete rule. In that case, the department would be deleted when the instructor assigned as its administrator is deleted. In this scenario, a restrict rule would make more sense. The following fluent API would set a restrict rule and disable cascade delete.
 
   ```csharp
   modelBuilder.Entity<Department>()
@@ -442,11 +459,11 @@ Data models start out simple and grow. Join tables without payload (PJTs) freque
 
 The two FKs in `CourseAssignment` (`InstructorID` and `CourseID`) together uniquely identify each row of the `CourseAssignment` table. `CourseAssignment` doesn't require a dedicated PK. The `InstructorID` and `CourseID` properties function as a composite PK. The only way to specify composite PKs to EF Core is with the *fluent API*. The next section shows how to configure the composite PK.
 
-The composite key ensures:
+The composite key ensures that:
 
 * Multiple rows are allowed for one course.
 * Multiple rows are allowed for one instructor.
-* Multiple rows for the same instructor and course isn't allowed.
+* Multiple rows aren't allowed for the same instructor and course.
 
 The `Enrollment` join entity defines its own PK, so duplicates of this sort are possible. To prevent such duplicates:
 
