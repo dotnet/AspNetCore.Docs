@@ -3,7 +3,7 @@ title: Add a controller to an ASP.NET Core MVC app
 author: rick-anderson
 description: Learn how to add a controller to a simple ASP.NET Core MVC app.
 ms.author: riande
-ms.date: 02/28/2017
+ms.date: 08/05/2017
 uid: tutorials/first-mvc-app/adding-controller
 ---
 
@@ -81,9 +81,9 @@ The routing format is set in the `Configure` method in *Startup.cs* file.
 
 When you browse to the app and don't supply any URL segments, it defaults to the "Home" controller and the "Index" method specified in the template line highlighted above.
 
-The first URL segment determines the controller class to run. So `localhost:xxxx/HelloWorld` maps to the **HelloWorld**Controller class. The second part of the URL segment determines the action method on the class. So `localhost:xxxx/HelloWorld/Index` would cause the `Index` method of the `HelloWorldController` class to run. Notice that you only had to browse to `localhost:xxxx/HelloWorld` and the `Index` method was called by default. That's because `Index` is the default method that will be called on a controller if a method name isn't explicitly specified. The third part of the URL segment ( `id`) is for route data. Route data is explained later in the tutorial.
+The first URL segment determines the controller class to run. So `localhost:{PORT}/HelloWorld` maps to the **HelloWorld**Controller class. The second part of the URL segment determines the action method on the class. So `localhost:{PORT}/HelloWorld/Index` would cause the `Index` method of the `HelloWorldController` class to run. Notice that you only had to browse to `localhost:{PORT}/HelloWorld` and the `Index` method was called by default. That's because `Index` is the default method that will be called on a controller if a method name isn't explicitly specified. The third part of the URL segment ( `id`) is for route data. Route data is explained later in the tutorial.
 
-Browse to `https://localhost:xxxx/HelloWorld/Welcome`. The `Welcome` method runs and returns the string `This is the Welcome action method...`. For this URL, the controller is `HelloWorld` and `Welcome` is the action method. You haven't used the `[Parameters]` part of the URL yet.
+Browse to `https://localhost:{PORT}/HelloWorld/Welcome`. The `Welcome` method runs and returns the string `This is the Welcome action method...`. For this URL, the controller is `HelloWorld` and `Welcome` is the action method. You haven't used the `[Parameters]` part of the URL yet.
 
 ![Browser window showing an application response of This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
@@ -99,9 +99,9 @@ The preceding code:
 
 Run the app and browse to:
 
-   `https://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4`
+   `https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
-(Replace xxxx with your port number.) You can try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar to parameters in your method. See [Model Binding](xref:mvc/models/model-binding) for more information.
+(Replace `{PORT}` with your port number.) You can try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar to parameters in your method. See [Model Binding](xref:mvc/models/model-binding) for more information.
 
 ![Browser window showing an application response of Hello Rick, NumTimes is: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
@@ -111,7 +111,7 @@ Replace the `Welcome` method with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_3)]
 
-Run the app and enter the following URL: `https://localhost:xxx/HelloWorld/Welcome/3?name=Rick`
+Run the app and enter the following URL: `https://localhost:{PORT}/HelloWorld/Welcome/3?name=Rick`
 
 This time the third URL segment matched the route parameter `id`. The `Welcome` method contains a parameter `id` that matched the URL template in the `MapControllerRoute` method. The trailing `?` (in `id?`) indicates the `id` parameter is optional.
 
@@ -200,9 +200,9 @@ Remove link for simplified tutorial.
 
 When you browse to the app and don't supply any URL segments, it defaults to the "Home" controller and the "Index" method specified in the template line highlighted above.
 
-The first URL segment determines the controller class to run. So `localhost:xxxx/HelloWorld` maps to the `HelloWorldController` class. The second part of the URL segment determines the action method on the class. So `localhost:xxxx/HelloWorld/Index` would cause the `Index` method of the `HelloWorldController` class to run. Notice that you only had to browse to `localhost:xxxx/HelloWorld` and the `Index` method was called by default. This is because `Index` is the default method that will be called on a controller if a method name isn't explicitly specified. The third part of the URL segment ( `id`) is for route data. Route data is explained later in the tutorial.
+The first URL segment determines the controller class to run. So `localhost:{PORT}/HelloWorld` maps to the `HelloWorldController` class. The second part of the URL segment determines the action method on the class. So `localhost:{PORT}/HelloWorld/Index` would cause the `Index` method of the `HelloWorldController` class to run. Notice that you only had to browse to `localhost:{PORT}/HelloWorld` and the `Index` method was called by default. This is because `Index` is the default method that will be called on a controller if a method name isn't explicitly specified. The third part of the URL segment ( `id`) is for route data. Route data is explained later in the tutorial.
 
-Browse to `https://localhost:xxxx/HelloWorld/Welcome`. The `Welcome` method runs and returns the string `This is the Welcome action method...`. For this URL, the controller is `HelloWorld` and `Welcome` is the action method. You haven't used the `[Parameters]` part of the URL yet.
+Browse to `https://localhost:{PORT}/HelloWorld/Welcome`. The `Welcome` method runs and returns the string `This is the Welcome action method...`. For this URL, the controller is `HelloWorld` and `Welcome` is the action method. You haven't used the `[Parameters]` part of the URL yet.
 
 ![Browser window showing an application response of This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
@@ -218,9 +218,9 @@ The preceding code:
 
 Run the app and browse to:
 
-   `https://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4`
+   `https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
-(Replace xxxx with your port number.) You can try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar to parameters in your method. See [Model Binding](xref:mvc/models/model-binding) for more information.
+(Replace `{PORT}` with your port number.) You can try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar to parameters in your method. See [Model Binding](xref:mvc/models/model-binding) for more information.
 
 ![Browser window showing an application response of Hello Rick, NumTimes is: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
@@ -230,7 +230,7 @@ Replace the `Welcome` method with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_3)]
 
-Run the app and enter the following URL: `https://localhost:xxx/HelloWorld/Welcome/3?name=Rick`
+Run the app and enter the following URL: `https://localhost:{PORT}/HelloWorld/Welcome/3?name=Rick`
 
 This time the third URL segment matched the route parameter `id`. The `Welcome` method contains a parameter `id` that matched the URL template in the `MapRoute` method. The trailing `?` (in `id?`) indicates the `id` parameter is optional.
 
