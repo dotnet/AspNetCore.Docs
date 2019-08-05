@@ -3,7 +3,7 @@ title: Add a controller to an ASP.NET Core MVC app
 author: rick-anderson
 description: Learn how to add a controller to a simple ASP.NET Core MVC app.
 ms.author: riande
-ms.date: 02/28/2017
+ms.date: 08/05/2017
 uid: tutorials/first-mvc-app/adding-controller
 ---
 
@@ -101,7 +101,7 @@ Run the app and browse to:
 
    `https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
-(Replace xxxx with your port number.) You can try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar to parameters in your method. See [Model Binding](xref:mvc/models/model-binding) for more information.
+(Replace `{PORT}` with your port number.) You can try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar to parameters in your method. See [Model Binding](xref:mvc/models/model-binding) for more information.
 
 ![Browser window showing an application response of Hello Rick, NumTimes is: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
@@ -111,7 +111,7 @@ Replace the `Welcome` method with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_3)]
 
-Run the app and enter the following URL: `https://localhost:xxx/HelloWorld/Welcome/3?name=Rick`
+Run the app and enter the following URL: `https://localhost:{PORT}/HelloWorld/Welcome/3?name=Rick`
 
 This time the third URL segment matched the route parameter `id`. The `Welcome` method contains a parameter `id` that matched the URL template in the `MapControllerRoute` method. The trailing `?` (in `id?`) indicates the `id` parameter is optional.
 
@@ -220,7 +220,7 @@ Run the app and browse to:
 
    `https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
-(Replace xxxx with your port number.) You can try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar to parameters in your method. See [Model Binding](xref:mvc/models/model-binding) for more information.
+(Replace `{PORT}` with your port number.) You can try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar to parameters in your method. See [Model Binding](xref:mvc/models/model-binding) for more information.
 
 ![Browser window showing an application response of Hello Rick, NumTimes is: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
