@@ -50,7 +50,7 @@ You must decide which incidents to log and the level of severity of logged incid
 
 ## Places where errors may occur
 
-Framework and app code may trigger unhandled exceptions in any of the following locations: which are described in the following sections of this article:
+Framework and app code may trigger unhandled exceptions in any of the following locations:
 
 * [Component instantiation](#component-instantiation)
 * [Lifecycle methods](#lifecycle-methods)
