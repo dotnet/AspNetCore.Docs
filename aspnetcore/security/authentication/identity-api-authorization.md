@@ -5,7 +5,7 @@ description: Use Identity with a Single Page App hosted inside an ASP.NET Core a
 monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 03/07/2019
+ms.date: 08/05/2019
 uid: security/authentication/identity/spa
 ---
 # Authentication and authorization for SPAs
@@ -327,3 +327,4 @@ AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
 
 * <xref:spa/angular>
 * <xref:spa/react>
+* <xref:security/authentication/scaffold-identity>
