@@ -737,7 +737,7 @@ This tutorial uses Postman to test the web API.
   * From  **File > Settings** (**General* tab), disable **SSL certificate verification**.
   
 # [Visual Studio for Mac](#tab/visual-studio-mac)
-  * From **Postman > Preferences > (**General* tab), disable **SSL certificate verification** OR click on the wrench and select Settings then disable the SSL certificate verification.
+  * From **Postman > Preferences > (**General* tab), disable **SSL certificate verification**. Alternatively, select the wrench and select **Settings**, then disable the SSL certificate verification.
   
   ---
   
