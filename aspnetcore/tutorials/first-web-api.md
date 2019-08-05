@@ -723,6 +723,7 @@ The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult
 * If no item matches the requested ID, the method returns a 404 [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) error code.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
+
 ## Test the GetTodoItems method
 
 This tutorial uses Postman to test the web API.
@@ -732,8 +733,15 @@ This tutorial uses Postman to test the web API.
 * Start Postman.
 * Disable **SSL certificate verification**
   
+# [Visual Studio](#tab/visual-studio)
   * From  **File > Settings** (**General* tab), disable **SSL certificate verification**.
-    > [!WARNING]
+  
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+  * From **Postman > Preferences > (**General* tab), disable **SSL certificate verification**. Alternatively, select the wrench and select **Settings**, then disable the SSL certificate verification.
+  
+  ---
+  
+> [!WARNING]
     > Re-enable SSL certificate verification after testing the controller.
 
 * Create a new request.
