@@ -1,8 +1,10 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using MvcMovie.Data;
 
 namespace MvcMovie
 {
@@ -15,11 +17,16 @@ namespace MvcMovie
 
         public IConfiguration Configuration { get; }
 
+        #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddDbContext<MvcMovieContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
         }
+        #endregion
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

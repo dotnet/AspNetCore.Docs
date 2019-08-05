@@ -14,6 +14,26 @@ Add a connection string to the *appsettings.json* file:
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
 
+::: moniker range=">= aspnetcore-3.0"
+
+### Add NuGet packages and EF tools
+
+Run the following .NET Core CLI commands:
+
+```console
+dotnet tool install --global dotnet-ef --version 3.0.0-*
+dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 3.0.0-*
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
+```
+
+The preceding commands add Entity Framework Core Tools for the .NET CLI and several packages to the project. The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 ### Add required NuGet packages
 
 Run the following .NET Core CLI command to add SQLite and CodeGeneration.Design  to the project:
@@ -24,6 +44,7 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 ```
 
 The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding.
+::: moniker-end
 
 <a name="reg"></a>
 
