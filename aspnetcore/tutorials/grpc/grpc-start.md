@@ -119,7 +119,9 @@ info: Microsoft.Hosting.Lifetime[0]
 ```
 
 > [!NOTE]
-> Additional configuration is required to successfully run gRPC services with ASP.NET Core on macOS. For more information, see [gRPC and ASP.NET Core on macOS](xref:grpc/aspnetcore#grpc-and-aspnet-core-on-macos).
+> The gRPC template is configured to use [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). gRPC clients need to use HTTPS to call the server.
+>
+> macOS does not support ASP.NET Core gRPC with TLS. Additional configuration is required to successfully run gRPC services on macOS. For more information, see [gRPC and ASP.NET Core on macOS](xref:grpc/aspnetcore#grpc-and-aspnet-core-on-macos).
 
 ### Examine the project files
 
