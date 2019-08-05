@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 07/29/2019
+ms.date: 08/05/2019
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -235,8 +235,7 @@ To render the rest of an entire line as HTML inside a code block, use the `@:` s
 
 Without the `@:` in the code, a Razor runtime error is generated.
 
-> [!WARNING]
-> Extra `@` characters in a Razor file can cause compiler errors at statements later in the block. These compiler errors can be difficult to understand because the actual error occurs before the reported error. This error is common after combining multiple implicit/explicit expressions into a single code block.
+Extra `@` characters in a Razor file can cause compiler errors at statements later in the block. These compiler errors can be difficult to understand because the actual error occurs before the reported error. This error is common after combining multiple implicit/explicit expressions into a single code block.
 
 ## Control structures
 
@@ -478,8 +477,7 @@ The `@functions` directive enables adding C# members (fields, properties, and me
 
 ::: moniker range=">= aspnetcore-3.0"
 
-> [!NOTE]
-> In [Razor components](xref:blazor/components), use `@code` over `@functions` to add C# members.
+In [Razor components](xref:blazor/components), use `@code` over `@functions` to add C# members.
 
 ::: moniker-end
 
@@ -642,13 +640,19 @@ The `@namespace` directive:
 @namespace Your.Namespace.Here
 ```
 
-For the Razor Pages example shown in the following table, the imports file at *Pages/_ViewImports.cshtml* contains `@namespace Hello.World`. The namespace of pages in the *Pages* folder that import the `Hello.World` namespace use `Hello.World` as the root of their derived namespaces. The same relationships apply to import files used with MVC views and Razor components.
+For the Razor Pages example shown in the following table:
+
+* Each page imports *Pages/_ViewImports.cshtml*.
+* *Pages/_ViewImports.cshtml* contains `@namespace Hello.World`.
+* Each page has `Hello.World` as the root of it's namespace.
 
 | Page                                        | Namespace                             |
 | ------------------------------------------- | ------------------------------------- |
 | *Pages/Index.cshtml*                        | `Hello.World`                         |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages`               |
 | *Pages/MorePages/EvenMorePages/Page.cshtml* | `Hello.World.MorePages.EvenMorePages` |
+
+The preceding relationships apply to import files used with MVC views and Razor components.
 
 When multiple import files have a `@namespace` directive, the file closest to the page, view, or component in the directory tree is used to set the root namespace.
 
@@ -673,7 +677,7 @@ The `@page` directive has different effects depending on the type of the file wh
 
 ::: moniker range="< aspnetcore-3.0"
 
-The `@page` directive turns a file into an MVC action, which means that the file handles requests directly, without going through a controller. For more information, see <xref:razor-pages/index>.
+The `@page` directive on the first line of a *.cshtml* file indicates that the file is a Razor Page. For more information, see <xref:razor-pages/index>.
 
 ::: moniker-end
 
@@ -699,13 +703,11 @@ In [Razor components](xref:blazor/components), `@using` also controls which comp
 
 ## Directive attributes
 
-*Directive attribute scenarios in this section only apply to Razor components (.razor).*
-
 ### \@attributes
 
 *This scenario only applies to Razor components (.razor).*
 
-A component can capture and render additional attributes in addition to the component's declared parameters using the `@attributes` Razor directive. For more information, see <xref:blazor/components#attribute-splatting-and-arbitrary-parameters>.
+`@attributes` allows a component to render non-declared attributes. For more information, see <xref:blazor/components#attribute-splatting-and-arbitrary-parameters>.
 
 ### \@bind
 
