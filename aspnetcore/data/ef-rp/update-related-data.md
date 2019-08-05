@@ -121,8 +121,6 @@ Test the create, edit, details, and delete pages.
 
 ## Update the instructor Create and Edit pages
 
-The following sections update the instructor pages.
-
 Instructors may teach any number of courses. The following image shows the instructor Edit page with an array of course checkboxes.
 
 ![Instructor Edit page with courses](update-related-data/_static/instructor-edit-courses30.png)
@@ -173,7 +171,7 @@ Another relationship the edit page has to handle is the one-to-zero-or-one relat
 
 Replace the code in *Pages/Instructors/Edit.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30/Pages/Instructors/Edit.cshtml.cs?name=snippet_All&highlight=14,28-32,38,42-77)]
+[!code-csharp[](intro/samples/cu30/Pages/Instructors/Edit.cshtml.cs?name=snippet_All&highlight=9,28-32,38,42-77)]
 
 The preceding code:
 
