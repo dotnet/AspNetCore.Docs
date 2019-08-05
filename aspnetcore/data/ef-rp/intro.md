@@ -60,6 +60,7 @@ Follow the link at the top of the page to get the source code for the completed 
 
 To run the app after downloading the completed project:
 
+* Delete three files and one folder that have *SQLite* in the name.
 * Build the project.
 * In Package Manager Console (PMC) run the following command:
 
