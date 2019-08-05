@@ -50,15 +50,17 @@ The `Startup` class is specified when the app's [host](xref:fundamentals/index#h
 
 ::: moniker-end
 
+::: moniker range=">= aspnetcore-3.0"
+
 The host provides services that are available to the `Startup` class constructor. The app adds additional services via `ConfigureServices`. Both the host and app services are available in `Configure` and throughout the app.
 
-A common use of [dependency injection](xref:fundamentals/dependency-injection) into the `Startup` class is to inject:
+Only the following service types can be injected into the `Startup` constructor when using <xref:Microsoft.Extensions.Hosting.IHostBuilder>:
 
-* <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment> to configure services by environment.
-* <xref:Microsoft.Extensions.Configuration.IConfiguration> to read configuration.
-* <xref:Microsoft.Extensions.Logging.ILoggerFactory> to create a logger in `Startup.ConfigureServices`.
+* `IWebHostEnvironment`
+* `IWebHostEnvironment`
+* <xref:Microsoft.Extensions.Configuration.IConfiguration>
 
-::: moniker range=">= aspnetcore-3.0"
+Most services are not available until the `Configure` method.
 
 [!code-csharp[](startup/3.0_samples/Startup2.cs?name=sample_snapshot)]
 
@@ -66,11 +68,27 @@ A common use of [dependency injection](xref:fundamentals/dependency-injection) i
 
 ::: moniker range="< aspnetcore-3.0"
 
+The host provides services that are available to the `Startup` class constructor. The app adds additional services via `ConfigureServices`. Both the host and app services are then available in `Configure` and throughout the app.
+
+A common use of [dependency injection](xref:fundamentals/dependency-injection) into the `Startup` class is to inject:
+
+* <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment> to configure services by environment.
+* <xref:Microsoft.Extensions.Configuration.IConfiguration> to read configuration.
+* <xref:Microsoft.Extensions.Logging.ILoggerFactory> to create a logger in `Startup.ConfigureServices`.
+
 [!code-csharp[](startup/sample_snapshot/Startup2.cs?highlight=7-8)]
 
 ::: moniker-end
+An alternative to injecting `IWebHostEnvironment` is to use a conventions-based approach.
+::: moniker range=">= aspnetcore-3.0"
 
-An alternative to injecting `IHostingEnvironment` is to use a conventions-based approach. When the app defines separate `Startup` classes for different environments (for example, `StartupDevelopment`), the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](xref:fundamentals/environments#environment-based-startup-class-and-methods).
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+An alternative to injecting `IHostingEnvironment` is to use a conventions-based approach.
+::: moniker-end
+
+When the app defines separate `Startup` classes for different environments (for example, `StartupDevelopment`), the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](xref:fundamentals/environments#environment-based-startup-class-and-methods).
 
 See [The host](xref:fundamentals/index#host) for more information on the host. For information on handling errors during startup, see [Startup exception handling](xref:fundamentals/error-handling#startup-exception-handling).
 
@@ -152,9 +170,19 @@ The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeli
 
 Each `Use` extension method adds one or more middleware components to the request pipeline. For instance, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> configures [middleware](xref:fundamentals/middleware/index) to serve [static files](xref:undamentals/static-files).
 
-Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline or short-circuiting the chain, if appropriate. If short-circuiting doesn't occur along the middleware chain, each middleware has a second chance to process the request before it's sent to the client.
+Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline or short-circuiting the chain, if appropriate.
+
+::: moniker range=">= aspnetcore-3.0"
+
+Additional services, such as `IWebHostEnvironment`, `ILoggerFactory`, or anything defined in `ConfigureServices`, can be specified in the `Configure` method signature. These services are injected if they're available.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
 
 Additional services, such as `IHostingEnvironment` and `ILoggerFactory`, can be specified in the `Configure` method signature. These services are injected if they're available.
+
+::: moniker-end
 
 For more information on how to use `IApplicationBuilder` and the order of middleware processing, see <xref:fundamentals/middleware/index>.
 
@@ -180,7 +208,7 @@ Use <xref:Microsoft.AspNetCore.Hosting.IStartupFilter> to configure middleware a
 
 `IStartupFilter` implements <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*>, which receives and returns an `Action<IApplicationBuilder>`. An <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder> defines a class to configure an app's request pipeline. For more information, see [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).
 
-Each `IStartupFilter` implements one or more middlewares in the request pipeline. The filters are invoked in the order they were added to the service container. Filters may add middleware before or after passing control to the next filter, thus they append to the beginning or end of the app pipeline.
+Each `IStartupFilter` can add one or more middlewares in the request pipeline. The filters are invoked in the order they were added to the service container. Filters may add middleware before or after passing control to the next filter, thus they append to the beginning or end of the app pipeline.
 
 The following example demonstrates how to register a middleware with `IStartupFilter`. The `RequestSetOptionsMiddleware` middleware sets an options value from a query string parameter:
 
