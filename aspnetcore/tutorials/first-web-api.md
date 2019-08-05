@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/11/2019
+ms.date: 08/05/2019
 uid: tutorials/first-web-api
 ---
 
@@ -732,17 +732,19 @@ This tutorial uses Postman to test the web API.
 * Start the web app.
 * Start Postman.
 * Disable **SSL certificate verification**
-  
+
 # [Visual Studio](#tab/visual-studio)
-  * From  **File > Settings** (**General* tab), disable **SSL certificate verification**.
-  
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-  * From **Postman > Preferences > (**General* tab), disable **SSL certificate verification**. Alternatively, select the wrench and select **Settings**, then disable the SSL certificate verification.
-  
-  ---
+
+* From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+* From **Postman** > **Preferences** (**General** tab), disable **SSL certificate verification**. Alternatively, select the wrench and select **Settings**, then disable the SSL certificate verification.
+
+---
   
 > [!WARNING]
-    > Re-enable SSL certificate verification after testing the controller.
+> Re-enable SSL certificate verification after testing the controller.
 
 * Create a new request.
   * Set the HTTP method to **GET**.
