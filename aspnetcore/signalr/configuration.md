@@ -327,6 +327,7 @@ Additional options for configuring timeout and keep-alive behavior are available
 | ------ | ------------- | ----------- |
 | `ServerTimeout` | 30 seconds (30,000 milliseconds) | Timeout for server activity. If the server hasn't sent a message in this interval, the client considers the server disconnected and triggers the `Closed` event (`onclose` in JavaScript). This value must be large enough for a ping message to be sent from the server **and** received by the client within the timeout interval. The recommended value is a number at least double the server's `KeepAliveInterval` value, to allow time for pings to arrive. |
 | `HandshakeTimeout` | 15 seconds | Timeout for initial server handshake. If the server doesn't send a handshake response in this interval, the client cancels the handshake and triggers the `Closed` event (`onclose` in JavaScript). This is an advanced setting that should only be modified if handshake timeout errors are occurring due to severe network latency. For more detail on the Handshake process, see the [SignalR Hub Protocol Specification](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
+| `KeepAliveInterval` | 15 seconds |Determines the interval at which the client sends ping messages. Sending any message from the client resets the timer to the start of the interval. If the client hasn't sent a message in the interval set on the server, the server considers the client disconnected. |
 
 In the .NET Client, timeout values are specified as `TimeSpan` values.
 
@@ -335,6 +336,7 @@ In the .NET Client, timeout values are specified as `TimeSpan` values.
 | Option | Default value | Description |
 | ------ | ------------- | ----------- |
 | `serverTimeoutInMilliseconds` | 30 seconds (30,000 milliseconds) | Timeout for server activity. If the server hasn't sent a message in this interval, the client considers the server disconnected and triggers the `onclose` event. This value must be large enough for a ping message to be sent from the server **and** received by the client within the timeout interval. The recommended value is a number at least double the server's `KeepAliveInterval` value, to allow time for pings to arrive. |
+| `keepAliveIntervalInMilliseconds` | 15 seconds (15,000 miliseconds) | Determines the interval at which the client sends ping messages. Sending any message from the client resets the timer to the start of the interval. If the client hasn't sent a message in the interval set on the server, the server considers the client disconnected. |
 
 # [Java](#tab/java)
 
@@ -342,7 +344,7 @@ In the .NET Client, timeout values are specified as `TimeSpan` values.
 | ----------- | ------------- | ----------- |
 |`getServerTimeout` `setServerTimeout` | 30 seconds (30,000 milliseconds) | Timeout for server activity. If the server hasn't sent a message in this interval, the client considers the server disconnected and triggers the `onClose` event. This value must be large enough for a ping message to be sent from the server **and** received by the client within the timeout interval. The recommended value is a number at least double the server's `KeepAliveInterval` value, to allow time for pings to arrive. |
 | `withHandshakeResponseTimeout` | 15 seconds | Timeout for initial server handshake. If the server doesn't send a handshake response in this interval, the client cancels the handshake and triggers the `onClose` event. This is an advanced setting that should only be modified if handshake timeout errors are occurring due to severe network latency. For more detail on the Handshake process, see the [SignalR Hub Protocol Specification](https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md). |
-
+|`getKeepAliveInterval` `setKeepAliveInterval` | 15 seconds (30,000 milliseconds) | Determines the interval at which the client sends ping messages. Sending any message from the client resets the timer to the start of the interval. If the client hasn't sent a message in the interval set on the server, the server considers the client disconnected. |
 ---
 
 ### Configure additional options
