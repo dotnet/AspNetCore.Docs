@@ -119,7 +119,7 @@ Client-side code can trigger invocations of C# code. Event handler code might th
 
 If an event handler throws an unhandled exception, the exception is fatal to the circuit. If the app calls code that could fail for external reasons (for example, a database query fails):
 
-* The app should Trap the exceptions using [try-catch](/dotnet/csharp/language-reference/keywords/try-catch).
+* The app should trap the exceptions using [try-catch](/dotnet/csharp/language-reference/keywords/try-catch).
 * Handle and log the error.
 
 If user code doesn't trap and handle the exception, the framework logs the exception and terminates the circuit.
@@ -181,8 +181,6 @@ Blazor components can be prerendered using `Html.RenderComponentAsync` so that t
 * Creating a new circuit containing all of the prerendered components that are part of the same page.
 * Generating the initial HTML.
 * Treating the circuit as `disconnected` until the user's browser establishes a SignalR connection back to the same server to resume interactivity on the circuit.
-
-If any component throws an unhandled exception during prerendering, the exception is fatal to the circuit. For example, an unhandled exception during prerendering might be thrown during a lifecycle method or in rendering logic. Additionally, the exception is thrown up the call stack from the `Html.RenderComponentAsync` call, so the entire HTTP request fails unless the exception is explicitly caught by developer code.
 
 If any component throws an unhandled exception during prerendering:
 
