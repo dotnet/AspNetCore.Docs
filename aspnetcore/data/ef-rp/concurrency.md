@@ -236,7 +236,7 @@ Update the Index page:
 
 The following code shows the updated page:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
+[!code-html[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,48,51)]
 
 ## Update the Edit page model
 

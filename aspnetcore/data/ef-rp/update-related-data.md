@@ -192,9 +192,9 @@ The preceding code creates an HTML table that has three columns. Each column has
 
 When the checkboxes are initially rendered, courses assigned to the instructor are selected.
 
-Run the app and test the updated Instructors Edit page. Change some course assignments. The changes are reflected on the Index page.
-
 Note: The approach taken here to edit instructor course data works well when there's a limited number of courses. For collections that are much larger, a different UI and a different updating method would be more useable and efficient.
+
+Run the app and test the updated Instructors Edit page. Change some course assignments. The changes are reflected on the Index page.
 
 ### Update the Instructor Create page
 
@@ -210,7 +210,7 @@ Test the instructor Create page.
 
 Replace the code in *Pages/Instructors/Delete.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30/Pages/Instructors/Delete.cshtml.cs?highlight=5,38-62)]
+[!code-csharp[](intro/samples/cu30/Pages/Instructors/Delete.cshtml.cs?highlight=45-61)]
 
 The preceding code makes the following changes:
 

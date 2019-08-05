@@ -50,6 +50,8 @@ namespace ContosoUniversity.Migrations
                     b.ToTable("CourseAssignment");
                 });
 
+
+#region snippet_Department
             modelBuilder.Entity("ContosoUniversity.Models.Department", b =>
                 {
                     b.Property<int>("DepartmentID")
@@ -76,6 +78,7 @@ namespace ContosoUniversity.Migrations
 
                     b.ToTable("Department");
                 });
+#endregion
 
             modelBuilder.Entity("ContosoUniversity.Models.Enrollment", b =>
                 {
