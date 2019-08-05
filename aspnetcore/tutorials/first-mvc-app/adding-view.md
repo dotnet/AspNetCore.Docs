@@ -69,7 +69,7 @@ Replace the contents of the *Views/HelloWorld/Index.cshtml* Razor view file with
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Navigate to `https://localhost:xxxx/HelloWorld`. The `Index` method in the `HelloWorldController` didn't do much; it ran the statement `return View();`, which specified that the method should use a view template file to render a response to the browser. Because a view template file name wasn't specified, MVC defaulted to using the default view file. The default view file has the same name as the method (`Index`), so in the */Views/HelloWorld/Index.cshtml* is used. The image below shows the string "Hello from our View Template!" hard-coded in the view.
+Navigate to `https://localhost:{PORT}/HelloWorld`. The `Index` method in the `HelloWorldController` didn't do much; it ran the statement `return View();`, which specified that the method should use a view template file to render a response to the browser. Because a view template file name wasn't specified, MVC defaulted to using the default view file. The default view file has the same name as the method (`Index`), so in the */Views/HelloWorld/Index.cshtml* is used. The image below shows the string "Hello from our View Template!" hard-coded in the view.
 
 ![Browser window](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
@@ -122,7 +122,7 @@ The title and `<h2>` element are slightly different so you can see which bit of 
 <title>@ViewData["Title"] - Movie App</title>
    ```
 
-Save the change and navigate to `https://localhost:xxxx/HelloWorld`. Notice that the browser title, the primary heading, and the secondary headings have changed. (If you don't see changes in the browser, you might be viewing cached content. Press Ctrl+F5 in your browser to force the response from the server to be loaded.) The browser title is created with `ViewData["Title"]` we set in the *Index.cshtml* view template and the additional "- Movie App" added in the layout file.
+Save the change and navigate to `https://localhost:{PORT}/HelloWorld`. Notice that the browser title, the primary heading, and the secondary headings have changed. (If you don't see changes in the browser, you might be viewing cached content. Press Ctrl+F5 in your browser to force the response from the server to be loaded.) The browser title is created with `ViewData["Title"]` we set in the *Index.cshtml* view template and the additional "- Movie App" added in the layout file.
 
 The content in the *Index.cshtml* view template is merged with the *Views/Shared/_Layout.cshtml* view template. A single HTML response is sent to the browser. Layout templates make it easy to make changes that apply across all of the pages in an app. To learn more, see [Layout](xref:mvc/views/layout).
 
@@ -152,7 +152,7 @@ You'll create a loop in the *Welcome.cshtml* view template that displays "Hello"
 
 Save your changes and browse to the following URL:
 
-`https://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4`
+`https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
 Data is taken from the URL and passed to the controller using the [MVC model binder](xref:mvc/models/model-binding) . The controller packages the data into a `ViewData` dictionary and passes that object to the view. The view then renders the data as HTML to the browser.
 
@@ -226,7 +226,7 @@ Replace the contents of the *Views/HelloWorld/Index.cshtml* Razor view file with
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Navigate to `https://localhost:xxxx/HelloWorld`. The `Index` method in the `HelloWorldController` didn't do much; it ran the statement `return View();`, which specified that the method should use a view template file to render a response to the browser. Because a view template file name wasn't specified, MVC defaulted to using the default view file. The default view file has the same name as the method (`Index`), so in the */Views/HelloWorld/Index.cshtml* is used. The image below shows the string "Hello from our View Template!" hard-coded in the view.
+Navigate to `https://localhost:{PORT}/HelloWorld`. The `Index` method in the `HelloWorldController` didn't do much; it ran the statement `return View();`, which specified that the method should use a view template file to render a response to the browser. Because a view template file name wasn't specified, MVC defaulted to using the default view file. The default view file has the same name as the method (`Index`), so in the */Views/HelloWorld/Index.cshtml* is used. The image below shows the string "Hello from our View Template!" hard-coded in the view.
 
 ![Browser window](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
@@ -282,7 +282,7 @@ The title and `<h2>` element are slightly different so you can see which bit of 
 <title>@ViewData["Title"] - Movie App</title>
    ```
 
-Save the change and navigate to `https://localhost:xxxx/HelloWorld`. Notice that the browser title, the primary heading, and the secondary headings have changed. (If you don't see changes in the browser, you might be viewing cached content. Press Ctrl+F5 in your browser to force the response from the server to be loaded.) The browser title is created with `ViewData["Title"]` we set in the *Index.cshtml* view template and the additional "- Movie App" added in the layout file.
+Save the change and navigate to `https://localhost:{PORT}/HelloWorld`. Notice that the browser title, the primary heading, and the secondary headings have changed. (If you don't see changes in the browser, you might be viewing cached content. Press Ctrl+F5 in your browser to force the response from the server to be loaded.) The browser title is created with `ViewData["Title"]` we set in the *Index.cshtml* view template and the additional "- Movie App" added in the layout file.
 
 Also notice how the content in the *Index.cshtml* view template was merged with the *Views/Shared/_Layout.cshtml* view template and a single HTML response was sent to the browser. Layout templates make it really easy to make changes that apply across all of the pages in your application. To learn more see [Layout](xref:mvc/views/layout).
 
@@ -312,7 +312,7 @@ You'll create a loop in the *Welcome.cshtml* view template that displays "Hello"
 
 Save your changes and browse to the following URL:
 
-`https://localhost:xxxx/HelloWorld/Welcome?name=Rick&numtimes=4`
+`https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
 Data is taken from the URL and passed to the controller using the [MVC model binder](xref:mvc/models/model-binding) . The controller packages the data into a `ViewData` dictionary and passes that object to the view. The view then renders the data as HTML to the browser.
 
