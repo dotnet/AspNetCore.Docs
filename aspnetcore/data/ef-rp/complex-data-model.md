@@ -207,11 +207,11 @@ For this tutorial, the way to get past this error is to delete and re-create the
 * Delete the *Migrations* folder.
 * Run the following commands to drop the database, create a new initial migration, and apply the migration:
 
-```console
-dotnet ef database drop --force
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
+  ```console
+  dotnet ef database drop --force
+  dotnet ef migrations add InitialCreate
+  dotnet ef database update
+  ```
 
 * Examine the Student table in your SQLite tool. The column that was FirstMidName is now FirstName.
 
@@ -559,28 +559,14 @@ In the next section, you'll see what to do about this error.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-In the terminal, run the following command.
-
-```console
-dotnet ef migrations add ComplexDataModel
-```
-
-The preceding command displays a warning about possible data loss.
-
-```text
-An operation was scaffolded that may result in the loss of data.
-Please review the migration for accuracy.
-Done. To undo this action, use 'ef migrations remove'
-```
-
-If the `database update` command is run, the following error is produced:
+If you add a migration and run the `database update` command, the following error would be produced:
 
 ```text
 SQLite does not support this migration operation ('DropForeignKeyOperation').
 For more information, see http://go.microsoft.com/fwlink/?LinkId=723262.
 ```
 
-In the next section, you'll see what to do about this error.
+In the next section, you'll see how to avoid this error.
 
 ---
 
@@ -589,15 +575,15 @@ In the next section, you'll see what to do about this error.
 Now that you have an existing database, you need to think about how to apply changes to it. This tutorial shows two alternatives:
 
 * [Drop and re-create the database](#drop). Choose this section if you're using SQLite.
-* [Apply the migration to the existing database](#applyexisting). Choose this section if you're using SQL Server LocalDB.
+* [Apply the migration to the existing database](#applyexisting). The instructions in this section work for SQL Server only, **not for SQLite**. 
 
-While the apply-migration method is more complex and time-consuming, it's the preferred approach for real-world, production environments. The apply-migration instructions work for SQL Server only, **not for SQLite**. 
+Either choice works for SQL Server. While the apply-migration method is more complex and time-consuming, it's the preferred approach for real-world, production environments. 
 
 <a name="drop"></a>
 
 ## Drop and re-create the database
 
-**Skip this section** if you're using SQL Server and want to do the apply-migration approach in the following section.
+[Skip this section](#apply-the-migration) if you're using SQL Server and want to do the apply-migration approach in the following section.
 
 To force EF Core to create a new database, drop and update the database:
 

@@ -47,9 +47,9 @@ Drop-Database
 
 * Delete the *CU.db* file, or run the following command:
 
-```console
-dotnet ef database drop
-```
+  ```console
+  dotnet ef database drop --force
+  ```
 
 ---
 

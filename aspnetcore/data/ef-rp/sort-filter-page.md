@@ -234,6 +234,12 @@ Create *SchoolViewModels/EnrollmentDateGroup.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
+### Create the Razor Page
+
+Create a *Pages/About.cshtml* file with the following code:
+
+[!code-cshtml[Main](intro/samples/cu30/Pages/About.cshtml)]
+
 ### Create the page model
 
 Create a *Pages/About.cshtml.cs* file with the following code:
@@ -241,12 +247,6 @@ Create a *Pages/About.cshtml.cs* file with the following code:
 [!code-csharp[Main](intro/samples/cu30/Pages/About.cshtml.cs)]
 
 The LINQ statement groups the student entities by enrollment date, calculates the number of entities in each group, and stores the results in a collection of `EnrollmentDateGroup` view model objects.
-
-### Create the Razor Page
-
-Create a *Pages/About.cshtml* file with the following code:
-
-[!code-cshtml[Main](intro/samples/cu30/Pages/About.cshtml)]
 
 Run the app and navigate to the About page. The count of students for each enrollment date is displayed in a table.
 
