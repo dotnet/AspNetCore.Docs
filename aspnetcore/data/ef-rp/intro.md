@@ -296,14 +296,14 @@ The main class that coordinates EF Core functionality for a given data model is 
 
 Update *SchoolContext.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=12-21)]
+[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
 
 The highlighted code creates a [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for each entity set. In EF Core terminology:
 
 * An entity set typically corresponds to a database table.
 * An entity corresponds to a row in the table.
 
-Since an entity set contains multiple entities, the DBSet properties should be plural names. Since the scaffolder used singular Student as DBSet property name, the preceding step changed it to plural.
+Since an entity set contains multiple entities, the DBSet properties should be plural names. Since the scaffolding tool created a`Student` DBSet, this step changes it to plural `Students`. 
 
 To make the Razor Pages code match the new DBSet name, make a global change across the whole project of `_context.Student` to `_context.Students`.  There are 8 occurrences.
 
