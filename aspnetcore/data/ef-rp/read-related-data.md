@@ -98,15 +98,15 @@ To display the name of the assigned department for a course:
 
 ### Display the department name
 
-* Replace the code in Pages/Courses/Index.cshtml.cs with th following code:
+Replace the code in Pages/Courses/Index.cshtml.cs with the following code:
 
-[!code-csharp[](intro/samples/cu/Pages/Courses/Index.cshtml.cs?highlight=22,28)]
+[!code-csharp[](intro/samples/cu30/Pages/Courses/Index.cshtml.cs?highlight=18,22,24)]
 
 The preceding code changes the `Course` property to `Courses` and adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities don't need to be tracked because they're not updated in the current context.
 
 Replace the code in *Pages/Courses/Index.cshtml* with the following code. The changes are highlighted.
 
-[!code-cshtml[](intro/samples/cu30/Pages/Courses/Index.cshtml?highlight=5,8,16-18,20,23,26,32,34-36,44)]
+[!code-cshtml[](intro/samples/cu30/Pages/Courses/Index.cshtml?highlight=5,8,16-18,20,23,26,32,35-37,45)]
 
 The following changes have been made to the scaffolded code:
 
@@ -127,11 +127,7 @@ Run the app and select the **Courses** tab to see the list with department names
 
 ### Loading related data with Select
 
-The `OnGetAsync` method loads related data with the `Include` method:
-
-[!code-csharp[](intro/samples/cu30/Pages/Courses/Index.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=4)]
-
-The `Select` method loads only the related data needed. For single items, like the `Department.Name` it uses a SQL INNER JOIN. For collections, it uses another database access, but so does the `Include` operator on collections.
+The `OnGetAsync` method loads related data with the `Include` method. The `Select` method is an alternative that loads only the related data needed. For single items, like the `Department.Name` it uses a SQL INNER JOIN. For collections, it uses another database access, but so does the `Include` operator on collections.
 
 The following code loads related data with the `Select` method:
 
@@ -235,7 +231,7 @@ The following code populates the view model's `Enrollments` property when a cour
 
 Replace the code in *Pages/Instructors/Index.cshtml* with the following code. The changes are highlighted.
 
-[!code-cshtml[](intro/samples/cu30/Pages/Instructors/Index.cshtml?highlight=1,5,8,16-21,25-32,43-57,67-102,104-125)]
+[!code-cshtml[](intro/samples/cu30/Pages/Instructors/Index.cshtml?highlight=1,5,8,16-21,25-32,43-57,67-102,104-126)]
 
 The preceding code makes the following changes:
 
