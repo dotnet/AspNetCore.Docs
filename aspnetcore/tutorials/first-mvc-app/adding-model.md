@@ -71,10 +71,24 @@ Visual Studio creates:
 
 The automatic creation of the database context and [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) (create, read, update, and delete) action methods and views is known as *scaffolding*.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+### [Visual Studio Code](#tab/visual-studio-code) 
 
-<!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
--->
+* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* On Linux, export the scaffold tool path:
+
+  ```console
+    export PATH=$HOME/.dotnet/tools:$PATH
+  ```
+
+* Run the following command:
+
+  ```console
+     dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+  ```
+
+[!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
+
+### [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 
@@ -85,7 +99,6 @@ The automatic creation of the database context and [CRUD](https://wikipedia.org/
   ```
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
-
 ---
 
 <!-- End of tabs                  -->
@@ -353,6 +366,12 @@ The automatic creation of the database context and [CRUD](https://wikipedia.org/
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
+* On Linux, export the scaffold tool path:
+
+  ```console
+    export PATH=$HOME/.dotnet/tools:$PATH
+  ```
+
 * Run the following command:
 
   ```console
@@ -378,7 +397,7 @@ The automatic creation of the database context and [CRUD](https://wikipedia.org/
      dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
   ```
 
-[!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
+[!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
 
 ---
 
