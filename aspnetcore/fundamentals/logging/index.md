@@ -67,7 +67,7 @@ Learn more about [built-in logging providers](#built-in-logging-providers) and [
 
 ## Create logs
 
-To create logs, get an <xref:Microsoft.Extensions.Logging.ILogger%601> object from DI.
+To create logs, get an <xref:Microsoft.Extensions.Logging.ILogger%601> object from dependency injection (DI).
 
 The following Razor Pages example creates a logger with `TodoApiSample.Pages.AboutModel` as the *category*. 
 
@@ -98,7 +98,7 @@ The logger is used to create logs with `Information` as the *level*.
 ::: moniker-end
 
 
-The Log *level* indicates the severity of the logged event. The log *category* is a string that is associated with each log. The `ILogger<T>` instance creates logs that have the fully qualified name of type `T` as the category. [Levels](#log-level) and [categories](#log-category) are explained in more detail later in this article. 
+The Log *level* indicates the severity of the logged event. The log *category* is a string that is associated with each log. The `ILogger<T>` instance provided by DI creates logs that have the fully qualified name of type `T` as the category. [Levels](#log-level) and [categories](#log-category) are explained in more detail later in this article. 
 
 The following controller example creates a logger with `TodoApiSample.Controllers.TodoController` as the *category*. The logger is used to create logs with `Information` and `Warning` as the *level*. 
 
