@@ -85,6 +85,8 @@ The following Razor Pages example creates a logger with `TodoApiSample.Pages.Abo
 
 The logger is used to create logs with `Information` as the *level*. 
 
+::: moniker range=">= aspnetcore-3.0"
+
 [!code-csharp[](index/samples/3.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=4)]
 
 ::: moniker-end
@@ -98,13 +100,13 @@ The logger is used to create logs with `Information` as the *level*.
 
 The Log *level* indicates the severity of the logged event. The log *category* is a string that is associated with each log. The `ILogger<T>` instance creates logs that have the fully qualified name of type `T` as the category. [Levels](#log-level) and [categories](#log-category) are explained in more detail later in this article. 
 
-The following controller example creates a logger with `TodoApiSample.Pages.AboutModel` as the *category*. The logger is used to create logs with `Information` and `Warning` as the *level*. 
+The following controller example creates a logger with `TodoApiSample.Controllers.TodoController` as the *category*. The logger is used to create logs with `Information` and `Warning` as the *level*. 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=4,7)]
+[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=4,7,10)]
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7,10)]
 
 ::: moniker-end
 
@@ -706,13 +708,13 @@ A filter function is invoked for all providers and categories that don't have ru
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_FilterFunction)]
+[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_FilterFunction&highlight=5-13)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_FilterFunction)]
+[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_FilterFunction&highlight=5-13)]
 
 ::: moniker-end
 
@@ -859,33 +861,30 @@ To use this provider, an app has to run on the .NET Framework (rather than .NET 
 
 ### Azure App Service provider
 
-The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account. The provider package is available for apps targeting .NET Core 1.1 or later.
+The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account.
+
+```csharp
+logging.AddAzureWebAppDiagnostics();
+```
 
 ::: moniker range=">= aspnetcore-3.0"
 
-The provider package isn't included in the shared framework. To use the provider, install the package.
+The provider package isn't included in the shared framework. To use the provider, add the provider package to the project.
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
-The provider package isn't included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). To use the provider, install the package.
+The provider package isn't included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). When targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, add the provider package to the project. 
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-The package is included in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage).
-
-When targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, add the provider package to the project. 
+The package is included in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage). When targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, add the provider package to the project. 
 
 ::: moniker-end
 
-Invoke `AddAzureWebAppDiagnostics`:
-
-```csharp
-logging.AddAzureWebAppDiagnostics();
-```
 
 ::: moniker range=">= aspnetcore-3.0"
 
