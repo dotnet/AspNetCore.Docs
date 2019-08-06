@@ -103,7 +103,7 @@ To prevent a null reference exception in rendering logic, check for a `null` obj
 
 [!code-cshtml[](handle-errors/samples_snapshot/3.x/person-example.razor?highlight=1)]
 
-The preceding code example assumes that `@person` **can** be `null`. Often, the structure of the code guarantees that an object exists at the time the component is rendered. In those cases, it isn't necessary to check for `null` in rendering logic. In the prior example, `person` might be guaranteed to exist because `person` is created when the component is instantiated.
+The preceding code example assumes that `@person` isn't `null`. Often, the structure of the code guarantees that an object exists at the time the component is rendered. In those cases, it isn't necessary to check for `null` in rendering logic. In the prior example, `person` might be guaranteed to exist because `person` is created when the component is instantiated.
 
 ### Event handlers
 
