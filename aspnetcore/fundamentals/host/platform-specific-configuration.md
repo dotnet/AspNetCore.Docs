@@ -5,7 +5,7 @@ description: Discover how to enhance an ASP.NET Core app from an external assemb
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 04/06/2019
+ms.date: 08/02/2019
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Use hosting startup assemblies in ASP.NET Core
@@ -122,7 +122,7 @@ A class implements `IHostingStartup`. The class's [Configure](/dotnet/api/micros
 
 [!code-csharp[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement.cs?name=snippet2&highlight=3,5)]
 
-When building an `IHostingStartup` project, the dependencies file (*\*.deps.json*) sets the `runtime` location of the assembly to the *bin* folder:
+When building an `IHostingStartup` project, the dependencies file (*.deps.json*) sets the `runtime` location of the assembly to the *bin* folder:
 
 [!code-json[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement1.deps.json?range=2-13&highlight=8)]
 
@@ -213,13 +213,13 @@ For the runtime to discover the runtime store, the runtime store's location is a
 
 To activate the enhancement without a package reference to the enhancement, specify additional dependencies to the runtime with `additionalDeps`. `additionalDeps` allows you to:
 
-* Extend the app's library graph by providing a set of additional *\*.deps.json* files to merge with the app's own *\*.deps.json* file on startup.
+* Extend the app's library graph by providing a set of additional *.deps.json* files to merge with the app's own *.deps.json* file on startup.
 * Make the hosting startup assembly discoverable and loadable.
 
 The recommended approach for generating the additional dependencies file is to:
 
  1. Execute `dotnet publish` on the runtime store manifest file referenced in the previous section.
- 1. Remove the manifest reference from libraries and the `runtime` section of the resulting *\*deps.json* file.
+ 1. Remove the manifest reference from libraries and the `runtime` section of the resulting *.deps.json* file.
 
 In the example project, the `store.manifest/1.0.0` property is removed from the `targets` and `libraries` section:
 
@@ -267,7 +267,7 @@ In the example project, the `store.manifest/1.0.0` property is removed from the 
 }
 ```
 
-Place the *\*.deps.json* file into the following location:
+Place the *.deps.json* file into the following location:
 
 ```
 {ADDITIONAL DEPENDENCIES PATH}/shared/{SHARED FRAMEWORK NAME}/{SHARED FRAMEWORK VERSION}/{ENHANCEMENT ASSEMBLY NAME}.deps.json
@@ -302,7 +302,7 @@ To facilitate the deployment of a hosting startup in a multimachine environment,
 
 A hosting startup enhancement can be provided in a NuGet package. The package has a `HostingStartup` attribute. The hosting startup types provided by the package are made available to the app using either of the following approaches:
 
-* The enhanced app's project file makes a package reference for the hosting startup in the app's project file (a compile-time reference). With the compile-time reference in place, the hosting startup assembly and all of its dependencies are incorporated into the app's dependency file (*\*.deps.json*). This approach applies to a hosting startup assembly package published to [nuget.org](https://www.nuget.org/).
+* The enhanced app's project file makes a package reference for the hosting startup in the app's project file (a compile-time reference). With the compile-time reference in place, the hosting startup assembly and all of its dependencies are incorporated into the app's dependency file (*.deps.json*). This approach applies to a hosting startup assembly package published to [nuget.org](https://www.nuget.org/).
 * The hosting startup's dependencies file is made available to the enhanced app as described in the [Runtime store](#runtime-store) section (without a compile-time reference).
 
 For more information on NuGet packages and the runtime store, see the following topics:
@@ -313,10 +313,15 @@ For more information on NuGet packages and the runtime store, see the following 
 
 ### Project bin folder
 
-A hosting startup enhancement can be provided by a *bin*-deployed assembly in the enhanced app. The hosting startup types provided by the assembly are made available to the app using either of the following approaches:
+A hosting startup enhancement can be provided by a *bin*-deployed assembly in the enhanced app. The hosting startup types provided by the assembly are made available to the app using one of the following approaches:
 
-* The enhanced app's project file makes an assembly reference to the hosting startup (a compile-time reference). With the compile-time reference in place, the hosting startup assembly and all of its dependencies are incorporated into the app's dependency file (*\*.deps.json*). This approach applies when the deployment scenario calls for moving the compiled hosting startup library's assembly (DLL file) to the consuming project or to a location accessible by the consuming project and a compile-time reference is made to the hosting startup's assembly.
+* The enhanced app's project file makes an assembly reference to the hosting startup (a compile-time reference). With the compile-time reference in place, the hosting startup assembly and all of its dependencies are incorporated into the app's dependency file (*.deps.json*). This approach applies when the deployment scenario calls for making a compile-time reference to the hosting startup's assembly (*.dll* file) and moving the assembly to either:
+  * The consuming project.
+  * A location accessible by the consuming project.
 * The hosting startup's dependencies file is made available to the enhanced app as described in the [Runtime store](#runtime-store) section (without a compile-time reference).
+* When targeting the .NET Framework, the assembly is loadable in the default load context, which on .NET Framework means that the assembly is located at either of the following locations:
+  * Application base path &ndash; The *bin* folder where the app's executable (*.exe*) is located.
+  * Global Assembly Cache (GAC) &ndash; The GAC stores assemblies that several .NET Framework apps share. For more information, see [How to: Install an assembly into the global assembly cache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) in the .NET Framework documentation.
 
 ## Sample code
 

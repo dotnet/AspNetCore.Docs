@@ -39,7 +39,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 ::: moniker range=">= aspnetcore-2.1"
 
-* When targeting .NET Core, the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) is referenced by default. This package contains packages commonly used packages by MVC apps. If targeting .NET Framework, package references must be listed individually in the project file.
+* When targeting .NET Core, the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) is referenced by default. This package contains packages commonly used by MVC apps. If targeting .NET Framework, package references must be listed individually in the project file.
 
 ::: moniker-end
 
