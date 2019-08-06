@@ -301,6 +301,8 @@
           uid: blazor/javascript-interop
         - name: Security and Identity
           uid: security/blazor/index
+        - name: Handle errors
+          uid: blazor/handle-errors
         - name: Debug
           uid: blazor/debug
         - name: Call a web API
