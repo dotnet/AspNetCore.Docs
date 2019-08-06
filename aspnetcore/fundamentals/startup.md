@@ -24,7 +24,7 @@ ASP.NET Core apps use a `Startup` class, which is named `Startup` by convention.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](startup/3.0_samples/Startup1.cs)]
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/Startup.cs?name=snippet)]
 
 The preceding sample is for [Razor Pages](xref:razor-pages/index); the MVC version is similar.
 
