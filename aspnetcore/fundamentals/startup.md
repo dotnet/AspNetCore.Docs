@@ -48,10 +48,6 @@ The `Startup` class is specified when the app's [host](xref:fundamentals/index#h
 
 [!code-csharp[](startup/3.0_samples/Program3.cs?name=snippet_Program)]
 
-::: moniker-end
-
-::: moniker range=">= aspnetcore-3.0"
-
 The host provides services that are available to the `Startup` class constructor. The app adds additional services via `ConfigureServices`. Both the host and app services are available in `Configure` and throughout the app.
 
 Only the following service types can be injected into the `Startup` constructor when using <xref:Microsoft.Extensions.Hosting.IHostBuilder>:
