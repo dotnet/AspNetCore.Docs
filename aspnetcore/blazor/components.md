@@ -231,18 +231,19 @@ The current culture can be accessed from the <xref:System.Globalization.CultureI
 [CultureInfo.InvariantCulture](xref:System.Globalization.CultureInfo.InvariantCulture) is used for the following field types (`<input type="{TYPE}" />`):
 
 * `date`
-* `datetime-local`&dagger;
-* `month`&dagger;
 * `number`
-* `week`&dagger;
-
-&dagger;Not supported by all major browsers at this time.
 
 The preceding field types:
 
 * Are displayed using their appropriate browser-based formatting rules.
 * Can't contain free-form text.
 * Provide user interaction characteristics based on the browser's implementation.
+
+The following field types have specific formatting requirements and aren't currently supported by Blazor because they aren't supported by all major browsers:
+
+* `datetime-local`
+* `month`
+* `week`
 
 `@bind` supports the `@bind:culture` parameter to provide a <xref:System.Globalization.CultureInfo?displayProperty=fullName> for parsing and formatting a value. Specifying a culture isn't recommended when using the `date` and `number` field types. `date` and `number` have built-in Blazor support that provides the required culture.
 
