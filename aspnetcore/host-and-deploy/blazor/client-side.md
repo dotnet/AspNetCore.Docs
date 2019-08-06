@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2019
+ms.date: 07/10/2019
 uid: host-and-deploy/blazor/client-side
 ---
 # Host and deploy ASP.NET Core Blazor client-side
@@ -227,7 +227,7 @@ Set the website's **Physical path** to the app's folder. The folder contains:
 
 If a *500 - Internal Server Error* is received and IIS Manager throws errors when attempting to access the website's configuration, confirm that the URL Rewrite Module is installed. When the module isn't installed, the *web.config* file can't be parsed by IIS. This prevents the IIS Manager from loading the website's configuration and the website from serving Blazor's static files.
 
-For more information on troubleshooting deployments to IIS, see <xref:host-and-deploy/iis/troubleshoot>.
+For more information on troubleshooting deployments to IIS, see <xref:test/troubleshoot-azure-iis>.
 
 ### Azure Storage
 

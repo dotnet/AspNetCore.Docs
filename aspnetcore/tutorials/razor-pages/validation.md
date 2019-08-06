@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover how to add validation to a Razor Page in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2018
+ms.date: 7/23/2019
 uid: tutorials/razor-pages/validation
 ---
 # Add validation to an ASP.NET Core Razor Page
@@ -50,9 +50,9 @@ When JavaScript is disabled in the browser, submitting the form with errors will
 
 Optional, test server-side validation:
 
-* Disable JavaScript in the browser. You can do this using your browser's developer tools. If you can't disable JavaScript in the browser, try another browser.
+* Disable JavaScript in the browser. You can disable JavaScript using browser's developer tools. If you can't disable JavaScript in the browser, try another browser.
 * Set a break point in the `OnPostAsync` method of the Create or Edit page.
-* Submit a form with validation errors.
+* Submit a form with invalid data.
 * Verify the model state is invalid:
 
   ```csharp
@@ -62,7 +62,7 @@ Optional, test server-side validation:
    }
   ```
 
-The following code shows a portion of the *Create.cshtml* page that you scaffolded earlier in the tutorial. It's used by the Create and Edit pages to display the initial form and to redisplay the form in the event of an error.
+The following code shows a portion of the *Create.cshtml* page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to display the initial form and to redisplay the form in the event of an error.
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?range=14-20)]
 
@@ -111,13 +111,72 @@ It's generally not a good practice to compile hard dates in your models, so usin
 
 The following code shows combining attributes on one line:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateRatingDAmult.cs?name=snippet1)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) shows advanced EF Core operations with Razor Pages.
 
+### Apply migrations
+
+The DataAnnotations applied to the class change the schema. For example, the DataAnnotations applied to the `Title` field:
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet11)]
+
+* Limits the characters to 60.
+* Doesn't allow a `null` value.
+
+# [Visual Studio](#tab/visual-studio)
+
+The `Movie` table currently has the following schema:
+
+``` sql
+CREATE TABLE [dbo].[Movie] (
+    [ID]          INT             IDENTITY (1, 1) NOT NULL,
+    [Title]       NVARCHAR (MAX)  NULL,
+    [ReleaseDate] DATETIME2 (7)   NOT NULL,
+    [Genre]       NVARCHAR (MAX)  NULL,
+    [Price]       DECIMAL (18, 2) NOT NULL,
+    [Rating]      NVARCHAR (MAX)  NULL,
+    CONSTRAINT [PK_Movie] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+```
+
+The preceding schema changes don't cause EF to throw an exception. However, create a migration so the schema is consistent with the model.
+
+From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
+In the PMC, enter the following commands:
+
+```powershell
+Add-Migration New_DataAnnotations
+Update-Database
+```
+
+`Update-Database` runs the `Up` methods of the `New_DataAnnotations` class. Examine the `Up` method:
+
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Migrations/20190724163003_New_DataAnnotations.cs?name=snippet)]
+
+The updated `Movie` table has the following schema:
+
+``` sql
+CREATE TABLE [dbo].[Movie] (
+    [ID]          INT             IDENTITY (1, 1) NOT NULL,
+    [Title]       NVARCHAR (60)   NOT NULL,
+    [ReleaseDate] DATETIME2 (7)   NOT NULL,
+    [Genre]       NVARCHAR (30)   NOT NULL,
+    [Price]       DECIMAL (18, 2) NOT NULL,
+    [Rating]      NVARCHAR (5)    NOT NULL,
+    CONSTRAINT [PK_Movie] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+```
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+Migrations are not required for SQLite.
+
+---
+
 ### Publish to Azure
 
-For information on deploying to Azure, see [Tutorial: Build an ASP.NET app in Azure with SQL Database](/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase). These instructions are for an ASP.NET app, not an ASP.NET Core app, but the steps are the same.
+For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app in Azure with SQL Database](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
 
 Thanks for completing this introduction to Razor Pages. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) is an excellent follow up to this tutorial.
 

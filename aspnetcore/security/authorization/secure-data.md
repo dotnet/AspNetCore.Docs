@@ -601,11 +601,12 @@ If you haven't already set a password for seeded user accounts, use the [Secret 
   dotnet user-secrets set SeedUserPW <PW>
   ```
 
-* Drop and update the database
+* Drop and update the Database
+
     ```console
      dotnet ef database drop -f
      dotnet ef database update  
-```
+     ```
 
 * Restart the app to seed the database.
 

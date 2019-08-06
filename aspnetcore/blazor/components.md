@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/05/2019
+ms.date: 08/02/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -31,9 +31,9 @@ The UI for a component is defined using HTML. Dynamic rendering logic (for examp
 Members of the component class are defined in an `@code` block. In the `@code` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic. More than one `@code` block is permissible.
 
 > [!NOTE]
-> In previous versions of ASP.NET Core, `@functions` blocks were used for the same purpose as `@code` blocks. `@functions` blocks continue to work, but we recommend using the `@code` directive.
+> In prior previews of ASP.NET Core 3.0, `@functions` blocks were used for the same purpose as `@code` blocks in Razor components. `@functions` blocks continue to function in Razor components, but we recommend using the `@code` block in ASP.NET Core 3.0 Preview 6 or later.
 
-Component members can then be used as part of the component's rendering logic using C# expressions that start with `@`. For example, a C# field is rendered by prefixing `@` to the field name. The following example evaluates and renders:
+Component members can be used as part of the component's rendering logic using C# expressions that start with `@`. For example, a C# field is rendered by prefixing `@` to the field name. The following example evaluates and renders:
 
 * `_headingFontStyle` to the CSS property value for `font-style`.
 * `_headingText` to the content of the `<h1>` element.
@@ -49,7 +49,7 @@ Component members can then be used as part of the component's rendering logic us
 
 After the component is initially rendered, the component regenerates its render tree in response to events. Blazor then compares the new render tree against the previous one and applies any modifications to the browser's Document Object Model (DOM).
 
-Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the *Pages* folder. Non-page components are frequently placed in the *Shared* folder or a custom folder added to the project. To use a custom folder, either add the custom folder's namespace to the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `WebApplication`:
+Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the *Pages* folder. Non-page components are frequently placed in the *Shared* folder or a custom folder added to the project. To use a custom folder, add the custom folder's namespace to either the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `WebApplication`:
 
 ```cshtml
 @using WebApplication.Components
@@ -101,7 +101,7 @@ In the following example, the `ParentComponent` sets the value of the `Title` pr
 
 Components can set the content of another component. The assigning component provides the content between the tags that specify the receiving component.
 
-In the following example, the `ChildComponent` has a `ChildContent` property that represents a `RenderFragment`. The value of `ChildContent` is positioned in the component's markup where the content should be rendered. The value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
+In the following example, the `ChildComponent` has a `ChildContent` property that represents a `RenderFragment`, which represents a segment of UI to render. The value of `ChildContent` is positioned in the component's markup where the content should be rendered. The value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
 
 *Components/ChildComponent.razor*:
 
@@ -116,9 +116,79 @@ The following `ParentComponent` can provide content for rendering the `ChildComp
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=7-8)]
 
+## Attribute splatting and arbitrary parameters
+
+Components can capture and render additional attributes in addition to the component's declared parameters. Additional attributes can be captured in a dictionary and then *splatted* onto an element when the component is rendered using the [@attributes](xref:mvc/views/razor#attributes) Razor directive. This scenario is useful when defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.
+
+In the following example, the first `<input>` element (`id="useIndividualParams"`) uses individual component parameters, while the second `<input>` element (`id="useAttributesDict"`) uses attribute splatting:
+
+```cshtml
+<input id="useIndividualParams"
+       maxlength="@Maxlength"
+       placeholder="@Placeholder"
+       required="@Required"
+       size="@Size" />
+
+<input id="useAttributesDict"
+       @attributes="InputAttributes" />
+
+@code {
+    [Parameter]
+    private string Maxlength { get; set; } = "10";
+
+    [Parameter]
+    private string Placeholder { get; set; } = "Input placeholder text";
+
+    [Parameter]
+    private string Required { get; set; } = "required";
+
+    [Parameter]
+    private string Size { get; set; } = "50";
+
+    [Parameter]
+    private Dictionary<string, object> InputAttributes { get; set; } =
+        new Dictionary<string, object>()
+        {
+            { "maxlength", "10" },
+            { "placeholder", "Input placeholder text" },
+            { "required", "true" },
+            { "size", "50" }
+        };
+}
+```
+
+The type of the parameter must implement `IEnumerable<KeyValuePair<string, object>>` with string keys. Using `IReadOnlyDictionary<string, object>` is also an option in this scenario.
+
+The rendered `<input>` elements using both approaches is identical:
+
+```html
+<input id="useIndividualParams"
+       maxlength="10"
+       placeholder="Input placeholder text"
+       required="required"
+       size="50">
+
+<input id="useAttributesDict"
+       maxlength="10"
+       placeholder="Input placeholder text"
+       required="true"
+       size="50">
+```
+
+To accept arbitrary attributes, define a component parameter using the `[Parameter]` attribute with the `CaptureUnmatchedValues` property set to `true`:
+
+```cshtml
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    private Dictionary<string, object> InputAttributes { get; set; }
+}
+```
+
+The `CaptureUnmatchedValues` property on `[Parameter]` allows the parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with `CaptureUnmatchedValues`. The property type used with `CaptureUnmatchedValues` must be assignable from `Dictionary<string, object>` with string keys. `IEnumerable<KeyValuePair<string, object>>` or `IReadOnlyDictionary<string, object>` are also options in this scenario.
+
 ## Data binding
 
-Data binding to both components and DOM elements is accomplished with the `@bind` attribute. The following example binds the `_italicsCheck` field to the check box's checked state:
+Data binding to both components and DOM elements is accomplished with the [@bind](xref:mvc/views/razor#bind) attribute. The following example binds the `_italicsCheck` field to the check box's checked state:
 
 ```cshtml
 <input type="checkbox" class="form-check-input" id="italicsCheck" 
@@ -132,13 +202,13 @@ The check box is updated in the UI only when the component is rendered, not in r
 Using `@bind` with a `CurrentValue` property (`<input @bind="CurrentValue" />`) is essentially equivalent to the following:
 
 ```cshtml
-<input value="@CurrentValue" 
+<input value="@CurrentValue"
     @onchange="@((UIChangeEventArgs __e) => CurrentValue = __e.Value)" />
 ```
 
 When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `@bind` handles a few cases where type conversions are performed. In principle, `@bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-In addition to handling `onchange` events with `@bind` syntax, a property or field can be bound using other events by specifying an `@bind-value` attribute with an `event` parameter. The following example binds the `CurrentValue` property for the `oninput` event:
+In addition to handling `onchange` events with `@bind` syntax, a property or field can be bound using other events by specifying an [@bind-value](xref:mvc/views/razor#bind) attribute with an `event` parameter ([@bind-value:event](xref:mvc/views/razor#bind)). The following example binds the `CurrentValue` property for the `oninput` event:
 
 ```cshtml
 <input @bind-value="CurrentValue" @bind-value:event="oninput" />
@@ -148,7 +218,7 @@ Unlike `onchange`, which fires when the element loses focus, `oninput` fires whe
 
 **Format strings**
 
-Data binding works with <xref:System.DateTime> format strings. Other format expressions, such as currency or number formats, aren't available at this time.
+Data binding works with <xref:System.DateTime> format strings using [@bind:format](xref:mvc/views/razor#bind). Other format expressions, such as currency or number formats, aren't available at this time.
 
 ```cshtml
 <input @bind="StartDate" @bind:format="yyyy-MM-dd" />
@@ -163,7 +233,7 @@ The `@bind:format` attribute specifies the date format to apply to the `value` o
 
 **Component parameters**
 
-Binding also recognizes component parameters, where `@bind-{property}` can bind a property value across components.
+Binding recognizes component parameters, where `@bind-{property}` can bind a property value across components.
 
 The following child component (`ChildComponent`) has a `Year` component parameter and `YearChanged` callback:
 
@@ -194,7 +264,7 @@ The following parent component uses `ChildComponent` and binds the `ParentYear` 
 
 <ChildComponent @bind-Year="ParentYear" />
 
-<button class="btn btn-primary" @onclick="@ChangeTheYear">
+<button class="btn btn-primary" @onclick="ChangeTheYear">
     Change Year to 1986
 </button>
 
@@ -249,12 +319,12 @@ In general, a property can be bound to a corresponding event handler using `@bin
 
 ## Event handling
 
-Razor components provide event handling features. For an HTML element attribute named `on<event>` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name always starts with `@on`.
+Razor components provide event handling features. For an HTML element attribute named `on{event}` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name is always formatted [@on{event}](xref:mvc/views/razor#onevent).
 
 The following code calls the `UpdateHeading` method when the button is selected in the UI:
 
 ```cshtml
-<button class="btn btn-primary" @onclick="@UpdateHeading">
+<button class="btn btn-primary" @onclick="UpdateHeading">
     Update heading
 </button>
 
@@ -269,7 +339,7 @@ The following code calls the `UpdateHeading` method when the button is selected 
 The following code calls the `CheckChanged` method when the check box is changed in the UI:
 
 ```cshtml
-<input type="checkbox" class="form-check-input" @onchange="@CheckChanged" />
+<input type="checkbox" class="form-check-input" @onchange="CheckChanged" />
 
 @code {
     private void CheckChanged()
@@ -284,7 +354,7 @@ Event handlers can also be asynchronous and return a <xref:System.Threading.Task
 In the following example, `UpdateHeading` is called asynchronously when the button is selected:
 
 ```cshtml
-<button class="btn btn-primary" @onclick="@UpdateHeading">
+<button class="btn btn-primary" @onclick="UpdateHeading">
     Update heading
 </button>
 
@@ -296,9 +366,11 @@ In the following example, `UpdateHeading` is called asynchronously when the butt
 }
 ```
 
-For some events, event-specific event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
+### Event argument types
 
-Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) are shown in the following table.
+For some events, event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
+
+Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/release/3.0-preview8/src/Components/Components/src/UIEventArgs.cs) are shown in the following table.
 
 | Event | Class |
 | ----- | ----- |
@@ -314,8 +386,10 @@ Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Com
 | Progress | `UIProgressEventArgs` |
 | Touch | `UITouchEventArgs` &ndash; `UITouchPoint` represents a single contact point on a touch-sensitive device. |
 
-For information on the properties and event handling behavior of the events in the preceding table, see [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Components/src/UIEventArgs.cs) in the reference source.
-  
+For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview8/src/Components/Web/src).
+
+### Lambda expressions
+
 Lambda expressions can also be used:
 
 ```cshtml
@@ -395,7 +469,7 @@ Prefer the strongly typed `EventCallback<T>` over `EventCallback`. `EventCallbac
 
 ## Capture references to components
 
-Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference, add a `@ref` attribute to the child component and then define a field with the same name and the same type as the child component.
+Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference, add a [@ref](xref:mvc/views/razor#ref) attribute to the child component and then define a field with the same name and the same type as the child component.
 
 ```cshtml
 <MyLoginDialog @ref="loginDialog" ... />
@@ -420,7 +494,7 @@ While capturing component references use a similar syntax to [capturing element 
 > [!NOTE]
 > Do **not** use component references to mutate the state of child components. Instead, use normal declarative parameters to pass data to child components. Use of normal declarative parameters result in child components that rerender at the correct times automatically.
 
-## Use @key to control the preservation of elements and components
+## Use \@key to control the preservation of elements and components
 
 When rendering a list of elements or components and the elements or components subsequently change, Blazor's diffing algorithm must decide which of the previous elements or components can be retained and how model objects should map to them. Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.
 
@@ -465,7 +539,7 @@ In some scenarios, use of `@key` minimizes the complexity of rerendering and avo
 > [!IMPORTANT]
 > Keys are local to each container element or component. Keys aren't compared globally across the document.
 
-### When to use @key
+### When to use \@key
 
 Typically, it makes sense to use `@key` whenever a list is rendered (for example, in a `@foreach` block) and a suitable value exists to define the `@key`.
 
@@ -479,13 +553,13 @@ You can also use `@key` to prevent Blazor from preserving an element or componen
 
 If `@currentPerson` changes, the `@key` attribute directive forces Blazor to discard the entire `<div>` and its descendants and rebuild the subtree within the UI with new elements and components. This can be useful if you need to guarantee that no UI state is preserved when `@currentPerson` changes.
 
-### When not to use @key
+### When not to use \@key
 
 There's a performance cost when diffing with `@key`. The performance cost isn't large, but only specify `@key` if controlling the element or component preservation rules benefit the app.
 
 Even if `@key` isn't used, Blazor preserves child element and component instances as much as possible. The only advantage to using `@key` is control over *how* model instances are mapped to the preserved component instances, instead of the diffing algorithm selecting the mapping.
 
-### What values to use for @key
+### What values to use for \@key
 
 Generally, it makes sense to supply one of the following kinds of value for `@key`:
 
@@ -672,26 +746,7 @@ This is the Index page.
 >
 > Partially qualified names aren't supported. For example, adding `@using ComponentsSample` and referencing `NavMenu.razor` with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.
 
-## Razor support
-
-**Razor directives**
-
-Razor directives are shown in the following table.
-
-| Directive | Description |
-| --------- | ----------- |
-| [\@code](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. `@code` is an alias of `@functions`. `@code` is recommended over `@functions`. More than one `@code` block is permissible. |
-| [\@functions](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. Choose `@code` over `@functions` for C# code blocks. |
-| `@implements` | Implements an interface for the generated component class. |
-| [\@inherits](xref:mvc/views/razor#section-3) | Provides full control of the class that the component inherits. |
-| [\@inject](xref:mvc/views/razor#section-4) | Enables service injection from the [service container](xref:fundamentals/dependency-injection). For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection). |
-| `@layout` | Specifies a layout component. Layout components are used to avoid code duplication and inconsistency. |
-| [\@page](xref:razor-pages/index#razor-pages) | Specifies that the component should handle requests directly. The `@page` directive can be specified with a route and optional parameters. Unlike Razor Pages, the `@page` directive doesn't need to be the first directive at the top of the file. For more information, see [Routing](xref:blazor/routing). |
-| [\@using](xref:mvc/views/razor#using) | Adds the C# `using` directive to the generated component class. This also brings all the components defined in that namespace into scope. |
-| [\@namespace](xref:mvc/views/razor#section-6) | Sets the namespace of the generated component class. |
-| [\@attribute](xref:mvc/views/razor#section-7) | Adds an attribute to the generated component class. |
-
-**Conditional HTML element attributes**
+## Conditional HTML element attributes
 
 HTML element attributes are conditionally rendered based on the .NET value. If the value is `false` or `null`, the attribute isn't rendered. If the value is `true`, the attribute is rendered minimized.
 
@@ -718,9 +773,7 @@ If `IsCompleted` is `false`, the check box is rendered as:
 <input type="checkbox" />
 ```
 
-**Additional information on Razor**
-
-For more information on Razor, see the [Razor syntax reference](xref:mvc/views/razor).
+For more information, see <xref:mvc/views/razor>.
 
 ## Raw HTML
 
@@ -749,7 +802,7 @@ Templated components are components that accept one or more UI templates as para
 
 ### Template parameters
 
-A templated component is defined by specifying one or more component parameters of type `RenderFragment` or `RenderFragment<T>`. A render fragment represents a segment of UI that is rendered by the component. A render fragment optionally takes a parameter that can be specified when the render fragment is invoked.
+A templated component is defined by specifying one or more component parameters of type `RenderFragment` or `RenderFragment<T>`. A render fragment represents a segment of UI to render. `RenderFragment<T>` takes a type parameter that can be specified when the render fragment is invoked.
 
 `TableTemplate` component:
 
@@ -902,13 +955,13 @@ In the sample app, the `CascadingValuesParametersTheme` component binds the `The
 <p>Current count: @currentCount</p>
 
 <p>
-    <button class="btn" @onclick="@IncrementCount">
+    <button class="btn" @onclick="IncrementCount">
         Increment Counter (Unthemed)
     </button>
 </p>
 
 <p>
-    <button class="btn @ThemeInfo.ButtonClass" @onclick="@IncrementCount">
+    <button class="btn @ThemeInfo.ButtonClass" @onclick="IncrementCount">
         Increment Counter (Themed)
     </button>
 </p>
@@ -1017,7 +1070,7 @@ In the following example, the loop in the `CreateComponent` method generates thr
 
 @CustomRender
 
-<button type="button" @onclick="@RenderComponent">
+<button type="button" @onclick="RenderComponent">
     Create three Pet Details components
 </button>
 
@@ -1104,7 +1157,7 @@ builder.AddContent(seq++, "Second");
 Now, the first output is:
 
 | Sequence | Type      | Data   |
-| :------: | --------- | :--- : |
+| :------: | --------- | :----: |
 | 0        | Text node | First  |
 | 1        | Text node | Second |
 

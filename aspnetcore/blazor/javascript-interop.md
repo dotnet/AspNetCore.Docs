@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET and .NET methods
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2019
+ms.date: 07/31/2019
 uid: blazor/javascript-interop
 ---
 # ASP.NET Core Blazor JavaScript interop
@@ -13,6 +13,8 @@ uid: blazor/javascript-interop
 By [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), and [Luke Latham](https://github.com/guardrex)
 
 A Blazor app can invoke JavaScript functions from .NET and .NET methods from JavaScript code.
+
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Invoke JavaScript functions from .NET methods
 

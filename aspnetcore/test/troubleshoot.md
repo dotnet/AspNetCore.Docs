@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Understand and troubleshoot warnings and errors with ASP.NET Core projects.
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/19/2019
+ms.date: 07/10/2019
 uid: test/troubleshoot
 ---
 # Troubleshoot ASP.NET Core projects
@@ -13,8 +13,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The following links provide troubleshooting guidance:
 
-* <xref:host-and-deploy/azure-apps/troubleshoot>
-* <xref:host-and-deploy/iis/troubleshoot>
+* <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>
 * [NDC Conference (London, 2018): Diagnosing issues in ASP.NET Core Applications](https://www.youtube.com/watch?v=RYI0DHoIVaA)
 * [ASP.NET Blog: Troubleshooting ASP.NET Core Performance Problems](https://blogs.msdn.microsoft.com/webdev/2018/05/23/asp-net-core-performance-improvements/)

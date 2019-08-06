@@ -234,7 +234,7 @@ When packing an RCL, all companion assets in the *wwwroot* folder are included i
 
 ### Consume content from a referenced RCL
 
-The files included in the *wwwroot* folder of the RCL are exposed to the consuming app under the prefix `_content/{LIBRARY NAME}/`. `{LIBRARY NAME}` is the library project name converted to lowercase with periods (`.`) removed. For example, a library named *Razor.Class.Lib* results in a path to static content at `_content/razorclasslib/`.
+The files included in the *wwwroot* folder of the RCL are exposed to the consuming app under the prefix `_content/{LIBRARY NAME}/`. For example, a library named *Razor.Class.Lib* results in a path to static content at `_content/Razor.Class.Lib/`.
 
 The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](xref:fundamentals/static-files) enabled.
 
