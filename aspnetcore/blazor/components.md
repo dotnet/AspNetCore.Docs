@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/02/2019
+ms.date: 08/07/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -222,6 +222,31 @@ In addition to handling `onchange` events with `@bind` syntax, a property or fie
 
 Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
+**Globalization**
+
+`@bind` values are formatted for display and parsed using the current culture's rules.
+
+The current culture can be accessed from the <xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=fullName> property.
+
+[CultureInfo.InvariantCulture](xref:System.Globalization.CultureInfo.InvariantCulture) is used for the following field types (`<input type="{TYPE}" />`):
+
+* `date`
+* `number`
+
+The preceding field types:
+
+* Are displayed using their appropriate browser-based formatting rules.
+* Can't contain free-form text.
+* Provide user interaction characteristics based on the browser's implementation.
+
+The following field types have specific formatting requirements and aren't currently supported by Blazor because they aren't supported by all major browsers:
+
+* `datetime-local`
+* `month`
+* `week`
+
+`@bind` supports the `@bind:culture` parameter to provide a <xref:System.Globalization.CultureInfo?displayProperty=fullName> for parsing and formatting a value. Specifying a culture isn't recommended when using the `date` and `number` field types. `date` and `number` have built-in Blazor support that provides the required culture.
+
 **Format strings**
 
 Data binding works with <xref:System.DateTime> format strings using [@bind:format](xref:mvc/views/razor#bind). Other format expressions, such as currency or number formats, aren't available at this time.
@@ -235,7 +260,16 @@ Data binding works with <xref:System.DateTime> format strings using [@bind:forma
 }
 ```
 
+In the preceding code, the `<input>` element's field type (`type`) defaults to `text`. `@bind:format` is supported for binding the following .NET types:
+
+* <xref:System.DateTime?displayProperty=fullName>
+* <xref:System.DateTime?displayProperty=fullName>?
+* <xref:System.DateTimeOffset?displayProperty=fullName>
+* <xref:System.DateTimeOffset?displayProperty=fullName>?
+
 The `@bind:format` attribute specifies the date format to apply to the `value` of the `<input>` element. The format is also used to parse the value when an `onchange` event occurs.
+
+Specifying a format for the `date` field type isn't recommended because Blazor has built-in support to format dates.
 
 **Component parameters**
 
