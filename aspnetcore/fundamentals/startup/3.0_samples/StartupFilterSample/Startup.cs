@@ -1,17 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+#define A
+#if A
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace StartupFilterSample
 {
-    #region snippet
+#region snippet
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -51,5 +48,6 @@ namespace StartupFilterSample
             });
         }
     }
-    #endregion
+#endregion
 }
+#endif

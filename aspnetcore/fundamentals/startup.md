@@ -36,7 +36,7 @@ The preceding sample is for [Razor Pages](xref:razor-pages/index); the MVC versi
 
 ::: moniker-end
 
-The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is typically specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
+The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is typically specified by calling the [`WebHostBuilderExtensions.UseStartup<TStartup>`](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
 
 ::: moniker range="< aspnetcore-3.0"
 
@@ -53,12 +53,13 @@ The host provides services that are available to the `Startup` class constructor
 Only the following service types can be injected into the `Startup` constructor when using <xref:Microsoft.Extensions.Hosting.IHostBuilder>:
 
 * `IWebHostEnvironment`
-* `IWebHostEnvironment`
+* `IHostEnvironment`
 * <xref:Microsoft.Extensions.Configuration.IConfiguration>
 
 Most services are not available until the `Configure` method.
 
-[!code-csharp[](startup/3.0_samples/Startup2.cs?name=sample_snapshot)]
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/StartUp2.cs
+?name=snippet)]
 
 ::: moniker-end
 
@@ -187,8 +188,7 @@ For more information on how to use `IApplicationBuilder` and the order of middle
 To configure services and the request processing pipeline without using a `Startup` class, call `ConfigureServices` and `Configure` convenience methods on the host builder. Multiple calls to `ConfigureServices` append to one another. If multiple `Configure` method calls exist, the last `Configure` call is used.
 
 ::: moniker range=">= aspnetcore-3.0"
-
-[!code-csharp[](startup/3.0_samples/Program1.cs?name=snippet)]
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/Program1.cs?name=snippet)]
 
 ::: moniker-end
 
@@ -208,17 +208,31 @@ Each `IStartupFilter` can add one or more middlewares in the request pipeline. T
 
 The following example demonstrates how to register a middleware with `IStartupFilter`. The `RequestSetOptionsMiddleware` middleware sets an options value from a query string parameter:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/RequestSetOptionsMiddleware.cs?name=snippet1&highlight=21)]
+
+The `RequestSetOptionsMiddleware` is configured in the `RequestSetOptionsStartupFilter` class:
+
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/RequestSetOptionsStartupFilter.cs?name=snippet1&highlight=7)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](startup/sample_snapshot/RequestSetOptionsMiddleware.cs?name=snippet1&highlight=21)]
 
 The `RequestSetOptionsMiddleware` is configured in the `RequestSetOptionsStartupFilter` class:
 
 [!code-csharp[](startup/sample_snapshot/RequestSetOptionsStartupFilter.cs?name=snippet1&highlight=7)]
 
+::: moniker-end
+
 The `IStartupFilter` is registered in the service container in <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*>.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](startup/3.0_samples/StartupFilterSample/Program.cs?name=snippet&highlight=18-19)]
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/Program.cs?name=snippet&highlight=19-20)]
 
 ::: moniker-end
 

@@ -1,3 +1,5 @@
+#define A
+#if A
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,3 +32,4 @@ namespace StartupFilterSample
     }
     #endregion
 }
+#endif

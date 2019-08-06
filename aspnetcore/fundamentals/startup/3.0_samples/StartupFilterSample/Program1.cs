@@ -1,3 +1,5 @@
+//#define B
+#if B
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -5,12 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace WebApplication18
+namespace StartupFilterSample
 {
-    #region snippet
+#region snippet
     public class Program
     {
-
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
@@ -52,5 +53,6 @@ namespace WebApplication18
                 );
             });
     }
-    #endregion
+#endregion
 }
+#endif
