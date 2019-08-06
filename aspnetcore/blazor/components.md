@@ -226,7 +226,7 @@ Unlike `onchange`, which fires when the element loses focus, `oninput` fires whe
 
 `@bind` values are formatted for display and parsed using the current culture's rules.
 
-When needed in developer code, the current culture can be accessed from the <xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=fullName> property.
+The current culture can be accessed from the <xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=fullName> property.
 
 [CultureInfo.InvariantCulture](xref:System.Globalization.CultureInfo.InvariantCulture) is used for the following field types (`<input type="{TYPE}" />`):
 
