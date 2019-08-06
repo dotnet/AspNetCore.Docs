@@ -139,7 +139,7 @@ To install the `Microsoft.AspNetCore.ProtectedBrowserStorage` package:
 
 ### Save and load data within a component
 
-In any component that requires loading or saving data to browser storage, use [@inject](xref:blazor/components#request-a-service-in-a-component) to inject an instance of either of the following:
+In any component that requires loading or saving data to browser storage, use `@inject` to inject an instance of either of the following:
 
 * `ProtectedLocalStorage`
 * `ProtectedSessionStorage`
