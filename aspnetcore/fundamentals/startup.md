@@ -58,8 +58,7 @@ Only the following service types can be injected into the `Startup` constructor 
 
 Most services are not available until the `Configure` method.
 
-[!code-csharp[](startup/3.0_samples/StartupFilterSample/StartUp2.cs
-?name=snippet)]
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/StartUp2.cs?name=snippet)]
 
 ::: moniker-end
 
@@ -157,6 +156,8 @@ The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeli
 
 [!code-csharp[](startup/3.0_samples/StartupFilterSample/Startup.cs?name=snippet)]
 
+The preceding sample is for [Razor Pages](xref:razor-pages/index); the MVC version is similar.
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -210,7 +211,7 @@ The following example demonstrates how to register a middleware with `IStartupFi
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](startup/3.0_samples/StartupFilterSample/RequestSetOptionsMiddleware.cs?name=snippet1&highlight=21)]
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/RequestSetOptionsMiddleware.cs?name=snippet1)]
 
 The `RequestSetOptionsMiddleware` is configured in the `RequestSetOptionsStartupFilter` class:
 
