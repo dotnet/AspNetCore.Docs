@@ -526,12 +526,12 @@ To issue an HTTP POST request:
 
 1. Modify the JSON template to satisfy model validation requirements:
 
-  ```json
-  {
-    "id": 0,
-    "name": "Scott Addie"
-  }
-  ```
+    ```json
+    {
+      "id": 0,
+      "name": "Scott Addie"
+    }
+    ```
 
 1. Save the *.tmp* file, and close the text editor. The following output appears in the command shell:
 
