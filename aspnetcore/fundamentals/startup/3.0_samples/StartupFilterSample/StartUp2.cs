@@ -27,7 +27,6 @@ namespace StartupFilterSample
             else
             {
             }
-
             //   _config["key"]
         }
     }

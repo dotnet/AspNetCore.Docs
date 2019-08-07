@@ -40,13 +40,13 @@ The `Startup` class is specified when the app's [host](xref:fundamentals/index#h
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](startup/sample_snapshot/Program3.cs?name=snippet_Program&highlight=10)]
+[!code-csharp[](startup/sample_snapshot/Program3.cs?name=snippet_Program&highlight=12)]
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](startup/3.0_samples/Program3.cs?name=snippet_Program)]
+[!code-csharp[](startup/3.0_samples/Program3.cs?name=snippet_Program&highlight=12)]
 
 The host provides services that are available to the `Startup` class constructor. The app adds additional services via `ConfigureServices`. Both the host and app services are available in `Configure` and throughout the app.
 
@@ -56,9 +56,9 @@ Only the following service types can be injected into the `Startup` constructor 
 * `IHostEnvironment`
 * <xref:Microsoft.Extensions.Configuration.IConfiguration>
 
-Most services are not available until the `Configure` method.
-
 [!code-csharp[](startup/3.0_samples/StartupFilterSample/StartUp2.cs?name=snippet)]
+
+Most services are not available until the `Configure` method is called.
 
 ::: moniker-end
 
@@ -96,27 +96,15 @@ The <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> method is
 * Called by the host before the `Configure` method to configure the app's services.
 * Where [configuration options](xref:fundamentals/configuration/index) are set by convention.
 
-The typical pattern is to call all the `Add{Service}` methods and then call all of the `services.Configure{Service}` methods. For example, see [Configure Identity services](xref:security/authentication/identity#pw).
-
 The host may configure some services before `Startup` methods are called. For more information, see [The host](xref:fundamentals/index#host).
 
-For features that require substantial setup, there are `Add{Service}` extension methods on <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. A typical ASP.NET Core app registers services for Entity Framework, Identity, and MVC or Razor Pages:
+For features that require substantial setup, there are `Add{Service}` extension methods on <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>. For example, **Add**DbContext, **Add**DefaultIdentity, **Add**EntityFrameworkStores, and **Add**RazorPages:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(
-            Configuration.GetConnectionString("DefaultConnection")));
-    services.AddDefaultIdentity<IdentityUser>(options => 
-                   options.SignIn.RequireConfirmedAccount = true)
-        .AddEntityFrameworkStores<ApplicationDbContext>();
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/StartupIdentity.cs
+?name=snippet)]
 
-    services.AddRazorPages();
-}
-```
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
