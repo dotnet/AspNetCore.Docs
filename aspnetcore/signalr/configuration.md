@@ -157,7 +157,7 @@ The following table describes options for configuring ASP.NET Core SignalR's adv
 | `ApplicationMaxBufferSize` | 32 KB | The maximum number of bytes received from the client that the server buffers. Increasing this value allows the server to receive larger messages, but can negatively impact memory consumption. |
 | `AuthorizationData` | Data automatically gathered from the `Authorize` attributes applied to the Hub class. | A list of [IAuthorizeData](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizedata) objects used to determine if a client is authorized to connect to the hub. |
 | `TransportMaxBufferSize` | 32 KB | The maximum number of bytes sent by the app that the server buffers. Increasing this value allows the server to send larger messages, but can negatively impact memory consumption. |
-| `Transports` | All Transports are enabled. | A bitmask of `HttpTransportType` values that can restrict the transports a client can use to connect. |
+| `Transports` | All Transports are enabled. | A bit flags enum of `HttpTransportType` values that can restrict the transports a client can use to connect. |
 | `LongPolling` | See below. | Additional options specific to the Long Polling transport. |
 | `WebSockets` | See below. | Additional options specific to the WebSockets transport. |
 
