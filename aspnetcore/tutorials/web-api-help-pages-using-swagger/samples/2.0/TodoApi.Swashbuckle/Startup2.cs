@@ -5,7 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 #endregion
 using TodoApi.Models;
-
+#region snippet_PreReqNamespaces
+using System;
+using System.Reflection;
+using System.IO;
+#endregion
 namespace TodoApi
 {
     public class Startup2
