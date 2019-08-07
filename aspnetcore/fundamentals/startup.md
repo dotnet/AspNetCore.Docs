@@ -166,7 +166,7 @@ Additional services, such as `IWebHostEnvironment`, `ILoggerFactory`, or anythin
 
 ::: moniker range="< aspnetcore-3.0"
 
-Additional services, such as `IHostingEnvironment` and `ILoggerFactory`, can be specified in the `Configure` method signature. These services are injected if they're available.
+Additional services, such as `IHostingEnvironment` and `ILoggerFactory`, or anything defined in `ConfigureServices`, can be specified in the `Configure` method signature. These services are injected if they're available.
 
 ::: moniker-end
 
