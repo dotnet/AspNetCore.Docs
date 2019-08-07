@@ -4,7 +4,7 @@ author: juntaoluo
 description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 06/12/2019
+ms.date: 08/07/2019
 uid: tutorials/grpc/grpc-start
 ---
 # Tutorial: Create a gRPC client and server in ASP.NET Core
@@ -117,6 +117,11 @@ info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
 info: Microsoft.Hosting.Lifetime[0]
 ```
+
+> [!NOTE]
+> The gRPC template is configured to use [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). gRPC clients need to use HTTPS to call the server.
+>
+> macOS doesn't support ASP.NET Core gRPC with TLS. Additional configuration is required to successfully run gRPC services on macOS. For more information, see [gRPC and ASP.NET Core on macOS](xref:grpc/aspnetcore#grpc-and-aspnet-core-on-macos).
 
 ### Examine the project files
 
