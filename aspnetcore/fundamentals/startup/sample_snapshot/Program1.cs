@@ -22,8 +22,8 @@ public class Program
                 var loggerFactory = app.ApplicationServices
                     .GetRequiredService<ILoggerFactory>();
                 var logger = loggerFactory.CreateLogger<Program>();
-                var env = app.ApplicationServices.GetRequiredServices<IHostingEnvironment>();
-                var config = app.ApplicationServices.GetRequiredServices<IConfiguration>();
+                var env = app.ApplicationServices.GetRequiredService<IHostingEnvironment>();
+                var config = app.ApplicationServices.GetRequiredService<IConfiguration>();
 
                 logger.LogInformation("Logged in Configure");
 
