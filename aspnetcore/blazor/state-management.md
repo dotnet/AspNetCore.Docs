@@ -25,26 +25,29 @@ Examples of state held for a user's circuit include:
 
 ## Blazor circuits
 
-If a user experiences a temporary network connection loss, Blazor attempts to reconnect the user to their original circuit so they can continue to use the app.
+If a user experiences a temporary network connection loss, Blazor attempts to reconnect the user to their original circuit so they can continue to use the app. However, reconnecting a user to their original circuit in the server's memory isn't always possible:
 
-However, reconnecting a user to their original circuit in the server's memory isn't always possible:
-
-* The server can't retain a disconnected circuit forever. The server must release a disconnected circuit after a timeout or when the server is under memory pressure. The timeout and retention limits are configurable.
+* The server can't retain a disconnected circuit forever. The server must release a disconnected circuit after a timeout or when the server is under memory pressure.
 * In multiserver, load-balanced deployment environments, any server processing requests may become unavailable at any given time. Individual servers may fail or be automatically removed when no longer required to handle the overall volume of requests. The original server may not be available when the user attempts to reconnect.
-* The user might close and reopen their browser or reload the page, which removes any state held in the browser's memory. For example, values set through JavaScript interop calls are lost.
+* The user might close and re-open their browser or reload the page, which removes any state held in the browser's memory. For example, values set through JavaScript interop calls are lost.
 
 When a user can't be reconnected to their original circuit, the user receives a new circuit with an empty state. This is equivalent to closing and re-opening a desktop app.
 
 ## Preserve state across circuits
 
-In some scenarios, preserving state across circuits is desirable. An app can retain important data for a user if the web server becomes unavailable and the user's browser is forced to start a new circuit with a new web server. In general, maintaining state across circuits applies to scenarios where users are actively creating data, not simply reading data that already exists.
+In some scenarios, preserving state across circuits is desirable. An app can retain important data for a user if:
+
+* The web server becomes unavailable.
+* The user's browser is forced to start a new circuit with a new web server.
+
+In general, maintaining state across circuits applies to scenarios where users are actively creating data, not simply reading data that already exists.
 
 To preserve state beyond a single circuit, *don't merely store the data in the server's memory*. The app must persist the data to some other storage location. State persistence isn't automatic&mdash;you must take steps when developing the app to implement stateful data persistence.
 
 Data persistence is typically only required for high-value state that users have expended effort to create. In the following examples, persisting state either saves time or aids in commercial activities:
 
-* Multistep webform &ndash; It's time-consuming for a user to re-enter data for several completed steps of a multistep process if they navigate away and return to the form later.
-* Shopping cart &ndash; Any commercially important component of an app that represents potential revenue can be maintained.
+* Multistep webform &ndash; It's time-consuming for a user to re-enter data for several completed steps of a multistep process if their state is lost. A user loses state in this scenario if they navigate away from the multistep form and return to the form later.
+* Shopping cart &ndash; Any commercially important component of an app that represents potential revenue can be maintained. A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.
 
 It's usually not necessary to preserve easily-recreated state, such as the username entered into a sign-in dialog that hasn't been submitted.
 
@@ -98,20 +101,25 @@ For transient data that the user is actively creating, a common backing store is
 * `localStorage` is scoped to the user's browser. If the user reloads the page or closes and re-opens the browser, the state persists. If the user opens multiple browser tabs, the state is shared across the tabs. Data persists in `localStorage` until explicitly cleared.
 * `sessionStorage` is scoped to the user's browser tab. If the user reloads the tab, the state persists. If the user closes the tab or the browser, the state is lost. If the user opens multiple browser tabs, each tab has its own independent version of the data.
 
-Generally, using `sessionStorage` is safer. `sessionStorage` avoids the risk that a user opens multiple tabs and encounters bugs or confusing behavior when a tab overwrites the state of other tabs. However, `localStorage` is the better choice if the app must persist state across closing and re-opening the browser.
+Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk that a user opens multiple tabs and encounters the following:
+
+* Bugs in state storage across tabs.
+* Confusing behavior when a tab overwrites the state of other tabs.
+
+`localStorage` is the better choice if the app must persist state across closing and re-opening the browser.
 
 Caveats for using browser storage:
 
-* Similar to use of a server-side database, loading and saving are asynchronous.
+* Similar to the use of a server-side database, loading and saving data are asynchronous.
 * Unlike a server-side database, storage isn't available during prerendering because the requested page doesn't exist in the browser during the prerendering stage.
 * Storage of a few kilobytes of data is reasonable to persist for Blazor server-side apps. Beyond a few kilobytes, you must consider the performance implications because the data is loaded and saved across the network.
-* Users may view or tamper with the data. Risks of tampering can be mitigated for Blazor server-side apps using [Data Protection](xref:security/data-protection/introduction).
+* Users may view or tamper with the data. ASP.NET Core [Data Protection](xref:security/data-protection/introduction) can mitigate the risk.
 
 ## Third-party browser storage solutions
 
-Third-party NuGet packages provide APIs for working with `localStorage` and `sessionStorage` in Blazor apps.
+Third-party NuGet packages provide APIs for working with `localStorage` and `sessionStorage`.
 
-It's worth considering choosing a package that transparently uses ASP.NET Core's [Data Protection](xref:security/data-protection/introduction). ASP.NET Core Data Protection encrypts stored data and reduces the potential risk of tampering with stored data. If JSON-serialized data is stored in plaintext, users can not only see that data using browser developer tools but also modify the stored data. Securing data isn't always a problem because the data might be trivial in nature. For example, setting the color of a UI element isn't a significant security risk to the user or the organization. Avoid allowing users to inspect or tamper with sensitive data.
+It's worth considering choosing a package that transparently uses ASP.NET Core's [Data Protection](xref:security/data-protection/introduction). ASP.NET Core Data Protection encrypts stored data and reduces the potential risk of tampering with stored data. If JSON-serialized data is stored in plaintext, users can see the data using browser developer tools and also modify the stored data. Securing data isn't always a problem because the data might be trivial in nature. For example, reading or modifying the stored color of a UI element isn't a significant security risk to the user or the organization. Avoid allowing users to inspect or tamper with *sensitive data*.
 
 ## Protected Browser Storage experimental package
 
@@ -163,7 +171,7 @@ private async Task IncrementCount()
 }
 ```
 
-In larger, more realistic apps, storage of individual fields is an unlikely scenario. Apps are more likely to store entire model objects that include complex state. `ProtectedSessionStore` automatically JSON serializes and deserializes any data provided.
+In larger, more realistic apps, storage of individual fields is an unlikely scenario. Apps are more likely to store entire model objects that include complex state. `ProtectedSessionStore` automatically serializes and deserializes JSON data.
 
 In the preceding code example, the `currentCount` data is stored as `sessionStorage['count']` in the user's browser. The data isn't stored in plaintext but rather is protected using ASP.NET Core's [Data Protection](xref:security/data-protection/introduction). The encrypted data can be seen if `sessionStorage['count']` is evaluated in the browser's developer console.
 
@@ -176,14 +184,14 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign the result in `OnParametersSetAsync`, not `OnInitializedAsync`. `OnInitializedAsync` is only called once when the component is first instantiated. `OnInitializedAsync` isn't called again later if the user navigates to a different URL while remaining on the same page.
+If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign the result in `OnParametersSetAsync`, not `OnInitializedAsync`. `OnInitializedAsync` is only called one time when the component is first instantiated. `OnInitializedAsync` isn't called again later if the user navigates to a different URL while remaining on the same page.
 
 > [!WARNING]
 > The examples in this section only work if the server doesn't have prerendering enabled. With prerendering enabled, an error is generated similar to:
 >
 > > JavaScript interop calls cannot be issued at this time. This is because the component is being prerendered.
 >
-> Either disable prerendering or add additional code to work with prerendering, as described in the [Handle prerendering](#handle-prerendering) section.
+> Either disable prerendering or add additional code to work with prerendering. To learn more about writing code that works with prerendering, see the [Handle prerendering](#handle-prerendering) section.
 
 ### Handle the loading state
 
@@ -195,7 +203,7 @@ One approach is to track whether the data is `null` (still loading) or not. In t
 private int? currentCount;
 ```
 
-Instead of displaying the count and **Increment** button unconditionally, choose to display these elements only if the data is loaded:
+Instead of unconditionally displaying the count and **Increment** button, choose to display these elements only if the data is loaded:
 
 ```cshtml
 @if (currentCount.HasValue)
@@ -226,9 +234,9 @@ One way to resolve the error is to disable prerendering. This is usually the bes
 To disable prerendering:
 
 1. Open the *Pages/_Host.cshtml* file and remove the call to `Html.RenderComponentAsync`.
-1. Open the `Startup.cs` file, and replace the call to `endpoints.MapBlazorHub()` with `endpoints.MapBlazorHub<App>("app")`. `App` is the type of the root component. `"app"` is a CSS selector specifying the location for the root component.
+1. Open the `Startup.cs` file and replace the call to `endpoints.MapBlazorHub()` with `endpoints.MapBlazorHub<App>("app")`. `App` is the type of the root component. `"app"` is a CSS selector specifying the location for the root component.
 
-Prerendering might be useful on other pages that don't use `localStorage` or `sessionStorage`. To keep prerendering enabled, defer the loading operation until the browser is connected to the circuit. The following is an example for storing a counter value:
+Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`. To keep prerendering enabled, defer the loading operation until the browser is connected to the circuit. The following is an example for storing a counter value:
 
 ```cshtml
 @using Microsoft.AspNetCore.ProtectedBrowserStorage
@@ -245,8 +253,8 @@ Prerendering might be useful on other pages that don't use `localStorage` or `se
     {
         if (ComponentContext.IsConnected)
         {
-            // Looks like the app isn't prerendering, so the data can be immediately
-            // loaded from browser storage.
+            // It looks like the app isn't prerendering, so the data can be
+            // immediately loaded from browser storage.
             await LoadStateAsync();
         }
         else
@@ -305,11 +313,12 @@ else
 }
 
 @code {
+    private bool hasLoaded;
+
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
     public int CurrentCount { get; set; }
-    private bool hasLoaded;
 
     protected override async Task OnInitAsync()
     {
@@ -357,7 +366,7 @@ Wrapped components receive and can modify the persisted counter state. The follo
 }
 ```
 
-The preceding component isn't required to interact with `ProtectedBrowserStorage`, nor does it deal with any "loading" phase.
+The preceding component isn't required to interact with `ProtectedBrowserStorage`, nor does it deal with a "loading" phase.
 
 To deal with prerendering as described earlier, `CounterStateProvider` can be amended so that all of the components that consume the counter data automatically work with prerendering. See the [Handle prerendering](#handle-prerendering) section for details.
 
