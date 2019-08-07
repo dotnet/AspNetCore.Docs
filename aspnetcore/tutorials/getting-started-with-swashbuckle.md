@@ -111,7 +111,7 @@ If using directories with IIS or a reverse proxy, set the Swagger endpoint to a 
 Swagger provides options for documenting the object model and customizing the UI to match your theme.
 
 In the Startup class, add the following namespaces:
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup2.cs?name=snippet_PreReqNamespaces)]
+[!code-csharp[](~/tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup2.cs?name=snippet_PreReqNamespaces)]
 
 ### API info and description
 
