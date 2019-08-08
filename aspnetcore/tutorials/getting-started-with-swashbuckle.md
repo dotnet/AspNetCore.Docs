@@ -296,7 +296,7 @@ The UI is driven by the generated JSON schema:
 }
 ```
 
-Add a [\<remarks>](/dotnet/csharp/programming-guide/xmldoc/remarks) element to the `Create` action method documentation. It supplements information specified in the `<summary>` element and provides a more robust Swagger UI. The `<remarks>` element content can consist of text, JSON, or XML.
+Add a [\<remarks>](/dotnet/csharp/programming-guide/xmldoc/remarks) element to the `PostTodoItem` action method documentation. It supplements information specified in the `<summary>` element and provides a more robust Swagger UI. The `<remarks>` element content can consist of text, JSON, or XML.
 
 ::: moniker range="<= aspnetcore-2.0"
 
