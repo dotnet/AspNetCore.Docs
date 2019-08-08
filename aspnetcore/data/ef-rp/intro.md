@@ -150,7 +150,7 @@ A student can enroll in any number of courses, and a course can have any number 
 
 * Create a *Models* folder in the project folder. 
 
-* Create a class file *Models/Student.cs* with the following code:
+* Create *Models/Student.cs* with the following code:
 
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Student.cs)]
 
@@ -209,7 +209,7 @@ In this section, you use the ASP.NET Core scaffolding tool to generate:
 * In the **Add Razor Pages using Entity Framework (CRUD)** dialog:
   * In the **Model class** drop-down, select **Student (ContosoUniversity.Models)**.
   * In the **Data context class** row, select the **+** (plus) sign.
-  * Change the data context name from *ContosoUniversity.Models.ContosoUniversityContext* to *ContosoUniversity.Data.SchoolContext*. This puts the context class in the *Data* folder instead of the *Models* folder.
+  * Change the data context name from *ContosoUniversity.Models.ContosoUniversityContext* to *ContosoUniversity.**Data**.**SchoolContext***.
   * Select **Add**.
 
 The following packages are automatically installed:
@@ -317,13 +317,13 @@ The scaffolding tool automatically registered the context class with the depende
 
 # [Visual Studio](#tab/visual-studio)
 
-* In the `ConfigureServices` method, the highlighted lines were added by the scaffolder:
+* In `ConfigureServices`, the highlighted lines were added by the scaffolder:
 
   [!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* In the `ConfigureServices` method, make sure the code added by the scaffolder calls `UseSqlite`.
+* In `ConfigureServices`, make sure the code added by the scaffolder calls `UseSqlite`.
 
   [!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
@@ -333,7 +333,7 @@ The name of the connection string is passed in to the context by calling a metho
 
 ## Create the database
 
-In *Program.cs*, modify the `Program` class as shown to create the database if it doesn't exist:
+Update *Program.cs* to create the database if it doesn't exist:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
 
@@ -346,7 +346,7 @@ The [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.dat
 
 This workflow works well early in development when the schema is rapidly evolving, as long as you don't need to preserve data. The situation is different when data that has been entered into the database needs to be preserved. When that is the case, use migrations.
 
-Later in the tutorial series, you'll delete the database that was created by `EnsureCreated` and use migrations instead. A database that is created by `EnsureCreated` can't be updated by using migrations.
+Later in the tutorial series, you delete the database that was created by `EnsureCreated` and use migrations instead. A database that is created by `EnsureCreated` can't be updated by using migrations.
 
 ### Test the app
 
@@ -364,15 +364,10 @@ Create *Data/DbInitializer.cs* with the following code:
 
   The code checks if there are any students in the database. If there are no students, it adds test data to the database. It creates the test data in arrays rather than `List<T>` collections to optimize performance.
 
-* In *Program.cs*, delete the `EnsureCreated` call:
+* In *Program.cs*, replace the `EnsureCreated` call with a `DbInitializer.Initialize` call:
 
   ```csharp
-  context.Database.EnsureCreated();
-  ```
-
-* Replace it with a `DbInitializer.Initialize` call:
-
-  ```csharp
+  // context.Database.EnsureCreated();
   DbInitializer.Initialize(context);
   ````
 

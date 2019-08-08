@@ -1,7 +1,7 @@
 ---
 title: Razor Pages with EF Core in ASP.NET Core - Update Related Data - 7 of 8
 author: rick-anderson
-description: In this tutorial, you'll update related data by updating foreign key fields and navigation properties.
+description: In this tutorial, you update related data by updating foreign key fields and navigation properties.
 ms.author: riande
 ms.date: 07/22/2019
 uid: data/ef-rp/update-related-data
@@ -40,7 +40,7 @@ A Course is assigned to a Department. The base class for the Create and Edit pag
 
 ![Create course](update-related-data/_static/ddl30.png)
 
-Replace the code in *Pages/Courses/Create.cshtml.cs* with the following code:
+Update *Pages/Courses/Create.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Create.cshtml.cs?highlight=7,18,27-41)]
 
@@ -71,7 +71,7 @@ Test the Create page. The Create page displays the department name rather than t
 
 ### Update the Course Edit page model
 
-Replace the code in *Pages/Courses/Edit.cshtml.cs* with the following code:
+Update *Pages/Courses/Edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Edit.cshtml.cs?highlight=8,28,35,36,40-66)]
 
@@ -97,17 +97,17 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 ### Update the Course page models
 
-Replace the code in *Pages/Courses/Delete.cshtml.cs* with the following code to add `AsNoTracking`:
+Update *Pages/Courses/Delete.cshtml.cs* with the following code to add `AsNoTracking`:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Delete.cshtml.cs?highlight=29)]
 
 Make the same change in the *Pages/Courses/Details.cshtml.cs* file:
 
-[!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=29)]
+[!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=28)]
 
 ### Update the Course Razor pages
 
-Replace the code in *Pages/Courses/Delete.cshtml* with the following code:
+Update *Pages/Courses/Delete.cshtml* with the following code:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Courses/Delete.cshtml?highlight=15-20,37)]
 
@@ -169,7 +169,7 @@ Another relationship the edit page has to handle is the one-to-zero-or-one relat
 
 ### Update the Instructor Edit page model
 
-Replace the code in *Pages/Instructors/Edit.cshtml.cs* with the following code:
+Update *Pages/Instructors/Edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Edit.cshtml.cs?name=snippet_All&highlight=9,28-32,38,42-77)]
 
@@ -184,7 +184,7 @@ The preceding code:
 
 ### Update the Instructor Edit Razor page
 
-Replace the code in *Pages/Instructors/Edit.cshtml* with the following code:
+Update *Pages/Instructors/Edit.cshtml* with the following code:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Instructors/Edit.cshtml?highlight=29-59)]
 
@@ -208,7 +208,7 @@ Test the instructor Create page.
 
 ## Update the Instructor Delete page
 
-Replace the code in *Pages/Instructors/Delete.cshtml.cs* with the following code:
+Update *Pages/Instructors/Delete.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Delete.cshtml.cs?highlight=45-61)]
 
@@ -217,6 +217,8 @@ The preceding code makes the following changes:
 * Uses eager loading for the `CourseAssignments` navigation property. `CourseAssignments` must be included or they aren't deleted when the instructor is deleted. To avoid needing to read them, configure cascade delete in the database.
 
 * If the instructor to be deleted is assigned as administrator of any departments, removes the instructor assignment from those departments.
+
+Run the app and test the Delete page.
 
 ## Next steps
 

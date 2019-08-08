@@ -311,7 +311,7 @@ Click **Save** again. The value you entered in the second browser tab is saved. 
 
 ## Update the Delete page
 
-Replace the code in *Pages/Departments/Delete.cshtml.cs* with the following code:
+Update *Pages/Departments/Delete.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Delete.cshtml.cs)]
 

@@ -35,16 +35,16 @@ Replace the code in *Models/Student.cs* with the following code:
 
 The preceding code adds a `FullName` property and adds the following attributes to existing properties:
 
-* [[DataType]](#the-datatype-attribute)
-* [DisplayFormat]](#the-displayformat-attribute)
-* [[StringLength]](#the-stringlength-attribute)
-* [[Column]](#the-column-attribute)
-* [[Required]](#the-required-attribute)
-* [[Display]](#the-display-attribute)
+* `[DataType]`
+* `[DisplayFormat]`
+* `[StringLength]`
+* `[Column]`
+* `[Required]`
+* `[Display]`
 
 ### The FullName calculated property
 
-`FullName` is a calculated property that returns a value that's created by concatenating two other properties. `FullName` cannot be set, so it has only a get accessor. No `FullName` column is created in the database.
+`FullName` is a calculated property that returns a value that's created by concatenating two other properties. `FullName` can't be set, so it has only a get accessor. No `FullName` column is created in the database.
 
 ### The DataType attribute
 
@@ -104,7 +104,7 @@ The preceding image shows the schema for the `Student` table. The name fields ha
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-In your SQLite tool, examine the column definitions for the `Student` table. The name fields have type `Text`. Notice that the first name field is called FirstMidName. In the next section, you'll change the name of that column to FirstName.
+In your SQLite tool, examine the column definitions for the `Student` table. The name fields have type `Text`. Notice that the first name field is called `FirstMidName`. In the next section, you change the name of that column to `FirstName`.
 
 ---
 
@@ -157,7 +157,6 @@ The error message is similar to the following example:
 SqlException: Invalid column name 'FirstName'.
 ```
 
-* Build the project.
 * In the PMC, enter the following commands to create a new migration and update the database:
 
   ```powershell
@@ -188,7 +187,6 @@ The error message is similar to the following example:
 SqliteException: SQLite Error 1: 'no such column: s.FirstName'.
 ```
 
-* Build the project.
 * Open a command window in the project folder. Enter the following commands to create a new migration and update the database:
 
   ```console
@@ -445,11 +443,9 @@ Create *Models/CourseAssignment.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Models/CourseAssignment.cs)]
 
-### Instructor-to-Courses
+The Instructor-to-Courses many-to-many relationship requires a join table, and the entity for that join table is CourseAssignment.
 
 ![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
-
-The Instructor-to-Courses many-to-many relationship requires a join table, and the entity for that join table is CourseAssignment.
 
 It's common to name a join entity `EntityName1EntityName2`. For example, the Instructor-to-Courses join table using this pattern would be `CourseInstructor`. However, we recommend using a name that describes the relationship.
 
@@ -472,7 +468,7 @@ The `Enrollment` join entity defines its own PK, so duplicates of this sort are 
 
 ## Update the database context
 
-Add the following highlighted code to *Data/SchoolContext.cs*:
+Update *Data/SchoolContext.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Data/SchoolContext.cs?highlight=15-18,25-31)]
 
@@ -555,7 +551,7 @@ The ALTER TABLE statement conflicted with the FOREIGN KEY constraint "FK_dbo.Cou
 database "ContosoUniversity", table "dbo.Department", column 'DepartmentID'.
 ```
 
-In the next section, you'll see what to do about this error.
+In the next section, you see what to do about this error.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -566,7 +562,7 @@ SQLite does not support this migration operation ('DropForeignKeyOperation').
 For more information, see http://go.microsoft.com/fwlink/?LinkId=723262.
 ```
 
-In the next section, you'll see how to avoid this error.
+In the next section, you see how to avoid this error.
 
 ---
 

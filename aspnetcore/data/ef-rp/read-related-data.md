@@ -28,7 +28,7 @@ The following illustrations show the completed pages for this tutorial:
 
 There are several ways that EF Core can load related data into the navigation properties of an entity:
 
-* [Eager loading](/ef/core/querying/related-data#eager-loading). Eager loading is when a query for one type of entity also loads related entities. When an entity is read, its related data is retrieved. This typically results in a single join query that retrieves all of the data that's needed. EF Core will issue multiple queries for some types of eager loading. Issuing multiple queries can be more efficient than was the case for some queries in EF6 where there was a giant single query. Eager loading is specified with the `Include` and `ThenInclude` methods.
+* [Eager loading](/ef/core/querying/related-data#eager-loading). Eager loading is when a query for one type of entity also loads related entities. When an entity is read, its related data is retrieved. This typically results in a single join query that retrieves all of the data that's needed. EF Core will issue multiple queries for some types of eager loading. Issuing multiple queries can be more efficient than a giant single query. Eager loading is specified with the `Include` and `ThenInclude` methods.
 
   ![Eager loading example](read-related-data/_static/eager-loading.png)
  
@@ -49,7 +49,7 @@ There are several ways that EF Core can load related data into the navigation pr
 
 * [Lazy loading](/ef/core/querying/related-data#lazy-loading). [Lazy loading was added to EF Core in version 2.1](/ef/core/querying/related-data#lazy-loading). When the entity is first read, related data isn't retrieved. The first time a navigation property is accessed, the data required for that navigation property is automatically retrieved. A query is sent to the database each time a navigation property is accessed for the first time.
 
-## Create a Course page that displays department name
+## Create Course pages
 
 The `Course` entity includes a navigation property that contains the related `Department` entity.
 
@@ -98,19 +98,18 @@ To display the name of the assigned department for a course:
 
 ### Display the department name
 
-Replace the code in Pages/Courses/Index.cshtml.cs with the following code:
+Update Pages/Courses/Index.cshtml.cs with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Index.cshtml.cs?highlight=18,22,24)]
 
 The preceding code changes the `Course` property to `Courses` and adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities don't need to be tracked because they're not updated in the current context.
 
-Replace the code in *Pages/Courses/Index.cshtml* with the following code. The changes are highlighted.
+Update *Pages/Courses/Index.cshtml* with the following code.
 
 [!code-cshtml[](intro/samples/cu30/Pages/Courses/Index.cshtml?highlight=5,8,16-18,20,23,26,32,35-37,45)]
 
 The following changes have been made to the scaffolded code:
 
-* Changed the heading from Index to Courses.
 * Changed the `Course` property name to `Courses`.
 * Added a **Number** column that shows the `CourseID` property value. By default, primary keys aren't scaffolded because normally they're meaningless to end users. However, in this case the primary key is meaningful.
 * Changed the **Department** column to display the department name. The code displays the `Name` property of the `Department` entity that's loaded into the `Department` navigation property:
@@ -139,7 +138,7 @@ The `CourseViewModel`:
 
 See [IndexSelect.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml) and [IndexSelect.cshtml.cs](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml.cs) for a complete example.
 
-## Create an Instructors page that shows Courses and Enrollments
+## Create Instructor pages
 
 This section scaffolds Instructor pages and adds related Courses and Enrollments to the Instructors Index page.
 
@@ -190,7 +189,9 @@ Create *SchoolViewModels/InstructorIndexData.cs* with the following code:
 
 ---
 
-Replace the code in *Pages/Instructors/Index.cshtml.cs* with the following code:
+To see what the scaffolded page looks like before you update it, run the app and navigate to the Instructors page.
+
+Update *Pages/Instructors/Index.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,19-53)]
 
@@ -229,7 +230,7 @@ The following code populates the view model's `Enrollments` property when a cour
 
 ### Update the instructors Index page
 
-Replace the code in *Pages/Instructors/Index.cshtml* with the following code. The changes are highlighted.
+Update *Pages/Instructors/Index.cshtml* with the following code.
 
 [!code-cshtml[](intro/samples/cu30/Pages/Instructors/Index.cshtml?highlight=1,5,8,16-21,25-32,43-57,67-102,104-126)]
 
@@ -237,13 +238,12 @@ The preceding code makes the following changes:
 
 * Updates the `page` directive from `@page` to `@page "{id:int?}"`. `"{id:int?}"` is a route template. The route template changes integer query strings in the URL to route data. For example, clicking on the **Select** link for an instructor with only the `@page` directive produces a URL like the following:
 
-  `http://localhost:1234/Instructors?id=2`
+  `https://localhost:5001/Instructors?id=2`
 
   When the page directive is `@page "{id:int?}"`, the URL is:
 
-  `http://localhost:1234/Instructors/2`
+  `https://localhost:5001/Instructors/2`
 
-* Changes the page title to **Instructors**.
 * Adds an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` isn't null. Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.
 
   ```html
@@ -276,7 +276,7 @@ The preceding code makes the following changes:
 
 * Adds a table of student enrollments for the selected course.
 
-Run the app and select the **Instructors** tab. The page displays the `Location` (office) from the related `OfficeAssignment` entity. If OfficeAssignment` is null, an empty table cell is displayed.
+Run the app and select the **Instructors** tab. The page displays the `Location` (office) from the related `OfficeAssignment` entity. If `OfficeAssignment` is null, an empty table cell is displayed.
 
 Click on the **Select** link for an instructor. The row style changes and courses assigned to that instructor are displayed.
 
@@ -300,7 +300,7 @@ The current code specifies eager loading for `Enrollments` and `Students`:
 
 Suppose users rarely want to see enrollments in a course. In that case, an optimization would be to only load the enrollment data if it's requested. In this section, the `OnGetAsync` is updated to use explicit loading of `Enrollments` and `Students`.
 
-Replace the code in *Pages/Instructors/Index.cshtml.cs* with the following code. The changes are highlighted.
+Update *Pages/Instructors/Index.cshtml.cs* with the following code.
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Index.cshtml.cs?highlight=31-35,52-56)]
 
