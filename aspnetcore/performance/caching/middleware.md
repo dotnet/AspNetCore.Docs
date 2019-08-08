@@ -5,7 +5,7 @@ description: Learn how to configure and use Response Caching Middleware in ASP.N
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/05/2019
+ms.date: 08/08/2019
 uid: performance/caching/middleware
 ---
 # Response Caching Middleware in ASP.NET Core
@@ -22,18 +22,48 @@ Use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app
 
 In `Startup.ConfigureServices`, add the Response Caching Middleware to the service collection:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet1&highlight=3)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](middleware/samples/2.x/ResponseCachingMiddleware/Startup.cs?name=snippet1&highlight=3)]
+
+::: moniker-end
 
 Configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> extension method, which adds the middleware to the request processing pipeline in `Startup.Configure`:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=16)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](middleware/samples/2.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=14)]
+
+::: moniker-end
 
 The sample app adds headers to control caching on subsequent requests:
 
 * [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2) &ndash; Caches cacheable responses for up to 10 seconds.
 * [Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4) &ndash; Configures the middleware to serve a cached response only if the [`Accept-Encoding`](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request.
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](middleware/samples_snippets/3.x/AddHeaders.cs)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](middleware/samples_snippets/2.x/AddHeaders.cs)]
+
+::: moniker-end
 
 Response Caching Middleware only caches server responses that result in a 200 (OK) status code. Any other responses, including [error pages](xref:fundamentals/error-handling), are ignored by the middleware.
 

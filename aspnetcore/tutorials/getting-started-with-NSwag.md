@@ -65,14 +65,6 @@ Use one of the following approaches to install the NSwag NuGet package:
 * Enter "NSwag.AspNetCore" in the search box
 * Select the "NSwag.AspNetCore" package from the results pane and click **Add Package**
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-Run the following command from the **Integrated Terminal**:
-
-```console
-dotnet add TodoApi.csproj package NSwag.AspNetCore
-```
-
 # [.NET Core CLI](#tab/netcore-cli)
 
 Run the following command:
