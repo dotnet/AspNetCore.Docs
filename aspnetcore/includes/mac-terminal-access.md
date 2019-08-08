@@ -5,7 +5,7 @@ Accessing a command terminal on Mac for the first time requires the following se
 * Navigate to **System Preferences > Keyboard > Shortcuts > Services**.
 * Under **Files and Folders**, verify **New Terminal at Folder** is selected.
 
-The preceding instructions enable access a command terminal two ways: from inside **Visual Studios** or from **Finder**. 
+The preceding instructions enable access a command terminal two ways: from inside **Visual Studio** or from **Finder**. 
 
 #### To access a command terminal from Visual Studio for Mac:
 
