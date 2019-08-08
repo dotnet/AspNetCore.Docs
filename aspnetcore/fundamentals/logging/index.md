@@ -560,10 +560,10 @@ The logger methods have overloads that let you pass in an exception, as in the f
 Different providers handle the exception information in different ways. Here's an example of Debug provider output from the code shown above.
 
 ```text
-TodoApi.Controllers.TodoController:Warning: GetById(036dd898-fb01-47e8-9a65-f92eb73cf924) NOT FOUND
+TodoApiSample.Controllers.TodoController: Warning: GetById(55) NOT FOUND
 
 System.Exception: Item not found exception.
- at TodoApi.Controllers.TodoController.GetById(String id) in C:\logging\sample\src\TodoApi\Controllers\TodoController.cs:line 226
+   at TodoApiSample.Controllers.TodoController.GetById(String id) in C:\Source\AspNetCore.Docs\aspnetcore\fundamentals\logging\index\samples\3.x\TodoApiSample\Controllers\TodoController.cs:line 226
 ```
 
 ## Log filtering

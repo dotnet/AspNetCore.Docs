@@ -1,4 +1,4 @@
-﻿#define AzLogOptions// TemplateCode // LogFromMain or ExpandDefault or FilterInCode or MinLevel or FilterFunction or AzLogOptions or Scopes
+﻿#define TemplateCode // LogFromMain or ExpandDefault or FilterInCode or MinLevel or FilterFunction or AzLogOptions or Scopes
 
 using System;
 using System.Collections.Generic;
