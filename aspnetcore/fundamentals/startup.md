@@ -172,6 +172,8 @@ Additional services, such as `IHostingEnvironment` and `ILoggerFactory`, or anyt
 
 For more information on how to use `IApplicationBuilder` and the order of middleware processing, see <xref:fundamentals/middleware/index>.
 
+<a name="convenience-methods"></a>
+
 ## Configure services without Startup
 
 To configure services and the request processing pipeline without using a `Startup` class, call `ConfigureServices` and `Configure` convenience methods on the host builder. Multiple calls to `ConfigureServices` append to one another. If multiple `Configure` method calls exist, the last `Configure` call is used.
