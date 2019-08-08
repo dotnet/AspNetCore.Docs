@@ -35,7 +35,7 @@ namespace TodoApiSample
             services.AddSingleton<IMyService>((container) =>
             {
                 var logger = container.GetRequiredService<ILogger<MyService>>();
-                return new MyService() {  Logger = logger };
+                return new MyService() { Logger = logger };
             });
 
             services.AddSingleton<ITodoRepository, TodoRepository>();
