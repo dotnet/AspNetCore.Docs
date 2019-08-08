@@ -22,7 +22,7 @@ Apps are published for deployment in Release configuration.
 1. Select the *publish target*. To publish locally, select **Folder**.
 1. Accept the default location in the **Choose a folder** field or specify a different location. Select the **Publish** button.
 
-# [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
+# [.NET Core CLI](#tab/netcore-cli)
 
 Use the [dotnet publish](/dotnet/core/tools/dotnet-publish) command to publish the app with a Release configuration:
 

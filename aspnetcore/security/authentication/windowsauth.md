@@ -71,7 +71,7 @@ Alternatively, the properties can be configured in the `iisSettings` node of the
 
 [!code-json[](windowsauth/sample_snapshot/launchSettings.json?highlight=2-3)]
 
-# [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
+# [.NET Core CLI](#tab/netcore-cli)
 
 **New project**
 
