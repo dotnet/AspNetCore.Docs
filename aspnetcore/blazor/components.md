@@ -1243,6 +1243,8 @@ A localization culture cookie can persist the user's culture. The cookie is crea
 
 Use of a cookie ensures that the WebSocket connection can correctly propagate the culture. If localization schemes are based on the URL path or query string, the scheme might not be able to work with WebSockets, thus fail to persist the culture. Therefore, use of a localization culture cookie is the recommended approach.
 
+Any technique can be used to assign a culture if the culture is persisted in a localization cookie. If the app already has an established localization scheme for server-side ASP.NET Core, continue to use the app's existing localization infrastructure and set the localization culture cookie within the app's scheme.
+
 The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware. Create a *Pages/Host.cshtml.cs* file with the following contents in the Blazor server-side app:
 
 ```csharp
@@ -1297,7 +1299,7 @@ public class CultureController : Controller
 ```
 
 > [!WARNING]
-> Use the `LocalRedirect` action result for security reasons.
+> Use the `LocalRedirect` action result to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
 
 The following component shows an example of how to perform the initial redirection when the user selects a culture:
 
