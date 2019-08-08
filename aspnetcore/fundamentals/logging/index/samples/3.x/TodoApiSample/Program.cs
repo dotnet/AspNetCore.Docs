@@ -154,9 +154,9 @@ namespace TodoApiSample
             CreateHostBuilder(args).Build().Run();
         }
 
+        #region snippet_MinLevel
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-        #region snippet_MinLevel
                 .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning))
         #endregion
                 .ConfigureWebHostDefaults(webBuilder =>
