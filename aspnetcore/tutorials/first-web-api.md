@@ -109,18 +109,12 @@ The following diagram shows the design of the app.
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
-Open a command window in the project folder and run the following commands:
+Open a command terminal in the project folder and run the following commands:
 
    ```console
    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
    dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.0.0-*
    ```
-
-* When a dialog box asks if you want to add required assets to the project, select **Yes**.
-
-  The preceding commands:
-
-  * Creates a new web API project and opens it in Visual Studio Code.
 
 ---
 
