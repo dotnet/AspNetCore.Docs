@@ -5,7 +5,7 @@ description: Discover how route and app model provider conventions help you cont
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/07/2019
+ms.date: 08/08/2019
 uid: razor-pages/razor-pages-conventions
 ---
 # Razor Pages route and app conventions in ASP.NET Core
@@ -37,11 +37,16 @@ public void ConfigureServices(IServiceCollection services)
         .AddRazorPagesOptions(options =>
             {
                 options.Conventions.Add( ... );
-                options.Conventions.AddFolderRouteModelConvention("/OtherPages", model => { ... });
-                options.Conventions.AddPageRouteModelConvention("/About", model => { ... });
-                options.Conventions.AddPageRoute("/Contact", "TheContactPage/{text?}");
-                options.Conventions.AddFolderApplicationModelConvention("/OtherPages", model => { ... });
-                options.Conventions.AddPageApplicationModelConvention("/About", model => { ... });
+                options.Conventions.AddFolderRouteModelConvention(
+                    "/OtherPages", model => { ... });
+                options.Conventions.AddPageRouteModelConvention(
+                    "/About", model => { ... });
+                options.Conventions.AddPageRoute(
+                    "/Contact", "TheContactPage/{text?}");
+                options.Conventions.AddFolderApplicationModelConvention(
+                    "/OtherPages", model => { ... });
+                options.Conventions.AddPageApplicationModelConvention(
+                    "/About", model => { ... });
                 options.Conventions.ConfigureFilter(model => { ... });
                 options.Conventions.ConfigureFilter( ... );
             });
@@ -78,7 +83,17 @@ Use <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> to 
 
 The sample app adds a `{globalTemplate?}` route template to all of the pages in the app:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Conventions/GlobalTemplatePageRouteModelConvention.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Conventions/GlobalTemplatePageRouteModelConvention.cs?name=snippet1)]
+
+::: moniker-end
 
 The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order*> property for the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel> is set to `1`. This ensures the following route matching behavior in the sample app:
 
@@ -90,7 +105,17 @@ Wherever possible, don't set the `Order`, which results in `Order = 0`. Rely on 
 
 Razor Pages options, such as adding <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions>, are added when MVC is added to the service collection in `Startup.ConfigureServices`. For an example, see the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/).
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet1)]
+
+::: moniker-end
 
 Request the sample's About page at `localhost:5000/About/GlobalRouteValue` and inspect the result:
 
@@ -104,11 +129,31 @@ To demonstrate this and other conventions later in the topic, the sample app inc
 
 The sample app uses the `AddHeaderAttribute` class to add a header, `GlobalHeader`, to all of the pages in the app:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Conventions/GlobalHeaderPageApplicationModelConvention.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Conventions/GlobalHeaderPageApplicationModelConvention.cs?name=snippet1)]
+
+::: moniker-end
 
 *Startup.cs*:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet2)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet2)]
+
+::: moniker-end
 
 Request the sample's About page at `localhost:5000/About` and inspect the headers to view the result:
 
@@ -118,11 +163,31 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 
 Use <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions.Conventions> to create and add an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageHandlerModelConvention> to the collection of <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageConvention> instances that are applied during page handler model construction.
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Conventions/GlobalPageHandlerModelConvention.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Conventions/GlobalPageHandlerModelConvention.cs?name=snippet1)]
+
+::: moniker-end
 
 *Startup.cs*:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet10)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet10)]
+
+::: moniker-end
 
 ## Page route action conventions
 
@@ -134,7 +199,17 @@ Use <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.Ad
 
 The sample app uses <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderRouteModelConvention*> to add an `{otherPagesTemplate?}` route template to the pages in the *OtherPages* folder:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet3)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet3)]
+
+::: moniker-end
 
 The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order*> property for the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel> is set to `2`. This ensures that the template for `{globalTemplate?}` (set earlier in the topic to `1`) is given priority for the first route data value position when a single route value is provided. If a page in the *Pages/OtherPages* folder is requested with a route parameter value (for example, `/OtherPages/Page1/RouteDataValue`), "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 1`) and not `RouteData.Values["otherPagesTemplate"]` (`Order = 2`) due to setting the `Order` property.
 
@@ -150,7 +225,17 @@ Use <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.Ad
 
 The sample app uses `AddPageRouteModelConvention` to add an `{aboutTemplate?}` route template to the About page:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet4)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet4)]
+
+::: moniker-end
 
 The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel.Order*> property for the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.AttributeRouteModel> is set to `2`. This ensures that the template for `{globalTemplate?}` (set earlier in the topic to `1`) is given priority for the first route data value position when a single route value is provided. If the About page is requested with a route parameter value at `/About/RouteDataValue`, "RouteDataValue" is loaded into `RouteData.Values["globalTemplate"]` (`Order = 1`) and not `RouteData.Values["aboutTemplate"]` (`Order = 2`) due to setting the `Order` property.
 
@@ -204,13 +289,33 @@ Use <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExten
 
 The sample app creates a route to `/TheContactPage` for *Contact.cshtml*:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet5)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet5)]
+
+::: moniker-end
 
 The Contact page can also be reached at `/Contact` via its default route.
 
 The sample app's custom route to the Contact page allows for an optional `text` route segment (`{text?}`). The page also includes this optional segment in its `@page` directive in case the visitor accesses the page at its `/Contact` route:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-cshtml[](razor-pages-conventions/samples/3.x/SampleApp/Pages/Contact.cshtml?highlight=1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-cshtml[](razor-pages-conventions/samples/2.x/SampleApp/Pages/Contact.cshtml?highlight=1)]
+
+::: moniker-end
 
 Note that the URL generated for the **Contact** link in the rendered page reflects the updated route:
 
@@ -228,7 +333,17 @@ The default page model provider that implements <xref:Microsoft.AspNetCore.Mvc.A
 
 For the examples in this section, the sample app uses an `AddHeaderAttribute` class, which is a <xref:Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute>, that applies a response header:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Filters/AddHeader.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Filters/AddHeader.cs?name=snippet1)]
+
+::: moniker-end
 
 Using conventions, the sample demonstrates how to apply the attribute to all of the pages in a folder and to a single page.
 
@@ -238,7 +353,17 @@ Use <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.Ad
 
 The sample demonstrates the use of `AddFolderApplicationModelConvention` by adding a header, `OtherPagesHeader`, to the pages inside the *OtherPages* folder of the app:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet6)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet6)]
+
+::: moniker-end
 
 Request the sample's Page1 page at `localhost:5000/OtherPages/Page1` and inspect the headers to view the result:
 
@@ -250,7 +375,17 @@ Use <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.Ad
 
 The sample demonstrates the use of `AddPageApplicationModelConvention` by adding a header, `AboutHeader`, to the About page:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet7)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet7)]
+
+::: moniker-end
 
 Request the sample's About page at `localhost:5000/About` and inspect the headers to view the result:
 
@@ -260,7 +395,17 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 
 <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> configures the specified filter to apply. You can implement a filter class, but the sample app shows how to implement a filter in a lambda expression, which is implemented behind-the-scenes as a factory that returns a filter:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet8)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet8)]
+
+::: moniker-end
 
 The page app model is used to check the relative path for segments that lead to the Page2 page in the *OtherPages* folder. If the condition passes, a header is added. If not, the `EmptyFilter` is applied.
 
@@ -276,11 +421,31 @@ Request the sample's Page2 page at `localhost:5000/OtherPages/Page2` and inspect
 
 The sample app provides an example of using a [filter factory](xref:mvc/controllers/filters#ifilterfactory) by adding a header, `FilterFactoryHeader`, with two values to the app's pages:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet9)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet9)]
+
+::: moniker-end
 
 *AddHeaderWithFactory.cs*:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Factories/AddHeaderWithFactory.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Factories/AddHeaderWithFactory.cs?name=snippet1)]
+
+::: moniker-end
 
 Request the sample's About page at `localhost:5000/About` and inspect the headers to view the result:
 
