@@ -71,17 +71,12 @@ namespace TodoApi.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(TodoItem), 201)]
         [ProducesResponseType(400)]
-        public IActionResult Create([FromBody] TodoItem item)
+        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem item)
         {
-            if (item == null)
-            {
-                return BadRequest();
-            }
-
             _context.TodoItems.Add(item);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
-            return CreatedAtRoute("GetTodo", new { id = item.Id }, item);
+            return CreatedAtAction(nameof(GetTodoItem), new { id = item.Id }, item);
         }
         #endregion
 
