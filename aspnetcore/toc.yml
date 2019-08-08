@@ -701,6 +701,8 @@
         - name: Overview
           displayName: deploy, publish
           uid: host-and-deploy/iis/index
+        - name: Publish to IIS tutorial
+          uid: tutorials/publish-to-iis
         - name: ASP.NET Core Module
           displayName: deploy, publish
           uid: host-and-deploy/aspnet-core-module
