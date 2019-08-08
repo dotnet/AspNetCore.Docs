@@ -12,7 +12,7 @@ uid: tutorials/publish-to-iis
 
 By [Luke Latham](https://github.com/guardrex)
 
-This tutorial shows you how to host an ASP.NET Core app on an IIS server.
+This tutorial shows how to host an ASP.NET Core app on an IIS server.
 
 This tutorial covers the following subjects:
 
