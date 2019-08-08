@@ -107,7 +107,7 @@ The following diagram shows the design of the app.
 
   ![config dialog](first-web-api-mac/_static/2.png)
 
-[!INCLUDE[](~/includes/includes/mac-terminal-access.md)]
+[!INCLUDE[](~/includes/mac-terminal-access.md)]
 
 Open a command window in the project folder and run the following commands:
 
