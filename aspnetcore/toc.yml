@@ -104,8 +104,6 @@
         - name: EF Core with Razor Pages
           displayName: tutorial
           items:
-            - name: Overview
-              uid: data/ef-rp/index
             - name: Get started
               uid: data/ef-rp/intro
             - name: Create, Read, Update, and Delete
@@ -581,8 +579,6 @@
       items:
         - name: EF Core with Razor Pages
           items:
-            - name: Overview
-              uid: data/ef-rp/index
             - name: Get started
               uid: data/ef-rp/intro
             - name: Create, Read, Update, and Delete

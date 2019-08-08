@@ -4,7 +4,7 @@ author: rick-anderson
 description: In this tutorial you read and display related data -- that is, data that the Entity Framework loads into navigation properties.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2018
+ms.date: 07/22/2019
 uid: data/ef-rp/read-related-data
 ---
 
@@ -13,6 +13,317 @@ uid: data/ef-rp/read-related-data
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
+
+::: moniker range=">= aspnetcore-3.0"
+
+This tutorial shows how to read and display related data. Related data is data that EF Core loads into navigation properties.
+
+The following illustrations show the completed pages for this tutorial:
+
+![Courses Index page](read-related-data/_static/courses-index30.png)
+
+![Instructors Index page](read-related-data/_static/instructors-index30.png)
+
+## Eager, explicit, and lazy loading
+
+There are several ways that EF Core can load related data into the navigation properties of an entity:
+
+* [Eager loading](/ef/core/querying/related-data#eager-loading). Eager loading is when a query for one type of entity also loads related entities. When an entity is read, its related data is retrieved. This typically results in a single join query that retrieves all of the data that's needed. EF Core will issue multiple queries for some types of eager loading. Issuing multiple queries can be more efficient than a giant single query. Eager loading is specified with the `Include` and `ThenInclude` methods.
+
+  ![Eager loading example](read-related-data/_static/eager-loading.png)
+ 
+  Eager loading sends multiple queries when a collection navigation is included:
+
+  * One query for the main query 
+  * One query for each collection "edge" in the load tree.
+
+* Separate queries with `Load`: The data can be retrieved in separate queries, and EF Core "fixes up" the navigation properties. "Fixes up" means that EF Core automatically populates the navigation properties. Separate queries with `Load` is more like explicit loading than eager loading.
+
+  ![Separate queries example](read-related-data/_static/separate-queries.png)
+
+  Note: EF Core automatically fixes up navigation properties to any other entities that were previously loaded into the context instance. Even if the data for a navigation property is *not* explicitly included, the property may still be populated if some or all of the related entities were previously loaded.
+
+* [Explicit loading](/ef/core/querying/related-data#explicit-loading). When the entity is first read, related data isn't retrieved. Code must be written to retrieve the related data when it's needed. Explicit loading with separate queries results in multiple queries sent to the database. With explicit loading, the code specifies the navigation properties to be loaded. Use the `Load` method to do explicit loading. For example:
+
+  ![Explicit loading example](read-related-data/_static/explicit-loading.png)
+
+* [Lazy loading](/ef/core/querying/related-data#lazy-loading). [Lazy loading was added to EF Core in version 2.1](/ef/core/querying/related-data#lazy-loading). When the entity is first read, related data isn't retrieved. The first time a navigation property is accessed, the data required for that navigation property is automatically retrieved. A query is sent to the database each time a navigation property is accessed for the first time.
+
+## Create Course pages
+
+The `Course` entity includes a navigation property that contains the related `Department` entity.
+
+![Course.Department](read-related-data/_static/dep-crs.png)
+
+To display the name of the assigned department for a course:
+
+* Load the related `Department` entity into the `Course.Department` navigation property.
+* Get the name from the `Department` entity's `Name` property.
+
+<a name="scaffold"></a>
+
+### Scaffold Course pages
+
+# [Visual Studio](#tab/visual-studio)
+
+* Follow the instructions in [Scaffold Student pages](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
+
+  * Create a *Pages/Courses* folder.
+  * Use `Course` for the model class.
+  * Use the existing context class instead of creating a new one.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Create a *Pages/Courses* folder.
+
+* Run the following command to scaffold the Course pages.
+
+  **On Windows:**
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
+  ```
+
+  **On Linux or macOS:**
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages/Courses --referenceScriptLibraries
+  ```
+
+---
+
+* Open *Pages/Courses/Index.cshtml.cs* and examine the `OnGetAsync` method. The scaffolding engine specified eager loading for the `Department` navigation property. The `Include` method specifies eager loading.
+
+* Run the app and select the **Courses** link. The department column displays the `DepartmentID`, which isn't useful.
+
+### Display the department name
+
+Update Pages/Courses/Index.cshtml.cs with the following code:
+
+[!code-csharp[](intro/samples/cu30/Pages/Courses/Index.cshtml.cs?highlight=18,22,24)]
+
+The preceding code changes the `Course` property to `Courses` and adds `AsNoTracking`. `AsNoTracking` improves performance because the entities returned are not tracked. The entities don't need to be tracked because they're not updated in the current context.
+
+Update *Pages/Courses/Index.cshtml* with the following code.
+
+[!code-cshtml[](intro/samples/cu30/Pages/Courses/Index.cshtml?highlight=5,8,16-18,20,23,26,32,35-37,45)]
+
+The following changes have been made to the scaffolded code:
+
+* Changed the `Course` property name to `Courses`.
+* Added a **Number** column that shows the `CourseID` property value. By default, primary keys aren't scaffolded because normally they're meaningless to end users. However, in this case the primary key is meaningful.
+* Changed the **Department** column to display the department name. The code displays the `Name` property of the `Department` entity that's loaded into the `Department` navigation property:
+
+  ```html
+  @Html.DisplayFor(modelItem => item.Department.Name)
+  ```
+
+Run the app and select the **Courses** tab to see the list with department names.
+
+![Courses Index page](read-related-data/_static/courses-index30.png)
+
+<a name="select"></a>
+
+### Loading related data with Select
+
+The `OnGetAsync` method loads related data with the `Include` method. The `Select` method is an alternative that loads only the related data needed. For single items, like the `Department.Name` it uses a SQL INNER JOIN. For collections, it uses another database access, but so does the `Include` operator on collections.
+
+The following code loads related data with the `Select` method:
+
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=6)]
+
+The `CourseViewModel`:
+
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Models/SchoolViewModels/CourseViewModel.cs?name=snippet)]
+
+See [IndexSelect.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml) and [IndexSelect.cshtml.cs](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml.cs) for a complete example.
+
+## Create Instructor pages
+
+This section scaffolds Instructor pages and adds related Courses and Enrollments to the Instructors Index page.
+
+<a name="IP"></a>
+![Instructors Index page](read-related-data/_static/instructors-index30.png)
+
+This page reads and displays related data in the following ways:
+
+* The list of instructors displays related data from the `OfficeAssignment` entity (Office in the preceding image). The `Instructor` and `OfficeAssignment` entities are in a one-to-zero-or-one relationship. Eager loading is used for the `OfficeAssignment` entities. Eager loading is typically more efficient when the related data needs to be displayed. In this case, office assignments for the instructors are displayed.
+* When the user selects an instructor, related `Course` entities are displayed. The `Instructor` and `Course` entities are in a many-to-many relationship. Eager loading is used for the `Course` entities and their related `Department` entities. In this case, separate queries might be more efficient because only courses for the selected instructor are needed. This example shows how to use eager loading for navigation properties in entities that are in navigation properties.
+* When the user selects a course, related data from the `Enrollments` entity is displayed. In the preceding image, student name and grade are displayed. The `Course` and `Enrollment` entities are in a one-to-many relationship.
+
+### Create a view model
+
+The instructors page shows data from three different tables. A view model is needed that includes three properties representing the three tables.
+
+Create *SchoolViewModels/InstructorIndexData.cs* with the following code:
+
+[!code-csharp[](intro/samples/cu30/Models/SchoolViewModels/InstructorIndexData.cs)]
+
+### Scaffold Instructor pages
+
+# [Visual Studio](#tab/visual-studio)
+
+* Follow the instructions in [Scaffold the student pages](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
+
+  * Create a *Pages/Instructors* folder.
+  * Use `Instructor` for the model class.
+  * Use the existing context class instead of creating a new one.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Create a *Pages/Instructors* folder.
+
+* Run the following command to scaffold the Instructor pages.
+
+  **On Windows:**
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
+  ```
+
+  **On Linux or macOS:**
+
+  ```console
+  dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages/Instructors --referenceScriptLibraries
+  ```
+
+---
+
+To see what the scaffolded page looks like before you update it, run the app and navigate to the Instructors page.
+
+Update *Pages/Instructors/Index.cshtml.cs* with the following code:
+
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_all&highlight=2,19-53)]
+
+The `OnGetAsync` method accepts optional route data for the ID of the selected instructor.
+
+Examine the query in the *Pages/Instructors/Index.cshtml.cs* file:
+
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_EagerLoading)]
+
+The code specifies eager loading for the following navigation properties:
+
+* `Instructor.OfficeAssignment`
+* `Instructor.CourseAssignments`
+  * `CourseAssignments.Course`
+    * `Course.Department`
+    * `Course.Enrollments`
+      * `Enrollment.Student`
+
+Notice the repetition of `Include` and `ThenInclude` methods for `CourseAssignments` and `Course`. This repetition is necessary to specify eager loading for two navigation properties of the `Course` entity.
+
+The following code executes when an instructor is selected (`id != null`).
+
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_SelectInstructor)]
+
+The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is loaded with the `Course` entities from that instructor's `CourseAssignments` navigation property.
+
+The `Where` method returns a collection. But in this case, the filter will select a single entity. so the `Single` method is called to convert the collection into a single `Instructor` entity. The `Instructor` entity provides access to the `CourseAssignments` property. `CourseAssignments` provides access to the related `Course` entities.
+
+![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
+
+The `Single` method is used on a collection when the collection has only one item. The `Single` method throws an exception if the collection is empty or if there's more than one item. An alternative is `SingleOrDefault`, which returns a default value (null in this case) if the collection is empty.
+
+The following code populates the view model's `Enrollments` property when a course is selected:
+
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_SelectCourse)]
+
+### Update the instructors Index page
+
+Update *Pages/Instructors/Index.cshtml* with the following code.
+
+[!code-cshtml[](intro/samples/cu30/Pages/Instructors/Index.cshtml?highlight=1,5,8,16-21,25-32,43-57,67-102,104-126)]
+
+The preceding code makes the following changes:
+
+* Updates the `page` directive from `@page` to `@page "{id:int?}"`. `"{id:int?}"` is a route template. The route template changes integer query strings in the URL to route data. For example, clicking on the **Select** link for an instructor with only the `@page` directive produces a URL like the following:
+
+  `https://localhost:5001/Instructors?id=2`
+
+  When the page directive is `@page "{id:int?}"`, the URL is:
+
+  `https://localhost:5001/Instructors/2`
+
+* Adds an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` isn't null. Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.
+
+  ```html
+  @if (item.OfficeAssignment != null)
+  {
+      @item.OfficeAssignment.Location
+  }
+  ```
+
+* Adds a **Courses** column that displays courses taught by each instructor. See [Explicit Line Transition with `@:`](xref:mvc/views/razor#explicit-line-transition-with-) for more about this razor syntax.
+
+* Adds code that dynamically adds `class="success"` to the `tr` element of the selected instructor and course. This sets a background color for the selected row using a Bootstrap class.
+
+  ```html
+  string selectedRow = "";
+  if (item.CourseID == Model.CourseID)
+  {
+      selectedRow = "success";
+  }
+  <tr class="@selectedRow">
+  ```
+
+* Adds a new hyperlink labeled **Select**. This link sends the selected instructor's ID to the `Index` method and sets a background color.
+
+  ```html
+  <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
+  ```
+
+* Adds a table of courses for the selected Instructor.
+
+* Adds a table of student enrollments for the selected course.
+
+Run the app and select the **Instructors** tab. The page displays the `Location` (office) from the related `OfficeAssignment` entity. If `OfficeAssignment` is null, an empty table cell is displayed.
+
+Click on the **Select** link for an instructor. The row style changes and courses assigned to that instructor are displayed.
+
+Select a course to see the list of enrolled students and their grades.
+
+![Instructors Index page instructor and course selected](read-related-data/_static/instructors-index30.png)
+
+## Using Single
+
+The `Single` method can pass in the `Where` condition instead of calling the `Where` method separately:
+
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/IndexSingle.cshtml.cs?name=snippet_single&highlight=21-22,30-31)]
+
+Use of `Single` with a Where condition is a matter of personal preference. It provides no benefits over using the `Where` method.
+
+## Explicit loading
+
+The current code specifies eager loading for `Enrollments` and `Students`:
+
+[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_EagerLoading&highlight=6-9)]
+
+Suppose users rarely want to see enrollments in a course. In that case, an optimization would be to only load the enrollment data if it's requested. In this section, the `OnGetAsync` is updated to use explicit loading of `Enrollments` and `Students`.
+
+Update *Pages/Instructors/Index.cshtml.cs* with the following code.
+
+[!code-csharp[](intro/samples/cu30/Pages/Instructors/Index.cshtml.cs?highlight=31-35,52-56)]
+
+The preceding code drops the *ThenInclude* method calls for enrollment and student data. If a course is selected, the explicit loading code retrieves:
+
+* The `Enrollment` entities for the selected course.
+* The `Student` entities for each `Enrollment`.
+
+Notice that the preceding code comments out `.AsNoTracking()`. Navigation properties can only be explicitly loaded for tracked entities.
+
+Test the app. From a user's perspective, the app behaves identically to the previous version.
+
+## Next steps
+
+The next tutorial shows how to update related data.
+
+>[!div class="step-by-step"]
+>[Previous tutorial](xref:data/ef-rp/complex-data-model)
+>[Next tutorial](xref:data/ef-rp/update-related-data)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
 
 In this tutorial, related data is read and displayed. Related data is data that EF Core loads into navigation properties.
 
@@ -37,7 +348,7 @@ There are several ways that EF Core can load related data into the navigation pr
   * One query for the main query 
   * One query for each collection "edge" in the load tree.
 
-* Separate queries with `Load`: The data can be retrieved in separate queries, and EF Core "fixes up" the navigation properties. "fixes up" means that EF Core automatically populates the navigation properties. Separate queries with `Load` is more like explict loading than eager loading.
+* Separate queries with `Load`: The data can be retrieved in separate queries, and EF Core "fixes up" the navigation properties. "fixes up" means that EF Core automatically populates the navigation properties. Separate queries with `Load` is more like explicit loading than eager loading.
 
   ![Separate queries example](read-related-data/_static/separate-queries.png)
 
@@ -68,9 +379,9 @@ To display the name of the assigned department in a list of courses:
 
 # [Visual Studio](#tab/visual-studio) 
 
-Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Course` for the model class.
+Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-student-pages) and use `Course` for the model class.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [Visual Studio Code](#tab/visual-studio-code)
 
  Run the following command:
 
@@ -155,9 +466,9 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 
 # [Visual Studio](#tab/visual-studio) 
 
-Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Instructor` for the model class.
+Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-student-pages) and use `Instructor` for the model class.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [Visual Studio Code](#tab/visual-studio-code)
 
  Run the following command:
 
@@ -232,8 +543,6 @@ The preceding markup makes the following changes:
 
 Run the app and select the **Instructors** tab. The page displays the `Location` (office) from the related `OfficeAssignment` entity. If OfficeAssignment` is null, an empty table cell is displayed.
 
-![Instructors Index page nothing selected](read-related-data/_static/instructors-index-no-selection.png)
-
 Click on the **Select** link. The row style changes.
 
 ### Add courses taught by selected instructor
@@ -276,8 +585,6 @@ Add the following markup to the end of the *Pages/Instructors/Index.cshtml* Razo
 The preceding markup displays a list of courses related to an instructor when an instructor is selected.
 
 Test the app. Click on a **Select** link on the instructors page.
-
-![Instructors Index page instructor selected](read-related-data/_static/instructors-index-instructor-selected.png)
 
 ### Show student data
 
@@ -336,3 +643,5 @@ The next tutorial shows how to update related data.
 >[!div class="step-by-step"]
 >[Previous](xref:data/ef-rp/complex-data-model)
 >[Next](xref:data/ef-rp/update-related-data)
+
+::: moniker-end
