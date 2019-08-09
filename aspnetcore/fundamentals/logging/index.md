@@ -16,7 +16,7 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Steve Smith](https://ardalis.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Most of the code examples shown in this article are from ASP.NET apps. The logging-specific parts of these code snippets apply to any .NET app that uses the [Generic host](xref:fundamentals/host/generic-host). For information about how to use the Generic Host in non-web console apps, see [Hosted services](xref:fundamentals/host/hosted-services).
+Most of the code examples shown in this article are from ASP.NET Core apps. The logging-specific parts of these code snippets apply to any .NET Core app that uses the [Generic host](xref:fundamentals/host/generic-host). For information about how to use the Generic Host in non-web console apps, see [Hosted services](xref:fundamentals/host/hosted-services).
 
 Logging code for apps without Generic Host differs in the way [providers are added](#add-providers) and [loggers are created](#create-logs). Non-host code examples are shown in those sections of the article.
 
@@ -30,7 +30,7 @@ A logging provider displays or stores logs. For example, the Console provider di
 
 ::: moniker range=">= aspnetcore-3.0"
 
-To add a provider in app that uses Generic Host, call the provider's `Add{provider name}` extension method in *Program.cs*:
+To add a provider in an app that uses Generic Host, call the provider's `Add{provider name}` extension method in *Program.cs*:
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_AddProvider&highlight=6)]
 
@@ -40,7 +40,7 @@ In a non-host console app, call the provider's `Add{provider name}` extension me
 
 `LoggerFactory` and `AddConsole` require a `using` statement for `Microsoft.Extensions.Logging`.
 
-The default ASP.NET project templates call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>, which adds the following logging providers:
+The default ASP.NET Core project templates call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>, which adds the following logging providers:
 
 * Console
 * Debug
@@ -81,7 +81,7 @@ Learn more about [built-in logging providers](#built-in-logging-providers) and [
 
 To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object. In a web app or hosted service, get an `ILogger` from dependency injection (DI). In non-host console apps, use the `LoggerFactory` to create an `ILogger`.
 
-The following ASP.NET example creates a logger with `TodoApiSample.Pages.AboutModel` as the category. The log *category* is a string that is associated with each log. The `ILogger<T>` instance provided by DI creates logs that have the fully qualified name of type `T` as the category. 
+The following ASP.NET Core example creates a logger with `TodoApiSample.Pages.AboutModel` as the category. The log *category* is a string that is associated with each log. The `ILogger<T>` instance provided by DI creates logs that have the fully qualified name of type `T` as the category. 
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -99,7 +99,7 @@ The following non-host console app example creates a logger with `LoggingConsole
 
 ::: moniker-end
 
-The logger is used to create logs with `Information` as the level. The Log *level* indicates the severity of the logged event. 
+In the following ASP.NET Core and console app examples, the logger is used to create logs with `Information` as the level. The Log *level* indicates the severity of the logged event. 
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -121,13 +121,13 @@ The logger is used to create logs with `Information` as the level. The Log *leve
 
 ### Create logs in the Program class
 
-To write logs in the `Program` class of an ASP.NET app, get an `ILogger` instance from DI after building the host:
+To write logs in the `Program` class of an ASP.NET Core app, get an `ILogger` instance from DI after building the host:
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=9,10)]
 
 ### Create logs in the Startup class
 
-To write logs in the `Startup.Configure` method of an ASP.NET app, include an `ILogger` parameter in the method signature:
+To write logs in the `Startup.Configure` method of an ASP.NET Core app, include an `ILogger` parameter in the method signature:
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Startup.cs?name=snippet_Configure&highlight=1,5)]
 
@@ -800,7 +800,7 @@ For apps that target ASP.NET Core 1.1.0 or later, the [Microsoft.Extensions.Logg
 logging.AddEventSourceLogger();
 ```
 
-A good way to collect and view logs is to use the [PerfView utility](https://github.com/Microsoft/perfview). There are other tools for viewing ETW logs, but PerfView provides the best experience for working with the ETW events emitted by ASP.NET.
+A good way to collect and view logs is to use the [PerfView utility](https://github.com/Microsoft/perfview). There are other tools for viewing ETW logs, but PerfView provides the best experience for working with the ETW events emitted by ASP.NET Core.
 
 To configure PerfView for collecting events logged by this provider, add the string `*Microsoft-Extensions-Logging` to the **Additional Providers** list. (Don't miss the asterisk at the start of the string.)
 
