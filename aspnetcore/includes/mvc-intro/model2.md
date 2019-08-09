@@ -1,6 +1,7 @@
 <a name="dc"></a>
 
 ::: moniker range=">= aspnetcore-3.0"
+
 Add the following `MvcMovieContext` class to the *Data* folder:  
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Data/MvcMovieContext.cs)]
