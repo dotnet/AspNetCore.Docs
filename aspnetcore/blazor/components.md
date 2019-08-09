@@ -20,10 +20,12 @@ Blazor apps are built using *components*. A component is a self-contained chunk 
 
 Components are implemented in [Razor](xref:mvc/views/razor) component files (*.razor*) using a combination of C# and HTML markup. A component in Blazor is formally referred to as a *Razor component*.
 
-Components can be authored using the *.cshtml* file extension as long as the files are identified as Razor component files using the `_RazorComponentInclude` MSBuild property. For example, an app that specifies that all *.cshtml* files under the *Pages* folder should be treated as Razor components files:
+Components can be authored using the *.cshtml* file extension. Use the `_RazorComponentInclude` MSBuild property in the project file to identify the component *.cshtml* files. For example, an app that specifies that all *.cshtml* files under the *Pages* folder should be treated as Razor components files:
 
 ```xml
-<_RazorComponentInclude>Pages\**\*.cshtml</_RazorComponentInclude>
+<PropertyGroup>
+  <_RazorComponentInclude>Pages\**\*.cshtml</_RazorComponentInclude>
+</PropertyGroup>
 ```
 
 The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When an app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
