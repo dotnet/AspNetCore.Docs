@@ -134,27 +134,26 @@ In this section, the following tasks are completed:
 1. In the PMC, enter the following commands:
 
    ```console
-   Add-Migration Initial
+   Add-Migration InitialCreate
    Update-Database
    ```
 
-    The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
+    `Add-Migration InitialCreate`generates code to create the initial database schema.
 
-   You can ignore that warning, it will be fixed in a later tutorial.
-
-   The `Add-Migration` command generates code to create the initial database schema.
-
-   The database schema is based on the model specified in the `MvcMovieContext` class. The `Initial` argument is the migration name. Any name can be used, but by convention, a name that describes the migration is used. For more information, see <xref:data/ef-mvc/migrations>.
-
-   The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
+[!INCLUDE [explain migrations](~/includes/mvc-intro/model-mig.md)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!INCLUDE [initial migration](~/includes/RP/model3.md)]
+Run the following .NET Core CLI commands:
+
+```console
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
 
 The `ef migrations add InitialCreate` command generates code to create the initial database schema.
 
-The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file). The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration.
+[!INCLUDE [explain migrations](~/includes/mvc-intro/model-mig.md)]
 
 ---
 
@@ -208,7 +207,7 @@ You missed the [migrations step](#pmc).
 
 Examine the `Startup` class:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_ConfigureServices)]
 
 The preceding code shows the movie database context being added to the [Dependency Injection](xref:fundamentals/dependency-injection) container:
 
@@ -217,7 +216,7 @@ The preceding code shows the movie database context being added to the [Dependen
 
 Open the *Controllers/MoviesController.cs* file and examine the constructor:
 
-<!-- l.. Make copy of Movies controller because we comment out the initial index method and update it later  -->
+<!-- l.. Make copy of Movies controller (or use the old one as I did in the 3.0 upgrade) because we comment out the initial index method and update it later  -->
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
@@ -230,7 +229,7 @@ The constructor uses [Dependency Injection](xref:fundamentals/dependency-injecti
 
 Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the `ViewData` dictionary. The `ViewData` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.
 
-MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables better compile time checking of your code. The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views when it created the methods and views.
+MVC also provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables compile time code checking. The scaffolding mechanism used this approach (that is, passing a strongly typed model) with the `MoviesController` class and views.
 
 Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:
 
@@ -265,19 +264,19 @@ Examine the contents of the *Views/Movies/Details.cshtml* file:
 
 [!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
 
-By including a `@model` statement at the top of the view file, you can specify the type of object that the view expects. When you created the movie controller, the following `@model` statement was automatically included at the top of the *Details.cshtml* file:
+The `@model` statement at the top of the view file specifies the type of object that the view expects. When the movie controller was created, the following `@model` statement was included:
 
 ```HTML
 @model MvcMovie.Models.Movie
    ```
 
-This `@model` directive allows you to access the movie that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Details.cshtml* view, the code passes each movie field to the `DisplayNameFor` and `DisplayFor` HTML Helpers with the strongly typed `Model` object. The `Create` and `Edit` methods and views also pass a `Movie` model object.
+This `@model` directive allows access to the movie that the controller passed to the view. The `Model` object is strongly typed. For example, in the *Details.cshtml* view, the code passes each movie field to the `DisplayNameFor` and `DisplayFor` HTML Helpers with the strongly typed `Model` object. The `Create` and `Edit` methods and views also pass a `Movie` model object.
 
 Examine the *Index.cshtml* view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_index)]
 
-When you created the movies controller, scaffolding automatically included the following `@model` statement at the top of the *Index.cshtml* file:
+When the movies controller was created, scaffolding included the following `@model` statement at the top of the *Index.cshtml* file:
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 
@@ -287,7 +286,7 @@ The `@model` directive allows you to access the list of movies that the controll
 
 [!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
-Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each item in the loop is typed as `Movie`. Among other benefits, this means that you get compile time checking of the code:
+Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each item in the loop is typed as `Movie`. Among other benefits, this means that you get compile time checking of the code.
 
 ## Additional resources
 

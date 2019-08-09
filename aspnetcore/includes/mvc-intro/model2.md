@@ -59,6 +59,12 @@ using Microsoft.EntityFrameworkCore;
 
 Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in `Startup.ConfigureServices`.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+::: moniker range=">= aspnetcore-3.0"
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie30/Startup.cs?name=snippet_UseSqlite&highlight=6-7)]
+::: moniker-end
 
-Build the project as a check for errors.
+::: moniker range="< aspnetcore-3.0"
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+::: moniker-end
+
+Build the project to check for compiler errors.

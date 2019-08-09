@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿#define NotSQLite
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,7 @@ namespace MvcMovie
 
         public IConfiguration Configuration { get; }
 
+#if NotSQLite
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
@@ -27,6 +29,18 @@ namespace MvcMovie
                     options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
         }
         #endregion
+#else
+        #region snippet_UseSqlite
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+
+            services.AddDbContext<MvcMovieContext>(options =>
+                    options.UseSqlite(Configuration.GetConnectionString("MovieContext")));
+        }
+        #endregion
+#endif
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
