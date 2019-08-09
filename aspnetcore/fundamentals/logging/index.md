@@ -2,7 +2,7 @@
 title: Logging in ASP.NET Core
 author: tdykstra
 description: Learn how to use the logging framework provided by the Microsoft.Extensions.Logging NuGet package.
-monikerRange: '>= aspnetcore-2.0'
+monikerRange: '> aspnetcore-2.0'
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 07/11/2019
@@ -848,13 +848,6 @@ The provider package isn't included in the shared framework. To use the provider
 The provider package isn't included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). When targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, add the provider package to the project. 
 
 ::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-The package is included in the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage). When targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, add the provider package to the project. 
-
-::: moniker-end
-
 
 ::: moniker range=">= aspnetcore-3.0"
 
