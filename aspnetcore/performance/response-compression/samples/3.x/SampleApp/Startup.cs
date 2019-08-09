@@ -1,25 +1,23 @@
 using System;
-using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Primitives;
-using Microsoft.Net.Http.Headers;
+using Microsoft.Extensions.Hosting;
 
 namespace ResponseCompressionSample
 {
     public class Startup
     {
-        #region snippet2
+        #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddResponseCompression(options =>
             {
+                options.Providers.Add<BrotliCompressionProvider>();
                 options.Providers.Add<GzipCompressionProvider>();
                 options.Providers.Add<CustomCompressionProvider>();
                 options.MimeTypes = 
@@ -29,7 +27,7 @@ namespace ResponseCompressionSample
         }
         #endregion
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseResponseCompression();
 
@@ -37,7 +35,6 @@ namespace ResponseCompressionSample
             {
                 fileApp.Run(context =>
                 {
-                    ManageVaryHeader(context);
                     context.Response.ContentType = "text/plain";
                     return context.Response.SendFileAsync("testfile1kb.txt");
                 });
@@ -47,10 +44,7 @@ namespace ResponseCompressionSample
             {
                 trickleApp.Run(async context =>
                 {
-                    ManageVaryHeader(context);
                     context.Response.ContentType = "text/plain";
-                    // Disables compression on net451 because that GZipStream does not implement Flush
-                    context.Features.Get<IHttpBufferingFeature>()?.DisableResponseBuffering();
 
                     for (int i = 0; i < 20; i++)
                     {
@@ -65,7 +59,6 @@ namespace ResponseCompressionSample
             {
                 fileApp.Run(context =>
                 {
-                    ManageVaryHeader(context);
                     context.Response.ContentType = "image/svg+xml";
                     return context.Response.SendFileAsync("banner.svg");
                 });
@@ -73,23 +66,9 @@ namespace ResponseCompressionSample
 
             app.Run(async context =>
             {
-                ManageVaryHeader(context);
                 context.Response.ContentType = "text/plain";
                 await context.Response.WriteAsync(LoremIpsum.Text);
             });
         }
-
-        #region snippet1
-        // ONLY REQUIRED FOR ASP.NET CORE 1.x APPS
-        private void ManageVaryHeader(HttpContext context)
-        {
-            // If the Accept-Encoding header is present, add the Vary header
-            var accept = context.Request.Headers[HeaderNames.AcceptEncoding];
-            if (!StringValues.IsNullOrEmpty(accept))
-            {
-                context.Response.Headers.Append(HeaderNames.Vary, HeaderNames.AcceptEncoding);
-            }
-        }
-        #endregion
     }
 }
