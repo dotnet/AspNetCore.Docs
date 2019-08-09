@@ -36,7 +36,7 @@ To add a provider in app that uses Generic Host, call the provider's `Add{provid
 
 In a non-host console app, call the provider's `Add{provider name}` extension method while creating a `LoggerFactory`:
 
-[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=10,16)]
+[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=1,7)]
 
 `LoggerFactory` and `AddConsole` require a `using` statement for `Microsoft.Extensions.Logging`.
 
@@ -89,7 +89,7 @@ The following ASP.NET example creates a logger with `TodoApiSample.Pages.AboutMo
 
 The following non-host console app example creates a logger with `LoggingConsoleApp.Program` as the category.
 
-[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=19)]
+[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=10)]
 
 ::: moniker-end
 
@@ -105,7 +105,7 @@ The logger is used to create logs with `Information` as the level. The Log *leve
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=4)]
 
-[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=20)]
+[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=11)]
 
 ::: moniker-end
 
