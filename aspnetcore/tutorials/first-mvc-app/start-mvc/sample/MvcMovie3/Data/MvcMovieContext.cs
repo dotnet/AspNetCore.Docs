@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MvcMovie.Models;
+﻿// Unused usings removed.
+using Microsoft.EntityFrameworkCore;
+using MvcMovie.Models;  // Enables public DbSet<Movie> Movie
 
 namespace MvcMovie.Data
 {
