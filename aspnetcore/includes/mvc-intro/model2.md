@@ -12,6 +12,12 @@ The preceding code creates a `DbSet` property for the entity set. In Entity Fram
 
 <a name="cs"></a>
 
+### Add a database connection string
+
+Add a connection string to the *appsettings.json* file:
+
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
+
 ### Add NuGet packages and EF tools
 
 Run the following .NET Core CLI commands:
@@ -33,7 +39,7 @@ The preceding commands add Entity Framework Core Tools for the .NET CLI and seve
 Add the following `using` statements at the top of *Startup.cs*:
 
 ```csharp
-using MvcMovie.Models;
+using MvcMovie.Data;
 using Microsoft.EntityFrameworkCore;
 ```
 
@@ -41,7 +47,7 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=6-7)]
 
-Build the project as a check for errors.
+Build the project as a check for compiler errors.
 
 ::: moniker-end
 
