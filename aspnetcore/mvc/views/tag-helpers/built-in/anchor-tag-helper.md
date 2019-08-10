@@ -147,7 +147,7 @@ The `asp-all-route-data` dictionary is flattened to produce a querystring meetin
 
 [!code-csharp[](samples/TagHelpersBuiltIn/Controllers/SpeakerController.cs?range=26-30)]
 
-If any keys in the dictionary match route parameters, those values are substituted in the route as appropriate. The other non-matching values are generated as request parameters.
+If any keys in the dictionary match route parameters, those values are substituted in the route as appropriate. The other non-matching values are generated as request parameters. If `asp-all-route-data` is specified after any `asp-route-myvar`, `myvar` will be removed from the route (if you wish for this not to occur, place it before any other attributes).
 
 ### asp-fragment
 
