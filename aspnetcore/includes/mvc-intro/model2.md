@@ -16,7 +16,7 @@ The preceding code creates a `DbSet` property for the entity set. In Entity Fram
 
 Add a connection string to the *appsettings.json* file:
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
 
 ### Add NuGet packages and EF tools
 
