@@ -38,6 +38,8 @@ public void Configure(IApplicationBuilder app)
 > [!NOTE]
 > The order in which you register the ASP.NET Core authentication middleware matters. Always call `UseAuthentication` and `UseAuthorization` after `UseRouting` and before `UseEndpoints`.
 
+The authentication mechanism your app uses during a call needs to be configured. Authentication configuration is added in `Startup.ConfigureServices` and will be different depending upon the authentication mechanism your app uses. See [Authentication samples](xref:security/authentication/samples) for samples of how to secure ASP.NET Core apps.
+
 Once authentication has been setup, the user can be accessed in a gRPC service methods via the `ServerCallContext`.
 
 ```csharp
