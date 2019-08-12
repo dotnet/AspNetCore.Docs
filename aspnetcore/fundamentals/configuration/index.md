@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/06/2019
+ms.date: 08/12/2019
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -55,7 +55,7 @@ Before the app is configured and started, a *host* is configured and launched. T
 
 Web apps based on the ASP.NET Core [dotnet new](/dotnet/core/tools/dotnet-new) templates call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> when building a host. `CreateDefaultBuilder` provides default configuration for the app in the following order:
 
-The following applies to apps using the [Generic Host](xref:fundamentals/host/generic-host). For details on the default configuration when using the [Web Host](xref:fundamentals/host/web-host), see the [ASP.NET Core 2.2 version of this topic](xref:fundamentals/configuration/index?view=aspnetcore-2.2).
+The following applies to apps using the [Generic Host](xref:fundamentals/host/generic-host). For details on the default configuration when using the [Web Host](xref:fundamentals/host/web-host), see the [ASP.NET Core 2.2 version of this topic](/aspnet/core/fundamentals/configuration/?view=aspnetcore-2.2).
 
 * Host configuration is provided from:
   * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
@@ -283,7 +283,7 @@ Call `ConfigureAppConfiguration` when building the host to specify the app's con
 
 ### Override previous configuration with command-line arguments
 
-If you need to provide app configuration and still be able to override that configuration with command-line arguments, call the app's additional providers in `ConfigureAppConfiguration` and call `AddCommandLine` last:
+To provide app configuration that can be overridden with command-line arguments, call `AddCommandLine` last:
 
 ```csharp
 .ConfigureAppConfiguration((hostingContext, config) =>
@@ -303,7 +303,7 @@ The <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfiguratio
 
 To activate command-line configuration, the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> extension method is called on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
 
-`AddCommandLine` is automatically called when you call the overload of `CreateDefaultBuilder` that takes in the `string[]` command-line argument. For more information, see the [Default configuration](#default-configuration) section.
+`AddCommandLine` is automatically called when `CreateDefaultBuilder(string [])` is called. For more information, see the [Default configuration](#default-configuration) section.
 
 `CreateDefaultBuilder` also loads:
 
@@ -385,7 +385,7 @@ When the host is built, call `AddCommandLine` with the switch mappings dictionar
 })
 ```
 
-For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't pass arguments. The `CreateDefaultBuilder` method's `AddCommandLine` call doesn't include mapped switches, and there's no way to pass the switch mapping dictionary to `CreateDefaultBuilder`. If the arguments include a mapped switch and are passed to `CreateDefaultBuilder`, its `AddCommandLine` provider fails to initialize with a <xref:System.FormatException>. The solution isn't to pass the arguments to `CreateDefaultBuilder` but instead to allow the `ConfigurationBuilder` method's `AddCommandLine` method to process both the arguments and the switch mapping dictionary.
+For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't pass arguments. The `CreateDefaultBuilder` method's `AddCommandLine` call doesn't include mapped switches, and there's no way to pass the switch mapping dictionary to `CreateDefaultBuilder`. The solution isn't to pass the arguments to `CreateDefaultBuilder` but instead to allow the `ConfigurationBuilder` method's `AddCommandLine` method to process both the arguments and the switch mapping dictionary.
 
 After the switch mappings dictionary is created, it contains the data shown in the following table.
 
