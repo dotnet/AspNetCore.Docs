@@ -155,7 +155,7 @@ dotnet ef database update
 ```
 
 The `ef migrations add InitialCreate` command generates an *Migrations/{timestamp}_InitialCreate.cs* migration file. Because this is the first migration, the generated class contains code to create the database schema.
-The `Update-Database` command updates the database to the last migration. The last migration is the `InitialCreate`  class created with the previous command.
+The `ef database update` command updates the database to the last migration. The last migration is the `InitialCreate`  class created with the previous command.
 
 [!INCLUDE [explain warning](~/includes/mvc-intro/model-mig.md)]
 
@@ -414,6 +414,8 @@ The automatic creation of the database context and [CRUD](https://wikipedia.org/
 
 If you run the app and click on the **Mvc Movie** link, you get an error similar to the following:
 
+# [Visual Studio](#tab/visual-studio)
+
 ``` error
 An unhandled exception occurred while processing the request.
 
@@ -422,6 +424,17 @@ Login failed for user 'Rick'.
 
 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString
 ```
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+``` error
+An unhandled exception occurred while processing the request.
+SqliteException: SQLite Error 1: 'no such table: Movie'.
+Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(int rc, sqlite3 db)
+
+```
+
+---
 
 You need to create the database, and you use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to do that. Migrations lets you create a database that matches your data model and update the database schema when your data model changes.
 
