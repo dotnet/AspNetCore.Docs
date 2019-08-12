@@ -159,7 +159,7 @@ The `Update-Database` command updates the database to the last migration. The la
 
 [!INCLUDE [explain warning](~/includes/mvc-intro/model-mig.md)]
 
-[!INCLUDE [ more information on the PMC tools for EF Core](~/includes/ef-pmc.md)]
+[!INCLUDE [ more information on the CLI tools for EF Core](~/includes/ef-cli.md)]
 
 ---
 
