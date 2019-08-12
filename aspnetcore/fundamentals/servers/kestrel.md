@@ -1,11 +1,11 @@
 ---
 title: Kestrel web server implementation in ASP.NET Core
-author: guardrex
+author: tdykstra
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 06/24/2019
+ms.date: 08/12/2019
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -84,20 +84,68 @@ A reverse proxy:
 * Can limit the exposed public surface area of the apps that it hosts.
 * Provide an additional layer of configuration and defense.
 * Might integrate better with existing infrastructure.
-* Simplify load balancing and secure communication (HTTPS) configuration. Only the reverse proxy server requires an X.509 certificate, and that server can communicate with your app servers on the internal network using plain HTTP.
+* Simplify load balancing and secure communication (HTTPS) configuration. Only the reverse proxy server requires an X.509 certificate, and that server can communicate with the app's servers on the internal network using plain HTTP.
 
 > [!WARNING]
 > Hosting in a reverse proxy configuration requires [host filtering](#host-filtering).
 
 ## How to use Kestrel in ASP.NET Core apps
 
-The [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) package is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later).
+::: moniker range=">= aspnetcore-3.0"
+
+The Kestrel server is provided by the [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) package, which is included implicitly in ASP.NET Core apps.
+
+ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the template code calls <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>, which calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> behind the scenes.
+
+[!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_DefaultBuilder&highlight=7)]
+
+To provide additional configuration after calling `CreateDefaultBuilder` and `ConfigureWebHostDefaults`, use `ConfigureKestrel`:
+
+```csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.ConfigureKestrel(serverOptions =>
+            {
+                // Set properties and call methods on options
+            })
+            .UseStartup<Startup>();
+        });
+```
+
+If the app doesn't call `CreateDefaultBuilder` to set up the host, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> **before** calling `ConfigureKestrel`:
+
+```csharp
+public static void Main(string[] args)
+{
+    var host = new HostBuilder()
+        .UseContentRoot(Directory.GetCurrentDirectory())
+        .UseKestrel()
+        .UseIISIntegration()
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.ConfigureKestrel(serverOptions =>
+            {
+                // Set properties and call methods on options
+            })
+            .UseStartup<Startup>();
+        })
+        .Build();
+
+    host.Run();
+}
+```
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
+
+The [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) package is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the template code calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, which calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> behind the scenes.
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_DefaultBuilder&highlight=7)]
-
-::: moniker range=">= aspnetcore-2.2"
 
 To provide additional configuration after calling `CreateDefaultBuilder`, use `ConfigureKestrel`:
 
@@ -135,6 +183,10 @@ public static void Main(string[] args)
 
 ::: moniker range="< aspnetcore-2.2"
 
+The [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) package is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+
+ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the template code calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, which calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> behind the scenes.
+
 To provide additional configuration after calling `CreateDefaultBuilder`, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>:
 
 ```csharp
@@ -167,7 +219,13 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 Gets or sets the [keep-alive timeout](https://tools.ietf.org/html/rfc7230#section-6.5). Defaults to 2 minutes.
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=19-20)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=15)]
 
@@ -194,7 +252,13 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 The maximum number of concurrent open TCP connections can be set for the entire app with the following code:
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=3)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=3)]
 
@@ -216,7 +280,13 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 There's a separate limit for connections that have been upgraded from HTTP or HTTPS to another protocol (for example, on a WebSockets request). After a connection is upgraded, it isn't counted against the `MaxConcurrentConnections` limit.
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=4)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=4)]
 
@@ -253,9 +323,23 @@ public IActionResult MyActionMethod()
 
 Here's an example that shows how to configure the constraint for the app on every request:
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=5)]
+
+Override the setting on a specific request in middleware:
+
+[!code-csharp[](kestrel/samples/3.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=3-4)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=5)]
+
+Override the setting on a specific request in middleware:
+
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=3-4)]
 
 ::: moniker-end
 
@@ -271,13 +355,13 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-You can override the setting on a specific request in middleware:
+Override the setting on a specific request in middleware:
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=3-4)]
 
 ::: moniker-end
 
-An exception is thrown if you attempt to configure the limit on a request after the app has started to read the request. There's an `IsReadOnly` property that indicates if the `MaxRequestBodySize` property is in read-only state, meaning it's too late to configure the limit.
+An exception is thrown if the app configures the limit on a request after the app has started to read the request. There's an `IsReadOnly` property that indicates if the `MaxRequestBodySize` property is in read-only state, meaning it's too late to configure the limit.
 
 When an app is run [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), Kestrel's request body size limit is disabled because IIS already sets the limit.
 
@@ -294,7 +378,13 @@ A minimum rate also applies to the response. The code to set the request limit a
 
 Here's an example that shows how to configure the minimum data rates in *Program.cs*:
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=6-11)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=6-9)]
 
@@ -317,11 +407,11 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-You can override the minimum rate limits per request in middleware:
-
-[!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=6-21)]
-
 ::: moniker range=">= aspnetcore-3.0"
+
+Override the minimum rate limits per request in middleware:
+
+[!code-csharp[](kestrel/samples/3.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=6-21)]
 
 The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature> referenced in the prior sample is not present in `HttpContext.Features` for HTTP/2 requests because modifying rate limits on a per-request basis is generally not supported for HTTP/2 due to the protocol's support for request multiplexing. However, the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature> is still present `HttpContext.Features` for HTTP/2 requests, because the read rate limit can still be *disabled entirely* on a per-request basis by setting `IHttpMinRequestBodyDataRateFeature.MinDataRate` to `null` even for an HTTP/2 request. Attempting to read `IHttpMinRequestBodyDataRateFeature.MinDataRate` or attempting to set it to a value other than `null` will result in a `NotSupportedException` being thrown given an HTTP/2 request.
 
@@ -330,6 +420,10 @@ Server-wide rate limits configured via `KestrelServerOptions.Limits` still apply
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.2"
+
+Override the minimum rate limits per request in middleware:
+
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=6-21)]
 
 Neither rate feature referenced in the prior sample are present in `HttpContext.Features` for HTTP/2 requests because modifying rate limits on a per-request basis isn't supported for HTTP/2 due to the protocol's support for request multiplexing. Server-wide rate limits configured via `KestrelServerOptions.Limits` still apply to both HTTP/1.x and HTTP/2 connections.
 
@@ -341,7 +435,13 @@ Neither rate feature referenced in the prior sample are present in `HttpContext.
 
 Gets or sets the maximum amount of time the server spends receiving request headers. Defaults to 30 seconds.
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=21-22)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=16)]
 
@@ -361,7 +461,90 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.2"
+
+::: moniker range=">= aspnetcore-3.0"
+
+### Maximum streams per connection
+
+`Http2.MaxStreamsPerConnection` limits the number of concurrent request streams per HTTP/2 connection. Excess streams are refused.
+
+```csharp
+.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Limits.Http2.MaxStreamsPerConnection = 100;
+});
+```
+
+The default value is 100.
+
+### Header table size
+
+The HPACK decoder decompresses HTTP headers for HTTP/2 connections. `Http2.HeaderTableSize` limits the size of the header compression table that the HPACK decoder uses. The value is provided in octets and must be greater than zero (0).
+
+```csharp
+.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Limits.Http2.HeaderTableSize = 4096;
+});
+```
+
+The default value is 4096.
+
+### Maximum frame size
+
+`Http2.MaxFrameSize` indicates the maximum size of the HTTP/2 connection frame payload to receive. The value is provided in octets and must be between 2^14 (16,384) and 2^24-1 (16,777,215).
+
+```csharp
+.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Limits.Http2.MaxFrameSize = 16384;
+});
+```
+
+The default value is 2^14 (16,384).
+
+### Maximum request header size
+
+`Http2.MaxRequestHeaderFieldSize` indicates the maximum allowed size in octets of request header values. This limit applies to both name and value together in their compressed and uncompressed representations. The value must be greater than zero (0).
+
+```csharp
+.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Limits.Http2.MaxRequestHeaderFieldSize = 8192;
+});
+```
+
+The default value is 8,192.
+
+### Initial connection window size
+
+`Http2.InitialConnectionWindowSize` indicates the maximum request body data in bytes the server buffers at one time aggregated across all requests (streams) per connection. Requests are also limited by `Http2.InitialStreamWindowSize`. The value must be greater than or equal to 65,535 and less than 2^31 (2,147,483,648).
+
+```csharp
+.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Limits.Http2.InitialConnectionWindowSize = 131072;
+});
+```
+
+The default value is 128 KB (131,072).
+
+### Initial stream window size
+
+`Http2.InitialStreamWindowSize` indicates the maximum request body data in bytes the server buffers at one time per request (stream). Requests are also limited by `Http2.InitialStreamWindowSize`. The value must be greater than or equal to 65,535 and less than 2^31 (2,147,483,648).
+
+```csharp
+.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Limits.Http2.InitialStreamWindowSize = 98304;
+});
+```
+
+The default value is 96 KB (98,304).
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
 
 ### Maximum streams per connection
 
@@ -478,11 +661,19 @@ The default value is 96 KB (98,304).
 > [!WARNING]
 > A large number of blocking synchronous IO operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous IO.
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
 
 The following example enables synchronous IO:
 
-[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_SyncIO&highlight=3)]
+[!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_SyncIO)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
+
+The following example enables synchronous IO:
+
+[!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_SyncIO)]
 
 ::: moniker-end
 
@@ -531,7 +722,7 @@ A development certificate is created:
 * When the [.NET Core SDK](/dotnet/core/sdk) is installed.
 * The [dev-certs tool](xref:aspnetcore-2.1#https) is used to create a certificate.
 
-Some browsers require that you grant explicit permission to the browser to trust the local development certificate.
+Some browsers require granting explicit permission to trust the local development certificate.
 
 ASP.NET Core 2.1 and later project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).
 
@@ -548,18 +739,20 @@ Specifies a configuration `Action` to run for each specified endpoint. Calling `
 ::: moniker range=">= aspnetcore-3.0"
 
 ```csharp
-Host.CreateDefaultBuilder(args)
-    .ConfigureWebHostDefaults(webBuilder =>
-    {
-        webBuilder.ConfigureKestrel(serverOptions =>
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
         {
-            serverOptions.ConfigureEndpointDefaults(configureOptions =>
+            webBuilder.ConfigureKestrel(serverOptions =>
             {
-                configureOptions.NoDelay = true;
-            });
+                serverOptions.ConfigureEndpointDefaults(configureOptions =>
+                {
+                    // Configure endpoint defaults
+                });
+            })
+            .UseStartup<Startup>();
         });
-        webBuilder.UseStartup<Startup>();
-    });
+}
 ```
 
 ::: moniker-end
@@ -574,7 +767,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         {
             options.ConfigureEndpointDefaults(configureOptions =>
             {
-                configureOptions.NoDelay = true;
+                // Configure endpoint defaults
             });
         });
 ```
@@ -588,19 +781,21 @@ Specifies a configuration `Action` to run for each HTTPS endpoint. Calling `Conf
 ::: moniker range=">= aspnetcore-3.0"
 
 ```csharp
-Host.CreateDefaultBuilder(args)
-    .ConfigureWebHostDefaults(webBuilder =>
-    {
-        webBuilder.ConfigureKestrel(serverOptions =>
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
         {
-            serverOptions.ConfigureHttpsDefaults(options =>
+            webBuilder.ConfigureKestrel(serverOptions =>
             {
-                // certificate is an X509Certificate2
-                options.ServerCertificate = certificate;
-            });
+                serverOptions.ConfigureHttpsDefaults(options =>
+                {
+                    // certificate is an X509Certificate2
+                    options.ServerCertificate = certificate;
+                });
+            })
+            .UseStartup<Startup>();
         });
-        webBuilder.UseStartup<Startup>();
-    });
+}
 ```
 
 ::: moniker-end
@@ -672,7 +867,7 @@ Kestrel listens on `http://localhost:5000` and `https://localhost:5001` (if a de
 
 *Replace the default certificate from configuration*
 
-<xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration. A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
+`CreateDefaultBuilder` calls `options.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration. A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
 
 In the following *appsettings.json* example:
 
@@ -746,37 +941,101 @@ Schema notes:
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in earlier scenarios are used. If no defaults are available, the server throws an exception and fails to start.
 * The `Certificate` section supports both **Path**&ndash;**Password** and **Subject**&ndash;**Store** certificates.
 * Any number of endpoints may be defined in this way so long as they don't cause port conflicts.
-* `options.Configure(context.Configuration.GetSection("Kestrel"))` returns a `KestrelConfigurationLoader` with an `.Endpoint(string name, options => { })` method that can be used to supplement a configured endpoint's settings:
+* `options.Configure(context.Configuration.GetSection("{SECTION}"))` returns a `KestrelConfigurationLoader` with an `.Endpoint(string name, options => { })` method that can be used to supplement a configured endpoint's settings:
 
-  ```csharp
-  options.Configure(context.Configuration.GetSection("Kestrel"))
-      .Endpoint("HTTPS", opt =>
-      {
-          opt.HttpsOptions.SslProtocols = SslProtocols.Tls12;
-      });
-  ```
+::: moniker range=">= aspnetcore-3.0"
 
-  You can also directly access `KestrelServerOptions.ConfigurationLoader` to keep iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.
+```csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.UseKestrel((context, options) =>
+            {
+                options.Configure(context.Configuration.GetSection("Kestrel"))
+                    .Endpoint("HTTPS", opt =>
+                    {
+                        opt.HttpsOptions.SslProtocols = SslProtocols.Tls12;
+                    });
+            });
+        });
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup<Startup>()
+        .UseKestrel((context, options) =>
+        {
+            options.Configure(context.Configuration.GetSection("Kestrel"))
+                .Endpoint("HTTPS", opt =>
+                {
+                    opt.HttpsOptions.SslProtocols = SslProtocols.Tls12;
+                });
+        });
+```
+
+::: moniker-end
+
+`KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.
 
 * The configuration section for each endpoint is a available on the options in the `Endpoint` method so that custom settings may be read.
-* Multiple configurations may be loaded by calling `options.Configure(context.Configuration.GetSection("Kestrel"))` again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
+* Multiple configurations may be loaded by calling `options.Configure(context.Configuration.GetSection("{SECTION}"))` again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
 * `KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints may be configured in the same place. These overloads don't use names and only consume default settings from configuration.
 
 *Change the defaults in code*
 
 `ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` can be used to change default settings for `ListenOptions` and `HttpsConnectionAdapterOptions`, including overriding the default certificate specified in the prior scenario. `ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` should be called before any endpoints are configured.
 
-```csharp
-options.ConfigureEndpointDefaults(opt =>
-{
-    opt.NoDelay = true;
-});
+::: moniker range=">= aspnetcore-3.0"
 
-options.ConfigureHttpsDefaults(httpsOptions =>
-{
-    httpsOptions.SslProtocols = SslProtocols.Tls12;
-});
+```csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.ConfigureKestrel(serverOptions =>
+            {
+                serverOptions.ConfigureEndpointDefaults(opt =>
+                {
+                    // Configure endpoint defaults
+                });
+
+                serverOptions.ConfigureHttpsDefaults(httpsOptions =>
+                {
+                    httpsOptions.SslProtocols = SslProtocols.Tls12;
+                });
+            });
+        });
 ```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .UseStartup<Startup>()
+        .UseKestrel((context, options) =>
+        {
+            options.ConfigureEndpointDefaults(opt =>
+            {
+                // Configure endpoint defaults
+            });
+            
+            options.ConfigureHttpsDefaults(httpsOptions =>
+            {
+                httpsOptions.SslProtocols = SslProtocols.Tls12;
+            });
+        });
+```
+
+::: moniker-end
 
 *Kestrel support for SNI*
 
@@ -789,7 +1048,53 @@ SNI support requires:
 * Running on target framework `netcoreapp2.1`. On `netcoreapp2.0` and `net461`, the callback is invoked but the `name` is always `null`. The `name` is also `null` if the client doesn't provide the host name parameter in the TLS handshake.
 * All websites run on the same Kestrel instance. Kestrel doesn't support sharing an IP address and port across multiple instances without a reverse proxy.
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
+
+```csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.ConfigureKestrel(serverOptions =>
+            {
+                serverOptions.ListenAnyIP(5005, listenOptions =>
+                {
+                    listenOptions.UseHttps(httpsOptions =>
+                    {
+                        var localhostCert = CertificateLoader.LoadFromStoreCert(
+                            "localhost", "My", StoreLocation.CurrentUser,
+                            allowInvalid: true);
+                        var exampleCert = CertificateLoader.LoadFromStoreCert(
+                            "example.com", "My", StoreLocation.CurrentUser,
+                            allowInvalid: true);
+                        var subExampleCert = CertificateLoader.LoadFromStoreCert(
+                            "sub.example.com", "My", StoreLocation.CurrentUser,
+                            allowInvalid: true);
+                        var certs = new Dictionary<string, X509Certificate2>(
+                            StringComparer.OrdinalIgnoreCase);
+                        certs["localhost"] = localhostCert;
+                        certs["example.com"] = exampleCert;
+                        certs["sub.example.com"] = subExampleCert;
+    
+                        httpsOptions.ServerCertificateSelector = (connectionContext, name) =>
+                        {
+                            if (name != null && certs.TryGetValue(name, out var cert))
+                            {
+                                return cert;
+                            }
+    
+                            return exampleCert;
+                        };
+                    });
+                });
+            })
+            .UseStartup<Startup>();
+        });
+```
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -880,7 +1185,13 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> method binds to a TCP socket, and an options lambda permits X.509 certificate configuration:
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_TCPSocket&highlight=9-16)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_TCPSocket&highlight=9-16)]
 
@@ -936,7 +1247,13 @@ The example configures HTTPS for an endpoint with <xref:Microsoft.AspNetCore.Ser
 
 Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> for improved performance with Nginx, as shown in this example:
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_UnixSocket)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_UnixSocket)]
 
@@ -964,7 +1281,17 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 When the port number `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound at runtime:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](kestrel/samples/3.x/KestrelSample/Startup.cs?name=snippet_Configure&highlight=3-4,15-21)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Startup.cs?name=snippet_Configure&highlight=3-4,15-21)]
+
+::: moniker-end
 
 When the app is run, the console window output indicates the dynamic port where the app can be reached:
 
@@ -990,7 +1317,7 @@ These methods are useful for making code work with servers other than Kestrel. H
 
 When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) topic.
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
 
 ### ListenOptions.Protocols
 
@@ -1019,34 +1346,28 @@ TLS restrictions for HTTP/2:
 The following example permits HTTP/1.1 and HTTP/2 connections on port 8000. Connections are secured by TLS with a supplied certificate:
 
 ```csharp
-public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
-        {
-            options.Listen(IPAddress.Any, 8000, listenOptions =>
-            {
-                listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                listenOptions.UseHttps("testCert.pfx", "testPassword");
-            });
-        });
+.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Listen(IPAddress.Any, 8000, listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+        listenOptions.UseHttps("testCert.pfx", "testPassword");
+    });
+});
 ```
 
 Optionally create an `IConnectionAdapter` implementation to filter TLS handshakes on a per-connection basis for specific ciphers:
 
 ```csharp
-public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
-        {
-            options.Listen(IPAddress.Any, 8000, listenOptions =>
-            {
-                listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                listenOptions.UseHttps("testCert.pfx", "testPassword");
-                listenOptions.ConnectionAdapters.Add(new TlsFilterAdapter());
-            });
-        });
+.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Listen(IPAddress.Any, 8000, listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+        listenOptions.UseHttps("testCert.pfx", "testPassword");
+        listenOptions.ConnectionAdapters.Add(new TlsFilterAdapter());
+    });
+});
 ```
 
 ```csharp
@@ -1058,7 +1379,136 @@ private class TlsFilterAdapter : IConnectionAdapter
     {
         var tlsFeature = context.Features.Get<ITlsHandshakeFeature>();
 
-        // Throw NotSupportedException for any cipher algorithm that you don't
+        // Throw NotSupportedException for any cipher algorithm that the app doesn't
+        // wish to support. Alternatively, define and compare
+        // ITlsHandshakeFeature.CipherAlgorithm to a list of acceptable cipher
+        // suites.
+        //
+        // A ITlsHandshakeFeature.CipherAlgorithm of CipherAlgorithmType.Null
+        // indicates that no cipher algorithm supported by Kestrel matches the
+        // requested algorithm(s).
+        if (tlsFeature.CipherAlgorithm == CipherAlgorithmType.Null)
+        {
+            throw new NotSupportedException("Prohibited cipher: " + tlsFeature.CipherAlgorithm);
+        }
+
+        return Task.FromResult<IAdaptedConnection>(new AdaptedConnection(context.ConnectionStream));
+    }
+
+    private class AdaptedConnection : IAdaptedConnection
+    {
+        public AdaptedConnection(Stream adaptedStream)
+        {
+            ConnectionStream = adaptedStream;
+        }
+
+        public Stream ConnectionStream { get; }
+
+        public void Dispose()
+        {
+        }
+    }
+}
+```
+
+*Set the protocol from configuration*
+
+<xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration.
+
+In the following *appsettings.json* example, a default connection protocol (HTTP/1.1 and HTTP/2) is established for all of Kestrel's endpoints:
+
+```json
+{
+  "Kestrel": {
+    "EndpointDefaults": {
+      "Protocols": "Http1AndHttp2"
+    }
+  }
+}
+```
+
+The following configuration file example establishes a connection protocol for a specific endpoint:
+
+```json
+{
+  "Kestrel": {
+    "Endpoints": {
+      "HttpsDefaultCert": {
+        "Url": "https://localhost:5001",
+        "Protocols": "Http1AndHttp2"
+      }
+    }
+  }
+}
+```
+
+Protocols specified in code override values set by configuration.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
+
+### ListenOptions.Protocols
+
+The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enabled on a connection endpoint or for the server. Assign a value to the `Protocols` property from the `HttpProtocols` enum.
+
+| `HttpProtocols` enum value | Connection protocol permitted |
+| -------------------------- | ----------------------------- |
+| `Http1`                    | HTTP/1.1 only. Can be used with or without TLS. |
+| `Http2`                    | HTTP/2 only. Primarily used with TLS. May be used without TLS only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4). |
+| `Http1AndHttp2`            | HTTP/1.1 and HTTP/2. Requires a TLS and [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection to negotiate HTTP/2; otherwise, the connection defaults to HTTP/1.1. |
+
+The default protocol is HTTP/1.1.
+
+TLS restrictions for HTTP/2:
+
+* TLS version 1.2 or later
+* Renegotiation disabled
+* Compression disabled
+* Minimum ephemeral key exchange sizes:
+  * Elliptic curve Diffie-Hellman (ECDHE) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack; &ndash; 224 bits minimum
+  * Finite field Diffie-Hellman (DHE) &lbrack;`TLS12`&rbrack; &ndash; 2048 bits minimum
+* Cipher suite not blacklisted
+
+`TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` &lbrack;`TLS-ECDHE`&rbrack; with the P-256 elliptic curve &lbrack;`FIPS186`&rbrack; is supported by default.
+
+The following example permits HTTP/1.1 and HTTP/2 connections on port 8000. Connections are secured by TLS with a supplied certificate:
+
+```csharp
+.ConfigureKestrel((context, options) =>
+{
+    options.Listen(IPAddress.Any, 8000, listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+        listenOptions.UseHttps("testCert.pfx", "testPassword");
+    });
+});
+```
+
+Optionally create an `IConnectionAdapter` implementation to filter TLS handshakes on a per-connection basis for specific ciphers:
+
+```csharp
+.ConfigureKestrel((context, options) =>
+{
+    options.Listen(IPAddress.Any, 8000, listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+        listenOptions.UseHttps("testCert.pfx", "testPassword");
+        listenOptions.ConnectionAdapters.Add(new TlsFilterAdapter());
+    });
+});
+```
+
+```csharp
+private class TlsFilterAdapter : IConnectionAdapter
+{
+    public bool IsHttps => false;
+
+    public Task<IAdaptedConnection> OnConnectionAsync(ConnectionAdapterContext context)
+    {
+        var tlsFeature = context.Features.Get<ITlsHandshakeFeature>();
+
+        // Throw NotSupportedException for any cipher algorithm that the app doesn't
         // wish to support. Alternatively, define and compare
         // ITlsHandshakeFeature.CipherAlgorithm to a list of acceptable cipher
         // suites.
@@ -1132,31 +1582,68 @@ With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer b
 * [Microsoft.AspNetCore.Server.Kestrel](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/) (direct package reference)
 * [Microsoft.AspNetCore.App](https://www.nuget.org/packages/Microsoft.AspNetCore.App/)
 
-For ASP.NET Core 2.1 or later projects that use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) and require the use of Libuv:
+::: moniker range=">= aspnetcore-3.0"
+
+For projects that require the use of Libuv:
 
 * Add a dependency for the [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) package to the app's project file:
 
-    ```xml
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv"
-                      Version="<LATEST_VERSION>" />
-    ```
+   ```xml
+   <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv"
+                     Version="{VERSION}" />
+   ```
 
 * Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*>:
 
-    ```csharp
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
+   ```csharp
+   public class Program
+   {
+       public static void Main(string[] args)
+       {
+           CreateHostBuilder(args).Build().Run();
+       }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseLibuv()
-                .UseStartup<Startup>();
-    }
-    ```
+       public static IHostBuilder CreateHostBuilder(string[] args) =>
+           Host.CreateDefaultBuilder(args)
+               .UseLibuv()
+               .ConfigureWebHostDefaults(webBuilder =>
+               {
+                   webBuilder.UseStartup<Startup>();
+               });
+   }
+   ```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+For projects that use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) and require the use of Libuv:
+
+* Add a dependency for the [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) package to the app's project file:
+
+  ```xml
+  <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv"
+                    Version="{VERSION}" />
+  ```
+
+* Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*>:
+
+  ```csharp
+  public class Program
+  {
+      public static void Main(string[] args)
+      {
+          CreateWebHostBuilder(args).Build().Run();
+      }
+
+      public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+          WebHost.CreateDefaultBuilder(args)
+              .UseLibuv()
+              .UseStartup<Startup>();
+  }
+  ```
+
+::: moniker-end
 
 ### URL prefixes
 
@@ -1230,5 +1717,4 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 * <xref:test/troubleshoot>
 * <xref:security/enforcing-ssl>
 * <xref:host-and-deploy/proxy-load-balancer>
-* [Kestrel source code](https://github.com/aspnet/AspNetCore/tree/master/src/Servers/Kestrel)
 * [RFC 7230: Message Syntax and Routing (Section 5.4: Host)](https://tools.ietf.org/html/rfc7230#section-5.4)

@@ -76,12 +76,13 @@ namespace KestrelSample
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseLibuv()
                 .UseStartup<Startup>()
                 #region snippet_FileDescriptor
                 .ConfigureKestrel((context, options) =>
                 {
                     var fds = Environment.GetEnvironmentVariable("SD_LISTEN_FDS_START");
-                    ulong fd = ulong.Parse(fds);
+                    var fd = ulong.Parse(fds);
 
                     options.ListenHandle(fd);
                     options.ListenHandle(fd, listenOptions =>
