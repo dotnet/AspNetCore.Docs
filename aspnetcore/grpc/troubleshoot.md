@@ -1,22 +1,22 @@
 ---
-title: Troubleshoot gRPC clients and services
+title: Troubleshoot gRPC on .NET Core
 author: jamesnk
-description: Troubleshoot errors when using gRPC clients and services.
+description: Troubleshoot errors when using gRPC on .NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
 ms.date: 08/12/2019
 uid: grpc/troubleshoot
 ---
-# Troubleshoot gRPC clients and services
+# Troubleshoot gRPC on .NET Core
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
 ## Mismatch between client and service SSL/TLS configuration
 
-The gRPC template and samples use [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) by default. gRPC clients need to use a secure connection to call secured gRPC services successfully.
+The gRPC template and samples use [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) to secure gRPC services by default. gRPC clients need to use a secure connection to call secured gRPC services successfully.
 
-You can verify the ASP.NET Core gRPC service is using TLS in logs from app start. The service will be listening on `https`:
+You can verify the ASP.NET Core gRPC service is using TLS in the logs written on app start. The service will be listening on `https`:
 
 ```
 info: Microsoft.Hosting.Lifetime[0]
@@ -27,7 +27,7 @@ info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
 ```
 
-The .NET Core client must use `https` in the server address to make calls on a secured connection:
+The .NET Core client must use `https` in the server address to make calls with a secured connection:
 
 ```csharp
 static async Task Main(string[] args)
