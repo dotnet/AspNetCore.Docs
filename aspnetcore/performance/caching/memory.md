@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to cache data in memory in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/11/2019
+ms.date: 8/11/2019
 uid: performance/caching/memory
 ---
 # Cache in-memory in ASP.NET Core
@@ -51,7 +51,10 @@ Use `System.Runtime.Caching`/`MemoryCache` as a compatibility bridge when portin
 
 ## Using IMemoryCache
 
-In-memory caching is a *service* that's referenced from your app using [Dependency Injection](../../fundamentals/dependency-injection.md). Call `AddMemoryCache` in `ConfigureServices`:
+> [!WARNING]
+> Using a *shared* memory cache from [Dependency Injection](xref:fundamentals/dependency-injection) and calling `SetSize`, `Size`, or `SizeLimit` to limit cache size can be problematic. When a size limit is set on a cache, all entries must specify a size when being added. This can lead to issues since developers may not have full control on what uses the shared cache. For example, Entity Framework Core uses the shared cache and does not specify a size. If an app sets a cache size limit and uses EF Core, the app throw's an `InvalidOperationException`.
+
+In-memory caching is a *service* that's referenced from your app using [Dependency Injection](xref:fundamentals/dependency-injection). Call `AddMemoryCache` in `ConfigureServices`:
 
 [!code-csharp[](memory/sample/WebCache/Startup.cs?highlight=9)]
 
