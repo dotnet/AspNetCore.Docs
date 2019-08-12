@@ -138,9 +138,12 @@ In this section, the following tasks are completed:
    Update-Database
    ```
 
-    `Add-Migration InitialCreate`generates code to create the initial database schema.
+    `Add-Migration InitialCreate`: Generates an *Migrations/{timestamp}_InitialCreate.cs* migration file. Because this is the first migration, the generated class contains code to create the database schema.
+    `Update-Database`: Updates the database to the last migration. The last migration is the `InitialCreate`  class created with the previous command.
 
-[!INCLUDE [explain migrations](~/includes/mvc-intro/model-mig.md)]
+[!INCLUDE [explain warning](~/includes/mvc-intro/model-mig.md)]
+
+[!INCLUDE [ more information on the PMC tools for EF Core](~/includes/ef-pmc.md)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -151,11 +154,18 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-The `ef migrations add InitialCreate` command generates code to create the initial database schema.
+The `ef migrations add InitialCreate` command generates an *Migrations/{timestamp}_InitialCreate.cs* migration file. Because this is the first migration, the generated class contains code to create the database schema.
+The `Update-Database` command updates the database to the last migration. The last migration is the `InitialCreate`  class created with the previous command.
 
-[!INCLUDE [explain migrations](~/includes/mvc-intro/model-mig.md)]
+[!INCLUDE [explain warning](~/includes/mvc-intro/model-mig.md)]
+
+[!INCLUDE [ more information on the PMC tools for EF Core](~/includes/ef-pmc.md)]
 
 ---
+
+### The InitialCreate class
+
+Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file. The `Up` method creates the Movie table and configures `Id` as the primary key. The `Down` method removes the `Up` migration schema changes.
 
 ## Examine the context registered with dependency injection
 

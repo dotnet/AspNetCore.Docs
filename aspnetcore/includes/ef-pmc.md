@@ -1,0 +1,1 @@
+For more information on the PMC tools for EF Core, see [EF Core tools reference - PMC in Visual Studio](/ef/core/miscellaneous/cli/powershell).
