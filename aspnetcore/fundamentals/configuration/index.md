@@ -479,7 +479,7 @@ var config = new ConfigurationBuilder()
 
 The prefix is stripped off when the configuration key-value pairs are created.
 
-The static convenience method `CreateDefaultBuilder` creates a host builder to establish the app's host. When host builder is created, it finds its host configuration in environment variables prefixed with `ASPNETCORE_`.
+When the host builder is created, host configuration is provided by environment variables. For more information on the prefix used for these environment variables, see the [Default configuration](#default-configuration) section.
 
 **Connection string prefixes**
 
