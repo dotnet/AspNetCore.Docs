@@ -84,14 +84,14 @@ The gRPC client must also be configured to not use TLS. For more information, se
 > [!WARNING]
 > HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
 
-## gRPC client or service base is not code generated from *\*.proto* files
+## gRPC C# assets are not code generated from *\*.proto* files
 
 gRPC code generation of concrete clients and service base classes requires protobuf files and tooling to be referenced from a project. You must include:
 
 * *.proto* files you want to use in the `<Protobuf>` item group.
 * Package reference to the gRPC tooling package [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/).
 
-For more information on generating gRPC C# assets, see <xref:grpc/security>.
+For more information on generating gRPC C# assets, see <xref:grpc/basics>.
 
 By default a `<Protobuf>` reference will generate both a concrete client and a service base class. `GrpcServices` attribute can be used to limit C# asset generation to either the concrete client or service base class. Valid values are `Server`, `Client` and `Both` (also the default).
 
