@@ -16,7 +16,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 The gRPC template and samples use [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) to secure gRPC services by default. gRPC clients need to use a secure connection to call secured gRPC services successfully.
 
-You can verify the ASP.NET Core gRPC service is using TLS in the logs written on app start. The service will be listening on `https`:
+You can verify the ASP.NET Core gRPC service is using TLS in the logs written on app start. The service will be listening on an HTTPS endpoint:
 
 ```
 info: Microsoft.Hosting.Lifetime[0]
@@ -39,7 +39,7 @@ static async Task Main(string[] args)
 }
 ```
 
-All gRPC client implementations support TLS. gRPC clients from other languages typically require the channel configured with `SslCredentials`. `SslCredentials` specifies the certificate that the client will use, and it must be used instead of insecure credentials. See [gRPC Authentication](https://www.grpc.io/docs/guides/auth/) for samples of configuring the different gRPC client implementations to use TLS.
+All gRPC client implementations support TLS. gRPC clients from other languages typically require the channel configured with `SslCredentials`. `SslCredentials` specifies the certificate that the client will use, and it must be used instead of insecure credentials. For examples of configuring the different gRPC client implementations to use TLS, see [gRPC Authentication](https://www.grpc.io/docs/guides/auth/).
 
 ## Call insecure gRPC services with .NET Core client
 
@@ -63,7 +63,7 @@ Kestrel doesn't support HTTP/2 with TLS on macOS. The ASP.NET Core gRPC template
 
 To work around this issue, configure Kestrel and the gRPC client to use HTTP/2 **without** TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption.
 
-Kestrel must configure a HTTP/2 endpoint without TLS in `Program.cs`:
+Kestrel must configure an HTTP/2 endpoint without TLS in *Program.cs*:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -79,7 +79,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-The gRPC client must also be configured to not use TLS. See [Call insecure gRPC services with .NET Core client](#call-insecure-grpc-services-with-net-core-client) for more information.
+The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET Core client](#call-insecure-grpc-services-with-net-core-client).
 
 > [!WARNING]
-> HTTP/2 without TLS should only be used during app development. Production applications should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
+> HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
