@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/26/2019
+ms.date: 07/23/2019
 uid: blazor/get-started
 ---
 # Get started with ASP.NET Core Blazor
@@ -19,7 +19,7 @@ Get started with Blazor:
 1. Install the Blazor templates by running the following command in a command shell:
 
    ```console
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview7.19365.7
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview8.19405.7
    ```
 
 1. Follow the guidance for your choice of tooling:
@@ -39,7 +39,7 @@ Get started with Blazor:
    6\. Press **F5** to run the app.
 
    > [!NOTE]
-   > If you installed the Blazor Visual Studio extension for a prior preview release of ASP.NET Core Blazor (Preview 6 or earlier), you can uninstall the extension at Preview 7. Installing the Blazor templates in a command shell is now sufficient to surface the templates in Visual Studio.
+   > If you installed the Blazor Visual Studio extension for a prior preview release of ASP.NET Core Blazor (Preview 6 or earlier), you can uninstall the extension. Installing the Blazor templates in a command shell is now sufficient to surface the templates in Visual Studio.
 
    # [Visual Studio Code](#tab/visual-studio-code)
 
