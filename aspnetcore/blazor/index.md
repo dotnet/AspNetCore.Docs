@@ -55,10 +55,10 @@ The following Razor markup demonstrates a component (*Dialog.razor*), which can 
 
 @code {
     [Parameter]
-    private string Title { get; set; }
+    public string Title { get; set; }
 
     [Parameter]
-    private RenderFragment ChildContent { get; set; }
+    public RenderFragment ChildContent { get; set; }
 
     private void OnYes()
     {
