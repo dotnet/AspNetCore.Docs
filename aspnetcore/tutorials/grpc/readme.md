@@ -115,7 +115,7 @@ Install-Package Grpc.Tools
 
 * Add an item group with a `<Protobuf>` element that refers to the **greet.proto** file:
 
-  ```XML
+  ```xml
   <ItemGroup>
     <Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
   </ItemGroup>
@@ -226,7 +226,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
       Request finished in 78.32260000000001ms 200 application/grpc
 ```
 
-### Docs Help & Next Steps for gRPC
+### Docs help & next steps for gRPC
 
 * [Introduction to gRPC on ASP.NET Core](https://docs.microsoft.com/aspnet/core/grpc/index?view=aspnetcore-3.0)
 * [gRPC services with C#](https://docs.microsoft.com/aspnet/core/grpc/basics?view=aspnetcore-3.0)
