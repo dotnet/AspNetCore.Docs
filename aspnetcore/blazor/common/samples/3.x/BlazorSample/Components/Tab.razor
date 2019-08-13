@@ -10,17 +10,17 @@
 
 @code {
     [CascadingParameter]
-    private TabSet ContainerTabSet { get; set; }
+    public TabSet ContainerTabSet { get; set; }
 
     [Parameter]
-    private string Title { get; set; }
+    public string Title { get; set; }
 
     [Parameter]
-    public RenderFragment ChildContent { get; private set; }
+    public RenderFragment ChildContent { get; set; }
 
     private string TitleCssClass => ContainerTabSet.ActiveTab == this ? "active" : null;
 
-    protected override void OnInit()
+    protected override void OnInitialized()
     {
         ContainerTabSet.AddTab(this);
     }

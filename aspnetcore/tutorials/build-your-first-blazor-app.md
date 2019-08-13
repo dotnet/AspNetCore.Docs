@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/01/2019
+ms.date: 07/26/2019
 uid: tutorials/first-blazor-app
 ---
 # Build your first Blazor app
@@ -61,7 +61,7 @@ Include a component in another component using an HTML syntax.
 
 ## Component parameters
 
-Components can also have parameters. Component parameters are defined using non-public properties on the component class decorated with `[Parameter]`. Use attributes to specify arguments for a component in markup.
+Components can also have parameters. Component parameters are defined using public properties on the component class decorated with `[Parameter]`. Use attributes to specify arguments for a component in markup.
 
 1. Update the component's `@code` C# code:
 

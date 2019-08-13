@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/02/2019
+ms.date: 08/13/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -20,7 +20,9 @@ Blazor apps are built using *components*. A component is a self-contained chunk 
 
 Components are implemented in [Razor](xref:mvc/views/razor) component files (*.razor*) using a combination of C# and HTML markup. A component in Blazor is formally referred to as a *Razor component*.
 
-Components can be authored using the *.cshtml* file extension. Use the `_RazorComponentInclude` MSBuild property in the project file to identify the component *.cshtml* files. For example, an app that specifies that all *.cshtml* files under the *Pages* folder should be treated as Razor components files:
+A component's name must start with an uppercase character. For example, *MyCoolComponent.razor* is valid, and *myCoolComponent.razor* is invalid.
+
+Components can be authored using the *.cshtml* file extension as long as the files are identified as Razor component files using the `_RazorComponentInclude` MSBuild property. For example, an app that specifies that all *.cshtml* files under the *Pages* folder should be treated as Razor components files:
 
 ```xml
 <PropertyGroup>
@@ -73,9 +75,11 @@ While pages and views can use components, the converse isn't true. Components ca
 
 For more information on how components are rendered and component state is managed in Blazor server-side apps, see the <xref:blazor/hosting-models> article.
 
-## Using components
+## Use components
 
 Components can include other components by declaring them using HTML element syntax. The markup for using a component looks like an HTML tag where the name of the tag is the component type.
+
+Attribute binding is case sensitive. For example, `@bind` is valid, and `@Bind` is invalid.
 
 The following markup in *Index.razor* renders a `HeadingComponent` instance:
 
@@ -85,9 +89,11 @@ The following markup in *Index.razor* renders a `HeadingComponent` instance:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/HeadingComponent.razor)]
 
+If a component contains an HTML element with an uppercase first letter that doesn't match a component name, a warning is emitted indicating that the element has an unexpected name. Adding an `@using` statement for the component's namespace makes the component available, which removes the warning.
+
 ## Component parameters
 
-Components can have *component parameters*, which are defined using properties (usually *non-public*) on the component class with the `[Parameter]` attribute. Use attributes to specify arguments for a component in markup.
+Components can have *component parameters*, which are defined using public properties on the component class with the `[Parameter]` attribute. Use attributes to specify arguments for a component in markup.
 
 *Components/ChildComponent.razor*:
 
@@ -136,19 +142,19 @@ In the following example, the first `<input>` element (`id="useIndividualParams"
 
 @code {
     [Parameter]
-    private string Maxlength { get; set; } = "10";
+    public string Maxlength { get; set; } = "10";
 
     [Parameter]
-    private string Placeholder { get; set; } = "Input placeholder text";
+    public string Placeholder { get; set; } = "Input placeholder text";
 
     [Parameter]
-    private string Required { get; set; } = "required";
+    public string Required { get; set; } = "required";
 
     [Parameter]
-    private string Size { get; set; } = "50";
+    public string Size { get; set; } = "50";
 
     [Parameter]
-    private Dictionary<string, object> InputAttributes { get; set; } =
+    public Dictionary<string, object> InputAttributes { get; set; } =
         new Dictionary<string, object>()
         {
             { "maxlength", "10" },
@@ -181,8 +187,8 @@ To accept arbitrary attributes, define a component parameter using the `[Paramet
 
 ```cshtml
 @code {
-    [Parameter(CaptureUnmatchedValues = true)]
-    private Dictionary<string, object> InputAttributes { get; set; }
+    [Parameter(CaptureUnmatchedAttributes = true)]
+    public Dictionary<string, object> InputAttributes { get; set; }
 }
 ```
 
@@ -218,6 +224,33 @@ In addition to handling `onchange` events with `@bind` syntax, a property or fie
 
 Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
+**Globalization**
+
+`@bind` values are formatted for display and parsed using the current culture's rules.
+
+The current culture can be accessed from the <xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=fullName> property.
+
+[CultureInfo.InvariantCulture](xref:System.Globalization.CultureInfo.InvariantCulture) is used for the following field types (`<input type="{TYPE}" />`):
+
+* `date`
+* `number`
+
+The preceding field types:
+
+* Are displayed using their appropriate browser-based formatting rules.
+* Can't contain free-form text.
+* Provide user interaction characteristics based on the browser's implementation.
+
+The following field types have specific formatting requirements and aren't currently supported by Blazor because they aren't supported by all major browsers:
+
+* `datetime-local`
+* `month`
+* `week`
+
+`@bind` supports the `@bind:culture` parameter to provide a <xref:System.Globalization.CultureInfo?displayProperty=fullName> for parsing and formatting a value. Specifying a culture isn't recommended when using the `date` and `number` field types. `date` and `number` have built-in Blazor support that provides the required culture.
+
+For information on how to set the user's culture, see the [Localization](#localization) section.
+
 **Format strings**
 
 Data binding works with <xref:System.DateTime> format strings using [@bind:format](xref:mvc/views/razor#bind). Other format expressions, such as currency or number formats, aren't available at this time.
@@ -227,11 +260,20 @@ Data binding works with <xref:System.DateTime> format strings using [@bind:forma
 
 @code {
     [Parameter]
-    private DateTime StartDate { get; set; } = new DateTime(2020, 1, 1);
+    public DateTime StartDate { get; set; } = new DateTime(2020, 1, 1);
 }
 ```
 
+In the preceding code, the `<input>` element's field type (`type`) defaults to `text`. `@bind:format` is supported for binding the following .NET types:
+
+* <xref:System.DateTime?displayProperty=fullName>
+* <xref:System.DateTime?displayProperty=fullName>?
+* <xref:System.DateTimeOffset?displayProperty=fullName>
+* <xref:System.DateTimeOffset?displayProperty=fullName>?
+
 The `@bind:format` attribute specifies the date format to apply to the `value` of the `<input>` element. The format is also used to parse the value when an `onchange` event occurs.
+
+Specifying a format for the `date` field type isn't recommended because Blazor has built-in support to format dates.
 
 **Component parameters**
 
@@ -246,10 +288,10 @@ The following child component (`ChildComponent`) has a `Year` component paramete
 
 @code {
     [Parameter]
-    private int Year { get; set; }
+    public int Year { get; set; }
 
     [Parameter]
-    private EventCallback<int> YearChanged { get; set; }
+    public EventCallback<int> YearChanged { get; set; }
 }
 ```
 
@@ -272,7 +314,7 @@ The following parent component uses `ChildComponent` and binds the `ParentYear` 
 
 @code {
     [Parameter]
-    private int ParentYear { get; set; } = 1978;
+    public int ParentYear { get; set; } = 1978;
 
     private void ChangeTheYear()
     {
@@ -510,7 +552,7 @@ Consider the following example:
 
 @code {
     [Parameter]
-    private IEnumerable<Person> People { get; set; }
+    public IEnumerable<Person> People { get; set; }
 }
 ```
 
@@ -526,7 +568,7 @@ The mapping process can be controlled with the `@key` directive attribute. `@key
 
 @code {
     [Parameter]
-    private IEnumerable<Person> People { get; set; }
+    public IEnumerable<Person> People { get; set; }
 }
 ```
 
@@ -568,7 +610,7 @@ Generally, it makes sense to supply one of the following kinds of value for `@ke
 * Model object instances (for example, a `Person` instance as in the earlier example). This ensures preservation based on object reference equality.
 * Unique identifiers (for example, primary key values of type `int`, `string`, or `Guid`).
 
-Avoid supplying a value that can clash unexpectedly. If `@key="@someObject.GetHashCode()"` is supplied, unexpected clashes may occur because the hash codes of unrelated objects can be the same. If clashing `@key` values are requested within the same parent, the `@key` values won't be honored.
+Ensure that values used for `@key` don't clash. If clashing values are detected within the same parent element, Blazor throws an exception because it can't deterministically map old elements or components to new elements or components. Only use distinct values, such as object instances or primary key values.
 
 ## Lifecycle methods
 
@@ -759,7 +801,7 @@ In the following example, `IsCompleted` determines if `checked` is rendered in t
 
 @code {
     [Parameter]
-    private bool IsCompleted { get; set; }
+    public bool IsCompleted { get; set; }
 }
 ```
 
@@ -1057,7 +1099,7 @@ Consider the following `PetDetails` component, which can be manually built into 
 @code
 {
     [Parameter]
-    private string PetDetailsQuote { get; set; }
+    public string PetDetailsQuote { get; set; }
 }
 ```
 
@@ -1185,3 +1227,123 @@ This is a trivial example. In more realistic cases with complex and deeply neste
 * Don't write long blocks of manually-implemented `RenderTreeBuilder` logic. Prefer `.razor` files and allow the compiler to deal with the sequence numbers.
 * If sequence numbers are hardcoded, the diff algorithm only requires that sequence numbers increase in value. The initial value and gaps are irrelevant. One legitimate option is to use the code line number as the sequence number, or start from zero and increase by ones or hundreds (or any preferred interval). 
 * Blazor uses sequence numbers, while other tree-diffing UI frameworks don't use them. Diffing is far faster when sequence numbers are used, and Blazor has the advantage of a compile step that deals with sequence numbers automatically for developers authoring `.razor` files.
+
+## Localization
+
+Blazor server-side apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). The middleware selects the appropriate culture for users requesting resources from the app.
+
+The culture can be set using one of the following approaches:
+
+* [Cookies](#cookies)
+* [Provide UI to choose the culture](#provide-ui-to-choose-the-culture)
+
+For more information and examples, see <xref:fundamentals/localization>.
+
+### Cookies
+
+A localization culture cookie can persist the user's culture. The cookie is created by the `OnGet` method of the app's host page (*Pages/Host.cshtml.cs*). The Localization Middleware reads the cookie on subsequent requests to set the user's culture. 
+
+Use of a cookie ensures that the WebSocket connection can correctly propagate the culture. If localization schemes are based on the URL path or query string, the scheme might not be able to work with WebSockets, thus fail to persist the culture. Therefore, use of a localization culture cookie is the recommended approach.
+
+Any technique can be used to assign a culture if the culture is persisted in a localization cookie. If the app already has an established localization scheme for server-side ASP.NET Core, continue to use the app's existing localization infrastructure and set the localization culture cookie within the app's scheme.
+
+The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware. Create a *Pages/Host.cshtml.cs* file with the following contents in the Blazor server-side app:
+
+```csharp
+public class HostModel : PageModel
+{
+    public void OnGet()
+    {
+        HttpContext.Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
+            CookieRequestCultureProvider.MakeCookieValue(
+                new RequestCulture(
+                    CultureInfo.CurrentCulture,
+                    CultureInfo.CurrentUICulture)));
+    }
+}
+```
+
+Localization is handled in the app:
+
+1. The browser sends an initial HTTP request to the app.
+1. The culture is assigned by the Localization Middleware.
+1. The `OnGet` method in *_Host.cshtml.cs* persists the culture in a cookie as part of the response.
+1. The browser opens a WebSocket connection to create an interactive Blazor server-side session.
+1. The Localization Middleware reads the cookie and assigns the culture.
+1. The Blazor server-side session begins with the correct culture.
+
+## Provide UI to choose the culture
+
+To provide UI to allow a user to select a culture, a *redirect-based approach* is recommended. The process is similar to what happens in a web app when a user attempts to access a secure resource&mdash;the user is redirected to a sign-in page and then redirected back to the original resource. 
+
+The app persists the user's selected culture via a redirect to a controller. The controller sets the user's selected culture into a cookie and redirects the user back to the original URI.
+
+Establish an HTTP endpoint on the server to set the user's selected culture in a cookie and perform the redirect back to the original URI:
+
+```csharp
+[Route("[controller]/[action]")]
+public class CultureController : Controller
+{
+    public IActionResult SetCulture(string culture, string redirectUri)
+    {
+        if (culture != null)
+        {
+            HttpContext.Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(
+                    new RequestCulture(culture)));
+        }
+
+        return LocalRedirect(redirectUri);
+    }
+}
+```
+
+> [!WARNING]
+> Use the `LocalRedirect` action result to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
+
+The following component shows an example of how to perform the initial redirection when the user selects a culture:
+
+```cshtml
+@inject IUriHelper UriHelper
+
+<h3>Select your language</h3>
+
+<select @onchange="OnSelected">
+    <option>Select...</option>
+    <option value="en-US">English</option>
+    <option value="fr-FR">Français</option>
+</select>
+
+@code {
+    private double textNumber;
+
+    private void OnSelected(UIChangeEventArgs e)
+    {
+        var culture = (string)e.Value;
+        var uri = new Uri(UriHelper.GetAbsoluteUri())
+            .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+        var query = $"?culture={Uri.EscapeDataString(culture)}&" +
+            $"redirectUri={Uri.EscapeDataString(uri)}";
+
+        UriHelper.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
+    }
+}
+```
+
+### Use .NET localization scenarios in Blazor apps
+
+Inside Blazor apps, the following .NET localization and globalization scenarios are available:
+
+* .NET's resources system
+* Culture-specific number and date formatting
+
+Blazor's `@bind` functionality performs globalization based on the user's current culture. For more information, see the [Data binding](#data-binding) section.
+
+A limited set of ASP.NET Core's localization scenarios are currently supported:
+
+* `IStringLocalizer<>` *is supported* in Blazor apps.
+* `IHtmlLocalizer<>`, `IViewLocalizer<>`, and Data Annotations localization are ASP.NET Core MVC scenarios and **not supported** in Blazor apps.
+
+For more information, see <xref:fundamentals/localization>.
