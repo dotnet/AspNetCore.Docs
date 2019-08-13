@@ -99,7 +99,7 @@ By default a `<Protobuf>` reference will generate both a concrete client and a s
 * `Client`
 * `Both` (the default)
 
-An ASP.NET Core web app serving gRPC only needs the service base class generated:
+An ASP.NET Core web app hosting gRPC services only needs the service base class generated:
 
 ```xml
 <ItemGroup>
