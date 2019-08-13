@@ -43,7 +43,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-mac-2.2.md)]
 
 ---
 
