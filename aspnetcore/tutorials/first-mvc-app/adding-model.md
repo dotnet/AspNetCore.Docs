@@ -143,7 +143,7 @@ Build the project as a check for compiler errors.
 
 ## Scaffold movie pages
 
-Use the scaffolding tool to produce pages for Create, Read, Update, and Delete (CRUD) operations for the movie model.
+Use the scaffolding tool to produce Create, Read, Update, and Delete (CRUD) pages for the movie model.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -230,7 +230,11 @@ Update-Database
 
 * `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
-  [!INCLUDE [explain warning](~/includes/mvc-intro/model-mig.md)]
+  The database update command generates the following warning: 
+
+  > No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+
+  You can ignore that warning, it will be fixed in a later tutorial.
 
 [!INCLUDE [more information on the PMC tools for EF Core](~/includes/ef-pmc.md)]
 
