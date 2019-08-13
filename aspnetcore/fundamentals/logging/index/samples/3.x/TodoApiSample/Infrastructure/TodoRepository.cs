@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using TodoApiSample.Core.Interfaces;
 using TodoApiSample.Core.Model;
+
 
 namespace TodoApiSample.Infrastructure
 {
@@ -10,8 +12,17 @@ namespace TodoApiSample.Infrastructure
     {
         static ConcurrentDictionary<string, TodoItem> _todos = new ConcurrentDictionary<string, TodoItem>();
 
+        private ILogger _logger;
+
+        public TodoRepository (ILogger<TodoRepository> logger)
+        {
+            _logger = logger;
+        }
+
+
         public IEnumerable<TodoItem> GetAll()
         {
+            _logger.LogInformation("GetAll called");
             return _todos.Values;
         }
 
