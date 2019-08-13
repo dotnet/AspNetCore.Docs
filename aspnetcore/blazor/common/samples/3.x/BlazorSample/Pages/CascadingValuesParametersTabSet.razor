@@ -147,7 +147,7 @@ namespace BlazorSample.UIInterfaces
 
     private string TitleCssClass => ContainerTabSet.ActiveTab == this ? "active" : null;
 
-    protected override void OnInit()
+    protected override void OnInitialized()
     {
         ContainerTabSet.AddTab(this);
     }
