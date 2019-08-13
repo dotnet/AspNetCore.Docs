@@ -4,7 +4,7 @@
   dotnet dev-certs https --trust
   ```
   
-  The preceding command does not work on Linux distributions. See your Linux documenation for trusting a certificate.
+  The preceding command doesn't work on Linux. See your Linux distribution's documentation for trusting a certificate.
 
   The preceding command displays the following dialog:
 
