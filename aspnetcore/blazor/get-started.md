@@ -30,7 +30,7 @@ Get started with Blazor:
 
    2\. Create a new project.
 
-   3\. Select **Blazor App**. Select **Next**.
+   3\. Select **Blazor Server App**. Select **Next**.
 
    4\. Provide a project name in the **Project name** field or accept the default project name. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
 
