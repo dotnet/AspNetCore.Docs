@@ -25,15 +25,15 @@ In this tutorial, you write the model classes first, and EF Core creates the dat
 
 # [Visual Studio](#tab/visual-studio)
 
-Right-click the *Models* folder > **Add** > **Class**. Name the class **Movie**.
+Right-click the *Models* folder > **Add** > **Class**. Name the file *Movie.cs*.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Add a class to the *Models* folder named *Movie.cs*.
+* Add a file named *Movie.cs* to the *Models* folder.
 
 ---
 
-Update the `Movie` class with the following code:
+Update the *Movie.cs* file with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/Movie.cs)]
 
