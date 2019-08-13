@@ -104,8 +104,6 @@
         - name: EF Core with Razor Pages
           displayName: tutorial
           items:
-            - name: Overview
-              uid: data/ef-rp/index
             - name: Get started
               uid: data/ef-rp/intro
             - name: Create, Read, Update, and Delete
@@ -301,6 +299,8 @@
           uid: blazor/javascript-interop
         - name: Security and Identity
           uid: security/blazor/index
+        - name: State management
+          uid: blazor/state-management
         - name: Handle errors
           uid: blazor/handle-errors
         - name: Debug
@@ -579,8 +579,6 @@
       items:
         - name: EF Core with Razor Pages
           items:
-            - name: Overview
-              uid: data/ef-rp/index
             - name: Get started
               uid: data/ef-rp/intro
             - name: Create, Read, Update, and Delete
@@ -699,6 +697,8 @@
         - name: Overview
           displayName: deploy, publish
           uid: host-and-deploy/iis/index
+        - name: Publish to IIS tutorial
+          uid: tutorials/publish-to-iis
         - name: ASP.NET Core Module
           displayName: deploy, publish
           uid: host-and-deploy/aspnet-core-module

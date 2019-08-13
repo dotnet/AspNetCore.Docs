@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to use authentication and authorization in gRPC for ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 07/26/2019
+ms.date: 08/13/2019
 uid: grpc/authn-and-authz
 ---
 
@@ -37,6 +37,8 @@ public void Configure(IApplicationBuilder app)
 
 > [!NOTE]
 > The order in which you register the ASP.NET Core authentication middleware matters. Always call `UseAuthentication` and `UseAuthorization` after `UseRouting` and before `UseEndpoints`.
+
+The authentication mechanism your app uses during a call needs to be configured. Authentication configuration is added in `Startup.ConfigureServices` and will be different depending upon the authentication mechanism your app uses. For examples of how to secure ASP.NET Core apps, see [Authentication samples](xref:security/authentication/samples).
 
 Once authentication has been setup, the user can be accessed in a gRPC service methods via the `ServerCallContext`.
 

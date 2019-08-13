@@ -3,7 +3,7 @@ title: Areas in ASP.NET Core
 author: rick-anderson
 description: Learn how Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views).
 ms.author: riande
-ms.date: 05/10/2019
+ms.date: 08/07/2019
 uid: mvc/controllers/areas
 ---
 # Areas in ASP.NET Core
@@ -113,6 +113,10 @@ For more information, see [Routing to controller actions](xref:mvc/controllers/r
 ### Shared layout for Areas using the _ViewStart.cshtml file
 
 To share a common layout for the entire app, move the *_ViewStart.cshtml* to the application root folder.
+
+### _ViewImports.cshtml
+
+In its standard location, */Views/_ViewImports.cshtml* doesn't apply to areas. To use common [Tag Helpers](xref:mvc/views/tag-helpers/intro), `@using`, or `@inject` in your area, ensure a proper *_ViewImports.cshtml* file [applies to your area views](xref:mvc/views/layout#importing-shared-directives). If you want the same behavior in all your views, move */Views/_ViewImports.cshtml* to the application root.
 
 <a name="rename"></a>
 

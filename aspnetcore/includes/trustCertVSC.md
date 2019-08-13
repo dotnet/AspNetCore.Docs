@@ -3,6 +3,8 @@
   ```console
   dotnet dev-certs https --trust
   ```
+  
+  The preceding command doesn't work on Linux. See your Linux distribution's documentation for trusting a certificate.
 
   The preceding command displays the following dialog:
 
