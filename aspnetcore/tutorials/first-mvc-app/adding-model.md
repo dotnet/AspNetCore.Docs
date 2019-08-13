@@ -29,7 +29,7 @@ Right-click the *Models* folder > **Add** > **Class**. Name the file *Movie.cs*.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Add a file named *Movie.cs* to the *Models* folder.
+Add a file named *Movie.cs* to the *Models* folder.
 
 ---
 
@@ -39,7 +39,7 @@ Update the *Movie.cs* file with the following code:
 
 The `Movie` class contains an `Id` field, which is required by the database for the primary key.
 
-The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute specifies the type of the data (`Date`). With this attribute:
+The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute on `ReleaseDate` specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
@@ -58,7 +58,7 @@ In the PMC, run the following command:
 Install-Package Microsoft.EntityFrameworkCore.SqlServer -IncludePrerelease
 ```
 
-Additional packages are installed automatically in the scaffolding step later in the tutorial.
+This package contains the EF Core SQL Server provider. It installs the EF Core package as a dependency. Additional packages are installed automatically in the scaffolding step later in the tutorial.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -73,6 +73,8 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
 ```
 
 The preceding commands add Entity Framework Core Tools for the .NET CLI and several packages to the project. The `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.SqlServer` packages are required for scaffolding.
+
+---
 
 <a name="dc"></a>
 
