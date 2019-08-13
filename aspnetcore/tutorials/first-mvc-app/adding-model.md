@@ -52,13 +52,15 @@ The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.dat
 
 From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
 
+![PMC menu](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
+
 In the PMC, run the following command:
 
 ```powershell
 Install-Package Microsoft.EntityFrameworkCore.SqlServer -IncludePrerelease
 ```
 
-This package contains the EF Core SQL Server provider. It installs the EF Core package as a dependency. Additional packages are installed automatically in the scaffolding step later in the tutorial.
+The preceding command adds the EF Core SQL Server provider. The provider package installs the EF Core package as a dependency. Additional packages are installed automatically in the scaffolding step later in the tutorial.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -72,7 +74,11 @@ dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
 ```
 
-The preceding commands add Entity Framework Core Tools for the .NET CLI and several packages to the project. The `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.SqlServer` packages are required for scaffolding.
+The preceding commands add:
+
+* The Entity Framework Core Tools for the .NET CLI.
+* The EF Core SQLite provider, which installs the EF Core package as a dependency.
+* Packages needed for scaffolding: `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.SqlServer`.
 
 ---
 
@@ -80,7 +86,7 @@ The preceding commands add Entity Framework Core Tools for the .NET CLI and seve
 
 ## Create a database context class
 
-You need a database context class to coordinate EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) and specifies which entities are included in the data model.
+You need a database context class to coordinate EF Core functionality (Create, Read, Update, Delete) for the `Movie` model. The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) and specifies the entities to include in the data model.
 
 Create a *Data* folder.
 
@@ -92,7 +98,7 @@ The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframewo
 
 <a name="reg"></a>
 
-### Register the database context
+## Register the database context
 
 ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) must be registered with DI during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial. In this section, you register the database context with the DI container.
 
@@ -183,7 +189,7 @@ The automatic creation of these files is known as *scaffolding*.
      dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
   ```
 
-[!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
+  [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
 
 ### [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -195,38 +201,23 @@ The automatic creation of these files is known as *scaffolding*.
      dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
   ```
 
-[!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
+  [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
+
 ---
 
 <!-- End of tabs                  -->
 
-The database doesn't exist yet. If you run the app and click on the **Movie App** link, you get an error message like one of the following examples.
+You can't use the scaffolded pages yet because the database doesn't exist. If you run the app and click on the **Movie App** link, you get a *Cannot open database* or *no such table: Movie* error message.
 
-```
-An unhandled exception occurred while processing the request.
-
-SqlException: Cannot open database "MvcMovieContext-1" requested by the login. The login failed.
-```
-
-```
-An unhandled exception occurred while processing the request.
-
-SqliteException: SQLite Error 1: 'no such table: Movie'.
-```
-
-In the next section, you use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the database. Migrations is a set of tools that let you create and update a database to match your data model.
-
-<a name="pmc"></a>
+<a name="migration"></a>
 
 ## Initial migration
 
-Add an initial migration and then use it to create the database.
+Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the database. Migrations is a set of tools that let you create and update a database to match your data model.
 
 # [Visual Studio](#tab/visual-studio)
 
 From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
-
-![PMC menu](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
 
 In the PMC, enter the following commands:
 
@@ -235,13 +226,13 @@ Add-Migration InitialCreate
 Update-Database
 ```
 
-`Add-Migration InitialCreate`: Generates an *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file).
+* `Add-Migration InitialCreate`: Generates an *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file).
 
-`Update-Database`: Updates the database to the latest migration. The latest migration is the `InitialCreate` class created with the previous command. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
+* `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
-[!INCLUDE [explain warning](~/includes/mvc-intro/model-mig.md)]
+  [!INCLUDE [explain warning](~/includes/mvc-intro/model-mig.md)]
 
-[!INCLUDE [ more information on the PMC tools for EF Core](~/includes/ef-pmc.md)]
+[!INCLUDE [more information on the PMC tools for EF Core](~/includes/ef-pmc.md)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -252,9 +243,9 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-`ef migrations add InitialCreate`: Generates an *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file).
+* `ef migrations add InitialCreate`: Generates an *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class (in the *Data/MvcMovieContext.cs* file).
 
-`ef database update`: Updates the database to the latest migration. The latest migration is the `InitialCreate` class created with the previous command. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
+* `ef database update`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
 [!INCLUDE [ more information on the CLI tools for EF Core](~/includes/ef-cli.md)]
 
@@ -270,17 +261,17 @@ Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file. The `Up` m
 
 * Run the app and click the **Movie App** link.
 
-If you get an exception similar to onw of the following:
+  If you get an exception similar to one of the following:
 
-```console
-SqlException: Cannot open database "MvcMovieContext-1" requested by the login. The login failed.
-```
+  ```console
+  SqlException: Cannot open database "MvcMovieContext-1" requested by the login. The login failed.
+  ```
 
-```console
-SqliteException: SQLite Error 1: 'no such table: Movie'.
-```
+  ```console
+  SqliteException: SQLite Error 1: 'no such table: Movie'.
+  ```
 
-You might have missed the [migrations step](#pmc).
+  You might have missed the [migrations step](#migration).
 
 * Test the **Create** page. Enter and submit data.
 
@@ -288,6 +279,8 @@ You might have missed the [migrations step](#pmc).
   > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
 * Test the **Edit**, **Details**, and **Delete** pages.
+
+## Dependency injection in the controller
 
 Open the *Controllers/MoviesController.cs* file and examine the constructor:
 

@@ -37,7 +37,7 @@ namespace MvcMovie
             services.AddRazorPages();
 
             services.AddDbContext<MvcMovieContext>(options =>
-                    options.UseSqlite(Configuration.GetConnectionString("MovieContext")));
+                    options.UseSqlite(Configuration.GetConnectionString("MvcMovieContext")));
         }
         #endregion
 #endif
