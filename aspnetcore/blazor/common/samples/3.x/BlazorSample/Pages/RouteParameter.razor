@@ -10,7 +10,10 @@
 
     protected override void OnInitialized()
     {
-        Text = "fantastic";
+        if (string.IsNullOrEmpty(Text))
+        {
+            Text = "fantastic";
+        }
     }
 }
 <!-- </snippet_RouteParameter> -->
@@ -35,7 +38,10 @@
 
     protected override void OnInitialized()
     {
-        Text = "fantastic";
+        if (string.IsNullOrEmpty(Text))
+        {
+            Text = "fantastic";
+        }
     }
 }</code></pre>
 
