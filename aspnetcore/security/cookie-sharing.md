@@ -45,6 +45,7 @@ services.AddDataProtection()
 
 services.ConfigureApplicationCookie(options => {
     options.Cookie.Name = ".AspNet.SharedCookie";
+    options.Cookie.Path = "/";
 });
 ```
 
