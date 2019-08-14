@@ -56,9 +56,9 @@ The preceding code binds a [Bootstrap tooltip widget](https://getbootstrap.com/d
 
 A Tag Helper Component must be added to the app's Tag Helper Components collection. There are three ways to add to the collection:
 
-    * [Registration via services container](#registration-via-services-container)
-    * [Registration via Razor file](#registration-via-razor-file)
-    * [Registration via Page Model or controller](#registration-via-page-model-or-controller)
+* [Registration via services container](#registration-via-services-container)
+* [Registration via Razor file](#registration-via-razor-file)
+* [Registration via Page Model or controller](#registration-via-page-model-or-controller)
 
 ### Registration via services container
 
