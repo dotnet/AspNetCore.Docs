@@ -259,7 +259,7 @@ dotnet ef database update
 
 Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file. The `Up` method creates the Movie table and configures `Id` as the primary key. The `Down` method removes the `Up` migration schema changes.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/20190805165915_InitialCreate.cs]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/RazorPagesMovie30/Migrations/MvcMovie3/20190805165915_InitialCreate.cs]
 
 <a name="test"></a>
 
