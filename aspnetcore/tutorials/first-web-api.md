@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/11/2019
+ms.date: 08/05/2019
 uid: tutorials/first-web-api
 ---
 
@@ -106,6 +106,15 @@ The following diagram shows the design of the app.
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
   ![config dialog](first-web-api-mac/_static/2.png)
+
+[!INCLUDE[](~/includes/mac-terminal-access.md)]
+
+Open a command terminal in the project folder and run the following commands:
+
+   ```console
+   dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.0.0-*
+   ```
 
 ---
 
@@ -723,6 +732,7 @@ The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult
 * If no item matches the requested ID, the method returns a 404 [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) error code.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
+
 ## Test the GetTodoItems method
 
 This tutorial uses Postman to test the web API.
@@ -731,10 +741,19 @@ This tutorial uses Postman to test the web API.
 * Start the web app.
 * Start Postman.
 * Disable **SSL certificate verification**
+
+# [Visual Studio](#tab/visual-studio)
+
+* From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+* From **Postman** > **Preferences** (**General** tab), disable **SSL certificate verification**. Alternatively, select the wrench and select **Settings**, then disable the SSL certificate verification.
+
+---
   
-  * From  **File > Settings** (**General* tab), disable **SSL certificate verification**.
-    > [!WARNING]
-    > Re-enable SSL certificate verification after testing the controller.
+> [!WARNING]
+> Re-enable SSL certificate verification after testing the controller.
 
 * Create a new request.
   * Set the HTTP method to **GET**.
@@ -746,7 +765,7 @@ This tutorial uses Postman to test the web API.
 
 ## Add a Create method
 
-Add the following `PostTodoItem` method:
+Add the following `PostTodoItem` method inside of *Controllers/TodoController.cs*: 
 
 [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=snippet_Create)]
 

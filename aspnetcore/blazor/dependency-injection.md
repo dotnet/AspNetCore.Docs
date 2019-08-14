@@ -63,7 +63,7 @@ The DI system is based on the DI system in ASP.NET Core. For more information, s
 
 ## Request a service in a component
 
-After services are added to the service collection, inject the services into the components using the [\@inject](xref:mvc/views/razor#section-4) Razor directive. `@inject` has two parameters:
+After services are added to the service collection, inject the services into the components using the [\@inject](xref:mvc/views/razor#inject) Razor directive. `@inject` has two parameters:
 
 * Type &ndash; The type of the service to inject.
 * Property &ndash; The name of the property receiving the injected app service. The property doesn't require manual creation. The compiler creates the property.

@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/02/2019
+ms.date: 08/13/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -20,10 +20,14 @@ Blazor apps are built using *components*. A component is a self-contained chunk 
 
 Components are implemented in [Razor](xref:mvc/views/razor) component files (*.razor*) using a combination of C# and HTML markup. A component in Blazor is formally referred to as a *Razor component*.
 
+A component's name must start with an uppercase character. For example, *MyCoolComponent.razor* is valid, and *myCoolComponent.razor* is invalid.
+
 Components can be authored using the *.cshtml* file extension as long as the files are identified as Razor component files using the `_RazorComponentInclude` MSBuild property. For example, an app that specifies that all *.cshtml* files under the *Pages* folder should be treated as Razor components files:
 
 ```xml
-<_RazorComponentInclude>Pages\**\*.cshtml</_RazorComponentInclude>
+<PropertyGroup>
+  <_RazorComponentInclude>Pages\**\*.cshtml</_RazorComponentInclude>
+</PropertyGroup>
 ```
 
 The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When an app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
@@ -31,9 +35,9 @@ The UI for a component is defined using HTML. Dynamic rendering logic (for examp
 Members of the component class are defined in an `@code` block. In the `@code` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic. More than one `@code` block is permissible.
 
 > [!NOTE]
-> In previous versions of ASP.NET Core, `@functions` blocks were used for the same purpose as `@code` blocks. `@functions` blocks continue to work, but we recommend using the `@code` directive.
+> In prior previews of ASP.NET Core 3.0, `@functions` blocks were used for the same purpose as `@code` blocks in Razor components. `@functions` blocks continue to function in Razor components, but we recommend using the `@code` block in ASP.NET Core 3.0 Preview 6 or later.
 
-Component members can then be used as part of the component's rendering logic using C# expressions that start with `@`. For example, a C# field is rendered by prefixing `@` to the field name. The following example evaluates and renders:
+Component members can be used as part of the component's rendering logic using C# expressions that start with `@`. For example, a C# field is rendered by prefixing `@` to the field name. The following example evaluates and renders:
 
 * `_headingFontStyle` to the CSS property value for `font-style`.
 * `_headingText` to the content of the `<h1>` element.
@@ -49,7 +53,7 @@ Component members can then be used as part of the component's rendering logic us
 
 After the component is initially rendered, the component regenerates its render tree in response to events. Blazor then compares the new render tree against the previous one and applies any modifications to the browser's Document Object Model (DOM).
 
-Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the *Pages* folder. Non-page components are frequently placed in the *Shared* folder or a custom folder added to the project. To use a custom folder, either add the custom folder's namespace to the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `WebApplication`:
+Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the *Pages* folder. Non-page components are frequently placed in the *Shared* folder or a custom folder added to the project. To use a custom folder, add the custom folder's namespace to either the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `WebApplication`:
 
 ```cshtml
 @using WebApplication.Components
@@ -71,9 +75,11 @@ While pages and views can use components, the converse isn't true. Components ca
 
 For more information on how components are rendered and component state is managed in Blazor server-side apps, see the <xref:blazor/hosting-models> article.
 
-## Using components
+## Use components
 
 Components can include other components by declaring them using HTML element syntax. The markup for using a component looks like an HTML tag where the name of the tag is the component type.
+
+Attribute binding is case sensitive. For example, `@bind` is valid, and `@Bind` is invalid.
 
 The following markup in *Index.razor* renders a `HeadingComponent` instance:
 
@@ -83,9 +89,11 @@ The following markup in *Index.razor* renders a `HeadingComponent` instance:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/HeadingComponent.razor)]
 
+If a component contains an HTML element with an uppercase first letter that doesn't match a component name, a warning is emitted indicating that the element has an unexpected name. Adding an `@using` statement for the component's namespace makes the component available, which removes the warning.
+
 ## Component parameters
 
-Components can have *component parameters*, which are defined using properties (usually *non-public*) on the component class with the `[Parameter]` attribute. Use attributes to specify arguments for a component in markup.
+Components can have *component parameters*, which are defined using public properties on the component class with the `[Parameter]` attribute. Use attributes to specify arguments for a component in markup.
 
 *Components/ChildComponent.razor*:
 
@@ -118,7 +126,7 @@ The following `ParentComponent` can provide content for rendering the `ChildComp
 
 ## Attribute splatting and arbitrary parameters
 
-Components can capture and render additional attributes in addition to the component's declared parameters. Additional attributes can be captured in a dictionary and then *splatted* onto an element when the component is rendered using the `@attributes` Razor directive. This scenario is useful when defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.
+Components can capture and render additional attributes in addition to the component's declared parameters. Additional attributes can be captured in a dictionary and then *splatted* onto an element when the component is rendered using the [@attributes](xref:mvc/views/razor#attributes) Razor directive. This scenario is useful when defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.
 
 In the following example, the first `<input>` element (`id="useIndividualParams"`) uses individual component parameters, while the second `<input>` element (`id="useAttributesDict"`) uses attribute splatting:
 
@@ -134,24 +142,24 @@ In the following example, the first `<input>` element (`id="useIndividualParams"
 
 @code {
     [Parameter]
-    private string Maxlength { get; set; } = "10";
+    public string Maxlength { get; set; } = "10";
 
     [Parameter]
-    private string Placeholder { get; set; } = "Input placeholder text";
+    public string Placeholder { get; set; } = "Input placeholder text";
 
     [Parameter]
-    private string Required { get; set; } = "required";
+    public string Required { get; set; } = "required";
 
     [Parameter]
-    private string Size { get; set; } = "50";
+    public string Size { get; set; } = "50";
 
     [Parameter]
-    private Dictionary<string, object> InputAttributes { get; set; } =
+    public Dictionary<string, object> InputAttributes { get; set; } =
         new Dictionary<string, object>()
         {
-            { "maxlength", "10" }, 
-            { "placeholder", "Input placeholder text" }, 
-            { "required", "true" }, 
+            { "maxlength", "10" },
+            { "placeholder", "Input placeholder text" },
+            { "required", "true" },
             { "size", "50" }
         };
 }
@@ -179,8 +187,8 @@ To accept arbitrary attributes, define a component parameter using the `[Paramet
 
 ```cshtml
 @code {
-    [Parameter(CaptureUnmatchedValues = true)]
-    private Dictionary<string, object> InputAttributes { get; set; }
+    [Parameter(CaptureUnmatchedAttributes = true)]
+    public Dictionary<string, object> InputAttributes { get; set; }
 }
 ```
 
@@ -188,7 +196,7 @@ The `CaptureUnmatchedValues` property on `[Parameter]` allows the parameter to m
 
 ## Data binding
 
-Data binding to both components and DOM elements is accomplished with the `@bind` attribute. The following example binds the `_italicsCheck` field to the check box's checked state:
+Data binding to both components and DOM elements is accomplished with the [@bind](xref:mvc/views/razor#bind) attribute. The following example binds the `_italicsCheck` field to the check box's checked state:
 
 ```cshtml
 <input type="checkbox" class="form-check-input" id="italicsCheck" 
@@ -202,13 +210,13 @@ The check box is updated in the UI only when the component is rendered, not in r
 Using `@bind` with a `CurrentValue` property (`<input @bind="CurrentValue" />`) is essentially equivalent to the following:
 
 ```cshtml
-<input value="@CurrentValue" 
+<input value="@CurrentValue"
     @onchange="@((UIChangeEventArgs __e) => CurrentValue = __e.Value)" />
 ```
 
 When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `@bind` handles a few cases where type conversions are performed. In principle, `@bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-In addition to handling `onchange` events with `@bind` syntax, a property or field can be bound using other events by specifying an `@bind-value` attribute with an `event` parameter. The following example binds the `CurrentValue` property for the `oninput` event:
+In addition to handling `onchange` events with `@bind` syntax, a property or field can be bound using other events by specifying an [@bind-value](xref:mvc/views/razor#bind) attribute with an `event` parameter ([@bind-value:event](xref:mvc/views/razor#bind)). The following example binds the `CurrentValue` property for the `oninput` event:
 
 ```cshtml
 <input @bind-value="CurrentValue" @bind-value:event="oninput" />
@@ -216,24 +224,60 @@ In addition to handling `onchange` events with `@bind` syntax, a property or fie
 
 Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
+**Globalization**
+
+`@bind` values are formatted for display and parsed using the current culture's rules.
+
+The current culture can be accessed from the <xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=fullName> property.
+
+[CultureInfo.InvariantCulture](xref:System.Globalization.CultureInfo.InvariantCulture) is used for the following field types (`<input type="{TYPE}" />`):
+
+* `date`
+* `number`
+
+The preceding field types:
+
+* Are displayed using their appropriate browser-based formatting rules.
+* Can't contain free-form text.
+* Provide user interaction characteristics based on the browser's implementation.
+
+The following field types have specific formatting requirements and aren't currently supported by Blazor because they aren't supported by all major browsers:
+
+* `datetime-local`
+* `month`
+* `week`
+
+`@bind` supports the `@bind:culture` parameter to provide a <xref:System.Globalization.CultureInfo?displayProperty=fullName> for parsing and formatting a value. Specifying a culture isn't recommended when using the `date` and `number` field types. `date` and `number` have built-in Blazor support that provides the required culture.
+
+For information on how to set the user's culture, see the [Localization](#localization) section.
+
 **Format strings**
 
-Data binding works with <xref:System.DateTime> format strings. Other format expressions, such as currency or number formats, aren't available at this time.
+Data binding works with <xref:System.DateTime> format strings using [@bind:format](xref:mvc/views/razor#bind). Other format expressions, such as currency or number formats, aren't available at this time.
 
 ```cshtml
 <input @bind="StartDate" @bind:format="yyyy-MM-dd" />
 
 @code {
     [Parameter]
-    private DateTime StartDate { get; set; } = new DateTime(2020, 1, 1);
+    public DateTime StartDate { get; set; } = new DateTime(2020, 1, 1);
 }
 ```
 
+In the preceding code, the `<input>` element's field type (`type`) defaults to `text`. `@bind:format` is supported for binding the following .NET types:
+
+* <xref:System.DateTime?displayProperty=fullName>
+* <xref:System.DateTime?displayProperty=fullName>?
+* <xref:System.DateTimeOffset?displayProperty=fullName>
+* <xref:System.DateTimeOffset?displayProperty=fullName>?
+
 The `@bind:format` attribute specifies the date format to apply to the `value` of the `<input>` element. The format is also used to parse the value when an `onchange` event occurs.
+
+Specifying a format for the `date` field type isn't recommended because Blazor has built-in support to format dates.
 
 **Component parameters**
 
-Binding also recognizes component parameters, where `@bind-{property}` can bind a property value across components.
+Binding recognizes component parameters, where `@bind-{property}` can bind a property value across components.
 
 The following child component (`ChildComponent`) has a `Year` component parameter and `YearChanged` callback:
 
@@ -244,10 +288,10 @@ The following child component (`ChildComponent`) has a `Year` component paramete
 
 @code {
     [Parameter]
-    private int Year { get; set; }
+    public int Year { get; set; }
 
     [Parameter]
-    private EventCallback<int> YearChanged { get; set; }
+    public EventCallback<int> YearChanged { get; set; }
 }
 ```
 
@@ -270,7 +314,7 @@ The following parent component uses `ChildComponent` and binds the `ParentYear` 
 
 @code {
     [Parameter]
-    private int ParentYear { get; set; } = 1978;
+    public int ParentYear { get; set; } = 1978;
 
     private void ChangeTheYear()
     {
@@ -319,7 +363,7 @@ In general, a property can be bound to a corresponding event handler using `@bin
 
 ## Event handling
 
-Razor components provide event handling features. For an HTML element attribute named `on<event>` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name always starts with `@on`.
+Razor components provide event handling features. For an HTML element attribute named `on{event}` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name is always formatted [@on{event}](xref:mvc/views/razor#onevent).
 
 The following code calls the `UpdateHeading` method when the button is selected in the UI:
 
@@ -366,7 +410,9 @@ In the following example, `UpdateHeading` is called asynchronously when the butt
 }
 ```
 
-For some events, event-specific event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
+### Event argument types
+
+For some events, event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
 
 Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/release/3.0-preview8/src/Components/Components/src/UIEventArgs.cs) are shown in the following table.
 
@@ -385,7 +431,9 @@ Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/release/3.0-pr
 | Touch | `UITouchEventArgs` &ndash; `UITouchPoint` represents a single contact point on a touch-sensitive device. |
 
 For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview8/src/Components/Web/src).
-  
+
+### Lambda expressions
+
 Lambda expressions can also be used:
 
 ```cshtml
@@ -465,7 +513,7 @@ Prefer the strongly typed `EventCallback<T>` over `EventCallback`. `EventCallbac
 
 ## Capture references to components
 
-Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference, add a `@ref` attribute to the child component and then define a field with the same name and the same type as the child component.
+Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference, add a [@ref](xref:mvc/views/razor#ref) attribute to the child component and then define a field with the same name and the same type as the child component.
 
 ```cshtml
 <MyLoginDialog @ref="loginDialog" ... />
@@ -490,7 +538,7 @@ While capturing component references use a similar syntax to [capturing element 
 > [!NOTE]
 > Do **not** use component references to mutate the state of child components. Instead, use normal declarative parameters to pass data to child components. Use of normal declarative parameters result in child components that rerender at the correct times automatically.
 
-## Use @key to control the preservation of elements and components
+## Use \@key to control the preservation of elements and components
 
 When rendering a list of elements or components and the elements or components subsequently change, Blazor's diffing algorithm must decide which of the previous elements or components can be retained and how model objects should map to them. Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.
 
@@ -504,7 +552,7 @@ Consider the following example:
 
 @code {
     [Parameter]
-    private IEnumerable<Person> People { get; set; }
+    public IEnumerable<Person> People { get; set; }
 }
 ```
 
@@ -520,7 +568,7 @@ The mapping process can be controlled with the `@key` directive attribute. `@key
 
 @code {
     [Parameter]
-    private IEnumerable<Person> People { get; set; }
+    public IEnumerable<Person> People { get; set; }
 }
 ```
 
@@ -535,7 +583,7 @@ In some scenarios, use of `@key` minimizes the complexity of rerendering and avo
 > [!IMPORTANT]
 > Keys are local to each container element or component. Keys aren't compared globally across the document.
 
-### When to use @key
+### When to use \@key
 
 Typically, it makes sense to use `@key` whenever a list is rendered (for example, in a `@foreach` block) and a suitable value exists to define the `@key`.
 
@@ -549,20 +597,20 @@ You can also use `@key` to prevent Blazor from preserving an element or componen
 
 If `@currentPerson` changes, the `@key` attribute directive forces Blazor to discard the entire `<div>` and its descendants and rebuild the subtree within the UI with new elements and components. This can be useful if you need to guarantee that no UI state is preserved when `@currentPerson` changes.
 
-### When not to use @key
+### When not to use \@key
 
 There's a performance cost when diffing with `@key`. The performance cost isn't large, but only specify `@key` if controlling the element or component preservation rules benefit the app.
 
 Even if `@key` isn't used, Blazor preserves child element and component instances as much as possible. The only advantage to using `@key` is control over *how* model instances are mapped to the preserved component instances, instead of the diffing algorithm selecting the mapping.
 
-### What values to use for @key
+### What values to use for \@key
 
 Generally, it makes sense to supply one of the following kinds of value for `@key`:
 
 * Model object instances (for example, a `Person` instance as in the earlier example). This ensures preservation based on object reference equality.
 * Unique identifiers (for example, primary key values of type `int`, `string`, or `Guid`).
 
-Avoid supplying a value that can clash unexpectedly. If `@key="@someObject.GetHashCode()"` is supplied, unexpected clashes may occur because the hash codes of unrelated objects can be the same. If clashing `@key` values are requested within the same parent, the `@key` values won't be honored.
+Ensure that values used for `@key` don't clash. If clashing values are detected within the same parent element, Blazor throws an exception because it can't deterministically map old elements or components to new elements or components. Only use distinct values, such as object instances or primary key values.
 
 ## Lifecycle methods
 
@@ -742,26 +790,7 @@ This is the Index page.
 >
 > Partially qualified names aren't supported. For example, adding `@using ComponentsSample` and referencing `NavMenu.razor` with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.
 
-## Razor support
-
-**Razor directives**
-
-Razor directives are shown in the following table.
-
-| Directive | Description |
-| --------- | ----------- |
-| [\@code](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. `@code` is an alias of `@functions`. `@code` is recommended over `@functions`. More than one `@code` block is permissible. |
-| [\@functions](xref:mvc/views/razor#section-5) | Adds a C# code block to a component. Choose `@code` over `@functions` for C# code blocks. |
-| `@implements` | Implements an interface for the generated component class. |
-| [\@inherits](xref:mvc/views/razor#section-3) | Provides full control of the class that the component inherits. |
-| [\@inject](xref:mvc/views/razor#section-4) | Enables service injection from the [service container](xref:fundamentals/dependency-injection). For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection). |
-| `@layout` | Specifies a layout component. Layout components are used to avoid code duplication and inconsistency. |
-| [\@page](xref:razor-pages/index#razor-pages) | Specifies that the component should handle requests directly. The `@page` directive can be specified with a route and optional parameters. Unlike Razor Pages, the `@page` directive doesn't need to be the first directive at the top of the file. For more information, see [Routing](xref:blazor/routing). |
-| [\@using](xref:mvc/views/razor#using) | Adds the C# `using` directive to the generated component class. This also brings all the components defined in that namespace into scope. |
-| [\@namespace](xref:mvc/views/razor#section-6) | Sets the namespace of the generated component class. |
-| [\@attribute](xref:mvc/views/razor#section-7) | Adds an attribute to the generated component class. |
-
-**Conditional HTML element attributes**
+## Conditional HTML element attributes
 
 HTML element attributes are conditionally rendered based on the .NET value. If the value is `false` or `null`, the attribute isn't rendered. If the value is `true`, the attribute is rendered minimized.
 
@@ -772,7 +801,7 @@ In the following example, `IsCompleted` determines if `checked` is rendered in t
 
 @code {
     [Parameter]
-    private bool IsCompleted { get; set; }
+    public bool IsCompleted { get; set; }
 }
 ```
 
@@ -788,9 +817,7 @@ If `IsCompleted` is `false`, the check box is rendered as:
 <input type="checkbox" />
 ```
 
-**Additional information on Razor**
-
-For more information on Razor, see the [Razor syntax reference](xref:mvc/views/razor).
+For more information, see <xref:mvc/views/razor>.
 
 ## Raw HTML
 
@@ -1072,7 +1099,7 @@ Consider the following `PetDetails` component, which can be manually built into 
 @code
 {
     [Parameter]
-    private string PetDetailsQuote { get; set; }
+    public string PetDetailsQuote { get; set; }
 }
 ```
 
@@ -1200,3 +1227,123 @@ This is a trivial example. In more realistic cases with complex and deeply neste
 * Don't write long blocks of manually-implemented `RenderTreeBuilder` logic. Prefer `.razor` files and allow the compiler to deal with the sequence numbers.
 * If sequence numbers are hardcoded, the diff algorithm only requires that sequence numbers increase in value. The initial value and gaps are irrelevant. One legitimate option is to use the code line number as the sequence number, or start from zero and increase by ones or hundreds (or any preferred interval). 
 * Blazor uses sequence numbers, while other tree-diffing UI frameworks don't use them. Diffing is far faster when sequence numbers are used, and Blazor has the advantage of a compile step that deals with sequence numbers automatically for developers authoring `.razor` files.
+
+## Localization
+
+Blazor server-side apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). The middleware selects the appropriate culture for users requesting resources from the app.
+
+The culture can be set using one of the following approaches:
+
+* [Cookies](#cookies)
+* [Provide UI to choose the culture](#provide-ui-to-choose-the-culture)
+
+For more information and examples, see <xref:fundamentals/localization>.
+
+### Cookies
+
+A localization culture cookie can persist the user's culture. The cookie is created by the `OnGet` method of the app's host page (*Pages/Host.cshtml.cs*). The Localization Middleware reads the cookie on subsequent requests to set the user's culture. 
+
+Use of a cookie ensures that the WebSocket connection can correctly propagate the culture. If localization schemes are based on the URL path or query string, the scheme might not be able to work with WebSockets, thus fail to persist the culture. Therefore, use of a localization culture cookie is the recommended approach.
+
+Any technique can be used to assign a culture if the culture is persisted in a localization cookie. If the app already has an established localization scheme for server-side ASP.NET Core, continue to use the app's existing localization infrastructure and set the localization culture cookie within the app's scheme.
+
+The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware. Create a *Pages/Host.cshtml.cs* file with the following contents in the Blazor server-side app:
+
+```csharp
+public class HostModel : PageModel
+{
+    public void OnGet()
+    {
+        HttpContext.Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
+            CookieRequestCultureProvider.MakeCookieValue(
+                new RequestCulture(
+                    CultureInfo.CurrentCulture,
+                    CultureInfo.CurrentUICulture)));
+    }
+}
+```
+
+Localization is handled in the app:
+
+1. The browser sends an initial HTTP request to the app.
+1. The culture is assigned by the Localization Middleware.
+1. The `OnGet` method in *_Host.cshtml.cs* persists the culture in a cookie as part of the response.
+1. The browser opens a WebSocket connection to create an interactive Blazor server-side session.
+1. The Localization Middleware reads the cookie and assigns the culture.
+1. The Blazor server-side session begins with the correct culture.
+
+## Provide UI to choose the culture
+
+To provide UI to allow a user to select a culture, a *redirect-based approach* is recommended. The process is similar to what happens in a web app when a user attempts to access a secure resource&mdash;the user is redirected to a sign-in page and then redirected back to the original resource. 
+
+The app persists the user's selected culture via a redirect to a controller. The controller sets the user's selected culture into a cookie and redirects the user back to the original URI.
+
+Establish an HTTP endpoint on the server to set the user's selected culture in a cookie and perform the redirect back to the original URI:
+
+```csharp
+[Route("[controller]/[action]")]
+public class CultureController : Controller
+{
+    public IActionResult SetCulture(string culture, string redirectUri)
+    {
+        if (culture != null)
+        {
+            HttpContext.Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(
+                    new RequestCulture(culture)));
+        }
+
+        return LocalRedirect(redirectUri);
+    }
+}
+```
+
+> [!WARNING]
+> Use the `LocalRedirect` action result to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
+
+The following component shows an example of how to perform the initial redirection when the user selects a culture:
+
+```cshtml
+@inject IUriHelper UriHelper
+
+<h3>Select your language</h3>
+
+<select @onchange="OnSelected">
+    <option>Select...</option>
+    <option value="en-US">English</option>
+    <option value="fr-FR">Français</option>
+</select>
+
+@code {
+    private double textNumber;
+
+    private void OnSelected(UIChangeEventArgs e)
+    {
+        var culture = (string)e.Value;
+        var uri = new Uri(UriHelper.GetAbsoluteUri())
+            .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+        var query = $"?culture={Uri.EscapeDataString(culture)}&" +
+            $"redirectUri={Uri.EscapeDataString(uri)}";
+
+        UriHelper.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
+    }
+}
+```
+
+### Use .NET localization scenarios in Blazor apps
+
+Inside Blazor apps, the following .NET localization and globalization scenarios are available:
+
+* .NET's resources system
+* Culture-specific number and date formatting
+
+Blazor's `@bind` functionality performs globalization based on the user's current culture. For more information, see the [Data binding](#data-binding) section.
+
+A limited set of ASP.NET Core's localization scenarios are currently supported:
+
+* `IStringLocalizer<>` *is supported* in Blazor apps.
+* `IHtmlLocalizer<>`, `IViewLocalizer<>`, and Data Annotations localization are ASP.NET Core MVC scenarios and **not supported** in Blazor apps.
+
+For more information, see <xref:fundamentals/localization>.
