@@ -5,7 +5,7 @@ description: Learn how ASP.NET Core implements dependency injection and how to u
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/06/2019
+ms.date: 08/14/2019
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -165,7 +165,7 @@ Transient lifetime services (<xref:Microsoft.Extensions.DependencyInjection.Serv
 Scoped lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>) are created once per client request (connection).
 
 > [!WARNING]
-> When using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via constructor injection because it forces the service to behave like a singleton. For more information, see <xref:fundamentals/middleware/index>.
+> When using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via constructor injection because it forces the service to behave like a singleton. For more information, see <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
 
 ### Singleton
 
