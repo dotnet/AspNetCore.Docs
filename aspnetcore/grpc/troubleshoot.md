@@ -88,16 +88,17 @@ The gRPC client must also be configured to not use TLS. For more information, se
 
 gRPC code generation of concrete clients and service base classes requires protobuf files and tooling to be referenced from a project. You must include:
 
-* *.proto* files you want to use in the `<Protobuf>` item group.
+* *.proto* files you want to use in the `<Protobuf>` item group. [Imported *.proto* files](https://developers.google.com/protocol-buffers/docs/proto3#importing-definitions) must be referenced by the project.
 * Package reference to the gRPC tooling package [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/).
 
 For more information on generating gRPC C# assets, see <xref:grpc/basics>.
 
-By default a `<Protobuf>` reference will generate both a concrete client and a service base class. `GrpcServices` attribute can be used to limit C# asset generation to either the concrete client or service base class. Valid `GrpcServices` options are:
+By default a `<Protobuf>` reference will generate a concrete client and a service base class. The `GrpcServices` attribute can be used to limit C# asset generation. Valid `GrpcServices` options are:
 
+* `Both` (default when not present)
 * `Server`
 * `Client`
-* `Both` (the default)
+* `None`
 
 An ASP.NET Core web app hosting gRPC services only needs the service base class generated:
 
