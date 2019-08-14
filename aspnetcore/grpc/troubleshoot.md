@@ -57,7 +57,7 @@ var client = GrpcClient.Create<Greeter.GreeterClient>(httpClient);
 
 ## Unable to start ASP.NET Core gRPC app on macOS
 
-Kestrel doesn't support HTTP/2 with TLS on macOS. The ASP.NET Core gRPC template and samples use TLS by default. You'll see the following error message when you attempt to start the gRPC server:
+Kestrel doesn't support HTTP/2 with TLS on macOS and older Windows versions such as Windows 7. The ASP.NET Core gRPC template and samples use TLS by default. You'll see the following error message when you attempt to start the gRPC server:
 
 > Unable to bind to https://localhost:5001 on the IPv4 loopback interface: 'HTTP/2 over TLS is not supported on macOS due to missing ALPN support.'.
 
