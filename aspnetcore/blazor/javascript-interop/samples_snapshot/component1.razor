@@ -4,8 +4,6 @@
 <button @onclick="SetFocus">Set focus on username</button>
 
 @code {
-    private ElementRef username;
-
     public async void SetFocus()
     {
         await JSRuntime.InvokeAsync<object>(
