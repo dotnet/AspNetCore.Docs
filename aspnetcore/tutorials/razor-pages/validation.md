@@ -28,8 +28,7 @@ The DataAnnotations namespace provides a set of built-in validation attributes t
 
 Update the `Movie` class to take advantage of the built-in `Required`, `StringLength`, `RegularExpression`, and `Range` validation attributes.
 
-<!-- change snippet to use ID -->
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRatingDA.cs?name=snippet1)]
+[!code-csharp[](~/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 The validation attributes specify behavior that you want to enforce on the model properties they're applied to:
 
