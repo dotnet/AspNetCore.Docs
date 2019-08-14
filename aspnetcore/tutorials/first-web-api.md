@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/05/2019
+ms.date: 08/14/2019
 uid: tutorials/first-web-api
 ---
 
@@ -919,7 +919,7 @@ For more information, see the following resources:
 
 * <xref:web-api/index>
 * <xref:tutorials/web-api-help-pages-using-swagger>
-* <xref:data/ef-rp/index>
+* <xref:data/ef-rp/intro>
 * <xref:mvc/controllers/routing>
 * <xref:web-api/action-return-types>
 * <xref:host-and-deploy/azure-apps/index>
