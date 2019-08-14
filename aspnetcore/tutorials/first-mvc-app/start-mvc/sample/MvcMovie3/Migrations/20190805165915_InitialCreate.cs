@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MvcMovie.Migrations
 {
+    #region snippet
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -13,7 +14,8 @@ namespace MvcMovie.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:ValueGenerationStrategy", 
+                                     SqlServerValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(nullable: true),
                     ReleaseDate = table.Column<DateTime>(nullable: false),
                     Genre = table.Column<string>(nullable: true),
@@ -31,4 +33,5 @@ namespace MvcMovie.Migrations
                 name: "Movie");
         }
     }
+    #endregion
 }

@@ -257,9 +257,11 @@ dotnet ef database update
 
 ### The InitialCreate class
 
-Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file. The `Up` method creates the Movie table and configures `Id` as the primary key. The `Down` method removes the `Up` migration schema changes.
+Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/RazorPagesMovie30/Migrations/MvcMovie3/20190805165915_InitialCreate.cs]
+[!code-csharp[](~/aspnetcore/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Migrations/20190805165915_InitialCreate.cs?name=snippet]
+
+ The `Up` method creates the Movie table and configures `Id` as the primary key. The `Down` method reverts the schema changes made by the `Up` migration.
 
 <a name="test"></a>
 
@@ -269,15 +271,20 @@ Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file. The `Up` m
 
   If you get an exception similar to one of the following:
 
+# [Visual Studio](#tab/visual-studio)
+
   ```console
   SqlException: Cannot open database "MvcMovieContext-1" requested by the login. The login failed.
   ```
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
   ```console
   SqliteException: SQLite Error 1: 'no such table: Movie'.
   ```
 
-  You might have missed the [migrations step](#migration).
+---
+  You probably missed the [migrations step](#migration).
 
 * Test the **Create** page. Enter and submit data.
 
