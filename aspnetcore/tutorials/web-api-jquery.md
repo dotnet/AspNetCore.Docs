@@ -24,7 +24,8 @@ For ASP.NET Core 2.2, see the 2.2 version of [Call the Web API with jQuery](xref
 
 ## Prerequisites
 
-Complete [Tutorial: Create a web API](xref:tutorials/first-web-api)
+* Complete [Tutorial: Create a web API](xref:tutorials/first-web-api)
+* Familiarity with CSS, HTML, JavaScript, and jQuery
 
 ## Call the API with jQuery
 
