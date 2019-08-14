@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿#if NEVER
+#region snippet
+using Microsoft.EntityFrameworkCore;
+using MvcMovie.Models;
 
-namespace MvcMovie.Models
+namespace MvcMovie.Data
 {
     public class MvcMovieContext : DbContext
     {
@@ -12,3 +15,5 @@ namespace MvcMovie.Models
         public DbSet<Movie> Movie { get; set; }
     }
 }
+#endregion
+#endif
