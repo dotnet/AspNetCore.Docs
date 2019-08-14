@@ -15,7 +15,7 @@
 @code {
     private IReadOnlyList<Customer> Customers;
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
         // The property DataRepository received an implementation
         // of IDataAccess through dependency injection. Use 
