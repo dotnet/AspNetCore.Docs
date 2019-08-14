@@ -115,6 +115,90 @@ JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/
 
 Some [JavaScript interop](xref:blazor/javascript-interop) scenarios require references to HTML elements. For example, a UI library may require an element reference for initialization, or you might need to call command-like APIs on an element, such as `focus` or `play`.
 
+Capture references to HTML elements in a component using the following approach:
+
+* Add an `@ref` attribute to the HTML element.
+* Define a field of type `ElementReference` whose name matches the value of the `@ref` attribute.
+
+The following example shows capturing a reference to the `username` `<input>` element:
+
+```cshtml
+<input @ref="username" ... />
+
+@code {
+    ElementReference username;
+}
+```
+
+> [!NOTE]
+> Do **not** use captured element references as a way of populating or manipulating the DOM when Blazor interacts with the elements referenced. Doing so may interfere with the declarative rendering model.
+
+As far as .NET code is concerned, an `ElementReference` is an opaque handle. The *only* thing you can do with `ElementReference` is pass it through to JavaScript code via JavaScript interop. When you do so, the JavaScript-side code receives an `HTMLElement` instance, which it can use with normal DOM APIs.
+
+For example, the following code defines a .NET extension method that enables setting the focus on an element:
+
+*exampleJsInterop.js*:
+
+```javascript
+window.exampleJsFunctions = {
+  focusElement : function (element) {
+    element.focus();
+  }
+}
+```
+
+Use `IJSRuntime.InvokeAsync<T>` and call `exampleJsFunctions.focusElement` with an `ElementReference` to focus an element:
+
+```cshtml
+@inject IJSRuntime JSRuntime
+
+<input @ref="username" />
+<button @onclick="SetFocus">Set focus on username</button>
+
+@code {
+    private ElementReference username;
+
+    public async void SetFocus()
+    {
+        await JSRuntime.InvokeAsync<object>(
+                "exampleJsFunctions.focusElement", username);
+    }
+}
+```
+
+To use an extension method to focus an element, create a static extension method that receives the `IJSRuntime` instance:
+
+```csharp
+public static Task Focus(this ElementReference elementRef, IJSRuntime jsRuntime)
+{
+    return jsRuntime.InvokeAsync<object>(
+        "exampleJsFunctions.focusElement", elementRef);
+}
+```
+
+The method is called directly on the object. The following example assumes that the static `Focus` method is available from the `JsInteropClasses` namespace:
+
+```cshtml
+@inject IJSRuntime JSRuntime
+@using JsInteropClasses
+
+<input @ref="username" />
+<button @onclick="SetFocus">Set focus on username</button>
+
+@code {
+    private ElementReference username;
+
+    public async Task SetFocus()
+    {
+        await username.Focus(JSRuntime);
+    }
+}
+```
+
+> [!IMPORTANT]
+> The `username` variable is only populated after the component is rendered. If an unpopulated `ElementRef` is passed to JavaScript code, the JavaScript code receives a value of `null`. To manipulate element references after the component has finished rendering (to set the initial focus on an element) use the `OnAfterRenderAsync` or `OnAfterRender` [component lifecycle methods](xref:blazor/components#lifecycle-methods).
+
+<!-- HOLD https://github.com/aspnet/AspNetCore.Docs/pull/13818
 Capture a reference to an HTML element in a component by adding an `@ref` attribute to the HTML element. The following example shows capturing a reference to the `username` `<input>` element:
 
 ```cshtml
@@ -158,6 +242,7 @@ The method is called directly on the object. The following example assumes that 
 
 > [!IMPORTANT]
 > The `username` variable is only populated after the component is rendered. If an unpopulated `ElementReference` is passed to JavaScript code, the JavaScript code receives a value of `null`. To manipulate element references after the component has finished rendering (to set the initial focus on an element) use the `OnAfterRenderAsync` or `OnAfterRender` [component lifecycle methods](xref:blazor/components#lifecycle-methods).
+-->
 
 ## Invoke .NET methods from JavaScript functions
 

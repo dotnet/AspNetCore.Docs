@@ -513,6 +513,30 @@ Prefer the strongly typed `EventCallback<T>` over `EventCallback`. `EventCallbac
 
 ## Capture references to components
 
+Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference:
+
+* Add an [@ref](xref:mvc/views/razor#ref) attribute to the child component.
+* Define a field with the same type as the child component.
+
+```cshtml
+<MyLoginDialog @ref="loginDialog" ... />
+
+@code {
+    private MyLoginDialog loginDialog;
+
+    private void OnSomething()
+    {
+        loginDialog.Show();
+    }
+}
+```
+
+When the component is rendered, the `loginDialog` field is populated with the `MyLoginDialog` child component instance. You can then invoke .NET methods on the component instance.
+
+> [!IMPORTANT]
+> The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the `OnAfterRenderAsync` or `OnAfterRender` methods.
+
+<!-- HOLD https://github.com/aspnet/AspNetCore.Docs/pull/13818
 Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`.
 
 The Razor compiler automatically generates a backing field for element and component references when using [@ref](xref:mvc/views/razor#ref). In the following example, there's no need to create a `myLoginDialog` field for the `LoginDialog` component:
@@ -534,6 +558,7 @@ In some cases, a backing field is required. For example, declare a backing field
 
 > [!IMPORTANT]
 > The generated `myLoginDialog` variable is only populated after the component is rendered and its output includes the `LoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the `OnAfterRenderAsync` or `OnAfterRender` methods.
+-->
 
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/javascript-interop#capture-references-to-elements), it isn't a [JavaScript interop](xref:blazor/javascript-interop) feature. Component references aren't passed to JavaScript code&mdash;they're only used in .NET code.
 
