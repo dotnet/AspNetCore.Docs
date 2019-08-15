@@ -63,7 +63,7 @@ The following code calls `UseHttpsRedirection` in the `Startup` class:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet1&highlight=13)]
+[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet1&highlight=14)]
 
 ::: moniker-end
 
@@ -99,11 +99,11 @@ Specify the HTTPS port using any of the following approaches:
   **Type**: *string*  
   **Default**: A default value isn't set.  
   **Set using**: `UseSetting`  
-  **Environment variable**: `<PREFIX_>HTTPS_PORT` (The prefix is `ASPNETCORE_` when using the [Generic Host](xref:fundamentals/host/generic-host).)
+  **Environment variable**: `<PREFIX_>HTTPS_PORT` (The [prefix is ASPNETCORE_](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#settings-for-all-app-types) when using the Generic Host with ASP.NET Core project template code.)
 
   When configuring an <xref:Microsoft.Extensions.Hosting.IHostBuilder> in `Program`:
 
-  [!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Program2.cs?name=snippet_Program&highlight=11)]
+  [!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Program2.cs?name=snippet_Program&highlight=12)]
 
 * Indicate a port with the secure scheme using the `ASPNETCORE_URLS` environment variable. The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 * In development, set an HTTPS URL in *launchsettings.json*. Enable HTTPS when IIS Express is used.
@@ -248,7 +248,7 @@ ASP.NET Core implements HSTS with the `UseHsts` extension method. The following 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet1&highlight=10)]
+[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet1&highlight=11)]
 
 ::: moniker-end
 
@@ -300,7 +300,18 @@ To opt-out of HTTPS/HSTS:
 
 Uncheck the **Configure for HTTPS** check box.
 
+::: moniker range=">= aspnetcore-3.0"
+
+![New ASP.NET Core Web Application dialog showing the Configure for HTTPS check box unselected.](enforcing-ssl/_static/out-vs2019.png)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 ![New ASP.NET Core Web Application dialog showing the Configure for HTTPS check box unselected.](enforcing-ssl/_static/out.png)
+
+::: moniker-end
+
 
 # [.NET Core CLI](#tab/netcore-cli) 
 
