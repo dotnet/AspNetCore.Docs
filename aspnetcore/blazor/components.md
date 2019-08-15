@@ -517,9 +517,10 @@ Component references provide a way to reference a component instance so that you
 
 * Add an [@ref](xref:mvc/views/razor#ref) attribute to the child component.
 * Define a field with the same type as the child component.
+* Provide the `@ref:suppressField` parameter, which suppresses backing field generation. For more information, see [Removing automatic backing field support for @ref in 3.0.0-preview9](https://github.com/aspnet/Announcements/issues/381).
 
 ```cshtml
-<MyLoginDialog @ref="loginDialog" ... />
+<MyLoginDialog @ref="loginDialog" @ref:suppressField ... />
 
 @code {
     private MyLoginDialog loginDialog;
