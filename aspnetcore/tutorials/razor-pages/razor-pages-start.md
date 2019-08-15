@@ -95,9 +95,9 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   ![macOS New project dialog](razor-pages-start/_static/webapp.png)
 
-* In the **Configure your new ASP.NET Core Web API** dialog, set the  **Target Framework** of **.NET Core 2.0**.
+* In the **Configure your new ASP.NET Core Web API** dialog, set the  **Target Framework** to **.NET Core 3.0**.
 
-  ![macOS .NET Core 2.2 selection](razor-pages-start/_static/targetframework.png)
+  ![macOS .NET Core 3.0 selection](razor-pages-start/_static/targetframework3.png)
 
 * Name the project **RazorPagesMovie**, and then select **Create**.
 
