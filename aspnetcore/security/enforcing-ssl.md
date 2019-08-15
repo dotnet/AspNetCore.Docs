@@ -63,13 +63,13 @@ The following code calls `UseHttpsRedirection` in the `Startup` class:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](enforcing-ssl/sample/3.x/Startup.cs?name=snippet1&highlight=13)]
+[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet1&highlight=13)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](enforcing-ssl/sample/2.x/Startup.cs?name=snippet1&highlight=13)]
+[!code-csharp[](enforcing-ssl/sample-snapshot/2.x/Startup.cs?name=snippet1&highlight=13)]
 
 ::: moniker-end
 
@@ -103,7 +103,7 @@ Specify the HTTPS port using any of the following approaches:
 
   When configuring an <xref:Microsoft.Extensions.Hosting.IHostBuilder> in `Program`:
 
-  [!code-csharp[](enforcing-ssl/sample-snapshot/Program-3.x.cs?name=snippet_Program&highlight=11)]
+  [!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Program2.cs?name=snippet_Program&highlight=11)]
 
 * Indicate a port with the secure scheme using the `ASPNETCORE_URLS` environment variable. The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 * In development, set an HTTPS URL in *launchsettings.json*. Enable HTTPS when IIS Express is used.
@@ -123,7 +123,7 @@ Specify the HTTPS port using any of the following approaches:
 
   When configuring an <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> in `Program`:
 
-  [!code-csharp[](enforcing-ssl/sample-snapshot/Program.cs?name=snippet_Program&highlight=10)]
+  [!code-csharp[](enforcing-ssl/sample-snapshot/2.x/Program2.cs?name=snippet_Program&highlight=10)]
 
 * Indicate a port with the secure scheme using the `ASPNETCORE_URLS` environment variable. The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 * In development, set an HTTPS URL in *launchsettings.json*. Enable HTTPS when IIS Express is used.
@@ -158,13 +158,13 @@ The following highlighted code calls [AddHttpsRedirection](/dotnet/api/microsoft
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](enforcing-ssl/sample/3.x/Startup.cs?name=snippet2&highlight=14-18)]
+[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet2&highlight=14-18)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](enforcing-ssl/sample/2.x/Startup.cs?name=snippet2&highlight=14-18)]
+[!code-csharp[](enforcing-ssl/sample-snapshot/2.x/Startup.cs?name=snippet2&highlight=14-18)]
 
 ::: moniker-end
 
@@ -248,13 +248,13 @@ ASP.NET Core implements HSTS with the `UseHsts` extension method. The following 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](enforcing-ssl/sample/3.x/Startup.cs?name=snippet1&highlight=10)]
+[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet1&highlight=10)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](enforcing-ssl/sample/2.x/Startup.cs?name=snippet1&highlight=10)]
+[!code-csharp[](enforcing-ssl/sample-snapshot/2.x/Startup.cs?name=snippet1&highlight=10)]
 
 ::: moniker-end
 
@@ -268,13 +268,13 @@ The following code:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](enforcing-ssl/sample/3.x/Startup.cs?name=snippet2&highlight=5-12)]
+[!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet2&highlight=5-12)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](enforcing-ssl/sample/2.x/Startup.cs?name=snippet2&highlight=5-12)]
+[!code-csharp[](enforcing-ssl/sample-snapshot/2.x/Startup.cs?name=snippet2&highlight=5-12)]
 
 ::: moniker-end
 
