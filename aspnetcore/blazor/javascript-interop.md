@@ -119,11 +119,12 @@ Capture references to HTML elements in a component using the following approach:
 
 * Add an `@ref` attribute to the HTML element.
 * Define a field of type `ElementReference` whose name matches the value of the `@ref` attribute.
+* Provide the `@ref:suppressField` parameter, which suppresses backing field generation. For more information, see [Removing automatic backing field support for @ref in 3.0.0-preview9](https://github.com/aspnet/Announcements/issues/381).
 
 The following example shows capturing a reference to the `username` `<input>` element:
 
 ```cshtml
-<input @ref="username" ... />
+<input @ref="username" @ref:suppressField ... />
 
 @code {
     ElementReference username;
@@ -152,7 +153,7 @@ Use `IJSRuntime.InvokeAsync<T>` and call `exampleJsFunctions.focusElement` with 
 ```cshtml
 @inject IJSRuntime JSRuntime
 
-<input @ref="username" />
+<input @ref="username" @ref:suppressField />
 <button @onclick="SetFocus">Set focus on username</button>
 
 @code {
@@ -182,7 +183,7 @@ The method is called directly on the object. The following example assumes that 
 @inject IJSRuntime JSRuntime
 @using JsInteropClasses
 
-<input @ref="username" />
+<input @ref="username" @ref:suppressField />
 <button @onclick="SetFocus">Set focus on username</button>
 
 @code {
