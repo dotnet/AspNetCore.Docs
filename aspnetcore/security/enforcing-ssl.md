@@ -94,9 +94,9 @@ Specify the HTTPS port using any of the following approaches:
 
 * Set the `https_port` [host setting](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#https_port):
 
-  * In configuration.
+  * In host configuration.
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
-  * By calling `UseSetting` in the `Program` class:
+  * By calling `UseSetting`:
 
     [!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Program2.cs?name=snippet_Program&highlight=12)]
 
@@ -108,9 +108,9 @@ Specify the HTTPS port using any of the following approaches:
 
 * Set the `https_port` [host setting](xref:fundamentals/host/web-host#https-port):
 
-  * In configuration.
+  * In host configuration.
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
-  * By calling `UseSetting` in the `Program` class:
+  * By calling `UseSetting`:
 
     [!code-csharp[](enforcing-ssl/sample-snapshot/2.x/Program2.cs?name=snippet_Program&highlight=10)]
 
