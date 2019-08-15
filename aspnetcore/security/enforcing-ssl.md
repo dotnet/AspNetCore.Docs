@@ -237,7 +237,7 @@ Because HSTS is enforced by the client it has some limitations:
 * HSTS requires at least one successful HTTPS request to establish the HSTS policy.
 * The application must check every HTTP request and redirect or reject the HTTP request.
 
-ASP.NET Core implements HSTS with the `UseHsts` extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
+ASP.NET Core 2.1 and later implements HSTS with the `UseHsts` extension method. The following code calls `UseHsts` when the app isn't in [development mode](xref:fundamentals/environments):
 
 ::: moniker range=">= aspnetcore-3.0"
 
