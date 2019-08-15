@@ -307,9 +307,9 @@ webBuilder.UseSetting(WebHostDefaults.HostingStartupExcludeAssembliesKey, "assem
 
 The HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
 
-**Key**: https_port
-**Type**: *string*
-**Default**: A default value isn't set.
+**Key**: https_port<br>
+**Type**: *string*<br>
+**Default**: A default value isn't set.<br>
 **Environment variable**: `<PREFIX_>HTTPS_PORT`
 
 To set this value, use configuration or call `UseSetting`:
@@ -352,7 +352,7 @@ webBuilder.UseSetting(WebHostDefaults.PreventHostingStartupKey, "true");
 
 The assembly to search for the `Startup` class.
 
-**Key**: startupAssembly
+**Key**: startupAssembly<br>
 **Type**: *string*  
 **Default**: The app's assembly  
 **Environment variable**: `<PREFIX_>STARTUPASSEMBLY`
@@ -373,7 +373,7 @@ A semicolon-delimited list of IP addresses or host addresses with ports and prot
 
 **Key**: urls  
 **Type**: *string*  
-**Default**: `http://localhost:5000` and `https://localhost:5001`
+**Default**: `http://localhost:5000` and `https://localhost:5001`<br>
 **Environment variable**: `<PREFIX_>URLS`
 
 To set this value, use the environment variable or call `UseUrls`:
