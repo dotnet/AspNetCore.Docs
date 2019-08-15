@@ -34,7 +34,7 @@ No API can prevent a client from sending sensitive data on the first request.
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range="<= aspnetcore-2.2"
 
 > [!WARNING]
 > ## API projects
@@ -66,7 +66,7 @@ The following code calls `UseHttpsRedirection` in the `Startup` class:
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range="<= aspnetcore-2.2"
 
 [!code-csharp[](enforcing-ssl/sample-snapshot/2.x/Startup.cs?name=snippet1&highlight=13)]
 
@@ -104,7 +104,7 @@ Specify the HTTPS port using any of the following approaches:
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range="<= aspnetcore-2.2"
 
 * Set the [ASPNETCORE_HTTPS_PORT environment variable](xref:fundamentals/host/web-host#https-port).
 
@@ -155,7 +155,7 @@ The following highlighted code calls [AddHttpsRedirection](/dotnet/api/microsoft
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range="<= aspnetcore-2.2"
 
 [!code-csharp[](enforcing-ssl/sample-snapshot/2.x/Startup.cs?name=snippet2&highlight=14-18)]
 
@@ -194,7 +194,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range="<= aspnetcore-2.2"
 
 When configuring services in *Startup.cs*:
 
@@ -245,7 +245,7 @@ ASP.NET Core implements HSTS with the `UseHsts` extension method. The following 
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range="<= aspnetcore-2.2"
 
 [!code-csharp[](enforcing-ssl/sample-snapshot/2.x/Startup.cs?name=snippet1&highlight=10)]
 
@@ -264,7 +264,7 @@ The following code:
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range="<= aspnetcore-2.2"
 
 [!code-csharp[](enforcing-ssl/sample-snapshot/2.x/Startup.cs?name=snippet2&highlight=5-12)]
 
@@ -298,7 +298,7 @@ Uncheck the **Configure for HTTPS** check box.
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range="<= aspnetcore-2.2"
 
 ![New ASP.NET Core Web Application dialog showing the Configure for HTTPS check box unselected.](enforcing-ssl/_static/out.png)
 
