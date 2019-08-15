@@ -2,7 +2,7 @@
 title: Enforce HTTPS in ASP.NET Core
 author: rick-anderson
 description: Learn how to require HTTPS/TLS in a ASP.NET Core web app.
-monikerRange: ">= aspnetcore2.1"
+monikerRange: ">= aspnetcore-2.1"
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/01/2018
@@ -93,7 +93,7 @@ Specify the HTTPS port using any of the following approaches:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-* Set the `ASPNETCORE_HTTPS_PORT` environment variable or [https_port Web Host configuration setting](xref:fundamentals/host/generic-host#https-port):
+* Set the `ASPNETCORE_HTTPS_PORT` environment variable or [https_port Web Host configuration setting](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#https-port):
 
   **Key**: `https_port`  
   **Type**: *string*  
@@ -101,9 +101,9 @@ Specify the HTTPS port using any of the following approaches:
   **Set using**: `UseSetting`  
   **Environment variable**: `<PREFIX_>HTTPS_PORT` (The prefix is `ASPNETCORE_` when using the [Generic Host](xref:fundamentals/host/generic-host).)
 
-  When configuring an <xref:Microsoft.AspNetCore.Hosting.IHostBuilder> in `Program`:
+  When configuring an <xref:Microsoft.Extensions.Hosting.IHostBuilder> in `Program`:
 
-  [!code-csharp[](enforcing-ssl/sample-snapshot/Program3.x.cs?name=snippet_Program&highlight=11)]
+  [!code-csharp[](enforcing-ssl/sample-snapshot/Program-3.x.cs?name=snippet_Program&highlight=11)]
 
 * Indicate a port with the secure scheme using the `ASPNETCORE_URLS` environment variable. The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 * In development, set an HTTPS URL in *launchsettings.json*. Enable HTTPS when IIS Express is used.
