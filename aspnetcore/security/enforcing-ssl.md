@@ -265,7 +265,6 @@ For production environments that are implementing HTTPS for the first time, set 
 The following code:
 
 
-
 ::: moniker range=">= aspnetcore-3.0"
 
 [!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet2&highlight=5-12)]
