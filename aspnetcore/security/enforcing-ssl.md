@@ -98,7 +98,7 @@ Specify the HTTPS port using any of the following approaches:
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
   * By calling `UseSetting`:
 
-    [!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Program2.cs?name=snippet_Program&highlight=12)]
+    [!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Program.cs?name=snippet_Program&highlight=12)]
 
 * Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 
@@ -112,7 +112,7 @@ Specify the HTTPS port using any of the following approaches:
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
   * By calling `UseSetting`:
 
-    [!code-csharp[](enforcing-ssl/sample-snapshot/2.x/Program2.cs?name=snippet_Program&highlight=10)]
+    [!code-csharp[](enforcing-ssl/sample-snapshot/2.x/Program.cs?name=snippet_Program&highlight=10)]
 
 * Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](xref:fundamentals/host/web-host#server-urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 

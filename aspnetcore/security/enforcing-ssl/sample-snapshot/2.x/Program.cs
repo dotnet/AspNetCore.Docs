@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
-namespace WebHTTPS
+namespace EnvironmentsSample
 {
+    #region snippet_Program
     public class Program
     {
         public static void Main(string[] args)
@@ -19,6 +13,8 @@ namespace WebHTTPS
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseSetting("https_port", "8080")
                 .UseStartup<Startup>();
     }
+    #endregion
 }

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace WebHTTPS
 {
+    #region snippet_Program
     public class Program
     {
         public static void Main(string[] args)
@@ -20,7 +21,10 @@ namespace WebHTTPS
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseSetting("https_port", "8080")
+                        .UseStartup<Startup>();
                 });
     }
+    #endregion
 }
+
