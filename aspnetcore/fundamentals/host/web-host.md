@@ -232,10 +232,22 @@ A semicolon-delimited string of hosting startup assemblies to load on startup.
 
 Although the configuration value defaults to an empty string, the hosting startup assemblies always include the app's assembly. When hosting startup assemblies are provided, they're added to the app's assembly for loading when the app builds its common services during startup.
 
+::: moniker range=">= aspnetcore-1.0"
 ```csharp
 WebHost.CreateDefaultBuilder(args)
     .UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "assembly1;assembly2")
 ```
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+```csharp
+WebHost.CreateDefaultBuilder(args)
+     .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "assembly1;assembly2") 
+                });  
+```
+::: moniker-end
 
 ### HTTPS Port
 
