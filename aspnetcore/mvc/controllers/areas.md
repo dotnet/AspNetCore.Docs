@@ -3,7 +3,7 @@ title: Areas in ASP.NET Core
 author: rick-anderson
 description: Learn how Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views).
 ms.author: riande
-ms.date: 08/07/2019
+ms.date: 08/16/2019
 uid: mvc/controllers/areas
 ---
 # Areas in ASP.NET Core
@@ -130,7 +130,7 @@ The following code changes the default area folder from `"Areas"` to `"MyAreas"`
 
 ## Areas with Razor Pages
 
-Areas with Razor Pages require and *Areas/&lt;area name&gt;/Pages* folder in the root of the app. The following folder structure is used with the [sample download](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples)
+Areas with Razor Pages require an *Areas/<area name>/Pages* folder in the root of the app. The following folder structure is used with the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples):
 
 * Project name
   * Areas
