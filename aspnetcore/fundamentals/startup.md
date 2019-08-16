@@ -102,8 +102,7 @@ For features that require substantial setup, there are `Add{Service}` extension 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](startup/3.0_samples/StartupFilterSample/StartupIdentity.cs
-?name=snippet)]
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/StartupIdentity.cs?name=snippet)]
 
 ::: moniker-end
 
