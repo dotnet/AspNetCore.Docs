@@ -1,18 +1,17 @@
 ---
-title: "Tutorial: Call a web API with jQuery using ASP.NET Core"
+title: "Tutorial: Call an ASP.NET Core web API with JavaScript"
 author: rick-anderson
-description: Learn how to call an ASP.NET Core web API with jQuery.
+description: Learn how to call an ASP.NET Core web API with JavaScript.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/20/2019
+ms.date: 08/13/2019
 uid: tutorials/web-api-jquery
 ---
-
-# Tutorial: Call an ASP.NET Core web API with jQuery
+# Tutorial: Call an ASP.NET Core web API with JavaScript
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial shows how to call an ASP.NET Core web API with jQuery
+This tutorial shows how to call an ASP.NET Core web API with JavaScript, using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API).
 
 ::: moniker range="< aspnetcore-3.0"
 
@@ -25,30 +24,30 @@ For ASP.NET Core 2.2, see the 2.2 version of [Call the Web API with jQuery](xref
 ## Prerequisites
 
 * Complete [Tutorial: Create a web API](xref:tutorials/first-web-api)
-* Familiarity with CSS, HTML, JavaScript, and jQuery
+* Familiarity with CSS, HTML, and JavaScript
 
-## Call the API with jQuery
+## Call the web API with JavaScript
 
-In this section, an HTML page is added that uses jQuery to call the web api. jQuery initiates the request and updates the page with the details from the API's response.
+In this section, an HTML page is added that uses the Fetch API to call the web API. Fetch initiates the request, and JavaScript updates the page with the details from the API's response.
 
-Configure the app to [serve static files](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [enable default file mapping](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) by updating *Startup.cs* with the following highlighted code:
+1. Configure the app to [serve static files](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [enable default file mapping](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) by updating *Startup.cs* with the following highlighted code:
 
-[!code-csharp[](first-web-api/samples/3.0/TodoApi/StartupJquery.cs?highlight=8-9&name=snippet_configure)]
+    [!code-csharp[](first-web-api/samples/3.0/TodoApi/StartupJquery.cs?highlight=8-9&name=snippet_configure)]
 
-Create a *wwwroot* folder in the project directory.
+1. Create a *wwwroot* folder in the project directory.
 
-Add an HTML file named *index.html* to the *wwwroot* directory. Replace its contents with the following markup:
+1. Add an HTML file named *index.html* to the *wwwroot* directory. Replace its contents with the following markup:
 
-[!code-html[](first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
+    [!code-html[](first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
 
-Add a JavaScript file named *site.js* to the *wwwroot* directory. Replace its contents with the following code:
+1. Add a JavaScript file named *site.js* to the *wwwroot* directory. Replace its contents with the following code:
 
-[!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/site.js?name=snippet_SiteJs)]
+    [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/site.js?name=snippet_SiteJs)]
 
 A change to the ASP.NET Core project's launch settings may be required to test the HTML page locally:
 
-* Open *Properties\launchSettings.json*.
-* Remove the `launchUrl` property to force the app to open at *index.html*&mdash;the project's default file.
+1. Open *Properties\launchSettings.json*.
+2. Remove the `launchUrl` property to force the app to open at *index.html*&mdash;the project's default file.
 
 There are several ways to get jQuery. In the preceding snippet, the library is loaded from a CDN.
 
