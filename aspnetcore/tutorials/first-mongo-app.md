@@ -4,7 +4,7 @@ author: prkhandelwal
 description: This tutorial demonstrates how to create an ASP.NET Core web API using a MongoDB NoSQL database.
 ms.author: scaddie
 ms.custom: "mvc, seodec18"
-ms.date: 07/10/2019
+ms.date: 08/17/2019
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
@@ -231,7 +231,19 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 1. Add the following highlighted code to `Startup.ConfigureServices`:
 
+::: moniker range="< aspnetcore-3.0"
+
     [!code-csharp[](first-mongo-app/sample_snapshot/BooksApi/Startup.ConfigureServices.AddDbSettings.cs?highlight=3-7)]
+
+::: moniker-end 
+
+
+::: moniker range=">= aspnetcore-3.0"
+
+    [!code-csharp[](first-mongo-app/sample_snapshot/BooksApi-3.0/Startup.ConfigureServices.AddDbSettings.cs?highlight=3-7)]
+
+::: moniker-end
+
 
     In the preceding code:
 
@@ -253,7 +265,17 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 1. Add the following highlighted code to `Startup.ConfigureServices`:
 
+::: moniker range="< aspnetcore-3.0"
+
     [!code-csharp[](first-mongo-app/sample_snapshot/BooksApi/Startup.ConfigureServices.AddSingletonService.cs?highlight=9)]
+
+::: end-moniker
+
+::: moniker range=">= aspnetcore-3.0"
+
+    [!code-csharp[](first-mongo-app/sample_snapshot/BooksApi-3.0/Startup.ConfigureServices.AddSingletonService.cs?highlight=9)]
+
+::: end-moniker
 
     In the preceding code, the `BookService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BookService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](https://mongodb.github.io/mongo-csharp-driver/2.8/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 
@@ -336,9 +358,23 @@ There are two details to change about the JSON responses returned in the [Test t
 
 To satisfy the preceding requirements, make the following changes:
 
+::: moniker range="< aspnetcore-3.0"
+
 1. In `Startup.ConfigureServices`, chain the following highlighted code on to the `AddMvc` method call:
 
     [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=12)]
+
+:: end-moniker
+
+::: moniker range=">= aspnetcore-3.0"
+
+1. JSON.NET has been removed from ASP.NET shared framework. Add a package reference to [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson).
+
+1. In `Startup.ConfigureServices`, chain the following highlighted code on to the `AddMvc` method call:
+
+    [!code-csharp[](first-mongo-app/sample/BooksApi-3.0/Startup.cs?name=snippet_ConfigureServices&highlight=12)]
+
+:: end-moniker
 
     With the preceding change, property names in the web API's serialized JSON response match their corresponding property names in the CLR object type. For example, the `Book` class's `Author` property serializes as `Author`.
 
