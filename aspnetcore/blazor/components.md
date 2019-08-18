@@ -159,7 +159,7 @@ In the following example, the first `<input>` element (`id="useIndividualParams"
         {
             { "maxlength", "10" },
             { "placeholder", "Input placeholder text" },
-            { "required", "true" },
+            { "required", "required" },
             { "size", "50" }
         };
 }
@@ -179,7 +179,7 @@ The rendered `<input>` elements using both approaches is identical:
 <input id="useAttributesDict"
        maxlength="10"
        placeholder="Input placeholder text"
-       required="true"
+       required="required"
        size="50">
 ```
 
