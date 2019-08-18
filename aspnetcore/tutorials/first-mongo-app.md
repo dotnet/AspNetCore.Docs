@@ -221,11 +221,11 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 1. Add the following database configuration values to *appsettings.json*:
 
-    [!code-json[](first-mongo-app/sample/BooksApi/appsettings.json?highlight=2-6)]
+    [!code-json[](first-mongo-app/sample/BooksApi-3.0/appsettings.json?highlight=2-6)]
 
 1. Add a *BookstoreDatabaseSettings.cs* file to the *Models* directory with the following code:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Models/BookstoreDatabaseSettings.cs)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi-3.0/Models/BookstoreDatabaseSettings.cs)]
 
     The preceding `BookstoreDatabaseSettings` class is used to store the *appsettings.json* file's `BookstoreDatabaseSettings` property values. The JSON and C# property names are named identically to ease the mapping process.
 
@@ -233,17 +233,15 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 ::: moniker range="< aspnetcore-3.0"
 
-    [!code-csharp[](first-mongo-app/sample_snapshot/BooksApi/Startup.ConfigureServices.AddDbSettings.cs?highlight=3-7)]
+    [!code-csharp[](first-mongo-app/sample_snapshot/BooksApi-3.0/Startup.ConfigureServices.AddDbSettings.cs?highlight=3-7)]
 
 ::: moniker-end 
-
 
 ::: moniker range=">= aspnetcore-3.0"
 
     [!code-csharp[](first-mongo-app/sample_snapshot/BooksApi-3.0/Startup.ConfigureServices.AddDbSettings.cs?highlight=3-7)]
 
 ::: moniker-end
-
 
     In the preceding code:
 
@@ -252,14 +250,14 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 1. Add the following code to the top of *Startup.cs* to resolve the `BookstoreDatabaseSettings` and `IBookstoreDatabaseSettings` references:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_UsingBooksApiModels)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi-3.0/Startup.cs?name=snippet_UsingBooksApiModels)]
 
 ## Add a CRUD operations service
 
 1. Add a *Services* directory to the project root.
 1. Add a `BookService` class to the *Services* directory with the following code:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Services/BookService.cs?name=snippet_BookServiceClass)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi-3.0/Services/BookService.cs?name=snippet_BookServiceClass)]
 
     In the preceding code, an `IBookstoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the *appsettings.json* configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
 
@@ -267,7 +265,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 ::: moniker range="< aspnetcore-3.0"
 
-    [!code-csharp[](first-mongo-app/sample_snapshot/BooksApi/Startup.ConfigureServices.AddSingletonService.cs?highlight=9)]
+    [!code-csharp[](first-mongo-app/sample_snapshot/BooksApi-3.0/Startup.ConfigureServices.AddSingletonService.cs?highlight=9)]
 
 ::: end-moniker
 
@@ -281,13 +279,13 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 1. Add the following code to the top of *Startup.cs* to resolve the `BookService` reference:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_UsingBooksApiServices)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi-3.0/Startup.cs?name=snippet_UsingBooksApiServices)]
 
 The `BookService` class uses the following `MongoDB.Driver` members to perform CRUD operations against the database:
 
 * [MongoClient](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_MongoClient.htm) &ndash; Reads the server instance for performing database operations. The constructor of this class is provided the MongoDB connection string:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Services/BookService.cs?name=snippet_BookServiceConstructor&highlight=3)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi-3.0/Services/BookService.cs?name=snippet_BookServiceConstructor&highlight=3)]
 
 * [IMongoDatabase](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_IMongoDatabase.htm) &ndash; Represents the Mongo database for performing operations. This tutorial uses the generic [GetCollection\<TDocument>(collection)](https://api.mongodb.com/csharp/current/html/M_MongoDB_Driver_IMongoDatabase_GetCollection__1.htm) method on the interface to gain access to data in a specific collection. Perform CRUD operations against the collection after this method is called. In the `GetCollection<TDocument>(collection)` method call:
   * `collection` represents the collection name.
@@ -304,7 +302,7 @@ The `BookService` class uses the following `MongoDB.Driver` members to perform C
 
 Add a `BooksController` class to the *Controllers* directory with the following code:
 
-[!code-csharp[](first-mongo-app/sample/BooksApi/Controllers/BooksController.cs)]
+[!code-csharp[](first-mongo-app/sample/BooksApi-3.0/Controllers/BooksController.cs)]
 
 The preceding web API controller:
 
@@ -362,7 +360,7 @@ To satisfy the preceding requirements, make the following changes:
 
 1. In `Startup.ConfigureServices`, chain the following highlighted code on to the `AddMvc` method call:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Startup.cs?name=snippet_ConfigureServices&highlight=12)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi-3.0/Startup.cs?name=snippet_ConfigureServices&highlight=12)]
 
 :: end-moniker
 
@@ -380,13 +378,13 @@ To satisfy the preceding requirements, make the following changes:
 
 1. In *Models/Book.cs*, annotate the `BookName` property with the following [[JsonProperty]](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonPropertyAttribute.htm) attribute:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Models/Book.cs?name=snippet_BookNameProperty&highlight=2)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi-3.0/Models/Book.cs?name=snippet_BookNameProperty&highlight=2)]
 
     The `[JsonProperty]` attribute's value of `Name` represents the property name in the web API's serialized JSON response.
 
 1. Add the following code to the top of *Models/Book.cs* to resolve the `[JsonProperty]` attribute reference:
 
-    [!code-csharp[](first-mongo-app/sample/BooksApi/Models/Book.cs?name=snippet_NewtonsoftJsonImport)]
+    [!code-csharp[](first-mongo-app/sample/BooksApi-3.0/Models/Book.cs?name=snippet_NewtonsoftJsonImport)]
 
 1. Repeat the steps defined in the [Test the web API](#test-the-web-api) section. Notice the difference in JSON property names.
 
