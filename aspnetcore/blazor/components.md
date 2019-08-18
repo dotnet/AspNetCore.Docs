@@ -148,7 +148,7 @@ In the following example, the first `<input>` element (`id="useIndividualParams"
     public string Placeholder { get; set; } = "Input placeholder text";
 
     [Parameter]
-    public string Required { get; set; } = "true";
+    public string Required { get; set; } = "required";
 
     [Parameter]
     public string Size { get; set; } = "50";
@@ -159,7 +159,7 @@ In the following example, the first `<input>` element (`id="useIndividualParams"
         {
             { "maxlength", "10" },
             { "placeholder", "Input placeholder text" },
-            { "required", "true" },
+            { "required", "required" },
             { "size", "50" }
         };
 }
@@ -173,13 +173,13 @@ The rendered `<input>` elements using both approaches is identical:
 <input id="useIndividualParams"
        maxlength="10"
        placeholder="Input placeholder text"
-       required="true"
+       required="required"
        size="50">
 
 <input id="useAttributesDict"
        maxlength="10"
        placeholder="Input placeholder text"
-       required="true"
+       required="required"
        size="50">
 ```
 
