@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using SampleApp.Models;
 
 namespace SampleApp
@@ -13,7 +12,7 @@ namespace SampleApp
         public Startup(IConfiguration config)
         {
             // Configuration from appsettings.json has already been loaded by
-            // CreateDefaultBuilder on WebHost in Program.cs. Use DI to load
+            // CreateDefaultBuilder on Host in Program.cs. Use DI to load
             // the configuration into the Configuration property.
             Configuration = config;
         }
@@ -63,10 +62,10 @@ namespace SampleApp
             });
             #endregion
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddRazorPages();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -78,7 +77,13 @@ namespace SampleApp
             }
 
             app.UseStaticFiles();
-            app.UseMvc();
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+            });
         }
     }
 }
