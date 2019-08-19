@@ -187,7 +187,7 @@ To accept arbitrary attributes, define a component parameter using the `[Paramet
 
 ```cshtml
 @code {
-    [Parameter(CaptureUnmatchedAttributes = true)]
+    [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object> InputAttributes { get; set; }
 }
 ```
