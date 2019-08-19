@@ -17,7 +17,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.c
 
 ## Caching basics
 
-Caching can significantly improve the performance and scalability of an app by reducing the work required to generate content. Caching works best with data that changes infrequently. Caching makes a copy of data that can be returned much faster than from the original source. Apps should be written and tested to **never** depend on cached data.
+Caching can significantly improve the performance and scalability of an app by reducing the work required to generate content. Caching works best with data that changes infrequently **and** is expensive to generate. Caching makes a copy of data that can be returned much faster than from the source. Apps should be written and tested to **never** depend on cached data.
 
 ASP.NET Core supports several different caches. The simplest cache is based on the [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache). `IMemoryCache` represents a cache stored in the memory of the web server. Apps running on a server farm ( multiple servers) should ensure sessions are sticky when using the in-memory cache. Sticky sessions ensure that subsequent requests from a client all go to the same server. For example, Azure Web apps use [Application Request Routing](https://www.iis.net/learn/extensions/planning-for-arr) (ARR) to route all subsequent requests to the same server.
 
@@ -108,13 +108,13 @@ The following code creates a unitless fixed size <xref:Microsoft.Extensions.Cach
 
 The following code registers `MyMemoryCache` with the [dependency injection](xref:fundamentals/dependency-injection) container.
 
-[!code-csharp[](memory/sample/RPcache/Startup.cs?name=snippet&highlight=5)]
+[!code-csharp[](memory/3.0sample/RPcache/Startup.cs)]
 
 `MyMemoryCache` is created as an independent memory cache for components that are aware of this size limited cache and know how to set cache entry size appropriately.
 
 The following code uses `MyMemoryCache`:
 
-[!code-csharp[](memory/sample/RPcache/Pages/About.cshtml.cs?name=snippet)]
+[!code-csharp[](memory/3.0sample/RPcache/Pages/SetSize.cshtml.cs?name=snippet)]
 
 The size of the cache entry can be set by <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.Size> or the <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.SetSize*> extension methods:
 
@@ -122,7 +122,7 @@ The size of the cache entry can be set by <xref:Microsoft.Extensions.Caching.Mem
 
 ### MemoryCache.Compact
 
-`MemoryCache.Compact`attempts to removes the specified percentage of the memory cache. The attempted removable occurs in the following order:
+`MemoryCache.Compact` attempts to remove the specified percentage of the cache in the following order::
 
 * All expired items.
 * Items by priority. Lowest priority items are removed first.
@@ -286,7 +286,7 @@ The size of the cache entry can be set by [Size](/dotnet/api/microsoft.extension
 
 ### MemoryCache.Compact
 
-`MemoryCache.Compact`attempts to removes the specified percentage of the memory cache. The attempted removable occurs in the following order:
+`MemoryCache.Compact` attempts to remove the specified percentage of the cache in the following order:
 
 * All expired items.
 * Items by priority. Lowest priority items are removed first.
