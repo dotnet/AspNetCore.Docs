@@ -24,8 +24,8 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-* [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
+* [.NET Core SDK 3.0 or later](https://www.microsoft.com/net/download/all)
+* [Visual Studio 2019 Preview](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=community&ch=pre&rel=16&utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019preview) with the **ASP.NET and web development** workload
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 
 ## Configure MongoDB
@@ -84,7 +84,7 @@ Use the mongo Shell in the following steps to create a database, make collection
       ]
     }
     ```
-  
+
   > [!NOTE]
   > The ID's shown in this article will not match the IDs when you run this sample.
 
@@ -122,7 +122,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 1. Go to **File** > **New** > **Project**.
 1. Select the **ASP.NET Core Web Application** project type, and select **Next**.
 1. Name the project *BooksApi*, and select **Create**.
-1. Select the **.NET Core** target framework and **ASP.NET Core 2.2**. Select the **API** project template, and select **Create**.
+1. Select the **.NET Core** target framework and **ASP.NET Core 3.0**. Select the **API** project template, and select **Create**.
 1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
     ```powershell
@@ -155,7 +155,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
     ```csharp
     using MongoDB.Bson;
     using MongoDB.Bson.Serialization.Attributes;
-    
+
     namespace BooksApi.Models
     {
         public class Book
@@ -163,25 +163,25 @@ The database is ready. You can start creating the ASP.NET Core web API.
             [BsonId]
             [BsonRepresentation(BsonType.ObjectId)]
             public string Id { get; set; }
-    
+
             [BsonElement("Name")]
             public string BookName { get; set; }
-    
+
             public decimal Price { get; set; }
-    
+
             public string Category { get; set; }
-    
+
             public string Author { get; set; }
         }
     }
     ```
 
     In the preceding class, the `Id` property:
-    
+
     * Is required for mapping the Common Language Runtime (CLR) object to the MongoDB collection.
     * Is annotated with [[BsonId]](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonIdAttribute.htm) to designate this property as the document's primary key.
     * Is annotated with [[BsonRepresentation(BsonType.ObjectId)]](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonRepresentationAttribute.htm) to allow passing the parameter as type `string` instead of an [ObjectId](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_ObjectId.htm) structure. Mongo handles the conversion from `string` to `ObjectId`.
-    
+
     The `BookName` property is annotated with the [[BsonElement]](https://api.mongodb.com/csharp/current/html/T_MongoDB_Bson_Serialization_Attributes_BsonElementAttribute.htm) attribute. The attribute's value of `Name` represents the property name in the MongoDB collection.
 
 ## Add a configuration model
@@ -195,7 +195,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
         "ConnectionString": "mongodb://localhost:27017",
         "DatabaseName": "BookstoreDb"
       },
-     
+
     ```
 
 1. Add a *BookstoreDatabaseSettings.cs* file to the *Models* directory with the following code:
@@ -209,7 +209,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
             public string ConnectionString { get; set; }
             public string DatabaseName { get; set; }
         }
-    
+
         public interface IBookstoreDatabaseSettings
         {
             string BooksCollectionName { get; set; }
@@ -228,10 +228,10 @@ The database is ready. You can start creating the ASP.NET Core web API.
     {
         services.Configure<BookstoreDatabaseSettings>(
             Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
-    
+
         services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
             sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
-    
+
         services.AddControllers();
     }
     ```
@@ -257,40 +257,40 @@ The database is ready. You can start creating the ASP.NET Core web API.
     using MongoDB.Driver;
     using System.Collections.Generic;
     using System.Linq;
-    
+
     namespace BooksApi.Services
     {
         public class BookService
         {
             private readonly IMongoCollection<Book> _books;
-    
+
             public BookService(IBookstoreDatabaseSettings settings)
             {
                 var client = new MongoClient(settings.ConnectionString);
                 var database = client.GetDatabase(settings.DatabaseName);
-    
+
                 _books = database.GetCollection<Book>(settings.BooksCollectionName);
             }
-    
+
             public List<Book> Get() =>
                 _books.Find(book => true).ToList();
-    
+
             public Book Get(string id) =>
                 _books.Find<Book>(book => book.Id == id).FirstOrDefault();
-    
+
             public Book Create(Book book)
             {
                 _books.InsertOne(book);
                 return book;
             }
-    
+
             public void Update(string id, Book bookIn) =>
                 _books.ReplaceOne(book => book.Id == id, bookIn);
-    
+
             public void Remove(Book bookIn) =>
                 _books.DeleteOne(book => book.Id == bookIn.Id);
-    
-            public void Remove(string id) => 
+
+            public void Remove(string id) =>
                 _books.DeleteOne(book => book.Id == id);
         }
     }
@@ -305,12 +305,12 @@ The database is ready. You can start creating the ASP.NET Core web API.
     {
         services.Configure<BookstoreDatabaseSettings>(
             Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
-    
+
         services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
             sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
-    
+
         services.AddSingleton<BookService>();
-    
+
         services.AddControllers();
     }
     ```
@@ -333,7 +333,7 @@ The `BookService` class uses the following `MongoDB.Driver` members to perform C
     {
         var client = new MongoClient(settings.ConnectionString);
         var database = client.GetDatabase(settings.DatabaseName);
-    
+
         _books = database.GetCollection<Book>(settings.BooksCollectionName);
     }
     ```
@@ -491,12 +491,12 @@ To satisfy the preceding requirements, make the following changes:
     {
         services.Configure<BookstoreDatabaseSettings>(
             Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
-    
+
         services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
             sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
-    
+
         services.AddSingleton<BookService>();
-    
+
         services.AddControllers()
             .AddNewtonsoftJson(options => options.UseMemberCasing());
     }
