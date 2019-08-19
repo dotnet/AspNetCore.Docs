@@ -30,9 +30,8 @@ namespace SignalRWebPack
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
-
             #region snippet_UseStaticDefaultFiles
+            app.UseRouting();
             app.UseDefaultFiles();
             app.UseStaticFiles();
             #endregion
