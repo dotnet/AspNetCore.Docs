@@ -122,15 +122,15 @@ The size of the cache entry can be set by <xref:Microsoft.Extensions.Caching.Mem
 
 ### MemoryCache.Compact
 
-`MemoryCache.Compact` attempts to remove the specified percentage of the cache in the following order::
+`MemoryCache.Compact` attempts to remove the specified percentage of the cache in the following order:
 
 * All expired items.
 * Items by priority. Lowest priority items are removed first.
 * Least recently used objects.
-* Items with the soonest absolute expiration.
-* Items with the soonest sliding expiration.
+* Items with the earliest absolute expiration.
+* Items with the earliest sliding expiration.
 
-Pinned items with priority <xref:Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove> are never removed.
+Pinned items with priority <xref:Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove> are never removed. The following code removes a cache item and calls `Compact`:
 
 [!code-csharp[](memory/3.0sample/RPcache/Pages/TestCache.cshtml.cs?name=snippet3)]
 
@@ -291,8 +291,8 @@ The size of the cache entry can be set by [Size](/dotnet/api/microsoft.extension
 * All expired items.
 * Items by priority. Lowest priority items are removed first.
 * Least recently used objects.
-* Items with the soonest absolute expiration.
-* Items with the soonest sliding expiration.
+* Items with the earliest absolute expiration.
+* Items with the earliest sliding expiration.
 
 Pinned items with priority <xref:Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove> are never removed.
 
