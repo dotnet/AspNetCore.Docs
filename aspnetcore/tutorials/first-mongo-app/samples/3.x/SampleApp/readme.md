@@ -1,6 +1,5 @@
 ---
 page_type: sample
-title: Create a web API with ASP.NET Core and MongoDB
 description: "This tutorial demonstrates how to create an ASP.NET Core web API using a MongoDB NoSQL database."
 languages:
 - csharp
