@@ -212,7 +212,7 @@ public class HomeController : Controller
     {
         var cacheEntry = _cache.GetOrCreate(CacheKeys.Entry, entry =>
         {
-            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1);
+            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(10);
             return DateTime.Now;
         });
 
@@ -226,7 +226,7 @@ public class HomeController : Controller
         var cacheEntry = _cache.GetOrCreate(CacheKeys.Entry, entry =>
         {
             entry.SetSlidingExpiration(TimeSpan.FromSeconds(3));
-            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1);
+            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(20);
             return DateTime.Now;
         });
 
