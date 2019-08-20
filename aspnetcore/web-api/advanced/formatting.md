@@ -4,9 +4,7 @@ author: ardalis
 description: Learn how to format response data in ASP.NET Core Web API.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-
-ms.date: 4/22/2019
-
+ms.date: 8/22/2019
 uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API
@@ -42,13 +40,13 @@ For actions with multiple return types (for example, different HTTP status codes
 
 ## Content Negotiation
 
-Content negotiation (*conneg*) occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](http://json.org/). Content negotiation is implemented by <xref:Microsoft.AspNetCore.Mvc.ObjectResult>. It's also built into the status code-specific action results returned from the helper methods (which are all based on `ObjectResult`). A model type can be returned and ASP.NET Core will wrap it in an `ObjectResult`.
+Content negotiation (*conneg*) occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is implemented by <xref:Microsoft.AspNetCore.Mvc.ObjectResult>. It's also built into the status code-specific action results returned from the helper methods (which are all based on `ObjectResult`). A model type can be returned and ASP.NET Core will wrap it in an `ObjectResult`.
 
 The following action method uses the `Ok` and `NotFound` helper methods:
 
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_search)]
 
-A JSON-formatted response will be returned unless another format was requested and the server can return the requested format. You can use a tool like [Fiddler](http://www.telerik.com/fiddler) or  [Postman](https://www.getpostman.com/tools) to create a request that includes an `Accept` header and specify another format. In that case, if the server has a *formatter* that can produce a response in the requested format, the result will be returned in the client-preferred format.
+A JSON-formatted response will be returned unless another format was requested and the server can return the requested format. You can use a tool like [Fiddler](https://www.telerik.com/fiddler) or  [Postman](https://www.getpostman.com/tools) to create a request that includes an `Accept` header and specify another format. In that case, if the server has a *formatter* that can produce a response in the requested format, the result will be returned in the client-preferred format.
 
 By default, ASP.NET Core only supports JSON, so even when another format is specified, the result returned is still JSON-formatted. The next section shows how to add additional formatters.
 
