@@ -71,9 +71,11 @@ The following code calls [Get](/dotnet/api/microsoft.extensions.caching.memory.c
 
 [!code-csharp[](memory/3.0sample/WebCache/Controllers/HomeController.cs?name=snippet_gct)]
 
-The following code gets or creates a cached entry with absolute expiration:
+The following code gets or creates a cached entry with sliding and absolute expiration:
 
 [!code-csharp[](memory/3.0sample/WebCache/Controllers/HomeController.cs?name=snippet9)]
+
+The preceding code guarantees the data will not be cached longer than the absolute time.
 
 <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreate*> , <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync*>, and <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.Get*> are extension methods part of the <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions> class that extends the capability of <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>. See [IMemoryCache methods](/dotnet/api/microsoft.extensions.caching.memory.imemorycache) and [CacheExtensions methods](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions) for a description of other cache methods.
 
@@ -147,6 +149,7 @@ Using a `CancellationTokenSource` allows multiple cache entries to be evicted as
 
 ## Additional notes
 
+* Expiration doesn't happen in the background. There is no timer that actively scans the cache for expired items. Any activity on the cache (`Get`, `Set`, `Remove`) can trigger a background scan for expired items. A timer on the `CancellationTokenSource` (`CancelAfter`) would also remove the entry and trigger a scan for expired items. For example, rather than using `SetAbsoluteExpiration(TimeSpan.FromHours(1))`, use `CancellationTokenSource.CancelAfter(TimeSpan.FromHours(1))` for the registered token. When this token fires it removes the entry immediately and fires the eviction callbacks. For more information, see [this GitHub issue](https://github.com/aspnet/Caching/issues/248).
 * When using a callback to repopulate a cache item:
 
   * Multiple requests can find the cached key value empty because the callback hasn't completed.
@@ -154,7 +157,7 @@ Using a `CancellationTokenSource` allows multiple cache entries to be evicted as
 
 * When one cache entry is used to create another, the child copies the parent entry's expiration tokens and time-based expiration settings. The child isn't expired by manual removal or updating of the parent entry.
 
-* Use [PostEvictionCallbacks](/dotnet/api/microsoft.extensions.caching.memory.icacheentry.postevictioncallbacks#Microsoft_Extensions_Caching_Memory_ICacheEntry_PostEvictionCallbacks) to set the callbacks that will be fired after the cache entry is evicted from the cache.
+* Use<xref:Microsoft.Extensions.Caching.Memory.ICacheEntry.PostEvictionCallbacks> to set the callbacks that will be fired after the cache entry is evicted from the cache.
 
 ## Additional resources
 

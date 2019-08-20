@@ -212,9 +212,8 @@ public class HomeController : Controller
     {
         var cacheEntry = _cache.GetOrCreate(CacheKeys.Entry, entry =>
         {
-            entry.AbsoluteExpiration = DateTime.Now.AddSeconds(30);
-            //entry.SetAbsoluteExpiration(DateTime.Now.AddSeconds(30));
-            //entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(30);
+            entry.SetSlidingExpiration(TimeSpan.FromSeconds(3));
+            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(4);
             return DateTime.Now;
         });
 
