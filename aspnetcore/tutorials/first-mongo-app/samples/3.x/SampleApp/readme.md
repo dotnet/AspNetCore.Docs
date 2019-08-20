@@ -502,3 +502,10 @@ To satisfy the preceding requirements, make the following changes:
     ```
 
 1. Repeat the steps defined in the [Test the web API](#test-the-web-api) section. Notice the difference in JSON property names.
+
+## Next steps
+
+For more information on building ASP.NET Core web APIs, see the following resources:
+
+* [YouTube version of this article](https://www.youtube.com/watch?v=7uJt_sOenyo&feature=youtu.be)
+* [Create web APIs with ASP.NET Core](https://docs.microsoft.com/aspnet/core/web-api/index?view=aspnetcore-3.0)
