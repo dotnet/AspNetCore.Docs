@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 08/19/2019
+ms.date: 08/20/2019
 ms.custom: "mvc, seodec18"
 uid: razor-pages/ui-class
 ---
@@ -249,7 +249,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
-Static web assets are enabled by default in the Development environment. To explicitly support static web assets in other environments, call `UseStaticWebAssets` on the host builder in *Program.cs*:
+When running the consuming app from build output (`dotnet run`), static web assets are enabled by default in the Development environment. To support assets in other environments when running from build output, call `UseStaticWebAssets` on the host builder in *Program.cs*:
 
 ```csharp
 using Microsoft.AspNetCore.Hosting;
@@ -271,6 +271,8 @@ public class Program
             });
 }
 ```
+
+Calling `UseStaticWebAssets` isn't required when running an app from published output (`dotnet publish`).
 
 ### Multi-project development flow
 
