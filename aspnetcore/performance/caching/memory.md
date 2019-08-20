@@ -111,7 +111,7 @@ The following code creates a unitless fixed size <xref:Microsoft.Extensions.Cach
 
 The following code registers `MyMemoryCache` with the [dependency injection](xref:fundamentals/dependency-injection) container.
 
-[!code-csharp[](memory/3.0sample/RPcache/Startup.cs)]
+[!code-csharp[](memory/3.0sample/RPcache/Startup.cs?name=snippet)]
 
 `MyMemoryCache` is created as an independent memory cache for components that are aware of this size limited cache and know how to set cache entry size appropriately.
 
@@ -181,7 +181,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.c
 
 Caching can significantly improve the performance and scalability of an app by reducing the work required to generate content. Caching works best with data that changes infrequently. Caching makes a copy of data that can be returned much faster than from the original source. Code should be written and tested to **never** depend on cached data.
 
-ASP.NET Core supports several different caches. The simplest cache is based on the [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache), which represents a cache stored in the memory of the web server. Apps that run on a server farm of multiple servers should ensure that sessions are sticky when using the in-memory cache. Sticky sessions ensure that later requests from a client all go to the same server. For example, Azure Web apps use [Application Request Routing](https://www.iis.net/learn/extensions/planning-for-arr) (ARR) to route all requests from a user agent to the same server.
+ASP.NET Core supports several different caches. The simplest cache is based on the [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache), which represents a cache stored in the memory of the web server. Apps that run on a server farm (multiple servers) should ensure that sessions are sticky when using the in-memory cache. Sticky sessions ensure that later requests from a client all go to the same server. For example, Azure Web apps use [Application Request Routing](https://www.iis.net/learn/extensions/planning-for-arr) (ARR) to route all requests from a user agent to the same server.
 
 Non-sticky sessions in a web farm require a [distributed cache](distributed.md) to avoid cache consistency problems. For some apps, a distributed cache can support higher scale-out than an in-memory cache. Using a distributed cache offloads the cache memory to an external process.
 
