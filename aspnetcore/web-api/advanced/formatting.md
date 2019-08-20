@@ -7,6 +7,7 @@ ms.custom: H1Hack27Feb2017
 ms.date: 05/29/2019
 uid: web-api/advanced/formatting
 ---
+<!-- DO NOT EDIT BEFORE https://github.com/aspnet/AspNetCore.Docs/pull/12077 MERGES -->
 # Format response data in ASP.NET Core Web API
 
 By [Steve Smith](https://ardalis.com/)
