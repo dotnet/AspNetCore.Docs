@@ -6,7 +6,12 @@
 
 @code {
     [Parameter]
-    private string Text { get; set; } = "fantastic";
+    public string Text { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Text = Text ?? "fantastic";
+    }
 }
 <!-- </snippet_RouteParameter> -->
 
@@ -26,8 +31,14 @@
 
 @@code {
     [Parameter]
-    private string Text { get; set; } = "fantastic";
+    public string Text { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Text = Text ?? "fantastic";
+    }
 }</code></pre>
+
 <p>
     Example:
     <pre><code>/RouteParameter/amazing</code></pre>

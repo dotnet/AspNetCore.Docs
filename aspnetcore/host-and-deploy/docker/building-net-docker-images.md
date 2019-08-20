@@ -161,6 +161,15 @@ In some scenarios, you might want to deploy an app to a container by copying to 
 
 * Browse to `http://localhost:5000` to see the home page.
 
+To use the manually published application within a Docker container, create a new Dockerfile and use the `docker build .` command to build the container.
+
+```console
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+WORKDIR /app
+COPY published/aspnetapp.dll ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+```
+
 ### The Dockerfile
 
 Here's the Dockerfile used by the `docker build` command you ran earlier.  It uses `dotnet publish` the same way you did in this section to build and deploy.  

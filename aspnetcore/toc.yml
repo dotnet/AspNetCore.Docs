@@ -81,6 +81,9 @@
         - name: Web API with MongoDB
           displayName: tutorial
           uid: tutorials/first-mongo-app
+        - name: Web API with jQuery
+          displayName: tutorial
+          uid: tutorials/web-api-jquery
         - name: Backend for mobile
           displayName: tutorial
           uid: mobile/native-mobile-backend
@@ -101,8 +104,6 @@
         - name: EF Core with Razor Pages
           displayName: tutorial
           items:
-            - name: Overview
-              uid: data/ef-rp/index
             - name: Get started
               uid: data/ef-rp/intro
             - name: Create, Read, Update, and Delete
@@ -192,8 +193,6 @@
       uid: fundamentals/http-requests
     - name: Static files
       uid: fundamentals/static-files
-    - name: aspnet-codegenerator
-      uid: fundamentals/tools/dotnet-aspnet-codegenerator
 - name: Web apps
   items:
     - name: Razor Pages
@@ -300,6 +299,10 @@
           uid: blazor/javascript-interop
         - name: Security and Identity
           uid: security/blazor/index
+        - name: State management
+          uid: blazor/state-management
+        - name: Handle errors
+          uid: blazor/handle-errors
         - name: Debug
           uid: blazor/debug
         - name: Call a web API
@@ -403,6 +406,8 @@
           uid: mvc/controllers/areas
         - name: App parts
           uid: mvc/extensibility/app-parts
+        - name: aspnet-codegenerator
+          uid: fundamentals/tools/dotnet-aspnet-codegenerator
 - name: Web API apps
   items:
     - name: Overview
@@ -542,6 +547,8 @@
       uid: grpc/migration
     - name: Comparing gRPC services with HTTP APIs
       uid: grpc/comparison
+    - name: Troubleshoot
+      uid: grpc/troubleshoot
 - name: Test, debug, and troubleshoot
   items:
     - name: Unit testing
@@ -574,8 +581,6 @@
       items:
         - name: EF Core with Razor Pages
           items:
-            - name: Overview
-              uid: data/ef-rp/index
             - name: Get started
               uid: data/ef-rp/intro
             - name: Create, Read, Update, and Delete
@@ -694,6 +699,8 @@
         - name: Overview
           displayName: deploy, publish
           uid: host-and-deploy/iis/index
+        - name: Publish to IIS tutorial
+          uid: tutorials/publish-to-iis
         - name: ASP.NET Core Module
           displayName: deploy, publish
           uid: host-and-deploy/aspnet-core-module
@@ -959,6 +966,8 @@
           uid: security/key-vault-configuration
     - name: Enforce HTTPS
       uid: security/enforcing-ssl
+    - name: Host Docker with HTTPS
+      uid: security/docker-https
     - name: EU General Data Protection Regulation (GDPR) support
       uid: security/gdpr
     - name: Anti-request forgery
@@ -1006,6 +1015,8 @@
       uid: fundamentals/localization
     - name: Portable Object localization
       uid: fundamentals/portable-object-localization
+    - name: Extensibility
+      uid: fundamentals/localization-extensibility
     - name: Troubleshoot
       uid: fundamentals/troubleshoot-aspnet-core-localization
 - name: Advanced

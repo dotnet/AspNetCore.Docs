@@ -17,14 +17,14 @@
 
 @code {
     [Parameter]
-    private RenderFragment TableHeader { get; set; }
+    public RenderFragment TableHeader { get; set; }
 
     [Parameter]
-    private RenderFragment<TItem> RowTemplate { get; set; }
+    public RenderFragment<TItem> RowTemplate { get; set; }
 
     [Parameter]
-    private RenderFragment TableFooter { get; set; }
+    public RenderFragment TableFooter { get; set; }
 
     [Parameter]
-    private IReadOnlyList<TItem> Items { get; set; }
+    public IReadOnlyList<TItem> Items { get; set; }
 }
