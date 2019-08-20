@@ -207,6 +207,21 @@ public class HomeController : Controller
     }
     #endregion
 
+    #region snippet9
+    public IActionResult CacheGetOrCreateAbs()
+    {
+        var cacheEntry = _cache.GetOrCreate(CacheKeys.Entry, entry =>
+        {
+            entry.AbsoluteExpiration = DateTime.Now.AddSeconds(30);
+            //entry.SetAbsoluteExpiration(DateTime.Now.AddSeconds(30));
+            //entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(30);
+            return DateTime.Now;
+        });
+
+        return View("Cache", cacheEntry);
+    }
+    #endregion
+
     public IActionResult Privacy()
     {
         return View();

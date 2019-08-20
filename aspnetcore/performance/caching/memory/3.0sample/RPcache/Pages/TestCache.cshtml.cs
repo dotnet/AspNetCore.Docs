@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Caching.Memory;
 using RPcache.Services;
 using System;
-using System.Threading.Tasks;
 
 namespace RPcache.Pages
 {
@@ -57,8 +56,8 @@ namespace RPcache.Pages
             #region snippet3       
             _cache.Remove(MyKey);
 
-            // Remove 30% of cached items.
-            _cache.Compact(30);   
+            // Remove 33% of cached items.
+            _cache.Compact(.33);   
             cache_size = _cache.Count;
             #endregion
             return Page();
