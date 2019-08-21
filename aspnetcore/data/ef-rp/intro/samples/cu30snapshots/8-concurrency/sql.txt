@@ -1,0 +1,6 @@
+SET NOCOUNT ON;
+UPDATE [Department] SET [Name] = @p0
+WHERE [DepartmentID] = @p1 AND [RowVersion] = @p2;
+SELECT [RowVersion]
+FROM [Department]
+WHERE @@ROWCOUNT = 1 AND [DepartmentID] = @p1;

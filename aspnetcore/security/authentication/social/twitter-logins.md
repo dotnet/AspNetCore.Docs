@@ -32,7 +32,7 @@ Run the following commands to securely store `ClientId` and `ClientSecret` using
 
 ```console
 dotnet user-secrets set Authentication:Twitter:ConsumerAPIKey <Key>
-dotnet user-secrets set Authentication:Twitter:ConsumerAPISecret <Secret>
+dotnet user-secrets set Authentication:Twitter:ConsumerSecret <Secret>
 ```
 
 Link sensitive settings like Twitter `Consumer Key` and `Consumer Secret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this sample, name the tokens `Authentication:Twitter:ConsumerKey` and `Authentication:Twitter:ConsumerSecret`.

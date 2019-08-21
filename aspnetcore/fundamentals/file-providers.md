@@ -101,7 +101,7 @@ The [ManifestEmbeddedFileProvider](/dotnet/api/microsoft.extensions.fileprovider
 
 To generate a manifest of the embedded files, set the `<GenerateEmbeddedFilesManifest>` property to `true`. Specify the files to embed with [&lt;EmbeddedResource&gt;](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects):
 
-[!code-csharp[](file-providers/samples/2.x/FileProviderSample/FileProviderSample.csproj?highlight=5,13)]
+[!code-csharp[](file-providers/samples/2.x/FileProviderSample/FileProviderSample.csproj?highlight=6,14)]
 
 Use [glob patterns](#glob-patterns) to specify one or more files to embed into the assembly.
 

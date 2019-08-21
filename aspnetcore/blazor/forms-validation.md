@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2019
+ms.date: 08/13/2019
 uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
@@ -123,7 +123,7 @@ The following form validates user input using the validation defined in the `Sta
     </p>
     <p>
         <label for="description">Description (optional): </label>
-        <InputTextArea Id="description" @bind-Value="starship.Description" />
+        <InputTextArea id="description" @bind-Value="starship.Description" />
     </p>
     <p>
         <label for="classification">Primary Classification: </label>
@@ -145,7 +145,7 @@ The following form validates user input using the validation defined in the `Sta
     </p>
     <p>
         <label for="productionDate">Production Date: </label>
-        <InputDate Id="productionDate" @bind-Value="starship.ProductionDate" />
+        <InputDate id="productionDate" @bind-Value="starship.ProductionDate" />
     </p>
 
     <button type="submit">Submit</button>

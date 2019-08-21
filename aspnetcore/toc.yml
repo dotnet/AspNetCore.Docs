@@ -104,8 +104,6 @@
         - name: EF Core with Razor Pages
           displayName: tutorial
           items:
-            - name: Overview
-              uid: data/ef-rp/index
             - name: Get started
               uid: data/ef-rp/intro
             - name: Create, Read, Update, and Delete
@@ -549,6 +547,8 @@
       uid: grpc/migration
     - name: Comparing gRPC services with HTTP APIs
       uid: grpc/comparison
+    - name: Troubleshoot
+      uid: grpc/troubleshoot
 - name: Test, debug, and troubleshoot
   items:
     - name: Unit testing
@@ -581,8 +581,6 @@
       items:
         - name: EF Core with Razor Pages
           items:
-            - name: Overview
-              uid: data/ef-rp/index
             - name: Get started
               uid: data/ef-rp/intro
             - name: Create, Read, Update, and Delete
@@ -701,6 +699,8 @@
         - name: Overview
           displayName: deploy, publish
           uid: host-and-deploy/iis/index
+        - name: Publish to IIS tutorial
+          uid: tutorials/publish-to-iis
         - name: ASP.NET Core Module
           displayName: deploy, publish
           uid: host-and-deploy/aspnet-core-module
@@ -966,6 +966,8 @@
           uid: security/key-vault-configuration
     - name: Enforce HTTPS
       uid: security/enforcing-ssl
+    - name: Host Docker with HTTPS
+      uid: security/docker-https
     - name: EU General Data Protection Regulation (GDPR) support
       uid: security/gdpr
     - name: Anti-request forgery

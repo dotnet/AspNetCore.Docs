@@ -6,6 +6,9 @@ ms.author: riande
 ms.date: 01/04/2017
 uid: mvc/extensibility/app-parts
 ---
+
+<!-- DO NOT MAKE CHANGES BEFORE https://github.com/aspnet/AspNetCore.Docs/pull/12376 Merges -->
+
 # Application Parts in ASP.NET Core
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts/sample) ([how to download](xref:index#how-to-download-a-sample))

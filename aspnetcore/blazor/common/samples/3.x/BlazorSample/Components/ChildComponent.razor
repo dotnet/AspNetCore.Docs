@@ -9,12 +9,12 @@
 
 @code {
     [Parameter]
-    private string Title { get; set; }
+    public string Title { get; set; }
 
     [Parameter]
-    private RenderFragment ChildContent { get; set; }
+    public RenderFragment ChildContent { get; set; }
 
     [Parameter]
-    private EventCallback<UIMouseEventArgs> OnClick { get; set; }
+    public EventCallback<UIMouseEventArgs> OnClick { get; set; }
 }
 

@@ -102,8 +102,7 @@ For features that require substantial setup, there are `Add{Service}` extension 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](startup/3.0_samples/StartupFilterSample/StartupIdentity.cs
-?name=snippet)]
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/StartupIdentity.cs?name=snippet)]
 
 ::: moniker-end
 
@@ -154,7 +153,7 @@ The preceding sample is for [Razor Pages](xref:razor-pages/index); the MVC versi
 
 ::: moniker-end
 
-Each `Use` extension method adds one or more middleware components to the request pipeline. For instance, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> configures [middleware](xref:fundamentals/middleware/index) to serve [static files](xref:undamentals/static-files).
+Each `Use` extension method adds one or more middleware components to the request pipeline. For instance, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> configures [middleware](xref:fundamentals/middleware/index) to serve [static files](xref:fundamentals/static-files).
 
 Each middleware component in the request pipeline is responsible for invoking the next component in the pipeline or short-circuiting the chain, if appropriate.
 
@@ -171,6 +170,8 @@ Additional services, such as `IHostingEnvironment` and `ILoggerFactory`, or anyt
 ::: moniker-end
 
 For more information on how to use `IApplicationBuilder` and the order of middleware processing, see <xref:fundamentals/middleware/index>.
+
+<a name="convenience-methods"></a>
 
 ## Configure services without Startup
 

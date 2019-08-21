@@ -1,7 +1,7 @@
 @inject IJSRuntime JSRuntime
 
 @code {
-    public override void OnInit()
+    public override void OnInitialized()
     {
         StocksService.OnStockTickerUpdated += stockUpdate =>
         {

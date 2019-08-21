@@ -420,11 +420,11 @@ Create a *custom.css* file, in *wwwroot/swagger/ui*, with the following CSS to c
 
 [!code-css[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/wwwroot/swagger/ui/custom.css)]
 
-Reference *custom.css* in the *index.html* file, after any other CSS files:
+Reference *custom.css* in the *index.html* file inside ui folder, after any other CSS files:
 
 [!code-html[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/wwwroot/swagger/ui/index.html?name=snippet_SwaggerUiCss&highlight=3)]
 
-Browse to the *index.html* page at `http://localhost:<port>/swagger/ui/index.html`. Enter `http://localhost:<port>/swagger/v1/swagger.json` in the header's textbox, and click the **Explore** button. The resulting page looks as follows:
+Browse to the *index.html* page at `http://localhost:<port>/swagger/ui/index.html`. Enter `https://localhost:<port>/swagger/v1/swagger.json` in the header's textbox, and click the **Explore** button. The resulting page looks as follows:
 
 ![Swagger UI with custom header title](web-api-help-pages-using-swagger/_static/custom-header.png)
 
