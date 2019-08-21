@@ -45,7 +45,11 @@ Use `System.Runtime.Caching`/`MemoryCache` as a compatibility bridge when portin
   * Use expirations to limit cache growth.
   * [Use SetSize, Size, and SizeLimit to limit cache size](#use-setsize-size-and-sizelimit-to-limit-cache-size). The ASP.NET Core runtime does **not** limit cache size based on memory pressure. It's up to the developer to limit cache size.
 
-## Using IMemoryCache
+## Use IMemoryCache
+
+> [!WARNING]
+> Using a *shared* memory cache from [Dependency Injection](xref:fundamentals/dependency-injection) and calling `SetSize`, `Size`, or `SizeLimit` to limit cache size can cause the app to fail. When a size limit is set on a cache, all entries must specify a size when being added. This can lead to issues since developers may not have full control on what uses the shared cache. For example, Entity Framework Core uses the shared cache and does not specify a size. If an app sets a cache size limit and uses EF Core, the app throws an `InvalidOperationException`.
+> When using `SetSize`, `Size`, or `SizeLimit` to limit cache, create a cache singleton for caching. For more information and an example, see [Use SetSize, Size, and SizeLimit to limit cache size](#use-setsize-size-and-sizelimit-to-limit-cache-size).
 
 In-memory caching is a *service* that's referenced from an app using [Dependency Injection](xref:fundamentals/dependency-injection). Request the `IMemoryCache` instance in the constructor:
 
@@ -164,6 +168,7 @@ Using a `CancellationTokenSource` allows multiple cache entries to be evicted as
 * When one cache entry is used to create another, the child copies the parent entry's expiration tokens and time-based expiration settings. The child isn't expired by manual removal or updating of the parent entry.
 
 * Use <xref:Microsoft.Extensions.Caching.Memory.ICacheEntry.PostEvictionCallbacks> to set the callbacks that will be fired after the cache entry is evicted from the cache.
+* For most apps, `IMemoryCache` is enabled. For example, calling `AddMvc`, `AddControllersWithViews`, `AddRazorPages`, `AddMvcCore().AddRazorViewEngine`, and many other `Add{Service}` methods in `ConfigureServices`, enables `IMemoryCache`. For apps that are not calling one of the preceding `Add{Service}` methods, it may be necessary to call <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddMemoryCache*> in `ConfigureServices`.
 
 ## Additional resources
 
@@ -214,6 +219,10 @@ Use `System.Runtime.Caching`/`MemoryCache` as a compatibility bridge when portin
   * [Use SetSize, Size, and SizeLimit to limit cache size](#use-setsize-size-and-sizelimit-to-limit-cache-size). The ASP.NET Core runtime does not limit cache size based on memory pressure. It's up to the developer to limit cache size.
 
 ## Using IMemoryCache
+
+> [!WARNING]
+> Using a *shared* memory cache from [Dependency Injection](xref:fundamentals/dependency-injection) and calling `SetSize`, `Size`, or `SizeLimit` to limit cache size can cause the app to fail. When a size limit is set on a cache, all entries must specify a size when being added. This can lead to issues since developers may not have full control on what uses the shared cache. For example, Entity Framework Core uses the shared cache and does not specify a size. If an app sets a cache size limit and uses EF Core, the app throws an `InvalidOperationException`.
+> When using `SetSize`, `Size`, or `SizeLimit` to limit cache, create a cache singleton for caching. For more information and an example, see [Use SetSize, Size, and SizeLimit to limit cache size](#use-setsize-size-and-sizelimit-to-limit-cache-size).
 
 In-memory caching is a *service* that's referenced from your app using [Dependency Injection](../../fundamentals/dependency-injection.md). Call `AddMemoryCache` in `ConfigureServices`:
 
