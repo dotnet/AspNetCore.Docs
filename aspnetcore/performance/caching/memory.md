@@ -79,7 +79,7 @@ The following code gets or creates a cached item with absolute expiration:
 
 [!code-csharp[](memory/3.0sample/WebCacheSample/Controllers/HomeController.cs?name=snippet99)]
 
-A cached item set with sliding expiration only is at risk for becoming stale because there is no bound to its expiration. Use an absolute expiration with a sliding expiration to guarantee the cached item won't become more stale than the absolute expiration. When absolute expiration is combined with sliding, the absolute expiration sets an upper bound to how long the item can be cached. Unlike absolute expiration time alone, if the item is not requested from the cache within the sliding expiration interval, the item is evicted from the cache.
+A cached item set with sliding expiration only is at risk for becoming stale because there is no bound to its expiration. Use an absolute expiration with a sliding expiration to guarantee the cached item won't become more stale than the absolute expiration. When absolute expiration is combined with sliding, the absolute expiration sets an upper bound to how long the item can be cached. Unlike absolute expiration time alone, if the item is not requested from the cache within the sliding expiration interval, the item is evicted from the cache. When absolute and sliding expiration is specified, the expirations are logically ORed.
 
 The following code gets or creates a cached item with sliding and absolute expiration:
 
