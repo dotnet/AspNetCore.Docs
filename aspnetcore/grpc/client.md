@@ -79,6 +79,20 @@ using (var call = client.SayHellos(new HelloRequest { Name = "World" }))
     while (await call.ResponseStream.MoveNext())
     {
         Console.WriteLine("Greeting: " + call.ResponseStream.Current.Message);
+        // Greeting: Hello World" is streamed multiple times
+    }
+}
+```
+
+If you are using C# 8 or later then you can use the `await foreach` syntax to read messages. The `IAsyncStreamReader<T>.ReadAllAsync()` extension method reads all messages from the response stream:
+
+```csharp
+var client = new Greet.GreeterClient(channel);
+using (var call = client.SayHellos(new HelloRequest { Name = "World" }))
+{
+    await foreach (var response in call.ResponseStream.ReadAllAsync())
+    {
+        Console.WriteLine("Greeting: " + response.Message);
         // "Greeting: Hello World" is streamed multiple times
     }
 }
@@ -106,7 +120,7 @@ using (var call = client.AccumulateCount())
 
 ### Bi-directional streaming call
 
-A bi-directional streaming call starts *without* the client sending a message. The client can choose to send messages with `RequestStream.WriteAsync`. Messages streamed from the service are accessible with `ResponseStream.MoveNext()`. The bi-directional streaming call is complete when `ResponseStream.MoveNext()` returns `false`.
+A bi-directional streaming call starts *without* the client sending a message. The client can choose to send messages with `RequestStream.WriteAsync`. Messages streamed from the service are accessible with `ResponseStream.MoveNext()` or `ResponseStream.ReadAllAsync()`. The bi-directional streaming call is complete when the `ResponseStream` has no more messages.
 
 ```csharp
 using (var call = client.Echo())
@@ -114,9 +128,9 @@ using (var call = client.Echo())
     Console.WriteLine("Starting background task to receive messages");
     var readTask = Task.Run(async () =>
     {
-        while (await call.ResponseStream.MoveNext())
+        await foreach (var response in call.ResponseStream.ReadAllAsync())
         {
-            Console.WriteLine(call.ResponseStream.Current.Message);
+            Console.WriteLine(response.Message);
             // Echo messages sent to the service
         }
     });

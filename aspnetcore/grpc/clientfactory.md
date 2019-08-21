@@ -46,9 +46,9 @@ public class AggregatorService : Aggregator.AggregatorBase
         // Forward the call on to the greeter service
         using (var call = _client.SayHellos(request))
         {
-            while (await call.ResponseStream.MoveNext())
+            await foreach (var response in call.ResponseStream.ReadAllAsync())
             {
-                await responseStream.WriteAsync(call.ResponseStream.Current);
+                await responseStream.WriteAsync(response);
             }
         }
     }
