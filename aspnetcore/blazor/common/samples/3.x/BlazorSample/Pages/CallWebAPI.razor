@@ -83,7 +83,7 @@ else
     private string _editRowStyle = "none";
     private string _newItemName;
 
-    protected override async Task OnInitAsync() => await GetTodoItems();
+    protected override async Task OnInitializedAsync() => await GetTodoItems();
 
     private async Task GetTodoItems() => _todoItems = await Http.GetJsonAsync<TodoItem[]>(ServiceEndpoint);
 

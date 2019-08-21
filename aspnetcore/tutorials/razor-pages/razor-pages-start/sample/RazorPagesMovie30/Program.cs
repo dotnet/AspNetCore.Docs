@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 using System;
 
@@ -20,8 +19,6 @@ namespace RazorPagesMovie
 
                 try
                 {
-                    var context = services.
-                        GetRequiredService<RazorPagesMovieContext>();
                     SeedData.Initialize(services);
                 }
                 catch (Exception ex)
@@ -39,9 +36,7 @@ namespace RazorPagesMovie
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                  //  webBuilder.UseStartup<Startup>();
-                    webBuilder.UseStartup<StartupVal>();
-
+                    webBuilder.UseStartup<Startup>();
                 });
     }
 }

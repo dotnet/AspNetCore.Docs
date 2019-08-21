@@ -5,7 +5,7 @@ description: Learn how to configure and use Response Caching Middleware in ASP.N
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/05/2019
+ms.date: 08/09/2019
 uid: performance/caching/middleware
 ---
 # Response Caching Middleware in ASP.NET Core
@@ -17,6 +17,34 @@ By [Luke Latham](https://github.com/guardrex) and [John Luo](https://github.com/
 This article explains how to configure Response Caching Middleware in an ASP.NET Core app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the [[ResponseCache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute, see [Response Caching](xref:performance/caching/response).
 
 ## Configuration
+
+::: moniker range=">= aspnetcore-3.0"
+
+Response Caching Middleware is made avaiable by the [Microsoft.AspNetCore.ResponseCaching](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package, which is implicitly added to ASP.NET Core apps.
+
+In `Startup.ConfigureServices`, add the Response Caching Middleware to the service collection:
+
+[!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet1&highlight=3)]
+
+Configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> extension method, which adds the middleware to the request processing pipeline in `Startup.Configure`:
+
+[!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=16)]
+
+The sample app adds headers to control caching on subsequent requests:
+
+* [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2) &ndash; Caches cacheable responses for up to 10 seconds.
+* [Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4) &ndash; Configures the middleware to serve a cached response only if the [`Accept-Encoding`](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request.
+
+[!code-csharp[](middleware/samples_snippets/3.x/AddHeaders.cs)]
+
+Response Caching Middleware only caches server responses that result in a 200 (OK) status code. Any other responses, including [error pages](xref:fundamentals/error-handling), are ignored by the middleware.
+
+> [!WARNING]
+> Responses containing content for authenticated clients must be marked as not cacheable to prevent the middleware from storing and serving those responses. See [Conditions for caching](#conditions-for-caching) for details on how the middleware determines if a response is cacheable.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
 
 Use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) or add a package reference to the [Microsoft.AspNetCore.ResponseCaching](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package.
 
@@ -39,6 +67,8 @@ Response Caching Middleware only caches server responses that result in a 200 (O
 
 > [!WARNING]
 > Responses containing content for authenticated clients must be marked as not cacheable to prevent the middleware from storing and serving those responses. See [Conditions for caching](#conditions-for-caching) for details on how the middleware determines if a response is cacheable.
+
+::: moniker-end
 
 ## Options
 

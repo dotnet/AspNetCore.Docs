@@ -1,18 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Views\Movies\CreateRatingBrevity.html" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Views\Movies\CreateRatingBrevity.html" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />

@@ -5,7 +5,7 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2019
+ms.date: 08/13/2019
 uid: blazor/class-libraries
 ---
 # ASP.NET Core Razor components class libraries
@@ -27,10 +27,9 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
 # [Visual Studio](#tab/visual-studio)
 
 1. Create a new project.
-1. Select **ASP.NET Core Web Application**. Select **Next**.
+1. Select **Razor Class Library**. Select **Next**.
+1. In the **Create a new Razor class library** dialog, select **Create**.
 1. Provide a project name in the **Project name** field or accept the default project name. The examples in this topic use the project name `MyComponentLib1`. Select **Create**.
-1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected.
-1. Select the **Razor Class Library** template. Select **Create**.
 1. Add the RCL to a solution:
    1. Right-click the solution. Select **Add** > **Existing Project**.
    1. Navigate to the RCL's project file.
@@ -39,7 +38,7 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
    1. Right-click the app project. Select **Add** > **Reference**.
    1. Select the RCL project. Select **OK**.
 
-# [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
+# [.NET Core CLI](#tab/netcore-cli)
 
 1. Use the **Razor Class Library** template (`razorclasslib`) with the [dotnet new](/dotnet/core/tools/dotnet-new) command in a command shell. In the following example, an RCL is created named `MyComponentLib1`. The folder that holds `MyComponentLib1` is created automatically when the command is executed:
 
@@ -54,16 +53,6 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
    ```
 
 ---
-
-## RCLs not supported for client-side apps
-
-In the current ASP.NET Core 3.0 Preview, Razor class libraries aren't compatible with Blazor client-side apps. For Blazor client-side apps, use a Blazor component library created by the `blazorlib` template in a command shell:
-
-```console
-dotnet new blazorlib -o MyComponentLib1
-```
-
-Component libraries using the `blazorlib` template can include static files, such as images, JavaScript, and stylesheets. At build time, static files are embedded into the built assembly file (*.dll*), which allows consumption of the components without having to worry about how to include their resources. Any files included in the `content` directory are marked as an embedded resource.
 
 ## Consume a library component
 
@@ -111,8 +100,6 @@ Upload the package to NuGet using the [dotnet nuget publish](/dotnet/core/tools/
 ```console
 dotnet nuget publish
 ```
-
-When using the `blazorlib` template, static resources are included in the NuGet package. Library consumers automatically receive scripts and stylesheets, so consumers aren't required to manually install the resources.
 
 ## Create a Razor components class library with static assets
 
