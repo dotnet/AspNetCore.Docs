@@ -1,6 +1,5 @@
 ---
 page_type: sample
-title: Create a web API with ASP.NET Core and MongoDB
 description: "This tutorial demonstrates how to create an ASP.NET Core web API using a MongoDB NoSQL database."
 languages:
 - csharp
@@ -127,24 +126,6 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
     ```powershell
     Install-Package MongoDB.Driver -Version {VERSION}
-    ```
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-1. Run the following commands in a command shell:
-
-    ```console
-    dotnet new webapi -o BooksApi
-    code BooksApi
-    ```
-
-    A new ASP.NET Core web API project targeting .NET Core is generated and opened in Visual Studio Code.
-
-1. After the status bar's OmniSharp flame icon turns green, a dialog asks **Required assets to build and debug are missing from 'BooksApi'. Add them?**. Select **Yes**.
-1. Visit the [NuGet Gallery: MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver/) to determine the latest stable version of the .NET driver for MongoDB. Open **Integrated Terminal** and navigate to the project root. Run the following command to install the .NET driver for MongoDB:
-
-    ```console
-    dotnet add BooksApi.csproj package MongoDB.Driver -v {VERSION}
     ```
 
 ## Add an entity model
@@ -521,3 +502,10 @@ To satisfy the preceding requirements, make the following changes:
     ```
 
 1. Repeat the steps defined in the [Test the web API](#test-the-web-api) section. Notice the difference in JSON property names.
+
+## Next steps
+
+For more information on building ASP.NET Core web APIs, see the following resources:
+
+* [YouTube version of this article](https://www.youtube.com/watch?v=7uJt_sOenyo&feature=youtu.be)
+* [Create web APIs with ASP.NET Core](https://docs.microsoft.com/aspnet/core/web-api/index?view=aspnetcore-3.0)
