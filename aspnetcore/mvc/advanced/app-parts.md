@@ -6,7 +6,11 @@ ms.author: riande
 ms.date: 05/14/2019
 uid: mvc/extensibility/app-parts
 ---
-# Share controllers, view, Razor Pages and more with Application Parts in ASP.NET Core
+
+# Share controllers, views, Razor Pages and more with Application Parts in ASP.NET Core
+=======
+
+<!-- DO NOT MAKE CHANGES BEFORE https://github.com/aspnet/AspNetCore.Docs/pull/12376 Merges -->
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

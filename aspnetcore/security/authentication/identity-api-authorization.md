@@ -5,7 +5,7 @@ description: Use Identity with a Single Page App hosted inside an ASP.NET Core a
 monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 03/07/2019
+ms.date: 08/05/2019
 uid: security/authentication/identity/spa
 ---
 # Authentication and authorization for SPAs
@@ -87,9 +87,9 @@ This helper method configures IdentityServer to use our supported configuration.
 
 This helper method configures a policy scheme for the app as the default authentication handler. The policy is configured to let Identity handle all requests routed to any subpath in the Identity URL space "/Identity". The `JwtBearerHandler` handles all other requests. Additionally, this method registers an `<<ApplicationName>>API` API resource with IdentityServer with a default scope of `<<ApplicationName>>API` and configures the JWT Bearer token middleware to validate tokens issued by IdentityServer for the app.
 
-### SampleDataController
+### WeatherForecastController
 
-In the *Controllers\SampleDataController.cs* file, notice the `[Authorize]` attribute applied to the class that indicates that the user needs to be authorized based on the default policy to access the resource. The default authorization policy happens to be configured to use the default authentication scheme, which is set up by `AddIdentityServerJwt` to the policy scheme that was mentioned above, making the `JwtBearerHandler` configured by such helper method the default handler for requests to the app.
+In the *Controllers\WeatherForecastController.cs* file, notice the `[Authorize]` attribute applied to the class that indicates that the user needs to be authorized based on the default policy to access the resource. The default authorization policy happens to be configured to use the default authentication scheme, which is set up by `AddIdentityServerJwt` to the policy scheme that was mentioned above, making the `JwtBearerHandler` configured by such helper method the default handler for requests to the app.
 
 ### ApplicationDbContext
 
@@ -327,3 +327,4 @@ AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
 
 * <xref:spa/angular>
 * <xref:spa/react>
+* <xref:security/authentication/scaffold-identity>

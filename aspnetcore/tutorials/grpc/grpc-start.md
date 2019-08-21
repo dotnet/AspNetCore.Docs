@@ -4,7 +4,7 @@ author: juntaoluo
 description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 06/12/2019
+ms.date: 08/07/2019
 uid: tutorials/grpc/grpc-start
 ---
 # Tutorial: Create a gRPC client and server in ASP.NET Core
@@ -115,8 +115,12 @@ info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
 info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
-info: Microsoft.Hosting.Lifetime[0]
 ```
+
+> [!NOTE]
+> The gRPC template is configured to use [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). gRPC clients need to use HTTPS to call the server.
+>
+> macOS doesn't support ASP.NET Core gRPC with TLS. Additional configuration is required to successfully run gRPC services on macOS. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
 
 ### Examine the project files
 
@@ -186,8 +190,8 @@ Install-Package Grpc.Tools
 
 * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
 * Select the **Browse** tab.
-* Enter **Grpc.Core** in the search box.
-* Select the **Grpc.Core** package from the **Browse** tab and select **Install**.
+* Enter **Grpc.Net.Client** in the search box.
+* Select the **Grpc.Net.Client** package from the **Browse** tab and select **Install**.
 * Repeat for `Google.Protobuf` and `Grpc.Tools`.
 
 ### [Visual Studio Code](#tab/visual-studio-code)
@@ -263,7 +267,7 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 ### [Visual Studio](#tab/visual-studio)
 
 * In the Greeter service, press `Ctrl+F5` to start the server without the debugger.
-* In the `GrpcGreeterClient` project, press `Ctrl+F5` to start the server without the debugger.
+* In the `GrpcGreeterClient` project, press `Ctrl+F5` to start the client without the debugger.
 
 ### [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 

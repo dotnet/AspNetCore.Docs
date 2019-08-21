@@ -5,7 +5,7 @@ description: Learn how to call a web API from a Blazor app using JSON helpers, i
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/25/2019
+ms.date: 08/13/2019
 uid: blazor/call-web-api
 ---
 # Call a web API from ASP.NET Core Blazor
@@ -25,7 +25,7 @@ For Blazor client-side examples, see the following components in the sample app:
 
 ## HttpClient and JSON helpers
 
-In Blazor client-side apps, [HttpClient](xref:fundamentals/http-requests) is available as a preconfigured service for making requests back to the origin server. `HttpClient` and JSON helpers are also used to call third-party web API endpoints. `HttpClient` is implemented using the browser [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same origin policy.
+In Blazor client-side apps, [HttpClient](xref:fundamentals/http-requests) is available as a preconfigured service for making requests back to the origin server. To use `HttpClient` JSON helpers, add a package reference to `Microsoft.AspNetCore.Blazor.HttpClient`. `HttpClient` and JSON helpers are also used to call third-party web API endpoints. `HttpClient` is implemented using the browser [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same origin policy.
 
 The client's base address is set to the originating server's address. Inject an `HttpClient` instance using the `@inject` directive:
 
@@ -53,7 +53,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
 
 * `GetJsonAsync` &ndash; Sends an HTTP GET request and parses the JSON response body to create an object.
 
-  In the following code, the `_todoItems` are displayed by the component. The `GetTodoItems` method is triggered when the component is finished rendering ([OnInitAsync](xref:blazor/components#lifecycle-methods)). See the sample app for a complete example.
+  In the following code, the `_todoItems` are displayed by the component. The `GetTodoItems` method is triggered when the component is finished rendering ([OnInitializedAsync](xref:blazor/components#lifecycle-methods)). See the sample app for a complete example.
 
   ```cshtml
   @using System.Net.Http
@@ -62,7 +62,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
   @code {
       private TodoItem[] _todoItems;
 
-      protected override async Task OnInitAsync() => 
+      protected override async Task OnInitializedAsync() => 
           _todoItems = await Http.GetJsonAsync<TodoItem[]>("api/todo");
   }
   ```

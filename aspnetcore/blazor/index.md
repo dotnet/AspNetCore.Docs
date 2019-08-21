@@ -5,7 +5,7 @@ description: Explore ASP.NET Core Blazor, a way to build interactive client-side
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: "mvc, seoapril2019"
-ms.date: 07/01/2019
+ms.date: 08/13/2019
 uid: blazor/index
 ---
 # Introduction to Blazor
@@ -55,10 +55,10 @@ The following Razor markup demonstrates a component (*Dialog.razor*), which can 
 
 @code {
     [Parameter]
-    private string Title { get; set; }
+    public string Title { get; set; }
 
     [Parameter]
-    private RenderFragment ChildContent { get; set; }
+    public RenderFragment ChildContent { get; set; }
 
     private void OnYes()
     {

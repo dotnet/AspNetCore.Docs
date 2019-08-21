@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/23/2019
+ms.date: 07/25/2019
 uid: web-api/http-repl
 ---
 # Test web APIs with the HTTP REPL
@@ -15,7 +15,8 @@ By [Scott Addie](https://twitter.com/Scott_Addie)
 The HTTP Read-Eval-Print Loop (REPL) is:
 
 * A lightweight, cross-platform command-line tool that's supported everywhere .NET Core is supported.
-* Used for making HTTP requests to test ASP.NET Core web APIs and view their results.
+* Used for making HTTP requests to test ASP.NET Core web APIs (and non-ASP.NET Core web APIs) and view their results.
+* Capable of testing web APIs hosted in any environment, including localhost and Azure App Service.
 
 The following [HTTP verbs](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods) are supported:
 
@@ -38,7 +39,7 @@ To follow along, [view or download the sample ASP.NET Core web API](https://gith
 To install the HTTP REPL, run the following command:
 
 ```console
-dotnet tool install -g Microsoft.dotnet-httprepl --version 3.0.0-*
+dotnet tool install -g Microsoft.dotnet-httprepl --version "3.0.0-*"
 ```
 
 A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl) NuGet package.
@@ -525,12 +526,12 @@ To issue an HTTP POST request:
 
 1. Modify the JSON template to satisfy model validation requirements:
 
-  ```json
-  {
-    "id": 0,
-    "name": "Scott Addie"
-  }
-  ```
+    ```json
+    {
+      "id": 0,
+      "name": "Scott Addie"
+    }
+    ```
 
 1. Save the *.tmp* file, and close the text editor. The following output appears in the command shell:
 

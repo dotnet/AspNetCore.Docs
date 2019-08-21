@@ -5,7 +5,7 @@ description: Learn how to diagnose problems with Azure App Service and Internet 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/17/2019
+ms.date: 07/18/2019
 uid: test/troubleshoot-azure-iis
 ---
 # Troubleshoot ASP.NET Core on Azure App Service and IIS
@@ -42,6 +42,31 @@ In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensi
 In Visual Studio, an ASP.NET Core project defaults to [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) hosting during debugging. A *502.5 Process Failure* that occurs when debugging locally can be diagnosed using the advice in this topic.
 
 ::: moniker-end
+
+### 403.14 Forbidden
+
+The app fails to start. The following error is logged:
+
+```
+The Web server is configured to not list the contents of this directory.
+```
+
+The error is usually caused by a broken deployment on the hosting system, which includes any of the following scenarios:
+
+* The app is deployed to the wrong folder on the hosting system.
+* The deployment process failed to move all of the app's files and folders to the deployment folder on the hosting system.
+* The *web.config* file is missing from the deployment, or the *web.config* file contents are malformed.
+
+Perform the following steps:
+
+1. Delete all of the files and folders from the deployment folder on the hosting system.
+1. Redeploy the contents of the app's *publish* folder to the hosting system using your normal method of deployment, such as Visual Studio, PowerShell, or manual deployment:
+   * Confirm that the *web.config* file is present in the deployment and that its contents are correct.
+   * When hosting on Azure App Service, confirm that the app is deployed to the `D:\home\site\wwwroot` folder.
+   * When the app is hosted by IIS, confirm that the app is deployed to the IIS **Physical path** shown in **IIS Manager**'s **Basic Settings**.
+1. Confirm that all of the app's files and folders are deployed by comparing the deployment on the hosting system to the contents of the project's *publish* folder.
+
+For more information on the layout of a published ASP.NET Core app, see <xref:host-and-deploy/directory-structure>. For more information on the *web.config* file, see <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>.
 
 ### 500 Internal Server Error
 
@@ -186,6 +211,8 @@ Confirm that the app pool's 32-bit setting is correct:
 1. Set **Enable 32-Bit Applications**:
    * If deploying a 32-bit (x86) app, set the value to `True`.
    * If deploying a 64-bit (x64) app, set the value to `False`.
+
+Confirm that there isn't a conflict between a `<Platform>` MSBuild property in the project file and the published bitness of the app.
 
 ### Connection reset
 

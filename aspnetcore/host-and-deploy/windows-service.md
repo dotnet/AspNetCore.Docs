@@ -38,7 +38,7 @@ The ASP.NET Core Worker Service template provides a starting point for writing l
 1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected.
 1. Select the **Worker Service** template. Select **Create**.
 
-# [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
+# [.NET Core CLI](#tab/netcore-cli)
 
 Use the Worker Service (`worker`) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell. In the following example, a Worker Service app is created named `ContosoWorkerService`. A folder for the `ContosoWorkerService` app is created automatically when the command is executed.
 
