@@ -13,8 +13,8 @@ namespace GrpcGreeterClient
         {
             var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions
             {
-                ReceiveMaxMessageSize = 5 * 1024 * 1024, // 5 MB
-                SendMaxMessageSize = 2 * 1024 * 1024 // 2 MB
+                MaxReceiveMessageSize = 5 * 1024 * 1024, // 5 MB
+                MaxSendMessageSize = 2 * 1024 * 1024 // 2 MB
             });
             var client = new Greeter.GreeterClient(channel);
 
