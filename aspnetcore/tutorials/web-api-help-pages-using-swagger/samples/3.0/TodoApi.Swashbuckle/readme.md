@@ -415,4 +415,4 @@ The Swagger UI now clearly documents the expected HTTP response codes:
 
 In ASP.NET Core 2.2 or later, conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see [Use web API conventions](https://docs.microsoft.com/aspnet/core/web-api/advanced/conventions).
 
-For information on customizing the UI see: https://docs.microsoft.com/aspnet/core/tutorials/getting-started-with-swashbuckle?#customize-and-extend
+For information on customizing the UI see: [Customize the UI](/aspnet/core/tutorials/getting-started-with-swashbuckle?#customize-and-extend)
