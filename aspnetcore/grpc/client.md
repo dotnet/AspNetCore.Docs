@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to call gRPC services with the .NET gRPC client.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 08/06/2019
+ms.date: 08/21/2019
 uid: grpc/client
 ---
 # Call gRPC services with the .NET client
@@ -84,7 +84,7 @@ using (var call = client.SayHellos(new HelloRequest { Name = "World" }))
 }
 ```
 
-If you are using C# 8 or later then you can use the `await foreach` syntax to read messages. The `IAsyncStreamReader<T>.ReadAllAsync()` extension method reads all messages from the response stream:
+If you are using C# 8 or later then the `await foreach` syntax can be used to read messages. The `IAsyncStreamReader<T>.ReadAllAsync()` extension method reads all messages from the response stream:
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
