@@ -58,7 +58,7 @@ Visual Studio configuration is completed. It's time to create the project.
 
 1. Use the **File** > **New** > **Project** menu option and choose the **ASP.NET Core Web Application** template.
 1. Name the project *SignalRWebPack*, and select **Create**.
-1. Select *.NET Core* from the target framework drop-down, and select *ASP.NET Core 2.2* from the framework selector drop-down. Select the **Empty** template, and select **Create**.
+1. Select *.NET Core* from the target framework drop-down, and select *ASP.NET Core 3.0* from the framework selector drop-down. Select the **Empty** template, and select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
