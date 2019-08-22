@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/31/2019
+ms.date: 08/22/2019
 uid: blazor/debug
 ---
 # Debug ASP.NET Core Blazor
@@ -48,7 +48,7 @@ Debugging requires either of the following browsers:
    * `Shift+Alt+D` on Windows/Linux
    * `Shift+Cmd+D` on macOS
 1. Follow the steps listed on screen.
-1. Press the following Blazor-specific keyboard shortcut once again to start debug session.
+1. Select the following Blazor-specific keyboard shortcut once again to start debug session:
    * `Shift+Alt+D` on Windows/Linux
    * `Shift+Cmd+D` on macOS
 
