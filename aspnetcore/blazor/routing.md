@@ -97,9 +97,9 @@ The route constraints shown in the following table are available. For the route 
 > [!WARNING]
 > Route constraints that verify the URL and are converted to a CLR type (such as `int` or `DateTime`) always use the invariant culture. These constraints assume that the URL is non-localizable.
 
-### Routing with parameters that contain dots
+### Routing with URLs that contain dots
 
-In Blazor server-side apps, the route specified in *_Host.cshtml* doesn't match URLs that look like filenames. This allows the app to return a *404 - Not Found* response for requests that don't match static files. To support this scenario, configure *_Host.cshtml*:
+In Blazor server-side apps, the default route in *_Host.cshtml* is `/` (`@page "/"`). A route that contains a dot (`.`) isn't matched by the default route because such a route appears to request a file&mash;the app returns a *404 - Not Found* response for a static file that doesn't exist. To use routes that contain a dot, configure *_Host.cshtml* with the following route template:
 
 ```cshtml
 @page "/{**path}"
