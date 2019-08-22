@@ -83,7 +83,7 @@ Add the Swagger generator to the services collection in the `Startup.ConfigureSe
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.1"
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/Startup2.cs?name=snippet_ConfigureServices&highlight=9-12)]
 
@@ -126,7 +126,7 @@ If using directories with IIS or a reverse proxy, set the Swagger endpoint to a 
 
 Swagger provides options for documenting the object model and customizing the UI to match your theme.
 
-In the Startup class, add the following namespaces:
+In the `Startup` class, add the following namespaces:
 ```csharp
 using System;
 using System.Reflection;
@@ -265,7 +265,7 @@ Configure Swagger to use the XML file that's generated with the preceding instru
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.1"
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/Startup.cs?name=snippet_ConfigureServices&highlight=31-33)]
 
@@ -330,7 +330,7 @@ Add a [\<remarks>](/dotnet/csharp/programming-guide/xmldoc/remarks) element to t
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.1"
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/Controllers/TodoController.cs?name=snippet_Create&highlight=4-14)]
 
@@ -388,7 +388,7 @@ Add the `[Produces("application/json")]` attribute to the API controller. Its pu
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.1"
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/Controllers/TodoController.cs?name=snippet_TodoController&highlight=1)]
 
@@ -418,7 +418,7 @@ The `Create` action returns an HTTP 201 status code on success. An HTTP 400 stat
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.1"
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/Controllers/TodoController.cs?name=snippet_Create&highlight=17,18,20,21)]
 
@@ -454,7 +454,7 @@ The preceding NuGet package is already installed if targeting .NET Core 2.x and 
 
 Enable Static File Middleware:
 
-::: moniker range="= aspnetcore-2.1"
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/Startup.cs?name=snippet_Configure&highlight=3)]
 

@@ -46,7 +46,7 @@ public void Configure(IApplicationBuilder app)
     // specifying the Swagger JSON endpoint.
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");In the 
     });
 
     app.UseRouting();
@@ -80,7 +80,7 @@ If using directories with IIS or a reverse proxy, set the Swagger endpoint to a 
 
 Swagger provides options for documenting the object model and customizing the UI to match your theme.
 
-In the Startup class, add the following namespaces:
+In the `Startup` class, add the following namespaces:
 ```csharp
 using System;
 using System.Reflection;
