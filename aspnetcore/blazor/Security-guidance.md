@@ -81,6 +81,7 @@ Calls from JavaScript to .NET are not to be trusted. When you expose a .NET func
   * Take into account that static and instance methods can be exposed to JavaScript clients and that you should take special considerations to avoid sharing state between sessions.
     * For instance methods exposed through the use of DotNetReference objects, if originally created through DI should be registered as scoped objects (this applies to any DI service your blazor server-side app uses).
     * For static methods you should avoid having any sort of state that can't be scoped to the client.
+  * Avoid using user input for JS interop calls or validate the input if you have to to avoid XSS attacks. Consider also using CSP to disable 'eval' and other unsafe JS primitives.
 * We recommend that you avoid implementing your own dispatching of .NET invocations on top of our implementation. While its doable to implement a more general .NET method dispatching infrastructure on top of the one provided by the framework, we strongly discourage that you do so, as exposing .NET methods to the browser should be an explicit action that needs the same careful thought as exposing any other API member.
 
 ### Consuming events
@@ -232,11 +233,15 @@ By default there's no limit on the number of connections per client/user to a bl
 * Limiting the number of connections per client/user can also be achieved by using a proxy/gateway in front of your application like Azure CloudFront.
 * In the last two cases, care needs to be taken to prevent denying access to legitimate users, if for example the limit is established based on the client ip.
 
+## Authentication and authorization
+* For specific guidance on authentication and authorization check the docs at https://docs.microsoft.com/en-us/aspnet/core/security/blazor/?view=aspnetcore-3.0
+
 ## Security check-list for blazor server-side applications
 What follows is a **basic and non exhaustive** list of checks and recommendations to follow as part of considering the security aspects of your blazor server-side application.
 * Validate arguments from events.
 * Validate results from JS interop calls.
 * Validate inputs from JS interop calls.
+* Avoid using or validate beforehand user input for .NET to JS interop calls.
 * Prevent the client from allocating an unbound amount of memory.
   * Data within the component.
   * DotNetObject references returned to the client.
