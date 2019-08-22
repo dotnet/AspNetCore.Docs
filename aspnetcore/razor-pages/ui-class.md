@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 08/20/2019
+ms.date: 08/22/2019
 ms.custom: "mvc, seodec18"
 uid: razor-pages/ui-class
 ---
@@ -231,6 +231,39 @@ An RCL may require companion static assets that can be referenced by the consumi
 To include companion assets as part of an RCL, create a *wwwroot* folder in the class library and include any required files in that folder.
 
 When packing an RCL, all companion assets in the *wwwroot* folder are automatically included in the package.
+
+### Exclude static assets
+
+To exclude static assets, add the desired exclusion path to the `$(DefaultItemExcludes)` property group in the project file. Separate entries with a semicolon (`;`).
+
+In the following example, the *lib.css* stylesheet in the *wwwroot* folder isn't considered a static asset and isn't included in the published RCL:
+
+```xml
+<PropertyGroup>
+  <DefaultItemExcludes>$(DefaultItemExcludes);wwwroot\lib.css</DefaultItemExcludes>
+</PropertyGroup>
+```
+
+### Typescript integration
+
+To include TypeScript files in an RCL:
+
+1. Place the TypeScript files (*.ts*) outside of the *wwwroot* folder. For example, place the files in a *Client* folder.
+
+1. Configure the TypeScript build output for the *wwwroot* folder. Set the `TypescriptOutDir` property inside of a `PropertyGroup` in the project file:
+
+   ```xml
+   <TypescriptOutDir>wwwroot</TypescriptOutDir>
+   ```
+
+1. Include the TypeScript target as a dependency of the `ResolveCurrentProjectStaticWebAssets` target by adding the following target inside of a `PropertyGroup` in the project file:
+
+   ```xml
+   <ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
+     TypeScriptCompile;
+     $(ResolveCurrentProjectStaticWebAssetsInputs)
+   </ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
+   ```
 
 ### Consume content from a referenced RCL
 
