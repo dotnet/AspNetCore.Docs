@@ -105,7 +105,7 @@ In Blazor server-side apps, the default route in *_Host.cshtml* is `/` (`@page "
 @page "/{**path}"
 ```
 
-The "/{**path}" template includes:
+The `"/{**path}"` template includes:
 
 * Double-asterisk *catch-all* syntax (`**`) to capture the path across multiple folder boundaries without encoding forward slashes (`/`).
 * A `path` route parameter name.
