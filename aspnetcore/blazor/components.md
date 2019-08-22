@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/13/2019
+ms.date: 08/22/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -541,9 +541,9 @@ While capturing component references use a similar syntax to [capturing element 
 > [!NOTE]
 > Do **not** use component references to mutate the state of child components. Instead, use normal declarative parameters to pass data to child components. Use of normal declarative parameters result in child components that rerender at the correct times automatically.
 
-## Externally invoking component methods to update state
+## Invoke component methods externally to update state
 
-What happens when you want to invoke a component method and update state (directly or indirectly) from another component or even a service? Lets take the following `NotifierService` singleton service which can notify anyone listening to "do something":
+A component method can directly or indirectly update state from another component (or a service). Create a *notifier service* and use the service to notify any listening component of the updated state:
 
 ```csharp
 public class NotifierService
@@ -551,7 +551,6 @@ public class NotifierService
     public void Update(string key, int value)
     {
         // Can be called from anywhere
-
         Notify?.Invoke(key, value);
     }
 
@@ -559,7 +558,7 @@ public class NotifierService
 }
 ```
 
-And consider using this notifier service to update a component:
+Use the `NotifierService` to update a component:
 
 ```cshtml
 @page "/"
@@ -590,9 +589,7 @@ And consider using this notifier service to update a component:
 }
 ```
 
-`OnNotify` is called from the `NotifierService` on a `SynchronizationContext` that is not the component's rendering `SynchronizationContext`. Because of this you cannot directly trigger the component to re-render (`StateHasChanged`) inside of `OnNotify`. Instead utilize `InvokeAsync` to indirectly invoke the `StateHasChanged` method on the component's appropriate rendering `SynchronizationContext`.
-
-
+`OnNotify` is called from the `NotifierService` on a `SynchronizationContext` that isn't the component's rendering `SynchronizationContext`. Therefore, the component can't directly be triggered to rerender (`StateHasChanged`) inside of `OnNotify`. Instead, utilize `InvokeAsync` to indirectly invoke the `StateHasChanged` method on the component's appropriate rendering `SynchronizationContext`.
 
 ## Use \@key to control the preservation of elements and components
 
