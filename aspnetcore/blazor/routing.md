@@ -97,6 +97,16 @@ The route constraints shown in the following table are available. For the route 
 > [!WARNING]
 > Route constraints that verify the URL and are converted to a CLR type (such as `int` or `DateTime`) always use the invariant culture. These constraints assume that the URL is non-localizable.
 
+### Routing with parameters that contain dots
+
+In Blazor Server apps, the route specified on `_Host.cshtml` does not match URLs that look like filenames. This allows the app to return  404 for requests that don't match static files. If your Blazor application needs to support this, you can configure `_Host.cshtml`: 
+
+```cshtml
+@* _Host.cshtml *@
+
+@page "/{**path}"
+```
+
 ## NavLink component
 
 Use a `NavLink` component in place of HTML hyperlink elements (`<a>`) when creating navigation links. A `NavLink` component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed.
@@ -157,3 +167,4 @@ The following component navigates to the app's `Counter` component when the butt
     }
 }
 ```
+
