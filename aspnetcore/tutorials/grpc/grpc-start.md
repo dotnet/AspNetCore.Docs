@@ -46,7 +46,7 @@ In this tutorial, you:
 
 * Start Visual Studio and select **Create a new project**. Alternatively, from the Visual Studio **File** menu, select **New** > **Project**.
 * In the **Create a new project** dialog, select **gPRC Service** and select **Next**.
-  ![**Create a new project** dialog](~/tutorials/grpc/grpc-start/static/cnp.png")
+  ![**Create a new project** dialog](~/tutorials/grpc/grpc-start/static/cnp.png)
 * Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces will match when you copy and paste code.
 * Select **Create**
 * In the **Create a new gRPC service** dialog:
