@@ -541,6 +541,59 @@ While capturing component references use a similar syntax to [capturing element 
 > [!NOTE]
 > Do **not** use component references to mutate the state of child components. Instead, use normal declarative parameters to pass data to child components. Use of normal declarative parameters result in child components that rerender at the correct times automatically.
 
+## Externally invoking component methods to update state
+
+What happens when you want to invoke a component method and update state (directly or indirectly) from another component or even a service? Lets take the following `NotifierService` singleton service which can notify anyone listening to "do something":
+
+```csharp
+public class NotifierService
+{
+    public void Update(string key, int value)
+    {
+        // Can be called from anywhere
+
+        Notify?.Invoke(key, value);
+    }
+
+    public event Action<string, int> Notify;
+}
+```
+
+And consider using this notifier service to update a component:
+
+```cshtml
+@page "/"
+@inject NotifierService Notifier
+@implements IDisposable
+
+<p>Last update: @lastNotification.key = @lastNotification.value</p>
+
+@code {
+    private (string key, int value) lastNotification;
+
+    protected override void OnInitialized()
+    {
+        Notifier.Notify += OnNotify;
+    }
+
+    public async void OnNotify(string key, int value)
+    {
+        lastNotification = (key, value);
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        Notifier.Notify -= OnNotify;
+    }
+}
+```
+
+`OnNotify` is called from the `NotifierService` on a `SynchronizationContext` that is not the component's rendering `SynchronizationContext`. Because of this you cannot directly trigger the component to re-render (`StateHasChanged`) inside of `OnNotify`. Instead utilize `InvokeAsync` to indirectly invoke the `StateHasChanged` method on the component's appropriate rendering `SynchronizationContext`.
+
+
+
 ## Use \@key to control the preservation of elements and components
 
 When rendering a list of elements or components and the elements or components subsequently change, Blazor's diffing algorithm must decide which of the previous elements or components can be retained and how model objects should map to them. Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.
