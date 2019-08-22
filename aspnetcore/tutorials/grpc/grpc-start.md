@@ -173,7 +173,7 @@ Install the packages using either the Package Manager Console (PMC) or Manage Nu
 #### PMC option to install packages
 
 * From Visual Studio, select **Tools** > **NuGet Package Manager** > **Package Manager Console**
-* From the **Package Manager Console** window, run `cd GrpcGreeterClient` to change directories to the folder containing the  *GrpcGreeterClient.csproj* files.
+* From the **Package Manager Console** window, run `cd GrpcGreeterClient` to change directories to the folder containing the *GrpcGreeterClient.csproj* files.
 * Run the following commands:
 
  ```powershell
