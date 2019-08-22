@@ -47,8 +47,8 @@ Debugging requires either of the following browsers:
 1. Select the following Blazor-specific keyboard shortcut:
    * `Shift+Alt+D` on Windows/Linux
    * `Shift+Cmd+D` on macOS
-1. Follow the steps listed on screen.
-1. Select the following Blazor-specific keyboard shortcut once again to start debug session:
+1. Follow the steps listed on screen to restart the browser with remote debugging enabled.
+1. Select the following Blazor-specific keyboard shortcut once again to start the debug session:
    * `Shift+Alt+D` on Windows/Linux
    * `Shift+Cmd+D` on macOS
 
