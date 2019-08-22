@@ -548,9 +548,9 @@ A component method can directly or indirectly (from another component or a servi
 ```csharp
 public class NotifierService
 {
+    // Can be called from anywhere
     public void Update(string key, int value)
     {
-        // Can be called from anywhere
         Notify?.Invoke(key, value);
     }
 
