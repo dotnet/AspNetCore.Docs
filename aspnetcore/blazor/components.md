@@ -543,7 +543,7 @@ While capturing component references use a similar syntax to [capturing element 
 
 ## Invoke component methods externally to update state
 
-A component method can directly or indirectly update state from another component (or a service). Create a *notifier service* and use the service to notify any listening component of the updated state:
+A component method can directly or indirectly (from another component or a service) be used to update state. Consider a *notifier service* that can notify any listening component of the updated state:
 
 ```csharp
 public class NotifierService
@@ -558,7 +558,7 @@ public class NotifierService
 }
 ```
 
-Use the `NotifierService` to update a component:
+Usage of the `NotifierService` to update a component:
 
 ```cshtml
 @page "/"
