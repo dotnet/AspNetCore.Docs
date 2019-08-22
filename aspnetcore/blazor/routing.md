@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/13/2019
+ms.date: 08/22/2019
 uid: blazor/routing
 ---
 # ASP.NET Core Blazor routing
@@ -99,11 +99,9 @@ The route constraints shown in the following table are available. For the route 
 
 ### Routing with parameters that contain dots
 
-In Blazor Server apps, the route specified on `_Host.cshtml` does not match URLs that look like filenames. This allows the app to return  404 for requests that don't match static files. If your Blazor application needs to support this, you can configure `_Host.cshtml`: 
+In Blazor server-side apps, the route specified in *_Host.cshtml* doesn't match URLs that look like filenames. This allows the app to return a *404 - Not Found* response for requests that don't match static files. To support this scenario, configure *_Host.cshtml*:
 
 ```cshtml
-@* _Host.cshtml *@
-
 @page "/{**path}"
 ```
 
