@@ -12,7 +12,7 @@ uid: data/ef-mvc/intro
 
 ::: moniker range=">= aspnetcore-3.0"
 
-This tutorial has **not** been updated to ASP.NET Core 3.0. The [Razor Pages](xref:data/ef-rp/intro) has been updated. For information on when this might be updated, see [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/13920).
+This tutorial has **not** been updated to ASP.NET Core 3.0. The [Razor Pages version](xref:data/ef-rp/intro) has been updated. For information on when this might be updated, see [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/13920).
 
 ::: moniker-end
 
