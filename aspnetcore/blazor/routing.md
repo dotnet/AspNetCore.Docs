@@ -105,6 +105,13 @@ In Blazor server-side apps, the default route in *_Host.cshtml* is `/` (`@page "
 @page "/{**path}"
 ```
 
+The "/{**path}" template includes:
+
+* Double-asterisk *catch-all* syntax (`**`) to capture the path across multiple folder boundaries without encoding forward slashes (`/`).
+* A `path` route parameter name.
+
+For more information, see <xref:fundamentals/routing>.
+
 ## NavLink component
 
 Use a `NavLink` component in place of HTML hyperlink elements (`<a>`) when creating navigation links. A `NavLink` component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed.
