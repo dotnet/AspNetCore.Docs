@@ -10,8 +10,6 @@ const connection = new signalR.HubConnectionBuilder()
     .withUrl("/hub")
     .build();
 
-connection.start().catch(err => document.write(err));
-
 connection.on("messageReceived", (username: string, message: string) => {
     let messageContainer = document.createElement("div");
 
@@ -21,6 +19,8 @@ connection.on("messageReceived", (username: string, message: string) => {
     divMessages.appendChild(messageContainer);
     divMessages.scrollTop = divMessages.scrollHeight;
 });
+
+connection.start().catch(err => document.write(err));
 
 tbMessage.addEventListener("keyup", (e: KeyboardEvent) => {
     if (e.keyCode === 13) {
