@@ -4,7 +4,7 @@ author: Jeremy-Meng
 description: Learn about several notable tools and approaches for load testing and stress testing ASP.NET Core apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/05/2019
+ms.date: 4/05/2019
 uid: test/loadtests
 ---
 # ASP.NET Core load/stress testing
