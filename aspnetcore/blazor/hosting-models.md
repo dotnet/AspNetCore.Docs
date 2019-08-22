@@ -77,36 +77,70 @@ There are downsides to server-side hosting:
 
 &dagger;The *blazor.server.js* script is served from an embedded resource in the ASP.NET Core shared framework.
 
+## Server-side Blazor fundamentals
+
+### Comparison with server-rendered UI
+
+One way to understand Blazor Server app is by understanding how it differs from traditional models for rendering UI in ASP.NET Core applications using Razor views or Razor pages. Both models use the Razor language to describe HTML contents, but signficantly differ in how it's rendered.
+
+When a Razor page or view is rendered, every line of Razor code emits HTML in text form. Once the view is rendered, the server disposes the view instance and any state produced during the rendering is discarded. When another request for the page occurs, for instance when server validation fails and the validation summary is to be displayed, the entire page is turned into HTML text again and sent to the client.
+
+A Blazor application is composed of reusable element of UI called a *component*. Components contain C# code, markup, and other components. When a component is to be rendered, Blazor produces a DOM-like graph of components. This graph includes actual instances of components including their state (properties and fields). Blazor evaluates this structure to produce a binary representation of the markup.
+
+The binary format produced by Blazor can be turned into HTML text (during prerendering) or used to efficiently diff the output at different times. A UI update in Blazor is triggered either by user interaction such as clicking on a button, or by application trigger such as a timer. The graph is re-rendered, and a UI diff is calculated. This diff is the smallest set of DOM edits needed to update the UI on the client - it is sent to the client in a binary format, and applied by the browser.
+
+Components are long-lived and are only disposed once the user navigates away from the Blazor application. Consequently, any injected service from DI and data that is part of the component state also becomes long-lived. This behavior is an important consideration when designing your Blazor application - your components and the resources they used will stay in memory while they are being shown in the UI to a user.
+
+###  Circuits
+
+A Blazor Server application is built on top of ASP.NET Core SignalR. Each client communicates to the server over one or more SignalR connections called a "circuit". A circuit is Blazor's abstraction over SignalR connections that can tolerate temporary network interruptions. When a Blazor client sees that the SignalR connection is disconnected, it attempts to reconnect to the server using a new SignalR connection.
+
+Each browser screen (browser tab or iframe) that is connected to a Blazor Server app application uses a SignalR connection. This is yet another important distinction compared to typical server-rendered applications. In a server-rendered application, opening the same application in multiple browser screens typically does not translate in to additional resources for the server. In Blazor Server app, each browser screen requires in a separate circuit as well as separate instances of component state to be managed on the server.
+
+Blazor considers closing a browser tab or navigating to an external URL a "graceful" termination. In the event of a graceful termination, the circuit and associated resources are immediately freed. A client may also disconnect non-gracefully, for instance due to a network interruption. Blazor Server will store disconnected circuits for a configurable interval to allow the client to reconnect. See the section titled "Reconnection to the same server" to learn more about configuring reconnections.
+
+### UI Latency
+
+UI latency is the time it takes for an action to be initiated, to the time the UI is updated. Smaller values for UI latency are imperative for an application to feel responsive. In a Blazor Server app application, each action is sent to the server, processed, and a UI diff is sent back. Consequently UI latency is the sum of network latency as well as the server latency in processing the action.
+
+For a line of business application that is limited to your private corporate network, the effects of network latency are likely imperceptible. For an application deployed over the public internet, this may become noticeable particularly if your users are geographically distributed.
+
+From our profiling, we think most Blazor server apps are going to be memory bound and memory is going to be other contributor to application latency. More memory use results in more frequent garbage collection or paging memory to disk, both of which degrade application performance and consequently increase UI latency.
+
+In our measurements, a value of 250ms or less provides a good UI experience. See <xref:best-practices> for ways to measure network latency.
+
+## Configuring Blazor Server application
+
 ### Reconnection to the same server
 
 Blazor server-side apps require an active SignalR connection to the server. If the connection is lost, the app attempts to reconnect to the server. As long as the client's state is still in memory, the client session resumes without losing state.
- 
+
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry. To customize the UI, define an element with `components-reconnect-modal` as its `id` in the *_Host.cshtml* Razor page. The client updates this element with one of the following CSS classes based on the state of the connection:
- 
+
 * `components-reconnect-show` &ndash; Show the UI to indicate the connection was lost and the client is attempting to reconnect.
 * `components-reconnect-hide` &ndash; The client has an active connection, hide the UI.
 * `components-reconnect-failed` &ndash; Reconnection failed. To attempt reconnection again, call `window.Blazor.reconnect()`.
 
 ### Stateful reconnection after prerendering
- 
+
 Blazor server-side apps are set up by default to prerender the UI on the server before the client connection to the server is established. This is set up in the *_Host.cshtml* Razor page:
- 
+
 ```cshtml
 <body>
     <app>@(await Html.RenderComponentAsync<App>())</app>
- 
+
     <script src="_framework/blazor.server.js"></script>
 </body>
 ```
- 
+
 The client reconnects to the server with the same state that was used to prerender the app. If the app's state is still in memory, the component state isn't rerendered after the SignalR connection is established.
 
 ### Render stateful interactive components from Razor pages and views
- 
+
 Stateful interactive components can be added to a Razor page or view. When the page or view renders, the component is prerendered with it. The app then reconnects to the component state once the client connection is established as long as the state is still in memory.
- 
+
 For example, the following Razor page renders a `Counter` component with an initial count that's specified using a form:
- 
+
 ```cshtml
 <h1>My Razor Page</h1>
 
@@ -114,9 +148,9 @@ For example, the following Razor page renders a `Counter` component with an init
     <input type="number" asp-for="InitialCount" />
     <button type="submit">Set initial count</button>
 </form>
- 
+
 @(await Html.RenderComponentAsync<Counter>(new { InitialCount = InitialCount }))
- 
+
 @code {
     [BindProperty(SupportsGet=true)]
     public int InitialCount { get; set; }
@@ -124,18 +158,18 @@ For example, the following Razor page renders a `Counter` component with an init
 ```
 
 ### Detect when the app is prerendering
- 
+
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
 
 ### Configure the SignalR client for Blazor server-side apps
- 
+
 Sometimes, you need to configure the SignalR client used by Blazor server-side apps. For example, you might want to configure logging on the SignalR client to diagnose a connection issue.
- 
+
 To configure the SignalR client in the *Pages/_Host.cshtml* file:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the *blazor.server.js* script.
 * Call `Blazor.start` and pass in a configuration object that specifies the SignalR builder.
- 
+
 ```html
 <script src="_framework/blazor.server.js" autostart="false"></script>
 <script>
