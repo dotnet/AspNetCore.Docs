@@ -99,7 +99,7 @@ The route constraints shown in the following table are available. For the route 
 
 ### Routing with URLs that contain dots
 
-In Blazor server-side apps, the default route in *_Host.cshtml* is `/` (`@page "/"`). A route that contains a dot (`.`) isn't matched by the default route because such a route appears to request a file&mdash;the app returns a *404 - Not Found* response for a static file that doesn't exist. To use routes that contain a dot, configure *_Host.cshtml* with the following route template:
+In Blazor server-side apps, the default route in *_Host.cshtml* is `/` (`@page "/"`). A request URL that contains a dot (`.`) isn't matched by the default route because the URL appears to request a file&mdash;the app returns a *404 - Not Found* response for a static file that doesn't exist. To use routes that contain a dot, configure *_Host.cshtml* with the following route template:
 
 ```cshtml
 @page "/{**path}"
