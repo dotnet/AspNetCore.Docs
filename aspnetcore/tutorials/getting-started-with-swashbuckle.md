@@ -97,7 +97,7 @@ Add the Swagger generator to the services collection in the `Startup.ConfigureSe
 
 In the `Startup.Configure` method, enable the middleware for serving the generated JSON document and the Swagger UI:
 
-::: moniker range="<= aspnetcore-2.1"
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup2.cs?name=snippet_Configure&highlight=4,8-11)]
 
@@ -127,6 +127,7 @@ If using directories with IIS or a reverse proxy, set the Swagger endpoint to a 
 Swagger provides options for documenting the object model and customizing the UI to match your theme.
 
 In the `Startup` class, add the following namespaces:
+
 ```csharp
 using System;
 using System.Reflection;
