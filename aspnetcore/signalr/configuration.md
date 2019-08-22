@@ -65,6 +65,7 @@ The following table describes options for configuring SignalR hubs:
 | `SupportedProtocols` | All installed protocols | Protocols supported by this hub. By default, all protocols registered on the server are allowed, but protocols can be removed from this list to disable specific protocols for individual hubs. |
 | `EnableDetailedErrors` | `false` | If `true`, detailed exception messages are returned to clients when an exception is thrown in a Hub method. The default is `false`, as these exception messages can contain sensitive information. |
 | `StreamBufferCapacity` | `10` | The maximum number of items that can be buffered for client upload streams. If this limit is reached, the processing of invocations is blocked until the server processes stream items.|
+| `MaximumReceiveMessageSize` | 32 KB | Maximum size of a single incoming hub message. |
 
 ::: moniker-end
 
@@ -136,14 +137,31 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 The following table describes options for configuring ASP.NET Core SignalR's advanced HTTP options:
 
+::: moniker range=">= aspnetcore-3.0"
+
+| Option | Default Value | Description |
+| ------ | ------------- | ----------- |
+| `ApplicationMaxBufferSize` | 32 KB | The maximum number of bytes received from the client that the server buffers before applying backpressure. Increasing this value allows the server to receive larger messages more quickly without applying backpressure, but can increase memory consumption. |
+| `AuthorizationData` | Data automatically gathered from the `Authorize` attributes applied to the Hub class. | A list of [IAuthorizeData](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizedata) objects used to determine if a client is authorized to connect to the hub. |
+| `TransportMaxBufferSize` | 32 KB | The maximum number of bytes sent by the app that the server buffers before observing backpressure. Increasing this value allows the server to buffer larger messages more quickly without awaiting backpressure, but can increase memory consumption. |
+| `Transports` | All Transports are enabled. | A bit flags enum of `HttpTransportType` values that can restrict the transports a client can use to connect. |
+| `LongPolling` | See below. | Additional options specific to the Long Polling transport. |
+| `WebSockets` | See below. | Additional options specific to the WebSockets transport. |
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
 | `ApplicationMaxBufferSize` | 32 KB | The maximum number of bytes received from the client that the server buffers. Increasing this value allows the server to receive larger messages, but can negatively impact memory consumption. |
 | `AuthorizationData` | Data automatically gathered from the `Authorize` attributes applied to the Hub class. | A list of [IAuthorizeData](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizedata) objects used to determine if a client is authorized to connect to the hub. |
 | `TransportMaxBufferSize` | 32 KB | The maximum number of bytes sent by the app that the server buffers. Increasing this value allows the server to send larger messages, but can negatively impact memory consumption. |
-| `Transports` | All Transports are enabled. | A bitmask of `HttpTransportType` values that can restrict the transports a client can use to connect. |
+| `Transports` | All Transports are enabled. | A bit flags enum of `HttpTransportType` values that can restrict the transports a client can use to connect. |
 | `LongPolling` | See below. | Additional options specific to the Long Polling transport. |
 | `WebSockets` | See below. | Additional options specific to the WebSockets transport. |
+
+::: moniker-end
 
 The Long Polling transport has additional options that can be configured using the `LongPolling` property:
 

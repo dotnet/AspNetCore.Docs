@@ -120,7 +120,6 @@ Select **Ctrl-F5** to run the app in non-debug mode.
 
   ![IIS Express](start-mvc/_static/iis_express.png)
 
-
   The following image shows the app:
 
   ![Home or Index page](start-mvc/_static/home2.2.png)
@@ -134,12 +133,6 @@ Press Ctrl+F5 to run without the debugger.
   Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `https://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
 
   Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
-
-* Select **Accept** to consent to tracking. This app doesn't track personal information. The template generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
-
-  ![Home or Index page](start-mvc/_static/privacy.png)
-
-  The following image shows the app after accepting tracking:
 
   ![Home or Index page](start-mvc/_static/home2.2.png)
 

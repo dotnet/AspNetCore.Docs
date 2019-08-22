@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Learn about advanced scenarios - ASP.NET MVC with EF Core"
 description: "This tutorial introduces useful topics for going beyond the basics of developing ASP.NET Core web apps that use Entity Framework Core."
-author: rick-anderson
+author: tdykstra
 ms.author: tdykstra
 ms.custom: mvc
 ms.date: 03/27/2019
@@ -274,4 +274,4 @@ In this tutorial, you:
 This completes this series of tutorials on using the Entity Framework Core in an ASP.NET Core MVC application. This series worked with a new database; an alternative is to  reverse engineer a model from an existing database.
 
 > [!div class="nextstepaction"]
-> [Tutorial: EF Core with MVC, existing database](/ef/core/get-started/aspnetcore/new-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json)
+> [Tutorial: EF Core with MVC, existing database](/ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json)

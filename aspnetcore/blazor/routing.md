@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2019
+ms.date: 08/13/2019
 uid: blazor/routing
 ---
 # ASP.NET Core Blazor routing
@@ -111,6 +111,18 @@ There are two `NavLinkMatch` options that you can assign to the `Match` attribut
 * `NavLinkMatch.Prefix` (*default*) &ndash; The `NavLink` is active when it matches any prefix of the current URL.
 
 In the preceding example, the Home `NavLink` `href=""` matches the home URL and only receives the `active` CSS class at the app's default base path URL (for example, `https://localhost:5001/`). The second `NavLink` receives the `active` class when the user visits any URL with a `MyComponent` prefix (for example, `https://localhost:5001/MyComponent` and `https://localhost:5001/MyComponent/AnotherSegment`).
+
+Additional `NavLink` component attributes are passed through to the rendered anchor tag. In the following example, the `NavLink` component includes the `target` attribute:
+
+```cshtml
+<NavLink href="my-page" target="_blank">My page</NavLink>
+```
+
+The following HTML markup is rendered:
+
+```html
+<a href="my-page" target="_blank" rel="noopener noreferrer">My page</a>
+```
 
 ## URI and navigation state helpers
 

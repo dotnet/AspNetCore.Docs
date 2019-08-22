@@ -96,7 +96,7 @@
     private string _responseBody;
     private string _responseHeaders;
 
-    protected override void OnInit()
+    protected override void OnInitialized()
     {
         _requestReferrer = UriHelper.GetAbsoluteUri();
     }

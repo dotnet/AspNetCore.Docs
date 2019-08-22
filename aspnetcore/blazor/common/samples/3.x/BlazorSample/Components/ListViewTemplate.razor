@@ -9,8 +9,8 @@
 
 @code {
     [Parameter]
-    private RenderFragment<TItem> ItemTemplate { get; set; }
+    public RenderFragment<TItem> ItemTemplate { get; set; }
 
     [Parameter]
-    private IReadOnlyList<TItem> Items { get; set; }
+    public IReadOnlyList<TItem> Items { get; set; }
 }
