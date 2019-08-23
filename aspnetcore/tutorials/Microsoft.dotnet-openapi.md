@@ -2,7 +2,7 @@
 title: Develop ASP.NET Core apps using OpenAPI
 author: ryanbrandenburg
 description: This tutorial demonstrates how to use the 'Microsoft.dotnet-openapi' tool to add references to OpenAPI files 
-ms.author: riande
+ms.author: ryanbrandenburg
 ms.date: 08/21/2019
 uid: tutorials/Microsoft.dotnet-openapi
 ---
@@ -46,7 +46,7 @@ This reference, along with the code generator specific packages which were also 
 |-------|------|-------|---------|
 | -v|--verbose | Show verbose output. |dotnet openapi add file *-v* .\OpenAPI.json |
 | -p|--updateProject | The project to operate on. |dotnet openapi add file *--updateProject .\Ref.csproj* .\OpenAPI.json |
-| -c|--code-generator| The code generator to apply to the reference. Options are "NSwagCSharp" and "NSwagTypeScript". If this is not explicitly provided the tooling will default to NSwageCSharp.|dotnet openapi add file .\OpenApi.json --code-generator 
+| -c|--code-generator| The code generator to apply to the reference. Options are "NSwagCSharp" and "NSwagTypeScript". If this is not explicitly provided the tooling will default to NSwagCSharp.|dotnet openapi add file .\OpenApi.json --code-generator
 
 ##### Arguments
 
@@ -69,11 +69,11 @@ This reference, along with the code generator specific packages which were also 
 
 |  Argument  | Description | Example |
 |-------------|-------------|---------|
-| source-file | The source to create a reference from. Must be a URL. |dotnet openapi add url <https://contoso.com/openapi.json> |
+| source-URL | The source to create a reference from. Must be a URL. |dotnet openapi add url <https://contoso.com/openapi.json> |
 
 ### Remove
 
-This command removes the specified OpenAPI reference from your CSProj so that it's clients will no longer be generated.
+This command removes the OpenAPI reference matching the given filename from your CSProj so that its clients will no longer be generated. If there is a local JSON or YAML file it is also deleted.
 
 ##### Options
 
@@ -103,4 +103,4 @@ This command refreshes the local version of a file which was downloaded using a 
 
 |  Argument  | Description | Example |
 | ------------|-------------|---------|
-| source-file | The URL to refresh the reference from. | dotnet openapi refresh *<https://contoso.com/openapi.json>* |
+| source-URL | The URL to refresh the reference from. | dotnet openapi refresh *<https://contoso.com/openapi.json>* |
