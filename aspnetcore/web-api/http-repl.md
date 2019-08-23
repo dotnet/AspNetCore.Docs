@@ -405,12 +405,12 @@ pref set editor.command.default.arguments "--disable-extensions --new-window"
 
 By default, the HTTP REPL has a set of relative paths that it uses to find the Swagger document when executing the `connect` command without the `--swagger` option. These relative paths are combined with the root and base paths specified in the `connect` command. The default relative paths are:
 
-- swagger.json
-- swagger/v1/swagger.json
-- /swagger.json
-- /swagger/v1/swagger.json
+- *swagger.json*
+- *swagger/v1/swagger.json*
+- */swagger.json*
+- */swagger/v1/swagger.json*
 
-If you'd like to use a different set of search paths in your environment, you can set the `swagger.searchPaths` preference. The value must be a pipe-delimited list of relative paths. For example:
+To use a different set of search paths in your environment, set the `swagger.searchPaths` preference. The value must be a pipe-delimited list of relative paths. For example:
 
 ```console
 pref set swagger.searchPaths "swagger/v2/swagger.json|swagger/v3/swagger.json
