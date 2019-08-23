@@ -133,6 +133,7 @@ The `Required` attribute must be used with `MinimumLength`.
 
 ```csharp
 [Display(Name = "Last Name")]
+[Required]
 [StringLength(50, MinimumLength=1)]
 public string LastName { get; set; }
 ```
