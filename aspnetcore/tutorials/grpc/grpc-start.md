@@ -97,11 +97,7 @@ From Visual Studio, select **File** > **Open**, and then select the *GrpcGreeter
 
   Visual Studio runs the service in a command prompt.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code)
-
-* Run the gRPC Greeter project *GrpcGreeter* from the command line using `dotnet run`.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * Run the gRPC Greeter project *GrpcGreeter* from the command line using `dotnet run`.
 
@@ -265,12 +261,7 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 * In the Greeter service, press `Ctrl+F5` to start the server without the debugger.
 * In the `GrpcGreeterClient` project, press `Ctrl+F5` to start the client without the debugger.
 
-### [Visual Studio Code](#tab/visual-studio-code)
-
-* Start the Greeter service.
-* Start the client.
-
-### [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * Start the Greeter service.
 * Start the client.
