@@ -186,7 +186,7 @@ The `ValidationMessage` and `ValidationSummary` components support arbitrary att
 Validation attributes applied to subproperties of complex properties on the model don't currently participate in submit validation. For example, consider the following model:
 
 ```csharp
-class Person
+public class Person
 {
     [Required]
     public string Name { get; set; }
@@ -194,7 +194,7 @@ class Person
     public Address Address { get; set; }
 }
 
-class Address
+public class Address
 {
     [Required]
     public string Street { get; set; }
@@ -206,7 +206,7 @@ class Address
 `Person.Address.Street` isn't validated by default. To validate the subproperty, implement <xref:System.ComponentModel.DataAnnotations.IValidatableObject> on the `Person` type to explicitly validate complex subproperties:
 
 ```csharp
-class Person : IValidatableObject
+public class Person : IValidatableObject
 {
     [Required]
     public string Name { get; set; }
