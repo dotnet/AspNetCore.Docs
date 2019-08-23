@@ -5,7 +5,7 @@ description: Learn how Razor Pages in ASP.NET Core makes coding page-focused sce
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 06/18/2019
+ms.date: 08/23/2019
 uid: razor-pages/sdk
 ---
 # ASP.NET Core Razor SDK
@@ -16,26 +16,21 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The [!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` MSBuild SDK (Razor SDK). The Razor SDK:
 
-::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
+
+* Is required to build, package, and publish projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC-based or [Blazor](xref:blazor/index) projects.
+* Includes a set of predefined targets, properties, and items that allow customizing the compilation of Razor (*.cshtml* or *.razor*) files.
+
+The Razor SDK includes `Content` items with `Include` attributes set to the `**\*.cshtml` and `**\*.razor` globbing patterns. Matching files are published.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 * Standardizes the experience around building, packaging, and publishing projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC-based projects.
 * Includes a set of predefined targets, properties, and items that allow customizing the compilation of Razor files.
-::: moniker-end
 
-::: moniker range=">= aspnetcore-3.0"
-* is required to build, package, and publish projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC-based projects, or [Blazor](xref:blazor/index) projects
-* Includes a set of predefined targets, properties, and items that allow customizing the compilation of Razor (.cshtml or .razor) files.
-::: moniker-end
-
-
-::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
-
-The Razor SDK includes a `<Content>` element with an `Include` attribute set to the `**\*.cshtml` globbing pattern. Matching files are published.
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-3.0"
-
-The Razor SDK includes `<Content>` elements with `Include` attributes set to the `**\*.cshtml` and `**\*.razor` globbing patterns. Matching files are published.
+The Razor SDK includes a `Content` item with an `Include` attribute set to the `**\*.cshtml` globbing pattern. Matching files are published.
 
 ::: moniker-end
 
@@ -47,7 +42,14 @@ The Razor SDK includes `<Content>` elements with `Include` attributes set to the
 
 Most web apps aren't required to explicitly reference the Razor SDK.
 
-::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-3.0"
+
+To use the Razor SDK to build class libraries containing Razor views or Razor Pages, we recommend starting with the Razor class library (RCL) project template. An RCL that's used to build Blazor (*.razor*) files minimally requires a reference to the [Microsoft.AspNetCore.Components](https://www.nuget.org/packages/Microsoft.AspNetCore.Components) package. An RCL that's used to build Razor views or pages (*.cshtml* files) minimally requires targeting `netcoreapp3.0` or later and has a `FrameworkReference` to the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) in its project file.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 To use the Razor SDK to build class libraries containing Razor views or Razor Pages:
 
 * Use `Microsoft.NET.Sdk.Razor` instead of `Microsoft.NET.Sdk`:
@@ -72,11 +74,6 @@ To use the Razor SDK to build class libraries containing Razor views or Razor Pa
   
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-3.0"
-To use the Razor SDK to build class libraries containing Razor views or Razor Pages we recommend starting with the Razor Class Library project template. A Razor class library that is used to build Blazor (.razor) files will at minimum require a reference to the `Microsoft.AspNetCore.Components` package. A Razor class library that is used to build Razor views or pages (.cshtml files), will require targeting `netcoreapp3.0` or newer and have a `FrameworkReference` to `Microsoft.AspNetCore.App`.
-
-::: moniker-end
-
 ::: moniker range="= aspnetcore-2.1"
 
 > [!WARNING]
@@ -94,15 +91,16 @@ The following properties control the Razor's SDK behavior as part of a project b
 The properties and items in the following table are used to configure inputs and output to the Razor SDK.
 
 ::: moniker range=">= aspnetcore-3.0"
-> [!WARNING]
-Starting with ASP.NET Core 3.0, MVC Views or Razor Pages will not be served by default if `RazorCompileOnBuild` or `RazorCompileOnPublish` is disabled. Applications must add an explicit reference to `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation` package to add support for runtime compilation if they rely on runtime compilation to process cshtml files.
-::: moniker-end
 
+> [!WARNING]
+> Starting with ASP.NET Core 3.0, MVC Views or Razor Pages aren't served by default if the `RazorCompileOnBuild` or `RazorCompileOnPublish` MSBuild properties in the project file are disabled. Applications must add an explicit reference to the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation) package if the app relies on runtime compilation to process *.cshtml* files.
+
+::: moniker-end
 
 | Items | Description |
 | ----- | ----------- |
 | `RazorGenerate` | Item elements (*.cshtml* files) that are inputs to code generation. |
-| `RazorComponent` | Item elements (*.razor* files) that are inputs to Component code generation.
+| `RazorComponent` | Item elements (*.razor* files) that are inputs to Razor component code generation. |
 | `RazorCompile` | Item elements (*.cs* files) that are inputs to Razor compilation targets. Use this `ItemGroup` to specify additional files to be compiled into the Razor assembly. |
 | `RazorTargetAssemblyAttribute` | Item elements used to code generate attributes for the Razor assembly. For example:  <br>`RazorAssemblyAttribute`<br>`Include="System.Reflection.AssemblyMetadataAttribute"`<br>`_Parameter1="BuildSource" _Parameter2="https://docs.microsoft.com/">` |
 | `RazorEmbeddedResource` | Item elements added as embedded resources to the generated Razor assembly. |
@@ -129,9 +127,9 @@ For more information on properties, see [MSBuild properties](/visualstudio/msbui
 
 The Razor SDK defines two primary targets:
 
-* `RazorGenerate` &ndash; Code generates *.cs* files from `RazorGenerate` item elements. Use `RazorGenerateDependsOn` property to specify additional targets that can run before or after this target.
-* `RazorCompile` &ndash; Compiles generated *.cs* files in to a Razor assembly. Use `RazorCompileDependsOn` to specify additional targets that can run before or after this target.
-* `RazorComponentGenerate` &ndash; Code generates *.cs* files for `RazorComponent` item elements. Use `RazorComponentGenerateDependsOn` property to specify additional targets that can run before or after this target.
+* `RazorGenerate` &ndash; Code generates *.cs* files from `RazorGenerate` item elements. Use the `RazorGenerateDependsOn` property to specify additional targets that can run before or after this target.
+* `RazorCompile` &ndash; Compiles generated *.cs* files in to a Razor assembly. Use the `RazorCompileDependsOn` to specify additional targets that can run before or after this target.
+* `RazorComponentGenerate` &ndash; Code generates *.cs* files for `RazorComponent` item elements. Use the `RazorComponentGenerateDependsOn` property to specify additional targets that can run before or after this target.
 
 ### Runtime compilation of Razor views
 
@@ -149,7 +147,7 @@ When targeting the `Microsoft.NET.Sdk.Web` SDK, the Razor language version is in
 </PropertyGroup>
 ```
 
-Razor's language version is tightly integrated with the version of the runtime that it was built for. Targeting a language version that is not designed for the runtime is unsupported, and will likely produce build errors.
+Razor's language version is tightly integrated with the version of the runtime that it was built for. Targeting a language version that isn't designed for the runtime is unsupported and likely produces build errors.
 
 ## Additional resources
 
