@@ -79,15 +79,15 @@ The following code gets or creates a cached item with absolute expiration:
 
 [!code-csharp[](memory/3.0sample/WebCacheSample/Controllers/HomeController.cs?name=snippet99)]
 
-A cached item set with sliding expiration only is at risk for becoming stale because there is no bound to its expiration. Use an absolute expiration with a sliding expiration to guarantee the cached item won't become more stale than the absolute expiration. When absolute expiration is combined with sliding, the absolute expiration sets an upper bound to how long the item can be cached. Unlike absolute expiration time alone, if the item is not requested from the cache within the sliding expiration interval, the item is evicted from the cache. When absolute and sliding expiration is specified, the expirations are logically ORed.
+A cached item set with a sliding expiration only is at risk of becoming stale. If it's accessed more frequently than the sliding expiration interval, the item will never expire. Combine a sliding expiration with an absolute expiration to guarantee that the item expires once its absolute expiration time passes. The absolute expiration sets an upper bound to how long the item can be cached while still allowing the item to expire earlier if it isn't requested within the sliding expiration interval. When both absolute and sliding expiration are specified, the expirations are logically ORed. If either the sliding expiration interval *or* the absolute expiration time pass, the item is evicted from the cache.
 
-The following code gets or creates a cached item with sliding and absolute expiration:
+The following code gets or creates a cached item with both sliding *and* absolute expiration:
 
 [!code-csharp[](memory/3.0sample/WebCacheSample/Controllers/HomeController.cs?name=snippet9)]
 
 The preceding code guarantees the data will not be cached longer than the absolute time.
 
-<xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreate*> , <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync*>, and <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.Get*> are extension methods part of the <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions> class that extends the capability of <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>. See [IMemoryCache methods](/dotnet/api/microsoft.extensions.caching.memory.imemorycache) and [CacheExtensions methods](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions) for a description of other cache methods.
+<xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreate*>, <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync*>, and <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.Get*> are extension methods in the <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions> class. These methods extend the capability of <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>.
 
 ## MemoryCacheEntryOptions
 
