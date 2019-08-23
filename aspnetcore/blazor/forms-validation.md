@@ -180,3 +180,51 @@ The `ValidationMessage` component displays validation messages for a specific fi
 ```
 
 The `ValidationMessage` and `ValidationSummary` components support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the generated `<div>` or `<ul>` element.
+
+### Validation of nested properties
+
+Validation attributes applied to sub-properties of complex properties on the model do not currently participate in submit validation. For example, consider the following model - 
+
+```csharp
+class Person
+{
+    [Required]
+    public string Name { get; set; }
+
+    public Address Address { get; set; }
+}
+
+class Address
+{
+    [Required]
+    public string Street { get; set; }
+    
+    public string Street2 { get; set; }
+}
+```
+
+`Person.Address.Street` does not get validated by default. To validate subproperties, consider implementing [`IValidatableObject`](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.ivalidatableobject) on your `Person` type to explicitly validate complex subproperties:
+
+```csharp
+class Person : IValidatableObject
+{
+    [Required]
+    public string Name { get; set; }
+
+    public Address Address { get; set; }
+    
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        var validationResults = new List<ValidationResult>();
+        if (HomeAddress != null)
+        {
+            var addressContext = new ValidationContext(HomeAddress);
+            Validator.TryValidateObject(Address, addressContext, validationResults);
+        }
+
+        return validationResults;
+    }
+}
+```
+
+If the `Address` type were to have further complex subproperties that required validation, you would need to additionally implement `IValidatableObject` on it. 
