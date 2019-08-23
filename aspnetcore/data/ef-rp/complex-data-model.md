@@ -129,13 +129,15 @@ With the `[Column]` attribute, `Student.FirstMidName` in the data model maps to 
 
 The `Required` attribute makes the name properties required fields. The `Required` attribute isn't needed for non-nullable types such as value types (for example, `DateTime`, `int`, and `double`). Types that can't be null are automatically treated as required fields.
 
-The `Required` attribute could be replaced with a minimum length parameter in the `StringLength` attribute:
+To make a string required, use the minimum length parameter in the `StringLength` attribute:
 
 ```csharp
 [Display(Name = "Last Name")]
 [StringLength(50, MinimumLength=1)]
 public string LastName { get; set; }
 ```
+
+`MinimumLength` allows whitespace to satisfy the `MinimumLength` condition. Use the `RegularExpression` attribute for full controll over the string.
 
 ### The Display attribute
 
