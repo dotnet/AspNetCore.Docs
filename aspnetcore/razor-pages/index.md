@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Learn how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 04/06/2019
+ms.date: 4/06/2019
 uid: razor-pages/index
 ---
 # Introduction to Razor Pages in ASP.NET Core
