@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/13/2019
+ms.date: 08/23/2019
 uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
@@ -183,7 +183,7 @@ The `ValidationMessage` and `ValidationSummary` components support arbitrary att
 
 ### Validation of nested properties
 
-Validation attributes applied to sub-properties of complex properties on the model do not currently participate in submit validation. For example, consider the following model - 
+Validation attributes applied to subproperties of complex properties on the model don't currently participate in submit validation. For example, consider the following model:
 
 ```csharp
 class Person
@@ -203,7 +203,7 @@ class Address
 }
 ```
 
-`Person.Address.Street` does not get validated by default. To validate subproperties, consider implementing [`IValidatableObject`](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.ivalidatableobject) on your `Person` type to explicitly validate complex subproperties:
+`Person.Address.Street` isn't validated by default. To validate the subproperty, implement <xref:System.ComponentModel.DataAnnotations.IValidatableObject> on the `Person` type to explicitly validate complex subproperties:
 
 ```csharp
 class Person : IValidatableObject
@@ -216,6 +216,7 @@ class Person : IValidatableObject
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         var validationResults = new List<ValidationResult>();
+
         if (HomeAddress != null)
         {
             var addressContext = new ValidationContext(HomeAddress);
@@ -227,4 +228,4 @@ class Person : IValidatableObject
 }
 ```
 
-If the `Address` type were to have further complex subproperties that required validation, you would need to additionally implement `IValidatableObject` on it. 
+If the `Address` type has further complex subproperties that require validation, implement `IValidatableObject` on the additional subproperties. 
