@@ -97,7 +97,11 @@ From Visual Studio, select **File** > **Open**, and then select the *GrpcGreeter
 
   Visual Studio runs the service in a command prompt.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Run the gRPC Greeter project *GrpcGreeter* from the command line using `dotnet run`.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Run the gRPC Greeter project *GrpcGreeter* from the command line using `dotnet run`.
 
@@ -162,7 +166,7 @@ The gRPC client project requires the following packages:
 * [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/), which contains protobuf message APIs for C#.
 * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/), which contains C# tooling support for protobuf files. The tooling package isn't required at runtime, so the dependency is marked with `PrivateAssets="All"`.
 
-### [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio)
 
 Install the packages using either the Package Manager Console (PMC) or Manage NuGet Packages.
 
@@ -186,7 +190,7 @@ Install the packages using either the Package Manager Console (PMC) or Manage Nu
 * Select the **Grpc.Net.Client** package from the **Browse** tab and select **Install**.
 * Repeat for `Google.Protobuf` and `Grpc.Tools`.
 
-### [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Run the following commands from the **Integrated Terminal**:
 
@@ -196,7 +200,7 @@ dotnet add GrpcGreeterClient.csproj package Google.Protobuf
 dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 ```
 
-### [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Right-click the **Packages** folder in **Solution Pad** > **Add Packages**
 * Enter **Grpc.Net.Client** in the search box.
@@ -256,12 +260,18 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 
 ## Test the gRPC client with the gRPC Greeter service
 
-### [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio)
 
 * In the Greeter service, press `Ctrl+F5` to start the server without the debugger.
 * In the `GrpcGreeterClient` project, press `Ctrl+F5` to start the client without the debugger.
 
-### [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Start the Greeter service.
+* Start the client.
+
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Start the Greeter service.
 * Start the client.
