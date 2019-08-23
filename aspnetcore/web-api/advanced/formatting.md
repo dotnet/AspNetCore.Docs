@@ -92,7 +92,7 @@ Apps that need to support additional formats beyond the default of JSON can add 
 
 ### Configure System.Text.Json-based formatters
 
-Features for the `System.Text.Json`-based formatters can be configured using `Microsoft.AspNetCore.Mvc.MvcOptions.SerializerOptions`.
+Features for the `System.Text.Json`-based formatters can be configured using `Microsoft.AspNetCore.Mvc.MvcOptions.SerializerOptions`:
 
 ```csharp
 services.AddMvc(options =>
