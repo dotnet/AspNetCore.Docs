@@ -138,7 +138,7 @@ The `Required` attribute must be used with `MinimumLength` for the `MinimumLengt
 public string LastName { get; set; }
 ```
 
-`MinimumLength` allows whitespace to satisfy the `MinimumLength` condition. Use the `RegularExpression` attribute for full controll over the string.
+`MinimumLength` and `Required` allow whitespace to satisfy the validation. Use the `RegularExpression` attribute for full controll over the string.
 
 ### The Display attribute
 
