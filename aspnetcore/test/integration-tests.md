@@ -280,7 +280,7 @@ Add the *xunit.runner.json* file to root of the test project with the following 
 }
 ```
 
-In Visual Studio, set the file's **Copy to Output Directory** property to **Copy always**. When not using Visual Studio, provide a `Content` target in the test app's project file:
+If using Visual Studio, set the file's **Copy to Output Directory** property to **Copy always**. If not using Visual Studio, add a `Content` target in the test app's project file:
 
 ```xml
 <ItemGroup>
