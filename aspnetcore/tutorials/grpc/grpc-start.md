@@ -131,7 +131,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 ## Create the gRPC client in a .NET console app
 
-## [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio)
 
 * Open a second instance of Visual Studio and select **Create a new project**.
 * In the **Create a new project** dialog, select **Console App (.NET Core)** and select **Next**.
@@ -261,7 +261,7 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 * In the Greeter service, press `Ctrl+F5` to start the server without the debugger.
 * In the `GrpcGreeterClient` project, press `Ctrl+F5` to start the client without the debugger.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+### [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 * Start the Greeter service.
 * Start the client.
