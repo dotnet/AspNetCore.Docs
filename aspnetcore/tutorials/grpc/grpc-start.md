@@ -4,7 +4,7 @@ author: juntaoluo
 description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 8/22/2019
+ms.date: 8/23/2019
 uid: tutorials/grpc/grpc-start
 ---
 # Tutorial: Create a gRPC client and server in ASP.NET Core
@@ -45,13 +45,15 @@ In this tutorial, you:
 # [Visual Studio](#tab/visual-studio)
 
 * Start Visual Studio and select **Create a new project**. Alternatively, from the Visual Studio **File** menu, select **New** > **Project**.
-* In the **Create a new project** dialog, select **gPRC Service** and select **Next**.
+* In the **Create a new project** dialog, select **gPRC Service** and select **Next**:
+
   ![**Create a new project** dialog](~/tutorials/grpc/grpc-start/static/cnp.png)
+
 * Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces will match when you copy and paste code.
-* Select **Create**
+* Select **Create**.
 * In the **Create a new gRPC service** dialog:
   * The **gRPC Service** template is selected.
-  * Select **Create**
+  * Select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -68,7 +70,7 @@ In this tutorial, you:
   * The `code` command opens the *GrpcGreeter* folder in a new instance of Visual Studio Code.
 
   A dialog box appears with **Required assets to build and debug are missing from 'GrpcGreeter'. Add them?**
-* Select **Yes**
+* Select **Yes**.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -83,9 +85,7 @@ The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to cre
 
 ### Open the project
 
-From Visual Studio, select **File > Open**, and then select the *GrpcGreeter.sln* file.
-
-<!-- End of VS tabs -->
+From Visual Studio, select **File** > **Open**, and then select the *GrpcGreeter.sln* file.
 
 ---
 
@@ -97,11 +97,13 @@ From Visual Studio, select **File > Open**, and then select the *GrpcGreeter.sln
 
   Visual Studio runs the service in a command prompt.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 * Run the gRPC Greeter project *GrpcGreeter* from the command line using `dotnet run`.
 
-<!-- End of combined VS/Mac tabs -->
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Run the gRPC Greeter project *GrpcGreeter* from the command line using `dotnet run`.
 
 ---
 
@@ -125,15 +127,15 @@ info: Microsoft.Hosting.Lifetime[0]
 
 *GrpcGreeter* project files:
 
-* *greet.proto*: The *Protos/greet.proto* file defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see [Introduction to gRPC](xref:grpc/index).
+* *greet.proto* &ndash; The *Protos/greet.proto* file defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see [Introduction to gRPC](xref:grpc/index).
 * *Services* folder: Contains the implementation of the `Greeter` service.
-* *appSettings.json*: Contains configuration data, such as protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
-* *Program.cs*: Contains the entry point for the gRPC service. For more information, see <xref:fundamentals/host/generic-host>.
-* *Startup.cs*: Contains code that configures app behavior. For more information, see [App startup](xref:fundamentals/startup).
+* *appSettings.json* &ndash; Contains configuration data, such as protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
+* *Program.cs* &ndash; Contains the entry point for the gRPC service. For more information, see <xref:fundamentals/host/generic-host>.
+* *Startup.cs* &ndash; Contains code that configures app behavior. For more information, see [App startup](xref:fundamentals/startup).
 
 ## Create the gRPC client in a .NET console app
 
-## [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio)
 
 * Open a second instance of Visual Studio and select **Create a new project**.
 * In the **Create a new project** dialog, select **Console App (.NET Core)** and select **Next**.
@@ -145,16 +147,14 @@ info: Microsoft.Hosting.Lifetime[0]
 * Change directories (`cd`) to a folder which will contain the project.
 * Run the following commands:
 
-```console
-dotnet new console -o GrpcGreeterClient
-code -r GrpcGreeterClient
-```
+  ```console
+  dotnet new console -o GrpcGreeterClient
+  code -r GrpcGreeterClient
+  ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Follow the instructions [here](/dotnet/core/tutorials/using-on-mac-vs-full-solution) to create a console app with the name *GrpcGreeterClient*.
-
-<!-- End of VS tabs -->
+Follow the instructions in [Building a complete .NET Core solution on macOS using Visual Studio for Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution) to create a console app with the name *GrpcGreeterClient*.
 
 ---
 
@@ -166,7 +166,7 @@ The gRPC client project requires the following packages:
 * [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/), which contains protobuf message APIs for C#.
 * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/), which contains C# tooling support for protobuf files. The tooling package isn't required at runtime, so the dependency is marked with `PrivateAssets="All"`.
 
-### [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio)
 
 Install the packages using either the Package Manager Console (PMC) or Manage NuGet Packages.
 
@@ -176,11 +176,11 @@ Install the packages using either the Package Manager Console (PMC) or Manage Nu
 * From the **Package Manager Console** window, run `cd GrpcGreeterClient` to change directories to the folder containing the *GrpcGreeterClient.csproj* files.
 * Run the following commands:
 
- ```powershell
-Install-Package Grpc.Net.Client -prerelease
-Install-Package Google.Protobuf -prerelease
-Install-Package Grpc.Tools -prerelease
-```
+  ```powershell
+  Install-Package Grpc.Net.Client -prerelease
+  Install-Package Google.Protobuf -prerelease
+  Install-Package Grpc.Tools -prerelease
+  ```
 
 #### Manage NuGet Packages option to install packages
 
@@ -190,7 +190,7 @@ Install-Package Grpc.Tools -prerelease
 * Select the **Grpc.Net.Client** package from the **Browse** tab and select **Install**.
 * Repeat for `Google.Protobuf` and `Grpc.Tools`.
 
-### [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Run the following commands from the **Integrated Terminal**:
 
@@ -200,7 +200,7 @@ dotnet add GrpcGreeterClient.csproj package Google.Protobuf
 dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 ```
 
-### [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Right-click the **Packages** folder in **Solution Pad** > **Add Packages**
 * Enter **Grpc.Net.Client** in the search box.
@@ -223,15 +223,15 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
   Select the *GrpcGreeterClient.csproj* file.
 
-  # [Visual Studio for Mac](#tab/visual-studio-mac
+  # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-  Right-click the project and select **Tools > Edit File**.
+  Right-click the project and select **Tools** > **Edit File**.
 
   ---
 
-* Add an item group with a `<Protobuf>` element that refers to the **greet.proto** file:
+* Add an item group with a `<Protobuf>` element that refers to the *greet.proto* file:
 
-  ```XML
+  ```xml
   <ItemGroup>
     <Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
   </ItemGroup>
@@ -243,7 +243,7 @@ Build the project to create the types in the `GrpcGreeter` namespace. The `GrpcG
 
 Update the gRPC client *Program.cs* file with the following code:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet2)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet2)]
 
 *Program.cs* contains the entry point and logic for the gRPC client.
 
@@ -252,36 +252,40 @@ The Greeter client is created by:
 * Instantiating an `HttpClient` containing the information for creating the connection to the gRPC service.
 * Using the `HttpClient` to construct the Greeter client:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=3-6)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=3-6)]
 
 The Greeter client calls the asynchronous `SayHello` method. The result of the `SayHello` call is displayed:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=7-9)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=7-9)]
 
 ## Test the gRPC client with the gRPC Greeter service
 
-### [Visual Studio](#tab/visual-studio)
+# [Visual Studio](#tab/visual-studio)
 
 * In the Greeter service, press `Ctrl+F5` to start the server without the debugger.
 * In the `GrpcGreeterClient` project, press `Ctrl+F5` to start the client without the debugger.
 
-### [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 * Start the Greeter service.
 * Start the client.
 
-<!-- End of combined VS/Mac tabs -->
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Start the Greeter service.
+* Start the client.
 
 ---
 
-The client sends a greeting to the service with a message containing its name "GreeterClient". The service sends the message "Hello GreeterClient" as a response. The "Hello GreeterClient" response is displayed in the command prompt:
+The client sends a greeting to the service with a message containing its name, *GreeterClient*. The service sends the message "Hello GreeterClient" as a response. The "Hello GreeterClient" response is displayed in the command prompt:
 
 ```console
 Greeting: Hello GreeterClient
 Press any key to exit...
 ```
 
-The gRPC service records the details of the successful call in the logs written to the command prompt.
+The gRPC service records the details of the successful call in the logs written to the command prompt:
 
 ```console
 info: Microsoft.Hosting.Lifetime[0]
