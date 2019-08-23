@@ -21,7 +21,7 @@ The [!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` M
 * Is required to build, package, and publish projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC-based or [Blazor](xref:blazor/index) projects.
 * Includes a set of predefined targets, properties, and items that allow customizing the compilation of Razor (*.cshtml* or *.razor*) files.
 
-The Razor SDK includes `Content` MSBuild targets with `Include` attributes set to the `**\*.cshtml` and `**\*.razor` globbing patterns. Matching files are published.
+The Razor SDK includes `Content` items with `Include` attributes set to the `**\*.cshtml` and `**\*.razor` globbing patterns. Matching files are published.
 
 ::: moniker-end
 
@@ -30,7 +30,7 @@ The Razor SDK includes `Content` MSBuild targets with `Include` attributes set t
 * Standardizes the experience around building, packaging, and publishing projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC-based projects.
 * Includes a set of predefined targets, properties, and items that allow customizing the compilation of Razor files.
 
-The Razor SDK includes a `Content` MSBuild target with an `Include` attribute set to the `**\*.cshtml` globbing pattern. Matching files are published.
+The Razor SDK includes a `Content` item with an `Include` attribute set to the `**\*.cshtml` globbing pattern. Matching files are published.
 
 ::: moniker-end
 
