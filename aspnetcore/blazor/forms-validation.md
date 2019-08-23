@@ -219,7 +219,7 @@ class Person : IValidatableObject
 
         if (HomeAddress != null)
         {
-            var addressContext = new ValidationContext(HomeAddress);
+            var addressContext = new ValidationContext(Address);
             Validator.TryValidateObject(Address, addressContext, validationResults);
         }
 
