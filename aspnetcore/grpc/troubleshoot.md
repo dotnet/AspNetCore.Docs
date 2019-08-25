@@ -48,7 +48,7 @@ The .NET gRPC client requires the service to have a valid certificate for calls 
 > Unhandled exception. System.Net.Http.HttpRequestException: The SSL connection could not be established, see inner exception.
 > ---> System.Security.Authentication.AuthenticationException: The remote certificate is invalid according to the validation procedure.
 
-You may see this error if you are testing your app on your machine and the ASP.NET Core HTTPS development certificate is not trusted. To trust the HTTP development certificate on your local machine, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
+You may see this error if you are testing your app locally and the ASP.NET Core HTTPS development certificate is not trusted. For instructions to fix this issue, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
 
 Alternatively, you can configure the .NET gRPC client to allow calls with untrusted/invalid certificates using [HttpClientHandler.ServerCertificateCustomValidationCallback](/dotnet/api/system.net.http.httpclienthandler.servercertificatecustomvalidationcallback):
 
