@@ -79,7 +79,7 @@ The sample app creates the provider in the app's `Startup.ConfigureServices` cla
 var physicalProvider = _env.ContentRootFileProvider;
 ```
 
-The most common scenario for using a file provider is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
+The most common scenario for using a physical file provider is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
 
 ### ManifestEmbeddedFileProvider
 
@@ -228,7 +228,7 @@ The sample app creates the provider in the app's `Startup.ConfigureServices` cla
 var physicalProvider = _env.ContentRootFileProvider;
 ```
 
-The most common scenario for using a file provider is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
+The most common scenario for using a physical file provider is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
 
 ### ManifestEmbeddedFileProvider
 
