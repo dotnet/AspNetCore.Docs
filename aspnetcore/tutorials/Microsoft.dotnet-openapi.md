@@ -20,9 +20,7 @@ To install `Microsoft.dotnet-openapi`, run the following command:
 dotnet tool install -g Microsoft.dotnet-openapi
 ```
 
-## Commands
-
-### Add Commands
+## Add
 
 Adding an OpenAPI reference using any of the commands on this page adds an `<OpenApiReference />`  element similar to the following to the *.csproj* file:
 
@@ -33,20 +31,21 @@ Adding an OpenAPI reference using any of the commands on this page adds an `<Ope
 The preceding reference is required for the app to call the generated client code.
 
 <!-- TODO: Restore after https://github.com/aspnet/AspNetCore/issues/12738
- #### Add Project
-##### Options
+### Add Project
+
+#### Options
 | Short option | Long option | Description | Example |
 |-------|------|-------|---------|
 | -v|--verbose | Show verbose output. |dotnet openapi add project *-v* ../Ref/ProjRef.csproj |
 | -p|--project | The project to operate on. |dotnet openapi add project *--project .\Ref.csproj* ../Ref/ProjRef.csproj |
-##### Arguments
+#### Arguments
 |  Argument  | Description | Example |
 |-------------|-------------|---------|
 | source-file | The source to create a reference from. Must be a project file. |dotnet openapi add project *../Ref/ProjRef.csproj* | -->
 
-#### Add File
+### Add File
 
-##### Options
+#### Options
 
 | Short option| Long option| Description | Example |
 |-------|------|-------|---------|
@@ -54,15 +53,15 @@ The preceding reference is required for the app to call the generated client cod
 | -p|--updateProject | The project to operate on. |dotnet openapi add file *--updateProject .\Ref.csproj* .\OpenAPI.json |
 | -c|--code-generator| The code generator to apply to the reference. Options are `NSwagCSharp` and `NSwagTypeScript`. If `--code-generator` is not specified the tooling defaults to `NSwagCSharp`.|dotnet openapi add file .\OpenApi.json --code-generator
 
-##### Arguments
+#### Arguments
 
 |  Argument  | Description | Example |
 |-------------|-------------|---------|
 | source-file | The source to create a reference from. Must be an OpenAPI file. |dotnet openapi add file *.\OpenAPI.json* |
 
-#### Add URL
+### Add URL
 
-##### Options
+#### Options
 
 | Short option| Long option| Description | Example |
 |-------|------|-------------|---------|
@@ -71,41 +70,41 @@ The preceding reference is required for the app to call the generated client cod
 | -o|--output-file | Where to place the local copy of the OpenAPI file. |dotnet openapi add url `https://contoso.com/openapi.json` *--output-file myclient.json* |
 | -c|--code-generator| The code generator to apply to the reference. Options are `NSwagCSharp` and `NSwagTypeScript`. |dotnet openapi add file .\OpenApi.json --code-generator
 
-##### Arguments
+#### Arguments
 
 |  Argument  | Description | Example |
 |-------------|-------------|---------|
 | source-URL | The source to create a reference from. Must be a URL. |dotnet openapi add url `https://contoso.com/openapi.json` |
 
-### Remove
+## Remove
 
 Removes the OpenAPI reference matching the given filename from the *.csproj* file. When the OpenAPI reference is removed, clients won't be generated. Local *.json* and *yaml* files are deleted.
 
-##### Options
+### Options
 
 | Short option| Long option| Description| Example |
 |-------|------|------------|---------|
 | -v|--verbose | Show verbose output. |dotnet openapi remove *-v*|
 | -p|--updateProject | The project to operate on. |dotnet openapi remove *--updateProject .\Ref.csproj* .\OpenAPI.json |
 
-#### Arguments
+### Arguments
 
 |  Argument  | Description| Example |
 | ------------|------------|---------|
 | source-file | The source to remove the reference to. |dotnet openapi remove *.\OpenAPI.json* |
 
-### Refresh
+## Refresh
 
 Refreshes the local version of a file that was downloaded using the latest content from the download URL.
 
-#### Options
+### Options
 
 | Short option| Long option| Description | Example |
 |-------|------|-------------|---------|
 | -v|--verbose | Show verbose output. | dotnet openapi refresh *-v* `https://contoso.com/openapi.json` |
 | -p|--updateProject | The project to operate on. | dotnet openapi refresh *--updateProject .\Ref.csproj* `https://contoso.com/openapi.json` |
 
-#### Arguments
+### Arguments
 
 |  Argument  | Description | Example |
 | ------------|-------------|---------|
