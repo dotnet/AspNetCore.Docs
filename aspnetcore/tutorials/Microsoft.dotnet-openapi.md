@@ -52,7 +52,7 @@ The preceding reference is required for the app to call the generated client cod
 |-------|------|-------|---------|
 | -v|--verbose | Show verbose output. |dotnet openapi add file *-v* .\OpenAPI.json |
 | -p|--updateProject | The project to operate on. |dotnet openapi add file *--updateProject .\Ref.csproj* .\OpenAPI.json |
-| -c|--code-generator| The code generator to apply to the reference. Options are `NSwagCSharp` and `NSwagTypeScript`. If this is not explicitly provided the tooling will default to `NSwagCSharp`.|dotnet openapi add file .\OpenApi.json --code-generator
+| -c|--code-generator| The code generator to apply to the reference. Options are `NSwagCSharp` and `NSwagTypeScript`. If `--code-generator` is not specified the tooling defaults to `NSwagCSharp`.|dotnet openapi add file .\OpenApi.json --code-generator
 
 ##### Arguments
 
@@ -79,7 +79,7 @@ The preceding reference is required for the app to call the generated client cod
 
 ### Remove
 
-This command removes the OpenAPI reference matching the given filename from the *.csproj* file. When the OpenAPI reference is removed, clients won't be generated. Local *.json* and *yaml* files are deleted.
+Removes the OpenAPI reference matching the given filename from the *.csproj* file. When the OpenAPI reference is removed, clients won't be generated. Local *.json* and *yaml* files are deleted.
 
 ##### Options
 
@@ -96,7 +96,7 @@ This command removes the OpenAPI reference matching the given filename from the 
 
 ### Refresh
 
-This command refreshes the local version of a file which was downloaded using a URL using the latest content from that URL.
+Refreshes the local version of a file that was downloaded using the latest content from the download URL.
 
 #### Options
 
