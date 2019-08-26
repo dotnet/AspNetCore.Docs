@@ -1,0 +1,20 @@
+﻿@page
+@model RazorPagesContacts.Pages.Customers.CreateModel
+
+
+<h4>Create a Customer</h4>
+
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" ></div>
+    <div class="form-group">
+        Name: 
+        <input asp-for="Customer.Name" />
+        <input type="submit" />
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -43,15 +43,15 @@ This document provides an introduction to Razor Pages. It's not a step by step t
 
 See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project.
 
+# [Visual Studio Code](#tab/visual-studio-code)
+
+Run `dotnet new webapp` from the command line.
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Run `dotnet new webapp` from the command line.
 
 Open the generated *.csproj* file from Visual Studio for Mac.
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-Run `dotnet new webapp` from the command line.
 
 ---
 
@@ -59,22 +59,22 @@ Run `dotnet new webapp` from the command line.
 
 Razor Pages is enabled in *Startup.cs*:
 
-[!code-cs[](index/sample/RazorPagesIntro/Startup.cs?name=snippet_Startup)]
+[!code-cs[](index/3.0sample/RazorPagesIntro/Startup.cs?name=snippet_Startup&highlight=12)]
 
 Consider a basic page:
 <a name="OnGet"></a>
 
-[!code-cshtml[](index/sample/RazorPagesIntro/Pages/Index.cshtml)]
+[!code-cshtml[](index/3.0sample/RazorPagesIntro/Pages/Index.cshtml?highlight=1)]
 
-The preceding code looks a lot like a [Razor view file](xref:tutorials/first-mvc-app/adding-view) used in an ASP.NET Core app with controllers and views. What makes it different is the `@page` directive. `@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other Razor constructs.
+The preceding code looks a lot like a [Razor view file](xref:tutorials/first-mvc-app/adding-view) used in an ASP.NET Core app with controllers and views. What makes it different is the [@page](xref:mvc/views/razor#page) directive. `@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other [Razor](xref:mvc/views/razor) constructs.
 
 A similar page, using a `PageModel` class, is shown in the following two files. The *Pages/Index2.cshtml* file:
 
-[!code-cshtml[](index/sample/RazorPagesIntro/Pages/Index2.cshtml)]
+[!code-cshtml[](index/3.0sample/RazorPagesIntro/Pages/Index2.cshtml)]
 
 The *Pages/Index2.cshtml.cs* page model:
 
-[!code-cs[](index/sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
+[!code-cs[](index/3.0sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
 By convention, the `PageModel` class file has the same name as the Razor Page file with *.cs* appended. For example, the previous Razor Page is *Pages/Index2.cshtml*. The file containing the `PageModel` class is named *Pages/Index2.cshtml.cs*.
 
