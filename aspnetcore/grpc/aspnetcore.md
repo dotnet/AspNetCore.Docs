@@ -65,13 +65,14 @@ Kestrel gRPC endpoints:
 
 #### HTTP/2
 
-Kestrel endpoints default to HTTP/1.1, and require additional configuration to enable HTTP/2. The *appsettings.json* defaults endpoints to the HTTP/2 connection protocol:
+Kestrel [supports HTTP/2](xref:fundamentals/servers/kestrel#http2-support) on most modern operating systems. Kestrel endpoints are configured to support HTTP/1.1 and HTTP/2 connections by default.
 
-[!code-json[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/appsettings.json?highlight=11)]
+> [!NOTE]
+> macOS doesn't support ASP.NET Core gRPC with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). Additional configuration is required to successfully run gRPC services on macOS. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
 
 #### HTTPS
 
-gRPC Kestrel endpoints should be secured with HTTPS. In development, an HTTPS endpoint is automatically created at `https://localhost:5001` when the ASP.NET Core development certificate is present. No configuration is required.
+Kestrel endpoints used for gRPC should be secured with HTTPS. In development, an HTTPS endpoint is automatically created at `https://localhost:5001` when the ASP.NET Core development certificate is present. No configuration is required.
 
 In production, HTTPS must be explicitly configured. In the following *appsettings.json* example, an HTTP/2 endpoint secured with HTTPS is provided:
 
