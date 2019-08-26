@@ -3,7 +3,6 @@ using Microsoft.Extensions.FileProviders;
 
 namespace FileProviderSample.Pages
 {
-    #region snippet1
     public class IndexModel : PageModel
     {
         private readonly IFileProvider _fileProvider;
@@ -20,5 +19,4 @@ namespace FileProviderSample.Pages
             DirectoryContents = _fileProvider.GetDirectoryContents(string.Empty);
         }
     }
-    #endregion
 }

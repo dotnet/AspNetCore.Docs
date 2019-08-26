@@ -55,9 +55,7 @@ Three implementations of `IFileProvider` are available.
 
 ### PhysicalFileProvider
 
-The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. When instantiating this provider, a directory path is required and serves as the base path for all requests made using the provider. You can instantiate a `PhysicalFileProvider` provider directly, or you can request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
-
-**Static types**
+The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. When instantiating this provider, a directory path is required and serves as the base path for all requests made using the provider.
 
 The following code shows how to create a `PhysicalFileProvider` and use it to obtain directory contents and file information:
 
@@ -81,21 +79,7 @@ The sample app creates the provider in the app's `Startup.ConfigureServices` cla
 var physicalProvider = _env.ContentRootFileProvider;
 ```
 
-**Obtain File Provider types with dependency injection**
-
-Inject the provider into any class constructor and assign it to a local field. Use the field throughout the class's methods to access files.
-
-In the sample app, the `IndexModel` class receives an `IFileProvider` instance to obtain directory contents for the app's base path.
-
-*Pages/Index.cshtml.cs*:
-
-[!code-csharp[](file-providers/samples/3.x/FileProviderSample/Pages/Index.cshtml.cs?name=snippet1)]
-
-The `IDirectoryContents` are iterated in the page.
-
-*Pages/Index.cshtml*:
-
-[!code-cshtml[](file-providers/samples/3.x/FileProviderSample/Pages/Index.cshtml?name=snippet1)]
+The most common scenario for using a file provider is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
 
 ### ManifestEmbeddedFileProvider
 
@@ -220,9 +204,7 @@ Three implementations of `IFileProvider` are available.
 
 ### PhysicalFileProvider
 
-The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. When instantiating this provider, a directory path is required and serves as the base path for all requests made using the provider. You can instantiate a `PhysicalFileProvider` provider directly, or you can request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
-
-**Static types**
+The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. When instantiating this provider, a directory path is required and serves as the base path for all requests made using the provider.
 
 The following code shows how to create a `PhysicalFileProvider` and use it to obtain directory contents and file information:
 
@@ -246,21 +228,7 @@ The sample app creates the provider in the app's `Startup.ConfigureServices` cla
 var physicalProvider = _env.ContentRootFileProvider;
 ```
 
-**Obtain File Provider types with dependency injection**
-
-Inject the provider into any class constructor and assign it to a local field. Use the field throughout the class's methods to access files.
-
-In the sample app, the `IndexModel` class receives an `IFileProvider` instance to obtain directory contents for the app's base path.
-
-*Pages/Index.cshtml.cs*:
-
-[!code-csharp[](file-providers/samples/2.x/FileProviderSample/Pages/Index.cshtml.cs?name=snippet1)]
-
-The `IDirectoryContents` are iterated in the page.
-
-*Pages/Index.cshtml*:
-
-[!code-cshtml[](file-providers/samples/2.x/FileProviderSample/Pages/Index.cshtml?name=snippet1)]
+The most common scenario for using a file provider is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
 
 ### ManifestEmbeddedFileProvider
 
