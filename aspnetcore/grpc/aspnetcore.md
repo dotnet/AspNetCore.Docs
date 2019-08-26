@@ -60,7 +60,7 @@ ASP.NET Core middlewares and features share the routing pipeline, therefore an a
 
 Kestrel gRPC endpoints:
 
-* Required HTTP/2.
+* Require HTTP/2.
 * Should be secured with HTTPS.
 
 #### HTTP/2
