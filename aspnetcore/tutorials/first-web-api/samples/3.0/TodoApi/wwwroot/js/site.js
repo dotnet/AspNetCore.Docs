@@ -2,15 +2,14 @@
 const uri = 'api/TodoItems';
 let todos = [];
 
-// <snippet_GetItems>
 function getItems() {
+// <snippet_GetItems>
   fetch(uri)
     .then(response => response.json())
     .then(data => _displayItems(data))
-    .catch(error => 
-      console.error('Unable to get items.', error));
-}
+    .catch(error => console.error('Unable to get items.', error));
 // </snippet_GetItems>
+}
 
 // <snippet_AddItem>
 function addItem() {
@@ -24,7 +23,7 @@ function addItem() {
   fetch(uri, {
     method: 'POST',
     headers: {
-      'Accepts': 'application/json',
+      'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(item)
@@ -34,8 +33,7 @@ function addItem() {
       getItems();
       addNameTextbox.value = '';
     })
-    .catch(error => 
-      console.error('Unable to add item.', error));
+    .catch(error => console.error('Unable to add item.', error));
 }
 // </snippet_AddItem>
 
@@ -45,8 +43,7 @@ function deleteItem(id) {
     method: 'DELETE'
   })
   .then(() => getItems())
-  .catch(error =>
-    console.error('Unable to delete item.', error));
+  .catch(error => console.error('Unable to delete item.', error));
   // </snippet_DeleteItem>
 }
 
@@ -62,24 +59,23 @@ function displayEditForm(id) {
 function updateItem() {
   const itemId = document.getElementById('edit-id').value;
   const item = {
-    name: document.getElementById('edit-name').value.trim(),
+    id: parseInt(itemId, 10),
     isComplete: document.getElementById('edit-isComplete').checked,
-    id: parseInt(itemId, 10)
+    name: document.getElementById('edit-name').value.trim()
   };
 
-  // <snippet_PutItem>
+  // <snippet_UpdateItem>
   fetch(`${uri}/${itemId}`, {
     method: 'PUT',
     headers: {
-      'Accepts': 'application/json',
+      'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(item)
   })
   .then(() => getItems())
-  .catch(error =>
-    console.error('Unable to delete item.', error));
-  // </snippet_PutItem>
+  .catch(error => console.error('Unable to delete item.', error));
+  // </snippet_UpdateItem>
 
   closeInput();
 
