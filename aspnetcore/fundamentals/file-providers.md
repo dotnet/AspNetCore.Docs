@@ -55,7 +55,9 @@ Three implementations of `IFileProvider` are available.
 
 ### PhysicalFileProvider
 
-The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. When instantiating this provider, a directory path is required and serves as the base path for all requests made using the provider.
+The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
+
+When instantiating this provider directly, a directory path is required and serves as the base path for all requests made using the provider.
 
 The following code shows how to create a `PhysicalFileProvider` and use it to obtain directory contents and file information:
 
@@ -73,13 +75,11 @@ Types in the preceding example:
 
 The File Provider can be used to iterate through the directory specified by `applicationRoot` or call `GetFileInfo` to obtain a file's information. The File Provider has no access outside of the `applicationRoot` directory.
 
-The sample app creates the provider in the app's `Startup.ConfigureServices` class using `IWebHostEnvironment.ContentRootFileProvider`:
+The sample app creates the provider in the app's `Startup.ConfigureServices` class using [IHostingEnvironment.ContentRootFileProvider](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootFileProvider):
 
 ```csharp
 var physicalProvider = _env.ContentRootFileProvider;
 ```
-
-The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
 
 ### ManifestEmbeddedFileProvider
 
@@ -204,7 +204,9 @@ Three implementations of `IFileProvider` are available.
 
 ### PhysicalFileProvider
 
-The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. When instantiating this provider, a directory path is required and serves as the base path for all requests made using the provider.
+The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
+
+When instantiating this provider directly, a directory path is required and serves as the base path for all requests made using the provider.
 
 The following code shows how to create a `PhysicalFileProvider` and use it to obtain directory contents and file information:
 
@@ -227,8 +229,6 @@ The sample app creates the provider in the app's `Startup.ConfigureServices` cla
 ```csharp
 var physicalProvider = _env.ContentRootFileProvider;
 ```
-
-The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
 
 ### ManifestEmbeddedFileProvider
 
