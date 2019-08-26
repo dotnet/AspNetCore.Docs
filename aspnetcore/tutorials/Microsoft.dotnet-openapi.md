@@ -79,7 +79,7 @@ The preceding reference and the code generator specific packages which are added
 
 ### Remove
 
-This command removes the OpenAPI reference matching the given filename from the *.csproj* file. When the OpenAPI reference is removed, clients will not be generated. Local *.json* or *yaml* files are deleted.
+This command removes the OpenAPI reference matching the given filename from the *.csproj* file. When the OpenAPI reference is removed, clients won't be generated. Local *.json* and *yaml* files are deleted.
 
 ##### Options
 
