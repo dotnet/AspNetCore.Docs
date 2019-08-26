@@ -78,7 +78,7 @@ The preceding reference is required for the app to call the generated client cod
 
 ## Remove
 
-Removes the OpenAPI reference matching the given filename from the *.csproj* file. When the OpenAPI reference is removed, clients won't be generated. Local *.json* and *yaml* files are deleted.
+Removes the OpenAPI reference matching the given filename from the *.csproj* file. When the OpenAPI reference is removed, clients won't be generated. Local *.json* and *.yaml* files are deleted.
 
 ### Options
 
