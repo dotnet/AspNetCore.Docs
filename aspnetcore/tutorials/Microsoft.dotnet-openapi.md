@@ -10,7 +10,7 @@ uid: tutorials/Microsoft.dotnet-openapi
 
 By Ryan Brandenburg
 
-`Microsoft.dotnet-openapi` is a tool for managing [OpenAPI](https://github.com/OAI/OpenAPI-Specification) references within a project.
+`Microsoft.dotnet-openapi` is a .NET Core global tool for managing [OpenAPI](https://github.com/OAI/OpenAPI-Specification) references within a project.
 
 ## Installation
 
