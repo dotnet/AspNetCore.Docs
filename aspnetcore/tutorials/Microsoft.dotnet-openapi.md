@@ -1,7 +1,7 @@
 ---
 title: Develop ASP.NET Core apps using OpenAPI
 author: ryanbrandenburg
-description: This tutorial demonstrates how to use the 'Microsoft.dotnet-openapi' tool to add references to OpenAPI files 
+description: Demonstrates how to use the 'Microsoft.dotnet-openapi' tool to add references to OpenAPI files.
 ms.author: rybrande
 ms.date: 08/26/2019
 uid: tutorials/Microsoft.dotnet-openapi
@@ -14,7 +14,7 @@ By Ryan Brandenburg
 
 ## Installation
 
-To install `Microsoft.dotnet-openapi`, run the following command
+To install `Microsoft.dotnet-openapi`, run the following command:
 
 ``` console
 dotnet tool install -g Microsoft.dotnet-openapi
