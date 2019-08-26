@@ -60,7 +60,10 @@ In addition to using a guard, consider using a `CancellationToken` to cancel lon
     {
         ...
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now, TokenSource.Token);
-        TokenSource.Token.ThrowIfCancellationRequested();
+        if (TokenSource.Token.IsCancellationRequested)
+        {
+           return;
+        }
         ...
     }
 
