@@ -6,7 +6,7 @@ namespace RazorPagesContacts.Model
     {
         public int Id { get; set; }
 
-        [Required, StringLength(100)]
+        [Required, StringLength(10)]
         public string Name { get; set; }
     }
 }

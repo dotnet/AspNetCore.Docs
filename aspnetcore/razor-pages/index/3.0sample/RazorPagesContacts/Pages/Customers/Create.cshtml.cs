@@ -1,33 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿#region snippet_ALL
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using RazorPagesContacts.Data;
 using RazorPagesContacts.Model;
+using System.Threading.Tasks;
 
 namespace RazorPagesContacts.Pages.Customers
 {
     public class CreateModel : PageModel
     {
-        private readonly RazorPagesContacts.Data.CustomerDbContext _context;
+        private readonly CustomerDbContext _context;
 
-        public CreateModel(RazorPagesContacts.Data.CustomerDbContext context)
+        public CreateModel(CustomerDbContext context)
         {
             _context = context;
-        }
-
-        public IActionResult OnGet()
-        {
-            Customer = new Customer { Name = "Joe Smith" };
-            return Page();
         }
 
         [BindProperty]
         public Customer Customer { get; set; }
 
+        #region snippet_OnPostAsync
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -40,5 +32,7 @@ namespace RazorPagesContacts.Pages.Customers
 
             return RedirectToPage("./Index");
         }
+        #endregion
     }
 }
+#endregion

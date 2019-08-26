@@ -96,47 +96,57 @@ Notes:
 
 Razor Pages is designed to make common patterns used with web browsers easy to implement when building an app. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
 
-For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/sample/RazorPagesContacts/Startup.cs#L15-L16) file.
+For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/3.0sample/RazorPagesContacts/Startup.cs#L23-L24) file.
 
-[!code-cs[](index/sample/RazorPagesContacts/Startup.cs?highlight=15-16)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Startup.cs?name=snippet)]
 
 The data model:
 
-[!code-cs[](index/sample/RazorPagesContacts/Data/Customer.cs)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Data/Customer.cs)]
 
 The db context:
 
-[!code-cs[](index/sample/RazorPagesContacts/Data/AppDbContext.cs)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Data/CustomerDbContext.cs)]
 
 The *Pages/Create.cshtml* view file:
 
-[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Create.cshtml)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Create.cshtml)]
 
 The *Pages/Create.cshtml.cs* page model:
 
-[!code-cs[](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_ALL)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_ALL)]
 
 By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page.
 
-The `PageModel` class allows separation of the logic of a page from its presentation. It defines page handlers for requests sent to the page and the data used to render the page. This separation allows you to manage page dependencies through [dependency injection](xref:fundamentals/dependency-injection) and to [unit test](xref:test/razor-pages-tests) the pages.
+The `PageModel` class allows separation of the logic of a page from its presentation. It defines page handlers for requests sent to the page and the data used to render the page. This separation allows:
 
-The page has an `OnPostAsync` *handler method*, which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:
+* Managing of page dependencies through [dependency injection](xref:fundamentals/dependency-injection).
+* [Unit testing](xref:test/razor-pages-tests)
+
+The page has an `OnPostAsync` *handler method*, which runs on `POST` requests (when a user posts the form). Handler methods for any HTTP verb can be added. The most common handlers are:
 
 * `OnGet` to initialize state needed for the page. [OnGet](#OnGet) sample.
 * `OnPost` to handle form submissions.
 
-The `Async` naming suffix is optional but is often used by convention for asynchronous functions. The `OnPostAsync` code in the preceding example looks similar to what you would normally write in a controller. The preceding code is typical for Razor Pages. Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results are shared.  <!-- Review: Ryan, can we get a list of what is shared and what isn't? -->
+The `Async` naming suffix is optional but is often used by convention for asynchronous functions. The preceding code is typical for Razor Pages.
+
+If you're familiar with ASP.NET apps using controllers and views:
+
+* The `OnPostAsync` code in the preceding example looks similar to typical controller code.
+* Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), [Validation](xref:mvc/models/validation),  and action results are shared.
 
 The previous `OnPostAsync` method:
 
-[!code-cs[](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_OnPostAsync)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
 The basic flow of `OnPostAsync`:
 
 Check for validation errors.
 
 * If there are no errors, save the data and redirect.
-* If there are errors, show the page again with validation messages. Client-side validation is identical to traditional ASP.NET Core MVC applications. In many cases, validation errors would be detected on the client, and never submitted to the server.
+* If there are errors, show the page again with validation messages. In many cases, validation errors would be detected on the client, and never submitted to the server.
+
+For example, in the previous code, posting the form without
 
 When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. `RedirectToPage` is a new action result, similar to `RedirectToAction` or `RedirectToRoute`, but customized for pages. In the preceding sample, it redirects to the root Index page (`/Index`). `RedirectToPage` is detailed in the [URL generation for Pages](#url_gen) section.
 
@@ -144,7 +154,7 @@ When the submitted form has validation errors (that are passed to the server), t
 
 The `Customer` property uses `[BindProperty]` attribute to opt in to model binding.
 
-[!code-cs[](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_PageModel&highlight=10-11)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_PageModel&highlight=10-11)]
 
 Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to properties can reduce the amount of code you have to write. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.
 
@@ -152,21 +162,21 @@ Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to p
 
 The home page (*Index.cshtml*):
 
-[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Index.cshtml)]
 
 The associated `PageModel` class (*Index.cshtml.cs*):
 
-[!code-cs[](index/sample/RazorPagesContacts/Pages/Index.cshtml.cs)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Index.cshtml.cs)]
 
 The *Index.cshtml* file contains the following markup to create an edit link for each contact:
 
-[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
 
 The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`. Use the `asp-area` attribute to specify an area. For more information, see <xref:mvc/controllers/areas>.
 
 The *Pages/Edit.cshtml* file:
 
-[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Edit.cshtml?highlight=1)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Edit.cshtml?highlight=1)]
 
 The first line contains the `@page "{id:int}"` directive. The routing constraint`"{id:int}"` tells the page to accept requests to the page that contain `int` route data. If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error. To make the ID optional, append `?` to the route constraint:
 
@@ -176,11 +186,11 @@ The first line contains the `@page "{id:int}"` directive. The routing constraint
 
 The *Pages/Edit.cshtml.cs* file:
 
-[!code-cs[](index/sample/RazorPagesContacts/Pages/Edit.cshtml.cs)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Edit.cshtml.cs)]
 
 The *Index.cshtml* file also contains markup to create a delete button for each customer contact:
 
-[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=22-23)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Index.cshtml?range=22-23)]
 
 When the delete button is rendered in HTML, its `formaction` includes parameters for:
 
@@ -197,7 +207,7 @@ When the button is selected, a form `POST` request is sent to the server. By con
 
 Because the `handler` is `delete` in this example, the `OnPostDeleteAsync` handler method is used to process the `POST` request. If the `asp-page-handler` is set to a different value, such as `remove`, a handler method with the name `OnPostRemoveAsync` is selected.
 
-[!code-cs[](index/sample/RazorPagesContacts/Pages/Index.cshtml.cs?range=26-37)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Index.cshtml.cs?range=26-37)]
 
 The `OnPostDeleteAsync` method:
 
@@ -210,7 +220,7 @@ The `OnPostDeleteAsync` method:
 
 Properties on a `PageModel` can be decorated with the [Required](/dotnet/api/system.componentmodel.dataannotations.requiredattribute) attribute:
 
-[!code-cs[](index/sample/Create.cshtml.cs?highlight=3,15-16)]
+[!code-cs[](index/3.0sample/Create.cshtml.cs?highlight=3,15-16)]
 
 For more information, see [Model validation](xref:mvc/models/validation).
 
@@ -634,14 +644,22 @@ The *Pages/Create.cshtml.cs* page model:
 
 By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page.
 
-The `PageModel` class allows separation of the logic of a page from its presentation. It defines page handlers for requests sent to the page and the data used to render the page. This separation allows you to manage page dependencies through [dependency injection](xref:fundamentals/dependency-injection) and to [unit test](xref:test/razor-pages-tests) the pages.
+The `PageModel` class allows separation of the logic of a page from its presentation. It defines page handlers for requests sent to the page and the data used to render the page. This separation allows:
+
+* Managing of page dependencies through [dependency injection](xref:fundamentals/dependency-injection).
+* [Unit testing](xref:test/razor-pages-tests) the pages.
 
 The page has an `OnPostAsync` *handler method*, which runs on `POST` requests (when a user posts the form). You can add handler methods for any HTTP verb. The most common handlers are:
 
 * `OnGet` to initialize state needed for the page. [OnGet](#OnGet) sample.
 * `OnPost` to handle form submissions.
 
-The `Async` naming suffix is optional but is often used by convention for asynchronous functions. The `OnPostAsync` code in the preceding example looks similar to what you would normally write in a controller. The preceding code is typical for Razor Pages. Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results are shared.  <!-- Review: Ryan, can we get a list of what is shared and what isn't? -->
+The `Async` naming suffix is optional but is often used by convention for asynchronous functions. The preceding code is typical for Razor Pages.
+
+If you're familiar with ASP.NET apps using controllers and views:
+
+* The `OnPostAsync` code in the preceding example looks similar to typical controller code.
+* Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), [Validation](xref:mvc/models/validation),  and action results are shared.
 
 The previous `OnPostAsync` method:
 
