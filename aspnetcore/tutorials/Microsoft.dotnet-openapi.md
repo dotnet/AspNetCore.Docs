@@ -30,7 +30,7 @@ Adding an OpenAPI reference using any of the commands on this page adds an `<Ope
 <OpenApiReference Include="openapi.json" />
 ```
 
-The preceding reference and the code generator specific packages which are added, enables the generated client code being available for use by the app.
+The preceding reference is required for the app to call the generated client code.
 
 <!-- TODO: Restore after https://github.com/aspnet/AspNetCore/issues/12738
  #### Add Project
