@@ -24,7 +24,7 @@ dotnet tool install -g Microsoft.dotnet-openapi
 
 ### Add Commands
 
-Adding an OpenAPI reference using any of the commands on this page adds an `<OpenApiReference /> element similar to the following to the *.csproj* file:
+Adding an OpenAPI reference using any of the commands on this page adds an `<OpenApiReference />`  element similar to the following to the *.csproj* file:
 
 ```xml
 <OpenApiReference Include="openapi.json" />
