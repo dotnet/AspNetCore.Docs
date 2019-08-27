@@ -1,9 +1,9 @@
 # Securing blazor server-side applications
-Blazor server-side applications follow a stateful model where the server and the client maintain a long-lived relationship (circuit) that expands one or more physical connections (also potentially long-lived).
+Blazor server-side applications follow a stateful model where the server and the client maintain a long-lived relationship (known as a *circuit*) that spans one or more physical connections (also potentially long-lived).
 
-When a customer visits a blazor server-side site, the server creates a session (circuit) that lives in the server memory and that handles the interaction with the user, indicating to the browser what content to render and responding to events like button clicks, key presses, etc.
+When a customer visits a blazor server-side site, the server creates a circuit that lives in the server memory and that handles the interaction with the user, indicating to the browser what content to render and responding to events like button clicks, key presses, etc.
 
-In addition to this, any given circuit is able to invoke JavaScript functions in the user's browser provided they are exposed in the global scope. At the same time the client is also able to invoke .NET functions on the server provided they are marked as such. We refer to the act of invoking .NET methods from the browser and JavaScript functions from the server as JS interop.
+In addition to this, any given circuit is able to invoke JavaScript functions in the user's browser provided they are exposed in the global scope. At the same time the client is also able to invoke .NET functions on the server provided they are marked with the `[JSInvokable]` attribute. We refer to the act of invoking .NET methods from the browser and JavaScript functions from the server as JS interop.
 
 Blazor server-side shares many of the concerns applicable to regular web applications. Through this document we will discuss some of the most common threats and will give you guidance on specific mitigations you can take to secure your application.
 
@@ -37,13 +37,13 @@ As a developer, there are several aspects of this problem that we must be aware 
   * When we hold data in a component like in our `TodoList` component, if we store the todo items in a `List<ToDoItem>` property or field, that list is using the server memory so if we allow that list to grow unbounded we run the risk of running out of memory. This causes not only the current session to end (crash) but all the sessions in that server instance at the time as the application receives an OutOfMemory exception.
     * We recommend that you use some data structure with limits that you can configure to prevent this situation.
   * When we force the UI to render all the todo items, the server is forced to hold on to additional memory for things that might not be visible in the screen at the time. (This assumes you don't render all the items and have some sort of paging)
-    * We recommend that you only render the components/data that needs to be visible to the user and avoid holding on to any other data in memory, specially if this data can grow based on user input like our `TodoList`. In this particular case you could achieve this by implementing some sort of _virtual-list_ that only exposes a window to the subset of elements at the current position/page for the component to render and keeps the rest either in secondary storage (ideal) or in memory (less ideal).
+    * We recommend that you place limits on the number of items that can be rendered in a list. For example, use paginated lists, or simply display only the first 100 or 1000 items, requiring the user to enter more specific search criteria to find items later in the sequence. In a more advanced case, you could implement lists or grids that support *virtualization*, meaning that they only render the subset of items currently visible to the user even though the scrollbar allows the user to scroll through the complete set. The items not currently visible may be held in secondary storage (ideal) or in memory (less ideal).
 
 While Blazor server-side applications offer a very similar programming model to other UI frameworks for stateful applications like WPF, Windows forms or Blazor client-side, the main thing to remember is that in all those cases the memory consumed by the application belongs to the client and only affects that individual client, while in the server case the memory consumed by the application belongs to the server and is shared with all the clients running on that server instance.
 
 This is true for all server-side applications, but most applications are stateless and the memory gets released at the end of the request.
 
-As a general recomendation, you should pay the same attention to the memory consumed by a given client as in any other server-side app, paying special attention to the fact that the memory consumed by a blazor server-side application lives for a much longer time than a simple request.
+As a general recomendation, you should pay the same attention to the memory consumed by a given client as in any other server-side app, paying special attention to the fact that the memory consumed by a blazor server-side application lives for a much longer time than a single request.
 
 ### Connections
 Connection exhaustion can happen when a client opens too many concurrent connections to the server preventing new connections from other clients from getting established.
@@ -81,7 +81,7 @@ Calls from JavaScript to .NET are not to be trusted. When you expose a .NET func
   * Take into account that static and instance methods can be exposed to JavaScript clients and that you should take special considerations to avoid sharing state between sessions.
     * For instance methods exposed through the use of DotNetReference objects, if originally created through DI should be registered as scoped objects (this applies to any DI service your blazor server-side app uses).
     * For static methods you should avoid having any sort of state that can't be scoped to the client.
-  * Avoid using user input for JS interop calls or validate the input if you have to to avoid XSS attacks. Consider also using CSP to disable 'eval' and other unsafe JS primitives.
+  * Avoid passing user-supplied data in parameters to JavaScript calls, or if you need to, be sure that the JavaScript code handles it carefully to avoid introducing XSS vulnerabilities. For example, don't write user-supplied data to the DOM by setting the `innerHTML` property on some element. Consider also using CSP to disable 'eval' and other unsafe JS primitives.
 * We recommend that you avoid implementing your own dispatching of .NET invocations on top of our implementation. While its doable to implement a more general .NET method dispatching infrastructure on top of the one provided by the framework, we strongly discourage that you do so, as exposing .NET methods to the browser should be an explicit action that needs the same careful thought as exposing any other API member.
 
 ### Consuming events
@@ -106,7 +106,10 @@ For example, imagine a counter where we want to only allow users to click the co
 @code 
 {
   int count = 0;
-  void IncrementCount() => count++;
+  void IncrementCount()
+  {
+      count++;
+  }
 }
 ```
 a client can dispatch one or more increment events before we produce a new render and result in the count being incremented over 3. The right way to achieve something like this is as follows.
@@ -120,11 +123,17 @@ a client can dispatch one or more increment events before we produce a new rende
 @code 
 {
   int count = 0;
-  void IncrementCount() => count < 3 ? count++ : count;
+  void IncrementCount()
+  {
+      if (count < 3)
+      {
+          count++;
+      }
+  }
 }
 ```
 
-By adding the `count < 3` check inside the handler we force the decission to be taken based on the current app state, and not the state of the UI which might be out of date.
+By adding the `count < 3` check inside the handler we force the decission to be taken based on the current app state, and not the state of the UI which might be temporarily stale.
 
 # Other security recommendations
 In general, all the recommendations for securing ASP.NET Core applications apply to blazor server-side applications.
@@ -145,7 +154,7 @@ Blazor server-side uses SignalR under the hood to comunicate between the client 
 
 Blazor server-side doesn't take any extra step to ensure the integrity and confidentiality of the data sent between the server and the client.
 
-For that reason, the recommendation is to use HTTPS for communications if your app is not in a trusted environment.
+For that reason, the recommendation is to use HTTPS.
 
 ## Cross-site scripting (XSS)
 This threat allows an unauthorized party to execute arbitrary logic in the context of the browser. A compromised application would potentially run arbitrary code on the client (user's browser) and such vulnerability could be used to potentially perform a number of actions against the server. Such actions include:
@@ -180,17 +189,17 @@ Blazor server-side takes specific steps to mitigate some of these threats.
   * It validates that the data for the event can be deserialized.
   * It validates that there is an event handler associated with that event.
 
-For a XSS vulnerability to be possible, the application must allow some user input to be included as part of the rendered page. Blazor server-side components go through a compile-time step where the contents of the page are transformed into what we call a RenderTree (a virtual DOM like structure) and the diffs between previous and current renders are sent to the client for rendering, or in the case of prerendering serialized into HTML.
-* At this step blazor server-side takes care of HTML encoding all content that wasn't defined as static markup at compile-time.
+For a XSS vulnerability to be possible, the application must allow some user input to be included as part of the rendered page. Blazor server-side components go through a compile-time step where the markup in a `.razor` file is transformed into procedural C# logic. At runtime, this C# logic builds a *render tree* describing the elements, text, and child components being rendered. This is applied to the browser's DOM via a sequence of JavaScript instructions (or is serialized to HTML in the case of prerendering).
+* User input rendered via normal Razor syntax (e.g., `@someStringValue`) doesn't risk XSS issues, because it gets added to the DOM via commands that can only write text. Even if the value includes HTML markup, it will be displayed as static text. In the case of prerendering, such output is HTML-encoded so as to produce the same effect.
 * Script tags aren't allowed to be included as components and a compile time error is generated when one such tag is included in a razor page.
-  * Script tags will not behave the way one would expect on the page. Once added they execute the contents of the script and those side-effects don't disappear even if you remove the script tag.
-* Component authors can author components in C# without using Razor. For these cases, the component author is responsible for encoding all potentiall user input from the component.
+  * The reason that script tags are disallowed is because they would not behave the way one would expect on the page. Once added they execute the contents of the script and those side-effects don't disappear even if you remove the script tag.
+* Component authors can author components in C# without using Razor. For these cases, the component author is responsible for using the correct APIs when emitting output. For example, use `builder.AddContent(0, someUserSuppliedString)`, and *not* `builder.AddMarkupContent(0, someUserSuppliedString)`, as the latter could create a XSS vulnerability.
 * It is also recommended that you avoid including script tags as part of your component render tree for the reasons stated above.
 
 As part of protecting against XSS attacks we recommend looking into application specific mitigations like content security policy (CSP). See https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP for more details.
 
 ## Cross-origin protection
-Cross-origin attacks involve a client from a different origin performing some action against your server. This action is typically a form POST (CSRF), but opening a websocket is also possible. Blazor server-side applications offer the same guarantees that any other SignalR application using the hub protocol offers.
+Cross-origin attacks involve a client from a different origin performing some action against your server. This action is typically a GET request or a form POST (CSRF), but opening a websocket is also possible. Blazor server-side applications offer the same guarantees that any other SignalR application using the hub protocol offers.
 * A browser from a different origin can't connect to the blazor-server side application and start a new session (circuit) with the default application configuration.
   * This is due to CORS being disabled by default and SignalR forcing a preflight request against the server as part of the hub protocol handshake.
 * If you enable CORS in your application then you might need to take extra steps to protect your application depending on your CORS configuration.
