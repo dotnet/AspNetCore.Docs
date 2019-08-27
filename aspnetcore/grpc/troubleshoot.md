@@ -12,7 +12,7 @@ uid: grpc/troubleshoot
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-This document provides solutions for commonly encountered problems when developing gRPC apps on .NET.
+This document discusses commonly encountered problems when developing gRPC apps on .NET.
 
 ## Mismatch between client and service SSL/TLS configuration
 
