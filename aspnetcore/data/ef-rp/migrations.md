@@ -213,6 +213,15 @@ Enter the following in the command window:
  dotnet ef database drop
  ```
 
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Open a terminal and navigate to the project folder. The project folder contains the *Startup.cs* file.
+
+Enter the following in the command window:
+
+ ```console
+ dotnet ef database drop
+ ```
 ---
 
 ## Create an initial migration and update the DB
@@ -227,6 +236,13 @@ Update-Database
 ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
+
+```console
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 ```console
 dotnet ef migrations add InitialCreate
@@ -265,6 +281,14 @@ To delete a migration, use the following command:
 Remove-Migration
 
 # [Visual Studio Code](#tab/visual-studio-code)
+
+```console
+dotnet ef migrations remove
+```
+
+For more information, see  [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 ```console
 dotnet ef migrations remove
