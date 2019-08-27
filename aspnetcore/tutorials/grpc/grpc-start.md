@@ -4,7 +4,7 @@ author: juntaoluo
 description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 8/23/2019
+ms.date: 8/26/2019
 uid: tutorials/grpc/grpc-start
 ---
 # Tutorial: Create a gRPC client and server in ASP.NET Core
@@ -305,6 +305,9 @@ info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
 info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
       Request finished in 78.32260000000001ms 200 application/grpc
 ```
+
+> [!NOTE]
+> The code in this article requires the ASP.NET Core HTTPS development certificate to secure the gRPC service. If the client fails with the message `The remote certificate is invalid according to the validation procedure.`, the development certificate is not trusted. For instructions to fix this issue, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
 
 ### Next steps
 
