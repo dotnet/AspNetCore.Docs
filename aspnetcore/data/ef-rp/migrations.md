@@ -51,7 +51,7 @@ Drop-Database
   dotnet ef database drop --force
   ```
   
-  # [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Run the following command in the terminal to install the EF CLI tools:
 
