@@ -50,6 +50,22 @@ Drop-Database
   ```console
   dotnet ef database drop --force
   ```
+  
+  # [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Run the following command int the terminal to install the EF CLI tools:
+
+  ```terminal
+  dotnet tool install --global dotnet-ef --version 3.0.0-*
+  ```
+
+* In the terminal, navigate to the project folder. The project folder contains the *ContosoUniversity.csproj* file.
+
+* Delete the *CU.db* file, or run the following command:
+
+  ```terminal
+  dotnet ef database drop --force
+  ```
 
 ---
 
@@ -72,7 +88,14 @@ Make sure the command prompt is in the project folder, and run the following com
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
+Make sure the terminal is in the project folder, and run the following commands:
+
+```terminal
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
 ---
 
 ## Up and Down methods
