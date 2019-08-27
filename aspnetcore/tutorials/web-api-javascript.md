@@ -15,7 +15,7 @@ This tutorial shows how to call an ASP.NET Core web API with JavaScript, using t
 
 ::: moniker range="< aspnetcore-3.0"
 
-For ASP.NET Core 2.2, see the 2.2 version of [Call the web API with JavaScript](xref:tutorials/first-web-api#call-the-api-with-javascript).
+For ASP.NET Core 2.2, see the 2.2 version of [Call the web API with JavaScript](xref:tutorials/first-web-api#call-the-web-api-with-javascript).
 
 ::: moniker-end
 
