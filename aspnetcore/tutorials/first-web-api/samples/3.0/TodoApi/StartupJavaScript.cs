@@ -9,9 +9,9 @@ using TodoApi.Models;
 
 namespace TodoApi
 {
-    public class StartupJquery
+    public class StartupJavaScript
     {
-        public StartupJquery(IConfiguration configuration)
+        public StartupJavaScript(IConfiguration configuration)
         {
             Configuration = configuration;
         }

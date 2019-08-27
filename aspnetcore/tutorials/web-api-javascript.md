@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to call an ASP.NET Core web API with JavaScript.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/26/2019
+ms.date: 08/27/2019
 uid: tutorials/web-api-javascript
 ---
 # Tutorial: Call an ASP.NET Core web API with JavaScript
@@ -15,7 +15,7 @@ This tutorial shows how to call an ASP.NET Core web API with JavaScript, using t
 
 ::: moniker range="< aspnetcore-3.0"
 
-For ASP.NET Core 2.2, see the 2.2 version of [Call the Web API with JavaScript](xref:tutorials/first-web-api#call-the-api-with-javascript).
+For ASP.NET Core 2.2, see the 2.2 version of [Call the web API with JavaScript](xref:tutorials/first-web-api#call-the-api-with-javascript).
 
 ::: moniker-end
 
@@ -36,7 +36,7 @@ The simplest `fetch` call accepts a single parameter representing the route. A s
 
 1. Configure the app to [serve static files](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [enable default file mapping](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_). The following highlighted code is needed in the `Configure` method of *Startup.cs*:
 
-    [!code-csharp[](first-web-api/samples/3.0/TodoApi/StartupJquery.cs?highlight=8-9&name=snippet_configure)]
+    [!code-csharp[](first-web-api/samples/3.0/TodoApi/StartupJavaScript.cs?highlight=8-9&name=snippet_configure)]
 
 1. Create a *wwwroot* directory in the project root.
 

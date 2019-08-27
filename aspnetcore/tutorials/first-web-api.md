@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/26/2019
+ms.date: 08/27/2019
 uid: tutorials/first-web-api
 ---
 
@@ -457,7 +457,7 @@ Use Postman to delete a to-do item:
 * Set the URI of the object to delete, for example `https://localhost:5001/api/TodoItems/1`
 * Select **Send**
 
-## Call the API from JavaScript
+## Call the web API with JavaScript
 
 See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-api-javascript).
 
@@ -858,7 +858,7 @@ Use Postman to delete a to-do item:
 
 The sample app allows you to delete all the items. However, when the last item is deleted, a new one is created by the model class constructor the next time the API is called.
 
-## Call the API with JavaScript
+## Call the web API with JavaScript
 
 In this section, an HTML page is added that uses JavaScript to call the web API. The Fetch API initiates the request. JavaScript updates the page with the details from the web API's response.
 
