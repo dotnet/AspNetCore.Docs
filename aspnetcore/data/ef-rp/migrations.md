@@ -13,7 +13,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range="< aspnetcore-3.0"
 
 This tutorial introduces the EF Core migrations feature for managing data model changes.
 
