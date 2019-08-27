@@ -881,7 +881,7 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "aspnetcore/tutorials/web-api-jquery",
+            "source_path": "aspnetcore/tutorials/web-api-jquery.md",
             "redirect_url": "/aspnet/core/tutorials/web-api-javascript",
             "redirect_document_id": false
         }
