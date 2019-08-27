@@ -181,51 +181,6 @@ The `ValidationMessage` component displays validation messages for a specific fi
 
 The `ValidationMessage` and `ValidationSummary` components support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the generated `<div>` or `<ul>` element.
 
-### Validation of nested properties
+### Validation of complex or collection type properties
 
-Validation attributes applied to subproperties of complex properties on the model don't currently participate in submit validation. For example, consider the following model:
-
-```csharp
-public class Person
-{
-    [Required]
-    public string Name { get; set; }
-
-    public Address Address { get; set; }
-}
-
-public class Address
-{
-    [Required]
-    public string Street { get; set; }
-    
-    public string Street2 { get; set; }
-}
-```
-
-`Person.Address.Street` isn't validated by default. To validate the subproperty, implement <xref:System.ComponentModel.DataAnnotations.IValidatableObject> on the `Person` type to explicitly validate complex subproperties:
-
-```csharp
-public class Person : IValidatableObject
-{
-    [Required]
-    public string Name { get; set; }
-
-    public Address Address { get; set; }
-    
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-    {
-        var validationResults = new List<ValidationResult>();
-
-        if (HomeAddress != null)
-        {
-            var addressContext = new ValidationContext(Address);
-            Validator.TryValidateObject(Address, addressContext, validationResults);
-        }
-
-        return validationResults;
-    }
-}
-```
-
-If the `Address` type has further complex subproperties that require validation, implement `IValidatableObject` on the additional subproperties. 
+Validation attributes applied to properties of `Model` work. However, if these properties are collection or complex data types that in turn have properties that need to be validated, submit validation does not work on these. If your application has such models, you'll need to update your application to use a custom validation component as described in this sample: https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation.
