@@ -1354,7 +1354,7 @@ Update the `ComplexDataModel` classes `Up` method:
 
 Add the following highlighted code. The new code goes after the `.CreateTable( name: "Department"` block:
 
- [!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
+[!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
 
 With the preceding changes, existing `Course` rows will be related to the "Temp" department after the `ComplexDataModel` `Up` method runs.
 
@@ -1369,8 +1369,6 @@ The next tutorial covers related data.
 
 * [YouTube version of this tutorial(Part 1)](https://www.youtube.com/watch?v=0n2f0ObgCoA)
 * [YouTube version of this tutorial(Part 2)](https://www.youtube.com/watch?v=Je0Z5K1TNmY)
-
-
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/migrations)
