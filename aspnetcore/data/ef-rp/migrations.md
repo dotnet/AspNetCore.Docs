@@ -55,7 +55,7 @@ Drop-Database
 
 * Run the following command int the terminal to install the EF CLI tools:
 
-  ```terminal
+  ```console
   dotnet tool install --global dotnet-ef --version 3.0.0-*
   ```
 
@@ -63,7 +63,7 @@ Drop-Database
 
 * Delete the *CU.db* file, or run the following command:
 
-  ```terminal
+  ```console
   dotnet ef database drop --force
   ```
 
@@ -92,7 +92,7 @@ dotnet ef database update
 
 Make sure the terminal is in the project folder, and run the following commands:
 
-```terminal
+```console
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
