@@ -53,7 +53,7 @@ Drop-Database
   
   # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Run the following command int the terminal to install the EF CLI tools:
+* Run the following command in the terminal to install the EF CLI tools:
 
   ```console
   dotnet tool install --global dotnet-ef --version 3.0.0-*
