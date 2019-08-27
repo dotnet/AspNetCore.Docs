@@ -385,7 +385,7 @@ public ICollection<Course> Courses { get; set; }
 
 By convention, EF Core enables cascade delete for non-nullable FKs and for many-to-many relationships. This default behavior can result in circular cascade delete rules. Circular cascade delete rules cause an exception when a migration is added.
 
-For example, if the `Department.InstructorID` property was defined as non-nullable, EF Core would configure a cascade delete rule. In that case, the department would be deleted when the instructor assigned as its administrator is deleted. In this scenario, a restrict rule would make more sense. The following fluent API would set a restrict rule and disable cascade delete.
+For example, if the `Department.InstructorID` property was defined as non-nullable, EF Core would configure a cascade delete rule. In that case, the department would be deleted when the instructor assigned as its administrator is deleted. In this scenario, a restrict rule would make more sense. The following [fluent API](#fluent-api-alternative-to-attributes) would set a restrict rule and disable cascade delete.
 
   ```csharp
   modelBuilder.Entity<Department>()
@@ -1089,7 +1089,7 @@ For example, if the `Department.InstructorID` property was defined as non-nullab
 
 * EF Core configures a cascade delete rule to delete the department when the instructor is deleted.
 * Deleting the department when the instructor is deleted isn't the intended behavior.
-* The following fluent API would set a restrict rule instead of cascade.
+* The following [fluent API](#fluent-api-alternative-to-attributes) would set a restrict rule instead of cascade.
 
    ```csharp
    modelBuilder.Entity<Department>()
