@@ -35,6 +35,5 @@ namespace ContosoUniversity.Pages.Courses
             }
             return Page();
         }
-        #endregion
     }
 }
