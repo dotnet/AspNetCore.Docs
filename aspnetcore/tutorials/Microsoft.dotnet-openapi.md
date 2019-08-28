@@ -46,7 +46,8 @@ This reference, along with the code generator specific packages which were also 
 |-------|------|-------|---------|
 | -v|--verbose | Show verbose output. |dotnet openapi add file *-v* .\OpenAPI.json |
 | -p|--updateProject | The project to operate on. |dotnet openapi add file *--updateProject .\Ref.csproj* .\OpenAPI.json |
-| -c|--code-generator| The code generator to apply to the reference. Options are "NSwagCSharp" and "NSwagTypeScript". If this is not explicitly provided the tooling will default to NSwagCSharp.|dotnet openapi add file .\OpenApi.json --code-generator
+| -c|--code-generator| The code generator to apply to the reference. Options are "NSwagCSharp" and "NSwagTypeScript". If this is not explicitly provided the tooling will default to NSwagCSharp.|dotnet openapi add file .\OpenApi.json --code-generator|
+| -h|--help|Show help information|dotnet openapi add file --help|
 
 ##### Arguments
 
@@ -60,10 +61,11 @@ This reference, along with the code generator specific packages which were also 
 
 | Short option| Long option| Description | Example |
 |-------|------|-------------|---------|
-| -v|--verbose | Show verbose output. |dotnet openapi add url *-v* <http://contoso.com/openapi.json> |
-| -p|--updateProject | The project to operate on. |dotnet openapi add url *--updateProject .\Ref.csproj* <http://contoso.com/openapi.json> |
+| -v|--verbose | Show verbose output. |dotnet openapi add url *-v* <https://contoso.com/openapi.json> |
+| -p|--updateProject | The project to operate on. |dotnet openapi add url *--updateProject .\Ref.csproj* <https://contoso.com/openapi.json> |
 | -o|--output-file | Where to place the local copy of the OpenAPI file. |dotnet openapi add url <https://contoso.com/openapi.json> *--output-file myclient.json* |
-| -c|--code-generator| The code generator to apply to the reference. Options are "NSwagCSharp" and "NSwagTypeScript". |dotnet openapi add file .\OpenApi.json --code-generator 
+| -c|--code-generator| The code generator to apply to the reference. Options are "NSwagCSharp" and "NSwagTypeScript". |dotnet openapi add file .\OpenApi.json --code-generator|
+| -h|--help|Show help information|dotnet openapi add url --help|
 
 ##### Arguments
 
@@ -81,6 +83,7 @@ This command removes the OpenAPI reference matching the given filename from your
 |-------|------|------------|---------|
 | -v|--verbose | Show verbose output. |dotnet openapi remove *-v*|
 | -p|--updateProject | The project to operate on. |dotnet openapi remove *--updateProject .\Ref.csproj* .\OpenAPI.json |
+| -h|--help|Show help information|dotnet openapi remove --help|
 
 #### Arguments
 
@@ -98,6 +101,7 @@ This command refreshes the local version of a file which was downloaded using a 
 |-------|------|-------------|---------|
 | -v|--verbose | Show verbose output. | dotnet openapi refresh *-v* <https://contoso.com/openapi.json> |
 | -p|--updateProject | The project to operate on. | dotnet openapi refresh *--updateProject .\Ref.csproj* <https://contoso.com/openapi.json> |
+| -h|--help|Show help information|dotnet openapi refresh --help|
 
 #### Arguments
 
