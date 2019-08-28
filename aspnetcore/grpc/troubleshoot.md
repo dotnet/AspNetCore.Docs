@@ -74,16 +74,9 @@ Additional configuration is required to call insecure gRPC services with the .NE
 // This switch must be set before creating the GrpcChannel/HttpClient.
 AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
-<<<<<<< HEAD
-var httpClient = new HttpClient();
-// The address starts with "http://"
-httpClient.BaseAddress = new Uri("http://localhost:5000");
-var client = GrpcClient.Create<Greeter.GreeterClient>(httpClient);
-=======
 // The port number(5000) must match the port of the gRPC server.
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
 var client = new Greet.GreeterClient(channel);
->>>>>>> Add gRPC client, client factory documentation, preview 9 react (#13684)
 ```
 
 ## Unable to start ASP.NET Core gRPC app on macOS
