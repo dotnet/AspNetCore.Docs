@@ -1,6 +1,6 @@
 ---
 title: Razor Pages with EF Core in ASP.NET Core - Read Related Data - 6 of 8
-author: rick-anderson
+author: tdykstra
 description: In this tutorial you read and display related data -- that is, data that the Entity Framework loads into navigation properties.
 ms.author: riande
 ms.custom: mvc
@@ -379,7 +379,7 @@ To display the name of the assigned department in a list of courses:
 
 # [Visual Studio](#tab/visual-studio) 
 
-Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-student-pages) and use `Course` for the model class.
+Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Course` for the model class.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -466,7 +466,7 @@ In the *SchoolViewModels* folder, create *InstructorIndexData.cs* with the follo
 
 # [Visual Studio](#tab/visual-studio) 
 
-Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-student-pages) and use `Instructor` for the model class.
+Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Instructor` for the model class.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 

@@ -1,9 +1,9 @@
 ---
 title: Handle errors in ASP.NET Core
-author: tdykstra
+author: rick-anderson
 description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2019
 uid: fundamentals/error-handling

@@ -54,16 +54,6 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
 
 ---
 
-## RCLs not supported for client-side apps
-
-In the current ASP.NET Core 3.0 Preview, Razor class libraries aren't compatible with Blazor client-side apps. For Blazor client-side apps, use a Blazor component library created by the `blazorlib` template in a command shell:
-
-```console
-dotnet new blazorlib -o MyComponentLib1
-```
-
-Component libraries using the `blazorlib` template can include static files, such as images, JavaScript, and stylesheets. At build time, static files are embedded into the built assembly file (*.dll*), which allows consumption of the components without having to worry about how to include their resources. Any files included in the `content` directory are marked as an embedded resource.
-
 ## Consume a library component
 
 In order to consume components defined in a library in another project, use either of the following approaches:
@@ -110,8 +100,6 @@ Upload the package to NuGet using the [dotnet nuget publish](/dotnet/core/tools/
 ```console
 dotnet nuget publish
 ```
-
-When using the `blazorlib` template, static resources are included in the NuGet package. Library consumers automatically receive scripts and stylesheets, so consumers aren't required to manually install the resources.
 
 ## Create a Razor components class library with static assets
 
