@@ -4,7 +4,7 @@ author: juntaoluo
 description: Learn the basic concepts when writing gRPC services with ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 08/26/2019
+ms.date: 08/28/2019
 uid: grpc/aspnetcore
 ---
 # gRPC services with ASP.NET Core
@@ -108,7 +108,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
                 options.Listen(IPAddress.Any, 5001, listenOptions =>
                 {
                     listenOptions.Protocols = HttpProtocols.Http2;
-                    listenOptions.UseHttps("<path to .pfx file>", "<certificate password>");
+                    listenOptions.UseHttps("<path to .pfx file>", 
+                        "<certificate password>");
                 });
             });
             webBuilder.UseStartup<Startup>();
