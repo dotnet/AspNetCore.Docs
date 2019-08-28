@@ -642,19 +642,19 @@ Ensure that values used for `@key` don't clash. If clashing values are detected 
 
 ## Lifecycle methods
 
-`OnInitializedAsync` and `OnInitialized` execute code to initialize the component. To perform an asynchronous operation, use `OnInitializedAsync` and the `await` keyword on the operation:
+`OnInitAsync` and `OnInit` execute code to initialize the component. To perform an asynchronous operation, use `OnInitAsync` and the `await` keyword on the operation:
 
 ```csharp
-protected override async Task OnInitializedAsync()
+protected override async Task OnInitAsync()
 {
     await ...
 }
 ```
 
-For a synchronous operation, use `OnInitialized`:
+For a synchronous operation, use `OnInit`:
 
 ```csharp
-protected override void OnInitialized()
+protected override void OnInit()
 {
     ...
 }
