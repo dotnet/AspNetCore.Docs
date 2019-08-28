@@ -102,7 +102,7 @@ For the samples in this document, the `DbContext` is initialized in the [Startup
 
 The data model:
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Data/Customer.cs)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Model/Customer.cs)]
 
 The db context:
 
@@ -110,11 +110,11 @@ The db context:
 
 The *Pages/Create.cshtml* view file:
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Create.cshtml)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
 
 The *Pages/Create.cshtml.cs* page model:
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_ALL)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_ALL)]
 
 By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page.
 
@@ -137,7 +137,7 @@ If you're familiar with ASP.NET apps using controllers and views:
 
 The previous `OnPostAsync` method:
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_OnPostAsync)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
 The basic flow of `OnPostAsync`:
 
@@ -154,7 +154,7 @@ When the submitted form has validation errors (that are passed to the server), t
 
 The `Customer` property uses `[BindProperty]` attribute to opt in to model binding.
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_PageModel&highlight=10-11)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=10-11)]
 
 Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to properties can reduce the amount of code you have to write. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.
 
@@ -323,7 +323,7 @@ The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the 
 
 The original *Pages/Create.cshtml* view file:
 
-[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Create.cshtml?highlight=2)]
+[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Customers/Create.cshtml?highlight=2)]
 
 The updated *Pages/Create.cshtml* view file:
 
@@ -339,7 +339,7 @@ For more information on partial views, see <xref:mvc/views/partial>.
 
 The `Create` page, shown previously, uses `RedirectToPage`:
 
-[!code-cs[](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=10)]
+[!code-cs[](index/sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=10)]
 
 The app has the following file/folder structure:
 
