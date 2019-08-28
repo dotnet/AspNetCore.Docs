@@ -73,7 +73,7 @@ Kestrel used in a reverse proxy configuration:
 
 ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
-Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration for ASP.NET Core 2.1 or later apps that receive requests from the Internet.
+Either configuration, with or without a reverse proxy server, is a supported hosting configuration.
 
 Kestrel used as an edge server without a reverse proxy server doesn't support sharing the same IP and port among multiple processes. When Kestrel is configured to listen on a port, Kestrel handles all of the traffic for that port regardless of requests' `Host` headers. A reverse proxy that can share ports has the ability to forward requests to Kestrel on a unique IP and port.
 
