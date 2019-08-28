@@ -15,16 +15,16 @@ This article explains how [gRPC services](https://grpc.io/docs/guides/) compare 
 
 #### Overview
 
-|    Feature             |    gRPC                                                 |    HTTP APIs with JSON                       |
-|------------------------|---------------------------------------------------------|----------------------------------------------|
-|    Contract            |    Required (*\*.proto*)                                |    Optional (OpenAPI)                        |
-|    Transport           |    HTTP/2                                               |    HTTP                                      |
-|    Payload             |    [Protobuf (small, binary)](#performance)             |    JSON (large, human readable)              |
-|    Prescriptiveness    |    [Strict specification](#strict-specification)        |    Loose. Any HTTP is valid                  |
-|    Streaming           |    [Client, server, bi-directional](#streaming)         |    Client, server                            |
-|    Browser support     |    [No (requires grpc-web)](#limited-browser-support)   |    Yes                                       |
-|    Security            |    Transport (HTTPS)                                    |    Transport (HTTPS)                         |
-|    Client code-gen     |    [Yes](#code-generation)                              |    OpenAPI + third-party tooling             |
+| Feature          | gRPC                                               | HTTP APIs with JSON           |
+| ---------------- | -------------------------------------------------- | ----------------------------- |
+| Contract         | Required (*.proto*)                                | Optional (OpenAPI)            |
+| Transport        | HTTP/2                                             | HTTP                          |
+| Payload          | [Protobuf (small, binary)](#performance)           | JSON (large, human readable)  |
+| Prescriptiveness | [Strict specification](#strict-specification)      | Loose. Any HTTP is valid      |
+| Streaming        | [Client, server, bi-directional](#streaming)       | Client, server                |
+| Browser support  | [No (requires grpc-web)](#limited-browser-support) | Yes                           |
+| Security         | Transport (HTTPS)                                  | Transport (HTTPS)             |
+| Client code-gen  | [Yes](#code-generation)                            | OpenAPI + third-party tooling |
 
 ## gRPC strengths
 
@@ -39,7 +39,7 @@ gRPC is designed for HTTP/2, a major revision of HTTP that provides significant 
 
 ### Code generation
 
-All gRPC frameworks provide first-class support for code generation. A core file to gRPC development is the [*\*.proto* file](https://developers.google.com/protocol-buffers/docs/proto3), which defines the contract of gRPC services and messages. From this file gRPC frameworks will code generate a service base class, messages, and a complete client.
+All gRPC frameworks provide first-class support for code generation. A core file to gRPC development is the [*.proto* file](https://developers.google.com/protocol-buffers/docs/proto3), which defines the contract of gRPC services and messages. From this file gRPC frameworks will code generate a service base class, messages, and a complete client.
 
 By sharing the `*.proto` file between the server and client, messages and client code can be generated from end to end. Code generation of the client eliminates duplication of messages on the client and server, and creates a strongly-typed client for you. Not having to write a client saves significant development time in applications with many services.
 
