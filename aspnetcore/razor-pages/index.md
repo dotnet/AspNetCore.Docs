@@ -102,7 +102,7 @@ For the samples in this document, the `DbContext` is initialized in the [Startup
 
 The data model:
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Model/Customer.cs)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Models/Customer.cs)]
 
 The db context:
 
@@ -254,7 +254,7 @@ Consider the `Customer` model:
 
 Using the following *Create.cshtml* view file:
 
-[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Create3.cshtml?highlight=3,8-9,15-99)]
+[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Customers/Create3.cshtml?highlight=3,8-9,15-99)]
 
 The  preceding code:
 
