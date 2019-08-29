@@ -884,6 +884,11 @@
             "source_path": "aspnetcore/tutorials/web-api-jquery.md",
             "redirect_url": "/aspnet/core/tutorials/web-api-javascript",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/index.md",
+            "redirect_url": "/aspnet/core/migration/proper-to-2x/index",
+            "redirect_document_id": false
         }
     ]
 }
