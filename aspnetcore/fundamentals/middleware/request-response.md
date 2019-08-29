@@ -14,7 +14,7 @@ By [Justin Kotalik](https://github.com/jkotalik)
 
 This article explains how to read from the request body and write to the response body. You might need to write code for these operations when you're writing middleware. Otherwise, you typically don't have to write this code because the operations are handled by MVC and Razor Pages.
 
-In ASP.NET Core 3.0, there are two abstractions for the request and response bodies: <xref:System.IO.Stream> and <xref:System.IO.Pipelines.Pipe>. For request reading, [HttpRequest.Body](xref:Microsoft.AspNetCore.Http.HttpRequest.Body) is a <xref:System.IO.Stream>, and `HttpRequest.BodyPipe` is a <xref:System.IO.Pipelines.PipeReader>. For response writing, [HttpResponse.Body](xref:Microsoft.AspNetCore.Http.HttpResponse.Body) is a `HttpResponse.BodyPipe` is a <xref:System.IO.Pipelines.PipeWriter>.
+In ASP.NET Core 3.0, there are two abstractions for the request and response bodies: <xref:System.IO.Stream> and <xref:System.IO.Pipelines.Pipe>. For request reading, [HttpRequest.Body](xref:Microsoft.AspNetCore.Http.HttpRequest.Body) is a <xref:System.IO.Stream>, and `HttpRequest.BodyReader` is a <xref:System.IO.Pipelines.PipeReader>. For response writing, [HttpResponse.Body](xref:Microsoft.AspNetCore.Http.HttpResponse.Body) is a `HttpResponse.BodyWriter` is a <xref:System.IO.Pipelines.PipeWriter>.
 
 We recommend pipelines over streams. Streams can be easier to use for some simple operations, but pipelines have a performance advantage and are easier to use in most scenarios. In 3.0, ASP.NET Core is starting to use pipelines instead of streams internally. Examples include:
 
@@ -66,7 +66,7 @@ This example fixes many issues that the streams implementations had:
 
 ## Adapters
 
-Now that both `Body` and `BodyPipe` properties are available for `HttpRequest` and `HttpResponse`, what happens when you set `Body` to a different stream? In 3.0, a new set of adapters automatically adapt each type to the other. For example, if you set `HttpRequest.Body` to a new stream, `HttpRequest.BodyPipe` is automatically set to a new `PipeReader` that wraps `HttpRequest.Body`. The same behavior applies to setting the `BodyPipe` property. If `HttpResponse.BodyPipe` is set to a new `PipeWriter`, the `HttpResponse.Body` is automatically set to a new stream that wraps `HttpResponse.BodyPipe`.
+Now that both `Body` and `BodyReader/BodyWriter` properties are available for `HttpRequest` and `HttpResponse`, what happens when you set `Body` to a different stream? In 3.0, a new set of adapters automatically adapt each type to the other. For example, if you set `HttpRequest.Body` to a new stream, `HttpRequest.BodyReader` is automatically set to a new `PipeReader` that wraps `HttpRequest.Body`.
 
 ## StartAsync
 
