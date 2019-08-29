@@ -194,13 +194,13 @@ The home page (*Index.cshtml*):
 
 The associated `PageModel` class (*Index.cshtml.cs*):
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Index.cshtml.cs)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Index.cshtml.cs?name=snippet)]
 
-The *Index.cshtml* file contains the following markup to create an edit link for each contact:
+The *Index.cshtml* file contains the following markup:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
 
-The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`. Use the `asp-area` attribute to specify an area. For more information, see <xref:mvc/controllers/areas>.
+The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `https://localhost:5001/Edit/1`. [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
 
 The *Pages/Edit.cshtml* file:
 
@@ -724,7 +724,7 @@ The *Index.cshtml* file contains the following markup to create an edit link for
 
 [!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
 
-The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `http://localhost:5000/Edit/1`. Use the `asp-area` attribute to specify an area. For more information, see <xref:mvc/controllers/areas>.
+The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `https://localhost:5001/Edit/1`. Use the `asp-area` attribute to specify an area. For more information, see <xref:mvc/controllers/areas>.
 
 The *Pages/Edit.cshtml* file:
 

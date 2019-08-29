@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesContacts.Data;
 using RazorPagesContacts.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace RazorPagesContacts.Pages.Customers
 {
+    #region snippet
     public class IndexModel : PageModel
     {
-        private readonly RazorPagesContacts.Data.CustomerDbContext _context;
+        private readonly CustomerDbContext _context;
 
-        public IndexModel(RazorPagesContacts.Data.CustomerDbContext context)
+        public IndexModel(CustomerDbContext context)
         {
             _context = context;
         }
@@ -25,5 +24,19 @@ namespace RazorPagesContacts.Pages.Customers
         {
             Customer = await _context.Customers.ToListAsync();
         }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            var contact = await _context.Customers.FindAsync(id);
+
+            if (contact != null)
+            {
+                _context.Customers.Remove(contact);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage();
+        }
     }
+    #endregion
 }
