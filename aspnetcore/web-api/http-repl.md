@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/25/2019
+ms.date: 08/29/2019
 uid: web-api/http-repl
 ---
 # Test web APIs with the HTTP REPL
@@ -272,52 +272,6 @@ When specific color keys aren't set, more generic keys are considered. To demons
 * If `colors.json.string` doesn't have a value, `colors.json.literal` is used.
 * If `colors.json.literal` doesn't have a value, `colors.json` is used. 
 * If `colors.json` doesn't have a value, the command shell's default text color (`AllowedColors.None`) is used.
-
-### Set indentation size
-
-Response indentation size customization is currently supported for JSON only. The default size is two spaces. For example:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Apple"
-  },
-  {
-    "id": 2,
-    "name": "Orange"
-  },
-  {
-    "id": 3,
-    "name": "Strawberry"
-  }
-]
-```
-
-To change the default size, set the `formatting.json.indentSize` key. For example, to always use four spaces:
-
-```console
-pref set formatting.json.indentSize 4
-```
-
-Subsequent responses honor the setting of four spaces:
-
-```json
-[
-    {
-        "id": 1,
-        "name": "Apple"
-    },
-    {
-        "id": 2,
-        "name": "Orange"
-    },
-    {
-        "id": 3,
-        "name": "Strawberry"
-    }
-]
-```
 
 ### Set indentation size
 
