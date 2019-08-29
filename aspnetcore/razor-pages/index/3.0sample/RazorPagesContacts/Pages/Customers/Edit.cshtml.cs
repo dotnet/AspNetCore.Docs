@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesContacts.Data;
 using RazorPagesContacts.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace RazorPagesContacts.Pages.Customers
 {
+    #region snippet
     public class EditModel : PageModel
     {
-        private readonly RazorPagesContacts.Data.CustomerDbContext _context;
+        private readonly CustomerDbContext _context;
 
-        public EditModel(RazorPagesContacts.Data.CustomerDbContext context)
+        public EditModel(CustomerDbContext context)
         {
             _context = context;
         }
@@ -23,19 +21,15 @@ namespace RazorPagesContacts.Pages.Customers
         [BindProperty]
         public Customer Customer { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Customer = await _context.Customers.FirstOrDefaultAsync(m => m.Id == id);
+            Customer = await _context.Customers.FindAsync(id);
 
             if (Customer == null)
             {
-                return NotFound();
+                return RedirectToPage("./Index");
             }
+
             return Page();
         }
 
@@ -54,22 +48,12 @@ namespace RazorPagesContacts.Pages.Customers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CustomerExists(Customer.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw new Exception($"Customer {Customer.Id} not found!");
             }
 
             return RedirectToPage("./Index");
         }
 
-        private bool CustomerExists(int id)
-        {
-            return _context.Customers.Any(e => e.Id == id);
-        }
     }
+    #endregion
 }

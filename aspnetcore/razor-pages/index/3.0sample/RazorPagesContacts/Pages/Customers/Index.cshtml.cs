@@ -18,13 +18,14 @@ namespace RazorPagesContacts.Pages.Customers
             _context = context;
         }
 
-        public IList<Customer> Customer { get;set; }
+        public IList<Customer> Customer { get; set; }
 
         public async Task OnGetAsync()
         {
             Customer = await _context.Customers.ToListAsync();
         }
 
+        #region snippet2
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
             var contact = await _context.Customers.FindAsync(id);
@@ -37,6 +38,7 @@ namespace RazorPagesContacts.Pages.Customers
 
             return RedirectToPage();
         }
+        #endregion
     }
     #endregion
 }

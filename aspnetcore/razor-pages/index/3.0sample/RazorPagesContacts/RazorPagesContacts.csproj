@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -6,9 +6,11 @@
 
   <ItemGroup>
     <None Remove="Pages\Customers\Create4.html" />
+    <None Remove="Pages\Customers\Create5.html" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Pages\Customers\Create5.html" />
     <Content Include="Pages\Customers\Create4.html" />
   </ItemGroup>
 

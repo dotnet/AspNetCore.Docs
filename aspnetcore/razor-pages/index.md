@@ -173,9 +173,7 @@ In the previous code, posting the form:
 
 * With validation errors detected by client side validation:
 
-  * In many cases, validation errors can be caught on the client side.
-  * The `[StringLength(10)]` attribute generates `data-val-length-max="10"` on the rendered HTML.  `data-val-length-max` prevents browsers from entering more than the maximum length specified.
-  * When client side validation errors are detected, data is **not** posted to the server.
+  * Data is **not** posted to the server.
   * Client side validation is explained later in this document.
 
 The `Customer` property uses [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute to opt in to model binding:
@@ -200,7 +198,7 @@ The *Index.cshtml* file contains the following markup:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=21)]
 
-The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `https://localhost:5001/Edit/1`. [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
+The `<a /a>`[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `https://localhost:5001/Edit/1`. [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
 
 The *Index.cshtml* file contains markup to create a delete button for each customer contact:
 
@@ -214,22 +212,21 @@ The rendered HTML:
 
 When the delete button is rendered in HTML, its [formaction](https://developer.mozilla.org/docs/Web/HTML/Element/button#attr-formaction) includes parameters for:
 
-* The customer contact ID specified by the `asp-route-id` attribute.
-* The `handler` specified by the `asp-page-handler` attribute.
+* The customer contact ID, specified by the `asp-route-id` attribute.
+* The `handler`, specified by the `asp-page-handler` attribute.
 
 When the button is selected, a form `POST` request is sent to the server. By convention, the name of the handler method is selected based on the value of the `handler` parameter according to the scheme `OnPost[handler]Async`.
 
 Because the `handler` is `delete` in this example, the `OnPostDeleteAsync` handler method is used to process the `POST` request. If the `asp-page-handler` is set to a different value, such as `remove`, a handler method with the name `OnPostRemoveAsync` is selected.
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?range=26-37)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet2)]
 
 The `OnPostDeleteAsync` method:
 
-* Accepts the `id` from the query string.
+* Gets the `id` from the query string.
 * Queries the database for the customer contact with `FindAsync`.
-* If the customer contact is found, they're removed from the list of customer contacts. The database is updated.
-* Calls `RedirectToPage` to redirect to the root Index page (`/Index`).
-
+* If the customer contact is found, it's removed and the database is updated.
+* Calls <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.RedirectToPage*> to redirect to the root Index page (`/Index`).
 
 ### The Edit.cshtml file
 
@@ -243,15 +240,67 @@ The first line contains the `@page "{id:int}"` directive. The routing constraint
 
 The *Edit.cshtml.cs* file:
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml.cs)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml.cs?name=snippet)]
 
-## Mark page properties as required
+## Validation
 
-Properties on a `PageModel` can be decorated with the [Required](/dotnet/api/system.componentmodel.dataannotations.requiredattribute) attribute:
+Validation rules are declaratively specified in the model class, and the rules are enforced everywhere in the app.
 
-[!code-cs[](index/3.0sample/Create.cshtml.cs?highlight=3,15-16)]
+The <xref:System.ComponentModel.DataAnnotations> namespace provides a set of built-in validation attributes that are applied declaratively to a class or property. DataAnnotations also contains formatting attributes like [`[DataType]`](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) that help with formatting and don't provide any validation.
 
-For more information, see [Model validation](xref:mvc/models/validation).
+Consider the `Customer` model:
+
+[!code-cs[](index/sample/RazorPagesContacts/Data/Customer.cs)]
+
+Using the following *Create.cshtml* view file:
+
+[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Create3.cshtml?highlight=3,8-9,15-99)]
+
+The  preceding code:
+
+* Includes jQuery and jQuery validation scripts.
+* Uses the `<div />` and `<span />` [Tag Helpers](xref:mvc/views/tag-helpers/intro) to enable:
+
+  * Client side validation.
+  * Validation error rendering.
+
+* Generates the following HTML:
+  [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.html)]
+
+Posting the Create form without a name value displays the error message "The Name field is required." on the form. If JavaScript is enabled on the client, the browser displays the error without posting to the server. The `[StringLength(10)]` attribute generates `data-val-length-max="10"` on the rendered HTML.  
+
+`data-val-length-max` prevents browsers from entering more than the maximum length specified. If a tool such as [Fiddler](https://www.telerik.com/fiddler) is used to edit and replay the post with the name longer than 10, the error message "The field Name must be a string with a maximum length of 10." is returned.
+
+Consider the following `Movie` model:
+
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet1)]
+
+The validation attributes specify behavior that you want to enforce on the model properties they're applied to:
+
+* The `Required` and `MinimumLength` attributes indicate that a property must have a value; but nothing prevents a user from entering white space to satisfy this validation.
+* The `RegularExpression` attribute is used to limit what characters can be input. In the preceding code, "Genre":
+
+  * Must only use letters.
+  * The first letter is required to be uppercase. White space, numbers, and special
+   characters are not allowed.
+
+* The `RegularExpression` "Rating":
+
+  * Requires that the first character be an uppercase letter.
+  * Allows special characters and numbers in  subsequent spaces. "PG-13" is valid for a rating, but fails for a "Genre".
+
+* The `Range` attribute constrains a value to within a specified range.
+* The `StringLength` attribute lets you set the maximum length of a string property, and optionally its minimum length.
+* Value types (such as `decimal`, `int`, `float`, `DateTime`) are inherently required and don't need the `[Required]` attribute.
+
+The Create page for the `Movie` model shows displays errors with invalid values:
+
+![Movie view form with multiple jQuery client-side validation errors](~/tutorials/razor-pages/validation/_static/val.png)
+
+For more information, see:
+
+* [Add validation to the Movie app](xref:tutorials/razor-pages/validation)
+* [Model validation in ASP.NET Core](xref:mvc/models/validation).
 
 ## Handle HEAD requests with an OnGet handler fallback
 
