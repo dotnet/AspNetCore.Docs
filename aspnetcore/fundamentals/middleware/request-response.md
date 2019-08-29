@@ -70,7 +70,7 @@ Both `Body` and `BodyReader/BodyWriter` properties are available for `HttpReques
 
 ## StartAsync
 
-`HttpResponse.StartAsync` is used to indicate that headers are unmodifiable and to run `OnStarting` callbacks. In 3.0-preview3, you must call `StartAsync` before using `HttpRequest.BodyPipe`. In future releases, the sequence will be a recommendation. When using Kestrel as a server, calling `StartAsync` before using the `PipeReader` guarantees that memory returned by `GetMemory` belongs to Kestrel's internal <xref:System.IO.Pipelines.Pipe> rather than an external buffer.
+`HttpResponse.StartAsync` is used to indicate that headers are unmodifiable and to run `OnStarting` callbacks. When using Kestrel as a server, calling `StartAsync` before using the `PipeReader` guarantees that memory returned by `GetMemory` belongs to Kestrel's internal <xref:System.IO.Pipelines.Pipe> rather than an external buffer.
 
 ## Additional resources
 
