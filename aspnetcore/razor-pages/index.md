@@ -150,7 +150,7 @@ The *Pages/Create.cshtml* view file:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
 
-The generated HTML from *Pages/Create.cshtml*:
+The rendered HTML from *Pages/Create.cshtml*:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.html)]
 
@@ -202,34 +202,20 @@ The *Index.cshtml* file contains the following markup:
 
 The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `https://localhost:5001/Edit/1`. [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
 
-The *Pages/Edit.cshtml* file:
-
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml?highlight=1)]
-
-The first line contains the `@page "{id:int}"` directive. The routing constraint`"{id:int}"` tells the page to accept requests to the page that contain `int` route data. If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error. To make the ID optional, append `?` to the route constraint:
-
- ```cshtml
-@page "{id:int?}"
-```
-
-The *Pages/Edit.cshtml.cs* file:
-
-[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml.cs)]
-
-The *Index.cshtml* file also contains markup to create a delete button for each customer contact:
+The *Index.cshtml* file contains markup to create a delete button for each customer contact:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=22-23)]
 
-When the delete button is rendered in HTML, its `formaction` includes parameters for:
+The rendered HTML:
+
+```HTML
+<button type="submit" formaction="/Customers?id=1&amp;handler=delete">delete</button>
+```
+
+When the delete button is rendered in HTML, its [formaction](https://developer.mozilla.org/docs/Web/HTML/Element/button#attr-formaction) includes parameters for:
 
 * The customer contact ID specified by the `asp-route-id` attribute.
 * The `handler` specified by the `asp-page-handler` attribute.
-
-Here is an example of a rendered delete button with a customer contact ID of `1`:
-
-```html
-<button type="submit" formaction="/?id=1&amp;handler=delete">delete</button>
-```
 
 When the button is selected, a form `POST` request is sent to the server. By convention, the name of the handler method is selected based on the value of the `handler` parameter according to the scheme `OnPost[handler]Async`.
 
@@ -243,6 +229,21 @@ The `OnPostDeleteAsync` method:
 * Queries the database for the customer contact with `FindAsync`.
 * If the customer contact is found, they're removed from the list of customer contacts. The database is updated.
 * Calls `RedirectToPage` to redirect to the root Index page (`/Index`).
+
+
+### The Edit.cshtml file
+
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml?highlight=1)]
+
+The first line contains the `@page "{id:int}"` directive. The routing constraint`"{id:int}"` tells the page to accept requests to the page that contain `int` route data. If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error. To make the ID optional, append `?` to the route constraint:
+
+ ```cshtml
+@page "{id:int?}"
+```
+
+The *Edit.cshtml.cs* file:
+
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml.cs)]
 
 ## Mark page properties as required
 
@@ -724,7 +725,7 @@ The *Index.cshtml* file contains the following markup to create an edit link for
 
 [!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
 
-The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `https://localhost:5001/Edit/1`. Use the `asp-area` attribute to specify an area. For more information, see <xref:mvc/controllers/areas>.
+The `<a /a>`[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `https://localhost:5001/Edit/1`. [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
 
 The *Pages/Edit.cshtml* file:
 
