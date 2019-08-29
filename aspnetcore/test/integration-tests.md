@@ -5,7 +5,7 @@ description: Learn how integration tests ensure that an app's components functio
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/05/2019
+ms.date: 08/23/2019
 uid: test/integration-tests
 ---
 # Integration tests in ASP.NET Core
@@ -278,6 +278,16 @@ Add the *xunit.runner.json* file to root of the test project with the following 
 {
   "shadowCopy": false
 }
+```
+
+If using Visual Studio, set the file's **Copy to Output Directory** property to **Copy always**. If not using Visual Studio, add a `Content` target to the test app's project file:
+
+```xml
+<ItemGroup>
+  <Content Update="xunit.runner.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </Content>
+</ItemGroup>
 ```
 
 ## Disposal of objects

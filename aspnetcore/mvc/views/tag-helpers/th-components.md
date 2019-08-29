@@ -118,7 +118,7 @@ Use the custom `address` Tag Helper Component to inject HTML markup as follows:
 public class AddressTagHelperComponent : TagHelperComponent
 {
     private readonly string _printableButton =
-        "<button type='button' class='btn btn-info' onclick=\"window.open("
+        "<button type='button' class='btn btn-info' onclick=\"window.open(" +
         "'https://binged.it/2AXRRYw')\">" +
         "<span class='glyphicon glyphicon-road' aria-hidden='true'></span>" +
         "</button>";

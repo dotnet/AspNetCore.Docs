@@ -1,8 +1,8 @@
 ---
 title: App startup in ASP.NET Core
-author: tdykstra
+author: rick-anderson
 description: Learn how the Startup class in ASP.NET Core configures services and the app's request pipeline.
-ms.author: tdykstra
+ms.author: riande
 ms.custom: mvc
 ms.date: 8/7/2019
 uid: fundamentals/startup
@@ -102,8 +102,7 @@ For features that require substantial setup, there are `Add{Service}` extension 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](startup/3.0_samples/StartupFilterSample/StartupIdentity.cs
-?name=snippet)]
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/StartupIdentity.cs?name=snippet)]
 
 ::: moniker-end
 

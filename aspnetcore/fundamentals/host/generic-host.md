@@ -3,7 +3,7 @@ title: .NET Generic Host
 author: tdykstra
 description: Learn about the .NET Core Generic Host, which is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: riande
 ms.custom: mvc
 ms.date: 07/01/2019
 uid: fundamentals/host/generic-host
