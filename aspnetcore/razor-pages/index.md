@@ -158,16 +158,18 @@ For example, in the previous code, posting the form:
 
 * With validation errors that are passed to the server:
 
-  * The `OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. Returning `Page` is similar to how actions in controllers return `View`. `PageResult` is the default return type for a handler method. A handler method that returns `void` renders the page.
+  * The `OnPostAsync` handler method calls the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Page*> helper method. `Page` returns an instance of <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageResult>. Returning `Page` is similar to how actions in controllers return `View`. `PageResult` is the default return type for a handler method. A handler method that returns `void` renders the page.
 
 * With validation errors detected by client side validation:
 
   * In many cases, validation errors can be caught on the client side. This is explained later in the document.
   * When client side validation errors are detected, data is **not** posted to the server.
 
-The `Customer` property uses `[BindProperty]` attribute to opt in to model binding.
+The `Customer` property uses [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute to opt in to model binding.
 
 [!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=10-11)]
+
+`[BindProperty]` should **not** be used on models containing properties that should not be changed by the client. For more information, see [Overposting](data/ef-rp/crud#overposting-1)
 
 Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to properties can reduce the amount of code you have to write. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.
 
