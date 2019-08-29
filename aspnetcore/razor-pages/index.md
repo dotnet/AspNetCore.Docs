@@ -133,7 +133,7 @@ The `Async` naming suffix is optional but is often used by convention for asynch
 If you're familiar with ASP.NET apps using controllers and views:
 
 * The `OnPostAsync` code in the preceding example looks similar to typical controller code.
-* Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), [Validation](xref:mvc/models/validation),  and action results are shared.
+* Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation),  and action results are shared.
 
 The previous `OnPostAsync` method:
 
@@ -146,11 +146,24 @@ Check for validation errors.
 * If there are no errors, save the data and redirect.
 * If there are errors, show the page again with validation messages. In many cases, validation errors would be detected on the client, and never submitted to the server.
 
-For example, in the previous code, posting the form without
+For example, in the previous code, posting the form:
 
-When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. `RedirectToPage` is a new action result, similar to `RedirectToAction` or `RedirectToRoute`, but customized for pages. In the preceding sample, it redirects to the root Index page (`/Index`). `RedirectToPage` is detailed in the [URL generation for Pages](#url_gen) section.
+* With valid data:
 
-When the submitted form has validation errors (that are passed to the server), the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. Returning `Page` is similar to how actions in controllers return `View`. `PageResult` is the default <!-- Review  --> return type for a handler method. A handler method that returns `void` renders the page.
+  * The `OnPostAsync` handler method calls the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.RedirectToPage*> helper method.  `RedirectToPage` returns an instance of <xref:Microsoft.AspNetCore.Mvc.RedirectToPageResult>. `RedirectToPage`:
+
+    * Is an action result.
+    * Is similar to `RedirectToAction` or `RedirectToRoute` (used in controllers and views).
+    * Is customized for pages. In the preceding sample, it redirects to the root Index page (`/Index`). `RedirectToPage` is detailed in the [URL generation for Pages](#url_gen) section.
+
+* With validation errors that are passed to the server:
+
+  * The `OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. Returning `Page` is similar to how actions in controllers return `View`. `PageResult` is the default return type for a handler method. A handler method that returns `void` renders the page.
+
+* With validation errors detected by client side validation:
+
+  * In many cases, validation errors can be caught on the client side. This is explained later in the document.
+  * When client side validation errors are detected, data is **not** posted to the server.
 
 The `Customer` property uses `[BindProperty]` attribute to opt in to model binding.
 
