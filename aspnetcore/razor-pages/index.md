@@ -169,7 +169,7 @@ In the previous code, posting the form:
   * The `OnPostAsync` handler method calls the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Page*> helper method. `Page` returns an instance of <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageResult>. Returning `Page` is similar to how actions in controllers return `View`. `PageResult` is the default return type for a handler method. A handler method that returns `void` renders the page.
   * In the preceding example, posting the form with no value results in [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) returning false. In this sample, no validation errors are displayed on the client. Validation error handing is covered later in this document.
 
-  [!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync&&highlight=3-6)]
+  [!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=3-6)]
 
 * With validation errors detected by client side validation:
 
@@ -190,21 +190,21 @@ Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to p
 
 The home page (*Index.cshtml*):
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Index.cshtml)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml)]
 
 The associated `PageModel` class (*Index.cshtml.cs*):
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Index.cshtml.cs?name=snippet)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet)]
 
 The *Index.cshtml* file contains the following markup:
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=21)]
 
 The [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `https://localhost:5001/Edit/1`. [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
 
 The *Pages/Edit.cshtml* file:
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Edit.cshtml?highlight=1)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml?highlight=1)]
 
 The first line contains the `@page "{id:int}"` directive. The routing constraint`"{id:int}"` tells the page to accept requests to the page that contain `int` route data. If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error. To make the ID optional, append `?` to the route constraint:
 
@@ -214,11 +214,11 @@ The first line contains the `@page "{id:int}"` directive. The routing constraint
 
 The *Pages/Edit.cshtml.cs* file:
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Edit.cshtml.cs)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml.cs)]
 
 The *Index.cshtml* file also contains markup to create a delete button for each customer contact:
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Index.cshtml?range=22-23)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=22-23)]
 
 When the delete button is rendered in HTML, its `formaction` includes parameters for:
 
@@ -235,7 +235,7 @@ When the button is selected, a form `POST` request is sent to the server. By con
 
 Because the `handler` is `delete` in this example, the `OnPostDeleteAsync` handler method is used to process the `POST` request. If the `asp-page-handler` is set to a different value, such as `remove`, a handler method with the name `OnPostRemoveAsync` is selected.
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Index.cshtml.cs?range=26-37)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?range=26-37)]
 
 The `OnPostDeleteAsync` method:
 
