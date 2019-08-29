@@ -4,6 +4,7 @@ author: ryanbrandenburg
 description: Demonstrates how to use the 'Microsoft.dotnet-openapi' tool to add references to OpenAPI files.
 ms.author: rybrande
 ms.date: 08/26/2019
+monikerRange: '>= aspnetcore-3.0'
 uid: tutorials/Microsoft.dotnet-openapi
 ---
 # Develop ASP.NET Core apps using OpenAPI tools
@@ -66,8 +67,8 @@ The preceding reference is required for the app to call the generated client cod
 
 | Short option| Long option| Description | Example |
 |-------|------|-------------|---------|
-| -v|--verbose | Show verbose output. |dotnet openapi add url *-v* `http://contoso.com/openapi.json` |
-| -p|--updateProject | The project to operate on. |dotnet openapi add url *--updateProject .\Ref.csproj* `http://contoso.com/openapi.json` |
+| -v|--verbose | Show verbose output. |dotnet openapi add url *-v* `https://contoso.com/openapi.json` |
+| -p|--updateProject | The project to operate on. |dotnet openapi add url *--updateProject .\Ref.csproj* `https://contoso.com/openapi.json` |
 | -o|--output-file | Where to place the local copy of the OpenAPI file. |dotnet openapi add url `https://contoso.com/openapi.json` *--output-file myclient.json* |
 | -c|--code-generator| The code generator to apply to the reference. Options are `NSwagCSharp` and `NSwagTypeScript`. |dotnet openapi add file .\OpenApi.json --code-generator
 | -h|--help|Show help information|dotnet openapi add url --help|
