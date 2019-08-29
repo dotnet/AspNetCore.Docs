@@ -12,6 +12,20 @@ uid: web-api/advanced/analyzers
 
 ASP.NET Core 2.2 and later includes the [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Api.Analyzers) NuGet package containing analyzers for web APIs. The analyzers work with controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, while building on [API conventions](xref:web-api/advanced/conventions).
 
+::: moniker range=">= aspnetcore-3.0"
+## Referencing the analyzer
+
+In 3.0, MVC's API analyzers ship as part of the .NET Core SDK. To enable the analyzer in your projects, edit your project file to add the `IncludeOpenAPIAnalyzers` property:
+
+```xml
+<PropertyGroup>
+ <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+</PropertyGroup>
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
 ## Package installation
 
 `Microsoft.AspNetCore.Mvc.Api.Analyzers` can be added with one of the following approaches:
@@ -55,7 +69,7 @@ Run the following command:
 ```console
 dotnet add ApiConventions.csproj package Microsoft.AspNetCore.Mvc.Api.Analyzers
 ```
-
+::: moniker-end
 ---
 
 ## Analyzers for API conventions
