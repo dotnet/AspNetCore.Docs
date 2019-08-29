@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesContacts.Data;
-using RazorPagesContacts.Model;
+using RazorPagesContacts.Models;
 
 namespace RazorPagesContacts.Pages.Customers
 {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RazorPagesContacts.Model
+namespace RazorPagesContacts.Models
 {
     public class Customer
     {

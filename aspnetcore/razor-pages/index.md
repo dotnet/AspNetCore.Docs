@@ -125,7 +125,7 @@ The `PageModel` class allows separation of the logic of a page from its presenta
 
 The page has an `OnPostAsync` *handler method*, which runs on `POST` requests (when a user posts the form). Handler methods for any HTTP verb can be added. The most common handlers are:
 
-* `OnGet` to initialize state needed for the page. [OnGet](#OnGet) sample.
+* `OnGet` to initialize state needed for the page.
 * `OnPost` to handle form submissions.
 
 The `Async` naming suffix is optional but is often used by convention for asynchronous functions. The preceding code is typical for Razor Pages.
@@ -146,7 +146,15 @@ Check for validation errors.
 * If there are no errors, save the data and redirect.
 * If there are errors, show the page again with validation messages. In many cases, validation errors would be detected on the client, and never submitted to the server.
 
-For example, in the previous code, posting the form:
+The *Pages/Create.cshtml* view file:
+
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
+
+The generated HTML from *Pages/Create.cshtml*:
+
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.html)]
+
+In the previous code, posting the form:
 
 * With valid data:
 
@@ -159,15 +167,20 @@ For example, in the previous code, posting the form:
 * With validation errors that are passed to the server:
 
   * The `OnPostAsync` handler method calls the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Page*> helper method. `Page` returns an instance of <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageResult>. Returning `Page` is similar to how actions in controllers return `View`. `PageResult` is the default return type for a handler method. A handler method that returns `void` renders the page.
+  * In the preceding example, posting the form with no value results in [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) returning false. In this sample, no validation errors are displayed on the client. Validation error handing is covered later in this document.
+
+  [!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync&&highlight=3-6)]
 
 * With validation errors detected by client side validation:
 
-  * In many cases, validation errors can be caught on the client side. This is explained later in the document.
+  * In many cases, validation errors can be caught on the client side.
+  * The `[StringLength(10)]` attribute generates `data-val-length-max="10"` on the rendered HTML.  `data-val-length-max` prevents browsers from entering more than the maximum length specified.
   * When client side validation errors are detected, data is **not** posted to the server.
+  * Client side validation is explained later in this document.
 
-The `Customer` property uses [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute to opt in to model binding.
+The `Customer` property uses [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute to opt in to model binding:
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=10-11)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=15-16)]
 
 `[BindProperty]` should **not** be used on models containing properties that should not be changed by the client. For more information, see [Overposting](data/ef-rp/crud#overposting-1)
 
@@ -689,7 +702,7 @@ Check for validation errors.
 
 When the data is entered successfully, the `OnPostAsync` handler method calls the `RedirectToPage` helper method to return an instance of `RedirectToPageResult`. `RedirectToPage` is a new action result, similar to `RedirectToAction` or `RedirectToRoute`, but customized for pages. In the preceding sample, it redirects to the root Index page (`/Index`). `RedirectToPage` is detailed in the [URL generation for Pages](#url_gen) section.
 
-When the submitted form has validation errors (that are passed to the server), the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. Returning `Page` is similar to how actions in controllers return `View`. `PageResult` is the default <!-- Review  --> return type for a handler method. A handler method that returns `void` renders the page.
+When the submitted form has validation errors (that are passed to the server), the`OnPostAsync` handler method calls the `Page` helper method. `Page` returns an instance of `PageResult`. Returning `Page` is similar to how actions in controllers return `View`. `PageResult` is the default return type for a handler method. A handler method that returns `void` renders the page.
 
 The `Customer` property uses `[BindProperty]` attribute to opt in to model binding.
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RazorPagesContacts.Model;
+using RazorPagesContacts.Models;
 
 namespace RazorPagesContacts.Data
 {

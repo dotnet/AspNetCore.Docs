@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPagesContacts.Data;
-using RazorPagesContacts.Model;
+using RazorPagesContacts.Models;
 using System.Threading.Tasks;
 
 namespace RazorPagesContacts.Pages.Customers
@@ -15,6 +15,11 @@ namespace RazorPagesContacts.Pages.Customers
         public CreateModel(CustomerDbContext context)
         {
             _context = context;
+        }
+
+        public IActionResult OnGet()
+        {
+            return Page();
         }
 
         [BindProperty]
