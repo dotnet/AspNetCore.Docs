@@ -1,17 +1,19 @@
-﻿using Microsoft.AspNetCore.Builder;
+using System;
+using System.IO;
+using System.Reflection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
-using System.IO;
-using System.Reflection;
 using WebApiSample.DataAccess;
 using WebApiSample.DataAccess.Repositories;
 
-namespace WebApiSample.Api
+[assembly: ApiConventionType(typeof(DefaultApiConventions))]
+namespace WebApiSample.Api._30
 {
     public class Startup
     {
@@ -25,11 +27,10 @@ namespace WebApiSample.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ProductsRepository>();
-            services.AddDbContext<ProductContext>(opt => 
+            services.AddDbContext<ProductContext>(opt =>
                 opt.UseInMemoryDatabase("ProductInventory"));
 
-            services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddControllers();
 
             services.AddSwaggerGen(c =>
             {
@@ -47,25 +48,28 @@ namespace WebApiSample.Api
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My ASP.NET Core 2.1 web API v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My ASP.NET Core 3.0 web API v1");
                 c.RoutePrefix = string.Empty;
             });
-            app.UseMvc();
+
+            app.UseRouting();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

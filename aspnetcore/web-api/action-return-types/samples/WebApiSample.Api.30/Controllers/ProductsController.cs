@@ -5,11 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
-namespace WebApiSample.Api.Pre21.Controllers
+namespace WebApiSample.Api._30.Controllers
 {
+    [ApiController]
     [Produces("application/json")]
-    [Route("api/[controller]")]
-    public class ProductsController : Controller
+    [Route("[controller]")]
+    public class ProductsController : ControllerBase
     {
         private readonly ProductsRepository _repository;
 
@@ -26,24 +27,24 @@ namespace WebApiSample.Api.Pre21.Controllers
 
         #region snippet_GetById
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetById(int id)
+        public ActionResult<Product> GetById(int id)
         {
             if (!_repository.TryGetProduct(id, out var product))
             {
                 return NotFound();
             }
 
-            return Ok(product);
+            return product;
         }
         #endregion
 
         #region snippet_CreateAsync
         [HttpPost]
-        [ProducesResponseType(typeof(Product), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateAsync([FromBody] Product product)
+        public async Task<ActionResult<Product>> CreateAsync(Product product)
         {
             if (product.Description.Contains("XYZ Widget"))
             {

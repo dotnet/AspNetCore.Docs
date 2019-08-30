@@ -7,8 +7,9 @@ using WebApiSample.DataAccess.Repositories;
 
 namespace WebApiSample.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
+    [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
         private readonly ProductsRepository _repository;
@@ -20,14 +21,13 @@ namespace WebApiSample.Controllers
 
         #region snippet_Get
         [HttpGet]
-        public IEnumerable<Product> Get()
-        {
-            return _repository.GetProducts();
-        }
+        public IEnumerable<Product> Get() =>
+            _repository.GetProducts();
         #endregion
 
         #region snippet_GetById
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Product> GetById(int id)
         {
