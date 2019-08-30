@@ -65,7 +65,7 @@ Kestrel gRPC endpoints:
 
 #### HTTP/2
 
-gRPC requires HTTP/2, and the framework validates [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`.
+gRPC requires HTTP/2. gRPC for ASP.NET Core validates [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) is `HTTP/2`.
 
 Kestrel [supports HTTP/2](xref:fundamentals/servers/kestrel#http2-support) on most modern operating systems. Kestrel endpoints are configured to support HTTP/1.1 and HTTP/2 connections by default.
 
@@ -115,7 +115,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-As well as providing secury for your calls, HTTPS is required when using gRPC with a Kestrel endpoint that is [configured to support HTTP/1.1 and HTTP/2 connections](xref:fundamentals/servers/kestrel#listenoptionsprotocols). HTTPS is required to negotiate an HTTP/2 connection; otherwise the connection defaults to HTTP/1.1 and gRPC will fail.
+HTTPS is required when using gRPC with a Kestrel endpoint that is [configured to support HTTP/1.1 and HTTP/2 connections](xref:fundamentals/servers/kestrel#listenoptionsprotocols). HTTPS is used to negotiate an HTTP/2 connection; otherwise the connection defaults to HTTP/1.1, and gRPC calls will fail.
 
 For more information on enabling HTTP/2 and HTTPS with Kestrel, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
