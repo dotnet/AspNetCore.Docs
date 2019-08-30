@@ -21,13 +21,39 @@ SignalR can be used with [ASP.NET Core authentication](xref:security/authenticat
 
 The following is an example of `Startup.Configure` which uses SignalR and ASP.NET Core authentication:
 
+::: moniker range=">= aspnetcore-3.0"
+
 ```csharp
 public void Configure(IApplicationBuilder app)
 {
     ...
 
     app.UseStaticFiles();
-    
+
+    app.UseRouting();
+
+    app.UseAuthentication();
+    app.UseAuthorization();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapHub<ChatHub>("/chat");
+        endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+    });
+}
+```
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
+```csharp
+public void Configure(IApplicationBuilder app)
+{
+    ...
+
+    app.UseStaticFiles();
+
     app.UseAuthentication();
 
     app.UseSignalR(hubs =>
@@ -44,6 +70,8 @@ public void Configure(IApplicationBuilder app)
 
 > [!NOTE]
 > The order in which you register the SignalR and ASP.NET Core authentication middleware matters. Always call `UseAuthentication` before `UseSignalR` so that SignalR has a user on the `HttpContext`.
+
+::: moniker-end
 
 ### Cookie authentication
 

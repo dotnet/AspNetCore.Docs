@@ -169,7 +169,23 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Map a */hub* route to the `ChatHub` hub. Add the following lines at the end of the `Startup.Configure` method:
 
+::: moniker range=">= aspnetcore-3.0"
+
+```csharp
+app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ChatHub>("/hub");
+});
+```
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
     [!code-csharp[Startup](signalr-typescript-webpack/sample/Startup.cs?name=snippet_UseSignalR)]
+
+::: moniker-end
 
 1. Create a new directory, called *Hubs*, in the project root. Its purpose is to store the SignalR hub, which is created in the next step.
 
