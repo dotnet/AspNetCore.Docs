@@ -65,10 +65,9 @@ Kestrel gRPC endpoints:
 
 #### HTTP/2
 
-Kestrel [supports HTTP/2](xref:fundamentals/servers/kestrel#http2-support) on most modern operating systems. Kestrel endpoints are configured to support HTTP/1.1 and HTTP/2 connections by default.
+gRPC requires HTTP/2, and the framework validates [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`.
 
-> [!NOTE]
-> macOS doesn't support ASP.NET Core gRPC with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). Additional configuration is required to successfully run gRPC services on macOS. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
+Kestrel [supports HTTP/2](xref:fundamentals/servers/kestrel#http2-support) on most modern operating systems. Kestrel endpoints are configured to support HTTP/1.1 and HTTP/2 connections by default.
 
 #### HTTPS
 
@@ -95,7 +94,7 @@ In production, HTTPS must be explicitly configured. In the following *appsetting
 }
 ```
 
-Alternatively, Kestrel endspoints can be configured in *Program.cs*:
+Alternatively, Kestrel endpoints can be configured in *Program.cs*:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -116,7 +115,12 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
+As well as providing secury for your calls, HTTPS is required when using gRPC with a Kestrel endpoint that is [configured to support HTTP/1.1 and HTTP/2 connections](xref:fundamentals/servers/kestrel#listenoptionsprotocols). HTTPS is required to negotiate an HTTP/2 connection; otherwise the connection defaults to HTTP/1.1 and gRPC will fail.
+
 For more information on enabling HTTP/2 and HTTPS with Kestrel, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+
+> [!NOTE]
+> macOS doesn't support ASP.NET Core gRPC with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). Additional configuration is required to successfully run gRPC services on macOS. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
 
 ## Integration with ASP.NET Core APIs
 
