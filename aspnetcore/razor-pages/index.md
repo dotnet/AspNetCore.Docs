@@ -268,11 +268,14 @@ The  preceding code:
   * Validation error rendering.
 
 * Generates the following HTML:
-  [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.html)]
+  [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create5.html)]
 
-Posting the Create form without a name value displays the error message "The Name field is required." on the form. If JavaScript is enabled on the client, the browser displays the error without posting to the server. The `[StringLength(10)]` attribute generates `data-val-length-max="10"` on the rendered HTML.  
+Posting the Create form without a name value displays the error message "The Name field is required." on the form. If JavaScript is enabled on the client, the browser displays the error without posting to the server. 
 
-`data-val-length-max` prevents browsers from entering more than the maximum length specified. If a tool such as [Fiddler](https://www.telerik.com/fiddler) is used to edit and replay the post with the name longer than 10, the error message "The field Name must be a string with a maximum length of 10." is returned.
+The `[StringLength(10)]` attribute generates `data-val-length-max="10"` on the rendered HTML. `data-val-length-max` prevents browsers from entering more than the maximum length specified. If a tool such as [Fiddler](https://www.telerik.com/fiddler) is used to edit and replay the post:
+
+* With the name longer than 10.
+* The error message "The field Name must be a string with a maximum length of 10." is returned.
 
 Consider the following `Movie` model:
 
