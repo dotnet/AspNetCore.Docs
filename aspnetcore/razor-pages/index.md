@@ -384,13 +384,11 @@ The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the 
 `@namespace` *also works with conventional Razor views.*
 
 Consider the *Pages/Create.cshtml* view file:
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create3.cshtml
-?highlight=2-3)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create3.cshtml?highlight=2-3)]
 
 The updated *Pages/Create.cshtml* view file:
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml
-?highlight=2)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml?highlight=2)]
 
 In the preceding code, the *_ViewImports.cshtml*  imported the namespace and Tag Helpers. The layout file imported the JavaScript files.
 
