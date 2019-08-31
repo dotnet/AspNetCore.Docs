@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/23/2019
+ms.date: 08/31/2019
 uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
@@ -183,4 +183,4 @@ The `ValidationMessage` and `ValidationSummary` components support arbitrary att
 
 ### Validation of complex or collection type properties
 
-Validation attributes applied to properties of `Model` work. However, if these properties are collection or complex data types that in turn have properties that need to be validated, submit validation does not work on these. If your application has such models, you'll need to update your application to use a custom validation component as described in this sample: https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation.
+Validation attributes applied to the properties of a model validate when the form is submitted. However, a property collection or complex data type that in turn has properties that require validation isn't validated on form submission. In this scenario, use a custom validation component. For an example, see the [Blazor Validation sample in the aspnet/samples GitHub repository](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
