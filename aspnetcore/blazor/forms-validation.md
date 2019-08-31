@@ -183,4 +183,4 @@ The `ValidationMessage` and `ValidationSummary` components support arbitrary att
 
 ### Validation of complex or collection type properties
 
-Validation attributes applied to the properties of a model validate when the form is submitted. However, the properties of collections or complex data types of a model aren't validated on form submission. To honor the validation attributes of collections or complex data types, use a custom validation component. For an example, see the [Blazor Validation sample in the aspnet/samples GitHub repository](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
+Validation attributes applied to the properties of a model validate when the form is submitted. However, the properties of collections or complex data types of a model aren't validated on form submission. To honor the nested validation attributes in this scenario, use a custom validation component. For an example, see the [Blazor Validation sample in the aspnet/samples GitHub repository](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
