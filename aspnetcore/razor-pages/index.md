@@ -386,9 +386,9 @@ The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the 
 Consider the *Pages/Create.cshtml* view file:
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create3.cshtml?highlight=2-3)]
 
-The updated *Pages/Create.cshtml* view file:
+The updated *Pages/Create.cshtml* view file with *_ViewImports.cshtml* and the preceding layout file:
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml?highlight=2)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.cshtml?highlight=2)]
 
 In the preceding code, the *_ViewImports.cshtml*  imported the namespace and Tag Helpers. The layout file imported the JavaScript files.
 
@@ -402,23 +402,30 @@ For more information on partial views, see <xref:mvc/views/partial>.
 
 The `Create` page, shown previously, uses `RedirectToPage`:
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=10)] zz
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=15-16)]
 
 The app has the following file/folder structure:
 
 * */Pages*
 
   * *Index.cshtml*
+  * *Privacy.cshtml*
   * */Customers*
 
     * *Create.cshtml*
     * *Edit.cshtml*
     * *Index.cshtml*
 
-The *Pages/Customers/Create.cshtml* and *Pages/Customers/Edit.cshtml* pages redirect to *Pages/Index.cshtml* after success. The string `/Index` is part of the URI to access the preceding page. The string `/Index` can be used to generate URIs to the *Pages/Index.cshtml* page. For example:
+The *Pages/Customers/Create.cshtml* and *Pages/Customers/Edit.cshtml* pages redirect to *Pages/Customers/Index.cshtml* after success. The string `./Index` is part of the URI to access the preceding page. The string `./Index` can be used to generate URIs to the *Pages/Customers/Index.cshtml* page. For example:
+
+* `Url.Page("./Index", ...)`
+* `<a asp-page="/Customers/Index">Customers Index Page</a>`
+* `RedirectToPage("./Index")`
+
+The string `/Index` can be used to generate URIs to the *Pages/Index.cshtml* page. For example:
 
 * `Url.Page("/Index", ...)`
-* `<a asp-page="/Index">My Index Page</a>`
+* `<a asp-page="/Index">Home Index Page</a>`
 * `RedirectToPage("/Index")`
 
 The page name is the path to the page from the root */Pages* folder including a leading `/` (for example, `/Index`). The preceding URL generation samples offer enhanced options and functional capabilities over hardcoding a URL. URL generation uses [routing](xref:mvc/controllers/routing) and can generate and encode parameters according to how the route is defined in the destination path.
