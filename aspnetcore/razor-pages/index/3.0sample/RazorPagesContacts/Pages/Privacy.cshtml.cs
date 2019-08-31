@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
 namespace RazorPagesContacts.Pages
@@ -20,5 +15,12 @@ namespace RazorPagesContacts.Pages
         public void OnGet()
         {
         }
+
+        #region snippet
+        public void OnHead()
+        {
+            HttpContext.Response.Headers.Add("Head Test", "Handled by OnHead!");
+        }
+        #endregion
     }
 }

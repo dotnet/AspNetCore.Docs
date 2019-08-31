@@ -312,39 +312,17 @@ For more information, see:
 
 `HEAD` requests allow you to retrieve the headers for a specific resource. Unlike `GET` requests, `HEAD` requests don't return a response body.
 
-Ordinarily, an `OnHead` handler is created and called for `HEAD` requests: 
+Ordinarily, an `OnHead` handler is created and called for `HEAD` requests:
 
-```csharp
-public void OnHead()
-{
-    HttpContext.Response.Headers.Add("HandledBy", "Handled by OnHead!");
-}
-```
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Privacy.cshtml.c?name=snippet)]
 
-In ASP.NET Core 2.1 or later, Razor Pages falls back to calling the `OnGet` handler if no `OnHead` handler is defined. This behavior is enabled by the call to [SetCompatibilityVersion](xref:mvc/compatibility-version) in `Startup.ConfigureServices`:
-
-```csharp
-services.AddMvc()
-    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-```
-
-The default templates generate the `SetCompatibilityVersion` call in ASP.NET Core 2.1 and 2.2. `SetCompatibilityVersion` effectively sets the Razor Pages option `AllowMappingHeadRequestsToGetHandler` to `true`.
-
-Rather than opting in to all behaviors with `SetCompatibilityVersion`, you can explicitly opt in to *specific* behaviors. The following code opts in to allowing `HEAD` requests to be mapped to the `OnGet` handler:
-
-```csharp
-services.AddMvc()
-    .AddRazorPagesOptions(options =>
-    {
-        options.AllowMappingHeadRequestsToGetHandler = true;
-    });
-```
+Razor Pages falls back to calling the `OnGet` handler if no `OnHead` handler is defined.
 
 <a name="xsrf"></a>
 
 ## XSRF/CSRF and Razor Pages
 
-You don't have to write any code for [antiforgery validation](xref:security/anti-request-forgery). Antiforgery token generation and validation are automatically included in Razor Pages.
+Razor Pages are protected by[Antiforgery validation](xref:security/anti-request-forgery). The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements.
 
 <a name="layout"></a>
 
@@ -356,7 +334,7 @@ Let's declutter this page by taking advantage of some of those capabilities.
 
 Add a [layout page](xref:mvc/views/layout) to *Pages/Shared/_Layout.cshtml*:
 
-[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_LayoutSimple.cshtml)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Shared/_Layout2.cshtml)]
 
 The [Layout](xref:mvc/views/layout):
 
@@ -375,7 +353,7 @@ The layout file should go in the *Pages/Shared* folder.
 
 We recommend you **not** put the layout file in the *Views/Shared* folder. *Views/Shared* is an MVC views pattern. Razor Pages are meant to rely on folder hierarchy, not path conventions.
 
-View search from a Razor Page includes the *Pages* folder. The layouts, templates, and partials you're using with MVC controllers and conventional Razor views *just work*.
+View search from a Razor Page includes the *Pages* folder. The layouts, templates, and partials used with MVC controllers and conventional Razor views *just work*.
 
 Add a *Pages/_ViewImports.cshtml* file:
 
@@ -405,13 +383,16 @@ The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the 
 
 `@namespace` *also works with conventional Razor views.*
 
-The original *Pages/Create.cshtml* view file:
-
-[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Customers/Create.cshtml?highlight=2)]
+Consider the *Pages/Create.cshtml* view file:
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create3.cshtml
+?highlight=2-3)]
 
 The updated *Pages/Create.cshtml* view file:
 
-[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/Create.cshtml?highlight=2)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml
+?highlight=2)]
+
+In the preceding code, the *_ViewImports.cshtml*  imported the namespace and Tag Helpers. The layout file imported the JavaScript files.
 
 The [Razor Pages starter project](#rpvs17) contains the *Pages/_ValidationScriptsPartial.cshtml*, which hooks up client-side validation.
 
@@ -423,7 +404,7 @@ For more information on partial views, see <xref:mvc/views/partial>.
 
 The `Create` page, shown previously, uses `RedirectToPage`:
 
-[!code-cs[](index/sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=10)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=10)] zz
 
 The app has the following file/folder structure:
 
