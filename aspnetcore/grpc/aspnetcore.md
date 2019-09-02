@@ -4,7 +4,7 @@ author: juntaoluo
 description: Learn the basic concepts when writing gRPC services with ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 08/07/2019
+ms.date: 08/28/2019
 uid: grpc/aspnetcore
 ---
 # gRPC services with ASP.NET Core
@@ -47,15 +47,76 @@ gRPC requires the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCo
 
 ### Configure gRPC
 
-gRPC is enabled with the `AddGrpc` method:
+In *Startup.cs*:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Startup.cs?name=snippet&highlight=7)]
+* gRPC is enabled with the `AddGrpc` method.
+* Each gRPC service is added to the routing pipeline through the `MapGrpcService` method.
 
-Each gRPC service is added to the routing pipeline through the `MapGrpcService` method:
-
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Startup.cs?name=snippet&highlight=24)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Startup.cs?name=snippet&highlight=7,24)]
 
 ASP.NET Core middlewares and features share the routing pipeline, therefore an app can be configured to serve additional request handlers. The additional request handlers, such as MVC controllers, work in parallel with the configured gRPC services.
+
+### Configure Kestrel
+
+Kestrel gRPC endpoints:
+
+* Require HTTP/2.
+* Should be secured with HTTPS.
+
+#### HTTP/2
+
+Kestrel [supports HTTP/2](xref:fundamentals/servers/kestrel#http2-support) on most modern operating systems. Kestrel endpoints are configured to support HTTP/1.1 and HTTP/2 connections by default.
+
+> [!NOTE]
+> macOS doesn't support ASP.NET Core gRPC with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). Additional configuration is required to successfully run gRPC services on macOS. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
+
+#### HTTPS
+
+Kestrel endpoints used for gRPC should be secured with HTTPS. In development, an HTTPS endpoint is automatically created at `https://localhost:5001` when the ASP.NET Core development certificate is present. No configuration is required.
+
+In production, HTTPS must be explicitly configured. In the following *appsettings.json* example, an HTTP/2 endpoint secured with HTTPS is provided:
+
+```json
+{
+  "Kestrel": {
+    "Endpoints": {
+      "HttpsDefaultCert": {
+        "Url": "https://localhost:5001",
+        "Protocols": "Http2"
+      }
+    },
+    "Certificates": {
+      "Default": {
+        "Path": "<path to .pfx file>",
+        "Password": "<certificate password>"
+      }
+    }
+  }
+}
+```
+
+Alternatively, Kestrel endspoints can be configured in *Program.cs*:
+
+```csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.ConfigureKestrel(options =>
+            {
+                // This endpoint will use HTTP/2 and HTTPS on port 5001.
+                options.Listen(IPAddress.Any, 5001, listenOptions =>
+                {
+                    listenOptions.Protocols = HttpProtocols.Http2;
+                    listenOptions.UseHttps("<path to .pfx file>", 
+                        "<certificate password>");
+                });
+            });
+            webBuilder.UseStartup<Startup>();
+        });
+```
+
+For more information on enabling HTTP/2 and HTTPS with Kestrel, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
 ## Integration with ASP.NET Core APIs
 
@@ -87,4 +148,4 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 * <xref:tutorials/grpc/grpc-start>
 * <xref:grpc/index>
 * <xref:grpc/basics>
-* <xref:grpc/migration>
+* <xref:fundamentals/servers/kestrel>
