@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/13/2019
+ms.date: 09/02/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -1000,18 +1000,7 @@ For example, the sample app specifies theme information (`ThemeInfo`) in one of 
 }
 ```
 
-To make use of cascading values, components declare cascading parameters using the `[CascadingParameter]` attribute or based on a string name value:
-
-```cshtml
-<CascadingValue Value=@PermInfo Name="UserPermissions">...</CascadingValue>
-
-[CascadingParameter(Name = "UserPermissions")]
-private PermInfo Permissions { get; set; }
-```
-
-Binding with a string name value is relevant if you have multiple cascading values of the same type and need to differentiate them within the same subtree.
-
-Cascading values are bound to cascading parameters by type.
+To make use of cascading values, components declare cascading parameters using the `[CascadingParameter]` attribute. Cascading values are bound to cascading parameters by type.
 
 In the sample app, the `CascadingValuesParametersTheme` component binds the `ThemeInfo` cascading value to a cascading parameter. The parameter is used to set the CSS class for one of the buttons displayed by the component.
 
@@ -1048,6 +1037,40 @@ In the sample app, the `CascadingValuesParametersTheme` component binds the `The
     {
         currentCount++;
     }
+}
+```
+
+To cascade multiple values of the same type within the same subtree, provide a unique `Name` string to each `CascadingValue` component and its corresponding `CascadingParameter`. In the following example, two `CascadingValue` components cascade different instances of `MyCascadingParameterType` by name:
+
+```cshtml
+<CascadingValue Value=@ParentCascadeParameter1 Name="CascadeParam1">
+    ...
+</CascadingValue>
+
+<CascadingValue Value=@ParentCascadeParameter2 Name="CascadeParam2">
+    ...
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public MyCascadingType ParentCascadeParameter1 { get; set; }
+    
+    [Parameter]
+    public MyCascadingType ParentCascadeParameter2 { get; set; }
+}
+```
+
+In a decendent component, the cascaded parameters receive their values from the coorosponding cascaded values in the ancestor component by name:
+
+```cshtml
+...
+
+@code {
+    [CascadingParameter(Name = "CascadeParam1")]
+    protected MyCascadingType ChildCascadeParameter1 { get; set; }
+    
+    [CascadingParameter(Name = "CascadeParam2")]
+    protected MyCascadingType ChildCascadeParameter2 { get; set; }
 }
 ```
 
