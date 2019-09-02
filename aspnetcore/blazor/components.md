@@ -1060,7 +1060,7 @@ To cascade multiple values of the same type within the same subtree, provide a u
 }
 ```
 
-In a decendent component, the cascaded parameters receive their values from the coorosponding cascaded values in the ancestor component by name:
+In a descendant component, the cascaded parameters receive their values from the coorosponding cascaded values in the ancestor component by name:
 
 ```cshtml
 ...
