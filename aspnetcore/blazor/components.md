@@ -1044,10 +1044,9 @@ To cascade multiple values of the same type within the same subtree, provide a u
 
 ```cshtml
 <CascadingValue Value=@ParentCascadeParameter1 Name="CascadeParam1">
-    ...
-</CascadingValue>
-<CascadingValue Value=@ParentCascadeParameter2 Name="CascadeParam2">
-    ...
+    <CascadingValue Value=@ParentCascadeParameter2 Name="CascadeParam2">
+        ...
+    </CascadingValue>
 </CascadingValue>
 
 @code {
