@@ -1080,7 +1080,7 @@ Cascading parameters also enable components to collaborate across the component 
 
 The sample app has an `ITab` interface that tabs implement:
 
-[!code-cs[](common/samples/3.x/BlazorSample/UIInterfaces/ITab.cs)]
+[!code-csharp[](common/samples/3.x/BlazorSample/UIInterfaces/ITab.cs)]
 
 The `CascadingValuesParametersTabSet` component uses the `TabSet` component, which contains several `Tab` components:
 
