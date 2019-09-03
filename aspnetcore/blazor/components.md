@@ -67,7 +67,8 @@ To render a component from a page or view, use the `RenderComponentAsync<TCompon
 
 ```cshtml
 <div id="Counter">
-    @(await Html.RenderComponentAsync<Counter>(new { IncrementAmount = 10 }))
+    @(await Html.RenderComponentAsync<Counter>(RenderMode.Static, 
+        new { IncrementAmount = 10 }))
 </div>
 ```
 

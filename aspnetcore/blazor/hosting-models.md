@@ -93,11 +93,24 @@ Blazor server-side apps are set up by default to prerender the UI on the server 
  
 ```cshtml
 <body>
-    <app>@(await Html.RenderComponentAsync<App>())</app>
+    <app>@(await Html.RenderComponentAsync<App>(RenderMode.ServerPrerendered))</app>
  
     <script src="_framework/blazor.server.js"></script>
 </body>
 ```
+
+`RenderMode` configures whether the component:
+
+* Is prerendered into the page.
+* Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
+
+| `RenderMode`        | Description |
+| ------------------- | ----------- |
+| `ServerPrerendered` | Renders the component into static HTML and includes a marker for a Blazor server-side app. When the user-agent starts, this marker is used to bootstrap a Blazor app. Parameters aren't supported. |
+| `Server`            | Renders a marker for a Blazor server-side app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. Parameters aren't supported. |
+| `Static`            | Renders the component into static HTML. Parameters are supported. |
+
+Rendering server components from a static HTML page isn't supported.
  
 The client reconnects to the server with the same state that was used to prerender the app. If the app's state is still in memory, the component state isn't rerendered after the SignalR connection is established.
 
@@ -105,7 +118,15 @@ The client reconnects to the server with the same state that was used to prerend
  
 Stateful interactive components can be added to a Razor page or view. When the page or view renders, the component is prerendered with it. The app then reconnects to the component state once the client connection is established as long as the state is still in memory.
  
-For example, the following Razor page renders a `Counter` component with an initial count that's specified using a form:
+The following Razor page renders a `Counter` component:
+
+```cshtml
+<h1>My Razor Page</h1>
+ 
+@(await Html.RenderComponentAsync<Counter>(RenderMode.ServerPrerendered))
+```
+
+In the following Razor page, a `Counter` component is rendered statically with an initial count that's specified using a form:
  
 ```cshtml
 <h1>My Razor Page</h1>
@@ -115,7 +136,8 @@ For example, the following Razor page renders a `Counter` component with an init
     <button type="submit">Set initial count</button>
 </form>
  
-@(await Html.RenderComponentAsync<Counter>(new { InitialCount = InitialCount }))
+@(await Html.RenderComponentAsync<Counter>(RenderMode.Static, 
+    new { InitialCount = InitialCount }))
  
 @code {
     [BindProperty(SupportsGet=true)]
