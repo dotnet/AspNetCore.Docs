@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <RootNamespace>WebApiSample.Api._30</RootNamespace>
-    <ProjectUISubcaption>&gt;= ASP.NET Core 3.0</ProjectUISubcaption>
+    <ProjectUISubcaption>ASP.NET Core 3.0</ProjectUISubcaption>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>

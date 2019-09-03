@@ -40,6 +40,21 @@ namespace WebApiSample.Api._30.Controllers
         }
         #endregion
 
+        #region snippet_GetByPage
+        [HttpGet("{pageNumber:int:min(1)}/{pageSize:int:min(1)}")]
+        public async IAsyncEnumerable<Product> GetByPage(
+            int pageNumber,
+            int pageSize)
+        {
+            var products = _repository.GetProductsByPage(pageNumber, pageSize);
+            
+            await foreach (var product in products)
+            {
+                yield return product;
+            }
+        }
+        #endregion
+
         #region snippet_CreateAsync
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
