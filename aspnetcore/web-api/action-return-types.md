@@ -46,7 +46,9 @@ When known conditions need to be accounted for in an action, multiple return pat
 
 ### Asynchronous stream
 
-In ASP.NET Core 3.0 or later, a web API action can return an [asynchronous stream](/dotnet/csharp/whats-new/csharp-8#asynchronous-streams). For example:
+Memory consumption on the server becomes a performance consideration when returning large data sets. Imagine an action that calls <xref:System.Linq.Enumerable.ToList*> on a LINQ query. The query returns an entire product catalog, consisting of hundreds of thousands of products. Each product record is stored in server memory. An asynchronous stream can relieve the burden on the server.
+
+In ASP.NET Core 3.0 or later, a web API action can return an [asynchronous stream](/dotnet/csharp/whats-new/csharp-8#asynchronous-streams). Consider the following action, which uses <xref:System.Collections.Generic.IAsyncEnumerable`1> to stream paged product data to the client:
 
 [!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetByPage)]
 
