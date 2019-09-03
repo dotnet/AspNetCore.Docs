@@ -1372,3 +1372,21 @@ A limited set of ASP.NET Core's localization scenarios are currently supported:
 * `IHtmlLocalizer<>`, `IViewLocalizer<>`, and Data Annotations localization are ASP.NET Core MVC scenarios and **not supported** in Blazor apps.
 
 For more information, see <xref:fundamentals/localization>.
+
+## Scalable Vector Graphics (SVG) images
+
+Since Blazor renders HTML, browser-supported images, including Scalable Vector Graphics (SVG) images (*.svg*), are supported via the `<img>` tag:
+
+```html
+<img alt="Example image" src="some-image.svg" />
+```
+
+Similarly, SVG images are supported in the CSS rules of a stylesheet file (*.css*):
+
+```css
+.my-element {
+    background-image: url("some-image.svg");
+}
+```
+
+However, inline SVG markup isn't supported in all scenarios. If you place an `<svg>` tag directly into a component file (*.razor*), basic image rendering is supported but many advanced scenarios aren't yet supported. For example, `<use>` tags aren't currently respected, and `@bind` can't be used with some SVG tags. We expect to address these limitations in a future release.
