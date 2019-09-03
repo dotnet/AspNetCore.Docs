@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/13/2019
+ms.date: 08/23/2019
 uid: blazor/routing
 ---
 # ASP.NET Core Blazor routing
@@ -97,6 +97,21 @@ The route constraints shown in the following table are available. For the route 
 > [!WARNING]
 > Route constraints that verify the URL and are converted to a CLR type (such as `int` or `DateTime`) always use the invariant culture. These constraints assume that the URL is non-localizable.
 
+### Routing with URLs that contain dots
+
+In Blazor server-side apps, the default route in *_Host.cshtml* is `/` (`@page "/"`). A request URL that contains a dot (`.`) isn't matched by the default route because the URL appears to request a file. A Blazor app returns a *404 - Not Found* response for a static file that doesn't exist. To use routes that contain a dot, configure *_Host.cshtml* with the following route template:
+
+```cshtml
+@page "/{**path}"
+```
+
+The `"/{**path}"` template includes:
+
+* Double-asterisk *catch-all* syntax (`**`) to capture the path across multiple folder boundaries without encoding forward slashes (`/`).
+* A `path` route parameter name.
+
+For more information, see <xref:fundamentals/routing>.
+
 ## NavLink component
 
 Use a `NavLink` component in place of HTML hyperlink elements (`<a>`) when creating navigation links. A `NavLink` component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed.
@@ -157,3 +172,4 @@ The following component navigates to the app's `Counter` component when the butt
     }
 }
 ```
+
