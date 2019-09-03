@@ -55,6 +55,29 @@ namespace WebApiSample.Api._30.Controllers
         }
         #endregion
 
+        #region snippet_GetByPageChunk
+        [HttpGet("chunk/{pageNumber:int:min(1)}/{pageSize:int:min(1)}")]
+        public async IAsyncEnumerable<Product> GetByPageChunk(
+            int pageNumber, 
+            int pageSize)
+        {
+            int firstRecord = pageNumber * pageSize;
+            int stopRecord = firstRecord + pageSize;
+
+            while (firstRecord < stopRecord)
+            {
+                var products = _repository.GetProductsByPage(pageNumber, pageSize);
+
+                await foreach (var product in products)
+                {
+                    yield return product;
+                }
+
+                firstRecord += pageSize;
+            }
+        }
+        #endregion
+
         #region snippet_CreateAsync
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]

@@ -52,6 +52,10 @@ In ASP.NET Core 3.0 or later, a web API action can return an [asynchronous strea
 
 [!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetByPage)]
 
+Consider the following action as an illustration of how the client's *time-to-first-byte* (TTFB) is improved over its synchronous counterpart. The client requests a single page of product data. Each page consists of 10 product records. The action is triggered with the following URL: `https://localhost:<port>/Products/chunk/1/10`. The first product is sent to the client, and execution continues for the second product. This streaming execution continues until all 10 products have been sent to the client. The client can begin processing the results upon receiving the first product record.
+
+[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetByPageChunk)]
+
 ::: moniker-end
 
 ## IActionResult type
