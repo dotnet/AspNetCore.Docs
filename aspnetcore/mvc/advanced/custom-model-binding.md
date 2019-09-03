@@ -125,6 +125,87 @@ Adding your provider to the end of the collection may result in a built-in model
 
 [!code-csharp[](custom-model-binding/sample/CustomModelBindingSample/Startup.cs?name=callout&highlight=5-9)]
 
+### Polymorphic model binding
+
+One possible reason to do custom model binding is to use some value from the request to produce different types of models. We would generally recommend avoiding this pattern since it makes it non-trivial to reason about your bound models. However, if your application requires such a pattern, a pattern for implementing it would look like this:
+
+```C#
+[ModelBinder(typeof(DeviceModelBinder))]
+public class Device
+{
+    public string Kind { get; set; }
+}
+
+public class Laptop : Device
+{
+    public string CPUIndex { get; set; }
+}
+
+public class SmartPhone : Device
+{
+    public string ScreenSize { get; set; }
+}
+
+public class DeviceModelBinder : IModelBinder
+{
+    public Task BindModelAsync(ModelBindingContext bindingContext)
+    {
+        var name = ModelNames.CreatePropertyModelName(
+            bindingContext.ModelName,
+            nameof(Device.Kind));
+
+        var deviceKind = bindingContext.ValueProvider.GetValue(name).FirstValue;
+
+        if (string.IsNullOrEmpty(deviceKind))
+        {
+            bindingContext.Result = ModelBindingResult.Failed();
+            return Task.CompletedTask;
+        }
+
+        Device result;
+        if (deviceKind == "Laptop")
+        {
+            var modelName = ModelNames.CreatePropertyModelName(bindingContext.ModelName, nameof(Laptop.CPUIndex));
+            var cpuIndex = bindingContext.ValueProvider.GetValue(modelName).FirstValue;
+            result = new Laptop
+            {
+                Kind = deviceKind,
+                CPUIndex = cpuIndex,
+            };
+        }
+        else if (deviceKind == "SmartPhone")
+        {
+            var modelName = ModelNames.CreatePropertyModelName(bindingContext.ModelName, nameof(SmartPhone.ScreenSize));
+            var screenSize = bindingContext.ValueProvider.GetValue(modelName).FirstValue;
+            result = new SmartPhone
+            {
+                Kind = deviceKind,
+                ScreenSize = screenSize,
+            };
+        }
+        else
+        {
+            bindingContext.ModelState.TryAddModelError(name, $"Unknown device kind '{deviceKind}'.");
+
+            bindingContext.Result = ModelBindingResult.Failed();
+            return Task.CompletedTask;
+        }
+
+        bindingContext.Result = ModelBindingResult.Success(result);
+
+        // Add a ValidationStateEntry with the "correct" ModelMetadata so validation executes on the actual type, not the declared type.
+        var modelMetadataProvider = bindingContext.HttpContext.RequestServices.GetRequiredService<IModelMetadataProvider>();
+
+        bindingContext.ValidationState.Add(result, new ValidationStateEntry
+        {
+            Metadata = modelMetadataProvider.GetMetadataForType(result.GetType()),
+        });
+
+        return Task.CompletedTask;
+    }
+}
+```
+
 ## Recommendations and best practices
 
 Custom model binders:
