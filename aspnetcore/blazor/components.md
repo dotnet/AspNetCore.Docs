@@ -1351,15 +1351,15 @@ A limited set of ASP.NET Core's localization scenarios are currently supported:
 
 For more information, see <xref:fundamentals/localization>.
 
-### Use SVG images in Blazor apps
+## Scalable Vector Graphics (SVG) images
 
-Since Blazor renders HTML, you can freely include references to SVG files or any other browser-supported image via a normal `<img>` tag:
+Since Blazor renders HTML, browser-supported images, including Scalable Vector Graphics (SVG) images (*.svg*), are supported via the `<img>` tag:
 
 ```html
-<img src="some-image.svg" />
+<img alt="Example image" src="some-image.svg" />
 ```
 
-Similarly, you can reference `.svg` files from CSS rules inside a `.css` file:
+Similarly, SVG images are supported in the CSS rules of a stylesheet file (*.css*):
 
 ```css
 .my-element {
@@ -1367,4 +1367,4 @@ Similarly, you can reference `.svg` files from CSS rules inside a `.css` file:
 }
 ```
 
-However, inline SVG markup is not supported in all scenarios. If you place an `<svg>` tag directly into a `.razor` file, most aspects of basic image rendering will work but many more advanced scenarios are not yet supported. For example, `<use>` tags are not currently respected, and `@bind` cannot be used on some SVG tags. We expect to address all these limitations in a future release.
+However, inline SVG markup isn't supported in all scenarios. If you place an `<svg>` tag directly into a component file (*.razor*), basic image rendering is supported but many advanced scenarios aren't yet supported. For example, `<use>` tags aren't currently respected, and `@bind` can't be used with some SVG tags. We expect to address these limitations in a future release.
