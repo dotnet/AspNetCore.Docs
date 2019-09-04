@@ -555,7 +555,7 @@ public class NotifierService
     {
         if (Notify != null)
         {
-           await Notify.Invoke(key, value);
+            await Notify.Invoke(key, value);
         }
     }
 
@@ -584,8 +584,8 @@ Usage of the `NotifierService` to update a component:
     {
         await InvokeAsync(() =>
         {
-           lastNotification = (key, value);
-           StateHasChanged();
+            lastNotification = (key, value);
+            StateHasChanged();
         });
     }
 
