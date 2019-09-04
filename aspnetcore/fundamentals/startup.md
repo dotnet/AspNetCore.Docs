@@ -78,7 +78,7 @@ Most services are not available until the `Configure` method is called.
 
 ::: moniker-end
 
-An alternative to injecting `IHostingEnvironment` is to use a conventions-based approach.
+### Multiple StartUp
 
 When the app defines separate `Startup` classes for different environments (for example, `StartupDevelopment`), the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](xref:fundamentals/environments#environment-based-startup-class-and-methods).
 
