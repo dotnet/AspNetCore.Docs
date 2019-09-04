@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats to Blazor server-side apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/31/2019
+ms.date: 09/04/2019
 uid: security/blazor/server-side
 ---
 # Secure ASP.NET Core Blazor server-side apps
@@ -39,9 +39,7 @@ Resources external to the Blazor framework, such as databases and file handles (
 
 CPU exhaustion can occur when one or more clients force the server to perform intensive CPU work.
 
-For example, consider a Blazor server-side app that calculates a *Fibonnacci number*. A Fibonnacci number is produced from a Fibonnacci sequence, where each number in the sequence is the sum of the two preceding numbers. The amount of work required to reach the answer depends on the length of the sequence and the size of the initial value. If the app doesn't place limits on a client's request, the CPU-intensive calculations may dominate the CPU's time and diminish the performance of other tasks.
-
-<!-- Should the preceding add something to the effect that CPU exhaustion can reach a point that it may even crash the server (or 'for all practical purposes crash the server because the server slows to a crawl')? -->
+For example, consider a Blazor server-side app that calculates a *Fibonnacci number*. A Fibonnacci number is produced from a Fibonnacci sequence, where each number in the sequence is the sum of the two preceding numbers. The amount of work required to reach the answer depends on the length of the sequence and the size of the initial value. If the app doesn't place limits on a client's request, the CPU-intensive calculations may dominate the CPU's time and diminish the performance of other tasks. Excessive resource consumption is a security concern impacting availability.
 
 CPU exhaustion is a concern for all public-facing apps. In regular web apps, requests and connections time out as a safeguard, but Blazor server-side apps don't provide the same safeguards. Blazor server-side apps must include appropriate checks and limits before performing potentially CPU-intensive work.
 
@@ -49,9 +47,7 @@ CPU exhaustion is a concern for all public-facing apps. In regular web apps, req
 
 Memory exhaustion can occur when one or more clients force the server to consume a large amount of memory.
 
-For example, consider a Blazor-server side app with a component that accepts and displays a list of items. If the Blazor app doesn't place limits on the number of items allowed or the number of items rendered back to the client, the memory-intensive processing and rendering may dominate the server's memory to the point where performance of the server suffers.
-
-<!-- Should the preceding add something to the effect that memory exhaustion can reach a point that it may even crash the server (or 'for all practical purposes crash the server because the server slows to a crawl')? -->
+For example, consider a Blazor-server side app with a component that accepts and displays a list of items. If the Blazor app doesn't place limits on the number of items allowed or the number of items rendered back to the client, the memory-intensive processing and rendering may dominate the server's memory to the point where performance of the server suffers. The server may crash or slow to the point that it appears to have crashed.
 
 Consider the following scenario for maintaining and displaying a list of items that pertain to a potential memory exhaustion scenario on the server:
 
@@ -74,18 +70,6 @@ Connection exhaustion can occur when one or more clients open too many concurren
 
 Blazor clients establish a single connection per session and keep the connection open for as long as the browser window is open. The demands on the server of maintaining all of the connections isn't specific to Blazor apps. Given the persistent nature of the connections and the stateful nature of Blazor server-side apps, connection exhaustion is a greater risk to availability of the app.
 
-<!--
-
-For ...
-
-> Blazor clients establish a single connection per session and keep the connection open for as long as the browser window is open.
-
-It seems like the word "connection" is overloaded. The topic speaks earlier to multiple connections per circuit, but here there is only one "connection" per user (circuit). I also wonder about "browser window" versus "broswer tab" in this context. Should this read something like ...
-
-> Blazor clients can establish multiple connections per user (circuit) and keep the connections open for as long as the browser window is open.
-
--->
-
 By default, there's no limit on the number of connections per user for a Blazor server-side app. If the app requires a connection limit, take one or more of the following approaches:
 
 * Require authentication, which naturally limits the ability of unauthorized users to connect to the app. For this scenario to be effective, users must be prevented from provisioning new users at will.
@@ -97,11 +81,7 @@ By default, there's no limit on the number of connections per user for a Blazor 
     * Proxy WebSocket connections to an app through the use of a proxy, such as the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) that multiplexes connections from clients to an app. This provides an app with greater connection capacity than a single client can establish, preventing a client from exhausting the connections to the server.
   * At the server level: Use a proxy/gateway in front of the app. For example, [Azure Front Door](/azure/frontdoor/front-door-overview) enables you to define, manage, and monitor the global routing of web traffic to an app.
 
-<!-- Endpoint routing extensibility: Do we doc this somewhere that we can cross-link? -->
-
 ## Denial of service (DoS) attacks
-
-<!-- I moved this here because DoS seems to flow after server resource exhaustion. I understand that not ALL DoS attacks exhaust resources, so I made this an H2 here (i.e., it's not directly under Resource Exhaustion). -->
 
 Denial of service (DoS) attacks involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor server-side apps include some default limits and rely on other ASP.NET Core and SignalR limits to protect against DoS attacks:
 
@@ -116,18 +96,6 @@ Denial of service (DoS) attacks involve a client causing the server to exhaust o
 | SignalR and ASP.NET Core limit             | Description | Default |
 | ------------------------------------------ | ----------- | ------- |
 | `CircuitOptions.MaximumReceiveMessageSize` | Message size for an individual message. | 32 KB |
-
-<!-- The original text only lists one SignalR limit (MaximumReceiveMessageSize). Is this the only one that you'd like to show here. Should we eliminate this little one-line table and just cross-link to https://docs.microsoft.com/aspnet/core/signalr/configuration#configure-server-options? -->
-
-<!--
-
-Ryan said on the original PR:
-
-> I feel like this could include an example with code, and both correct and incorrect versions. This makes it super clear that we're expecting the developer to write code to enforce limits.
-
-If this line cross-links to https://docs.microsoft.com/aspnet/core/signalr/configuration#configure-server-options, there's an example of the code there.
-
--->
 
 ## Interactions with the browser (client)
 
@@ -146,8 +114,6 @@ For calls from .NET methods to JavaScript:
 * The result of a JavaScript call can't be trusted. The Blazor app client running in the browser searches for the JavaScript function to invoke. The function is invoked, and either the result or an error is produced. A malicious client can attempt to:
   * Cause an issue in the app by returning an error from the JavaScript function.
   * Induce an unintended behavior on the server by returning an unexpected result from the JavaScript function.
-
-<!-- I refactored "our clients" into "Blazor app client running in the browser" ... did I get that right? ... rephrase? -->
 
 Take the following precautions to guard against the preceding scenarios:
 
@@ -168,14 +134,6 @@ Don't trust calls from JavaScript to .NET methods. When a .NET method is exposed
     * For static methods, avoid establishing state that can't be scoped to the client unless the app is explicitly sharing state by-design across all users on a server instance.
   * Avoid passing user-supplied data in parameters to JavaScript calls. If passing data in parameters is absolutely required, ensure that the JavaScript code handles passing the data without introducing [Cross-site scripting (XSS)](#cross-site-scripting-xss) vulnerabilities. For example, don't write user-supplied data to the Document Object Model (DOM) by setting the `innerHTML` property of an element. Consider using [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) to disable `eval` and other unsafe JavaScript primitives.
 * Avoid implementing custom dispatching of .NET invocations on top of the framework's dispatching implementation. Exposing .NET methods to the browser is an advanced scenario, not recommended for general Blazor development.
-
-<!--
-
-> Exposing .NET methods to the browser should be an explicit action that requires the same careful thought as exposing any other API member.
-
-... I changed that because it just implies that Microsoft engineers are in a better position to do this. I changed it to our usual language ... 'advanced scenario' and 'not recommended.'
-
--->
 
 ### Events
 
@@ -322,8 +280,6 @@ Cross-origin attacks involve a client from a different origin performing an acti
 * Blazor server-side apps can be accessed cross-origin unless additional measures are taken to prevent it. To disable cross-origin access, either disable CORS in the endpoint by adding the CORS middleware to the pipeline and adding the `DisableCorsAttribute` to the Blazor endpoint metadata or limit the set of allowed origins by [configuring SignalR for cross-origin resource sharing](xref:signalr/security#cross-origin-resource-sharing).
 * If CORS is enabled, extra steps might be required to protect the app depending on the CORS configuration. If CORS is globally enabled, CORS can be disabled for the Blazor server-side hub by adding the `DisableCorsAttribute` metadata to the endpoint metadata after calling `hub.MapBlazorHub()`.
 
-<!-- Code example(s) here? -->
-
 For more information, see <xref:security/anti-request-forgery>.
 
 ### Click-jacking
@@ -374,5 +330,3 @@ The following list of security considerations isn't comprehensive:
 * Consider using CSP and [X-Frame-Options](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Frame-Options) to protect against click-jacking.
 * Ensure CORS settings are appropriate when enabling CORS or explicitly disable CORS for Blazor apps.
 * Test to ensure that the server-side limits for the Blazor app provide an acceptable user experience without unacceptable levels of risk.
-
-<!-- Does bullet #2 cover bullet #3? -->
