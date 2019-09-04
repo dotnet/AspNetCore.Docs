@@ -116,7 +116,7 @@ The client reconnects to the server with the same state that was used to prerend
 
 ### Render stateful interactive components from Razor pages and views
  
-Stateful interactive components can be added to a Razor page or view. When the page or view renders, the component is prerendered with it. The app then reconnects to the component state once the client connection is established as long as the state is still in memory.
+Stateful interactive components can be added to a Razor page or view. When the page or view renders, the component is prerendered with it. The initial component state used for prerendering is thrown away, and new state is created when the connection is established.
  
 The following Razor page renders a `Counter` component:
 
@@ -126,24 +126,28 @@ The following Razor page renders a `Counter` component:
 @(await Html.RenderComponentAsync<Counter>(RenderMode.ServerPrerendered))
 ```
 
-In the following Razor page, a `Counter` component is rendered statically with an initial count that's specified using a form:
+### Render noninteractive components from Razor pages and views
+
+In the following Razor page, the `MyComponent` component is statically rendered with an initial value that's specified using a form:
  
 ```cshtml
 <h1>My Razor Page</h1>
 
 <form>
-    <input type="number" asp-for="InitialCount" />
-    <button type="submit">Set initial count</button>
+    <input type="number" asp-for="InitialValue" />
+    <button type="submit">Set initial value</button>
 </form>
  
-@(await Html.RenderComponentAsync<Counter>(RenderMode.Static, 
-    new { InitialCount = InitialCount }))
+@(await Html.RenderComponentAsync<MyComponent>(RenderMode.Static, 
+    new { InitialValue = InitialValue }))
  
 @code {
     [BindProperty(SupportsGet=true)]
-    public int InitialCount { get; set; }
+    public int InitialValue { get; set; }
 }
 ```
+
+Since `MyComponent` is statically rendered, it can't be interactive.
 
 ### Detect when the app is prerendering
  
