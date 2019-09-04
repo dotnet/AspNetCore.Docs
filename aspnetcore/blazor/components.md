@@ -543,18 +543,23 @@ While capturing component references use a similar syntax to [capturing element 
 
 ## Invoke component methods externally to update state
 
-A component method can directly or indirectly (from another component or a service) be used to update state. Consider a *notifier service* that can notify any listening component of the updated state:
+Blazor uses a `SynchronizationContext` to enforce a single logical thread of execution. A component's lifecycle methods and any event callbacks that are raised by Blazor are executed on this `SynchronizationContext`. In the event a component needs to be updated based on an external event, such as a timer or other notifications, you'll need to use the `InvokeAsync` method, which will dispatch to Blazor's `SynchronizationContext`:
+
+For example, consider a *notifier service* that can notify any listening component of the updated state:
 
 ```csharp
 public class NotifierService
 {
     // Can be called from anywhere
-    public void Update(string key, int value)
+    public async Task Update(string key, int value)
     {
-        Notify?.Invoke(key, value);
+        if (Notify != null)
+        {
+           await Notify.Invoke(key, value);
+        }
     }
 
-    public event Action<string, int> Notify;
+    public event Action<string, int, Task> Notify;
 }
 ```
 
@@ -575,11 +580,13 @@ Usage of the `NotifierService` to update a component:
         Notifier.Notify += OnNotify;
     }
 
-    public async void OnNotify(string key, int value)
+    public async Task OnNotify(string key, int value)
     {
-        lastNotification = (key, value);
-
-        await InvokeAsync(StateHasChanged);
+        await InvokeAsync(() =>
+        {
+           lastNotification = (key, value);
+           StateHasChanged();
+        });
     }
 
     public void Dispose()
@@ -589,7 +596,7 @@ Usage of the `NotifierService` to update a component:
 }
 ```
 
-`OnNotify` is called from the `NotifierService` on a `SynchronizationContext` that isn't the component's rendering `SynchronizationContext`. Therefore, the component can't directly be triggered to rerender (`StateHasChanged`) inside of `OnNotify`. Instead, utilize `InvokeAsync` to indirectly invoke the `StateHasChanged` method on the component's appropriate rendering `SynchronizationContext`.
+In this example, `NotifierService` invokes the component's `OnNotify` method outside of Blazor's `SynchronizationContext`. We use `InvokeAsync` to switch to the correct context, and queue a render.
 
 ## Use \@key to control the preservation of elements and components
 
