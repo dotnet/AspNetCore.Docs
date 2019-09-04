@@ -52,9 +52,11 @@ In ASP.NET Core 3.0 or later, a web API action can return an [asynchronous strea
 
 [!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetByPage)]
 
-Consider the following `GetByPageChunk` action as an illustration of how the client's *time-to-first-byte* (TTFB) is dramatically reduced over its synchronous counterpart. TTFB refers to the number of milliseconds the client spends awaiting the action's initial response. The client requests a single page of product data. Each page consists of 10 product records. The action is triggered with the URI `https://localhost:<port>/Products/chunk/1/10`. The first product is sent to the client, and execution continues for the second product. Product records are returned individually until all 10 products have been sent to the client. The client can begin its processing upon receiving the first product record. The synchronous form of this action would have blocked the client until all 10 records had been retrieved from the server.
+Consider the following `GetByPageChunk` action as an illustration of how the client's *time-to-first-byte* (TTFB) is dramatically reduced over its synchronous counterpart. TTFB refers to the number of milliseconds the client spends awaiting the action's initial response. The client requests a single page of product data. Each page consists of 10 product records. The action is triggered with the URI `https://localhost:<port>/Products/chunk/1/10`. The action's `pageNumber` and `pageSize` parameters assume values of `1` and `10`, respectively.
 
 [!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetByPageChunk)]
+
+The `yield return product;` statement sends the first product to the client, and execution continues for the second product. Product records are returned individually until all 10 products have been sent to the client. The client can begin its processing upon receiving the first product record. The synchronous form of this action would have blocked the client until all 10 records had been retrieved from the server.
 
 ::: moniker-end
 
