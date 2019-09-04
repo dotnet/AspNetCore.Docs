@@ -116,7 +116,13 @@ The client reconnects to the server with the same state that was used to prerend
 
 ### Render stateful interactive components from Razor pages and views
  
-Stateful interactive components can be added to a Razor page or view. When the page or view renders, the component is prerendered with it. The initial component state used for prerendering is thrown away, and new state is created when the connection is established.
+Stateful interactive components can be added to a Razor page or view.
+
+When the page or view renders:
+
+* The component is prerendered with the page or view.
+* The initial component state used for prerendering is lost.
+* New component state is created when the SignalR connection is established.
  
 The following Razor page renders a `Counter` component:
 
@@ -147,7 +153,7 @@ In the following Razor page, the `MyComponent` component is statically rendered 
 }
 ```
 
-Since `MyComponent` is statically rendered, it can't be interactive.
+Since `MyComponent` is statically rendered, the component can't be interactive.
 
 ### Detect when the app is prerendering
  
