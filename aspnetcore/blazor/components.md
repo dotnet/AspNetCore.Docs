@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/22/2019
+ms.date: 09/04/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -543,7 +543,7 @@ While capturing component references use a similar syntax to [capturing element 
 
 ## Invoke component methods externally to update state
 
-Blazor uses a `SynchronizationContext` to enforce a single logical thread of execution. A component's lifecycle methods and any event callbacks that are raised by Blazor are executed on this `SynchronizationContext`. In the event a component needs to be updated based on an external event, such as a timer or other notifications, you'll need to use the `InvokeAsync` method, which will dispatch to Blazor's `SynchronizationContext`:
+Blazor uses a `SynchronizationContext` to enforce a single logical thread of execution. A component's lifecycle methods and any event callbacks that are raised by Blazor are executed on this `SynchronizationContext`. In the event a component must be updated based on an external event, such as a timer or other notifications, use the `InvokeAsync` method, which will dispatch to Blazor's `SynchronizationContext`.
 
 For example, consider a *notifier service* that can notify any listening component of the updated state:
 
@@ -596,7 +596,7 @@ Usage of the `NotifierService` to update a component:
 }
 ```
 
-In this example, `NotifierService` invokes the component's `OnNotify` method outside of Blazor's `SynchronizationContext`. We use `InvokeAsync` to switch to the correct context, and queue a render.
+In the preceding example, `NotifierService` invokes the component's `OnNotify` method outside of Blazor's `SynchronizationContext`. `InvokeAsync` is used to switch to the correct context and queue a render.
 
 ## Use \@key to control the preservation of elements and components
 
