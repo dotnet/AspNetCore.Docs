@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
@@ -41,12 +42,10 @@ namespace WebApiSample.Api._30.Controllers
         #endregion
 
         #region snippet_GetByPage
-        [HttpGet("{pageNumber:int:min(1)}/{pageSize:int:min(1)}")]
-        public async IAsyncEnumerable<Product> GetByPage(
-            int pageNumber,
-            int pageSize)
+        [HttpGet("{pageNum:int:min(1)}/{pageSize:int:min(1)}")]
+        public async IAsyncEnumerable<Product> GetByPage(int pageNum, int pageSize)
         {
-            var products = _repository.GetProductsByPage(pageNumber, pageSize);
+            var products = _repository.GetProductsByPage(pageNum, pageSize);
             
             await foreach (var product in products)
             {
@@ -55,25 +54,18 @@ namespace WebApiSample.Api._30.Controllers
         }
         #endregion
 
-        #region snippet_GetByPageChunk
-        [HttpGet("chunk/{pageNumber:int:min(1)}/{pageSize:int:min(1)}")]
-        public async IAsyncEnumerable<Product> GetByPageChunk(
-            int pageNumber, 
-            int pageSize)
+        #region snippet_GetNPages
+        [HttpGet("chunk/{numPages:int:min(1)}/{pageSize:int:min(1)}")]
+        public async IAsyncEnumerable<Product> GetNPages(int numPages, int pageSize)
         {
-            int firstRecord = pageNumber * pageSize;
-            int stopRecord = firstRecord + pageSize;
-
-            while (firstRecord < stopRecord)
+            for (int pageIndex = 0; pageIndex < numPages; pageIndex++)
             {
-                var products = _repository.GetProductsByPage(pageNumber, pageSize);
+                var products = _repository.GetProductsByPage(pageIndex + 1, pageSize);
 
                 await foreach (var product in products)
                 {
                     yield return product;
                 }
-
-                firstRecord += pageSize;
             }
         }
         #endregion

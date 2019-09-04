@@ -31,6 +31,11 @@ namespace WebApiSample.DataAccess.Repositories
                     {
                         Name = "Learning .NET Standard",
                         Description = "A best-selling book covering the fundamentals of .NET Standard"
+                    },
+                    new Product
+                    {
+                        Name = "Learning C#",
+                        Description = "A best-selling book covering the fundamentals of C#"
                     });
                 _context.SaveChanges();
             }
