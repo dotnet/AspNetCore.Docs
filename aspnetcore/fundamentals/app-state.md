@@ -157,7 +157,7 @@ The following example shows how to set and get a serializable object with the ex
 
 ## TempData
 
-ASP.NET Core exposes the [TempData property of a Razor Pages page model](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.tempdata) or [TempData of an MVC controller](/dotnet/api/microsoft.aspnetcore.mvc.controller.tempdata). This property stores data until it's read. The [Keep](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.itempdatadictionary.keep) and [Peek](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.itempdatadictionary.peek) methods can be used to examine the data without deletion. TempData is particularly useful for redirection when data is required for more than a single request. TempData is implemented by TempData providers using either cookies or session state.
+ASP.NET Core exposes the Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) or Controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>. This property stores data until it's read in another request. <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*> and <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*> methods can be used to examine the data without deletion at the end of the request. <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*> marks all items in the dictionary for retention. `TempData` is particularly useful for redirection when data is required for more than a single request. `TempData` is implemented by `TempData` providers using either cookies or session state.
 
 ### TempData providers
 
