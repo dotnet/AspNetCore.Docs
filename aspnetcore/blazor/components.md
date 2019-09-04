@@ -414,23 +414,23 @@ In the following example, `UpdateHeading` is called asynchronously when the butt
 
 For some events, event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
 
-Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/release/3.0-preview8/src/Components/Components/src/UIEventArgs.cs) are shown in the following table.
+Supported [EventArgs](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src/Components/Web/src/Web) are shown in the following table.
 
 | Event | Class |
 | ----- | ----- |
-| Clipboard | `UIClipboardEventArgs` |
-| Drag  | `UIDragEventArgs` &ndash; `DataTransfer` is used to hold the dragged data during a drag and drop operation and may hold one or more `UIDataTransferItem`. `UIDataTransferItem` represents one drag data item. |
-| Error | `UIErrorEventArgs` |
-| Focus | `UIFocusEventArgs` &ndash; Doesn't include support for `relatedTarget`. |
-| `<input>` change | `UIChangeEventArgs` |
-| Keyboard | `UIKeyboardEventArgs` |
-| Mouse | `UIMouseEventArgs` |
-| Mouse pointer | `UIPointerEventArgs` |
-| Mouse wheel | `UIWheelEventArgs` |
-| Progress | `UIProgressEventArgs` |
-| Touch | `UITouchEventArgs` &ndash; `UITouchPoint` represents a single contact point on a touch-sensitive device. |
+| Clipboard        | `ClipboardEventArgs` |
+| Drag             | `DragEventArgs` &ndash; `DataTransfer` and `DataTransferItem` hold dragged item data. |
+| Error            | `ErrorEventArgs` |
+| Focus            | `FocusEventArgs` &ndash; Doesn't include support for `relatedTarget`. |
+| `<input>` change | `ChangeEventArgs` |
+| Keyboard         | `KeyboardEventArgs` |
+| Mouse            | `MouseEventArgs` |
+| Mouse pointer    | `PointerEventArgs` |
+| Mouse wheel      | `WheelEventArgs` |
+| Progress         | `ProgressEventArgs` |
+| Touch            | `TouchEventArgs` &ndash; `TouchPoint` represents a single contact point on a touch-sensitive device. |
 
-For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source (aspnet/AspNetCore release/3.0-preview9 branch)](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src/Components/Web/src).
+For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source (aspnet/AspNetCore release/3.0-preview9 branch)](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src/Components/Web/src/Web).
 
 ### Lambda expressions
 
