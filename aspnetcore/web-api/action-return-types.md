@@ -48,11 +48,11 @@ When known conditions need to be accounted for in an action, multiple return pat
 
 Memory consumption on the server becomes a performance consideration when returning large data sets. Imagine an action that calls <xref:System.Linq.Enumerable.ToList*> on a LINQ query. The query returns an entire product catalog, consisting of hundreds of thousands of products. Each product record is stored in server memory. An asynchronous stream can relieve the burden on the server.
 
-In ASP.NET Core 3.0 or later, a web API action can return an [asynchronous stream](/dotnet/csharp/whats-new/csharp-8#asynchronous-streams). Consider the following action, which uses <xref:System.Collections.Generic.IAsyncEnumerable%601> to stream a single page of product records to the client:
+In ASP.NET Core 3.0 or later, a web API action can return an [asynchronous stream](/dotnet/csharp/whats-new/csharp-8#asynchronous-streams). Consider the following action, which uses <xref:System.Collections.Generic.IAsyncEnumerable%601> to stream the specified number of product records to the client:
 
-[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetByPage)]
+[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetNRecords)]
 
-Consider the following `GetNPages` action as an illustration of how the client's *time-to-first-byte* (TTFB) is dramatically reduced over its synchronous counterpart. TTFB refers to the number of milliseconds the client spends awaiting the action's initial response. The client requests three pages of product data. Each page should contain no more than 10 product records. A total of 24 distinct product records exist in the underlying data store. The action is triggered with the URI `https://localhost:<port>/Products/chunk/3/10`. The action's `numPages` and `pageSize` parameters assume values of `3` and `10`, respectively.
+Consider the following `GetNPages` action as an illustration of how the client's *time-to-first-byte* (TTFB) is dramatically reduced over its synchronous counterpart. TTFB refers to the number of milliseconds the client spends awaiting the action's initial response. The client requests three pages of product data. Each page should contain no more than 10 product records. A total of 24 distinct product records exist in the underlying data store. The action is triggered with the URI `https://localhost:<port>/Products/pages/3/10`. The action's `numPages` and `pageSize` parameters assume values of `3` and `10`, respectively.
 
 [!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetNPages)]
 

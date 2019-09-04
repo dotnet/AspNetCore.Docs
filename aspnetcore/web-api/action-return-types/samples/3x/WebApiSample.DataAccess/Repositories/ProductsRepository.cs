@@ -34,6 +34,11 @@ namespace WebApiSample.DataAccess.Repositories
                     },
                     new Product
                     {
+                        Name = "Learning .NET Core",
+                        Description = "A best-selling book covering the fundamentals of .NET Core"
+                    },
+                    new Product
+                    {
                         Name = "Learning C#",
                         Description = "A best-selling book covering the fundamentals of C#"
                     });

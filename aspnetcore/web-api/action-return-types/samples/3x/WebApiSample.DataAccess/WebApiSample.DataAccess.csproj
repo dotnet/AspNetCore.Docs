@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>WebApiSample.DataAccess</RootNamespace>
     <ProjectUISubcaption>.NET Standard 2.1</ProjectUISubcaption>
-    <LangVersion>preview</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

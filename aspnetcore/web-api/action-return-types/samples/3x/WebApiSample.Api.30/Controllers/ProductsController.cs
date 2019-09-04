@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
@@ -41,11 +40,11 @@ namespace WebApiSample.Api._30.Controllers
         }
         #endregion
 
-        #region snippet_GetByPage
-        [HttpGet("{pageNum:int:min(1)}/{pageSize:int:min(1)}")]
-        public async IAsyncEnumerable<Product> GetByPage(int pageNum, int pageSize)
+        #region snippet_GetNRecords
+        [HttpGet("page/{pageSize:int:min(1)}")]
+        public async IAsyncEnumerable<Product> GetNRecords(int pageSize)
         {
-            var products = _repository.GetProductsByPage(pageNum, pageSize);
+            var products = _repository.GetProductsByPage(1, pageSize);
             
             await foreach (var product in products)
             {
@@ -55,7 +54,7 @@ namespace WebApiSample.Api._30.Controllers
         #endregion
 
         #region snippet_GetNPages
-        [HttpGet("chunk/{numPages:int:min(1)}/{pageSize:int:min(1)}")]
+        [HttpGet("pages/{numPages:int:min(1)}/{pageSize:int:min(1)}")]
         public async IAsyncEnumerable<Product> GetNPages(int numPages, int pageSize)
         {
             for (int pageIndex = 0; pageIndex < numPages; pageIndex++)
