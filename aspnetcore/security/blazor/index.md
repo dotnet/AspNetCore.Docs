@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/26/2019
+ms.date: 08/29/2019
 uid: security/blazor/index
 ---
 # ASP.NET Core Blazor authentication and authorization
@@ -482,4 +482,5 @@ The `CascadingAuthenticationState` supplies the `Task<AuthenticationState>` casc
 ## Additional resources
 
 * <xref:security/index>
+* <xref:security/blazor/server-side>
 * <xref:security/authentication/windowsauth>
