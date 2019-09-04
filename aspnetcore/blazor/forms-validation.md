@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/03/2019
+ms.date: 09/04/2019
 uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
@@ -171,7 +171,7 @@ The `EditForm` creates an `EditContext` as a [cascading value](xref:blazor/compo
 
 ## InputText based on the input event
 
-A version of `InputText` that uses the `input` event instead of the `change` event is supported.
+Use the `InputText` component to create a custom component that uses the `input` event instead of the `change` event.
 
 Create a component with the following markup, and use the component just as `InputText` is used:
 
