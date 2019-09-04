@@ -66,8 +66,8 @@ Use components with existing Razor Pages and MVC apps. There's no need to rewrit
 To render a component from a page or view, use the `RenderComponentAsync<TComponent>` HTML helper method:
 
 ```cshtml
-<div id="Counter">
-    @(await Html.RenderComponentAsync<Counter>(new { IncrementAmount = 10 }))
+<div id="MyComponent">
+    @(await Html.RenderComponentAsync<MyComponent>(RenderMode.ServerPrerendered))
 </div>
 ```
 
