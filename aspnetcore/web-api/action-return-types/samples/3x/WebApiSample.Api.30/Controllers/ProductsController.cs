@@ -40,11 +40,20 @@ namespace WebApiSample.Api._30.Controllers
         }
         #endregion
 
+        /// <summary>
+        /// Blocking example. Don't do it this way.
+        /// </summary>
         #region snippet_GetNRecords
         [HttpGet("page/{pageSize:int:min(1)}")]
-        public async IAsyncEnumerable<Product> GetNRecords(int pageSize)
+        public IEnumerable<Product> GetNRecords(int pageSize) =>
+            _repository.GetProductsByPage(1, pageSize);
+        #endregion
+
+        #region snippet_GetNRecordsAsync
+        [HttpGet("page/{pageSize:int:min(1)}")]
+        public async IAsyncEnumerable<Product> GetNRecordsAsync(int pageSize)
         {
-            var products = _repository.GetProductsByPage(1, pageSize);
+            var products = _repository.GetProductsByPageAsync(1, pageSize);
             
             await foreach (var product in products)
             {
@@ -53,13 +62,16 @@ namespace WebApiSample.Api._30.Controllers
         }
         #endregion
 
-        #region snippet_GetNPages
+        #region snippet_GetNPagesAsync
         [HttpGet("pages/{numPages:int:min(1)}/{pageSize:int:min(1)}")]
-        public async IAsyncEnumerable<Product> GetNPages(int numPages, int pageSize)
+        public async IAsyncEnumerable<Product> GetNPagesAsync(
+            int numPages, 
+            int pageSize)
         {
             for (int pageIndex = 0; pageIndex < numPages; pageIndex++)
             {
-                var products = _repository.GetProductsByPage(pageIndex + 1, pageSize);
+                var products = 
+                    _repository.GetProductsByPageAsync(pageIndex + 1, pageSize);
 
                 await foreach (var product in products)
                 {

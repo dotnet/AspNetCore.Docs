@@ -48,8 +48,8 @@ namespace WebApiSample.DataAccess.Repositories
 
         public IEnumerable<Product> GetProducts() =>
             _context.Products.ToList();
-        
-        public async IAsyncEnumerable<Product> GetProductsByPage(
+
+        public async IAsyncEnumerable<Product> GetProductsByPageAsync(
             int pageNumber, 
             int pageSize)
         {
@@ -62,6 +62,17 @@ namespace WebApiSample.DataAccess.Repositories
             {
                 yield return product;
             }
+        }
+
+        public IEnumerable<Product> GetProductsByPage(
+            int pageNumber,
+            int pageSize)
+        {
+            var products = _context.Products
+                                   .Skip(pageSize * (pageNumber - 1))
+                                   .Take(pageSize);
+
+            return products;
         }
 
         public bool TryGetProduct(int id, out Product product)
