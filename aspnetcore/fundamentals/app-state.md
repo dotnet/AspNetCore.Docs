@@ -159,6 +159,28 @@ The following example shows how to set and get a serializable object with the ex
 
 ASP.NET Core exposes the Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) or Controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>. This property stores data until it's read in another request. <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*> and <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*> methods can be used to examine the data without deletion at the end of the request. <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*> marks all items in the dictionary for retention. `TempData` is particularly useful for redirection when data is required for more than a single request. `TempData` is implemented by `TempData` providers using either cookies or session state.
 
+## TempData samples
+
+Consider the following page that creates a customer:
+
+[!code-csharp[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet&highlight=15-13,30)]
+
+The following page displays `TempData["Message"]`:
+
+[!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexPeek.cshtml?range=1-14)]
+
+In the preceding markup, at the end of the request, `TempData["Message"]` is **not** deleted because `Peek` is used. Refreshing the page displays `TempData["Message"]`.
+
+The following markup is similar to the preceding code, but reads the temporary data with `Keep`:
+
+[!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
+
+Navigating between the IndexPeek an IndexKeep pages will not delete `TempData["Message"]`.
+
+The following code displays `TempData["Message"]`, but at the end of the request, displays `TempData["Message"]` is deleted:
+
+[!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Index.cshtml?range=1-14)]
+
 ### TempData providers
 
 The cookie-based TempData provider is used by default to store TempData in cookies.
