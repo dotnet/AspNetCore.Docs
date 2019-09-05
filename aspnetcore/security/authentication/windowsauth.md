@@ -5,7 +5,7 @@ description: Learn how to configure Windows Authentication in ASP.NET Core for I
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 07/01/2019
+ms.date: 09/03/2019
 uid: security/authentication/windowsauth
 ---
 # Configure Windows Authentication in ASP.NET Core
@@ -155,8 +155,6 @@ Add Authentication Middleware by calling <xref:Microsoft.AspNetCore.Builder.Auth
 
  ```csharp
 app.UseAuthentication();
-
-app.UseMvc();
 ```
 
 For more information on middleware, see <xref:fundamentals/middleware/index>.

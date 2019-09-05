@@ -56,16 +56,9 @@ The preceding code binds a [Bootstrap tooltip widget](https://getbootstrap.com/d
 
 A Tag Helper Component must be added to the app's Tag Helper Components collection. There are three ways to add to the collection:
 
-* [Tag Helper Components in ASP.NET Core](#tag-helper-components-in-aspnet-core)
-  * [Use cases](#use-cases)
-    * [Inject into HTML head element](#inject-into-html-head-element)
-    * [Inject into HTML body element](#inject-into-html-body-element)
-  * [Register a Component](#register-a-component)
-    * [Registration via services container](#registration-via-services-container)
-    * [Registration via Razor file](#registration-via-razor-file)
-    * [Registration via Page Model or controller](#registration-via-page-model-or-controller)
-  * [Create a Component](#create-a-component)
-  * [Additional resources](#additional-resources)
+* [Registration via services container](#registration-via-services-container)
+* [Registration via Razor file](#registration-via-razor-file)
+* [Registration via Page Model or controller](#registration-via-page-model-or-controller)
 
 ### Registration via services container
 
@@ -125,7 +118,7 @@ Use the custom `address` Tag Helper Component to inject HTML markup as follows:
 public class AddressTagHelperComponent : TagHelperComponent
 {
     private readonly string _printableButton =
-        "<button type='button' class='btn btn-info' onclick=\"window.open("
+        "<button type='button' class='btn btn-info' onclick=\"window.open(" +
         "'https://binged.it/2AXRRYw')\">" +
         "<span class='glyphicon glyphicon-road' aria-hidden='true'></span>" +
         "</button>";

@@ -1,8 +1,8 @@
 ---
 title: App startup in ASP.NET Core
-author: tdykstra
+author: rick-anderson
 description: Learn how the Startup class in ASP.NET Core configures services and the app's request pipeline.
-ms.author: tdykstra
+ms.author: riande
 ms.custom: mvc
 ms.date: 8/7/2019
 uid: fundamentals/startup
@@ -74,15 +74,11 @@ A common use of [dependency injection](xref:fundamentals/dependency-injection) i
 
 [!code-csharp[](startup/sample_snapshot/Startup2.cs?highlight=7-8)]
 
-::: moniker-end
-An alternative to injecting `IWebHostEnvironment` is to use a conventions-based approach.
-::: moniker range=">= aspnetcore-3.0"
+Most services are not available until the `Configure` method is called.
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
-An alternative to injecting `IHostingEnvironment` is to use a conventions-based approach.
-::: moniker-end
+### Multiple StartUp
 
 When the app defines separate `Startup` classes for different environments (for example, `StartupDevelopment`), the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](xref:fundamentals/environments#environment-based-startup-class-and-methods).
 
@@ -102,8 +98,7 @@ For features that require substantial setup, there are `Add{Service}` extension 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](startup/3.0_samples/StartupFilterSample/StartupIdentity.cs
-?name=snippet)]
+[!code-csharp[](startup/3.0_samples/StartupFilterSample/StartupIdentity.cs?name=snippet)]
 
 ::: moniker-end
 

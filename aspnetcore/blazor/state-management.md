@@ -5,7 +5,7 @@ description: Learn how to persist state in Blazor server-side apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/06/2019
+ms.date: 08/13/2019
 uid: blazor/state-management
 ---
 # ASP.NET Core Blazor state management
@@ -249,7 +249,7 @@ Prerendering might be useful for other pages that don't use `localStorage` or `s
     private int? currentCount;
     private bool isWaitingForConnection;
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
         if (ComponentContext.IsConnected)
         {
@@ -320,7 +320,7 @@ else
 
     public int CurrentCount { get; set; }
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
         CurrentCount = await ProtectedSessionStore.GetAsync<int>("count");
         hasLoaded = true;

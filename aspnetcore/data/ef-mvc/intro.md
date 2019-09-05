@@ -1,15 +1,22 @@
 ---
 title: "Tutorial: Get started with EF Core in an ASP.NET MVC web app"
 description: "This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch."
-author: rick-anderson
-ms.author: tdykstra
+author: tdykstra
+ms.author: riande
 ms.custom: mvc
 ms.date: 02/06/2019
 ms.topic: tutorial
 uid: data/ef-mvc/intro
 ---
-
 # Tutorial: Get started with EF Core in an ASP.NET MVC web app
+
+::: moniker range=">= aspnetcore-3.0"
+
+This tutorial has **not** been updated to ASP.NET Core 3.0. The [Razor Pages version](xref:data/ef-rp/intro) has been updated. For information on when this might be updated, see [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/13920).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
@@ -373,3 +380,5 @@ Advance to the next tutorial to learn how to perform basic CRUD (create, read, u
 
 > [!div class="nextstepaction"]
 > [Implement basic CRUD functionality](crud.md)
+
+::: moniker-end

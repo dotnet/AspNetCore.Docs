@@ -1,0 +1,1 @@
+This text file is served for all *.txt static file requests via the RewriteTextFileRequests method rule.

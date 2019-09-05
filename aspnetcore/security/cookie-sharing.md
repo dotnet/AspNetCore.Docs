@@ -34,7 +34,7 @@ When using ASP.NET Core Identity:
 
 * Data protection keys and the app name must be shared among apps. A common key storage location is provided to the <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> method in the following examples. Use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> to configure a common shared app name (`SharedCookieApp` in the following examples). For more information, see <xref:security/data-protection/configuration/overview>.
 * Use the <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie*> extension method to set up the data protection service for cookies.
-* In the following example, the authentication type is set to `Identity.Application` by default.
+* The default authentication type is `Identity.Application`.
 
 In `Startup.ConfigureServices`:
 

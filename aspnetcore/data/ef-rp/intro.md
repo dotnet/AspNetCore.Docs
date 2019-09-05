@@ -1,6 +1,6 @@
 ---
 title: Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
-author: rick-anderson
+author: tdykstra
 description: Shows how to create a Razor Pages app using Entity Framework Core
 ms.author: riande
 ms.custom: "mvc, seodec18"
@@ -373,7 +373,11 @@ Create *Data/DbInitializer.cs* with the following code:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Run the app, delete any student records you created earlier, and stop the app.
+Stop the app if it's running, and run the following command in the **Package Manager Console** (PMC):
+
+```powershell
+Drop-Database
+```
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -695,7 +699,19 @@ In *Program.cs*, modify the `Main` method to call `Initialize`:
 
 [!code-csharp[](intro/samples/cu21/Program.cs?name=snippet2&highlight=14-15)]
 
-Delete any student records and restart the app. If the DB is not initialized, set a break point in `Initialize` to diagnose the problem.
+# [Visual Studio](#tab/visual-studio)
+
+Stop the app if it's running, and run the following command in the **Package Manager Console** (PMC):
+
+```powershell
+Drop-Database
+```
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Stop the app if it's running, and delete the *CU.db* file.
+
+---
 
 ## View the DB
 

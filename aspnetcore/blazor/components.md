@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/13/2019
+ms.date: 09/02/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -159,7 +159,7 @@ In the following example, the first `<input>` element (`id="useIndividualParams"
         {
             { "maxlength", "10" },
             { "placeholder", "Input placeholder text" },
-            { "required", "true" },
+            { "required", "required" },
             { "size", "50" }
         };
 }
@@ -179,7 +179,7 @@ The rendered `<input>` elements using both approaches is identical:
 <input id="useAttributesDict"
        maxlength="10"
        placeholder="Input placeholder text"
-       required="true"
+       required="required"
        size="50">
 ```
 
@@ -187,7 +187,7 @@ To accept arbitrary attributes, define a component parameter using the `[Paramet
 
 ```cshtml
 @code {
-    [Parameter(CaptureUnmatchedAttributes = true)]
+    [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object> InputAttributes { get; set; }
 }
 ```
@@ -430,7 +430,7 @@ Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/release/3.0-pr
 | Progress | `UIProgressEventArgs` |
 | Touch | `UITouchEventArgs` &ndash; `UITouchPoint` represents a single contact point on a touch-sensitive device. |
 
-For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview8/src/Components/Web/src).
+For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source (aspnet/AspNetCore release/3.0-preview9 branch)](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src/Components/Web/src).
 
 ### Lambda expressions
 
@@ -513,10 +513,14 @@ Prefer the strongly typed `EventCallback<T>` over `EventCallback`. `EventCallbac
 
 ## Capture references to components
 
-Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference, add a [@ref](xref:mvc/views/razor#ref) attribute to the child component and then define a field with the same name and the same type as the child component.
+Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference:
+
+* Add an [@ref](xref:mvc/views/razor#ref) attribute to the child component.
+* Define a field with the same type as the child component.
+* Provide the `@ref:suppressField` parameter, which suppresses backing field generation. For more information, see [Removing automatic backing field support for @ref in 3.0.0-preview9](https://github.com/aspnet/Announcements/issues/381).
 
 ```cshtml
-<MyLoginDialog @ref="loginDialog" ... />
+<MyLoginDialog @ref="loginDialog" @ref:suppressField ... />
 
 @code {
     private MyLoginDialog loginDialog;
@@ -532,6 +536,30 @@ When the component is rendered, the `loginDialog` field is populated with the `M
 
 > [!IMPORTANT]
 > The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the `OnAfterRenderAsync` or `OnAfterRender` methods.
+
+<!-- HOLD https://github.com/aspnet/AspNetCore.Docs/pull/13818
+Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`.
+
+The Razor compiler automatically generates a backing field for element and component references when using [@ref](xref:mvc/views/razor#ref). In the following example, there's no need to create a `myLoginDialog` field for the `LoginDialog` component:
+
+```cshtml
+<LoginDialog @ref="myLoginDialog" ... />
+
+@code {
+    private void OnSomething()
+    {
+        myLoginDialog.Show();
+    }
+}
+```
+
+When the component is rendered, the generated `myLoginDialog` field is populated with the `LoginDialog` component instance. You can then invoke .NET methods on the component instance.
+
+In some cases, a backing field is required. For example, declare a backing field when referencing generic components. To suppress backing field generation, specify the `@ref:suppressField` parameter.
+
+> [!IMPORTANT]
+> The generated `myLoginDialog` variable is only populated after the component is rendered and its output includes the `LoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the `OnAfterRenderAsync` or `OnAfterRender` methods.
+-->
 
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/javascript-interop#capture-references-to-elements), it isn't a [JavaScript interop](xref:blazor/javascript-interop) feature. Component references aren't passed to JavaScript code&mdash;they're only used in .NET code.
 
@@ -614,19 +642,19 @@ Ensure that values used for `@key` don't clash. If clashing values are detected 
 
 ## Lifecycle methods
 
-`OnInitAsync` and `OnInit` execute code to initialize the component. To perform an asynchronous operation, use `OnInitAsync` and the `await` keyword on the operation:
+`OnInitializedAsync` and `OnInitialized` execute code to initialize the component. To perform an asynchronous operation, use `OnInitializedAsync` and the `await` keyword on the operation:
 
 ```csharp
-protected override async Task OnInitAsync()
+protected override async Task OnInitializedAsync()
 {
     await ...
 }
 ```
 
-For a synchronous operation, use `OnInit`:
+For a synchronous operation, use `OnInitialized`:
 
 ```csharp
-protected override void OnInit()
+protected override void OnInitialized()
 {
     ...
 }
@@ -668,7 +696,7 @@ protected override void OnAfterRender()
 
 Asynchronous actions performed in lifecycle events may not have completed before the component is rendered. Objects might be `null` or incompletely populated with data while the lifecycle method is executing. Provide rendering logic to confirm that objects are initialized. Render placeholder UI elements (for example, a loading message) while objects are `null`.
 
-In the `FetchData` component of the Blazor templates, `OnInitAsync` is overridden to asychronously receive forecast data (`forecasts`). When `forecasts` is `null`, a loading message is displayed to the user. After the `Task` returned by `OnInitAsync` completes, the component is rerendered with the updated state.
+In the `FetchData` component of the Blazor templates, `OnInitializedAsync` is overridden to asychronously receive forecast data (`forecasts`). When `forecasts` is `null`, a loading message is displayed to the user. After the `Task` returned by `OnInitializedAsync` completes, the component is rerendered with the updated state.
 
 *Pages/FetchData.razor*:
 
@@ -679,7 +707,7 @@ In the `FetchData` component of the Blazor templates, `OnInitAsync` is overridde
 `SetParameters` can be overridden to execute code before parameters are set:
 
 ```csharp
-public override void SetParameters(ParameterCollection parameters)
+public override void SetParameters(ParameterView parameters)
 {
     ...
 
@@ -972,18 +1000,7 @@ For example, the sample app specifies theme information (`ThemeInfo`) in one of 
 }
 ```
 
-To make use of cascading values, components declare cascading parameters using the `[CascadingParameter]` attribute or based on a string name value:
-
-```cshtml
-<CascadingValue Value=@PermInfo Name="UserPermissions">...</CascadingValue>
-
-[CascadingParameter(Name = "UserPermissions")]
-private PermInfo Permissions { get; set; }
-```
-
-Binding with a string name value is relevant if you have multiple cascading values of the same type and need to differentiate them within the same subtree.
-
-Cascading values are bound to cascading parameters by type.
+To make use of cascading values, components declare cascading parameters using the `[CascadingParameter]` attribute. Cascading values are bound to cascading parameters by type.
 
 In the sample app, the `CascadingValuesParametersTheme` component binds the `ThemeInfo` cascading value to a cascading parameter. The parameter is used to set the CSS class for one of the buttons displayed by the component.
 
@@ -1023,13 +1040,46 @@ In the sample app, the `CascadingValuesParametersTheme` component binds the `The
 }
 ```
 
+To cascade multiple values of the same type within the same subtree, provide a unique `Name` string to each `CascadingValue` component and its corresponding `CascadingParameter`. In the following example, two `CascadingValue` components cascade different instances of `MyCascadingType` by name:
+
+```cshtml
+<CascadingValue Value=@ParentCascadeParameter1 Name="CascadeParam1">
+    <CascadingValue Value=@ParentCascadeParameter2 Name="CascadeParam2">
+        ...
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    private MyCascadingType ParentCascadeParameter1;
+
+    [Parameter]
+    public MyCascadingType ParentCascadeParameter2 { get; set; }
+
+    ...
+}
+```
+
+In a descendant component, the cascaded parameters receive their values from the corresponding cascaded values in the ancestor component by name:
+
+```cshtml
+...
+
+@code {
+    [CascadingParameter(Name = "CascadeParam1")]
+    protected MyCascadingType ChildCascadeParameter1 { get; set; }
+    
+    [CascadingParameter(Name = "CascadeParam2")]
+    protected MyCascadingType ChildCascadeParameter2 { get; set; }
+}
+```
+
 ### TabSet example
 
 Cascading parameters also enable components to collaborate across the component hierarchy. For example, consider the following *TabSet* example in the sample app.
 
 The sample app has an `ITab` interface that tabs implement:
 
-[!code-cs[](common/samples/3.x/BlazorSample/UIInterfaces/ITab.cs)]
+[!code-csharp[](common/samples/3.x/BlazorSample/UIInterfaces/ITab.cs)]
 
 The `CascadingValuesParametersTabSet` component uses the `TabSet` component, which contains several `Tab` components:
 
