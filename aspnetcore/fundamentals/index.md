@@ -272,7 +272,7 @@ For more information, see [ContentRootPath](/aspnet/core/fundamentals/host/gener
 
 ::: moniker range="< aspnetcore-3.0"
 
-For more information, see [Web root](xref:fundamentals/host/web-host#webroot).
+For more information, see [Web root](/aspnet/core/fundamentals/host/web-host#webroot).
 
 ::: moniker-end
 
