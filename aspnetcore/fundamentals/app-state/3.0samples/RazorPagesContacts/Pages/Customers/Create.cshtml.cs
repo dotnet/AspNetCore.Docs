@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RazorPagesContacts.Data;
 using RazorPagesContacts.Models;
 using System.Threading.Tasks;
 
@@ -8,9 +9,9 @@ namespace RazorPagesContacts.Pages.Customers
     #region snippet
     public class CreateModel : PageModel
     {
-        private readonly RazorPagesContacts.Data.RazorPagesContactsContext _context;
+        private readonly RazorPagesContactsContext _context;
 
-        public CreateModel(RazorPagesContacts.Data.RazorPagesContactsContext context)
+        public CreateModel(RazorPagesContactsContext context)
         {
             _context = context;
         }
