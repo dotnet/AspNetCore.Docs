@@ -5,7 +5,7 @@ description: Learn how to share authentication cookies among ASP.NET 4.x and ASP
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/15/2019
+ms.date: 09/04/2019
 uid: security/cookie-sharing
 ---
 # Share authentication cookies among ASP.NET apps
@@ -40,7 +40,7 @@ In `Startup.ConfigureServices`:
 
 ```csharp
 services.AddDataProtection()
-    .PersistKeysToFileSystem({PATH TO COMMON KEY RING FOLDER})
+    .PersistKeysToFileSystem("{PATH TO COMMON KEY RING FOLDER}")
     .SetApplicationName("SharedCookieApp");
 
 services.ConfigureApplicationCookie(options => {
@@ -54,7 +54,7 @@ Custom authentication builder must set the `Cookie.Path` for single sign on apps
 
 ```csharp
 services.AddDataProtection()
-    .PersistKeysToFileSystem({PATH TO COMMON KEY RING FOLDER})
+    .PersistKeysToFileSystem("{PATH TO COMMON KEY RING FOLDER}")
     .SetApplicationName("SharedCookieApp");
 
 services.ConfigureApplicationCookie(options => {
@@ -67,7 +67,7 @@ When using cookies directly without ASP.NET Core Identity, configure data protec
 
 ```csharp
 services.AddDataProtection()
-    .PersistKeysToFileSystem({PATH TO COMMON KEY RING FOLDER})
+    .PersistKeysToFileSystem("{PATH TO COMMON KEY RING FOLDER}")
     .SetApplicationName("SharedCookieApp");
 
 services.AddAuthentication("Identity.Application")
@@ -132,7 +132,7 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
     },
     TicketDataFormat = new AspNetTicketDataFormat(
         new DataProtectorShim(
-            DataProtectionProvider.Create({PATH TO COMMON KEY RING FOLDER},
+            DataProtectionProvider.Create("{PATH TO COMMON KEY RING FOLDER}",
                 (builder) => { builder.SetApplicationName("SharedCookieApp"); })
             .CreateProtector(
                 "Microsoft.AspNetCore.Authentication.Cookies." +
