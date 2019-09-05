@@ -174,7 +174,7 @@ In the previous code, posting the form:
 * With validation errors detected by client side validation:
 
   * Data is **not** posted to the server.
-  * Client side validation is explained later in this document.
+  * Client-side validation is explained later in this document.
 
 The `Customer` property uses [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute to opt in to model binding:
 
@@ -185,6 +185,15 @@ The `Customer` property uses [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.Bi
 Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to properties can reduce the amount of code you have to write. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.
 
 [!INCLUDE[](~/includes/bind-get.md)]
+
+Reviewing the *Pages/Create.cshtml* view file:
+
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml?highlight=3,9)]
+
+* In the preceding code, the [input tag helper](xref:mvc/views/working-with-forms#the-input-tag-helper) `<input asp-for="Customer.Name" />`  binds the HTML `<input>` element to the `Customer.Name` model expression.
+* [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#addtaghelper-makes-tag-helpers-available)  makes Tag Helpers available.
+
+### The home page
 
 The home page (*Index.cshtml*):
 
@@ -264,7 +273,7 @@ The  preceding code:
 * Includes jQuery and jQuery validation scripts.
 * Uses the `<div />` and `<span />` [Tag Helpers](xref:mvc/views/tag-helpers/intro) to enable:
 
-  * Client side validation.
+  * Client-side validation.
   * Validation error rendering.
 
 * Generates the following HTML:
@@ -341,7 +350,7 @@ The [Layout](xref:mvc/views/layout):
 * Controls the layout of each page (unless the page opts out of layout).
 * Imports HTML structures such as JavaScript and stylesheets.
 
-See [layout page](xref:mvc/views/layout) for more information.
+For more information, see [layout page](xref:mvc/views/layout)..
 
 The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml*:
 
@@ -563,7 +572,7 @@ To configure advanced options, use the extension method <xref:Microsoft.Extensio
 
 [!code-cs[](index/3.0sample/RazorPagesContacts/StartupRPoptions.cs?name=snippet)]
 
-Use the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> to set the root directory for pages, or add application model conventions for pages.
+Use the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> to set the root directory for pages, or add application model conventions for pages. For more information on conventions, see [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization).
 
 To precompile views, see [Razor view compilation](xref:mvc/views/view-compilation) .
 
