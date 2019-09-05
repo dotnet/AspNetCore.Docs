@@ -19,8 +19,8 @@ namespace GrcpService
             services.AddGrpc(options =>
             {
                 options.EnableDetailedErrors = true;
-                options.ReceiveMaxMessageSize = 2 * 1024 * 1024;  // 2 megabytes
-                options.SendMaxMessageSize = 5 * 1024 * 1024;     // 5 megabytes 
+                options.MaxReceiveMessageSize = 2 * 1024 * 1024; // 2 MB
+                options.MaxSendMessageSize = 5 * 1024 * 1024; // 5 MB
             });
         }
 #endregion

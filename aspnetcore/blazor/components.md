@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/13/2019
+ms.date: 09/04/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -66,8 +66,8 @@ Use components with existing Razor Pages and MVC apps. There's no need to rewrit
 To render a component from a page or view, use the `RenderComponentAsync<TComponent>` HTML helper method:
 
 ```cshtml
-<div id="Counter">
-    @(await Html.RenderComponentAsync<Counter>(new { IncrementAmount = 10 }))
+<div id="MyComponent">
+    @(await Html.RenderComponentAsync<MyComponent>(RenderMode.ServerPrerendered))
 </div>
 ```
 
@@ -414,23 +414,23 @@ In the following example, `UpdateHeading` is called asynchronously when the butt
 
 For some events, event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
 
-Supported [UIEventArgs](https://github.com/aspnet/AspNetCore/blob/release/3.0-preview8/src/Components/Components/src/UIEventArgs.cs) are shown in the following table.
+Supported [EventArgs](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src/Components/Web/src/Web) are shown in the following table.
 
 | Event | Class |
 | ----- | ----- |
-| Clipboard | `UIClipboardEventArgs` |
-| Drag  | `UIDragEventArgs` &ndash; `DataTransfer` is used to hold the dragged data during a drag and drop operation and may hold one or more `UIDataTransferItem`. `UIDataTransferItem` represents one drag data item. |
-| Error | `UIErrorEventArgs` |
-| Focus | `UIFocusEventArgs` &ndash; Doesn't include support for `relatedTarget`. |
-| `<input>` change | `UIChangeEventArgs` |
-| Keyboard | `UIKeyboardEventArgs` |
-| Mouse | `UIMouseEventArgs` |
-| Mouse pointer | `UIPointerEventArgs` |
-| Mouse wheel | `UIWheelEventArgs` |
-| Progress | `UIProgressEventArgs` |
-| Touch | `UITouchEventArgs` &ndash; `UITouchPoint` represents a single contact point on a touch-sensitive device. |
+| Clipboard        | `ClipboardEventArgs` |
+| Drag             | `DragEventArgs` &ndash; `DataTransfer` and `DataTransferItem` hold dragged item data. |
+| Error            | `ErrorEventArgs` |
+| Focus            | `FocusEventArgs` &ndash; Doesn't include support for `relatedTarget`. |
+| `<input>` change | `ChangeEventArgs` |
+| Keyboard         | `KeyboardEventArgs` |
+| Mouse            | `MouseEventArgs` |
+| Mouse pointer    | `PointerEventArgs` |
+| Mouse wheel      | `WheelEventArgs` |
+| Progress         | `ProgressEventArgs` |
+| Touch            | `TouchEventArgs` &ndash; `TouchPoint` represents a single contact point on a touch-sensitive device. |
 
-For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source (aspnet/AspNetCore release/3.0-preview9 branch)](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src/Components/Web/src).
+For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source (aspnet/AspNetCore release/3.0-preview9 branch)](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src/Components/Web/src/Web).
 
 ### Lambda expressions
 
@@ -517,10 +517,9 @@ Component references provide a way to reference a component instance so that you
 
 * Add an [@ref](xref:mvc/views/razor#ref) attribute to the child component.
 * Define a field with the same type as the child component.
-* Provide the `@ref:suppressField` parameter, which suppresses backing field generation. For more information, see [Removing automatic backing field support for @ref in 3.0.0-preview9](https://github.com/aspnet/Announcements/issues/381).
 
 ```cshtml
-<MyLoginDialog @ref="loginDialog" @ref:suppressField ... />
+<MyLoginDialog @ref="loginDialog" ... />
 
 @code {
     private MyLoginDialog loginDialog;
@@ -537,34 +536,67 @@ When the component is rendered, the `loginDialog` field is populated with the `M
 > [!IMPORTANT]
 > The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the `OnAfterRenderAsync` or `OnAfterRender` methods.
 
-<!-- HOLD https://github.com/aspnet/AspNetCore.Docs/pull/13818
-Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`.
-
-The Razor compiler automatically generates a backing field for element and component references when using [@ref](xref:mvc/views/razor#ref). In the following example, there's no need to create a `myLoginDialog` field for the `LoginDialog` component:
-
-```cshtml
-<LoginDialog @ref="myLoginDialog" ... />
-
-@code {
-    private void OnSomething()
-    {
-        myLoginDialog.Show();
-    }
-}
-```
-
-When the component is rendered, the generated `myLoginDialog` field is populated with the `LoginDialog` component instance. You can then invoke .NET methods on the component instance.
-
-In some cases, a backing field is required. For example, declare a backing field when referencing generic components. To suppress backing field generation, specify the `@ref:suppressField` parameter.
-
-> [!IMPORTANT]
-> The generated `myLoginDialog` variable is only populated after the component is rendered and its output includes the `LoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the `OnAfterRenderAsync` or `OnAfterRender` methods.
--->
-
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/javascript-interop#capture-references-to-elements), it isn't a [JavaScript interop](xref:blazor/javascript-interop) feature. Component references aren't passed to JavaScript code&mdash;they're only used in .NET code.
 
 > [!NOTE]
 > Do **not** use component references to mutate the state of child components. Instead, use normal declarative parameters to pass data to child components. Use of normal declarative parameters result in child components that rerender at the correct times automatically.
+
+## Invoke component methods externally to update state
+
+Blazor uses a `SynchronizationContext` to enforce a single logical thread of execution. A component's lifecycle methods and any event callbacks that are raised by Blazor are executed on this `SynchronizationContext`. In the event a component must be updated based on an external event, such as a timer or other notifications, use the `InvokeAsync` method, which will dispatch to Blazor's `SynchronizationContext`.
+
+For example, consider a *notifier service* that can notify any listening component of the updated state:
+
+```csharp
+public class NotifierService
+{
+    // Can be called from anywhere
+    public async Task Update(string key, int value)
+    {
+        if (Notify != null)
+        {
+            await Notify.Invoke(key, value);
+        }
+    }
+
+    public event Action<string, int, Task> Notify;
+}
+```
+
+Usage of the `NotifierService` to update a component:
+
+```cshtml
+@page "/"
+@inject NotifierService Notifier
+@implements IDisposable
+
+<p>Last update: @lastNotification.key = @lastNotification.value</p>
+
+@code {
+    private (string key, int value) lastNotification;
+
+    protected override void OnInitialized()
+    {
+        Notifier.Notify += OnNotify;
+    }
+
+    public async Task OnNotify(string key, int value)
+    {
+        await InvokeAsync(() =>
+        {
+            lastNotification = (key, value);
+            StateHasChanged();
+        });
+    }
+
+    public void Dispose()
+    {
+        Notifier.Notify -= OnNotify;
+    }
+}
+```
+
+In the preceding example, `NotifierService` invokes the component's `OnNotify` method outside of Blazor's `SynchronizationContext`. `InvokeAsync` is used to switch to the correct context and queue a render.
 
 ## Use \@key to control the preservation of elements and components
 
@@ -1000,18 +1032,7 @@ For example, the sample app specifies theme information (`ThemeInfo`) in one of 
 }
 ```
 
-To make use of cascading values, components declare cascading parameters using the `[CascadingParameter]` attribute or based on a string name value:
-
-```cshtml
-<CascadingValue Value=@PermInfo Name="UserPermissions">...</CascadingValue>
-
-[CascadingParameter(Name = "UserPermissions")]
-private PermInfo Permissions { get; set; }
-```
-
-Binding with a string name value is relevant if you have multiple cascading values of the same type and need to differentiate them within the same subtree.
-
-Cascading values are bound to cascading parameters by type.
+To make use of cascading values, components declare cascading parameters using the `[CascadingParameter]` attribute. Cascading values are bound to cascading parameters by type.
 
 In the sample app, the `CascadingValuesParametersTheme` component binds the `ThemeInfo` cascading value to a cascading parameter. The parameter is used to set the CSS class for one of the buttons displayed by the component.
 
@@ -1051,13 +1072,46 @@ In the sample app, the `CascadingValuesParametersTheme` component binds the `The
 }
 ```
 
+To cascade multiple values of the same type within the same subtree, provide a unique `Name` string to each `CascadingValue` component and its corresponding `CascadingParameter`. In the following example, two `CascadingValue` components cascade different instances of `MyCascadingType` by name:
+
+```cshtml
+<CascadingValue Value=@ParentCascadeParameter1 Name="CascadeParam1">
+    <CascadingValue Value=@ParentCascadeParameter2 Name="CascadeParam2">
+        ...
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    private MyCascadingType ParentCascadeParameter1;
+
+    [Parameter]
+    public MyCascadingType ParentCascadeParameter2 { get; set; }
+
+    ...
+}
+```
+
+In a descendant component, the cascaded parameters receive their values from the corresponding cascaded values in the ancestor component by name:
+
+```cshtml
+...
+
+@code {
+    [CascadingParameter(Name = "CascadeParam1")]
+    protected MyCascadingType ChildCascadeParameter1 { get; set; }
+    
+    [CascadingParameter(Name = "CascadeParam2")]
+    protected MyCascadingType ChildCascadeParameter2 { get; set; }
+}
+```
+
 ### TabSet example
 
 Cascading parameters also enable components to collaborate across the component hierarchy. For example, consider the following *TabSet* example in the sample app.
 
 The sample app has an `ITab` interface that tabs implement:
 
-[!code-cs[](common/samples/3.x/BlazorSample/UIInterfaces/ITab.cs)]
+[!code-csharp[](common/samples/3.x/BlazorSample/UIInterfaces/ITab.cs)]
 
 The `CascadingValuesParametersTabSet` component uses the `TabSet` component, which contains several `Tab` components:
 
@@ -1334,7 +1388,7 @@ public class CultureController : Controller
 The following component shows an example of how to perform the initial redirection when the user selects a culture:
 
 ```cshtml
-@inject IUriHelper UriHelper
+@inject NavigationManager NavigationManager
 
 <h3>Select your language</h3>
 
@@ -1350,12 +1404,12 @@ The following component shows an example of how to perform the initial redirecti
     private void OnSelected(UIChangeEventArgs e)
     {
         var culture = (string)e.Value;
-        var uri = new Uri(UriHelper.GetAbsoluteUri())
+        var uri = new Uri(NavigationManager.Uri())
             .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
         var query = $"?culture={Uri.EscapeDataString(culture)}&" +
             $"redirectUri={Uri.EscapeDataString(uri)}";
 
-        UriHelper.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
+        NavigationManager.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
     }
 }
 ```
@@ -1375,3 +1429,21 @@ A limited set of ASP.NET Core's localization scenarios are currently supported:
 * `IHtmlLocalizer<>`, `IViewLocalizer<>`, and Data Annotations localization are ASP.NET Core MVC scenarios and **not supported** in Blazor apps.
 
 For more information, see <xref:fundamentals/localization>.
+
+## Scalable Vector Graphics (SVG) images
+
+Since Blazor renders HTML, browser-supported images, including Scalable Vector Graphics (SVG) images (*.svg*), are supported via the `<img>` tag:
+
+```html
+<img alt="Example image" src="some-image.svg" />
+```
+
+Similarly, SVG images are supported in the CSS rules of a stylesheet file (*.css*):
+
+```css
+.my-element {
+    background-image: url("some-image.svg");
+}
+```
+
+However, inline SVG markup isn't supported in all scenarios. If you place an `<svg>` tag directly into a component file (*.razor*), basic image rendering is supported but many advanced scenarios aren't yet supported. For example, `<use>` tags aren't currently respected, and `@bind` can't be used with some SVG tags. We expect to address these limitations in a future release.

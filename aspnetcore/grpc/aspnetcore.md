@@ -4,7 +4,7 @@ author: juntaoluo
 description: Learn the basic concepts when writing gRPC services with ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 08/28/2019
+ms.date: 09/03/2019
 uid: grpc/aspnetcore
 ---
 # gRPC services with ASP.NET Core
@@ -65,10 +65,9 @@ Kestrel gRPC endpoints:
 
 #### HTTP/2
 
-Kestrel [supports HTTP/2](xref:fundamentals/servers/kestrel#http2-support) on most modern operating systems. Kestrel endpoints are configured to support HTTP/1.1 and HTTP/2 connections by default.
+gRPC requires HTTP/2. gRPC for ASP.NET Core validates [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) is `HTTP/2`.
 
-> [!NOTE]
-> macOS doesn't support ASP.NET Core gRPC with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). Additional configuration is required to successfully run gRPC services on macOS. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
+Kestrel [supports HTTP/2](xref:fundamentals/servers/kestrel#http2-support) on most modern operating systems. Kestrel endpoints are configured to support HTTP/1.1 and HTTP/2 connections by default.
 
 #### HTTPS
 
@@ -95,7 +94,7 @@ In production, HTTPS must be explicitly configured. In the following *appsetting
 }
 ```
 
-Alternatively, Kestrel endspoints can be configured in *Program.cs*:
+Alternatively, Kestrel endpoints can be configured in *Program.cs*:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -116,7 +115,12 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
+When an HTTP/2 endpoint is configured without HTTPS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because HTTPS is required to negotiate HTTP/2. Without HTTPS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
+
 For more information on enabling HTTP/2 and HTTPS with Kestrel, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+
+> [!NOTE]
+> macOS doesn't support ASP.NET Core gRPC with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). Additional configuration is required to successfully run gRPC services on macOS. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
 
 ## Integration with ASP.NET Core APIs
 
