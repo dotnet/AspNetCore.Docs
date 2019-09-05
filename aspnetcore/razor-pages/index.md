@@ -559,46 +559,30 @@ The `?` following `handler` means the route parameter is optional.
 
 ## Configuration and settings
 
-To configure advanced options, use the extension method `AddRazorPagesOptions` on the MVC builder:
+To configure advanced options, use the extension method <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.AddRazorPagesOptions*>:
 
 [!code-cs[](index/3.0sample/RazorPagesContacts/StartupRPoptions.cs?name=snippet)]
 
-Use the `RazorPagesOptions` to set the root directory for pages, or add application model conventions for pages.
+Use the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> to set the root directory for pages, or add application model conventions for pages.
 
 To precompile views, see [Razor view compilation](xref:mvc/views/view-compilation) .
 
-[Download or view sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/index/3.0sample).
-
-See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.
-
 ### Specify that Razor Pages are at the content root
 
-By default, Razor Pages are rooted in the */Pages* directory. Add [WithRazorPagesAtContentRoot](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvcbuilderextensions.withrazorpagesatcontentroot) to [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc#Microsoft_Extensions_DependencyInjection_MvcServiceCollectionExtensions_AddMvc_Microsoft_Extensions_DependencyInjection_IServiceCollection_) to specify that your Razor Pages are at the content root ([ContentRootPath](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.contentrootpath)) of the app:
+By default, Razor Pages are rooted in the */Pages* directory. Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.WithRazorPagesAtContentRoot*> to specify that your Razor Pages are at the content root (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>) of the app:
 
-```csharp
-services.AddMvc()
-    .AddRazorPagesOptions(options =>
-    {
-        ...
-    })
-    .WithRazorPagesAtContentRoot();
-```
+[!code-cs[](index/3.0sample/RazorPagesContacts/StartupWithRazorPagesAtContentRoot.cs?name=snippet)]
 
 ### Specify that Razor Pages are at a custom root directory
 
-Add [WithRazorPagesRoot](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvccorebuilderextensions.withrazorpagesroot) to [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc#Microsoft_Extensions_DependencyInjection_MvcServiceCollectionExtensions_AddMvc_Microsoft_Extensions_DependencyInjection_IServiceCollection_) to specify that your Razor Pages are at a custom root directory in the app (provide a relative path):
+Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderExtensions.WithRazorPagesRoot*> to specify that Razor Pages are at a custom root directory in the app (provide a relative path):
 
-```csharp
-services.AddMvc()
-    .AddRazorPagesOptions(options =>
-    {
-        ...
-    })
-    .WithRazorPagesRoot("/path/to/razor/pages");
-```
+[!code-cs[](index/3.0sample/RazorPagesContacts/StartupWithRazorPagesRoot.cs?name=snippet)]
 
 ## Additional resources
 
+* See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.
+* [Download or view sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/index/3.0sample).
 * <xref:index>
 * <xref:mvc/views/razor>
 * <xref:mvc/controllers/areas>

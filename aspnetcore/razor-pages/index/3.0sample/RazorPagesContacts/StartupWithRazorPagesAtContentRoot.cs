@@ -8,9 +8,9 @@ using RazorPagesContacts.Data;
 
 namespace RazorPagesContacts
 {
-    public class StartupRPoptions
+    public class StartupWithRazorPagesRoot
     {
-        public StartupRPoptions(IConfiguration configuration)
+        public StartupWithRazorPagesRoot(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -23,9 +23,9 @@ namespace RazorPagesContacts
             services.AddRazorPages()
                 .AddRazorPagesOptions(options =>
                 {
-                    options.RootDirectory = "/MyPages";
                     options.Conventions.AuthorizeFolder("/MyPages/Admin");
-                });
+                })
+                .WithRazorPagesAtContentRoot();
         }
         #endregion
 
