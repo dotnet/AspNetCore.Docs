@@ -79,7 +79,7 @@ using (var call = client.SayHellos(new HelloRequest { Name = "World" }))
     while (await call.ResponseStream.MoveNext())
     {
         Console.WriteLine("Greeting: " + call.ResponseStream.Current.Message);
-        // Greeting: Hello World" is streamed multiple times
+        // "Greeting: Hello World" is written multiple times
     }
 }
 ```
@@ -93,7 +93,7 @@ using (var call = client.SayHellos(new HelloRequest { Name = "World" }))
     await foreach (var response in call.ResponseStream.ReadAllAsync())
     {
         Console.WriteLine("Greeting: " + response.Message);
-        // "Greeting: Hello World" is streamed multiple times
+        // "Greeting: Hello World" is written multiple times
     }
 }
 ```
