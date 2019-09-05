@@ -264,7 +264,17 @@ For more information, see [Content root](xref:fundamentals/host/web-host#content
 
 The web root (also known as *webroot*) is the base path to public, static resources, such as CSS, JavaScript, and image files. The static files middleware will only serve files from the web root directory (and sub-directories) by default. The web root path defaults to *{Content Root}/wwwroot*, but a different location can be specified when [building the host](#host).
 
+::: moniker range=">= aspnetcore-3.0"
+
+For more information, see [ContentRootPath](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#contentrootpath)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 For more information, see [Web root](xref:fundamentals/host/web-host#webroot).
+
+::: moniker-end
 
 In Razor (*.cshtml*) files, the tilde-slash `~/` points to the web root. Paths beginning with `~/` are referred to as virtual paths.
 
