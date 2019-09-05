@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/26/2019
+ms.date: 08/29/2019
 uid: security/blazor/index
 ---
 # ASP.NET Core Blazor authentication and authorization
@@ -213,17 +213,21 @@ If authentication state data is required for procedural logic, such as when perf
 
 If `user.Identity.IsAuthenticated` is `true`, claims can be enumerated and membership in roles evaluated.
 
-Set up the `Task<AuthenticationState>` cascading parameter using the `CascadingAuthenticationState` component:
+Set up the `Task<AuthenticationState>` cascading parameter using the `AuthorizeRouteView` and `CascadingAuthenticationState` components:
 
 ```cshtml
-<CascadingAuthenticationState>
-    <Router AppAssembly="typeof(Startup).Assembly">
-        <NotFoundContent>
-            <h1>Sorry</h1>
-            <p>Sorry, there's nothing at this address.</p>
-        </NotFoundContent>
-    </Router>
-</CascadingAuthenticationState>
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+    </Found>
+    <NotFound>
+        <CascadingAuthenticationState>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </CascadingAuthenticationState>
+    </NotFound>
+</Router>
 ```
 
 ## Authorization
@@ -366,7 +370,7 @@ If neither `Roles` nor `Policy` is specified, `[Authorize]` uses the default pol
 
 ## Customize unauthorized content with the Router component
 
-The `Router` component allows the app to specify custom content if:
+The `Router` component, in conjunction with the `AuthorizeRouteView` component, allows the app to specify custom content if:
 
 * Content isn't found.
 * The user fails an `[Authorize]` condition applied to the component. The `[Authorize]` attribute is covered in the [[Authorize] attribute](#authorize-attribute) section.
@@ -375,28 +379,34 @@ The `Router` component allows the app to specify custom content if:
 In the default Blazor server-side project template, the *App.razor* file demonstrates how to set custom content:
 
 ```cshtml
-<CascadingAuthenticationState>
-    <Router AppAssembly="typeof(Startup).Assembly">
-        <NotFoundContent>
-            <h1>Sorry</h1>
-            <p>Sorry, there's nothing at this address.</p>
-        </NotFoundContent>
-        <NotAuthorizedContent>
-            <h1>Sorry</h1>
-            <p>You're not authorized to reach this page.</p>
-            <p>You may need to log in as a different user.</p>
-        </NotAuthorizedContent>
-        <AuthorizingContent>
-            <h1>Authentication in progress</h1>
-            <p>Only visible while authentication is in progress.</p>
-        </AuthorizingContent>
-    </Router>
-</CascadingAuthenticationState>
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+            <NotAuthorized>
+                <h1>Sorry</h1>
+                <p>You're not authorized to reach this page.</p>
+                <p>You may need to log in as a different user.</p>
+            </NotAuthorized>
+            <Authorizing>
+                <h1>Authentication in progress</h1>
+                <p>Only visible while authentication is in progress.</p>
+            </Authorizing>
+        </AuthorizeRouteView>
+    </Found>
+    <NotFound>
+        <CascadingAuthenticationState>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <h1>Sorry</h1>
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </CascadingAuthenticationState>
+    </NotFound>
+</Router>
 ```
 
-The content of `<NotFoundContent>`, `<NotAuthorizedContent>`, and `<AuthorizingContent>` can include arbitrary items, such as other interactive components.
+The content of `<NotFound>`, `<NotAuthorized>`, and `<Authorizing>` can include arbitrary items, such as other interactive components.
 
-If `<NotAuthorizedContent>` isn't specified, the router uses the following fallback message:
+If `<NotAuthorized>` isn't specified, the `<AuthorizeRouteView>` uses the following fallback message:
 
 ```html
 Not authorized.
@@ -472,4 +482,5 @@ The `CascadingAuthenticationState` supplies the `Task<AuthenticationState>` casc
 ## Additional resources
 
 * <xref:security/index>
+* <xref:security/blazor/server-side>
 * <xref:security/authentication/windowsauth>
