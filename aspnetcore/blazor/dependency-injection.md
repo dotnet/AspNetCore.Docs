@@ -27,7 +27,7 @@ Default services are automatically added to the app's service collection.
 | ------- | -------- | ----------- |
 | <xref:System.Net.Http.HttpClient> | Singleton | Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI. Note that this instance of `HttpClient` uses the browser for handling the HTTP traffic in the background. [HttpClient.BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress) is automatically set to the base URI prefix of the app. For more information, see <xref:blazor/call-web-api>. |
 | `IJSRuntime` | Singleton | Represents an instance of a JavaScript runtime where JavaScript calls are dispatched. For more information, see <xref:blazor/javascript-interop>. |
-| `IUriHelper` | Singleton | Contains helpers for working with URIs and navigation state. For more information, see [URI and navigation state helpers](xref:blazor/routing#uri-and-navigation-state-helpers). |
+| `NavigationManager` | Singleton | Contains helpers for working with URIs and navigation state. For more information, see [URI and navigation state helpers](xref:blazor/routing#uri-and-navigation-state-helpers). |
 
 A custom service provider doesn't automatically provide the default services listed in the table. If you use a custom service provider and require any of the services shown in the table, add the required services to the new service provider.
 

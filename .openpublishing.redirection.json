@@ -879,6 +879,16 @@
             "source_path": "aspnetcore/host-and-deploy/azure-apps/troubleshoot.md",
             "redirect_url": "/aspnet/core/test/troubleshoot-azure-iis",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/web-api-jquery.md",
+            "redirect_url": "/aspnet/core/tutorials/web-api-javascript",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/index.md",
+            "redirect_url": "/aspnet/core/migration/proper-to-2x/index",
+            "redirect_document_id": false
         }
     ]
 }
