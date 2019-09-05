@@ -37,7 +37,7 @@ The following table describes options for configuring gRPC channels:
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
-| `HttpClient` | New instance | The `HttpClient` used to make gRPC calls. A client can be set to configure a custom `HttpClientHandler`, or add additional handlers to the HTTP pipeline for gRPC calls. By default a new `HttpClient` instance is created for the channel. It will automatically be disposed. |
+| `HttpClient` | New instance | The `HttpClient` used to make gRPC calls. A client can be set to configure a custom `HttpClientHandler`, or add additional handlers to the HTTP pipeline for gRPC calls. By default, a new `HttpClient` instance is created for the channel. It will automatically be disposed. |
 | `DisposeHttpClient` | `false` | If `true`, and an `HttpClient` is specified, then the `HttpClient` instance will be disposed when the `GrpcChannel` is disposed.
 | `MaxSendMessageSize` | `null` | The maximum message size in bytes that can be sent from the client. Attempting to send a message that exceeds the configured maximum message size results in an exception. |
 | `MaxReceiveMessageSize` | 4 MB | The maximum message size in bytes that can be received by the client. If the server receives a message that exceeds this limit, it throws an exception. Increasing this value allows the server to receive larger messages, but can negatively impact memory consumption. |
