@@ -38,10 +38,10 @@ The following table describes options for configuring gRPC channels:
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
 | `HttpClient` | New instance | The `HttpClient` used to make gRPC calls. A client can be set to configure a custom `HttpClientHandler`, or add additional handlers to the HTTP pipeline for gRPC calls. If no `HttpClient` is specified, then a new `HttpClient` instance is created for the channel. It will automatically be disposed. |
-| `DisposeHttpClient` | `false` | If `true`, and an `HttpClient` is specified, then the `HttpClient` instance will be disposed when the `GrpcChannel` is disposed.
+| `DisposeHttpClient` | `false` | If `true`, and an `HttpClient` is specified, then the `HttpClient` instance will be disposed when the `GrpcChannel` is disposed. |
+| `LoggerFactory` | `null` | The `LoggerFactory` used by the client to log information about gRPC calls. A `LoggerFactory` instance can be resolved from dependency injection or created using `LoggerFactory.Create`. For examples of configuring logging, see <fundamentals/logging/index>. |
 | `MaxSendMessageSize` | `null` | The maximum message size in bytes that can be sent from the client. Attempting to send a message that exceeds the configured maximum message size results in an exception. |
 | `MaxReceiveMessageSize` | 4 MB | The maximum message size in bytes that can be received by the client. If the server receives a message that exceeds this limit, it throws an exception. Increasing this value allows the server to receive larger messages, but can negatively impact memory consumption. |
-| `TransportOptions` | `null` | Transport options configure how the channel calls the gRPC service. Currently the only implementation is `HttpClientTransport` options lets you specify the `HttpClient` used by gRPC. |
 | `Credentials` | `null` | A `ChannelCredentials` instance. Credentials are used to add authentication metadata to gRPC calls. |
 | `CompressionProviders` | gzip | A collection of compression providers used to compress and decompress messages. Custom compression providers can be created and added to the collection. The default configured providers support **gzip** compression. |
 
