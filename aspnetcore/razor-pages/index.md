@@ -460,9 +460,9 @@ For more information, see <xref:mvc/controllers/areas>.
 
 ## ViewData attribute
 
-Data can be passed to a page with [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Properties on controllers or Razor Page models decorated with `[ViewData]` have their values stored and loaded from the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary).
+Data can be passed to a page with <xref:Microsoft.AspNetCore.Mvc.ViewDataAttribute>. Properties with the [ViewData] attribute have their values stored and loaded from the <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary>.
 
-In the following example, the `AboutModel` contains a `Title` property decorated with `[ViewData]`. The `Title` property is set to the title of the About page:
+In the following example, the `AboutModel` contains a `Title` property decorated with `[ViewData]`:
 
 ```csharp
 public class AboutModel : PageModel
@@ -494,9 +494,7 @@ In the layout, the title is read from the ViewData dictionary:
 
 ## TempData
 
-ASP.NET Core exposes the [TempData](/dotnet/api/microsoft.aspnetcore.mvc.controller.tempdata?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](/dotnet/api/microsoft.aspnetcore.mvc.controller). This property stores data until it's read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is  useful for redirection, when data is needed for more than a single request.
-
-The `[TempData]` attribute is new in ASP.NET Core 2.0 and is supported on controllers and pages.
+ASP.NET Core exposes the <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>. This property stores data until it's read. The <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary.Keep*> and <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.TempDataDictionary.Peek*> methods can be used to examine the data without deletion. `TempData` is  useful for redirection, when data is needed for more than a single request.
 
 The following code sets the value of `Message` using `TempData`:
 
@@ -537,7 +535,7 @@ The preceding code uses *named handler methods*. Named handler methods are creat
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?range=12-13)]
 
-Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinListUC`.
+Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `https://localhost:5001/Customers/CreateFATH?handler=JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `https://localhost:5001/Customers/CreateFATH?handler=JoinListUC`.
 
 ## Custom routes
 
@@ -555,7 +553,7 @@ If you don't like the query string `?handler=JoinList` in the URL, you can chang
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateRoute.cshtml?highlight=1)]
 
-Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `http://localhost:5000/Customers/CreateFATH/JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `http://localhost:5000/Customers/CreateFATH/JoinListUC`.
+Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `https://localhost:5001/Customers/CreateFATH/JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `https://localhost:5001/Customers/CreateFATH/JoinListUC`.
 
 The `?` following `handler` means the route parameter is optional.
 
@@ -563,13 +561,13 @@ The `?` following `handler` means the route parameter is optional.
 
 To configure advanced options, use the extension method `AddRazorPagesOptions` on the MVC builder:
 
-[!code-cs[](index/sample/RazorPagesContacts/StartupAdvanced.cs?name=snippet_1)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/StartupRPoptions.cs?name=snippet)]
 
-Currently you can use the `RazorPagesOptions` to set the root directory for pages, or add application model conventions for pages. We'll enable more extensibility this way in the future.
+Use the `RazorPagesOptions` to set the root directory for pages, or add application model conventions for pages.
 
 To precompile views, see [Razor view compilation](xref:mvc/views/view-compilation) .
 
-[Download or view sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/index/sample).
+[Download or view sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/index/3.0sample).
 
 See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.
 
@@ -1020,8 +1018,6 @@ In the layout, the title is read from the ViewData dictionary:
 
 ASP.NET Core exposes the [TempData](/dotnet/api/microsoft.aspnetcore.mvc.controller.tempdata?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](/dotnet/api/microsoft.aspnetcore.mvc.controller). This property stores data until it's read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is  useful for redirection, when data is needed for more than a single request.
 
-The `[TempData]` attribute is new in ASP.NET Core 2.0 and is supported on controllers and pages.
-
 The following code sets the value of `Message` using `TempData`:
 
 [!code-cs[](index/sample/RazorPagesContacts2/Pages/Customers/CreateDot.cshtml.cs?highlight=10-11,25&name=snippet_Temp)]
@@ -1061,7 +1057,7 @@ The preceding code uses *named handler methods*. Named handler methods are creat
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?range=12-13)]
 
-Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `http://localhost:5000/Customers/CreateFATH?handler=JoinListUC`.
+Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `https://localhost:5001/Customers/CreateFATH?handler=JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `https://localhost:5001/Customers/CreateFATH?handler=JoinListUC`.
 
 ## Custom routes
 
@@ -1079,7 +1075,7 @@ If you don't like the query string `?handler=JoinList` in the URL, you can chang
 
 [!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateRoute.cshtml?highlight=1)]
 
-Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `http://localhost:5000/Customers/CreateFATH/JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `http://localhost:5000/Customers/CreateFATH/JoinListUC`.
+Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `https://localhost:5001/Customers/CreateFATH/JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `https://localhost:5001/Customers/CreateFATH/JoinListUC`.
 
 The `?` following `handler` means the route parameter is optional.
 
