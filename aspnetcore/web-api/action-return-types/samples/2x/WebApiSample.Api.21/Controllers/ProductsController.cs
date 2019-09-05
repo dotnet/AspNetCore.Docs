@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ using WebApiSample.DataAccess.Repositories;
 namespace WebApiSample.Controllers
 {
     [ApiController]
-    [Produces("application/json")]
+    [Produces(MediaTypeNames.Application.Json)]
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
@@ -21,7 +22,7 @@ namespace WebApiSample.Controllers
 
         #region snippet_Get
         [HttpGet]
-        public IEnumerable<Product> Get() =>
+        public List<Product> Get() =>
             _repository.GetProducts();
         #endregion
 
@@ -42,6 +43,7 @@ namespace WebApiSample.Controllers
 
         #region snippet_CreateAsync
         [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Product>> CreateAsync(Product product)

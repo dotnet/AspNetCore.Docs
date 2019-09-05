@@ -46,11 +46,22 @@ namespace WebApiSample.DataAccess.Repositories
             }
         }
 
-        public IEnumerable<Product> GetProducts() =>
-            _context.Products.ToList();
+        public List<Product> GetProducts() =>
+            _context.Products.OrderBy(p => p.Name).ToList();
+
+        public IEnumerable<Product> GetProductsByPage(
+            int pageNumber,
+            int pageSize)
+        {
+            var products = _context.Products
+                                   .Skip(pageSize * (pageNumber - 1))
+                                   .Take(pageSize);
+
+            return products;
+        }
 
         public async IAsyncEnumerable<Product> GetProductsByPageAsync(
-            int pageNumber, 
+            int pageNumber,
             int pageSize)
         {
             var products = _context.Products
@@ -64,17 +75,6 @@ namespace WebApiSample.DataAccess.Repositories
             }
         }
 
-        public IEnumerable<Product> GetProductsByPage(
-            int pageNumber,
-            int pageSize)
-        {
-            var products = _context.Products
-                                   .Skip(pageSize * (pageNumber - 1))
-                                   .Take(pageSize);
-
-            return products;
-        }
-
         public bool TryGetProduct(int id, out Product product)
         {
             product = _context.Products.Find(id);
@@ -84,11 +84,8 @@ namespace WebApiSample.DataAccess.Repositories
 
         public async Task<int> AddProductAsync(Product product)
         {
-            int rowsAffected = 0;
-
             _context.Products.Add(product);
-            rowsAffected = await _context.SaveChangesAsync();
-
+            int rowsAffected = await _context.SaveChangesAsync();
             return rowsAffected;
         }
     }

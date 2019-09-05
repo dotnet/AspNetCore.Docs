@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ using WebApiSample.DataAccess.Repositories;
 namespace WebApiSample.Api._30.Controllers
 {
     [ApiController]
-    [Produces("application/json")]
+    [Produces(MediaTypeNames.Application.Json)]
     [Route("[controller]")]
     public class ProductsController : ControllerBase
     {
@@ -21,7 +22,7 @@ namespace WebApiSample.Api._30.Controllers
 
         #region snippet_Get
         [HttpGet]
-        public IEnumerable<Product> Get() =>
+        public List<Product> Get() =>
             _repository.GetProducts();
         #endregion
 
@@ -40,9 +41,6 @@ namespace WebApiSample.Api._30.Controllers
         }
         #endregion
 
-        /// <summary>
-        /// Blocking example. Don't do it this way.
-        /// </summary>
         #region snippet_GetNRecords
         [HttpGet("page/{pageSize:int:min(1)}")]
         public IEnumerable<Product> GetNRecords(int pageSize) =>
@@ -51,38 +49,13 @@ namespace WebApiSample.Api._30.Controllers
 
         #region snippet_GetNRecordsAsync
         [HttpGet("page/{pageSize:int:min(1)}")]
-        public async IAsyncEnumerable<Product> GetNRecordsAsync(int pageSize)
-        {
-            var products = _repository.GetProductsByPageAsync(1, pageSize);
-            
-            await foreach (var product in products)
-            {
-                yield return product;
-            }
-        }
-        #endregion
-
-        #region snippet_GetNPagesAsync
-        [HttpGet("pages/{numPages:int:min(1)}/{pageSize:int:min(1)}")]
-        public async IAsyncEnumerable<Product> GetNPagesAsync(
-            int numPages, 
-            int pageSize)
-        {
-            for (int pageIndex = 0; pageIndex < numPages; pageIndex++)
-            {
-                var products = 
-                    _repository.GetProductsByPageAsync(pageIndex + 1, pageSize);
-
-                await foreach (var product in products)
-                {
-                    yield return product;
-                }
-            }
-        }
+        public IAsyncEnumerable<Product> GetNRecordsAsync(int pageSize) =>
+            _repository.GetProductsByPageAsync(1, pageSize);
         #endregion
 
         #region snippet_CreateAsync
         [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Product>> CreateAsync(Product product)

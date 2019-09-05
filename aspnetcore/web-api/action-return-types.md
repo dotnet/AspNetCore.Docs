@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn about using the various controller action method return types in an ASP.NET Core web API.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 09/03/2019
+ms.date: 09/05/2019
 uid: web-api/action-return-types
 ---
 # Controller action return types in ASP.NET Core web API
@@ -46,23 +46,15 @@ When known conditions need to be accounted for in an action, multiple return pat
 
 ### Return IAsyncEnumerable\<T>
 
-In ASP.NET Core 3.0 or later, a web API action can return <xref:System.Collections.Generic.IAsyncEnumerable%601>. The `IAsyncEnumerable<T>` support addresses the common mistake of returning an `IEnumerable<T>` type from an action. Most of .NET Standard's [strongly typed collection types](/dotnet/api/system.collections.generic) implement `IEnumerable<T>`. A common example of such a collection type is <System.Collections.Generic.List%601>. An action that returns an `IEnumerable<T>` type results in blocking because the serializer synchronously iterates the collection. 
+In ASP.NET Core 2.2 or earlier versions, returning <xref:System.Collections.Generic.IAsyncEnumerable%601> from a web API action results in synchronous iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation. In ASP.NET Core 3.0 or later, returning `IAsyncEnumerable<T>` from a web API action is as efficient as returning <xref:System.Collections.Generic.IEnumerable%601>.
 
-Consider the following blocking action, which returns the specified number of product records:
+Consider the following action, which returns the specified number of product records as `IEnumerable<Product>`:
 
 [!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetNRecords&highlight=2)]
 
-To prevent the caller from waiting for the callee to finish processing all product records, return `IAsyncEnumerable<T>`:
+The `IAsyncEnumerable<Product>` form of the preceding action is:
 
 [!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetNRecordsAsync&highlight=2)]
-
-Consider the following `GetNPagesAsync` action as a variation of the preceding `GetNRecordsAsync` action. The client requests three pages of product data. Each page should contain no more than 10 product records. A total of 24 distinct product records exist in the underlying data store. The action is triggered with the URI `https://localhost:<port>/Products/pages/3/10`. The action's `numPages` and `pageSize` parameters assume values of `3` and `10`, respectively.
-
-[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetNPagesAsync)]
-
-The `for` loop results in three iterations. Iterations one and two each retrieve 10 product records. Iteration three retrieves four product records. The `yield return product;` statement executes 24 times for the lifetime of the entire request.
-
-For more information on `IAsyncEnumerable<T>`, see [Asynchronous streams](/dotnet/csharp/whats-new/csharp-8#asynchronous-streams).
 
 ::: moniker-end
 

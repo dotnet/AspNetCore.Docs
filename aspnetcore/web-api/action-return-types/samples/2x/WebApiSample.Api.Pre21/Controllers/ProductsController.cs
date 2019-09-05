@@ -20,7 +20,7 @@ namespace WebApiSample.Api.Pre21.Controllers
 
         #region snippet_Get
         [HttpGet]
-        public IEnumerable<Product> Get() =>
+        public List<Product> Get() =>
             _repository.GetProducts();
         #endregion
 
@@ -41,6 +41,7 @@ namespace WebApiSample.Api.Pre21.Controllers
 
         #region snippet_CreateAsync
         [HttpPost]
+        [Consumes("application/json")]
         [ProducesResponseType(typeof(Product), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateAsync([FromBody] Product product)
