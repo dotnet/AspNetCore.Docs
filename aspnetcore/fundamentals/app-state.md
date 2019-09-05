@@ -175,7 +175,7 @@ The following markup is similar to the preceding code, but uses `Keep` to preser
 
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
 
-Navigating between the IndexPeek an IndexKeep pages will not delete `TempData["Message"]`.
+Navigating between the *IndexPeek* and *IndexKeep* pages won't delete `TempData["Message"]`.
 
 The following code displays `TempData["Message"]`, but at the end of the request, `TempData["Message"]` is deleted:
 
