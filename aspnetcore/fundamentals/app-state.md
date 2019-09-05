@@ -163,7 +163,7 @@ ASP.NET Core exposes the Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.Ra
 
 Consider the following page that creates a customer:
 
-[!code-csharp[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet&highlight=13-15,30)]
+[!code-csharp[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet&highlight=15-16,30)]
 
 The following page displays `TempData["Message"]`:
 
