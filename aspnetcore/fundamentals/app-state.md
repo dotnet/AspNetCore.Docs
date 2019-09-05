@@ -171,7 +171,7 @@ The following page displays `TempData["Message"]`:
 
 In the preceding markup, at the end of the request, `TempData["Message"]` is **not** deleted because `Peek` is used. Refreshing the page displays `TempData["Message"]`.
 
-The following markup is similar to the preceding code, but uses `Keep` to mark the data not to be deleted at the end of the request:
+The following markup is similar to the preceding code, but uses `Keep` to preserve the data at the end of the request:
 
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
 
