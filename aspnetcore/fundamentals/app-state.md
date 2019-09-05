@@ -157,13 +157,13 @@ The following example shows how to set and get a serializable object with the ex
 
 ## TempData
 
-ASP.NET Core exposes the Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) or Controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>. This property stores data until it's read in another request. <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*> and <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*> methods can be used to examine the data without deletion at the end of the request. <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*> marks all items in the dictionary for retention. `TempData` is particularly useful for redirection when data is required for more than a single request. `TempData` is implemented by `TempData` providers using either cookies or session state.
+ASP.NET Core exposes the Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) or Controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>. This property stores data until it's read in another request. [Keep(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) and [Peek(string)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) methods can be used to examine the data without deletion at the end of the request. [Keep()](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) marks all items in the dictionary for retention. `TempData` is particularly useful for redirection when data is required for more than a single request. `TempData` is implemented by `TempData` providers using either cookies or session state.
 
 ## TempData samples
 
 Consider the following page that creates a customer:
 
-[!code-csharp[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet&highlight=15-13,30)]
+[!code-csharp[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet&highlight=13-15,30)]
 
 The following page displays `TempData["Message"]`:
 
@@ -171,7 +171,7 @@ The following page displays `TempData["Message"]`:
 
 In the preceding markup, at the end of the request, `TempData["Message"]` is **not** deleted because `Peek` is used. Refreshing the page displays `TempData["Message"]`.
 
-The following markup is similar to the preceding code, but reads the temporary data with `Keep`:
+The following markup is similar to the preceding code, but uses `Keep` to mark the data not to be deleted at the end of the request:
 
 [!code-cshtml[](app-state/3.0samples/RazorPagesContacts/Pages/Customers/IndexKeep.cshtml?range=1-14)]
 
