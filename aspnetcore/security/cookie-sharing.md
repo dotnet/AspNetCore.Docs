@@ -49,9 +49,8 @@ services.ConfigureApplicationCookie(options => {
 ```
 
 ### Custom authentication builder
-Custom authentication builder must set the `Cookie.Path` for single sign on apps
 
-in `Startup.ConfigureServices`:
+Custom authentication builder must set the `Cookie.Path` for single sign on apps. The following code is added to `Startup.ConfigureServices`:
 
 ```csharp
 services.AddDataProtection()
