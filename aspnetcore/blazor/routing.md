@@ -43,7 +43,7 @@ Multiple route templates can be applied to a component. The following component 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
 
 > [!IMPORTANT]
-> To generate routes properly, the app must include a `<base>` tag in its *wwwroot/index.html* file (Blazor client-side) or *Pages/_Host.cshtml* file (Blazor server-side) with the app base path specified in the `href` attribute (`<base href="/">`). For more information, see <xref:host-and-deploy/blazor/client-side#app-base-path>.
+> To generate routes properly, the app must include a `<base>` tag in its *wwwroot/index.html* file (Blazor client-side) or *Pages/_Host.cshtml* file (Blazor server-side) with the app base path specified in the `href` attribute (`<base href="/">`). For more information, see <xref:host-and-deploy/blazor/index#app-base-path>.
 
 ## Provide custom content when content isn't found
 

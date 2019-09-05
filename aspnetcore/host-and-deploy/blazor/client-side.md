@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/18/2019
+ms.date: 09/05/2019
 uid: host-and-deploy/blazor/client-side
 ---
 # Host and deploy ASP.NET Core Blazor client-side
@@ -43,47 +43,6 @@ If a request is made using the browser's address bar for `www.contoso.com/About`
 Because browsers make requests to Internet-based hosts for client-side pages, web servers and hosting services must rewrite all requests for resources not physically on the server to the *index.html* page. When *index.html* is returned, the app's client-side router takes over and responds with the correct resource.
 
 When deploying to an IIS server, you can use the URL Rewrite Module with the app's published *web.config* file. For more information, see the [IIS](#iis) section.
-
-## App base path
-
-The *app base path* is the app's root URL path. Consider the following main app and Blazor client-side app:
-
-* The main app is called `MyApp`:
-  * The app physically resides at *d:\\MyApp*.
-  * Requests are received at `https://www.contoso.com/{MYAPP RESOURCE}`.
-* A Blazor client-side app called `CoolApp` is a sub-app of `MyApp`:
-  * The sub-app physically resides at *d:\\MyApp\\CoolApp*.
-  * Requests are received at `https://www.contoso.com/CoolApp/{COOLAPP RESOURCE}`.
-
-Without specifying additional configuration for `CoolApp`, the sub-app in this scenario has no knowledge of where it resides on the server. For example, the app can't construct correct relative URLs to its resources without knowing that it resides at the relative URL path `/CoolApp/`.
-
-To provide configuration for the Blazor client-side side app's base path of `https://www.contoso.com/CoolApp/`, the `<base>` tag's `href` attribute is set to the relative root path in the *wwwroot/index.html* file:
-
-```html
-<base href="/CoolApp/">
-```
-
-By providing the relative URL path, a component that isn't in the root directory can construct URLs relative to the app's root path. Components at different levels of the directory structure can build links to other resources at locations throughout the app. The app base path is also used to intercept hyperlink clicks where the `href` target of the link is within the app base path URI space&mdash;the Blazor router handles the internal navigation.
-
-In many hosting scenarios, the relative URL path to the app is the root of the app. In these cases, the app's relative URL base path is a forward slash (`<base href="/" />`), which is the default configuration for a Blazor client-side app. In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base path must be set to the server's relative URL path to the app.
-
-To set the app's base path, update the `<base>` tag within the `<head>` tag elements of the *wwwroot/index.html* file. Set the `href` attribute value to `/{RELATIVE URL PATH}/` (the trailing slash is required), where `{RELATIVE URL PATH}` is the app's full relative URL path.
-
-For an app with a non-root relative URL path (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime. To pass the path base argument when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
-
-```console
-dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}
-```
-
-For an app with a relative URL path of `/CoolApp/` (`<base href="/CoolApp/">`), the command is:
-
-```console
-dotnet run --pathbase=/CoolApp
-```
-
-The app responds locally at `http://localhost:port/CoolApp`.
-
-For more information, see the section on the [path base host configuration value](#path-base).
 
 ## Hosted deployment with ASP.NET Core
 
@@ -168,7 +127,7 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
   </configuration>
   ```
 
-Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](#app-base-path). Set the app base path in the app's *index.html* file to the IIS alias used when configuring the sub-app in IIS.
+Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:host-and-deploy/blazor/index#app-base-path). Set the app base path in the app's *index.html* file to the IIS alias used when configuring the sub-app in IIS.
 
 #### Troubleshooting
 
@@ -253,7 +212,7 @@ The `--contentroot` argument sets the absolute path to the directory that contai
 
 ### Path base
 
-The `--pathbase` argument sets the app base path for an app run locally with a non-root relative URL path (the `<base>` tag `href` is set to a path other than `/` for staging and production). In the following examples, `/relative-URL-path` is the app's path base. For more information, see the [App base path](#app-base-path) section.
+The `--pathbase` argument sets the app base path for an app run locally with a non-root relative URL path (the `<base>` tag `href` is set to a path other than `/` for staging and production). In the following examples, `/relative-URL-path` is the app's path base. For more information, see [App base path](xref:host-and-deploy/blazor/index#app-base-path).
 
 > [!IMPORTANT]
 > Unlike the path provided to `href` of the `<base>` tag, don't include a trailing slash (`/`) when passing the `--pathbase` argument value. If the app base path is provided in the `<base>` tag as `<base href="/CoolApp/">` (includes a trailing slash), pass the command-line argument value as `--pathbase=/CoolApp` (no trailing slash).
