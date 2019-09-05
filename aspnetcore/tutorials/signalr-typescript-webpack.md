@@ -408,6 +408,8 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/2.x/Startup.cs?name=snippet_UseSignalR)]
 
+::: moniker-end
+
 1. Create a new directory, called *Hubs*, in the project root. Its purpose is to store the SignalR hub, which is created in the next step.
 
 1. Create hub *Hubs/ChatHub.cs* with the following code:
