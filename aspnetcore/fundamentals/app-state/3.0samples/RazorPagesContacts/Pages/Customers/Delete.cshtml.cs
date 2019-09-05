@@ -25,7 +25,6 @@ namespace RazorPagesContacts.Pages.Customers
         [TempData]
         public string Message { get; set; }
 
-
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
