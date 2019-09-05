@@ -12,7 +12,7 @@ namespace RazorPagesContacts.Pages.Customers
 {
     public class DeleteModel : PageModel
     {
-        private readonly RazorPagesContacts.Data.RazorPagesContactsContext _context;
+        private readonly RazorPagesContactsContext _context;
 
         public DeleteModel(RazorPagesContactsContext context)
         {
