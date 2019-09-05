@@ -81,7 +81,7 @@ There are downsides to server-side hosting:
 
 ### Comparison with server-rendered UI
 
-One way to understand Blazor Server app is by understanding how it differs from traditional models for rendering UI in ASP.NET Core applications using Razor views or Razor pages. Both models use the Razor language to describe HTML contents, but signficantly differ in how it's rendered.
+One way to understand Blazor Server apps is to understand how it differs from traditional models for rendering UI in ASP.NET Core applications using Razor views or Razor pages. Both models use the Razor language to describe HTML content, but significantly differ in how they are rendered.
 
 When a Razor page or view is rendered, every line of Razor code emits HTML in text form. Once the view is rendered, the server disposes the view instance and any state produced during the rendering is discarded. When another request for the page occurs, for instance when server validation fails and the validation summary is to be displayed, the entire page is turned into HTML text again and sent to the client.
 
@@ -89,7 +89,7 @@ A Blazor application is composed of reusable element of UI called a *component*.
 
 The binary format produced by Blazor can be turned into HTML text (during prerendering) or used to efficiently diff the output at different times. A UI update in Blazor is triggered either by user interaction such as clicking on a button, or by application trigger such as a timer. The graph is re-rendered, and a UI diff is calculated. This diff is the smallest set of DOM edits needed to update the UI on the client - it is sent to the client in a binary format, and applied by the browser.
 
-Components are long-lived and are only disposed once the user navigates away from the Blazor application. Consequently, any injected service from DI and data that is part of the component state also becomes long-lived. This behavior is an important consideration when designing your Blazor application - your components and the resources they used will stay in memory while they are being shown in the UI to a user.
+Components are long-lived and are only disposed once the user navigates away from the Blazor application. Consequently, any injected services and data that is part of the component state also becomes long-lived. This behavior is an important consideration when designing your Blazor application - your components and the resources they use will stay in memory while they are being shown in the UI to a user.
 
 ###  Circuits
 
@@ -105,9 +105,9 @@ UI latency is the time it takes for an action to be initiated, to the time the U
 
 For a line of business application that is limited to your private corporate network, the effects of network latency are likely imperceptible. For an application deployed over the public internet, this may become noticeable particularly if your users are geographically distributed.
 
-From our profiling, we think most Blazor server apps are going to be memory bound and memory is going to be other contributor to application latency. More memory use results in more frequent garbage collection or paging memory to disk, both of which degrade application performance and consequently increase UI latency.
+Memory usage can also contribute to application latency. More memory usage results in more frequent garbage collection or paging memory to disk, both of which degrade application performance and consequently increase UI latency.
 
-In our measurements, a value of 250ms or less provides a good UI experience. See <xref:best-practices> for ways to measure network latency.
+Blazor Server apps should be optimized to minimize UI latency by reducing network latency and memory usage. See <xref:best-practices> for ways to measure network latency.
 
 ## Configuring Blazor Server application
 
