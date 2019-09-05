@@ -5,7 +5,7 @@ description: Learn how to share authentication cookies among ASP.NET 4.x and ASP
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/04/2019
+ms.date: 09/05/2019
 uid: security/cookie-sharing
 ---
 # Share authentication cookies among ASP.NET apps
@@ -28,7 +28,7 @@ In the examples that follow:
   * In .NET Framework apps, add a package reference to [Microsoft.AspNetCore.DataProtection.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/).
 * <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> sets the common app name.
 
-## Share authentication cookies among ASP.NET Core apps
+## Share authentication cookies with ASP.NET Core Identity
 
 When using ASP.NET Core Identity:
 
@@ -48,20 +48,7 @@ services.ConfigureApplicationCookie(options => {
 });
 ```
 
-### Custom authentication builder
-
-Custom authentication builder must set the `Cookie.Path` for single sign on apps. The following code is added to `Startup.ConfigureServices`:
-
-```csharp
-services.AddDataProtection()
-    .PersistKeysToFileSystem("{PATH TO COMMON KEY RING FOLDER}")
-    .SetApplicationName("SharedCookieApp");
-
-services.ConfigureApplicationCookie(options => {
-    options.Cookie.Name = ".AspNet.SharedCookie";
-    options.Cookie.Path = "/";
-});
-```
+## Share authentication cookies without ASP.NET Core Identity
 
 When using cookies directly without ASP.NET Core Identity, configure data protection and authentication in `Startup.ConfigureServices`. In the following example, the authentication type is set to `Identity.Application`:
 
@@ -76,6 +63,23 @@ services.AddAuthentication("Identity.Application")
         options.Cookie.Name = ".AspNet.SharedCookie";
     });
 ```
+
+## Share cookies across different base paths
+
+An authentication cookie uses the [HttpRequest.PathBase](xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase) as its default [Cookie.Path](xref:Microsoft.AspNetCore.Http.CookieBuilder.Path). If the app's cookie must be shared across different base paths, `Path` must be overridden:
+
+```csharp
+services.AddDataProtection()
+    .PersistKeysToFileSystem("{PATH TO COMMON KEY RING FOLDER}")
+    .SetApplicationName("SharedCookieApp");
+
+services.ConfigureApplicationCookie(options => {
+    options.Cookie.Name = ".AspNet.SharedCookie";
+    options.Cookie.Path = "/";
+});
+```
+
+## Share cookies across subdomains
 
 When hosting apps that share cookies across subdomains, specify a common domain in the [Cookie.Domain](xref:Microsoft.AspNetCore.Http.CookieBuilder.Domain) property. To share cookies across apps at `contoso.com`, such as `first_subdomain.contoso.com` and `second_subdomain.contoso.com`, specify the `Cookie.Domain` as `.contoso.com`:
 
