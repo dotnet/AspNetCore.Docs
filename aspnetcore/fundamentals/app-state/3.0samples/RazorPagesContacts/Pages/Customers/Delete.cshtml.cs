@@ -14,7 +14,7 @@ namespace RazorPagesContacts.Pages.Customers
     {
         private readonly RazorPagesContacts.Data.RazorPagesContactsContext _context;
 
-        public DeleteModel(RazorPagesContacts.Data.RazorPagesContactsContext context)
+        public DeleteModel(RazorPagesContactsContext context)
         {
             _context = context;
         }
