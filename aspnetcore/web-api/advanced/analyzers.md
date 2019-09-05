@@ -1,22 +1,29 @@
 ---
 title: Use web API analyzers
 author: pranavkm
-description: Learn about the web API analyzers in Microsoft.AspNetCore.Mvc.Api.Analyzers.
+description: Learn about the ASP.NET Core MVC web API analyzers package.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: prkrishn
 ms.custom: mvc
-ms.date: 09/03/2019
+ms.date: 09/05/2019
 uid: web-api/advanced/analyzers
 ---
 # Use web API analyzers
 
-ASP.NET Core 2.2 and later includes the [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Api.Analyzers) NuGet package containing analyzers for web APIs. The analyzers work with controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, while building on [API conventions](xref:web-api/advanced/conventions).
+ASP.NET Core 2.2 and later provides an MVC analyzers package intended for use with web API projects. The analyzers work with controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, while building on [web API conventions](xref:web-api/advanced/conventions).
+
+The analyzers package notifies you of any controller action that:
+
+* Returns an undeclared status code.
+* Returns an undeclared success result.
+* Documents a status code that isn't returned.
+* Includes an explicit model validation check.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## Reference the analyzer
+## Reference the analyzer package
 
-In ASP.NET Core 3.0 or later, MVC's API analyzers ship as part of the .NET Core SDK. To enable the analyzer in your project, include the `IncludeOpenAPIAnalyzers` property in the project file:
+In ASP.NET Core 3.0 or later, the analyzers are included in the .NET Core SDK. To enable the analyzer in your project, include the `IncludeOpenAPIAnalyzers` property in the project file:
 
 ```xml
 <PropertyGroup>
@@ -26,15 +33,15 @@ In ASP.NET Core 3.0 or later, MVC's API analyzers ship as part of the .NET Core 
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range="= aspnetcore-2.2"
 
 ## Package installation
 
-`Microsoft.AspNetCore.Mvc.Api.Analyzers` can be added with one of the following approaches:
+Install the [Microsoft.AspNetCore.Mvc.Api.Analyzers](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Api.Analyzers) NuGet package with one of the following approaches:
 
 ### [Visual Studio](#tab/visual-studio)
 
-* From the **Package Manager Console** window:
+From the **Package Manager Console** window:
   * Go to **View** > **Other Windows** > **Package Manager Console**.
   * Navigate to the directory in which the *ApiConventions.csproj* file exists.
   * Execute the following command:
@@ -42,12 +49,6 @@ In ASP.NET Core 3.0 or later, MVC's API analyzers ship as part of the .NET Core 
     ```powershell
     Install-Package Microsoft.AspNetCore.Mvc.Api.Analyzers
     ```
-
-* From the **Manage NuGet Packages** dialog:
-  * Right-click the project in **Solution Explorer** > **Manage NuGet Packages**.
-  * Set the **Package source** to "nuget.org".
-  * Enter "Microsoft.AspNetCore.Mvc.Api.Analyzers" in the search box.
-  * Select the "Microsoft.AspNetCore.Mvc.Api.Analyzers" package from the **Browse** tab and click **Install**.
 
 ### [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -76,9 +77,9 @@ dotnet add ApiConventions.csproj package Microsoft.AspNetCore.Mvc.Api.Analyzers
 
 ::: moniker-end
 
-## Analyzers for API conventions
+## Analyzers for web API conventions
 
-OpenAPI documents contain status codes and response types that an action may return. In ASP.NET Core MVC, attributes such as <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> and <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> are used to document an action. <xref:tutorials/web-api-help-pages-using-swagger> goes into further detail on documenting your API.
+OpenAPI documents contain status codes and response types that an action may return. In ASP.NET Core MVC, attributes such as <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> and <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> are used to document an action. <xref:tutorials/web-api-help-pages-using-swagger> goes into further detail on documenting your web API.
 
 One of the analyzers in the package inspects controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> and identifies actions that don't entirely document their responses. Consider the following example:
 
