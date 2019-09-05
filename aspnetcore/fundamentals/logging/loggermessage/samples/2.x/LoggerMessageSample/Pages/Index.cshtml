@@ -109,16 +109,15 @@ Quote deleted (Quote = 'Quote 3' Id = 3)</code></pre>
                     </li>
                     <li>
                         Select the <b>Delete (Id = 999)</b> button and examine the console log for the message, which includes the <code>ArgumentNullException</code>.
-                        <pre><code>fail: LoggerMessageSample.Pages.IndexModel[5]
-=> RequestId:0HL90M6E7PHK5:00000010 RequestPath:/ => /Index
-Quote delete failed (Id = 999)
-System.ArgumentNullException: Value cannot be null.
-Parameter name: entity
-at Microsoft.EntityFrameworkCore.Utilities.Check.NotNull[T](T value, String parameterName)
-at Microsoft.EntityFrameworkCore.DbContext.Remove[TEntity](TEntity entity)
-at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Remove(TEntity entity)
-at LoggerMessageSample.Pages.IndexModel.<OnPostDeleteQuoteAsync>d__14.MoveNext() in 
-&lt;PATH&gt;\sample\Pages\Index.cshtml.cs:line 87</code></pre>
+                        <pre><code>LoggerMessageSample.Pages.IndexModel: Error: Quote delete failed (Id = 999)
+
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at lambda_method(Closure , ValueBuffer )
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at Microsoft.EntityFrameworkCore.InMemory.Query.Internal.InMemoryShapedQueryCompilingExpressionVisitor.AsyncQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at LoggerMessageSample.Pages.IndexModel.OnPostDeleteQuoteAsync(Int32 id) in c:\Users\guard\Documents\GitHub\Docs\aspnetcore\fundamentals\logging\loggermessage\samples\3.x\LoggerMessageSample\Pages\Index.cshtml.cs:line 77</code></pre>
                     </li>
                 </ol>
                 <button type="submit" class="btn btn-danger" style="margin-bottom:2px" asp-page-handler="DeleteQuote" asp-route-id="999">Delete (Id = 999)</button>

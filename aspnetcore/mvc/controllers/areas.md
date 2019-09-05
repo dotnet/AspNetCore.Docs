@@ -66,9 +66,7 @@ While the preceding layout is typical when using Areas, only the view files are 
 /Areas/<Area-Name>/Views/Shared/<Action-Name>.cshtml
 /Views/Shared/<Action-Name>.cshtml
 /Pages/Shared/<Action-Name>.cshtml
-   ```
-
-The location of non-view folders like *Controllers* and *Models* does **not** matter. For example, the *Controllers* and *Models* folder are not required. The content of *Controllers* and *Models* is code which gets compiled into a .dll. The content of the *Views* isn't compiled until a request to that view has been made.
+```
 
 <a name="attribute"></a>
 

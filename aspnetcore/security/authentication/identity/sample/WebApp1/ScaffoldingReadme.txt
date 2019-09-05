@@ -7,7 +7,7 @@ Configuration of the Identity related services can be found in the Areas/Identit
 The generated UI requires support for static files. To add static files to your app:
 1. Call app.UseStaticFiles() from your Configure method
 
-To use ASP.NET Core Identity you also need to enable authentication. To authentication to your app:
+To use ASP.NET Core Identity you also need to enable authentication. To add authentication to your app:
 1. Call app.UseAuthentication() from your Configure method (after static files)
 
 The generated UI requires MVC. To add MVC to your app:
