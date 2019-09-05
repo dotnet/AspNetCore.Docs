@@ -74,15 +74,11 @@ A common use of [dependency injection](xref:fundamentals/dependency-injection) i
 
 [!code-csharp[](startup/sample_snapshot/Startup2.cs?highlight=7-8)]
 
-::: moniker-end
-An alternative to injecting `IWebHostEnvironment` is to use a conventions-based approach.
-::: moniker range=">= aspnetcore-3.0"
+Most services are not available until the `Configure` method is called.
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
-An alternative to injecting `IHostingEnvironment` is to use a conventions-based approach.
-::: moniker-end
+### Multiple StartUp
 
 When the app defines separate `Startup` classes for different environments (for example, `StartupDevelopment`), the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](xref:fundamentals/environments#environment-based-startup-class-and-methods).
 
