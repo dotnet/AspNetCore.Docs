@@ -41,7 +41,7 @@ The following table describes options for configuring gRPC channels:
 | `DisposeHttpClient` | `false` | If `true`, and an `HttpClient` is specified, then the `HttpClient` instance will be disposed when the `GrpcChannel` is disposed. |
 | `LoggerFactory` | `null` | The `LoggerFactory` used by the client to log information about gRPC calls. A `LoggerFactory` instance can be resolved from dependency injection or created using `LoggerFactory.Create`. For examples of configuring logging, see <xref:fundamentals/logging/index>. |
 | `MaxSendMessageSize` | `null` | The maximum message size in bytes that can be sent from the client. Attempting to send a message that exceeds the configured maximum message size results in an exception. |
-| `MaxReceiveMessageSize` | 4 MB | The maximum message size in bytes that can be received by the client. If the server receives a message that exceeds this limit, it throws an exception. Increasing this value allows the server to receive larger messages, but can negatively impact memory consumption. |
+| `MaxReceiveMessageSize` | 4 MB | The maximum message size in bytes that can be received by the client. If the client receives a message that exceeds this limit, it throws an exception. Increasing this value allows the client to receive larger messages, but can negatively impact memory consumption. |
 | `Credentials` | `null` | A `ChannelCredentials` instance. Credentials are used to add authentication metadata to gRPC calls. |
 | `CompressionProviders` | gzip | A collection of compression providers used to compress and decompress messages. Custom compression providers can be created and added to the collection. The default configured providers support **gzip** compression. |
 
