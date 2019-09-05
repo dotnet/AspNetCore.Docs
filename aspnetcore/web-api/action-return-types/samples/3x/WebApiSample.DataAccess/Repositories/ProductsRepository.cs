@@ -60,7 +60,7 @@ namespace WebApiSample.DataAccess.Repositories
             return products;
         }
 
-        public async IAsyncEnumerable<Product> GetProductsByPageAsync(
+        public IAsyncEnumerable<Product> GetProductsByPageAsync(
             int pageNumber,
             int pageSize)
         {
@@ -69,10 +69,7 @@ namespace WebApiSample.DataAccess.Repositories
                                    .Take(pageSize)
                                    .AsAsyncEnumerable();
 
-            await foreach (var product in products)
-            {
-                yield return product;
-            }
+            return products;
         }
 
         public bool TryGetProduct(int id, out Product product)

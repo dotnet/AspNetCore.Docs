@@ -46,7 +46,9 @@ When known conditions need to be accounted for in an action, multiple return pat
 
 ### Return IAsyncEnumerable\<T>
 
-In ASP.NET Core 2.2 or earlier versions, returning <xref:System.Collections.Generic.IAsyncEnumerable%601> from a web API action results in synchronous iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation. In ASP.NET Core 3.0 or later, returning `IAsyncEnumerable<T>` from a web API action is as efficient as returning <xref:System.Collections.Generic.IEnumerable%601>.
+In ASP.NET Core 2.2 or earlier, returning <xref:System.Collections.Generic.IAsyncEnumerable%601> from an action results in synchronous collection iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation.
+
+In ASP.NET Core 3.0 or later, returning `IAsyncEnumerable<T>` from an action no longer results in synchronous iteration. Returning `IAsyncEnumerable<T>` becomes as efficient as returning <xref:System.Collections.Generic.IEnumerable%601>. Declare the action signature's return type as `IAsyncEnumerable<T>` to guarantee the asynchronous iteration. Ultimately, the iteration mode is based on the underlying return value's type.
 
 Consider the following action, which returns the specified number of product records as `IEnumerable<Product>`:
 
