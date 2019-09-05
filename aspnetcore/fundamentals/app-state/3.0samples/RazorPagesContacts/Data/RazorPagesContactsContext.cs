@@ -14,6 +14,6 @@ namespace RazorPagesContacts.Data
         {
         }
 
-        public DbSet<RazorPagesContacts.Models.Customer> Customer { get; set; }
+        public DbSet<Customer> Customer { get; set; }
     }
 }
