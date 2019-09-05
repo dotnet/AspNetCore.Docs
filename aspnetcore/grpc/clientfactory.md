@@ -63,7 +63,7 @@ public class AggregatorService : Aggregator.AggregatorBase
 services
     .AddGrpcClient<Greeter.GreeterClient>(o =>
     {
-        o.BaseAddress = new Uri("http://localhost:5001");
+        o.Address = new Uri("http://localhost:5001");
     })
     .ConfigurePrimaryHttpMessageHandler(() =>
     {

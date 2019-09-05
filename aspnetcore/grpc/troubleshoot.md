@@ -5,7 +5,7 @@ description: Troubleshoot errors when using gRPC on .NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
-ms.date: 08/26/2019
+ms.date: 09/05/2019
 uid: grpc/troubleshoot
 ---
 # Troubleshoot gRPC on .NET Core
@@ -57,10 +57,11 @@ If you are calling a gRPC service on another machine and are unable to trust the
 var httpClientHandler = new HttpClientHandler();
 // Return `true` to allow certificates that are untrusted/invalid
 httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
-
 var httpClient = new HttpClient(httpClientHandler);
-httpClient.BaseAddress = new Uri("https://localhost:5001");
-var client = GrpcClient.Create<Greeter.GreeterClient>(httpClient);
+
+var channel = GrpcChannel.ForAddress("https://localhost:5001",
+    new GrpcChannelOptions { HttpClient = httpClient });
+var client = new Greet.GreeterClient(channel);
 ```
 
 > [!WARNING]
