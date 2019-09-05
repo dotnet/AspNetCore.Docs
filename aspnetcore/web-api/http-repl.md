@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/25/2019
+ms.date: 08/29/2019
 uid: web-api/http-repl
 ---
 # Test web APIs with the HTTP REPL
@@ -76,6 +76,12 @@ Options:
 
 Once the REPL starts, these commands are valid:
 
+Setup Commands:
+Use these commands to configure the tool for your API server
+
+connect        Configures the directory structure and base address of the api server
+set header     Sets or clears a header for all requests. e.g. `set header content-type application/json`
+
 HTTP Commands:
 Use these commands to execute requests against your application.
 
@@ -87,13 +93,10 @@ PATCH          patch - Issues a PATCH request
 HEAD           head - Issues a HEAD request
 OPTIONS        options - Issues a OPTIONS request
 
-set header     Sets or clears a header for all requests. e.g. `set header content-type application/json`
-
 Navigation Commands:
 The REPL allows you to navigate your URL space and focus on specific APIs that you are working on.
 
 set base       Set the base URI. e.g. `set base http://locahost:5000`
-set swagger    Sets the swagger document to use for information about the current server
 ls             Show all endpoints for the current path
 cd             Append the given directory to the currently selected path, or move up a path when using `cd ..`
 
@@ -122,10 +125,10 @@ The HTTP REPL offers command completion. Pressing the <kbd>Tab</kbd> key iterate
 Connect to a web API by running the following command:
 
 ```console
-dotnet httprepl <BASE URI>
+dotnet httprepl <ROOT URI>
 ```
 
-`<BASE URI>` is the base URI for the web API. For example:
+`<ROOT URI>` is the base URI for the web API. For example:
 
 ```console
 dotnet httprepl https://localhost:5001
@@ -134,27 +137,27 @@ dotnet httprepl https://localhost:5001
 Alternatively, run the following command at any time while the HTTP REPL is running:
 
 ```console
-set base <BASE URI>
+connect <ROOT URI>
 ```
 
 For example:
 
 ```console
-(Disconnected)~ set base https://localhost:5001
+(Disconnected)~ connect https://localhost:5001
 ```
 
-## Point to the Swagger document for the web API
+## Manually point to the Swagger document for the web API
 
-To properly inspect the web API, set the relative URI to the Swagger document for the web API. Run the following command:
+The connect command above will attempt to find the Swagger document automatically. If for some reason it is unable to do so, you can specify the URI of the Swagger document for the web API by using the `--swagger` option:
 
 ```console
-set swagger <RELATIVE URI>
+connect <ROOT URI> --swagger <SWAGGER URI>
 ```
 
 For example:
 
 ```console
-https://localhost:5001/~ set swagger /swagger/v1/swagger.json
+(Disconnected)~ connect https://localhost:5001 --swagger /swagger/v1/swagger.json
 ```
 
 ## Navigate the web API
@@ -316,52 +319,6 @@ Subsequent responses honor the setting of four spaces:
 ]
 ```
 
-### Set indentation size
-
-Response indentation size customization is currently supported for JSON only. The default size is two spaces. For example:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Apple"
-  },
-  {
-    "id": 2,
-    "name": "Orange"
-  },
-  {
-    "id": 3,
-    "name": "Strawberry"
-  }
-]
-```
-
-To change the default size, set the `formatting.json.indentSize` key. For example, to always use four spaces:
-
-```console
-pref set formatting.json.indentSize 4
-```
-
-Subsequent responses honor the setting of four spaces:
-
-```json
-[
-    {
-        "id": 1,
-        "name": "Apple"
-    },
-    {
-        "id": 2,
-        "name": "Orange"
-    },
-    {
-        "id": 3,
-        "name": "Strawberry"
-    }
-]
-```
-
 ### Set the default text editor
 
 By default, the HTTP REPL has no text editor configured for use. To test web API methods requiring an HTTP request body, a default text editor must be set. The HTTP REPL tool launches the configured text editor for the sole purpose of composing the request body. Run the following command to set your preferred text editor as the default:
@@ -396,6 +353,21 @@ To launch the default text editor with specific CLI arguments, set the `editor.c
 
 ```console
 pref set editor.command.default.arguments "--disable-extensions --new-window"
+```
+
+### Set the Swagger search paths
+
+By default, the HTTP REPL has a set of relative paths that it uses to find the Swagger document when executing the `connect` command without the `--swagger` option. These relative paths are combined with the root and base paths specified in the `connect` command. The default relative paths are:
+
+- *swagger.json*
+- *swagger/v1/swagger.json*
+- */swagger.json*
+- */swagger/v1/swagger.json*
+
+To use a different set of search paths in your environment, set the `swagger.searchPaths` preference. The value must be a pipe-delimited list of relative paths. For example:
+
+```console
+pref set swagger.searchPaths "swagger/v2/swagger.json|swagger/v3/swagger.json"
 ```
 
 ## Test HTTP GET requests

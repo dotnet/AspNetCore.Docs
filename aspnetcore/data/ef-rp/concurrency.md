@@ -1,6 +1,6 @@
 ---
 title: Razor Pages with EF Core in ASP.NET Core - Concurrency - 8 of 8
-author: rick-anderson
+author: tdykstra
 description: This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
 ms.author: riande
 ms.custom: mvc
@@ -228,7 +228,7 @@ Build the project.
 
 The scaffolding tool created a `RowVersion` column for the Index page, but that field wouldn't be displayed in a production app. In this tutorial, the last byte of the `RowVersion` is displayed to help show how concurrency handling works. The last byte isn't guaranteed to be unique by itself.
 
-Update the Index page:
+Update *Pages\Departments\Index.cshtml* page:
 
 * Replace Index with Departments.
 * Change the code containing `RowVersion` to show just the last byte of the byte array.

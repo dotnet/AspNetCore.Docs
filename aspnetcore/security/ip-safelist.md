@@ -2,7 +2,7 @@
 title: Client IP safelist for ASP.NET Core
 author: damienbod
 description: Learn how to write Middleware or action filters to validate remote IP addresses against a list of approved IP addresses.
-ms.author: tdykstra
+ms.author: riande
 ms.custom: mvc
 ms.date: 08/31/2018
 uid: security/ip-safelist

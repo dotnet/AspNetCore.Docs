@@ -1,0 +1,15 @@
+﻿@model CallbackViewModel
+
+<div>
+    <h2>Actions</h2>
+    <ul>
+        <li><a asp-area="" asp-controller="Home" asp-action="CreateCallbackEntry">CreateCallbackEntry</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="GetCallbackEntry">GetCallbackEntry</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="RemoveCallbackEntry">RemoveCallbackEntry</a></li>
+    </ul>
+</div>
+
+<h3>Current Time: @DateTime.Now.TimeOfDay.ToString()</h3>
+<h3>Cached Time: @(Model?.CachedTime == null ? "No cached entry found" : Model.CachedTime.Value.TimeOfDay.ToString())</h3>
+<h3>@(Model?.Message)</h3>
+
