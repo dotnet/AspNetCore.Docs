@@ -209,7 +209,12 @@ See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer
 
 ### Use certificate authentication with the X-ARR-ClientCert header
 
-The `AddCertificateForwarding` method is used so that the client header can be specified and how the certificate is to be loaded using the `HeaderConverter` option. When sending the certificate with the `HttpClient` using the default settings, the `ClientCertificate` will always be null. The `X-ARR-ClientCert` header is used to pass the client certificate. The certificate is passed as a string to work around this.
+The `AddCertificateForwarding` method is used to specify:
+
+* The client header name.
+* How the certificate is to be loaded (using the `HeaderConverter` property).
+
+When sending the certificate with the `HttpClient` using the default settings, the `ClientCertificate` will always be null. The `X-ARR-ClientCert` header is used to pass the client certificate. The certificate is passed as a string to work around this problem.
 
 ```csharp
 services.AddCertificateForwarding(options =>
@@ -229,7 +234,7 @@ services.AddCertificateForwarding(options =>
 });
 ```
 
-The `Startup.Configure` method then adds the middleware. `UseCertificateForwarding` is added before the calls to `UseAuthentication` and `UseAuthorization`.
+The `Startup.Configure` method then adds the middleware. `UseCertificateForwarding` is called before the calls to `UseAuthentication` and `UseAuthorization`.
 
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -332,11 +337,13 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath roo
 
 #### Install in the trusted root
 
-https://social.msdn.microsoft.com/Forums/SqlServer/en-US/5ed119ef-1704-4be4-8a4f-ef11de7c8f34/a-certificate-chain-processed-but-terminated-in-a-root-certificate-which-is-not-trusted-by-the
+The root certificate needs to be trusted on your host system and a self-signed certificate will not be trusted per default. The following link explains how this could be done on a windows operating system:
+
+https://social.msdn.microsoft.com/Forums/SqlServer/5ed119ef-1704-4be4-8a4f-ef11de7c8f34/a-certificate-chain-processed-but-terminated-in-a-root-certificate-which-is-not-trusted-by-the
 
 #### Intermediate certificate
 
-A self-signed, intermediate certificate can now be created from the root certificate. This isn't required for all use cases, but you might need to create many certificates or need to activate, disable groups of certificates. The `TextExtension` parameter is required to set the pathlength in the basic constraints of the certificate.
+A self-signed, intermediate certificate can now be created from the root certificate. This isn't required for all use cases, but you might need to create many certificates or need to activate or disable groups of certificates. The `TextExtension` parameter is required to set the path length in the basic constraints of the certificate.
 
 The intermediate certificate can then be added to the trusted intermediate certificate in the Windows host system.
 
