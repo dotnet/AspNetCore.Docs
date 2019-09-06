@@ -24,7 +24,7 @@ To register a gRPC client, the generic `AddGrpcClient` extension method can be u
 ```csharp
 services.AddGrpcClient<Greeter.GreeterClient>(o =>
 {
-    o.Address = new Uri("http://localhost:5001");
+    o.Address = new Uri("https://localhost:5001");
 });
 ```
 
@@ -63,7 +63,7 @@ public class AggregatorService : Aggregator.AggregatorBase
 services
     .AddGrpcClient<Greeter.GreeterClient>(o =>
     {
-        o.BaseAddress = new Uri("http://localhost:5001");
+        o.Address = new Uri("https://localhost:5001");
     })
     .ConfigurePrimaryHttpMessageHandler(() =>
     {
@@ -86,7 +86,7 @@ gRPC-specific methods are available to:
 services
     .AddGrpcClient<Greeter.GreeterClient>(o =>
     {
-        o.Address = new Uri("http://localhost:5001");
+        o.Address = new Uri("https://localhost:5001");
     })
     .AddInterceptor(() => new LoggingInterceptor())
     .ConfigureChannel(o =>
@@ -105,7 +105,7 @@ Call context propagation works by reading the deadline and cancellation token fr
 services
     .AddGrpcClient<Greeter.GreeterClient>(o =>
     {
-        o.Address = new Uri("http://localhost:5001");
+        o.Address = new Uri("https://localhost:5001");
     })
     .EnableCallContextPropagation();
 ```

@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor server-side app using ASP.NET
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/11/2019
+ms.date: 09/05/2019
 uid: host-and-deploy/blazor/server-side
 ---
 # Host and deploy Blazor server-side

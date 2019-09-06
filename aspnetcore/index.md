@@ -57,7 +57,7 @@ There are several advantages to targeting .NET Core, and these advantages increa
 
 * Cross-platform. Runs on macOS, Linux, and Windows.
 * Improved performance
-* Side-by-side versioning
+* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#a-need-for-side-by-side-of-net-versions-per-application-level)
 * New APIs
 * Open source
 
