@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApiSample.DataAccess.Models
+namespace WebApiSample.Models
 {
     public class Product
     {

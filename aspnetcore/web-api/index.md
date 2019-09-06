@@ -5,35 +5,45 @@ description: Learn the basics of creating a web API in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/08/2019
+ms.date: 09/06/2019
 uid: web-api/index
 ---
 # Create web APIs with ASP.NET Core
 
 By [Scott Addie](https://github.com/scottaddie) and [Tom Dykstra](https://github.com/tdykstra)
 
-ASP.NET Core supports creating RESTful services, also known as web APIs, using C#. To handle requests, a web API uses controllers. *Controllers* in a web API are classes that derive from `ControllerBase`. This article shows how to use controllers for handling API requests.
+ASP.NET Core supports creating RESTful services, also known as web APIs, using C#. To handle requests, a web API uses controllers. *Controllers* in a web API are classes that derive from `ControllerBase`. This article shows how to use controllers for handling web API requests.
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/index/samples). ([How to download](xref:index#how-to-download-a-sample)).
 
 ## ControllerBase class
 
-A web API has one or more controller classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. For example, the web API project template creates a Values controller:
+A web API consists of one or more controller classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. The web API project template provides a starter controller:
 
-[!code-csharp[](index/samples/2.x/Controllers/ValuesController.cs?name=snippet_Signature&highlight=3)]
+::: moniker range=">= aspnetcore-3.0"
 
-Don't create a web API controller by deriving from the <xref:Microsoft.AspNetCore.Mvc.Controller> class. `Controller` derives from `ControllerBase` and adds support for views, so it's for handling web pages, not web API requests.  There's an exception to this rule: if you plan to use the same controller for both views and APIs, derive it from `Controller`.
+[!code-csharp[](index/samples/3.x/Controllers/WeatherForecastController.cs?name=snippet_ControllerSignature&highlight=3)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
+[!code-csharp[](index/samples/2.x/Controllers/ValuesController.cs?name=snippet_ControllerSignature&highlight=3)]
+
+::: moniker-end
+
+Don't create a web API controller by deriving from the <xref:Microsoft.AspNetCore.Mvc.Controller> class. `Controller` derives from `ControllerBase` and adds support for views, so it's for handling web pages, not web API requests. There's an exception to this rule: if you plan to use the same controller for both views and web APIs, derive it from `Controller`.
 
 The `ControllerBase` class provides many properties and methods that are useful for handling HTTP requests. For example, `ControllerBase.CreatedAtAction` returns a 201 status code:
 
 [!code-csharp[](index/samples/2.x/Controllers/PetsController.cs?name=snippet_400And201&highlight=8-9)]
 
- Here are some more examples of methods that `ControllerBase` provides.
+Here are some more examples of methods that `ControllerBase` provides.
 
-|Method  |Notes  |
+|Method   |Notes    |
 |---------|---------|
 |<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>| Returns 400 status code.|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*> |Returns 404 status code.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*>|Returns 404 status code.|
 |<xref:Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile*>|Returns a file.|
 |<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>|Invokes [model binding](xref:mvc/models/model-binding).|
 |<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel*>|Invokes [model validation](xref:mvc/models/validation).|
@@ -42,7 +52,7 @@ For a list of all available methods and properties, see <xref:Microsoft.AspNetCo
 
 ## Attributes
 
-The <xref:Microsoft.AspNetCore.Mvc> namespace provides attributes that can be used to configure the behavior of web API controllers and action methods. The following example uses attributes to specify the HTTP method accepted and the status codes returned:
+The <xref:Microsoft.AspNetCore.Mvc> namespace provides attributes that can be used to configure the behavior of web API controllers and action methods. The following example uses attributes to specify the supported HTTP action verb and any known HTTP status codes that could be returned:
 
 [!code-csharp[](index/samples/2.x/Controllers/PetsController.cs?name=snippet_400And201&highlight=1-3)]
 
@@ -52,7 +62,7 @@ Here are some more examples of attributes that are available.
 |---------|-----|
 |[[Route]](<xref:Microsoft.AspNetCore.Mvc.RouteAttribute>)      |Specifies URL pattern for a controller or action.|
 |[[Bind]](<xref:Microsoft.AspNetCore.Mvc.BindAttribute>)        |Specifies prefix and properties to include for model binding.|
-|[[HttpGet]](<xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute>)  |Identifies an action that supports the HTTP GET method.|
+|[[HttpGet]](<xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute>)  |Identifies an action that supports the HTTP GET action verb.|
 |[[Consumes]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>)|Specifies data types that an action accepts.|
 |[[Produces]](<xref:Microsoft.AspNetCore.Mvc.ProducesAttribute>)|Specifies data types that an action returns.|
 
@@ -60,7 +70,7 @@ For a list that includes the available attributes, see the <xref:Microsoft.AspNe
 
 ## ApiController attribute
 
-The [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute can be applied to a controller class to enable API-specific behaviors:
+The [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute can be applied to a controller class to enable the following opinionated, API-specific behaviors:
 
 * [Attribute routing requirement](#attribute-routing-requirement)
 * [Automatic HTTP 400 responses](#automatic-http-400-responses)
@@ -70,23 +80,43 @@ The [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attr
 
 These features require a [compatibility version](<xref:mvc/compatibility-version>) of 2.1 or later.
 
-### ApiController on specific controllers
+### Attribute on specific controllers
 
 The `[ApiController]` attribute can be applied to specific controllers, as in the following example from the project template:
 
-[!code-csharp[](index/samples/2.x/Controllers/ValuesController.cs?name=snippet_Signature&highlight=2)]
+::: moniker range=">= aspnetcore-3.0"
 
-### ApiController on multiple controllers
+[!code-csharp[](index/samples/3.x/Controllers/WeatherForecastController.cs?name=snippet_ControllerSignature&highlight=2])]
 
-One approach to using the attribute on more than one controller is to create a custom base controller class annotated with the `[ApiController]` attribute. Here's an example showing a custom base class and a controller that derives from it:
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
+[!code-csharp[](index/samples/2.x/Controllers/ValuesController.cs?name=snippet_ControllerSignature&highlight=2)]
+
+::: moniker-end
+
+### Attribute on multiple controllers
+
+One approach to using the attribute on more than one controller is to create a custom base controller class annotated with the `[ApiController]` attribute. The following example shows a custom base class and a controller that derives from it:
 
 [!code-csharp[](index/samples/2.x/Controllers/MyControllerBase.cs?name=snippet_MyControllerBase)]
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](index/samples/3.x/Controllers/PetsController.cs?name=snippet_Inherit)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
 [!code-csharp[](index/samples/2.x/Controllers/PetsController.cs?name=snippet_Inherit)]
 
-### ApiController on an assembly
+::: moniker-end
 
-If [compatibility version](<xref:mvc/compatibility-version>) is set to 2.2 or later, the `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. There's no way to opt out for individual controllers. Apply the assembly-level attribute to the `Startup` class as shown in the following example:
+### Attribute on an assembly
+
+If [compatibility version](xref:mvc/compatibility-version) is set to 2.2 or later, the `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. There's no way to opt out for individual controllers. Apply the assembly-level attribute to the `Startup` class as shown in the following example:
 
 ```csharp
 [assembly: ApiController]
@@ -101,15 +131,26 @@ namespace WebApiSample
 
 ## Attribute routing requirement
 
-The `ApiController` attribute makes attribute routing a requirement. For example:
+The `[ApiController]` attribute makes attribute routing a requirement. For example:
 
-[!code-csharp[](index/samples/2.x/Controllers/ValuesController.cs?name=snippet_Signature&highlight=1)]
+::: moniker range=">= aspnetcore-3.0"
 
+[!code-csharp[](index/samples/3.x/Controllers/WeatherForecastController.cs?name=snippet_ControllerSignature&highlight=2)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
+[!code-csharp[](index/samples/2.x/Controllers/ValuesController.cs?name=snippet_ControllerSignature&highlight=1)]
+
+::: moniker-end
+
+<!-- TODO: how does this statement change for 3.0? -->
 Actions are inaccessible via [conventional routes](xref:mvc/controllers/routing#conventional-routing) defined by <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*> or <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute*> in `Startup.Configure`.
 
 ## Automatic HTTP 400 responses
 
-The `ApiController` attribute makes model validation errors automatically trigger an HTTP 400 response. Consequently, the following code is unnecessary in an action method:
+The `[ApiController]` attribute makes model validation errors automatically trigger an HTTP 400 response. Consequently, the following code is unnecessary in an action method:
 
 ```csharp
 if (!ModelState.IsValid)
@@ -117,6 +158,8 @@ if (!ModelState.IsValid)
     return BadRequest(ModelState);
 }
 ```
+
+ASP.NET Core uses the <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter> action filter to perform the preceding check.
 
 ### Default BadRequest response 
 
