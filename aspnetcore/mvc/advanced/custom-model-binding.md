@@ -98,7 +98,7 @@ The `ModelBinder` attribute can be used to apply the `AuthorEntityBinder` to par
 
 [!code-csharp[](custom-model-binding/sample/CustomModelBindingSample/Controllers/BoundAuthorsController.cs?name=demo1&highlight=2)]
 
-In this example, since the name of the argument isn't the default `authorId`, it's specified on the parameter using the `ModelBinder` attribute. Note that both the controller and action method are simplified compared to looking up the entity in the action method. The logic to fetch the author using Entity Framework Core is moved to the model binder. This can be a considerable simplification when you have several methods that bind to the `Author` model.
+In this example, since the name of the argument isn't the default `authorId`, it's specified on the parameter using the `ModelBinder` attribute. Both the controller and action method are simplified compared to looking up the entity in the action method. The logic to fetch the author using Entity Framework Core is moved to the model binder. This can be a considerable simplification when you have several methods that bind to the `Author` model.
 
 You can apply the `ModelBinder` attribute to individual model properties (such as on a viewmodel) or to action method parameters to specify a certain model binder or model name for just that type or action.
 
@@ -127,84 +127,9 @@ Adding your provider to the end of the collection may result in a built-in model
 
 ### Polymorphic model binding
 
-One possible reason to do custom model binding is to use some value from the request to produce different types of models. We would generally recommend avoiding this pattern since it makes it non-trivial to reason about your bound models. However, if your application requires such a pattern, a pattern for implementing it would look like this:
+Binding to different models of derived types is known as polymorphic model binding. Custom model binding is required when the request value must be bound to the specific derived model type. Unless this approach is required, we recommend avoiding polymorphic model binding. Polymorphic model binding makes it difficult to reason about the bound models. However, if an app requires polymorphic model binding, an implementation might look like the follow code:
 
-```C#
-[ModelBinder(typeof(DeviceModelBinder))]
-public class Device
-{
-    public string Kind { get; set; }
-}
-
-public class Laptop : Device
-{
-    public string CPUIndex { get; set; }
-}
-
-public class SmartPhone : Device
-{
-    public string ScreenSize { get; set; }
-}
-
-public class DeviceModelBinder : IModelBinder
-{
-    public Task BindModelAsync(ModelBindingContext bindingContext)
-    {
-        var name = ModelNames.CreatePropertyModelName(
-            bindingContext.ModelName,
-            nameof(Device.Kind));
-
-        var deviceKind = bindingContext.ValueProvider.GetValue(name).FirstValue;
-
-        if (string.IsNullOrEmpty(deviceKind))
-        {
-            bindingContext.Result = ModelBindingResult.Failed();
-            return Task.CompletedTask;
-        }
-
-        Device result;
-        if (deviceKind == "Laptop")
-        {
-            var modelName = ModelNames.CreatePropertyModelName(bindingContext.ModelName, nameof(Laptop.CPUIndex));
-            var cpuIndex = bindingContext.ValueProvider.GetValue(modelName).FirstValue;
-            result = new Laptop
-            {
-                Kind = deviceKind,
-                CPUIndex = cpuIndex,
-            };
-        }
-        else if (deviceKind == "SmartPhone")
-        {
-            var modelName = ModelNames.CreatePropertyModelName(bindingContext.ModelName, nameof(SmartPhone.ScreenSize));
-            var screenSize = bindingContext.ValueProvider.GetValue(modelName).FirstValue;
-            result = new SmartPhone
-            {
-                Kind = deviceKind,
-                ScreenSize = screenSize,
-            };
-        }
-        else
-        {
-            bindingContext.ModelState.TryAddModelError(name, $"Unknown device kind '{deviceKind}'.");
-
-            bindingContext.Result = ModelBindingResult.Failed();
-            return Task.CompletedTask;
-        }
-
-        bindingContext.Result = ModelBindingResult.Success(result);
-
-        // Add a ValidationStateEntry with the "correct" ModelMetadata so validation executes on the actual type, not the declared type.
-        var modelMetadataProvider = bindingContext.HttpContext.RequestServices.GetRequiredService<IModelMetadataProvider>();
-
-        bindingContext.ValidationState.Add(result, new ValidationStateEntry
-        {
-            Metadata = modelMetadataProvider.GetMetadataForType(result.GetType()),
-        });
-
-        return Task.CompletedTask;
-    }
-}
-```
+[!code-csharp[](custom-model-binding/3.0sample/PolymorphicModelBinding/ModelBinders/PolymorphicModelBinder.cs?name=snippet)]
 
 ## Recommendations and best practices
 
