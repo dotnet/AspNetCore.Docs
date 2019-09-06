@@ -6,7 +6,7 @@ To delay JavaScript interop calls until after the connection with the browser is
 @using Microsoft.JSInterop
 @inject IJSRuntime JSRuntime
 
-<input @ref="myInput" @ref:suppressField value="Value set during render" />
+<input @ref="myInput" value="Value set during render" />
 
 @code {
     private ElementReference myInput;
@@ -39,7 +39,7 @@ Where `JSRuntime.InvokeAsync` is called, `ElementRef` is only used in `OnAfterRe
 
 <p>
     Set value via JS interop call:
-    <input id="val-set-by-interop" @ref="myElem" @ref:suppressField />
+    <input id="val-set-by-interop" @ref="myElem" />
 </p>
 
 @code {

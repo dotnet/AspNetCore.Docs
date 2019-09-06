@@ -21,9 +21,44 @@ This article provides guidance for:
 
 ## Wire up SignalR during startup
 
+::: moniker range=">= aspnetcore-3.0"
+
+Hosting ASP.NET Core SignalR Hubs in the context of a background worker process is identical to hosting a Hub in an ASP.NET Core web app. In the `Startup.ConfigureServices` method, calling `services.AddSignalR` adds the required services to the ASP.NET Core Dependency Injection (DI) layer to support SignalR. In `Startup.Configure`, the `MapHub` method is called in the `UseEndpoints` callback to wire up the Hub endpoint(s) in the ASP.NET Core request pipeline.
+
+```csharp
+public class Startup
+{
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddSignalR();
+        services.AddHostedService<Worker>();
+    }
+
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
+
+        app.UseRouting();
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapHub<ClockHub>("/hubs/clock");
+        });
+    }
+}
+```
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
 Hosting ASP.NET Core SignalR Hubs in the context of a background worker process is identical to hosting a Hub in an ASP.NET Core web app. In the `Startup.ConfigureServices` method, calling `services.AddSignalR` adds the required services to the ASP.NET Core Dependency Injection (DI) layer to support SignalR. In `Startup.Configure`, the `UseSignalR` method is called to wire up the Hub endpoint(s) in the ASP.NET Core request pipeline.
 
 [!code-csharp[Startup](background-service/sample/Server/Startup.cs?name=Startup)]
+
+::: moniker-end
 
 In the preceding example, the `ClockHub` class implements the `Hub<T>` class to create a strongly typed Hub. The `ClockHub` has been configured in the `Startup` class to respond to requests at the endpoint `/hubs/clock`.
 
@@ -56,7 +91,7 @@ As the `ExecuteAsync` method is called iteratively in the background service, th
 
 Like a Single Page App using the JavaScript client for SignalR or a .NET desktop app can do using the using the <xref:signalr/dotnet-client>, a `BackgroundService` or `IHostedService` implementation can also be used to connect to SignalR Hubs and respond to events.
 
-The `ClockHubClient` class implements both the `IClock` interface and the `IHostedService` interface. This way it can be wired up during `Startup` to run continuously and respond to Hub events from the server. 
+The `ClockHubClient` class implements both the `IClock` interface and the `IHostedService` interface. This way it can be wired up during `Startup` to run continuously and respond to Hub events from the server.
 
 ```csharp
 public partial class ClockHubClient : IClock, IHostedService

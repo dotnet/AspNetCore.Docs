@@ -5,102 +5,26 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/10/2019
+ms.date: 09/05/2019
 uid: host-and-deploy/blazor/client-side
 ---
 # Host and deploy ASP.NET Core Blazor client-side
 
 By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
 
-## Host configuration values
-
-Blazor apps that use the [client-side hosting model](xref:blazor/hosting-models#client-side) can accept the following host configuration values as command-line arguments at runtime in the development environment.
-
-### Content Root
-
-The `--contentroot` argument sets the absolute path to the directory that contains the app's content files. In the following examples, `/content-root-path` is the app's content root path.
-
-* Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
-
-  ```console
-  dotnet run --contentroot=/content-root-path
-  ```
-
-* Add an entry to the app's *launchSettings.json* file in the **IIS Express** profile. This setting is used when the app is run with the Visual Studio Debugger and from a command prompt with `dotnet run`.
-
-  ```json
-  "commandLineArgs": "--contentroot=/content-root-path"
-  ```
-
-* In Visual Studio, specify the argument in **Properties** > **Debug** > **Application arguments**. Setting the argument in the Visual Studio property page adds the argument to the *launchSettings.json* file.
-
-  ```console
-  --contentroot=/content-root-path
-  ```
-
-### Path base
-
-The `--pathbase` argument sets the app base path for an app run locally with a non-root virtual path (the `<base>` tag `href` is set to a path other than `/` for staging and production). In the following examples, `/virtual-path` is the app's path base. For more information, see the [App base path](#app-base-path) section.
-
-> [!IMPORTANT]
-> Unlike the path provided to `href` of the `<base>` tag, don't include a trailing slash (`/`) when passing the `--pathbase` argument value. If the app base path is provided in the `<base>` tag as `<base href="/CoolApp/">` (includes a trailing slash), pass the command-line argument value as `--pathbase=/CoolApp` (no trailing slash).
-
-* Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
-
-  ```console
-  dotnet run --pathbase=/virtual-path
-  ```
-
-* Add an entry to the app's *launchSettings.json* file in the **IIS Express** profile. This setting is used when running the app with the Visual Studio Debugger and from a command prompt with `dotnet run`.
-
-  ```json
-  "commandLineArgs": "--pathbase=/virtual-path"
-  ```
-
-* In Visual Studio, specify the argument in **Properties** > **Debug** > **Application arguments**. Setting the argument in the Visual Studio property page adds the argument to the *launchSettings.json* file.
-
-  ```console
-  --pathbase=/virtual-path
-  ```
-
-### URLs
-
-The `--urls` argument sets the IP addresses or host addresses with ports and protocols to listen on for requests.
-
-* Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
-
-  ```console
-  dotnet run --urls=http://127.0.0.1:0
-  ```
-
-* Add an entry to the app's *launchSettings.json* file in the **IIS Express** profile. This setting is used when running the app with the Visual Studio Debugger and from a command prompt with `dotnet run`.
-
-  ```json
-  "commandLineArgs": "--urls=http://127.0.0.1:0"
-  ```
-
-* In Visual Studio, specify the argument in **Properties** > **Debug** > **Application arguments**. Setting the argument in the Visual Studio property page adds the argument to the *launchSettings.json* file.
-
-  ```console
-  --urls=http://127.0.0.1:0
-  ```
-
-## Deployment
-
 With the [client-side hosting model](xref:blazor/hosting-models#client-side):
 
 * The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser.
-* The app is executed directly on the browser UI thread. Either of the following strategies is supported:
-  * The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
-  * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section.
+* The app is executed directly on the browser UI thread.
 
-## Configure the Linker
+The following deployment strategies are supported:
 
-Blazor performs Intermediate Language (IL) linking on each build to remove unnecessary IL from the output assemblies. Assembly linking can be controlled on build. For more information, see <xref:host-and-deploy/blazor/configure-linker>.
+* The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
+* The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor client-side app as an IIS sub-app.
 
 ## Rewrite URLs for correct routing
 
-Routing requests for page components in a client-side app isn't as simple as routing requests to a server-side, hosted app. Consider a client-side app with two components:
+Routing requests for page components in a client-side app isn't as straightforward as routing requests in a server-side, hosted app. Consider a client-side app with two components:
 
 * *Main.razor* &ndash; Loads at the root of the app and contains a link to the `About` component (`href="About"`).
 * *About.razor* &ndash; `About` component.
@@ -118,57 +42,7 @@ If a request is made using the browser's address bar for `www.contoso.com/About`
 
 Because browsers make requests to Internet-based hosts for client-side pages, web servers and hosting services must rewrite all requests for resources not physically on the server to the *index.html* page. When *index.html* is returned, the app's client-side router takes over and responds with the correct resource.
 
-## App base path
-
-The *app base path* is the virtual app root path on the server. For example, an app that resides on the Contoso server in a virtual folder at `/CoolApp/` is reached at `https://www.contoso.com/CoolApp` and has a virtual base path of `/CoolApp/`. By setting the app base path to the virtual path (`<base href="/CoolApp/">`), the app is made aware of where it virtually resides on the server. The app can use the app base path to construct URLs relative to the app root from a component that isn't in the root directory. This allows components that exist at different levels of the directory structure to build links to other resources at locations throughout the app. The app base path is also used to intercept hyperlink clicks where the `href` target of the link is within the app base path URI space&mdash;the Blazor router handles the internal navigation.
-
-In many hosting scenarios, the server's virtual path to the app is the root of the app. In these cases, the app base path is a forward slash (`<base href="/" />`), which is the default configuration for an app. In other hosting scenarios, such as GitHub Pages and IIS virtual directories or sub-applications, the app base path must be set to the server's virtual path to the app. To set the app's base path, update the `<base>` tag within the `<head>` tag elements of the *wwwroot/index.html* file. Set the `href` attribute value to `/virtual-path/` (the trailing slash is required), where `/virtual-path/` is the full virtual app root path on the server for the app. In the preceding example, the virtual path is set to `/CoolApp/`: `<base href="/CoolApp/">`.
-
-For an app with a non-root virtual path configured (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime.
-
-To pass the path base argument with the root path (`/`) when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
-
-```console
-dotnet run --pathbase=/{Virtual Path (no trailing slash)}
-```
-
-For an app with a virtual base path of `/CoolApp/` (`<base href="/CoolApp/">`), the command is:
-
-```console
-dotnet run --pathbase=/CoolApp
-```
-
-The app responds locally at `http://localhost:port/CoolApp`.
-
-For more information, see the section on the [path base host configuration value](#path-base).
-
-If an app uses the [client-side hosting model](xref:blazor/hosting-models#client-side) (based on the **Blazor WebAssembly App** project template, the `blazorwasm` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command) and is hosted as an IIS sub-app in an ASP.NET Core app, it's important to disable the inherited ASP.NET Core Module handler or make sure the root (parent) app's `<handlers>` section in the *web.config* file isn't inherited by the sub-app.
-
-Remove the handler in the app's published *web.config* file by adding a `<handlers>` section to the file:
-
-```xml
-<handlers>
-  <remove name="aspNetCore" />
-</handlers>
-```
-
-Alternatively, disable inheritance of the root (parent) app's `<system.webServer>` section using a `<location>` element with `inheritInChildApplications` set to `false`:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <location path="." inheritInChildApplications="false">
-    <system.webServer>
-      <handlers>
-        <add name="aspNetCore" ... />
-      </handlers>
-      <aspNetCore ... />
-    </system.webServer>
-  </location>
-</configuration>
-```
-
-Removing the handler or disabling inheritance is performed in addition to configuring the app's base path as described in this section. Set the app base path in the app's *index.html* file to the IIS alias used when configuring the sub-app in IIS.
+When deploying to an IIS server, you can use the URL Rewrite Module with the app's published *web.config* file. For more information, see the [IIS](#iis) section.
 
 ## Hosted deployment with ASP.NET Core
 
@@ -223,6 +97,38 @@ Set the website's **Physical path** to the app's folder. The folder contains:
 * The *web.config* file that IIS uses to configure the website, including the required redirect rules and file content types.
 * The app's static asset folder.
 
+#### Host as an IIS sub-app
+
+If a standalone app is hosted as an IIS sub-app, perform either of the following:
+
+* Disable the inherited ASP.NET Core Module handler.
+
+  Remove the handler in the Blazor app's published *web.config* file by adding a `<handlers>` section to the file:
+
+  ```xml
+  <handlers>
+    <remove name="aspNetCore" />
+  </handlers>
+  ```
+
+* Disable inheritance of the root (parent) app's `<system.webServer>` section using a `<location>` element with `inheritInChildApplications` set to `false`:
+
+  ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <configuration>
+    <location path="." inheritInChildApplications="false">
+      <system.webServer>
+        <handlers>
+          <add name="aspNetCore" ... />
+        </handlers>
+        <aspNetCore ... />
+      </system.webServer>
+    </location>
+  </configuration>
+  ```
+
+Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:host-and-deploy/blazor/index#app-base-path). Set the app base path in the app's *index.html* file to the IIS alias used when configuring the sub-app in IIS.
+
 #### Troubleshooting
 
 If a *500 - Internal Server Error* is received and IIS Manager throws errors when attempting to access the website's configuration, confirm that the URL Rewrite Module is installed. When the module isn't installed, the *web.config* file can't be parsed by IIS. This prevents the IIS Manager from loading the website's configuration and the website from serving Blazor's static files.
@@ -231,7 +137,7 @@ For more information on troubleshooting deployments to IIS, see <xref:test/troub
 
 ### Azure Storage
 
-Azure Storage static file hosting allows serverless Blazor app hosting. Custom domain names, the Azure Content Delivery Network (CDN), and HTTPS are supported.
+[Azure Storage](/azure/storage/) static file hosting allows serverless Blazor app hosting. Custom domain names, the Azure Content Delivery Network (CDN), and HTTPS are supported.
 
 When the blob service is enabled for static website hosting on a storage account:
 
@@ -277,3 +183,80 @@ COPY nginx.conf /etc/nginx/nginx.conf
 To handle URL rewrites, add a *404.html* file with a script that handles redirecting the request to the *index.html* page. For an example implementation provided by the community, see [Single Page Apps for GitHub Pages](https://spa-github-pages.rafrex.com/) ([rafrex/spa-github-pages on GitHub](https://github.com/rafrex/spa-github-pages#readme)). An example using the community approach can be seen at [blazor-demo/blazor-demo.github.io on GitHub](https://github.com/blazor-demo/blazor-demo.github.io) ([live site](https://blazor-demo.github.io/)).
 
 When using a project site instead of an organization site, add or update the `<base>` tag in *index.html*. Set the `href` attribute value to the GitHub repository name with a trailing slash (for example, `my-repository/`.
+
+## Host configuration values
+
+Blazor apps that use the [client-side hosting model](xref:blazor/hosting-models#client-side) can accept the following host configuration values as command-line arguments at runtime in the development environment.
+
+### Content Root
+
+The `--contentroot` argument sets the absolute path to the directory that contains the app's content files. In the following examples, `/content-root-path` is the app's content root path.
+
+* Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
+
+  ```console
+  dotnet run --contentroot=/content-root-path
+  ```
+
+* Add an entry to the app's *launchSettings.json* file in the **IIS Express** profile. This setting is used when the app is run with the Visual Studio Debugger and from a command prompt with `dotnet run`.
+
+  ```json
+  "commandLineArgs": "--contentroot=/content-root-path"
+  ```
+
+* In Visual Studio, specify the argument in **Properties** > **Debug** > **Application arguments**. Setting the argument in the Visual Studio property page adds the argument to the *launchSettings.json* file.
+
+  ```console
+  --contentroot=/content-root-path
+  ```
+
+### Path base
+
+The `--pathbase` argument sets the app base path for an app run locally with a non-root relative URL path (the `<base>` tag `href` is set to a path other than `/` for staging and production). In the following examples, `/relative-URL-path` is the app's path base. For more information, see [App base path](xref:host-and-deploy/blazor/index#app-base-path).
+
+> [!IMPORTANT]
+> Unlike the path provided to `href` of the `<base>` tag, don't include a trailing slash (`/`) when passing the `--pathbase` argument value. If the app base path is provided in the `<base>` tag as `<base href="/CoolApp/">` (includes a trailing slash), pass the command-line argument value as `--pathbase=/CoolApp` (no trailing slash).
+
+* Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
+
+  ```console
+  dotnet run --pathbase=/relative-URL-path
+  ```
+
+* Add an entry to the app's *launchSettings.json* file in the **IIS Express** profile. This setting is used when running the app with the Visual Studio Debugger and from a command prompt with `dotnet run`.
+
+  ```json
+  "commandLineArgs": "--pathbase=/relative-URL-path"
+  ```
+
+* In Visual Studio, specify the argument in **Properties** > **Debug** > **Application arguments**. Setting the argument in the Visual Studio property page adds the argument to the *launchSettings.json* file.
+
+  ```console
+  --pathbase=/relative-URL-path
+  ```
+
+### URLs
+
+The `--urls` argument sets the IP addresses or host addresses with ports and protocols to listen on for requests.
+
+* Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
+
+  ```console
+  dotnet run --urls=http://127.0.0.1:0
+  ```
+
+* Add an entry to the app's *launchSettings.json* file in the **IIS Express** profile. This setting is used when running the app with the Visual Studio Debugger and from a command prompt with `dotnet run`.
+
+  ```json
+  "commandLineArgs": "--urls=http://127.0.0.1:0"
+  ```
+
+* In Visual Studio, specify the argument in **Properties** > **Debug** > **Application arguments**. Setting the argument in the Visual Studio property page adds the argument to the *launchSettings.json* file.
+
+  ```console
+  --urls=http://127.0.0.1:0
+  ```
+
+## Configure the Linker
+
+Blazor performs Intermediate Language (IL) linking on each build to remove unnecessary IL from the output assemblies. Assembly linking can be controlled on build. For more information, see <xref:host-and-deploy/blazor/configure-linker>.
