@@ -36,7 +36,7 @@ Don't create a web API controller by deriving from the <xref:Microsoft.AspNetCor
 
 The `ControllerBase` class provides many properties and methods that are useful for handling HTTP requests. For example, `ControllerBase.CreatedAtAction` returns a 201 status code:
 
-[!code-csharp[](index/samples/2.x/Controllers/PetsController.cs?name=snippet_400And201&highlight=8-9)]
+[!code-csharp[](index/samples/2.x/Controllers/PetsController.cs?name=snippet_400And201&highlight=10)]
 
 Here are some more examples of methods that `ControllerBase` provides.
 
@@ -145,7 +145,6 @@ The `[ApiController]` attribute makes attribute routing a requirement. For examp
 
 ::: moniker-end
 
-<!-- TODO: how does this statement change for 3.0? -->
 Actions are inaccessible via [conventional routes](xref:mvc/controllers/routing#conventional-routing) defined by <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*> or <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute*> in `Startup.Configure`.
 
 ## Automatic HTTP 400 responses
@@ -159,7 +158,7 @@ if (!ModelState.IsValid)
 }
 ```
 
-ASP.NET Core uses the <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter> action filter to perform the preceding check.
+ASP.NET Core MVC uses the <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter> action filter to perform the preceding check.
 
 ### Default BadRequest response 
 
@@ -173,7 +172,7 @@ To change the default response to <xref:Microsoft.AspNetCore.Mvc.SerializableErr
 
 To customize the response that results from a validation error, use <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory>. Add the following highlighted code after `services.AddMvc().SetCompatibilityVersion`:
 
-[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureBadRequestResponse&highlight=3-20)]
+[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureBadRequestResponse&highlight=3-21)]
 
 ### Log automatic 400 responses
 
