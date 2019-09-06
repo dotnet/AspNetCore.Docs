@@ -5,7 +5,7 @@ description: Learn about the benefits of using JavaScript Services to create a S
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: H1Hack27Feb2017
-ms.date: 05/28/2019
+ms.date: 09/06/2019
 uid: client-side/spa-services
 ---
 # Use JavaScript Services to Create Single Page Applications in ASP.NET Core
@@ -13,6 +13,13 @@ uid: client-side/spa-services
 By [Scott Addie](https://github.com/scottaddie) and [Fiyaz Hasan](https://fiyazhasan.me/)
 
 A Single Page Application (SPA) is a popular type of web application due to its inherent rich user experience. Integrating client-side SPA frameworks or libraries, such as [Angular](https://angular.io/) or [React](https://facebook.github.io/react/), with server-side frameworks such as ASP.NET Core can be difficult. JavaScript Services was developed to reduce friction in the integration process. It enables seamless operation between the different client and server technology stacks.
+
+::: moniker range=">= aspnetcore-3.0"
+
+> [!WARNING]
+> The features described in this article are obsolete as of ASP.NET Core 3.0. A simpler SPA frameworks integration mechanism is available in the [Microsoft.AspNetCore.SpaServices.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices.Extensions) NuGet package. For more information, see [[Announcement] Obsoleting Microsoft.AspNetCore.SpaServices and Microsoft.AspNetCore.NodeServices](https://github.com/aspnet/AspNetCore/issues/12890).
+
+::: moniker-end
 
 ## What is JavaScript Services
 
