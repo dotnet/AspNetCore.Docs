@@ -98,7 +98,7 @@ The `ModelBinder` attribute can be used to apply the `AuthorEntityBinder` to par
 
 [!code-csharp[](custom-model-binding/sample/CustomModelBindingSample/Controllers/BoundAuthorsController.cs?name=demo1&highlight=2)]
 
-In this example, since the name of the argument isn't the default `authorId`, it's specified on the parameter using the `ModelBinder` attribute. Note that both the controller and action method are simplified compared to looking up the entity in the action method. The logic to fetch the author using Entity Framework Core is moved to the model binder. This can be a considerable simplification when you have several methods that bind to the `Author` model.
+In this example, since the name of the argument isn't the default `authorId`, it's specified on the parameter using the `ModelBinder` attribute. Both the controller and action method are simplified compared to looking up the entity in the action method. The logic to fetch the author using Entity Framework Core is moved to the model binder. This can be a considerable simplification when you have several methods that bind to the `Author` model.
 
 You can apply the `ModelBinder` attribute to individual model properties (such as on a viewmodel) or to action method parameters to specify a certain model binder or model name for just that type or action.
 
@@ -127,7 +127,7 @@ Adding your provider to the end of the collection may result in a built-in model
 
 ### Polymorphic model binding
 
-One possible reason to do custom model binding is to use some value from the request to produce different types of models. We would generally recommend avoiding this pattern since it makes it non-trivial to reason about your bound models. However, if your application requires such a pattern, a pattern for implementing it would look like this:
+Binding to different models, depending on the request, is known as polymorphic model binding. Custom model binding is required when the request value must be bound to different models. Unless this approach is required, we recommend avoiding polymorphic model binding.  Polymorphic model binding makes it difficult to reason about the bound models. However, if your app requires polymorphic model binding, a pattern for implementing it would look like this:
 
 ```C#
 [ModelBinder(typeof(DeviceModelBinder))]
