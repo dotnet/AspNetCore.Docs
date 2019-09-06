@@ -203,6 +203,10 @@ Complete the following steps In IIS Manager:
 
 ![Client certificate settings in IIS](README-IISConfig.png)
 
+### Azure and custom web proxies
+
+See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding) for how to configure the certificate forwarding middleware.
+
 ### Using certificate authentication with the X-ARR-ClientCert header
 
 The AddCertificateForwarding method is used so that the client header can be specified and how the certificate is to be loaded using the HeaderConverter option. When sending the certificate with the HttpClient using the default settings, the ClientCertificate was always be null. The X-ARR-ClientCert header is used to pass the client certificate, and the cert is passed as a string to work around this.
@@ -269,7 +273,7 @@ namespace AspNetCoreCertificateAuthApi
 
 ```
 
-#### Implementing the HttpClient
+#### Implementing a HttpClient using a certificate
 
 The client of the API uses a HttpClient which was create using an instance of the IHttpClientFactory. This does not provide a way to define a handler for the HttpClient and so we use a HttpRequestMessage to add the Certificate to the "X-ARR-ClientCert" request header. The cert is added as a string using the GetRawCertDataString method. 
  
@@ -448,7 +452,3 @@ namespace AspNetCoreCertificateAuthApi
     }
 }
 ```
-
-### Azure and custom web proxies
-
-See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding) for how to configure the certificate forwarding middleware.
