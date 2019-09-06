@@ -245,8 +245,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
-The MyCertificateValidationService can be used to implement validation logic. Because we are using self signed certificates, we need to ensure that only our certificate can be used. We validate that the thumbprints of the client certificate and also the server one match, otherwise any certificate can be used and will be be enough to authenticate.
-
+A separate class can be used to implement validation logic. Because we are using the same self signed certificate in this example, we need to ensure that only our certificate can be used. We validate that the thumbprints of the client certificate and also the server one match, otherwise any certificate can be used and will be be enough to authenticate. This would be used inside the AddCertificate method. You could also validate the subject or the issuer here, if you are using intermediate or child certificates.
 ```csharp
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
@@ -315,6 +314,7 @@ If the correct certificate is sent to the server, the data will be returned. If 
 
 ### Creating certificates in powershell
 
+Creating the certificates is the hardest part in setting up this flow. A self signed Root CA Certificate is created using the New-SelfSignedCertificate powershell cmdlet. When creating this, please use a strong password, replace the demo one, do not just copy the code. It is important to add the KeyUsageProperty parameter and the KeyUsage parameter as shown.
 
 #### Create Root CA
 
@@ -336,6 +336,10 @@ https://social.msdn.microsoft.com/Forums/SqlServer/en-US/5ed119ef-1704-4be4-8a4f
 
 #### Intermediate certificate
 
+A self signed intermediate certificate can now be created from the root certificate. This is not required for all use cases, but you might need to create many certificates or need to activate, disable groups of certificates. The TextExtension parameter is required to set the pathlength in the basic constraints of the certificate.
+
+The intermediate certificate can then be added to the trusted intermediate certificate in the windows host system.
+
 ```
 
 $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
@@ -353,6 +357,8 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath int
 
 #### Create Child Cert from Intermediate certificate
 
+ child certificate can be created from the intermediate certificate. This is the end entity and does not need to create more child certificates.
+ 
 ```
 $parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the Intermediate certificate..." )
 
@@ -367,6 +373,9 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath chi
 ```
 
 #### Create Child Cert from Root
+
+A child certificate can also be created from the root certificate directly. If you do not have many API clients, this could be used.
+
 
 ```
 $rootcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the root cert..." )
@@ -413,7 +422,7 @@ Export-Certificate -Cert cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD5
 
 ```
 
-When using the root, Intermediate or child certificates, the certs can be validated using the Issuer or the Subject as requires.
+When using the root, intermediate or child certificates, the certs can be validated using the Issuer or the Subject as requires.
 
 ```csharp
 using System.IO;
