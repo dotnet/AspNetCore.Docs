@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/05/2019
+ms.date: 09/06/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -708,7 +708,11 @@ protected override void OnParametersSet()
 }
 ```
 
-`OnAfterRenderAsync` and `OnAfterRender` are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps using the rendered content, such as activating third-party JavaScript libraries that operate on the rendered DOM elements. The `firstRender` parameter is:
+`OnAfterRenderAsync` and `OnAfterRender` are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps using the rendered content, such as activating third-party JavaScript libraries that operate on the rendered DOM elements.
+
+`OnAfterRender` *is not called when prerendering on the server.*
+
+The `firstRender` parameter for `OnAfterRenderAsync` and `OnAfterRender` is:
 
 * Set to `true` the first time that the component instance is invoked.
 * Ensures that initialization work is only performed once.

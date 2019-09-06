@@ -51,15 +51,6 @@ Where `JSRuntime.InvokeAsync` is called, `ElementRef` is only used in `OnAfterRe
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        // TEMPORARY: Currently we need this guard to avoid making the interop
-        // call during prerendering. Soon this will be unnecessary because we
-        // will change OnAfterRenderAsync so that it won't run during the
-        // prerendering phase.
-        if (!ComponentContext.IsConnected)
-        {
-            return;
-        }
-
         if (firstRender && infoFromJs == null)
         {
             infoFromJs = await JSRuntime.InvokeAsync<string>(

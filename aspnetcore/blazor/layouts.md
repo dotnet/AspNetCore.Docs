@@ -5,7 +5,7 @@ description: Learn how to create reusable layout components for Blazor apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/05/2019
+ms.date: 09/06/2019
 uid: blazor/layouts
 ---
 # ASP.NET Core Blazor layouts
@@ -73,7 +73,7 @@ The *MasterListLayout.razor* file provides the `MasterListLayout`. The layout re
 
 [!code-cshtml[](layouts/sample_snapshot/3.x/MasterListLayout.razor?highlight=1,9)]
 
-Finally, `MasterLayout` in *MasterLayout.razor* contains the top-level layout elements, such as the header, main menu, and footer. `MasterListLayout` with `EpisodesComponent` is rendered where `@Body` appears:
+Finally, `MasterLayout` in *MasterLayout.razor* contains the top-level layout elements, such as the header, main menu, and footer. `MasterListLayout` with the `EpisodesComponent` is rendered where `@Body` appears:
 
 [!code-cshtml[](layouts/sample_snapshot/3.x/MasterLayout.razor?highlight=6)]
 

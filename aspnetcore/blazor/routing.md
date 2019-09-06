@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/05/2019
+ms.date: 09/06/2019
 uid: blazor/routing
 ---
 # ASP.NET Core Blazor routing
@@ -22,7 +22,7 @@ Blazor server-side is integrated into [ASP.NET Core Endpoint Routing](xref:funda
 
 ## Route templates
 
-The `Router` component enables routing, and a route template is provided to each accessible component. The `Router` component appears in the *App.razor* file:
+The `Router` component enables routing to each component with a specified route. The `Router` component appears in the *App.razor* file:
 
 ```cshtml
 <Router AppAssembly="typeof(Startup).Assembly">
@@ -40,9 +40,9 @@ When a *.razor* file with an `@page` directive is compiled, the generated class 
 At runtime, the `RouteView` component:
 
 * Receives the `RouteData` from the `Router` along with any desired parameters.
-* Searches for component classes with a `RouteAttribute` and renders the component with a route template that matches the requested URL.
+* Renders the specified component with its layout (or an optional default layout) using the specified parameters.
 
-You can also optionally specify a `DefaultLayout` parameter with a layout class to use for components that don't specify a layout. The default Blazor templates specify the `MainLayout` component. *MainLayout.razor* is in the template project's *Shared* folder. For more information on layouts, see <xref:blazor/layouts>.
+You can optionally specify a `DefaultLayout` parameter with a layout class to use for components that don't specify a layout. The default Blazor templates specify the `MainLayout` component. *MainLayout.razor* is in the template project's *Shared* folder. For more information on layouts, see <xref:blazor/layouts>.
 
 Multiple route templates can be applied to a component. The following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`:
 
