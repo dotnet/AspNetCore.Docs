@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/04/2019
+ms.date: 09/06/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -1447,3 +1447,7 @@ Similarly, SVG images are supported in the CSS rules of a stylesheet file (*.css
 ```
 
 However, inline SVG markup isn't supported in all scenarios. If you place an `<svg>` tag directly into a component file (*.razor*), basic image rendering is supported but many advanced scenarios aren't yet supported. For example, `<use>` tags aren't currently respected, and `@bind` can't be used with some SVG tags. We expect to address these limitations in a future release.
+
+## Additional resources
+
+* <xref:security/blazor/server-side> &ndash; Includes guidance on building Blazor server-side apps that must contend with resource exhaustion.
