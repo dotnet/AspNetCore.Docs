@@ -182,7 +182,7 @@ The `Customer` property uses [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.Bi
 
 `[BindProperty]` should **not** be used on models containing properties that should not be changed by the client. For more information, see [Overposting](data/ef-rp/crud#overposting-1)
 
-Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to properties can reduce the amount of code you have to write. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.
+Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to properties removes the need to writing code to convert HTTP data to the model type. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.
 
 [!INCLUDE[](~/includes/bind-get.md)]
 
@@ -290,7 +290,7 @@ Consider the following `Movie` model:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet1)]
 
-The validation attributes specify behavior that you want to enforce on the model properties they're applied to:
+The validation attributes specify behavior to enforce on the model properties they're applied to:
 
 * The `Required` and `MinimumLength` attributes indicate that a property must have a value; but nothing prevents a user from entering white space to satisfy this validation.
 * The `RegularExpression` attribute is used to limit what characters can be input. In the preceding code, "Genre":
@@ -305,7 +305,7 @@ The validation attributes specify behavior that you want to enforce on the model
   * Allows special characters and numbers in  subsequent spaces. "PG-13" is valid for a rating, but fails for a "Genre".
 
 * The `Range` attribute constrains a value to within a specified range.
-* The `StringLength` attribute lets you set the maximum length of a string property, and optionally its minimum length.
+* The `StringLength` attribute sets the maximum length of a string property, and optionally its minimum length.
 * Value types (such as `decimal`, `int`, `float`, `DateTime`) are inherently required and don't need the `[Required]` attribute.
 
 The Create page for the `Movie` model shows displays errors with invalid values:
@@ -319,7 +319,7 @@ For more information, see:
 
 ## Handle HEAD requests with an OnGet handler fallback
 
-`HEAD` requests allow you to retrieve the headers for a specific resource. Unlike `GET` requests, `HEAD` requests don't return a response body.
+`HEAD` requests allow retrieving the headers for a specific resource. Unlike `GET` requests, `HEAD` requests don't return a response body.
 
 Ordinarily, an `OnHead` handler is created and called for `HEAD` requests:
 
@@ -465,7 +465,7 @@ To redirect to a page in a different [Area](xref:mvc/controllers/areas), specify
 RedirectToPage("/Index", new { area = "Services" });
 ```
 
-For more information, see <xref:mvc/controllers/areas>.
+For more information, see <xref:mvc/controllers/areas> and <xref:razor-pages/razor-pages-conventions>.
 
 ## ViewData attribute
 
