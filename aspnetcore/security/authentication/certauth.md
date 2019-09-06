@@ -374,7 +374,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath chi
 
 A child certificate can also be created from the root certificate directly. If you don't have many web API clients, the following script can be used.
 
-```
+```powershell
 $rootcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the root cert..." )
 
 New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_a_dev_damienbod.com" -Signer $rootcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_a_dev_damienbod.com"
