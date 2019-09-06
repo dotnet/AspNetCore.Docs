@@ -12,6 +12,8 @@ namespace WebApiSample.DataAccess.Models
 
         [Required]
         public string Description { get; set; }
+
+        public bool IsOnSale { get; set; }
     }
     #endregion
 }

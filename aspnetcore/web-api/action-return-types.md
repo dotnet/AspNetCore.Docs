@@ -42,23 +42,45 @@ Without known conditions to safeguard against during action execution, returning
 
 When known conditions need to be accounted for in an action, multiple return paths are introduced. In such a case, it's common to mix an <xref:Microsoft.AspNetCore.Mvc.ActionResult> return type with the primitive or complex return type. Either [IActionResult](#iactionresult-type) or [ActionResult\<T>](#actionresultt-type) are necessary to accommodate this type of action.
 
-::: moniker range=">= aspnetcore-3.0"
+### Return IEnumerable<\T> or IAsyncEnumerable\<T>
 
-### Return IAsyncEnumerable\<T>
+In ASP.NET Core 2.2 and earlier, returning <xref:System.Collections.Generic.IAsyncEnumerable%601> from an action results in synchronous collection iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation. To illustrate, imagine that Entity Framework (EF) Core is being used for the web API's data access needs. The following action's return type is synchronously enumerated during serialization:
 
-In ASP.NET Core 2.2 or earlier, returning <xref:System.Collections.Generic.IAsyncEnumerable%601> from an action results in synchronous collection iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation.
+```csharp
+public IEnumerable<Product> GetOnSaleProducts() =>
+    _context.Products.Where(p => p.IsOnSale);
+```
 
-In ASP.NET Core 3.0 or later, returning `IAsyncEnumerable<T>` from an action no longer results in synchronous iteration. Returning `IAsyncEnumerable<T>` becomes as efficient as returning <xref:System.Collections.Generic.IEnumerable%601>. Declare the action signature's return type as `IAsyncEnumerable<T>` to guarantee the asynchronous iteration. Ultimately, the iteration mode is based on the underlying return value's type.
+To avoid synchronous enumeration and blocking waits on the database in ASP.NET Core 2.2 and earlier, invoke `ToListAsync`:
 
-Consider the following action, which returns the specified number of product records as `IEnumerable<Product>`:
+```csharp
+public IEnumerable<Product> GetOnSaleProducts() =>
+    _context.Products.Where(p => p.IsOnSale).ToListAsync();
+```
 
-[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetNRecords&highlight=2)]
+In ASP.NET Core 3.0 and later, returning `IAsyncEnumerable<T>` from an action:
 
-The `IAsyncEnumerable<Product>` form of the preceding action is:
+* No longer results in synchronous iteration.
+* Becomes as efficient as returning <xref:System.Collections.Generic.IEnumerable%601>.
 
-[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetNRecordsAsync&highlight=2)]
+ASP.NET Core 3.0 and later buffers the result of the following action before providing it to the serializer:
 
-::: moniker-end
+```csharp
+public IEnumerable<Product> GetOnSaleProducts() =>
+    _context.Products.Where(p => p.IsOnSale);
+```
+
+Consider declaring the action signature's return type as `IAsyncEnumerable<T>` to guarantee the asynchronous iteration. Ultimately, the iteration mode is based on the underlying concrete type being returned. MVC automatically buffers any concrete type that implements `IAsyncEnumerable<T>`. EF Core queries commonly return `IQueryable<T>`. Types that implement `IQueryable<T>` also implement `IAsyncEnumerable<T>`.
+
+Consider the following action, which returns sale-priced product records as `IEnumerable<Product>`:
+
+[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetOnSaleProducts&highlight=2)]
+
+The `IAsyncEnumerable<Product>` equivalent of the preceding action is:
+
+[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetOnSaleProductsAsync&highlight=2)]
+
+Both of the preceding actions are non-blocking as of ASP.NET Core 3.0.
 
 ## IActionResult type
 

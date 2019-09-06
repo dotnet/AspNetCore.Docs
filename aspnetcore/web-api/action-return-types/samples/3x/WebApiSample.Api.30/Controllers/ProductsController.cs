@@ -41,16 +41,36 @@ namespace WebApiSample.Api._30.Controllers
         }
         #endregion
 
-        #region snippet_GetNRecords
-        [HttpGet("page/{pageSize:int:min(1)}")]
-        public IEnumerable<Product> GetNRecords(int pageSize) =>
-            _repository.GetProductsByPage(1, pageSize);
+        #region snippet_GetOnSaleProducts
+        [HttpGet("syncsale")]
+        public IEnumerable<Product> GetOnSaleProducts()
+        {
+            var products = _repository.GetProducts();
+
+            foreach (var product in products)
+            {
+                if (product.IsOnSale)
+                {
+                    yield return product;
+                }
+            }
+        }
         #endregion
 
-        #region snippet_GetNRecordsAsync
-        [HttpGet("page/{pageSize:int:min(1)}")]
-        public IAsyncEnumerable<Product> GetNRecordsAsync(int pageSize) =>
-            _repository.GetProductsByPageAsync(1, pageSize);
+        #region snippet_GetOnSaleProductsAsync
+        [HttpGet("asyncsale")]
+        public async IAsyncEnumerable<Product> GetOnSaleProductsAsync()
+        {
+            var products = _repository.GetProductsAsync();
+
+            await foreach (var product in products)
+            {
+                if (product.IsOnSale)
+                {
+                    yield return product;
+                }
+            }
+        }
         #endregion
 
         #region snippet_CreateAsync

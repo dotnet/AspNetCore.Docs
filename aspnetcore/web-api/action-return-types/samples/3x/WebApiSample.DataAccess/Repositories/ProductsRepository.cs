@@ -20,27 +20,29 @@ namespace WebApiSample.DataAccess.Repositories
                     new Product
                     {
                         Name = "Learning ASP.NET Core",
-                        Description = "A best-selling book covering the fundamentals of ASP.NET Core"
+                        Description = "A best-selling book covering the fundamentals of ASP.NET Core",
+                        IsOnSale = true,
                     },
                     new Product
                     {
                         Name = "Learning EF Core",
-                        Description = "A best-selling book covering the fundamentals of Entity Framework Core"
+                        Description = "A best-selling book covering the fundamentals of Entity Framework Core",
+                        IsOnSale = true,
                     },
                     new Product
                     {
                         Name = "Learning .NET Standard",
-                        Description = "A best-selling book covering the fundamentals of .NET Standard"
+                        Description = "A best-selling book covering the fundamentals of .NET Standard",
                     },
                     new Product
                     {
                         Name = "Learning .NET Core",
-                        Description = "A best-selling book covering the fundamentals of .NET Core"
+                        Description = "A best-selling book covering the fundamentals of .NET Core",
                     },
                     new Product
                     {
                         Name = "Learning C#",
-                        Description = "A best-selling book covering the fundamentals of C#"
+                        Description = "A best-selling book covering the fundamentals of C#",
                     });
                 _context.SaveChanges();
             }
@@ -49,28 +51,8 @@ namespace WebApiSample.DataAccess.Repositories
         public List<Product> GetProducts() =>
             _context.Products.OrderBy(p => p.Name).ToList();
 
-        public IEnumerable<Product> GetProductsByPage(
-            int pageNumber,
-            int pageSize)
-        {
-            var products = _context.Products
-                                   .Skip(pageSize * (pageNumber - 1))
-                                   .Take(pageSize);
-
-            return products;
-        }
-
-        public IAsyncEnumerable<Product> GetProductsByPageAsync(
-            int pageNumber,
-            int pageSize)
-        {
-            var products = _context.Products
-                                   .Skip(pageSize * (pageNumber - 1))
-                                   .Take(pageSize)
-                                   .AsAsyncEnumerable();
-
-            return products;
-        }
+        public IAsyncEnumerable<Product> GetProductsAsync() =>
+            _context.Products.OrderBy(p => p.Name).AsAsyncEnumerable();
 
         public bool TryGetProduct(int id, out Product product)
         {
