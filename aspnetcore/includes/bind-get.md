@@ -3,3 +3,4 @@
 >
 > To bind a property on `GET` requests, set the [[BindProperty]](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) attribute's `SupportsGet` property to `true`:
 > `[BindProperty(SupportsGet = true)]`
+> For more information, see [YouTube, bind on GET](https://www.youtube.com/watch?v=p7iHB9V-KVU&feature=youtu.be&t=54m27s)
