@@ -203,6 +203,243 @@ Complete the following steps In IIS Manager:
 
 ![Client certificate settings in IIS](README-IISConfig.png)
 
+### Using certificate authentication with the X-ARR-ClientCert header
+
+The AddCertificateForwarding method is used so that the client header can be specified and how the certificate is to be loaded using the HeaderConverter option. When sending the certificate with the HttpClient using the default settings, the ClientCertificate was always be null. The X-ARR-ClientCert header is used to pass the client certificate, and the cert is passed as a string to work around this.
+
+```csharp
+services.AddCertificateForwarding(options =>
+{
+	options.CertificateHeader = "X-ARR-ClientCert";
+	options.HeaderConverter = (headerValue) =>
+	{
+		X509Certificate2 clientCertificate = null;
+		if(!string.IsNullOrWhiteSpace(headerValue))
+		{
+			byte[] bytes = StringToByteArray(headerValue);
+			clientCertificate = new X509Certificate2(bytes);
+		}
+
+		return clientCertificate;
+	};
+});
+```
+
+The Configure method then adds the middleware. UseCertificateForwarding is added before the UseAuthentication and the UseAuthorization.
+
+```csharp
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+	...
+	
+	app.UseRouting();
+
+	app.UseCertificateForwarding();
+	app.UseAuthentication();
+	app.UseAuthorization();
+
+	app.UseEndpoints(endpoints =>
+	{
+		endpoints.MapControllers();
+	});
+}
+```
+
+The MyCertificateValidationService can be used to implement validation logic. Because we are using self signed certificates, we need to ensure that only our certificate can be used. We validate that the thumbprints of the client certificate and also the server one match, otherwise any certificate can be used and will be be enough to authenticate.
+
+```csharp
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
+
+namespace AspNetCoreCertificateAuthApi
+{
+    public class MyCertificateValidationService
+    {
+        public bool ValidateCertificate(X509Certificate2 clientCertificate)
+        {
+            var cert = new X509Certificate2(Path.Combine("sts_dev_cert.pfx"), "1234");
+            if (clientCertificate.Thumbprint == cert.Thumbprint)
+            {
+                return true;
+            }
+
+            return false;
+        }
+    }
+}
+
+```
+
+#### Implementing the HttpClient
+
+The client of the API uses a HttpClient which was create using an instance of the IHttpClientFactory. This does not provide a way to define a handler for the HttpClient and so we use a HttpRequestMessage to add the Certificate to the "X-ARR-ClientCert" request header. The cert is added as a string using the GetRawCertDataString method. 
+ 
+```csharp
+private async Task<JArray> GetApiDataAsync()
+{
+	try
+	{
+		var cert = new X509Certificate2(Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
+
+		var client = _clientFactory.CreateClient();
+
+		var request = new HttpRequestMessage()
+		{
+			RequestUri = new Uri("https://localhost:44379/api/values"),
+			Method = HttpMethod.Get,
+		};
+
+		request.Headers.Add("X-ARR-ClientCert", cert.GetRawCertDataString());
+		var response = await client.SendAsync(request);
+
+		if (response.IsSuccessStatusCode)
+		{
+			var responseContent = await response.Content.ReadAsStringAsync();
+			var data = JArray.Parse(responseContent);
+
+			return data;
+		}
+
+		throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
+	}
+	catch (Exception e)
+	{
+		throw new ApplicationException($"Exception {e}");
+	}
+}
+
+```
+
+If the correct certificate is sent to the server, the data will be returned. If no certificate is sent, or the wrong certificate, then a 403 will be returned. It would be nice if the IHttpClientFactory would have a way of defining a handler for the HttpClient. I also believe a non valid certificates should fail per default and not require extra validation for this. The AddCertificateForwarding should also not be required to use for a default HTTPClient client calling the service. 
+
+
+### Creating certificates in powershell
+
+
+#### Create Root CA
+
+```
+New-SelfSignedCertificate -DnsName "root_ca_dev_damienbod.com", "root_ca_dev_damienbod.com" -CertStoreLocation "cert:\LocalMachine\My" -NotAfter (Get-Date).AddYears(20) -FriendlyName "root_ca_dev_damienbod.com" -KeyUsageProperty All -KeyUsage CertSign, CRLSign, DigitalSignature
+
+$mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
+
+Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertificate -FilePath C:\git\root_ca_dev_damienbod.pfx -Password $mypwd
+
+Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath root_ca_dev_damienbod.crt
+
+```
+
+#### Install in the trusted root
+
+https://social.msdn.microsoft.com/Forums/SqlServer/en-US/5ed119ef-1704-4be4-8a4f-ef11de7c8f34/a-certificate-chain-processed-but-terminated-in-a-root-certificate-which-is-not-trusted-by-the
+
+
+#### Intermediate certificate
+
+```
+
+$mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
+
+$parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint of the root..." )
+
+New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "intermediate_dev_damienbod.com" -Signer $parentcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "intermediate_dev_damienbod.com" -KeyUsageProperty All -KeyUsage CertSign, CRLSign, DigitalSignature -TextExtension @("2.5.29.19={text}CA=1&pathlength=1")
+
+Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertificate -FilePath C:\git\AspNetCoreCertificateAuth\Certs\intermediate_dev_damienbod.pfx -Password $mypwd
+
+Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath intermediate_dev_damienbod.crt
+
+
+```
+
+#### Create Child Cert from Intermediate certificate
+
+```
+$parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the Intermediate certificate..." )
+
+New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_a_dev_damienbod.com" -Signer $parentcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_a_dev_damienbod.com"
+
+$mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
+
+Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertificate -FilePath C:\git\AspNetCoreCertificateAuth\Certs\child_a_dev_damienbod.pfx -Password $mypwd
+
+Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath child_a_dev_damienbod.crt
+
+```
+
+#### Create Child Cert from Root
+
+```
+$rootcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the root cert..." )
+
+New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_a_dev_damienbod.com" -Signer $rootcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_a_dev_damienbod.com"
+
+$mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
+
+Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertificate -FilePath C:\git\AspNetCoreCertificateAuth\Certs\child_a_dev_damienbod.pfx -Password $mypwd
+
+Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath child_a_dev_damienbod.crt
+
+```
+
+#### Example root - Intermediate certificate - certificate
+
+```
+
+$mypwdroot = ConvertTo-SecureString -String "1234" -Force -AsPlainText
+$mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
+
+New-SelfSignedCertificate -DnsName "root_ca_dev_damienbod.com", "root_ca_dev_damienbod.com" -CertStoreLocation "cert:\LocalMachine\My" -NotAfter (Get-Date).AddYears(20) -FriendlyName "root_ca_dev_damienbod.com" -KeyUsageProperty All -KeyUsage CertSign, CRLSign, DigitalSignature
+
+Get-ChildItem -Path cert:\localMachine\my\0C89639E4E2998A93E423F919B36D4009A0F9991 | Export-PfxCertificate -FilePath C:\git\root_ca_dev_damienbod.pfx -Password $mypwdroot
+
+Export-Certificate -Cert cert:\localMachine\my\0C89639E4E2998A93E423F919B36D4009A0F9991 -FilePath root_ca_dev_damienbod.crt
+
+$rootcert = ( Get-ChildItem -Path cert:\LocalMachine\My\0C89639E4E2998A93E423F919B36D4009A0F9991 )
+
+New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_a_dev_damienbod.com" -Signer $rootcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_a_dev_damienbod.com" -KeyUsageProperty All -KeyUsage CertSign, CRLSign, DigitalSignature -TextExtension @("2.5.29.19={text}CA=1&pathlength=1")
+
+Get-ChildItem -Path cert:\localMachine\my\BA9BF91ED35538A01375EFC212A2F46104B33A44 | Export-PfxCertificate -FilePath C:\git\AspNetCoreCertificateAuth\Certs\child_a_dev_damienbod.pfx -Password $mypwd
+
+Export-Certificate -Cert cert:\localMachine\my\BA9BF91ED35538A01375EFC212A2F46104B33A44 -FilePath child_a_dev_damienbod.crt
+
+$parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\BA9BF91ED35538A01375EFC212A2F46104B33A44 )
+
+New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_b_from_a_dev_damienbod.com" -Signer $parentcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_b_from_a_dev_damienbod.com" 
+
+Get-ChildItem -Path cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F28A | Export-PfxCertificate -FilePath C:\git\AspNetCoreCertificateAuth\Certs\child_b_from_a_dev_damienbod.pfx -Password $mypwd
+
+Export-Certificate -Cert cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F28A -FilePath child_b_from_a_dev_damienbod.crt
+
+
+```
+
+When using the root, Intermediate or child certificates, the certs can be validated using the Issuer or the Subject as requires.
+
+```csharp
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
+
+namespace AspNetCoreCertificateAuthApi
+{
+    public class MyCertificateValidationService
+    {
+        private readonly X509Certificate2 rootCertificate = new X509Certificate2(Path.Combine("root_ca_dev_damienbod.pfx"), "1234");
+        private readonly X509Certificate2 intermediateCertificate = new X509Certificate2(Path.Combine("child_a_dev_damienbod.pfx"), "1234");
+
+        public bool ValidateCertificate(X509Certificate2 clientCertificate)
+        {
+            if (clientCertificate.Issuer == rootCertificate.Issuer || 
+                clientCertificate.Issuer == intermediateCertificate.Subject)
+            {
+                return true;
+            }
+
+            return false;
+        }
+    }
+}
+```
+
 ### Azure and custom web proxies
 
 See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding) for how to configure the certificate forwarding middleware.
