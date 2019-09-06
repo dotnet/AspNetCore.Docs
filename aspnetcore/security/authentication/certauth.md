@@ -207,9 +207,9 @@ Complete the following steps In IIS Manager:
 
 See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding) for how to configure the certificate forwarding middleware.
 
-### Using certificate authentication with the X-ARR-ClientCert header
+### Use certificate authentication with the X-ARR-ClientCert header
 
-The AddCertificateForwarding method is used so that the client header can be specified and how the certificate is to be loaded using the HeaderConverter option. When sending the certificate with the HttpClient using the default settings, the ClientCertificate was always be null. The X-ARR-ClientCert header is used to pass the client certificate, and the cert is passed as a string to work around this.
+The `AddCertificateForwarding` method is used so that the client header can be specified and how the certificate is to be loaded using the `HeaderConverter` option. When sending the certificate with the `HttpClient` using the default settings, the `ClientCertificate` will always be null. The `X-ARR-ClientCert` header is used to pass the client certificate. The certificate is passed as a string to work around this.
 
 ```csharp
 services.AddCertificateForwarding(options =>
@@ -229,8 +229,7 @@ services.AddCertificateForwarding(options =>
 });
 ```
 
-The Configure method then adds the middleware. UseCertificateForwarding is added before the UseAuthentication and the UseAuthorization.
-
+The `Startup.Configure` method then adds the middleware. `UseCertificateForwarding` is added before the calls to `UseAuthentication` and `UseAuthorization`.
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
@@ -249,7 +248,8 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
-A separate class can be used to implement validation logic. Because we are using the same self signed certificate in this example, we need to ensure that only our certificate can be used. We validate that the thumbprints of the client certificate and also the server one match, otherwise any certificate can be used and will be be enough to authenticate. This would be used inside the AddCertificate method. You could also validate the subject or the issuer here, if you are using intermediate or child certificates.
+A separate class can be used to implement validation logic. Because the same self-signed certificate is used in this example, ensure that only your certificate can be used. Validate that the thumbprints of both the client certificate and the server certificate match, otherwise any certificate can be used and will be enough to authenticate. This would be used inside the `AddCertificate` method. You could also validate the subject or the issuer here if you're using intermediate or child certificates.
+
 ```csharp
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
@@ -273,9 +273,9 @@ namespace AspNetCoreCertificateAuthApi
 
 ```
 
-#### Implementing a HttpClient using a certificate
+#### Implement an HttpClient using a certificate
 
-The client of the API uses a HttpClient which was create using an instance of the IHttpClientFactory. This does not provide a way to define a handler for the HttpClient and so we use a HttpRequestMessage to add the Certificate to the "X-ARR-ClientCert" request header. The cert is added as a string using the GetRawCertDataString method. 
+The web API client uses an `HttpClient` which was created using an `IHttpClientFactory` instance. This doesn't provide a way to define a handler for the `HttpClient`, so use an `HttpRequestMessage` to add the certificate to the `X-ARR-ClientCert` request header. The certificate is added as a string using the `GetRawCertDataString` method.
  
 ```csharp
 private async Task<JArray> GetApiDataAsync()
@@ -310,19 +310,17 @@ private async Task<JArray> GetApiDataAsync()
 		throw new ApplicationException($"Exception {e}");
 	}
 }
-
 ```
 
-If the correct certificate is sent to the server, the data will be returned. If no certificate is sent, or the wrong certificate, then a 403 will be returned. It would be nice if the IHttpClientFactory would have a way of defining a handler for the HttpClient. I also believe a non valid certificates should fail per default and not require extra validation for this. The AddCertificateForwarding should also not be required to use for a default HTTPClient client calling the service. 
+If the correct certificate is sent to the server, the data is returned. If no certificate or the wrong certificate is sent, an HTTP 403 status code is returned.
 
+### Create certificates in PowerShell
 
-### Creating certificates in powershell
+Creating the certificates is the hardest part in setting up this flow. A self-signed root certificate authority (CA) certificate is created using the `New-SelfSignedCertificate` PowerShell cmdlet. When creating the certificate, use a strong password. It's important to add the `KeyUsageProperty` parameter and the `KeyUsage` parameter as shown.
 
-Creating the certificates is the hardest part in setting up this flow. A self signed Root CA Certificate is created using the New-SelfSignedCertificate powershell cmdlet. When creating this, please use a strong password, replace the demo one, do not just copy the code. It is important to add the KeyUsageProperty parameter and the KeyUsage parameter as shown.
+#### Create root CA
 
-#### Create Root CA
-
-```
+```powershell
 New-SelfSignedCertificate -DnsName "root_ca_dev_damienbod.com", "root_ca_dev_damienbod.com" -CertStoreLocation "cert:\LocalMachine\My" -NotAfter (Get-Date).AddYears(20) -FriendlyName "root_ca_dev_damienbod.com" -KeyUsageProperty All -KeyUsage CertSign, CRLSign, DigitalSignature
 
 $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
@@ -337,15 +335,13 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath roo
 
 https://social.msdn.microsoft.com/Forums/SqlServer/en-US/5ed119ef-1704-4be4-8a4f-ef11de7c8f34/a-certificate-chain-processed-but-terminated-in-a-root-certificate-which-is-not-trusted-by-the
 
-
 #### Intermediate certificate
 
-A self signed intermediate certificate can now be created from the root certificate. This is not required for all use cases, but you might need to create many certificates or need to activate, disable groups of certificates. The TextExtension parameter is required to set the pathlength in the basic constraints of the certificate.
+A self-signed, intermediate certificate can now be created from the root certificate. This isn't required for all use cases, but you might need to create many certificates or need to activate, disable groups of certificates. The `TextExtension` parameter is required to set the pathlength in the basic constraints of the certificate.
 
-The intermediate certificate can then be added to the trusted intermediate certificate in the windows host system.
+The intermediate certificate can then be added to the trusted intermediate certificate in the Windows host system.
 
-```
-
+```powershell
 $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 
 $parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint of the root..." )
@@ -355,15 +351,13 @@ New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "int
 Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertificate -FilePath C:\git\AspNetCoreCertificateAuth\Certs\intermediate_dev_damienbod.pfx -Password $mypwd
 
 Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath intermediate_dev_damienbod.crt
-
-
 ```
 
 #### Create Child Cert from Intermediate certificate
 
- child certificate can be created from the intermediate certificate. This is the end entity and does not need to create more child certificates.
- 
-```
+A child certificate can be created from the intermediate certificate. This is the end entity and doesn't need to create more child certificates.
+
+```powershell
 $parentcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the Intermediate certificate..." )
 
 New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "child_a_dev_damienbod.com" -Signer $parentcert -NotAfter (Get-Date).AddYears(20) -FriendlyName "child_a_dev_damienbod.com"
@@ -378,8 +372,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath chi
 
 #### Create Child Cert from Root
 
-A child certificate can also be created from the root certificate directly. If you do not have many API clients, this could be used.
-
+A child certificate can also be created from the root certificate directly. If you don't have many web API clients, the following script can be used.
 
 ```
 $rootcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the root cert..." )
@@ -394,10 +387,9 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath chi
 
 ```
 
-#### Example root - Intermediate certificate - certificate
+#### Example root - intermediate certificate - certificate
 
-```
-
+```powershell
 $mypwdroot = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 
