@@ -352,7 +352,7 @@ Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertif
 Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath intermediate_dev_damienbod.crt
 ```
 
-#### Create Child Cert from Intermediate certificate
+#### Create child certificate from intermediate certificate
 
 A child certificate can be created from the intermediate certificate. This is the end entity and doesn't need to create more child certificates.
 
@@ -366,10 +366,9 @@ $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertificate -FilePath C:\git\AspNetCoreCertificateAuth\Certs\child_a_dev_damienbod.pfx -Password $mypwd
 
 Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath child_a_dev_damienbod.crt
-
 ```
 
-#### Create Child Cert from Root
+#### Create child certificate from root certificate
 
 A child certificate can also be created from the root certificate directly. If you don't have many web API clients, the following script can be used.
 
@@ -414,7 +413,7 @@ Get-ChildItem -Path cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F2
 Export-Certificate -Cert cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F28A -FilePath child_b_from_a_dev_damienbod.crt
 ```
 
-When using the root, intermediate or child certificates, the certs can be validated using the Issuer or the Subject as requires.
+When using the root, intermediate, or child certificates, the certificates can be validated using the Issuer or the Subject as required.
 
 ```csharp
 using System.IO;
