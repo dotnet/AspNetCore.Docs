@@ -230,6 +230,7 @@ services.AddCertificateForwarding(options =>
 ```
 
 The `Startup.Configure` method then adds the middleware. `UseCertificateForwarding` is added before the calls to `UseAuthentication` and `UseAuthorization`.
+
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
@@ -270,7 +271,6 @@ namespace AspNetCoreCertificateAuthApi
         }
     }
 }
-
 ```
 
 #### Implement an HttpClient using a certificate
@@ -328,7 +328,6 @@ $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertificate -FilePath C:\git\root_ca_dev_damienbod.pfx -Password $mypwd
 
 Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath root_ca_dev_damienbod.crt
-
 ```
 
 #### Install in the trusted root
@@ -384,7 +383,6 @@ $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertificate -FilePath C:\git\AspNetCoreCertificateAuth\Certs\child_a_dev_damienbod.pfx -Password $mypwd
 
 Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath child_a_dev_damienbod.crt
-
 ```
 
 #### Example root - intermediate certificate - certificate
@@ -414,8 +412,6 @@ New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "chi
 Get-ChildItem -Path cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F28A | Export-PfxCertificate -FilePath C:\git\AspNetCoreCertificateAuth\Certs\child_b_from_a_dev_damienbod.pfx -Password $mypwd
 
 Export-Certificate -Cert cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F28A -FilePath child_b_from_a_dev_damienbod.crt
-
-
 ```
 
 When using the root, intermediate or child certificates, the certs can be validated using the Issuer or the Subject as requires.
