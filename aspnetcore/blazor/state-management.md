@@ -5,7 +5,7 @@ description: Learn how to persist state in Blazor server-side apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/13/2019
+ms.date: 09/05/2019
 uid: blazor/state-management
 ---
 # ASP.NET Core Blazor state management
@@ -262,12 +262,12 @@ Prerendering might be useful for other pages that don't use `localStorage` or `s
         }
     }
 
-    protected override async Task OnAfterRenderAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         // By this stage, the client has connected back to the server, and
         // browser services are available. If the app didn't load the data earlier,
         // the app should do so now and then trigger a new render.
-        if (isWaitingForConnection)
+        if (firstRender && isWaitingForConnection)
         {
             isWaitingForConnection = false;
             await LoadStateAsync();
