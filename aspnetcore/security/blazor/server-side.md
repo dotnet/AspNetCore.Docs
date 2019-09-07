@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats to Blazor server-side apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/06/2019
+ms.date: 09/07/2019
 uid: security/blazor/server-side
 ---
 # Secure ASP.NET Core Blazor server-side apps
@@ -258,38 +258,6 @@ In addition to using a guard as described in the [Guard against multiple dispatc
 ### Avoid events that produce large amounts of data
 
 Some DOM events, such as `oninput` or `onscroll`, can produce a large amount of data. Avoid using these events in Blazor server apps.
-
-### Measure network latency
-
-JSInterop can be used to measure network latency, as the following example demonstrates:
-
-```csharp
-@inject IJSRuntime JS
-
-@if (latency is null)
-{
-    <span>Calculating...</span>
-}
-else
-{
-    <span>@(latency.Value.TotalMilliseconds)ms</span>
-}
-
-@code
-{
-    private DateTime startTime;
-    private TimeSpan? latency;
-
-    protected override async Task OnInitializedAsync()
-    {
-        startTime = DateTime.UtcNow;
-        var _ = await JS.InvokeAsync<string>("toString");
-        latency = DateTime.UtcNow - startTime;
-    }
-}
-```
-
-For a reasonable UI experience, we recommend a sustained UI latency of 250ms or less.
 
 ## Additional security guidance
 

@@ -5,7 +5,7 @@ description: Understand Blazor client-side and server-side hosting models.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/06/2019
+ms.date: 09/07/2019
 uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
@@ -89,34 +89,22 @@ When a Razor Page or view is rendered, every line of Razor code emits HTML in te
 A Blazor app is composed of reusable elements of UI called *components*. A component contains C# code, markup, and other components. When a component is rendered, Blazor produces a graph of the included components similar to an HTML or XML Document Object Model (DOM). This graph includes component state held in properties and fields. Blazor evaluates the component graph to produce a binary representation of the markup. The binary format can be:
 
 * Turned into HTML text (during prerendering).
-* Used to efficiently diff the output at different times.
-
-<!--
-
-We probably should write out what "diff" means. How about ...
-
-* Used to efficiently find differences, usually called a *diff*, between the current component graph and a new component graph. A diff reflects changes in state at different times during rendering.
-
-... or what would you like it to say?
-
--->
+* Used to efficiently update the markup during regular rendering.
 
 A UI update in Blazor is triggered by:
 
 * User interaction, such as selecting a button.
 * App triggers, such as a timer.
 
-The graph is rerendered, and a UI diff is calculated. This diff is the smallest set of DOM edits required to update the UI on the client. The diff is sent to the client in a binary format and applied by the browser.
+The graph is rerendered, and a UI *diff* (difference) is calculated. This diff is the smallest set of DOM edits required to update the UI on the client. The diff is sent to the client in a binary format and applied by the browser.
 
-A component is disposed after the user navigates away from it on the client. While a user is interacting with a component, the component's state (services, resources) must be held in the server's memory. Because the state of many components might be maintained by the server concurrently, resource exhaustion is a concern that must be addressed. For more information, see <xref:security/blazor/server-side>.
-
-<!-- I attempted to simplify the preceding paragraph. Was I too heavy-handed with it? -->
+A component is disposed after the user navigates away from it on the client. While a user is interacting with a component, the component's state (services, resources) must be held in the server's memory. Because the state of many components might be maintained by the server concurrently, memory exhaustion is a concern that must be addressed. For guidance on how to author a Blazor Server app to ensure the best use of server memory, see <xref:security/blazor/server-side>.
 
 ### Circuits
 
 A Blazor Server app is built on top of [ASP.NET Core SignalR](xref:signalr/introduction). Each client communicates to the server over one or more SignalR connections called a *circuit*. A circuit is Blazor's abstraction over SignalR connections that can tolerate temporary network interruptions. When a Blazor client sees that the SignalR connection is disconnected, it attempts to reconnect to the server using a new SignalR connection.
 
-Each browser screen (browser tab or iframe) that is connected to a Blazor Server app uses a SignalR connection. This is yet another important distinction compared to typical server-rendered apps. In a server-rendered app, opening the same app in multiple browser screens typically doesn't translate into additional resource demands on the server. In a Blazor Server app, each browser screen requires in a separate circuit and separate instances of component state to be managed by the server.
+Each browser screen (browser tab or iframe) that is connected to a Blazor Server app uses a SignalR connection. This is yet another important distinction compared to typical server-rendered apps. In a server-rendered app, opening the same app in multiple browser screens typically doesn't translate into additional resource demands on the server. In a Blazor Server app, each browser screen requires a separate circuit and separate instances of component state to be managed by the server.
 
 Blazor considers closing a browser tab or navigating to an external URL a *graceful* termination. In the event of a graceful termination, the circuit and associated resources are immediately released. A client may also disconnect non-gracefully, for instance due to a network interruption. Blazor Server stores disconnected circuits for a configurable interval to allow the client to reconnect. For more information, see the [Reconnection to the same server](#reconnection-to-the-same-server) section.
 
@@ -128,7 +116,10 @@ For a line of business app that's limited to a private corporate network, the ef
 
 Memory usage can also contribute to app latency. Increased memory usage results in frequent garbage collection or paging memory to disk, both of which degrade app performance and consequently increase UI latency. For more information, see <xref:security/blazor/server-side>.
 
-Blazor Server apps should be optimized to minimize UI latency by reducing network latency and memory usage. For an approach to measuring network latency, see <xref:security/blazor/server-side#measure-network-latency>.
+Blazor Server apps should be optimized to minimize UI latency by reducing network latency and memory usage. For an approach to measuring network latency, see <xref:host-and-deploy/blazor/server-side#measure-network-latency>. For more information on SignalR and Blazor, see:
+
+* <xref:host-and-deploy/blazor/server-side>
+* <xref:security/blazor/server-side>
 
 ### Reconnection to the same server
 
