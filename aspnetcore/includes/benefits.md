@@ -10,6 +10,6 @@ ASP.NET Core provides the following benefits:
 * A cloud-ready, environment-based [configuration system](xref:fundamentals/configuration/index).
 * Built-in [dependency injection](xref:fundamentals/dependency-injection).
 * A lightweight, [high-performance](https://github.com/aspnet/benchmarks), and modular HTTP request pipeline.
-* Ability to host on [IIS](xref:host-and-deploy/iis/index), [Nginx](xref:host-and-deploy/linux-nginx), [Apache](xref:host-and-deploy/linux-apache), [Docker](xref:host-and-deploy/docker/index), or self-host in your own process.
+* Ability to host on [Kestrel](xref:fundamentals/servers/kestrel), ([IIS](xref:host-and-deploy/iis/index), [Nginx](xref:host-and-deploy/linux-nginx), [Apache](xref:host-and-deploy/linux-apache), [Docker](xref:host-and-deploy/docker/index), or self-host in your own process.
 * [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#a-need-for-side-by-side-of-net-versions-per-application-level).
 * Tooling that simplifies modern web development.
