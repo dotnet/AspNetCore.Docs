@@ -710,17 +710,30 @@ protected override void OnParametersSet()
 
 `OnAfterRenderAsync` and `OnAfterRender` are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps using the rendered content, such as activating third-party JavaScript libraries that operate on the rendered DOM elements.
 
+`OnAfterRender` *is not called when prerendering on the server.*
+
+The `firstRender` parameter for `OnAfterRenderAsync` and `OnAfterRender` is:
+
+* Set to `true` the first time that the component instance is invoked.
+* Ensures that initialization work is only performed once.
+
 ```csharp
-protected override async Task OnAfterRenderAsync()
+protected override async Task OnAfterRenderAsync(bool firstRender)
 {
-    await ...
+    if (firstRender)
+    {
+        await ...
+    }
 }
 ```
 
 ```csharp
-protected override void OnAfterRender()
+protected override void OnAfterRender(bool firstRender)
 {
-    ...
+    if (firstRender)
+    {
+        ...
+    }
 }
 ```
 
