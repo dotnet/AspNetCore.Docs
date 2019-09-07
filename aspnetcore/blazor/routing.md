@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/23/2019
+ms.date: 09/06/2019
 uid: blazor/routing
 ---
 # ASP.NET Core Blazor routing
@@ -22,9 +22,7 @@ Blazor server-side is integrated into [ASP.NET Core Endpoint Routing](xref:funda
 
 ## Route templates
 
-The `Router` component enables routing, and a route template is provided to each accessible component. The `Router` component appears in the *App.razor* file:
-
-In a Blazor server-side or client-side app:
+The `Router` component enables routing to each component with a specified route. The `Router` component appears in the *App.razor* file:
 
 ```cshtml
 <Router AppAssembly="typeof(Startup).Assembly">
@@ -37,7 +35,14 @@ In a Blazor server-side or client-side app:
 </Router>
 ```
 
-When a *.razor* file with an `@page` directive is compiled, the generated class is provided a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router looks for component classes with a `RouteAttribute` and renders the component with a route template that matches the requested URL.
+When a *.razor* file with an `@page` directive is compiled, the generated class is provided a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template.
+
+At runtime, the `RouteView` component:
+
+* Receives the `RouteData` from the `Router` along with any desired parameters.
+* Renders the specified component with its layout (or an optional default layout) using the specified parameters.
+
+You can optionally specify a `DefaultLayout` parameter with a layout class to use for components that don't specify a layout. The default Blazor templates specify the `MainLayout` component. *MainLayout.razor* is in the template project's *Shared* folder. For more information on layouts, see <xref:blazor/layouts>.
 
 Multiple route templates can be applied to a component. The following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`:
 
@@ -50,7 +55,7 @@ Multiple route templates can be applied to a component. The following component 
 
 The `Router` component allows the app to specify custom content if content isn't found for the requested route.
 
-In the *App.razor* file, set custom content in the `<NotFound>` template parameter of the `Router` component:
+In the *App.razor* file, set custom content in the `NotFound` template parameter of the `Router` component:
 
 ```cshtml
 <Router AppAssembly="typeof(Startup).Assembly">
@@ -64,7 +69,17 @@ In the *App.razor* file, set custom content in the `<NotFound>` template paramet
 </Router>
 ```
 
-The content of `<NotFound>` can include arbitrary items, such as other interactive components.
+The content of `<NotFound>` tags can include arbitrary items, such as other interactive components. To apply a default layout to `NotFound` content, see <xref:blazor/layouts>.
+
+## Route to components from multiple assemblies
+
+Use the `AdditionalAssemblies` parameter to specify additional assemblies for the `Router` component to consider when searching for routable components. Specified assemblies are considered in addition to the `AppAssembly`-specified assembly. In the following example, `Component1` is a routable component defined in a referenced class library. The following `AdditionalAssemblies` example results in routing support for `Component1`:
+
+<Router
+    AppAssembly="typeof(Program).Assembly"
+    AdditionalAssemblies="new[] { typeof(Component1).Assembly }>
+    ...
+</Router>
 
 ## Route parameters
 
@@ -175,4 +190,3 @@ The following component navigates to the app's `Counter` component when the butt
     }
 }
 ```
-

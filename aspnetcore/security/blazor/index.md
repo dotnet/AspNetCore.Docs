@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/29/2019
+ms.date: 09/05/2019
 uid: security/blazor/index
 ---
 # ASP.NET Core Blazor authentication and authorization
@@ -271,7 +271,7 @@ You can also supply different content for display if the user isn't authenticate
 </AuthorizeView>
 ```
 
-The content of `<Authorized>` and `<NotAuthorized>` can include arbitrary items, such as other interactive components.
+The content of `<Authorized>` and `<NotAuthorized>` tags can include arbitrary items, such as other interactive components.
 
 Authorization conditions, such as roles or policies that control UI options or access, are covered in the [Authorization](#authorization) section.
 
@@ -404,9 +404,9 @@ In the default Blazor server-side project template, the *App.razor* file demonst
 </Router>
 ```
 
-The content of `<NotFound>`, `<NotAuthorized>`, and `<Authorizing>` can include arbitrary items, such as other interactive components.
+The content of `<NotFound>`, `<NotAuthorized>`, and `<Authorizing>` tags can include arbitrary items, such as other interactive components.
 
-If `<NotAuthorized>` isn't specified, the `<AuthorizeRouteView>` uses the following fallback message:
+If the `<NotAuthorized>` element isn't specified, the `AuthorizeRouteView` uses the following fallback message:
 
 ```html
 Not authorized.

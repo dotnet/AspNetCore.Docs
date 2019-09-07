@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats to Blazor server-side apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/04/2019
+ms.date: 09/05/2019
 uid: security/blazor/server-side
 ---
 # Secure ASP.NET Core Blazor server-side apps
