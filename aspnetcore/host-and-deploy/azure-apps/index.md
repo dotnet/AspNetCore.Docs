@@ -91,7 +91,7 @@ The [IIS Integration Middleware](xref:host-and-deploy/iis/index#enable-the-iisin
 
 ## Monitoring and logging
 
-Azure App Service offers the **ASP.NET Core Logging Extensions**, which enable logging integration for ASP.NET Core apps. To automatically add the extension to an App Service, use Visual Studio's **Publish** process with an **App Service** publish profile. When not using Visual Studio to deploy an app, install the extension manually in the Azure Portal via the App Service's **Development Tools** > **Extensions** dialog.
+Azure App Service offers the **ASP.NET Core Logging Extensions**, which enable logging integration for ASP.NET Core apps. To automatically add the extension to an App Service, use Visual Studio's **Publish** process with an **App Service** publish profile. When not using Visual Studio to deploy an app, manually install the extension in the Azure Portal via the App Service's **Development Tools** > **Extensions** dialog.
 
 For monitoring, logging, and troubleshooting information, see the following articles:
 
