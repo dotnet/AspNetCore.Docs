@@ -17,6 +17,9 @@ namespace PolymorphicModelBinding.Pages
             _logger = logger;
         }
 
+        [TempData]
+        public string Message { get; set; }
+
         public void OnGet()
         {
 
