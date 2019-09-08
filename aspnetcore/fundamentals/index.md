@@ -5,7 +5,7 @@ description: Learn the foundational concepts for building ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/02/2019
+ms.date: 09/06/2019
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals
@@ -266,7 +266,7 @@ The web root (also known as *webroot*) is the base path to public, static resour
 
 ::: moniker range=">= aspnetcore-3.0"
 
-For more information, see [ContentRootPath](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#contentrootpath)
+For more information, see [WebRoot](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#webroot)
 
 ::: moniker-end
 
