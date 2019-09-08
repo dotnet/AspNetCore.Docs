@@ -199,7 +199,7 @@ By adding the `if (count < 3) { ... }` check inside the handler, the decision to
 
 If an event callback invokes a long running operation, such as fetching data from an external service or database, consider using a guard. The guard can prevent the user from queueing up multiple operations while the operation is in progress with visual feedback. The following component code sets `isLoading` to `true` while `GetForecastAsync` obtains data from the server. While `isLoading` is `true`, the button is disabled in the UI:
 
-```csharp
+```cshtml
 @page "/fetchdata"
 @using BlazorServerSample.Data
 @inject WeatherForecastService ForecastService
@@ -226,8 +226,10 @@ If an event callback invokes a long running operation, such as fetching data fro
 
 In addition to using a guard as described in the [Guard against multiple dispatches](#guard-against-multiple-dispatches) section, consider using a <xref:System.Threading.CancellationToken> to cancel long-running operations when the component is disposed. This approach has the added benefit of avoiding *use-after-dispose* in components:
 
-```csharp
+```cshtml
 @implements IDisposable
+
+...
 
 @code {
     private readonly CancellationTokenSource TokenSource = 

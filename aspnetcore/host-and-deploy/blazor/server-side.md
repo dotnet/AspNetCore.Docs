@@ -52,7 +52,7 @@ We recommend using the [Azure SignalR Service](/azure/azure-signalr) for Blazor 
 
 [JS interop](xref:blazor/javascript-interop) can be used to measure network latency, as the following example demonstrates:
 
-```csharp
+```cshtml
 @inject IJSRuntime JS
 
 @if (latency is null)
