@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn about using the various controller action method return types in an ASP.NET Core web API.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 09/05/2019
+ms.date: 09/09/2019
 uid: web-api/action-return-types
 ---
 # Controller action return types in ASP.NET Core web API
@@ -70,7 +70,7 @@ public IEnumerable<Product> GetOnSaleProducts() =>
     _context.Products.Where(p => p.IsOnSale);
 ```
 
-Consider declaring the action signature's return type as `IAsyncEnumerable<T>` to guarantee the asynchronous iteration. Ultimately, the iteration mode is based on the underlying concrete type being returned. MVC automatically buffers any concrete type that implements `IAsyncEnumerable<T>`. EF Core queries commonly return `IQueryable<T>`. Types that implement `IQueryable<T>` also implement `IAsyncEnumerable<T>`.
+Consider declaring the action signature's return type as `IAsyncEnumerable<T>` to guarantee the asynchronous iteration. Ultimately, the iteration mode is based on the underlying concrete type being returned. MVC automatically buffers any concrete type that implements `IAsyncEnumerable<T>`.
 
 Consider the following action, which returns sale-priced product records as `IEnumerable<Product>`:
 
