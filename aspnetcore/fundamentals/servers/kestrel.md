@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 08/12/2019
+ms.date: 09/09/2019
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -119,14 +119,13 @@ public static void Main(string[] args)
 {
     var host = new HostBuilder()
         .UseContentRoot(Directory.GetCurrentDirectory())
-        .UseKestrel()
-        .UseIISIntegration()
         .ConfigureWebHostDefaults(webBuilder =>
         {
-            webBuilder.ConfigureKestrel(serverOptions =>
+            webBuilder.UseKestrel(serverOptions =>
             {
                 // Set properties and call methods on options
             })
+            .UseIISIntegration()
             .UseStartup<Startup>();
         })
         .Build();
@@ -490,7 +489,7 @@ The default value is 4096.
 
 ### Maximum frame size
 
-`Http2.MaxFrameSize` indicates the maximum size of the HTTP/2 connection frame payload to receive. The value is provided in octets and must be between 2^14 (16,384) and 2^24-1 (16,777,215).
+`Http2.MaxFrameSize` indicates the maximum allowed size of an HTTP/2 connection frame payload received or sent by the server. The value is provided in octets and must be between 2^14 (16,384) and 2^24-1 (16,777,215).
 
 ```csharp
 .ConfigureKestrel(serverOptions =>
@@ -503,7 +502,7 @@ The default value is 2^14 (16,384).
 
 ### Maximum request header size
 
-`Http2.MaxRequestHeaderFieldSize` indicates the maximum allowed size in octets of request header values. This limit applies to both name and value together in their compressed and uncompressed representations. The value must be greater than zero (0).
+`Http2.MaxRequestHeaderFieldSize` indicates the maximum allowed size in octets of request header values. This limit applies to both name and value in their compressed and uncompressed representations. The value must be greater than zero (0).
 
 ```csharp
 .ConfigureKestrel(serverOptions =>
@@ -529,7 +528,7 @@ The default value is 128 KB (131,072).
 
 ### Initial stream window size
 
-`Http2.InitialStreamWindowSize` indicates the maximum request body data in bytes the server buffers at one time per request (stream). Requests are also limited by `Http2.InitialStreamWindowSize`. The value must be greater than or equal to 65,535 and less than 2^31 (2,147,483,648).
+`Http2.InitialStreamWindowSize` indicates the maximum request body data in bytes the server buffers at one time per request (stream). Requests are also limited by `Http2.InitialConnectionWindowSize`. The value must be greater than or equal to 65,535 and less than 2^31 (2,147,483,648).
 
 ```csharp
 .ConfigureKestrel(serverOptions =>
@@ -730,7 +729,7 @@ Call <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*
 
 ASP.NET Core 2.1 or later `KestrelServerOptions` configuration:
 
-### ConfigureEndpointDefaults(Action&lt;ListenOptions&gt;)
+### ConfigureEndpointDefaults(Action\<ListenOptions>)
 
 Specifies a configuration `Action` to run for each specified endpoint. Calling `ConfigureEndpointDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
 
@@ -772,7 +771,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ::: moniker-end
 
-### ConfigureHttpsDefaults(Action&lt;HttpsConnectionAdapterOptions&gt;)
+### ConfigureHttpsDefaults(Action\<HttpsConnectionAdapterOptions>)
 
 Specifies a configuration `Action` to run for each HTTPS endpoint. Calling `ConfigureHttpsDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
 
@@ -785,10 +784,10 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         {
             webBuilder.ConfigureKestrel(serverOptions =>
             {
-                serverOptions.ConfigureHttpsDefaults(options =>
+                serverOptions.ConfigureHttpsDefaults(configureOptions =>
                 {
                     // certificate is an X509Certificate2
-                    options.ServerCertificate = certificate;
+                    configureOptions.ServerCertificate = certificate;
                 });
             })
             .UseStartup<Startup>();
@@ -806,10 +805,10 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         .UseStartup<Startup>()
         .ConfigureKestrel((context, options) =>
         {
-            options.ConfigureHttpsDefaults(httpsOptions =>
+            options.ConfigureHttpsDefaults(configureOptions =>
             {
                 // certificate is an X509Certificate2
-                httpsOptions.ServerCertificate = certificate;
+                configureOptions.ServerCertificate = certificate;
             });
         });
 ```
@@ -865,7 +864,7 @@ Kestrel listens on `http://localhost:5000` and `https://localhost:5001` (if a de
 
 *Replace the default certificate from configuration*
 
-`CreateDefaultBuilder` calls `options.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration. A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
+`CreateDefaultBuilder` calls `Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration. A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
 
 In the following *appsettings.json* example:
 
@@ -951,9 +950,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
             webBuilder.UseKestrel((context, options) =>
             {
                 options.Configure(context.Configuration.GetSection("Kestrel"))
-                    .Endpoint("HTTPS", opt =>
+                    .Endpoint("HTTPS", listenOptions =>
                     {
-                        opt.HttpsOptions.SslProtocols = SslProtocols.Tls12;
+                        listenOptions.HttpsOptions.SslProtocols = SslProtocols.Tls12;
                     });
             });
         });
@@ -970,9 +969,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         .UseKestrel((context, options) =>
         {
             options.Configure(context.Configuration.GetSection("Kestrel"))
-                .Endpoint("HTTPS", opt =>
+                .Endpoint("HTTPS", listenOptions =>
                 {
-                    opt.HttpsOptions.SslProtocols = SslProtocols.Tls12;
+                    listenOptions.HttpsOptions.SslProtocols = SslProtocols.Tls12;
                 });
         });
 ```
@@ -998,14 +997,14 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         {
             webBuilder.ConfigureKestrel(serverOptions =>
             {
-                serverOptions.ConfigureEndpointDefaults(opt =>
+                serverOptions.ConfigureEndpointDefaults(configureOptions =>
                 {
                     // Configure endpoint defaults
                 });
 
-                serverOptions.ConfigureHttpsDefaults(httpsOptions =>
+                serverOptions.ConfigureHttpsDefaults(configureOptions =>
                 {
-                    httpsOptions.SslProtocols = SslProtocols.Tls12;
+                    configureOptions.SslProtocols = SslProtocols.Tls12;
                 });
             });
         });
@@ -1021,14 +1020,14 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         .UseStartup<Startup>()
         .UseKestrel((context, options) =>
         {
-            options.ConfigureEndpointDefaults(opt =>
+            options.ConfigureEndpointDefaults(configureOptions =>
             {
                 // Configure endpoint defaults
             });
             
-            options.ConfigureHttpsDefaults(httpsOptions =>
+            options.ConfigureHttpsDefaults(configureOptions =>
             {
-                httpsOptions.SslProtocols = SslProtocols.Tls12;
+                configureOptions.SslProtocols = SslProtocols.Tls12;
             });
         });
 ```
@@ -1324,10 +1323,13 @@ The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enable
 | `HttpProtocols` enum value | Connection protocol permitted |
 | -------------------------- | ----------------------------- |
 | `Http1`                    | HTTP/1.1 only. Can be used with or without TLS. |
-| `Http2`                    | HTTP/2 only. Primarily used with TLS. May be used without TLS only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4). |
-| `Http1AndHttp2`            | HTTP/1.1 and HTTP/2. Requires a TLS and [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection to negotiate HTTP/2; otherwise, the connection defaults to HTTP/1.1. |
+| `Http2`                    | HTTP/2 only. May be used without TLS only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4). |
+| `Http1AndHttp2`            | HTTP/1.1 and HTTP/2. HTTP/2 requires a TLS and [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection; otherwise, the connection defaults to HTTP/1.1. |
 
-The default protocol is HTTP/1.1.
+The default protocol is:
+
+* HTTP/2 for HTTP connections.
+* HTTP/1.1 for HTTPS connections.
 
 TLS restrictions for HTTP/2:
 
@@ -1354,28 +1356,36 @@ The following example permits HTTP/1.1 and HTTP/2 connections on port 8000. Conn
 });
 ```
 
-Optionally create an `IConnectionAdapter` implementation to filter TLS handshakes on a per-connection basis for specific ciphers:
+Optionally use Connection Middleware to filter TLS handshakes on a per-connection basis for specific ciphers:
 
 ```csharp
+// using System.Net;
+// using Microsoft.AspNetCore.Connections;
+
 .ConfigureKestrel(serverOptions =>
 {
     serverOptions.Listen(IPAddress.Any, 8000, listenOptions =>
     {
         listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
         listenOptions.UseHttps("testCert.pfx", "testPassword");
-        listenOptions.ConnectionAdapters.Add(new TlsFilterAdapter());
+        listenOptions.UseConnectionHandler<TlsFilterConnectionHandler>();
     });
 });
 ```
 
 ```csharp
-private class TlsFilterAdapter : IConnectionAdapter
-{
-    public bool IsHttps => false;
+using System;
+using System.Buffers;
+using System.Security.Authentication;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Connections;
+using Microsoft.AspNetCore.Connections.Features;
 
-    public Task<IAdaptedConnection> OnConnectionAsync(ConnectionAdapterContext context)
+public class TlsFilterConnectionHandler : ConnectionHandler
+{
+    public override async Task OnConnectedAsync(ConnectionContext connection)
     {
-        var tlsFeature = context.Features.Get<ITlsHandshakeFeature>();
+        var tlsFeature = connection.Features.Get<ITlsHandshakeFeature>();
 
         // Throw NotSupportedException for any cipher algorithm that the app doesn't
         // wish to support. Alternatively, define and compare
@@ -1390,20 +1400,21 @@ private class TlsFilterAdapter : IConnectionAdapter
             throw new NotSupportedException("Prohibited cipher: " + tlsFeature.CipherAlgorithm);
         }
 
-        return Task.FromResult<IAdaptedConnection>(new AdaptedConnection(context.ConnectionStream));
-    }
-
-    private class AdaptedConnection : IAdaptedConnection
-    {
-        public AdaptedConnection(Stream adaptedStream)
+        while (true)
         {
-            ConnectionStream = adaptedStream;
-        }
+            var result = await connection.Transport.Input.ReadAsync();
+            var buffer = result.Buffer;
 
-        public Stream ConnectionStream { get; }
+            if (!buffer.IsEmpty)
+            {
+                await connection.Transport.Output.WriteAsync(buffer.ToArray());
+            }
+            else if (result.IsCompleted)
+            {
+                break;
+            }
 
-        public void Dispose()
-        {
+            connection.Transport.Input.AdvanceTo(buffer.End);
         }
     }
 }
@@ -1433,7 +1444,7 @@ The following configuration file example establishes a connection protocol for a
     "Endpoints": {
       "HttpsDefaultCert": {
         "Url": "https://localhost:5001",
-        "Protocols": "Http1AndHttp2"
+        "Protocols": "Http1"
       }
     }
   }
@@ -1453,8 +1464,8 @@ The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enable
 | `HttpProtocols` enum value | Connection protocol permitted |
 | -------------------------- | ----------------------------- |
 | `Http1`                    | HTTP/1.1 only. Can be used with or without TLS. |
-| `Http2`                    | HTTP/2 only. Primarily used with TLS. May be used without TLS only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4). |
-| `Http1AndHttp2`            | HTTP/1.1 and HTTP/2. Requires a TLS and [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection to negotiate HTTP/2; otherwise, the connection defaults to HTTP/1.1. |
+| `Http2`                    | HTTP/2 only. May be used without TLS only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4). |
+| `Http1AndHttp2`            | HTTP/1.1 and HTTP/2. HTTP/2 requires a TLS and [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection; otherwise, the connection defaults to HTTP/1.1. |
 
 The default protocol is HTTP/1.1.
 
