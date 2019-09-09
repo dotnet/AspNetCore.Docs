@@ -213,6 +213,10 @@ The *Index.cshtml* file contains markup to create a delete button for each custo
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=22-23)]
 
+zz snippet test
+
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?name=snippet)]
+
 The rendered HTML:
 
 ```HTML
