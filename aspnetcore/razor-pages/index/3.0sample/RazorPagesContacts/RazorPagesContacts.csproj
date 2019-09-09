@@ -5,16 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Pages\Customers\Create4.html" />
-    <None Remove="Pages\Customers\Create5.html" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Pages\Customers\Create5.html" />
-    <Content Include="Pages\Customers\Create4.html" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.0.0-preview8.19405.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0-preview8.19405.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0-preview8.19405.11">
