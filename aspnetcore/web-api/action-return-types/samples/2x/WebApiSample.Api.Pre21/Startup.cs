@@ -1,17 +1,16 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using System;
-using System.IO;
-using System.Reflection;
 using WebApiSample.DataAccess;
 using WebApiSample.DataAccess.Repositories;
 
-namespace WebApiSample.Api
+namespace WebApiSample.Api.Pre21
 {
     public class Startup
     {
@@ -22,15 +21,13 @@ namespace WebApiSample.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ProductsRepository>();
-            services.AddDbContext<ProductContext>(opt => 
+            services.AddDbContext<ProductContext>(opt =>
                 opt.UseInMemoryDatabase("ProductInventory"));
 
-            services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc();
 
             services.AddSwaggerGen(c =>
             {
@@ -38,7 +35,7 @@ namespace WebApiSample.Api
                 {
                     Version = "v1",
                     Title = "Products API",
-                    Description = "A products Web API demonstrating action return types"
+                    Description = "A products web API demonstrating action return types"
                 });
 
                 // Set the comments path for the Swagger JSON and UI.
@@ -48,23 +45,17 @@ namespace WebApiSample.Api
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
 
-            app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My ASP.NET Core 2.1 API v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My ASP.NET Core 2.0 web API v1");
                 c.RoutePrefix = string.Empty;
             });
             app.UseMvc();

@@ -18,22 +18,20 @@ namespace WebApiSample.DataAccess.Repositories
                 _context.Products.AddRange(
                     new Product
                     {
-                        Name = "Learning ASP.NET Core",
-                        Description = "A best-selling book covering the fundamentals of ASP.NET Core"
+                        Name = "Learning EF Core",
+                        Description = "A best-selling book covering the fundamentals of Entity Framework Core"
                     },
                     new Product
                     {
-                        Name = "Learning EF Core",
-                        Description = "A best-selling book covering the fundamentals of Entity Framework Core"
+                        Name = "Learning ASP.NET Core",
+                        Description = "A best-selling book covering the fundamentals of ASP.NET Core"
                     });
                 _context.SaveChanges();
             }
         }
 
-        public IEnumerable<Product> GetProducts()
-        {
-            return _context.Products.ToList();
-        }
+        public List<Product> GetProducts() =>
+            _context.Products.OrderBy(p => p.Name).ToList();
 
         public bool TryGetProduct(int id, out Product product)
         {
@@ -44,11 +42,8 @@ namespace WebApiSample.DataAccess.Repositories
 
         public async Task<int> AddProductAsync(Product product)
         {
-            int rowsAffected = 0;
-
             _context.Products.Add(product);
-            rowsAffected = await _context.SaveChangesAsync();
-
+            int rowsAffected = await _context.SaveChangesAsync();
             return rowsAffected;
         }
     }
