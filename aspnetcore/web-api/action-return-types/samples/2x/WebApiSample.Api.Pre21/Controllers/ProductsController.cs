@@ -7,6 +7,7 @@ using WebApiSample.DataAccess.Repositories;
 
 namespace WebApiSample.Api.Pre21.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     public class ProductsController : Controller
     {
@@ -19,10 +20,8 @@ namespace WebApiSample.Api.Pre21.Controllers
 
         #region snippet_Get
         [HttpGet]
-        public IEnumerable<Product> Get()
-        {
-            return _repository.GetProducts();
-        }
+        public List<Product> Get() =>
+            _repository.GetProducts();
         #endregion
 
         #region snippet_GetById
@@ -42,6 +41,7 @@ namespace WebApiSample.Api.Pre21.Controllers
 
         #region snippet_CreateAsync
         [HttpPost]
+        [Consumes("application/json")]
         [ProducesResponseType(typeof(Product), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateAsync([FromBody] Product product)

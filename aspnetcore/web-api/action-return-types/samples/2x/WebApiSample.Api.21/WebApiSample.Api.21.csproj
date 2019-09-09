@@ -2,12 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <ProjectUISubcaption>&gt;= ASP.NET Core 2.1</ProjectUISubcaption>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
-    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <ProjectUISubcaption>ASP.NET Core 2.1 - 2.2</ProjectUISubcaption>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

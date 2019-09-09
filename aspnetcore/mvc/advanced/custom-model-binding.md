@@ -127,7 +127,7 @@ Adding your provider to the end of the collection may result in a built-in model
 
 ### Polymorphic model binding
 
-Binding to different models of derived types is known as polymorphic model binding. Custom model binding is required when the request value must be bound to the specific derived model type. Unless this approach is required, we recommend avoiding polymorphic model binding. Polymorphic model binding makes it difficult to reason about the bound models. However, if an app requires polymorphic model binding, an implementation might look like the follow code:
+Binding to different models of derived types is known as polymorphic model binding. Custom model binding is required when the request value must be bound to the specific derived model type. Unless this approach is required, we recommend avoiding polymorphic model binding. Polymorphic model binding makes it difficult to reason about the bound models. However, if an app requires polymorphic model binding, an implementation might look like the following code:
 
 [!code-csharp[](custom-model-binding/3.0sample/PolymorphicModelBinding/ModelBinders/PolymorphicModelBinder.cs?name=snippet)]
 
