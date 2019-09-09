@@ -343,12 +343,13 @@ Let's declutter this page by taking advantage of some of those capabilities.
 
 Add a [layout page](xref:mvc/views/layout) to *Pages/Shared/_Layout.cshtml*:
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Shared/_Layout2.cshtml)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Shared/_Layout2.cshtml?hightlight=12)]
 
 The [Layout](xref:mvc/views/layout):
 
 * Controls the layout of each page (unless the page opts out of layout).
 * Imports HTML structures such as JavaScript and stylesheets.
+* The contents of the Razor page are rendered where `@RenderBody()` is called.
 
 For more information, see [layout page](xref:mvc/views/layout)..
 
@@ -372,11 +373,11 @@ Add a *Pages/_ViewImports.cshtml* file:
 
 <a name="namespace"></a>
 
-When the `@namespace` directive is used explicitly on a page:
+The `@namespace` directive set on a page:
 
 [!code-cshtml[](index/sample/RazorPagesIntro/Pages/Customers/Namespace2.cshtml?highlight=2)]
 
-The directive sets the namespace for the page. The `@model` directive doesn't need to include the namespace.
+The `@namespace` directive sets the namespace for the page. The `@model` directive doesn't need to include the namespace.
 
 When the `@namespace` directive is contained in *_ViewImports.cshtml*, the specified namespace supplies the prefix for the generated namespace in the Page that imports the `@namespace` directive. The rest of the generated namespace (the suffix portion) is the dot-separated relative path between the folder containing *_ViewImports.cshtml* and the folder containing the page.
 
@@ -452,9 +453,7 @@ URL generation for pages supports relative names. The following table shows whic
 
 `RedirectToPage("Index")`, `RedirectToPage("./Index")`, and `RedirectToPage("../Index")` are *relative names*. The `RedirectToPage` parameter is *combined* with the path of the current page to compute the name of the destination page.
 
-Relative name linking is useful when building sites with a complex structure. If you use relative names to link between pages in a folder, you can rename that folder. All the links still work (because they didn't include the folder name).
-
-When relative names are used to link between pages in a folder:
+Relative name linking is useful when building sites with a complex structure. When relative names are used to link between pages in a folder:
 
 * Renaming a folder doesn't break the relative links.
 * Links are not broken because they don't include the folder name.
@@ -471,7 +470,7 @@ For more information, see <xref:mvc/controllers/areas> and <xref:razor-pages/raz
 
 Data can be passed to a page with <xref:Microsoft.AspNetCore.Mvc.ViewDataAttribute>. Properties with the [ViewData] attribute have their values stored and loaded from the <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary>.
 
-In the following example, the `AboutModel` contains a `Title` property decorated with `[ViewData]`:
+In the following example, the `AboutModel` applies the `[ViewData]` attribute to the `Title` property:
 
 ```csharp
 public class AboutModel : PageModel
