@@ -180,7 +180,7 @@ The `Customer` property uses [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.Bi
 
 [!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=15-16)]
 
-`[BindProperty]` should **not** be used on models containing properties that should not be changed by the client. For more information, see [Overposting](data/ef-rp/crud#overposting-1)
+`[BindProperty]` should **not** be used on models containing properties that should not be changed by the client. For more information, see [Overposting](data/ef-rp/crud#overposting)
 
 Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to properties removes the need to writing code to convert HTTP data to the model type. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.
 
@@ -212,10 +212,6 @@ The `<a /a>`[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag
 The *Index.cshtml* file contains markup to create a delete button for each customer contact:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=22-23)]
-
-zz snippet test
-
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?name=snippet)]
 
 The rendered HTML:
 
@@ -327,7 +323,7 @@ For more information, see:
 
 Ordinarily, an `OnHead` handler is created and called for `HEAD` requests:
 
-[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Privacy.cshtml.c?name=snippet)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Privacy.cshtml.cs?name=snippet)]
 
 Razor Pages falls back to calling the `OnGet` handler if no `OnHead` handler is defined.
 
