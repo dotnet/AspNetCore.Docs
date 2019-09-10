@@ -81,7 +81,7 @@ Unlike typical API clients, web browsers tend to supply `Accept` headers that in
 If you would prefer your app honor browser accept headers, you can configure this as part of MVC's configuration by setting <xref:Microsoft.AspNetCore.Mvc.MvcOptions.RespectBrowserAcceptHeader> to `true` in `ConfigureServices`.
 
 ::: moniker range=">= aspnetcore-3.0"
-[!code-csharp[](/formatting/3.0sample/ResponseFormattingSample/StartupRespectBrowserAcceptHeader.cs
+[!code-csharp[](/formatting/3.0sample/StartupRespectBrowserAcceptHeader.cs
 ?name=snippet)]
 ::: moniker-end
 ::: moniker range="< aspnetcore-3.0"
@@ -137,7 +137,7 @@ To add XML formatting support in ASP.NET Core 2.2 or earlier, install the [Micro
 XML formatters implemented using `System.Xml.Serialization.XmlSerializer` can be configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*> in `Startup.ConfigureServices`:
 
 ::: moniker range=">= aspnetcore-3.0"
-[!code-csharp[](./formatting/3.0sample/ResponseFormattingSample/Startup.cs?name=snippet)]
+[!code-csharp[](./formatting/3.0sample/Startup.cs?name=snippet)]
 ::: moniker-end
 ::: moniker range="< aspnetcore-3.0"
 [!code-csharp[](./formatting/sample/Startup.cs?name=snippet)]
