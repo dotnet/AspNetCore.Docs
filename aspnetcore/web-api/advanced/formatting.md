@@ -81,7 +81,8 @@ Unlike typical API clients, web browsers tend to supply `Accept` headers that in
 If you would prefer your app honor browser accept headers, you can configure this as part of MVC's configuration by setting <xref:Microsoft.AspNetCore.Mvc.MvcOptions.RespectBrowserAcceptHeader> to `true` in `ConfigureServices`.
 
 ::: moniker range=">= aspnetcore-3.0"
-[!code-csharp[](./formatting/3.0sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
+[!code-csharp[](/formatting/3.0sample/ResponseFormattingSample/StartupRespectBrowserAcceptHeader.cs
+?name=snippet)]
 ::: moniker-end
 ::: moniker range="< aspnetcore-3.0"
 [!code-csharp[](./formatting/sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
@@ -92,9 +93,10 @@ If you would prefer your app honor browser accept headers, you can configure thi
 Apps that need to support additional formats beyond the default of JSON can add NuGet packages and configure ASP.NET Core to support them. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding); output formatters are used to format responses. Custom Formatters](xref:web-api/advanced/custom-formatters) can also be configured.
 
 ### Adding XML Format Support
-=======
+
 ::: moniker range=">= aspnetcore-3.0"
 
+<!-- zz review Why is all this in a moniker -->
 ### Configure System.Text.Json-based formatters
 
 Features for the `System.Text.Json`-based formatters can be configured using `Microsoft.AspNetCore.Mvc.MvcOptions.SerializerOptions`:
@@ -135,7 +137,7 @@ To add XML formatting support in ASP.NET Core 2.2 or earlier, install the [Micro
 XML formatters implemented using `System.Xml.Serialization.XmlSerializer` can be configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*> in `Startup.ConfigureServices`:
 
 ::: moniker range=">= aspnetcore-3.0"
-[!code-csharp[](./formatting/3.0sample/Startup.cs?name=snippet)]
+[!code-csharp[](./formatting/3.0sample/ResponseFormattingSample/Startup.cs?name=snippet)]
 ::: moniker-end
 ::: moniker range="< aspnetcore-3.0"
 [!code-csharp[](./formatting/sample/Startup.cs?name=snippet)]
