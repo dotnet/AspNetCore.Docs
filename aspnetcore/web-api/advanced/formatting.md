@@ -15,7 +15,7 @@ ASP.NET Core MVC has support for formatting response data. Response data can be 
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/formatting) ([how to download](xref:index#how-to-download-a-sample))
 
-## Format-Specific Action Results
+## Format-specific Action Results
 
 Some action result types are specific to a particular format, such as <xref:Microsoft.AspNetCore.Mvc.JsonResult> and <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Actions can return results that are formatted in a particular format, regardless of client preferences. For example, returning `JsonResult` returns JSON-formatted data. Returning `ContentResult` or a string returns plain-text-formatted string data.
 
@@ -39,7 +39,7 @@ In the preceding code, the `Content-Type` returned is `text/plain`. Returning a 
 
 For actions with multiple return types, return `IActionResult`. For example, returning different HTTP status codes based on the result of operations performed.
 
-## Content Negotiation
+## Content negotiation
 
 Content negotiation occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is:
 
@@ -102,13 +102,13 @@ To configure an app to honor browser accept headers, set
 [!code-csharp[](./formatting/sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
 ::: moniker-end
 
-## Configure Formatters
+### Configure formatters
 
-Apps that need to support additional formats beyond the default of JSON can add NuGet packages and configure ASP.NET Core to support them. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding); output formatters are used to format responses. Custom Formatters](xref:web-api/advanced/custom-formatters) can also be configured.
+Apps that need to support additional formats can add the appropriate NuGet packages and configure support. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to format responses. For information on creating a custom formatter, see [Custom Formatters](xref:web-api/advanced/custom-formatters).
 
 ::: moniker range=">= aspnetcore-3.0"
 
-### Add XML Format Support
+### Add XML format support
 
 XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer> are configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*>:
 
@@ -120,18 +120,13 @@ When using the preceding code, controller methods should return the appropriate 
 
 ### Configure System.Text.Json-based formatters
 
-Features for the `System.Text.Json`-based formatters can be configured using `Microsoft.AspNetCore.Mvc.MvcOptions.SerializerOptions`:
+Features for the `System.Text.Json`-based formatters can be configured using `AddJsonOptions`:
 
-```csharp
-services.AddMvc(options =>
-{
-    options.SerializerOptions.WriterSettings.Indented = true;
-});
-```
+[!code-csharp[](./formatting/3.0sample/StartupSerializerOptions.cs?name=snippet)]
 
 ### Add Newtonsoft.Json-based JSON format support
 
-Prior to ASP.NET Core 3.0, MVC defaulted to using JSON formatters implemented using the `Newtonsoft.Json` package. In ASP.NET Core 3.0 or later, the default JSON formatters are based on `System.Text.Json`. Support for `Newtonsoft.Json`-based formatters and features is available by installing the [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package and configuring it in `Startup.ConfigureServices`.
+Prior to ASP.NET Core 3.0, MVC defaulted to using JSON formatters implemented using the `Newtonsoft.Json` package. In ASP.NET Core 3.0 or later, the default JSON formatters are based on `System.Text.Json`. Support for `Newtonsoft.Json` based formatters and features is available by installing the [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package and configuring it in `Startup.ConfigureServices`.
 
 [!code-csharp[](./formatting/3.0sample/StartupNewtonsoftJson.cs?name=snippet)]
 
@@ -161,27 +156,29 @@ When using the preceding code, controller methods should return the appropriate 
 
 ::: moniker-end
 
-### Forcing a format
+### Specify a format
 
-To restrict the response formats for a specific action, apply the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter. The `[Produces]` filter specifies the response formats for a specific action (or controller). Like most [Filters](xref:mvc/controllers/filters), `[Produces]` can be applied at the action, controller, or global scope.
+To restrict the response formats, apply the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter. Like most [Filters](xref:mvc/controllers/filters), `[Produces]` can be applied at the action, controller, or global scope:
 
-```csharp
-[Produces("application/json")]
-public class AuthorsController
-```
+[!code-csharp[](./formatting/3.0sample/Controllers/WeatherForecastController.cs?name=snippet)]
 
-The [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter:
+The preceding [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter:
 
 * Forces all actions within the controller to return JSON-formatted responses.
-* If other formatters are configured for the app and the client provided an `Accept` header requesting a different format, JSON is returned.
+* If other formatters are configured and the client specifies a different format, JSON is returned.
 
 For more information, see [Filters](xref:mvc/controllers/filters).
 
-### Special Case Formatters
+### Special case formatters
 
-Some special cases are implemented using built-in formatters. By default, `string` return types are formatted as *text/plain* (*text/html* if requested via the `Accept` header). This behavior can be deleted by removing the `TextOutputFormatter`. Formatters are removed in the `Configure` method. Actions that have a model object return type return a `204 No Content` response when returning `null`. This behavior can be deleted by removing the `HttpNoContentOutputFormatter`. The following code removes the `TextOutputFormatter` and `HttpNoContentOutputFormatter`.
+Some special cases are implemented using built-in formatters. By default, `string` return types are formatted as *text/plain* (*text/html* if requested via the `Accept` header). This behavior can be deleted by removing the <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter>. Formatters are removed in the `Configure` method. Actions that have a model object return type return `204 No Content` when returning `null`. This behavior can be deleted by removing the <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter>. The following code removes the `TextOutputFormatter` and `HttpNoContentOutputFormatter`.
 
+::: moniker range=">= aspnetcore-3.0"
+[!code-csharp[](./formatting/3.0sample/StartupTextOutputFormatter.cs?name=snippet)]
+::: moniker-end
+::: moniker range="< aspnetcore-3.0"
 [!code-csharp[](./formatting/sample/StartupTextOutputFormatter.cs?name=snippet)]
+::: moniker-end
 
 Without the `TextOutputFormatter`, `string` return types return `406 Not Acceptable`. If an XML formatter exists, it formats `string` return types if the `TextOutputFormatter` is removed.
 

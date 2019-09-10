@@ -6,10 +6,13 @@ using System.Linq;
 
 namespace ResponseFormattingSample.Controllers
 {
+    #region snippet
     [ApiController]
     [Route("[controller]")]
+    [Produces("application/json")]
     public class WeatherForecastController : ControllerBase
     {
+        #endregion
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
