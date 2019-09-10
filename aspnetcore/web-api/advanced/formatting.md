@@ -17,11 +17,11 @@ ASP.NET Core MVC has built-in support for formatting response data, using fixed 
 
 ## Format-Specific Action Results
 
-Some action result types are specific to a particular format, such as <xref:Microsoft.AspNetCore.Mvc.JsonResult> and <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Actions can return specific results that are always formatted in a particular manner. For example, returning a `JsonResult` will return JSON-formatted data, regardless of client preferences. Returning a `ContentResult` will return plain-text-formatted string data. Returning a string returns plain-text-formatted string data.
+Some action result types are specific to a particular format, such as <xref:Microsoft.AspNetCore.Mvc.JsonResult> and <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Actions can return specific results that are formatted in a particular format, regardless of client preferences. For example, returning `JsonResult` returns JSON-formatted data. Returning `ContentResult` or a string returns plain-text-formatted string data.
 
-An action isn't required to return any particular type. ASP.NET Core supports any object return value.  Results from actions that return objects that are not <xref:Microsoft.AspNetCore.Mvc.IActionResult> types will be serialized using the appropriate <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> implementation. See <xref:web-api/action-return-types> for more information.
+An action isn't required to return any specific type. ASP.NET Core supports any object return value.  Results from actions that return objects that are not <xref:Microsoft.AspNetCore.Mvc.IActionResult> types are serialized using the appropriate <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> implementation. For more information, see <xref:web-api/action-return-types>.
 
-The built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> to returns JSON-formatted data:
+The built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> returns JSON-formatted data:
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_get)]
 
 The sample download returns the list of authors. The F12 browser developer tools or [Postman](https://www.getpostman.com/tools) displays the response header containing **content-type:** `application/json; charset=utf-8`.
@@ -40,13 +40,13 @@ For actions with multiple return types (for example, different HTTP status codes
 
 ## Content Negotiation
 
-Content negotiation (*conneg*) occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is implemented by <xref:Microsoft.AspNetCore.Mvc.ObjectResult>. It's also built into the status code-specific action results returned from the helper methods (which are all based on `ObjectResult`). A model type can be returned and ASP.NET Core will wrap it in an `ObjectResult`.
+Content negotiation (*conneg*) occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is implemented by <xref:Microsoft.AspNetCore.Mvc.ObjectResult>. It's also built into the status code-specific action results returned from the helper methods (which are all based on `ObjectResult`). A model type can be returned and ASP.NET Core wraps it in an `ObjectResult`.
 
 The following action method uses the `Ok` and `NotFound` helper methods:
 
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_search)]
 
-A JSON-formatted response will be returned unless another format was requested and the server can return the requested format. You can use a tool like [Fiddler](https://www.telerik.com/fiddler) or  [Postman](https://www.getpostman.com/tools) to create a request that includes an `Accept` header and specify another format. In that case, if the server has a *formatter* that can produce a response in the requested format, the result will be returned in the client-preferred format.
+A JSON-formatted response is returned unless another format was requested and the server can return the requested format. A tool like [Fiddler](https://www.telerik.com/fiddler) or  [Postman](https://www.getpostman.com/tools) can be used to create a request that includes an `Accept` header and specify another format. In that case, if the server has a *formatter* that can produce a response in the requested format, the result is be returned in the client-preferred format.
 
 By default, ASP.NET Core only supports JSON, so even when another format is specified, the result returned is still JSON-formatted. The next section shows how to add additional formatters.
 
@@ -70,33 +70,53 @@ If no formatter is found that can satisfy the client's request, ASP.NET Core:
 * Returns `406 Not Acceptable` if <xref:Microsoft.AspNetCore.Mvc.MvcOptions> has been set, or -
 * Tries to find the first formatter that can produce a response.
 
-If the request specifies XML, but the XML formatter has not been configured, the JSON formatter is used. More generally, if no formatter is configured that can provide the requested format, the first formatter that can format the object is used. If no header is given, the first formatter that can handle the object is used to serialize the response. In the no header case, there isn't any negotiation taking place - the server is determining what format it will use.
+If the request specifies XML, but the XML formatter has not been configured, the JSON formatter is used. More generally, if no formatter is configured that can provide the requested format, the first formatter that can format the object is used. If no header is given, the first formatter that can handle the object is used to serialize the response. In the no header case, there isn't any negotiation taking place - the server is determining what format it uses.
 
-If the Accept header contains `*/*`, the Header will be ignored unless `RespectBrowserAcceptHeader` is set to true on <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
+If the Accept header contains `*/*`, the Header is ignored unless `RespectBrowserAcceptHeader` is set to true on <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
 
 ### Browsers and Content Negotiation
 
-Unlike typical API clients, web browsers tend to supply `Accept` headers that include a wide array of formats, including wildcards. By default, when the framework detects that the request is coming from a browser, it will ignore the `Accept` header and instead return the content in JSON (unless otherwise configured). This provides a more consistent experience across browsers when consuming APIs.
+Unlike typical API clients, web browsers supply `Accept` headers that include a wide array of formats, including wildcards. By default, when the framework detects that the request is coming from a browser:
 
-If you would prefer your app honor browser accept headers, you can configure this as part of MVC's configuration by setting <xref:Microsoft.AspNetCore.Mvc.MvcOptions.RespectBrowserAcceptHeader> to `true` in `ConfigureServices`.
+* The `Accept` header is ignored.
+* The content is returned in JSON, unless otherwise configured.
+
+This provides a more consistent experience across browsers when consuming APIs.
+
+To configure an app to honor browser accept headers, set
+<xref:Microsoft.AspNetCore.Mvc.MvcOptions.RespectBrowserAcceptHeader> to `true`:
 
 ::: moniker range=">= aspnetcore-3.0"
-[!code-csharp[](/formatting/3.0sample/StartupRespectBrowserAcceptHeader.cs
-?name=snippet)]
+[!code-csharp[](/formatting/3.0sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
 ::: moniker-end
 ::: moniker range="< aspnetcore-3.0"
 [!code-csharp[](./formatting/sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
 ::: moniker-end
 
-## Configuring Formatters
+## Configure Formatters
 
 Apps that need to support additional formats beyond the default of JSON can add NuGet packages and configure ASP.NET Core to support them. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding); output formatters are used to format responses. Custom Formatters](xref:web-api/advanced/custom-formatters) can also be configured.
 
-### Adding XML Format Support
-
 ::: moniker range=">= aspnetcore-3.0"
 
-<!-- zz review Why is all this in a moniker -->
+### Add XML Format Support
+
+XML formatting requires the [Microsoft.AspNetCore.Mvc.Formatters.Xml](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Formatters.Xml/) NuGet package.
+
+XML formatters implemented using `System.Xml.Serialization.XmlSerializer` can be configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*> in `Startup.ConfigureServices`:
+
+[!code-csharp[](./formatting/3.0sample/Startup.cs?name=snippet)]
+
+Add the XmlSerializerFormatters to MVC's configuration in `Startup`:
+
+[!code-csharp[](./formatting/3.0sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
+
+The preceding code serializes results using `System.Xml.Serialization.XmlSerializer`. The `System.Runtime.Serialization.DataContractSerializer` can be added by adding its associated formatter:
+
+[!code-csharp[](./formatting/3.0sample/StartUpDataContractSerializer.cs?name=snippet)]
+
+When using the preceding code, controller methods should return the appropriate format based on the request's `Accept` header.
+
 ### Configure System.Text.Json-based formatters
 
 Features for the `System.Text.Json`-based formatters can be configured using `Microsoft.AspNetCore.Mvc.MvcOptions.SerializerOptions`:
@@ -112,46 +132,27 @@ services.AddMvc(options =>
 
 Prior to ASP.NET Core 3.0, MVC defaulted to using JSON formatters implemented using the `Newtonsoft.Json` package. In ASP.NET Core 3.0 or later, the default JSON formatters are based on `System.Text.Json`. Support for `Newtonsoft.Json`-based formatters and features is available by installing the [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package and configuring it in `Startup.ConfigureServices`.
 
-```csharp
-services.AddMvc()
-    .AddNewtonsoftJson();
-```
+[!code-csharp[](/formatting/3.0sample/StartupNewtonsoftJson.cs?name=snippet)]
 
-Some features may not work well with `System.Text.Json`-based formatters and require a reference to the `Newtonsoft.Json`-based formatters for the ASP.NET Core 3.0
-release. Continue using the `Newtonsoft.Json`-based formatters if your ASP.NET Core 3.0 or later app:
+Some features may not work well with `System.Text.Json`-based formatters and require a reference to the `Newtonsoft.Json`-based formatters. Continue using the `Newtonsoft.Json`-based formatters if the app:
 
-* Uses `Newtonsoft.Json` attributes (for example, `[JsonProperty]` or `[JsonIgnore]`), customizes the serialization settings, or relies on features that `Newtonsoft.Json` provides.
+* Uses `Newtonsoft.Json` attributes. For example, `[JsonProperty]` or `[JsonIgnore]`.
+* Customizes the serialization settings.
+* Relies on features that `Newtonsoft.Json` provides.
 * Configures `Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings`. Prior to ASP.NET Core 3.0, `JsonResult.SerializerSettings` accepts an instance of `JsonSerializerSettings` that is specific to `Newtonsoft.Json`.
 * Generates [OpenAPI](<xref:tutorials/web-api-help-pages-using-swagger>) documentation.
 
 ::: moniker-end
 
-### Add XML format support
-
 ::: moniker range="<= aspnetcore-2.2"
 
-To add XML formatting support in ASP.NET Core 2.2 or earlier, install the [Microsoft.AspNetCore.Mvc.Formatters.Xml](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Formatters.Xml/) NuGet package.
+### Add XML format support
 
-::: moniker-end
+XML formatting requires the [Microsoft.AspNetCore.Mvc.Formatters.Xml](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Formatters.Xml/) NuGet package.
 
 XML formatters implemented using `System.Xml.Serialization.XmlSerializer` can be configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*> in `Startup.ConfigureServices`:
 
-::: moniker range=">= aspnetcore-3.0"
-[!code-csharp[](./formatting/3.0sample/Startup.cs?name=snippet)]
-::: moniker-end
-::: moniker range="< aspnetcore-3.0"
 [!code-csharp[](./formatting/sample/Startup.cs?name=snippet)]
-::: moniker-end
-
-Alternatively, XML formatters implemented using `System.Runtime.Serialization.DataContractSerializer` can be configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlDataContractSerializerFormatters*> in `Startup.ConfigureServices`:
-
-```csharp
-services.AddMvc()
-    .AddXmlDataContractSerializerFormatters();
-```
-
-
-To add support for XML formatting, install the `Microsoft.AspNetCore.Mvc.Formatters.Xml` NuGet package.
 
 Add the XmlSerializerFormatters to MVC's configuration in `Startup`:
 
@@ -162,6 +163,8 @@ The preceding code serializes results using `System.Xml.Serialization.XmlSeriali
 [!code-csharp[](./formatting/sample/StartUpDataContractSerializer.cs?name=snippet)]
 
 When using the preceding code, controller methods should return the appropriate format based on the request's `Accept` header.
+
+::: moniker-end
 
 ### Forcing a format
 
