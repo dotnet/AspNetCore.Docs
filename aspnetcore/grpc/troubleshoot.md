@@ -76,7 +76,7 @@ Additional configuration is required to call insecure gRPC services with the .NE
 AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
 // The port number(5000) must match the port of the gRPC server.
-var channel = GrpcChannel.ForAddress("https://localhost:5001");
+var channel = GrpcChannel.ForAddress("http://localhost:5000");
 var client = new Greet.GreeterClient(channel);
 ```
 
