@@ -30,9 +30,9 @@ namespace SampleApp
     {
         private const string HealthCheckServiceAssembly = "Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherHostedService";
 
-        #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
+            #region snippet_ConfigureServices
             services.AddHostedService<StartupHostedService>();
             services.AddSingleton<StartupHostedServiceHealthCheck>();
 
@@ -48,41 +48,36 @@ namespace SampleApp
                 options.Predicate = (check) => check.Tags.Contains("ready");
             });
 
-            // The following workaround permits adding an IHealthCheckPublisher 
-            // instance to the service container when one or more other hosted 
-            // services have already been added to the app. This workaround
-            // won't be required with the release of ASP.NET Core 3.0. For more 
-            // information, see: https://github.com/aspnet/Extensions/issues/639.
-            services.TryAddEnumerable(
-                ServiceDescriptor.Singleton(typeof(IHostedService), 
-                    typeof(HealthCheckPublisherOptions).Assembly
-                        .GetType(HealthCheckServiceAssembly)));
-
             services.AddSingleton<IHealthCheckPublisher, ReadinessPublisher>();
+            #endregion
         }
-        #endregion
 
         public void Configure(IApplicationBuilder app)
         {
-            // The readiness check uses all registered checks with the 'ready' tag.
-            app.UseHealthChecks("/health/ready", new HealthCheckOptions()
-            {
-                Predicate = (check) => check.Tags.Contains("ready"), 
-            });
+            app.UseRouting();
 
-            app.UseHealthChecks("/health/live", new HealthCheckOptions()
+            app.UseEndpoints(endpoints =>
             {
-                // Exclude all checks and return a 200-Ok.
-                Predicate = (_) => false
-            });
+                // The readiness check uses all registered checks with the 'ready' tag.
+                endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions()
+                {
+                    Predicate = (check) => check.Tags.Contains("ready"),
+                });
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync(
-                    "Navigate to /health/ready to see the readiness status.");
-                await context.Response.WriteAsync(Environment.NewLine);
-                await context.Response.WriteAsync(
-                    "Navigate to /health/live to see the liveness status.");
+                endpoints.MapHealthChecks("/health/live", new HealthCheckOptions()
+                {
+                    // Exclude all checks and return a 200-Ok.
+                    Predicate = (_) => false
+                });
+
+                endpoints.MapGet("/{**path}", async context =>
+                {
+                    await context.Response.WriteAsync(
+                        "Navigate to /health/ready to see the readiness status.");
+                    await context.Response.WriteAsync(Environment.NewLine);
+                    await context.Response.WriteAsync(
+                        "Navigate to /health/live to see the liveness status.");
+                });
             });
         }
     }
