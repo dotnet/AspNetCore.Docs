@@ -105,9 +105,7 @@ XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer> a
 
 [!code-csharp[](./formatting/3.0sample/Startup.cs?name=snippet)]
 
-The preceding code serializes results using `XmlSerializer`. <xref:System.Runtime.Serialization.DataContractSerializer>` is added by adding its associated formatter:
-
-[!code-csharp[](./formatting/3.0sample/StartUpDataContractSerializer.cs?name=snippet)]
+The preceding code serializes results using `XmlSerializer`.
 
 When using the preceding code, controller methods should return the appropriate format based on the request's `Accept` header.
 
@@ -148,9 +146,7 @@ XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer> a
 
 [!code-csharp[](./formatting/sample/Startup.cs?name=snippet)]
 
-The preceding code serializes results using `XmlSerializer`. <xref:System.Runtime.Serialization.DataContractSerializer>` is added by adding its associated formatter:
-
-[!code-csharp[](./formatting/sample/StartUpDataContractSerializer.cs?name=snippet)]
+The preceding code serializes results using `XmlSerializer`.
 
 When using the preceding code, controller methods should return the appropriate format based on the request's `Accept` header.
 
