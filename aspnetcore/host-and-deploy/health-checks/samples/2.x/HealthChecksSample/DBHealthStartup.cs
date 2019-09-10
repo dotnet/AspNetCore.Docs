@@ -16,7 +16,6 @@ namespace SampleApp
     //
     // This approach is suitable for systems that check for 'liveness' of an app with a database.
 
-    #region snippet1
     public class DbHealthStartup
     {
         public DbHealthStartup(IConfiguration configuration)
@@ -34,11 +33,9 @@ namespace SampleApp
         }
         #endregion
 
-        #region snippet_Configure
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseHealthChecks("/health");
-        #endregion
 
             app.Run(async (context) =>
             {
@@ -47,5 +44,4 @@ namespace SampleApp
             });
         }
     }
-    #endregion
 }

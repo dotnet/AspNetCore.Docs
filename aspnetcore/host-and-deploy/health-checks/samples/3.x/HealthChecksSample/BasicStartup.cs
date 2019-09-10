@@ -15,7 +15,6 @@ namespace SampleApp
     //
     // This is the simplest way to perform health checks. It's suitable for systems that want to check for 'liveness' of an app.
 
-    #region snippet1
     public class BasicStartup
     {
         public void ConfigureServices(IServiceCollection services)
@@ -30,14 +29,13 @@ namespace SampleApp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHealthChecks("/health");
-            });
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync(
-                    "Navigate to /health to see the health status.");
+                endpoints.MapGet("/{**path}", async context =>
+                {
+                    await context.Response.WriteAsync(
+                        "Navigate to /health to see the health status.");
+                });
             });
         }
     }
-    #endregion
 }

@@ -30,20 +30,18 @@ namespace SampleApp
         {
             app.UseRouting();
 
-            #region snippet_Configure
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHealthChecks("/health")
                     .RequireHost($"*:{Configuration["ManagementPort"]}");
-            });
-            #endregion
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync(
-                    "Navigate to " + 
-                    $"http://localhost:{Configuration["ManagementPort"]}/health " +
-                    "to see the health status.");
+                endpoints.MapGet("/{**path}", async context =>
+                {
+                    await context.Response.WriteAsync(
+                        "Navigate to " + 
+                        $"http://localhost:{Configuration["ManagementPort"]}/health " +
+                        "to see the health status.");
+                });
             });
         }
     }

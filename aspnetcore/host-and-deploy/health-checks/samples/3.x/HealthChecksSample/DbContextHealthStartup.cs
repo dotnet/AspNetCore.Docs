@@ -46,54 +46,52 @@ namespace SampleApp
         {
             app.UseRouting();
 
-            #region snippet_Configure
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHealthChecks("/health");
-            });
-            #endregion
 
-            app.Map("/createdatabase", b => b.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Creating the database...");
-                await context.Response.WriteAsync(Environment.NewLine);
-                await context.Response.Body.FlushAsync();
+                endpoints.MapGet("/createdatabase", async context =>
+                {
+                    await context.Response.WriteAsync("Creating the database...");
+                    await context.Response.WriteAsync(Environment.NewLine);
+                    await context.Response.Body.FlushAsync();
 
-                var appDbContext = 
-                    context.RequestServices.GetRequiredService<AppDbContext>();
-                await appDbContext.Database.EnsureCreatedAsync();
+                    var appDbContext = 
+                        context.RequestServices.GetRequiredService<AppDbContext>();
+                    await appDbContext.Database.EnsureCreatedAsync();
 
-                await context.Response.WriteAsync("Done!");
-                await context.Response.WriteAsync(Environment.NewLine);
-                await context.Response.WriteAsync(
-                    "Navigate to /health to see the health status.");
-                await context.Response.WriteAsync(Environment.NewLine);
-            }));
+                    await context.Response.WriteAsync("Done!");
+                    await context.Response.WriteAsync(Environment.NewLine);
+                    await context.Response.WriteAsync(
+                        "Navigate to /health to see the health status.");
+                    await context.Response.WriteAsync(Environment.NewLine);
+                });
 
-            app.Map("/deletedatabase", b => b.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Deleting the database...");
-                await context.Response.WriteAsync(Environment.NewLine);
-                await context.Response.Body.FlushAsync();
+                endpoints.MapGet("deletedatabase", async context =>
+                {
+                    await context.Response.WriteAsync("Deleting the database...");
+                    await context.Response.WriteAsync(Environment.NewLine);
+                    await context.Response.Body.FlushAsync();
 
-                var appDbContext = 
-                    context.RequestServices.GetRequiredService<AppDbContext>();
-                await appDbContext.Database.EnsureDeletedAsync();
+                    var appDbContext = 
+                        context.RequestServices.GetRequiredService<AppDbContext>();
+                    await appDbContext.Database.EnsureDeletedAsync();
 
-                await context.Response.WriteAsync("Done!");
-                await context.Response.WriteAsync(Environment.NewLine);
-                await context.Response.WriteAsync("Navigate to /health to see the health status.");
-                await context.Response.WriteAsync(Environment.NewLine);
-            }));
+                    await context.Response.WriteAsync("Done!");
+                    await context.Response.WriteAsync(Environment.NewLine);
+                    await context.Response.WriteAsync("Navigate to /health to see the health status.");
+                    await context.Response.WriteAsync(Environment.NewLine);
+                });
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Navigate to /health to see the health status.");
-                await context.Response.WriteAsync(Environment.NewLine);
-                await context.Response.WriteAsync("Navigate to /createdatabase to create the database.");
-                await context.Response.WriteAsync(Environment.NewLine);
-                await context.Response.WriteAsync("Navigate to /deletedatabase to delete the database.");
-                await context.Response.WriteAsync(Environment.NewLine);
+                endpoints.MapGet("/{**path}", async context =>
+                {
+                    await context.Response.WriteAsync("Navigate to /health to see the health status.");
+                    await context.Response.WriteAsync(Environment.NewLine);
+                    await context.Response.WriteAsync("Navigate to /createdatabase to create the database.");
+                    await context.Response.WriteAsync(Environment.NewLine);
+                    await context.Response.WriteAsync("Navigate to /deletedatabase to delete the database.");
+                    await context.Response.WriteAsync(Environment.NewLine);
+                });
             });
         }
     }

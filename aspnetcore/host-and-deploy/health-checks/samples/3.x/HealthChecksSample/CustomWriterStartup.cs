@@ -33,7 +33,6 @@ namespace SampleApp
         {
             app.UseRouting();
 
-            #region snippet_Configure
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHealthChecks("/health", new HealthCheckOptions()
@@ -41,13 +40,12 @@ namespace SampleApp
                     // This custom writer formats the detailed status as JSON.
                     ResponseWriter = WriteResponse
                 });
-            });
-            #endregion
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync(
-                    "Navigate to /health to see the health status.");
+                endpoints.MapGet("/{**path}", async context =>
+                {
+                    await context.Response.WriteAsync(
+                        "Navigate to /health to see the health status.");
+                });
             });
         }
 

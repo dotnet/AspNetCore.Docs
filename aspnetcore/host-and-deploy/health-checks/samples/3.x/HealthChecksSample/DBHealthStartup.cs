@@ -16,7 +16,6 @@ namespace SampleApp
     //
     // This approach is suitable for systems that check for 'liveness' of an app with a database.
 
-    #region snippet1
     public class DbHealthStartup
     {
         public DbHealthStartup(IConfiguration configuration)
@@ -38,19 +37,16 @@ namespace SampleApp
         {
             app.UseRouting();
 
-            #region snippet_Configure
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHealthChecks("/health");
-            });
-            #endregion
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync(
-                    "Navigate to /health to see the health status.");
+                endpoints.MapGet("/{**path}", async context =>
+                {
+                    await context.Response.WriteAsync(
+                        "Navigate to /health to see the health status.");
+                });
             });
         }
     }
-    #endregion
 }

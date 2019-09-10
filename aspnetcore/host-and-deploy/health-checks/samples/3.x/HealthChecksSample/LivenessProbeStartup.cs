@@ -48,16 +48,6 @@ namespace SampleApp
                 options.Predicate = (check) => check.Tags.Contains("ready");
             });
 
-            // The following workaround permits adding an IHealthCheckPublisher 
-            // instance to the service container when one or more other hosted 
-            // services have already been added to the app. This workaround
-            // won't be required with the release of ASP.NET Core 3.0. For more 
-            // information, see: https://github.com/aspnet/Extensions/issues/639.
-            services.TryAddEnumerable(
-                ServiceDescriptor.Singleton(typeof(IHostedService), 
-                    typeof(HealthCheckPublisherOptions).Assembly
-                        .GetType(HealthCheckServiceAssembly)));
-
             services.AddSingleton<IHealthCheckPublisher, ReadinessPublisher>();
             #endregion
         }
@@ -66,7 +56,6 @@ namespace SampleApp
         {
             app.UseRouting();
 
-            #region snippet_Configure
             app.UseEndpoints(endpoints =>
             {
                 // The readiness check uses all registered checks with the 'ready' tag.
@@ -80,16 +69,15 @@ namespace SampleApp
                     // Exclude all checks and return a 200-Ok.
                     Predicate = (_) => false
                 });
-            });
-            #endregion
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync(
-                    "Navigate to /health/ready to see the readiness status.");
-                await context.Response.WriteAsync(Environment.NewLine);
-                await context.Response.WriteAsync(
-                    "Navigate to /health/live to see the liveness status.");
+                endpoints.MapGet("/{**path}", async context =>
+                {
+                    await context.Response.WriteAsync(
+                        "Navigate to /health/ready to see the readiness status.");
+                    await context.Response.WriteAsync(Environment.NewLine);
+                    await context.Response.WriteAsync(
+                        "Navigate to /health/live to see the liveness status.");
+                });
             });
         }
     }

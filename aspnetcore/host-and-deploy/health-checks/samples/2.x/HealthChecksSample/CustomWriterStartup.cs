@@ -29,7 +29,6 @@ namespace SampleApp
         }
         #endregion
 
-        #region snippet_Configure
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseHealthChecks("/health", new HealthCheckOptions()
@@ -37,7 +36,6 @@ namespace SampleApp
                 // This custom writer formats the detailed status as JSON.
                 ResponseWriter = WriteResponse
             });
-        #endregion
 
             app.Run(async (context) =>
             {
