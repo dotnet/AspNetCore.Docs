@@ -101,17 +101,11 @@ Apps that need to support additional formats beyond the default of JSON can add 
 
 ### Add XML Format Support
 
-XML formatting requires the [Microsoft.AspNetCore.Mvc.Formatters.Xml](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Formatters.Xml/) NuGet package.
-
-XML formatters implemented using `System.Xml.Serialization.XmlSerializer` can be configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*> in `Startup.ConfigureServices`:
+XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer> are configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*>:
 
 [!code-csharp[](./formatting/3.0sample/Startup.cs?name=snippet)]
 
-Add the XmlSerializerFormatters to MVC's configuration in `Startup`:
-
-[!code-csharp[](./formatting/3.0sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
-
-The preceding code serializes results using `System.Xml.Serialization.XmlSerializer`. The `System.Runtime.Serialization.DataContractSerializer` can be added by adding its associated formatter:
+The preceding code serializes results using `XmlSerializer`. <xref:System.Runtime.Serialization.DataContractSerializer>` is added by adding its associated formatter:
 
 [!code-csharp[](./formatting/3.0sample/StartUpDataContractSerializer.cs?name=snippet)]
 
@@ -150,15 +144,11 @@ Some features may not work well with `System.Text.Json`-based formatters and req
 
 XML formatting requires the [Microsoft.AspNetCore.Mvc.Formatters.Xml](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Formatters.Xml/) NuGet package.
 
-XML formatters implemented using `System.Xml.Serialization.XmlSerializer` can be configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*> in `Startup.ConfigureServices`:
+XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer> are configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*>:
 
 [!code-csharp[](./formatting/sample/Startup.cs?name=snippet)]
 
-Add the XmlSerializerFormatters to MVC's configuration in `Startup`:
-
-[!code-csharp[](./formatting/sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
-
-The preceding code serializes results using `System.Xml.Serialization.XmlSerializer`. The `System.Runtime.Serialization.DataContractSerializer` can be added by adding its associated formatter:
+The preceding code serializes results using `XmlSerializer`. <xref:System.Runtime.Serialization.DataContractSerializer>` is added by adding its associated formatter:
 
 [!code-csharp[](./formatting/sample/StartUpDataContractSerializer.cs?name=snippet)]
 
