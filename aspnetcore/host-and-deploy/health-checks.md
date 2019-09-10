@@ -318,7 +318,10 @@ Register health check services with <xref:Microsoft.Extensions.DependencyInjecti
 A health check endpoint is created by calling `MapHealthChecks` in `Startup.Configure`:
 
 ```csharp
-app.UseHealthChecks("/health");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHealthChecks("/health");
+}
 ```
 
 To run the database probe scenario using the sample app, execute the following command from the project's folder in a command shell:
@@ -351,7 +354,10 @@ In the sample app, `AppDbContext` is provided to `AddDbContextCheck` and registe
 A health check endpoint is created by calling `MapHealthChecks` in `Startup.Configure`:
 
 ```csharp
-app.UseHealthChecks("/health");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHealthChecks("/health");
+}
 ```
 
 To run the `DbContext` probe scenario using the sample app, confirm that the database specified by the connection string doesn't exist in the SQL Server instance. If the database exists, delete it.
