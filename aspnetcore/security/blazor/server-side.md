@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats to Blazor server-side apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/05/2019
+ms.date: 09/07/2019
 uid: security/blazor/server-side
 ---
 # Secure ASP.NET Core Blazor server-side apps
@@ -109,7 +109,7 @@ A client interacts with the server through JS interop event dispatching and rend
 For calls from .NET methods to JavaScript:
 
 * All invocations have a configurable timeout after which they fail, returning a <xref:System.OperationCanceledException> to the caller.
-  * There's a default timeout for the calls (`CircuitOptions.JSInteropDefaultCallTimeout`) of one minute.
+  * There's a default timeout for the calls (`CircuitOptions.JSInteropDefaultCallTimeout`) of one minute. To configure this limit, see <xref:blazor/javascript-interop#harden-js-interop-calls>.
   * A cancellation token can be provided to control the cancellation on a per-call basis. Rely on the default call timeout where possible and time-bound any call to the client if a cancellation token is provided.
 * The result of a JavaScript call can't be trusted. The Blazor app client running in the browser searches for the JavaScript function to invoke. The function is invoked, and either the result or an error is produced. A malicious client can attempt to:
   * Cause an issue in the app by returning an error from the JavaScript function.
@@ -194,6 +194,72 @@ A client can dispatch one or more increment events before the framework produces
 ```
 
 By adding the `if (count < 3) { ... }` check inside the handler, the decision to increment `count` is based on the current app state. The decision isn't based on the state of the UI as it was in the previous example, which might be temporarily stale.
+
+### Guard against multiple dispatches
+
+If an event callback invokes a long running operation, such as fetching data from an external service or database, consider using a guard. The guard can prevent the user from queueing up multiple operations while the operation is in progress with visual feedback. The following component code sets `isLoading` to `true` while `GetForecastAsync` obtains data from the server. While `isLoading` is `true`, the button is disabled in the UI:
+
+```cshtml
+@page "/fetchdata"
+@using BlazorServerSample.Data
+@inject WeatherForecastService ForecastService
+
+<button disabled="@isLoading" @onclick="UpdateForecasts">Update</button>
+
+@code {
+    private bool isLoading;
+    private WeatherForecast[] forecasts;
+
+    private async Task UpdateForecasts()
+    {
+        if (!isLoading)
+        {
+            isLoading = true;
+            forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+            isLoading = false;
+        }
+    }
+}
+```
+
+### Cancel early and avoid use-after-dispose
+
+In addition to using a guard as described in the [Guard against multiple dispatches](#guard-against-multiple-dispatches) section, consider using a <xref:System.Threading.CancellationToken> to cancel long-running operations when the component is disposed. This approach has the added benefit of avoiding *use-after-dispose* in components:
+
+```cshtml
+@implements IDisposable
+
+...
+
+@code {
+    private readonly CancellationTokenSource TokenSource = 
+        new CancellationTokenSource();
+
+    private async Task UpdateForecasts()
+    {
+        ...
+
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now, 
+            TokenSource.Token);
+
+        if (TokenSource.Token.IsCancellationRequested)
+        {
+           return;
+        }
+
+        ...
+    }
+
+    public void Dispose()
+    {
+        CancellationTokenSource.Cancel();
+    }
+}
+```
+
+### Avoid events that produce large amounts of data
+
+Some DOM events, such as `oninput` or `onscroll`, can produce a large amount of data. Avoid using these events in Blazor server apps.
 
 ## Additional security guidance
 
@@ -324,6 +390,9 @@ The following list of security considerations isn't comprehensive:
 * Prevent the client from allocating an unbound amount of memory.
   * Data within the component.
   * `DotNetObject` references returned to the client.
+* Guard against multiple dispatches.
+* Cancel long-running operations when the component is disposed.
+* Avoid events that produce large amounts of data.
 * Avoid using user input as part of calls to `NavigationManager.Navigate` and validate user input for URLs against a set of allowed origins first if unavoidable.
 * Don't make authorization decisions based on the state of the UI but only from component state.
 * Consider using [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) to protect against XSS attacks.

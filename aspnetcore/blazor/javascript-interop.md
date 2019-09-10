@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET and .NET methods
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/05/2019
+ms.date: 09/07/2019
 uid: blazor/javascript-interop
 ---
 # ASP.NET Core Blazor JavaScript interop
@@ -243,3 +243,23 @@ The class library handles embedding JavaScript resources in the built assembly. 
 The built NuGet package is referenced in the app's project file the same way that any NuGet package is referenced. After the package is restored, app code can call into JavaScript as if it were C#.
 
 For more information, see <xref:blazor/class-libraries>.
+
+## Harden JS interop calls
+
+JS interop may fail due to networking errors and should be treated as unreliable. By default, a Blazor Server app times out JS interop calls on the server after one minute. If an app can tolerate a more aggressive timeout, such as 10 seconds, set the timeout using one of the following approaches:
+
+* Globally in `Startup.ConfigureServices`, specify the timeout:
+
+  ```csharp
+  services.AddServerSideBlazor(
+      options => options.JSInteropDefaultCallTimeout = TimeSpan.FromSeconds({SECONDS}));
+  ```
+
+* Per-invocation in component code, a single call can specify the timeout:
+
+  ```csharp
+  var result = await JSRuntime.InvokeAsync<string>("MyJSOperation", 
+      TimeSpan.FromSeconds({SECONDS}), new[] { "Arg1" });
+  ```
+
+For more information on resource exhaustion, see <xref:security/blazor/server-side>.

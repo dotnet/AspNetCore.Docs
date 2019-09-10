@@ -8,11 +8,10 @@ namespace SampleApp
 {
     // Use the `--scenario port` switch to run this version of the sample.
     //
-    // UseHealthChecks with a port only processes health checks requests on a connection to the specified port. This is typically used in a container environment to expose a port for monitoring services.
+    // RequireHost with a port only processes health checks requests on a connection to the specified URI. This is typically used in a container environment to expose a port for monitoring services.
     //  The management port is configured in the launchSettings.json file and passed through an environment variable.
     //  The server must also be configured to listen to requests on the management port.
 
-    #region snippet1
     public class ManagementPortStartup
     {
         public ManagementPortStartup(IConfiguration configuration)
@@ -27,18 +26,24 @@ namespace SampleApp
             services.AddHealthChecks();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            app.UseHealthChecks("/health", port: Configuration["ManagementPort"]);
+            app.UseRouting();
 
-            app.Run(async (context) =>
+            app.UseEndpoints(endpoints =>
             {
-                await context.Response.WriteAsync(
-                    "Navigate to " + 
-                    $"http://localhost:{Configuration["ManagementPort"]}/health " +
-                    "to see the health status.");
+                endpoints.MapHealthChecks("/health")
+                    .RequireHost($"*:{Configuration["ManagementPort"]}");
+
+                endpoints.MapGet("/{**path}", async context =>
+                {
+                    await context.Response.WriteAsync(
+                        "Navigate to " + 
+                        $"http://localhost:{Configuration["ManagementPort"]}/health " +
+                        "to see the health status.");
+                });
             });
         }
     }
-    #endregion
+    
 }

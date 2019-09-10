@@ -22,14 +22,19 @@ namespace SampleApp
             services.AddHealthChecks();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            app.UseHealthChecks("/health");
+            app.UseRouting();
 
-            app.Run(async (context) =>
+            app.UseEndpoints(endpoints =>
             {
-                await context.Response.WriteAsync(
-                    "Navigate to /health to see the health status.");
+                endpoints.MapHealthChecks("/health");
+
+                endpoints.MapGet("/{**path}", async context =>
+                {
+                    await context.Response.WriteAsync(
+                        "Navigate to /health to see the health status.");
+                });
             });
         }
     }

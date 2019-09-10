@@ -21,26 +21,31 @@ namespace SampleApp
 
     public class CustomWriterStartup
     {
-        #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
+            #region snippet_ConfigureServices
             services.AddHealthChecks()
                 .AddMemoryHealthCheck("memory");
+            #endregion
         }
-        #endregion
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            app.UseHealthChecks("/health", new HealthCheckOptions()
-            {
-                // This custom writer formats the detailed status as JSON.
-                ResponseWriter = WriteResponse
-            });
+            app.UseRouting();
 
-            app.Run(async (context) =>
+            app.UseEndpoints(endpoints =>
             {
-                await context.Response.WriteAsync(
-                    "Navigate to /health to see the health status.");
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions()
+                {
+                    // This custom writer formats the detailed status as JSON.
+                    ResponseWriter = WriteResponse
+                });
+
+                endpoints.MapGet("/{**path}", async context =>
+                {
+                    await context.Response.WriteAsync(
+                        "Navigate to /health to see the health status.");
+                });
             });
         }
 
