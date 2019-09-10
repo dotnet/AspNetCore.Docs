@@ -16,4 +16,8 @@ namespace ResponseFormattingSample.Controllers
             return new Product();
         }
     }
+
+    public class Product
+    {
+    }
 }

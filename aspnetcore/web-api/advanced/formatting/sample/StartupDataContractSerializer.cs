@@ -26,7 +26,7 @@ namespace ResponseFormattingSample
                 options.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
         #endregion
 

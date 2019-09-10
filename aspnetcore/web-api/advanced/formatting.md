@@ -13,7 +13,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ar
 
 ASP.NET Core MVC has built-in support for formatting response data, using fixed formats or in response to client specifications.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/formatting/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/formatting) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Format-Specific Action Results
 
@@ -24,7 +24,7 @@ An action isn't required to return any particular type. ASP.NET Core supports an
 The built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> to returns JSON-formatted data:
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_get)]
 
-The sample download returns the list of authors. The F12 browser developer tools or [Postman](https://www.getpostman.com/tools) displays the response header containing **content-type: application/json; charset=utf-8**.
+The sample download returns the list of authors. The F12 browser developer tools or [Postman](https://www.getpostman.com/tools) displays the response header containing **content-type:** `application/json; charset=utf-8`.
 
 The F12 browser developer tool displays the request headers, such as the `Accept` header. The `Accept` header is ignored by the preceding code.
 
@@ -80,7 +80,12 @@ Unlike typical API clients, web browsers tend to supply `Accept` headers that in
 
 If you would prefer your app honor browser accept headers, you can configure this as part of MVC's configuration by setting <xref:Microsoft.AspNetCore.Mvc.MvcOptions.RespectBrowserAcceptHeader> to `true` in `ConfigureServices`.
 
+::: moniker range=">= aspnetcore-3.0"
+[!code-csharp[](./formatting/3.0sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
+::: moniker-end
+::: moniker range="< aspnetcore-3.0"
 [!code-csharp[](./formatting/sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
+::: moniker-end
 
 ## Configuring Formatters
 
@@ -129,7 +134,12 @@ To add XML formatting support in ASP.NET Core 2.2 or earlier, install the [Micro
 
 XML formatters implemented using `System.Xml.Serialization.XmlSerializer` can be configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlSerializerFormatters*> in `Startup.ConfigureServices`:
 
-[!code-csharp[](./formatting/sample/Startup.cs?name=snippet1&highlight=2)]
+::: moniker range=">= aspnetcore-3.0"
+[!code-csharp[](./formatting/3.0sample/Startup.cs?name=snippet)]
+::: moniker-end
+::: moniker range="< aspnetcore-3.0"
+[!code-csharp[](./formatting/sample/Startup.cs?name=snippet)]
+::: moniker-end
 
 Alternatively, XML formatters implemented using `System.Runtime.Serialization.DataContractSerializer` can be configured by calling <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcBuilderExtensions.AddXmlDataContractSerializerFormatters*> in `Startup.ConfigureServices`:
 

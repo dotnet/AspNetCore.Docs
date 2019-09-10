@@ -31,7 +31,7 @@ namespace ResponseFormattingSample
                 options.RespectBrowserAcceptHeader = true; // false by default
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
         #endregion
 

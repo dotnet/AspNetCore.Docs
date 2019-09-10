@@ -1,15 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace ResponseFormattingSample
 {
-    public class StartupDataContractSerializer
+    public class StartupRespectBrowserAcceptHeader
     {
-        public StartupDataContractSerializer(IConfiguration configuration)
+        public StartupRespectBrowserAcceptHeader(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -21,8 +20,7 @@ namespace ResponseFormattingSample
         {
             services.AddControllers(options =>
             {
-                // requires using Microsoft.AspNetCore.Mvc.Formatters;
-                options.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
+                options.RespectBrowserAcceptHeader = true; // false by default
             });
         }
         #endregion
