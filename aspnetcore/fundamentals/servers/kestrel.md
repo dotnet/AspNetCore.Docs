@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: tdykstra
 ms.custom: mvc
-ms.date: 09/09/2019
+ms.date: 09/10/2019
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -150,9 +150,9 @@ To provide additional configuration after calling `CreateDefaultBuilder`, use `C
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .ConfigureKestrel((context, serverOptions) =>
         {
-            // Set properties and call methods on options
+            // Set properties and call methods on serverOptions
         });
 ```
 
@@ -166,9 +166,9 @@ public static void Main(string[] args)
         .UseKestrel()
         .UseIISIntegration()
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .ConfigureKestrel((context, serverOptions) =>
         {
-            // Set properties and call methods on options
+            // Set properties and call methods on serverOptions
         })
         .Build();
 
@@ -190,9 +190,9 @@ To provide additional configuration after calling `CreateDefaultBuilder`, call <
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseKestrel(options =>
+        .UseKestrel(serverOptions =>
         {
-            // Set properties and call methods on options
+            // Set properties and call methods on serverOptions
         });
 ```
 
@@ -234,9 +234,9 @@ Gets or sets the [keep-alive timeout](https://tools.ietf.org/html/rfc7230#sectio
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseKestrel(options =>
+        .UseKestrel(serverOptions =>
         {
-            options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
+            serverOptions.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
         });
 ```
 
@@ -267,9 +267,9 @@ The maximum number of concurrent open TCP connections can be set for the entire 
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseKestrel(options =>
+        .UseKestrel(serverOptions =>
         {
-            options.Limits.MaxConcurrentConnections = 100;
+            serverOptions.Limits.MaxConcurrentConnections = 100;
         });
 ```
 
@@ -295,9 +295,9 @@ There's a separate limit for connections that have been upgraded from HTTP or HT
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseKestrel(options =>
+        .UseKestrel(serverOptions =>
         {
-            options.Limits.MaxConcurrentUpgradedConnections = 100;
+            serverOptions.Limits.MaxConcurrentUpgradedConnections = 100;
         });
 ```
 
@@ -346,9 +346,9 @@ Override the setting on a specific request in middleware:
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseKestrel(options =>
+        .UseKestrel(serverOptions =>
         {
-            options.Limits.MaxRequestBodySize = 10 * 1024;
+            serverOptions.Limits.MaxRequestBodySize = 10 * 1024;
         });
 ```
 
@@ -393,11 +393,11 @@ Here's an example that shows how to configure the minimum data rates in *Program
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseKestrel(options =>
+        .UseKestrel(serverOptions =>
         {
-            options.Limits.MinRequestBodyDataRate =
+            serverOptions.Limits.MinRequestBodyDataRate =
                 new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
-            options.Limits.MinResponseDataRate =
+            serverOptions.Limits.MinResponseDataRate =
                 new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
         });
 ```
@@ -450,9 +450,9 @@ Gets or sets the maximum amount of time the server spends receiving request head
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseKestrel(options =>
+        .UseKestrel(serverOptions =>
         {
-            options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(1);
+            serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(1);
         });
 ```
 
@@ -551,9 +551,9 @@ The default value is 96 KB (98,304).
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .ConfigureKestrel((context, serverOptions) =>
         {
-            options.Limits.Http2.MaxStreamsPerConnection = 100;
+            serverOptions.Limits.Http2.MaxStreamsPerConnection = 100;
         });
 ```
 
@@ -567,9 +567,9 @@ The HPACK decoder decompresses HTTP headers for HTTP/2 connections. `Http2.Heade
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .ConfigureKestrel((context, serverOptions) =>
         {
-            options.Limits.Http2.HeaderTableSize = 4096;
+            serverOptions.Limits.Http2.HeaderTableSize = 4096;
         });
 ```
 
@@ -583,9 +583,9 @@ The default value is 4096.
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .ConfigureKestrel((context, serverOptions) =>
         {
-            options.Limits.Http2.MaxFrameSize = 16384;
+            serverOptions.Limits.Http2.MaxFrameSize = 16384;
         });
 ```
 
@@ -599,9 +599,9 @@ The default value is 2^14 (16,384).
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .ConfigureKestrel((context, serverOptions) =>
         {
-            options.Limits.Http2.MaxRequestHeaderFieldSize = 8192;
+            serverOptions.Limits.Http2.MaxRequestHeaderFieldSize = 8192;
         });
 ```
 
@@ -615,9 +615,9 @@ The default value is 8,192.
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .ConfigureKestrel((context, serverOptions) =>
         {
-            options.Limits.Http2.InitialConnectionWindowSize = 131072;
+            serverOptions.Limits.Http2.InitialConnectionWindowSize = 131072;
         });
 ```
 
@@ -631,9 +631,9 @@ The default value is 128 KB (131,072).
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .ConfigureKestrel((context, serverOptions) =>
         {
-            options.Limits.Http2.InitialStreamWindowSize = 98304;
+            serverOptions.Limits.Http2.InitialStreamWindowSize = 98304;
         });
 ```
 
@@ -682,9 +682,9 @@ The following example disables synchronous IO:
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseKestrel(options =>
+        .UseKestrel(serverOptions =>
         {
-            options.AllowSynchronousIO = false;
+            serverOptions.AllowSynchronousIO = false;
         });
 ```
 
@@ -742,7 +742,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         {
             webBuilder.ConfigureKestrel(serverOptions =>
             {
-                serverOptions.ConfigureEndpointDefaults(configureOptions =>
+                serverOptions.ConfigureEndpointDefaults(listenOptions =>
                 {
                     // Configure endpoint defaults
                 });
@@ -760,9 +760,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .ConfigureKestrel((context, serverOptions) =>
         {
-            options.ConfigureEndpointDefaults(configureOptions =>
+            serverOptions.ConfigureEndpointDefaults(listenOptions =>
             {
                 // Configure endpoint defaults
             });
@@ -784,10 +784,10 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         {
             webBuilder.ConfigureKestrel(serverOptions =>
             {
-                serverOptions.ConfigureHttpsDefaults(configureOptions =>
+                serverOptions.ConfigureHttpsDefaults(listenOptions =>
                 {
                     // certificate is an X509Certificate2
-                    configureOptions.ServerCertificate = certificate;
+                    listenOptions.ServerCertificate = certificate;
                 });
             })
             .UseStartup<Startup>();
@@ -803,12 +803,12 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .ConfigureKestrel((context, serverOptions) =>
         {
-            options.ConfigureHttpsDefaults(configureOptions =>
+            serverOptions.ConfigureHttpsDefaults(listenOptions =>
             {
                 // certificate is an X509Certificate2
-                configureOptions.ServerCertificate = certificate;
+                listenOptions.ServerCertificate = certificate;
             });
         });
 ```
@@ -938,7 +938,7 @@ Schema notes:
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in earlier scenarios are used. If no defaults are available, the server throws an exception and fails to start.
 * The `Certificate` section supports both **Path**&ndash;**Password** and **Subject**&ndash;**Store** certificates.
 * Any number of endpoints may be defined in this way so long as they don't cause port conflicts.
-* `options.Configure(context.Configuration.GetSection("{SECTION}"))` returns a `KestrelConfigurationLoader` with an `.Endpoint(string name, options => { })` method that can be used to supplement a configured endpoint's settings:
+* `options.Configure(context.Configuration.GetSection("{SECTION}"))` returns a `KestrelConfigurationLoader` with an `.Endpoint(string name, listenOptions => { })` method that can be used to supplement a configured endpoint's settings:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -947,9 +947,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
         .ConfigureWebHostDefaults(webBuilder =>
         {
-            webBuilder.UseKestrel((context, options) =>
+            webBuilder.UseKestrel((context, serverOptions) =>
             {
-                options.Configure(context.Configuration.GetSection("Kestrel"))
+                serverOptions.Configure(context.Configuration.GetSection("Kestrel"))
                     .Endpoint("HTTPS", listenOptions =>
                     {
                         listenOptions.HttpsOptions.SslProtocols = SslProtocols.Tls12;
@@ -966,9 +966,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseKestrel((context, options) =>
+        .UseKestrel((context, serverOptions) =>
         {
-            options.Configure(context.Configuration.GetSection("Kestrel"))
+            serverOptions.Configure(context.Configuration.GetSection("Kestrel"))
                 .Endpoint("HTTPS", listenOptions =>
                 {
                     listenOptions.HttpsOptions.SslProtocols = SslProtocols.Tls12;
@@ -997,14 +997,14 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         {
             webBuilder.ConfigureKestrel(serverOptions =>
             {
-                serverOptions.ConfigureEndpointDefaults(configureOptions =>
+                serverOptions.ConfigureEndpointDefaults(listenOptions =>
                 {
                     // Configure endpoint defaults
                 });
 
-                serverOptions.ConfigureHttpsDefaults(configureOptions =>
+                serverOptions.ConfigureHttpsDefaults(listenOptions =>
                 {
-                    configureOptions.SslProtocols = SslProtocols.Tls12;
+                    listenOptions.SslProtocols = SslProtocols.Tls12;
                 });
             });
         });
@@ -1018,16 +1018,16 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseKestrel((context, options) =>
+        .UseKestrel((context, serverOptions) =>
         {
-            options.ConfigureEndpointDefaults(configureOptions =>
+            serverOptions.ConfigureEndpointDefaults(listenOptions =>
             {
                 // Configure endpoint defaults
             });
             
-            options.ConfigureHttpsDefaults(configureOptions =>
+            serverOptions.ConfigureHttpsDefaults(listenOptions =>
             {
-                configureOptions.SslProtocols = SslProtocols.Tls12;
+                listenOptions.SslProtocols = SslProtocols.Tls12;
             });
         });
 ```
@@ -1097,9 +1097,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .ConfigureKestrel((context, options) =>
+        .ConfigureKestrel((context, serverOptions) =>
         {
-            options.ListenAnyIP(5005, listenOptions =>
+            serverOptions.ListenAnyIP(5005, listenOptions =>
             {
                 listenOptions.UseHttps(httpsOptions =>
                 {
@@ -1140,9 +1140,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseKestrel((context, options) =>
+        .UseKestrel((context, serverOptions) =>
         {
-            options.ListenAnyIP(5005, listenOptions =>
+            serverOptions.ListenAnyIP(5005, listenOptions =>
             {
                 listenOptions.UseHttps(httpsOptions =>
                 {
@@ -1205,10 +1205,10 @@ public static void Main(string[] args)
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseKestrel(options =>
+        .UseKestrel(serverOptions =>
         {
-            options.Listen(IPAddress.Loopback, 5000);
-            options.Listen(IPAddress.Loopback, 5001, listenOptions =>
+            serverOptions.Listen(IPAddress.Loopback, 5000);
+            serverOptions.Listen(IPAddress.Loopback, 5001, listenOptions =>
             {
                 listenOptions.UseHttps("testCert.pfx", "testPassword");
             });
@@ -1224,10 +1224,10 @@ public static void Main(string[] args)
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseKestrel(options =>
+        .UseKestrel(serverOptions =>
         {
-            options.Listen(IPAddress.Loopback, 5000);
-            options.Listen(IPAddress.Loopback, 5001, listenOptions =>
+            serverOptions.Listen(IPAddress.Loopback, 5000);
+            serverOptions.Listen(IPAddress.Loopback, 5001, listenOptions =>
             {
                 listenOptions.UseHttps("testCert.pfx", "testPassword");
             });
@@ -1262,10 +1262,10 @@ Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Kest
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
     WebHost.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
-        .UseKestrel(options =>
+        .UseKestrel(serverOptions =>
         {
-            options.ListenUnixSocket("/tmp/kestrel-test.sock");
-            options.ListenUnixSocket("/tmp/kestrel-test.sock", listenOptions =>
+            serverOptions.ListenUnixSocket("/tmp/kestrel-test.sock");
+            serverOptions.ListenUnixSocket("/tmp/kestrel-test.sock", listenOptions =>
             {
                 listenOptions.UseHttps("testCert.pfx", "testpassword");
             });
@@ -1484,9 +1484,9 @@ TLS restrictions for HTTP/2:
 The following example permits HTTP/1.1 and HTTP/2 connections on port 8000. Connections are secured by TLS with a supplied certificate:
 
 ```csharp
-.ConfigureKestrel((context, options) =>
+.ConfigureKestrel((context, serverOptions) =>
 {
-    options.Listen(IPAddress.Any, 8000, listenOptions =>
+    serverOptions.Listen(IPAddress.Any, 8000, listenOptions =>
     {
         listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
         listenOptions.UseHttps("testCert.pfx", "testPassword");
@@ -1497,9 +1497,9 @@ The following example permits HTTP/1.1 and HTTP/2 connections on port 8000. Conn
 Optionally create an `IConnectionAdapter` implementation to filter TLS handshakes on a per-connection basis for specific ciphers:
 
 ```csharp
-.ConfigureKestrel((context, options) =>
+.ConfigureKestrel((context, serverOptions) =>
 {
-    options.Listen(IPAddress.Any, 8000, listenOptions =>
+    serverOptions.Listen(IPAddress.Any, 8000, listenOptions =>
     {
         listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
         listenOptions.UseHttps("testCert.pfx", "testPassword");
