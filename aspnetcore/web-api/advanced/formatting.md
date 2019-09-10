@@ -11,24 +11,25 @@ uid: web-api/advanced/formatting
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
 
-ASP.NET Core MVC has built-in support for formatting response data, using fixed formats or in response to client specifications.
+ASP.NET Core MVC has support for formatting response data. Response data can be formatted using specific formats or in response to client requested format.
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/formatting) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Format-Specific Action Results
 
-Some action result types are specific to a particular format, such as <xref:Microsoft.AspNetCore.Mvc.JsonResult> and <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Actions can return specific results that are formatted in a particular format, regardless of client preferences. For example, returning `JsonResult` returns JSON-formatted data. Returning `ContentResult` or a string returns plain-text-formatted string data.
+Some action result types are specific to a particular format, such as <xref:Microsoft.AspNetCore.Mvc.JsonResult> and <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Actions can return results that are formatted in a particular format, regardless of client preferences. For example, returning `JsonResult` returns JSON-formatted data. Returning `ContentResult` or a string returns plain-text-formatted string data.
 
 An action isn't required to return any specific type. ASP.NET Core supports any object return value.  Results from actions that return objects that are not <xref:Microsoft.AspNetCore.Mvc.IActionResult> types are serialized using the appropriate <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> implementation. For more information, see <xref:web-api/action-return-types>.
 
 The built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> returns JSON-formatted data:
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_get)]
 
-The sample download returns the list of authors. The F12 browser developer tools or [Postman](https://www.getpostman.com/tools) displays the response header containing **content-type:** `application/json; charset=utf-8`.
+The sample download returns the list of authors. Using the F12 browser developer tools or [Postman](https://www.getpostman.com/tools) with the previous code:
 
-The F12 browser developer tool displays the request headers, such as the `Accept` header. The `Accept` header is ignored by the preceding code.
+* The response header containing **content-type:** `application/json; charset=utf-8` is displayed.
+* The request headers are displayed. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
 
-To return plain text formatted data, use `ContentResult` and the `Content` helper:
+To return plain text formatted data, use <xref:Microsoft.AspNetCore.Mvc.ContentResult.Content> and the <xref:Microsoft.AspNetCore.Mvc.ContentResult.Content> helper:
 
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_about)]
 
@@ -36,21 +37,26 @@ In the preceding code, the `Content-Type` returned is `text/plain`. Returning a 
 
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_string)]
 
-For actions with multiple return types (for example, different HTTP status codes based on the result of operations performed), prefer `IActionResult` as the return type.
+For actions with multiple return types, return `IActionResult`. For example, returning different HTTP status codes based on the result of operations performed.
 
 ## Content Negotiation
 
-Content negotiation (*conneg*) occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is implemented by <xref:Microsoft.AspNetCore.Mvc.ObjectResult>. It's also built into the status code-specific action results returned from the helper methods (which are all based on `ObjectResult`). A model type can be returned and ASP.NET Core wraps it in an `ObjectResult`.
+Content negotiation occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is:
+
+* Implemented by <xref:Microsoft.AspNetCore.Mvc.ObjectResult>.
+* Built into the status code-specific action results returned from the helper methods. The action results helper methods are based on `ObjectResult`.
+
+When a model type is returned,  the return type is `ObjectResult`.
 
 The following action method uses the `Ok` and `NotFound` helper methods:
 
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_search)]
 
-A JSON-formatted response is returned unless another format was requested and the server can return the requested format. A tool like [Fiddler](https://www.telerik.com/fiddler) or  [Postman](https://www.getpostman.com/tools) can be used to create a request that includes an `Accept` header and specify another format. In that case, if the server has a *formatter* that can produce a response in the requested format, the result is be returned in the client-preferred format.
+A JSON-formatted response is returned unless another format was requested and the server can return the requested format. Tools such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/tools) can set the `Accept` header to specify the return format. When the `Accept` contains a type the server supports, that type is returned.
 
-By default, ASP.NET Core only supports JSON, so even when another format is specified, the result returned is still JSON-formatted. The next section shows how to add additional formatters.
+By default, ASP.NET Core only supports JSON. For apps not changing the default, JSON-formatted responses are alway returned regardless of the client request. The next section shows how to add additional formatters.
 
-Controller actions can return POCOs (Plain Old CLR Objects), in which case ASP.NET Core automatically creates an `ObjectResult` that wraps the object. The client gets the formatted serialized object. If the object being returned is `null`, a `204 No Content` response is returned.
+Controller actions can return POCOs (Plain Old CLR Objects). When a POCO is returned, the runtime automatically creates an `ObjectResult` that wraps the object. The client gets the formatted serialized object. If the object being returned is `null`, a `204 No Content` response is returned.
 
 Returning an object type:
 
@@ -58,9 +64,9 @@ Returning an object type:
 
 In the preceding code, a request for a valid author alias returns a `200 OK` response with the author's data. A request for an invalid alias returns a `204 No Content` response.
 
-### Content negotiation
+### The Accept header
 
-Content *negotiation* takes place when an `Accept` header appears in the request. When a request contains an accept header, the ASP.NET Core runtime:
+Content *negotiation* takes place when an `Accept` header appears in the request. When a request contains an accept header, ASP.NET Core:
 
 * Enumerates the media types in the accept header in preference order.
 * Tries to find a formatter that can produce a response in one of the formats specified.
@@ -70,13 +76,16 @@ If no formatter is found that can satisfy the client's request, ASP.NET Core:
 * Returns `406 Not Acceptable` if <xref:Microsoft.AspNetCore.Mvc.MvcOptions> has been set, or -
 * Tries to find the first formatter that can produce a response.
 
-If the request specifies XML, but the XML formatter has not been configured, the JSON formatter is used. More generally, if no formatter is configured that can provide the requested format, the first formatter that can format the object is used. If no header is given, the first formatter that can handle the object is used to serialize the response. In the no header case, there isn't any negotiation taking place - the server is determining what format it uses.
+If no formatter is configured for the requested format, the first formatter that can format the object is used. If no `Accept` header appears in the request:
+
+* The first formatter that can handle the object is used to serialize the response.
+* There isn't any negotiation taking place. The server is determining what format to return.
 
 If the Accept header contains `*/*`, the Header is ignored unless `RespectBrowserAcceptHeader` is set to true on <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
 
-### Browsers and Content Negotiation
+### Browsers and content negotiation
 
-Unlike typical API clients, web browsers supply `Accept` headers that include a wide array of formats, including wildcards. By default, when the framework detects that the request is coming from a browser:
+Unlike typical API clients, web browsers supply `Accept` headers. Web browser specify many formats, including wildcards. By default, when the framework detects that the request is coming from a browser:
 
 * The `Accept` header is ignored.
 * The content is returned in JSON, unless otherwise configured.
@@ -87,7 +96,7 @@ To configure an app to honor browser accept headers, set
 <xref:Microsoft.AspNetCore.Mvc.MvcOptions.RespectBrowserAcceptHeader> to `true`:
 
 ::: moniker range=">= aspnetcore-3.0"
-[!code-csharp[](/formatting/3.0sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
+[!code-csharp[](./formatting/3.0sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
 ::: moniker-end
 ::: moniker range="< aspnetcore-3.0"
 [!code-csharp[](./formatting/sample/StartupRespectBrowserAcceptHeader.cs?name=snippet)]
@@ -124,7 +133,7 @@ services.AddMvc(options =>
 
 Prior to ASP.NET Core 3.0, MVC defaulted to using JSON formatters implemented using the `Newtonsoft.Json` package. In ASP.NET Core 3.0 or later, the default JSON formatters are based on `System.Text.Json`. Support for `Newtonsoft.Json`-based formatters and features is available by installing the [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package and configuring it in `Startup.ConfigureServices`.
 
-[!code-csharp[](/formatting/3.0sample/StartupNewtonsoftJson.cs?name=snippet)]
+[!code-csharp[](./formatting/3.0sample/StartupNewtonsoftJson.cs?name=snippet)]
 
 Some features may not work well with `System.Text.Json`-based formatters and require a reference to the `Newtonsoft.Json`-based formatters. Continue using the `Newtonsoft.Json`-based formatters if the app:
 
