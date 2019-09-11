@@ -126,7 +126,7 @@ Features for the `System.Text.Json`-based formatters can be configured using `Ad
 
 ### Add Newtonsoft.Json-based JSON format support
 
-Prior to ASP.NET Core 3.0, MVC defaulted to using JSON formatters implemented using the `Newtonsoft.Json` package. In ASP.NET Core 3.0 or later, the default JSON formatters are based on `System.Text.Json`. Support for `Newtonsoft.Json` based formatters and features is available by installing the [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package and configuring it in `Startup.ConfigureServices`.
+Prior to ASP.NET Core 3.0, the default used JSON formatters implemented using the `Newtonsoft.Json` package. In ASP.NET Core 3.0 or later, the default JSON formatters are based on `System.Text.Json`. Support for `Newtonsoft.Json` based formatters and features is available by installing the [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package and configuring it in `Startup.ConfigureServices`.
 
 [!code-csharp[](./formatting/3.0sample/StartupNewtonsoftJson.cs?name=snippet)]
 
@@ -192,7 +192,7 @@ Without the `HttpNoContentOutputFormatter`, null objects are formatted using the
 Clients can request a particular format as part of the URL, for example:
 
 * In the query string or part of the path.
-* By using a format-specific file extension such as .xml or .json. 
+* By using a format-specific file extension such as .xml or .json.
 
 The mapping from request path should be specified in the route the API is using. For example:
 

@@ -43,7 +43,7 @@ namespace ResponseFormattingSample.Controllers
         #endregion
 
         #region snippet_alias
-        // GET api/authors/ardalis
+        // GET api/authors/RickAndMSFT
         [HttpGet("{alias}")]
         public Author Get(string alias)
         {
