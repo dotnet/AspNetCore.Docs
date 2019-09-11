@@ -160,7 +160,7 @@ if (!ModelState.IsValid)
 }
 ```
 
-ASP.NET Core MVC uses the <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter> action filter to perform the preceding check.
+ASP.NET Core MVC uses the <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter> action filter to do the preceding check.
 
 ### Default BadRequest response 
 
