@@ -10,9 +10,9 @@ uid: web-api/advanced/custom-formatters
 
 By [Tom Dykstra](https://github.com/tdykstra)
 
-ASP.NET Core MVC supports data exchange in Web APIs using input and output formatters. Input formatters are used by [Model Binding](xref:mvc/models/model-binding); output formatters are used to [format responses](xref:web-api/advanced/formatting).
+ASP.NET Core MVC supports data exchange in Web APIs using input and output formatters. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to [format responses](xref:web-api/advanced/formatting).
 
-The framework provides built-in input and output formatters for JSON and XML. It provides a built-in output formatter for plain text, but doesn't currently provide an input formatter for plain text.
+The framework provides built-in input and output formatters for JSON and XML. It provides a built-in output formatter for plain text, but doesn't provide an input formatter for plain text.
 
 This article shows how to add support for additional formats by creating custom formatters. For an example of a custom input formatter for plain text, see [TextPlainInputFormatter](https://github.com/aspnet/Entropy/blob/master/samples/Mvc.Formatters/TextPlainInputFormatter.cs) on GitHub.
 
