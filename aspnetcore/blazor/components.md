@@ -513,17 +513,14 @@ Prefer the strongly typed `EventCallback<T>` over `EventCallback`. `EventCallbac
 
 ## Chained bind
 
-A common scenario when creating nested components is the desire to bind a property:
+A common scenario is chaining a data-bound parameter to a page element in the component's output. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
 
-* To a page element in a component.
-* Across nested components.
-
-This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
+Chained bind can't be implemented with `@bind` syntax in the page's element. Chained bind is created using the property with an event handler. A parent component can use `@bind` syntax with the parameter.
 
 The following `PasswordField` component (*PasswordField.razor*):
 
-* Binds an `<input>` element to a `Password` property.
-* Exposes the `Password` property to a parent component with an [EventCallback](#eventcallback).
+* Sets an `<input>` element's value to a `Password` property.
+* Exposes changes of the `Password` property to a parent component with an [EventCallback](#eventcallback).
 
 ```cshtml
 Password: 
