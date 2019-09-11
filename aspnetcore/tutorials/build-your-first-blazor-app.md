@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/26/2019
+ms.date: 08/23/2019
 uid: tutorials/first-blazor-app
 ---
 # Build your first Blazor app
@@ -61,11 +61,11 @@ Include a component in another component using an HTML syntax.
 
 ## Component parameters
 
-Components can also have parameters. Component parameters are defined using public properties on the component class decorated with `[Parameter]`. Use attributes to specify arguments for a component in markup.
+Components can also have parameters. Component parameters are defined using public properties on the component class with the `[Parameter]` attribute. Use attributes to specify arguments for a component in markup.
 
 1. Update the component's `@code` C# code:
 
-   * Add a `IncrementAmount` property decorated with the `[Parameter]` attribute.
+   * Add a public `IncrementAmount` property with the `[Parameter]` attribute.
    * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
 
    *Pages/Counter.razor*:
@@ -172,7 +172,7 @@ Add a new component to the app that implements a simple todo list.
    [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo7.razor?highlight=2)]
 
    ```cshtml
-   <input placeholder="Something todo" @bind="@newTodo" />
+   <input placeholder="Something todo" @bind="newTodo" />
    ```
 
 1. Update the `AddTodo` method to add the `TodoItem` with the specified title to the list. Clear the value of the text input by setting `newTodo` to an empty string:

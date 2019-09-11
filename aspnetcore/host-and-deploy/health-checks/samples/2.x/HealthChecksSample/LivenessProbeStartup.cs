@@ -62,7 +62,6 @@ namespace SampleApp
         }
         #endregion
 
-        #region snippet_Configure
         public void Configure(IApplicationBuilder app)
         {
             // The readiness check uses all registered checks with the 'ready' tag.
@@ -76,7 +75,6 @@ namespace SampleApp
                 // Exclude all checks and return a 200-Ok.
                 Predicate = (_) => false
             });
-        #endregion
 
             app.Run(async (context) =>
             {

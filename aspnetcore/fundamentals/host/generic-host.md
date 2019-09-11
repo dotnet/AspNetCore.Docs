@@ -3,7 +3,7 @@ title: .NET Generic Host
 author: tdykstra
 description: Learn about the .NET Core Generic Host, which is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: tdykstra
+ms.author: riande
 ms.custom: mvc
 ms.date: 07/01/2019
 uid: fundamentals/host/generic-host
@@ -164,6 +164,8 @@ For more information, see [Configuration in ASP.NET Core](xref:fundamentals/conf
 
 This section lists host settings that apply to both HTTP and non-HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix.
 
+<!-- In the following sections, two spaces at end of line are used to force line breaks in the rendered page. -->
+
 ### ApplicationName
 
 The [IHostEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ApplicationName*) property is set from host configuration during host construction.
@@ -307,9 +309,9 @@ webBuilder.UseSetting(WebHostDefaults.HostingStartupExcludeAssembliesKey, "assem
 
 The HTTPS redirect port. Used in [enforcing HTTPS](xref:security/enforcing-ssl).
 
-**Key**: https_port
-**Type**: *string*
-**Default**: A default value isn't set.
+**Key**: https_port  
+**Type**: *string*  
+**Default**: A default value isn't set.  
 **Environment variable**: `<PREFIX_>HTTPS_PORT`
 
 To set this value, use configuration or call `UseSetting`:
@@ -352,7 +354,7 @@ webBuilder.UseSetting(WebHostDefaults.PreventHostingStartupKey, "true");
 
 The assembly to search for the `Startup` class.
 
-**Key**: startupAssembly
+**Key**: startupAssembly  
 **Type**: *string*  
 **Default**: The app's assembly  
 **Environment variable**: `<PREFIX_>STARTUPASSEMBLY`
@@ -373,7 +375,7 @@ A semicolon-delimited list of IP addresses or host addresses with ports and prot
 
 **Key**: urls  
 **Type**: *string*  
-**Default**: `http://localhost:5000` and `https://localhost:5001`
+**Default**: `http://localhost:5000` and `https://localhost:5001`  
 **Environment variable**: `<PREFIX_>URLS`
 
 To set this value, use the environment variable or call `UseUrls`:

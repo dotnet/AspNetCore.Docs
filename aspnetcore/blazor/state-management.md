@@ -5,7 +5,7 @@ description: Learn how to persist state in Blazor server-side apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/13/2019
+ms.date: 09/05/2019
 uid: blazor/state-management
 ---
 # ASP.NET Core Blazor state management
@@ -231,10 +231,7 @@ During prerendering:
 
 One way to resolve the error is to disable prerendering. This is usually the best choice if the app makes heavy use of browser-based storage. Prerendering adds complexity and doesn't benefit the app because the app can't prerender any useful content until `localStorage` or `sessionStorage` are available.
 
-To disable prerendering:
-
-1. Open the *Pages/_Host.cshtml* file and remove the call to `Html.RenderComponentAsync`.
-1. Open the `Startup.cs` file and replace the call to `endpoints.MapBlazorHub()` with `endpoints.MapBlazorHub<App>("app")`. `App` is the type of the root component. `"app"` is a CSS selector specifying the location for the root component.
+To disable prerendering, open the *Pages/_Host.cshtml* file and change the call to `Html.RenderComponentAsync<App>(RenderMode.Server)`.
 
 Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`. To keep prerendering enabled, defer the loading operation until the browser is connected to the circuit. The following is an example for storing a counter value:
 
@@ -265,12 +262,12 @@ Prerendering might be useful for other pages that don't use `localStorage` or `s
         }
     }
 
-    protected override async Task OnAfterRenderAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         // By this stage, the client has connected back to the server, and
         // browser services are available. If the app didn't load the data earlier,
         // the app should do so now and then trigger a new render.
-        if (isWaitingForConnection)
+        if (firstRender && isWaitingForConnection)
         {
             isWaitingForConnection = false;
             await LoadStateAsync();

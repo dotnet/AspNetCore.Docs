@@ -1,3 +1,6 @@
 {
-    "omnisharp.autoStart": false
+    "omnisharp.autoStart": false,
+    "[markdown]": {
+        "files.trimTrailingWhitespace": false
+    },
 }

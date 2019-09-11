@@ -9,12 +9,15 @@ To delay JavaScript interop calls until after the connection with the browser is
 <input @ref="myInput" value="Value set during render" />
 
 @code {
-    private ElementRef myInput;
+    private ElementReference myInput;
 
-    protected override void OnAfterRender()
+    protected override void OnAfterRender(bool firstRender)
     {
-        JSRuntime.InvokeAsync<object>(
-            "setElementValue", myInput, "Value set after render");
+        if (firstRender)
+        {
+            JSRuntime.InvokeAsync<object>(
+                "setElementValue", myInput, "Value set after render");
+        }
     }
 }
 ```
@@ -44,20 +47,11 @@ Where `JSRuntime.InvokeAsync` is called, `ElementRef` is only used in `OnAfterRe
 
 @code {
     private string infoFromJs;
-    private ElementRef myElem;
+    private ElementReference myElem;
 
-    protected override async Task OnAfterRenderAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        // TEMPORARY: Currently we need this guard to avoid making the interop
-        // call during prerendering. Soon this will be unnecessary because we
-        // will change OnAfterRenderAsync so that it won't run during the
-        // prerendering phase.
-        if (!ComponentContext.IsConnected)
-        {
-            return;
-        }
-
-        if (infoFromJs == null)
+        if (firstRender && infoFromJs == null)
         {
             infoFromJs = await JSRuntime.InvokeAsync<string>(
                 "setElementValue", myElem, "Hello from interop call");

@@ -1,8 +1,8 @@
 ---
 title: "Tutorial: Implement CRUD Functionality - ASP.NET MVC with EF Core"
 description: "In this tutorial, you'll review and customize the CRUD (create, read, update, delete) code that the MVC scaffolding automatically creates for you in controllers and views."
-author: rick-anderson
-ms.author: tdykstra
+author: tdykstra
+ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2019
 ms.topic: tutorial
@@ -53,7 +53,7 @@ In the following URL, the default route maps Instructor as the controller, Index
 http://localhost:1230/Instructor/Index/1?courseID=2021
 ```
 
-The last part of the URL ("?courseID=2021") is a query string value. The model binder will also pass the ID value to the `Details` method `id` parameter if you pass it as a query string value:
+The last part of the URL ("?courseID=2021") is a query string value. The model binder will also pass the ID value to the `Index` method `id` parameter if you pass it as a query string value:
 
 ```
 http://localhost:1230/Instructor/Index?id=1&CourseID=2021
