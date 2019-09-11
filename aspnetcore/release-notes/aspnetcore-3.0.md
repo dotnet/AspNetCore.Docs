@@ -11,14 +11,22 @@ uid: aspnetcore-3.0
 
 This article highlights the most significant changes in ASP.NET Core 3.0, with links to relevant documentation.
 
-ASP.NET Core 3.0 only runs on .NET Core 3.0. For more information, see [this GitHub announcement](https://github.com/aspnet/Announcements/issues/324).
+## ASP.NET Core 3.0 only runs on .NET Core 3.0
+
+Apps using ASP.NET Core on .NET Framework can continue to do so in a fully supported fashion using the [2.1 LTS release](https://www.microsoft.com/net/download/dotnet-core/2.1). Support and servicing for 2.1 will continue until at least August 21, 2021 (3 years after its declaration as an LTS release) in accordance with the [.NET Support Policy](https://www.microsoft.com/net/platform/support-policy).
+
+For more information, see [this GitHub announcement](https://github.com/aspnet/Announcements/issues/324).
+
+See [Port your code from .NET Framework to .NET Core](/dotnet/core/porting/) for migration information.
 
 ## Microsoft.AspNetCore.App
 
-The [ASP.NET Core 3.0 shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/)([`Microsoft.AspNetCore.App`](xref:fundamentals/metapackage-app)) no longer contains:
+The [ASP.NET Core 3.0 shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) no longer contains:
 
 * [Newtonsoft.Json Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/)
 * [Entity Framework Core](/ef/core/)
+
+The ASP.NET Core 3.0 shared framework is contained in the [`Microsoft.AspNetCore.App`](xref:fundamentals/metapackage-app) metapackage.
 
 ## Additional information
 
