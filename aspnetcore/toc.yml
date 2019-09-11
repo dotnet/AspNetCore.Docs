@@ -12,6 +12,8 @@
   uid: getting-started
 - name: What's new
   items:
+    - name: What's new in 3.0
+      uid: aspnetcore-3.0
     - name: What's new in 2.2
       uid: aspnetcore-2.2
     - name: What's new in 2.1
