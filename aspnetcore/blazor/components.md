@@ -515,7 +515,7 @@ Prefer the strongly typed `EventCallback<T>` over `EventCallback`. `EventCallbac
 
 A common scenario is chaining a data-bound parameter to a page element in the component's output. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
 
-Chained bind can't be implemented with `@bind` syntax in the page's element. Chained bind is created using the property with an event handler. A parent component can use `@bind` syntax with the parameter.
+A chained bind can't be implemented with `@bind` syntax in the page's element. The event handler and value must be specified separately. A parent component, however, can use `@bind` syntax with the component's parameter.
 
 The following `PasswordField` component (*PasswordField.razor*):
 
@@ -567,12 +567,12 @@ The `PasswordField` component is used in another component:
 }
 ```
 
-If you need to perform checks or trap errors on the password in the preceding example:
+To perform checks or trap errors on the password in the preceding example:
 
 * Create a backing field for `Password` (`password` in the following example code).
 * Perform the checks or trap errors in the `Password` setter.
 
-The following example instantly provides feedback to the user if a space is provided anywhere in the password's value:
+The following example provides immediate feedback to the user if a space is used in the password's value:
 
 ```cshtml
 Password: 
