@@ -237,7 +237,7 @@ To customize the response that results from a validation error, use <xref:Micros
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureBadRequestResponse&highlight=3-21)]
+[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureBadRequestResponse&highlight=2-20)]
 
 ::: moniker-end
 
@@ -257,7 +257,7 @@ To disable the automatic 400 behavior, set the <xref:Microsoft.AspNetCore.Mvc.Ap
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=3,7)]
+[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=2,6)]
 
 ::: moniker-end
 
@@ -336,7 +336,7 @@ To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehav
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=3,6)]
+[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=2,5)]
 
 ::: moniker-end
 
@@ -348,11 +348,21 @@ To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehav
 
 ## Multipart/form-data request inference
 
-The `[ApiController]` attribute applies an inference rule when an action parameter is annotated with the [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute: the `multipart/form-data` request content type is inferred.
+The `[ApiController]` attribute applies an inference rule when an action parameter is annotated with the [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute. The `multipart/form-data` request content type is inferred.
 
-To disable the default behavior, set <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters>  to `true` in `Startup.ConfigureServices`, as shown in the following example:
+To disable the default behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters> property to `true` in `Startup.ConfigureServices`:
+
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=2,4)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
 
 [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=3,5)]
+
+::: moniker-end
 
 ## Problem details for error status codes
 
@@ -375,15 +385,35 @@ The HTTP response for `NotFound` has a 404 status code with a `ProblemDetails` b
 
 ### Customize ProblemDetails response
 
-Use the `ClientErrorMapping` property to configure the contents of the `ProblemDetails` response. For example, the following code updates the `type` property for 404 responses:
+Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping*> property to configure the contents of the `ProblemDetails` response. For example, the following code updates the `type` property for 404 responses:
+
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=9-10)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
 
 [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=10-11)]
+
+::: moniker-end
 
 ### Disable ProblemDetails response
 
 The automatic creation of `ProblemDetails` is disabled when the `SuppressMapClientErrors` property is set to `true`. Add the following code in `Startup.ConfigureServices`:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=2,7)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
 [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=3,8)]
+
+::: moniker-end
 
 ## Additional resources 
 
