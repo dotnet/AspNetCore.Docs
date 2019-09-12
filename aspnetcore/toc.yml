@@ -304,8 +304,8 @@
           items:
             - name: Overview
               uid: security/blazor/index
-            - name: Server-side
-              uid: security/blazor/server-side
+            - name: Blazor Server
+              uid: security/blazor/server
         - name: State management
           uid: blazor/state-management
         - name: Handle errors
@@ -318,10 +318,10 @@
           items:
             - name: Overview
               uid: host-and-deploy/blazor/index
-            - name: Client-side
-              uid: host-and-deploy/blazor/client-side
-            - name: Server-side
-              uid: host-and-deploy/blazor/server-side
+            - name: Blazor WebAssembly
+              uid: host-and-deploy/blazor/webassembly
+            - name: Blazor Server
+              uid: host-and-deploy/blazor/server
             - name: Configure the Linker
               uid: host-and-deploy/blazor/configure-linker
     - name: Client-side development
@@ -785,10 +785,10 @@
       items:
         - name: Overview
           uid: host-and-deploy/blazor/index
-        - name: Client-side
-          uid: host-and-deploy/blazor/client-side
-        - name: Server-side
-          uid: host-and-deploy/blazor/server-side
+        - name: Blazor WebAssembly
+          uid: host-and-deploy/blazor/webassembly
+        - name: Blazor Server
+          uid: host-and-deploy/blazor/server
         - name: Configure the Linker
           uid: host-and-deploy/blazor/configure-linker
 - name: Security and Identity
@@ -999,8 +999,8 @@
       items:
         - name: Overview
           uid: security/blazor/index
-        - name: Server-side
-          uid: security/blazor/server-side
+        - name: Blazor Server
+          uid: security/blazor/server
 - name: Performance
   items:
     - name: Overview

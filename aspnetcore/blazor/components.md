@@ -73,7 +73,7 @@ To render a component from a page or view, use the `RenderComponentAsync<TCompon
 
 While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
 
-For more information on how components are rendered and component state is managed in Blazor server-side apps, see the <xref:blazor/hosting-models> article.
+For more information on how components are rendered and component state is managed in Blazor Server apps, see the <xref:blazor/hosting-models> article.
 
 ## Use components
 
@@ -1445,7 +1445,7 @@ This is a trivial example. In more realistic cases with complex and deeply neste
 
 ## Localization
 
-Blazor server-side apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). The middleware selects the appropriate culture for users requesting resources from the app.
+Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). The middleware selects the appropriate culture for users requesting resources from the app.
 
 The culture can be set using one of the following approaches:
 
@@ -1462,7 +1462,7 @@ Use of a cookie ensures that the WebSocket connection can correctly propagate th
 
 Any technique can be used to assign a culture if the culture is persisted in a localization cookie. If the app already has an established localization scheme for server-side ASP.NET Core, continue to use the app's existing localization infrastructure and set the localization culture cookie within the app's scheme.
 
-The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware. Create a *Pages/Host.cshtml.cs* file with the following contents in the Blazor server-side app:
+The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware. Create a *Pages/Host.cshtml.cs* file with the following contents in the Blazor Server app:
 
 ```csharp
 public class HostModel : PageModel
@@ -1484,9 +1484,9 @@ Localization is handled in the app:
 1. The browser sends an initial HTTP request to the app.
 1. The culture is assigned by the Localization Middleware.
 1. The `OnGet` method in *_Host.cshtml.cs* persists the culture in a cookie as part of the response.
-1. The browser opens a WebSocket connection to create an interactive Blazor server-side session.
+1. The browser opens a WebSocket connection to create an interactive Blazor Server session.
 1. The Localization Middleware reads the cookie and assigns the culture.
-1. The Blazor server-side session begins with the correct culture.
+1. The Blazor Server session begins with the correct culture.
 
 ## Provide UI to choose the culture
 
@@ -1583,4 +1583,4 @@ However, inline SVG markup isn't supported in all scenarios. If you place an `<s
 
 ## Additional resources
 
-* <xref:security/blazor/server-side> &ndash; Includes guidance on building Blazor server-side apps that must contend with resource exhaustion.
+* <xref:security/blazor/server> &ndash; Includes guidance on building Blazor Server apps that must contend with resource exhaustion.

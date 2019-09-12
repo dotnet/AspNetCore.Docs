@@ -14,26 +14,26 @@ By [Steve Sanderson](https://github.com/SteveSandersonMS)
 
 ASP.NET Core supports the configuration and management of security in Blazor apps.
 
-Security scenarios differ between Blazor server-side and client-side apps. Because Blazor server-side apps run on the server, authorization checks are able to determine:
+Security scenarios differ between Blazor Server and Blazor WebAssembly apps. Because Blazor Server apps run on the server, authorization checks are able to determine:
 
 * The UI options presented to a user (for example, which menu entries are available to a user).
 * Access rules for areas of the app and components.
 
-Blazor client-side apps run on the client. Authorization is *only* used to determine which UI options to show. Since client-side checks can be modified or bypassed by a user, a Blazor client-side app can't enforce authorization access rules.
+Blazor WebAssembly apps run on the client. Authorization is *only* used to determine which UI options to show. Since client-side checks can be modified or bypassed by a user, a Blazor WebAssembly app can't enforce authorization access rules.
 
 ## Authentication
 
-Blazor uses the existing ASP.NET Core authentication mechanisms to establish the user's identity. The exact mechanism depends on how the Blazor app is hosted, server-side or client-side.
+Blazor uses the existing ASP.NET Core authentication mechanisms to establish the user's identity. The exact mechanism depends on how the Blazor app is hosted, Blazor Server or Blazor WebAssembly.
 
-### Blazor server-side authentication
+### Blazor Server authentication
 
-Blazor server-side apps operate over a real-time connection that's created using SignalR. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token.
+Blazor Server apps operate over a real-time connection that's created using SignalR. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token.
 
-The Blazor server-side project template can set up authentication for you when the project is created.
+The Blazor Server project template can set up authentication for you when the project is created.
 
 # [Visual Studio](#tab/visual-studio)
 
-Follow the Visual Studio guidance in the <xref:blazor/get-started> article to create a new Blazor server-side project with an authentication mechanism.
+Follow the Visual Studio guidance in the <xref:blazor/get-started> article to create a new Blazor Server project with an authentication mechanism.
 
 After choosing the **Blazor Server App** template in the **Create a new ASP.NET Core Web Application** dialog, select **Change** under **Authentication**.
 
@@ -48,7 +48,7 @@ A dialog opens to offer the same set of authentication mechanisms available for 
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Follow the Visual Studio Code guidance in the <xref:blazor/get-started> article to create a new Blazor server-side project with an authentication mechanism:
+Follow the Visual Studio Code guidance in the <xref:blazor/get-started> article to create a new Blazor Server project with an authentication mechanism:
 
 ```console
 dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
@@ -82,7 +82,7 @@ The command creates a folder named with the value provided for the `{APP NAME}` 
 <!--
 # [.NET Core CLI](#tab/netcore-cli/)
 
-Follow the .NET Core CLI guidance in the <xref:blazor/get-started> article to create a new Blazor server-side project with an authentication mechanism:
+Follow the .NET Core CLI guidance in the <xref:blazor/get-started> article to create a new Blazor Server project with an authentication mechanism:
 
 ```console
 dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
@@ -105,15 +105,15 @@ The command creates a folder named with the value provided for the `{APP NAME}` 
 
 ---
 
-### Blazor client-side authentication
+### Blazor WebAssembly authentication
 
-In Blazor client-side apps, authentication checks can be bypassed because all client-side code can be modified by users. The same is true for all client-side app technologies, including JavaScript SPA frameworks or native apps for any operating system.
+In Blazor WebAssembly apps, authentication checks can be bypassed because all client-side code can be modified by users. The same is true for all client-side app technologies, including JavaScript SPA frameworks or native apps for any operating system.
 
-Implementation of a custom `AuthenticationStateProvider` service for Blazor client-side apps is covered in the following sections.
+Implementation of a custom `AuthenticationStateProvider` service for Blazor WebAssembly apps is covered in the following sections.
 
 ## AuthenticationStateProvider service
 
-Blazor server-side apps include a built-in `AuthenticationStateProvider` service that obtains authentication state data from ASP.NET Core's `HttpContext.User`. This is how authentication state integrates with existing ASP.NET Core server-side authentication mechanisms.
+Blazor Server apps include a built-in `AuthenticationStateProvider` service that obtains authentication state data from ASP.NET Core's `HttpContext.User`. This is how authentication state integrates with existing ASP.NET Core server-side authentication mechanisms.
 
 `AuthenticationStateProvider` is the underlying service used by the `AuthorizeView` component and `CascadingAuthenticationState` component to get the authentication state.
 
@@ -151,7 +151,7 @@ For more information on dependency injection (DI) and services, see <xref:blazor
 
 ## Implement a custom AuthenticationStateProvider
 
-If you're building a Blazor client-side app or if your app's specification absolutely requires a custom provider, implement a provider and override `GetAuthenticationStateAsync`:
+If you're building a Blazor WebAssembly app or if your app's specification absolutely requires a custom provider, implement a provider and override `GetAuthenticationStateAsync`:
 
 ```csharp
 class CustomAuthStateProvider : AuthenticationStateProvider
@@ -304,13 +304,13 @@ For policy-based authorization, use the `Policy` parameter:
 
 Claims-based authorization is a special case of policy-based authorization. For example, you can define a policy that requires users to have a certain claim. For more information, see <xref:security/authorization/policies>.
 
-These APIs can be used in either Blazor server-side or Blazor client-side apps.
+These APIs can be used in either Blazor Server or Blazor WebAssembly apps.
 
 If neither `Roles` nor `Policy` is specified, `AuthorizeView` uses the default policy.
 
 ### Content displayed during asynchronous authentication
 
-Blazor allows for authentication state to be determined *asynchronously*. The primary scenario for this approach is in Blazor client-side apps that make a request to an external endpoint for authentication.
+Blazor allows for authentication state to be determined *asynchronously*. The primary scenario for this approach is in Blazor WebAssembly apps that make a request to an external endpoint for authentication.
 
 While authentication is in progress, `AuthorizeView` displays no content by default. To display content while authentication occurs, use the `<Authorizing>` element:
 
@@ -327,7 +327,7 @@ While authentication is in progress, `AuthorizeView` displays no content by defa
 </AuthorizeView>
 ```
 
-This approach isn't normally applicable to Blazor server-side apps. Blazor server-side apps know the authentication state as soon as the state is established. `Authorizing` content can be provided in a Blazor server-side app's `AuthorizeView` component, but the content is never displayed.
+This approach isn't normally applicable to Blazor Server apps. Blazor Server apps know the authentication state as soon as the state is established. `Authorizing` content can be provided in a Blazor Server app's `AuthorizeView` component, but the content is never displayed.
 
 ## [Authorize] attribute
 
@@ -376,7 +376,7 @@ The `Router` component, in conjunction with the `AuthorizeRouteView` component, 
 * The user fails an `[Authorize]` condition applied to the component. The `[Authorize]` attribute is covered in the [[Authorize] attribute](#authorize-attribute) section.
 * Asynchronous authentication is in progress.
 
-In the default Blazor server-side project template, the *App.razor* file demonstrates how to set custom content:
+In the default Blazor Server project template, the *App.razor* file demonstrates how to set custom content:
 
 ```cshtml
 <Router AppAssembly="@typeof(Program).Assembly">
@@ -453,9 +453,9 @@ If the app is required to check authorization rules as part of procedural logic,
 }
 ```
 
-## Authorization in Blazor client-side apps
+## Authorization in Blazor WebAssembly apps
 
-In Blazor client-side apps, authorization checks can be bypassed because all client-side code can be modified by users. The same is true for all client-side app technologies, including JavaScript SPA frameworks or native apps for any operating system.
+In Blazor WebAssembly apps, authorization checks can be bypassed because all client-side code can be modified by users. The same is true for all client-side app technologies, including JavaScript SPA frameworks or native apps for any operating system.
 
 **Always perform authorization checks on the server within any API endpoints accessed by your client-side app.**
 
@@ -467,7 +467,7 @@ Common errors:
 
 * **`null` value is received for `authenticationStateTask`**
 
-It's likely that the project wasn't created using a Blazor server-side template with authentication enabled. Wrap a `<CascadingAuthenticationState>` around some part of the UI tree, for example in *App.razor* as follows:
+It's likely that the project wasn't created using a Blazor Server template with authentication enabled. Wrap a `<CascadingAuthenticationState>` around some part of the UI tree, for example in *App.razor* as follows:
 
 ```cshtml
 <CascadingAuthenticationState>
@@ -482,5 +482,5 @@ The `CascadingAuthenticationState` supplies the `Task<AuthenticationState>` casc
 ## Additional resources
 
 * <xref:security/index>
-* <xref:security/blazor/server-side>
+* <xref:security/blazor/server>
 * <xref:security/authentication/windowsauth>

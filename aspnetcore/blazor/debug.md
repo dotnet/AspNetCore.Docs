@@ -12,7 +12,7 @@ uid: blazor/debug
 
 [Daniel Roth](https://github.com/danroth27)
 
-*Early* support exists for debugging Blazor client-side apps running on WebAssembly in Chrome.
+*Early* support exists for debugging Blazor WebAssembly apps running on WebAssembly in Chrome.
 
 Debugger capabilities are limited. Available scenarios include:
 
@@ -41,7 +41,7 @@ Debugging requires either of the following browsers:
 
 ## Procedure
 
-1. Run a Blazor client-side app in `Debug` configuration. Pass the `--configuration Debug` option to the [dotnet run](/dotnet/core/tools/dotnet-run) command: `dotnet run --configuration Debug`.
+1. Run a Blazor WebAssembly app in `Debug` configuration. Pass the `--configuration Debug` option to the [dotnet run](/dotnet/core/tools/dotnet-run) command: `dotnet run --configuration Debug`.
 1. Access the app in the browser.
 1. Place the keyboard focus on the app, not the developer tools panel. The developer tools panel can be closed when debugging is initiated.
 1. Select the following Blazor-specific keyboard shortcut:

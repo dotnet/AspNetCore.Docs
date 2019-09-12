@@ -1,18 +1,18 @@
 ---
-title: Host and deploy ASP.NET Core Blazor client-side
+title: Host and deploy ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Learn how to host and deploy a Blazor app using ASP.NET Core, Content Delivery Networks (CDN), file servers, and GitHub Pages.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/05/2019
-uid: host-and-deploy/blazor/client-side
+uid: host-and-deploy/blazor/webassembly
 ---
-# Host and deploy ASP.NET Core Blazor client-side
+# Host and deploy ASP.NET Core Blazor WebAssembly
 
 By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
 
-With the [client-side hosting model](xref:blazor/hosting-models#client-side):
+With the [Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-webassembly):
 
 * The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser.
 * The app is executed directly on the browser UI thread.
@@ -20,11 +20,11 @@ With the [client-side hosting model](xref:blazor/hosting-models#client-side):
 The following deployment strategies are supported:
 
 * The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
-* The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor client-side app as an IIS sub-app.
+* The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
 
 ## Rewrite URLs for correct routing
 
-Routing requests for page components in a client-side app isn't as straightforward as routing requests in a server-side, hosted app. Consider a client-side app with two components:
+Routing requests for page components in a Blazor WebAssembly app isn't as straightforward as routing requests in a Blazor Server, hosted app. Consider a Blazor WebAssembly app with two components:
 
 * *Main.razor* &ndash; Loads at the root of the app and contains a link to the `About` component (`href="About"`).
 * *About.razor* &ndash; `About` component.
@@ -36,17 +36,17 @@ When the app's default document is requested using the browser's address bar (fo
 1. *index.html* bootstraps the app.
 1. Blazor's router loads, and the Razor `Main` component is rendered.
 
-In the Main page, selecting the link to the `About` component works on the client because the Blazor router stops the browser from making a request on the Internet to `www.contoso.com` for `About` and serves the rendered `About` component itself. All of the requests for internal endpoints *within the client-side app* work the same way: Requests don't trigger browser-based requests to server-hosted resources on the Internet. The router handles the requests internally.
+In the Main page, selecting the link to the `About` component works on the client because the Blazor router stops the browser from making a request on the Internet to `www.contoso.com` for `About` and serves the rendered `About` component itself. All of the requests for internal endpoints *within the Blazor WebAssembly app* work the same way: Requests don't trigger browser-based requests to server-hosted resources on the Internet. The router handles the requests internally.
 
 If a request is made using the browser's address bar for `www.contoso.com/About`, the request fails. No such resource exists on the app's Internet host, so a *404 - Not Found* response is returned.
 
-Because browsers make requests to Internet-based hosts for client-side pages, web servers and hosting services must rewrite all requests for resources not physically on the server to the *index.html* page. When *index.html* is returned, the app's client-side router takes over and responds with the correct resource.
+Because browsers make requests to Internet-based hosts for client-side pages, web servers and hosting services must rewrite all requests for resources not physically on the server to the *index.html* page. When *index.html* is returned, the app's Blazor router takes over and responds with the correct resource.
 
 When deploying to an IIS server, you can use the URL Rewrite Module with the app's published *web.config* file. For more information, see the [IIS](#iis) section.
 
 ## Hosted deployment with ASP.NET Core
 
-A *hosted deployment* serves the Blazor client-side app to browsers from an [ASP.NET Core app](xref:index) that runs on a web server.
+A *hosted deployment* serves the Blazor WebAssembly app to browsers from an [ASP.NET Core app](xref:index) that runs on a web server.
 
 The Blazor app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor WebAssembly App** project template (`blazorwasm` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command) with the **Hosted** option selected.
 
@@ -56,7 +56,7 @@ For information on deploying to Azure App Service, see <xref:tutorials/publish-t
 
 ## Standalone deployment
 
-A *standalone deployment* serves the Blazor client-side app as a set of static files that are requested directly by clients. Any static file server is able to serve the Blazor app.
+A *standalone deployment* serves the Blazor WebAssembly app as a set of static files that are requested directly by clients. Any static file server is able to serve the Blazor app.
 
 Standalone deployment assets are published to the *bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist* folder.
 
@@ -186,7 +186,7 @@ When using a project site instead of an organization site, add or update the `<b
 
 ## Host configuration values
 
-Blazor apps that use the [client-side hosting model](xref:blazor/hosting-models#client-side) can accept the following host configuration values as command-line arguments at runtime in the development environment.
+[Blazor WebAssembly apps](xref:blazor/hosting-models#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the development environment.
 
 ### Content Root
 
