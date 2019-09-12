@@ -21,8 +21,15 @@ The code sample in this article is a WPF app that uses the ASP.NET Core SignalR 
 
 The `Microsoft.AspNetCore.SignalR.Client` package is needed for .NET clients to connect to SignalR hubs. To install the client library, run the following command in the **Package Manager Console** window:
 
+# [Powershell](#tab/visual-studio)
+
 ```powershell
 Install-Package Microsoft.AspNetCore.SignalR.Client
+```
+# [Shell](#tab/shell)
+
+```powershell
+dotnet add package Microsoft.AspNetCore.SignalR.Client
 ```
 
 ## Connect to a hub
