@@ -197,39 +197,17 @@ The `ValidationProblemDetails` type:
 
 To change the default response type to `SerializableError`, apply one of the following approaches in `Startup.ConfigureServices`:
 
-1. Use a compatibility version of 2.1:
+1. Set the compatibility version to 2.1:
 
-    ```csharp
-    services.AddMvc()
-        .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-    ```
+    [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_DisableProblemDetailsCompatibilityVersion21&highlight=2)]
 
-1. Set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors*> property to `true`:
+1. With a compatibility version of 2.2, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors*> property to `true`:
 
-    ```csharp
-    .ConfigureApiBehaviorOptions(options =>
-    {
-        options.SuppressMapClientErrors = true;
-    });
-    ```
+    [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_DisableProblemDetailsSuppressMapClientErrors&highlight=5)]
 
-1. Set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory*> property to the following code:
+1. With a compatibility version of 2.2, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory*> property to the following code:
 
-    ```csharp
-    .ConfigureApiBehaviorOptions(options =>
-    {
-        options.InvalidModelStateResponseFactory = context =>
-        {
-            var result = new BadRequestObjectResult(context.ModelState);
-
-            // TODO: add `using using System.Net.Mime;` to resolve MediaTypeNames
-            result.ContentTypes.Add(MediaTypeNames.Application.Json);
-            result.ContentTypes.Add(MediaTypeNames.Application.Xml);
-
-            return result;
-        };
-    });
-    ```
+    [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_DisableProblemDetailsInvalidModelStateResponseFactory&highlight=5-14)]
 
 ### Customize BadRequest response
 

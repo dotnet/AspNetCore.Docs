@@ -6,7 +6,7 @@
 // InvalidModelStateResponseFactory - customize response for automatic 400 on validation error.
 // SuppressApiControllerBehavior - use 2.1 behaviors although compat version is 2.2.
 
-#define DefaultBehavior // or InvalidModelStateResponseFactory or SuppressApiControllerBehavior
+#define DefaultBehavior // or InvalidModelStateResponseFactory or SuppressApiControllerBehavior or DisableProblemDetailsSuppressMapClientErrors or DisableProblemDetailsInvalidModelStateResponseFactory or DisableProblemDetailsCompatibilityVersion21
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -71,6 +71,41 @@ namespace WebApiSample
                 });
             #endregion
 #endif
+#if DisableProblemDetailsCompatibilityVersion21
+            #region snippet_DisableProblemDetailsCompatibilityVersion21
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            #endregion
+#endif
+#if DisableProblemDetailsSuppressMapClientErrors
+            #region snippet_DisableProblemDetailsSuppressMapClientErrors
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .ConfigureApiBehaviorOptions(options =>
+                {
+                    options.SuppressMapClientErrors = true;
+                });
+            #endregion
+#endif
+#if DisableProblemDetailsInvalidModelStateResponseFactory
+            #region snippet_DisableProblemDetailsInvalidModelStateResponseFactory
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .ConfigureApiBehaviorOptions(options =>
+                {
+                    options.InvalidModelStateResponseFactory = context =>
+                    {
+                        var result = new BadRequestObjectResult(context.ModelState);
+
+                        // TODO: add `using using System.Net.Mime;` to resolve MediaTypeNames
+                        result.ContentTypes.Add(MediaTypeNames.Application.Json);
+                        result.ContentTypes.Add(MediaTypeNames.Application.Xml);
+
+                        return result;
+                    };
+                });
+            #endregion
+#endif
 #if DefaultBehavior
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -85,7 +120,6 @@ namespace WebApiSample
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
