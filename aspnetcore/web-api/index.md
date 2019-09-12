@@ -178,6 +178,8 @@ With a compatibility version of 2.1, the default response type for an HTTP 400 r
 }
 ```
 
+::: moniker range=">= aspnetcore-2.2"
+
 With a compatibility version of 2.2 or later, the default response type for an HTTP 400 response is <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The following request body is an example of the serialized type:
 
 ```json
@@ -212,6 +214,8 @@ To change the default response type to `SerializableError`, apply one of the fol
 1. With a compatibility version of 2.2, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory*> property to the following code:
 
     [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_DisableProblemDetailsInvalidModelStateResponseFactory&highlight=5-14)]
+
+::: moniker-end
 
 ### Customize BadRequest response
 
