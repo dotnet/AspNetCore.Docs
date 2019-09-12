@@ -230,8 +230,16 @@ When a user provides an unparsable value to a databound element, the value is au
 
 Consider the following scenario:
 
-* An `<input>` element is bound to an `int` type.
-* The current value of the element is `123`.
+* An `<input>` element is bound to an `int` type and the initial value is `123`:
+
+  ```cshtml
+  <input @bind="MyProperty" />
+
+  @code {
+      [Parameter]
+      public int MyProperty { get; set; } = 123;
+  }
+  ```
 * The user updates the value of the element to `123.45` and changes the element focus.
 
 In the preceding scenario, the element's value is reverted to `123`. When the value `123.45` is rejected in favor of the original value of `123`, the user understands that their value wasn't accepted.
