@@ -51,7 +51,7 @@ Include a component in another component using an HTML syntax.
 
 1. Add the `Counter` component to the app's `Index` component by adding a `<Counter />` element to the `Index` component (*Index.razor*).
 
-   If you're using Blazor client-side for this experience, a `SurveyPrompt` component is used by the `Index` component. Replace the `<SurveyPrompt>` element with a `<Counter />` element. If you're using a Blazor server-side app for this experience, add the `<Counter />` element to the `Index` component:
+   If you're using Blazor WebAssembly for this experience, a `SurveyPrompt` component is used by the `Index` component. Replace the `<SurveyPrompt>` element with a `<Counter />` element. If you're using a Blazor Server app for this experience, add the `<Counter />` element to the `Index` component:
 
    *Pages/Index.razor*:
 
@@ -95,7 +95,7 @@ Services registered in the app's service container are available to components v
 
 Examine the directives of the `FetchData` component.
 
-If working with a Blazor server-side app, the `WeatherForecastService` service is registered as a [singleton](xref:fundamentals/dependency-injection#service-lifetimes), so one instance of the service is available throughout the app. The `@inject` directive is used to inject the instance of the `WeatherForecastService` service into the component.
+If working with a Blazor Server app, the `WeatherForecastService` service is registered as a [singleton](xref:fundamentals/dependency-injection#service-lifetimes), so one instance of the service is available throughout the app. The `@inject` directive is used to inject the instance of the `WeatherForecastService` service into the component.
 
 *Pages/FetchData.razor*:
 
@@ -105,7 +105,7 @@ The `FetchData` component uses the injected service, as `ForecastService`, to re
 
 [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData2.razor?highlight=6)]
 
-If working with a Blazor client-side app, `HttpClient` is injected to obtain weather forecast data from the *weather.json* file in the *wwwroot/sample-data* folder:
+If working with a Blazor WebAssembly app, `HttpClient` is injected to obtain weather forecast data from the *weather.json* file in the *wwwroot/sample-data* folder:
 
 *Pages/FetchData.razor*:
 

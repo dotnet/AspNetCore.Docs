@@ -1,24 +1,24 @@
 ---
-title: Host and deploy ASP.NET Core Blazor server-side
+title: Host and deploy ASP.NET Core Blazor Server
 author: guardrex
-description: Learn how to host and deploy a Blazor server-side app using ASP.NET Core.
+description: Learn how to host and deploy a Blazor Server app using ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/07/2019
-uid: host-and-deploy/blazor/server-side
+uid: host-and-deploy/blazor/server
 ---
-# Host and deploy Blazor server-side
+# Host and deploy Blazor Server
 
 By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
 
 ## Host configuration values
 
-Server-side apps that use the [server-side hosting model](xref:blazor/hosting-models#server-side) can accept [Generic Host configuration values](xref:fundamentals/host/generic-host#host-configuration).
+[Blazor Server apps](xref:blazor/hosting-models#blazor-server) can accept [Generic Host configuration values](xref:fundamentals/host/generic-host#host-configuration).
 
 ## Deployment
 
-With the [server-side hosting model](xref:blazor/hosting-models#server-side), Blazor is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection.
+Using the [Blazor Server hosting model](xref:blazor/hosting-models#blazor-server), Blazor is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection.
 
 A web server capable of hosting an ASP.NET Core app is required. Visual Studio includes the **Blazor Server App** project template (`blazorserverside` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command).
 
@@ -26,8 +26,8 @@ A web server capable of hosting an ASP.NET Core app is required. Visual Studio i
 
 Plan a deployment to make the best use of the available infrastructure for a Blazor Server app. See the following resources to address Blazor Server app scalability:
 
-* [Fundamentals of Blazor Server apps](xref:blazor/hosting-models#server-side)
-* <xref:security/blazor/server-side>
+* [Fundamentals of Blazor Server apps](xref:blazor/hosting-models#blazor-server)
+* <xref:security/blazor/server>
 
 ### Deployment server
 
@@ -36,7 +36,7 @@ When considering the scalability of a single server (scale up), the memory avail
 * Number of active circuits that a server can support.
 * UI latency on the client.
 
-For guidance on building secure and scalable Blazor server apps, see <xref:security/blazor/server-side>.
+For guidance on building secure and scalable Blazor server apps, see <xref:security/blazor/server>.
 
 Each circuit uses approximately 250 KB of memory for a minimal *Hello World*-style app. The size of a circuit depends on the app's code and the state maintenance requirements associated with each component. We recommend that you measure resource demands during development for your app and infrastructure, but the following baseline can be a starting point in planning your deployment target: If you expect your app to support 5,000 concurrent users, consider budgeting at least 1.3 GB of server memory to the app (or ~273 KB per user).
 

@@ -34,7 +34,7 @@ dotnet publish -c Release
 
 Publishing the app triggers a [restore](/dotnet/core/tools/dotnet-restore) of the project's dependencies and [builds](/dotnet/core/tools/dotnet-build) the project before creating the assets for deployment. As part of the build process, unused methods and assemblies are removed to reduce app download size and load times.
 
-A Blazor client-side app is published to the */bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist* folder. A Blazor server-side app is published to the */bin/Release/{TARGET FRAMEWORK}/publish* folder.
+A Blazor WebAssembly app is published to the */bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist* folder. A Blazor Server app is published to the */bin/Release/{TARGET FRAMEWORK}/publish* folder.
 
 The assets in the folder are deployed to the web server. Deployment might be a manual or automated process depending on the development tools in use.
 
@@ -81,5 +81,5 @@ The app responds locally at `http://localhost:port/CoolApp`.
 
 For deployment guidance, see the following topics:
 
-* <xref:host-and-deploy/blazor/client-side>
-* <xref:host-and-deploy/blazor/server-side>
+* <xref:host-and-deploy/blazor/webassembly>
+* <xref:host-and-deploy/blazor/server>
