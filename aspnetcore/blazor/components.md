@@ -224,6 +224,26 @@ In addition to handling `onchange` events with `@bind` syntax, a property or fie
 
 Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
+**Unparsable values**
+
+When a user provides an unparsable value to a databound element, the value is automatically reverted by default for the `onchange` event (`@bind="{PROPERTY OR FIELD}"`).
+
+Consider the following scenario:
+
+* An `<input>` element is bound to an `int` type.
+* The current value of the element is `123`.
+* The user updates the value of the element to `123.45` and changes the element focus.
+
+In the preceding scenario, the element's value is reverted to `123`. When the value `123.45` is rejected in favor of the original value of `123`, the user understands that their value wasn't accepted.
+
+By default, binding applies to the element's `onchange` event (`@bind="{PROPERTY OR FIELD}"`). Use `@bind-value="{PROPERTY OR FIELD}" @bind-value:event={EVENT}` to set a different event. For the `oninput` event (`@bind-value:event="oninput"`), the reversion occurs after any keystroke that introduces an unparsable value. When targeting the `oninput` event with an `int`-bound type, a user is prevented from typing a `.` character. A `.` character is immediately removed, so the user receives immediate feedback that only whole numbers are permitted. There are scenarios where reverting the value on the `oninput` event isn't ideal, such as when the user should be allowed to clear an `<input>` value. Alternatives include:
+
+* Don't use the `oninput` event. Use the default `onchange` event (`@bind="{PROPERTY OR FIELD}"`), where an invalid value isn't reverted unless the element loses focus.
+* Bind to a nullable type, such as `int?` or `string`, and provide custom logic to handle invalid entries.
+* Use a [form validation component](xref:blazor/forms-validation), such as `InputNumber` or `InputDate`. Form validation components provide built-in behavior for invalid inputs. Form validation components:
+  * Permit the user to provide invalid input and receive validation errors on the associated `EditContext`.
+  * Display validation errors in the UI without interfering with the user entering additional webform data.
+
 **Globalization**
 
 `@bind` values are formatted for display and parsed using the current culture's rules.
