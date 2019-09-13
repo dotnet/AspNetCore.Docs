@@ -9,11 +9,11 @@ namespace WebApiSample.Controllers
 {
     #region snippet_Inherit
     [Produces(MediaTypeNames.Application.Json)]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class PetsController : MyControllerBase
     #endregion
     {
-        private static List<Pet> _petsInMemoryStore = new List<Pet>();
+        private static readonly List<Pet> _petsInMemoryStore = new List<Pet>();
 
         public PetsController()
         {

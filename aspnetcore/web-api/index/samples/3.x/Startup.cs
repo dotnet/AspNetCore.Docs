@@ -1,4 +1,4 @@
-﻿// Set preprocessor directive(s) to enable the scenarios you want to test.
+// Set preprocessor directive(s) to enable the scenarios you want to test.
 // For more information on preprocessor directives and sample apps, see:
 // https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code
 //
@@ -13,13 +13,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-#region snippet_Assembly
-[assembly: ApiController]
 namespace WebApiSample
 {
     public class Startup
-    #endregion snippet_Assembly
     {
         public Startup(IConfiguration configuration)
         {
@@ -32,8 +30,7 @@ namespace WebApiSample
         {
 #if SuppressApiControllerBehavior
             #region snippet_ConfigureApiBehaviorOptions
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+            services.AddControllers()
                 .ConfigureApiBehaviorOptions(options =>
                 {
                     options.SuppressConsumesConstraintForFormFileParameters = true;
@@ -45,10 +42,9 @@ namespace WebApiSample
                 });
             #endregion
 #endif
-#if InvalidModelStateResponseFactory             
+#if InvalidModelStateResponseFactory
             #region snippet_ConfigureBadRequestResponse
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+            services.AddControllers()
                 .ConfigureApiBehaviorOptions(options =>
                 {
                     options.InvalidModelStateResponseFactory = context =>
@@ -68,13 +64,12 @@ namespace WebApiSample
                             ContentTypes = { "application/problem+json" }
                         };
                     };
-                });
+                });            
             #endregion
 #endif
 #if DisableProblemDetailsInvalidModelStateResponseFactory
             #region snippet_DisableProblemDetailsInvalidModelStateResponseFactory
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+            services.AddControllers()
                 .ConfigureApiBehaviorOptions(options =>
                 {
                     options.InvalidModelStateResponseFactory = context =>
@@ -91,24 +86,27 @@ namespace WebApiSample
             #endregion
 #endif
 #if DefaultBehavior
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllers();
 #endif
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
