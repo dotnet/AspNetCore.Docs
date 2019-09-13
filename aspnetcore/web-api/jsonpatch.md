@@ -14,6 +14,29 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 This article explains how to handle JSON Patch requests in an ASP.NET Core web API.
 
+::: moniker range=">= aspnetcore-3.0"
+
+## Package installation
+
+Support for JsonPatch is enabled using the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package. To enable this feature, apps must:
+
+* Install the [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.
+* Update the project's `Startup.ConfigureServices` method to include a call to `AddNewtonsoftJson`:
+
+  ```csharp
+  services
+      .AddControllersWithViews()
+      .AddNewtonsoftJson();
+  ```
+
+`AddNewtonsoftJson` is compatible with the MVC service registration methods:
+
+  * `AddRazorPages`
+  * `AddControllersWithViews`
+  * `AddControllers`
+
+::: moniker-end
+
 ## PATCH HTTP request method
 
 The PUT and [PATCH](https://tools.ietf.org/html/rfc5789) methods are used to update an existing resource. The difference between them is that PUT replaces the entire resource, while PATCH specifies only the changes.
@@ -148,7 +171,7 @@ The following sample patch document sets the value of `CustomerName` and adds an
 * If `path` points to an array element: removes the element.
 * If `path` points to a property:
   * If resource to patch is a dynamic object: removes the property.
-  * If resource to patch is a static object: 
+  * If resource to patch is a static object:
     * If the property is nullable: sets it to null.
     * If the property is non-nullable, sets it to `default<T>`.
 
