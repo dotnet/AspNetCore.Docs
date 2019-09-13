@@ -29,7 +29,7 @@ Support for JsonPatch is enabled using the `Microsoft.AspNetCore.Mvc.NewtonsoftJ
       .AddNewtonsoftJson();
   ```
 
-`AddNewtonsoftJson` is compatible with the new MVC service registration methods:
+`AddNewtonsoftJson` is compatible with the MVC service registration methods:
 
   * `AddRazorPages`
   * `AddControllersWithViews`
