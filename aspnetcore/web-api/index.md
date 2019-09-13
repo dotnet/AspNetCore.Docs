@@ -78,7 +78,7 @@ The [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attr
 * [Multipart/form-data request inference](#multipartform-data-request-inference)
 * [Problem details for error status codes](#problem-details-for-error-status-codes)
 
-These features require a [compatibility version](<xref:mvc/compatibility-version>) of 2.1 or later.
+These features require a [compatibility version](xref:mvc/compatibility-version) of 2.1 or later.
 
 ### Attribute on specific controllers
 
