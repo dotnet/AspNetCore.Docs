@@ -168,6 +168,8 @@ ASP.NET Core MVC uses the <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ModelSta
 
 ### Default BadRequest response 
 
+::: moniker range="<= aspnetcore-2.2"
+
 With a compatibility version of 2.1, the default response type for an HTTP 400 response is <xref:Microsoft.AspNetCore.Mvc.SerializableError>. The following request body is an example of the serialized type:
 
 ```json
@@ -177,6 +179,8 @@ With a compatibility version of 2.1, the default response type for an HTTP 400 r
   ]
 }
 ```
+
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -203,15 +207,11 @@ The `ValidationProblemDetails` type:
 
 To change the default response type to `SerializableError`, apply one of the following approaches in `Startup.ConfigureServices`:
 
-1. Set the compatibility version to 2.1:
+1. In an ASP.NET Core 2.2 project, set the compatibility version to 2.1:
 
     [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_DisableProblemDetailsCompatibilityVersion21&highlight=2)]
 
-1. With a compatibility version of 2.2, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors*> property to `true`:
-
-    [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_DisableProblemDetailsSuppressMapClientErrors&highlight=5)]
-
-1. With a compatibility version of 2.2, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory*> property to the following code:
+1. In an ASP.NET Core 2.2 or later project, with a compatibility version of 2.2 or later, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory*> property to the following code:
 
     [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_DisableProblemDetailsInvalidModelStateResponseFactory&highlight=5-14)]
 
