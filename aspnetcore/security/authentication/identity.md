@@ -207,7 +207,7 @@ The **Log out** link invokes the `LogoutModel.OnPost` action.
 
 [!code-csharp[](identity/sample/WebApp1/Areas/Identity/Pages/Account/Logout.cshtml.cs)]
 
-[SignOutAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) clears the user's claims stored in a cookie. Don't redirect after calling `SignOutAsync` or the user will **not** be signed out.
+[SignOutAsync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) clears the user's claims stored in a cookie.
 
 Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
 
