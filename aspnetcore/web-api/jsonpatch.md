@@ -26,7 +26,7 @@ For example, the following JSON documents represent a resource, a JSON patch doc
 
 ### Resource example
 
-[!code-csharp[](jsonpatch/samples/2.2/JSON/customer.json)]
+[!code-json[](jsonpatch/samples/2.2/JSON/customer.json)]
 
 ### JSON patch example
 
@@ -92,7 +92,7 @@ The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspN
 In an API controller, an action method for JSON Patch:
 
 * Is annotated with the `HttpPatch` attribute.
-* Accepts a `JsonPatchDocument<T>`, typically with [FromBody].
+* Accepts a `JsonPatchDocument<T>`, typically with `[FromBody]`.
 * Calls `ApplyTo` on the patch document to apply the changes.
 
 Here's an example:
