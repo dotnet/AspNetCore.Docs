@@ -634,11 +634,13 @@ The *Views/Shared/EditorTemplates/CountryViewModel.cshtml* template:
 
 Adding HTML [\<option>](https://www.w3.org/wiki/HTML/Elements/option) elements isn't limited to the *No selection* case. For example, the following view and action method will generate HTML similar to the code above:
 
-[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=114-119)]
+[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?name=snippetNone)]
 
 [!code-HTML[](working-with-forms/sample/final/Views/Home/IndexOption.cshtml)]
 
 The correct `<option>` element will be selected ( contain the `selected="selected"` attribute) depending on the current `Country` value.
+
+[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=114-119)]
 
 ```HTML
  <form method="post" action="/Home/IndexEmpty">
