@@ -92,7 +92,7 @@ The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspN
 In an API controller, an action method for JSON Patch:
 
 * Is annotated with the `HttpPatch` attribute.
-* Accepts a `JsonPatchDocument<T>`, typically with [FromBody].
+* Accepts a `JsonPatchDocument<T>`, typically with `[FromBody]`.
 * Calls `ApplyTo` on the patch document to apply the changes.
 
 Here's an example:
