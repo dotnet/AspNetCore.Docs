@@ -26,7 +26,7 @@ For example, the following JSON documents represent a resource, a JSON patch doc
 
 ### Resource example
 
-[!code-csharp[](jsonpatch/samples/2.2/JSON/customer.json)]
+[!code-json[](jsonpatch/samples/2.2/JSON/customer.json)]
 
 ### JSON patch example
 
