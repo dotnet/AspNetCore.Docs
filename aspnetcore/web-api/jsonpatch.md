@@ -21,7 +21,7 @@ This article explains how to handle JSON Patch requests in an ASP.NET Core web A
 Support for JsonPatch is enabled using the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package. To enable this feature, apps must:
 
 * Install the [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.
-* Update the project's `Startup.ConfigureServices` method to include a call to `AddRazorRuntimeCompilation`:
+* Update the project's `Startup.ConfigureServices` method to include a call to `AddNewtonsoftJson`:
 
   ```csharp
   services
