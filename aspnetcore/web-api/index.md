@@ -207,11 +207,11 @@ The `ValidationProblemDetails` type:
 
 To change the default response type to `SerializableError`, apply one of the following approaches in `Startup.ConfigureServices`:
 
-1. In an ASP.NET Core 2.2 project, set the compatibility version to 2.1:
+1. In ASP.NET Core 2.2, set the compatibility version to 2.1:
 
     [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_DisableProblemDetailsCompatibilityVersion21&highlight=2)]
 
-1. In an ASP.NET Core 2.2 or later project, with a compatibility version of 2.2 or later, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory*> property to the following code:
+1. In ASP.NET Core 2.2 or later with a compatibility version of 2.2 or later, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory*> property to the following code:
 
     [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_DisableProblemDetailsInvalidModelStateResponseFactory&highlight=5-14)]
 
