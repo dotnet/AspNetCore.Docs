@@ -5,7 +5,7 @@ description: Information about the ASP.NET Core SignalR .NET Client
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 09/21/2019
+ms.date: 09/13/2019
 uid: signalr/dotnet-client
 ---
 
