@@ -168,8 +168,6 @@ ASP.NET Core MVC uses the <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ModelSta
 
 ### Default BadRequest response 
 
-::: moniker range="<= aspnetcore-2.2"
-
 With a compatibility version of 2.1, the default response type for an HTTP 400 response is <xref:Microsoft.AspNetCore.Mvc.SerializableError>. The following request body is an example of the serialized type:
 
 ```json
@@ -179,8 +177,6 @@ With a compatibility version of 2.1, the default response type for an HTTP 400 r
   ]
 }
 ```
-
-::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.2"
 
