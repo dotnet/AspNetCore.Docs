@@ -205,12 +205,19 @@ The `ValidationProblemDetails` type:
 * Provides a machine-readable format for specifying errors in web API responses.
 * Complies with the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807).
 
-To change the default response type to `SerializableError`, apply the following changes in `Startup.ConfigureServices`:
+To change the default response type to `SerializableError`, apply the highlighted changes in `Startup.ConfigureServices`:
 
-1. Set the compatibility version to 2.2 or later.
-1. Set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory*> property to the following code:
+::: moniker-end
 
-    [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_DisableProblemDetailsInvalidModelStateResponseFactory&highlight=5-14)]
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_DisableProblemDetailsInvalidModelStateResponseFactory&highlight=4-13)]
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
+
+[!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_DisableProblemDetailsInvalidModelStateResponseFactory&highlight=5-14)]
 
 ::: moniker-end
 
