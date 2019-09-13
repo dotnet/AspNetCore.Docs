@@ -6,7 +6,7 @@
 // InvalidModelStateResponseFactory - customize response for automatic 400 on validation error.
 // SuppressApiControllerBehavior - use 2.1 behaviors although compat version is 2.2.
 
-#define DefaultBehavior // or InvalidModelStateResponseFactory or SuppressApiControllerBehavior or DisableProblemDetailsInvalidModelStateResponseFactory or DisableProblemDetailsCompatibilityVersion21
+#define DefaultBehavior // or InvalidModelStateResponseFactory or SuppressApiControllerBehavior or DisableProblemDetailsInvalidModelStateResponseFactory
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -69,12 +69,6 @@ namespace WebApiSample
                         };
                     };
                 });
-            #endregion
-#endif
-#if DisableProblemDetailsCompatibilityVersion21
-            #region snippet_DisableProblemDetailsCompatibilityVersion21
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             #endregion
 #endif
 #if DisableProblemDetailsInvalidModelStateResponseFactory
