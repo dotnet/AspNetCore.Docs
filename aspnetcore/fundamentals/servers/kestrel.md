@@ -1324,12 +1324,9 @@ The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enable
 | -------------------------- | ----------------------------- |
 | `Http1`                    | HTTP/1.1 only. Can be used with or without TLS. |
 | `Http2`                    | HTTP/2 only. May be used without TLS only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4). |
-| `Http1AndHttp2`            | HTTP/1.1 and HTTP/2. HTTP/2 requires a TLS and [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection; otherwise, the connection defaults to HTTP/1.1. |
+| `Http1AndHttp2`            | HTTP/1.1 and HTTP/2. HTTP/2 requires the client to select HTTP/2 in the TLS [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) handshake; otherwise, the connection defaults to HTTP/1.1. |
 
-The default protocol is:
-
-* HTTP/2 for HTTP connections.
-* HTTP/1.1 for HTTPS connections.
+The default `ListenOptions.Protocols` value for any endpoint is `HttpProtocols.Http1AndHttp2`.
 
 TLS restrictions for HTTP/2:
 
@@ -1350,7 +1347,6 @@ The following example permits HTTP/1.1 and HTTP/2 connections on port 8000. Conn
 {
     serverOptions.Listen(IPAddress.Any, 8000, listenOptions =>
     {
-        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
         listenOptions.UseHttps("testCert.pfx", "testPassword");
     });
 });
@@ -1366,7 +1362,6 @@ Optionally use Connection Middleware to filter TLS handshakes on a per-connectio
 {
     serverOptions.Listen(IPAddress.Any, 8000, listenOptions =>
     {
-        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
         listenOptions.UseHttps("testCert.pfx", "testPassword");
         listenOptions.UseConnectionHandler<TlsFilterConnectionHandler>();
     });
@@ -1422,21 +1417,21 @@ public class TlsFilterConnectionHandler : ConnectionHandler
 
 *Set the protocol from configuration*
 
-<xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration.
+`CreateDefaultBuilder` calls `serverOptions.Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration.
 
-In the following *appsettings.json* example, a default connection protocol (HTTP/1.1 and HTTP/2) is established for all of Kestrel's endpoints:
+The following *appsettings.json* example establishes HTTP/1.1 as the default connection protocol for all endpoints:
 
 ```json
 {
   "Kestrel": {
     "EndpointDefaults": {
-      "Protocols": "Http1AndHttp2"
+      "Protocols": "Http1"
     }
   }
 }
 ```
 
-The following configuration file example establishes a connection protocol for a specific endpoint:
+The following *appsettings.json* example establishes the HTTP/1.1 connection protocol for a specific endpoint:
 
 ```json
 {
