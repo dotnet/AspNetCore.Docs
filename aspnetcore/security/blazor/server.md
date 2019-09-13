@@ -1,22 +1,22 @@
 ---
-title: Secure ASP.NET Core Blazor server-side apps
+title: Secure ASP.NET Core Blazor Server apps
 author: guardrex
-description: Learn how to mitigate security threats to Blazor server-side apps.
+description: Learn how to mitigate security threats to Blazor Server apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/07/2019
-uid: security/blazor/server-side
+uid: security/blazor/server
 ---
-# Secure ASP.NET Core Blazor server-side apps
+# Secure ASP.NET Core Blazor Server apps
 
 By [Javier Calvarro Nelson](https://github.com/javiercn)
 
-Blazor server-side apps adopt a *stateful* data processing model, where the server and client maintain a long-lived relationship. The persistent state is maintained by a [circuit](xref:blazor/state-management), which can span connections that are also potentially long-lived.
+Blazor Server apps adopt a *stateful* data processing model, where the server and client maintain a long-lived relationship. The persistent state is maintained by a [circuit](xref:blazor/state-management), which can span connections that are also potentially long-lived.
 
-When a user visits a Blazor server-side site, the server creates a circuit in the server's memory. The circuit indicates to the browser what content to render and responds to events, such as when the user selects a button in the UI. To perform these actions, a circuit invokes JavaScript functions in the user's browser and .NET methods on the server. This two-way JavaScript-based interaction is referred to as [JavaScript interop (JS interop)](xref:blazor/javascript-interop).
+When a user visits a Blazor Server site, the server creates a circuit in the server's memory. The circuit indicates to the browser what content to render and responds to events, such as when the user selects a button in the UI. To perform these actions, a circuit invokes JavaScript functions in the user's browser and .NET methods on the server. This two-way JavaScript-based interaction is referred to as [JavaScript interop (JS interop)](xref:blazor/javascript-interop).
 
-Because JS interop occurs over the Internet and the client uses a remote browser, Blazor server-side apps share most web app security concerns. This topic describes common threats to Blazor server-side apps and provides threat mitigation guidance focused on Internet-facing apps.
+Because JS interop occurs over the Internet and the client uses a remote browser, Blazor Server apps share most web app security concerns. This topic describes common threats to Blazor Server apps and provides threat mitigation guidance focused on Internet-facing apps.
 
 In constrained environments, such as inside corporate networks or intranets, some of the mitigation guidance either:
 
@@ -39,9 +39,9 @@ Resources external to the Blazor framework, such as databases and file handles (
 
 CPU exhaustion can occur when one or more clients force the server to perform intensive CPU work.
 
-For example, consider a Blazor server-side app that calculates a *Fibonnacci number*. A Fibonnacci number is produced from a Fibonnacci sequence, where each number in the sequence is the sum of the two preceding numbers. The amount of work required to reach the answer depends on the length of the sequence and the size of the initial value. If the app doesn't place limits on a client's request, the CPU-intensive calculations may dominate the CPU's time and diminish the performance of other tasks. Excessive resource consumption is a security concern impacting availability.
+For example, consider a Blazor Server app that calculates a *Fibonnacci number*. A Fibonnacci number is produced from a Fibonnacci sequence, where each number in the sequence is the sum of the two preceding numbers. The amount of work required to reach the answer depends on the length of the sequence and the size of the initial value. If the app doesn't place limits on a client's request, the CPU-intensive calculations may dominate the CPU's time and diminish the performance of other tasks. Excessive resource consumption is a security concern impacting availability.
 
-CPU exhaustion is a concern for all public-facing apps. In regular web apps, requests and connections time out as a safeguard, but Blazor server-side apps don't provide the same safeguards. Blazor server-side apps must include appropriate checks and limits before performing potentially CPU-intensive work.
+CPU exhaustion is a concern for all public-facing apps. In regular web apps, requests and connections time out as a safeguard, but Blazor Server apps don't provide the same safeguards. Blazor Server apps must include appropriate checks and limits before performing potentially CPU-intensive work.
 
 ### Memory
 
@@ -57,9 +57,9 @@ Consider the following scenario for maintaining and displaying a list of items t
   * Only display the first 100 to 1,000 items and require the user to enter search criteria to find items beyond the items displayed.
   * For a more advanced rendering scenario, implement lists or grids that support *virtualization*. Using virtualization, lists only render a subset of items currently visible to the user. When the user interacts with the scrollbar in the UI, the component renders only those items required for display. The items that aren't currently required for display can be held in secondary storage, which is the ideal approach. Undisplayed items can also be held in memory, which is less ideal.
 
-Blazor server-side apps offer a similar programming model to other UI frameworks for stateful apps, such as WPF, Windows Forms, or Blazor client-side. The main difference is that in several of the UI frameworks the memory consumed by the app belongs to the client and only affects that individual client. For example, a Blazor client-side app runs entirely on the client and only uses client memory resources. In the Blazor server-side scenario, the memory consumed by the app belongs to the server and is shared among clients on the server instance.
+Blazor Server apps offer a similar programming model to other UI frameworks for stateful apps, such as WPF, Windows Forms, or Blazor WebAssembly. The main difference is that in several of the UI frameworks the memory consumed by the app belongs to the client and only affects that individual client. For example, a Blazor WebAssembly app runs entirely on the client and only uses client memory resources. In the Blazor Server scenario, the memory consumed by the app belongs to the server and is shared among clients on the server instance.
 
-Server-side memory demands are a consideration for all server-side apps. However, most web apps are stateless, and the memory used while processing a request is released when the response is returned. As a general recommendation, don't permit clients to allocate an unbound amount of memory as in any other server-side app that persists client connections. The memory consumed by a Blazor server-side app persists for a longer time than a single request.
+Server-side memory demands are a consideration for all Blazor Server apps. However, most web apps are stateless, and the memory used while processing a request is released when the response is returned. As a general recommendation, don't permit clients to allocate an unbound amount of memory as in any other server-side app that persists client connections. The memory consumed by a Blazor Server app persists for a longer time than a single request.
 
 > [!NOTE]
 > During development, a profiler can be used or a trace captured to assess memory demands of clients. A profiler or trace won't capture the memory allocated to a specific client. To capture the memory use of a specific client during development, capture a dump and examine the memory demand of all the objects rooted at a user's circuit.
@@ -68,9 +68,9 @@ Server-side memory demands are a consideration for all server-side apps. However
 
 Connection exhaustion can occur when one or more clients open too many concurrent connections to the server, preventing other clients from establishing new connections.
 
-Blazor clients establish a single connection per session and keep the connection open for as long as the browser window is open. The demands on the server of maintaining all of the connections isn't specific to Blazor apps. Given the persistent nature of the connections and the stateful nature of Blazor server-side apps, connection exhaustion is a greater risk to availability of the app.
+Blazor clients establish a single connection per session and keep the connection open for as long as the browser window is open. The demands on the server of maintaining all of the connections isn't specific to Blazor apps. Given the persistent nature of the connections and the stateful nature of Blazor Server apps, connection exhaustion is a greater risk to availability of the app.
 
-By default, there's no limit on the number of connections per user for a Blazor server-side app. If the app requires a connection limit, take one or more of the following approaches:
+By default, there's no limit on the number of connections per user for a Blazor Server app. If the app requires a connection limit, take one or more of the following approaches:
 
 * Require authentication, which naturally limits the ability of unauthorized users to connect to the app. For this scenario to be effective, users must be prevented from provisioning new users at will.
 * Limit the number of connections per user. Limiting connections can be accomplished via the following approaches. Exercise care to allow legitimate users to access the app (for example, when a connection limit is established based on the client's IP address).
@@ -83,9 +83,9 @@ By default, there's no limit on the number of connections per user for a Blazor 
 
 ## Denial of service (DoS) attacks
 
-Denial of service (DoS) attacks involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor server-side apps include some default limits and rely on other ASP.NET Core and SignalR limits to protect against DoS attacks:
+Denial of service (DoS) attacks involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor Server apps include some default limits and rely on other ASP.NET Core and SignalR limits to protect against DoS attacks:
 
-| Blazor server-side app limit                            | Description | Default |
+| Blazor Server app limit                            | Description | Default |
 | ------------------------------------------------------- | ----------- | ------- |
 | `CircuitOptions.DisconnectedCircuitMaxRetained`         | Maximum number of disconnected circuits that a given server holds in memory at a time. | 100 |
 | `CircuitOptions.DisconnectedCircuitRetentionPeriod`     | Maximum amount of time a disconnected circuit is held in memory before being torn down. | 3 minutes |
@@ -130,14 +130,14 @@ Don't trust calls from JavaScript to .NET methods. When a .NET method is exposed
     * Ensure that the user has permission to perform the action requested.
   * Don't allocate an excessive quantity of resources as part of the .NET method invocation. For example, perform checks and place limits on CPU and memory use.
   * Take into account that static and instance methods can be exposed to JavaScript clients. Avoid sharing state across sessions unless the design calls for sharing state with appropriate constraints.
-    * For instance methods exposed through `DotNetReference` objects that are originally created through dependency injection (DI), the objects should be registered as scoped objects. This applies to any DI service that the Blazor server-side app uses.
+    * For instance methods exposed through `DotNetReference` objects that are originally created through dependency injection (DI), the objects should be registered as scoped objects. This applies to any DI service that the Blazor Server app uses.
     * For static methods, avoid establishing state that can't be scoped to the client unless the app is explicitly sharing state by-design across all users on a server instance.
   * Avoid passing user-supplied data in parameters to JavaScript calls. If passing data in parameters is absolutely required, ensure that the JavaScript code handles passing the data without introducing [Cross-site scripting (XSS)](#cross-site-scripting-xss) vulnerabilities. For example, don't write user-supplied data to the Document Object Model (DOM) by setting the `innerHTML` property of an element. Consider using [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) to disable `eval` and other unsafe JavaScript primitives.
 * Avoid implementing custom dispatching of .NET invocations on top of the framework's dispatching implementation. Exposing .NET methods to the browser is an advanced scenario, not recommended for general Blazor development.
 
 ### Events
 
-Events provide an entry point to a Blazor server-side app. The same rules for safeguarding endpoints in web apps apply to event handling in Blazor server-side apps. A malicious client can send any data it wishes to send as the payload for an event.
+Events provide an entry point to a Blazor Server app. The same rules for safeguarding endpoints in web apps apply to event handling in Blazor Server apps. A malicious client can send any data it wishes to send as the payload for an event.
 
 For example:
 
@@ -146,7 +146,7 @@ For example:
 
 The app must validate the data for any event that the app handles. The Blazor framework [forms components](xref:blazor/forms-validation) perform basic validations. If the app uses custom forms components, custom code must be written to validate event data as appropriate.
 
-Blazor server-side events are asynchronous, so multiple events can be dispatched to the server before the app has time to react by producing a new render. This has some security implications to consider. Limiting client actions in the app must be performed inside event handlers and not depend on the current rendered view state.
+Blazor Server events are asynchronous, so multiple events can be dispatched to the server before the app has time to react by producing a new render. This has some security implications to consider. Limiting client actions in the app must be performed inside event handlers and not depend on the current rendered view state.
 
 Consider a counter component that should allow a user to increment a counter a maximum of three times. The button to increment the counter is conditionally based on the value of `count`:
 
@@ -263,7 +263,7 @@ Some DOM events, such as `oninput` or `onscroll`, can produce a large amount of 
 
 ## Additional security guidance
 
-The guidance for securing ASP.NET Core apps apply to Blazor server-side apps and are covered in the following sections:
+The guidance for securing ASP.NET Core apps apply to Blazor Server apps and are covered in the following sections:
 
 * [Logging and sensitive data](#logging-and-sensitive-data)
 * [Protect information in transit with HTTPS](#protect-information-in-transit-with-https)
@@ -290,9 +290,9 @@ Enable detailed errors with:
 
 ### Protect information in transit with HTTPS
 
-Blazor server-side uses SignalR for communication between the client and the server. Blazor server-side normally uses the transport that SignalR negotiates, which is typically WebSockets.
+Blazor Server uses SignalR for communication between the client and the server. Blazor Server normally uses the transport that SignalR negotiates, which is typically WebSockets.
 
-Blazor server-side doesn't ensure the integrity and confidentiality of the data sent between the server and the client. Always use HTTPS.
+Blazor Server doesn't ensure the integrity and confidentiality of the data sent between the server and the client. Always use HTTPS.
 
 ### Cross-site scripting (XSS)
 
@@ -305,7 +305,7 @@ Cross-site scripting (XSS) allows an unauthorized party to execute arbitrary log
 * Modify the response of interop calls from .NET to JavaScript.
 * Avoid dispatching .NET to JS interop results.
 
-The Blazor server-side framework takes steps to protect against some of the preceding threats:
+The Blazor Server framework takes steps to protect against some of the preceding threats:
 
 * Stops producing new UI updates if the client isn't acknowledging render batches. Configured with `CircuitOptions.MaxBufferedUnacknowledgedRenderBatches`.
 * Times out any .NET to JavaScript call after one minute without receiving a response from the client. Configured with `CircuitOptions.JSInteropDefaultCallTimeout`.
@@ -329,7 +329,7 @@ In addition to the safeguards that the framework implements, the app must be cod
 * Don't trust the input on JS interop calls in either direction between JavaScript and .NET methods.
 * The app is responsible for validating that the content of arguments and results are valid, even if the arguments or results are correctly deserialized.
 
-For a XSS vulnerability to exist, the app must incorporate user input in the rendered page. Blazor server-side components execute a compile-time step where the markup in a *.razor* file is transformed into procedural C# logic. At runtime, the C# logic builds a *render tree* describing the elements, text, and child components. This is applied to the browser's DOM via a sequence of JavaScript instructions (or is serialized to HTML in the case of prerendering):
+For a XSS vulnerability to exist, the app must incorporate user input in the rendered page. Blazor Server components execute a compile-time step where the markup in a *.razor* file is transformed into procedural C# logic. At runtime, the C# logic builds a *render tree* describing the elements, text, and child components. This is applied to the browser's DOM via a sequence of JavaScript instructions (or is serialized to HTML in the case of prerendering):
 
 * User input rendered via normal Razor syntax (for example, `@someStringValue`) doesn't expose a XSS vulnerability because the Razor syntax is added to the DOM via commands that can only write text. Even if the value includes HTML markup, the value is displayed as static text. When prerendering, the output is HTML-encoded, which also displays the content as static text.
 * Script tags aren't allowed and shouldn't be included in the app's component render tree. If a script tag is included in a component's markup, a compile-time error is generated.
@@ -341,10 +341,10 @@ For more information, see <xref:security/cross-site-scripting>.
 
 ### Cross-origin protection
 
-Cross-origin attacks involve a client from a different origin performing an action against the server. The malicious action is typically a GET request or a form POST (Cross-Site Request Forgery, CSRF), but opening a malicious WebSocket is also possible. Blazor server-side apps offer [the same guarantees that any other SignalR app using the hub protocol offer](xref:signalr/security):
+Cross-origin attacks involve a client from a different origin performing an action against the server. The malicious action is typically a GET request or a form POST (Cross-Site Request Forgery, CSRF), but opening a malicious WebSocket is also possible. Blazor Server apps offer [the same guarantees that any other SignalR app using the hub protocol offer](xref:signalr/security):
 
-* Blazor server-side apps can be accessed cross-origin unless additional measures are taken to prevent it. To disable cross-origin access, either disable CORS in the endpoint by adding the CORS middleware to the pipeline and adding the `DisableCorsAttribute` to the Blazor endpoint metadata or limit the set of allowed origins by [configuring SignalR for cross-origin resource sharing](xref:signalr/security#cross-origin-resource-sharing).
-* If CORS is enabled, extra steps might be required to protect the app depending on the CORS configuration. If CORS is globally enabled, CORS can be disabled for the Blazor server-side hub by adding the `DisableCorsAttribute` metadata to the endpoint metadata after calling `hub.MapBlazorHub()`.
+* Blazor Server apps can be accessed cross-origin unless additional measures are taken to prevent it. To disable cross-origin access, either disable CORS in the endpoint by adding the CORS middleware to the pipeline and adding the `DisableCorsAttribute` to the Blazor endpoint metadata or limit the set of allowed origins by [configuring SignalR for cross-origin resource sharing](xref:signalr/security#cross-origin-resource-sharing).
+* If CORS is enabled, extra steps might be required to protect the app depending on the CORS configuration. If CORS is globally enabled, CORS can be disabled for the Blazor Server hub by adding the `DisableCorsAttribute` metadata to the endpoint metadata after calling `hub.MapBlazorHub()`.
 
 For more information, see <xref:security/anti-request-forgery>.
 
@@ -356,7 +356,7 @@ To protect an app from rendering inside of an `<iframe>`, use [Content Security 
 
 ### Open redirects
 
-When a Blazor server-side app session starts, the server performs basic validation of the URLs sent as part of starting the session. The framework checks that the base URL is a parent of the current URL before establishing the circuit. No additional checks are performed by the framework.
+When a Blazor Server app session starts, the server performs basic validation of the URLs sent as part of starting the session. The framework checks that the base URL is a parent of the current URL before establishing the circuit. No additional checks are performed by the framework.
 
 When a user selects a link on the client, the URL for the link is sent to the server, which determines what action to take. For example, the app may perform a client-side navigation or indicate to the browser to go to the new location.
 

@@ -889,6 +889,21 @@
             "source_path": "aspnetcore/migration/index.md",
             "redirect_url": "/aspnet/core/migration/proper-to-2x/index",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/server-side.md",
+            "redirect_url": "/aspnet/core/security/blazor/server",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/host-and-deploy/blazor/client-side.md",
+            "redirect_url": "/aspnet/core/host-and-deploy/blazor/webassembly",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/host-and-deploy/blazor/server-side.md",
+            "redirect_url": "/aspnet/core/host-and-deploy/blazor/server",
+            "redirect_document_id": false
         }
     ]
 }

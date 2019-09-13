@@ -16,7 +16,7 @@ Learn how to route requests and how to use the `NavLink` component to create nav
 
 ## ASP.NET Core endpoint routing integration
 
-Blazor server-side is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with `MapBlazorHub` in `Startup.Configure`:
+Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with `MapBlazorHub` in `Startup.Configure`:
 
 [!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
@@ -49,7 +49,7 @@ Multiple route templates can be applied to a component. The following component 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
 
 > [!IMPORTANT]
-> For URLs to resolve correctly, the app must include a `<base>` tag in its *wwwroot/index.html* file (Blazor client-side) or *Pages/_Host.cshtml* file (Blazor server-side) with the app base path specified in the `href` attribute (`<base href="/">`). For more information, see <xref:host-and-deploy/blazor/index#app-base-path>.
+> For URLs to resolve correctly, the app must include a `<base>` tag in its *wwwroot/index.html* file (Blazor WebAssembly) or *Pages/_Host.cshtml* file (Blazor Server) with the app base path specified in the `href` attribute (`<base href="/">`). For more information, see <xref:host-and-deploy/blazor/index#app-base-path>.
 
 ## Provide custom content when content isn't found
 
@@ -118,7 +118,7 @@ The route constraints shown in the following table are available. For the route 
 
 ### Routing with URLs that contain dots
 
-In Blazor server-side apps, the default route in *_Host.cshtml* is `/` (`@page "/"`). A request URL that contains a dot (`.`) isn't matched by the default route because the URL appears to request a file. A Blazor app returns a *404 - Not Found* response for a static file that doesn't exist. To use routes that contain a dot, configure *_Host.cshtml* with the following route template:
+In Blazor Server apps, the default route in *_Host.cshtml* is `/` (`@page "/"`). A request URL that contains a dot (`.`) isn't matched by the default route because the URL appears to request a file. A Blazor app returns a *404 - Not Found* response for a static file that doesn't exist. To use routes that contain a dot, configure *_Host.cshtml* with the following route template:
 
 ```cshtml
 @page "/{**path}"
@@ -165,7 +165,7 @@ Use `Microsoft.AspNetCore.Components.NavigationManager` to work with URIs and na
 | Member | Description |
 | ------ | ----------- |
 | `Uri` | Gets the current absolute URI. |
-| `BaseUri` | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, `BaseUri` corresponds to the `href` attribute on the document's `<base>` element in *wwwroot/index.html* (Blazor client-side) or *Pages/_Host.cshtml* (Blazor server-side). |
+| `BaseUri` | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, `BaseUri` corresponds to the `href` attribute on the document's `<base>` element in *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server). |
 | `NavigateTo` | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul> |
 | `LocationChanged` | An event that fires when the navigation location has changed. |
 | `ToAbsoluteUri` | Converts a relative URI into an absolute URI. |

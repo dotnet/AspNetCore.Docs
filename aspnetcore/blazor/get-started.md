@@ -34,7 +34,7 @@ Get started with Blazor:
 
    4\. Provide a project name in the **Project name** field or accept the default project name. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
 
-   5\. For a Blazor client-side experience, choose the **Blazor WebAssembly App** template. For a Blazor server-side experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
+   5\. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
    6\. Press **F5** to run the app.
 
@@ -47,25 +47,25 @@ Get started with Blazor:
 
    2\. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
 
-   3\. For a Blazor client-side experience, execute the following command in a command shell:
+   3\. For a Blazor WebAssembly experience, execute the following command in a command shell:
 
       ```console
       dotnet new blazorwasm -o WebApplication1
       ```
 
-      For a Blazor server-side experience, execute the following command in a command shell:
+      For a Blazor Server experience, execute the following command in a command shell:
 
       ```console
       dotnet new blazorserver -o WebApplication1
       ```
 
-      For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
+      For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
    4\. Open the *WebApplication1* folder in Visual Studio Code.
 
-   5\. For a Blazor server-side project, the IDE requests that you add assets to build and debug the project. Select **Yes**.
+   5\. For a Blazor Server project, the IDE requests that you add assets to build and debug the project. Select **Yes**.
 
-   6\. If using a Blazor server-side app, run the app using the Visual Studio Code debugger. If using a Blazor client-side app, execute `dotnet run` from the app's project folder.
+   6\. If using a Blazor Server app, run the app using the Visual Studio Code debugger. If using a Blazor WebAssembly app, execute `dotnet run` from the app's project folder.
 
    7\. In a browser, navigate to `https://localhost:5001`.
 
@@ -79,7 +79,7 @@ Get started with Blazor:
 
    3\. In the sidebar, select **.NET Core** > **App**.
 
-   4\. For a Blazor server-side experience, select the **Blazor Server App** template. For a Blazor client-side experience, select the **Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
+   4\. For a Blazor Server experience, select the **Blazor Server App** template. For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
    5\. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
 
@@ -91,7 +91,7 @@ Get started with Blazor:
 
    # [.NET Core CLI](#tab/netcore-cli/)
 
-   For a Blazor client-side experience, execute the following commands in a command shell:
+   For a Blazor WebAssembly experience, execute the following commands in a command shell:
 
    ```console
    dotnet new blazorwasm -o WebApplication1
@@ -99,7 +99,7 @@ Get started with Blazor:
    dotnet run
    ```
 
-   For a Blazor server-side experience, execute the following commands in a command shell:
+   For a Blazor Server experience, execute the following commands in a command shell:
 
    ```console
    dotnet new blazorserver -o WebApplication1
@@ -107,7 +107,7 @@ Get started with Blazor:
    dotnet run
    ```
 
-   For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
+   For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
    In a browser, navigate to `https://localhost:5001`.
 

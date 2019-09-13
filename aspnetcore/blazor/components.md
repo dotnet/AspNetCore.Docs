@@ -73,7 +73,7 @@ To render a component from a page or view, use the `RenderComponentAsync<TCompon
 
 While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
 
-For more information on how components are rendered and component state is managed in Blazor server-side apps, see the <xref:blazor/hosting-models> article.
+For more information on how components are rendered and component state is managed in Blazor Server apps, see the <xref:blazor/hosting-models> article.
 
 ## Use components
 
@@ -211,7 +211,7 @@ Using `@bind` with a `CurrentValue` property (`<input @bind="CurrentValue" />`) 
 
 ```cshtml
 <input value="@CurrentValue"
-    @onchange="@((UIChangeEventArgs __e) => CurrentValue = __e.Value)" />
+    @onchange="@((ChangeEventArgs __e) => CurrentValue = __e.Value)" />
 ```
 
 When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `@bind` handles a few cases where type conversions are performed. In principle, `@bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
@@ -373,7 +373,7 @@ The following code calls the `UpdateHeading` method when the button is selected 
 </button>
 
 @code {
-    private void UpdateHeading(UIMouseEventArgs e)
+    private void UpdateHeading(MouseEventArgs e)
     {
         ...
     }
@@ -403,7 +403,7 @@ In the following example, `UpdateHeading` is called asynchronously when the butt
 </button>
 
 @code {
-    private async Task UpdateHeading(UIMouseEventArgs e)
+    private async Task UpdateHeading(MouseEventArgs e)
     {
         ...
     }
@@ -440,7 +440,7 @@ Lambda expressions can also be used:
 <button @onclick="@(e => Console.WriteLine("Hello, world!"))">Say hello</button>
 ```
 
-It's often convenient to close over additional values, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` passing an event argument (`UIMouseEventArgs`) and its button number (`buttonNumber`) when selected in the UI:
+It's often convenient to close over additional values, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` passing an event argument (`MouseEventArgs`) and its button number (`buttonNumber`) when selected in the UI:
 
 ```cshtml
 <h2>@message</h2>
@@ -458,7 +458,7 @@ It's often convenient to close over additional values, such as when iterating ov
 @code {
     private string message = "Select a button to learn its position.";
 
-    private void UpdateHeading(UIMouseEventArgs e, int buttonNumber)
+    private void UpdateHeading(MouseEventArgs e, int buttonNumber)
     {
         message = $"You selected Button #{buttonNumber} at " +
             $"mouse position: {e.ClientX} X {e.ClientY}.";
@@ -473,7 +473,7 @@ It's often convenient to close over additional values, such as when iterating ov
 
 A common scenario with nested components is the desire to run a parent component's method when a child component event occurs&mdash;for example, when an `onclick` event occurs in the child. To expose events across components, use an `EventCallback`. A parent component can assign a callback method to a child component's `EventCallback`.
 
-The `ChildComponent` in the sample app demonstrates how a button's `onclick` handler is set up to receive an `EventCallback` delegate from the sample's `ParentComponent`. The `EventCallback` is typed with `UIMouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device:
+The `ChildComponent` in the sample app demonstrates how a button's `onclick` handler is set up to receive an `EventCallback` delegate from the sample's `ParentComponent`. The `EventCallback` is typed with `MouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device:
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Components/ChildComponent.razor?highlight=5-7,17-18)]
 
@@ -679,7 +679,7 @@ public class NotifierService
         }
     }
 
-    public event Action<string, int, Task> Notify;
+    public event Func<string, int, Task> Notify;
 }
 ```
 
@@ -727,7 +727,7 @@ Consider the following example:
 ```csharp
 @foreach (var person in People)
 {
-    <DetailsEditor Details="@person.Details" />
+    <DetailsEditor Details="person.Details" />
 }
 
 @code {
@@ -743,7 +743,7 @@ The mapping process can be controlled with the `@key` directive attribute. `@key
 ```csharp
 @foreach (var person in People)
 {
-    <DetailsEditor @key="@person" Details="@person.Details" />
+    <DetailsEditor @key="person" Details="person.Details" />
 }
 
 @code {
@@ -770,8 +770,8 @@ Typically, it makes sense to use `@key` whenever a list is rendered (for example
 You can also use `@key` to prevent Blazor from preserving an element or component subtree when an object changes:
 
 ```cshtml
-<div @key="@currentPerson">
-    ... content that depends on @currentPerson ...
+<div @key="currentPerson">
+    ... content that depends on currentPerson ...
 </div>
 ```
 
@@ -1048,7 +1048,7 @@ A templated component is defined by specifying one or more component parameters 
 When using a templated component, the template parameters can be specified using child elements that match the names of the parameters (`TableHeader` and `RowTemplate` in the following example):
 
 ```cshtml
-<TableTemplate Items="@pets">
+<TableTemplate Items="pets">
     <TableHeader>
         <th>ID</th>
         <th>Name</th>
@@ -1065,7 +1065,7 @@ When using a templated component, the template parameters can be specified using
 Component arguments of type `RenderFragment<T>` passed as elements have an implicit parameter named `context` (for example from the preceding code sample, `@context.PetId`), but you can change the parameter name using the `Context` attribute on the child element. In the following example, the `RowTemplate` element's `Context` attribute specifies the `pet` parameter:
 
 ```cshtml
-<TableTemplate Items="@pets">
+<TableTemplate Items="pets">
     <TableHeader>
         <th>ID</th>
         <th>Name</th>
@@ -1080,7 +1080,7 @@ Component arguments of type `RenderFragment<T>` passed as elements have an impli
 Alternatively, you can specify the `Context` attribute on the component element. The specified `Context` attribute applies to all specified template parameters. This can be useful when you want to specify the content parameter name for implicit child content (without any wrapping child element). In the following example, the `Context` attribute appears on the `TableTemplate` element and applies to all template parameters:
 
 ```cshtml
-<TableTemplate Items="@pets" Context="pet">
+<TableTemplate Items="pets" Context="pet">
     <TableHeader>
         <th>ID</th>
         <th>Name</th>
@@ -1101,7 +1101,7 @@ Templated components are often generically typed. For example, a generic `ListVi
 When using generic-typed components, the type parameter is inferred if possible:
 
 ```cshtml
-<ListViewTemplate Items="@pets">
+<ListViewTemplate Items="pets">
     <ItemTemplate Context="pet">
         <li>@pet.Name</li>
     </ItemTemplate>
@@ -1111,7 +1111,7 @@ When using generic-typed components, the type parameter is inferred if possible:
 Otherwise, the type parameter must be explicitly specified using an attribute that matches the name of the type parameter. In the following example, `TItem="Pet"` specifies the type:
 
 ```cshtml
-<ListViewTemplate Items="@pets" TItem="Pet">
+<ListViewTemplate Items="pets" TItem="Pet">
     <ItemTemplate Context="pet">
         <li>@pet.Name</li>
     </ItemTemplate>
@@ -1151,7 +1151,7 @@ For example, the sample app specifies theme information (`ThemeInfo`) in one of 
             <NavMenu />
         </div>
         <div class="col-sm-9">
-            <CascadingValue Value="@theme">
+            <CascadingValue Value="theme">
                 <div class="content px-4">
                     @Body
                 </div>
@@ -1445,7 +1445,7 @@ This is a trivial example. In more realistic cases with complex and deeply neste
 
 ## Localization
 
-Blazor server-side apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). The middleware selects the appropriate culture for users requesting resources from the app.
+Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). The middleware selects the appropriate culture for users requesting resources from the app.
 
 The culture can be set using one of the following approaches:
 
@@ -1462,7 +1462,7 @@ Use of a cookie ensures that the WebSocket connection can correctly propagate th
 
 Any technique can be used to assign a culture if the culture is persisted in a localization cookie. If the app already has an established localization scheme for server-side ASP.NET Core, continue to use the app's existing localization infrastructure and set the localization culture cookie within the app's scheme.
 
-The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware. Create a *Pages/Host.cshtml.cs* file with the following contents in the Blazor server-side app:
+The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware. Create a *Pages/Host.cshtml.cs* file with the following contents in the Blazor Server app:
 
 ```csharp
 public class HostModel : PageModel
@@ -1484,9 +1484,9 @@ Localization is handled in the app:
 1. The browser sends an initial HTTP request to the app.
 1. The culture is assigned by the Localization Middleware.
 1. The `OnGet` method in *_Host.cshtml.cs* persists the culture in a cookie as part of the response.
-1. The browser opens a WebSocket connection to create an interactive Blazor server-side session.
+1. The browser opens a WebSocket connection to create an interactive Blazor Server session.
 1. The Localization Middleware reads the cookie and assigns the culture.
-1. The Blazor server-side session begins with the correct culture.
+1. The Blazor Server session begins with the correct culture.
 
 ## Provide UI to choose the culture
 
@@ -1534,7 +1534,7 @@ The following component shows an example of how to perform the initial redirecti
 @code {
     private double textNumber;
 
-    private void OnSelected(UIChangeEventArgs e)
+    private void OnSelected(ChangeEventArgs e)
     {
         var culture = (string)e.Value;
         var uri = new Uri(NavigationManager.Uri())
@@ -1583,4 +1583,4 @@ However, inline SVG markup isn't supported in all scenarios. If you place an `<s
 
 ## Additional resources
 
-* <xref:security/blazor/server-side> &ndash; Includes guidance on building Blazor server-side apps that must contend with resource exhaustion.
+* <xref:security/blazor/server> &ndash; Includes guidance on building Blazor Server apps that must contend with resource exhaustion.
