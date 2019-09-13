@@ -44,7 +44,7 @@ namespace WebApiSample
 #endif
 #if InvalidModelStateResponseFactory
             #region snippet_ConfigureBadRequestResponse
-            services.Controllers()
+            services.AddControllers()
                 .ConfigureApiBehaviorOptions(options =>
                 {
                     options.InvalidModelStateResponseFactory = context =>
