@@ -97,7 +97,7 @@
           uid: tutorials/signalr-typescript-webpack
     - name: Remote Procedure Call apps
       items:
-        - name: Get started with gRPC service
+        - name: Get started with a gRPC service
           uid: tutorials/grpc/grpc-start
     - name: Data access
       items:
@@ -545,6 +545,12 @@
   items:
     - name: Introduction to gRPC services
       uid: grpc/index
+    - name: Tutorials
+      items:
+        - name: Get started with a gRPC service
+          uid: tutorials/grpc/grpc-start
+    - name: Samples
+      href: https://github.com/grpc/grpc-dotnet/tree/master/examples
     - name: gRPC services with C#
       uid: grpc/basics
     - name: gRPC services with ASP.NET Core
