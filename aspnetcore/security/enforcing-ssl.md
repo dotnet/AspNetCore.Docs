@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to require HTTPS/TLS in a ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/06/2019
+ms.date: 09/14/2019
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
@@ -226,7 +226,7 @@ When redirecting to HTTPS without the requirement for additional redirect rules,
 
 ## HTTP Strict Transport Security Protocol (HSTS)
 
-Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Security_Project), [HTTP Strict Transport Security (HSTS)](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet) is an opt-in security enhancement that's specified by a web app through the use of a response header. When a [browser that supports HSTS](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support) receives this header:
+Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Security_Project), [HTTP Strict Transport Security (HSTS)](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html) is an opt-in security enhancement that's specified by a web app through the use of a response header. When a [browser that supports HSTS](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html#browser-support) receives this header:
 
 * The browser stores configuration for the domain that prevents sending any communication over HTTP. The browser forces all communication over HTTPS.
 * The browser prevents the user from using untrusted or invalid certificates. The browser disables prompts that allow a user to temporarily trust such a certificate.
