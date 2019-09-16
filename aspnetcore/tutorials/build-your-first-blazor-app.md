@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/23/2019
+ms.date: 09/15/2019
 uid: tutorials/first-blazor-app
 ---
 # Build your first Blazor app
@@ -91,11 +91,11 @@ The `@page` directive at the top of the *Counter.razor* file specifies that the 
 
 ## Dependency injection
 
-Services registered in the app's service container are available to components via [dependency injection (DI)](xref:fundamentals/dependency-injection). Inject services into a component using the `@inject` directive.
+If working with a Blazor Server app, the `WeatherForecastService` service is registered as a [singleton](xref:fundamentals/dependency-injection#service-lifetimes) in `Startup.ConfigureServices`. An instance of the service is available throughout the app via [dependency injection (DI)](xref:fundamentals/dependency-injection):
 
-Examine the directives of the `FetchData` component.
+[!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-If working with a Blazor Server app, the `WeatherForecastService` service is registered as a [singleton](xref:fundamentals/dependency-injection#service-lifetimes), so one instance of the service is available throughout the app. The `@inject` directive is used to inject the instance of the `WeatherForecastService` service into the component.
+The `@inject` directive is used to inject the instance of the `WeatherForecastService` service into the `FetchData` component.
 
 *Pages/FetchData.razor*:
 
@@ -105,7 +105,7 @@ The `FetchData` component uses the injected service, as `ForecastService`, to re
 
 [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData2.razor?highlight=6)]
 
-If working with a Blazor WebAssembly app, `HttpClient` is injected to obtain weather forecast data from the *weather.json* file in the *wwwroot/sample-data* folder:
+If working with a Blazor WebAssembly app, `HttpClient` is injected to obtain weather forecast data from the *weather.json* file in the *wwwroot/sample-data* folder.
 
 *Pages/FetchData.razor*:
 
@@ -114,7 +114,6 @@ If working with a Blazor WebAssembly app, `HttpClient` is injected to obtain wea
 A [\@foreach](/dotnet/csharp/language-reference/keywords/foreach-in) loop is used to render each forecast instance as a row in the table of weather data:
 
 [!code-cshtml[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData3.razor?highlight=11-19)]
-
 
 ## Build a todo list
 
