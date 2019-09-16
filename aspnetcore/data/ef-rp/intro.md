@@ -628,7 +628,7 @@ The scaffolding tool automatically created a DB Context and registered it with t
 
 Examine the `ConfigureServices` method in *Startup.cs*. The highlighted line was added by the scaffolder:
 
-[!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=5-6)]
+[!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=13-14)]
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 

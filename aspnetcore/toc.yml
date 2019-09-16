@@ -999,7 +999,7 @@
     - name: IP safelist
       uid: security/ip-safelist
     - name: Application security - OWASP
-      href: https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/DotNet_Security_Cheat_Sheet.md
+      href: https://cheatsheetseries.owasp.org/cheatsheets/DotNet_Security_Cheat_Sheet.html
     - name: Blazor
       items:
         - name: Overview
