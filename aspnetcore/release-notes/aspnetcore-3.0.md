@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 12/18/2018
 uid: aspnetcore-3.0
 ---
+https://docs.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview
 # What's new in ASP.NET Core 3.0
 
 This article highlights the most significant changes in ASP.NET Core 3.0, with links to relevant documentation.
@@ -17,14 +18,98 @@ Apps using ASP.NET Core on .NET Framework can continue in a fully supported fash
 
 See [Port your code from .NET Framework to .NET Core](/dotnet/core/porting/) for migration information.
 
+## gRPC
+
+See <xref:grpc/index>.
+
 ## Microsoft.AspNetCore.App
 
 The [ASP.NET Core 3.0 shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) no longer contains:
 
-* [Newtonsoft.Json Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/). To add Json.NET to ASP.NET Core 3.0, see <!-- This link won't work until 3.0 GA's, that is 3.0 is the default version for docs. --> [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support). <!-- hard coded link [Add Newtonsoft.Json-based JSON format support](https://docs.microsoft.com/aspnet/core/web-api/advanced/formatting?view=aspnetcore-3.0#add-newtonsoftjson-based-json-format-support). -->
+* [Newtonsoft.Json Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/). To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support). ASP.NET Core 3.0 includes `System.Text.Json` for reading and writing JSON. For more information, see [New JSON serialization](#json).
 * [Entity Framework Core](/ef/core/)
 
 The ASP.NET Core 3.0 shared framework is contained in the [`Microsoft.AspNetCore.App`](xref:fundamentals/metapackage-app) metapackage. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/325). For more information on the motivation for this change, see [this blog](https://devblogs.microsoft.com/aspnet/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
+
+<a name="json"></a>
+
+### New JSON serialization
+
+ASP.NET Core 3.0 includes `System.Text.Json`:
+
+* Reads and writes JSON asynchronously.
+* Is optimized for UTF-8 text.
+* Typically higher performance than `Newtonsoft.Json`.
+
+## New Razor features
+
+The following list contains new Razor features:
+
+* [`@attribute`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#attribute)
+* [`@code`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#code)
+* [`@functions`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#functions)
+* [`@key`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#key)
+* [`@namespace`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#namespace)
+* Markup in [`@functions`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#functions)
+
+## Certificate and Kerberos authentication
+
+Certificate authentication requires:
+
+* Configuring the server to accept certificates.
+* Adding the authentication middleware in `Startup.Configure`.
+* Adding the certificate authentication service in `Startup.ConfigureServices`.
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddAuthentication(
+        CertificateAuthenticationDefaults.AuthenticationScheme)
+            .AddCertificate();
+    // Other service configuration removed.
+}
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    app.UseAuthentication();
+    // Other app configuration removed.
+}
+```
+
+Options for certificate authentication include the ability to:
+
+* Accept self-signed certificates.
+* Check for certificate revocation.
+* Check that the proffered certificate has the right usage flags in it.
+
+A default user principal is constructed from the certificate properties. The user principal contains an event that enables supplementing or replacing the principal. For more information, see <xref:security/authentication/certauth>.
+
+[Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) has been extended onto Linux and macOS. In previous versions, Windows Authentication authentication was limited to [IIS](xref:host-and-deploy/iis/index) and [HttpSys](xref:fundamentals/servers/httpsys). In ASP.NET Core 3.0, [Kestrel](xref:fundamentals/servers/kestrel) has the ability to use Negotiate, [Kerberos](https://docs.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview), and [NTLM on Windows](https://docs.microsoft.com/en-us/windows-server/security/kerberos/ntlm-overview), Linux, and macOS for Windows domain joined hosts. Kestrel support of these authentication schemes is provide by the [Microsoft.AspNetCore.Authentication.Negotiate nuget](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package. As with the other authentication services, configure authentication app wide, then configure the service:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+        .AddNegotiate();
+    // Other service configuration removed.
+}
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    app.UseAuthentication();
+    // Other app configuration removed.
+}
+```
+
+~The host must be correctly configured.~ <!-- delete the obvious --> Host requirements:
+
+* Windows hosts must have [Service Principal Names](https://docs.microsoft.com/en-us/windows/win32/ad/service-principal-names) (SPNs) added to the user account hosting the app.
+* Linux and macOS machines must be joined to the domain.
+
+  * The SPNs must be created for the web process.
+  * [Keytab files](https://blogs.technet.microsoft.com/pie/2018/01/03/all-you-need-to-know-about-keytab-files/) must be generated and configured on the host machine.
+
+See <xref:security/authentication/windowsauth> for more information.
 
 ## Razor Components
 
@@ -47,12 +132,19 @@ The following two images show the changes made to the template generated *Progra
 In the preceding images:
 
 * The ASP.NET Core 2.2 version is shown first. The red boxes indicate code that has been removed.
-* The ASP.NET Core 3.0 version is shown second. The green boxes indicate code that has been added.
+* The ASP.NET Core 3.0 version is shown second. The green boxes indicate code that has been added. The 3.0 version requires `using Microsoft.Extensions.Hosting;`.
 
+## Endpoint routing
 
+See https://github.com/aspnet/AspNetCore.Docs/issues/14291
 
+## Pipes on HttpContext
 
-The first image is the ASP.NET Core 2.2 version. 
+<!-- indirectly related, https://github.com/dotnet/docs/pull/14414 won't be published by 9/23  -->
+
+## Worker service and SDK
+
+See https://github.com/aspnet/AspNetCore.Docs/issues/14269
 
 ## Additional information
 
