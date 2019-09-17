@@ -7,7 +7,6 @@ ms.custom: mvc
 ms.date: 12/18/2018
 uid: aspnetcore-3.0
 ---
-https://docs.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview
 # What's new in ASP.NET Core 3.0
 
 This article highlights the most significant changes in ASP.NET Core 3.0, with links to relevant documentation.
@@ -45,12 +44,12 @@ ASP.NET Core 3.0 includes `System.Text.Json`:
 
 The following list contains new Razor features:
 
-* [`@attribute`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#attribute). See the following section for more information.
-* [`@code`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#code)
-* [`@functions`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#functions)
-* [`@key`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#key)
-* [`@namespace`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#namespace)
-* Markup in [`@functions`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#functions)
+* [`@attribute`](/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#attribute). See the following section for more information.
+* [`@code`](/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#code)
+* [`@functions`](/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#functions)
+* [`@key`](/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#key)
+* [`@namespace`](/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#namespace)
+* Markup in [`@functions`](/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#functions)
 
 ## Certificate and Kerberos authentication
 
@@ -84,7 +83,7 @@ Options for certificate authentication include the ability to:
 
 A default user principal is constructed from the certificate properties. The user principal contains an event that enables supplementing or replacing the principal. For more information, see <xref:security/authentication/certauth>.
 
-[Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) has been extended onto Linux and macOS. In previous versions, Windows Authentication authentication was limited to [IIS](xref:host-and-deploy/iis/index) and [HttpSys](xref:fundamentals/servers/httpsys). In ASP.NET Core 3.0, [Kestrel](xref:fundamentals/servers/kestrel) has the ability to use Negotiate, [Kerberos](https://docs.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview), and [NTLM on Windows](https://docs.microsoft.com/en-us/windows-server/security/kerberos/ntlm-overview), Linux, and macOS for Windows domain joined hosts. Kestrel support of these authentication schemes is provide by the [Microsoft.AspNetCore.Authentication.Negotiate nuget](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package. As with the other authentication services, configure authentication app wide, then configure the service:
+[Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) has been extended onto Linux and macOS. In previous versions, Windows Authentication authentication was limited to [IIS](xref:host-and-deploy/iis/index) and [HttpSys](xref:fundamentals/servers/httpsys). In ASP.NET Core 3.0, [Kestrel](xref:fundamentals/servers/kestrel) has the ability to use Negotiate, [Kerberos](/windows-server/security/kerberos/kerberos-authentication-overview), and [NTLM on Windows](/windows-server/security/kerberos/ntlm-overview), Linux, and macOS for Windows domain joined hosts. Kestrel support of these authentication schemes is provide by the [Microsoft.AspNetCore.Authentication.Negotiate nuget](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package. As with the other authentication services, configure authentication app wide, then configure the service:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -103,7 +102,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 ~The host must be correctly configured.~ <!-- delete the obvious --> Host requirements:
 
-* Windows hosts must have [Service Principal Names](https://docs.microsoft.com/en-us/windows/win32/ad/service-principal-names) (SPNs) added to the user account hosting the app.
+* Windows hosts must have [Service Principal Names](/windows/win32/ad/service-principal-names) (SPNs) added to the user account hosting the app.
 * Linux and macOS machines must be joined to the domain.
 
   * SPNs must be created for the web process.
@@ -120,22 +119,13 @@ The web UI templates (Razor Pages, MVC with controller and views) have the follo
 
 The Angular template updated to use Angular 8.
 
-## Razor Components
+## Razor components
 
-@guardrex to provide
+Razor components are self-contained chunks of user interface (UI), such as a page, dialog, or form. Razor components are normal .NET classes that define UI rendering logic and client-side event handlers. You can create rich interactive web apps without JavaScript. 
 
-### Attribute splatting for components
+Razor components are typically authored using Razor syntax, a natural blend of HTML and C#. Razor components are similar to Razor Pages and MVC views in that they both use Razor. Unlike pages and views, which are based on a request-response model, components are used specifically for handling UI composition. 
 
-@guardrex  to copy/paste from https://docs.microsoft.com/en-us/aspnet/core/blazor/components?view=aspnetcore-3.0#attribute-splatting-and-arbitrary-parameters
-
-Also include the following H3's
-
-### Accepting arbitrary parameters
-
-### Using @attributes to render arbitrary attributes
-
-<!-- end of @guardrex to provide -->
-
+For more information, see <xref:blazor/index>.
 
 ## SignalR
 
@@ -180,7 +170,7 @@ See https://github.com/aspnet/AspNetCore.Docs/issues/14269
 
 In previous versions, calling <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> and  <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> were problematic when deployed to an Azure Linux or behind any reverse proxy other than IIS. The fix for previous versions is documented in [Forward the scheme for Linux and non-IIS reverse proxies](xref:host-and-deploy/proxy-load-balancer#forward-the-scheme-for-linux-and-non-iis-reverse-proxies).
 
-In ASP.NET Core 3.0, this problem has been fixed. The host enables the [Forwarded Headers Middleware](xref:https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable has been set to `true`.
+In ASP.NET Core 3.0, this problem has been fixed. The host enables the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable has been set to `true`.
 
 ## Additional information
 
