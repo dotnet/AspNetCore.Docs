@@ -25,7 +25,7 @@ See <xref:grpc/index>.
 
 The [ASP.NET Core 3.0 shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) no longer contains:
 
-* [Newtonsoft.Json Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/). To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support). ASP.NET Core 3.0 includes `System.Text.Json` for reading and writing JSON. For more information, see [New JSON serialization](#json).
+* [Newtonsoft.Json Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/). To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support). ASP.NET Core 3.0 includes `System.Text.Json` for reading and writing JSON. For more information, see [New JSON serialization](#json) in this document.
 * [Entity Framework Core](/ef/core/)
 
 The ASP.NET Core 3.0 shared framework is contained in the [`Microsoft.AspNetCore.App`](xref:fundamentals/metapackage-app) metapackage. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/325). For more information on the motivation for this change, see [this blog](https://devblogs.microsoft.com/aspnet/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
@@ -100,7 +100,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-~The host must be correctly configured.~ <!-- delete the obvious --> Host requirements:
+Host requirements:
 
 * Windows hosts must have [Service Principal Names](/windows/win32/ad/service-principal-names) (SPNs) added to the user account hosting the app.
 * Linux and macOS machines must be joined to the domain.
@@ -159,6 +159,8 @@ The Hosting EventSourceProvider (Microsoft.AspNetCore.Hosting) emits the followi
 See https://github.com/aspnet/AspNetCore.Docs/issues/14291
 
 ## Pipes on HttpContext
+
+TODO by PU
 
 <!-- indirectly related, https://github.com/dotnet/docs/pull/14414 won't be published by 9/23  -->
 
