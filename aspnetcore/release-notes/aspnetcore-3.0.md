@@ -136,7 +136,7 @@ For more information, see <xref:blazor/index>.
 
 See [Update SignalR code](xref:migration/22-to-30#update-signalr-code) for migration instructions.
 
-In the JavaScript and .NET Clients for SignalR, support was added for automatic reconnection. By default, the client will try to reconnect immediately and after 2, 10, and 30 seconds. Automatic reconnect is opt-in:
+In the JavaScript and .NET Clients for SignalR, support was added for automatic reconnection. By default, the client tries to reconnect immediately and retry after 2, 10, and 30 seconds. Automatic reconnect is opt-in:
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
