@@ -226,7 +226,7 @@ Unlike `onchange`, which fires when the element loses focus, `oninput` fires whe
 
 **Unparsable values**
 
-When a user provides an unparsable value to a databound element, the unparsable value is automatically reverted by default for the `onchange` event (`@bind="{PROPERTY OR FIELD}"`).
+When a user provides an unparsable value to a databound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
 
 Consider the following scenario:
 
