@@ -134,9 +134,9 @@ For more information, see <xref:blazor/index>.
 
 ## SignalR
 
-The SignalR JavaScript client has changed from being `@aspnet/signalr` to `@microsoft/signalr`. To react to this change, you will need to change your references in `package.json` files, require statements, and ECMAScript import statements. 
+See [Update SignalR code](xref:migration/22-to-30#update-signalr-code) for migration instructions.
 
-In the JavaScript and .NET Clients for SignalR, we've added support for automatic reconnection via the `withAutomaticReconnect()` method on the `HubConnectionBuilder`. By default, the client will try to reconnect immediately and after 2, 10, and 30 seconds. Enlisting in automatic reconnect is opt-in, but simple via this new method.
+In the JavaScript and .NET Clients for SignalR, support was added for automatic reconnection. By default, the client will try to reconnect immediately and after 2, 10, and 30 seconds. Automatic reconnect is opt-in:
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -145,16 +145,16 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-By passing an array of millisecond-based durations to the method, you can be very granular about how your reconnection attempts occur over time.
+The reconnection intervals can be specified by passing an array of millisecond-based durations:
 
 ```javascript
 .withAutomaticReconnect([0, 3000, 5000, 10000, 15000, 30000])
-//.withAutomaticReconnect([0, 2000, 10000, 30000]) yields the default behavior
+//.withAutomaticReconnect([0, 2000, 10000, 30000]) The default behavior.
 ```
 
-Or you can pass in an implementation of a custom reconnect policy that gives you full control.
+A custom implementation can be passed in for full control of the reconnection intervals.
 
-If the reconnection fails after the 30-second point (or whatever you’ve set as your maximum), the client presumes the connection is offline and stops trying to reconnect. During these reconnection attempts you’ll want to update your application UI to provide cues to the user that the reconnection is being attempted.
+If the reconnection fails after the 30-second point (or whatever is set as the maximum), the client presumes the connection is offline and stops trying to reconnect. During these reconnection attempts you’ll want to update your application UI to provide cues to the user that the reconnection is being attempted.
 
 To make providing these cues easier, we’ve expanded the SignalR client API to include `onreconnecting` and `onreconnected` event handlers. The first of these handlers, `onreconnecting`, gives developers a good opportunity to disable UI or to let users know the app is offline.
 
