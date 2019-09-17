@@ -4,12 +4,12 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 09/17/2019
 uid: aspnetcore-3.0
 ---
 # What's new in ASP.NET Core 3.0
 
-This article highlights the most significant changes in ASP.NET Core 3.0, with links to relevant documentation.
+This article highlights the most significant changes in ASP.NET Core 3.0 with links to relevant documentation.
 
 ## ASP.NET Core 3.0 only runs on .NET Core 3.0
 
@@ -52,12 +52,9 @@ See <xref:grpc/index>.
 
 The following list contains new Razor features:
 
-* [`@attribute`](/aspnet/core/mvc/views/razor#attribute). See the following section for more information.
-* [`@code`](/aspnet/core/mvc/views/razor#code)
-* [`@functions`](/aspnet/core/mvc/views/razor#functions)
-* [`@key`](/aspnet/core/mvc/views/razor#key)
-* [`@namespace`](/aspnet/core/mvc/views/razor#namespace)
-* Markup in [`@functions`](/aspnet/core/mvc/views/razor#functions)
+* [@attribute](xref:mvc/views/razor#attribute) &ndash; The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@Attribute [Authorize]`.
+* [@implements](xref:mvc/views/razor#implements) &ndash; The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
+* [@page](xref:mvc/views/razor#page) &ndash; The `@page` directive has different effects depending on the type of the file where it appears. In a *.cshtml* file, `@page` indicates that the file is a Razor Page. In a *.razor* file, `@page` specifies that a Razor component should handle requests directly.
 
 ## Certificate and Kerberos authentication
 
@@ -139,7 +136,7 @@ For more information, see <xref:blazor/index>.
 
 @bradygaster  to provide
 
-## Generic host
+## Generic Host
 
 The ASP.NET Core 3.0 templates use <xref:fundamentals/host/generic-host>. Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that are not web specific.
 
@@ -153,6 +150,53 @@ In the preceding images:
 * The ASP.NET Core 2.2 version is shown first. The red boxes indicate code that has been removed in the 3.0 version.
 * The ASP.NET Core 3.0 version is shown second. The green boxes indicate code that has been added. The 3.0 version requires `using Microsoft.Extensions.Hosting;`.
 
+## Host configuration and options
+
+Host builder configuration is provided by <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*>:
+
+```csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureHostConfiguration(configHost =>
+        {
+            configHost.SetBasePath(Directory.GetCurrentDirectory());
+            configHost.AddJsonFile("hostsettings.json", optional: true);
+            configHost.AddEnvironmentVariables(prefix: "PREFIX_");
+            configHost.AddCommandLine(args);
+    });
+```
+
+Prior to the release of ASP.NET Core 3.0, environment variables prefixed with `ASPNETCORE_` were loaded for host configuration of the Web Host. In 3.0, `AddEnvironmentVariables` is used to load environment variables prefixed with `DOTNET_` for host configuration with `CreateDefaultBuilder`. 
+
+To configure host options in code, call `Configure<HostOptions>` on the host builder's services provided by `ConfigureServices`:
+
+```csharp
+public static IHostBuilder CreateHostBuilder2(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureServices((hostContext, services) =>
+        {
+            services.Configure(option =>
+            {
+                option.ShutdownTimeout = System.TimeSpan.FromSeconds(20);
+            });
+        });
+```
+
+For more information, see the following articles:
+
+* <xref:fundamentals/configuration/index>
+* <xref:fundamentals/host/generic-host>
+
+## Kestrel
+
+* Kestrel configuration has been updated for the migration to the Generic Host. In 3.0, Kestrel is configured on the web host builder provided by `ConfigureWebHostDefaults`.
+* Connection Adapters have been removed from Kestrel and replaced with Connection Middleware, which is similar to HTTP Middleware in the ASP.NET Core pipeline but for lower-level connections.
+* The Kestrel transport layer has been exposed as a public interface in `Connections.Abstractions`.
+* Ambiguity between headers and trailers has been resolved by moving trailing headers to a new collection.
+* Synchronous IO APIs, such as `HttpReqeuest.Body.Read`, are a common source of thread starvation leading to app crashes. In 3.0, `AllowSynchronousIO` is disabled by default.
+
+For more information, see <xref:migration/22-to-30>.
+
 ## Hosting EventSourceProvider new request counters
 
 The Hosting EventSourceProvider (Microsoft.AspNetCore.Hosting) emits the following request counters:
@@ -165,6 +209,28 @@ The Hosting EventSourceProvider (Microsoft.AspNetCore.Hosting) emits the followi
 ## Endpoint routing
 
 See https://github.com/aspnet/AspNetCore.Docs/issues/14291
+
+## Health Checks
+
+Health Checks use endpoint routing with the Generic Host. In `Startup.Configure`, call `MapHealthChecks` on the endpoint builder with the endpoint URL or relative path:
+
+```csharp
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHealthChecks("/health");
+});
+```
+
+Health Checks endpoints can:
+
+* Specify one or more permitted hosts/ports.
+* Require authorization.
+* Require CORS.
+
+For more information, see the following articles:
+
+* <xref:migration/22-to-30#health-checks>
+* <xref:host-and-deploy/health-checks>
 
 ## Pipes on HttpContext
 
