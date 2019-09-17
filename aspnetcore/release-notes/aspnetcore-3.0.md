@@ -13,22 +13,26 @@ This article highlights the most significant changes in ASP.NET Core 3.0, with l
 
 ## ASP.NET Core 3.0 only runs on .NET Core 3.0
 
-Apps using ASP.NET Core on .NET Framework can continue in a fully supported fashion using the [2.1 LTS release](https://www.microsoft.com/net/download/dotnet-core/2.1). ASP.NET Core 2.1 is supported until August 21, 2021. For more information, see [this GitHub announcement](https://github.com/aspnet/Announcements/issues/324).
+As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://www.microsoft.com/net/download/dotnet-core/2.1). ASP.NET Core 2.1 is supported until August 21, 2021. For more information, see [this GitHub announcement](https://github.com/aspnet/Announcements/issues/324).
 
 See [Port your code from .NET Framework to .NET Core](/dotnet/core/porting/) for migration information.
 
-## gRPC
+## Use the ASP.NET Core shared framework
 
-See <xref:grpc/index>.
+The [ASP.NET Core 3.0 shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/), contained in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), no longer requires an explicit `<PackageReference />` element in the project file. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in your project file:
 
-## Microsoft.AspNetCore.App
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+```
 
-The [ASP.NET Core 3.0 shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) no longer contains:
+## Assemblies removed from the ASP.NET Core shared framework
 
-* [Newtonsoft.Json Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/). To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support). ASP.NET Core 3.0 includes `System.Text.Json` for reading and writing JSON. For more information, see [New JSON serialization](#json) in this document.
+The most notable assemblies removed from the ASP.NET Core 3.0 shared framework are:
+
+* [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) (Json.NET). To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support). ASP.NET Core 3.0 introduces `System.Text.Json` for reading and writing JSON. For more information, see [New JSON serialization](#json) in this document.
 * [Entity Framework Core](/ef/core/)
 
-The ASP.NET Core 3.0 shared framework is contained in the [`Microsoft.AspNetCore.App`](xref:fundamentals/metapackage-app) metapackage. For more information, see [this GitHub issue](https://github.com/aspnet/Announcements/issues/325). For more information on the motivation for this change, see [this blog](https://devblogs.microsoft.com/aspnet/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
+For a complete list of assemblies removed from the shared framework, see [Assemblies being removed from Microsoft.AspNetCore.App 3.0](https://github.com/aspnet/AspNetCore/issues/3755). For more information on the motivation for this change, see [Breaking changes to Microsoft.AspNetCore.App in 3.0](https://github.com/aspnet/Announcements/issues/325) and [A first look at changes coming in ASP.NET Core 3.0](https://devblogs.microsoft.com/aspnet/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
 
 <a name="json"></a>
 
@@ -39,6 +43,10 @@ ASP.NET Core 3.0 includes `System.Text.Json`:
 * Reads and writes JSON asynchronously.
 * Is optimized for UTF-8 text.
 * Typically higher performance than `Newtonsoft.Json`.
+
+## gRPC
+
+See <xref:grpc/index>.
 
 ## New Razor features
 
