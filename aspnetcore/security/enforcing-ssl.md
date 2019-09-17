@@ -309,7 +309,7 @@ Uncheck the **Configure for HTTPS** check box.
 
 Use the `--no-https` option. For example
 
-```console
+```dotnetcli
 dotnet new webapp --no-https
 ```
 
@@ -332,13 +332,13 @@ For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?l
 
 Installing the .NET Core SDK installs the ASP.NET Core HTTPS development certificate to the local user certificate store. The certificate has been installed, but it's not trusted. To trust the certificate perform the one-time step to run the dotnet `dev-certs` tool:
 
-```console
+```dotnetcli
 dotnet dev-certs https --trust
 ```
 
 The following command provides help on the `dev-certs` tool:
 
-```console
+```dotnetcli
 dotnet dev-certs https --help
 ```
 

@@ -78,7 +78,7 @@ Follow the <xref:getting-started> tutorial to create a Razor Pages app.
 
 1. In a command shell, publish the app in Release configuration with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command:
 
-   ```console
+   ```dotnetcli
    dotnet publish --configuration Release
    ```
 

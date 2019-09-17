@@ -29,7 +29,7 @@ ASP.NET Core Identity is included in project templates in Visual Studio with the
 
 When using the .NET Core CLI, add `-au Individual`:
 
-```console
+```dotnetcli
 dotnet new mvc -au Individual
 ```
 

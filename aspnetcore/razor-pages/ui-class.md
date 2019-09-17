@@ -36,7 +36,7 @@ An RCL has the following project file:
 
 From the command line, run `dotnet new razorclasslib`. For example:
 
-```console
+```dotnetcli
 dotnet new razorclasslib -o RazorUIClassLib
 ```
 
@@ -71,13 +71,13 @@ Open the *.sln* file in Visual Studio. Run the app.
 
 From a command prompt in the *cli* directory, build the RCL and web app.
 
-```console
+```dotnetcli
 dotnet build
 ```
 
 Move to the *WebApp1* directory and run the app:
 
-```console
+```dotnetcli
 dotnet run
 ```
 
@@ -104,7 +104,7 @@ Create the RCL project:
 
 From the command line, run the following:
 
-```console
+```dotnetcli
 dotnet new razorclasslib -o RazorUIClassLib
 dotnet new page -n _Message -np -o RazorUIClassLib/Areas/MyFeature/Pages/Shared
 dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
@@ -132,7 +132,7 @@ The *_ViewStart.cshtml* file is required to use the layout of the Razor Pages pr
 
 `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including the `@addTagHelper` directive, you can add a *_ViewImports.cshtml* file. For example:
 
-```console
+```dotnetcli
 dotnet new viewimports -o RazorUIClassLib/Areas/MyFeature/Pages
 ```
 
@@ -140,7 +140,7 @@ For more information on *_ViewImports.cshtml*, see [Importing Shared Directives]
 
 * Build the class library to verify there are no compiler errors:
 
-```console
+```dotnetcli
 dotnet build RazorUIClassLib
 ```
 
@@ -170,7 +170,7 @@ Run the app.
 
 Create a Razor Pages web app and a solution file containing the Razor Pages app and the RCL:
 
-```console
+```dotnetcli
 dotnet new webapp -o WebApp1
 dotnet new sln
 dotnet sln add WebApp1
@@ -180,7 +180,7 @@ dotnet add WebApp1 reference RazorUIClassLib
 
 Build and run the web app:
 
-```console
+```dotnetcli
 cd WebApp1
 dotnet run
 ```

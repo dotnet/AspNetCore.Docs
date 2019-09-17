@@ -61,7 +61,7 @@ From the **Package Manager Console** window:
 
 Run the following command from the **Integrated Terminal**:
 
-```console
+```dotnetcli
 dotnet add ApiConventions.csproj package Microsoft.AspNetCore.Mvc.Api.Analyzers
 ```
 
@@ -69,7 +69,7 @@ dotnet add ApiConventions.csproj package Microsoft.AspNetCore.Mvc.Api.Analyzers
 
 Run the following command:
 
-```console
+```dotnetcli
 dotnet add ApiConventions.csproj package Microsoft.AspNetCore.Mvc.Api.Analyzers
 ```
 

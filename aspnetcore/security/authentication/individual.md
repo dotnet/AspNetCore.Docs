@@ -14,7 +14,7 @@ The authentication templates are available in .NET Core CLI with `-au Individual
 
 ::: moniker range=">= aspnetcore-2.1"
 
-```console
+```dotnetcli
 dotnet new mvc -au Individual
 dotnet new webapp -au Individual
 ```
@@ -23,7 +23,7 @@ dotnet new webapp -au Individual
 
 ::: moniker range="= aspnetcore-2.0"
 
-```console
+```dotnetcli
 dotnet new mvc -au Individual
 dotnet new razor -au Individual
 ```

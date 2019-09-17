@@ -83,7 +83,7 @@ Set the `MvcRazorCompileOnPublish` property to `true`, and install the [Microsof
 
 Prepare the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd) with the [.NET Core CLI publish command](/dotnet/core/tools/dotnet-publish). For example, execute the following command at the project root:
 
-```console
+```dotnetcli
 dotnet publish -c Release
 ```
 

@@ -26,7 +26,7 @@ The following tools are required:
 
     Verify your .NET Core SDK installation. Open a command shell, and run the following command:
 
-    ```console
+    ```dotnetcli
     dotnet --version
     ```
 

@@ -27,7 +27,7 @@ This tutorial shows you how to enable users to sign in with their Google account
 
 Store sensitive settings such as the Google `Client ID` and `Client Secret` with the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret`:
 
-```console
+```dotnetcli
 dotnet user-secrets set "Authentication:Google:ClientId" "X.apps.googleusercontent.com"
 dotnet user-secrets set "Authentication:Google:ClientSecret" "<client secret>"
 ```

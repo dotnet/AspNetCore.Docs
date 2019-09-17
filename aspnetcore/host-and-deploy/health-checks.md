@@ -76,7 +76,7 @@ public class BasicStartup
 
 To run the basic configuration scenario using the sample app, execute the following command from the project's folder in a command shell:
 
-```console
+```dotnetcli
 dotnet run --scenario basic
 ```
 
@@ -326,7 +326,7 @@ app.UseEndpoints(endpoints =>
 
 To run the database probe scenario using the sample app, execute the following command from the project's folder in a command shell:
 
-```console
+```dotnetcli
 dotnet run --scenario db
 ```
 
@@ -364,7 +364,7 @@ To run the `DbContext` probe scenario using the sample app, confirm that the dat
 
 Execute the following command from the project's folder in a command shell:
 
-```console
+```dotnetcli
 dotnet run --scenario dbcontext
 ```
 
@@ -450,7 +450,7 @@ app.UseEndpoints(endpoints =>
 
 To run the readiness/liveness configuration scenario using the sample app, execute the following command from the project's folder in a command shell:
 
-```console
+```dotnetcli
 dotnet run --scenario liveness
 ```
 
@@ -513,7 +513,7 @@ The `WriteResponse` method formats the `CompositeHealthCheckResult` into a JSON 
 
 To run the metric-based probe with custom response writer output using the sample app, execute the following command from the project's folder in a command shell:
 
-```console
+```dotnetcli
 dotnet run --scenario writer
 ```
 
@@ -609,7 +609,7 @@ app.UseEndpoints(endpoints =>
 
 To run the management port configuration scenario using the sample app, execute the following command from the project's folder in a command shell:
 
-```console
+```dotnetcli
 dotnet run --scenario port
 ```
 
@@ -815,7 +815,7 @@ public class BasicStartup
 
 To run the basic configuration scenario using the sample app, execute the following command from the project's folder in a command shell:
 
-```console
+```dotnetcli
 dotnet run --scenario basic
 ```
 
@@ -1041,7 +1041,7 @@ app.UseHealthChecks("/health");
 
 To run the database probe scenario using the sample app, execute the following command from the project's folder in a command shell:
 
-```console
+```dotnetcli
 dotnet run --scenario db
 ```
 
@@ -1076,7 +1076,7 @@ To run the `DbContext` probe scenario using the sample app, confirm that the dat
 
 Execute the following command from the project's folder in a command shell:
 
-```console
+```dotnetcli
 dotnet run --scenario dbcontext
 ```
 
@@ -1151,7 +1151,7 @@ app.UseHealthChecks("/health/live", new HealthCheckOptions()
 
 To run the readiness/liveness configuration scenario using the sample app, execute the following command from the project's folder in a command shell:
 
-```console
+```dotnetcli
 dotnet run --scenario liveness
 ```
 
@@ -1215,7 +1215,7 @@ The `WriteResponse` method formats the `CompositeHealthCheckResult` into a JSON 
 
 To run the metric-based probe with custom response writer output using the sample app, execute the following command from the project's folder in a command shell:
 
-```console
+```dotnetcli
 dotnet run --scenario writer
 ```
 
@@ -1284,7 +1284,7 @@ Register health check services with <xref:Microsoft.Extensions.DependencyInjecti
 
 To run the management port configuration scenario using the sample app, execute the following command from the project's folder in a command shell:
 
-```console
+```dotnetcli
 dotnet run --scenario port
 ```
 

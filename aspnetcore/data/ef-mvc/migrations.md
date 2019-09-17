@@ -46,7 +46,7 @@ This change sets up the project so that the first migration will create a new da
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
 >
-> ```console
+> ```dotnetcli
 > dotnet ef database drop
 > ```
 >
@@ -66,7 +66,7 @@ Save your changes and build the project. Then open a command window and navigate
 
 Enter the following command in the command window:
 
-```console
+```dotnetcli
 dotnet ef migrations add InitialCreate
 ```
 
@@ -107,7 +107,7 @@ See [EF Core Migrations in Team Environments](/ef/core/managing-schemas/migratio
 
 In the command window, enter the following command to create the database and tables in it.
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 
