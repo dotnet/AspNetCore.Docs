@@ -45,7 +45,7 @@ ASP.NET Core 3.0 includes `System.Text.Json`:
 
 The following list contains new Razor features:
 
-* [`@attribute`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#attribute)
+* [`@attribute`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#attribute). See the following section for more information.
 * [`@code`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#code)
 * [`@functions`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#functions)
 * [`@key`](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#key)
@@ -106,14 +106,36 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 * Windows hosts must have [Service Principal Names](https://docs.microsoft.com/en-us/windows/win32/ad/service-principal-names) (SPNs) added to the user account hosting the app.
 * Linux and macOS machines must be joined to the domain.
 
-  * The SPNs must be created for the web process.
+  * SPNs must be created for the web process.
   * [Keytab files](https://blogs.technet.microsoft.com/pie/2018/01/03/all-you-need-to-know-about-keytab-files/) must be generated and configured on the host machine.
 
 See <xref:security/authentication/windowsauth> for more information.
 
+## Template changes
+
+The web UI templates (Razor Pages, MVC with controller and views) have the following removed:
+
+* The cookie consent UI is no longer included. To enable the cookie consent feature in an ASP.NET Core 3.0 template generated app, see <xref:security/gdpr>.
+* Scripts and related static assets are now referenced as local files instead of using CDNs. For more information, see [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/14350).
+
+The Angular template updated to use Angular 8.
+
 ## Razor Components
 
 @guardrex to provide
+
+### Attribute splatting for components
+
+@guardrex  to copy/paste from https://docs.microsoft.com/en-us/aspnet/core/blazor/components?view=aspnetcore-3.0#attribute-splatting-and-arbitrary-parameters
+
+Also include the following H3's
+
+### Accepting arbitrary parameters
+
+### Using @attributes to render arbitrary attributes
+
+<!-- end of @guardrex to provide -->
+
 
 ## SignalR
 
@@ -126,13 +148,21 @@ The ASP.NET Core 3.0 templates use <xref:fundamentals/host/generic-host>. Previo
 The following two images show the changes made to the template generated *Program.cs* file:
 
  ![2.2 version](aspnetcore-3.0/_static/2.2host.png)
-
  ![3.0 version](aspnetcore-3.0/_static/3.0host.png)
 
 In the preceding images:
 
-* The ASP.NET Core 2.2 version is shown first. The red boxes indicate code that has been removed.
+* The ASP.NET Core 2.2 version is shown first. The red boxes indicate code that has been removed in the 3.0 version.
 * The ASP.NET Core 3.0 version is shown second. The green boxes indicate code that has been added. The 3.0 version requires `using Microsoft.Extensions.Hosting;`.
+
+## Hosting EventSourceProvider new request counters
+
+The Hosting EventSourceProvider (Microsoft.AspNetCore.Hosting) emits the following request counters:
+
+* `requests-per-second`
+* `total-requests`
+* `current-requests`
+* `failed-requests`
 
 ## Endpoint routing
 
@@ -145,6 +175,12 @@ See https://github.com/aspnet/AspNetCore.Docs/issues/14291
 ## Worker service and SDK
 
 See https://github.com/aspnet/AspNetCore.Docs/issues/14269
+
+## Forwarded Headers Middleware improvements
+
+In previous versions, calling <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> and  <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> were problematic when deployed to an Azure Linux or behind any reverse proxy other than IIS. The fix for previous versions is documented in [Forward the scheme for Linux and non-IIS reverse proxies](xref:host-and-deploy/proxy-load-balancer#forward-the-scheme-for-linux-and-non-iis-reverse-proxies).
+
+In ASP.NET Core 3.0, this problem has been fixed. The host enables the [Forwarded Headers Middleware](xref:https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable has been set to `true`.
 
 ## Additional information
 
