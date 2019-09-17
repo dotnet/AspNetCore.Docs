@@ -44,12 +44,12 @@ ASP.NET Core 3.0 includes `System.Text.Json`:
 
 The following list contains new Razor features:
 
-* [`@attribute`](/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#attribute). See the following section for more information.
-* [`@code`](/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#code)
-* [`@functions`](/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#functions)
-* [`@key`](/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#key)
-* [`@namespace`](/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#namespace)
-* Markup in [`@functions`](/aspnet/core/mvc/views/razor?view=aspnetcore-3.0#functions)
+* [`@attribute`](/aspnet/core/mvc/views/razor#attribute). See the following section for more information.
+* [`@code`](/aspnet/core/mvc/views/razor#code)
+* [`@functions`](/aspnet/core/mvc/views/razor#functions)
+* [`@key`](/aspnet/core/mvc/views/razor#key)
+* [`@namespace`](/aspnet/core/mvc/views/razor#namespace)
+* Markup in [`@functions`](/aspnet/core/mvc/views/razor#functions)
 
 ## Certificate and Kerberos authentication
 
