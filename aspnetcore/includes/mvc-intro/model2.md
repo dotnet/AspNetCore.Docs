@@ -22,7 +22,7 @@ Add a connection string to the *appsettings.json* file:
 
 Run the following .NET Core CLI commands:
 
-```console
+```dotnetcli
 dotnet tool install --global dotnet-ef --version 3.0.0-*
 dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 3.0.0-*
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
@@ -71,7 +71,7 @@ Add a connection string to the *appsettings.json* file:
 
 Run the following .NET Core CLI command to add SQLite and CodeGeneration.Design  to the project:
 
-```console
+```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 ```

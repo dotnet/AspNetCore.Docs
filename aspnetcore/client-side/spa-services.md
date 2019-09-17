@@ -213,7 +213,7 @@ JavaScript Services provide pre-configured application templates. SpaServices is
 
 These templates can be installed via the .NET Core CLI by running the following command:
 
-```console
+```dotnetcli
 dotnet new --install Microsoft.AspNetCore.SpaTemplates::*
 ```
 
@@ -227,7 +227,7 @@ A list of available SPA templates is displayed:
 
 To create a new project using one of the SPA templates, include the **Short Name** of the template in the [dotnet new](/dotnet/core/tools/dotnet-new) command. The following command creates an Angular application with ASP.NET Core MVC configured for the server side:
 
-```console
+```dotnetcli
 dotnet new angular
 ```
 
@@ -248,13 +248,13 @@ ASP.NET Core uses an environment variable named `ASPNETCORE_ENVIRONMENT` to stor
 
 Restore the required NuGet and npm packages by running the following command at the project root:
 
-```console
+```dotnetcli
 dotnet restore && npm i
 ```
 
 Build and run the application:
 
-```console
+```dotnetcli
 dotnet run
 ```
 
@@ -297,7 +297,7 @@ The MSBuild target has the following responsibilities:
 
 The MSBuild target is invoked when running:
 
-```console
+```dotnetcli
 dotnet publish -c Release
 ```
 

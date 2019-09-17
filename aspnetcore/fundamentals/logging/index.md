@@ -778,7 +778,7 @@ logging.AddConsole();
 
 To see console logging output, open a command prompt in the project folder and run the following command:
 
-```console
+```dotnetcli
 dotnet run
 ```
 

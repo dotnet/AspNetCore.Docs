@@ -26,7 +26,7 @@ Apps are published for deployment in Release configuration.
 
 Use the [dotnet publish](/dotnet/core/tools/dotnet-publish) command to publish the app with a Release configuration:
 
-```console
+```dotnetcli
 dotnet publish -c Release
 ```
 
@@ -65,13 +65,13 @@ To set the app's base path, update the `<base>` tag within the `<head>` tag elem
 
 For an app with a non-root relative URL path (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime. To pass the path base argument when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
 
-```console
+```dotnetcli
 dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}
 ```
 
 For an app with a relative URL path of `/CoolApp/` (`<base href="/CoolApp/">`), the command is:
 
-```console
+```dotnetcli
 dotnet run --pathbase=/CoolApp
 ```
 

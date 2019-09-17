@@ -47,7 +47,7 @@ Create an ASP.NET Core Web Application project with Individual User Accounts.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-```cli
+```dotnetcli
 dotnet new webapp --auth Individual -o WebApp1
 ```
 
@@ -71,7 +71,7 @@ Run the following command in the Package Manager Console (PMC):
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-```cli
+```dotnetcli
 dotnet ef database update
 ```
 
@@ -139,7 +139,7 @@ Add the Register, Login, and LogOut files.
 
 If you created the project with name **WebApp1**, run the following commands. Otherwise, use the correct namespace for the `ApplicationDbContext`:
 
-```cli
+```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout"
 ```

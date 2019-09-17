@@ -259,7 +259,7 @@ Many startup errors don't produce useful information in the Application Event Lo
 1. Run the app:
    * If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
-     ```console
+     ```dotnetcli
      dotnet .\{ASSEMBLY NAME}.dll
      ```
 

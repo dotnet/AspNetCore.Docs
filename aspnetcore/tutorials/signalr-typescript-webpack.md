@@ -64,7 +64,7 @@ Visual Studio configuration is completed. It's time to create the project.
 
 Run the following command in the **Integrated Terminal**:
 
-```console
+```dotnetcli
 dotnet new web -o SignalRWebPack
 ```
 
@@ -243,7 +243,7 @@ Confirm that the app works with the following steps.
 
 1. Build and run the app by executing the following command in the project root:
 
-    ```console
+    ```dotnetcli
     dotnet run
     ```
 
@@ -299,7 +299,7 @@ Visual Studio configuration is completed. It's time to create the project.
 
 Run the following command in the **Integrated Terminal**:
 
-```console
+```dotnetcli
 dotnet new web -o SignalRWebPack
 ```
 
@@ -478,7 +478,7 @@ Confirm that the app works with the following steps.
 
 1. Build and run the app by executing the following command in the project root:
 
-    ```console
+    ```dotnetcli
     dotnet run
     ```
 

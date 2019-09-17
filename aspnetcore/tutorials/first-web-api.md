@@ -76,7 +76,7 @@ The following diagram shows the design of the app.
 * Change directories (`cd`) to the folder that will contain the project folder.
 * Run the following commands:
 
-   ```console
+   ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoAPI
    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
@@ -111,7 +111,7 @@ The following diagram shows the design of the app.
 
 Open a command terminal in the project folder and run the following commands:
 
-   ```console
+   ```dotnetcli
    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
    dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.0.0-*
    ```
@@ -275,7 +275,7 @@ The preceding code:
 
 Run the following commands:
 
-```console
+```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
 dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
 dotnet tool install --global dotnet-aspnet-codegenerator
@@ -528,7 +528,7 @@ The following diagram shows the design of the app.
 * Change directories (`cd`) to the folder that will contain the project folder.
 * Run the following commands:
 
-   ```console
+   ```dotnetcli
    dotnet new webapi -o TodoApi
    code -r TodoApi
    ```

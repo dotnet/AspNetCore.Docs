@@ -42,7 +42,7 @@ For examples of how social logins can drive traffic and customer conversions, se
 
 * Run the following commands:
 
-  ```console
+  ```dotnetcli
   dotnet new webapp -o WebApp1 -au Individual -uld
   code -r WebApp1
   ```

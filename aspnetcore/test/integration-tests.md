@@ -305,7 +305,7 @@ The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcor
 
 The tests can be run using the built-in test features of an IDE, such as [Visual Studio](https://visualstudio.microsoft.com). If using [Visual Studio Code](https://code.visualstudio.com/) or the command line, execute the following command at a command prompt in the *tests/RazorPagesProject.Tests* directory:
 
-```console
+```dotnetcli
 dotnet test
 ```
 
