@@ -120,22 +120,13 @@ The web UI templates (Razor Pages, MVC with controller and views) have the follo
 
 The Angular template updated to use Angular 8.
 
-## Razor Components
+## Razor components
 
-@guardrex to provide
+Razor components are self-contained chunks of user interface (UI), such as a page, dialog, or form. Razor Components are normal .NET classes that define UI rendering logic and client-side event handlers. You can create rich interactive web apps without JavaScript. 
 
-### Attribute splatting for components
+Razor components are typically authored using Razor syntax, a natural blend of HTML and C#. Razor Components are similar to Razor Pages and MVC views in that they both use Razor. Unlike pages and views, which are based on a request-response model, components are used specifically for handling UI composition. 
 
-@guardrex  to copy/paste from https://docs.microsoft.com/en-us/aspnet/core/blazor/components?view=aspnetcore-3.0#attribute-splatting-and-arbitrary-parameters
-
-Also include the following H3's
-
-### Accepting arbitrary parameters
-
-### Using @attributes to render arbitrary attributes
-
-<!-- end of @guardrex to provide -->
-
+For more information, see <xref:blazor/index>.
 
 ## SignalR
 
