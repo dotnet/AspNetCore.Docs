@@ -123,7 +123,6 @@ public IActionResult Get()
         options.WriteIndented = true,
     });
 }
-
 ```
 
 ### Add Newtonsoft.Json-based JSON format support
@@ -165,7 +164,6 @@ public IActionResult Get()
         options.Formatting = Formatting.Indented,
     });
 }
-
 ```
 
 ::: moniker-end
