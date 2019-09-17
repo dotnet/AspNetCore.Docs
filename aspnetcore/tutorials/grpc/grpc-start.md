@@ -45,7 +45,7 @@ In this tutorial, you:
 # [Visual Studio](#tab/visual-studio)
 
 * Start Visual Studio and select **Create a new project**. Alternatively, from the Visual Studio **File** menu, select **New** > **Project**.
-* In the **Create a new project** dialog, select **gPRC Service** and select **Next**:
+* In the **Create a new project** dialog, select **gRPC Service** and select **Next**:
 
   ![**Create a new project** dialog](~/tutorials/grpc/grpc-start/static/cnp.png)
 
