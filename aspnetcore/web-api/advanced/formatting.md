@@ -113,7 +113,7 @@ services.AddControllers().AddJsonOptions(options =>
 });
 ```
 
-Output serialization options on a per-action basis can be configured using `JsonResult`. For example,
+Output serialization options, on a per-action basis, can be configured using `JsonResult`. For example:
 
 ```csharp
 public IActionResult Get()
@@ -155,7 +155,7 @@ services.AddControllers().AddNewtonsoftJson(options =>
 });
 ```
 
-Output serialization options on a per-action basis can be configured using `JsonResult`. For example,
+Output serialization options, on a per-action basis, can be configured using `JsonResult`. For example:
 
 ```csharp
 public IActionResult Get()
