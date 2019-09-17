@@ -122,9 +122,9 @@ The Angular template updated to use Angular 8.
 
 ## Razor components
 
-Razor components are self-contained chunks of user interface (UI), such as a page, dialog, or form. Razor Components are normal .NET classes that define UI rendering logic and client-side event handlers. You can create rich interactive web apps without JavaScript. 
+Razor components are self-contained chunks of user interface (UI), such as a page, dialog, or form. Razor components are normal .NET classes that define UI rendering logic and client-side event handlers. You can create rich interactive web apps without JavaScript. 
 
-Razor components are typically authored using Razor syntax, a natural blend of HTML and C#. Razor Components are similar to Razor Pages and MVC views in that they both use Razor. Unlike pages and views, which are based on a request-response model, components are used specifically for handling UI composition. 
+Razor components are typically authored using Razor syntax, a natural blend of HTML and C#. Razor components are similar to Razor Pages and MVC views in that they both use Razor. Unlike pages and views, which are based on a request-response model, components are used specifically for handling UI composition. 
 
 For more information, see <xref:blazor/index>.
 
