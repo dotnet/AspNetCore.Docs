@@ -126,7 +126,7 @@ The Angular template updated to use Angular 8.
 
 ## Razor components
 
-Razor components are self-contained chunks of user interface (UI), such as a page, dialog, or form. Razor components are normal .NET classes that define UI rendering logic and client-side event handlers. You can create rich interactive web apps without JavaScript. 
+Razor components are self-contained chunks of user interface (UI), such as a page, dialog, or form. Razor components are normal .NET classes that define UI rendering logic and client-side event handlers. You can create rich interactive web apps without JavaScript.
 
 Razor components are typically authored using Razor syntax, a natural blend of HTML and C#. Razor components are similar to Razor Pages and MVC views in that they both use Razor. Unlike pages and views, which are based on a request-response model, components are used specifically for handling UI composition. 
 
@@ -311,6 +311,7 @@ app.UseRouting(routes =>
 });
 ```
 
+<!-- 
 ASP.NET Core 3.0 SignalR added:
 
 * Streaming support, which enables streaming return values from server-side methods. This is useful for when fragments of data will come in over a period of time.
@@ -357,6 +358,7 @@ subject.complete();
 ```
 
 Using code like the two preceding snippets, real-time streaming experiences can be created.
+-->
 
 ## Generic Host
 
