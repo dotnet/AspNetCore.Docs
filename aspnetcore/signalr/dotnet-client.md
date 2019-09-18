@@ -33,7 +33,7 @@ Install-Package Microsoft.AspNetCore.SignalR.Client
 
 To install the client library, run the following command in a command shell:
 
-```console
+```dotnetcli
 dotnet add package Microsoft.AspNetCore.SignalR.Client
 ```
 

@@ -150,7 +150,7 @@ Build the project.
 
 * Run the following command in a terminal:
 
-  ```console
+  ```dotnetcli
   dotnet ef migrations add RowVersion
   ```
 
@@ -184,7 +184,7 @@ This command:
 
 * Run the following command in a terminal:
 
-  ```console
+  ```dotnetcli
   dotnet ef database update
   ```
 
@@ -210,13 +210,13 @@ This command:
 
   **On Windows:**
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
   ```
 
   **On Linux or macOS:**
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages/Departments --referenceScriptLibraries
   ```
 
@@ -488,7 +488,7 @@ Adding the `RowVersion` property changes the DB model, which requires a migratio
 
 Build the project. Enter the following in a command window:
 
-```console
+```dotnetcli
 dotnet ef migrations add RowVersion
 dotnet ef database update
 ```
@@ -514,7 +514,7 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
 
  Run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
   ```
 

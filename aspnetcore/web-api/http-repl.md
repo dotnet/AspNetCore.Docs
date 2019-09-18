@@ -38,7 +38,7 @@ To follow along, [view or download the sample ASP.NET Core web API](https://gith
 
 To install the HTTP REPL, run the following command:
 
-```console
+```dotnetcli
 dotnet tool install -g Microsoft.dotnet-httprepl --version "3.0.0-*"
 ```
 

@@ -18,7 +18,7 @@ Get started with Blazor:
 
 1. Install the Blazor templates by running the following command in a command shell:
 
-   ```console
+   ```dotnetcli
    dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview9.19457.4
    ```
 
@@ -49,13 +49,13 @@ Get started with Blazor:
 
    3\. For a Blazor WebAssembly experience, execute the following command in a command shell:
 
-      ```console
+      ```dotnetcli
       dotnet new blazorwasm -o WebApplication1
       ```
 
       For a Blazor Server experience, execute the following command in a command shell:
 
-      ```console
+      ```dotnetcli
       dotnet new blazorserver -o WebApplication1
       ```
 
@@ -93,7 +93,7 @@ Get started with Blazor:
 
    For a Blazor WebAssembly experience, execute the following commands in a command shell:
 
-   ```console
+   ```dotnetcli
    dotnet new blazorwasm -o WebApplication1
    cd WebApplication1
    dotnet run
@@ -101,7 +101,7 @@ Get started with Blazor:
 
    For a Blazor Server experience, execute the following commands in a command shell:
 
-   ```console
+   ```dotnetcli
    dotnet new blazorserver -o WebApplication1
    cd WebApplication1
    dotnet run

@@ -194,7 +194,7 @@ The `--contentroot` argument sets the absolute path to the directory that contai
 
 * Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
 
-  ```console
+  ```dotnetcli
   dotnet run --contentroot=/content-root-path
   ```
 
@@ -219,7 +219,7 @@ The `--pathbase` argument sets the app base path for an app run locally with a n
 
 * Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
 
-  ```console
+  ```dotnetcli
   dotnet run --pathbase=/relative-URL-path
   ```
 
@@ -241,7 +241,7 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
 
 * Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
 
-  ```console
+  ```dotnetcli
   dotnet run --urls=http://127.0.0.1:0
   ```
 

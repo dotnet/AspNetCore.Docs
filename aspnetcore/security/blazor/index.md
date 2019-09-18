@@ -50,7 +50,7 @@ A dialog opens to offer the same set of authentication mechanisms available for 
 
 Follow the Visual Studio Code guidance in the <xref:blazor/get-started> article to create a new Blazor Server project with an authentication mechanism:
 
-```console
+```dotnetcli
 dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 ```
 
@@ -84,7 +84,7 @@ The command creates a folder named with the value provided for the `{APP NAME}` 
 
 Follow the .NET Core CLI guidance in the <xref:blazor/get-started> article to create a new Blazor Server project with an authentication mechanism:
 
-```console
+```dotnetcli
 dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 ```
 

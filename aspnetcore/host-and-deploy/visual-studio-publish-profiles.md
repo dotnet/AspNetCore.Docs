@@ -66,13 +66,13 @@ When an ASP.NET Core project references `Microsoft.NET.Sdk.Web` in the project f
 
 Command-line publishing works on all .NET Core-supported platforms and doesn't require Visual Studio. In the following examples, the .NET Core CLI's [dotnet publish](/dotnet/core/tools/dotnet-publish) command is run from the project directory (which contains the *.csproj* file). If the project folder isn't the current working directory, explicitly pass in the project file path. For example:
 
-```console
+```dotnetcli
 dotnet publish C:\Webs\Web1
 ```
 
 Run the following commands to create and publish a web app:
 
-```console
+```dotnetcli
 dotnet new mvc
 dotnet publish
 ```
@@ -94,7 +94,7 @@ The default publish folder format is *bin\Debug\\{TARGET FRAMEWORK MONIKER}\publ
 
 The following command specifies a `Release` build and the publishing directory:
 
-```console
+```dotnetcli
 dotnet publish -c Release -o C:\MyWebs\test
 ```
 
@@ -107,7 +107,9 @@ MSBuild properties can be passed using either of the following formats:
 
 For example, the following command publishes a `Release` build to a network share. The network share is specified with forward slashes (*//r8/*) and works on all .NET Core supported platforms.
 
-`dotnet publish -c Release /p:PublishDir=//r8/release/AdminWeb`
+```dotnetcli
+dotnet publish -c Release /p:PublishDir=//r8/release/AdminWeb
+```
 
 Confirm that the published app for deployment isn't running. Files in the *publish* folder are locked when the app is running. Deployment can't occur because locked files can't be copied.
 
@@ -150,19 +152,19 @@ The `dotnet publish` command can use folder, MSDeploy, and [Kudu](https://github
 
 **Folder (works cross-platform):**
 
-```console
+```dotnetcli
 dotnet publish WebApplication.csproj /p:PublishProfile=<FolderProfileName>
 ```
 
 **MSDeploy:**
 
-```console
+```dotnetcli
 dotnet publish WebApplication.csproj /p:PublishProfile=<MsDeployProfileName> /p:Password=<DeploymentPassword>
 ```
 
 **MSDeploy package:**
 
-```console
+```dotnetcli
 dotnet publish WebApplication.csproj /p:PublishProfile=<MsDeployPackageProfileName>
 ```
 
@@ -187,7 +189,7 @@ Add a publish profile to the project's *Properties/PublishProfiles* folder with 
 
 Run the following command to zip up the publish contents and publish it to Azure using the Kudu APIs:
 
-```console
+```dotnetcli
 dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
 ```
 
@@ -239,7 +241,7 @@ In the preceding example:
 * The `<LastUsedBuildConfiguration>` property is set to `Release`. When publishing from Visual Studio, the value of `<LastUsedBuildConfiguration>` is set using the value when the publish process is started. `<LastUsedBuildConfiguration>` is special and shouldn't be overridden in an imported MSBuild file. This property can, however, be overridden from the command line using one of the following approaches.
   * Using the .NET Core CLI:
 
-    ```console
+    ```dotnetcli
     dotnet build -c Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
     ```
 
@@ -286,7 +288,7 @@ msbuild "AzureWebApp.csproj"
 
 A publish profile can also be used with the .NET Core CLI's [dotnet msbuild](/dotnet/core/tools/dotnet-msbuild) command from a Windows command shell:
 
-```console
+```dotnetcli
 dotnet msbuild "AzureWebApp.csproj"
     /p:DeployOnBuild=true 
     /p:PublishProfile="AzureWebApp - Web Deploy" 

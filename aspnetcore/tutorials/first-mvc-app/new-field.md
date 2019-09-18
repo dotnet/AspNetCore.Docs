@@ -35,7 +35,9 @@ Build the app
 
 ### [Visual Studio Code](#tab/visual-studio-code)
 
-`dotnet build`
+```dotnetcli
+dotnet build
+```
 
 ### [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -116,7 +118,7 @@ If all the records in the DB are deleted, the initialize method will seed the DB
 
 Delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command:
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 

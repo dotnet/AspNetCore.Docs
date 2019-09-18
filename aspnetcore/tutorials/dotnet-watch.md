@@ -18,7 +18,7 @@ Download the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/
 
 In a command shell, navigate to the *WebApp* folder. Run the following command:
 
-```console
+```dotnetcli
 dotnet run
 ```
 
@@ -55,7 +55,7 @@ The `dotnet watch` file watcher tool is included with version 2.1.300 of the .NE
 
 1. Install the `Microsoft.DotNet.Watcher.Tools` package by running the following command:
 
-    ```console
+    ```dotnetcli
     dotnet restore
     ```
 
@@ -171,7 +171,7 @@ If the goal is to watch both projects, create a custom project file configured t
 
 To start file watching on both projects, change to the *test* folder. Execute the following command:
 
-```console
+```dotnetcli
 dotnet watch msbuild /t:Test
 ```
 
