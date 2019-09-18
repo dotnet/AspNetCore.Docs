@@ -14,6 +14,11 @@ uid: signalr/clients
 
 The table below illustrates the matrix of features and their support across the clients that offer real-time support to various platforms. 
 
+| Feature | .NET Core | JavaScript | Java |
+| ---- | :-: | :-: | :-: |
+| [Server-to-client Streaming](xref:signalr/streaming)          |✔|✔| |
+| [Client-to-server Streaming](xref:signalr/streaming)          |✔|✔| |
+| Automatic Reconnection [.NET](/aspnet/core/signalr/dotnet-client?view=aspnetcore-3.0&tabs=visual-studio#handle-lost-connection) [JavaScript](/aspnet/core/signalr/javascript-client?view=aspnetcore-3.0#reconnect-clients)          |✔|✔| |
 
 
 ## Additional resources
