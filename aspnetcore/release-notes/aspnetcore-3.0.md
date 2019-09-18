@@ -163,7 +163,7 @@ During reconnection attempts, update the app UI to notify the user that the reco
 
 To provide UI feedback when the connection is interrupted, the SignalR client API has been expanded to include the following event handlers:
 
-* `onreconnecting`:  Gives developers a good opportunity to disable UI or to let users know the app is offline.
+* `onreconnecting`:  Gives developers an opportunity to disable UI or to let users know the app is offline.
 * `onreconnected`: Gives developers an opportunity to update the UI once the connection is reestablished.
 
 The following code uses `onreconnecting` to update the UI while trying to connect:
