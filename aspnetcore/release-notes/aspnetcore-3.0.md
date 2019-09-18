@@ -136,7 +136,7 @@ For more information, see <xref:blazor/index>.
 
 See [Update SignalR code](xref:migration/22-to-30#update-signalr-code) for migration instructions.
 
-In the JavaScript and .NET Clients for SignalR, support was added for automatic reconnection. By default, the client tries to reconnect immediately and retry after 2, 10, and 30 seconds. Automatic reconnect is opt-in:
+In the JavaScript and .NET Clients for SignalR, support was added for automatic reconnection. By default, the client tries to reconnect immediately and retry after 2, 10, and 30 seconds if necessary. If the client successfully reconnects, it will receive a new connection ID. Automatic reconnect is opt-in:
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -191,10 +191,12 @@ public class DomainRestrictedRequirement :
         DomainRestrictedRequirement requirement,
         HubInvocationContext resource)
     {
-        if (IsUserAllowedToDoThis(resource.HubMethodName, context.User.Identity.Name) &&
-            context.User != null &&
-            context.User.Identity != null &&
-            context.User.Identity.Name.EndsWith("@jabbr.net", StringComparison.OrdinalIgnoreCase))
+        if (context.User?.Identity?.Name == null)
+        {
+            return Task.CompletedTask;
+        }
+
+        if (IsUserAllowedToDoThis(resource.HubMethodName, context.User.Identity.Name))
         {
             context.Succeed(requirement);
         }
@@ -202,16 +204,19 @@ public class DomainRestrictedRequirement :
         return Task.CompletedTask;
     }
 
-    private bool IsUserAllowedToDoThis(string hubMethodName,
-        string currentUsername)
+    private bool IsUserAllowedToDoThis(string hubMethodName, string currentUsername)
     {
-        return !(currentUsername.Equals("bob42@jabbr.net", StringComparison.OrdinalIgnoreCase) &&
-            hubMethodName.Equals("banUser", StringComparison.OrdinalIgnoreCase));
+        if (hubMethodName.Equals("banUser", StringComparison.OrdinalIgnoreCase))
+        {
+            return currentUsername.Equals("bob42@jabbr.net", StringComparison.OrdinalIgnoreCase);
+        }
+
+        return currentUsername.EndsWith("@jabbr.net", StringComparison.OrdinalIgnoreCase));
     }
 }
 ```
 
-Now, individual Hub methods can be decorated with the name of the policy the code will need to check at run-time. As clients attempt to call individual Hub methods, the `DomainRestrictedRequirement` handler will run and control access to the methods. Based on the way the `DomainRestrictedRequirement` controls access, all logged-in users should be able to call the `SendMessage` method, only users who’ve logged in with a `@jabbr.net` email address will be able to view users’ histories, and – with the exception of `bob42@jabbr.net` – will be able to ban users from the chat room.
+Now, individual Hub methods can be decorated with the name of the policy the code will need to check at run-time. As clients attempt to call individual Hub methods, the `DomainRestrictedRequirement` handler will run and control access to the methods. Based on the way the `DomainRestrictedRequirement` controls access, all logged-in users should be able to call the `SendMessage` method, only users who’ve logged in with a `@jabbr.net` email address will be able to view users’ histories, and only `bob42@jabbr.net` will be able to ban users from the chat room.
 
 ```csharp
 [Authorize]
@@ -281,23 +286,35 @@ app.UseRouting(routes =>
 
 With ASP.NET Core SignalR we added Streaming support, which enables streaming return values from server-side methods. This is useful for when fragments of data will come in over a period of time.
 
-With .NET Core 3.0 we’ve also added client-to-server streaming. With client-to-server streaming, your server-side methods can take instances of a `ChannelReader<T>`. In the C# code sample below, the `StartStream` method on the Hub will receive a stream of strings from the client.
+With .NET Core 3.0 we’ve also added client-to-server streaming. With client-to-server streaming, your server-side methods can take instances of either an `IAsyncEnumerable<T>` or `ChannelReader<T>`. In the C# code sample below, the `UploadStream` method on the Hub will receive a stream of strings from the client.
 
 ```csharp
-public async Task StartStream(string streamName, ChannelReader<string> streamContent)
+public async Task UploadStream(IAsyncEnumerable<string> stream)
 {
-    // read from and process stream items
-    while (await streamContent.WaitToReadAsync(Context.ConnectionAborted))
+    await foreach (var item in stream)
     {
-        while (streamContent.TryRead(out var content))
-        {
-            // process content
-        }
+        // process content
     }
 }
 ```
 
-Clients would use the SignalR `Subject` (or an RxJS Subject) as an argument to the `streamContent` parameter of the Hub method above.
+.NET client applications can pass either an `IAsyncEnumerable<T>` or `ChannelReader<T>` instance as the `stream` argument of the `UploadStream` Hub method above.
+
+```csharp
+async IAsyncEnumerable<string> clientStreamData()
+{
+    for (var i = 0; i < 5; i++)
+    {
+        var data = await FetchSomeData();
+        yield return data;
+    }
+    //After the for loop has completed and the local function exits the stream completion will be sent.
+}
+
+await connection.SendAsync("UploadStream", clientStreamData());
+```
+
+JavaScript client applications would use the SignalR `Subject` (or an RxJS Subject) for the `stream` argument of the `UploadStream` Hub method above.
 
 ```javascript
 let subject = new signalR.Subject();
