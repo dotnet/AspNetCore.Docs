@@ -8,9 +8,9 @@ using Microsoft.Extensions.Logging;
 namespace BackgroundTasksSample.Services
 {
     #region snippet1
-    internal class ConsumeScopedServiceHostedService : IHostedService
+    public class ConsumeScopedServiceHostedService : BackgroundService
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<ConsumeScopedServiceHostedService> _logger;
 
         public ConsumeScopedServiceHostedService(IServiceProvider services, 
             ILogger<ConsumeScopedServiceHostedService> logger)
@@ -21,17 +21,15 @@ namespace BackgroundTasksSample.Services
 
         public IServiceProvider Services { get; }
 
-        public Task StartAsync(CancellationToken cancellationToken)
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             _logger.LogInformation(
-                "Consume Scoped Service Hosted Service is starting.");
+                "Consume Scoped Service Hosted Service running.");
 
-            DoWork();
-
-            return Task.CompletedTask;
+            await DoWork(stoppingToken);
         }
 
-        private void DoWork()
+        private async Task DoWork(CancellationToken stoppingToken)
         {
             _logger.LogInformation(
                 "Consume Scoped Service Hosted Service is working.");
@@ -42,16 +40,16 @@ namespace BackgroundTasksSample.Services
                     scope.ServiceProvider
                         .GetRequiredService<IScopedProcessingService>();
 
-                scopedProcessingService.DoWork();
+                await scopedProcessingService.DoWork(stoppingToken);
             }
         }
 
-        public Task StopAsync(CancellationToken cancellationToken)
+        public override async Task StopAsync(CancellationToken stoppingToken)
         {
             _logger.LogInformation(
                 "Consume Scoped Service Hosted Service is stopping.");
 
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
     }
     #endregion
