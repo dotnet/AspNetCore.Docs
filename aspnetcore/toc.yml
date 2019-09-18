@@ -486,7 +486,7 @@
       displayName: signalr
       items:
         - name: SignalR client features
-          uid: signalr/clients
+          uid: signalr/client-features
           displayName: signalr
         - name: .NET client
           uid: signalr/dotnet-client

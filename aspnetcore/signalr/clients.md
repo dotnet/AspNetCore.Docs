@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 09/18/2019
-uid: signalr/clients
+uid: signalr/client-features
 ---
 # ASP.NET Core SignalR Client
 
