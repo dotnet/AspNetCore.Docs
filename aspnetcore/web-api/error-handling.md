@@ -13,7 +13,7 @@ This article describes how to handle and customize error handling with ASP.NET C
 
 ## Developer Exception Page
 
-The [Developer Exception Page](xref:fundamentals/error-handling) is a useful tool to get detailed stack traces from the server in the event of a server error. In ASP.NET Core 3.0 or later, the Developer Exception Page displays a plain-text response when the client doesn't accept HTML-formatted output. For example:
+The [Developer Exception Page](xref:fundamentals/error-handling) is a useful tool to get detailed stack traces for server errors. In ASP.NET Core 3.0 or later, the Developer Exception Page displays a plain-text response when the client doesn't accept HTML-formatted output. For example:
 
 ```
 > curl https://localhost:5001/weatherforecast
@@ -187,7 +187,7 @@ Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping*> p
 
 ### Implement ProblemDetailsFactory
 
-MVC uses `Microsoft.AspNetCore.Mvc.ProblemDetailsFactory` to produce all instances of `ProblemDetails` and `ValidationProblemDetails` This includes client error responses, validation failure error responses, and the `Microsoft.AspNetCore.Mvc.ControllerBase.Problem` and `<xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem>` helper methods.
+MVC uses `Microsoft.AspNetCore.Mvc.ProblemDetailsFactory` to produce all instances of `ProblemDetails` and `ValidationProblemDetails`. This includes client error responses, validation failure error responses, and the `Microsoft.AspNetCore.Mvc.ControllerBase.Problem` and `<xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem>` helper methods.
 
 Applications may register a custom implementation of `ProblemDetailsFactory` to customize the problem details response. For example:
 
