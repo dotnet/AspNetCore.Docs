@@ -311,10 +311,8 @@ app.UseRouting(routes =>
 });
 ```
 
-<!-- 
 ASP.NET Core 3.0 SignalR added:
 
-* Streaming support, which enables streaming return values from server-side methods. This is useful for when fragments of data will come in over a period of time.
 * Client-to-server streaming. With client-to-server streaming, server-side methods can take instances of either an `IAsyncEnumerable<T>` or `ChannelReader<T>`. In the following C# sample, the `UploadStream` method on the Hub will receive a stream of strings from the client:
 
 ```csharp
@@ -358,7 +356,6 @@ subject.complete();
 ```
 
 Using code like the two preceding snippets, real-time streaming experiences can be created.
--->
 
 ## Generic Host
 
