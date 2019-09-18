@@ -21,7 +21,7 @@ SignalR requires that all HTTP requests for a specific connection be handled by 
 
 1. When hosting on a single server, in a single process.
 1. When using the Azure SignalR Service.
-1. When all clients are configured to **only** use WebSockets, and the [SkipNegotiation setting](xref:signalr/configuration#configure-additional-options) is enabled in the client configuration.
+1. When all clients are configured to **only** use WebSockets, **and** the [SkipNegotiation setting](xref:signalr/configuration#configure-additional-options) is enabled in the client configuration.
 
 In all other circumstances (including when the Redis backplane is used), the server environment must be configured for sticky sessions.
 
