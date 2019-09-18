@@ -74,7 +74,7 @@ The Exception Handling Middleware can also provide more detailed content-negotia
         else
         {
             app.UseExceptionHandler("/error");
-        })
+        }
     }
     ```
 
