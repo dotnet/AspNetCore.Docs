@@ -72,7 +72,7 @@ The following code applies CORS policies to all the apps endpoints via CORS Midd
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
-    ...
+    // Preceding code ommitted.
     app.UseRouting();
 
     app.UseCors();
@@ -82,7 +82,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         endpoints.MapControllers();
     });
 
-    ...
+    // Following code ommited.
 }
 ```
 
