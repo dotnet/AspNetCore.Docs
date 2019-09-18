@@ -640,6 +640,8 @@ Adding HTML [\<option>](https://www.w3.org/wiki/HTML/Elements/option) elements i
 
 The correct `<option>` element will be selected ( contain the `selected="selected"` attribute) depending on the current `Country` value.
 
+[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=114-119)]
+
 ```HTML
  <form method="post" action="/Home/IndexEmpty">
       <select id="Country" name="Country">
