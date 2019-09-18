@@ -483,11 +483,12 @@
           uid: signalr/api-design
           displayName: signalr
     - name: Clients
-      uid: signalr/clients
       displayName: signalr
       items:
+        - name: SignalR Client Features
+          displayName: signalr
+          uid: signalr/clients
         - name: .NET client
-          uid: signalr/dotnet-client
           displayName: signalr
         - name: .NET API reference
           href: /dotnet/api/microsoft.aspnetcore.signalr.client
