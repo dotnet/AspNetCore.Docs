@@ -2,7 +2,7 @@
 title: Error handling with web APIs
 author: pranavkm
 description: Learn about error handling with web APIs.
-ms.author: pranavkm
+ms.author: prkrishn
 ms.custom: mvc
 ms.date: 09/17/2019
 uid: web-api/error-handling
@@ -11,9 +11,9 @@ uid: web-api/error-handling
 
 This article describes how to handle and customize error handling with ASP.NET Core web APIs.
 
-### Developer Exception Page
+## Developer Exception Page
 
-The [Developer Exception Page](xref:fundamentals/error-handling) is a useful tool to get detailed stack traces from the server in the event of a server error. Starting with ASP.NET Core 3.0, the Developer Exception Page displays a plain-text response when the client doesn't accept HTML-formatted output. For example:
+The [Developer Exception Page](xref:fundamentals/error-handling) is a useful tool to get detailed stack traces from the server in the event of a server error. In ASP.NET Core 3.0 or later, the Developer Exception Page displays a plain-text response when the client doesn't accept HTML-formatted output. For example:
 
 ```
 > curl https://localhost:5001/weatherforecast
@@ -27,7 +27,7 @@ System.ArgumentException: count
 > [!WARNING]
 > Enable the Developer Exception Page **only when the app is running in the Development environment**. You don't want to share detailed exception information publicly when the app runs in production. For more information on configuring environments, see <xref:fundamentals/environments>.
 
-### Exception handler
+## Exception handler
 
 In non-development environments, the [Exception Handling Middleware](xref:fundamentals/error-handling) can be used to produce an error payload. To use the Exception Handling Middleware:
 
@@ -101,7 +101,7 @@ public class ErrorController : ControllerBase
 }
 ```
 
-### Use exceptions to modify the response
+## Use exceptions to modify the response
 
 You may sometimes want to change the contents of the response from outside of the controller. In ASP.NET 4.x Web API, one way to do this was using the `HttpResponseException` type. ASP.NET Core doesn't include an equivalent type. Support for it can be added using a filter and a well-known exception type. For example:
 
@@ -162,14 +162,14 @@ the error response for a validation failure. The following example uses the fact
 
 ::: moniker range=">= aspnetcore-3.0"
 
-### Client error response
+## Client error response
 
 For web API controllers, MVC transforms an error result (a result with status code 400 or higher) to a result with <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The error response can be configured in one of the following ways:
 
 1. [Use ApiBehaviorOptions.ClientErrorMapping](#use-apibehavioroptionsclienterrormapping)
 1. [Implement ProblemDetailsFactory](#implement-problemdetailsfactory)
 
-#### Use ApiBehaviorOptions.ClientErrorMapping
+### Use ApiBehaviorOptions.ClientErrorMapping
 
 Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping*> property to configure the contents of the `ProblemDetails` response. For example, the following code updates the `type` property for 404 responses:
 
@@ -185,7 +185,7 @@ Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping*> p
 
 ::: moniker-end
 
-#### Implement ProblemDetailsFactory
+### Implement ProblemDetailsFactory
 
 MVC uses `Microsoft.AspNetCore.Mvc.ProblemDetailsFactory` to produce all instances of `ProblemDetails` and `ValidationProblemDetails` This includes client error responses, validation failure error responses, and the `Microsoft.AspNetCore.Mvc.ControllerBase.Problem` and `<xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem>` helper methods.
 
