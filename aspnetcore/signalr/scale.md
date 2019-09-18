@@ -25,7 +25,7 @@ SignalR requires that all HTTP requests for a specific connection be handled by 
 
 In all other circumstances (including when the Redis backplane is used), the server environment must be configured for sticky sessions.
 
-See [our documentation on publising to Azure App Service](xref:signalr/publish-to-azure-web-app) for guidance on configuring Azure App Service for SignalR.
+For guidance on configuring Azure App Service for SignalR, see <xref:signalr/publish-to-azure-web-app>.
 
 ## TCP connection resources
 
