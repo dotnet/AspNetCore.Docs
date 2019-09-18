@@ -8,9 +8,9 @@ ms.custom: mvc
 ms.date: 09/18/2019
 uid: signalr/client-features
 ---
-# ASP.NET Core SignalR Client
+# ASP.NET Core SignalR client features
 
-## Feature Distribution
+## Feature distribution
 
 The table below illustrates the matrix of features and their support across the clients that offer real-time support to various platforms. 
 
@@ -19,7 +19,6 @@ The table below illustrates the matrix of features and their support across the 
 | [Server-to-client Streaming](xref:signalr/streaming)          |✔|✔| |
 | [Client-to-server Streaming](xref:signalr/streaming)          |✔|✔| |
 | Automatic Reconnection [.NET](/aspnet/core/signalr/dotnet-client?view=aspnetcore-3.0&tabs=visual-studio#handle-lost-connection) [JavaScript](/aspnet/core/signalr/javascript-client?view=aspnetcore-3.0#reconnect-clients)          |✔|✔| |
-
 
 ## Additional resources
 
