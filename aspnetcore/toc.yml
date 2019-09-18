@@ -483,6 +483,7 @@
           uid: signalr/api-design
           displayName: signalr
     - name: Clients
+      uid: signalr/clients
       displayName: signalr
       items:
         - name: .NET client
