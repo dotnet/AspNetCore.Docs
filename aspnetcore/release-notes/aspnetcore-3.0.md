@@ -88,7 +88,7 @@ Options for certificate authentication include the ability to:
 
 A default user principal is constructed from the certificate properties. The user principal contains an event that enables supplementing or replacing the principal. For more information, see <xref:security/authentication/certauth>.
 
-[Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) has been extended onto Linux and macOS. In previous versions, Windows Authentication authentication was limited to [IIS](xref:host-and-deploy/iis/index) and [HttpSys](xref:fundamentals/servers/httpsys). In ASP.NET Core 3.0, [Kestrel](xref:fundamentals/servers/kestrel) has the ability to use Negotiate, [Kerberos](/windows-server/security/kerberos/kerberos-authentication-overview), and [NTLM on Windows](/windows-server/security/kerberos/ntlm-overview), Linux, and macOS for Windows domain joined hosts. Kestrel support of these authentication schemes is provide by the [Microsoft.AspNetCore.Authentication.Negotiate nuget](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package. As with the other authentication services, configure authentication app wide, then configure the service:
+[Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) has been extended onto Linux and macOS. In previous versions, Windows Authentication authentication was limited to [IIS](xref:host-and-deploy/iis/index) and [HttpSys](xref:fundamentals/servers/httpsys). In ASP.NET Core 3.0, [Kestrel](xref:fundamentals/servers/kestrel) has the ability to use Negotiate, [Kerberos](/windows-server/security/kerberos/kerberos-authentication-overview), and [NTLM on Windows](/windows-server/security/kerberos/ntlm-overview), Linux, and macOS for Windows domain joined hosts. Kestrel support of these authentication schemes is provided by the [Microsoft.AspNetCore.Authentication.Negotiate nuget](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package. As with the other authentication services, configure authentication app wide, then configure the service:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -136,7 +136,7 @@ For more information, see <xref:blazor/index>.
 
 See [Update SignalR code](xref:migration/22-to-30#update-signalr-code) for migration instructions.
 
-In the JavaScript and .NET Clients for SignalR, support was added for automatic reconnection. By default, the client tries to reconnect immediately and retry after 2, 10, and 30 seconds if necessary. If the client successfully reconnects, it will receive a new connection ID. Automatic reconnect is opt-in:
+In the JavaScript and .NET Clients for SignalR, support was added for automatic reconnection. By default, the client tries to reconnect immediately and retry after 2, 10, and 30 seconds if necessary. If the client successfully reconnects, it receives a new connection ID. Automatic reconnect is opt-in:
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -149,14 +149,24 @@ The reconnection intervals can be specified by passing an array of millisecond-b
 
 ```javascript
 .withAutomaticReconnect([0, 3000, 5000, 10000, 15000, 30000])
-//.withAutomaticReconnect([0, 2000, 10000, 30000]) The default behavior.
+//.withAutomaticReconnect([0, 2000, 10000, 30000]) The default intervals.
 ```
 
 A custom implementation can be passed in for full control of the reconnection intervals.
 
-If the reconnection fails after the 30-second point (or whatever is set as the maximum), the client presumes the connection is offline and stops trying to reconnect. During these reconnection attempts you’ll want to update your application UI to provide cues to the user that the reconnection is being attempted.
+If the reconnection fails after the maximum reconnect interval:
 
-To make providing these cues easier, we’ve expanded the SignalR client API to include `onreconnecting` and `onreconnected` event handlers. The first of these handlers, `onreconnecting`, gives developers a good opportunity to disable UI or to let users know the app is offline.
+* The client considers the connection is offline.
+* The client stops trying to reconnect.
+
+During reconnection attempts, update the app UI to notify the user that the reconnection is being attempted.
+
+To make providing cues easier, the SignalR client API has been expanded to include the following event handlers:
+
+* `onreconnecting`:  Gives developers a good opportunity to disable UI or to let users know the app is offline.
+* `onreconnected`: Gives developers an opportunity to update the UI once the connection is reestablished.
+
+The following code uses `onreconnecting` to update the UI while trying to connect:
 
 ```javascript
 connection.onreconnecting((error) => {
@@ -167,7 +177,7 @@ connection.onreconnecting((error) => {
 });
 ```
 
-Likewise, the `onreconnected` handler gives developers an opportunity to update the UI once the connection is reestablished.
+The following code uses `onreconnected` to update the UI on connection:
 
 ```javascript
 connection.onreconnected((connectionId) => {
@@ -178,9 +188,13 @@ connection.onreconnected((connectionId) => {
 });
 ```
 
-SignalR now provides a custom resource to authorization handlers when a hub method requires authorization. The resource is an instance of `HubInvocationContext`. The `HubInvocationContext` includes the `HubCallerContext`, the name of the hub method being invoked, and the arguments to the hub method.
+SignalR 3.0 and later provides a custom resource to authorization handlers when a hub method requires authorization. The resource is an instance of `HubInvocationContext`. The `HubInvocationContext` includes the:
 
-Consider the example of a chat room allowing multiple organization sign-in via Azure Active Directory. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization should be able to ban users or view users’ chat histories. Furthermore, we might want to restrict certain functionality from certain users. Using the updated features in Preview 7, this is entirely possible. Note how the `DomainRestrictedRequirement` serves as a custom `IAuthorizationRequirement`. Now that the `HubInvocationContext` resource parameter is being passed in, the internal logic can inspect the context in which the Hub is being called and make decisions on allowing the user to execute individual Hub methods.
+* `HubCallerContext`
+* Name of the hub method being invoked.
+* Arguments to the hub method.
+
+Consider the following example of a chat room app allowing multiple organization sign-in via Azure Active Directory. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization can ban users or view users’ chat histories. The app could restrict certain functionality from specific users.
 
 ```csharp
 public class DomainRestrictedRequirement :
@@ -216,7 +230,16 @@ public class DomainRestrictedRequirement :
 }
 ```
 
-Now, individual Hub methods can be decorated with the name of the policy the code will need to check at run-time. As clients attempt to call individual Hub methods, the `DomainRestrictedRequirement` handler will run and control access to the methods. Based on the way the `DomainRestrictedRequirement` controls access, all logged-in users should be able to call the `SendMessage` method, only users who’ve logged in with a `@jabbr.net` email address will be able to view users’ histories, and only `bob42@jabbr.net` will be able to ban users from the chat room.
+In the preceding code, `DomainRestrictedRequirement` serves as a custom `IAuthorizationRequirement`. Because the `HubInvocationContext` resource parameter is being passed in, the internal logic can:
+
+* Inspect the context in which the Hub is being called.
+* Make decisions on allowing the user to execute individual Hub methods.
+
+Individual Hub methods can be decorated with the name of the policy the code checks at run-time. As clients attempt to call individual Hub methods, the `DomainRestrictedRequirement` handler runs and controls access to the methods. Based on the way the `DomainRestrictedRequirement` controls access:
+
+* All logged-in users can call the `SendMessage` method.
+* Only users who have logged in with a `@jabbr.net` email address can view users’ histories.
+* Only `bob42@jabbr.net` can ban users from the chat room.
 
 ```csharp
 [Authorize]
@@ -238,7 +261,11 @@ public class ChatHub : Hub
 }
 ```
 
-Creating the `DomainRestricted` policy is as simple as wiring it up using the authorization middleware. In `Startup.cs`, add the new policy, providing the custom `DomainRestrictedRequirement` requirement as a parameter.
+Creating the `DomainRestricted` policy might involve:
+
+* In *Startup.cs*, adding the new policy.
+* Provide the custom `DomainRestrictedRequirement` requirement as a parameter.
+* Registering `DomainRestricted` with the authorization middleware.
 
 ```csharp
 services
@@ -251,7 +278,7 @@ services
     });
 ```
 
-We are hooking SignalR hubs into the new [Endpoint Routing](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing) feature recently released. SignalR hub wire-up was previously done explicitly:
+SignalR hubs use [Endpoint Routing](xref:fundamentals/routing). SignalR hub connection was previously done explicitly:
 
 ```csharp
 app.UseSignalR(routes =>
@@ -260,7 +287,7 @@ app.UseSignalR(routes =>
 });
 ```
 
-This meant developers would need to wire up controllers, Razor pages, and hubs in a variety of different places during startup, leading to a series of nearly-identical routing segments:
+In the previous version, developers needed to wire up controllers, Razor pages, and hubs in a variety of different places. Explicit connection results in a series of nearly-identical routing segments:
 
 ```csharp
 app.UseSignalR(routes =>
@@ -274,7 +301,7 @@ app.UseRouting(routes =>
 });
 ```
 
-Now, SignalR hubs can also be routed via endpoint routing, so you’ve got a one-stop place to route nearly everything in ASP.NET Core.
+SignalR 3.0 hubs can be routed via endpoint routing. With endpoint routing, typically all routing can be configured in `Startup.Configure`:
 
 ```csharp
 app.UseRouting(routes =>
@@ -284,9 +311,10 @@ app.UseRouting(routes =>
 });
 ```
 
-With ASP.NET Core SignalR we added Streaming support, which enables streaming return values from server-side methods. This is useful for when fragments of data will come in over a period of time.
+ASP.NET Core 3.0 SignalR added:
 
-With .NET Core 3.0 we’ve also added client-to-server streaming. With client-to-server streaming, your server-side methods can take instances of either an `IAsyncEnumerable<T>` or `ChannelReader<T>`. In the C# code sample below, the `UploadStream` method on the Hub will receive a stream of strings from the client.
+* Streaming support, which enables streaming return values from server-side methods. This is useful for when fragments of data will come in over a period of time.
+* Client-to-server streaming. With client-to-server streaming, server-side methods can take instances of either an `IAsyncEnumerable<T>` or `ChannelReader<T>`. In the following C# sample, the `UploadStream` method on the Hub will receive a stream of strings from the client:
 
 ```csharp
 public async Task UploadStream(IAsyncEnumerable<string> stream)
@@ -298,7 +326,7 @@ public async Task UploadStream(IAsyncEnumerable<string> stream)
 }
 ```
 
-.NET client applications can pass either an `IAsyncEnumerable<T>` or `ChannelReader<T>` instance as the `stream` argument of the `UploadStream` Hub method above.
+.NET client apps can pass either an `IAsyncEnumerable<T>` or `ChannelReader<T>` instance as the `stream` argument of the `UploadStream` Hub method above.
 
 ```csharp
 async IAsyncEnumerable<string> clientStreamData()
@@ -308,27 +336,27 @@ async IAsyncEnumerable<string> clientStreamData()
         var data = await FetchSomeData();
         yield return data;
     }
-    //After the for loop has completed and the local function exits the stream completion will be sent.
+    //After the for loop has completed and the local function exits the stream completion is sent.
 }
 
 await connection.SendAsync("UploadStream", clientStreamData());
 ```
 
-JavaScript client applications would use the SignalR `Subject` (or an RxJS Subject) for the `stream` argument of the `UploadStream` Hub method above.
+JavaScript client apps use the SignalR `Subject` (or an RxJS Subject) for the `stream` argument of the `UploadStream` Hub method above.
 
 ```javascript
 let subject = new signalR.Subject();
 await connection.send("StartStream", "MyAsciiArtStream", subject);
 ```
 
-The JavaScript code would then use the subject.next method to handle strings as they are captured and ready to be sent to the server.
+The JavaScript code could use the `subject.next` method to handle strings as they are captured and ready to be sent to the server.
 
 ```javascript
 subject.next("example");
 subject.complete();
 ```
 
-Using code like the two snippets above, you can create real-time streaming experiences.
+Using code like the two preceding snippets, real-time streaming experiences can be created.
 
 ## Generic Host
 
