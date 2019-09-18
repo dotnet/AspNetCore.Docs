@@ -13,7 +13,7 @@ uid: razor-pages/index
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Ryan Nowak](https://github.com/rynowak)
 
-Razor Pages can make coding page-focused scenarios easier and more productive that using controllers and views.
+Razor Pages can make coding page-focused scenarios easier and more productive than using controllers and views.
 
 If you're looking for a tutorial that uses the Model-View-Controller approach, see [Get started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
 
