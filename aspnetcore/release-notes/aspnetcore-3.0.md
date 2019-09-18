@@ -161,7 +161,7 @@ If the reconnection fails after the maximum reconnect interval:
 
 During reconnection attempts, update the app UI to notify the user that the reconnection is being attempted.
 
-To make providing cues easier, the SignalR client API has been expanded to include the following event handlers:
+To provide UI feedback when the connection is interrupted, the SignalR client API has been expanded to include the following event handlers:
 
 * `onreconnecting`:  Gives developers a good opportunity to disable UI or to let users know the app is offline.
 * `onreconnected`: Gives developers an opportunity to update the UI once the connection is reestablished.
