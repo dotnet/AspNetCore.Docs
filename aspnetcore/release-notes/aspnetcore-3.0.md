@@ -301,7 +301,7 @@ app.UseRouting(routes =>
 });
 ```
 
-SignalR 3.0 hubs can be routed via endpoint routing. With endpoint routing, typically all routing can be configured in `Startup.Configure`:
+SignalR 3.0 hubs can be routed via endpoint routing. With endpoint routing, typically all routing can be configured in `UseRouting`:
 
 ```csharp
 app.UseRouting(routes =>
