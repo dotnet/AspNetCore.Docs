@@ -12,6 +12,8 @@ uid: blazor/forms-validation
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 Forms and validation are supported in Blazor using [data annotations](xref:mvc/models/validation).
 
 > [!NOTE]

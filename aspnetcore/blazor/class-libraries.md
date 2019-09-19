@@ -12,6 +12,8 @@ uid: blazor/class-libraries
 
 By [Simon Timms](https://github.com/stimms)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. A *Razor components class library* can be included from:
 
 * Another project in the solution.

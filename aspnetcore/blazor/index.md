@@ -12,6 +12,8 @@ uid: blazor/index
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 *Welcome to Blazor!*
 
 Blazor is a framework for building interactive client-side web UI with .NET:
