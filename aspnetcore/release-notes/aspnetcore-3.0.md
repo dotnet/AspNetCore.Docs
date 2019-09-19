@@ -42,7 +42,15 @@ To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format 
 
 ## gRPC
 
-See <xref:grpc/index>.
+[gRPC](https://grpc.io/) is a popular, high-performance RPC (remote procedure call) framework that offers an opinionated contract-first approach to API development. It uses modern technologies such as HTTP/2 for transport, and Protocol Buffers as the interface description language and binary serialization format. gRPC provides features such as authentication, bidirectional streaming and flow control, and cancellation and timeouts.
+
+gRPC functionality in ASP.NET Core 3.0 includes:
+
+* [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) &ndash; An ASP.NET Core framework for hosting gRPC services. gRPC on ASP.NET Core integrates with standard ASP.NET Core features like logging, dependency injection (DI), authentication and authorization.
+* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) &ndash; A gRPC client for .NET Core that builds upon the familiar `HttpClient`.
+* [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) &ndash; gRPC client integration with `HttpClientFactory`.
+
+For more information, see <xref:grpc/index>.
 
 ## New Razor features
 
@@ -447,12 +455,12 @@ Health Checks endpoints can:
 
 For more information, see the following articles:
 
-* <xref:migration/22-to-30#health-checks>
+* <xref:migration/22-to-30#health-checks> <!-- ignore warning per @guardrex -->
 * <xref:host-and-deploy/health-checks>
 
 ## Pipes on HttpContext
 
-It is now possible to read the request body and write the response body using the <xref:System.IO.Pipelines> API. The <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader> property provides a <xref:System.IO.Pipelines.PipeReader> that can be used to read the request body. The <xref:Microsoft.AspNetCore.Http.HttpResponse.BodyWriter> property provides a <xref:System.IO.Pipelines.PipeWriter> that can be used to write the response body.
+It is now possible to read the request body and write the response body using the <xref:System.IO.Pipelines> API. The <!-- <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader> --> `HttpRequest.BodyReader` property provides a <xref:System.IO.Pipelines.PipeReader> that can be used to read the request body. The <!-- <xref:Microsoft.AspNetCore.Http.> --> `HttpResponse.BodyWriter` property provides a <xref:System.IO.Pipelines.PipeWriter> that can be used to write the response body.
 
 <!-- indirectly related, https://github.com/dotnet/docs/pull/14414 won't be published by 9/23  -->
 
