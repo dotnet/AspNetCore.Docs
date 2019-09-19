@@ -426,7 +426,7 @@ public class Program
 
 To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the *hostsettings.json* file, and the server listens on port 8080:
 
-```console
+```dotnetcli
 dotnet run --urls "http://*:8080"
 ```
 

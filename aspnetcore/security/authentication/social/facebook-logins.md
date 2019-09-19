@@ -58,7 +58,7 @@ Link sensitive settings like Facebook `App ID` and `App Secret` to your applicat
 
 Execute the following commands to securely store `App ID` and `App Secret` using Secret Manager:
 
-```console
+```dotnetcli
 dotnet user-secrets set Authentication:Facebook:AppId <app-id>
 dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
 ```

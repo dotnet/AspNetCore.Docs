@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 08/20/2019
+ms.date: 08/22/2019
 ms.custom: "mvc, seodec18"
 uid: razor-pages/ui-class
 ---
@@ -36,7 +36,7 @@ An RCL has the following project file:
 
 From the command line, run `dotnet new razorclasslib`. For example:
 
-```console
+```dotnetcli
 dotnet new razorclasslib -o RazorUIClassLib
 ```
 
@@ -71,13 +71,13 @@ Open the *.sln* file in Visual Studio. Run the app.
 
 From a command prompt in the *cli* directory, build the RCL and web app.
 
-```console
+```dotnetcli
 dotnet build
 ```
 
 Move to the *WebApp1* directory and run the app:
 
-```console
+```dotnetcli
 dotnet run
 ```
 
@@ -104,7 +104,7 @@ Create the RCL project:
 
 From the command line, run the following:
 
-```console
+```dotnetcli
 dotnet new razorclasslib -o RazorUIClassLib
 dotnet new page -n _Message -np -o RazorUIClassLib/Areas/MyFeature/Pages/Shared
 dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
@@ -132,7 +132,7 @@ The *_ViewStart.cshtml* file is required to use the layout of the Razor Pages pr
 
 `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including the `@addTagHelper` directive, you can add a *_ViewImports.cshtml* file. For example:
 
-```console
+```dotnetcli
 dotnet new viewimports -o RazorUIClassLib/Areas/MyFeature/Pages
 ```
 
@@ -140,7 +140,7 @@ For more information on *_ViewImports.cshtml*, see [Importing Shared Directives]
 
 * Build the class library to verify there are no compiler errors:
 
-```console
+```dotnetcli
 dotnet build RazorUIClassLib
 ```
 
@@ -170,7 +170,7 @@ Run the app.
 
 Create a Razor Pages web app and a solution file containing the Razor Pages app and the RCL:
 
-```console
+```dotnetcli
 dotnet new webapp -o WebApp1
 dotnet new sln
 dotnet sln add WebApp1
@@ -180,7 +180,7 @@ dotnet add WebApp1 reference RazorUIClassLib
 
 Build and run the web app:
 
-```console
+```dotnetcli
 cd WebApp1
 dotnet run
 ```
@@ -231,6 +231,39 @@ An RCL may require companion static assets that can be referenced by the consumi
 To include companion assets as part of an RCL, create a *wwwroot* folder in the class library and include any required files in that folder.
 
 When packing an RCL, all companion assets in the *wwwroot* folder are automatically included in the package.
+
+### Exclude static assets
+
+To exclude static assets, add the desired exclusion path to the `$(DefaultItemExcludes)` property group in the project file. Separate entries with a semicolon (`;`).
+
+In the following example, the *lib.css* stylesheet in the *wwwroot* folder isn't considered a static asset and isn't included in the published RCL:
+
+```xml
+<PropertyGroup>
+  <DefaultItemExcludes>$(DefaultItemExcludes);wwwroot\lib.css</DefaultItemExcludes>
+</PropertyGroup>
+```
+
+### Typescript integration
+
+To include TypeScript files in an RCL:
+
+1. Place the TypeScript files (*.ts*) outside of the *wwwroot* folder. For example, place the files in a *Client* folder.
+
+1. Configure the TypeScript build output for the *wwwroot* folder. Set the `TypescriptOutDir` property inside of a `PropertyGroup` in the project file:
+
+   ```xml
+   <TypescriptOutDir>wwwroot</TypescriptOutDir>
+   ```
+
+1. Include the TypeScript target as a dependency of the `ResolveCurrentProjectStaticWebAssets` target by adding the following target inside of a `PropertyGroup` in the project file:
+
+   ```xml
+   <ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
+     TypeScriptCompile;
+     $(ResolveCurrentProjectStaticWebAssetsInputs)
+   </ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
+   ```
 
 ### Consume content from a referenced RCL
 

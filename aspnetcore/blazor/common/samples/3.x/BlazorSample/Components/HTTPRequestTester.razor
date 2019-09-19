@@ -1,6 +1,6 @@
 @using Microsoft.AspNetCore.Blazor.Http
 @inject HttpClient Http
-@inject IUriHelper UriHelper
+@inject NavigationManager NavigationManager
 
 <h2>HTTP Request Tester</h2>
 
@@ -98,7 +98,7 @@
 
     protected override void OnInitialized()
     {
-        _requestReferrer = UriHelper.GetAbsoluteUri();
+        _requestReferrer = NavigationManager.Uri;
     }
 
     private async void DoRequest()

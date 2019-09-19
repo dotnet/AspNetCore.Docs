@@ -348,7 +348,7 @@ Within the same command, don't mix command-line argument key-value pairs that us
 
 Example commands:
 
-```console
+```dotnetcli
 dotnet run CommandLineKey1=value1 --CommandLineKey2=value2 /CommandLineKey3=value3
 dotnet run --CommandLineKey1 value1 /CommandLineKey2 value2
 dotnet run CommandLineKey1= CommandLineKey2=value2
@@ -396,7 +396,7 @@ After the switch mappings dictionary is created, it contains the data shown in t
 
 If the switch-mapped keys are used when starting the app, configuration receives the configuration value on the key supplied by the dictionary:
 
-```console
+```dotnetcli
 dotnet run -CLKey1=value1 -CLKey2=value2
 ```
 

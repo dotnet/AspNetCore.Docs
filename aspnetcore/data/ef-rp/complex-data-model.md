@@ -129,13 +129,16 @@ With the `[Column]` attribute, `Student.FirstMidName` in the data model maps to 
 
 The `Required` attribute makes the name properties required fields. The `Required` attribute isn't needed for non-nullable types such as value types (for example, `DateTime`, `int`, and `double`). Types that can't be null are automatically treated as required fields.
 
-The `Required` attribute could be replaced with a minimum length parameter in the `StringLength` attribute:
+The `Required` attribute must be used with `MinimumLength` for the `MinimumLength` to be enforced.
 
 ```csharp
 [Display(Name = "Last Name")]
-[StringLength(50, MinimumLength=1)]
+[Required]
+[StringLength(50, MinimumLength=2)]
 public string LastName { get; set; }
 ```
+
+`MinimumLength` and `Required` allow whitespace to satisfy the validation. Use the `RegularExpression` attribute for full control over the string.
 
 ### The Display attribute
 
@@ -189,7 +192,7 @@ SqliteException: SQLite Error 1: 'no such column: s.FirstName'.
 
 * Open a command window in the project folder. Enter the following commands to create a new migration and update the database:
 
-  ```console
+  ```dotnetcli
   dotnet ef migrations add ColumnFirstName
   dotnet ef database update
   ```
@@ -205,7 +208,7 @@ For this tutorial, the way to get past this error is to delete and re-create the
 * Delete the *Migrations* folder.
 * Run the following commands to drop the database, create a new initial migration, and apply the migration:
 
-  ```console
+  ```dotnetcli
   dotnet ef database drop --force
   dotnet ef migrations add InitialCreate
   dotnet ef database update
@@ -382,7 +385,7 @@ public ICollection<Course> Courses { get; set; }
 
 By convention, EF Core enables cascade delete for non-nullable FKs and for many-to-many relationships. This default behavior can result in circular cascade delete rules. Circular cascade delete rules cause an exception when a migration is added.
 
-For example, if the `Department.InstructorID` property was defined as non-nullable, EF Core would configure a cascade delete rule. In that case, the department would be deleted when the instructor assigned as its administrator is deleted. In this scenario, a restrict rule would make more sense. The following fluent API would set a restrict rule and disable cascade delete.
+For example, if the `Department.InstructorID` property was defined as non-nullable, EF Core would configure a cascade delete rule. In that case, the department would be deleted when the instructor assigned as its administrator is deleted. In this scenario, a restrict rule would make more sense. The following [fluent API](#fluent-api-alternative-to-attributes) would set a restrict rule and disable cascade delete.
 
   ```csharp
   modelBuilder.Entity<Department>()
@@ -604,13 +607,13 @@ To force EF Core to create a new database, drop and update the database:
 
 * Run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet ef database drop --force
   ```
 
 * Delete the *Migrations* folder, then run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet ef migrations add InitialCreate
   dotnet ef database update
   ```
@@ -698,7 +701,7 @@ Because the `DbInitializer.Initialize` method is designed to work only with an e
 
 * If you're using SQL Server LocalDB with Visual Studio Code, run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet ef database update
   ```
 
@@ -833,7 +836,7 @@ Update-Database
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-```console
+```dotnetcli
 dotnet ef migrations add ColumnFirstName
 dotnet ef database update
 ```
@@ -1086,7 +1089,7 @@ For example, if the `Department.InstructorID` property was defined as non-nullab
 
 * EF Core configures a cascade delete rule to delete the department when the instructor is deleted.
 * Deleting the department when the instructor is deleted isn't the intended behavior.
-* The following fluent API would set a restrict rule instead of cascade.
+* The following [fluent API](#fluent-api-alternative-to-attributes) would set a restrict rule instead of cascade.
 
    ```csharp
    modelBuilder.Entity<Department>()
@@ -1241,13 +1244,13 @@ Build the project.
 
 # [Visual Studio](#tab/visual-studio)
 
-```PMC
+```powershell
 Add-Migration ComplexDataModel
 ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-```console
+```dotnetcli
 dotnet ef migrations add ComplexDataModel
 ```
 
@@ -1298,10 +1301,10 @@ Open a command window and navigate to the project folder. The project folder con
 
 Enter the following in the command window:
 
- ```console
- dotnet ef database drop
+```dotnetcli
+dotnet ef database drop
 dotnet ef database update
- ```
+```
 
 ---
 
@@ -1351,7 +1354,7 @@ Update the `ComplexDataModel` classes `Up` method:
 
 Add the following highlighted code. The new code goes after the `.CreateTable( name: "Department"` block:
 
- [!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
+[!code-csharp[](intro/samples/cu/Migrations/20171027005808_ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=22-32)]
 
 With the preceding changes, existing `Course` rows will be related to the "Temp" department after the `ComplexDataModel` `Up` method runs.
 
@@ -1366,8 +1369,6 @@ The next tutorial covers related data.
 
 * [YouTube version of this tutorial(Part 1)](https://www.youtube.com/watch?v=0n2f0ObgCoA)
 * [YouTube version of this tutorial(Part 2)](https://www.youtube.com/watch?v=Je0Z5K1TNmY)
-
-
 
 > [!div class="step-by-step"]
 > [Previous](xref:data/ef-rp/migrations)

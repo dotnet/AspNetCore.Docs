@@ -116,7 +116,7 @@ Another option is to delete the database and use migrations to re-create the dat
 
 Delete the migration folder.  Use the following commands to recreate the database.
 
-```console
+```dotnetcli
 dotnet ef database drop
 dotnet ef migrations add InitialCreate
 dotnet ef database update
@@ -241,7 +241,7 @@ Another option is to delete the database and use migrations to re-create the dat
 
 Delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command:
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Net.Mime;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebApiSample.DataAccess.Models;
+using WebApiSample.Models;
 
 namespace WebApiSample.Controllers
 {
     #region snippet_Inherit
-    [Produces("application/json")]
+    [Produces(MediaTypeNames.Application.Json)]
     [Route("api/[controller]")]
     public class PetsController : MyControllerBase
     #endregion
@@ -19,15 +19,19 @@ namespace WebApiSample.Controllers
         {
             if (_petsInMemoryStore.Count == 0)
             {
-                _petsInMemoryStore.Add(new Pet { Breed = "Collie", Id = 1, Name = "Fido", PetType = PetType.Dog });
+                _petsInMemoryStore.Add(
+                    new Pet 
+                    { 
+                        Breed = "Collie", 
+                        Id = 1, 
+                        Name = "Fido", 
+                        PetType = PetType.Dog 
+                    });
             }
         }
 
         [HttpGet]
-        public ActionResult<List<Pet>> GetAll()
-        {
-            return _petsInMemoryStore;
-        }
+        public ActionResult<List<Pet>> GetAll() => _petsInMemoryStore;
 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -51,11 +55,11 @@ namespace WebApiSample.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<Pet> Create(Pet pet)
         {
-            pet.Id = _petsInMemoryStore.Any() ? _petsInMemoryStore.Max(p => p.Id) + 1 : 1;
+            pet.Id = _petsInMemoryStore.Any() ? 
+                     _petsInMemoryStore.Max(p => p.Id) + 1 : 1;
             _petsInMemoryStore.Add(pet);
 
-            return CreatedAtAction(nameof(GetById),
-                new { id = pet.Id }, pet);
+            return CreatedAtAction(nameof(GetById), new { id = pet.Id }, pet);
         }
         #endregion
     }

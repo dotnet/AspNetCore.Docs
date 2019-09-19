@@ -7,6 +7,7 @@ ms.custom: H1Hack27Feb2017
 ms.date: 8/22/2019
 uid: web-api/advanced/formatting
 ---
+<!-- DO NOT EDIT BEFORE https://github.com/aspnet/AspNetCore.Docs/pull/12077 MERGES -->
 # Format response data in ASP.NET Core Web API
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
@@ -120,9 +121,30 @@ When using the preceding code, controller methods should return the appropriate 
 
 ### Configure System.Text.Json-based formatters
 
-Features for the `System.Text.Json`-based formatters can be configured using `AddJsonOptions`:
+Features for the `System.Text.Json`-based formatters can be configured using `Microsoft.AspNetCore.Mvc.JsonOptions.SerializerOptions`.
 
-[!code-csharp[](./formatting/3.0sample/StartupSerializerOptions.cs?name=snippet)]
+```csharp
+services.AddControllers().AddJsonOptions(options =>
+{
+    // Use the default property (Pascal) casing.
+    options.SerializerOptions.PropertyNamingPolicy = null;
+
+    // Configure a custom converter.
+    options.SerializerOptions.Converters.Add(new MyCustomJsonConverter());
+});
+```
+
+Output serialization options, on a per-action basis, can be configured using `JsonResult`. For example:
+
+```csharp
+public IActionResult Get()
+{
+    return Json(model, new JsonSerializerOptions
+    {
+        options.WriteIndented = true,
+    });
+}
+```
 
 ### Add Newtonsoft.Json-based JSON format support
 
@@ -137,6 +159,31 @@ Some features may not work well with `System.Text.Json`-based formatters and req
 * Relies on features that `Newtonsoft.Json` provides.
 * Configures `Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings`. Prior to ASP.NET Core 3.0, `JsonResult.SerializerSettings` accepts an instance of `JsonSerializerSettings` that is specific to `Newtonsoft.Json`.
 * Generates [OpenAPI](<xref:tutorials/web-api-help-pages-using-swagger>) documentation.
+
+Features for the `Newtonsoft.Json`-based formatters can be configured using `Microsoft.AspNetCore.Mvc.MvcNewtonsoftJsonOptions.SerializerSettings`:
+
+```csharp
+services.AddControllers().AddNewtonsoftJson(options =>
+{
+    // Use the default property (Pascal) casing
+    options.SerializerSettings.ContractResolver = new DefautlContractResolver();
+
+    // Configure a custom converter
+    options.SerializerOptions.Converters.Add(new MyCustomJsonConverter());
+});
+```
+
+Output serialization options, on a per-action basis, can be configured using `JsonResult`. For example:
+
+```csharp
+public IActionResult Get()
+{
+    return Json(model, new JsonSerializerSettings
+    {
+        options.Formatting = Formatting.Indented,
+    });
+}
+```
 
 ::: moniker-end
 

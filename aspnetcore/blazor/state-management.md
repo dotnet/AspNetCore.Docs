@@ -1,18 +1,18 @@
 ---
 title: ASP.NET Core Blazor state management
 author: guardrex
-description: Learn how to persist state in Blazor server-side apps.
+description: Learn how to persist state in Blazor Server apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/13/2019
+ms.date: 09/05/2019
 uid: blazor/state-management
 ---
 # ASP.NET Core Blazor state management
 
 By [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-Blazor server-side is a stateful app framework. Most of the time, the app maintains an ongoing connection to the server. The user's state is held in the server's memory in a *circuit*. 
+Blazor Server is a stateful app framework. Most of the time, the app maintains an ongoing connection to the server. The user's state is held in the server's memory in a *circuit*. 
 
 Examples of state held for a user's circuit include:
 
@@ -21,7 +21,7 @@ Examples of state held for a user's circuit include:
 * Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit.
 
 > [!NOTE]
-> This article addresses state persistence in Blazor server-side apps. Blazor client-side apps can take advantage of [client-side state persistence in the browser](#client-side-in-the-browser) but require custom solutions or 3rd party packages beyond the scope of this article.
+> This article addresses state persistence in Blazor Server apps. Blazor WebAssembly apps can take advantage of [client-side state persistence in the browser](#client-side-in-the-browser) but require custom solutions or 3rd party packages beyond the scope of this article.
 
 ## Blazor circuits
 
@@ -56,7 +56,7 @@ It's usually not necessary to preserve easily-recreated state, such as the usern
 
 ## Where to persist state
 
-Three common locations exist for persisting state in a Blazor server-side app. Each approach is best suited to different scenarios and has different caveats:
+Three common locations exist for persisting state in a Blazor Server app. Each approach is best suited to different scenarios and has different caveats:
 
 * [Server-side in a database](#server-side-in-a-database)
 * [URL](#url)
@@ -94,7 +94,7 @@ For information on defining URL patterns with the `@page` directive, see <xref:b
 For transient data that the user is actively creating, a common backing store is the browser's `localStorage` and `sessionStorage` collections. The app isn't required to manage or clear the stored state if the circuit is abandoned, which is an advantage over server-side storage.
 
 > [!NOTE]
-> "Client-side" in this section refers to client-side scenarios in the browser, not the [Blazor client-side hosting model](xref:blazor/hosting-models#client-side). `localStorage` and `sessionStorage` can be used in Blazor client-side apps but only by writing custom code or using a 3rd party package.
+> "Client-side" in this section refers to client-side scenarios in the browser, not the [Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-webassembly). `localStorage` and `sessionStorage` can be used in Blazor WebAssembly apps but only by writing custom code or using a 3rd party package.
 
 `localStorage` and `sessionStorage` differ as follows:
 
@@ -112,7 +112,7 @@ Caveats for using browser storage:
 
 * Similar to the use of a server-side database, loading and saving data are asynchronous.
 * Unlike a server-side database, storage isn't available during prerendering because the requested page doesn't exist in the browser during the prerendering stage.
-* Storage of a few kilobytes of data is reasonable to persist for Blazor server-side apps. Beyond a few kilobytes, you must consider the performance implications because the data is loaded and saved across the network.
+* Storage of a few kilobytes of data is reasonable to persist for Blazor Server apps. Beyond a few kilobytes, you must consider the performance implications because the data is loaded and saved across the network.
 * Users may view or tamper with the data. ASP.NET Core [Data Protection](xref:security/data-protection/introduction) can mitigate the risk.
 
 ## Third-party browser storage solutions
@@ -132,7 +132,7 @@ An example of a NuGet package that provides [Data Protection](xref:security/data
 
 To install the `Microsoft.AspNetCore.ProtectedBrowserStorage` package:
 
-1. In the Blazor server-side app project, add a package reference to [Microsoft.AspNetCore.ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
+1. In the Blazor Server app project, add a package reference to [Microsoft.AspNetCore.ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
 1. In the top-level HTML (for example, in the *Pages/_Host.cshtml* file in the default project template), add the following `<script>` tag:
 
    ```html
@@ -231,10 +231,7 @@ During prerendering:
 
 One way to resolve the error is to disable prerendering. This is usually the best choice if the app makes heavy use of browser-based storage. Prerendering adds complexity and doesn't benefit the app because the app can't prerender any useful content until `localStorage` or `sessionStorage` are available.
 
-To disable prerendering:
-
-1. Open the *Pages/_Host.cshtml* file and remove the call to `Html.RenderComponentAsync`.
-1. Open the `Startup.cs` file and replace the call to `endpoints.MapBlazorHub()` with `endpoints.MapBlazorHub<App>("app")`. `App` is the type of the root component. `"app"` is a CSS selector specifying the location for the root component.
+To disable prerendering, open the *Pages/_Host.cshtml* file and change the call to `Html.RenderComponentAsync<App>(RenderMode.Server)`.
 
 Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`. To keep prerendering enabled, defer the loading operation until the browser is connected to the circuit. The following is an example for storing a counter value:
 
@@ -265,12 +262,12 @@ Prerendering might be useful for other pages that don't use `localStorage` or `s
         }
     }
 
-    protected override async Task OnAfterRenderAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         // By this stage, the client has connected back to the server, and
         // browser services are available. If the app didn't load the data earlier,
         // the app should do so now and then trigger a new render.
-        if (isWaitingForConnection)
+        if (firstRender && isWaitingForConnection)
         {
             isWaitingForConnection = false;
             await LoadStateAsync();

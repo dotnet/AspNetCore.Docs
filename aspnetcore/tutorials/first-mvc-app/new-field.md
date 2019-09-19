@@ -35,7 +35,9 @@ Build the app
 
 ### [Visual Studio Code](#tab/visual-studio-code)
 
-`dotnet build`
+```dotnetcli
+dotnet build
+```
 
 ### [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -69,7 +71,7 @@ You can copy/paste the previous "form group" and let intelliSense help you updat
 
 ---
 
-Update the the remaining templates.
+Update the remaining templates.
 
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
 
@@ -116,7 +118,7 @@ If all the records in the DB are deleted, the initialize method will seed the DB
 
 Delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command:
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 

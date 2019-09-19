@@ -158,7 +158,7 @@ Update-Database -Context MyKeysContext
 
 Execute the following commands in a command shell:
 
-```console
+```dotnetcli
 dotnet ef migrations add AddDataProtectionKeys --context MyKeysContext
 dotnet ef database update --context MyKeysContext
 ```

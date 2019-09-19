@@ -65,7 +65,7 @@ At the end, you'll have a working chat app:
 
 * Run the following commands:
 
-   ```console
+   ```dotnetcli
    dotnet new webapp -o SignalRChat
    code -r SignalRChat
    ```
@@ -107,7 +107,7 @@ The SignalR server library is included in the ASP.NET Core 3.0 shared framework.
 
 * In the integrated terminal, run the following command to install LibMan.
 
-  ```console
+  ```dotnetcli
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
@@ -134,7 +134,7 @@ The SignalR server library is included in the ASP.NET Core 3.0 shared framework.
 
 * In the **Terminal**, run the following command to install LibMan.
 
-  ```console
+  ```dotnetcli
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
@@ -217,7 +217,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 * In the integrated terminal, run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet run -p SignalRChat.csproj
   ```
 
@@ -239,7 +239,8 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 > * If the app doesn't work, open your browser developer tools (F12) and go to the console. You might see errors related to your HTML and JavaScript code. For example, suppose you put *signalr.js* in a different folder than directed. In that case the reference to that file won't work and you'll see a 404 error in the console.
 >   ![signalr.js not found error](signalr/_static/3.x/f12-console.png)
 > * If you get the error ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY in Chrome or NS_ERROR_NET_INADEQUATE_SECURITY in Firefox, run these commands to update your development certificate:
->   ```
+>
+>   ```dotnetcli
 >   dotnet dev-certs https --clean
 >   dotnet dev-certs https --trust
 >   ```
@@ -306,7 +307,7 @@ At the end, you'll have a working chat app:
 
 * Run the following commands:
 
-   ```console
+   ```dotnetcli
    dotnet new webapp -o SignalRChat
    code -r SignalRChat
    ```
@@ -349,7 +350,7 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
 
 * In the integrated terminal, run the following command to install LibMan.
 
-  ```console
+  ```dotnetcli
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
@@ -376,7 +377,7 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
 
 * In the **Terminal**, run the following command to install LibMan.
 
-  ```console
+  ```dotnetcli
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
@@ -459,7 +460,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 * In the integrated terminal, run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet run -p SignalRChat.csproj
   ```
 

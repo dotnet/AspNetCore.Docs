@@ -32,7 +32,7 @@ This tutorial shows how to create an ASP.NET Core web app with user data protect
 * **Managers** can approve or reject contact data. Only approved contacts are visible to users.
 * **Administrators** can approve/reject and edit/delete any data.
 
-The images in this document exactly don't match the latest templates.
+The images in this document don't exactly match the latest templates.
 
 In the following image, user Rick (`rick@example.com`) is signed in. Rick can only view approved contacts and **Edit**/**Delete**/**Create New** links for his contacts. Only the last record, created by Rick, displays **Edit** and **Delete** links. Other users won't see the last record until a manager or administrator changes the status to "Approved".
 
@@ -98,7 +98,7 @@ Use the ASP.NET [Identity](xref:security/authentication/identity) user ID to ens
 
 Create a new migration and update the database:
 
-```console
+```dotnetcli
 dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
@@ -125,7 +125,7 @@ Add [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymo
 
 The `SeedData` class creates two accounts: administrator and manager. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for these accounts. Set the password from the project directory (the directory containing *Program.cs*):
 
-```console
+```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
 ```
 
@@ -274,7 +274,7 @@ If you haven't already set a password for seeded user accounts, use the [Secret 
 * Choose a strong password: Use eight or more characters and at least one upper-case character, number, and symbol. For example, `Passw0rd!` meets the strong password requirements.
 * Execute the following command from the project's folder, where `<PW>` is the password:
 
-  ```console
+  ```dotnetcli
   dotnet user-secrets set SeedUserPW <PW>
   ```
 
@@ -305,7 +305,7 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
   * Name it "ContactManager" so the namespace matches the namespace used in the sample.
   * `-uld` specifies LocalDB instead of SQLite
 
-  ```console
+  ```dotnetcli
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
@@ -316,14 +316,14 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
 * Scaffold the `Contact` model.
 * Create initial migration and update the database:
 
-```console
+```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet tool install -g dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries
 dotnet ef database drop -f
 dotnet ef migrations add initial
 dotnet ef database update
-  ```
+```
 
 If you experience a bug with the `dotnet aspnet-codegenerator razorpage` command, see [this GitHub issue](https://github.com/aspnet/Scaffolding/issues/984).
 
@@ -421,7 +421,7 @@ Use the ASP.NET [Identity](xref:security/authentication/identity) user ID to ens
 
 Create a new migration and update the database:
 
-```console
+```dotnetcli
 dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
@@ -448,7 +448,7 @@ Add [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymo
 
 The `SeedData` class creates two accounts: administrator and manager. Use the [Secret Manager tool](xref:security/app-secrets) to set a password for these accounts. Set the password from the project directory (the directory containing *Program.cs*):
 
-```console
+```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
 ```
 
@@ -470,7 +470,7 @@ Add the administrator user ID and `ContactStatus` to the contacts. Make one of t
 
 ## Create owner, manager, and administrator authorization handlers
 
-Create a `ContactIsOwnerAuthorizationHandler` class in the *Authorization* folder. The `ContactIsOwnerAuthorizationHandler` verifies that the user acting on a resource owns the resource.
+Create an *Authorization* folder and create a `ContactIsOwnerAuthorizationHandler` class in it. The `ContactIsOwnerAuthorizationHandler` verifies that the user acting on a resource owns the resource.
 
 [!code-csharp[](secure-data/samples/final2.1/Authorization/ContactIsOwnerAuthorizationHandler.cs)]
 
@@ -597,16 +597,16 @@ If you haven't already set a password for seeded user accounts, use the [Secret 
 * Choose a strong password: Use eight or more characters and at least one upper-case character, number, and symbol. For example, `Passw0rd!` meets the strong password requirements.
 * Execute the following command from the project's folder, where `<PW>` is the password:
 
-  ```console
+  ```dotnetcli
   dotnet user-secrets set SeedUserPW <PW>
   ```
 
 * Drop and update the Database
 
-    ```console
-     dotnet ef database drop -f
-     dotnet ef database update  
-     ```
+  ```dotnetcli
+  dotnet ef database drop -f
+  dotnet ef database update  
+  ```
 
 * Restart the app to seed the database.
 
@@ -632,7 +632,7 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
   * Name it "ContactManager" so the namespace matches the namespace used in the sample.
   * `-uld` specifies LocalDB instead of SQLite
 
-  ```console
+  ```dotnetcli
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
@@ -643,7 +643,7 @@ Create a contact in the administrator's browser. Copy the URL for delete and edi
 * Scaffold the `Contact` model.
 * Create initial migration and update the database:
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Contact -udl -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries
   dotnet ef database drop -f
   dotnet ef migrations add initial

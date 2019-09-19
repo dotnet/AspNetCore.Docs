@@ -40,10 +40,10 @@ namespace KestrelSample
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .ConfigureKestrel((context, options) =>
+                .ConfigureKestrel((context, serverOptions) =>
                 {
-                    options.Listen(IPAddress.Loopback, 5000);
-                    options.Listen(IPAddress.Loopback, 5001, listenOptions =>
+                    serverOptions.Listen(IPAddress.Loopback, 5000);
+                    serverOptions.Listen(IPAddress.Loopback, 5001, listenOptions =>
                     {
                         listenOptions.UseHttps("testCert.pfx", "testPassword");
                     });
@@ -59,10 +59,10 @@ namespace KestrelSample
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 #region snippet_UnixSocket
-                .ConfigureKestrel((context, options) =>
+                .ConfigureKestrel((context, serverOptions) =>
                 {
-                    options.ListenUnixSocket("/tmp/kestrel-test.sock");
-                    options.ListenUnixSocket("/tmp/kestrel-test.sock", listenOptions =>
+                    serverOptions.ListenUnixSocket("/tmp/kestrel-test.sock");
+                    serverOptions.ListenUnixSocket("/tmp/kestrel-test.sock", listenOptions =>
                     {
                         listenOptions.UseHttps("testCert.pfx", "testpassword");
                     });
@@ -76,15 +76,16 @@ namespace KestrelSample
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseLibuv()
                 .UseStartup<Startup>()
                 #region snippet_FileDescriptor
-                .ConfigureKestrel((context, options) =>
+                .ConfigureKestrel((context, serverOptions) =>
                 {
                     var fds = Environment.GetEnvironmentVariable("SD_LISTEN_FDS_START");
-                    ulong fd = ulong.Parse(fds);
+                    var fd = ulong.Parse(fds);
 
-                    options.ListenHandle(fd);
-                    options.ListenHandle(fd, listenOptions =>
+                    serverOptions.ListenHandle(fd);
+                    serverOptions.ListenHandle(fd, listenOptions =>
                     {
                         listenOptions.UseHttps("testCert.pfx", "testpassword");
                     });
@@ -100,22 +101,22 @@ namespace KestrelSample
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 #region snippet_Limits
-                .ConfigureKestrel((context, options) =>
+                .ConfigureKestrel((context, serverOptions) =>
                 {
-                    options.Limits.MaxConcurrentConnections = 100;
-                    options.Limits.MaxConcurrentUpgradedConnections = 100;
-                    options.Limits.MaxRequestBodySize = 10 * 1024;
-                    options.Limits.MinRequestBodyDataRate =
+                    serverOptions.Limits.MaxConcurrentConnections = 100;
+                    serverOptions.Limits.MaxConcurrentUpgradedConnections = 100;
+                    serverOptions.Limits.MaxRequestBodySize = 10 * 1024;
+                    serverOptions.Limits.MinRequestBodyDataRate =
                         new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
-                    options.Limits.MinResponseDataRate =
+                    serverOptions.Limits.MinResponseDataRate =
                         new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(10));
-                    options.Listen(IPAddress.Loopback, 5000);
-                    options.Listen(IPAddress.Loopback, 5001, listenOptions =>
+                    serverOptions.Listen(IPAddress.Loopback, 5000);
+                    serverOptions.Listen(IPAddress.Loopback, 5001, listenOptions =>
                     {
                         listenOptions.UseHttps("testCert.pfx", "testPassword");
                     });
-                    options.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
-                    options.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(1);
+                    serverOptions.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
+                    serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(1);
                 });
                 #endregion
 #elif Port0
@@ -128,9 +129,9 @@ namespace KestrelSample
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 #region snippet_Port0
-                .ConfigureKestrel((context, options) =>
+                .ConfigureKestrel((context, serverOptions) =>
                 {
-                    options.Listen(IPAddress.Loopback, 0);
+                    serverOptions.Listen(IPAddress.Loopback, 0);
                 });
                 #endregion
 #elif SyncIO
@@ -143,9 +144,9 @@ namespace KestrelSample
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 #region snippet_SyncIO
-                .ConfigureKestrel((context, options) =>
+                .ConfigureKestrel((context, serverOptions) =>
                 {
-                    options.AllowSynchronousIO = true;
+                    serverOptions.AllowSynchronousIO = true;
                 });
                 #endregion
 #endif
