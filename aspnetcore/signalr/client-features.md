@@ -23,6 +23,6 @@ The table below illustrates the matrix of features and their support across the 
 ## Additional resources
 
 * [Get started with SignalR for ASP.NET Core](xref:tutorials/signalr)
-* [Supported Platforms](xref:signalr/supported-platforms)
+* [Supported platforms](xref:signalr/supported-platforms)
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)
