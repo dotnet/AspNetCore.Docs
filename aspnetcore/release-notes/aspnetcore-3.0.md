@@ -414,6 +414,16 @@ Using code like the two preceding snippets, real-time streaming experiences can 
 
 The ASP.NET Core 3.0 templates use <xref:fundamentals/host/generic-host>. Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that are not web specific.
 
+The following two images show the changes made to the template generated *Program.cs* file:
+
+ ![2.2 version](aspnetcore-3.0/_static/2.2host.png)
+ ![3.0 version](aspnetcore-3.0/_static/3.0host.png)
+
+In the preceding images:
+
+* The ASP.NET Core 2.2 version is shown first. The red boxes indicate code that has been removed in the 3.0 version.
+* The ASP.NET Core 3.0 version is shown second. The green boxes indicate code that has been added. The 3.0 version requires `using Microsoft.Extensions.Hosting;`.
+
 ## Host configuration and options
 
 Host builder configuration is provided by <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*>:
