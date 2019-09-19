@@ -1,0 +1,65 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Message System";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<!-- <snippet_Quote> -->
+<input id="quote" type="hidden" value="@Model.Quote">
+<!-- </snippet_Quote> -->
+
+<form id="addMessage" method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Add a message</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label asp-for="Message.Text"></label>
+                <input asp-for="Message.Text" class="form-control" style="width:100%">
+                <span asp-validation-for="Message.Text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button id="addMessageBtn" type="submit" asp-page-handler="AddMessage" class="btn btn-default">Add Message</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form id="messages" method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <button id="deleteAllBtn" type="submit" asp-page-handler="DeleteAllMessages" class="pull-right btn btn-danger">Clear All</button>
+            <h3 class="panel-title" style="line-height:2.1">Messages</h3>
+        </div>
+        <div class="panel-body">
+            <ul>
+                @foreach (var message in Model.Messages)
+                {
+                    <li style="line-height:2.5">
+                        <button id="deleteBtn@(message.Id)" type="submit" class="btn btn-danger" style="margin-bottom:2px" asp-page-handler="DeleteMessage" asp-route-id="@message.Id">Delete</button>
+                        @message.Text
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</form>
+
+<form id="analyze" method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Analyze Messages</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <button id="analyzeBtn" type="submit" asp-page-handler="AnalyzeMessages" class="btn btn-default">Analyze</button>
+            </div>
+            <div class="form-group">
+                @Model.MessageAnalysisResult
+            </div>
+        </div>
+    </div>
+</form>
