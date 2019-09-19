@@ -473,7 +473,7 @@ For more information, see the following articles:
 
 For more information, see <xref:migration/22-to-30>.
 
-## Hosting EventSourceProvider new request counters
+## Request counters
 
 The Hosting EventSource (Microsoft.AspNetCore.Hosting) emits the following EventCounters related to incoming requests:
 
