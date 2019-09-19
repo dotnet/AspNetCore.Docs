@@ -11,12 +11,6 @@ uid: aspnetcore-3.0
 
 This article highlights the most significant changes in ASP.NET Core 3.0 with links to relevant documentation.
 
-## ASP.NET Core 3.0 only runs on .NET Core 3.0
-
-As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://www.microsoft.com/net/download/dotnet-core/2.1). ASP.NET Core 2.1 is supported until August 21, 2021. For more information, see [this GitHub announcement](https://github.com/aspnet/Announcements/issues/324).
-
-See [Port your code from .NET Framework to .NET Core](/dotnet/core/porting/) for migration information.
-
 ## Use the ASP.NET Core shared framework
 
 The [ASP.NET Core 3.0 shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/), contained in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), no longer requires an explicit `<PackageReference />` element in the project file. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in your project file:
@@ -44,6 +38,8 @@ ASP.NET Core 3.0 includes `System.Text.Json`:
 * Is optimized for UTF-8 text.
 * Typically higher performance than `Newtonsoft.Json`.
 
+To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support).
+
 ## gRPC
 
 See <xref:grpc/index>.
@@ -52,9 +48,8 @@ See <xref:grpc/index>.
 
 The following list contains new Razor features:
 
-* [@attribute](xref:mvc/views/razor#attribute) &ndash; The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@Attribute [Authorize]`.
+* [@attribute](xref:mvc/views/razor#attribute) &ndash; The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@attribute [Authorize]`.
 * [@implements](xref:mvc/views/razor#implements) &ndash; The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
-* [@page](xref:mvc/views/razor#page) &ndash; The `@page` directive has different effects depending on the type of the file where it appears. In a *.cshtml* file, `@page` indicates that the file is a Razor Page. In a *.razor* file, `@page` specifies that a Razor component should handle requests directly.
 
 ## Certificate and Kerberos authentication
 
@@ -134,7 +129,7 @@ For more information, see <xref:blazor/index>.
 
 ## SignalR
 
-See [Update SignalR code](xref:migration/22-to-30#update-signalr-code) for migration instructions.
+See [Update SignalR code](xref:migration/22-to-30#update-signalr-code) for migration instructions. [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson) has instructions for migrating to `System.Text.Json`.
 
 In the JavaScript and .NET Clients for SignalR, support was added for automatic reconnection. By default, the client tries to reconnect immediately and retry after 2, 10, and 30 seconds if necessary. If the client successfully reconnects, it receives a new connection ID. Automatic reconnect is opt-in:
 
@@ -468,6 +463,16 @@ See https://github.com/aspnet/AspNetCore.Docs/issues/14269
 In previous versions, calling <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> and  <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> were problematic when deployed to an Azure Linux or behind any reverse proxy other than IIS. The fix for previous versions is documented in [Forward the scheme for Linux and non-IIS reverse proxies](xref:host-and-deploy/proxy-load-balancer#forward-the-scheme-for-linux-and-non-iis-reverse-proxies).
 
 In ASP.NET Core 3.0, this problem has been fixed. The host enables the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable has been set to `true`.
+
+## HTTP/2 enabled by default
+
+HTTP/2 is enabled by default in Kestrel for HTTPS endpoints. HTTP/2 support when using IIS or HttpSysServer is enabled, when supported by the operating system.
+
+## ASP.NET Core 3.0 only runs on .NET Core 3.0
+
+As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://www.microsoft.com/net/download/dotnet-core/2.1). ASP.NET Core 2.1 is supported until August 21, 2021. For more information, see [this GitHub announcement](https://github.com/aspnet/Announcements/issues/324).
+
+See [Port your code from .NET Framework to .NET Core](/dotnet/core/porting/) for migration information.
 
 ## Additional information
 
