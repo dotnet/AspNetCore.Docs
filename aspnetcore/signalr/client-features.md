@@ -12,7 +12,7 @@ uid: signalr/client-features
 
 ## Feature distribution
 
-The table below illustrates the matrix of features and their support across the clients that offer real-time support to various platforms. 
+The table below shows the features and support for the clients that offer real-time support.
 
 | Feature | .NET Core | JavaScript | Java |
 | ---- | :-: | :-: | :-: |
