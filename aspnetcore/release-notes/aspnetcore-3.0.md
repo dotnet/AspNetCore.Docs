@@ -516,7 +516,7 @@ It is now possible to read the request body and write the response body using th
 
 ## Improved error reporting in IIS
 
-Startup errors when hosting ASP.NET Core application in IIS now produce richer diagnostic data. These errors are now reported to the Windows Event Log with stack traces wherever applicable. In addition, all warnings, errors, and unhandled exceptions are also logged to the Windows Event Log.
+Startup errors when hosting ASP.NET Core apps in IIS now produce richer diagnostic data. These errors are reported to the Windows Event Log with stack traces wherever applicable. In addition, all warnings, errors, and unhandled exceptions are logged to the Windows Event Log.
 
 ## Worker service and SDK
 
