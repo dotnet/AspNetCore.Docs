@@ -1,5 +1,5 @@
 ---
-title: SignalR Client Features
+title: SignalR client features
 author: bradygaster
 description: Features as supported by the various ASP.NET Core SignalR clients.
 monikerRange: '>= aspnetcore-3.0'
