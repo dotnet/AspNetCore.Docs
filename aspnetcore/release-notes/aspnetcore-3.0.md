@@ -514,6 +514,10 @@ It is now possible to read the request body and write the response body using th
 
 <!-- indirectly related, https://github.com/dotnet/docs/pull/14414 won't be published by 9/23  -->
 
+## Improved error reporting in IIS
+
+Startup errors when hosting ASP.NET Core application in IIS now produce richer diagnostic data. These errors are now reported to the Windows Event Log with stack traces wherever applicable. In addition, all warnings, errors, and unhandled exceptions are also logged to the Windows Event Log.
+
 ## Worker service and SDK
 
 See https://github.com/aspnet/AspNetCore.Docs/issues/14269
