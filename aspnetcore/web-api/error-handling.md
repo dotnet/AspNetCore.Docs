@@ -1,13 +1,14 @@
 ---
-title: Handle errors in web APIs
+title: Handle errors in ASP.NET Core web APIs
 author: pranavkm
-description: Learn about error handling with web APIs.
+description: Learn about error handling with ASP.NET Core web APIs.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: prkrishn
 ms.custom: mvc
 ms.date: 09/18/2019
 uid: web-api/error-handling
 ---
-# Handle errors in web APIs
+# Handle errors in ASP.NET Core web APIs
 
 This article describes how to handle and customize error handling with ASP.NET Core web APIs.
 
@@ -167,7 +168,7 @@ The contents of the response can be modified from outside of the controller. In 
 
 ## Validation failure error response
 
-For web API controllers, MVC responds with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> response type when model validation fails. MVC uses the results of <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> to construct the error response for a validation failure. The following example uses the factory to change the default response type to <xref:Microsoft.AspNetCore.Mvc.SerializableError>:
+For web API controllers, MVC responds with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> response type when model validation fails. MVC uses the results of <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> to construct the error response for a validation failure. The following example uses the factory to change the default response type to <xref:Microsoft.AspNetCore.Mvc.SerializableError> in `Startup.ConfigureServices`:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -181,6 +182,29 @@ For web API controllers, MVC responds with a <xref:Microsoft.AspNetCore.Mvc.Vali
 
 ::: moniker-end
 
+::: moniker range="= aspnetcore-2.1"
+
+```csharp
+services.AddMvc()
+    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        var result = new BadRequestObjectResult(context.ModelState);
+
+        // TODO: add `using using System.Net.Mime;` to resolve MediaTypeNames
+        result.ContentTypes.Add(MediaTypeNames.Application.Json);
+        result.ContentTypes.Add(MediaTypeNames.Application.Xml);
+
+        return result;
+    };
+});
+```
+
+::: moniker-end
+
 ## Client error response
 
 An *error result* is defined as a result with an HTTP status code of 400 or higher. For web API controllers, MVC transforms an error result to a result with <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
@@ -189,8 +213,22 @@ An *error result* is defined as a result with an HTTP status code of 400 or high
 
 The error response can be configured in one of the following ways:
 
-1. [Use ApiBehaviorOptions.ClientErrorMapping](#use-apibehavioroptionsclienterrormapping)
 1. [Implement ProblemDetailsFactory](#implement-problemdetailsfactory)
+1. [Use ApiBehaviorOptions.ClientErrorMapping](#use-apibehavioroptionsclienterrormapping)
+
+### Implement ProblemDetailsFactory
+
+MVC uses `Microsoft.AspNetCore.Mvc.ProblemDetailsFactory` to produce all instances of <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> and <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. This includes client error responses, validation failure error responses, and the `Microsoft.AspNetCore.Mvc.ControllerBase.Problem` and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem> helper methods.
+
+To customize the problem details response, register a custom implementation of `ProblemDetailsFactory` in `Startup.ConfigureServices`:
+
+```csharp
+public void ConfigureServices(IServiceCollection serviceCollection)
+{
+    services.AddControllers();
+    services.AddTransient<ProblemDetailsFactory, CustomProblemDetailsFactory>();
+}
+```
 
 ::: moniker-end
 
@@ -213,23 +251,5 @@ Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping*> p
 ::: moniker range="<= aspnetcore-2.2"
 
 [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=9-10)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-3.0"
-
-### Implement ProblemDetailsFactory
-
-MVC uses `Microsoft.AspNetCore.Mvc.ProblemDetailsFactory` to produce all instances of <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> and <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. This includes client error responses, validation failure error responses, and the `Microsoft.AspNetCore.Mvc.ControllerBase.Problem` and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem> helper methods.
-
-To customize the problem details response, register a custom implementation of `ProblemDetailsFactory` in `Startup.ConfigureServices`:
-
-```csharp
-public void ConfigureServices(IServiceCollection serviceCollection)
-{
-    services.AddControllers();
-    services.AddTransient<ProblemDetailsFactory, CustomProblemDetailsFactory>();
-}
-```
 
 ::: moniker-end
