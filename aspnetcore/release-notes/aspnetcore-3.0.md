@@ -127,7 +127,7 @@ The web UI templates (Razor Pages, MVC with controller and views) have the follo
 
 The Angular template updated to use Angular 8.
 
-## Razor components
+## Blazor
 
 Razor components are self-contained chunks of user interface (UI), such as a page, dialog, or form. Razor components are normal .NET classes that define UI rendering logic and client-side event handlers. You can create rich interactive web apps without JavaScript.
 
