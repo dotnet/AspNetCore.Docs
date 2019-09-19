@@ -32,7 +32,7 @@ For a complete list of assemblies removed from the shared framework, see [Assemb
 
 ### New JSON serialization
 
-ASP.NET Core 3.0 includes `System.Text.Json`:
+ASP.NET Core 3.0 now uses `System.Text.Json` by default for JSON serialization:
 
 * Reads and writes JSON asynchronously.
 * Is optimized for UTF-8 text.
