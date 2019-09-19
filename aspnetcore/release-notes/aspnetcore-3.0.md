@@ -412,56 +412,13 @@ Using code like the two preceding snippets, real-time streaming experiences can 
 
 ## Generic Host
 
-The ASP.NET Core 3.0 templates use <xref:fundamentals/host/generic-host>. Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that are not web specific.
-
-The following two images show the changes made to the template generated *Program.cs* file:
-
- ![2.2 version](aspnetcore-3.0/_static/2.2host.png)
- ![3.0 version](aspnetcore-3.0/_static/3.0host.png)
-
-In the preceding images:
-
-* The ASP.NET Core 2.2 version is shown first. The red boxes indicate code that has been removed in the 3.0 version.
-* The ASP.NET Core 3.0 version is shown second. The green boxes indicate code that has been added. The 3.0 version requires `using Microsoft.Extensions.Hosting;`.
+The ASP.NET Core 3.0 templates use <xref:fundamentals/host/generic-host>. Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that are not web specific. For more information, see [HostBuilder replaces WebHostBuilder](xref:migration/22-to-30?view=aspnetcore-2.2#hostbuilder-replaces-webhostbuilder).
 
 ## Host configuration and options
 
-Host builder configuration is provided by <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*>:
+Prior to the release of ASP.NET Core 3.0, environment variables prefixed with `ASPNETCORE_` were loaded for host configuration of the Web Host. In 3.0, `AddEnvironmentVariables` is used to load environment variables prefixed with `DOTNET_` for host configuration with `CreateDefaultBuilder`.
 
-```csharp
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureHostConfiguration(configHost =>
-        {
-            configHost.SetBasePath(Directory.GetCurrentDirectory());
-            configHost.AddJsonFile("hostsettings.json", optional: true);
-            configHost.AddEnvironmentVariables(prefix: "PREFIX_");
-            configHost.AddCommandLine(args);
-    });
-```
-
-Prior to the release of ASP.NET Core 3.0, environment variables prefixed with `ASPNETCORE_` were loaded for host configuration of the Web Host. In 3.0, `AddEnvironmentVariables` is used to load environment variables prefixed with `DOTNET_` for host configuration with `CreateDefaultBuilder`. 
-
-To configure host options in code, call `Configure<HostOptions>` on the host builder's services provided by `ConfigureServices`:
-
-```csharp
-public static IHostBuilder CreateHostBuilder2(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureServices((hostContext, services) =>
-        {
-            services.Configure(option =>
-            {
-                option.ShutdownTimeout = System.TimeSpan.FromSeconds(20);
-            });
-        });
-```
-
-As a result of this change, the Startup class now only supports *constructor injection* of the following types: `IHostEnvironment`, `IWebHostEnvironment`, and `IConfiguration`. All services can still be injected directly as arguments to the `Startup.Configure` method. For more information, see [aspnet/Announcements#353](https://github.com/aspnet/Announcements/issues/353).
-
-For more information, see the following articles:
-
-* <xref:fundamentals/configuration/index>
-* <xref:fundamentals/host/generic-host>
+The only types the generic Host supports for Startup constructor injection are: `IHostEnvironment`, `IWebHostEnvironment`, and `IConfiguration`. All services can still be injected directly as arguments to the `Startup.Configure` method. For more information, see [aspnet/Announcements#353](https://github.com/aspnet/Announcements/issues/353).
 
 ## Kestrel
 
@@ -472,6 +429,10 @@ For more information, see the following articles:
 * Synchronous IO APIs, such as `HttpReqeuest.Body.Read`, are a common source of thread starvation leading to app crashes. In 3.0, `AllowSynchronousIO` is disabled by default.
 
 For more information, see <xref:migration/22-to-30>.
+
+## HTTP/2 enabled by default
+
+HTTP/2 is enabled by default in Kestrel for HTTPS endpoints. HTTP/2 support when using IIS or HttpSysServer is enabled, when supported by the operating system.
 
 ## Request counters
 
@@ -516,24 +477,19 @@ It is now possible to read the request body and write the response body using th
 
 ## Worker service and SDK
 
-See https://github.com/aspnet/AspNetCore.Docs/issues/14269
+.NET Core 3.0 introduces the new [Worker Service app template](xref:fundamentals/host/hosted-services#worker-service-template). This template is provides a starting point for writing long running services in .NET Core. For more information, see the blog post [.NET Core Workers as Windows Services](https://devblogs.microsoft.com/aspnet/net-core-workers-as-windows-services/).
 
 ## Forwarded Headers Middleware improvements
 
 In previous versions, calling <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> and  <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> were problematic when deployed to an Azure Linux or behind any reverse proxy other than IIS. The fix for previous versions is documented in [Forward the scheme for Linux and non-IIS reverse proxies](xref:host-and-deploy/proxy-load-balancer#forward-the-scheme-for-linux-and-non-iis-reverse-proxies).
 
-In ASP.NET Core 3.0, this problem has been fixed. The host enables the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable has been set to `true`.
-
-## HTTP/2 enabled by default
-
-HTTP/2 is enabled by default in Kestrel for HTTPS endpoints. HTTP/2 support when using IIS or HttpSysServer is enabled, when supported by the operating system.
+In ASP.NET Core 3.0, this problem has been fixed. The host enables the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable has been set to `true`. `ASPNETCORE_FORWARDEDHEADERS_ENABLED` is set to `true` in our container images.
 
 ## ASP.NET Core 3.0 only runs on .NET Core 3.0
 
 As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://www.microsoft.com/net/download/dotnet-core/2.1). Most ASP.NET Core 2.1.x related packages will be supported indefinitely, beyond the 3 year LTS period for .NET Core 2.1.
 
 See [Port your code from .NET Framework to .NET Core](/dotnet/core/porting/) for migration information.
-
 
 <!-- 
 ## Additional information
