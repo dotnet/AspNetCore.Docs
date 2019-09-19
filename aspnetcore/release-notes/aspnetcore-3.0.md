@@ -42,7 +42,20 @@ To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format 
 
 ## gRPC
 
-[gRPC](https://grpc.io/) is a popular, high-performance RPC (remote procedure call) framework that offers an opinionated contract-first approach to API development. It uses modern technologies such as HTTP/2 for transport, and Protocol Buffers as the interface description language and binary serialization format. gRPC provides features such as authentication, bidirectional streaming and flow control, and cancellation and timeouts.
+[gRPC](https://grpc.io/):
+
+* Is a popular, high-performance RPC (remote procedure call) framework.
+* Offers an opinionated contract-first approach to API development.
+* Uses modern technologies such as:
+
+  * HTTP/2 for transport.
+  * Protocol Buffers as the interface description language.
+  * Binary serialization format.
+* Provides features such as:
+
+  * Authentication
+  * Bidirectional streaming and flow control.
+  * Cancellation and timeouts.
 
 gRPC functionality in ASP.NET Core 3.0 includes:
 
@@ -480,12 +493,12 @@ HTTP/2 is enabled by default in Kestrel for HTTPS endpoints. HTTP/2 support when
 
 ## ASP.NET Core 3.0 only runs on .NET Core 3.0
 
-As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://www.microsoft.com/net/download/dotnet-core/2.1). ASP.NET Core 2.1 is supported until August 21, 2021. For more information, see [this GitHub announcement](https://github.com/aspnet/Announcements/issues/324).
+As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://www.microsoft.com/net/download/dotnet-core/2.1). Most ASP.NET Core 2.1.x related packages will be supported indefinitely, beyond the 3 year LTS period for .NET Core 2.1.
 
 See [Port your code from .NET Framework to .NET Core](/dotnet/core/porting/) for migration information.
 
-## Additional information
 
 <!-- 
-For the complete list of changes, see the [ASP.NET Core 2.2 Release Notes](https://github.com/aspnet/Home/releases/tag/2.2.0).
+## Additional information
+For the complete list of changes, see the [ASP.NET Core 3.0 Release Notes](WHERE IS THIS????).
 -->
