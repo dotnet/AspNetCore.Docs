@@ -89,7 +89,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 > [!WARNING]
 > With endpoint routing, the CORS middleware must be configured to execute between the calls to `UseRouting` and `UseEndpoints`. Incorrect configuration will cause the middleware to stop functioning correctly.
 
-::: monkier-end
+::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.2"
 The following code applies CORS policies to all the apps endpoints via CORS Middleware:
@@ -113,7 +113,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 ```
 Note: `UseCors` must be called before `UseMvc`.
 
-::: monkier-end
+::: moniker-end
 
 See [Enable CORS in Razor Pages, controllers, and action methods](#ecors) to apply CORS policy at the page/controller/action level.
 
@@ -144,7 +144,7 @@ app.UseEndpoints(endpoints =>
   endpoints.MapControllers().RequireCors("policy-name");
 });
 ```
-::: monkier-end
+::: moniker-end
 
 ## Enable CORS with attributes
 
