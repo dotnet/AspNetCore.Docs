@@ -475,6 +475,10 @@ It is now possible to read the request body and write the response body using th
 
 <!-- indirectly related, https://github.com/dotnet/docs/pull/14414 won't be published by 9/23  -->
 
+## Improved error reporting in IIS
+
+Startup errors when hosting ASP.NET Core apps in IIS now produce richer diagnostic data. These errors are reported to the Windows Event Log with stack traces wherever applicable. In addition, all warnings, errors, and unhandled exceptions are logged to the Windows Event Log.
+
 ## Worker service and SDK
 
 .NET Core 3.0 introduces the new [Worker Service app template](xref:fundamentals/host/hosted-services#worker-service-template). This template is provides a starting point for writing long running services in .NET Core. For more information, see the blog post [.NET Core Workers as Windows Services](https://devblogs.microsoft.com/aspnet/net-core-workers-as-windows-services/).
