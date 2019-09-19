@@ -366,7 +366,7 @@ app.UseRouting(routes =>
 
 ASP.NET Core 3.0 SignalR added:
 
-* Client-to-server streaming. With client-to-server streaming, server-side methods can take instances of either an `IAsyncEnumerable<T>` or `ChannelReader<T>`. In the following C# sample, the `UploadStream` method on the Hub will receive a stream of strings from the client:
+Client-to-server streaming. With client-to-server streaming, server-side methods can take instances of either an `IAsyncEnumerable<T>` or `ChannelReader<T>`. In the following C# sample, the `UploadStream` method on the Hub will receive a stream of strings from the client:
 
 ```csharp
 public async Task UploadStream(IAsyncEnumerable<string> stream)
