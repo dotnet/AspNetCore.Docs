@@ -1,7 +1,7 @@
 ---
 title: SignalR client features
 author: bradygaster
-description: Features as supported by the various ASP.NET Core SignalR clients.
+description: Learn which features are supported by the various ASP.NET Core SignalR clients.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: bradyg
 ms.custom: mvc
