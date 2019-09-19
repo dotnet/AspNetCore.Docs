@@ -398,6 +398,8 @@ public static IHostBuilder CreateHostBuilder2(string[] args) =>
         });
 ```
 
+As a result of this change, the Startup class now only supports *constructor injection* of the following types: `IHostEnvironment`, `IWebHostEnvironment`, and `IConfiguration`. All services can still be injected directly as arguments to the `Startup.Configure` method. For more information, see [aspnet/Announcements#353](https://github.com/aspnet/Announcements/issues/353).
+
 For more information, see the following articles:
 
 * <xref:fundamentals/configuration/index>
