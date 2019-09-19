@@ -358,7 +358,7 @@ The automatic creation of a `ProblemDetails` instance is disabled when the <xref
 ## Additional resources
 
 * <xref:web-api/action-return-types>
-* <xref:web-api/error-handling>
+* <xref:web-api/handle-errors>
 * <xref:web-api/advanced/custom-formatters>
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>

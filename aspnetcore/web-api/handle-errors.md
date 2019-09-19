@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: prkrishn
 ms.custom: mvc
 ms.date: 09/18/2019
-uid: web-api/error-handling
+uid: web-api/handle-errors
 ---
 # Handle errors in ASP.NET Core web APIs
 
