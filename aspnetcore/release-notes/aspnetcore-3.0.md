@@ -207,7 +207,7 @@ The reconnection intervals can be specified by passing an array of millisecond-b
 
 A custom implementation can be passed in for full control of the reconnection intervals.
 
-If the reconnection fails after the maximum reconnect interval:
+If the reconnection fails after the last reconnect interval:
 
 * The client considers the connection is offline.
 * The client stops trying to reconnect.
