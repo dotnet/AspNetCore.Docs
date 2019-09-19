@@ -144,11 +144,46 @@ The Razor class library (RCL) template defaults to Razor component development b
 
 ## Blazor
 
-Razor components are self-contained chunks of user interface (UI), such as a page, dialog, or form. Razor components are normal .NET classes that define UI rendering logic and client-side event handlers. You can create rich interactive web apps without JavaScript.
+Blazor is a new framework in ASP.NET Core for building interactive client-side web UI with .NET:
 
-Razor components are typically authored using Razor syntax, a natural blend of HTML and C#. Razor components are similar to Razor Pages and MVC views in that they both use Razor. Unlike pages and views, which are based on a request-response model, components are used specifically for handling UI composition. 
+* Create rich interactive UIs using C# instead of JavaScript.
+* Share server-side and client-side app logic written in .NET.
+* Render the UI as HTML and CSS for wide browser support, including mobile browsers.
+
+Using .NET for client-side web development offers the following advantages:
+
+* Write code in C# instead of JavaScript.
+* Leverage the existing .NET ecosystem of .NET libraries.
+* Share app logic across server and client.
+* Benefit from .NET's performance, reliability, and security.
+* Stay productive with Visual Studio on Windows, Linux, and macOS.
+* Build on a common set of languages, frameworks, and tools that are stable, feature-rich, and easy to use.
+
+Blazor framework supported scenarios:
+
+* Reusable UI components (Razor components)
+* Client-side routing
+* Component layouts
+* Support for dependency injection
+* Forms and validation
+* Build component libraries with Razor class libraries
+* JavaScript interop
 
 For more information, see <xref:blazor/index>.
+
+### Blazor Server
+
+Blazor decouples component rendering logic from how UI updates are applied. Blazor Server provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a SignalR connection. Blazor Server is supported in the ASP.NET Core 3.0 release.
+
+### Blazor WebAssembly
+
+Blazor WebAssembly is a single-page app framework for building interactive client-side web apps with .NET. Blazor WebAssembly uses open web standards without plugins or code transpilation and works in all modern web browsers, including mobile browsers. Blazor WebAssembly is in preview.
+
+### Razor components
+
+Razor components are self-contained chunks of user interface (UI), such as a page, dialog, or form. Razor components are normal .NET classes that define UI rendering logic and client-side event handlers. You can create rich interactive web apps without JavaScript.
+
+Razor components are typically authored using Razor syntax, a natural blend of HTML and C#. Razor components are similar to Razor Pages and MVC views in that they both use Razor. Unlike pages and views, which are based on a request-response model, components are used specifically for handling UI composition.
 
 ## SignalR
 
