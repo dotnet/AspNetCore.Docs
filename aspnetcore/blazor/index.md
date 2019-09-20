@@ -12,8 +12,6 @@ uid: blazor/index
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
 *Welcome to Blazor!*
 
 Blazor is a framework for building interactive client-side web UI with .NET:
@@ -98,6 +96,8 @@ When this component is used in the app, IntelliSense in [Visual Studio](/visuals
 Components render into an in-memory representation of the browser's Document Object Model (DOM) called a *render tree*, which is used to update the UI in a flexible and efficient way.
 
 ## Blazor WebAssembly
+
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 Blazor WebAssembly is a single-page app framework for building interactive client-side web apps with .NET. Blazor WebAssembly uses open web standards without plugins or code transpilation and works in all modern web browsers, including mobile browsers.
 

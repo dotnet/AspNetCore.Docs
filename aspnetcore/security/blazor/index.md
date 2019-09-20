@@ -12,6 +12,8 @@ uid: security/blazor/index
 
 By [Steve Sanderson](https://github.com/SteveSandersonMS)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 ASP.NET Core supports the configuration and management of security in Blazor apps.
 
 Security scenarios differ between Blazor Server and Blazor WebAssembly apps. Because Blazor Server apps run on the server, authorization checks are able to determine:

@@ -12,8 +12,6 @@ uid: blazor/handle-errors
 
 By [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
 ## How the Blazor framework reacts to unhandled exceptions

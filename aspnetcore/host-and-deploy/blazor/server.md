@@ -12,8 +12,6 @@ uid: host-and-deploy/blazor/server
 
 By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
 ## Host configuration values
 
 [Blazor Server apps](xref:blazor/hosting-models#blazor-server) can accept [Generic Host configuration values](xref:fundamentals/host/generic-host#host-configuration).
