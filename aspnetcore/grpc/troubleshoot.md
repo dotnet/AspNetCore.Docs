@@ -56,7 +56,7 @@ If you are calling a gRPC service on another machine and are unable to trust the
 ```csharp
 var httpClientHandler = new HttpClientHandler();
 // Return `true` to allow certificates that are untrusted/invalid
-httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+httpClientHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 var httpClient = new HttpClient(httpClientHandler);
 
 var channel = GrpcChannel.ForAddress("https://localhost:5001",
