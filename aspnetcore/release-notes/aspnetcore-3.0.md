@@ -44,15 +44,15 @@ For more information, see <xref:blazor/index>.
 
 Blazor decouples component rendering logic from how UI updates are applied. Blazor Server provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a SignalR connection. Blazor Server is supported in the ASP.NET Core 3.0 release.
 
-### Blazor WebAssembly
+### Blazor WebAssembly (Preview)
 
-Blazor WebAssembly is a single-page app framework for building interactive client-side web apps with .NET. Blazor WebAssembly uses open web standards without plugins or code transpilation and works in all modern web browsers, including mobile browsers. Blazor WebAssembly is in preview.
+Blazor apps can also be run directly in the browser using a WebAssembly-based .NET runtime. Support for Blazor WebAssembly apps is *not* part of ASP.NET Core 3.0, but is available in preview and will be part of a future release.
 
 ### Razor components
 
-Razor components are self-contained chunks of user interface (UI), such as a page, dialog, or form. Razor components are normal .NET classes that define UI rendering logic and client-side event handlers. You can create rich interactive web apps without JavaScript.
+Blazor apps are built from components. Components are self-contained chunks of user interface (UI), such as a page, dialog, or form. Components are normal .NET classes that define UI rendering logic and client-side event handlers. You can create rich interactive web apps without JavaScript.
 
-Razor components are typically authored using Razor syntax, a natural blend of HTML and C#. Razor components are similar to Razor Pages and MVC views in that they both use Razor. Unlike pages and views, which are based on a request-response model, components are used specifically for handling UI composition.
+Components in Blazor are typically authored using Razor syntax, a natural blend of HTML and C#. Razor components are similar to Razor Pages and MVC views in that they both use Razor. Unlike pages and views, which are based on a request-response model, components are used specifically for handling UI composition.
 
 ## gRPC
 
