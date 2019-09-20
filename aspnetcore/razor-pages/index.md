@@ -432,7 +432,7 @@ The *Pages/Customers/Create.cshtml* and *Pages/Customers/Edit.cshtml* pages redi
 * `<a asp-page="./Index">Customers Index Page</a>`
 * `RedirectToPage("./Index")`
 
-The absolute page name */Index* is used to generate URLs to the *Pages/Index.cshtml* page. For example:
+The absolute page name `/Index` is used to generate URLs to the *Pages/Index.cshtml* page. For example:
 
 * `Url.Page("/Index", ...)`
 * `<a asp-page="/Index">Home Index Page</a>`
