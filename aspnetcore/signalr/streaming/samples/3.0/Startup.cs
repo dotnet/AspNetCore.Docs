@@ -60,7 +60,7 @@ namespace SignalRChat
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<StreamHub>("/streamHub");
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
