@@ -144,7 +144,7 @@ Use one of the following approaches if the app relies on a preview release of .N
 -->
 ## Deploy ASP.NET Core 3.0 to Azure App Service
 
-We hope to have ASP.NET Core 3.0 available on Azure App Service soon. Until then, treat it like a preview version.
+We hope to have ASP.NET Core 3.0 available on Azure App Service soon.
 
 Use one of the following approaches if the app relies on .NET Core 3.0:
 
