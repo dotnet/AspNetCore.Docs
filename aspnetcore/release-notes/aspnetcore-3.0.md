@@ -471,7 +471,7 @@ For more information, see the following articles:
 
 ## Pipes on HttpContext
 
-It is now possible to read the request body and write the response body using the <xref:System.IO.Pipelines> API. The <!-- <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader> --> `HttpRequest.BodyReader` property provides a <xref:System.IO.Pipelines.PipeReader> that can be used to read the request body. The <!-- <xref:Microsoft.AspNetCore.Http.> --> `HttpResponse.BodyWriter` property provides a <xref:System.IO.Pipelines.PipeWriter> that can be used to write the response body.
+It is now possible to read the request body and write the response body using the <xref:System.IO.Pipelines> API. The <!-- <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader> --> `HttpRequest.BodyReader` property provides a <xref:System.IO.Pipelines.PipeReader> that can be used to read the request body. The <!-- <xref:Microsoft.AspNetCore.Http.> --> `HttpResponse.BodyWriter` property provides a <xref:System.IO.Pipelines.PipeWriter> that can be used to write the response body. `HttpRequest.BodyReader` is an analogue of the `HttpRequest.Body` stream. `HttpResponse.BodyWriter` is an analogue of the `HttpResponse.Body` stream.
 
 <!-- indirectly related, https://github.com/dotnet/docs/pull/14414 won't be published by 9/23  -->
 
