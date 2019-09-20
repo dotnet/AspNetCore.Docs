@@ -19,15 +19,6 @@ Blazor is a new framework in ASP.NET Core for building interactive client-side w
 * Share server-side and client-side app logic written in .NET.
 * Render the UI as HTML and CSS for wide browser support, including mobile browsers.
 
-Using .NET for client-side web development offers the following advantages:
-
-* Write code in C# instead of JavaScript.
-* Leverage the existing .NET ecosystem of .NET libraries.
-* Share app logic across server and client.
-* Benefit from .NET's performance, reliability, and security.
-* Stay productive with Visual Studio on Windows, Linux, and macOS.
-* Build on a common set of languages, frameworks, and tools that are stable, feature-rich, and easy to use.
-
 Blazor framework supported scenarios:
 
 * Reusable UI components (Razor components)
@@ -304,23 +295,6 @@ subject.complete();
 
 Using code like the two preceding snippets, real-time streaming experiences can be created.
 
-## Use the ASP.NET Core shared framework
-
-The ASP.NET Core 3.0 shared framework, contained in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), no longer requires an explicit `<PackageReference />` element in the project file. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in your project file:
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk.Web">
-```
-
-## Assemblies removed from the ASP.NET Core shared framework
-
-The most notable assemblies removed from the ASP.NET Core 3.0 shared framework are:
-
-* [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) (Json.NET). To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support). ASP.NET Core 3.0 introduces `System.Text.Json` for reading and writing JSON. For more information, see [New JSON serialization](#json) in this document.
-* [Entity Framework Core](/ef/core/)
-
-For a complete list of assemblies removed from the shared framework, see [Assemblies being removed from Microsoft.AspNetCore.App 3.0](https://github.com/aspnet/AspNetCore/issues/3755). For more information on the motivation for this change, see [Breaking changes to Microsoft.AspNetCore.App in 3.0](https://github.com/aspnet/Announcements/issues/325) and [A first look at changes coming in ASP.NET Core 3.0](https://devblogs.microsoft.com/aspnet/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
-
 <a name="json"></a>
 
 ### New JSON serialization
@@ -495,6 +469,22 @@ As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework
 
 See [Port your code from .NET Framework to .NET Core](/dotnet/core/porting/) for migration information.
 
+## Use the ASP.NET Core shared framework
+
+The ASP.NET Core 3.0 shared framework, contained in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), no longer requires an explicit `<PackageReference />` element in the project file. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in your project file:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+```
+
+## Assemblies removed from the ASP.NET Core shared framework
+
+The most notable assemblies removed from the ASP.NET Core 3.0 shared framework are:
+
+* [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) (Json.NET). To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support). ASP.NET Core 3.0 introduces `System.Text.Json` for reading and writing JSON. For more information, see [New JSON serialization](#json) in this document.
+* [Entity Framework Core](/ef/core/)
+
+For a complete list of assemblies removed from the shared framework, see [Assemblies being removed from Microsoft.AspNetCore.App 3.0](https://github.com/aspnet/AspNetCore/issues/3755). For more information on the motivation for this change, see [Breaking changes to Microsoft.AspNetCore.App in 3.0](https://github.com/aspnet/Announcements/issues/325) and [A first look at changes coming in ASP.NET Core 3.0](https://devblogs.microsoft.com/aspnet/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
 <!-- 
 ## Additional information
 For the complete list of changes, see the [ASP.NET Core 3.0 Release Notes](WHERE IS THIS????).
