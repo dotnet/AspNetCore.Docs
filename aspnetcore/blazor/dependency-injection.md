@@ -12,6 +12,8 @@ uid: blazor/dependency-injection
 
 By [Rainer Stropek](https://www.timecockpit.com)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 Blazor supports [dependency injection (DI)](xref:fundamentals/dependency-injection). Apps can use built-in services by injecting them into components. Apps can also define and register custom services and make them available throughout the app via DI.
 
 DI is a technique for accessing services configured in a central location. This can be useful in Blazor apps to:

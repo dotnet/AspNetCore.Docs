@@ -97,6 +97,8 @@ Components render into an in-memory representation of the browser's Document Obj
 
 ## Blazor WebAssembly
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 Blazor WebAssembly is a single-page app framework for building interactive client-side web apps with .NET. Blazor WebAssembly uses open web standards without plugins or code transpilation and works in all modern web browsers, including mobile browsers.
 
 Running .NET code inside web browsers is made possible by [WebAssembly](https://webassembly.org) (abbreviated *wasm*). WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed. WebAssembly is an open web standard and supported in web browsers without plugins.

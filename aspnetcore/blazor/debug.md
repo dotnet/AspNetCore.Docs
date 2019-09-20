@@ -12,6 +12,8 @@ uid: blazor/debug
 
 [Daniel Roth](https://github.com/danroth27)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 *Early* support exists for debugging Blazor WebAssembly apps running on WebAssembly in Chrome.
 
 Debugger capabilities are limited. Available scenarios include:

@@ -12,6 +12,8 @@ uid: blazor/supported-platforms
 
 By [Luke Latham](https://github.com/guardrex)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 ## Browser requirements
 
 ### Blazor WebAssembly

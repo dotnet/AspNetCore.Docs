@@ -12,6 +12,8 @@ uid: tutorials/first-blazor-app
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 This tutorial shows you how to build and modify a Blazor app.
 
 Follow the guidance in the <xref:blazor/get-started> article to create a Blazor project for this tutorial. Name the project *ToDoList*.

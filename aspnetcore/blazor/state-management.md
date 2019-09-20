@@ -12,6 +12,8 @@ uid: blazor/state-management
 
 By [Steve Sanderson](https://github.com/SteveSandersonMS)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 Blazor Server is a stateful app framework. Most of the time, the app maintains an ongoing connection to the server. The user's state is held in the server's memory in a *circuit*. 
 
 Examples of state held for a user's circuit include:
