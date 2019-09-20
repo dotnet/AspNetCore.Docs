@@ -1,26 +1,33 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ResponseFormattingSample
 {
-    public class Startup
+    public class StartupTextOutputFormatter
     {
-        public Startup(IConfiguration configuration)
+        public StartupTextOutputFormatter(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
+        // This method gets called by the runtime. Use this method to add services to the container.
         #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-                .AddXmlSerializerFormatters();
+            services.AddMvc(options =>
+            {
+                // requires using Microsoft.AspNetCore.Mvc.Formatters;
+                options.OutputFormatters.RemoveType<TextOutputFormatter>();
+                options.OutputFormatters.RemoveType<HttpNoContentOutputFormatter>();
+            });
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
         #endregion
 
