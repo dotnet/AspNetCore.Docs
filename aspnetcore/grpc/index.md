@@ -1,15 +1,15 @@
 ---
-title: Introduction to gRPC on ASP.NET Core
+title: Introduction to gRPC on .NET Core
 author: juntaoluo
 description: Learn about gRPC services with Kestrel server and the ASP.NET Core stack.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 02/26/2019
+ms.date: 09/20/2019
 uid: grpc/index
 ---
-# Introduction to gRPC on ASP.NET Core
+# Introduction to gRPC on .NET Core
 
-By [John Luo](https://github.com/juntaoluo)
+By [John Luo](https://github.com/juntaoluo), [James Newton-King](https://twitter.com/jamesnk)
 
 [gRPC](https://grpc.io/docs/guides/) is a language agnostic, high-performance Remote Procedure Call (RPC) framework. For more on gRPC fundamentals, see the [gRPC documentation page](https://grpc.io/docs/).
 
@@ -25,7 +25,10 @@ These benefits make gRPC ideal for:
 * Polyglot systems where multiple languages are required for development.
 * Point-to-point real-time services that need to handle streaming requests or responses.
 
-While a C# implementation is currently available on the official [gRPC page](https://grpc.io/docs/quickstart/csharp.html), the current implementation relies on the native library written in C (gRPC [C-core](https://grpc.io/blog/grpc-stacks)). Work is currently in progress to provide a new implementation based on the Kestrel HTTP server and the ASP.NET Core stack that is fully managed. The following documents provide an introduction to building gRPC services with this new implementation.
+The following documents introduce [gRPC for .NET](https://github.com/grpc/grpc-dotnet), a new, fully managed implementation of gRPC that runs on .NET Core 3.0.
+
+> [!TIP]
+> An alternative C# implementation is available on the [gRPC for C# page](https://grpc.io/docs/quickstart/csharp.html). This implementation relies on the native library written in C (gRPC [C-core](https://grpc.io/blog/grpc-stacks)).
 
 ## Additional resources
 
