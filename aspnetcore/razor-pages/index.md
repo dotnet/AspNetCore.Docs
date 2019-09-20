@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Learn how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
-ms.date: 04/06/2019
+ms.date: 09/19/2019
 uid: razor-pages/index
 ---
 # Introduction to Razor Pages in ASP.NET Core
@@ -180,7 +180,7 @@ The `Customer` property uses [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.Bi
 
 [!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=15-16)]
 
-`[BindProperty]` should **not** be used on models containing properties that should not be changed by the client. For more information, see [Overposting](data/ef-rp/crud#overposting)
+`[BindProperty]` should **not** be used on models containing properties that should not be changed by the client. For more information, see [Overposting](xref:data/ef-rp/crud#overposting)
 
 Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to properties removes the need to writing code to convert HTTP data to the model type. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.
 
