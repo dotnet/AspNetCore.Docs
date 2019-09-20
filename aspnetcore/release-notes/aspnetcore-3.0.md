@@ -11,137 +11,6 @@ uid: aspnetcore-3.0
 
 This article highlights the most significant changes in ASP.NET Core 3.0 with links to relevant documentation.
 
-## Use the ASP.NET Core shared framework
-
-The ASP.NET Core 3.0 shared framework, contained in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), no longer requires an explicit `<PackageReference />` element in the project file. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in your project file:
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk.Web">
-```
-
-## Assemblies removed from the ASP.NET Core shared framework
-
-The most notable assemblies removed from the ASP.NET Core 3.0 shared framework are:
-
-* [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) (Json.NET). To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support). ASP.NET Core 3.0 introduces `System.Text.Json` for reading and writing JSON. For more information, see [New JSON serialization](#json) in this document.
-* [Entity Framework Core](/ef/core/)
-
-For a complete list of assemblies removed from the shared framework, see [Assemblies being removed from Microsoft.AspNetCore.App 3.0](https://github.com/aspnet/AspNetCore/issues/3755). For more information on the motivation for this change, see [Breaking changes to Microsoft.AspNetCore.App in 3.0](https://github.com/aspnet/Announcements/issues/325) and [A first look at changes coming in ASP.NET Core 3.0](https://devblogs.microsoft.com/aspnet/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
-
-<a name="json"></a>
-
-### New JSON serialization
-
-ASP.NET Core 3.0 now uses `System.Text.Json` by default for JSON serialization:
-
-* Reads and writes JSON asynchronously.
-* Is optimized for UTF-8 text.
-* Typically higher performance than `Newtonsoft.Json`.
-
-To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support).
-
-## gRPC
-
-[gRPC](https://grpc.io/):
-
-* Is a popular, high-performance RPC (remote procedure call) framework.
-* Offers an opinionated contract-first approach to API development.
-* Uses modern technologies such as:
-
-  * HTTP/2 for transport.
-  * Protocol Buffers as the interface description language.
-  * Binary serialization format.
-* Provides features such as:
-
-  * Authentication
-  * Bidirectional streaming and flow control.
-  * Cancellation and timeouts.
-
-gRPC functionality in ASP.NET Core 3.0 includes:
-
-* [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) &ndash; An ASP.NET Core framework for hosting gRPC services. gRPC on ASP.NET Core integrates with standard ASP.NET Core features like logging, dependency injection (DI), authentication and authorization.
-* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) &ndash; A gRPC client for .NET Core that builds upon the familiar `HttpClient`.
-* [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) &ndash; gRPC client integration with `HttpClientFactory`.
-
-For more information, see <xref:grpc/index>.
-
-## New Razor features
-
-The following list contains new Razor features:
-
-* [@attribute](xref:mvc/views/razor#attribute) &ndash; The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@attribute [Authorize]`.
-* [@implements](xref:mvc/views/razor#implements) &ndash; The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
-
-## Certificate and Kerberos authentication
-
-Certificate authentication requires:
-
-* Configuring the server to accept certificates.
-* Adding the authentication middleware in `Startup.Configure`.
-* Adding the certificate authentication service in `Startup.ConfigureServices`.
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddAuthentication(
-        CertificateAuthenticationDefaults.AuthenticationScheme)
-            .AddCertificate();
-    // Other service configuration removed.
-}
-
-public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-{
-    app.UseAuthentication();
-    // Other app configuration removed.
-}
-```
-
-Options for certificate authentication include the ability to:
-
-* Accept self-signed certificates.
-* Check for certificate revocation.
-* Check that the proffered certificate has the right usage flags in it.
-
-A default user principal is constructed from the certificate properties. The user principal contains an event that enables supplementing or replacing the principal. For more information, see <xref:security/authentication/certauth>.
-
-[Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) has been extended onto Linux and macOS. In previous versions, Windows Authentication was limited to [IIS](xref:host-and-deploy/iis/index) and [HttpSys](xref:fundamentals/servers/httpsys). In ASP.NET Core 3.0, [Kestrel](xref:fundamentals/servers/kestrel) has the ability to use Negotiate, [Kerberos](/windows-server/security/kerberos/kerberos-authentication-overview), and [NTLM on Windows](/windows-server/security/kerberos/ntlm-overview), Linux, and macOS for Windows domain-joined hosts. Kestrel support of these authentication schemes is provided by the [Microsoft.AspNetCore.Authentication.Negotiate NuGet](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package. As with the other authentication services, configure authentication app wide, then configure the service:
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-        .AddNegotiate();
-    // Other service configuration removed.
-}
-
-public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-{
-    app.UseAuthentication();
-    // Other app configuration removed.
-}
-```
-
-Host requirements:
-
-* Windows hosts must have [Service Principal Names](/windows/win32/ad/service-principal-names) (SPNs) added to the user account hosting the app.
-* Linux and macOS machines must be joined to the domain.
-
-  * SPNs must be created for the web process.
-  * [Keytab files](https://blogs.technet.microsoft.com/pie/2018/01/03/all-you-need-to-know-about-keytab-files/) must be generated and configured on the host machine.
-
-See <xref:security/authentication/windowsauth> for more information.
-
-## Template changes
-
-The web UI templates (Razor Pages, MVC with controller and views) have the following removed:
-
-* The cookie consent UI is no longer included. To enable the cookie consent feature in an ASP.NET Core 3.0 template generated app, see <xref:security/gdpr>.
-* Scripts and related static assets are now referenced as local files instead of using CDNs. For more information, see [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/14350).
-
-The Angular template updated to use Angular 8.
-
-The Razor class library (RCL) template defaults to Razor component development by default. A new template option in Visual Studio provides template support for pages and views. When creating an RCL from the template in a command shell, pass the `-support-pages-and-views` option (`dotnet new razorclasslib -support-pages-and-views`).
-
 ## Blazor
 
 Blazor is a new framework in ASP.NET Core for building interactive client-side web UI with .NET:
@@ -184,6 +53,31 @@ Blazor WebAssembly is a single-page app framework for building interactive clien
 Razor components are self-contained chunks of user interface (UI), such as a page, dialog, or form. Razor components are normal .NET classes that define UI rendering logic and client-side event handlers. You can create rich interactive web apps without JavaScript.
 
 Razor components are typically authored using Razor syntax, a natural blend of HTML and C#. Razor components are similar to Razor Pages and MVC views in that they both use Razor. Unlike pages and views, which are based on a request-response model, components are used specifically for handling UI composition.
+
+## gRPC
+
+[gRPC](https://grpc.io/):
+
+* Is a popular, high-performance RPC (remote procedure call) framework.
+* Offers an opinionated contract-first approach to API development.
+* Uses modern technologies such as:
+
+  * HTTP/2 for transport.
+  * Protocol Buffers as the interface description language.
+  * Binary serialization format.
+* Provides features such as:
+
+  * Authentication
+  * Bidirectional streaming and flow control.
+  * Cancellation and timeouts.
+
+gRPC functionality in ASP.NET Core 3.0 includes:
+
+* [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) &ndash; An ASP.NET Core framework for hosting gRPC services. gRPC on ASP.NET Core integrates with standard ASP.NET Core features like logging, dependency injection (DI), authentication and authorization.
+* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) &ndash; A gRPC client for .NET Core that builds upon the familiar `HttpClient`.
+* [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) &ndash; gRPC client integration with `HttpClientFactory`.
+
+For more information, see <xref:grpc/index>.
 
 ## SignalR
 
@@ -409,6 +303,112 @@ subject.complete();
 ```
 
 Using code like the two preceding snippets, real-time streaming experiences can be created.
+
+## Use the ASP.NET Core shared framework
+
+The ASP.NET Core 3.0 shared framework, contained in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), no longer requires an explicit `<PackageReference />` element in the project file. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in your project file:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+```
+
+## Assemblies removed from the ASP.NET Core shared framework
+
+The most notable assemblies removed from the ASP.NET Core 3.0 shared framework are:
+
+* [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) (Json.NET). To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support). ASP.NET Core 3.0 introduces `System.Text.Json` for reading and writing JSON. For more information, see [New JSON serialization](#json) in this document.
+* [Entity Framework Core](/ef/core/)
+
+For a complete list of assemblies removed from the shared framework, see [Assemblies being removed from Microsoft.AspNetCore.App 3.0](https://github.com/aspnet/AspNetCore/issues/3755). For more information on the motivation for this change, see [Breaking changes to Microsoft.AspNetCore.App in 3.0](https://github.com/aspnet/Announcements/issues/325) and [A first look at changes coming in ASP.NET Core 3.0](https://devblogs.microsoft.com/aspnet/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
+
+<a name="json"></a>
+
+### New JSON serialization
+
+ASP.NET Core 3.0 now uses `System.Text.Json` by default for JSON serialization:
+
+* Reads and writes JSON asynchronously.
+* Is optimized for UTF-8 text.
+* Typically higher performance than `Newtonsoft.Json`.
+
+To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support).
+
+## New Razor features
+
+The following list contains new Razor features:
+
+* [@attribute](xref:mvc/views/razor#attribute) &ndash; The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@attribute [Authorize]`.
+* [@implements](xref:mvc/views/razor#implements) &ndash; The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
+
+## Certificate and Kerberos authentication
+
+Certificate authentication requires:
+
+* Configuring the server to accept certificates.
+* Adding the authentication middleware in `Startup.Configure`.
+* Adding the certificate authentication service in `Startup.ConfigureServices`.
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddAuthentication(
+        CertificateAuthenticationDefaults.AuthenticationScheme)
+            .AddCertificate();
+    // Other service configuration removed.
+}
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    app.UseAuthentication();
+    // Other app configuration removed.
+}
+```
+
+Options for certificate authentication include the ability to:
+
+* Accept self-signed certificates.
+* Check for certificate revocation.
+* Check that the proffered certificate has the right usage flags in it.
+
+A default user principal is constructed from the certificate properties. The user principal contains an event that enables supplementing or replacing the principal. For more information, see <xref:security/authentication/certauth>.
+
+[Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) has been extended onto Linux and macOS. In previous versions, Windows Authentication was limited to [IIS](xref:host-and-deploy/iis/index) and [HttpSys](xref:fundamentals/servers/httpsys). In ASP.NET Core 3.0, [Kestrel](xref:fundamentals/servers/kestrel) has the ability to use Negotiate, [Kerberos](/windows-server/security/kerberos/kerberos-authentication-overview), and [NTLM on Windows](/windows-server/security/kerberos/ntlm-overview), Linux, and macOS for Windows domain-joined hosts. Kestrel support of these authentication schemes is provided by the [Microsoft.AspNetCore.Authentication.Negotiate NuGet](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package. As with the other authentication services, configure authentication app wide, then configure the service:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+        .AddNegotiate();
+    // Other service configuration removed.
+}
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    app.UseAuthentication();
+    // Other app configuration removed.
+}
+```
+
+Host requirements:
+
+* Windows hosts must have [Service Principal Names](/windows/win32/ad/service-principal-names) (SPNs) added to the user account hosting the app.
+* Linux and macOS machines must be joined to the domain.
+
+  * SPNs must be created for the web process.
+  * [Keytab files](https://blogs.technet.microsoft.com/pie/2018/01/03/all-you-need-to-know-about-keytab-files/) must be generated and configured on the host machine.
+
+See <xref:security/authentication/windowsauth> for more information.
+
+## Template changes
+
+The web UI templates (Razor Pages, MVC with controller and views) have the following removed:
+
+* The cookie consent UI is no longer included. To enable the cookie consent feature in an ASP.NET Core 3.0 template generated app, see <xref:security/gdpr>.
+* Scripts and related static assets are now referenced as local files instead of using CDNs. For more information, see [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/14350).
+
+The Angular template updated to use Angular 8.
+
+The Razor class library (RCL) template defaults to Razor component development by default. A new template option in Visual Studio provides template support for pages and views. When creating an RCL from the template in a command shell, pass the `-support-pages-and-views` option (`dotnet new razorclasslib -support-pages-and-views`).
 
 ## Generic Host
 
