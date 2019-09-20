@@ -12,6 +12,8 @@ uid: blazor/routing
 
 By [Luke Latham](https://github.com/guardrex)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 Learn how to route requests and how to use the `NavLink` component to create navigation links in Blazor apps.
 
 ## ASP.NET Core endpoint routing integration

@@ -12,6 +12,8 @@ uid: host-and-deploy/blazor/configure-linker
 
 By [Luke Latham](https://github.com/guardrex)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 Blazor performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a Release build to remove unnecessary IL from the app's output assemblies.
 
 Control assembly linking using either of the following approaches:
