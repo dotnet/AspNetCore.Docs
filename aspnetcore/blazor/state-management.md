@@ -240,38 +240,20 @@ Prerendering might be useful for other pages that don't use `localStorage` or `s
 ```cshtml
 @using Microsoft.AspNetCore.ProtectedBrowserStorage
 @inject ProtectedLocalStorage ProtectedLocalStore
-@inject IComponentContext ComponentContext
 
 ... rendering code goes here ...
 
 @code {
     private int? currentCount;
-    private bool isWaitingForConnection;
-
-    protected override async Task OnInitializedAsync()
-    {
-        if (ComponentContext.IsConnected)
-        {
-            // It looks like the app isn't prerendering, so the data can be
-            // immediately loaded from browser storage.
-            await LoadStateAsync();
-        }
-        else
-        {
-            // Prerendering is in progress, so the app defers the load operation
-            // until later.
-            isWaitingForConnection = true;
-        }
-    }
+    private bool isConnected = false;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        // By this stage, the client has connected back to the server, and
-        // browser services are available. If the app didn't load the data earlier,
-        // the app should do so now and then trigger a new render.
-        if (firstRender && isWaitingForConnection)
+        if (firstRender)
         {
-            isWaitingForConnection = false;
+            // When execution gets here, this represents the completion of the first *interactive*
+            // render. The component has an active connection to the browser.
+            isConnected = true;
             await LoadStateAsync();
             StateHasChanged();
         }

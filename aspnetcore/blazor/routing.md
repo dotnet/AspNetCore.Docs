@@ -22,6 +22,8 @@ Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamenta
 
 [!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
+The most typical configuration is to route all requests to a razor page, which acts as the host for the Blazor Server part of the application. This *host* page is usually named `_Host.cshtml` as a convention. We call the route used here a *fallback route* because it operates with a very low priority - it's the route that's considered when other routes don't match. This allows the application to use others controllers and pages without interfering with the Blazor Server application.
+
 ## Route templates
 
 The `Router` component enables routing to each component with a specified route. The `Router` component appears in the *App.razor* file:
