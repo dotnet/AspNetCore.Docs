@@ -4,11 +4,12 @@ using System.Collections.Generic;
 namespace ResponseFormattingSample.Controllers
 {
     #region snippet
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
+    [FormatFilter]
     public class ProductsController : ControllerBase
     {
-        [Route("[controller]/[action]/{id}.{format?}")]
+        [Route("{id}.{format?}")]
         public Product GetById(int id)
         {
             #endregion
@@ -17,7 +18,7 @@ namespace ResponseFormattingSample.Controllers
         }
     }
 
-        public class Product
-        {
-        }
+    public class Product
+    {
+    }
 }
