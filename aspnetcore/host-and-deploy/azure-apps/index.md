@@ -133,9 +133,20 @@ When swapping between deployment slots, any system using data protection won't b
 
 For more information, see <xref:security/data-protection/implementation/key-storage-providers>.
 
+<!-- revert this after 3.0 supported
 ## Deploy ASP.NET Core preview release to Azure App Service
 
 Use one of the following approaches if the app relies on a preview release of .NET Core:
+
+* [Install the preview site extension](#install-the-preview-site-extension).
+* [Deploy a self-contained preview app](#deploy-a-self-contained-preview-app).
+* [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers).
+-->
+## Deploy ASP.NET Core 3.0 to Azure App Service
+
+We hope to have ASP.NET Core 3.0 available on Azure App Service soon. Until then, treat it like a preview version.
+
+Use one of the following approaches if the app relies on .NET Core 3.0:
 
 * [Install the preview site extension](#install-the-preview-site-extension).
 * [Deploy a self-contained preview app](#deploy-a-self-contained-preview-app).
