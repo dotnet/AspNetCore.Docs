@@ -11,7 +11,7 @@ uid: grpc/index
 
 By [John Luo](https://github.com/juntaoluo), [James Newton-King](https://twitter.com/jamesnk)
 
-[gRPC](https://grpc.io/docs/guides/) is a language agnostic, high-performance Remote Procedure Call (RPC) framework. For more on gRPC fundamentals, see the [gRPC documentation page](https://grpc.io/docs/).
+[gRPC](https://grpc.io/docs/guides/) is a language agnostic, high-performance Remote Procedure Call (RPC) framework.
 
 The main benefits of gRPC are:
 * Modern high-performance lightweight RPC framework.
