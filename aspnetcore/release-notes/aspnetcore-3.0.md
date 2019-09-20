@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/19/2019
+ms.date: 09/20/2019
 uid: aspnetcore-3.0
 ---
 # What's new in ASP.NET Core 3.0
@@ -33,11 +33,11 @@ For more information, see <xref:blazor/index>.
 
 ### Blazor Server
 
-Blazor decouples component rendering logic from how UI updates are applied. Blazor Server provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a SignalR connection. Blazor Server is supported in the ASP.NET Core 3.0 release.
+Blazor decouples component rendering logic from how UI updates are applied. Blazor Server provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a SignalR connection. Blazor Server is supported in ASP.NET Core 3.0.
 
 ### Blazor WebAssembly (Preview)
 
-Blazor apps can also be run directly in the browser using a WebAssembly-based .NET runtime. Support for Blazor WebAssembly apps is *not* part of ASP.NET Core 3.0, but is available in preview and will be part of a future release.
+Blazor apps can also be run directly in the browser using a WebAssembly-based .NET runtime. Blazor WebAssembly is in preview and *not* supported in ASP.NET Core 3.0. Blazor WebAssembly will be supported in a future release of ASP.NET Core.
 
 ### Razor components
 
@@ -265,6 +265,8 @@ public async Task UploadStream(IAsyncEnumerable<string> stream)
 
 .NET client apps can pass either an `IAsyncEnumerable<T>` or `ChannelReader<T>` instance as the `stream` argument of the `UploadStream` Hub method above.
 
+After the `for` loop has completed and the local function exits, the stream completion is sent:
+
 ```csharp
 async IAsyncEnumerable<string> clientStreamData()
 {
@@ -273,7 +275,6 @@ async IAsyncEnumerable<string> clientStreamData()
         var data = await FetchSomeData();
         yield return data;
     }
-    //After the for loop has completed and the local function exits the stream completion is sent.
 }
 
 await connection.SendAsync("UploadStream", clientStreamData());
@@ -295,11 +296,9 @@ subject.complete();
 
 Using code like the two preceding snippets, real-time streaming experiences can be created.
 
-<a name="json"></a>
-
 ### New JSON serialization
 
-ASP.NET Core 3.0 now uses `System.Text.Json` by default for JSON serialization:
+ASP.NET Core 3.0 now uses <xref:System.Text.Json> by default for JSON serialization:
 
 * Reads and writes JSON asynchronously.
 * Is optimized for UTF-8 text.
@@ -307,9 +306,9 @@ ASP.NET Core 3.0 now uses `System.Text.Json` by default for JSON serialization:
 
 To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support).
 
-## New Razor features
+## New Razor directives
 
-The following list contains new Razor features:
+The following list contains new Razor directives:
 
 * [@attribute](xref:mvc/views/razor#attribute) &ndash; The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@attribute [Authorize]`.
 * [@implements](xref:mvc/views/razor#implements) &ndash; The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
@@ -367,18 +366,17 @@ Host requirements:
 
 * Windows hosts must have [Service Principal Names](/windows/win32/ad/service-principal-names) (SPNs) added to the user account hosting the app.
 * Linux and macOS machines must be joined to the domain.
-
   * SPNs must be created for the web process.
   * [Keytab files](https://blogs.technet.microsoft.com/pie/2018/01/03/all-you-need-to-know-about-keytab-files/) must be generated and configured on the host machine.
 
-See <xref:security/authentication/windowsauth> for more information.
+For more information, see <xref:security/authentication/windowsauth>.
 
 ## Template changes
 
 The web UI templates (Razor Pages, MVC with controller and views) have the following removed:
 
 * The cookie consent UI is no longer included. To enable the cookie consent feature in an ASP.NET Core 3.0 template generated app, see <xref:security/gdpr>.
-* Scripts and related static assets are now referenced as local files instead of using CDNs. For more information, see [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/14350).
+* Scripts and related static assets are now referenced as local files instead of using CDNs. For more information, see [Scripts and related static assets are now referenced as local files instead of using CDNs based on the current environment (aspnet/AspNetCore.Docs #14350)](https://github.com/aspnet/AspNetCore.Docs/issues/14350).
 
 The Angular template updated to use Angular 8.
 
@@ -388,11 +386,19 @@ The Razor class library (RCL) template defaults to Razor component development b
 
 The ASP.NET Core 3.0 templates use <xref:fundamentals/host/generic-host>. Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that are not web specific. For more information, see [HostBuilder replaces WebHostBuilder](xref:migration/22-to-30?view=aspnetcore-2.2#hostbuilder-replaces-webhostbuilder).
 
-## Host configuration and options
+### Host configuration
 
 Prior to the release of ASP.NET Core 3.0, environment variables prefixed with `ASPNETCORE_` were loaded for host configuration of the Web Host. In 3.0, `AddEnvironmentVariables` is used to load environment variables prefixed with `DOTNET_` for host configuration with `CreateDefaultBuilder`.
 
-The only types the generic Host supports for Startup constructor injection are: `IHostEnvironment`, `IWebHostEnvironment`, and `IConfiguration`. All services can still be injected directly as arguments to the `Startup.Configure` method. For more information, see [aspnet/Announcements#353](https://github.com/aspnet/Announcements/issues/353).
+### Changes to Startup contructor injection
+
+The Generic Host only supports the following types for `Startup` constructor injection:
+
+* <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
+* `IWebHostEnvironment`
+* <xref:Microsoft.Extensions.Configuration.IConfiguration>
+
+All services can still be injected directly as arguments to the `Startup.Configure` method. For more information, see [Generic Host restricts Startup constructor injection (aspnet/Announcements #353)](https://github.com/aspnet/Announcements/issues/353).
 
 ## Kestrel
 
@@ -402,11 +408,11 @@ The only types the generic Host supports for Startup constructor injection are: 
 * Ambiguity between headers and trailers has been resolved by moving trailing headers to a new collection.
 * Synchronous IO APIs, such as `HttpReqeuest.Body.Read`, are a common source of thread starvation leading to app crashes. In 3.0, `AllowSynchronousIO` is disabled by default.
 
-For more information, see <xref:migration/22-to-30>.
+For more information, see <xref:migration/22-to-30#kestrel>.
 
 ## HTTP/2 enabled by default
 
-HTTP/2 is enabled by default in Kestrel for HTTPS endpoints. HTTP/2 support when using IIS or HttpSysServer is enabled, when supported by the operating system.
+HTTP/2 is enabled by default in Kestrel for HTTPS endpoints. HTTP/2 support for IIS or HTTP.sys is enabled when supported by the operating system.
 
 ## Request counters
 
@@ -419,7 +425,14 @@ The Hosting EventSource (Microsoft.AspNetCore.Hosting) emits the following Event
 
 ## Endpoint routing
 
-See https://github.com/aspnet/AspNetCore.Docs/issues/14291
+Endpoint Routing, which allows frameworks (for example, MVC) to work well with middleware, is enhanced:
+
+* The order of middleware and endpoints is configurable in the request processing pipeline of `Startup.Configure`.
+* Endpoints and middleware compose well with other ASP.NET Core-based technologies, such as Health Checks.
+* Endpoints can implement a policy, such as CORS or authorization, in both middleware and MVC.
+* Filters and attributes can be placed on methods in controllers.
+
+For more information, see <xref:fundamentals/routing#routing-basics>.
 
 ## Health Checks
 
@@ -440,12 +453,12 @@ Health Checks endpoints can:
 
 For more information, see the following articles:
 
-* <xref:migration/22-to-30#health-checks> <!-- ignore warning per @guardrex -->
+* <xref:migration/22-to-30#health-checks>
 * <xref:host-and-deploy/health-checks>
 
 ## Pipes on HttpContext
 
-It is now possible to read the request body and write the response body using the <xref:System.IO.Pipelines> API. The <!-- <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader> --> `HttpRequest.BodyReader` property provides a <xref:System.IO.Pipelines.PipeReader> that can be used to read the request body. The <!-- <xref:Microsoft.AspNetCore.Http.> --> `HttpResponse.BodyWriter` property provides a <xref:System.IO.Pipelines.PipeWriter> that can be used to write the response body. `HttpRequest.BodyReader` is an analogue of the `HttpRequest.Body` stream. `HttpResponse.BodyWriter` is an analogue of the `HttpResponse.Body` stream.
+It's now possible to read the request body and write the response body using the <xref:System.IO.Pipelines> API. The <!-- <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader> --> `HttpRequest.BodyReader` property provides a <xref:System.IO.Pipelines.PipeReader> that can be used to read the request body. The <!-- <xref:Microsoft.AspNetCore.Http.> --> `HttpResponse.BodyWriter` property provides a <xref:System.IO.Pipelines.PipeWriter> that can be used to write the response body. `HttpRequest.BodyReader` is an analogue of the `HttpRequest.Body` stream. `HttpResponse.BodyWriter` is an analogue of the `HttpResponse.Body` stream.
 
 <!-- indirectly related, https://github.com/dotnet/docs/pull/14414 won't be published by 9/23  -->
 
@@ -453,25 +466,31 @@ It is now possible to read the request body and write the response body using th
 
 Startup errors when hosting ASP.NET Core apps in IIS now produce richer diagnostic data. These errors are reported to the Windows Event Log with stack traces wherever applicable. In addition, all warnings, errors, and unhandled exceptions are logged to the Windows Event Log.
 
-## Worker service and SDK
+## Worker Service and Worker SDK
 
-.NET Core 3.0 introduces the new [Worker Service app template](xref:fundamentals/host/hosted-services#worker-service-template). This template is provides a starting point for writing long running services in .NET Core. For more information, see the blog post [.NET Core Workers as Windows Services](https://devblogs.microsoft.com/aspnet/net-core-workers-as-windows-services/).
+.NET Core 3.0 introduces the new Worker Service app template. This template is provides a starting point for writing long running services in .NET Core.
+
+For more information, see:
+
+* [.NET Core Workers as Windows Services](https://devblogs.microsoft.com/aspnet/net-core-workers-as-windows-services/)
+* <xref:fundamentals/host/hosted-services>
+* <xref:host-and-deploy/windows-service>
 
 ## Forwarded Headers Middleware improvements
 
-In previous versions, calling <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> and  <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> were problematic when deployed to an Azure Linux or behind any reverse proxy other than IIS. The fix for previous versions is documented in [Forward the scheme for Linux and non-IIS reverse proxies](xref:host-and-deploy/proxy-load-balancer#forward-the-scheme-for-linux-and-non-iis-reverse-proxies).
+In previous versions of ASP.NET Core, calling <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> and  <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> were problematic when deployed to an Azure Linux or behind any reverse proxy other than IIS. The fix for previous versions is documented in [Forward the scheme for Linux and non-IIS reverse proxies](xref:host-and-deploy/proxy-load-balancer#forward-the-scheme-for-linux-and-non-iis-reverse-proxies).
 
-In ASP.NET Core 3.0, this problem has been fixed. The host enables the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable has been set to `true`. `ASPNETCORE_FORWARDEDHEADERS_ENABLED` is set to `true` in our container images.
+This scenario is fixed in ASP.NET Core 3.0. The host enables the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`. `ASPNETCORE_FORWARDEDHEADERS_ENABLED` is set to `true` in our container images.
 
 ## ASP.NET Core 3.0 only runs on .NET Core 3.0
 
 As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://www.microsoft.com/net/download/dotnet-core/2.1). Most ASP.NET Core 2.1.x related packages will be supported indefinitely, beyond the 3 year LTS period for .NET Core 2.1.
 
-See [Port your code from .NET Framework to .NET Core](/dotnet/core/porting/) for migration information.
+For migration information, see [Port your code from .NET Framework to .NET Core](/dotnet/core/porting/).
 
 ## Use the ASP.NET Core shared framework
 
-The ASP.NET Core 3.0 shared framework, contained in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), no longer requires an explicit `<PackageReference />` element in the project file. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in your project file:
+The ASP.NET Core 3.0 shared framework, contained in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), no longer requires an explicit `<PackageReference />` element in the project file. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in the project file:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -481,10 +500,11 @@ The ASP.NET Core 3.0 shared framework, contained in the [Microsoft.AspNetCore.Ap
 
 The most notable assemblies removed from the ASP.NET Core 3.0 shared framework are:
 
-* [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) (Json.NET). To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support). ASP.NET Core 3.0 introduces `System.Text.Json` for reading and writing JSON. For more information, see [New JSON serialization](#json) in this document.
+* [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) (Json.NET). To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support). ASP.NET Core 3.0 introduces `System.Text.Json` for reading and writing JSON. For more information, see [New JSON serialization](#new-json-serialization) in this document.
 * [Entity Framework Core](/ef/core/)
 
 For a complete list of assemblies removed from the shared framework, see [Assemblies being removed from Microsoft.AspNetCore.App 3.0](https://github.com/aspnet/AspNetCore/issues/3755). For more information on the motivation for this change, see [Breaking changes to Microsoft.AspNetCore.App in 3.0](https://github.com/aspnet/Announcements/issues/325) and [A first look at changes coming in ASP.NET Core 3.0](https://devblogs.microsoft.com/aspnet/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
+
 <!-- 
 ## Additional information
 For the complete list of changes, see the [ASP.NET Core 3.0 Release Notes](WHERE IS THIS????).
