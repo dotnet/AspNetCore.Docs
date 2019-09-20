@@ -12,9 +12,11 @@ uid: blazor/supported-platforms
 
 By [Luke Latham](https://github.com/guardrex)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 ## Browser requirements
 
-### Blazor client-side
+### Blazor WebAssembly
 
 | Browser                          | Version               |
 | -------------------------------- | :-------------------: |
@@ -26,7 +28,7 @@ By [Luke Latham](https://github.com/guardrex)
 
 &dagger;Microsoft Internet Explorer doesn't support [WebAssembly](https://webassembly.org).
 
-### Blazor server-side
+### Blazor Server
 
 | Browser                          | Version    |
 | -------------------------------- | :--------: |

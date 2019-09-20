@@ -97,7 +97,7 @@
           uid: tutorials/signalr-typescript-webpack
     - name: Remote Procedure Call apps
       items:
-        - name: Get started with gRPC service
+        - name: Get started with a gRPC service
           uid: tutorials/grpc/grpc-start
     - name: Data access
       items:
@@ -153,6 +153,9 @@
 - name: Tutorials (Microsoft Learn)
   displayName: tutorial
   items:
+    - name: Web apps
+      displayName: tutorial, razor, razor pages, ui
+      href: /learn/modules/create-razor-pages-aspnet-core/
     - name: Web API apps
       href: /learn/modules/build-web-api-net-core/
     - name: Data access
@@ -304,8 +307,8 @@
           items:
             - name: Overview
               uid: security/blazor/index
-            - name: Server-side
-              uid: security/blazor/server-side
+            - name: Blazor Server
+              uid: security/blazor/server
         - name: State management
           uid: blazor/state-management
         - name: Handle errors
@@ -318,10 +321,10 @@
           items:
             - name: Overview
               uid: host-and-deploy/blazor/index
-            - name: Client-side
-              uid: host-and-deploy/blazor/client-side
-            - name: Server-side
-              uid: host-and-deploy/blazor/server-side
+            - name: Blazor WebAssembly
+              uid: host-and-deploy/blazor/webassembly
+            - name: Blazor Server
+              uid: host-and-deploy/blazor/server
             - name: Configure the Linker
               uid: host-and-deploy/blazor/configure-linker
     - name: Client-side development
@@ -435,6 +438,8 @@
           uid: tutorials/get-started-with-nswag
     - name: Action return types
       uid: web-api/action-return-types
+    - name: Handle JSON Patch requests
+      uid: web-api/jsonpatch
     - name: Format response data
       uid: web-api/advanced/formatting
     - name: Custom formatters
@@ -443,6 +448,8 @@
       uid: web-api/advanced/analyzers
     - name: Conventions
       uid: web-api/advanced/conventions
+    - name: Handle errors
+      uid: web-api/handle-errors
     - name: Test APIs with HTTP REPL
       uid: web-api/http-repl
 - name: Real-time apps
@@ -540,6 +547,10 @@
   items:
     - name: Introduction to gRPC services
       uid: grpc/index
+    - name: Tutorials
+      items:
+        - name: Get started with a gRPC service
+          uid: tutorials/grpc/grpc-start
     - name: gRPC services with C#
       uid: grpc/basics
     - name: gRPC services with ASP.NET Core
@@ -558,6 +569,8 @@
       uid: grpc/migration
     - name: Comparing gRPC services with HTTP APIs
       uid: grpc/comparison
+    - name: Samples
+      href: https://github.com/grpc/grpc-dotnet/tree/master/examples
     - name: Troubleshoot
       uid: grpc/troubleshoot
 - name: Test, debug, and troubleshoot
@@ -785,10 +798,10 @@
       items:
         - name: Overview
           uid: host-and-deploy/blazor/index
-        - name: Client-side
-          uid: host-and-deploy/blazor/client-side
-        - name: Server-side
-          uid: host-and-deploy/blazor/server-side
+        - name: Blazor WebAssembly
+          uid: host-and-deploy/blazor/webassembly
+        - name: Blazor Server
+          uid: host-and-deploy/blazor/server
         - name: Configure the Linker
           uid: host-and-deploy/blazor/configure-linker
 - name: Security and Identity
@@ -994,13 +1007,13 @@
     - name: IP safelist
       uid: security/ip-safelist
     - name: Application security - OWASP
-      href: https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/DotNet_Security_Cheat_Sheet.md
+      href: https://cheatsheetseries.owasp.org/cheatsheets/DotNet_Security_Cheat_Sheet.html
     - name: Blazor
       items:
         - name: Overview
           uid: security/blazor/index
-        - name: Server-side
-          uid: security/blazor/server-side
+        - name: Blazor Server
+          uid: security/blazor/server
 - name: Performance
   items:
     - name: Overview

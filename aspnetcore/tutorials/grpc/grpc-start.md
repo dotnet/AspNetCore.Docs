@@ -45,7 +45,7 @@ In this tutorial, you:
 # [Visual Studio](#tab/visual-studio)
 
 * Start Visual Studio and select **Create a new project**. Alternatively, from the Visual Studio **File** menu, select **New** > **Project**.
-* In the **Create a new project** dialog, select **gPRC Service** and select **Next**:
+* In the **Create a new project** dialog, select **gRPC Service** and select **Next**:
 
   ![**Create a new project** dialog](~/tutorials/grpc/grpc-start/static/cnp.png)
 
@@ -61,7 +61,7 @@ In this tutorial, you:
 * Change directories (`cd`) to a folder which will contain the project.
 * Run the following commands:
 
-  ```console
+  ```dotnetcli
   dotnet new grpc -o GrpcGreeter
   code -r GrpcGreeter
   ```
@@ -76,9 +76,9 @@ In this tutorial, you:
 
 From a terminal, run the following commands:
 
-```console
-  dotnet new grpc -o GrpcGreeter
-  cd GrpcGreeter
+```dotnetcli
+dotnet new grpc -o GrpcGreeter
+cd GrpcGreeter
 ```
 
 The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create a gRPC service.
@@ -147,7 +147,7 @@ info: Microsoft.Hosting.Lifetime[0]
 * Change directories (`cd`) to a folder which will contain the project.
 * Run the following commands:
 
-  ```console
+  ```dotnetcli
   dotnet new console -o GrpcGreeterClient
   code -r GrpcGreeterClient
   ```
@@ -194,7 +194,7 @@ Install the packages using either the Package Manager Console (PMC) or Manage Nu
 
 Run the following commands from the **Integrated Terminal**:
 
-```console
+```dotnetcli
 dotnet add GrpcGreeterClient.csproj package Grpc.Net.Client
 dotnet add GrpcGreeterClient.csproj package Google.Protobuf
 dotnet add GrpcGreeterClient.csproj package Grpc.Tools

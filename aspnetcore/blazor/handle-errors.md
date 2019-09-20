@@ -16,7 +16,7 @@ This article describes how Blazor manages unhandled exceptions and how to develo
 
 ## How the Blazor framework reacts to unhandled exceptions
 
-Blazor server-side is a stateful framework. While users interact with an app, they maintain a connection to the server known as a *circuit*. The circuit holds active component instances, plus many other aspects of state, such as:
+Blazor Server is a stateful framework. While users interact with an app, they maintain a connection to the server known as a *circuit*. The circuit holds active component instances, plus many other aspects of state, such as:
 
 * The most recent rendered output of components.
 * The current set of event-handling delegates that could be triggered by client-side events.

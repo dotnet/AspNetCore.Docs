@@ -64,8 +64,35 @@ The <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> method can
 
 [!code-csharp[](cors/sample/Cors/WebAPI/Startup2.cs?name=snippet2)]
 
-The following highlighted code applies CORS policies to all the apps endpoints via CORS Middleware:
+Note: The URL must **not** contain a trailing slash (`/`). If the URL terminates with `/`, the comparison returns `false` and no header is returned.
 
+::: moniker range=">= aspnetcore-3.0"
+
+The following code applies CORS policies to all the apps endpoints via CORS Middleware:
+```csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    // Preceding code ommitted.
+    app.UseRouting();
+
+    app.UseCors();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllers();
+    });
+
+    // Following code ommited.
+}
+```
+
+> [!WARNING]
+> With endpoint routing, the CORS middleware must be configured to execute between the calls to `UseRouting` and `UseEndpoints`. Incorrect configuration will cause the middleware to stop functioning correctly.
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+The following code applies CORS policies to all the apps endpoints via CORS Middleware:
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
@@ -84,17 +111,40 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     app.UseMvc();
 }
 ```
+Note: `UseCors` must be called before `UseMvc`.
+
+::: moniker-end
 
 See [Enable CORS in Razor Pages, controllers, and action methods](#ecors) to apply CORS policy at the page/controller/action level.
-
-Note:
-
-* `UseCors` must be called before `UseMvc`.
-* The URL must **not** contain a trailing slash (`/`). If the URL terminates with `/`, the comparison returns `false` and no header is returned.
 
 See [Test CORS](#test) for instructions on testing the preceding code.
 
 <a name="ecors"></a>
+
+::: moniker range=">= aspnetcore-3.0"
+
+## Enable Cors with endpoint routing
+
+With endpoint routing, CORS can be enabled on a per-endpoint basis using the `RequireCors` set of extension methods.
+
+```csharp
+app.UseEndpoints(endpoints =>
+{
+  endpoints.MapGet("/echo", async context => context.Response.WriteAsync("echo"))
+    .RequireCors("policy-name");
+});
+
+```
+
+Similarly, CORS can also be enabled for all controllers:
+
+```csharp
+app.UseEndpoints(endpoints =>
+{
+  endpoints.MapControllers().RequireCors("policy-name");
+});
+```
+::: moniker-end
 
 ## Enable CORS with attributes
 
@@ -154,15 +204,6 @@ This section describes the various options that can be set in a CORS policy:
 > Specifying `AllowAnyOrigin` and `AllowCredentials` is an insecure configuration and can result in cross-site request forgery. For a secure app, specify an exact list of origins if the client must authorize itself to access server resources.
 
 ::: moniker-end
-
-<!-- REVIEW required
-I changed from
-Specifying `AllowAnyOrigin` and `AllowCredentials` is an insecure configuration. **This** setting affects preflight requests and the ...
-to
-**`AllowAnyOrigin`** affects preflight requests and the
-
-to remove the ambiguous **This**.
--->
 
 `AllowAnyOrigin` affects preflight requests and the `Access-Control-Allow-Origin` header. For more information, see the [Preflight requests](#preflight-requests) section.
 

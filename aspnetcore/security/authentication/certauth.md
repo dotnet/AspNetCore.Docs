@@ -7,7 +7,7 @@ ms.author: bdorrans
 ms.date: 08/19/2019
 uid: security/authentication/certauth
 ---
-# Overview
+# Configure certificate authentication in ASP.NET Core
 
 `Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level, long before it ever gets to ASP.NET Core. More accurately, this is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal`. 
 

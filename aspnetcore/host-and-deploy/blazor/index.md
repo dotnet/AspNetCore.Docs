@@ -12,6 +12,8 @@ uid: host-and-deploy/blazor/index
 
 By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 ## Publish the app
 
 Apps are published for deployment in Release configuration.
@@ -26,7 +28,7 @@ Apps are published for deployment in Release configuration.
 
 Use the [dotnet publish](/dotnet/core/tools/dotnet-publish) command to publish the app with a Release configuration:
 
-```console
+```dotnetcli
 dotnet publish -c Release
 ```
 
@@ -34,7 +36,7 @@ dotnet publish -c Release
 
 Publishing the app triggers a [restore](/dotnet/core/tools/dotnet-restore) of the project's dependencies and [builds](/dotnet/core/tools/dotnet-build) the project before creating the assets for deployment. As part of the build process, unused methods and assemblies are removed to reduce app download size and load times.
 
-A Blazor client-side app is published to the */bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist* folder. A Blazor server-side app is published to the */bin/Release/{TARGET FRAMEWORK}/publish* folder.
+A Blazor WebAssembly app is published to the */bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist* folder. A Blazor Server app is published to the */bin/Release/{TARGET FRAMEWORK}/publish* folder.
 
 The assets in the folder are deployed to the web server. Deployment might be a manual or automated process depending on the development tools in use.
 
@@ -65,13 +67,13 @@ To set the app's base path, update the `<base>` tag within the `<head>` tag elem
 
 For an app with a non-root relative URL path (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime. To pass the path base argument when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
 
-```console
+```dotnetcli
 dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}
 ```
 
 For an app with a relative URL path of `/CoolApp/` (`<base href="/CoolApp/">`), the command is:
 
-```console
+```dotnetcli
 dotnet run --pathbase=/CoolApp
 ```
 
@@ -81,5 +83,5 @@ The app responds locally at `http://localhost:port/CoolApp`.
 
 For deployment guidance, see the following topics:
 
-* <xref:host-and-deploy/blazor/client-side>
-* <xref:host-and-deploy/blazor/server-side>
+* <xref:host-and-deploy/blazor/webassembly>
+* <xref:host-and-deploy/blazor/server>

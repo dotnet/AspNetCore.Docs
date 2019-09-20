@@ -1,28 +1,18 @@
 ﻿// Set preprocessor directive(s) to enable the scenarios you want to test.
 // For more information on preprocessor directives and sample apps, see:
-//  https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code
+// https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code
 //
 // DefaultBehavior - default ControllerBase and ApiController behavior.
 // InvalidModelStateResponseFactory - customize response for automatic 400 on validation error.
 // SuppressApiControllerBehavior - use 2.1 behaviors although compat version is 2.2.
 
-#define DefaultBehavior // or InvalidModelStateResponseFactory or SuppressApiControllerBehavior
+#define DefaultBehavior // or InvalidModelStateResponseFactory or SuppressApiControllerBehavior or DisableProblemDetailsInvalidModelStateResponseFactory
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using WebApiSample.DataAccess;
 
 #region snippet_Assembly
 [assembly: ApiController]
@@ -38,10 +28,8 @@ namespace WebApiSample
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
 #if SuppressApiControllerBehavior
             #region snippet_ConfigureApiBehaviorOptions
             services.AddMvc()
@@ -52,7 +40,6 @@ namespace WebApiSample
                     options.SuppressInferBindingSourcesForParameters = true;
                     options.SuppressModelStateInvalidFilter = true;
                     options.SuppressMapClientErrors = true;
-                    options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = true;
                     options.ClientErrorMapping[404].Link =
                         "https://httpstatuses.com/404";
                 });
@@ -66,7 +53,8 @@ namespace WebApiSample
                 {
                     options.InvalidModelStateResponseFactory = context =>
                     {
-                        var problemDetails = new ValidationProblemDetails(context.ModelState)
+                        var problemDetails = 
+                            new ValidationProblemDetails(context.ModelState)
                         {
                             Type = "https://contoso.com/probs/modelvalidation",
                             Title = "One or more model validation errors occurred.",
@@ -83,13 +71,31 @@ namespace WebApiSample
                 });
             #endregion
 #endif
+#if DisableProblemDetailsInvalidModelStateResponseFactory
+            #region snippet_DisableProblemDetailsInvalidModelStateResponseFactory
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .ConfigureApiBehaviorOptions(options =>
+                {
+                    options.InvalidModelStateResponseFactory = context =>
+                    {
+                        var result = new BadRequestObjectResult(context.ModelState);
+
+                        // TODO: add `using using System.Net.Mime;` to resolve MediaTypeNames
+                        result.ContentTypes.Add(MediaTypeNames.Application.Json);
+                        result.ContentTypes.Add(MediaTypeNames.Application.Xml);
+
+                        return result;
+                    };
+                });
+            #endregion
+#endif
 #if DefaultBehavior
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 #endif
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -98,7 +104,6 @@ namespace WebApiSample
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

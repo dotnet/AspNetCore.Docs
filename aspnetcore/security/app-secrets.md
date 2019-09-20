@@ -84,7 +84,7 @@ Install the [Microsoft.Extensions.SecretManager.Tools](https://www.nuget.org/pac
 
 Execute the following command in a command shell to validate the tool installation:
 
-```console
+```dotnetcli
 dotnet user-secrets -h
 ```
 
@@ -123,7 +123,7 @@ The Secret Manager tool operates on project-specific configuration settings stor
 
 The Secret Manager tool includes an `init` command in .NET Core SDK 3.0.100 or later. To use user secrets, run the following command in the project directory:
 
-```console
+```dotnetcli
 dotnet user-secrets init
 ```
 
@@ -156,7 +156,7 @@ To use user secrets, define a `UserSecretsId` element within a `PropertyGroup` o
 
 Define an app secret consisting of a key and its value. The secret is associated with the project's `UserSecretsId` value. For example, run the following command from the directory in which the *.csproj* file exists:
 
-```console
+```dotnetcli
 dotnet user-secrets set "Movies:ServiceApiKey" "12345"
 ```
 
@@ -164,7 +164,7 @@ In the preceding example, the colon denotes that `Movies` is an object literal w
 
 The Secret Manager tool can be used from other directories too. Use the `--project` option to supply the file system path at which the *.csproj* file exists. For example:
 
-```console
+```dotnetcli
 dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp1\src\WebApp1"
 ```
 
@@ -197,7 +197,7 @@ A batch of secrets can be set by piping JSON to the `set` command. In the follow
 
 Open a command shell, and execute the following command:
 
-  ```console
+  ```dotnetcli
   type .\input.json | dotnet user-secrets set
   ```
 
@@ -205,7 +205,7 @@ Open a command shell, and execute the following command:
 
 Open a command shell, and execute the following command:
 
-  ```console
+  ```dotnetcli
   cat ./input.json | dotnet user-secrets set
   ```
 
@@ -289,7 +289,7 @@ Storing passwords in plain text is insecure. For example, a database connection 
 
 A more secure approach is to store the password as a secret. For example:
 
-```console
+```dotnetcli
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
@@ -317,7 +317,7 @@ The secret's value can be set on a <xref:System.Data.SqlClient.SqlConnectionStri
 
 Run the following command from the directory in which the *.csproj* file exists:
 
-```console
+```dotnetcli
 dotnet user-secrets list
 ```
 
@@ -336,7 +336,7 @@ In the preceding example, a colon in the key names denotes the object hierarchy 
 
 Run the following command from the directory in which the *.csproj* file exists:
 
-```console
+```dotnetcli
 dotnet user-secrets remove "Movies:ConnectionString"
 ```
 
@@ -362,7 +362,7 @@ Movies:ServiceApiKey = 12345
 
 Run the following command from the directory in which the *.csproj* file exists:
 
-```console
+```dotnetcli
 dotnet user-secrets clear
 ```
 

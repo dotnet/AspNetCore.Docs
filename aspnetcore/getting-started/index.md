@@ -31,7 +31,7 @@ At the end, you'll have a working web app running on your local machine.
 
 Open a command shell, and enter the following command:
 
-```console
+```dotnetcli
 dotnet new webapp -o aspnetcoreapp
 ```
 
@@ -41,7 +41,7 @@ Trust the HTTPS development certificate:
 
 # [Windows](#tab/windows)
 
-```console
+```dotnetcli
 dotnet dev-certs https --trust
 ```
 
@@ -53,7 +53,7 @@ Select **Yes** if you agree to trust the development certificate.
 
 # [macOS](#tab/macos)
 
-```console
+```dotnetcli
 dotnet dev-certs https --trust
 ```
 
@@ -77,7 +77,7 @@ For more information, see [Trust the ASP.NET Core HTTPS development certificate]
 
 Run the following commands:
 
-```console
+```dotnetcli
 cd aspnetcoreapp
 dotnet run
 ```

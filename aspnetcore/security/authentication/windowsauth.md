@@ -86,7 +86,7 @@ Alternatively, the properties can be configured in the `iisSettings` node of the
 
 Execute the [dotnet new](/dotnet/core/tools/dotnet-new) command with the `webapp` argument (ASP.NET Core Web App) and `--auth Windows` switch:
 
-```console
+```dotnetcli
 dotnet new webapp --auth Windows
 ```
 

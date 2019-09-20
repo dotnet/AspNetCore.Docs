@@ -111,11 +111,11 @@ By adding a property you changed the database model, so you need to do another m
 
 Save your changes and build the project, and then enter the following commands in the command window:
 
-```console
+```dotnetcli
 dotnet ef migrations add RowVersion
 ```
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 

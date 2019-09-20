@@ -43,7 +43,7 @@ The ASP.NET Core Worker Service template provides a starting point for writing l
 
 Use the Worker Service (`worker`) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell. In the following example, a Worker Service app is created named `ContosoWorkerService`. A folder for the `ContosoWorkerService` app is created automatically when the command is executed.
 
-```console
+```dotnetcli
 dotnet new worker -o ContosoWorkerService
 ```
 

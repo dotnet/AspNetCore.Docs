@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace StartupFilterSample
 {
-#region snippet
+    #region snippet
     public class Program
     {
         public static void Main(string[] args)
@@ -19,40 +19,40 @@ namespace StartupFilterSample
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-               .ConfigureAppConfiguration((hostingContext, config) =>
-               {
-               })
-            .ConfigureServices(services =>
-            {
-                services.AddControllersWithViews();
-
-            }).ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.Configure(app =>
+                .ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    var loggerFactory = app.ApplicationServices
+                })
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.ConfigureServices(services =>
+                    {
+                        services.AddControllersWithViews();
+                    })
+                    .Configure(app =>
+                    {
+                        var loggerFactory = app.ApplicationServices
                             .GetRequiredService<ILoggerFactory>();
-                    var logger = loggerFactory.CreateLogger<Program>();
-                    var env = app.ApplicationServices.GetRequiredService<IWebHostEnvironment>();
-                    var config = app.ApplicationServices.GetRequiredService<IConfiguration>();
+                        var logger = loggerFactory.CreateLogger<Program>();
+                        var env = app.ApplicationServices.GetRequiredService<IWebHostEnvironment>();
+                        var config = app.ApplicationServices.GetRequiredService<IConfiguration>();
 
-                    logger.LogInformation("Logged in Configure");
+                        logger.LogInformation("Logged in Configure");
 
-                    if (env.IsDevelopment())
-                    {
-                        app.UseDeveloperExceptionPage();
-                    }
-                    else
-                    {
-                        app.UseExceptionHandler("/Home/Error");
-                        app.UseHsts();
-                    }
+                        if (env.IsDevelopment())
+                        {
+                            app.UseDeveloperExceptionPage();
+                        }
+                        else
+                        {
+                            app.UseExceptionHandler("/Home/Error");
+                            app.UseHsts();
+                        }
 
-                    var configValue = config["MyConfigKey"];
-                }
-                );
+                        var configValue = config["MyConfigKey"];
+                    });
+                });
             });
     }
-#endregion
+    #endregion
 }
 #endif

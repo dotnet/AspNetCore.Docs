@@ -1,4 +1,4 @@
-While a Blazor server-side app is prerendering, certain actions, such as calling into JavaScript, aren't possible because a connection with the browser hasn't been established. Components may need to render differently when prerendered.
+While a Blazor Server app is prerendering, certain actions, such as calling into JavaScript, aren't possible because a connection with the browser hasn't been established. Components may need to render differently when prerendered.
 
 To delay JavaScript interop calls until after the connection with the browser is established, you can use the `OnAfterRenderAsync` component lifecycle event. This event is only called after the app is fully rendered and the client connection is established.
 
@@ -11,10 +11,13 @@ To delay JavaScript interop calls until after the connection with the browser is
 @code {
     private ElementReference myInput;
 
-    protected override void OnAfterRender()
+    protected override void OnAfterRender(bool firstRender)
     {
-        JSRuntime.InvokeAsync<object>(
-            "setElementValue", myInput, "Value set after render");
+        if (firstRender)
+        {
+            JSRuntime.InvokeAsync<object>(
+                "setElementValue", myInput, "Value set after render");
+        }
     }
 }
 ```
@@ -46,18 +49,9 @@ Where `JSRuntime.InvokeAsync` is called, `ElementRef` is only used in `OnAfterRe
     private string infoFromJs;
     private ElementReference myElem;
 
-    protected override async Task OnAfterRenderAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        // TEMPORARY: Currently we need this guard to avoid making the interop
-        // call during prerendering. Soon this will be unnecessary because we
-        // will change OnAfterRenderAsync so that it won't run during the
-        // prerendering phase.
-        if (!ComponentContext.IsConnected)
-        {
-            return;
-        }
-
-        if (infoFromJs == null)
+        if (firstRender && infoFromJs == null)
         {
             infoFromJs = await JSRuntime.InvokeAsync<string>(
                 "setElementValue", myElem, "Hello from interop call");
@@ -68,7 +62,7 @@ Where `JSRuntime.InvokeAsync` is called, `ElementRef` is only used in `OnAfterRe
 }
 ```
 
-To conditionally render different content based on whether the app is currently prerendering content, use the `IsConnected` property on the `IComponentContext` service. When running server-side, `IsConnected` only returns `true` if there's an active connection to the client. It always returns `true` when running client-side.
+To conditionally render different content based on whether the app is currently prerendering content, use the `IsConnected` property on the `IComponentContext` service. For Blazor Server apps, `IsConnected` only returns `true` if there's an active connection to the client. It always returns `true` in Blazor WebAssembly apps.
 
 ```cshtml
 @page "/isconnected-example"

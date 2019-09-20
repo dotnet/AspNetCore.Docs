@@ -76,7 +76,7 @@ namespace RazorPagesProject.Tests
 
                             try
                             {
-                                Utilities.InitializeDbForTests(db);
+                                Utilities.ReinitializeDbForTests(db);
                             }
                             catch (Exception ex)
                             {
@@ -88,16 +88,18 @@ namespace RazorPagesProject.Tests
                     });
                 })
                 .CreateClient(new WebApplicationFactoryClientOptions
-                    {
-                        AllowAutoRedirect = false
-                    });
+                {
+                    AllowAutoRedirect = false
+                });
             var defaultPage = await client.GetAsync("/");
             var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
 
             //Act
             var response = await client.SendAsync(
                 (IHtmlFormElement)content.QuerySelector("form[id='messages']"),
-                (IHtmlButtonElement)content.QuerySelector("button[id='deleteBtn1']"));
+                (IHtmlButtonElement)content.QuerySelector("form[id='messages']")
+                    .QuerySelector("div[class='panel-body']")
+                    .QuerySelector("button"));
 
             // Assert
             Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);

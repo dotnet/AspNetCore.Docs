@@ -38,7 +38,7 @@ To follow along, [view or download the sample ASP.NET Core web API](https://gith
 
 To install the HTTP REPL, run the following command:
 
-```console
+```dotnetcli
 dotnet tool install -g Microsoft.dotnet-httprepl --version "3.0.0-*"
 ```
 
@@ -49,24 +49,24 @@ A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool)
 After successful installation of the tool, run the following command to start the HTTP REPL:
 
 ```console
-dotnet httprepl
+httprepl
 ```
 
 To view the available HTTP REPL commands, run one of the following commands:
 
 ```console
-dotnet httprepl -h
+httprepl -h
 ```
 
 ```console
-dotnet httprepl --help
+httprepl --help
 ```
 
 The following output is displayed:
 
 ```console
 Usage:
-  dotnet httprepl [<BASE_ADDRESS>] [options]
+  httprepl [<BASE_ADDRESS>] [options]
 
 Arguments:
   <BASE_ADDRESS> - The initial base address for the REPL.
@@ -125,13 +125,13 @@ The HTTP REPL offers command completion. Pressing the <kbd>Tab</kbd> key iterate
 Connect to a web API by running the following command:
 
 ```console
-dotnet httprepl <ROOT URI>
+httprepl <ROOT URI>
 ```
 
 `<ROOT URI>` is the base URI for the web API. For example:
 
 ```console
-dotnet httprepl https://localhost:5001
+httprepl https://localhost:5001
 ```
 
 Alternatively, run the following command at any time while the HTTP REPL is running:
@@ -922,7 +922,7 @@ If you frequently execute the same set of HTTP REPL commands, consider storing t
 To remove all output written to the command shell by the HTTP REPL tool, run the `clear` or `cls` command. To illustrate, imagine the command shell contains the following output:
 
 ```console
-dotnet httprepl https://localhost:5001
+httprepl https://localhost:5001
 (Disconnected)~ set base "https://localhost:5001"
 Using swagger metadata from https://localhost:5001/swagger/v1/swagger.json
 

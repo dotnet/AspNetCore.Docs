@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 08/05/2019
+ms.date: 09/19/2019
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -732,6 +732,12 @@ The `@key` directive attribute causes the components diffing algorithm to guaran
 *This scenario only applies to Razor components (.razor).*
 
 Component references (`@ref`) provide a way to reference a component instance so that you can issue commands to that instance. For more information, see <xref:blazor/components#capture-references-to-components>.
+
+### \@typeparam
+
+*This scenario only applies to Razor components (.razor).*
+
+The `@typeparam` directive declares a generic type parameter for the generated component class. For more information, see <xref:blazor/components#generic-typed-components>.
 
 ::: moniker-end
 
