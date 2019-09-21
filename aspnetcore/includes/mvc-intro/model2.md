@@ -61,7 +61,7 @@ Add a connection string to the *appsettings.json* file:
 
 Run the following .NET Core CLI command to add SQLite and CodeGeneration.Design  to the project:
 
-```console
+```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 ```

@@ -81,7 +81,7 @@ To run the app after downloading the completed project:
 * Build the project.
 * At a command prompt in the project folder, run the following commands:
 
-  ```console
+  ```dotnetcli
   dotnet tool install --global dotnet-ef
   dotnet ef database update
   ```
@@ -111,7 +111,7 @@ To run the app after downloading the completed project:
 
 * Run the following commands to create a Razor Pages project and `cd` into the new project folder:
 
-  ```console
+  ```dotnetcli
   dotnet new webapp -o ContosoUniversity
   cd ContosoUniversity
   ```
@@ -226,7 +226,7 @@ The following packages are automatically installed:
 [!INCLUDE[](~/includes/add-EF-NuGet.md)]
 remove dotnet tool install --global  below
  -->
-  ```console
+  ```dotnetcli
   dotnet add package Microsoft.EntityFrameworkCore.SQLite
   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
   dotnet add package Microsoft.EntityFrameworkCore.Design
@@ -241,7 +241,7 @@ remove dotnet tool install --global  below
 
 * Run the following command to install the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
-  ```console
+  ```dotnetcli
   dotnet tool install --global dotnet-aspnet-codegenerator
   ```
 
@@ -249,13 +249,13 @@ remove dotnet tool install --global  below
 
   **On Windows**
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
   ```
 
   **On macOS or Linux**
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
   ```
 
@@ -498,7 +498,7 @@ Run the app.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-```CLI
+```dotnetcli
 dotnet new webapp -o ContosoUniversity
 cd ContosoUniversity
 dotnet run
@@ -603,7 +603,7 @@ See [Scaffold the movie model](xref:tutorials/razor-pages/model#scaffold-the-mov
 
 Run the following commands to scaffold the student model.
 
-```console
+```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
 dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Models.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
@@ -631,7 +631,7 @@ The scaffolding tool automatically created a DB Context and registered it with t
 
 Examine the `ConfigureServices` method in *Startup.cs*. The highlighted line was added by the scaffolder:
 
-[!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=5-6)]
+[!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=13-14)]
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 

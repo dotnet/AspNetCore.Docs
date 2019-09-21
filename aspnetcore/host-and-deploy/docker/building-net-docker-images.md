@@ -65,7 +65,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 * Run the following command to build and run the app locally:
 
-  ```console
+  ```dotnetcli
   dotnet run
   ```
 
@@ -137,7 +137,7 @@ In some scenarios, you might want to deploy an app to a container by copying to 
 
 * Run the [dotnet publish](/dotnet/core/tools/dotnet-publish) command:
 
-  ```console
+  ```dotnetcli
   dotnet publish -c Release -o published
   ```
 
@@ -149,13 +149,13 @@ In some scenarios, you might want to deploy an app to a container by copying to 
 
   * Windows:
 
-    ```console
+    ```dotnetcli
     dotnet published\aspnetapp.dll
     ```
 
   * Linux:
 
-    ```bash
+    ```dotnetcli
     dotnet published/aspnetapp.dll
     ```
 
@@ -172,9 +172,9 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ### The Dockerfile
 
-Here's the Dockerfile used by the `docker build` command you ran earlier.  It uses `dotnet publish` the same way you did in this section to build and deploy.  
+Here's the *Dockerfile* used by the `docker build` command you ran earlier.  It uses `dotnet publish` the same way you did in this section to build and deploy.  
 
-```console
+```dockerfile
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
 WORKDIR /app
 

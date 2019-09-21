@@ -192,7 +192,7 @@ SqliteException: SQLite Error 1: 'no such column: s.FirstName'.
 
 * Open a command window in the project folder. Enter the following commands to create a new migration and update the database:
 
-  ```console
+  ```dotnetcli
   dotnet ef migrations add ColumnFirstName
   dotnet ef database update
   ```
@@ -208,7 +208,7 @@ For this tutorial, the way to get past this error is to delete and re-create the
 * Delete the *Migrations* folder.
 * Run the following commands to drop the database, create a new initial migration, and apply the migration:
 
-  ```console
+  ```dotnetcli
   dotnet ef database drop --force
   dotnet ef migrations add InitialCreate
   dotnet ef database update
@@ -607,13 +607,13 @@ To force EF Core to create a new database, drop and update the database:
 
 * Run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet ef database drop --force
   ```
 
 * Delete the *Migrations* folder, then run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet ef migrations add InitialCreate
   dotnet ef database update
   ```
@@ -701,7 +701,7 @@ Because the `DbInitializer.Initialize` method is designed to work only with an e
 
 * If you're using SQL Server LocalDB with Visual Studio Code, run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet ef database update
   ```
 
@@ -836,7 +836,7 @@ Update-Database
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-```console
+```dotnetcli
 dotnet ef migrations add ColumnFirstName
 dotnet ef database update
 ```
@@ -1244,13 +1244,13 @@ Build the project.
 
 # [Visual Studio](#tab/visual-studio)
 
-```PMC
+```powershell
 Add-Migration ComplexDataModel
 ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-```console
+```dotnetcli
 dotnet ef migrations add ComplexDataModel
 ```
 
@@ -1301,10 +1301,10 @@ Open a command window and navigate to the project folder. The project folder con
 
 Enter the following in the command window:
 
- ```console
- dotnet ef database drop
+```dotnetcli
+dotnet ef database drop
 dotnet ef database update
- ```
+```
 
 ---
 

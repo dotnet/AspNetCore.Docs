@@ -35,8 +35,8 @@ and deploy it within Visual Studio Code.
 Using a terminal, navigate to the folder you want the project to be created on
 and use the following command:
 
-```cmd
-> dotnet new mvc
+```dotnetcli
+dotnet new mvc
 ```
 
 You'll have a folder structure similar to the following:

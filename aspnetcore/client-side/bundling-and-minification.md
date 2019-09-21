@@ -128,19 +128,19 @@ Clean the project. The following appears in the Output window:
 
 Add the *BuildBundlerMinifier* package to your project:
 
-```console
+```dotnetcli
 dotnet add package BuildBundlerMinifier
 ```
 
 If using ASP.NET Core 1.x, restore the newly added package:
 
-```console
+```dotnetcli
 dotnet restore
 ```
 
 Build the project:
 
-```console
+```dotnetcli
 dotnet build
 ```
 
@@ -158,7 +158,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 
 Clean the project:
 
-```console
+```dotnetcli
 dotnet clean
 ```
 
@@ -186,7 +186,7 @@ It's possible to run the bundling and minification tasks on an ad hoc basis, wit
 
 This package extends the .NET Core CLI to include the *dotnet-bundle* tool. The following command can be executed in the Package Manager Console (PMC) window or in a command shell:
 
-```console
+```dotnetcli
 dotnet bundle
 ```
 

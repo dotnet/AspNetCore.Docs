@@ -5,7 +5,7 @@ description: Troubleshoot errors when using gRPC on .NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
-ms.date: 08/26/2019
+ms.date: 09/21/2019
 uid: grpc/troubleshoot
 ---
 # Troubleshoot gRPC on .NET Core
@@ -34,10 +34,9 @@ The .NET Core client must use `https` in the server address to make calls with a
 ```csharp
 static async Task Main(string[] args)
 {
-    var httpClient = new HttpClient();
     // The port number(5001) must match the port of the gRPC server.
-    httpClient.BaseAddress = new Uri("https://localhost:5001");
-    var client = GrpcClient.Create<Greeter.GreeterClient>(httpClient);
+    var channel = GrpcChannel.ForAddress("https://localhost:5001");
+    var client = new Greet.GreeterClient(channel);
 }
 ```
 
@@ -57,11 +56,13 @@ If you are calling a gRPC service on another machine and are unable to trust the
 ```csharp
 var httpClientHandler = new HttpClientHandler();
 // Return `true` to allow certificates that are untrusted/invalid
-httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
-
+httpClientHandler.ServerCertificateCustomValidationCallback = 
+    HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 var httpClient = new HttpClient(httpClientHandler);
-httpClient.BaseAddress = new Uri("https://localhost:5001");
-var client = GrpcClient.Create<Greeter.GreeterClient>(httpClient);
+
+var channel = GrpcChannel.ForAddress("https://localhost:5001",
+    new GrpcChannelOptions { HttpClient = httpClient });
+var client = new Greet.GreeterClient(channel);
 ```
 
 > [!WARNING]
@@ -72,13 +73,13 @@ var client = GrpcClient.Create<Greeter.GreeterClient>(httpClient);
 Additional configuration is required to call insecure gRPC services with the .NET Core client. The gRPC client must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true` and use `http` in the server address:
 
 ```csharp
-// This switch must be set before creating the HttpClient.
-AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+// This switch must be set before creating the GrpcChannel/HttpClient.
+AppContext.SetSwitch(
+    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
-var httpClient = new HttpClient();
-// The address starts with "http://"
-httpClient.BaseAddress = new Uri("http://localhost:5000");
-var client = GrpcClient.Create<Greeter.GreeterClient>(httpClient);
+// The port number(5000) must match the port of the gRPC server.
+var channel = GrpcChannel.ForAddress("http://localhost:5000");
+var client = new Greet.GreeterClient(channel);
 ```
 
 ## Unable to start ASP.NET Core gRPC app on macOS
@@ -99,7 +100,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
             webBuilder.ConfigureKestrel(options =>
             {
                 // Setup a HTTP/2 endpoint without TLS.
-                options.ListenLocalhost(5000, o => o.Protocols = HttpProtocols.Http2);
+                options.ListenLocalhost(5000, o => o.Protocols = 
+                    HttpProtocols.Http2);
             });
             webBuilder.UseStartup<Startup>();
         });

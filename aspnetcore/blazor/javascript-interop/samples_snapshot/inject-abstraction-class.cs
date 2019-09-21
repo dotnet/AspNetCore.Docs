@@ -11,7 +11,7 @@ public class JsInteropClasses
     {
         // The handleTickerChanged JavaScript method is implemented
         // in a JavaScript file, such as 'wwwroot/tickerJsInterop.js'.
-        return _jsRuntime.InvokeAsync<object>(
+        return _jsRuntime.InvokeAsync<string>(
             "handleTickerChanged",
             stockUpdate.symbol,
             stockUpdate.price);

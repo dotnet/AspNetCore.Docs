@@ -30,3 +30,4 @@ At the end, you'll have an app that can display and manage a database of movies.
 ## Additional resources
 
 * [Youtube version of this tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
+* [Youtube version of this tutorial (Turkish)](https://www.youtube.com/watch?v=wqW8ayrA5-E)

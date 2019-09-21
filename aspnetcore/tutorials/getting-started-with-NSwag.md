@@ -69,7 +69,7 @@ Use one of the following approaches to install the NSwag NuGet package:
 
 Run the following command:
 
-```console
+```dotnetcli
 dotnet add TodoApi.csproj package NSwag.AspNetCore
 ```
 

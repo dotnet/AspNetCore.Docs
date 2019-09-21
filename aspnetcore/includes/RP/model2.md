@@ -48,11 +48,10 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 Run the following .NET Core CLI command to add SQLite and CodeGeneration.Design  to the project:
 
-```console
+```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
-
 ```
 
 The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding.
