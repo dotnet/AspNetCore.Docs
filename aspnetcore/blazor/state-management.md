@@ -5,7 +5,7 @@ description: Learn how to persist state in Blazor Server apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/05/2019
+ms.date: 09/21/2019
 uid: blazor/state-management
 ---
 # ASP.NET Core Blazor state management
@@ -251,8 +251,8 @@ Prerendering might be useful for other pages that don't use `localStorage` or `s
     {
         if (firstRender)
         {
-            // When execution gets here, this represents the completion of the first *interactive*
-            // render. The component has an active connection to the browser.
+            // When execution reaches this point, the first *interactive* render
+            // is complete. The component has an active connection to the browser.
             isConnected = true;
             await LoadStateAsync();
             StateHasChanged();
