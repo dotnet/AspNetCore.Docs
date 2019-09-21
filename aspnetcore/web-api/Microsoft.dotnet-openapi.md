@@ -37,11 +37,14 @@ The preceding reference is required for the app to call the generated client cod
 ### Add Project
 
 #### Options
+
 | Short option | Long option | Description | Example |
 |-------|------|-------|---------|
 | -v|--verbose | Show verbose output. |dotnet openapi add project *-v* ../Ref/ProjRef.csproj |
 | -p|--project | The project to operate on. |dotnet openapi add project *--project .\Ref.csproj* ../Ref/ProjRef.csproj |
+
 #### Arguments
+
 |  Argument  | Description | Example |
 |-------------|-------------|---------|
 | source-file | The source to create a reference from. Must be a project file. |dotnet openapi add project *../Ref/ProjRef.csproj* | -->
@@ -74,7 +77,6 @@ The preceding reference is required for the app to call the generated client cod
 | -o|--output-file | Where to place the local copy of the OpenAPI file. |dotnet openapi add url `https://contoso.com/openapi.json` *--output-file myclient.json* |
 | -c|--code-generator| The code generator to apply to the reference. Options are `NSwagCSharp` and `NSwagTypeScript`. |dotnet openapi add file .\OpenApi.json --code-generator
 | -h|--help|Show help information|dotnet openapi add url --help|
-
 
 #### Arguments
 
@@ -111,7 +113,6 @@ Refreshes the local version of a file that was downloaded using the latest conte
 | -v|--verbose | Show verbose output. | dotnet openapi refresh *-v* `https://contoso.com/openapi.json` |
 | -p|--updateProject | The project to operate on. | dotnet openapi refresh *--updateProject .\Ref.csproj* `https://contoso.com/openapi.json` |
 | -h|--help|Show help information|dotnet openapi refresh --help|
-
 
 ### Arguments
 
