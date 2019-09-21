@@ -12,6 +12,8 @@ uid: mvc/compatibility-version
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+::: moniker range="< aspnetcore-3.0"
+
 The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method allows an ASP.NET Core 2.x app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or 2.2. These potentially breaking behavior changes are generally in how the MVC subsystem behaves and how **your code** is called by the runtime. By opting in, you get the latest behavior, and the long-term behavior of ASP.NET Core.
 
 The following code sets the compatibility mode to ASP.NET Core 2.2:
@@ -42,3 +44,10 @@ For apps that encounter breaking behavior changes, using the appropriate compati
 The <xref:Microsoft.AspNetCore.Mvc.MvcOptions> documentation has a good explanation of what changed and why the changes are an improvement for most users.
 
 At some future date, there will be an [ASP.NET Core 3.0 version](https://github.com/aspnet/Home/wiki/Roadmap). Old behaviors supported by compatibility switches will be removed in the 3.0 version. We feel these are positive changes benefitting nearly all users. By introducing these changes now, most apps can benefit now, and the others will have time to update their apps.
+::: moniker-end
+
+::: moniker range="= aspnetcore-3.0"
+
+The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method is a no-op for ASP.NET Core 3.0 apps. That is, calling `SetCompatibilityVersion` with any version `CompatibilityVersion` value has no impact on the application. To see how `CompatibilityVersion` works with ASP.NET Core 2.x apps, select the `ASP.NET Core 2.2` version of this article using the version selector.
+
+::: moniker-end
