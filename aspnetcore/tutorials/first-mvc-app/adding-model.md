@@ -64,7 +64,7 @@ The preceding command adds the EF Core SQL Server provider. The provider package
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!INCLUDE[](~/includes/add-EF-NuGet.md)]
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
 
 ---
 

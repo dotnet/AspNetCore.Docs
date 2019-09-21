@@ -20,7 +20,7 @@ Add a connection string to the *appsettings.json* file:
 
 ### Add NuGet packages and EF tools
 
-[!INCLUDE[](~/includes/add-EF-NuGet.md)]
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
 
 <a name="reg"></a>
 
