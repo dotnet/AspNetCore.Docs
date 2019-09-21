@@ -1033,7 +1033,7 @@ If `IsCompleted` is `false`, the check box is rendered as:
 For more information, see <xref:mvc/views/razor>.
 
 > [!WARNING]
-> Some HTML attributes, such as [aria-pressed](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), don't function properly when the .NET type is a `bool`. In those cases, use a `string` type instead of a `bool`.
+> Some HTML attributes, such as [aria-pressed](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), don't function properly when the .NET type is a `bool`. In those cases, use a `string` type instead of a `bool`.
 
 ## Raw HTML
 
