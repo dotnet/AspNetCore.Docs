@@ -1,6 +1,6 @@
 Run the following .NET Core CLI commands:
 
-```console
+```dotnetcli
 dotnet tool install --global dotnet-ef
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
