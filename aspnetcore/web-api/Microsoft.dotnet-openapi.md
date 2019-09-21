@@ -21,7 +21,7 @@ To install `Microsoft.dotnet-openapi`, run the following command:
 dotnet tool install -g Microsoft.dotnet-openapi
 ```
 
-`Microsoft.dotnet-openapi` is a [.NET Core Global Tool](xref:/dotnet/core/tools/global-tools).
+`Microsoft.dotnet-openapi` is a [.NET Core Global Tool](/dotnet/core/tools/global-tools).
 
 ## Add
 
