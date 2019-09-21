@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/06/2019
+ms.date: 09/21/2019
 uid: blazor/routing
 ---
 # ASP.NET Core Blazor routing
@@ -22,7 +22,7 @@ Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamenta
 
 [!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-The most typical configuration is to route all requests to a razor page, which acts as the host for the Blazor Server part of the application. This *host* page is usually named `_Host.cshtml` as a convention. We call the route used here a *fallback route* because it operates with a very low priority - it's the route that's considered when other routes don't match. This allows the application to use others controllers and pages without interfering with the Blazor Server application.
+The most typical configuration is to route all requests to a Razor page, which acts as the host for the server-side part of the Blazor Server app. By convention, the *host* page is usually named *_Host.cshtml*. The route specified in the host file is called a *fallback route* because it operates with a low priority in route matching. The fallback route is considered when other routes don't match. This allows the app to use others controllers and pages without interfering with the Blazor Server app.
 
 ## Route templates
 
