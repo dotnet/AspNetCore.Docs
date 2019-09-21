@@ -14,9 +14,6 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 
 Forms and validation are supported in Blazor using [data annotations](xref:mvc/models/validation).
 
-> [!NOTE]
-> Forms and validation scenarios are likely to change with each preview release.
-
 The following `ExampleModel` type defines validation logic using data annotations:
 
 ```csharp

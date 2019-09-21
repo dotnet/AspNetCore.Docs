@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/19/2019
+ms.date: 09/21/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -21,14 +21,6 @@ Blazor apps are built using *components*. A component is a self-contained chunk 
 Components are implemented in [Razor](xref:mvc/views/razor) component files (*.razor*) using a combination of C# and HTML markup. A component in Blazor is formally referred to as a *Razor component*.
 
 A component's name must start with an uppercase character. For example, *MyCoolComponent.razor* is valid, and *myCoolComponent.razor* is invalid.
-
-Components can be authored using the *.cshtml* file extension as long as the files are identified as Razor component files using the `_RazorComponentInclude` MSBuild property. For example, an app that specifies that all *.cshtml* files under the *Pages* folder should be treated as Razor components files:
-
-```xml
-<PropertyGroup>
-  <_RazorComponentInclude>Pages\**\*.cshtml</_RazorComponentInclude>
-</PropertyGroup>
-```
 
 The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When an app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
 
@@ -1040,6 +1032,9 @@ If `IsCompleted` is `false`, the check box is rendered as:
 
 For more information, see <xref:mvc/views/razor>.
 
+> [!WARNING]
+> Some HTML attributes, such as [aria-pressed](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), don't function properly when the .NET type is a `bool`. In those cases, use a `string` type instead of a `bool`.
+
 ## Raw HTML
 
 Strings are normally rendered using DOM text nodes, which means that any markup they may contain is ignored and treated as literal text. To render raw HTML, wrap the HTML content in a `MarkupString` value. The value is parsed as HTML or SVG and inserted into the DOM.
@@ -1327,7 +1322,7 @@ Rendered output of the preceding code:
 
 ## Manual RenderTreeBuilder logic
 
-`Microsoft.AspNetCore.Components.RenderTree` provides methods for manipulating components and elements, including building components manually in C# code.
+`Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder` provides methods for manipulating components and elements, including building components manually in C# code.
 
 > [!NOTE]
 > Use of `RenderTreeBuilder` to create components is an advanced scenario. A malformed component (for example, an unclosed markup tag) can result in undefined behavior.
@@ -1380,6 +1375,9 @@ In the following example, the loop in the `CreateComponent` method generates thr
     }
 }
 ```
+
+> ![WARNING]
+> The types in `Microsoft.AspNetCore.Components.RenderTree` allow processing of the *results* of rendering operations. These are internal details of the Blazor framework implementation. These types should be considered *unstable* and subject to change in future releases.
 
 ### Sequence numbers relate to code line numbers and not execution order
 

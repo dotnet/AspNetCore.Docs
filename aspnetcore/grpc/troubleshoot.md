@@ -5,7 +5,7 @@ description: Troubleshoot errors when using gRPC on .NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
-ms.date: 09/05/2019
+ms.date: 09/21/2019
 uid: grpc/troubleshoot
 ---
 # Troubleshoot gRPC on .NET Core
@@ -56,7 +56,8 @@ If you are calling a gRPC service on another machine and are unable to trust the
 ```csharp
 var httpClientHandler = new HttpClientHandler();
 // Return `true` to allow certificates that are untrusted/invalid
-httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+httpClientHandler.ServerCertificateCustomValidationCallback = 
+    HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 var httpClient = new HttpClient(httpClientHandler);
 
 var channel = GrpcChannel.ForAddress("https://localhost:5001",
@@ -73,7 +74,8 @@ Additional configuration is required to call insecure gRPC services with the .NE
 
 ```csharp
 // This switch must be set before creating the GrpcChannel/HttpClient.
-AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+AppContext.SetSwitch(
+    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
 // The port number(5000) must match the port of the gRPC server.
 var channel = GrpcChannel.ForAddress("http://localhost:5000");
@@ -98,7 +100,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
             webBuilder.ConfigureKestrel(options =>
             {
                 // Setup a HTTP/2 endpoint without TLS.
-                options.ListenLocalhost(5000, o => o.Protocols = HttpProtocols.Http2);
+                options.ListenLocalhost(5000, o => o.Protocols = 
+                    HttpProtocols.Http2);
             });
             webBuilder.UseStartup<Startup>();
         });
