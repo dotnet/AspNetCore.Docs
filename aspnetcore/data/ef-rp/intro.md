@@ -223,7 +223,7 @@ The following packages are automatically installed:
 
 * Run the following .NET Core CLI commands to install required NuGet packages:
 <!-- TO DO  After testing, Replace with
-[!INCLUDE[](~/includes/add-EF-NuGet.md)]
+[!INCLUDE[](~/includes/includes/add-EF-NuGet-SQLite-CLI.md)]
 remove dotnet tool install --global  below
  -->
   ```console
