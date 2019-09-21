@@ -1376,8 +1376,8 @@ In the following example, the loop in the `CreateComponent` method generates thr
 }
 ```
 
-> ![Warning]
-> The types in `Microsoft.AspNetCore.Components.RenderTree` allow processing of the *results* of rendering operations. These are details of the Blazor implementation and these types should be considered *unstable* and subject to change in future releases.
+> ![WARNING]
+> The types in `Microsoft.AspNetCore.Components.RenderTree` allow processing of the *results* of rendering operations. These are internal details of the Blazor framework implementation. These types should be considered *unstable* and subject to change in future releases.
 
 ### Sequence numbers relate to code line numbers and not execution order
 
