@@ -5,7 +5,7 @@ description: Learn how to create reusable layout components for Blazor apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/06/2019
+ms.date: 09/21/2019
 uid: blazor/layouts
 ---
 # ASP.NET Core Blazor layouts
@@ -49,7 +49,7 @@ The content of the following `MasterList` component is inserted into the `Master
 
 [!code-cshtml[](layouts/sample_snapshot/3.x/MasterList.razor?highlight=1)]
 
-Specifying the layout directly in a component will override a *default layout* set in the router, or an `@layout` directive imported from *_Imports.razor*.
+Specifying the layout directly in a component overrides a *default layout* set in the router or an `@layout` directive imported from *_Imports.razor*.
 
 ## Centralized layout selection
 
@@ -65,7 +65,7 @@ The following *_Imports.razor* file imports:
 
 The *_Imports.razor* file is similar to the [_ViewImports.cshtml file for Razor views and pages](xref:mvc/views/layout#importing-shared-directives) but applied specifically to Razor component files.
 
-Specifying a layout in *_Imports.razor* will override a layout specified as the router's *default layout*.
+Specifying a layout in *_Imports.razor* overrides a layout specified as the router's *default layout*.
 
 ## Nested layouts
 
