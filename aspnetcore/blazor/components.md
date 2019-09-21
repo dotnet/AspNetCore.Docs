@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/19/2019
+ms.date: 09/21/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -1033,7 +1033,7 @@ If `IsCompleted` is `false`, the check box is rendered as:
 For more information, see <xref:mvc/views/razor>.
 
 > [!WARNING]
-> Some HTML attributes such as [aria-pressed](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons) don't functional correctly with this behavior. Use `string`s instead of `bool`s with attributes like `aria-pressed` to work around this problem.
+> Some HTML attributes, such as [aria-pressed](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), don't function properly when the .NET type is a `bool`. In those cases, use a `string` type instead of a `bool`.
 
 ## Raw HTML
 
