@@ -20,14 +20,14 @@ The following code sets the compatibility mode to ASP.NET Core 2.2:
 
 [!code-csharp[Main](compatibility-version/samples/2.x/CompatibilityVersionSample/Startup.cs?name=snippet1)]
 
-We recommend you test your app using the latest version (`CompatibilityVersion.Version_2_2`). We anticipate that most apps won't have breaking behavior changes using the latest version.
+We recommend you test your app using the latest version (`CompatibilityVersion.Latest`). We anticipate that most apps won't have breaking behavior changes using the latest version.
 
-Apps that call `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)` are protected from potentially breaking behavior changes introduced in the ASP.NET Core 2.1 MVC and later 2.x versions. This protection:
+Apps that call `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)` are protected from potentially breaking behavior changes introduced in the ASP.NET Core 2.1/2.2 MVC versions. This protection:
 
 * Does not apply to all 2.1 and later changes, it's targeted to potentially breaking ASP.NET Core runtime behavior changes in the MVC subsystem.
 * Does not extend to ASP.NET Core 3.0.
 
-The default compatibility for ASP.NET Core 2.1 and later 2.x apps that do **not** call `SetCompatibilityVersion` is 2.0 compatibility. That is, not calling `SetCompatibilityVersion` is the same as calling `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)`.
+The default compatibility for ASP.NET Core 2.1 and 2.2 apps that do **not** call `SetCompatibilityVersion` is 2.0 compatibility. That is, not calling `SetCompatibilityVersion` is the same as calling `SetCompatibilityVersion(CompatibilityVersion.Version_2_0)`.
 
 The following code sets the compatibility mode to ASP.NET Core 2.2, except for the following behaviors:
 
@@ -43,11 +43,11 @@ For apps that encounter breaking behavior changes, using the appropriate compati
 
 The <xref:Microsoft.AspNetCore.Mvc.MvcOptions> documentation has a good explanation of what changed and why the changes are an improvement for most users.
 
-At some future date, there will be an [ASP.NET Core 3.0 version](https://github.com/aspnet/Home/wiki/Roadmap). Old behaviors supported by compatibility switches will be removed in the 3.0 version. We feel these are positive changes benefitting nearly all users. By introducing these changes now, most apps can benefit now, and the others will have time to update their apps.
+With ASP.NET Core 3.0, old behaviors supported by compatibility switches have been removed. We feel these are positive changes benefitting nearly all users. By introducing these changes in 2.1 and 2.2, most apps can benefit, while others have time to update.
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-3.0"
 
-The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method is a no-op for ASP.NET Core 3.0 apps. That is, calling `SetCompatibilityVersion` with any version `CompatibilityVersion` value has no impact on the application. To see how `CompatibilityVersion` works with ASP.NET Core 2.x apps, select the `ASP.NET Core 2.2` version of this article using the version selector.
+The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method is a no-op for ASP.NET Core 3.0 apps. That is, calling `SetCompatibilityVersion` with any value of <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion> has no impact on the application. To see how `SetCompatibilityVersion` works with ASP.NET Core 2.x apps, select the `ASP.NET Core 2.2` version of this article using the version selector.
 
 ::: moniker-end
