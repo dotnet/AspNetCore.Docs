@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/03/2019
+ms.date: 09/09/2019
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -42,7 +42,7 @@ The ASP.NET Core Worker Service template provides a starting point for writing l
 
 Use the Worker Service (`worker`) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell. In the following example, a Worker Service app is created named `ContosoWorkerService`. A folder for the `ContosoWorkerService` app is created automatically when the command is executed.
 
-```console
+```dotnetcli
 dotnet new worker -o ContosoWorkerService
 ```
 
@@ -306,15 +306,17 @@ To handle <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHostService.OnSt
 
 Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see <xref:host-and-deploy/proxy-load-balancer>.
 
-## Configure HTTPS
+## Configure endpoints
 
-To configure a service with a secure endpoint:
+By default, ASP.NET Core binds to `http://localhost:5000`. Configure the URL and port by setting the `ASPNETCORE_URLS` environment variable.
 
-1. Create an X.509 certificate for the hosting system using your platform's certificate acquisition and deployment mechanisms.
+For additional URL and port configuration approaches, including support for HTTPS endpoints, see the following topics:
 
-1. Specify a [Kestrel server HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) to use the certificate.
+* <xref:fundamentals/servers/kestrel#endpoint-configuration> (Kestrel)
+* <xref:fundamentals/servers/httpsys#configure-windows-server> (HTTP.sys)
 
-Use of the ASP.NET Core HTTPS development certificate to secure a service endpoint isn't supported.
+> [!NOTE]
+> Use of the ASP.NET Core HTTPS development certificate to secure a service endpoint isn't supported.
 
 ## Current directory and content root
 

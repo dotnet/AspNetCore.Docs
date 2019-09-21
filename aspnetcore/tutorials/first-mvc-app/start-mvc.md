@@ -72,7 +72,7 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 * Change directories (`cd`) to a folder which will contain the project.
 * Run the following command:
 
-   ```console
+   ```dotnetcli
    dotnet new mvc -o MvcMovie
    code -r MvcMovie
    ```
@@ -222,7 +222,7 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 * Change directories (`cd`) to a folder which will contain the project.
 * Run the following command:
 
-   ```console
+   ```dotnetcli
    dotnet new mvc -o MvcMovie
    code -r MvcMovie
    ```

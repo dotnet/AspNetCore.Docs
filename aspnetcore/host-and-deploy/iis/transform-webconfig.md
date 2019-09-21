@@ -52,7 +52,7 @@ In the following example, a configuration-specific environment variable is set i
 
 The transform is applied when the configuration is set to *Release*:
 
-```console
+```dotnetcli
 dotnet publish --configuration Release
 ```
 
@@ -86,7 +86,7 @@ In the following example, a profile-specific environment variable is set in *web
 
 The transform is applied when the profile is *FolderProfile*:
 
-```console
+```dotnetcli
 dotnet publish --configuration Release /p:PublishProfile=FolderProfile
 ```
 
@@ -122,7 +122,7 @@ In the following example, a environment-specific environment variable is set in 
 
 The transform is applied when the environment is *Production*:
 
-```console
+```dotnetcli
 dotnet publish --configuration Release /p:EnvironmentName=Production
 ```
 
@@ -160,7 +160,7 @@ In the following example, a custom transform environment variable is set in *cus
 
 The transform is applied when the `CustomTransformFileName` property is passed to the [dotnet publish](/dotnet/core/tools/dotnet-publish) command:
 
-```console
+```dotnetcli
 dotnet publish --configuration Release /p:CustomTransformFileName=custom.transform
 ```
 
@@ -170,7 +170,7 @@ The MSBuild property for the profile name is `$(CustomTransformFileName)`.
 
 To prevent transformations of the *web.config* file, set the MSBuild property `$(IsWebConfigTransformDisabled)`:
 
-```console
+```dotnetcli
 dotnet publish /p:IsWebConfigTransformDisabled=true
 ```
 

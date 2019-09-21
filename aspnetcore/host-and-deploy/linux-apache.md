@@ -34,7 +34,7 @@ If the app is run locally and isn't configured to make secure connections (HTTPS
 
 Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the development environment to package an app into a directory (for example, *bin/Release/&lt;target_framework_moniker&gt;/publish*) that can run on the server:
 
-```console
+```dotnetcli
 dotnet publish --configuration Release
 ```
 

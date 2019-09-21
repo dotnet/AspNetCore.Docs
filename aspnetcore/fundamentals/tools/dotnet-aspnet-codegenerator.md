@@ -20,13 +20,13 @@ This article applies to [.NET Core 2.1 SDK](https://dotnet.microsoft.com/downloa
 
 `dotnet-aspnet-codegenerator` is a [global tool](/dotnet/core/tools/global-tools) that must be installed. The following command installs the latest stable version of the `dotnet-aspnet-codegenerator` tool:
 
-```console
+```dotnetcli
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
 The following command updates `dotnet-aspnet-codegenerator` to the latest stable version available from the installed .NET Core SDKs:
 
-```console
+```dotnetcli
 dotnet tool update -g dotnet-aspnet-codegenerator
 ```
 
@@ -132,7 +132,7 @@ The following table lists options unique to  `aspnet-codegenerator controller`:
 
 Use the `-h` switch for help on the `aspnet-codegenerator controller` command:
 
-```console
+```dotnetcli
 dotnet aspnet-codegenerator controller -h
 ```
 
@@ -153,7 +153,7 @@ Razor Pages can be individually scaffolded by specifying the name of the new pag
 
 For example, the following command uses the Edit template to generate *MyEdit.cshtml* and *MyEdit.cshtml.cs*:
 
-```console
+```dotnetcli
 dotnet aspnet-codegenerator razorpage MyEdit Edit -m Movie -dc RazorPagesMovieContext -outDir Pages/Movies
 ```
 
@@ -179,7 +179,7 @@ The following table lists options unique to  `aspnet-codegenerator razorpage`:
 
 Use the `-h` switch for help on the `aspnet-codegenerator razorpage` command:
 
-```console
+```dotnetcli
 dotnet aspnet-codegenerator razorpage -h
 ```
 

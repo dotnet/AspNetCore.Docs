@@ -5,7 +5,7 @@
     {
         StocksService.OnStockTickerUpdated += stockUpdate =>
         {
-            JSRuntime.InvokeAsync<object>(
+            JSRuntime.InvokeVoidAsync(
                 "handleTickerChanged",
                 stockUpdate.symbol,
                 stockUpdate.price);

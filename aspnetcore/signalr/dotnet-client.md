@@ -5,7 +5,7 @@ description: Information about the ASP.NET Core SignalR .NET Client
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 04/17/2019
+ms.date: 09/13/2019
 uid: signalr/dotnet-client
 ---
 
@@ -19,11 +19,25 @@ The code sample in this article is a WPF app that uses the ASP.NET Core SignalR 
 
 ## Install the SignalR .NET client package
 
-The `Microsoft.AspNetCore.SignalR.Client` package is needed for .NET clients to connect to SignalR hubs. To install the client library, run the following command in the **Package Manager Console** window:
+The [Microsoft.AspNetCore.SignalR.Client](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package is required for .NET clients to connect to SignalR hubs.
+
+# [Visual Studio](#tab/visual-studio)
+
+To install the client library, run the following command in the **Package Manager Console** window:
 
 ```powershell
 Install-Package Microsoft.AspNetCore.SignalR.Client
 ```
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+To install the client library, run the following command in a command shell:
+
+```dotnetcli
+dotnet add package Microsoft.AspNetCore.SignalR.Client
+```
+
+---
 
 ## Connect to a hub
 

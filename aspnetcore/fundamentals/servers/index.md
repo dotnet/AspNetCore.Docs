@@ -1,11 +1,11 @@
 ---
 title: Web server implementations in ASP.NET Core
-author: guardrex
+author: tdykstra
 description: Discover the web servers Kestrel and HTTP.sys for ASP.NET Core. Learn how to choose a server and when to use a reverse proxy server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/01/2019
+ms.date: 08/10/2019
 uid: fundamentals/servers/index
 ---
 # Web server implementations in ASP.NET Core
@@ -28,7 +28,7 @@ Use Kestrel:
 
   ![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
 
-Either hosting configuration&mdash;with or without a reverse proxy server&mdash;is supported for ASP.NET Core 2.1 or later apps.
+Either hosting configuration&mdash;with or without a reverse proxy server&mdash;is supported.
 
 For Kestrel configuration guidance and information on when to use Kestrel in a reverse proxy configuration, see <xref:fundamentals/servers/kestrel>.
 
