@@ -16,8 +16,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Razor views, pages, controllers, page models, [Razor components](xref:blazor/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (*.cshtml* file) in the web app takes precedence.
 
-This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
-
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Create a class library containing Razor UI
@@ -27,7 +25,7 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 * From the Visual Studio **File** menu, select **New** > **Project**.
 * Select **ASP.NET Core Web Application**.
 * Name the library (for example, "RazorClassLib") > **OK**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
-* Verify **ASP.NET Core 2.1** or later is selected.
+* Verify **ASP.NET Core 3.0** or later is selected.
 * Select **Razor Class Library** > **OK**.
 
 The Razor class library (RCL) template defaults to Razor component development by default. A template option in Visual Studio provides template support for pages and views.
@@ -183,8 +181,6 @@ When the app is published, the companion assets from all referenced projects and
 ::: moniker range="< aspnetcore-3.0"
 
 Razor views, pages, controllers, page models, [Razor components](xref:blazor/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (*.cshtml* file) in the web app takes precedence.
-
-This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:index#how-to-download-a-sample))
 
