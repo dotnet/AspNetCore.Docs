@@ -59,7 +59,6 @@ In addition to your project's assembly and its dependent assemblies, the `Applic
 Application Feature Providers examine application parts and provide features for those parts. There are built-in feature providers for the following MVC features:
 
 * [Controllers](/dotnet/api/microsoft.aspnetcore.mvc.controllers.controllerfeatureprovider)
-* [Metadata Reference](/dotnet/api/microsoft.aspnetcore.mvc.razor.compilation.metadatareferencefeatureprovider)
 * [Tag Helpers](/dotnet/api/microsoft.aspnetcore.mvc.razor.taghelpers.taghelperfeatureprovider)
 * [View Components](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponents.viewcomponentfeatureprovider)
 
@@ -91,16 +90,39 @@ The `GenericController` class:
 
 [!code-csharp[](./app-parts/sample/AppPartsSample/GenericController.cs?highlight=5-6)]
 
-The result, when a matching route is requested:
+The result when requesting `http://localhost:28431/Sprocket`:
 
-![Example output from the sample app reads, 'Hello from a generic Sprocket controller.'](app-parts/_static/generic-controller.png)
+```text
+Hello from a generic Sprocket controller.
+```
 
 ### Sample: Display available features
 
 You can iterate through the populated features available to your app by requesting an `ApplicationPartManager` through [dependency injection](../../fundamentals/dependency-injection.md) and using it to populate instances of the appropriate features:
 
-[!code-csharp[](./app-parts/sample/AppPartsSample/Controllers/FeaturesController.cs?highlight=16,25-27)]
+[!code-csharp[](./app-parts/sample/AppPartsSample/Controllers/FeaturesController.cs?highlight=15,24-26)]
 
 Example output:
 
-![Example output from the sample app](app-parts/_static/available-features.png)
+```text
+Controllers:
+    - FeaturesController
+    - HomeController
+    - HelloController
+    - GenericController`1
+    - GenericController`1
+
+Tag Helpers:
+    - AnchorTagHelper
+    - CacheTagHelper
+    - DistributedCacheTagHelper
+    - EnvironmentTagHelper
+    - FormTagHelper
+
+View Components:
+    - AnchorTagHelper
+    - CacheTagHelper
+    - DistributedCacheTagHelper
+    - EnvironmentTagHelper
+    - FormTagHelper
+```
