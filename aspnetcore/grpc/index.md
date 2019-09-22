@@ -27,7 +27,7 @@ These benefits make gRPC ideal for:
 
 ## C# Tooling support for .proto files
 
-gRPC uses a contract-first approach to API development. Services and messages are written in *\*.proto* files:
+gRPC uses a contract-first approach to API development. Services and messages are defined in *\*.proto* files:
 
 ```protobuf
 syntax = "proto3";
@@ -45,7 +45,7 @@ message HelloReply {
 }
 ```
 
-Automatically generate services, clients and messages by referencing the [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) package and the *\*.proto* files in a project:
+Automatically generate services, clients and messages by referencing the [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) package and *\*.proto* files in a project:
 
 ```xml
 <ItemGroup>
@@ -57,7 +57,7 @@ For more information on gRPC tooling support, see <xref:grpc/basics>.
 
 ## gRPC services on ASP.NET Core
 
-gRPC services can be hosted with ASP.NET Core. Services have full integration with popular ASP.NET Core features such as logging, dependency injection (DI), authentication and authorization.
+gRPC services can be hosted on ASP.NET Core. Services have full integration with popular ASP.NET Core features such as logging, dependency injection (DI), authentication and authorization.
 
 ```csharp
 public class GreeterService : Greeter.GreeterBase
@@ -97,20 +97,7 @@ var response = await client.SayHello(
 Console.WriteLine(response.Message);
 ```
 
-To learn how to call gRPC services in .NET, see <xref:grpc/client>.
-
-## gRPC client factory integration
-
-gRPC integration with `HttpClientFactory` offers a centralized way to create gRPC clients. It can be used as an alternative to configuring stand-alone gRPC client instances.
-
-```csharp
-services.AddGrpcClient<Greeter.GreeterClient>(o =>
-{
-    o.Address = new Uri("https://localhost:5001");
-});
-```
-
-For more information, see <xref:grpc/clientfactory>.
+For more information, see <xref:grpc/client>.
 
 ## Additional resources
 
