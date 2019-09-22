@@ -28,21 +28,72 @@ These benefits make gRPC ideal for:
 The following documents introduce [gRPC for .NET](https://github.com/grpc/grpc-dotnet), a new implementation of gRPC. gRPC for .NET integrates gRPC services with ASP.NET Core on the server, and the client uses HTTP/2 support added in .NET Core 3.0.
 
 > [!TIP]
-> An alternative C# implementation is available on the [gRPC for C# page](https://grpc.io/docs/quickstart/csharp.html). This implementation relies on the native library written in C (gRPC [C-core](https://grpc.io/blog/grpc-stacks)).
+> An alternative C# implementation is available on the [gRPC for C# page](https://github.com/grpc/grpc/tree/master/src/csharp). This implementation relies on the native library written in C (gRPC [C-core](https://grpc.io/blog/grpc-stacks)).
+
+## C# Tooling support for .proto files
+
+Generate gRPC services and clients from *.proto* files at build.
+
+```protobuf
+syntax = "proto3";
+
+service WeatherForecaster {
+  rpc GetWeather (WeatherRequest) returns (WeatherResponse);
+}
+
+message WeatherRequest {
+  string location = 1;
+}
+
+message WeatherResponse {
+  string location = 1;
+  string description = 2;
+  float temperature = 3;
+}
+```
+
+For more information, see <xref:grpc/basics>.
 
 ## gRPC services on ASP.NET Core
 
-gRPC services hosted on ASP.NET Core have full integration with useful ASP.NET Core features such as logging, dependency injection (DI), authentication and authorization.
+gRPC services can be hosted with ASP.NET Core. Services have full integration with popular ASP.NET Core features such as logging, dependency injection (DI), authentication and authorization.
 
-!!CODE HERE!!
+```csharp
+public class WeatherService : Weather.WeatherBase
+{
+    private readonly WeatherRepository _weatherRepository;
+    private readonly ILogger<WeatherService> _logger;
+
+    public WeatherService(WeatherRepository weatherRepository,
+        ILogger<WeatherService> logger)
+    {
+        _weatherRepository = weatherRepository;
+        _logger = logger;
+    }
+
+    public override async Task<WeatherResponse> GetWeather(
+        WeatherRequest request, ServerCallContext context)
+    {
+        return await _weatherRepository.GetWeather(request.Location);
+    }
+}
+```
 
 For more information, see <xref:grpc/aspnetcore>.
 
 ## Call gRPC services with a .NET client
 
-Call gRPC services with code generated, strongly typed gRPC clients in .NET.
+Easily call gRPC services with automatically generated gRPC clients in .NET.
 
-!!CODE HERE!!
+```csharp
+var channel = GrpcChannel.ForAddress("https://localhost:5001");
+var client = new Weather.WeatherClient(channel);
+
+var response = await client.GetWeatherAsync(
+    new GetWeatherRequest { Location = "Seattle" });
+
+Console.WriteLine($"It's {response.Temperature} degrees.");
+```
 
 For more information, see <xref:grpc/client>.
 
