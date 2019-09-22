@@ -40,7 +40,7 @@ Drop-Database
 * Run the following command at a command prompt to install the EF CLI tools:
 
   ```dotnetcli
-  dotnet tool install --global dotnet-ef --version 3.0.0-*
+  dotnet tool install --global dotnet-ef
   ```
 
 * In the command prompt, navigate to the project folder. The project folder contains the *ContosoUniversity.csproj* file.

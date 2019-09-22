@@ -21,17 +21,7 @@ Add a connection string to the *appsettings.json* file as shown in the following
 
 ### Add NuGet packages and EF tools
 
-Open a terminal for the RazorPagesMovie project.  Right click the project name in the design/layout bar and go to **Tools > Open** in Terminal. Run the following .NET Core CLI commands in the Termial:
-
-```dotnetcli
-dotnet tool install --global dotnet-ef --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 3.0.0-*
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
-```
-
-The preceding commands add Entity Framework Core Tools for the .NET CLI and several packages to the project. The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding.
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
 
 <a name="reg"></a>
 

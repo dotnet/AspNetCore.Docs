@@ -3,7 +3,7 @@ title: Add a model to a Razor Pages app in ASP.NET Core
 author: rick-anderson
 description: Discover how to add classes for managing movies in a database using Entity Framework Core (EF Core).
 ms.author: riande
-ms.date: 07/22/2019
+ms.date: 9/22/2019
 uid: tutorials/razor-pages/model
 ---
 # Add a model to a Razor Pages app in ASP.NET Core
@@ -93,7 +93,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 * Install the scaffolding tool:
 
   ```dotnetcli
-   dotnet tool install --global dotnet-aspnet-codegenerator --version 3.0.0-*
+   dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
 * **For Windows**: Run the following command:
@@ -116,7 +116,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 * Install the scaffolding tool:
 
   ```dotnetcli
-   dotnet tool install --global dotnet-aspnet-codegenerator --version 3.0.0-*
+   dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
 * Run the following command:
