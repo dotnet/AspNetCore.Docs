@@ -25,14 +25,9 @@ These benefits make gRPC ideal for:
 * Polyglot systems where multiple languages are required for development.
 * Point-to-point real-time services that need to handle streaming requests or responses.
 
-The following documents introduce [gRPC for .NET](https://github.com/grpc/grpc-dotnet), a new implementation of gRPC. gRPC for .NET integrates gRPC services with ASP.NET Core on the server, and the client uses HTTP/2 support added in .NET Core 3.0.
-
-> [!TIP]
-> An alternative C# implementation is available on the [gRPC for C# page](https://github.com/grpc/grpc/tree/master/src/csharp). This implementation relies on the native library written in C (gRPC [C-core](https://grpc.io/blog/grpc-stacks)).
-
 ## C# Tooling support for .proto files
 
-gRPC uses a contract-first approach to API development. Services and messages are written in *.proto* files:
+gRPC uses a contract-first approach to API development. Services and messages are written in *\*.proto* files:
 
 ```protobuf
 syntax = "proto3";
@@ -50,7 +45,7 @@ message HelloReply {
 }
 ```
 
-Automatically generate services, clients and messages by referencing the [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) package and the *.proto* files in a project:
+Automatically generate services, clients and messages by referencing the [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) package and the *\*.proto* files in a project:
 
 ```xml
 <ItemGroup>
@@ -86,7 +81,7 @@ public class GreeterService : Greeter.GreeterBase
 }
 ```
 
-For more information, see <xref:grpc/aspnetcore>.
+To learn about creating gRPC services on ASP.NET Core, see <xref:grpc/aspnetcore>.
 
 ## Call gRPC services with a .NET client
 
@@ -102,11 +97,11 @@ var response = await client.SayHello(
 Console.WriteLine(response.Message);
 ```
 
-For more information, see <xref:grpc/client>.
+To learn how to call gRPC services in .NET, see <xref:grpc/client>.
 
 ## gRPC client factory integration
 
-gRPC integration with `HttpClientFactory` offers a centralized way to create gRPC clients. It can be used as an alternative to [configuring stand-alone gRPC client instances](xref:grpc/client).
+gRPC integration with `HttpClientFactory` offers a centralized way to create gRPC clients. It can be used as an alternative to configuring stand-alone gRPC client instances.
 
 ```csharp
 services.AddGrpcClient<Greeter.GreeterClient>(o =>
