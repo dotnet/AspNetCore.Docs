@@ -5,7 +5,7 @@ description: Learn how to use strongly-typed middleware with a factory-based act
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/31/2019
+ms.date: 09/22/2019
 uid: fundamentals/middleware/extensibility
 ---
 # Factory-based middleware activation in ASP.NET Core
@@ -31,15 +31,45 @@ Benefits:
 
 Middleware activated by convention:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](extensibility/samples/3.x/MiddlewareExtensibilitySample/Middleware/ConventionalMiddleware.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](extensibility/samples/2.x/MiddlewareExtensibilitySample/Middleware/ConventionalMiddleware.cs?name=snippet1)]
+
+::: moniker-end
 
 Middleware activated by <xref:Microsoft.AspNetCore.Http.MiddlewareFactory>:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](extensibility/samples/3.x/MiddlewareExtensibilitySample/Middleware/FactoryActivatedMiddleware.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](extensibility/samples/2.x/MiddlewareExtensibilitySample/Middleware/FactoryActivatedMiddleware.cs?name=snippet1)]
+
+::: moniker-end
 
 Extensions are created for the middlewares:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](extensibility/samples/3.x/MiddlewareExtensibilitySample/Middleware/MiddlewareExtensions.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](extensibility/samples/2.x/MiddlewareExtensibilitySample/Middleware/MiddlewareExtensions.cs?name=snippet1)]
+
+::: moniker-end
 
 It isn't possible to pass objects to the factory-activated middleware with <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*>:
 
@@ -54,11 +84,31 @@ public static IApplicationBuilder UseFactoryActivatedMiddleware(
 
 The factory-activated middleware is added to the built-in container in `Startup.ConfigureServices`:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](extensibility/samples/3.x/MiddlewareExtensibilitySample/Startup.cs?name=snippet1&highlight=6)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](extensibility/samples/2.x/MiddlewareExtensibilitySample/Startup.cs?name=snippet1&highlight=6)]
+
+::: moniker-end
 
 Both middlewares are registered in the request processing pipeline in `Startup.Configure`:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](extensibility/samples/3.x/MiddlewareExtensibilitySample/Startup.cs?name=snippet2&highlight=12-13)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](extensibility/samples/2.x/MiddlewareExtensibilitySample/Startup.cs?name=snippet2&highlight=13-14)]
+
+::: moniker-end
 
 ## IMiddlewareFactory
 
