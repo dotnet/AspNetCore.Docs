@@ -132,7 +132,7 @@ When swapping between deployment slots, any system using data protection won't b
 * Redis cache
 
 For more information, see <xref:security/data-protection/implementation/key-storage-providers>.
-
+<a name="deploy-aspnet-core-preview-release-to-azure-app-service"></a>
 <!-- revert this after 3.0 supported
 ## Deploy ASP.NET Core preview release to Azure App Service
 
