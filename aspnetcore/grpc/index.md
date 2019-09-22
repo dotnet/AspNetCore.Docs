@@ -32,49 +32,56 @@ The following documents introduce [gRPC for .NET](https://github.com/grpc/grpc-d
 
 ## C# Tooling support for .proto files
 
-Generate gRPC services and clients from *.proto* files at build.
+gRPC uses a contract-first approach to API development. Services and messages are written in *.proto* files:
 
 ```protobuf
 syntax = "proto3";
 
-service WeatherForecaster {
-  rpc GetWeather (WeatherRequest) returns (WeatherResponse);
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply);
 }
 
-message WeatherRequest {
-  string location = 1;
+message HelloRequest {
+  string name = 1;
 }
 
-message WeatherResponse {
-  string location = 1;
-  string description = 2;
-  float temperature = 3;
+message HelloReply {
+  string message = 1;
 }
 ```
 
-For more information, see <xref:grpc/basics>.
+Automatically generate services, clients and messages by referencing the [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) package and the *.proto* files in a project:
+
+```xml
+<ItemGroup>
+  <Protobuf Include="Protos\greet.proto" />
+</ItemGroup>
+```
+
+For more information on gRPC tooling support, see <xref:grpc/basics>.
 
 ## gRPC services on ASP.NET Core
 
 gRPC services can be hosted with ASP.NET Core. Services have full integration with popular ASP.NET Core features such as logging, dependency injection (DI), authentication and authorization.
 
 ```csharp
-public class WeatherService : Weather.WeatherBase
+public class GreeterService : Greeter.GreeterBase
 {
-    private readonly WeatherRepository _weatherRepository;
-    private readonly ILogger<WeatherService> _logger;
+    private readonly ILogger<GreeterService> _logger;
 
-    public WeatherService(WeatherRepository weatherRepository,
-        ILogger<WeatherService> logger)
+    public GreeterService(ILogger<GreeterService> logger)
     {
-        _weatherRepository = weatherRepository;
         _logger = logger;
     }
 
-    public override async Task<WeatherResponse> GetWeather(
-        WeatherRequest request, ServerCallContext context)
+    public override Task<HelloReply> SayHello(HelloRequest request,
+        ServerCallContext context)
     {
-        return await _weatherRepository.GetWeather(request.Location);
+        _logger.LogInformation("Saying hello to " + request.Name);
+        return Task.FromResult(new HelloReply 
+        {
+            Message = "Hello " + request.Name
+        });
     }
 }
 ```
@@ -83,31 +90,37 @@ For more information, see <xref:grpc/aspnetcore>.
 
 ## Call gRPC services with a .NET client
 
-Easily call gRPC services with automatically generated gRPC clients in .NET.
+gRPC clients are concrete client types that are [generated from *\*.proto* files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the *\*.proto* file.
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
-var client = new Weather.WeatherClient(channel);
+var client = new Greeter.GreeterClient(channel);
 
-var response = await client.GetWeatherAsync(
-    new GetWeatherRequest { Location = "Seattle" });
+var response = await client.SayHello(
+    new HelloRequest { Name = "World" });
 
-Console.WriteLine($"It's {response.Temperature} degrees.");
+Console.WriteLine(response.Message);
 ```
 
 For more information, see <xref:grpc/client>.
 
 ## gRPC client factory integration
 
-gRPC for .NET includes integration with the HttpClientFactory.
+gRPC integration with `HttpClientFactory` offers a centralized way to create gRPC clients. It can be used as an alternative to [configuring stand-alone gRPC client instances](xref:grpc/client).
 
-!!CODE HERE!!
+```csharp
+services.AddGrpcClient<Greeter.GreeterClient>(o =>
+{
+    o.Address = new Uri("https://localhost:5001");
+});
+```
 
 For more information, see <xref:grpc/clientfactory>.
 
 ## Additional resources
 
 * <xref:grpc/basics>
-* <xref:tutorials/grpc/grpc-start>
 * <xref:grpc/aspnetcore>
-* <xref:grpc/migration>
+* <xref:grpc/client>
+* <xref:grpc/clientfactory>
+* <xref:tutorials/grpc/grpc-start>
