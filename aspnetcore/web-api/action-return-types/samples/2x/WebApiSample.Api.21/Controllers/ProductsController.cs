@@ -26,7 +26,22 @@ namespace WebApiSample.Controllers
             _repository.GetProducts();
         #endregion
 
-        #region snippet_GetById
+        #region snippet_GetByIdIActionResult
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult<Product> GetById(int id)
+        {
+            if (!_repository.TryGetProduct(id, out var product))
+            {
+                return NotFound();
+            }
+
+            return product;
+        }
+        #endregion
+
+        #region snippet_GetByIdActionResult
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -41,7 +56,25 @@ namespace WebApiSample.Controllers
         }
         #endregion
 
-        #region snippet_CreateAsync
+        #region snippet_CreateAsyncIActionResult
+        [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult<Product>> CreateAsync(Product product)
+        {
+            if (product.Description.Contains("XYZ Widget"))
+            {
+                return BadRequest();
+            }
+
+            await _repository.AddProductAsync(product);
+
+            return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
+        }
+        #endregion
+
+        #region snippet_CreateAsyncActionResult
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]
