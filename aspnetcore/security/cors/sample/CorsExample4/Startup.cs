@@ -100,7 +100,8 @@ namespace CorsExample4
                 options.AddPolicy("AllowSubdomain",
                     builder =>
                     {
-                        builder.SetIsOriginAllowedToAllowWildcardSubdomains();
+                        builder.WithOrigins("https://*.example.com")
+                            .SetIsOriginAllowedToAllowWildcardSubdomains();
                     });
                 // END11
             });
