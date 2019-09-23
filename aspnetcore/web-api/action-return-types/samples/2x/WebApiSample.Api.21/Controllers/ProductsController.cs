@@ -1,3 +1,12 @@
+// Set preprocessor directive(s) to enable the scenarios you want to test.
+// For more information on preprocessor directives and sample apps, see:
+// https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code
+//
+// ActionResult - Uses ActionResult<T> as an action return type
+// IActionResult - Uses IActionResult as an action return type
+
+#define ActionResult // or IActionResult
+
 using System.Collections.Generic;
 using System.Net.Mime;
 using System.Threading.Tasks;
@@ -26,7 +35,25 @@ namespace WebApiSample.Controllers
             _repository.GetProducts();
         #endregion
 
-        #region snippet_GetById
+#if IActionResult
+        #region snippet_GetByIdIActionResult
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult GetById(int id)
+        {
+            if (!_repository.TryGetProduct(id, out var product))
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
+        }
+        #endregion
+#endif
+
+#if ActionResult
+        #region snippet_GetByIdActionResult
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -40,8 +67,30 @@ namespace WebApiSample.Controllers
             return product;
         }
         #endregion
+#endif
 
-        #region snippet_CreateAsync
+#if IActionResult
+        #region snippet_CreateAsyncIActionResult
+        [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CreateAsync(Product product)
+        {
+            if (product.Description.Contains("XYZ Widget"))
+            {
+                return BadRequest();
+            }
+
+            await _repository.AddProductAsync(product);
+
+            return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
+        }
+        #endregion
+#endif
+
+#if ActionResult
+        #region snippet_CreateAsyncActionResult
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -59,4 +108,5 @@ namespace WebApiSample.Controllers
         }
         #endregion
     }
+#endif
 }
