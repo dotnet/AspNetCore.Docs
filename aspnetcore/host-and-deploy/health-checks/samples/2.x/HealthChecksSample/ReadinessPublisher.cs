@@ -21,12 +21,12 @@ namespace SampleApp
         {
             if (report.Status == HealthStatus.Healthy)
             {
-                _logger.LogInformation("{TIMESTAMP} Readiness Probe Status: {RESULT}", 
+                _logger.LogInformation("{timestamp} Readiness Probe Status: {result}", 
                     DateTime.UtcNow, report.Status);
             }
             else
             {
-                _logger.LogError("{TIMESTAMP} Readiness Probe Status: {RESULT}", 
+                _logger.LogError("{timestamp} Readiness Probe Status: {result}", 
                     DateTime.UtcNow, report.Status);
             }
 
