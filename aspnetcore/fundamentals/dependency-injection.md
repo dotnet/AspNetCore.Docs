@@ -598,6 +598,31 @@ The following sample replaces the built-in container with [Autofac](https://auto
   * [Autofac](https://www.nuget.org/packages/Autofac/)
   * [Autofac.Extensions.DependencyInjection](https://www.nuget.org/packages/Autofac.Extensions.DependencyInjection/)
 
+::: moniker range=">= aspnetcore-3.0"
+
+* Configure the container in `Startup.ConfigureServices` and return an `IServiceProvider`:
+
+    ```csharp
+    public IServiceProvider ConfigureServices(IServiceCollection services)
+    {
+        services.AddControllersWithViews();
+        // Add other framework services
+
+        // Add Autofac
+        var containerBuilder = new ContainerBuilder();
+        containerBuilder.RegisterModule<DefaultModule>();
+        containerBuilder.Populate(services);
+        var container = containerBuilder.Build();
+        return new AutofacServiceProvider(container);
+    }
+    ```
+
+    To use a 3rd party container, `Startup.ConfigureServices` must return `IServiceProvider`.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 * Configure the container in `Startup.ConfigureServices` and return an `IServiceProvider`:
 
     ```csharp
@@ -616,6 +641,8 @@ The following sample replaces the built-in container with [Autofac](https://auto
     ```
 
     To use a 3rd party container, `Startup.ConfigureServices` must return `IServiceProvider`.
+
+::: moniker-end
 
 * Configure Autofac in `DefaultModule`:
 
