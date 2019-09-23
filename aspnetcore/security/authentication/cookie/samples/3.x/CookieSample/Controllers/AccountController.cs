@@ -20,7 +20,8 @@ namespace CookieSample.Controllers
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
-            _logger.LogInformation($"User {User.Identity.Name} logged out at {DateTime.UtcNow}.");
+            _logger.LogInformation("User {Name} logged out at {Time}.", 
+                User.Identity.Name, DateTime.UtcNow);
             
             #region snippet1
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

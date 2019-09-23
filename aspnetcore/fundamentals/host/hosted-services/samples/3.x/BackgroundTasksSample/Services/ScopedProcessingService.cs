@@ -27,7 +27,7 @@ namespace BackgroundTasksSample.Services
                 executionCount++;
 
                 _logger.LogInformation(
-                    $"Scoped Processing Service is working. Count: {executionCount}");
+                    "Scoped Processing Service is working. Count: {Count}", executionCount);
 
                 await Task.Delay(10000, stoppingToken);
             }

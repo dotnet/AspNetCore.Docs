@@ -119,7 +119,8 @@ namespace CookieSample.Pages.Account
                     authProperties);
                 #endregion
 
-                _logger.LogInformation($"User {user.Email} logged in at {DateTime.UtcNow}.");
+                _logger.LogInformation("User {Email} logged in at {Time}.", 
+                    user.Email, DateTime.UtcNow);
 
                 return LocalRedirect(Url.GetLocalUrl(returnUrl));
             }

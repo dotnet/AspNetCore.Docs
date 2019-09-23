@@ -33,7 +33,7 @@ namespace BackgroundTasksSample.Services
             executionCount++;
 
             _logger.LogInformation(
-                $"Timed Hosted Service is working. Count: {executionCount}");
+                "Timed Hosted Service is working. Count: {Count}"), executionCount;
         }
 
         public Task StopAsync(CancellationToken stoppingToken)

@@ -23,10 +23,7 @@ namespace ClientIpAspNetCore
         public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
             _logger.LogInformation(
-                $"Remote IpAddress: {context.HttpContext.Connection.RemoteIpAddress}");
-
-            var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
-            _logger.LogDebug($"Request from Remote IP address: {remoteIp}");
+                "Remote IpAddress: {RemoteIp}", context.HttpContext.Connection.RemoteIpAddress);
 
             string[] ip = _safelist.Split(';');
 
@@ -45,7 +42,7 @@ namespace ClientIpAspNetCore
             if (badIp)
             {
                 _logger.LogInformation(
-                    $"Forbidden Request from Remote IP address: {remoteIp}");
+                    "Forbidden Request from Remote IP address: {RemoteIp}", remoteIp);
                 context.Result = new StatusCodeResult(401);
                 return;
             }
