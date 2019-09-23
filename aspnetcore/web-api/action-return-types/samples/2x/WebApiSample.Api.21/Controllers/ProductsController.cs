@@ -1,3 +1,12 @@
+// Set preprocessor directive(s) to enable the scenarios you want to test.
+// For more information on preprocessor directives and sample apps, see:
+// https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code
+//
+// ActionResult - Uses ActionResult<T> as an action return type
+// IActionResult - Uses IActionResult as an action return type
+
+#define ActionResult // or IActionResult
+
 using System.Collections.Generic;
 using System.Net.Mime;
 using System.Threading.Tasks;
@@ -26,20 +35,22 @@ namespace WebApiSample.Controllers
             _repository.GetProducts();
         #endregion
 
+#if IActionResult
         #region snippet_GetByIdIActionResult
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult<Product> GetById(int id)
+        public IActionResult GetById(int id)
         {
             if (!_repository.TryGetProduct(id, out var product))
             {
                 return NotFound();
             }
 
-            return product;
+            return Ok(product);
         }
         #endregion
+#endif
 
         #region snippet_GetByIdActionResult
         [HttpGet("{id}")]
@@ -56,12 +67,13 @@ namespace WebApiSample.Controllers
         }
         #endregion
 
+#if IActionResult
         #region snippet_CreateAsyncIActionResult
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult<Product>> CreateAsync(Product product)
+        public async Task<IActionResult> CreateAsync(Product product)
         {
             if (product.Description.Contains("XYZ Widget"))
             {
@@ -73,6 +85,7 @@ namespace WebApiSample.Controllers
             return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }
         #endregion
+#endif
 
         #region snippet_CreateAsyncActionResult
         [HttpPost]
