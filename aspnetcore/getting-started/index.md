@@ -4,7 +4,7 @@ author: rick-anderson
 description: A short tutorial that creates and runs a basic Hello World app using ASP.NET Core. 
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/15/2019
+ms.date: 09/22/2019
 uid: getting-started
 ---
 # Tutorial: Get started with ASP.NET Core
@@ -25,7 +25,7 @@ At the end, you'll have a working web app running on your local machine.
 
 ## Prerequisites
 
-* [.NET Core 2.2 SDK](https://www.microsoft.com/net/download/all)
+* [.NET Core 3.0 SDK](https://www.microsoft.com/net/download/all)
 
 ## Create a web app project
 
@@ -34,6 +34,11 @@ Open a command shell, and enter the following command:
 ```dotnetcli
 dotnet new webapp -o aspnetcoreapp
 ```
+
+The preceding command:
+
+* Creates a new web app.  
+* The `-o` parameter creates a directory named *aspnetcoreapp* with the source files for the app.
 
 ### Trust the development certificate
 
