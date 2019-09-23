@@ -484,7 +484,7 @@ This scenario is fixed in ASP.NET Core 3.0. The host enables the [Forwarded Head
 
 ## Performance improvements
 
-Throughout the framework, ASP.NET Core 3.0 includes many improvements that reduce memory allocations and improve throughput:
+ASP.NET Core 3.0 includes many improvements that reduce memory usage and improve throughput:
 
 * Reduction in memory usage when using the built-in dependency injection container for scoped services.
 * Reduction in allocations across the framework, including middleware scenarios and routing.
