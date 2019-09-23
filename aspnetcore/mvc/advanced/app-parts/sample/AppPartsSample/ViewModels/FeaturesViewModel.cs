@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.CodeAnalysis;
 using TypeInfo = System.Reflection.TypeInfo;
 
 namespace AppPartsSample.ViewModels
@@ -6,6 +7,8 @@ namespace AppPartsSample.ViewModels
     public class FeaturesViewModel
     {
         public List<TypeInfo> Controllers { get; set; }
+
+        public List<MetadataReference> MetadataReferences { get; set; }
 
         public List<TypeInfo> TagHelpers { get; set; }
 
