@@ -12,6 +12,8 @@
   uid: getting-started
 - name: What's new
   items:
+    - name: What's new in 3.0
+      uid: aspnetcore-3.0
     - name: What's new in 2.2
       uid: aspnetcore-2.2
     - name: What's new in 2.1
@@ -436,6 +438,8 @@
           uid: tutorials/get-started-with-swashbuckle
         - name: Get started with NSwag
           uid: tutorials/get-started-with-nswag
+        - name: OpenAPI tools
+          uid: web-api/Microsoft.dotnet-openapi
     - name: Action return types
       uid: web-api/action-return-types
     - name: Handle JSON Patch requests
@@ -487,6 +491,9 @@
     - name: Clients
       displayName: signalr
       items:
+        - name: SignalR client features
+          uid: signalr/client-features
+          displayName: signalr
         - name: .NET client
           uid: signalr/dotnet-client
           displayName: signalr

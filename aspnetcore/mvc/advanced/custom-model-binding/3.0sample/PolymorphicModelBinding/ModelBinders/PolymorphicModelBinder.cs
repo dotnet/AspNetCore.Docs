@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
 
 namespace PolymorphicModelBinding.ModelBinders
 {
     #region snippet
-    [ModelBinder(typeof(DeviceModelBinder))]
-    public class Device
+    public abstract class Device
     {
         public string Kind { get; set; }
     }
@@ -23,62 +22,76 @@ namespace PolymorphicModelBinding.ModelBinders
         public string ScreenSize { get; set; }
     }
 
+    public class DeviceModelBinderProvider : IModelBinderProvider
+    {
+        public IModelBinder GetBinder(ModelBinderProviderContext context)
+        {
+            if (context.Metadata.ModelType != typeof(Device))
+            {
+                return null;
+            }
+
+            var subclasses = new[] { typeof(Laptop), typeof(SmartPhone), };
+
+            var binders = new Dictionary<Type, (ModelMetadata, IModelBinder)>();
+            foreach (var type in subclasses)
+            {
+                var modelMetadata = context.MetadataProvider.GetMetadataForType(type);
+                binders[type] = (modelMetadata, context.CreateBinder(modelMetadata));
+            }
+
+            return new DeviceModelBinder(binders);
+        }
+    }
+
     public class DeviceModelBinder : IModelBinder
     {
-        public Task BindModelAsync(ModelBindingContext bindingContext)
+        private Dictionary<Type, (ModelMetadata, IModelBinder)> binders;
+
+        public DeviceModelBinder(Dictionary<Type, (ModelMetadata, IModelBinder)> binders)
         {
-            var name = ModelNames.CreatePropertyModelName(
-                bindingContext.ModelName,
-                nameof(Device.Kind));
+            this.binders = binders;
+        }
 
-            var deviceKind = bindingContext.ValueProvider.GetValue(name).FirstValue;
+        public async Task BindModelAsync(ModelBindingContext bindingContext)
+        {
+            var modelKindName = ModelNames.CreatePropertyModelName(bindingContext.ModelName, nameof(Device.Kind));
+            var modelTypeValue = bindingContext.ValueProvider.GetValue(modelKindName).FirstValue;
 
-            if (string.IsNullOrEmpty(deviceKind))
+            IModelBinder modelBinder;
+            ModelMetadata modelMetadata;
+            if (modelTypeValue == "Laptop")
             {
-                bindingContext.Result = ModelBindingResult.Failed();
-                return Task.CompletedTask;
+                (modelMetadata, modelBinder) = binders[typeof(Laptop)];
             }
-
-            Device result;
-            if (deviceKind == "Laptop")
+            else if (modelTypeValue == "SmartPhone")
             {
-                var modelName = ModelNames.CreatePropertyModelName(bindingContext.ModelName, nameof(Laptop.CPUIndex));
-                var cpuIndex = bindingContext.ValueProvider.GetValue(modelName).FirstValue;
-                result = new Laptop
-                {
-                    Kind = deviceKind,
-                    CPUIndex = cpuIndex,
-                };
-            }
-            else if (deviceKind == "SmartPhone")
-            {
-                var modelName = ModelNames.CreatePropertyModelName(bindingContext.ModelName, nameof(SmartPhone.ScreenSize));
-                var screenSize = bindingContext.ValueProvider.GetValue(modelName).FirstValue;
-                result = new SmartPhone
-                {
-                    Kind = deviceKind,
-                    ScreenSize = screenSize,
-                };
+                (modelMetadata, modelBinder) = binders[typeof(SmartPhone)];
             }
             else
             {
-                bindingContext.ModelState.TryAddModelError(name, $"Unknown device kind '{deviceKind}'.");
-
                 bindingContext.Result = ModelBindingResult.Failed();
-                return Task.CompletedTask;
+                return;
             }
 
-            bindingContext.Result = ModelBindingResult.Success(result);
+            var newBindingContext = DefaultModelBindingContext.CreateBindingContext(
+                bindingContext.ActionContext,
+                bindingContext.ValueProvider,
+                modelMetadata,
+                bindingInfo: null,
+                bindingContext.ModelName);
 
-            // Add a ValidationStateEntry with the "correct" ModelMetadata so validation executes on the actual type, not the declared type.
-            var modelMetadataProvider = bindingContext.HttpContext.RequestServices.GetRequiredService<IModelMetadataProvider>();
+            await modelBinder.BindModelAsync(newBindingContext);
+            bindingContext.Result = newBindingContext.Result;
 
-            bindingContext.ValidationState.Add(result, new ValidationStateEntry
+            if (newBindingContext.Result.IsModelSet)
             {
-                Metadata = modelMetadataProvider.GetMetadataForType(result.GetType()),
-            });
-
-            return Task.CompletedTask;
+                // Setting the ValidationState ensures properties on derived types are correctly 
+                bindingContext.ValidationState[newBindingContext.Result] = new ValidationStateEntry
+                {
+                    Metadata = modelMetadata,
+                };
+            }
         }
     }
     #endregion
