@@ -9,7 +9,7 @@ uid: grpc/index
 ---
 # Introduction to gRPC on .NET Core
 
-By [John Luo](https://github.com/juntaoluo), [James Newton-King](https://twitter.com/jamesnk)
+By [John Luo](https://github.com/juntaoluo) and [James Newton-King](https://twitter.com/jamesnk)
 
 [gRPC](https://grpc.io/docs/guides/) is a language agnostic, high-performance Remote Procedure Call (RPC) framework.
 
