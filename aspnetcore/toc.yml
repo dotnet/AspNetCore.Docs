@@ -438,6 +438,8 @@
           uid: tutorials/get-started-with-swashbuckle
         - name: Get started with NSwag
           uid: tutorials/get-started-with-nswag
+        - name: OpenAPI tools
+          uid: web-api/Microsoft.dotnet-openapi
     - name: Action return types
       uid: web-api/action-return-types
     - name: Handle JSON Patch requests

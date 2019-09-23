@@ -64,21 +64,7 @@ The preceding command adds the EF Core SQL Server provider. The provider package
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Run the following .NET Core CLI commands:
-
-```dotnetcli
-dotnet tool install --global dotnet-ef --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 3.0.0-*
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
-```
-
-The preceding commands add:
-
-* The Entity Framework Core Tools for the .NET CLI.
-* The EF Core SQLite provider, which installs the EF Core package as a dependency.
-* Packages needed for scaffolding: `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.SqlServer`.
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
 
 ---
 

@@ -5,7 +5,7 @@ description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/07/2019
+ms.date: 07/28/2019
 uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
@@ -91,7 +91,17 @@ The [IIS Integration Middleware](xref:host-and-deploy/iis/index#enable-the-iisin
 
 ## Monitoring and logging
 
-Azure App Service offers the **ASP.NET Core Logging Extensions**, which enable logging integration for ASP.NET Core apps. To automatically add the extension to an App Service, use Visual Studio's **Publish** process with an **App Service** publish profile. When not using Visual Studio to deploy an app, manually install the extension in the Azure Portal via the App Service's **Development Tools** > **Extensions** dialog.
+::: moniker range=">= aspnetcore-3.0"
+
+ASP.NET Core apps deployed to App Service automatically receive an App Service extension, **ASP.NET Core Logging Integration**. The extension enables logging integration for ASP.NET Core apps on Azure App Service.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+ASP.NET Core apps deployed to App Service automatically receive an App Service extension, **ASP.NET Core Logging Extensions**. The extension enables logging integration for ASP.NET Core apps on Azure App Service.
+
+::: moniker-end
 
 For monitoring, logging, and troubleshooting information, see the following articles:
 
@@ -122,10 +132,21 @@ When swapping between deployment slots, any system using data protection won't b
 * Redis cache
 
 For more information, see <xref:security/data-protection/implementation/key-storage-providers>.
-
+<a name="deploy-aspnet-core-preview-release-to-azure-app-service"></a>
+<!-- revert this after 3.0 supported
 ## Deploy ASP.NET Core preview release to Azure App Service
 
 Use one of the following approaches if the app relies on a preview release of .NET Core:
+
+* [Install the preview site extension](#install-the-preview-site-extension).
+* [Deploy a self-contained preview app](#deploy-a-self-contained-preview-app).
+* [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers).
+-->
+## Deploy ASP.NET Core 3.0 to Azure App Service
+
+We hope to have ASP.NET Core 3.0 available on Azure App Service soon.
+
+Use one of the following approaches if the app relies on .NET Core 3.0:
 
 * [Install the preview site extension](#install-the-preview-site-extension).
 * [Deploy a self-contained preview app](#deploy-a-self-contained-preview-app).
@@ -224,7 +245,7 @@ For a 64-bit [framework-dependent deployment](/dotnet/core/deploying/#framework-
 
 1. From a command shell, publish the app in Release configuration with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command. In the following example, the app is published as a framework-dependent app:
 
-   ```dotnetcli
+   ```console
    dotnet publish --configuration Release
    ```
 
@@ -262,7 +283,7 @@ Use Visual Studio or the command-line interface (CLI) tools for a [self-containe
 
 1. From a command shell, publish the app in Release configuration for the host's runtime with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command. In the following example, the app is published for the `win-x86` RID. The RID supplied to the `--runtime` option must be provided in the `<RuntimeIdentifier>` (or `<RuntimeIdentifiers>`) property in the project file.
 
-   ```dotnetcli
+   ```console
    dotnet publish --configuration Release --runtime win-x86
    ```
 
