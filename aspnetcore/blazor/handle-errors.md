@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/06/2019
+ms.date: 09/23/2019
 uid: blazor/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps
