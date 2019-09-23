@@ -602,22 +602,22 @@ The following sample replaces the built-in container with [Autofac](https://auto
 
 * Configure the container in `Startup.ConfigureServices` and return an `IServiceProvider`:
 
-    ```csharp
-    public IServiceProvider ConfigureServices(IServiceCollection services)
-    {
-        services.AddControllersWithViews();
-        // Add other framework services
+   ```csharp
+   public IServiceProvider ConfigureServices(IServiceCollection services)
+   {
+       services.AddControllersWithViews();
+       // Add other framework services
 
-        // Add Autofac
-        var containerBuilder = new ContainerBuilder();
-        containerBuilder.RegisterModule<DefaultModule>();
-        containerBuilder.Populate(services);
-        var container = containerBuilder.Build();
-        return new AutofacServiceProvider(container);
-    }
-    ```
+       // Add Autofac
+       var containerBuilder = new ContainerBuilder();
+       containerBuilder.RegisterModule<DefaultModule>();
+       containerBuilder.Populate(services);
+       var container = containerBuilder.Build();
+       return new AutofacServiceProvider(container);
+   }
+   ```
 
-    To use a 3rd party container, `Startup.ConfigureServices` must return `IServiceProvider`.
+   To use a 3rd party container, `Startup.ConfigureServices` must return `IServiceProvider`.
 
 ::: moniker-end
 
@@ -625,36 +625,36 @@ The following sample replaces the built-in container with [Autofac](https://auto
 
 * Configure the container in `Startup.ConfigureServices` and return an `IServiceProvider`:
 
-    ```csharp
-    public IServiceProvider ConfigureServices(IServiceCollection services)
-    {
-        services.AddMvc();
-        // Add other framework services
+   ```csharp
+   public IServiceProvider ConfigureServices(IServiceCollection services)
+   {
+       services.AddMvc();
+       // Add other framework services
 
-        // Add Autofac
-        var containerBuilder = new ContainerBuilder();
-        containerBuilder.RegisterModule<DefaultModule>();
-        containerBuilder.Populate(services);
-        var container = containerBuilder.Build();
-        return new AutofacServiceProvider(container);
-    }
-    ```
+       // Add Autofac
+       var containerBuilder = new ContainerBuilder();
+       containerBuilder.RegisterModule<DefaultModule>();
+       containerBuilder.Populate(services);
+       var container = containerBuilder.Build();
+       return new AutofacServiceProvider(container);
+   }
+   ```
 
-    To use a 3rd party container, `Startup.ConfigureServices` must return `IServiceProvider`.
+   To use a 3rd party container, `Startup.ConfigureServices` must return `IServiceProvider`.
 
 ::: moniker-end
 
 * Configure Autofac in `DefaultModule`:
 
-    ```csharp
-    public class DefaultModule : Module
-    {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<CharacterRepository>().As<ICharacterRepository>();
-        }
-    }
-    ```
+   ```csharp
+   public class DefaultModule : Module
+   {
+       protected override void Load(ContainerBuilder builder)
+       {
+           builder.RegisterType<CharacterRepository>().As<ICharacterRepository>();
+       }
+   }
+   ```
 
 At runtime, Autofac is used to resolve types and inject dependencies. To learn more about using Autofac with ASP.NET Core, see the [Autofac documentation](https://docs.autofac.org/en/latest/integration/aspnetcore.html).
 
