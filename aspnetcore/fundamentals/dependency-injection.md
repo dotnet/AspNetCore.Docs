@@ -432,41 +432,44 @@ Create an <xref:Microsoft.Extensions.DependencyInjection.IServiceScope> with [IS
 ::: moniker range=">= aspnetcore-3.0"
 
 ```csharp
-// using System;
-// using System.Threading.Tasks;
-// using Microsoft.Extensions.DependencyInjection;
-// using Microsoft.AspNetCore.Hosting;
-// using Microsoft.Extensions.Hosting;
+using System;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
-public static async Task Main(string[] args)
+public class Program
 {
-    var host = CreateHostBuilder(args).Build();
-
-    using (var serviceScope = host.Services.CreateScope())
+    public static async Task Main(string[] args)
     {
-        var services = serviceScope.ServiceProvider;
+        var host = CreateHostBuilder(args).Build();
 
-        try
+        using (var serviceScope = host.Services.CreateScope())
         {
-            var serviceContext = services.GetRequiredService<MyScopedService>();
-            // Use the context here
+            var services = serviceScope.ServiceProvider;
+
+            try
+            {
+                var serviceContext = services.GetRequiredService<MyScopedService>();
+                // Use the context here
+            }
+            catch (Exception ex)
+            {
+                var logger = services.GetRequiredService<ILogger<Program>>();
+                logger.LogError(ex, "An error occurred.");
+            }
         }
-        catch (Exception ex)
-        {
-            var logger = services.GetRequiredService<ILogger<Program>>();
-            logger.LogError(ex, "An error occurred.");
-        }
+    
+        await host.RunAsync();
     }
 
-    await host.RunAsync();
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
 }
-
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-        });
 ```
 
 ::: moniker-end
@@ -474,39 +477,42 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 ::: moniker range="< aspnetcore-3.0"
 
 ```csharp
-// using System;
-// using System.Threading.Tasks;
-// using Microsoft.AspNetCore;
-// using Microsoft.AspNetCore.Hosting;
-// using Microsoft.Extensions.DependencyInjection;
-// using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
-public static async Task Main(string[] args)
+public class Program
 {
-    var host = CreateWebHostBuilder(args).Build();
-
-    using (var serviceScope = host.Services.CreateScope())
+    public static async Task Main(string[] args)
     {
-        var services = serviceScope.ServiceProvider;
+        var host = CreateWebHostBuilder(args).Build();
 
-        try
+        using (var serviceScope = host.Services.CreateScope())
         {
-            var serviceContext = services.GetRequiredService<MyScopedService>();
-            // Use the context here
+            var services = serviceScope.ServiceProvider;
+
+            try
+            {
+                var serviceContext = services.GetRequiredService<MyScopedService>();
+                // Use the context here
+            }
+            catch (Exception ex)
+            {
+                var logger = services.GetRequiredService<ILogger<Program>>();
+                logger.LogError(ex, "An error occurred.");
+            }
         }
-        catch (Exception ex)
-        {
-            var logger = services.GetRequiredService<ILogger<Program>>();
-            logger.LogError(ex, "An error occurred.");
-        }
+    
+        await host.RunAsync();
     }
 
-    await host.RunAsync();
+    public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>();
 }
-
-public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        .UseStartup<Startup>();
 ```
 
 ::: moniker-end
