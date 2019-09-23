@@ -121,4 +121,5 @@ Tag Helpers:
     - EnvironmentTagHelper
     ...
 View Components:
+    - SampleViewComponent
 ```
