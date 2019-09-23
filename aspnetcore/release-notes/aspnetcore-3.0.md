@@ -482,12 +482,12 @@ In previous versions of ASP.NET Core, calling <xref:Microsoft.AspNetCore.Builder
 
 This scenario is fixed in ASP.NET Core 3.0. The host enables the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`. `ASPNETCORE_FORWARDEDHEADERS_ENABLED` is set to `true` in our container images.
 
-## Performance improvements across the stack
+## Performance improvements
 
-ASP.NET Core 3.0 includes many improvements that reduce memory allocations and improve throughput throughout the stack:
+Throughout the framework, ASP.NET Core 3.0 includes many improvements that reduce memory allocations and improve throughput:
 
 * Reduction in memory usage when using the built-in dependency injection container for scoped services.
-* Reduction in allocations across the stack including middleware scenarios and routing.
+* Reduction in allocations across the framework, including middleware scenarios and routing.
 * Reduction in memory usage for WebSocket connections.
 * Memory reduction and throughput improvements for HTTPS connections.
 * New optimized and fully asynchronous JSON serializer.
