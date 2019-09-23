@@ -52,6 +52,7 @@ namespace WebApiSample.Controllers
         #endregion
 #endif
 
+#if ActionResult
         #region snippet_GetByIdActionResult
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -66,6 +67,7 @@ namespace WebApiSample.Controllers
             return product;
         }
         #endregion
+#endif
 
 #if IActionResult
         #region snippet_CreateAsyncIActionResult
@@ -87,6 +89,7 @@ namespace WebApiSample.Controllers
         #endregion
 #endif
 
+#if ActionResult
         #region snippet_CreateAsyncActionResult
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
@@ -105,4 +108,5 @@ namespace WebApiSample.Controllers
         }
         #endregion
     }
+#endif
 }
