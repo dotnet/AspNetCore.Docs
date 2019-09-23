@@ -489,6 +489,8 @@ As part of ASP.NET Core 3.0, we've made improvements in reducing memory allocati
 - Reduction in allocations across the stack including middleware scenarios and routing.
 - Reduction in memory usage for WebSocket connections.
 - Memory reduction and throughput improvements for HTTPS connections.
+- New optimized and fully asynchronous JSON serializer.
+- Reduction in memory usage and throughout improvements in form parsing.
 
 ## ASP.NET Core 3.0 only runs on .NET Core 3.0
 
