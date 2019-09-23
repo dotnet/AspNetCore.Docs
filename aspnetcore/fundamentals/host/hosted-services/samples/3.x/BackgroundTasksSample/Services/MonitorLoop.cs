@@ -6,13 +6,16 @@ using Microsoft.Extensions.Logging;
 
 namespace BackgroundTasksSample.Services
 {
+    #region snippet_Monitor
     public class MonitorLoop
     {
         private readonly IBackgroundTaskQueue _taskQueue;
         private readonly ILogger _logger;
         private readonly CancellationToken _cancellationToken;
 
-        public MonitorLoop(IBackgroundTaskQueue taskQueue, ILogger<MonitorLoop> logger, IApplicationLifetime applicationLifetime)
+        public MonitorLoop(IBackgroundTaskQueue taskQueue, 
+            ILogger<MonitorLoop> logger, 
+            IHostApplicationLifetime applicationLifetime)
         {
             _taskQueue = taskQueue;
             _logger = logger;
@@ -21,16 +24,14 @@ namespace BackgroundTasksSample.Services
 
         public void StartMonitorLoop()
         {
+            _logger.LogInformation("Monitor Loop is starting.");
+
             // Run a console user input loop in a background thread
             Task.Run(() => Monitor());
         }
 
         public void Monitor()
         {
-            Console.WriteLine();
-            Console.WriteLine("Tap W to add a work item to the background queue ...");
-            Console.WriteLine();
-
             while (!_cancellationToken.IsCancellationRequested)
             {
                 var keyStroke = Console.ReadKey();
@@ -56,4 +57,5 @@ namespace BackgroundTasksSample.Services
             }
         }
     }
+    #endregion
 }

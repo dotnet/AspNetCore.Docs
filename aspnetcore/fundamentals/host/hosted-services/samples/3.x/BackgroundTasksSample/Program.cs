@@ -1,8 +1,6 @@
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using BackgroundTasksSample.Services;
 
 namespace BackgroundTasksSample
@@ -11,26 +9,14 @@ namespace BackgroundTasksSample
     {
         public static async Task Main(string[] args)
         {
-            var host = new HostBuilder()
-                .ConfigureLogging((hostContext, config) =>
-                {
-                    config.AddConsole();
-                    config.AddDebug();
-                })
-                .ConfigureHostConfiguration(config =>
-                {
-                    config.AddEnvironmentVariables();
-                })
-                .ConfigureAppConfiguration((hostContext, config) =>
-                {
-                    config.AddJsonFile("appsettings.json", optional: true);
-                    config.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
-                    config.AddCommandLine(args);
-                })
+            using (var host = Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddLogging();
+                    #region snippet3
                     services.AddSingleton<MonitorLoop>();
+                    services.AddHostedService<QueuedHostedService>();
+                    services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
+                    #endregion
 
                     #region snippet1
                     services.AddHostedService<TimedHostedService>();
@@ -40,16 +26,8 @@ namespace BackgroundTasksSample
                     services.AddHostedService<ConsumeScopedServiceHostedService>();
                     services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
                     #endregion
-
-                    #region snippet3
-                    services.AddHostedService<QueuedHostedService>();
-                    services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
-                    #endregion
                 })
-                .UseConsoleLifetime()
-                .Build();
-
-            using (host)
+                .Build())
             {
                 // Start the host
                 await host.StartAsync();
