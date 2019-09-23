@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -17,24 +16,18 @@ namespace SampleApp
             _logger = logger;
         }
 
-        public List<(HealthReport report, CancellationToken cancellationToken)> 
-            Entries { get; } = 
-                new List<(HealthReport report, 
-                    CancellationToken cancellationToken)>();
-
-        public Exception Exception { get; set; }
-
         public Task PublishAsync(HealthReport report, 
             CancellationToken cancellationToken)
         {
-            Entries.Add((report, cancellationToken));
-
-            _logger.LogInformation("{TIMESTAMP} Readiness Probe Status: {RESULT}", 
-                DateTime.UtcNow, report.Status);
-
-            if (Exception != null)
+            if (report.Status == HealthStatus.Healthy)
             {
-                throw Exception;
+                _logger.LogInformation("{TIMESTAMP} Readiness Probe Status: {RESULT}", 
+                    DateTime.UtcNow, report.Status);
+            }
+            else
+            {
+                _logger.LogError("{TIMESTAMP} Readiness Probe Status: {RESULT}", 
+                    DateTime.UtcNow, report.Status);
             }
 
             cancellationToken.ThrowIfCancellationRequested();
