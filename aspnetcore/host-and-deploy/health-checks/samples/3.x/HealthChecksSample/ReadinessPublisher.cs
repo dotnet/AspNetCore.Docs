@@ -17,9 +17,10 @@ namespace SampleApp
         }
 
         // The following example is for demonstration purposes only. Health Checks 
-        // Middleware already logs health checks results. A real world readiness 
-        // check might do a set of more expensive or time-consuming checks to 
-        // determine if all other resources are responding properly.
+        // Middleware already logs health checks results. A real-world readiness 
+        // check in a production app might do a set of more expensive or 
+        // time-consuming checks to determine if all other resources are 
+        // responding properly.
         public Task PublishAsync(HealthReport report, 
             CancellationToken cancellationToken)
         {
