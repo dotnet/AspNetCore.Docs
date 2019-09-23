@@ -491,7 +491,7 @@ Throughout the framework, ASP.NET Core 3.0 includes many improvements that reduc
 * Reduction in memory usage for WebSocket connections.
 * Memory reduction and throughput improvements for HTTPS connections.
 * New optimized and fully asynchronous JSON serializer.
-* Reduction in memory usage and throughout improvements in form parsing.
+* Reduction in memory usage and throughput improvements in form parsing.
 
 ## ASP.NET Core 3.0 only runs on .NET Core 3.0
 
