@@ -329,6 +329,8 @@
               uid: host-and-deploy/blazor/server
             - name: Configure the Linker
               uid: host-and-deploy/blazor/configure-linker
+        - name: Samples
+          href: https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor
     - name: Client-side development
       items:
         - name: Single Page Apps
