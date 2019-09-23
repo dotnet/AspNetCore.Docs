@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -17,24 +16,23 @@ namespace SampleApp
             _logger = logger;
         }
 
-        public List<(HealthReport report, CancellationToken cancellationToken)> 
-            Entries { get; } = 
-                new List<(HealthReport report, 
-                    CancellationToken cancellationToken)>();
-
-        public Exception Exception { get; set; }
-
+        // The following example is for demonstration purposes only. Health Checks 
+        // Middleware already logs health checks results. A real-world readiness 
+        // check in a production app might perform a set of more expensive or 
+        // time-consuming checks to determine if other resources are responding 
+        // properly.
         public Task PublishAsync(HealthReport report, 
             CancellationToken cancellationToken)
         {
-            Entries.Add((report, cancellationToken));
-
-            _logger.LogInformation("{TIMESTAMP} Readiness Probe Status: {RESULT}", 
-                DateTime.UtcNow, report.Status);
-
-            if (Exception != null)
+            if (report.Status == HealthStatus.Healthy)
             {
-                throw Exception;
+                _logger.LogInformation("{Timestamp} Readiness Probe Status: {Result}", 
+                    DateTime.UtcNow, report.Status);
+            }
+            else
+            {
+                _logger.LogError("{Timestamp} Readiness Probe Status: {Result}", 
+                    DateTime.UtcNow, report.Status);
             }
 
             cancellationToken.ThrowIfCancellationRequested();

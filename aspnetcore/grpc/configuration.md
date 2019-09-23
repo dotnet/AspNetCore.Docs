@@ -1,18 +1,18 @@
 ---
-title: gRPC for ASP.NET Core configuration
+title: gRPC for .NET configuration
 author: jamesnk
-description: Learn how to configure gRPC for ASP.NET Core apps.
+description: Learn how to configure gRPC for .NET apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
 ms.date: 09/05/2019
 uid: grpc/configuration
 ---
-# gRPC for ASP.NET Core configuration
+# gRPC for .NET configuration
 
 ## Configure services options
 
-The following table describes options for configuring gRPC services:
+gRPC services are configured with `AddGrpc` in *Startup.cs*. The following table describes options for configuring gRPC services:
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
@@ -33,13 +33,13 @@ Options for a single service override the global options provided in `AddGrpc` a
 
 ## Configure client options
 
-The following table describes options for configuring gRPC channels:
+gRPC client configuration is set on `GrpcChannelOptions`. The following table describes options for configuring gRPC channels:
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
 | `HttpClient` | New instance | The `HttpClient` used to make gRPC calls. A client can be set to configure a custom `HttpClientHandler`, or add additional handlers to the HTTP pipeline for gRPC calls. If no `HttpClient` is specified, then a new `HttpClient` instance is created for the channel. It will automatically be disposed. |
 | `DisposeHttpClient` | `false` | If `true`, and an `HttpClient` is specified, then the `HttpClient` instance will be disposed when the `GrpcChannel` is disposed. |
-| `LoggerFactory` | `null` | The `LoggerFactory` used by the client to log information about gRPC calls. A `LoggerFactory` instance can be resolved from dependency injection or created using `LoggerFactory.Create`. For examples of configuring logging, see <xref:fundamentals/logging/index>. |
+| `LoggerFactory` | `null` | The `LoggerFactory` used by the client to log information about gRPC calls. A `LoggerFactory` instance can be resolved from dependency injection or created using `LoggerFactory.Create`. For examples of configuring logging, see <xref:grpc/diagnostics#grpc-client-logging>. |
 | `MaxSendMessageSize` | `null` | The maximum message size in bytes that can be sent from the client. Attempting to send a message that exceeds the configured maximum message size results in an exception. |
 | `MaxReceiveMessageSize` | 4 MB | The maximum message size in bytes that can be received by the client. If the client receives a message that exceeds this limit, it throws an exception. Increasing this value allows the client to receive larger messages, but can negatively impact memory consumption. |
 | `Credentials` | `null` | A `ChannelCredentials` instance. Credentials are used to add authentication metadata to gRPC calls. |
@@ -56,4 +56,5 @@ The following code:
 
 * <xref:grpc/aspnetcore>
 * <xref:grpc/client>
+* <xref:grpc/diagnostics>
 * <xref:tutorials/grpc/grpc-start>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TestingControllersSample.Core.Interfaces;
 using TestingControllersSample.Core.Model;
@@ -20,14 +21,14 @@ namespace TestingControllersSample
             services.AddDbContext<AppDbContext>(
                 optionsBuilder => optionsBuilder.UseInMemoryDatabase("InMemoryDb"));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllersWithViews();
 
             services.AddScoped<IBrainstormSessionRepository,
                 EFStormSessionRepository>();
         }
 
         public void Configure(IApplicationBuilder app,
-            IHostingEnvironment env,
+            IWebHostEnvironment env,
             ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
@@ -38,7 +39,14 @@ namespace TestingControllersSample
 
             app.UseStaticFiles();
 
-            app.UseMvcWithDefaultRoute();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
 
         public async Task InitializeDatabaseAsync(IBrainstormSessionRepository repo)

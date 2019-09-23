@@ -246,8 +246,8 @@ The mapping from request path should be specified in the route the API is using.
 
 The preceding route allows the requested format to be specified as an optional file extension. The [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) attribute checks for the existence of the format value in the `RouteData` and maps the response format to the appropriate formatter when the response is created.
 
-|           Route            |             Formatter              |
-|----------------------------|------------------------------------|
-|   `/products/GetById/5`    |    The default output formatter    |
-| `/products/GetById/5.json` | The JSON formatter (if configured) |
-| `/products/GetById/5.xml`  | The XML formatter (if configured)  |
+|           Route        |             Formatter              |
+|------------------------|------------------------------------|
+|   `/api/products/5`    |    The default output formatter    |
+| `/api/products/5.json` | The JSON formatter (if configured) |
+| `/api/products/5.xml`  | The XML formatter (if configured)  |
