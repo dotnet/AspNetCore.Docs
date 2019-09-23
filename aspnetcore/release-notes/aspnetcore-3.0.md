@@ -72,7 +72,7 @@ For more information, see <xref:grpc/index>.
 
 ## SignalR
 
-See [Update SignalR code](xref:migration/22-to-30#update-signalr-code) for migration instructions. SignalR now uses `System.Text.Json` to serialize/deserialize JSON messages. See [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson) for instructions to restore the `Newtonsoft.Json`-based serializer.
+See [Update SignalR code](xref:migration/22-to-30#signalr) for migration instructions. SignalR now uses `System.Text.Json` to serialize/deserialize JSON messages. See [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson) for instructions to restore the `Newtonsoft.Json`-based serializer.
 
 In the JavaScript and .NET Clients for SignalR, support was added for automatic reconnection. By default, the client tries to reconnect immediately and retry after 2, 10, and 30 seconds if necessary. If the client successfully reconnects, it receives a new connection ID. Automatic reconnect is opt-in:
 
