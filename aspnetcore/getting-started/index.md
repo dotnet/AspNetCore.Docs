@@ -35,7 +35,10 @@ Open a command shell, and enter the following command:
 dotnet new webapp -o aspnetcoreapp
 ```
 
-The preceding command creates a new application of type `webapp` for you.  The `-o` parameter creates a directory named *aspnetcoreapp* where your app is stored, and populates it with the required files.
+The preceding command:
+
+* Creates a new web app.  
+* The `-o` parameter creates a directory named *aspnetcoreapp* with the source files for the app.
 
 ### Trust the development certificate
 
