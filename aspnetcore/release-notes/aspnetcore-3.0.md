@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/20/2019
+ms.date: 09/23/2019
 uid: aspnetcore-3.0
 ---
 # What's new in ASP.NET Core 3.0
@@ -484,13 +484,14 @@ This scenario is fixed in ASP.NET Core 3.0. The host enables the [Forwarded Head
 
 ## Performance improvements across the stack
 
-As part of ASP.NET Core 3.0, we've made improvements in reducing memory allocations and improving throughput through various parts of the stack including, but not limited to:
-- Reduction in memory usage when using the built-in Dependency Injection container for scoped services
-- Reduction in allocations across the stack including middleware scenarios and routing.
-- Reduction in memory usage for WebSocket connections.
-- Memory reduction and throughput improvements for HTTPS connections.
-- New optimized and fully asynchronous JSON serializer.
-- Reduction in memory usage and throughout improvements in form parsing.
+ASP.NET Core 3.0 includes many improvements in reducing memory allocations and improving throughput throughout the stack:
+
+* Reduction in memory usage when using the built-in dependency injection container for scoped services.
+* Reduction in allocations across the stack including middleware scenarios and routing.
+* Reduction in memory usage for WebSocket connections.
+* Memory reduction and throughput improvements for HTTPS connections.
+* New optimized and fully asynchronous JSON serializer.
+* Reduction in memory usage and throughout improvements in form parsing.
 
 ## ASP.NET Core 3.0 only runs on .NET Core 3.0
 
