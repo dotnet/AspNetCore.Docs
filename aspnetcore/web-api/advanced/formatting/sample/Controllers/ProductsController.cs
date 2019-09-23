@@ -6,10 +6,11 @@ namespace ResponseFormattingSample.Controllers
     #region snippet
     [Route("api/[controller]")]
     [ApiController]
+    [FormatFilter]
     public class ProductsController : ControllerBase
     {
-        [Route("[controller]/[action]/{id}.{format?}")]
-        public Product GetById(int id)
+        [HttpGet("{id}.{format?}")]
+        public Product Get(int id)
         {
             #endregion
 
