@@ -119,7 +119,7 @@ Tag Helpers:
     - CacheTagHelper
     - DistributedCacheTagHelper
     - EnvironmentTagHelper
-    ...
+    - Additional Tag Helpers omitted for brevity.
 View Components:
     - SampleViewComponent
 ```
