@@ -570,6 +570,8 @@
       uid: grpc/configuration
     - name: Authentication and authorization
       uid: grpc/authn-and-authz
+    - name: Logging and diagnostics
+      uid: grpc/diagnostics
     - name: Security considerations
       uid: grpc/security
     - name: Migrate gRPC services from C Core
