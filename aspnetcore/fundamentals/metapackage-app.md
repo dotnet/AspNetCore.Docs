@@ -75,6 +75,8 @@ Specifying a version number on the `Microsoft.AspNetCore.App` reference does **n
 
 ::: moniker-end
 
+::: moniker range="< aspnetcore-3.0"
+
 <a name="update"></a>
 
 ## Update ASP.NET Core
