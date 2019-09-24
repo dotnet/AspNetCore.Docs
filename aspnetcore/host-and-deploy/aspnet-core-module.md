@@ -5,7 +5,7 @@ description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/21/2019
+ms.date: 09/24/2019
 uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module
@@ -26,7 +26,7 @@ Supported Windows versions:
 
 When hosting in-process, the module uses an in-process server implementation for IIS, called IIS HTTP Server (`IISHttpServer`).
 
-When hosting out-of-process, the module only works with Kestrel. The module is incompatible with [HTTP.sys](xref:fundamentals/servers/httpsys).
+When hosting out-of-process, the module only works with Kestrel. The module doesn't function with [HTTP.sys](xref:fundamentals/servers/httpsys).
 
 ## Hosting models
 
@@ -49,8 +49,6 @@ The following characteristics apply when hosting in-process:
 * When using [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) or manually placing an [app_offline.htm file in the deployment](xref:host-and-deploy/iis/index#locked-deployment-files), the app might not shut down immediately if there's an open connection. For example, a websocket connection may delay app shut down.
 
 * The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool.
-
-* If setting up the app's host manually with `HostBuilder` (not using [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings)) and the app is ever run directly on the Kestrel server (self-hosted), call `UseKestrel` before calling `UseIISIntegration`. If the order is reversed, the host fails to start.
 
 * Client disconnects are detected. The [HttpContext.RequestAborted](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted*) cancellation token is cancelled when the client disconnects.
 
@@ -89,21 +87,6 @@ For out-of-process, [CreateDefaultBuilder](xref:fundamentals/host/generic-host#d
 
 * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
 * Configure the host to capture startup errors.
-
-When hosting out-of-process, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. When transforming claims with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation, call <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> to add authentication services:
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
-    services.AddAuthentication(IISDefaults.AuthenticationScheme);
-}
-
-public void Configure(IApplicationBuilder app)
-{
-    app.UseAuthentication();
-}
-```
 
 ### Hosting model changes
 
@@ -313,6 +296,8 @@ See [Configuration with web.config](#configuration-with-webconfig) for an exampl
 
 ## Modify the stack size
 
+*Only applies when using the in-process hosting model.*
+
 Configure the managed stack size using the `stackSize` setting in bytes. The default size is `1048576` bytes (1 MB).
 
 ```xml
@@ -331,7 +316,7 @@ Configure the managed stack size using the `stackSize` setting in bytes. The def
 
 *Only applies to out-of-process hosting.*
 
-The proxy created between the ASP.NET Core Module and Kestrel uses the HTTP protocol. Using HTTP is a performance optimization, where the traffic between the module and Kestrel takes place on a loopback address off of the network interface. There's no risk of eavesdropping the traffic between the module and Kestrel from a location off of the server.
+The proxy created between the ASP.NET Core Module and Kestrel uses the HTTP protocol. There's no risk of eavesdropping the traffic between the module and Kestrel from a location off of the server.
 
 A pairing token is used to guarantee that the requests received by Kestrel were proxied by IIS and didn't come from some other source. The pairing token is created and set into an environment variable (`ASPNETCORE_TOKEN`) by the module. The pairing token is also set into a header (`MS-ASPNETCORE-TOKEN`) on every proxied request. IIS Middleware checks each request it receives to confirm that the pairing token header value matches the environment variable value. If the token values are mismatched, the request is logged and rejected. The pairing token environment variable and the traffic between the module and Kestrel aren't accessible from a location off of the server. Without knowing the pairing token value, an attacker can't submit requests that bypass the check in the IIS Middleware.
 
@@ -431,7 +416,7 @@ Supported Windows versions:
 
 When hosting in-process, the module uses an in-process server implementation for IIS, called IIS HTTP Server (`IISHttpServer`).
 
-When hosting out-of-process, the module only works with Kestrel. The module is incompatible with [HTTP.sys](xref:fundamentals/servers/httpsys).
+When hosting out-of-process, the module only works with Kestrel. The module doesn't function with [HTTP.sys](xref:fundamentals/servers/httpsys).
 
 ## Hosting models
 
@@ -464,8 +449,6 @@ The following characteristics apply when hosting in-process:
 * When using [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) or manually placing an [app_offline.htm file in the deployment](xref:host-and-deploy/iis/index#locked-deployment-files), the app might not shut down immediately if there's an open connection. For example, a websocket connection may delay app shut down.
 
 * The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool.
-
-* If setting up the app's host manually with `WebHostBuilder` (not using [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host)) and the app is ever run directly on the Kestrel server (self-hosted), call `UseKestrel` before calling `UseIISIntegration`. If the order is reversed, the host fails to start.
 
 * Client disconnects are detected. The [HttpContext.RequestAborted](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted*) cancellation token is cancelled when the client disconnects.
 
@@ -718,7 +701,7 @@ See [Configuration with web.config](#configuration-with-webconfig) for an exampl
 
 *Only applies to out-of-process hosting.*
 
-The proxy created between the ASP.NET Core Module and Kestrel uses the HTTP protocol. Using HTTP is a performance optimization, where the traffic between the module and Kestrel takes place on a loopback address off of the network interface. There's no risk of eavesdropping the traffic between the module and Kestrel from a location off of the server.
+The proxy created between the ASP.NET Core Module and Kestrel uses the HTTP protocol. There's no risk of eavesdropping the traffic between the module and Kestrel from a location off of the server.
 
 A pairing token is used to guarantee that the requests received by Kestrel were proxied by IIS and didn't come from some other source. The pairing token is created and set into an environment variable (`ASPNETCORE_TOKEN`) by the module. The pairing token is also set into a header (`MS-ASPNETCORE-TOKEN`) on every proxied request. IIS Middleware checks each request it receives to confirm that the pairing token header value matches the environment variable value. If the token values are mismatched, the request is logged and rejected. The pairing token environment variable and the traffic between the module and Kestrel aren't accessible from a location off of the server. Without knowing the pairing token value, an attacker can't submit requests that bypass the check in the IIS Middleware.
 
@@ -958,7 +941,7 @@ See [Configuration with web.config](#configuration-with-webconfig) for an exampl
 
 ## Proxy configuration uses HTTP protocol and a pairing token
 
-The proxy created between the ASP.NET Core Module and Kestrel uses the HTTP protocol. Using HTTP is a performance optimization, where the traffic between the module and Kestrel takes place on a loopback address off of the network interface. There's no risk of eavesdropping the traffic between the module and Kestrel from a location off of the server.
+The proxy created between the ASP.NET Core Module and Kestrel uses the HTTP protocol. There's no risk of eavesdropping the traffic between the module and Kestrel from a location off of the server.
 
 A pairing token is used to guarantee that the requests received by Kestrel were proxied by IIS and didn't come from some other source. The pairing token is created and set into an environment variable (`ASPNETCORE_TOKEN`) by the module. The pairing token is also set into a header (`MS-ASPNETCORE-TOKEN`) on every proxied request. IIS Middleware checks each request it receives to confirm that the pairing token header value matches the environment variable value. If the token values are mismatched, the request is logged and rejected. The pairing token environment variable and the traffic between the module and Kestrel aren't accessible from a location off of the server. Without knowing the pairing token value, an attacker can't submit requests that bypass the check in the IIS Middleware.
 
