@@ -1,13 +1,39 @@
 ---
-title: Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1 or later
+title: Microsoft.AspNetCore.App metapackage for ASP.NET Core
 author: Rick-Anderson
-description: The Microsoft.AspNetCore.App metapackage includes all supported ASP.NET Core and Entity Framework Core packages.
+description: The Microsoft.AspNetCore.App shared framework
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 04/21/2019
 uid: fundamentals/metapackage-app
 ---
-# Microsoft.AspNetCore.App metapackage for ASP.NET Core 2.1 or later
+# Microsoft.AspNetCore.App for ASP.NET Core
+
+::: moniker range=">= aspnetcore-3.0"
+
+ The ASP.NET Core shared framework (`Microsoft.AspNetCore.App`) contains assemblies that are developed and supported by Microsoft. `Microsoft.AspNetCore.App` is installed when the [.NET Core 3.0 or later SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) is installed. The *shared framework* is the set of assemblies (*.dll* files) that are installed on the machine and includes a runtime component and a targeting pack. For more information, see [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
+
+* Projects that target the `Microsoft.NET.Sdk.Web` SDK implicitly reference the `Microsoft.AspNetCore.App` framework.
+
+No additional references are required for these projects:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+    ...
+</Project>
+```
+
+The ASP.NET Core shared framework:
+
+* Doesn't include third-party dependencies.
+* Includes all supported packages by the ASP.NET Core team.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
 
 This feature requires ASP.NET Core 2.1 or later targeting .NET Core 2.1 or later.
 
@@ -63,6 +89,8 @@ Specifying a version number on the `Microsoft.AspNetCore.App` reference does **n
 
 ::: moniker-end
 
+::: moniker range="< aspnetcore-3.0"
+
 <a name="update"></a>
 
 ## Update ASP.NET Core
@@ -77,3 +105,5 @@ To update ASP.NET Core:
  Applications will roll forward to the latest installed version on application restart. It's not necessary to update the `Microsoft.AspNetCore.App` version number in the project file. For more information, see [Framework-dependent apps roll forward](/dotnet/core/versions/selection#framework-dependent-apps-roll-forward).
 
 If your application previously used `Microsoft.AspNetCore.All`, see [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](xref:fundamentals/metapackage#migrate).
+
+::: moniker-end
