@@ -203,6 +203,8 @@ Update *Index.cshtml* as follows:
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
 
 Test the app by searching by genre, by movie title, and by both.
+The preceding code uses the [Select Tag Helper](xref:views/working-with-forms?view=aspnetcore-3.0#the-select-tag-helper) and 
+Option Tag Helper.
 
 ## Additional resources
 
