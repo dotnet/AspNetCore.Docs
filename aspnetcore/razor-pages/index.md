@@ -277,6 +277,7 @@ The preceding code:
   * Validation error rendering.
 
 * Generates the following HTML:
+
   [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create5.html)]
 
 Posting the Create form without a name value displays the error message "The Name field is required." on the form. If JavaScript is enabled on the client, the browser displays the error without posting to the server.
@@ -394,6 +395,7 @@ The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the 
 `@namespace` *also works with conventional Razor views.*
 
 Consider the *Pages/Create.cshtml* view file:
+
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create3.cshtml?highlight=2-3)]
 
 The updated *Pages/Create.cshtml* view file with *_ViewImports.cshtml* and the preceding layout file:
