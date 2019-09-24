@@ -53,7 +53,7 @@ The host provides services that are available to the `Startup` class constructor
 Only the following service types can be injected into the `Startup` constructor when using <xref:Microsoft.Extensions.Hosting.IHostBuilder>:
 
 * `IWebHostEnvironment`
-* `IHostEnvironment`
+* <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
 * <xref:Microsoft.Extensions.Configuration.IConfiguration>
 
 [!code-csharp[](startup/3.0_samples/StartupFilterSample/StartUp2.cs?name=snippet)]

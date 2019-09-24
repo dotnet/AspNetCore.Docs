@@ -107,7 +107,7 @@ Services that are registered automatically include the following:
 * [IHostLifetime](#ihostlifetime)
 * [IHostEnvironment / IWebHostEnvironment](#ihostenvironment)
 
-For a list of all framework-provided services, see <xref:fundamentals/dependency-injection#framework-provided-services>.
+For more information on framework-provided services, see <xref:fundamentals/dependency-injection#framework-provided-services>.
 
 ## IHostApplicationLifetime
 
