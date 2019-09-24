@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/21/2019
+ms.date: 09/23/2019
 uid: blazor/routing
 ---
 # ASP.NET Core Blazor routing

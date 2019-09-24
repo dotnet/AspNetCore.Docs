@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/05/2019
+ms.date: 09/23/2019
 uid: blazor/get-started
 ---
 # Get started with ASP.NET Core Blazor
@@ -16,7 +16,7 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 
 Get started with Blazor:
 
-1. Install the latest [.NET Core 3.0 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) release.
+1. Install the latest [.NET Core 3.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) release.
 
 1. Install the Blazor templates by running the following command in a command shell:
 
@@ -28,7 +28,7 @@ Get started with Blazor:
 
    # [Visual Studio](#tab/visual-studio)
 
-   1\. Install the latest [Visual Studio preview](https://visualstudio.com/vs/preview) with the **ASP.NET and web development** workload.
+   1\. Install the latest [Visual Studio](https://visualstudio.com/vs/) with the **ASP.NET and web development** workload.
 
    2\. Create a new project.
 
