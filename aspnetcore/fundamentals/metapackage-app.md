@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: The Microsoft.AspNetCore.App shared framework
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 04/21/2019
+ms.date: 09/24/2019
 uid: fundamentals/metapackage-app
 ---
 # Microsoft.AspNetCore.App for ASP.NET Core
@@ -76,6 +76,8 @@ The preceding markup represents a typical ASP.NET Core 2.1 and later template. I
 The implicit version is set to `major.minor.0` for portable apps. The shared framework roll-forward mechanism will run the app on the latest compatible version among the installed shared frameworks. To guarantee the same version is used in development, test, and production, ensure the same version of the shared framework is installed in all environments. For self contained apps, the implicit version number is set to the `major.minor.patch` of the shared framework bundled in the installed SDK.
 
 Specifying a version number on the `Microsoft.AspNetCore.App` reference does **not** guarantee that version of the shared framework will be chosen. For example, suppose version "2.1.1" is specified, but "2.1.3" is installed. In that case, the app will use "2.1.3". Although not recommended, you can disable roll forward (patch and/or minor). For more information regarding dotnet host roll-forward and how to configure its behavior, see [dotnet host roll forward](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
+
+::: moniker-end
 
 ::: moniker range="= aspnetcore-2.1"
 
