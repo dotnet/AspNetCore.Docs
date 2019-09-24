@@ -24,10 +24,7 @@ namespace GrpcGreeter
                     {
                         options.Listen(IPAddress.Any, 5001, listenOptions =>
                         {
-                            // This endpoint will use HTTP/2
                             listenOptions.Protocols = HttpProtocols.Http2;
-                            
-                            // Secured with TLS on port 5001.
                             listenOptions.UseHttps("<path to .pfx file>", 
                                 "<certificate password>");
                         });

@@ -75,11 +75,11 @@ Kestrel endpoints used for gRPC should be secured with TLS. In development, an e
 
 In production, TLS must be explicitly configured. In the following *appsettings.json* example, an HTTP/2 endpoint secured with TLS is provided:
 
-[!code-json[](~/grpc/aspnetcore/sample/appsettings.json)]
+[!code-json[](~/grpc/aspnetcore/sample/appsettings.json?highlight=4-11)]
 
 Alternatively, Kestrel endpoints can be configured in *Program.cs*:
 
-[!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?name=snippet)]
+[!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7-12&name=snippet)]
 
 #### Protocol negotiation
 
