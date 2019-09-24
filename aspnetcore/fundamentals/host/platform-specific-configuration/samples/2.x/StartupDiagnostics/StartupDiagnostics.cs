@@ -152,7 +152,7 @@ namespace StartupDiagnostics
             {
                 var logger = _loggerFactory.CreateLogger("Requests");
 
-                logger.LogDebug("Received request: {METHOD} {PATH}", 
+                logger.LogDebug("Received request: {Method} {Path}", 
                     ctx.Request.Method, ctx.Request.Path);
 
                 ctx.Response.ContentType = "text/plain";

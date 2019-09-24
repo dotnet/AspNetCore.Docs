@@ -15,7 +15,7 @@ namespace SampleApp.Pages
 
         public void OnGet()
         {
-            _logger.LogInformation("Logged from the IndexModel.OnGet method at {TIME}", DateTimeOffset.Now);
+            _logger.LogInformation("Logged from the IndexModel.OnGet method at {Time}", DateTimeOffset.Now);
         }
     }
 }
