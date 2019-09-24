@@ -177,9 +177,9 @@ Install the packages using either the Package Manager Console (PMC) or Manage Nu
 * Run the following commands:
 
   ```powershell
-  Install-Package Grpc.Net.Client -prerelease
-  Install-Package Google.Protobuf -prerelease
-  Install-Package Grpc.Tools -prerelease
+  Install-Package Grpc.Net.Client
+  Install-Package Google.Protobuf
+  Install-Package Grpc.Tools
   ```
 
 #### Manage NuGet Packages option to install packages

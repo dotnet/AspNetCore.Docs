@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.8.0" />
-    <PackageReference Include="Grpc.Net.Client" Version="0.2.23-pre1" />
+    <PackageReference Include="Google.Protobuf" Version="3.9.2" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.23.2" />
     <PackageReference Include="Grpc.Tools" Version="2.23.0" PrivateAssets="All" />
   </ItemGroup>
 
