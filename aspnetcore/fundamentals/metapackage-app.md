@@ -26,7 +26,7 @@ No additional references are required for these projects:
 </Project>
 ```
 
- The ASP.NET Core shared framework:
+The ASP.NET Core shared framework:
 
 * Doesn't include third-party dependencies.
 * Includes all supported packages by the ASP.NET Core team.
