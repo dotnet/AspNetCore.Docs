@@ -46,12 +46,12 @@ namespace BackgroundTasksSample.Services
                         for (int delayLoop = 0; delayLoop < 3; delayLoop++)
                         {
                             _logger.LogInformation(
-                                $"Queued Background Task {guid} is running. {delayLoop}/3");
+                                "Queued Background Task {Guid} is running. {DelayLoop}/3", guid, delayLoop);
                             await Task.Delay(TimeSpan.FromSeconds(5), token);
                         }
 
                         _logger.LogInformation(
-                            $"Queued Background Task {guid} is complete. 3/3");
+                            "Queued Background Task {Guid} is complete. 3/3", guid);
                     });
                 }
             }

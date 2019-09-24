@@ -65,7 +65,7 @@ namespace BackgroundTasksSample.Pages
                         {
                             _logger.LogError(ex, 
                                 "An error occurred writing to the " +
-                                $"database. Error: {ex.Message}");
+                                "database. Error: {Message}", ex.Message);
                         }
 
                         await Task.Delay(TimeSpan.FromSeconds(5), token);
@@ -73,7 +73,7 @@ namespace BackgroundTasksSample.Pages
                 }
 
                 _logger.LogInformation(
-                    $"Queued Background Task {guid} is complete. 3/3");
+                    "Queued Background Task {Guid} is complete. 3/3", guid);
             });
 
             return RedirectToPage();

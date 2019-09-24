@@ -22,7 +22,7 @@ namespace SampleApp.Services
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation($"Startup Background Service is starting.");
+            _logger.LogInformation("Startup Background Service is starting.");
 
             // Simulate the effect of a long-running startup task.
             Task.Run(async () =>
@@ -31,7 +31,7 @@ namespace SampleApp.Services
 
                 _startupHostedServiceHealthCheck.StartupTaskCompleted = true;
 
-                _logger.LogInformation($"Startup Background Service has started.");
+                _logger.LogInformation("Startup Background Service has started.");
             });
 
             return Task.CompletedTask;

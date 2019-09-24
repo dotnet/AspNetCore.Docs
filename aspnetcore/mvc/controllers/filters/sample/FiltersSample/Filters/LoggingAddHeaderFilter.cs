@@ -20,7 +20,7 @@ namespace FiltersSample.Filters
             var headerName = "OnResultExecuting";
             context.HttpContext.Response.Headers.Add(
                 headerName, new string[] { "ResultExecutingSuccessfully" });
-            _logger.LogInformation($"Header added: {headerName}");
+            _logger.LogInformation("Header added: {HeaderName}", headerName);
         }
 
         public void OnResultExecuted(ResultExecutedContext context)

@@ -293,18 +293,18 @@ To write logs rather than to the response body:
 app.Use(async (context, next) =>
 {
     // Request method, scheme, and path
-    _logger.LogDebug("Request Method: {METHOD}", context.Request.Method);
-    _logger.LogDebug("Request Scheme: {SCHEME}", context.Request.Scheme);
-    _logger.LogDebug("Request Path: {PATH}", context.Request.Path);
+    _logger.LogDebug("Request Method: {Method}", context.Request.Method);
+    _logger.LogDebug("Request Scheme: {Scheme}", context.Request.Scheme);
+    _logger.LogDebug("Request Path: {Path}", context.Request.Path);
 
     // Headers
     foreach (var header in context.Request.Headers)
     {
-        _logger.LogDebug("Header: {KEY}: {VALUE}", header.Key, header.Value);
+        _logger.LogDebug("Header: {Key}: {Value}", header.Key, header.Value);
     }
 
     // Connection: RemoteIp
-    _logger.LogDebug("Request RemoteIp: {REMOTE_IP_ADDRESS}", 
+    _logger.LogDebug("Request RemoteIp: {RemoteIpAddress}", 
         context.Connection.RemoteIpAddress);
 
     await next();

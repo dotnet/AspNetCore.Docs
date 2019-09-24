@@ -78,7 +78,7 @@ namespace FileUploadSample.Controllers
                         {
                             await section.Body.CopyToAsync(targetStream);
 
-                            _logger.LogInformation($"Copied the uploaded file '{targetFilePath}'");
+                            _logger.LogInformation("Copied the uploaded file '{TargetFilePath}'", targetFilePath);
                         }
                     }
                     else if (MultipartRequestHelper.HasFormDataContentDisposition(contentDisposition))

@@ -29,7 +29,7 @@ namespace HttpSysSample
                     app.ServerFeatures.Get<IServerAddressesFeature>();
                 var addresses = string.Join(", ", serverAddressesFeature?.Addresses);
 
-                logger.LogInformation($"Addresses: {addresses}");
+                logger.LogInformation("Addresses: {Addresses}", addresses);
 
                 await next.Invoke();
             });
