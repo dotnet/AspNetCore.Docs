@@ -10,14 +10,15 @@ uid: fundamentals/metapackage-app
 # Microsoft.AspNetCore.App for ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
- The ASP.NET Core shared framework (`Microsoft.AspNetCore.App`) contains assemblies that are developed and supported by Microsoft. `Microsoft.AspNetCore.App` is installed when the [.NET Core 3.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) is installed. The *shared framework* is the set of assemblies (*.dll* files) that are installed on the machine and includes a runtime component, and a targeting pack. For more information, see [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
+
+ The ASP.NET Core shared framework (`Microsoft.AspNetCore.App`) contains assemblies that are developed and supported by Microsoft. `Microsoft.AspNetCore.App` is installed when the [.NET Core 3.0 or later SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) is installed. The *shared framework* is the set of assemblies (*.dll* files) that are installed on the machine and includes a runtime component and a targeting pack. For more information, see [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/).
 
 * Projects that target the `Microsoft.NET.Sdk.Web` SDK implicitly reference the `Microsoft.AspNetCore.App` framework.
 
 No additional references are required for these projects:
 
 ```xml
-<Project SDK="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
@@ -27,7 +28,7 @@ No additional references are required for these projects:
 
  The ASP.NET Core shared framework:
 
-* Does not include third-party dependencies.
+* Doesn't include third-party dependencies.
 * Includes all supported packages by the ASP.NET Core team.
 
 ::: moniker-end
