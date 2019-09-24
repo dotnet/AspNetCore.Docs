@@ -5,7 +5,7 @@ description: Learn how ASP.NET Core implements dependency injection and how to u
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/22/2019
+ms.date: 09/24/2019
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -581,7 +581,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Default service container replacement
 
-The built-in service container is meant to serve the needs of the framework and most consumer apps. We recommend using the built-in container unless you need a specific feature that it doesn't support. Some of the features supported in 3rd party containers not found in the built-in container:
+The built-in service container is designed to serve the needs of the framework and most consumer apps. We recommend using the built-in container unless you need a specific feature that the built-in container doesn't support, such as:
 
 * Property injection
 * Injection based on name
@@ -589,74 +589,15 @@ The built-in service container is meant to serve the needs of the framework and 
 * Custom lifetime management
 * `Func<T>` support for lazy initialization
 
-See the [Dependency Injection readme.md file](https://github.com/aspnet/Extensions/tree/master/src/DependencyInjection) for a list of some of the containers that support adapters.
+The following 3rd party containers can be used with ASP.NET Core apps:
 
-The following sample replaces the built-in container with [Autofac](https://autofac.org/):
-
-* Install the appropriate container package(s):
-
-  * [Autofac](https://www.nuget.org/packages/Autofac/)
-  * [Autofac.Extensions.DependencyInjection](https://www.nuget.org/packages/Autofac.Extensions.DependencyInjection/)
-
-::: moniker range=">= aspnetcore-3.0"
-
-* Configure the container in `Startup.ConfigureServices` and return an `IServiceProvider`:
-
-   ```csharp
-   public IServiceProvider ConfigureServices(IServiceCollection services)
-   {
-       services.AddControllersWithViews();
-       // Add other framework services
-
-       // Add Autofac
-       var containerBuilder = new ContainerBuilder();
-       containerBuilder.RegisterModule<DefaultModule>();
-       containerBuilder.Populate(services);
-       var container = containerBuilder.Build();
-       return new AutofacServiceProvider(container);
-   }
-   ```
-
-   To use a 3rd party container, `Startup.ConfigureServices` must return `IServiceProvider`.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-* Configure the container in `Startup.ConfigureServices` and return an `IServiceProvider`:
-
-   ```csharp
-   public IServiceProvider ConfigureServices(IServiceCollection services)
-   {
-       services.AddMvc();
-       // Add other framework services
-
-       // Add Autofac
-       var containerBuilder = new ContainerBuilder();
-       containerBuilder.RegisterModule<DefaultModule>();
-       containerBuilder.Populate(services);
-       var container = containerBuilder.Build();
-       return new AutofacServiceProvider(container);
-   }
-   ```
-
-   To use a 3rd party container, `Startup.ConfigureServices` must return `IServiceProvider`.
-
-::: moniker-end
-
-* Configure Autofac in `DefaultModule`:
-
-   ```csharp
-   public class DefaultModule : Module
-   {
-       protected override void Load(ContainerBuilder builder)
-       {
-           builder.RegisterType<CharacterRepository>().As<ICharacterRepository>();
-       }
-   }
-   ```
-
-At runtime, Autofac is used to resolve types and inject dependencies. To learn more about using Autofac with ASP.NET Core, see the [Autofac documentation](https://docs.autofac.org/en/latest/integration/aspnetcore.html).
+* [Autofac](https://autofac.readthedocs.io/en/latest/integration/aspnetcore.html)
+* [DryIoc](https://www.nuget.org/packages/DryIoc.Microsoft.DependencyInjection)
+* [Grace](https://www.nuget.org/packages/Grace.DependencyInjection.Extensions)
+* [LightInject](https://github.com/seesharper/LightInject.Microsoft.DependencyInjection)
+* [Lamar](https://jasperfx.github.io/lamar/)
+* [Stashbox](https://github.com/z4kn4fein/stashbox-extensions-dependencyinjection)
+* [Unity](https://www.nuget.org/packages/Unity.Microsoft.DependencyInjection)
 
 ### Thread safety
 
