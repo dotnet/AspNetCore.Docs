@@ -71,7 +71,7 @@ Kestrel [supports HTTP/2](xref:fundamentals/servers/kestrel#http2-support) on mo
 
 #### TLS
 
-Kestrel endpoints used for gRPC should be secured with TLS. In development, an endpoint secured with TLS is automatically created at `https://localhost:5001` when the ASP.NET Core development certificate is present. No configuration is required. You can double check a Kestrel endpoint is secured by looking at the address. A `https` prefix indicates that the endpoint is secure.
+Kestrel endpoints used for gRPC should be secured with TLS. In development, an endpoint secured with TLS is automatically created at `https://localhost:5001` when the ASP.NET Core development certificate is present. No configuration is required. An `https` prefix verifies the Kestrel endpoint is using TLS.
 
 In production, TLS must be explicitly configured. In the following *appsettings.json* example, an HTTP/2 endpoint secured with TLS is provided:
 
@@ -85,7 +85,7 @@ Alternatively, Kestrel endpoints can be configured in *Program.cs*:
 
 TLS is used for more than securing communication. The TLS [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) handshake is used to negotiate the connection protocol between the client and the server when an endpoint supports multiple protocols. This negotiation determines whether the connection uses HTTP/1.1 or HTTP/2.
 
-If a HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. An endpoint with multiple protocols like `HttpProtocols.Http1AndHttp2` can't be used without TLS because there is no negotiation. All connections to the unsecured endpoint default to HTTP/1.1, and gRPC calls fail.
+If an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. An endpoint with multiple protocols (for example, `HttpProtocols.Http1AndHttp2`) can't be used without TLS because there is no negotiation. All connections to the unsecured endpoint default to HTTP/1.1, and gRPC calls fail.
 
 For more information on enabling HTTP/2 and TLS with Kestrel, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
