@@ -153,6 +153,25 @@ In the sample app, the `IMyDependency` instance is requested and used to call th
 
 ::: moniker-end
 
+## Services injected into Startup
+
+Only the following service types can be injected into the `Startup` constructor when using the Generic Host (<xref:Microsoft.Extensions.Hosting.IHostBuilder>):
+
+* `IWebHostEnvironment`
+* <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
+* <xref:Microsoft.Extensions.Configuration.IConfiguration>
+
+Services can be injected into `Startup.Configure`:
+
+```csharp
+public void Configure(IApplicationBuilder app, IOptions<MyOptions> options)
+{
+    ...
+}
+```
+
+For more information, see <xref:fundamentals/startup>.
+
 ## Framework-provided services
 
 The `Startup.ConfigureServices` method is responsible for defining the services that the app uses, including platform features, such as Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has services defined by the framework depending on [how the host was configured](xref:fundamentals/index#host). It's not uncommon for an app based on an ASP.NET Core template to have hundreds of services registered by the framework. A small sample of framework-registered services is listed in the following table.
