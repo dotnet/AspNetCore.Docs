@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HostingStartupPackage" Version="1.0.0" />
+  </ItemGroup>
+
+  <!--
+    The RestoreSources property sets the package restore sources for the app.
+
+    The hosting startup package project's bin/Debug folder is included as a
+    package source. This permits the app to load the compiled package without 
+    publishing the package to nuget.org.
+
+    A local package source folder can reside anywhere, including on a network 
+    share. Wherever the package is maintained locally, provide the path to the
+    package's location when experimenting with the sample app.
+
+    In a real-world scenario when you deliver a hosting startup NuGet package 
+    via nuget.org, the RestoreSources property isn't present and a normal 
+    package reference is added to the ItemGroup earlier in this file with the 
+    package's published version on nuget.org. Under these conditions, the
+    hosting startup is consumed just like any normal NuGet package.
+  -->
+  <PropertyGroup>
+    <RestoreSources>$(RestoreSources);https://api.nuget.org/v3/index.json;../HostingStartupPackage/bin/Debug</RestoreSources>
+  </PropertyGroup>
+
+  <!--
+    For demonstration purposes, the hosting startup library's assembly
+    is manually placed into this project's bin/Debug folder.
+
+    The following Reference item permits the app to load the hosting startup
+    assembly (HostingStartupLibrary.dll) from this app's bin/Debug folder.
+
+    A project reference isn't used to consume the hosting startup library
+    because the hosting startup is deployed as a compiled assembly (a DLL 
+    file).
+
+    In a production app, the hosting startup assembly can be moved 
+    manually into a project (as is done here) or moved automatically using 
+    a Content item or script. When forming the path to the assembly, the 
+    following variables can be used to automate discovery of the hosting
+    startup assembly:
+
+    $(Configuration) - replaced by the configuration (Debug, Release)
+    $(TargetFramework) - replaced by the project's target framework
+  -->
+  <ItemGroup>
+    <Reference Include=".\\bin\\Debug\\netcoreapp3.0\\HostingStartupLibrary.dll">
+      <HintPath>.\bin\Debug\netcoreapp3.0\HostingStartupLibrary.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion> 
+    </Reference>
+  </ItemGroup>
+
+</Project>
