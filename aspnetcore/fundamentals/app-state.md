@@ -312,7 +312,7 @@ Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data 
   
 ## SignalR and state
 
-SignalR apps should not use state to store information. SignalR apps can store per user state in `Context.Items` on the in the hub.
+SignalR apps should not use state to store information. SignalR apps can store per connection state in `Context.Items` in the hub.
 
 ## Additional resources
 
