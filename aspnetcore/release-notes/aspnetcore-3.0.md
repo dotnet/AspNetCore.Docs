@@ -322,7 +322,7 @@ The following list contains new Razor directives:
 * Access control for APIs
 * Federation gateway
 
-For more information, see [Welcome to IdentityServer4](http://docs.identityserver.io/en/latest/index.html)
+For more information, see [Welcome to IdentityServer4](http://docs.identityserver.io/en/latest/index.html).
 
 ## Certificate and Kerberos authentication
 
