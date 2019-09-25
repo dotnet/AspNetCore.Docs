@@ -6,7 +6,7 @@
 // InvalidModelStateResponseFactory - customize response for automatic 400 on validation error.
 // SuppressApiControllerBehavior - use 2.1 behaviors although compat version is 2.2.
 
-#define DefaultBehavior // or InvalidModelStateResponseFactory or SuppressApiControllerBehavior or DisableProblemDetailsInvalidModelStateResponseFactory
+#define DefaultBehavior // or InvalidModelStateResponseFactory or SuppressApiControllerBehavior
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -67,25 +67,6 @@ namespace WebApiSample
                         {
                             ContentTypes = { "application/problem+json" }
                         };
-                    };
-                });
-            #endregion
-#endif
-#if DisableProblemDetailsInvalidModelStateResponseFactory
-            #region snippet_DisableProblemDetailsInvalidModelStateResponseFactory
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .ConfigureApiBehaviorOptions(options =>
-                {
-                    options.InvalidModelStateResponseFactory = context =>
-                    {
-                        var result = new BadRequestObjectResult(context.ModelState);
-
-                        // TODO: add `using using System.Net.Mime;` to resolve MediaTypeNames
-                        result.ContentTypes.Add(MediaTypeNames.Application.Json);
-                        result.ContentTypes.Add(MediaTypeNames.Application.Xml);
-
-                        return result;
                     };
                 });
             #endregion
