@@ -18,9 +18,7 @@ This article describes how to handle and customize error handling with ASP.NET C
 
 The [Developer Exception Page](xref:fundamentals/error-handling) is a useful tool to get detailed stack traces for server errors.
 
-::: moniker range=">= aspnetcore-3.0"
-
-The Developer Exception Page displays a plain-text response if the client doesn't accept HTML-formatted output:
+The Developer Exception Page displays a plain-text response if the client doesn't accept HTML-formatted output. For example:
 
 ```
 > curl https://localhost:5001/weatherforecast
@@ -30,8 +28,6 @@ System.ArgumentException: count
    at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
 ...
 ```
-
-::: moniker-end
 
 > [!WARNING]
 > Enable the Developer Exception Page **only when the app is running in the Development environment**. You don't want to share detailed exception information publicly when the app runs in production. For more information on configuring environments, see <xref:fundamentals/environments>.
