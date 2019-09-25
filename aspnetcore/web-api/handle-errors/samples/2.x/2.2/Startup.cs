@@ -63,6 +63,7 @@ namespace WebApiSample
 #endif
         }
 
+        #region snippet_UseExceptionHandler
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -71,12 +72,13 @@ namespace WebApiSample
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseExceptionHandler("/error");
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
             app.UseMvc();
         }
+        #endregion
     }
 }

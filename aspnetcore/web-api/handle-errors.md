@@ -42,36 +42,39 @@ In non-development environments, [Exception Handling Middleware](xref:fundamenta
 
 1. In `Startup.Configure`, invoke <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> to use the middleware:
 
-    ```csharp
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        if (env.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-        }
-        else
-        {
-            app.UseExceptionHandler("/error");
-        }
-    }
-    ```
+    ::: moniker range=">= aspnetcore-3.0"
+
+    [!code-csharp[](handle-errors/samples/3.x/Startup.cs?name=snippet_UseExceptionHandler&highlight=9)]
+
+    ::: moniker-end
+
+    ::: moniker range="<= aspnetcore-2.2"
+
+    [!code-csharp[](handle-errors/samples/2.x/2.2/Startup.cs?name=snippet_UseExceptionHandler&highlight=9)]
+
+    ::: moniker-end
 
 1. Configure a controller action to respond to the `/error` route:
 
-    ```csharp
-    [ApiController]
-    public class ErrorController : ControllerBase
-    {
-        [Route("/error")]
-        public IActionResult Error() => Problem();
-    }
-    ```
+    ::: moniker range=">= aspnetcore-3.0"
+
+    [!code-csharp[](handle-errors/samples/3.x/Controllers/ErrorController.cs?name=snippet_ErrorController)]
+
+    ::: moniker-end
+
+    ::: moniker range="<= aspnetcore-2.2"
+
+    [!code-csharp[](handle-errors/samples/2.x/2.2/Controllers/ErrorController.cs?name=snippet_ErrorController)]
+
+    ::: moniker-end
 
 The preceding `Error` action sends an [RFC7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client.
 
 Exception Handling Middleware can also provide more detailed content-negotiated output in the local development environment. Use the following steps to produce a consistent payload format across development and production environments:
 
 1. In `Startup.Configure`, register environment-specific Exception Handling Middleware instances:
+
+    ::: moniker range=">= aspnetcore-3.0"
 
     ```csharp
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -87,6 +90,26 @@ Exception Handling Middleware can also provide more detailed content-negotiated 
     }
     ```
 
+    ::: moniker-end
+
+    ::: moniker range="<= aspnetcore-2.2"
+
+    ```csharp
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
+        if (env.IsDevelopment())
+        {
+            app.UseExceptionHandler("/error-local-development");
+        }
+        else
+        {
+            app.UseExceptionHandler("/error");
+        }
+    }
+    ```
+
+    ::: moniker-end
+
     In the preceding code, the middleware is registered with:
 
     * A route of `/error-local-development` in the Development environment.
@@ -94,31 +117,17 @@ Exception Handling Middleware can also provide more detailed content-negotiated 
     
 1. Apply attribute routing to controller actions:
 
-    ```csharp
-    [ApiController]
-    public class ErrorController : ControllerBase
-    {
-        [Route("/error-local-development")]
-        public IActionResult ErrorLocalDevelopment(
-            [FromServices] IWebHostEnvironment webHostEnvironment)
-        {
-            if (!webHostEnvironment.IsDevelopment())
-            {
-                throw new InvalidOperationException(
-                    "This shouldn't be invoked in non-development environments.");
-            }
-    
-            var context = HttpContext.Features.Get<IExceptionHandlerFeature>();
+    ::: moniker range=">= aspnetcore-3.0"
 
-            return Problem(
-                detail: context.Error.StackTrace,
-                title: context.Error.Message);
-        }
-    
-        [Route("/error")]
-        public IActionResult Error() => Problem();
-    }
-    ```
+    [!code-csharp[](handle-errors/samples/3.x/Controllers/ErrorController.cs?name=snippet_ErrorControllerEnvironmentSpecific)]
+
+    ::: moniker-end
+
+    ::: moniker range="<= aspnetcore-2.2"
+
+    [!code-csharp[](handle-errors/samples/2.x/2.2/Controllers/ErrorController.cs?name=snippet_ErrorControllerEnvironmentSpecific)]
+
+    ::: moniker-end
 
 ## Use exceptions to modify the response
 

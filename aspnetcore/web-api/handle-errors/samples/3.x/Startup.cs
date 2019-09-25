@@ -5,7 +5,8 @@
 // InvalidModelStateResponseFactory - customize response for automatic 400 on validation error
 // ExceptionFilter - adds a custom exception filter to the filters collection
 
-#define InvalidModelStateResponseFactory // or ExceptionFilter
+#define InvalidModelStateResponseFactory
+//#define ExceptionFilter
 
 #if InvalidModelStateResponseFactory
 using System.Net.Mime;
@@ -62,23 +63,26 @@ namespace WebApiSample
 #endif
         }
 
+        #region snippet_UseExceptionHandler
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/error");
+            }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
         }
+        #endregion
     }
 }
