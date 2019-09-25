@@ -1,5 +1,5 @@
 ---
-title: Comparing gRPC services with HTTP APIs
+title: Compare gRPC services with HTTP APIs
 author: jamesnk
 description: Learn how gRPC compares with HTTP APIs and what it's recommend scenarios are.
 monikerRange: '>= aspnetcore-3.0'
@@ -7,11 +7,11 @@ ms.author: jamesnk
 ms.date: 03/31/2019
 uid: grpc/comparison
 ---
-# Comparing gRPC services with HTTP APIs
+# Compare gRPC services with HTTP APIs
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-This article explains how [gRPC services](https://grpc.io/docs/guides/) compare to HTTP APIs (including ASP.NET Core [Web APIs](xref:web-api/index)). The technology used to provide an API for your app is an important choice, and gRPC offers unique benefits compared to HTTP APIs. This article discusses the strengths and weaknesses of gRPC and recommends scenarios for using gRPC over other technologies.
+This article explains how [gRPC services](https://grpc.io/docs/guides/) compare to HTTP APIs (including ASP.NET Core [web APIs](xref:web-api/index)). The technology used to provide an API for your app is an important choice, and gRPC offers unique benefits compared to HTTP APIs. This article discusses the strengths and weaknesses of gRPC and recommends scenarios for using gRPC over other technologies.
 
 #### Overview
 
