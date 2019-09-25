@@ -457,6 +457,8 @@ Use Postman to delete a to-do item:
 * Set the URI of the object to delete, for example `https://localhost:5001/api/TodoItems/1`
 * Select **Send**
 
+<a name="auth"></a>
+
 ## Add authentication support to Web API
 
 See the [IdentityServer4](https://identityserver4.readthedocs.io/latest/) documentation.
