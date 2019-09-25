@@ -126,48 +126,16 @@ The contents of the response can be modified from outside of the controller. In 
 
 1. Create a well-known exception type named `HttpResponseException`:
 
-    ```csharp
-    public class HttpResponseException : Exception
-    {
-        public int Status { get; set; } = 500;
-    
-        public object Value { get; set; }
-    }
-    ```
+    [!code-csharp[](handle-errors/samples/3.x/Exceptions/HttpResponseException.cs?name=snippet_HttpResponseException)]
 
 1. Create an action filter named `HttpResponseExceptionFilter`:
 
-    ```csharp
-    public class HttpResponseExceptionFilter : IActionFilter, IOrderedFilter
-    {
-        public int Order { get; set; } = int.MaxValue - 10;
-    
-        public void OnActionExecuting(ActionExecutingContext context) {}
-    
-        public void OnActionExecuted(ActionExecutedContext context)
-        {
-            if (context.Exception is HttpResponseException exception)
-            {
-                context.Result = new ObjectResult(exception.Value)
-                {
-                    Status = exception.Status,
-                };
-                context.ExceptionHandled = true;
-            }
-        }
-    }
-    ```
+    [!code-csharp[](handle-errors/samples/3.x/Filters/HttpResponseExceptionFilter.cs?name=snippet_HttpResponseExceptionFilter)]
 
 1. In `Startup.ConfigureServices`, add the action filter to the filters collection:
 
-    ```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddControllers(options => 
-            options.Filters.Add(new HttpResponseExceptionFilter()));
-    }
-    ```
-
+    [!code-csharp[](handle-errors/samples/3.x/Startup.cs?name=snippet_AddExceptionFilter)]
+    
 ## Validation failure error response
 
 For web API controllers, MVC responds with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> response type when model validation fails. MVC uses the results of <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> to construct the error response for a validation failure. The following example uses the factory to change the default response type to <xref:Microsoft.AspNetCore.Mvc.SerializableError> in `Startup.ConfigureServices`:
