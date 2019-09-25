@@ -210,15 +210,19 @@ public void ConfigureServices(IServiceCollection serviceCollection)
 
 ::: moniker-end
 
-::: moniker range="<= aspnetcore-2.2"
+::: moniker range="= aspnetcore-2.2"
 
 The error response can be configured as outlined in the [Use ApiBehaviorOptions.ClientErrorMapping](#use-apibehavioroptionsclienterrormapping) section.
 
 ::: moniker-end
 
+::: moniker range=">= aspnetcore-2.2"
+
 ### Use ApiBehaviorOptions.ClientErrorMapping
 
-Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping*> property to configure the contents of the `ProblemDetails` response. For example, the following code updates the `type` property for 404 responses:
+Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping*> property to configure the contents of the `ProblemDetails` response. For example, the following code in `Startup.ConfigureServices` updates the `type` property for 404 responses:
+
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -226,7 +230,7 @@ Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping*> p
 
 ::: moniker-end
 
-::: moniker range="<= aspnetcore-2.2"
+::: moniker range="= aspnetcore-2.2"
 
 [!code-csharp[](index/samples/2.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=9-10)]
 
