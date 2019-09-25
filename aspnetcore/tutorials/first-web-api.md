@@ -911,7 +911,7 @@ Deleting a to-do item is accomplished by setting the `type` on the AJAX call to 
 
 <a name="auth"></a>
 
-## Add authentication support to Web API
+## Add authentication support to a web API
 
 See the [IdentityServer4](https://identityserver4.readthedocs.io/en/latest/quickstarts/0_overview.html) tutorial.
 
