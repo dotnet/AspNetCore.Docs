@@ -359,6 +359,58 @@ The Windows Subsystem for Linux (WSL) generates a HTTPS self-signed cert. To con
 
   The preceding command sets the environment variables so Linux uses the Windows trusted certificate.
 
+## Troubleshoot certificate problems
+
+This section provides help when the ASP.NET Core HTTPS development certificate has been [installed and trusted](#trust), but you still have browser warnings that the certificate is not trusted.
+
+### All platforms - certificate not trusted
+
+Run the following commands:
+
+```dotnetcli
+dotnet devcerts https --clean
+dotnet devcerts https --trust
+```
+
+Close any browser instances open. Open a new browser window to app. Certificate trust is cached by browsers.
+
+The preceding commands solve most browser trust issues. If the browser is still not trusting the certificate, follow the platform specific suggestions that follow.
+
+### Docker - certificate not trusted
+
+* Delete the *C:\Users\{USER}\AppData\Roaming\ASP.NET\Https* folder.
+* Clean the solution. Delete the *bin* and *obj* folders.
+* Restart the development tool. For example, Visual Studio, Visual Studio Code, or Visual Studio for Mac.
+
+### Windows - certificate not trusted
+
+* Check the certificates in the certificate store. There should be a `localhost` certificate with the `ASP.NET Core HTTPS development certificate` friendly name both under `Current User > Personal > Certificates` and `Current User > Trusted root certification authorities > Certificates`
+* Remove all the found certificates from both Personal and Trusted root certification authorities. Do **not** remove the IIS Express localhost certificate.
+* Run the following commands:
+
+```dotnetcli
+dotnet devcerts https --clean
+dotnet devcerts https --trust
+```
+
+Close any browser instances open. Open a new browser window to app.
+
+### OS X - certificate not trusted
+
+* Open KeyChain Access.
+* Select the System keychain.
+* Check for the presence of a localhost certificate.
+* Check that it contains a `+` symbol on the icon to indicate its trusted for all users.
+* Remove the certificate from the system keychain.
+* Run the following commands:
+
+```dotnetcli
+dotnet devcerts https --clean
+dotnet devcerts https --trust
+```
+
+Close any browser instances open. Open a new browser window to app.
+
 ## Additional information
 
 * <xref:host-and-deploy/proxy-load-balancer>
