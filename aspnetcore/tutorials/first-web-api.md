@@ -457,6 +457,10 @@ Use Postman to delete a to-do item:
 * Set the URI of the object to delete, for example `https://localhost:5001/api/TodoItems/1`
 * Select **Send**
 
+## Add authentication support to Web API
+
+See the [IdentityServer4](https://identityserver4.readthedocs.io/latest/) documentation.
+
 ## Call the web API with JavaScript
 
 See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-api-javascript).
@@ -857,6 +861,10 @@ Use Postman to delete a to-do item:
 * Select **Send**
 
 The sample app allows you to delete all the items. However, when the last item is deleted, a new one is created by the model class constructor the next time the API is called.
+
+## Add authentication support to Web API
+
+See the [IdentityServer4](https://identityserver4.readthedocs.io/latest/) documentation.
 
 ## Call the web API with JavaScript
 
