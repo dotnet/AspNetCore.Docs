@@ -24,7 +24,7 @@ The table below shows the features and support for the clients that offer real-t
 | Server-Sent Events Transport |✔|✔| |
 | Long Polling Transport |✔|✔|✔|
 
-* Support for automatic reconnect in the Java client is tracked in [our issue tracker](https://github.com/aspnet/AspNetCore/issues/8711).
+Support for automatic reconnect in the Java client is tracked in [our issue tracker](https://github.com/aspnet/AspNetCore/issues/8711).
 
 ## Additional resources
 
