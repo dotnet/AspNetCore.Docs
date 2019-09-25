@@ -1,9 +1,25 @@
-﻿using System.Net.Mime;
+﻿// Set preprocessor directive(s) to enable the scenarios you want to test.
+// For more information on preprocessor directives and sample apps, see:
+// https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code
+//
+// InvalidModelStateResponseFactory - customize response for automatic 400 on validation error
+// ExceptionFilter - adds a custom exception filter to the filters collection
+
+#define InvalidModelStateResponseFactory // or ExceptionFilter
+
+#if InvalidModelStateResponseFactory
+using System.Net.Mime;
+#endif
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+#if ExceptionFilter
+using WebApiSample.Filters;
+#endif
 
 namespace WebApiSample
 {
@@ -16,9 +32,9 @@ namespace WebApiSample
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+#if InvalidModelStateResponseFactory
             #region snippet_DisableProblemDetailsInvalidModelStateResponseFactory
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -37,9 +53,17 @@ namespace WebApiSample
                 };
             });
             #endregion
+#endif
+
+#if ExceptionFilter
+            #region snippet_AddExceptionFilter
+            services.AddMvc(options =>
+                    options.Filters.Add(new HttpResponseExceptionFilter()))
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            #endregion
+#endif
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

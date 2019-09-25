@@ -134,8 +134,24 @@ The contents of the response can be modified from outside of the controller. In 
 
 1. In `Startup.ConfigureServices`, add the action filter to the filters collection:
 
+    ::: moniker range=">= aspnetcore-3.0"
+
     [!code-csharp[](handle-errors/samples/3.x/Startup.cs?name=snippet_AddExceptionFilter)]
+
+    ::: moniker-end
+
+    ::: moniker range="= aspnetcore-2.2"
     
+    [!code-csharp[](handle-errors/samples/2.x/2.2/Startup.cs?name=snippet_AddExceptionFilter)]
+
+    ::: moniker-end
+
+    ::: moniker range="= aspnetcore-2.1"
+
+    [!code-csharp[](handle-errors/samples/2.x/2.1/Startup.cs?name=snippet_AddExceptionFilter)]
+
+    ::: moniker-end
+
 ## Validation failure error response
 
 For web API controllers, MVC responds with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> response type when model validation fails. MVC uses the results of <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> to construct the error response for a validation failure. The following example uses the factory to change the default response type to <xref:Microsoft.AspNetCore.Mvc.SerializableError> in `Startup.ConfigureServices`:

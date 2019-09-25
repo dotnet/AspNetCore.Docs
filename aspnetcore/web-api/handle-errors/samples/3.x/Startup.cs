@@ -7,7 +7,10 @@
 
 #define InvalidModelStateResponseFactory // or ExceptionFilter
 
+#if InvalidModelStateResponseFactory
 using System.Net.Mime;
+#endif
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
