@@ -14,11 +14,19 @@ uid: signalr/client-features
 
 The table below shows the features and support for the clients that offer real-time support.
 
-| Feature | .NET Core | JavaScript | Java |
+| Feature | .NET | JavaScript | Java |
 | ---- | :-: | :-: | :-: |
+| Azure SignalR Service Support |✔|✔|✔|
 | [Server-to-client Streaming](xref:signalr/streaming)          |✔|✔|✔|
 | [Client-to-server Streaming](xref:signalr/streaming)          |✔|✔|✔|
 | Automatic Reconnection ([.NET](/aspnet/core/signalr/dotnet-client?view=aspnetcore-3.0&tabs=visual-studio#handle-lost-connection), [JavaScript](/aspnet/core/signalr/javascript-client?view=aspnetcore-3.0#reconnect-clients))          |✔|✔| |
+| WebSockets Transport |✔|✔|✔|
+| Server-Sent Events Transport |✔|✔| |
+| Long Polling Transport |✔|✔|✔|
+| JSON Hub Protocol |✔|✔|✔|
+| MessagePack Hub Protocol |✔|✔| |
+
+Support for automatic reconnect in the Java client is tracked in [our issue tracker](https://github.com/aspnet/AspNetCore/issues/8711).
 
 ## Additional resources
 

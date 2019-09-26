@@ -909,6 +909,12 @@ Deleting a to-do item is accomplished by setting the `type` on the AJAX call to 
 
 ::: moniker-end
 
+<a name="auth"></a>
+
+## Add authentication support to a web API
+
+See the [IdentityServer4](https://identityserver4.readthedocs.io/en/latest/quickstarts/0_overview.html) tutorial.
+
 ## Additional resources
 
 [View or download sample code for this tutorial](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
