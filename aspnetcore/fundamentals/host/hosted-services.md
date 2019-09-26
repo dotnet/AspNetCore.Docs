@@ -122,7 +122,7 @@ The hosted service is activated once at app startup and gracefully shut down at 
 In addition, *optionally* override the methods defined on `IHostedService` to run startup and shutdown code for your service:
 
 * `StopAsync(CancellationToken cancellationToken)` &ndash; `StopAsync` is called when the application host is performing a graceful shutdown. The `cancellationToken` is signalled when the host decides to forcibly terminate the service. If this method is overridden, you **must** call (and `await`) the base class method to ensure the service shuts down properly.
-* `StartAsync(CancellationToken cancellationToken)` &ndash; `StartAsync` is called to start the background service. The `cancellationToken` is signalled if the startup process is interrupted. The implementation returns a `Task` that represents the startup process for the service. No further services are started until this `Task` completes. If this method is overridden, you *must* call (and `await`) the base class method to ensure the service starts properly.
+* `StartAsync(CancellationToken cancellationToken)` &ndash; `StartAsync` is called to start the background service. The `cancellationToken` is signalled if the startup process is interrupted. The implementation returns a `Task` that represents the startup process for the service. No further services are started until this `Task` completes. If this method is overridden, you **must** call (and `await`) the base class method to ensure the service starts properly.
 
 ## Timed background tasks
 
