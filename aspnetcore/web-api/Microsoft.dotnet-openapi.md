@@ -17,7 +17,7 @@ By Ryan Brandenburg
 
 To install `Microsoft.dotnet-openapi`, run the following command:
 
-```console
+```dotnetcli
 dotnet tool install -g Microsoft.dotnet-openapi
 ```
 
