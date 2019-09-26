@@ -121,7 +121,7 @@ Additional HTTP.sys configuration is handled through [registry settings](https:/
 
 ::: moniker-end
 
-::: moniker range="== aspnetcore-3.0 "
+::: moniker range="= aspnetcore-3.0"
 
 | Property | Description | Default |
 | -------- | ----------- | :-----: |
