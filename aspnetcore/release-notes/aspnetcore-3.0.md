@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 09/26/2019
 uid: aspnetcore-3.0
 ---
 # What's new in ASP.NET Core 3.0
@@ -313,6 +313,17 @@ The following list contains new Razor directives:
 * [@attribute](xref:mvc/views/razor#attribute) &ndash; The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@attribute [Authorize]`.
 * [@implements](xref:mvc/views/razor#implements) &ndash; The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
 
+## IdentityServer4 supports authentication and authorization for web APIs and SPAs
+
+[IdentityServer4](https://identityserver.io) is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core 3.0. IdentityServer4 enables the following security features:
+
+* Authentication as a Service (AaaS)
+* Single sign-on/off (SSO) over multiple application types
+* Access control for APIs
+* Federation Gateway
+
+For more information, see [Welcome to IdentityServer4](http://docs.identityserver.io/en/latest/index.html).
+
 ## Certificate and Kerberos authentication
 
 Certificate authentication requires:
@@ -414,9 +425,9 @@ For more information, see <xref:migration/22-to-30#kestrel>.
 
 HTTP/2 is enabled by default in Kestrel for HTTPS endpoints. HTTP/2 support for IIS or HTTP.sys is enabled when supported by the operating system.
 
-## Request counters
+## EventCounters on request
 
-The Hosting EventSource (Microsoft.AspNetCore.Hosting) emits the following EventCounters related to incoming requests:
+The Hosting EventSource, `Microsoft.AspNetCore.Hosting`, emits the following new <xref:System.Diagnostics.Tracing.EventCounter> types related to incoming requests:
 
 * `requests-per-second`
 * `total-requests`
