@@ -5,7 +5,7 @@ description: Learn how to implement background tasks with hosted services in ASP
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/18/2019
+ms.date: 09/26/2019
 uid: fundamentals/host/hosted-services
 ---
 # Background tasks with hosted services in ASP.NET Core
@@ -117,10 +117,12 @@ The hosted service is activated once at app startup and gracefully shut down at 
 
 ## BackgroundService
 
-`BackgroundService` is a base class for implementing a long running <xref:Microsoft.Extensions.Hosting.IHostedService>. `BackgroundService` defines two methods for background operations:
+`BackgroundService` is a base class for implementing a long running <xref:Microsoft.Extensions.Hosting.IHostedService>. `BackgroundService` provides the `ExecuteAsync(CancellationToken stoppingToken)` abstract method to contain the service's logic. The `stoppingToken` is triggered when [IHostedService.StopAsync](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) is called. The implementation of this method returns a `Task` that represents the entire lifetime of the background service.
 
-* `ExecuteAsync(CancellationToken stoppingToken)` &ndash; `ExecuteAsync` Called when the <xref:Microsoft.Extensions.Hosting.IHostedService> starts. The implementation should return a `Task` that represents the lifetime of the long running operations performed. The `stoppingToken` Triggered when [IHostedService.StopAsync](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) is called.
-* `StopAsync(CancellationToken stoppingToken)` &ndash; `StopAsync` is triggered when the application host is performing a graceful shutdown. The `stoppingToken` indicates that the shutdown process should no longer be graceful.
+In addition, *optionally* override the methods defined on `IHostedService` to run startup and shutdown code for your service:
+
+* `StopAsync(CancellationToken cancellationToken)` &ndash; `StopAsync` is called when the application host is performing a graceful shutdown. The `cancellationToken` is signalled when the host decides to forcibly terminate the service. If this method is overridden, you **must** call (and `await`) the base class method to ensure the service shuts down properly.
+* `StartAsync(CancellationToken cancellationToken)` &ndash; `StartAsync` is called to start the background service. The `cancellationToken` is signalled if the startup process is interrupted. The implementation returns a `Task` that represents the startup process for the service. No further services are started until this `Task` completes. If this method is overridden, you **must** call (and `await`) the base class method to ensure the service starts properly.
 
 ## Timed background tasks
 
