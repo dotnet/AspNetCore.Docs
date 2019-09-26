@@ -37,7 +37,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 ## Prerequisites
 
-* [.NET Core 2.2 SDK](https://www.microsoft.com/net/core)
+* [.NET Core SDK 3.0](https://dotnet.microsoft.com/download)
 
 * Docker client 18.03 or later
 
