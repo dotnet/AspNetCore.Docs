@@ -4,7 +4,7 @@ author: tdykstra
 description: Shows how to create a Razor Pages app using Entity Framework Core
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 07/22/2019
+ms.date: 09/26/2019
 uid: data/ef-rp/intro
 ---
 
@@ -14,7 +14,7 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitte
 
 ::: moniker range=">= aspnetcore-3.0"
 
-This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an ASP.NET Core Razor Pages app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments.
+This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](xref:razor-pages/index) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments.
 
 [Download or view the completed app.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
