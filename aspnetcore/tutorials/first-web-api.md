@@ -66,7 +66,7 @@ The following diagram shows the design of the app.
 * From the **File** menu, select **New** > **Project**.
 * Select the **ASP.NET Core Web Application** template and click **Next**.
 * Name the project *TodoApi* and click **Create**.
-* In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected. Select the **API** template and click **Create**. **Don't** select **Enable Docker Support**.
+* In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected. Select the **API** template and click **Create**.
 
 ![VS new project dialog](first-web-api/_static/vs3.png)
 
@@ -222,9 +222,8 @@ The *database context* is the main class that coordinates Entity Framework funct
 ### Add Microsoft.EntityFrameworkCore.SqlServer
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Include prerelease** checkbox.
 * Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.SqlServer** in the search box.
-* Select  **Microsoft.EntityFrameworkCore.SqlServer V3.0.0-preview** in the left pane.
+* Select  **Microsoft.EntityFrameworkCore.SqlServer** in the left pane.
 * Select the **Project** check box in the right pane and then select **Install**.
 * Use the preceding instructions to add the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.
 
