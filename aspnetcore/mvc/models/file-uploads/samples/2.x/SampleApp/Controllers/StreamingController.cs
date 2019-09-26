@@ -285,8 +285,10 @@ namespace SampleApp.Controllers
                             await targetStream.WriteAsync(streamedFileContent);
 
                             _logger.LogInformation(
-                                $"Uploaded file '{trustedFileNameForDisplay}' saved to " +
-                                $"'{_targetFilePath}' as {trustedFileNameForFileStorage}");
+                                "Uploaded file '{TrustedFileNameForDisplay}' saved to " +
+                                "'{TargetFilePath}' as {TrustedFileNameForFileStorage}", 
+                                trustedFileNameForDisplay, _targetFilePath, 
+                                trustedFileNameForFileStorage);
                         }
                     }
                 }
