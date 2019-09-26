@@ -5,7 +5,7 @@ namespace aspnetcoreapp
 {
     #region snippet
     // requires using Microsoft.AspNetCore.Hosting;
-    // requiresusing Microsoft.Extensions.Hosting;
+    // requires using Microsoft.Extensions.Hosting;
     
     public class Program
     {
