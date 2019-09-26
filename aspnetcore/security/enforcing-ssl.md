@@ -389,8 +389,8 @@ The preceding commands solve most browser trust issues. If the browser is still 
 * Run the following commands:
 
 ```dotnetcli
-dotnet devcerts https --clean
-dotnet devcerts https --trust
+dotnet dev-certs https --clean
+dotnet dev-certs https --trust
 ```
 
 Close any browser instances open. Open a new browser window to app.
