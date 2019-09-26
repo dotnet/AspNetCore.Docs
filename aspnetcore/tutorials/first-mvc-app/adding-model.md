@@ -57,7 +57,7 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 In the PMC, run the following command:
 
 ```powershell
-Install-Package Microsoft.EntityFrameworkCore.SqlServer -IncludePrerelease
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 The preceding command adds the EF Core SQL Server provider. The provider package installs the EF Core package as a dependency. Additional packages are installed automatically in the scaffolding step later in the tutorial.
