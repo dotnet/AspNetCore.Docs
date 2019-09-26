@@ -84,18 +84,18 @@ Run the following commands:
 
 ```dotnetcli
 cd aspnetcoreapp
-dotnet run
+dotnet watch run
 ```
 
 After the command shell indicates that the app has started, browse to [https://localhost:5001](https://localhost:5001). Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
 
 ## Edit a Razor page
 
-Open *Pages/Index.cshtml* and modify the page with the following highlighted markup:
+Open *Pages/Index.cshtml* and modify and save the page with the following highlighted markup:
 
 [!code-cshtml[](sample/index.cshtml?highlight=9)]
 
-Browse to [https://localhost:5001](https://localhost:5001), and verify the changes are displayed.
+Browse to [https://localhost:5001](https://localhost:5001), refresh the page and verify the changes are displayed.
 
 ## Next steps
 
