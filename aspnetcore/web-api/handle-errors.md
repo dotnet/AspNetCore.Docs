@@ -28,7 +28,7 @@ curl -i https://localhost:5001/weatherforecast/chicago
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In ASP.NET Core 3.0 and later, the Developer Exception Page displays a plain-text response if the client doesn't accept HTML-formatted output. The following output appears:
+In ASP.NET Core 3.0 and later, the Developer Exception Page displays a plain-text response if the client doesn't request HTML-formatted output. The following output appears:
 
 ```console
 HTTP/1.1 500 Internal Server Error
