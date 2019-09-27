@@ -5,7 +5,7 @@ description: Learn about error handling with ASP.NET Core web APIs.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: prkrishn
 ms.custom: mvc
-ms.date: 09/25/2019
+ms.date: 09/27/2019
 uid: web-api/handle-errors
 ---
 # Handle errors in ASP.NET Core web APIs
@@ -16,18 +16,97 @@ This article describes how to handle and customize error handling with ASP.NET C
 
 ## Developer Exception Page
 
-The [Developer Exception Page](xref:fundamentals/error-handling) is a useful tool to get detailed stack traces for server errors.
+The [Developer Exception Page](xref:fundamentals/error-handling) is a useful tool to get detailed stack traces for server errors. It uses <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> to capture synchronous and asynchronous exceptions from the HTTP pipeline and to generate error responses. To illustrate, consider the following controller action:
 
-The Developer Exception Page displays a plain-text response if the client doesn't accept HTML-formatted output. For example:
+[!code-csharp[](handle-errors/samples/3.x/Controllers/WeatherForecastController.cs?name=snippet_GetByCity)]
 
+Run the following `curl` command to test the preceding action:
+
+```bash
+curl -i https://localhost:5001/weatherforecast/chicago
 ```
-> curl https://localhost:5001/weatherforecast
-System.ArgumentException: count
-   at errorhandling.Controllers.WeatherForecastController.Get(Int32 x) in D:\work\Samples\samples\aspnetcore\mvc\errorhandling\Controllers\WeatherForecastController.cs:line 35
+
+::: moniker range=">= aspnetcore-3.0"
+
+In ASP.NET Core 3.0 and later, the Developer Exception Page displays a plain-text response if the client doesn't request HTML-formatted output. The following output appears:
+
+```console
+HTTP/1.1 500 Internal Server Error
+Transfer-Encoding: chunked
+Content-Type: text/plain
+Server: Microsoft-IIS/10.0
+X-Powered-By: ASP.NET
+Date: Fri, 27 Sep 2019 16:13:16 GMT
+
+System.ArgumentException: We don't offer a weather forecast for chicago. (Parameter 'city')
+   at WebApiSample.Controllers.WeatherForecastController.Get(String city) in C:\working_folder\aspnet\AspNetCore.Docs\aspnetcore\web-api\handle-errors\samples\3.x\Controllers\WeatherForecastController.cs:line 34
    at lambda_method(Closure , Object , Object[] )
    at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
-...
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+HEADERS
+=======
+Accept: */*
+Host: localhost:44312
+User-Agent: curl/7.55.1
 ```
+
+To display an HTML-formatted response instead, set the `Accept` HTTP request header to the `text/html` media type. For example:
+
+```bash
+curl -i -H "Accept: text/html" https://localhost:5001/weatherforecast/chicago
+```
+
+Consider the following excerpt from the HTTP response:
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
+In ASP.NET Core 2.2 and earlier, the Developer Exception Page displays an HTML-formatted response. For example, consider the following excerpt from the HTTP response:
+
+::: moniker-end
+
+```console
+HTTP/1.1 500 Internal Server Error
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=utf-8
+Server: Microsoft-IIS/10.0
+X-Powered-By: ASP.NET
+Date: Fri, 27 Sep 2019 16:55:37 GMT
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <title>Internal Server Error</title>
+        <style>
+            body {
+    font-family: 'Segoe UI', Tahoma, Arial, Helvetica, sans-serif;
+    font-size: .813em;
+    color: #222;
+    background-color: #fff;
+}
+```
+
+::: moniker range=">= aspnetcore-3.0"
+
+The HTML-formatted response becomes useful when testing via tools like Postman. The following screen capture shows both the plain-text and the HTML-formatted responses in Postman:
+
+![Developer Exception Page testing in Postman](handle-errors/_static/developer-exception-page-postman.gif)
+
+::: moniker-end
 
 > [!WARNING]
 > Enable the Developer Exception Page **only when the app is running in the Development environment**. You don't want to share detailed exception information publicly when the app runs in production. For more information on configuring environments, see <xref:fundamentals/environments>.
