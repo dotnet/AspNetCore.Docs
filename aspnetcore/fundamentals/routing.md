@@ -38,7 +38,7 @@ URL generation support allows the app to be developed without hard-coding URLs t
 
 Routing uses *endpoints* (`Endpoint`) to represent logical endpoints in an app.
 
-An endpoint defines a delegate to process requests and a collection of arbitrary metadata. The metadata is used implement cross-cutting concerns based on policies and configuration attached to each endpoint.
+An endpoint defines a delegate to process requests and a collection of arbitrary metadata. The metadata is used to implement cross-cutting concerns based on policies and configuration attached to each endpoint.
 
 The routing system has the following characteristics:
 
