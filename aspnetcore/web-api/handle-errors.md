@@ -65,7 +65,7 @@ User-Agent: curl/7.55.1
 To display an HTML-formatted response instead, set the `Accept` HTTP request header to the `text/html` media type. For example:
 
 ```bash
-curl -i -H "Accept: text/html" https://localhost:44312/weatherforecast/chicago
+curl -i -H "Accept: text/html" https://localhost:5001/weatherforecast/chicago
 ```
 
 ::: moniker-end
