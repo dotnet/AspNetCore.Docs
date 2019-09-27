@@ -221,7 +221,7 @@ The `<text>` tag is useful to control whitespace when rendering content:
 * Only the content between the `<text>` tag is rendered.
 * No whitespace before or after the `<text>` tag appears in the HTML output.
 
-### Explicit line transition with \@&colon;
+### Explicit line transition with \@:
 
 To render the rest of an entire line as HTML inside a code block, use the `@:` syntax:
 
