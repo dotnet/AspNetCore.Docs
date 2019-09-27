@@ -68,6 +68,8 @@ To display an HTML-formatted response instead, set the `Accept` HTTP request hea
 curl -i -H "Accept: text/html" https://localhost:5001/weatherforecast/chicago
 ```
 
+Consider the following excerpt from the HTTP response:
+
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.2"
