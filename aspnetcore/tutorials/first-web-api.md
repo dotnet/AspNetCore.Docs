@@ -78,7 +78,7 @@ The following diagram shows the design of the app.
 
    ```dotnetcli
    dotnet new webapi -o TodoApi
-   cd TodoAPI
+   cd TodoApi
    dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    code -r ../TodoApi
@@ -266,8 +266,8 @@ The preceding code:
 * Select **API Controller with actions, using Entity Framework**, and then select **Add**.
 * In the **Add API Controller with actions, using Entity Framework** dialog:
 
-  * Select **TodoItem (TodoAPI.Models)** in the **Model class**.
-  * Select **TodoContext (TodoAPI.Models)** in the **Data context class**.
+  * Select **TodoItem (TodoApi.Models)** in the **Model class**.
+  * Select **TodoContext (TodoApi.Models)** in the **Data context class**.
   * Select **Add**
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
