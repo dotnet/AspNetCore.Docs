@@ -100,7 +100,7 @@ Date: Fri, 27 Sep 2019 16:55:37 GMT
 }
 ```
 
-The HTML-formatted becomes useful when testing via tools like Postman. The following screen capture shows both the plain-text and the HTML-formatted responses in Postman:
+The HTML-formatted response becomes useful when testing via tools like Postman. The following screen capture shows both the plain-text and the HTML-formatted responses in Postman:
 
 ![Developer Exception Page testing in Postman](handle-errors/_static/developer-exception-page-postman.gif)
 
