@@ -54,6 +54,12 @@ System.ArgumentException: We don't offer a weather forecast for chicago. (Parame
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+HEADERS
+=======
+Accept: */*
+Host: localhost:44312
+User-Agent: curl/7.55.1
 ```
 
 To display an HTML-formatted response instead, set the `Accept` HTTP request header to `text/html`. For example:
