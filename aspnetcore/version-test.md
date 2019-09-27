@@ -17,3 +17,4 @@ Uses the following `monikerRange` metadata ...
 ```
 monikerRange: '>= aspnetcore-2.0 <= aspnetcore-2.1'
 ```
+<!-- Can we delete this now? -->
