@@ -100,9 +100,13 @@ Date: Fri, 27 Sep 2019 16:55:37 GMT
 }
 ```
 
+::: moniker range=">= aspnetcore-3.0"
+
 The HTML-formatted response becomes useful when testing via tools like Postman. The following screen capture shows both the plain-text and the HTML-formatted responses in Postman:
 
 ![Developer Exception Page testing in Postman](handle-errors/_static/developer-exception-page-postman.gif)
+
+::: moniker-end
 
 > [!WARNING]
 > Enable the Developer Exception Page **only when the app is running in the Development environment**. You don't want to share detailed exception information publicly when the app runs in production. For more information on configuring environments, see <xref:fundamentals/environments>.
