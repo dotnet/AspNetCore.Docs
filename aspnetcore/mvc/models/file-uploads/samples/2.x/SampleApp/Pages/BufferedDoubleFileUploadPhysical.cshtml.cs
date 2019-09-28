@@ -82,9 +82,13 @@ namespace SampleApp.Pages
                 // For more information, see the topic that accompanies 
                 // this sample.
 
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                using (var fileStream = System.IO.File.Create(filePath))
                 {
-                    await formFile.CopyToAsync(fileStream);
+                    await fileStream.WriteAsync(formFileContent);
+
+                    // To work directly with the FormFiles, use the following
+                    // instead:
+                    //await formFile.CopyToAsync(fileStream);
                 }
             }
 

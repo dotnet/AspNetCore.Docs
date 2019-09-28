@@ -41,8 +41,9 @@ In the *appsettings.json* file:
 
 1. Set the path for stored files (`StoredFilesPath`).
 
-   * The path must exist.
+   * The sample app sets the value to `c:\\files`, which assumes that a folder named *files* exists at the system's C: drive root.
+   * The path must exist. Create a *files* folder on the system's C: drive or set the path to a suitable location.
    * The app's process requires read/write permissions to the path.
-   * Disable execute permissions for all users at the path.
+   * **IMPORTANT!** Disable execute permissions for all users at the path.
 
 1. Set the file size limit (`FileSizeLimit`) in bytes. The sample app's default value of `2097152` (2,097,152 bytes) permits file uploads up to 2 MB.

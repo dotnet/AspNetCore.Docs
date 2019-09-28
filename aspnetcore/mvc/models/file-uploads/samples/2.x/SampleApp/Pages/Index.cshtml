@@ -1,6 +1,5 @@
 ﻿@page
 @model IndexModel
-@using System.Net
 @{
     ViewData["Title"] = "Upload Files Sample";
 }
@@ -36,14 +35,12 @@ else
         </thead>
         <tbody>
             @foreach (var file in Model.DatabaseFiles) {
-                // Don't display the untrusted file name in the UI. HTML-encode the value.
-                var fileName = WebUtility.HtmlEncode(file.UntrustedName);
                 <tr>
                     <td>
                         <a asp-page="./DeleteDbFile" asp-route-id="@file.Id">Delete</a>
                     </td>
                     <td>
-                        <b>@Html.DisplayFor(modelItem => fileName)</b><br>
+                        <b>@file.UntrustedName</b><br>
                         @Html.DisplayFor(modelItem => file.Note)
                     </td>
                     <td class="text-center">

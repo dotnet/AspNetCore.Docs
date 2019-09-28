@@ -5,7 +5,7 @@ description: How to use model binding and streaming to upload files in ASP.NET C
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/21/2019
+ms.date: 09/28/2019
 uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
@@ -82,10 +82,10 @@ Two general approaches for uploading files are buffering and streaming.
 
 The entire file is read into an <xref:Microsoft.AspNetCore.Http.IFormFile>, which is a C# representation of the file used to process or save the file.
 
+The resources (disk, memory) used by file uploads depend on the number and size of concurrent file uploads. If an app attempts to buffer too many uploads, the site crashes when it runs out of memory or disk space. If the size or frequency of file uploads is exhausting app resources, use streaming.
+
 > [!NOTE]
 > Any single buffered file exceeding 64 KB is moved from memory to a temp file on disk.
-
-The resources (disk, memory) used by file uploads depend on the number and size of concurrent file uploads. If an app attempts to buffer too many uploads, the site crashes when it runs out of memory or disk space. If the size or frequency of file uploads is exhausting app resources, use streaming.
 
 Buffering small files is covered in the following sections of this topic:
 
@@ -121,49 +121,76 @@ The following example from the sample app demonstrates the use of a Razor Pages 
 </form>
 ```
 
-The following example (*not in the sample app*) is analogous to the prior example except that it uses JavaScript to submit the form's data:
+The following example is analogous to the prior example except that:
+
+* JavaScript's ([Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API)) is used to submit the form's data.
+* There's no validation.
 
 ```cshtml
-<form method="post" action="BufferedSingleFileUploadPhysical?handler=Upload" 
-    asp-antiforgery="true" enctype="multipart/form-data" 
-    onsubmit="AJAXSubmit(this);return false;">
+<form action="BufferedSingleFileUploadPhysical/?handler=Upload" 
+      enctype="multipart/form-data" onsubmit="AJAXSubmit(this);return false;" 
+      method="post">
     <dl>
         <dt>
             <label for="FileUpload_FormFile">File</label>
         </dt>
         <dd>
             <input id="FileUpload_FormFile" type="file" 
-                name="FileUpload.FormFile">
+                name="FileUpload.FormFile" />
         </dd>
     </dl>
 
-    <input class="btn" type="submit" value="Upload">
+    <input class="btn" type="submit" value="Upload" />
 
     <div style="margin-top:15px">
         <output name="result"></output>
     </div>
 </form>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+  async function AJAXSubmit (oFormElement) {
+    var resultElement = oFormElement.elements.namedItem("result");
+    const formData = new FormData(oFormElement);
 
-    <script>
-        "use strict";
+    try {
+    const response = await fetch(oFormElement.action, {
+        method: 'POST',
+        body: formData
+    });
 
-        function AJAXSubmit (oFormElement) {
-          var oReq = new XMLHttpRequest();
-          oReq.onload = function(e) { 
-            oFormElement.elements.namedItem("result").value = 
-            'Result: ' + this.status + ' ' + this.statusText;
-          };
-          oReq.open("post", oFormElement.action);
-          oReq.send(new FormData(oFormElement));
-        }
-    </script>
-}
+    if (response.ok) {
+        window.location.href = '/';
+    }
+
+    resultElement.value = 'Result: ' + response.status + ' ' + 
+        response.statusText;
+    } catch (error) {
+    console.error('Error:', error);
+    }
+  }
+</script>
 ```
 
-The `<form>` element attribute `asp-antiforgery` is set to `true` so that the form receives an antiforgery request token. The token isn't automatically provided when a form's `action` is set explicitly. Setting the attribute to `true` overrides the default behavior. When the token is present in the form, it's automatically sent with the POST to the server to validate the request. For more information, see <xref:security/anti-request-forgery>.
+To perform the form POST in JavaScript for clients that [don't support the Fetch API](https://caniuse.com/#feat=fetch), use one of the following approaches:
+
+* Use a Fetch Polyfill (for example, [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
+* Use `XMLHttpRequest`. For example:
+
+  ```javascript
+  <script>
+    "use strict";
+
+    function AJAXSubmit (oFormElement) {
+      var oReq = new XMLHttpRequest();
+      oReq.onload = function(e) { 
+      oFormElement.elements.namedItem("result").value = 
+      'Result: ' + this.status + ' ' + this.statusText;
+      };
+      oReq.open("post", oFormElement.action);
+      oReq.send(new FormData(oFormElement));
+    }
+  </script>
+  ```
 
 In order to support file uploads, HTML forms must specify an encoding type (`enctype`) of `multipart/form-data`.
 
@@ -183,11 +210,18 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 When uploading files using model binding and <xref:Microsoft.AspNetCore.Http.IFormFile>, the action method can accept:
 
 * A single <xref:Microsoft.AspNetCore.Http.IFormFile>.
-* An <xref:System.Collections.IEnumerable>\<<xref:Microsoft.AspNetCore.Http.IFormFile>> or [List](xref:System.Collections.Generic.List`1)\<<xref:Microsoft.AspNetCore.Http.IFormFile>> representing several files. 
+* Any of the following collections that represent several files:
+  * <xref:Microsoft.AspNetCore.Http.IFormFileCollection>
+  * <xref:System.Collections.IEnumerable>\<<xref:Microsoft.AspNetCore.Http.IFormFile>>
+  * [List](xref:System.Collections.Generic.List`1)\<<xref:Microsoft.AspNetCore.Http.IFormFile>>
+
+> [!NOTE]
+> Binding matches form files by name. For example, the HTML `name` value in `<input type="file" name="formFile">` must match the C# parameter/property bound (`FormFile`).
 
 The following example:
 
 * Loops through one or more uploaded files.
+* Uses `Path.GetTempFileName` to return a full path for a file, including the file name. 
 * Saves the files to the local file system using a file name generated by the app.
 * Returns the total number and size of files uploaded.
 
@@ -196,16 +230,13 @@ public async Task<IActionResult> OnPostUploadAsync(List<IFormFile> files)
 {
     long size = files.Sum(f => f.Length);
 
-    // Full path to file, including the file name. You can also use
-    // Path.GetRandomFileName to generate a file name without a path
-    // if the app supplies the path (for example, via configuration).
-    var filePath = Path.GetTempFileName();
-
     foreach (var formFile in files)
     {
         if (formFile.Length > 0)
         {
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            var filePath = Path.GetTempFileName();
+
+            using (var stream = System.IO.File.Create(filePath))
             {
                 await formFile.CopyToAsync(stream);
             }
@@ -216,6 +247,24 @@ public async Task<IActionResult> OnPostUploadAsync(List<IFormFile> files)
     // Don't rely on or trust the FileName property without validation.
 
     return Ok(new { count = files.Count, size, filePath });
+}
+```
+
+Use `Path.GetRandomFileName` to generate a file name without a path. In the following example, the path is obtained from configuration:
+
+```csharp
+foreach (var formFile in files)
+{
+    if (formFile.Length > 0)
+    {
+        var filePath = Path.Combine(_config["StoredFilesPath"], 
+            Path.GetRandomFileName());
+
+        using (var stream = System.IO.File.Create(filePath))
+        {
+            await formFile.CopyToAsync(stream);
+        }
+    }
 }
 ```
 
@@ -283,7 +332,7 @@ The `FileUpload` is used in the Razor Pages form:
 </form>
 ```
 
-When the form is POSTed to the server, copy the <xref:Microsoft.AspNetCore.Http.IFormFile> to a stream and save it as a byte array in the database:
+When the form is POSTed to the server, copy the <xref:Microsoft.AspNetCore.Http.IFormFile> to a stream and save it as a byte array in the database. In the following example, `_dbContext` stores the app's database context:
 
 ```csharp
 public async Task<IActionResult> OnPostUploadAsync()
@@ -291,15 +340,26 @@ public async Task<IActionResult> OnPostUploadAsync()
     using (var memoryStream = new MemoryStream())
     {
         await FileUpload.FormFile.CopyToAsync(memoryStream);
-    
-        var file = new AppFile()
+
+        // Upload the file if less than 2 MB
+        if (memoryStream.Length < 2097152)
         {
-            Content = memoryStream.ToArray()
-        };
-        
-        _context.File.Add(file);
-        await _context.SaveChangesAsync();
+            var file = new AppFile()
+            {
+                Content = memoryStream.ToArray()
+            };
+            
+            _dbContext.File.Add(file);
+    
+            await _dbContext.SaveChangesAsync();
+        }
+        else
+        {
+            ModelState.AddModelError("File", "The file is too large.");
+        }
     }
+
+    return Page();
 }
 ```
 
@@ -326,7 +386,7 @@ The `DisableFormValueModelBindingAttribute` is used to disable model binding:
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Startup.cs?name=snippet_AddMvc&highlight=8-11,17-20)]
 
-Since model binding is disabled, the action method doesn't accept parameters, and form parameters don't bind. The action method works directly with the `Request` property. A `MultipartReader` is used to read each section. Key/value data is stored in a `KeyValueAccumulator`. After the multipart sections are read, the contents of the `KeyValueAccumulator` are used to bind the form data to a model type.
+Since model binding doesn't read the form, parameters that are bound from the form don't bind (query, route, and header continue to work). The action method works directly with the `Request` property. A `MultipartReader` is used to read each section. Key/value data is stored in a `KeyValueAccumulator`. After the multipart sections are read, the contents of the `KeyValueAccumulator` are used to bind the form data to a model type.
 
 The complete `StreamingController.UploadDatabase` method for streaming to a database with EF Core:
 
@@ -396,17 +456,13 @@ using (var reader = new BinaryReader(uploadedFileData))
 
 Never use a client-supplied file name for saving a file to physical storage. Create a safe file name for the file using [Path.GetRandomFileName](xref:System.IO.Path.GetRandomFileName*) or [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) to create a full path (including the file name) for temporary storage.
 
-Only use file name data from the client for display purposes and only after HTML-encoding the value. [WebUtility.HtmlEncode](xref:System.Net.WebUtility.HtmlEncode*) encodes text for display in a UI:
+Razor automatically HTML encodes property values for display. The following code is safe to use:
 
 ```cshtml
-@using System.Net
-
 @foreach (var file in Model.DatabaseFiles) {
-    // Don't display the untrusted file name in the UI. HTML-encode the value.
-    var fileName = WebUtility.HtmlEncode(file.UntrustedName);
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => fileName)
+            @file.UntrustedName
         </td>
     </tr>
 }
@@ -521,7 +577,7 @@ services.AddMvc()
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
-In a Razor pages app or an MVC app, apply the filter to the page handler class or action method:
+In a Razor Pages app or an MVC app, apply the filter to the page model or action method:
 
 ```csharp
 // Set the limit to 256 MB

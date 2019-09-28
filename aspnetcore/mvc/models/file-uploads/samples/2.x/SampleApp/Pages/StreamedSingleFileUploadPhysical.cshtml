@@ -30,17 +30,23 @@
   <script>
     "use strict";
 
-    function AJAXSubmit (oFormElement) {
-      var oReq = new XMLHttpRequest();
-      oReq.onload = function(e) { 
+    async function AJAXSubmit (oFormElement) {
+      const formData = new FormData(oFormElement);
+
+      try {
+        const response = await fetch(oFormElement.action, {
+          method: 'POST',
+          headers: {
+            'RequestVerificationToken': getCookie('RequestVerificationToken')
+          },
+          body: formData
+        });
+
         oFormElement.elements.namedItem("result").value = 
-          'Result: ' + this.status + ' ' + this.statusText + 
-          ' -- ' + this.responseText;
-      };
-      oReq.open("post", oFormElement.action);
-      oReq.setRequestHeader("RequestVerificationToken", 
-        getCookie('RequestVerificationToken'));
-      oReq.send(new FormData(oFormElement));
+          'Result: ' + response.status + ' ' + response.statusText;
+      } catch (error) {
+        console.error('Error:', error);
+      }
     }
 
     function getCookie(name) {
