@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 09/19/2019
+ms.date: 09/28/2019
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -221,9 +221,9 @@ The `<text>` tag is useful to control whitespace when rendering content:
 * Only the content between the `<text>` tag is rendered.
 * No whitespace before or after the `<text>` tag appears in the HTML output.
 
-### Explicit line transition with \@&colon;
+### Explicit line transition
 
-To render the rest of an entire line as HTML inside a code block, use the `@:` syntax:
+To render the rest of an entire line as HTML inside a code block, use `@:` syntax:
 
 ```cshtml
 @for (var i = 0; i < people.Length; i++)
