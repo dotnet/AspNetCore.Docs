@@ -165,7 +165,7 @@ Features for the `Newtonsoft.Json`-based formatters can be configured using `Mic
 services.AddControllers().AddNewtonsoftJson(options =>
 {
     // Use the default property (Pascal) casing
-    options.SerializerSettings.ContractResolver = new DefautlContractResolver();
+    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
 
     // Configure a custom converter
     options.SerializerOptions.Converters.Add(new MyCustomJsonConverter());
