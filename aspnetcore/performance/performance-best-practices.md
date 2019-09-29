@@ -13,7 +13,7 @@ By [Mike Rousos](https://github.com/mjrousos)
 
 This article provides guidelines for performance best practices with ASP.NET Core.
 
-<a name="hot"></a>
+## [Understanding hot code paths](#hot)
 
 In this document, a *hot code path* is defined as a code path that is frequently called and where much of the execution time occurs. Hot code paths typically limit app scale-out and performance.
 
@@ -153,30 +153,32 @@ App diagnostic tools, such as Application Insights, can help to identify common 
 
 All IO in ASP.NET Core is asynchronous. Servers implement the `Stream` interface, which has both synchronous and asynchronous overloads. The asynchronous ones should be preferred to avoid blocking thread pool threads. This could lead to thread pool starvation.
 
-**Do not do this:** The following example uses the `StreamReader.ReadToEnd`. It blocks the current thread to wait for the result. This is an example of [sync over async](perfomance-best-practices.md#avoid-using-taskresult-and-taskwait).
+**Do not do this:** The following example uses the `StreamReader.ReadToEnd`. It blocks the current thread to wait for the result. This is an example of [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
+).
 
-[!code-csharp[](performance-best-practices/samples/3.x/MyFirstController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.x/Controllers/MyFirstController.cs?name=snippet1)]
 
 **Do this:** The following example uses `StreamReader.ReadToEndAsync` and does not block the thread while reading.
 
-[!code-csharp[](performance-best-practices/samples/3.x/MyFirstController.cs?name=snippet2)]
+[!code-csharp[](performance-best-practices/samples/3.x/Controllers/MyFirstController.cs?name=snippet2)]
 
 [!NOTE]
-If the request is large, it could lead to out of memory problems, which can result in a Denial Of Service. See [Avoid reading large request bodies or response bodies into memory](#avoid-reading-large-request-bodies-or-response-bodies-into-memory) for more information.**
+If the request is large, it could lead to out of memory problems, which can result in a Denial Of Service. See [Avoid reading large request bodies or response bodies into memory](#avoid-reading-large-requests) for more information.**
 
 ## Prefer using HttpRequest.ReadAsFormAsync() over HttpRequest.Form
 
 Use `HttpRequest.ReadAsFormAsync()` instead of `HttpRequest.Form`. The only time it is safe to use `HttpRequest.Form` is when the form has already been read by a call to `HttpRequest.ReadAsFormAsync()` and the cached form value is being read using `HttpRequest.Form`.
 
-**Do not do this:** The following example uses `HttpRequest.Form`.   `HttpRequest.Form` uses [sync over async](performance-best-practices.md#avoid-using-taskresult-and-taskwait) and can lead to thread pool starvation.
+**Do not do this:** The following example uses `HttpRequest.Form`.   `HttpRequest.Form` uses [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
+) and can lead to thread pool starvation.
 
-[!code-csharp[](performance-best-practices/samples/3.x/MySecondController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.x/Controllers/MySecondController.cs?name=snippet1)]
 
 **Do this:** The following example uses `HttpRequest.ReadAsFormAsync()` to read the form body asynchronously.
 
-[!code-csharp[](performance-best-practices/samples/3.x/MySecondController.cs?name=snippet2)]
+[!code-csharp[](performance-best-practices/samples/3.x/Controllers/MySecondController.cs?name=snippet2)]
 
-## Avoid reading large request bodies or response bodies into memory
+## [Avoid reading large request bodies or response bodies into memory](#avoid-reading-large-requests)
 
 In .NET, any single object allocation greater than 85 KB ends up in the large object heap ([LOH](https://blogs.msdn.microsoft.com/maoni/2006/04/19/large-object-heap/)). Large objects are expensive in two ways:
 
@@ -194,7 +196,7 @@ Naively storing a large request or response body into a single `byte[]` or `stri
 When using a serializer/de-serializer that only supports synchronous reads and writes (like JSON.NET) then chose to buffer the data into memory before passing data into the serializer/de-serializer.
 
 [!NOTE]
-If the request is large, it could lead to out of memory problems, which can result in a Denial Of Service. See [Avoid reading large request bodies or response bodies into memory](#avoid-reading-large-request-bodies-or-response-bodies-into-memory) for more information.**
+If the request is large, it could lead to out of memory problems, which can result in a Denial Of Service. See [Avoid reading large request bodies or response bodies into memory](#avoid-reading-large-requests) for more information.**
 
 ## Do not store IHttpContextAccessor.HttpContext in a field
 
@@ -216,11 +218,11 @@ The `HttpContext` is *NOT* thread-safe. Accessing it from multiple threads in pa
 
 **Do not do this:** The following example makes three parallel requests and logs the incoming request path before and after the outgoing http request. The request path is accessed from multiple threads, potentially in parallel.
 
-[!code-csharp[](performance-best-practices/samples/3.x/AsyncFirstController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.x/Controllers/AsyncFirstController.cs?name=snippet1)]
 
 **Do this:** The following example copies all data from the incoming request before making the three parallel requests.
 
-[!code-csharp[](performance-best-practices/samples/3.x/AsyncFirstController.cs?name=snippet2)]
+[!code-csharp[](performance-best-practices/samples/3.x/Controllers/AsyncFirstController.cs?name=snippet2)]
 
 ## Do not use the HttpContext after the request is complete
 
@@ -228,31 +230,31 @@ The `HttpContext` is only valid as long as there is an active http request in fl
 
 **Do not do this:** The following example uses async void (which is **ALWAYS** a bad practice in ASP.NET Core applications) and as a result, accesses the `HttpResponse` after the http request is complete. It will crash the process as a result.
 
-[!code-csharp[](performance-best-practices/samples/3.x/AsyncVoidController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.x/Controllers/AsyncVoidController.cs?name=snippet1)]
 
 **Do this:** The following example returns a `Task` to the framework so the http request doesn't complete until the entire action completes.
 
-[!code-csharp[](performance-best-practices/samples/3.x/AsyncSecondController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.x/Controllers/AsyncSecondController.cs?name=snippet1)]
 
 ## Do not capture the HttpContext in background threads
 
 **Do not do this:** The following example shows a closure is capturing the `HttpContext` from the `Controller` property. This is a bad practice since the work item could run outside of the request scope and as a result, could attempt to read fraudulent `HttpContext`.
 
-[!code-csharp[](performance-best-practices/samples/3.x/FireAndForgetFirstController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.x/Controllers/FireAndForgetFirstController.cs?name=snippet1)]
 
 **Do this:** The following example copies the data required in the background task during the request explicitly and does not reference anything from the controller itself.
 
-[!code-csharp[](performance-best-practices/samples/3.x/FireAndForgetFirstController.cs?name=snippet2)]
+[!code-csharp[](performance-best-practices/samples/3.x/Controllers/FireAndForgetFirstController.cs?name=snippet2)]
 
 ## Do not capture services injected into the controllers on background threads
 
 **Do not do this:** The following example shows a closure is capturing the DbContext from the Controller action parameter. This is a bad practice.  The work item could run outside of the request scope and the PokemonDbContext is scoped to the request, resulting in an `ObjectDisposedException`.
 
-[!code-csharp[](performance-best-practices/samples/3.x/FireAndForgetSecondController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.x/Controllers/FireAndForgetSecondController.cs?name=snippet1)]
 
 **Do this:** The following example injects an `IServiceScopeFactory` and creates a new dependency injection scope in the background thread and does not reference anything from the controller itself.
 
-[!code-csharp[](performance-best-practices/samples/3.x/FireAndForgetSecondController.cs?name=snippet2)]
+[!code-csharp[](performance-best-practices/samples/3.x/Controllers/FireAndForgetSecondController.cs?name=snippet2)]
 
 ## Avoid adding headers after the HttpResponse has started
 
