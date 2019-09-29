@@ -18,7 +18,8 @@ namespace SampleApp.Utilities
         // If you require a check on specific characters in the IsValidFileExtensionAndSignature
         // method, supply the characters in the _allowedChars field.
         private static readonly byte[] _allowedChars = { };
-        // For more file signatures, see the File Signatures Database: https://www.filesignatures.net/
+        // For more file signatures, see the File Signatures Database (https://www.filesignatures.net/)
+        // and the official specifications for the file types you wish to add.
         private static readonly Dictionary<string, List<byte[]>> _fileSignature = new Dictionary<string, List<byte[]>>
         {
             { ".gif", new List<byte[]> { new byte[] { 0x47, 0x49, 0x46, 0x38 } } },

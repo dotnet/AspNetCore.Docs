@@ -348,9 +348,9 @@ public async Task<IActionResult> OnPostUploadAsync()
             {
                 Content = memoryStream.ToArray()
             };
-            
+
             _dbContext.File.Add(file);
-    
+
             await _dbContext.SaveChangesAsync();
         }
         else
@@ -430,7 +430,7 @@ if (string.IsNullOrEmpty(ext) || !permittedExtensions.Contains(ext))
 
 ### File signature validation
 
-A file's signature is determined by the first few bytes that make up the file. These bytes can be used to indicate if the extension matches the content of the file. The sample app checks file signatures for for a few common file types. In the following example, the file signature for a JPEG image is checked against the file:
+A file's signature is determined by the first few bytes that make up the file. These bytes can be used to indicate if the extension matches the content of the file. The sample app checks file signatures for a few common file types. In the following example, the file signature for a JPEG image is checked against the file:
 
 ```csharp
 private static readonly Dictionary<string, List<byte[]>> _fileSignature = 
@@ -455,7 +455,10 @@ using (var reader = new BinaryReader(uploadedFileData))
 }
 ```
 
-To obtain additional file signatures, see the [File Signatures Database](https://www.filesignatures.net/).
+To obtain additional file signatures, see the following resources:
+
+* [File Signatures Database](https://www.filesignatures.net/)
+* Official file specifications
 
 ### File name security
 
