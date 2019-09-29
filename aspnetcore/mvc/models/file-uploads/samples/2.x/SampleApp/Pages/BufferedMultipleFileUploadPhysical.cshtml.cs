@@ -13,7 +13,7 @@ namespace SampleApp.Pages
     public class BufferedMultipleFileUploadPhysicalModel : PageModel
     {
         private readonly long _fileSizeLimit;
-        private readonly string[] _permittedExtensions = { ".txt", ".pdf", };
+        private readonly string[] _permittedExtensions = { ".txt" };
         private readonly string _targetFilePath;
 
         public BufferedMultipleFileUploadPhysicalModel(IConfiguration config)

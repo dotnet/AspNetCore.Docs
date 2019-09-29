@@ -24,7 +24,7 @@ namespace SampleApp.Controllers
         private readonly AppDbContext _context;
         private readonly long _fileSizeLimit;
         private readonly ILogger<StreamingController> _logger;
-        private readonly string[] _permittedExtensions = { ".txt", ".pdf", };
+        private readonly string[] _permittedExtensions = { ".txt" };
         private readonly string _targetFilePath;
 
         // Get the default form options so that we can use them to set the default 

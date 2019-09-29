@@ -19,20 +19,34 @@ namespace SampleApp.Utilities
         // method, supply the characters in the _allowedChars field.
         private static readonly byte[] _allowedChars = { };
         // For more file signatures, see the File Signatures Database: https://www.filesignatures.net/
-        private static readonly Dictionary<string, byte[]> _fileSignature = new Dictionary<string, byte[]>
+        private static readonly Dictionary<string, List<byte[]>> _fileSignature = new Dictionary<string, List<byte[]>>
         {
-            { ".doc", new byte[] { 0xD0, 0xCF, 0x11, 0xE0, 0xA1, 0xB1, 0x1A, 0xE1 } },
-            { ".docx", new byte[] { 0x50, 0x4B, 0x03, 0x04 } },
-            { ".gif", new byte[] { 0x47, 0x49, 0x46, 0x38 } },
-            { ".jpeg", new byte[] { 0xFF, 0xD8, 0xFF, 0xE0, 0xFF, 0xD8, 0xFF, 0xE2, 0xFF, 0xD8, 0xFF, 0xE3 } },
-            { ".jpg", new byte[] { 0xFF, 0xD8, 0xFF, 0xE0, 0xFF, 0xD8, 0xFF, 0xE1, 0xFF, 0xD8, 0xFF, 0xE8 } },
-            { ".png", new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A } },
-            { ".pdf", new byte[] { 0x25, 0x50, 0x44, 0x46 } },
-            { ".ppt", new byte[] { 0xD0, 0xCF, 0x11, 0xE0, 0xA1, 0xB1, 0x1A, 0xE1 } },
-            { ".pptx", new byte[] { 0x50, 0x4B, 0x03, 0x04 } },
-            { ".xls", new byte[] { 0xD0, 0xCF, 0x11, 0xE0, 0xA1, 0xB1, 0x1A, 0xE1 } },
-            { ".xlsx", new byte[] { 0x50, 0x4B, 0x03, 0x04 } },
-            { ".zip", new byte[] { 0x50, 0x4B, 0x03, 0x04, 0x50, 0x4B, 0x4C, 0x49, 0x54, 0x55, 0x50, 0x4B, 0x53, 0x70, 0x58, 0x50, 0x4B, 0x05, 0x06, 0x50, 0x4B, 0x07, 0x08, 0x57, 0x69, 0x6E, 0x5A, 0x69, 0x70 } },
+            { ".gif", new List<byte[]> { new byte[] { 0x47, 0x49, 0x46, 0x38 } } },
+            { ".png", new List<byte[]> { new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A } } },
+            { ".jpeg", new List<byte[]>
+                {
+                    new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 },
+                    new byte[] { 0xFF, 0xD8, 0xFF, 0xE2 },
+                    new byte[] { 0xFF, 0xD8, 0xFF, 0xE3 },
+                }
+            },
+            { ".jpg", new List<byte[]>
+                {
+                    new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 },
+                    new byte[] { 0xFF, 0xD8, 0xFF, 0xE1 },
+                    new byte[] { 0xFF, 0xD8, 0xFF, 0xE8 },
+                }
+            },
+            { ".zip", new List<byte[]> 
+                {
+                    new byte[] { 0x50, 0x4B, 0x03, 0x04 }, 
+                    new byte[] { 0x50, 0x4B, 0x4C, 0x49, 0x54, 0x45 },
+                    new byte[] { 0x50, 0x4B, 0x53, 0x70, 0x58 },
+                    new byte[] { 0x50, 0x4B, 0x05, 0x06 },
+                    new byte[] { 0x50, 0x4B, 0x07, 0x08 },
+                    new byte[] { 0x57, 0x69, 0x6E, 0x5A, 0x69, 0x70 },
+                }
+            },
         };
 
         // **WARNING!**
@@ -184,14 +198,13 @@ namespace SampleApp.Utilities
                 return false;
             }
 
-            var ext = Path.GetExtension(fileName);
+            var ext = Path.GetExtension(fileName).ToLowerInvariant();
 
             if (string.IsNullOrEmpty(ext) || !permittedExtensions.Contains(ext))
             {
                 return false;
             }
 
-            ext = ext.ToLowerInvariant();
             data.Position = 0;
 
             using (var reader = new BinaryReader(data))
@@ -244,18 +257,13 @@ namespace SampleApp.Utilities
                 // --------------------
                 // With the file signatures provided in the _fileSignature
                 // dictionary, the following code tests the input content's
-                // file signature for DOC, DOCX, PDF, ZIP, PNG, JPG, JPEG,
-                // XLS, XLSX, and GIF.
-                var signature = _fileSignature[ext];
-                reader.BaseStream.Position = 0;
+                // file signature.
+                var signatures = _fileSignature[ext];
+                var headerBytes = reader.ReadBytes(signatures.Max(m => m.Length));
 
-                if (signature.SequenceEqual(reader.ReadBytes(signature.Length)))
-                {
-                    return true;
-                }
+                return signatures.Any(signature => 
+                    headerBytes.Take(signature.Length).SequenceEqual(signature));
             }
-
-            return false;
         }
     }
 }
