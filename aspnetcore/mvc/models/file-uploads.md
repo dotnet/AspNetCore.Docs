@@ -494,7 +494,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 
     public BufferedSingleFileUploadPhysicalModel(IConfiguration config)
     {
-        _fileSizeLimit = config.GetValue<long>("FileSizeLimit");\
+        _fileSizeLimit = config.GetValue<long>("FileSizeLimit");
     }
 
     ...
