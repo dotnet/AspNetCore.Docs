@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/27/2019
+ms.date: 09/29/2019
 uid: tutorials/first-web-api
 ---
 
@@ -268,7 +268,7 @@ The preceding code:
 
   * Select **TodoItem (TodoApi.Models)** in the **Model class**.
   * Select **TodoContext (TodoApi.Models)** in the **Data context class**.
-  * Select **Add**
+  * Select **Add**.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -317,7 +317,7 @@ This tutorial uses Postman to test the web API.
 * Start the web app.
 * Start Postman.
 * Disable **SSL certificate verification**
-* From **File > Settings** (**General* tab), disable **SSL certificate verification**.
+* From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the controller.
 
@@ -351,7 +351,7 @@ This tutorial uses Postman to test the web API.
   ![Headers tab of the Postman console](first-web-api/_static/3/create.png)
 
 * Set the method to GET.
-* Paste the URI (for example, `https://localhost:5001/api/TodoItems/1`)
+* Paste the URI (for example, `https://localhost:5001/api/TodoItems/1`).
 * Select **Send**.
 
 ## Examine the GET methods
@@ -453,8 +453,8 @@ The `DeleteTodoItem` response is [204 (No Content)](https://www.w3.org/Protocols
 Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
-* Set the URI of the object to delete, for example `https://localhost:5001/api/TodoItems/1`
-* Select **Send**
+* Set the URI of the object to delete (for example `https://localhost:5001/api/TodoItems/1`).
+* Select **Send**.
 
 ## Call the web API with JavaScript
 
@@ -736,10 +736,10 @@ The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult
 
 This tutorial uses Postman to test the web API.
 
-* Install [Postman](https://www.getpostman.com/downloads/)
+* Install [Postman](https://www.getpostman.com/downloads/).
 * Start the web app.
 * Start Postman.
-* Disable **SSL certificate verification**
+* Disable **SSL certificate verification**.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -808,7 +808,7 @@ The `CreatedAtAction` method:
   ![Headers tab of the Postman console](first-web-api/_static/pmc2.png)
 
 * Set the method to GET.
-* Paste the URI (for example, `https://localhost:5001/api/Todo/2`)
+* Paste the URI (for example, `https://localhost:5001/api/Todo/2`).
 * Select **Send**.
 
 ## Add a PutTodoItem method
@@ -852,8 +852,8 @@ The `DeleteTodoItem` response is [204 (No Content)](https://www.w3.org/Protocols
 Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
-* Set the URI of the object to delete, for example `https://localhost:5001/api/todo/1`
-* Select **Send**
+* Set the URI of the object to delete (for example `https://localhost:5001/api/todo/1`).
+* Select **Send**.
 
 The sample app allows you to delete all the items. However, when the last item is deleted, a new one is created by the model class constructor the next time the API is called.
 
