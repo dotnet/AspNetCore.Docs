@@ -455,10 +455,7 @@ using (var reader = new BinaryReader(uploadedFileData))
 }
 ```
 
-To obtain additional file signatures, see the following resources:
-
-* [File Signatures Database](https://www.filesignatures.net/)
-* Official file specifications
+To obtain additional file signatures, see the [File Signatures Database](https://www.filesignatures.net/) and official file specifications.
 
 ### File name security
 
