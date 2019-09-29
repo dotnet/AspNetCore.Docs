@@ -430,27 +430,32 @@ if (string.IsNullOrEmpty(ext) || !permittedExtensions.Contains(ext))
 
 ### File signature validation
 
-A file's signature is determined by the first few bytes that make up the file. These bytes can be used to indicate if the extension matches the content of the file. The sample app checks file signatures for common file types. In the following example, the file signature for a Microsoft Word document is checked against the file:
+A file's signature is determined by the first few bytes that make up the file. These bytes can be used to indicate if the extension matches the content of the file. The sample app checks file signatures for for a few common file types. In the following example, the file signature for a JPEG image is checked against the file:
 
 ```csharp
-private Dictionary<string, byte[]> _fileSignature = 
-    new Dictionary<string, byte[]>
+private static readonly Dictionary<string, List<byte[]>> _fileSignature = 
+    new Dictionary<string, List<byte[]>>
 {
-    { ".docx", new byte[] { 0x50, 0x4B, 0x03, 0x04 } },
+    { ".jpeg", new List<byte[]>
+        {
+            new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 },
+            new byte[] { 0xFF, 0xD8, 0xFF, 0xE2 },
+            new byte[] { 0xFF, 0xD8, 0xFF, 0xE3 },
+        }
+    },
 };
 
 using (var reader = new BinaryReader(uploadedFileData))
 {
-    var signature = _fileSignature[uploadedFileExtension];
-    reader.BaseStream.Position = 0;
-
-    if (!signature.SequenceEqual(reader.ReadBytes(signature.Length)))
-    {
-        // The file's signature doesn't match its extension ...
-        // discontinue processing the file
-    }
+    var signatures = _fileSignature[ext];
+    var headerBytes = reader.ReadBytes(signatures.Max(m => m.Length));
+    
+    return signatures.Any(signature => 
+        headerBytes.Take(signature.Length).SequenceEqual(signature));
 }
 ```
+
+To obtain additional file signatures, see the [File Signatures Database](https://www.filesignatures.net/).
 
 ### File name security
 
