@@ -4,7 +4,7 @@ author: mjrousos
 description: Learn how to use a custom IAuthorizationPolicyProvider in an ASP.NET Core app to dynamically generate authorization policies.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/15/2019
+ms.date: 09/30/2019
 uid: security/authorization/iauthorizationpolicyprovider
 ---
 # Custom Authorization Policy Providers using IAuthorizationPolicyProvider in ASP.NET Core 
@@ -31,7 +31,7 @@ The `IAuthorizationPolicyProvider` interface contains three APIs:
 
 * [GetPolicyAsync](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationpolicyprovider.getpolicyasync#Microsoft_AspNetCore_Authorization_IAuthorizationPolicyProvider_GetPolicyAsync_System_String_) returns an authorization policy for a given name.
 * [GetDefaultPolicyAsync](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationpolicyprovider.getdefaultpolicyasync) returns the default authorization policy (the policy used for `[Authorize]` attributes without a policy specified). 
-* [GetFallbackPolicyAsync](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationpolicyprovider.getfallbackpolicyasync) returns the fallback authorization policy (the policy used by the AuthorizationMiddleware when no policy is specified). 
+* [GetFallbackPolicyAsync](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationpolicyprovider.getfallbackpolicyasync) returns the fallback authorization policy (the policy used by the Authorization Middleware when no policy is specified). 
 
 By implementing these APIs, you can customize how authorization policies are provided.
 
@@ -158,9 +158,9 @@ As with all aspects of a custom `IAuthorizationPolicyProvider`, you can customiz
 
 ## Fallback policy
 
-A custom `IAuthorizationPolicyProvider` needs to implement `GetFallbackPolicyAsync` to, optionally, provide a policy that is used by the AuthorizationMiddleware when no policies are specified. If `GetFallbackPolicyAsync` returns a non-null policy, that policy will be used by the AuthorizationMiddleware when no policies are specified for the request.
+A custom `IAuthorizationPolicyProvider` must optionally implement `GetFallbackPolicyAsync` to provide a policy that's used by the Authorization Middleware when no policies are specified. If `GetFallbackPolicyAsync` returns a non-null policy, that policy is used by the Authorization Middleware when no policies are specified for the request.
 
-If no fallback policy is needed, the provider can just return null or defer to the fallback provider:
+If no fallback policy is required, the provider can return `null` or defer to the fallback provider:
 
 ```csharp
 public Task<AuthorizationPolicy> GetRequiredPolicyAsync() => 
