@@ -22,6 +22,8 @@ Use Visual Studio to create and deploy an ASP.NET Core web app to Azure App Serv
 [Create an ASP.NET Core app in App Service on Linux](/azure/app-service/containers/quickstart-dotnetcore)  
 Use the command line to create and deploy an ASP.NET Core web app to Azure App Service on Linux.
 
+See the [ASP.NET Core on App Service Dashboard](https://aspnetcoreon.azurewebsites.net/) for the version of ASP.NET Core available on Azure App service.
+
 The following articles are available in ASP.NET Core documentation:
 
 <xref:tutorials/publish-to-azure-webapp-using-vs>  
