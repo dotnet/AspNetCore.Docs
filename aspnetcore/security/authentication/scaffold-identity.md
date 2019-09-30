@@ -39,14 +39,17 @@ Add the following highlighted calls to the `Startup` class:
 
 ## Scaffold identity into a Razor project without existing authorization
 
-<!--
+<!--  Updated for 3.0
 set projNam=RPnoAuth
 set projType=webapp
-set version=2.1.0
 
 dotnet new %projType% -o %projNam%
 cd %projNam%
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v %version%
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet add package Microsoft.AspNetCore.Identity.UI
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet restore
 dotnet aspnet-codegenerator identity --useDefaultUI
 dotnet ef migrations add CreateIdentitySchema
