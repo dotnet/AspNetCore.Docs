@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 #if BAD
 namespace performance_best_practices.Controllers
 {
-#region snippit1
+#region snippet1
     public class AsyncSecondController : Controller
     {
         [HttpGet("/async")]

@@ -12,7 +12,7 @@ namespace performance_best_practices.Controllers
 [ApiController]
 
 #if BAD
-    #region snippit1
+    #region snippet1
     public class MySecondController : Controller
     {
         [HttpPost("/form-body")]

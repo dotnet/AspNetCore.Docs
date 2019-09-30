@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace performance_best_practices
 {
     #if BAD
-    #region snippit1
+    #region snippet1
     public class MyType
     {
         private readonly HttpContext _context;
@@ -26,7 +26,7 @@ namespace performance_best_practices
     }
     #endregion
     #else
-    #region snippit2
+    #region snippet2
     public class MyType
     {
         private readonly IHttpContextAccessor _accessor;

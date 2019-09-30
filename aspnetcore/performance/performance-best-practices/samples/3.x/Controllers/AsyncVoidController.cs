@@ -11,7 +11,7 @@ namespace performance_best_practices.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-    #region snippit1
+    #region snippet1
     public class AsyncVoidController : Controller
     {
         [HttpGet("/async")]

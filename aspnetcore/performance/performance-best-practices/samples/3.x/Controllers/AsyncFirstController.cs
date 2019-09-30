@@ -12,7 +12,7 @@ namespace performance_best_practices.Controllers
     [ApiController]
 
 #if BAD
-    #region snippit1
+    #region snippet1
     public class AsyncFirstController : Controller
     {
         [HttpGet("/search")]
@@ -50,7 +50,7 @@ namespace performance_best_practices.Controllers
     }
     #endregion
 #else
-    #region snippit2
+    #region snippet2
     public class AsyncFirstController : Controller
     {
         [HttpGet("/search")]
