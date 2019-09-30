@@ -158,7 +158,7 @@ As with all aspects of a custom `IAuthorizationPolicyProvider`, you can customiz
 
 ## Fallback policy
 
-A custom `IAuthorizationPolicyProvider` must optionally implement `GetFallbackPolicyAsync` to provide a policy that's used by the Authorization Middleware when no policies are specified. If `GetFallbackPolicyAsync` returns a non-null policy, that policy is used by the Authorization Middleware when no policies are specified for the request.
+A custom `IAuthorizationPolicyProvider` can optionally implement `GetFallbackPolicyAsync` to provide a policy that's used by the Authorization Middleware when no policies are specified. If `GetFallbackPolicyAsync` returns a non-null policy, that policy is used by the Authorization Middleware when no policies are specified for the request.
 
 If no fallback policy is required, the provider can return `null` or defer to the fallback provider:
 
