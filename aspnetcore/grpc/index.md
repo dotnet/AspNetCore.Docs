@@ -115,6 +115,8 @@ A gRPC client is created using a channel, which represents a long-lived connecti
 
 For more information on creating clients, and calling different service methods, see <xref:grpc/client>.
 
+[!INCLUDE[](~/includes/gRPCazure.md)]
+
 ## Additional resources
 
 * <xref:grpc/basics>

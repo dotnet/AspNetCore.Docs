@@ -52,6 +52,8 @@ The following code:
 
 [!code-csharp[](~/grpc/configuration/sample/Program.cs?name=snippet&highlight=3-8)]
 
+[!INCLUDE[](~/includes/gRPCazure.md)]
+
 ## Additional resources
 
 * <xref:grpc/aspnetcore>
