@@ -13,13 +13,13 @@ By [Mike Rousos](https://github.com/mjrousos)
 
 This article provides guidelines for performance best practices with ASP.NET Core.
 
-## Understanding hot code paths
-
-In this document, a *hot code path* is defined as a code path that is frequently called and where much of the execution time occurs. Hot code paths typically limit app scale-out and performance.
-
 ## Cache aggressively
 
 Caching is discussed in several parts of this document. For more information, see <xref:performance/caching/response>.
+
+## Understand hot code paths
+
+In this document, a *hot code path* is defined as a code path that is frequently called and where much of the execution time occurs. Hot code paths typically limit app scale-out and performance and are discussed in several parts of this document.
 
 ## Avoid blocking calls
 
@@ -34,7 +34,7 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 
 **Do**:
 
-* Make [hot code paths](#understanding-hot-code-paths) asynchronous.
+* Make [hot code paths](#understand-hot-code-paths) asynchronous.
 * Call data access and long-running operations APIs asynchronously.
 * Make controller/Razor Page actions asynchronous. The entire call stack is asynchronous in order to benefit from [async/await](/dotnet/csharp/programming-guide/concepts/async/) patterns.
 
@@ -43,13 +43,13 @@ A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be us
 ## Minimize large object allocations
 
 <!-- TODO review Bill - replaced original .NET language below with .NET Core since this targets .NET Core -->
-The [.NET Core garbage collector](/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection generally means that developers don't need to worry about how or when memory is freed. However, cleaning up unreferenced objects takes CPU time, so developers should minimize allocating objects in [hot code paths](#understanding-hot-code-paths). Garbage collection is especially expensive on large objects (> 85 K bytes). Large objects are stored on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires a temporary suspension of app execution. Frequent allocation and de-allocation of large objects can cause inconsistent performance.
+The [.NET Core garbage collector](/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection generally means that developers don't need to worry about how or when memory is freed. However, cleaning up unreferenced objects takes CPU time, so developers should minimize allocating objects in [hot code paths](#understand-hot-code-paths). Garbage collection is especially expensive on large objects (> 85 K bytes). Large objects are stored on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires a temporary suspension of app execution. Frequent allocation and de-allocation of large objects can cause inconsistent performance.
 
 Recommendations:
 
 * **Do** consider caching large objects that are frequently used. Caching large objects prevents expensive allocations.
 * **Do** pool buffers by using an [`ArrayPool<T>`](/dotnet/api/system.buffers.arraypool-1) to store large arrays.
-* **Do not** allocate many, short-lived large objects on [hot code paths](#understanding-hot-code-paths).
+* **Do not** allocate many, short-lived large objects on [hot code paths](#understand-hot-code-paths).
 
 Memory issues, such as the preceding, can be diagnosed by reviewing garbage collection (GC) stats in [PerfView](https://github.com/Microsoft/perfview) and examining:
 
@@ -102,7 +102,7 @@ You want all of your code to be fast, frequently called code paths are the most 
 Recommendations:
 
 * **Do not** use custom middleware components with long-running tasks.
-* **Do** use performance profiling tools, such as [Visual Studio Diagnostic Tools](/visualstudio/profiling/profiling-feature-tour) or [PerfView](https://github.com/Microsoft/perfview)), to identify [hot code paths](#understanding-hot-code-paths).
+* **Do** use performance profiling tools, such as [Visual Studio Diagnostic Tools](/visualstudio/profiling/profiling-feature-tour) or [PerfView](https://github.com/Microsoft/perfview)), to identify [hot code paths](#understand-hot-code-paths).
 
 ## Complete long-running Tasks outside of HTTP requests
 
@@ -143,7 +143,7 @@ Exceptions should be rare. Throwing and catching exceptions is slow relative to 
 
 Recommendations:
 
-* **Do not** use throwing or catching exceptions as a means of normal program flow, especially in [hot code paths](#understanding-hot-code-paths).
+* **Do not** use throwing or catching exceptions as a means of normal program flow, especially in [hot code paths](#understand-hot-code-paths).
 * **Do** include logic in the app to detect and handle conditions that would cause an exception.
 * **Do** throw or catch exceptions for unusual or unexpected conditions.
 
@@ -163,7 +163,7 @@ All IO in ASP.NET Core is asynchronous. Servers implement the `Stream` interface
 [!code-csharp[](performance-best-practices/samples/3.x/Controllers/MyFirstController.cs?name=snippet2)]
 
 [!NOTE]
-If the request is large, it could lead to out of memory problems, which can result in a Denial Of Service. See [Avoid reading large request bodies or response bodies into memory](#avoid-reading-large-requests) for more information.**
+If the request is large, it could lead to out of memory problems, which can result in a Denial Of Service. See [Avoid reading large request bodies or response bodies into memory](#avoid-reading-large-request-bodies-or-response-bodies-into-memory) for more information.**
 
 ## Prefer using HttpRequest.ReadAsFormAsync() over HttpRequest.Form
 
@@ -178,7 +178,7 @@ Use `HttpRequest.ReadAsFormAsync()` instead of `HttpRequest.Form`. The only time
 
 [!code-csharp[](performance-best-practices/samples/3.x/Controllers/MySecondController.cs?name=snippet2)]
 
-## [Avoid reading large request bodies or response bodies into memory](#avoid-reading-large-requests)
+## Avoid reading large request bodies or response bodies into memory
 
 In .NET, any single object allocation greater than 85 KB ends up in the large object heap ([LOH](https://blogs.msdn.microsoft.com/maoni/2006/04/19/large-object-heap/)). Large objects are expensive in two ways:
 
@@ -196,7 +196,7 @@ Naively storing a large request or response body into a single `byte[]` or `stri
 When using a serializer/de-serializer that only supports synchronous reads and writes (like JSON.NET) then chose to buffer the data into memory before passing data into the serializer/de-serializer.
 
 [!NOTE]
-If the request is large, it could lead to out of memory problems, which can result in a Denial Of Service. See [Avoid reading large request bodies or response bodies into memory](#avoid-reading-large-requests) for more information.**
+If the request is large, it could lead to out of memory problems, which can result in a Denial Of Service. See [Avoid reading large request bodies or response bodies into memory](#avoid-reading-large-request-bodies-or-response-bodies-into-memory) for more information.**
 
 ## Do not store IHttpContextAccessor.HttpContext in a field
 
