@@ -22,7 +22,7 @@ namespace ClientIpAspNetCore
 
         public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
-            var remoteIp = context.Connection.RemoteIpAddress;
+            var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
             _logger.LogInformation(
                 "Remote IpAddress: {RemoteIp}", remoteIp);
 

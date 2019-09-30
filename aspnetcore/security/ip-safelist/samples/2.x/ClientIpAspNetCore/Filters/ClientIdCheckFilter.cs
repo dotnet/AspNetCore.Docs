@@ -24,7 +24,7 @@ namespace ClientIpAspNetCore.Filters
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            var remoteIp = context.Connection.RemoteIpAddress;
+            var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
             _logger.LogInformation(
                 "Remote IpAddress: {RemoteIp}", remoteIp);
 
