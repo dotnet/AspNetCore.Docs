@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 09/30/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -434,7 +434,7 @@ In the following example, `UpdateHeading` is called asynchronously when the butt
 
 For some events, event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
 
-Supported [EventArgs](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src/Components/Web/src/Web) are shown in the following table.
+Supported `EventArgs` are shown in the following table.
 
 | Event | Class |
 | ----- | ----- |
@@ -450,7 +450,7 @@ Supported [EventArgs](https://github.com/aspnet/AspNetCore/tree/release/3.0-prev
 | Progress         | `ProgressEventArgs` |
 | Touch            | `TouchEventArgs` &ndash; `TouchPoint` represents a single contact point on a touch-sensitive device. |
 
-For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source (aspnet/AspNetCore release/3.0-preview9 branch)](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src/Components/Web/src/Web).
+For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source (aspnet/AspNetCore release/3.0 branch)](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Components/Web/src/Web).
 
 ### Lambda expressions
 
