@@ -13,7 +13,7 @@ By [Mike Rousos](https://github.com/mjrousos)
 
 This article provides guidelines for performance best practices with ASP.NET Core.
 
-## [Understanding hot code paths](#hot)
+## Understanding hot code paths
 
 In this document, a *hot code path* is defined as a code path that is frequently called and where much of the execution time occurs. Hot code paths typically limit app scale-out and performance.
 
@@ -34,7 +34,7 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 
 **Do**:
 
-* Make [hot code paths](#hot) asynchronous.
+* Make [hot code paths](#understanding-hot-code-paths) asynchronous.
 * Call data access and long-running operations APIs asynchronously.
 * Make controller/Razor Page actions asynchronous. The entire call stack is asynchronous in order to benefit from [async/await](/dotnet/csharp/programming-guide/concepts/async/) patterns.
 
@@ -43,13 +43,13 @@ A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be us
 ## Minimize large object allocations
 
 <!-- TODO review Bill - replaced original .NET language below with .NET Core since this targets .NET Core -->
-The [.NET Core garbage collector](/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection generally means that developers don't need to worry about how or when memory is freed. However, cleaning up unreferenced objects takes CPU time, so developers should minimize allocating objects in [hot code paths](#hot). Garbage collection is especially expensive on large objects (> 85 K bytes). Large objects are stored on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires a temporary suspension of app execution. Frequent allocation and de-allocation of large objects can cause inconsistent performance.
+The [.NET Core garbage collector](/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection generally means that developers don't need to worry about how or when memory is freed. However, cleaning up unreferenced objects takes CPU time, so developers should minimize allocating objects in [hot code paths](#understanding-hot-code-paths). Garbage collection is especially expensive on large objects (> 85 K bytes). Large objects are stored on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires a temporary suspension of app execution. Frequent allocation and de-allocation of large objects can cause inconsistent performance.
 
 Recommendations:
 
 * **Do** consider caching large objects that are frequently used. Caching large objects prevents expensive allocations.
 * **Do** pool buffers by using an [`ArrayPool<T>`](/dotnet/api/system.buffers.arraypool-1) to store large arrays.
-* **Do not** allocate many, short-lived large objects on [hot code paths](#hot).
+* **Do not** allocate many, short-lived large objects on [hot code paths](#understanding-hot-code-paths).
 
 Memory issues, such as the preceding, can be diagnosed by reviewing garbage collection (GC) stats in [PerfView](https://github.com/Microsoft/perfview) and examining:
 
@@ -102,7 +102,7 @@ You want all of your code to be fast, frequently called code paths are the most 
 Recommendations:
 
 * **Do not** use custom middleware components with long-running tasks.
-* **Do** use performance profiling tools, such as [Visual Studio Diagnostic Tools](/visualstudio/profiling/profiling-feature-tour) or [PerfView](https://github.com/Microsoft/perfview)), to identify [hot code paths](#hot).
+* **Do** use performance profiling tools, such as [Visual Studio Diagnostic Tools](/visualstudio/profiling/profiling-feature-tour) or [PerfView](https://github.com/Microsoft/perfview)), to identify [hot code paths](#understanding-hot-code-paths).
 
 ## Complete long-running Tasks outside of HTTP requests
 
@@ -143,7 +143,7 @@ Exceptions should be rare. Throwing and catching exceptions is slow relative to 
 
 Recommendations:
 
-* **Do not** use throwing or catching exceptions as a means of normal program flow, especially in [hot code paths](#hot).
+* **Do not** use throwing or catching exceptions as a means of normal program flow, especially in [hot code paths](#understanding-hot-code-paths).
 * **Do** include logic in the app to detect and handle conditions that would cause an exception.
 * **Do** throw or catch exceptions for unusual or unexpected conditions.
 
