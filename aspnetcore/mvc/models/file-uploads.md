@@ -5,7 +5,7 @@ description: How to use model binding and streaming to upload files in ASP.NET C
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/28/2019
+ms.date: 09/30/2019
 uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
@@ -18,17 +18,21 @@ ASP.NET Core supports uploading one or more files using buffered model binding f
 
 ## Security considerations
 
-Use caution when providing users with the ability to upload files to a server. Attackers may execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) attacks, attempt to upload viruses or malware, or attempt to compromise networks and servers in other ways.
+Use caution when providing users with the ability to upload files to a server. Attackers may attempt to:
+
+* Execute [denial of service](/windows-hardware/drivers/ifs/denial-of-service) attacks.
+* Upload viruses or malware.
+* Compromise networks and servers in other ways.
 
 Security steps that reduce the likelihood of a successful attack are:
 
-* Upload files to a dedicated file upload area on the system, preferably to a non-system drive. Use of a dedicated location makes it easier to impose security measures on uploaded files. Disable execute permissions on the file upload location.&dagger;
+* Upload files to a dedicated file upload area on the system, preferably to a non-system drive. Using a dedicated location makes it easier to impose security restrictions on uploaded files. Disable execute permissions on the file upload location.&dagger;
 * Never persist uploaded files in the same directory tree as the app.&dagger;
-* Use a safe file name determined by the app. Don't use a file name provided by the user or the untrusted file name of the uploaded file. To display an untrusted file name in a UI or in a logging message, HTML-encode the value.&dagger;
+* Use a safe file name determined by the app. Don't use a file name provided by the user or the untrusted file name of the uploaded file.&dagger; To display an untrusted file name in a UI or in a logging message, HTML-encode the value.
 * Only allow a specific set of approved file extensions.&dagger;
-* Check the file format signature to prevent a user from uploading a masqueraded file (for example, uploading an *.exe* file with a *.txt* extension).&dagger;
-* Verify that client-side checks are also performed on the server. Client-side checks are easy to circumvent.&dagger;
-* Check the size of the upload and prevent uploads that are larger than expected.&dagger;
+* Check the file format signature to prevent a user from uploading a masqueraded file.&dagger; For example, don't permit a user to upload an *.exe* file with a *.txt* extension.
+* Verify that client-side checks are also performed on the server.&dagger; Client-side checks are easy to circumvent.
+* Check the size of an uploaded file and prevent uploads that are larger than expected.&dagger;
 * When files shouldn't be overwritten by an uploaded file with the same name, check the file name against the database or physical storage before uploading the file.
 * **Run a virus/malware scanner on uploaded content before the file is stored.**
 
@@ -37,7 +41,7 @@ Security steps that reduce the likelihood of a successful attack are:
 > [!WARNING]
 > Uploading malicious code to a system is frequently the first step to executing code that can:
 >
-> * Completely takeover a system.
+> * Completely gain control of a system.
 > * Overload a system with the result that the system crashes.
 > * Compromise user or system data.
 > * Apply graffiti to a public UI.
@@ -52,27 +56,27 @@ For more information on implementing security measures, including examples from 
 ## Storage scenarios
 
 Common storage options for files include:
- 
+
 * Database
 
-  * For small file uploads, often faster than physical storage (file system or network share) options.
-  * Often more convenient than physical storage options because retrieval of a database record for user data can concurrently supply the file content (for example, an avatar image).
-  * Potentially less expensive than using a data storage service.
+  * For small file uploads, a database is often faster than physical storage (file system or network share) options.
+  * A database is often more convenient than physical storage options because retrieval of a database record for user data can concurrently supply the file content (for example, an avatar image).
+  * A database is potentially less expensive than using a data storage service.
 
 * Physical storage (file system or network share)
 
   * For large file uploads:
     * Database limits may restrict the size of the upload.
-    * Often less economical than storage in a database.
-  * Potentially less expensive than using a data storage service.
+    * Physical storage is often less economical than storage in a database.
+  * Physical storage is potentially less expensive than using a data storage service.
   * The app's process must have read and write permissions to the storage location. **Never grant execute permission.**
 
 * Data storage service (for example, [Azure Blob Storage](https://azure.microsoft.com/services/storage/blobs/))
 
-  * Improved scalability and resiliency over on-premises solutions that are often subject to single points of failure.
-  * Potentially lower cost in large storage infrastructure scenarios.
+  * Services usually offer improved scalability and resiliency over on-premises solutions that are usually subject to single points of failure.
+  * Services are potentially lower cost in large storage infrastructure scenarios.
 
-  For more information, see [Quickstart: Use .NET to create a blob in object storage](/azure/storage/blobs/storage-quickstart-blobs-dotnet). The topic demonstrates <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromFileAsync*>, but you can use <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromStreamAsync*> to save a <xref:System.IO.FileStream> to blob storage when working with a <xref:System.IO.Stream>.
+  For more information, see [Quickstart: Use .NET to create a blob in object storage](/azure/storage/blobs/storage-quickstart-blobs-dotnet). The topic demonstrates <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromFileAsync*>, but <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromStreamAsync*> can be used to save a <xref:System.IO.FileStream> to blob storage when working with a <xref:System.IO.Stream>.
 
 ## File upload scenarios
 
@@ -94,17 +98,15 @@ Buffering small files is covered in the following sections of this topic:
 
 **Streaming**
 
-The file is received from a multipart request and directly processed or saved by the app. Streaming doesn't improve performance significantly&mdash;streaming reduces the demands for memory or disk space when uploading files.
+The file is received from a multipart request and directly processed or saved by the app. Streaming doesn't improve performance significantly. Streaming reduces the demands for memory or disk space when uploading files.
 
-For more information, see the [Upload large files with streaming](#upload-large-files-with-streaming) section.
+Streaming large files is covered in the [Upload large files with streaming](#upload-large-files-with-streaming) section.
 
 ### Upload small files with buffered model binding to physical storage
 
 To upload small files, use a multipart form or construct a POST request using JavaScript.
 
-The following example from the sample app demonstrates the use of a Razor Pages form to upload a single file.
-
-*Pages/BufferedSingleFileUploadPhysical.cshtml*:
+The following example demonstrates the use of a Razor Pages form to upload a single file (*Pages/BufferedSingleFileUploadPhysical.cshtml* in the sample app):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -154,18 +156,18 @@ The following example is analogous to the prior example except that:
 
     try {
     const response = await fetch(oFormElement.action, {
-        method: 'POST',
-        body: formData
+      method: 'POST',
+      body: formData
     });
 
     if (response.ok) {
-        window.location.href = '/';
+      window.location.href = '/';
     }
 
     resultElement.value = 'Result: ' + response.status + ' ' + 
-        response.statusText;
+      response.statusText;
     } catch (error) {
-    console.error('Error:', error);
+      console.error('Error:', error);
     }
   }
 </script>
@@ -184,7 +186,7 @@ To perform the form POST in JavaScript for clients that [don't support the Fetch
       var oReq = new XMLHttpRequest();
       oReq.onload = function(e) { 
       oFormElement.elements.namedItem("result").value = 
-      'Result: ' + this.status + ' ' + this.statusText;
+        'Result: ' + this.status + ' ' + this.statusText;
       };
       oReq.open("post", oFormElement.action);
       oReq.send(new FormData(oFormElement));
@@ -205,7 +207,10 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 > [!WARNING]
 > Don't rely on or trust the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> without validation. The `FileName` property should only be used for display purposes and only after HTML encoding the value.
 >
-> The examples provided don't take into account security considerations. See the [Security considerations](#security-considerations) and [Validation](#validation) sections and the sample app for information and examples of file upload validation.
+> The examples provided thus far don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
+>
+> * [Security considerations](#security-considerations)
+> * [Validation](#validation)
 
 When uploading files using model binding and <xref:Microsoft.AspNetCore.Http.IFormFile>, the action method can accept:
 
@@ -216,12 +221,12 @@ When uploading files using model binding and <xref:Microsoft.AspNetCore.Http.IFo
   * [List](xref:System.Collections.Generic.List`1)\<<xref:Microsoft.AspNetCore.Http.IFormFile>>
 
 > [!NOTE]
-> Binding matches form files by name. For example, the HTML `name` value in `<input type="file" name="formFile">` must match the C# parameter/property bound (`FormFile`).
+> Binding matches form files by name. For example, the HTML `name` value in `<input type="file" name="formFile">` must match the C# parameter/property bound (`FormFile`). For more information, see the [Match name attribute value to parameter name of POST method](#match-name-attribute-value-to-parameter-name-of-post-method) section.
 
 The following example:
 
 * Loops through one or more uploaded files.
-* Uses `Path.GetTempFileName` to return a full path for a file, including the file name. 
+* Uses [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) to return a full path for a file, including the file name. 
 * Saves the files to the local file system using a file name generated by the app.
 * Returns the total number and size of files uploaded.
 
@@ -272,7 +277,7 @@ The path passed to the <xref:System.IO.FileStream> *must* include the file name.
 
 Files uploaded using the <xref:Microsoft.AspNetCore.Http.IFormFile> technique are buffered in memory or on disk on the server before processing. Inside the action method, the <xref:Microsoft.AspNetCore.Http.IFormFile> contents are accessible as a <xref:System.IO.Stream>. In addition to the local file system, files can be saved to a network share or to a file storage service, such as [Azure Blob storage](/azure/visual-studio/vs-storage-aspnet5-getting-started-blobs).
 
-For another example that loops over multiple file uploads and uses safe file names and <xref:System.IO.FileStream.CopyToAsync*>, see the sample app.
+For another example that loops over multiple files for upload and uses safe file names, see *Pages/BufferedMultipleFileUploadPhysical.cshtml.cs* in the sample app.
 
 > [!WARNING]
 > [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) throws an <xref:System.IO.IOException> if more than 65,535 files are created without deleting previous temporary files. The limit of 65,535 files is a per-server limit. For more information on this limit on Windows OS, see the remarks in the following topics:
@@ -282,7 +287,7 @@ For another example that loops over multiple file uploads and uses safe file nam
 
 ### Upload small files with buffered model binding to a database
 
-To store binary file data in a database using [Entity Framework](/ef/core/index), define a <xref:System.Byte> array property on the entity. The following example is similar to a scenario demonstrated in the sample app (*Upload one buffered file with one file upload control*):
+To store binary file data in a database using [Entity Framework](/ef/core/index), define a <xref:System.Byte> array property on the entity:
 
 ```csharp
 public class AppFile
@@ -363,12 +368,20 @@ public async Task<IActionResult> OnPostUploadAsync()
 }
 ```
 
+The preceding example is similar to a scenario demonstrated in the sample app:
+
+* *Pages/BufferedSingleFileUploadDb.cshtml*
+* *Pages/BufferedSingleFileUploadDb.cshtml.cs*
+
 > [!WARNING]
 > Use caution when storing binary data in relational databases, as it can adversely impact performance.
 >
 > Don't rely on or trust the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> without validation. The `FileName` property should only be used for display purposes and only after HTML encoding.
 >
-> The examples provided don't take into account security considerations. See the [Security considerations](#security-considerations) and [Validation](#validation) sections and the sample app for information and examples of file upload validation.
+> The examples provided don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
+>
+> * [Security considerations](#security-considerations)
+> * [Validation](#validation)
 
 ### Upload large files with streaming
 
@@ -382,7 +395,7 @@ The `DisableFormValueModelBindingAttribute` is used to disable model binding:
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Filters/ModelBinding.cs?name=snippet_DisableFormValueModelBindingAttribute)]
 
-`GenerateAntiforgeryTokenCookieAttribute` and `DisableFormValueModelBindingAttribute` are applied as filters to the page application models of `/StreamedSingleFileUploadDb` and `/StreamedSingleFileUploadPhysical` in `Startup.ConfigureServices` using [Razor Pages conventions](xref:razor-pages/razor-pages-conventions):
+In the sample app, `GenerateAntiforgeryTokenCookieAttribute` and `DisableFormValueModelBindingAttribute` are applied as filters to the page application models of `/StreamedSingleFileUploadDb` and `/StreamedSingleFileUploadPhysical` in `Startup.ConfigureServices` using [Razor Pages conventions](xref:razor-pages/razor-pages-conventions):
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Startup.cs?name=snippet_AddMvc&highlight=8-11,17-20)]
 
@@ -398,29 +411,34 @@ The complete `StreamingController.UploadPhysical` method for streaming to a phys
 
 In the sample app, validation checks are handled by `FileHelpers.ProcessStreamedFile`.
 
-For more information, see the [Security considerations](#security-considerations) and [Validation](#validation) sections and the sample app.
-
 ## Validation
 
 The sample app's `FileHelpers` class demonstrates a several checks for buffered <xref:Microsoft.AspNetCore.Http.IFormFile> and streamed file uploads. For processing <xref:Microsoft.AspNetCore.Http.IFormFile> buffered file uploads in the sample app, see the `ProcessFormFile` method in the *Utilities/FileHelpers.cs* file. For processing streamed files, see the `ProcessStreamedFile` method in the same file.
 
 > [!WARNING]
 > The validation processing methods demonstrated in the sample app don't scan the content of uploaded files. In most production scenarios, a virus/malware scanner API is used on the file before making the file available to users or other systems.
+>
+> Although the topic sample provides a working example of validation techniques, don't implement the `FileHelpers` class in a production app unless you:
+>
+> * Fully understand the implementation.
+> * Modify the implementation as appropriate for the app's environment and specifications.
+>
+> **Never indiscriminately implement security code in an app without addressing these requirements.**
 
 ### Content validation
 
-Use a third party virus/malware scanning API on uploaded content.
+**Use a third party virus/malware scanning API on uploaded content.**
 
 Scanning files is demanding on server resources in high volume scenarios. If request processing performance is diminished due to file scanning, consider offloading the scanning work to a [background service](xref:fundamentals/host/hosted-services), possibly a service running on a server different from the app's server. Typically, uploaded files are held in a quarantined area until the background virus scanner checks them. When a file passes, the file is moved to the normal file storage location. These steps are usually performed in conjunction with a database record that indicates the scanning status of a file. By using such an approach, the app and app server remain focused on responding to requests.
 
 ### File extension validation
 
-The uploaded file's extension should be checked against a list of permitted extensions. The sample app uses an array to determine if an extension is valid:
+The uploaded file's extension should be checked against a list of permitted extensions. For example:
 
 ```csharp
-private string[] permittedExtensions = { ".txt", ".pdf", };
+private string[] permittedExtensions = { ".txt", ".pdf" };
 
-var ext = Path.GetExtension(uploadedFileName);
+var ext = Path.GetExtension(uploadedFileName).ToLowerInvariant();
 
 if (string.IsNullOrEmpty(ext) || !permittedExtensions.Contains(ext))
 {
@@ -430,7 +448,7 @@ if (string.IsNullOrEmpty(ext) || !permittedExtensions.Contains(ext))
 
 ### File signature validation
 
-A file's signature is determined by the first few bytes that make up the file. These bytes can be used to indicate if the extension matches the content of the file. The sample app checks file signatures for a few common file types. In the following example, the file signature for a JPEG image is checked against the file:
+A file's signature is determined by the first few bytes at the start of a file. These bytes can be used to indicate if the extension matches the content of the file. The sample app checks file signatures for a few common file types. In the following example, the file signature for a JPEG image is checked against the file:
 
 ```csharp
 private static readonly Dictionary<string, List<byte[]>> _fileSignature = 
@@ -473,6 +491,8 @@ Razor automatically HTML encodes property values for display. The following code
 }
 ```
 
+Outside of Razor, always <xref:System.Net.WebUtility.HtmlEncode*> file name content from a user's request.
+
 Many implementations must include a check that the file exists; otherwise, the file is overwritten by a file of the same name. Supply additional logic to meet your app's specifications.
 
 ### Size validation
@@ -487,6 +507,8 @@ In the sample app, the size of the file is limited to 2 MB (indicated in bytes).
 }
 ```
 
+The `FileSizeLimit` is injected into `PageModel` classes:
+
 ```csharp
 public class BufferedSingleFileUploadPhysicalModel : PageModel
 {
@@ -500,6 +522,8 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
     ...
 }
 ```
+
+When a file size exceeds the limit, the file is rejected:
 
 ```csharp
 if (formFile.Length > _fileSizeLimit)
@@ -523,12 +547,12 @@ In the following example:
 * When using `FormData` in JavaScript, the name is set to the value `battlePlans`:
 
   ```javascript
-    var formData = new FormData();
+  var formData = new FormData();
 
-    for (var file in files) {
-        formData.append("battlePlans", file, file.name);
-    }
-    ```
+  for (var file in files) {
+    formData.append("battlePlans", file, file.name);
+  }
+  ```
 
 Use a matching name for the parameter of the C# method (`battlePlans`):
 
