@@ -1,6 +1,4 @@
-﻿//  #define BAD
-
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,14 +9,14 @@ namespace performance_best_practices.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-#if BAD
     #region snippet1
-    public class AsyncFirstController : Controller
+    public class AsynchBadSearchController : Controller
     {
-        private readonly ILogger<AsyncFirstController> _logger;
+        private readonly ILogger<AsynchBadSearchController> _logger;
         public readonly SearchService _searchService;
 
-        public AsyncFirstController(ILogger<AsyncFirstController> logger, SearchService searchService)
+        public AsynchBadSearchController(ILogger<AsynchBadSearchController> logger, 
+                                                        SearchService searchService)
         {
             _logger = logger;
             _searchService = searchService;
@@ -45,13 +43,16 @@ namespace performance_best_practices.Controllers
             var searchResults = _searchService.Empty();
             try
             {
-                _logger.LogInformation("Starting search query from {path}.", HttpContext.Request.Path);
+                _logger.LogInformation("Starting search query from {path}.", 
+                                                             HttpContext.Request.Path);
                 searchResults = _searchService.Search(engine, query);
-                _logger.LogInformation("Finishing search query from {path}.", HttpContext.Request.Path);
+                _logger.LogInformation("Finishing search query from {path}.", 
+                                                              HttpContext.Request.Path);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed query from {path}", HttpContext.Request.Path);
+                _logger.LogError(ex, "Failed query from {path}", 
+                                                             HttpContext.Request.Path);
             }
 
             return await searchResults;
@@ -60,14 +61,14 @@ namespace performance_best_practices.Controllers
     #endregion
 
 
-#else
     #region snippet2
-    public class AsyncFirstController : Controller
+    public class AsyncGoodSearchController : Controller
     {
-        private readonly ILogger<AsyncFirstController> _logger;
+        private readonly ILogger<AsyncGoodSearchController> _logger;
         public readonly SearchService _searchService;
 
-        public AsyncFirstController(ILogger<AsyncFirstController> logger, SearchService searchService)
+        public AsyncGoodSearchController(ILogger<AsyncGoodSearchController> logger,
+                                                         SearchService searchService)
         {
             _logger = logger;
             _searchService = searchService;
@@ -90,13 +91,15 @@ namespace performance_best_practices.Controllers
             return SearchResults.Combine(results1, results2, results3);
         }
 
-        private async Task<SearchResults> SearchAsync(SearchEngine engine, string query, string path)
+        private async Task<SearchResults> SearchAsync(SearchEngine engine, string query,
+                                                                           string path)
         {
             var searchResults = _searchService.Empty();
             try
             {
                 _logger.LogInformation("Starting search query from {path}.", path);
-                searchResults = await _searchService.SearchAsync(engine, query);
+                searchResults = await _searchService.SearchAsync(engine, query
+                                                                              ,path);
                 _logger.LogInformation("Finishing search query from {path}.", path);
             }
             catch (Exception ex)
@@ -108,12 +111,10 @@ namespace performance_best_practices.Controllers
         }
     }
     #endregion
-#endif
 
     public class SearchEngine
     {
         public static SearchEngine Bing { get; internal set; }
-
         public static SearchEngine Google { get; internal set; }
         public static SearchEngine DuckDuckGo { get; internal set; }
 

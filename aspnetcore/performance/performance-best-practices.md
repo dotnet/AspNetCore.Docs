@@ -156,11 +156,11 @@ All IO in ASP.NET Core is asynchronous. Servers implement the `Stream` interface
 **Do not do this:** The following example uses the `StreamReader.ReadToEnd`. It blocks the current thread to wait for the result. This is an example of [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
 ).
 
-[!code-csharp[](performance-best-practices/samples/3.x/Controllers/MyFirstController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet1)]
 
 **Do this:** The following example uses `StreamReader.ReadToEndAsync` and does not block the thread while reading.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Controllers/MyFirstController.cs?name=snippet2)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet2)]
 
 [!NOTE]
 If the request is large, it could lead to out of memory problems, which can result in a Denial Of Service. See [Avoid reading large request bodies or response bodies into memory](#avoid-reading-large-request-bodies-or-response-bodies-into-memory) for more information.**
@@ -172,11 +172,11 @@ Use `HttpRequest.ReadAsFormAsync()` instead of `HttpRequest.Form`. The only time
 **Do not do this:** The following example uses `HttpRequest.Form`.   `HttpRequest.Form` uses [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
 ) and can lead to thread pool starvation.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Controllers/MySecondController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/MySecondController.cs?name=snippet1)]
 
 **Do this:** The following example uses `HttpRequest.ReadAsFormAsync()` to read the form body asynchronously.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Controllers/MySecondController.cs?name=snippet2)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/MySecondController.cs?name=snippet2)]
 
 ## Avoid reading large request bodies or response bodies into memory
 
@@ -204,25 +204,25 @@ The `IHttpContextAccessor.HttpContext` will return the `HttpContext` of the acti
 
 **Do not do this:** The following example stores the HttpContext in a field then attempts to use it later.
 
-[!code-csharp[](performance-best-practices/samples/3.x/MyType.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.0/MyType.cs?name=snippet1)]
 
 The preceding logic will likely capture a null or fraudulent HttpContext in the constructor for later use.
 
 **Do this:** The following example stores the IHttpContextAccessor itself in a field and uses the HttpContext field at the correct time (checking for null).
 
-[!code-csharp[](performance-best-practices/samples/3.x/MyType.cs?name=snippet2)]
+[!code-csharp[](performance-best-practices/samples/3.0/MyType.cs?name=snippet2)]
 
-## Do not access the HttpContext from multiple threads in parallel. It is not thread safe
+## Do not access HttpContext from multiple threads
 
-The `HttpContext` is *NOT* thread-safe. Accessing it from multiple threads in parallel can cause corruption resulting in undefined behavior (hangs, crashes, data corruption).
+`HttpContext` is *NOT* thread-safe. Accessing `HttpContext` from multiple threads in parallel can cause corruption. The corruption can result in undefined behavior, such as hangs, crashes, and data corruption.
 
 **Do not do this:** The following example makes three parallel requests and logs the incoming request path before and after the outgoing http request. The request path is accessed from multiple threads, potentially in parallel.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Controllers/AsyncFirstController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet1)]
 
 **Do this:** The following example copies all data from the incoming request before making the three parallel requests.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Controllers/AsyncFirstController.cs?name=snippet2)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet2&highlight=16,31,38)]
 
 ## Do not use the HttpContext after the request is complete
 
@@ -230,31 +230,31 @@ The `HttpContext` is only valid as long as there is an active http request in fl
 
 **Do not do this:** The following example uses async void (which is **ALWAYS** a bad practice in ASP.NET Core applications) and as a result, accesses the `HttpResponse` after the http request is complete. It will crash the process as a result.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Controllers/AsyncVoidController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncVoidController.cs?name=snippet1)]
 
 **Do this:** The following example returns a `Task` to the framework so the http request doesn't complete until the entire action completes.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Controllers/AsyncSecondController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncSecondController.cs?name=snippet1)]
 
 ## Do not capture the HttpContext in background threads
 
 **Do not do this:** The following example shows a closure is capturing the `HttpContext` from the `Controller` property. This is a bad practice since the work item could run outside of the request scope and as a result, could attempt to read fraudulent `HttpContext`.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Controllers/FireAndForgetFirstController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetFirstController.cs?name=snippet1)]
 
 **Do this:** The following example copies the data required in the background task during the request explicitly and does not reference anything from the controller itself.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Controllers/FireAndForgetFirstController.cs?name=snippet2)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetFirstController.cs?name=snippet2)]
 
 ## Do not capture services injected into the controllers on background threads
 
 **Do not do this:** The following example shows a closure is capturing the DbContext from the Controller action parameter. This is a bad practice.  The work item could run outside of the request scope and the PokemonDbContext is scoped to the request, resulting in an `ObjectDisposedException`.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Controllers/FireAndForgetSecondController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet1)]
 
 **Do this:** The following example injects an `IServiceScopeFactory` and creates a new dependency injection scope in the background thread and does not reference anything from the controller itself.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Controllers/FireAndForgetSecondController.cs?name=snippet2)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2)]
 
 ## Avoid adding headers after the HttpResponse has started
 
@@ -262,14 +262,14 @@ ASP.NET Core does not buffer the http response body. So the first time the respo
 
 **Do not do this:** This logic tries to add response headers after the response has already started.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Startup2.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.0/Startup2.cs?name=snippet1)]
 
 **Do this:** The following example checks if the http response has started before writing to the body.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Startup2.cs?name=snippet2)]
+[!code-csharp[](performance-best-practices/samples/3.0/Startup2.cs?name=snippet2)]
 
 **Do this:** The following example uses `HttpResponse.OnStarting` to set the headers before the response headers are flushed to the client.
 
 This allows you to register a callback that will be invoked just before response headers are written to the client. It gives you the ability to append or override headers just in time, without requiring knowledge of the next middleware in the pipeline.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Startup2.cs?name=snippet3)]
+[!code-csharp[](performance-best-practices/samples/3.0/Startup2.cs?name=snippet3)]
