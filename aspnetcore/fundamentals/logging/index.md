@@ -523,7 +523,7 @@ The order of placeholders, not their names, determines which parameters are used
 ```csharp
 string p1 = "parm1";
 string p2 = "parm2";
-_logger.LogInformation("Parameter values: {p1}, {p2}", p1, p2);
+_logger.LogInformation("Parameter values: {p2}, {p1}", p1, p2);
 ```
 
 This code creates a log message with the parameter values in sequence:
