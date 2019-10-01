@@ -479,7 +479,7 @@ Startup errors when hosting ASP.NET Core apps in IIS now produce richer diagnost
 
 ## Worker Service and Worker SDK
 
-.NET Core 3.0 introduces the new Worker Service app template. This template is provides a starting point for writing long running services in .NET Core.
+.NET Core 3.0 introduces the new Worker Service app template. This template provides a starting point for writing long running services in .NET Core.
 
 For more information, see:
 
