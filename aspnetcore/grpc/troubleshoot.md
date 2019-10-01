@@ -145,3 +145,5 @@ A gRPC client app making gRPC calls only needs the concrete client generated:
   <Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
 </ItemGroup>
 ```
+
+[!INCLUDE[](~/includes/gRPCazure.md)]
