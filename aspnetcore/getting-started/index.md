@@ -87,7 +87,7 @@ cd aspnetcoreapp
 dotnet watch run
 ```
 
-After the command shell indicates that the app has started, browse to [https://localhost:5001](https://localhost:5001). Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
+After the command shell indicates that the app has started, browse to [https://localhost:5001](https://localhost:5001).
 
 ## Edit a Razor page
 
