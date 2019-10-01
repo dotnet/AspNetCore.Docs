@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using performance_best_practices.Controllers;
+using System;
+using System.Threading.Tasks;
 
 namespace performance_best_practices
 {
@@ -22,9 +18,12 @@ namespace performance_best_practices
 
         public IConfiguration Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<SearchService>();
+
             services.AddControllers();
         }
 
@@ -46,49 +45,66 @@ namespace performance_best_practices
             {
                 endpoints.MapControllers();
             });
-/*
-#if BAD
-            #region snippet1
-            app.Use(async (next, context) =>
-            {
-                await context.Response.WriteAsync("Hello ");
-    
-                await next();
-    
-                // This may fail if next() already wrote to the response
-                context.Response.Headers["test"] = "value";    
-            });
-            #endregion
-#else
-            #region snippet2
-            app.Use(async (next, context) =>
-            {
-                await context.Response.WriteAsync("Hello ");
-
-                await next();
-
-                // Check if the response has already started before adding header and writing
-                if (!context.Response.HasStarted)
-                {
-                    context.Response.Headers["test"] = "value";
-                }
-            });
-            #endregion
-            #region snippet3
-            app.Use(async (next, context) =>
-            {
-                // Wire up the callback that will fire just before the response headers are sent to the client.
-                context.Response.OnStarting(() =>
-                {
-                    context.Response.Headers["someheader"] = "somevalue";
-                    return Task.CompletedTask;
-                });
-
-                await next();
-            });
-            #endregion
-#endif
-*/
         }
+    }
+
+    public class SearchService : IDisposable {
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects).
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // TODO: set large fields to null.
+
+                disposedValue = true;
+            }
+        }
+
+        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+        // ~Service1()
+        // {
+        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+        //   Dispose(false);
+        // }
+
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+            // TODO: uncomment the following line if the finalizer is overridden above.
+            // GC.SuppressFinalize(this);
+        }
+
+        public async Task<SearchResults> Search(SearchEngine engine, string query)
+        {
+            //return null;
+            throw new NotImplementedException();
+
+        }
+
+        // Task<SearchResults> 
+
+        public async Task<SearchResults> Empty()
+        {
+            throw new NotImplementedException();
+
+            //return null;
+        }
+
+        internal Task<Task<SearchResults>> SearchAsync(SearchEngine engine, string query)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

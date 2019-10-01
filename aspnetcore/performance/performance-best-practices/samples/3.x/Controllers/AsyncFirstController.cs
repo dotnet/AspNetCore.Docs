@@ -1,10 +1,10 @@
-﻿/*
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//  #define BAD
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 
 namespace performance_best_practices.Controllers
 {
@@ -15,6 +15,15 @@ namespace performance_best_practices.Controllers
     #region snippet1
     public class AsyncFirstController : Controller
     {
+        private readonly ILogger<AsyncFirstController> _logger;
+        public readonly SearchService _searchService;
+
+        public AsyncFirstController(ILogger<AsyncFirstController> logger, SearchService searchService)
+        {
+            _logger = logger;
+            _searchService = searchService;
+        }
+
         [HttpGet("/search")]
         public async Task<SearchResults> Get(string query)
         {
@@ -29,15 +38,15 @@ namespace performance_best_practices.Controllers
             var results3 = await query3;
 
             return SearchResults.Combine(results1, results2, results3);
-        }
+        }       
 
         private async Task<SearchResults> SearchAsync(SearchEngine engine, string query)
         {
-            var searchResults = SearchResults.Empty;
+            var searchResults = _searchService.Empty();
             try
             {
                 _logger.LogInformation("Starting search query from {path}.", HttpContext.Request.Path);
-                searchResults = await _searchService.SearchAsync(engine, query);
+                searchResults = _searchService.Search(engine, query);
                 _logger.LogInformation("Finishing search query from {path}.", HttpContext.Request.Path);
             }
             catch (Exception ex)
@@ -45,14 +54,25 @@ namespace performance_best_practices.Controllers
                 _logger.LogError(ex, "Failed query from {path}", HttpContext.Request.Path);
             }
 
-            return searchResults;
+            return await searchResults;
         }
     }
     #endregion
+
+
 #else
     #region snippet2
     public class AsyncFirstController : Controller
     {
+        private readonly ILogger<AsyncFirstController> _logger;
+        public readonly SearchService _searchService;
+
+        public AsyncFirstController(ILogger<AsyncFirstController> logger, SearchService searchService)
+        {
+            _logger = logger;
+            _searchService = searchService;
+        }
+
         [HttpGet("/search")]
         public async Task<SearchResults> Get(string query)
         {
@@ -72,7 +92,7 @@ namespace performance_best_practices.Controllers
 
         private async Task<SearchResults> SearchAsync(SearchEngine engine, string query, string path)
         {
-            var searchResults = SearchResults.Empty;
+            var searchResults = _searchService.Empty();
             try
             {
                 _logger.LogInformation("Starting search query from {path}.", path);
@@ -84,10 +104,33 @@ namespace performance_best_practices.Controllers
                 _logger.LogError(ex, "Failed query from {path}", path);
             }
 
-            return searchResults;
+            return await searchResults;
         }
     }
     #endregion
 #endif
+
+    public class SearchEngine
+    {
+        public static SearchEngine Bing { get; internal set; }
+
+        public static SearchEngine Google { get; internal set; }
+        public static SearchEngine DuckDuckGo { get; internal set; }
+
+    }
+
+    public class SearchResults
+    {
+        internal static SearchResults Combine(SearchResults results1, SearchResults results2, SearchResults results3)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static implicit operator Task<object>(SearchResults v)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    
 }
-*/

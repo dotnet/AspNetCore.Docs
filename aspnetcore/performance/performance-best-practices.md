@@ -262,14 +262,14 @@ ASP.NET Core does not buffer the http response body. So the first time the respo
 
 **Do not do this:** This logic tries to add response headers after the response has already started.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Startup.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.x/Startup2.cs?name=snippet1)]
 
 **Do this:** The following example checks if the http response has started before writing to the body.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Startup.cs?name=snippet2)]
+[!code-csharp[](performance-best-practices/samples/3.x/Startup2.cs?name=snippet2)]
 
 **Do this:** The following example uses `HttpResponse.OnStarting` to set the headers before the response headers are flushed to the client.
 
 This allows you to register a callback that will be invoked just before response headers are written to the client. It gives you the ability to append or override headers just in time, without requiring knowledge of the next middleware in the pipeline.
 
-[!code-csharp[](performance-best-practices/samples/3.x/Startup.cs?name=snippet3)]
+[!code-csharp[](performance-best-practices/samples/3.x/Startup2.cs?name=snippet3)]

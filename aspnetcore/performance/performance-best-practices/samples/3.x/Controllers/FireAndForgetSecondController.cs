@@ -51,10 +51,13 @@ namespace performance_best_practices.Controllers
                 using (var scope = serviceScopeFactory.CreateScope())
                 {
                     // This will use PokemonDbContext from the correct scope and the operation will succeed
+                    /* FIX THIS
                     var context = scope.ServiceProvider.GetRequiredService<PokemonDbContext>();
 
                     context.Pokemon.Add(new Pokemon());
+
                     await context.SaveChangesAsync();
+                                        */
                 }
             });
 
