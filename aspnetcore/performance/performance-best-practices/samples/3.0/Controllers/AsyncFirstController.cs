@@ -12,16 +12,7 @@ namespace performance_best_practices.Controllers
     #region snippet1
     public class AsynchBadSearchController : Controller
     {
-        private readonly ILogger<AsynchBadSearchController> _logger;
-        public readonly SearchService _searchService;
-
-        public AsynchBadSearchController(ILogger<AsynchBadSearchController> logger, 
-                                                        SearchService searchService)
-        {
-            _logger = logger;
-            _searchService = searchService;
-        }
-
+       
         [HttpGet("/search")]
         public async Task<SearchResults> Get(string query)
         {
@@ -57,28 +48,29 @@ namespace performance_best_practices.Controllers
 
             return await searchResults;
         }
-    }
-    #endregion
+        #endregion
 
-
-    #region snippet2
-    public class AsyncGoodSearchController : Controller
-    {
-        private readonly ILogger<AsyncGoodSearchController> _logger;
+        private readonly ILogger<AsynchBadSearchController> _logger;
         public readonly SearchService _searchService;
 
-        public AsyncGoodSearchController(ILogger<AsyncGoodSearchController> logger,
-                                                         SearchService searchService)
+        public AsynchBadSearchController(ILogger<AsynchBadSearchController> logger,
+                                                        SearchService searchService)
         {
             _logger = logger;
             _searchService = searchService;
         }
 
+    }
+
+    #region snippet2
+    public class AsyncGoodSearchController : Controller
+    {       
         [HttpGet("/search")]
         public async Task<SearchResults> Get(string query)
         {
             string path = HttpContext.Request.Path;
-            var query1 = SearchAsync(SearchEngine.Google, query, path);
+            var query1 = SearchAsync(SearchEngine.Google, query,
+                path);
             var query2 = SearchAsync(SearchEngine.Bing, query, path);
             var query3 = SearchAsync(SearchEngine.DuckDuckGo, query, path);
 
@@ -97,9 +89,9 @@ namespace performance_best_practices.Controllers
             var searchResults = _searchService.Empty();
             try
             {
-                _logger.LogInformation("Starting search query from {path}.", path);
-                searchResults = await _searchService.SearchAsync(engine, query
-                                                                              ,path);
+                _logger.LogInformation("Starting search query from {path}.",
+                    path);
+                searchResults = await _searchService.SearchAsync(engine, query);
                 _logger.LogInformation("Finishing search query from {path}.", path);
             }
             catch (Exception ex)
@@ -109,8 +101,20 @@ namespace performance_best_practices.Controllers
 
             return await searchResults;
         }
+
+        #endregion
+
+        private readonly ILogger<AsyncGoodSearchController> _logger;
+        public readonly SearchService _searchService;
+
+        public AsyncGoodSearchController(ILogger<AsyncGoodSearchController> logger,
+                                                         SearchService searchService)
+        {
+            _logger = logger;
+            _searchService = searchService;
+        }
+
     }
-    #endregion
 
     public class SearchEngine
     {

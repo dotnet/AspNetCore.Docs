@@ -100,7 +100,7 @@ namespace performance_best_practices
             //return null;
         }
 
-        internal Task<Task<SearchResults>> SearchAsync(SearchEngine engine, string query, string path)
+        internal Task<Task<SearchResults>> SearchAsync(SearchEngine engine, string query)
         {
             throw new NotImplementedException();
         }

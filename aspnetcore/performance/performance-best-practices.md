@@ -214,15 +214,15 @@ The preceding logic will likely capture a null or fraudulent HttpContext in the 
 
 ## Do not access HttpContext from multiple threads
 
-`HttpContext` is *NOT* thread-safe. Accessing `HttpContext` from multiple threads in parallel can cause corruption. The corruption can result in undefined behavior, such as hangs, crashes, and data corruption.
+`HttpContext` is *NOT* thread-safe. Accessing `HttpContext` from multiple threads in parallel can result in undefined behavior such as hangs, crashes, and data corruption.
 
 **Do not do this:** The following example makes three parallel requests and logs the incoming request path before and after the outgoing http request. The request path is accessed from multiple threads, potentially in parallel.
 
-[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet1&highlight=25,28)]
 
 **Do this:** The following example copies all data from the incoming request before making the three parallel requests.
 
-[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet2&highlight=16,31,38)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet2&highlight=6,8,28)]
 
 ## Do not use the HttpContext after the request is complete
 
