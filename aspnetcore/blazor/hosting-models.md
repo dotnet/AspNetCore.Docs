@@ -5,7 +5,7 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 10/02/2019
 uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
@@ -129,9 +129,12 @@ Blazor Server apps require an active SignalR connection to the server. If the co
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry. To customize the UI, define an element with `components-reconnect-modal` as its `id` in the *_Host.cshtml* Razor page. The client updates this element with one of the following CSS classes based on the state of the connection:
 
-* `components-reconnect-show` &ndash; Show the UI to indicate the connection was lost and the client is attempting to reconnect.
+* `components-reconnect-show` &ndash; Show the UI to indicate a lost connection and the client is attempting to reconnect.
 * `components-reconnect-hide` &ndash; The client has an active connection, hide the UI.
-* `components-reconnect-failed` &ndash; Reconnection failed. To attempt reconnection again, call `window.Blazor.reconnect()`.
+* `components-reconnect-failed` &ndash; Reconnection failed, probably due to a network failure. To attempt reconnection, call `window.Blazor.reconnect()`.
+* `components-reconnect-rejected` &ndash; Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is gone. To attempt reconnection, call `window.Blazor.reconnect()`. This connection state may result when:
+  * A crash in the circuit (server-side code) occurs.
+  * The client is disconnected long enough for the server to drop the user's state. Instances of components that the user was interacting with are disposed.
 
 ### Stateful reconnection after prerendering
 
