@@ -594,16 +594,16 @@ In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razo
 ```csharp
 services.AddRazorPages()
     .AddRazorPagesOptions(options =>
-        {
-            options.Conventions
-                .AddPageApplicationModelConvention("/FileUploadPage",
-                    model.Filters.Add(
-                        new RequestFormLimitsAttribute()
-                        {
-                            // Set the limit to 256 MB
-                            MultipartBodyLengthLimit = 268435456
-                        });
-        });
+    {
+        options.Conventions
+            .AddPageApplicationModelConvention("/FileUploadPage",
+                model.Filters.Add(
+                    new RequestFormLimitsAttribute()
+                    {
+                        // Set the limit to 256 MB
+                        MultipartBodyLengthLimit = 268435456
+                    });
+    });
 ```
 
 In a Razor Pages app or an MVC app, apply the filter to the page model or action method:
@@ -642,16 +642,16 @@ In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razo
 ```csharp
 services.AddRazorPages()
     .AddRazorPagesOptions(options =>
-        {
-            options.Conventions
-                .AddPageApplicationModelConvention("/FileUploadPage",
-                    model =>
-                    {
-                        // Handle requests up to 50 MB
-                        model.Filters.Add(
-                            new RequestSizeLimitAttribute(52428800));
-                    });
-        });
+    {
+        options.Conventions
+            .AddPageApplicationModelConvention("/FileUploadPage",
+                model =>
+                {
+                    // Handle requests up to 50 MB
+                    model.Filters.Add(
+                        new RequestSizeLimitAttribute(52428800));
+                });
+    });
 ```
 
 In a Razor pages app or an MVC app, apply the filter to the page handler class or action method:
@@ -1289,7 +1289,6 @@ Use a matching name for the parameter of the C# method (`battlePlans`):
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-    services.AddMvc();
     services.Configure<FormOptions>(options =>
     {
         // Set the limit to 256 MB
@@ -1305,16 +1304,16 @@ In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razo
 ```csharp
 services.AddMvc()
     .AddRazorPagesOptions(options =>
-        {
-            options.Conventions
-                .AddPageApplicationModelConvention("/FileUploadPage",
-                    model.Filters.Add(
-                        new RequestFormLimitsAttribute()
-                        {
-                            // Set the limit to 256 MB
-                            MultipartBodyLengthLimit = 268435456
-                        });
-        })
+    {
+        options.Conventions
+            .AddPageApplicationModelConvention("/FileUploadPage",
+                model.Filters.Add(
+                    new RequestFormLimitsAttribute()
+                    {
+                        // Set the limit to 256 MB
+                        MultipartBodyLengthLimit = 268435456
+                    });
+    })
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
@@ -1351,16 +1350,16 @@ In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razo
 ```csharp
 services.AddMvc()
     .AddRazorPagesOptions(options =>
-        {
-            options.Conventions
-                .AddPageApplicationModelConvention("/FileUploadPage",
-                    model =>
-                    {
-                        // Handle requests up to 50 MB
-                        model.Filters.Add(
-                            new RequestSizeLimitAttribute(52428800));
-                    });
-        })
+    {
+        options.Conventions
+            .AddPageApplicationModelConvention("/FileUploadPage",
+                model =>
+                {
+                    // Handle requests up to 50 MB
+                    model.Filters.Add(
+                        new RequestSizeLimitAttribute(52428800));
+                });
+    })
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
