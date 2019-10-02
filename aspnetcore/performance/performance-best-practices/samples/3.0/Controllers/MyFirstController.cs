@@ -1,34 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
-/*
 namespace performance_best_practices.Controllers
 {
-[Route("api/[controller]")]
-[ApiController]
+    [Route("api/[controller]")]
+    [ApiController]
 
-#if BAD
     #region snippet1
-    public class MyFirstController : Controller
+    public class BadStreamReaderController : Controller
     {
         [HttpGet("/pokemon")]
         public ActionResult<PokemonData> Get()
         {
             // This synchronously reads the entire http request body into memory.
-            // If the client is slowly uploading, we're doing sync over async because Kestrel does *NOT* support synchronous reads.
+            // If the client is slowly uploading, app is doing sync over async because 
+            // Kestrel does *NOT* support synchronous reads.
             var json = new StreamReader(Request.Body).ReadToEnd();
 
-            return JsonConvert.DeserializeObject<PokemonData>(json);
+            return JsonSerializer.Deserialize<PokemonData>(json);
         }
     }
     #endregion
-#else
+
     #region snippet2
-    public class MyFirstController : Controller
+    public class GoodStreamReaderController : Controller
     {
         [HttpGet("/pokemon")]
         public async Task<ActionResult<PokemonData>> Get()
@@ -36,11 +33,13 @@ namespace performance_best_practices.Controllers
             // This asynchronously reads the entire http request body into memory.
             var json = await new StreamReader(Request.Body).ReadToEndAsync();
 
-            return JsonConvert.DeserializeObject<PokemonData>(json);
+            return JsonSerializer.Deserialize<PokemonData>(json);
         }
+
     }
     #endregion
-#endif
-
+    public class PokemonData
+    {
+    }
 }
-*/
+

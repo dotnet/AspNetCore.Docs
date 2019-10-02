@@ -134,9 +134,6 @@ Recommendations:
 
 Each new release of ASP.NET Core includes performance improvements. Optimizations in .NET Core and ASP.NET Core mean that newer versions generally outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [`Span<T>`](https://msdn.microsoft.com/magazine/mt814808.aspx). ASP.NET Core 2.2 added support for HTTP/2. If performance is a priority, consider upgrading to the current version of ASP.NET Core.
 
-<!-- TODO review link and taking advantage of new [performance features](#TBD)
-Maybe skip this TBD link as each version will have perf improvements -->
-
 ## Minimize exceptions
 
 Exceptions should be rare. Throwing and catching exceptions is slow relative to other code flow patterns. Because of this, exceptions shouldn't be used to control normal program flow.
@@ -149,34 +146,41 @@ Recommendations:
 
 App diagnostic tools, such as Application Insights, can help to identify common exceptions in an app that may affect performance.
 
-## Avoid using synchronous Read/Write overloads on HttpRequest.Body and HttpResponse.Body
+## Avoid synchronous Read or Write on HttpRequest/HttpResponse Body
 
-All IO in ASP.NET Core is asynchronous. Servers implement the `Stream` interface, which has both synchronous and asynchronous overloads. The asynchronous ones should be preferred to avoid blocking thread pool threads. This could lead to thread pool starvation.
+All IO in ASP.NET Core is asynchronous. Servers implement the `Stream` interface, which has both synchronous and asynchronous overloads. The asynchronous ones should be preferred to avoid blocking thread pool threads. Blocking threads can lead to thread pool starvation.
 
-**Do not do this:** The following example uses the `StreamReader.ReadToEnd`. It blocks the current thread to wait for the result. This is an example of [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
+**Do not do this:** The following example uses the <xref:System.IO.StreamReader.ReadToEnd*>. It blocks the current thread to wait for the result. This is an example of [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
 ).
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet1)]
 
-**Do this:** The following example uses `StreamReader.ReadToEndAsync` and does not block the thread while reading.
+**Do this:** The following example uses <xref:System.IO.StreamReader.ReadToEndAsync*> and does not block the thread while reading.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet2)]
 
-[!NOTE]
-If the request is large, it could lead to out of memory problems, which can result in a Denial Of Service. See [Avoid reading large request bodies or response bodies into memory](#avoid-reading-large-request-bodies-or-response-bodies-into-memory) for more information.**
+> [!WARNING]
+> If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  or more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
 
-## Prefer using HttpRequest.ReadAsFormAsync() over HttpRequest.Form
+## Prefer ReadAsFormAsync over Request.Form
+<!-- TO Review required. I change all the API's here from original -->
 
-Use `HttpRequest.ReadAsFormAsync()` instead of `HttpRequest.Form`. The only time it is safe to use `HttpRequest.Form` is when the form has already been read by a call to `HttpRequest.ReadAsFormAsync()` and the cached form value is being read using `HttpRequest.Form`.
+Use `HttpContext.Request.ReadFormAsync` instead of `HttpContext.Request.Form`.
+`HttpContext.Request.Form` can be safely read only with the following conditions:
 
-**Do not do this:** The following example uses `HttpRequest.Form`.   `HttpRequest.Form` uses [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
+* The form has been read by a call to `ReadAsFormAsync`, and
+* The cached form value is being read using `HttpContext.Request.Form`
+
+**Do not do this:** The following example uses `HttpContext.Request.Form`.  `HttpContext.Request.Form` uses [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
 ) and can lead to thread pool starvation.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MySecondController.cs?name=snippet1)]
 
-**Do this:** The following example uses `HttpRequest.ReadAsFormAsync()` to read the form body asynchronously.
+**Do this:** The following example uses `HttpContext.Request.ReadFormAsync` to read the form body asynchronously.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MySecondController.cs?name=snippet2)]
+
+<a name="arlb"></a>
 
 ## Avoid reading large request bodies or response bodies into memory
 
@@ -195,8 +199,8 @@ Naively storing a large request or response body into a single `byte[]` or `stri
 
 When using a serializer/de-serializer that only supports synchronous reads and writes (like JSON.NET) then chose to buffer the data into memory before passing data into the serializer/de-serializer.
 
-[!NOTE]
-If the request is large, it could lead to out of memory problems, which can result in a Denial Of Service. See [Avoid reading large request bodies or response bodies into memory](#avoid-reading-large-request-bodies-or-response-bodies-into-memory) for more information.**
+> [!WARNING]
+> If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  or more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
 
 ## Do not store IHttpContextAccessor.HttpContext in a field
 
