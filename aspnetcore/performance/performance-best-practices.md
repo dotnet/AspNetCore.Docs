@@ -256,7 +256,7 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 * Accesses the `HttpResponse` after the HTTP request is complete.
 * Crashes the process.
 
-[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncVoidController.cs?name=snippet1)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncBadVoidController.cs?name=snippet1)]
 
 **Do this:** The following example returns a `Task` to the framework so the HTTP request doesn't complete until the action completes.
 
