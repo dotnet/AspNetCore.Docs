@@ -184,35 +184,50 @@ Use `HttpContext.Request.ReadFormAsync` instead of `HttpContext.Request.Form`.
 
 ## Avoid reading large request bodies or response bodies into memory
 
-In .NET, any single object allocation greater than 85 KB ends up in the large object heap ([LOH](https://blogs.msdn.microsoft.com/maoni/2006/04/19/large-object-heap/)). Large objects are expensive in two ways:
+In .NET, every object allocation greater than 85 KB ends up in the large object heap ([LOH](https://blogs.msdn.microsoft.com/maoni/2006/04/19/large-object-heap/)). Large objects are expensive in two ways:
 
-* The allocation cost is high since the memory for a newly allocated large object has to be cleared. The CLR guarantees that memory for all newly allocated objects is cleared.
-* LOH is collected with the rest of the heap (it requires a "full garbage collection" or Gen2 collection)
+* The allocation cost is high because the memory for a newly allocated large object has to be cleared. The CLR guarantees that memory for all newly allocated objects is cleared.
+* LOH is collected with the rest of the heap. LOH requires a "full garbage collection" or Gen2 collection.
 
 This [blog post](https://adamsitnik.com/Array-Pool/#the-problem) describes the problem succinctly:
 
-> When a large object is allocated, it’s marked as Gen 2 object. Not Gen 0 as for small objects. The consequences are that if you run out of memory in LOH, GC cleans up whole managed heap, not only LOH. So it cleans up Gen 0, Gen 1 and Gen 2 including LOH. This is called full garbage collection and is the most time-consuming garbage collection. For many applications, it can be acceptable. But definitely not for high-performance web servers, where few big memory buffers are needed to handle an average web request (read from a socket, decompress, decode JSON & more).
+> When a large object is allocated, it’s marked as Gen 2 object. Not Gen 0 as for small objects. The consequences are that if you run out of memory in LOH, GC cleans up the whole managed heap, not only LOH. So it cleans up Gen 0, Gen 1 and Gen 2 including LOH. This is called full garbage collection and is the most time-consuming garbage collection. For many applications, it can be acceptable. But definitely not for high-performance web servers, where few big memory buffers are needed to handle an average web request (read from a socket, decompress, decode JSON & more).
 
-Naively storing a large request or response body into a single `byte[]` or `string` may result in quickly running out of space in the LOH and may cause performance issues for your application because of full GCs running. 
+Naively storing a large request or response body into a single `byte[]` or `string`:
+
+* May result in quickly running out of space in the LOH.
+* May cause performance issues for the app because of full GCs running.
 
 ## Use buffered and synchronous reads and writes as an alternative to asynchronous reading and writing
 
-When using a serializer/de-serializer that only supports synchronous reads and writes (like JSON.NET) then chose to buffer the data into memory before passing data into the serializer/de-serializer.
+When using a serializer/de-serializer that only supports synchronous reads and writes:
+
+* Chose to buffer the data into memory before passing data into the serializer/de-serializer.
+* [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)) is only synchronous.
 
 > [!WARNING]
 > If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  or more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
 
+ASP.NET Core 3.0 uses <xref:System.Text.Json> by default for JSON serialization. <xref:System.Text.Json>:
+
+* Reads and writes JSON asynchronously.
+* Is optimized for UTF-8 text.
+* Typically higher performance than `Newtonsoft.Json`.
+
 ## Do not store IHttpContextAccessor.HttpContext in a field
 
-The `IHttpContextAccessor.HttpContext` will return the `HttpContext` of the active request when accessed from the request thread. The `IHttpContextAccessor.HttpContext` should not be stored in a field or variable.
+The [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext) returns the `HttpContext` of the active request when accessed from the request thread. The `IHttpContextAccessor.HttpContext` should **not** be stored in a field or variable.
 
-**Do not do this:** The following example stores the HttpContext in a field then attempts to use it later.
+**Do not do this:** The following example stores the `HttpContext` in a field, and then attempts to use it later.
 
 [!code-csharp[](performance-best-practices/samples/3.0/MyType.cs?name=snippet1)]
 
-The preceding logic will likely capture a null or fraudulent HttpContext in the constructor for later use.
+The preceding code frequently captures a null or incorrect `HttpContext` in the constructor.
 
-**Do this:** The following example stores the IHttpContextAccessor itself in a field and uses the HttpContext field at the correct time (checking for null).
+**Do this:** The following example:
+
+* Stores the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in a field.
+* Uses the `HttpContext` field at the correct time and checks for `null`.
 
 [!code-csharp[](performance-best-practices/samples/3.0/MyType.cs?name=snippet2)]
 
@@ -222,21 +237,28 @@ The preceding logic will likely capture a null or fraudulent HttpContext in the 
 
 **Do not do this:** The following example makes three parallel requests and logs the incoming request path before and after the outgoing http request. The request path is accessed from multiple threads, potentially in parallel.
 
-[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet1&highlight=25,28)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet1&highlight=26,29)]
 
 **Do this:** The following example copies all data from the incoming request before making the three parallel requests.
 
-[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet2&highlight=6,8,28)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet2&highlight=6,8,22,28)]
 
 ## Do not use the HttpContext after the request is complete
 
-The `HttpContext` is only valid as long as there is an active http request in flight. The entire ASP.NET Core pipeline is an asynchronous chain of delegates that executes every request. When the `Task` returned from this chain completes, the `HttpContext` is recycled. 
+<!-- Review, original usess in flight, which won't MT (Machine translate) 
+`HttpContext` is only valid as long as there is an active HTTP request in flight.
+-->
+`HttpContext` is only valid as long as there is an active HTTP request in the ASP.NET Core pipeline. The entire ASP.NET Core pipeline is an asynchronous chain of delegates that executes every request. When the `Task` returned from this chain completes, the `HttpContext` is recycled.
 
-**Do not do this:** The following example uses async void (which is **ALWAYS** a bad practice in ASP.NET Core applications) and as a result, accesses the `HttpResponse` after the http request is complete. It will crash the process as a result.
+**Do not do this:** The following example uses `async void`:
+
+* Which is **ALWAYS** a bad practice in ASP.NET Core apps.
+* Accesses the `HttpResponse` after the HTTP request is complete.
+* Crashes the process.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncVoidController.cs?name=snippet1)]
 
-**Do this:** The following example returns a `Task` to the framework so the http request doesn't complete until the entire action completes.
+**Do this:** The following example returns a `Task` to the framework so the HTTP request doesn't complete until the action completes.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncSecondController.cs?name=snippet1)]
 

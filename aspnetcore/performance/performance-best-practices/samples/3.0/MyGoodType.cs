@@ -1,17 +1,14 @@
-﻿/*
+﻿
+using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace performance_best_practices
 {
-    #if BAD
     #region snippet1
-    public class MyType
+    public class MyBadType
     {
         private readonly HttpContext _context;
-        public MyType(IHttpContextAccessor accessor)
+        public MyBadType(IHttpContextAccessor accessor)
         {
             _context = accessor.HttpContext;
         }
@@ -25,12 +22,11 @@ namespace performance_best_practices
         }
     }
     #endregion
-    #else
     #region snippet2
-    public class MyType
+    public class MyGoodType
     {
         private readonly IHttpContextAccessor _accessor;
-        public MyType(IHttpContextAccessor accessor)
+        public MyGoodType(IHttpContextAccessor accessor)
         {
             _accessor = accessor;
         }
@@ -45,6 +41,4 @@ namespace performance_best_practices
         }
     }
     #endregion
-    #endif
 }
-*/

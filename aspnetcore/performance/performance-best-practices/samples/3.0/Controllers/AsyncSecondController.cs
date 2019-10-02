@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
-#if BAD
+
 namespace performance_best_practices.Controllers
 {
-#region snippet1
-    public class AsyncSecondController : Controller
+    #region snippet1
+    public class AsyncGoodTaskController : Controller
     {
         [HttpGet("/async")]
         public async Task Get()
@@ -19,6 +16,5 @@ namespace performance_best_practices.Controllers
             await Response.WriteAsync("Hello World");
         }
     }
-#endregion
+    #endregion
 }
-#endif
