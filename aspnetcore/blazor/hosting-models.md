@@ -132,11 +132,9 @@ When the client detects that the connection has been lost, a default UI is displ
 * `components-reconnect-show` &ndash; Show the UI to indicate a lost connection and the client is attempting to reconnect.
 * `components-reconnect-hide` &ndash; The client has an active connection, hide the UI.
 * `components-reconnect-failed` &ndash; Reconnection failed, probably due to a network failure. To attempt reconnection, call `window.Blazor.reconnect()`.
-* `components-reconnect-rejected` &ndash; Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is gone. This connection state may result when:
+* `components-reconnect-rejected` &ndash; Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is gone. To attempt reconnection, call `window.Blazor.reconnect()`. This connection state may result when:
   * A crash in the circuit (server-side code) occurs.
   * The client is disconnected long enough for the server to drop the user's state. Instances of components that the user was interacting with are disposed.
-  
-  To attempt reconnection, call `window.Blazor.reconnect()`.
 
 ### Stateful reconnection after prerendering
 
