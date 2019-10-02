@@ -131,7 +131,7 @@ When the client detects that the connection has been lost, a default UI is displ
 
 * `components-reconnect-show` &ndash; Show the UI to indicate the connection was lost and the client is attempting to reconnect.
 * `components-reconnect-hide` &ndash; The client has an active connection, hide the UI.
-* `components-reconnect-failed` &ndash; Reconnection failed. To attempt reconnection again, call `window.Blazor.reconnect()`.
+* `components-reconnect-rejected` &ndash; Reconnection rejected. To attempt reconnection again, call `window.Blazor.reconnect()`.
 
 ### Stateful reconnection after prerendering
 
