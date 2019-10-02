@@ -9,8 +9,6 @@ namespace BackgroundTasksSample.Services
     #region snippet1
     public class QueuedHostedService : BackgroundService
     {
-        private CancellationTokenSource _shutdown = 
-            new CancellationTokenSource();
         private Task _backgroundTask;
         private readonly ILogger<QueuedHostedService> _logger;
 
@@ -32,25 +30,22 @@ namespace BackgroundTasksSample.Services
 
             _backgroundTask = Task.Run(async () =>
                 {
-                    while (!stoppingToken.IsCancellationRequested)
-                    {
-                        await BackgroundProcessing();
-                    }
+                    await BackgroundProcessing(stoppingToken);
                 }, stoppingToken);
 
             await _backgroundTask;
         }
 
-        private async Task BackgroundProcessing()
+        private async Task BackgroundProcessing(CancellationToken stoppingToken)
         {
-            while (!_shutdown.IsCancellationRequested)
+            while (!stoppingToken.IsCancellationRequested)
             {
                 var workItem = 
-                    await TaskQueue.DequeueAsync(_shutdown.Token);
+                    await TaskQueue.DequeueAsync(stoppingToken);
 
                 try
                 {
-                    await workItem(_shutdown.Token);
+                    await workItem(stoppingToken);
                 }
                 catch (Exception ex)
                 {
@@ -64,10 +59,10 @@ namespace BackgroundTasksSample.Services
         {
             _logger.LogInformation("Queued Hosted Service is stopping.");
 
-            _shutdown.Cancel();
-
             await Task.WhenAny(_backgroundTask, 
                     Task.Delay(Timeout.Infinite, stoppingToken));
+
+            await base.StopAsync(stoppingToken);
         }
     }
     #endregion
