@@ -1,38 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
-/*
+
 namespace performance_best_practices.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-#if BAD
-    public class FireAndForgetFirstController : Controller
+    public class FireAndForgetBadController : Controller
     {
-    #region snippet1
+        #region snippet1
         [HttpGet("/fire-and-forget-1")]
         public IActionResult FireAndForget1()
         {
-            _ = Task.Run(() =>
+            _ = Task.Run(async () =>
             {
                 await Task.Delay(1000);
 
-                // This closure is capturing the context from the Controller property. This is bad because this work item could run
-                // outside of the http request leading to reading of bogus data.
+                // This closure is capturing the context from the Controller property. This
+                // is bad because this work item could run outside of the HTTP request 
+                // leading to reading of incorrect data.
                 var path = HttpContext.Request.Path;
                 Log(path);
             });
 
             return Accepted();
         }
-    #endregion
+        #endregion
+
+        private void Log(PathString path)
+        {
+            throw new NotImplementedException();
+        }
     }
-#else
-    public class FireAndForgetFirstController : Controller
+
+    [Route("api/[controller]")]
+    [ApiController]
+    public class FireAndForgetGoodController : Controller
     {
         #region snippet2
         [HttpGet("/fire-and-forget-3")]
@@ -43,14 +48,18 @@ namespace performance_best_practices.Controllers
             {
                 await Task.Delay(1000);
 
-                // This captures just the path
+                // This captures just the path.
                 Log(path);
             });
 
             return Accepted();
         }
         #endregion
+        private void Log(PathString path)
+        {
+            throw new NotImplementedException();
+        }
     }
-#endif
+
 }
-*/
+

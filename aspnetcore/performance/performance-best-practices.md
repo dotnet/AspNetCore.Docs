@@ -235,7 +235,7 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 
 `HttpContext` is *NOT* thread-safe. Accessing `HttpContext` from multiple threads in parallel can result in undefined behavior such as hangs, crashes, and data corruption.
 
-**Do not do this:** The following example makes three parallel requests and logs the incoming request path before and after the outgoing http request. The request path is accessed from multiple threads, potentially in parallel.
+**Do not do this:** The following example makes three parallel requests and logs the incoming request path before and after the outgoing HTTP request. The request path is accessed from multiple threads, potentially in parallel.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet1&highlight=26,29)]
 
@@ -245,8 +245,8 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 
 ## Do not use the HttpContext after the request is complete
 
-<!-- Review, original usess in flight, which won't MT (Machine translate) 
-`HttpContext` is only valid as long as there is an active HTTP request in flight.
+<!-- Review, original uses `in flight`, which won't MT (Machine translate) 
+`HttpContext` is only valid as long as there is an active HTTP request `in flight`.
 -->
 `HttpContext` is only valid as long as there is an active HTTP request in the ASP.NET Core pipeline. The entire ASP.NET Core pipeline is an asynchronous chain of delegates that executes every request. When the `Task` returned from this chain completes, the `HttpContext` is recycled.
 
@@ -264,38 +264,62 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 
 ## Do not capture the HttpContext in background threads
 
-**Do not do this:** The following example shows a closure is capturing the `HttpContext` from the `Controller` property. This is a bad practice since the work item could run outside of the request scope and as a result, could attempt to read fraudulent `HttpContext`.
+**Do not do this:** The following example shows a closure is capturing the `HttpContext` from the `Controller` property. This is a bad practice because the work item could:
+
+* Run outside of the request scope.
+* Attempt to read the wrong `HttpContext`.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetFirstController.cs?name=snippet1)]
 
-**Do this:** The following example copies the data required in the background task during the request explicitly and does not reference anything from the controller itself.
+**Do this:** The following example:
+
+* Copies the data required in the background task during the request.
+* Doesn't reference anything from the controller.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetFirstController.cs?name=snippet2)]
 
 ## Do not capture services injected into the controllers on background threads
 
-**Do not do this:** The following example shows a closure is capturing the DbContext from the Controller action parameter. This is a bad practice.  The work item could run outside of the request scope and the PokemonDbContext is scoped to the request, resulting in an `ObjectDisposedException`.
+**Do not do this:** The following example shows a closure is capturing the `DbContext` from the `Controller` action parameter. This is a bad practice.  The work item could run outside of the request scope. The `PokemonDbContext` is scoped to the request, resulting in an `ObjectDisposedException`.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet1)]
 
-**Do this:** The following example injects an `IServiceScopeFactory` and creates a new dependency injection scope in the background thread and does not reference anything from the controller itself.
+**Do this:** The following example:
+
+* Injects an <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory> in order to create a scope in the background work item. `IServiceScopeFactory` is a singleton.
+* Creates a new dependency injection scope in the background thread.
+* Doesn't reference anything from the controller.
+* Doesn't capture the `PokemonDbContext` from the incoming request.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2)]
 
+The following highlighted code:
+
+* Creates a scope for the lifetime of the background operation and resolves services from it.
+* Uses `PokemonDbContext` from the correct scope.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2&highlight=12-19)]
+
 ## Avoid adding headers after the HttpResponse has started
 
-ASP.NET Core does not buffer the http response body. So the first time the response is written, the headers are sent along with that chunk of the body to the client. When this happens, it's no longer possible to change response headers.
+ASP.NET Core does not buffer the HTTP response body. The first time the response is written:
 
-**Do not do this:** This logic tries to add response headers after the response has already started.
+* The headers are sent along with that chunk of the body to the client.
+* It's no longer possible to change response headers.
 
-[!code-csharp[](performance-best-practices/samples/3.0/Startup2.cs?name=snippet1)]
+**Do not do this:** The following example checks if the http response has started before writing to the body
 
-**Do this:** The following example checks if the http response has started before writing to the body.
+[!code-csharp[](performance-best-practices/samples/3.0/Startup22.cs?name=snippet1)]
 
-[!code-csharp[](performance-best-practices/samples/3.0/Startup2.cs?name=snippet2)]
+**Do this:** The following example checks if the HTTP response has started before writing to the body.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Startup22.cs?name=snippet2)]
 
 **Do this:** The following example uses `HttpResponse.OnStarting` to set the headers before the response headers are flushed to the client.
 
-This allows you to register a callback that will be invoked just before response headers are written to the client. It gives you the ability to append or override headers just in time, without requiring knowledge of the next middleware in the pipeline.
+Checking if the response has not started allows registering a callback that will be invoked just before response headers are written. Checking if the response has not started:
 
-[!code-csharp[](performance-best-practices/samples/3.0/Startup2.cs?name=snippet3)]
+* Provides the ability to append or override headers just in time.
+* Doesn't require knowledge of the next middleware in the pipeline.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Startup22.cs?name=snippet3)]
