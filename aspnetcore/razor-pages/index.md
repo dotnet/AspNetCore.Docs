@@ -180,7 +180,7 @@ The `Customer` property uses [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.Bi
 
 [!code-cs[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=15-16)]
 
-`[BindProperty]` should **not** be used on models containing properties that should not be changed by the client. For more information, see [Overposting](xref:data/ef-rp/crud#overposting)
+`[BindProperty]` should **not** be used on models containing properties that should not be changed by the client. For more information, see [Overposting](xref:data/ef-rp/crud#overposting).
 
 Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to properties removes the need to writing code to convert HTTP data to the model type. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.
 
@@ -207,7 +207,7 @@ The *Index.cshtml* file contains the following markup:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=21)]
 
-The `<a /a>`[Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `https://localhost:5001/Edit/1`. [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
+The `<a /a>` [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `https://localhost:5001/Edit/1`. [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
 
 The *Index.cshtml* file contains markup to create a delete button for each customer contact:
 
@@ -293,7 +293,7 @@ Consider the following `Movie` model:
 
 The validation attributes specify behavior to enforce on the model properties they're applied to:
 
-* The `Required` and `MinimumLength` attributes indicate that a property must have a value; but nothing prevents a user from entering white space to satisfy this validation.
+* The `Required` and `MinimumLength` attributes indicate that a property must have a value, but nothing prevents a user from entering white space to satisfy this validation.
 * The `RegularExpression` attribute is used to limit what characters can be input. In the preceding code, "Genre":
 
   * Must only use letters.
@@ -332,13 +332,13 @@ Razor Pages falls back to calling the `OnGet` handler if no `OnHead` handler is 
 
 ## XSRF/CSRF and Razor Pages
 
-Razor Pages are protected by[Antiforgery validation](xref:security/anti-request-forgery). The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements.
+Razor Pages are protected by [Antiforgery validation](xref:security/anti-request-forgery). The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements.
 
 <a name="layout"></a>
 
 ## Using Layouts, partials, templates, and Tag Helpers with Razor Pages
 
-Pages work with all the capabilities of the Razor view engine. Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml*, *_ViewImports.cshtml* work in the same way they do for conventional Razor views.
+Pages work with all the capabilities of the Razor view engine. Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml*, and *_ViewImports.cshtml* work in the same way they do for conventional Razor views.
 
 Let's declutter this page by taking advantage of some of those capabilities.
 
@@ -352,7 +352,7 @@ The [Layout](xref:mvc/views/layout):
 * Imports HTML structures such as JavaScript and stylesheets.
 * The contents of the Razor page are rendered where `@RenderBody()` is called.
 
-For more information, see [layout page](xref:mvc/views/layout)..
+For more information, see [layout page](xref:mvc/views/layout).
 
 The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml*:
 
@@ -470,7 +470,7 @@ For more information, see <xref:mvc/controllers/areas> and <xref:razor-pages/raz
 
 ## ViewData attribute
 
-Data can be passed to a page with <xref:Microsoft.AspNetCore.Mvc.ViewDataAttribute>. Properties with the [ViewData] attribute have their values stored and loaded from the <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary>.
+Data can be passed to a page with <xref:Microsoft.AspNetCore.Mvc.ViewDataAttribute>. Properties with the `[ViewData]` attribute have their values stored and loaded from the <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary>.
 
 In the following example, the `AboutModel` applies the `[ViewData]` attribute to the `Title` property:
 
@@ -523,7 +523,7 @@ The *Pages/Customers/Index.cshtml.cs* page model applies the `[TempData]` attrib
 public string Message { get; set; }
 ```
 
-For more information, see [TempData](xref:fundamentals/app-state#tempdata) .
+For more information, see [TempData](xref:fundamentals/app-state#tempdata).
 
 <a name="mhpp"></a>
 
@@ -575,7 +575,7 @@ To configure advanced options, use the extension method <xref:Microsoft.Extensio
 
 Use the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> to set the root directory for pages, or add application model conventions for pages. For more information on conventions, see [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization).
 
-To precompile views, see [Razor view compilation](xref:mvc/views/view-compilation) .
+To precompile views, see [Razor view compilation](xref:mvc/views/view-compilation).
 
 ### Specify that Razor Pages are at the content root
 
@@ -591,8 +591,8 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 
 ## Additional resources
 
-* See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.
-* [Download or view sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/index/3.0sample).
+* See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction
+* [Download or view sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/index/3.0sample)
 * <xref:index>
 * <xref:mvc/views/razor>
 * <xref:mvc/controllers/areas>
