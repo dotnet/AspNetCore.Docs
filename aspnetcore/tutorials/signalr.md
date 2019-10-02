@@ -4,7 +4,7 @@ author: bradygaster
 description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 09/24/2019
+ms.date: 10/02/2019
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
@@ -92,8 +92,7 @@ The SignalR server library is included in the ASP.NET Core 3.0 shared framework.
 
 * In the **Add Client-Side Library** dialog, for **Provider** select **unpkg**.
 
-* For **Library**, enter `@aspnet/signalr@next`.
-<!-- when 3.0 is released, change @next to @latest -->
+* For **Library**, enter `@aspnet/signalr@latest`.
 
 * Select **Choose specific files**, expand the *dist/browser* folder, and select *signalr.js* and *signalr.min.js*.
 
@@ -169,7 +168,7 @@ A *hub* is a class that serves as a high-level pipeline that handles client-serv
 
 * In the *Hubs* folder, create a *ChatHub.cs* file with the following code:
 
-  [!code-csharp[Startup](signalr/sample-snapshot/3.x/ChatHub.cs)]
+  [!code-csharp[ChatHub](signalr/sample-snapshot/3.x/ChatHub.cs)]
 
   The `ChatHub` class inherits from the SignalR `Hub` class. The `Hub` class manages connections, groups, and messaging.
 
@@ -181,7 +180,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 * Add the following highlighted code to the *Startup.cs* file.
 
-  [!code-csharp[Startup](signalr/sample-snapshot/3.x/Startup.cs?highlight=6,30,58)]
+  [!code-csharp[Startup](signalr/sample-snapshot/3.x/Startup.cs?highlight=11,28,55)]
 
   These changes add SignalR to the ASP.NET Core dependency injection and routing systems.
 
@@ -199,7 +198,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 * In the *wwwroot/js* folder, create a *chat.js* file with the following code:
 
-  [!code-javascript[Index](signalr/sample-snapshot/3.x/chat.js)]
+  [!code-javascript[chat](signalr/sample-snapshot/3.x/chat.js)]
 
   The preceding code:
 
@@ -412,7 +411,7 @@ A *hub* is a class that serves as a high-level pipeline that handles client-serv
 
 * In the *Hubs* folder, create a *ChatHub.cs* file with the following code:
 
-  [!code-csharp[Startup](signalr/sample-snapshot/2.x/ChatHub.cs)]
+  [!code-csharp[ChatHub](signalr/sample-snapshot/2.x/ChatHub.cs)]
 
   The `ChatHub` class inherits from the SignalR `Hub` class. The `Hub` class manages connections, groups, and messaging.
 
@@ -442,7 +441,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 * In the *wwwroot/js* folder, create a *chat.js* file with the following code:
 
-  [!code-javascript[Index](signalr/sample-snapshot/2.x/chat.js)]
+  [!code-javascript[chat](signalr/sample-snapshot/2.x/chat.js)]
 
   The preceding code:
 
