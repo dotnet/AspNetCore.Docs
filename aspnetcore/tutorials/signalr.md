@@ -53,7 +53,7 @@ At the end, you'll have a working chat app:
 
 * In the **Configure your new project** dialog, name the project *SignalRChat*, and then select **Create**.
 
-* In the **Create a new ASP.NET Core Web Application** dialog, select **.NET Core** and **ASP.NET Core 3.0**. 
+* In the **Create a new ASP.NET Core web Application** dialog, select **.NET Core** and **ASP.NET Core 3.0**.
 
 * Select **Web Application** to create a project that uses Razor Pages, and then select **Create**.
 
@@ -483,7 +483,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 ## Additional resources
 
-* [Youtube version of this tutorial](https://www.youtube.com/watch?v=iKlVmu-r0JQ)
+* [YouTube version of this tutorial](https://www.youtube.com/watch?v=iKlVmu-r0JQ)
 
 ## Next steps
 
