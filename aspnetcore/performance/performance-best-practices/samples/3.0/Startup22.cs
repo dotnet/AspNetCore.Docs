@@ -16,8 +16,6 @@ namespace PBP
             #region snippet1
             app.Use(async (context, next) =>
             {
-                await context.Response.WriteAsync("Hello ");
-
                 await next();
 
                 context.Response.Headers["test"] = "test value";
@@ -27,8 +25,6 @@ namespace PBP
             #region snippet2
             app.Use(async (context, next) =>
             {
-                await context.Response.WriteAsync("Hello ");
-
                 await next();
 
                 if (!context.Response.HasStarted)
