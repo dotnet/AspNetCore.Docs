@@ -155,15 +155,19 @@ All IO in ASP.NET Core is asynchronous. Servers implement the `Stream` interface
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet1)]
 
+In the preceding code, `Get` synchronously reads the entire http request body into memory. If the client is slowly uploading, the app is doing sync over async. The app does sync over async because Kestrel does **NOT** support synchronous reads.
+
 **Do this:** The following example uses <xref:System.IO.StreamReader.ReadToEndAsync*> and does not block the thread while reading.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet2)]
 
+The preceding code asynchronously reads the entire HTTP request body into memory.
+
 > [!WARNING]
-> If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  or more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
+> If the request is large, reading the entire HTTP request body into memory could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
 
 ## Prefer ReadAsFormAsync over Request.Form
-<!-- TO Review required. I change all the API's here from original -->
+<!-- TODO Review required. I change all the API's here from original -->
 
 Use `HttpContext.Request.ReadFormAsync` instead of `HttpContext.Request.Form`.
 `HttpContext.Request.Form` can be safely read only with the following conditions:
@@ -206,7 +210,7 @@ When using a serializer/de-serializer that only supports synchronous reads and w
 * [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)) is only synchronous.
 
 > [!WARNING]
-> If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  or more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
+> If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
 
 ASP.NET Core 3.0 uses <xref:System.Text.Json> by default for JSON serialization. <xref:System.Text.Json>:
 
@@ -298,7 +302,7 @@ The following highlighted code:
 * Creates a scope for the lifetime of the background operation and resolves services from it.
 * Uses `PokemonDbContext` from the correct scope.
 
-[!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2&highlight=12-19)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2&highlight=9-16)]
 
 ## Avoid adding headers after the HttpResponse has started
 
