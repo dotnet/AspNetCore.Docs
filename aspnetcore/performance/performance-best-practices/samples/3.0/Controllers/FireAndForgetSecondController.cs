@@ -42,7 +42,7 @@ namespace performance_best_practices.Controllers
 
         internal Task SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 

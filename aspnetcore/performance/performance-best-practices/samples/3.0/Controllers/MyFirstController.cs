@@ -29,7 +29,7 @@ namespace performance_best_practices.Controllers
         {
             var json = await new StreamReader(Request.Body).ReadToEndAsync();
 
-            return JsonSerializer.Deserialize<PokemonData>(json);
+            return await JsonSerializer.DeserializeAsync<PokemonData>(Request.Body);
         }
 
     }

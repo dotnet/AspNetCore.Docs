@@ -10,9 +10,8 @@ namespace performance_best_practices.Controllers
     [ApiController]
 
     #region snippet1
-    public class AsynchBadSearchController : Controller
-    {
-       
+    public class AsyncBadSearchController : Controller
+    {       
         [HttpGet("/search")]
         public async Task<SearchResults> Get(string query)
         {
@@ -35,26 +34,26 @@ namespace performance_best_practices.Controllers
             try
             {
                 _logger.LogInformation("Starting search query from {path}.", 
-                                                             HttpContext.Request.Path);
+                                        HttpContext.Request.Path);
                 searchResults = _searchService.Search(engine, query);
                 _logger.LogInformation("Finishing search query from {path}.", 
-                                                              HttpContext.Request.Path);
+                                        HttpContext.Request.Path);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Failed query from {path}", 
-                                                             HttpContext.Request.Path);
+                                 HttpContext.Request.Path);
             }
 
             return await searchResults;
         }
         #endregion
 
-        private readonly ILogger<AsynchBadSearchController> _logger;
+        private readonly ILogger<AsyncBadSearchController> _logger;
         public readonly SearchService _searchService;
 
-        public AsynchBadSearchController(ILogger<AsynchBadSearchController> logger,
-                                                        SearchService searchService)
+        public AsyncBadSearchController(ILogger<AsyncBadSearchController> logger,
+                                         SearchService searchService)
         {
             _logger = logger;
             _searchService = searchService;
@@ -70,7 +69,7 @@ namespace performance_best_practices.Controllers
         {
             string path = HttpContext.Request.Path;
             var query1 = SearchAsync(SearchEngine.Google, query,
-                path);
+                                     path);
             var query2 = SearchAsync(SearchEngine.Bing, query, path);
             var query3 = SearchAsync(SearchEngine.DuckDuckGo, query, path);
 
@@ -108,12 +107,11 @@ namespace performance_best_practices.Controllers
         public readonly SearchService _searchService;
 
         public AsyncGoodSearchController(ILogger<AsyncGoodSearchController> logger,
-                                                         SearchService searchService)
+                                         SearchService searchService)
         {
             _logger = logger;
             _searchService = searchService;
         }
-
     }
 
     public class SearchEngine
@@ -121,7 +119,6 @@ namespace performance_best_practices.Controllers
         public static SearchEngine Bing { get; internal set; }
         public static SearchEngine Google { get; internal set; }
         public static SearchEngine DuckDuckGo { get; internal set; }
-
     }
 
     public class SearchResults
@@ -135,7 +132,5 @@ namespace performance_best_practices.Controllers
         {
             throw new NotImplementedException();
         }
-    }
-
-    
+    }    
 }
