@@ -156,8 +156,8 @@ You can workaround this issue by:
 
 1. Create a new .NET Core class library project.
 2. In the new project, add references to enable [C# code generation from *\*.proto* files](xref:grpc/basics#generated-c-assets):
-    * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) package.
-    * *.proto* files using `<Protobuf>`.
+    * Add a package reference to [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) package.
+    * Add *\*.proto* files to the `<Protobuf>` item group.
 3. In the WPF application, add a reference to the new project.
 
 The WPF application can use the gRPC generated types from the new class library project.
