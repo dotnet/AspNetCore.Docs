@@ -368,8 +368,8 @@ This section provides help when the ASP.NET Core HTTPS development certificate h
 Run the following commands:
 
 ```dotnetcli
-dotnet devcerts https --clean
-dotnet devcerts https --trust
+dotnet dev-certs https --clean
+dotnet dev-certs https --trust
 ```
 
 Close any browser instances open. Open a new browser window to app. Certificate trust is cached by browsers.

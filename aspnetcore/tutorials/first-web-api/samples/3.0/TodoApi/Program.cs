@@ -21,7 +21,7 @@ namespace TodoApi
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     //webBuilder.UseStartup<Startup>();
-                    webBuilder.UseStartup<StartupJquery>();
+                    webBuilder.UseStartup<StartupJavaScript>();
                 });
     }
 }

@@ -38,7 +38,7 @@ dotnet new webapp -o aspnetcoreapp
 The preceding command:
 
 * Creates a new web app.  
-* The `-o` parameter creates a directory named *aspnetcoreapp* with the source files for the app.
+* The `-o aspnetcoreapp` parameter creates a directory named *aspnetcoreapp* with the source files for the app.
 
 ### Trust the development certificate
 

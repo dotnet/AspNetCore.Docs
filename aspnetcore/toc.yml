@@ -226,8 +226,6 @@
           uid: razor-pages/filter
         - name: Route and app conventions
           uid: razor-pages/razor-pages-conventions
-        - name: Upload files
-          uid: razor-pages/upload-files
         - name: Razor SDK
           uid: razor-pages/sdk
     - name: MVC
@@ -266,8 +264,6 @@
           uid: mvc/controllers/actions
         - name: Routing
           uid: mvc/controllers/routing
-        - name: File uploads
-          uid: mvc/models/file-uploads
         - name: Dependency injection - controllers
           uid: mvc/controllers/dependency-injection
         - name: Dependency injection - views
@@ -413,6 +409,8 @@
           uid: mvc/controllers/filters
         - name: Areas
           uid: mvc/controllers/areas
+        - name: Upload files
+          uid: mvc/models/file-uploads
         - name: App parts
           uid: mvc/extensibility/app-parts
         - name: aspnet-codegenerator
