@@ -1,5 +1,5 @@
 ---
-title: Introduction to Blazor in ASP.NET Core
+title: Introduction to Blazor
 author: guardrex
 description: Explore ASP.NET Core Blazor, a way to build interactive client-side web UI with .NET in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.0'
