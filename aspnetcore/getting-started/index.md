@@ -38,7 +38,7 @@ dotnet new webapp -o aspnetcoreapp
 The preceding command:
 
 * Creates a new web app.  
-* The `-o` parameter creates a directory named *aspnetcoreapp* with the source files for the app.
+* The `-o aspnetcoreapp` parameter creates a directory named *aspnetcoreapp* with the source files for the app.
 
 ### Trust the development certificate
 
@@ -87,7 +87,7 @@ cd aspnetcoreapp
 dotnet watch run
 ```
 
-After the command shell indicates that the app has started, browse to [https://localhost:5001](https://localhost:5001). Click **Accept** to accept the privacy and cookie policy. This app doesn't keep personal information.
+After the command shell indicates that the app has started, browse to [https://localhost:5001](https://localhost:5001).
 
 ## Edit a Razor page
 

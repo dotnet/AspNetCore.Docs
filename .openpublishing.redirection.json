@@ -717,7 +717,7 @@
         },
         {
             "source_path": "aspnetcore/tutorials/razor-pages/uploading-files.md",
-            "redirect_url": "/aspnet/core/razor-pages/upload-files",
+            "redirect_url": "/aspnet/core/mvc/models/file-uploads",
             "redirect_document_id": false
         },
         {
@@ -903,6 +903,11 @@
         {
             "source_path": "aspnetcore/host-and-deploy/blazor/server-side.md",
             "redirect_url": "/aspnet/core/host-and-deploy/blazor/server",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/razor-pages/upload-files.md",
+            "redirect_url": "/aspnet/core/mvc/models/file-uploads",
             "redirect_document_id": false
         }
     ]
