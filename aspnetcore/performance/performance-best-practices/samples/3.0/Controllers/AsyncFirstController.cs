@@ -89,7 +89,7 @@ namespace performance_best_practices.Controllers
             try
             {
                 _logger.LogInformation("Starting search query from {path}.",
-                    path);
+                                       path);
                 searchResults = await _searchService.SearchAsync(engine, query);
                 _logger.LogInformation("Finishing search query from {path}.", path);
             }
