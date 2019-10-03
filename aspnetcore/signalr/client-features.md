@@ -11,7 +11,7 @@ uid: signalr/client-features
 
 ## Feature distribution
 
-The table below shows the features and support for the clients that offer real-time support. For each feature, the *minimum* version supporting this feature is listed. If no version is listed, the feature is not supported.
+The table below shows the features and support for the clients that offer real-time support. For each feature, the *minimum* version supporting this feature is listed. If no version is listed, the feature isn't supported.
 
 | Feature | .NET | JavaScript | Java |
 | ---- | :-: | :-: | :-: |
