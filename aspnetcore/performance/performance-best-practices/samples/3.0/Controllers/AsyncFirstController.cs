@@ -83,7 +83,7 @@ namespace performance_best_practices.Controllers
         }
 
         private async Task<SearchResults> SearchAsync(SearchEngine engine, string query,
-                                                                           string path)
+                                                      string path)
         {
             var searchResults = _searchService.Empty();
             try
