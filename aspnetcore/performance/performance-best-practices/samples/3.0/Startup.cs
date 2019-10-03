@@ -52,7 +52,6 @@ namespace performance_best_practices
     {
         protected virtual void Dispose(bool disposing)
         {
-
         }
 
         public void Dispose()
@@ -63,13 +62,11 @@ namespace performance_best_practices
         public async Task<SearchResults> Search(SearchEngine engine, string query)
         {
             throw new NotImplementedException();
-
         }
 
         public async Task<SearchResults> Empty()
         {
             throw new NotImplementedException();
-
         }
 
         internal Task<Task<SearchResults>> SearchAsync(SearchEngine engine, string query)

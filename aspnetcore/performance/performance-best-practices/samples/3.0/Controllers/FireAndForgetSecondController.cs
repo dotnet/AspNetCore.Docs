@@ -53,7 +53,7 @@ namespace performance_best_practices.Controllers
         #region snippet2
         [HttpGet("/fire-and-forget-3")]
         public IActionResult FireAndForget3([FromServices]IServiceScopeFactory 
-                                             serviceScopeFactory)
+                                            serviceScopeFactory)
         {
             _ = Task.Run(async () =>
             {
