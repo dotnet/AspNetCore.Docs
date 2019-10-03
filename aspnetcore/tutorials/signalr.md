@@ -92,16 +92,15 @@ The SignalR server library is included in the ASP.NET Core 3.0 shared framework.
 
 * In the **Add Client-Side Library** dialog, for **Provider** select **unpkg**.
 
-* For **Library**, enter `@aspnet/signalr@next`.
-<!-- when 3.0 is released, change @next to @latest -->
+* For **Library**, enter `@microsoft/signalr@latest`.
 
 * Select **Choose specific files**, expand the *dist/browser* folder, and select *signalr.js* and *signalr.min.js*.
 
-* Set **Target Location** to *wwwroot/lib/signalr/*, and select **Install**.
+* Set **Target Location** to *wwwroot/js/signalr/*, and select **Install**.
 
-  ![Add Client-Side Library dialog - select library](signalr/_static/3.x/libman1.png)
+  ![Add Client-Side Library dialog - select library](signalr/_static/3.x/find-signalr-client-libs-select-files.png)
 
-  LibMan creates a *wwwroot/lib/signalr* folder and copies the selected files to it.
+  LibMan creates a *wwwroot/js/signalr* folder and copies the selected files to it.
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
@@ -114,20 +113,20 @@ The SignalR server library is included in the ASP.NET Core 3.0 shared framework.
 * Run the following command to get the SignalR client library by using LibMan. You might have to wait a few seconds before seeing output.
 
   ```console
-  libman install @aspnet/signalr@next -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
+  libman install @microsoft/signalr@latest -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
   ```
 
   The parameters specify the following options:
   * Use the unpkg provider.
-  * Copy files to the *wwwroot/lib/signalr* destination.
+  * Copy files to the *wwwroot/js/signalr* destination.
   * Copy only the specified files.
 
   The output looks like the following example:
 
   ```console
-  wwwroot/lib/signalr/dist/browser/signalr.js written to disk
-  wwwroot/lib/signalr/dist/browser/signalr.min.js written to disk
-  Installed library "@aspnet/signalr@next" to "wwwroot/lib/signalr"
+  wwwroot/js/signalr/dist/browser/signalr.js written to disk
+  wwwroot/js/signalr/dist/browser/signalr.min.js written to disk
+  Installed library "@microsoft/signalr@latest" to "wwwroot/js/signalr"
   ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -143,20 +142,20 @@ The SignalR server library is included in the ASP.NET Core 3.0 shared framework.
 * Run the following command to get the SignalR client library by using LibMan.
 
   ```console
-  libman install @aspnet/signalr@next -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
+  libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
   ```
 
   The parameters specify the following options:
   * Use the unpkg provider.
-  * Copy files to the *wwwroot/lib/signalr* destination.
+  * Copy files to the *wwwroot/js/signalr* destination.
   * Copy only the specified files.
 
   The output looks like the following example:
 
   ```console
-  wwwroot/lib/signalr/dist/browser/signalr.js written to disk
-  wwwroot/lib/signalr/dist/browser/signalr.min.js written to disk
-  Installed library "@aspnet/signalr@next" to "wwwroot/lib/signalr"
+  wwwroot/js/signalr/dist/browser/signalr.js written to disk
+  wwwroot/js/signalr/dist/browser/signalr.min.js written to disk
+  Installed library "@microsoft/signalr@latest" to "wwwroot/js/signalr"
   ```
 
 ---
