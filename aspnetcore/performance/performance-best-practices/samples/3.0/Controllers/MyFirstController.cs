@@ -27,8 +27,6 @@ namespace performance_best_practices.Controllers
         [HttpGet("/pokemon")]
         public async Task<ActionResult<PokemonData>> Get()
         {
-            var json = await new StreamReader(Request.Body).ReadToEndAsync();
-
             return await JsonSerializer.DeserializeAsync<PokemonData>(Request.Body);
         }
 

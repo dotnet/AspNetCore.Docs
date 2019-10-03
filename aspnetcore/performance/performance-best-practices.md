@@ -240,7 +240,7 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 
 **Do not do this:** The following example makes three parallel requests and logs the incoming request path before and after the outgoing HTTP request. The request path is accessed from multiple threads, potentially in parallel.
 
-[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet1&highlight=26,29)]
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet1&highlight=27,28)]
 
 **Do this:** The following example copies all data from the incoming request before making the three parallel requests.
 
