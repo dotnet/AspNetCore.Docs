@@ -38,11 +38,10 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 * Call data access and long-running operations APIs asynchronously.
 * Make controller/Razor Page actions asynchronous. The entire call stack is asynchronous in order to benefit from [async/await](/dotnet/csharp/programming-guide/concepts/async/) patterns.
 
-A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be used to find threads frequently added to the [Thread Pool](/windows/desktop/procthread/thread-pools). The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread added to the thread pool. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc  -->
+A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be used to find threads frequently added to the [Thread Pool](/windows/desktop/procthread/thread-pools). The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread added to the thread pool. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc)  -->
 
 ## Minimize large object allocations
 
-<!-- TODO review Bill - replaced original .NET language below with .NET Core since this targets .NET Core -->
 The [.NET Core garbage collector](/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection generally means that developers don't need to worry about how or when memory is freed. However, cleaning up unreferenced objects takes CPU time, so developers should minimize allocating objects in [hot code paths](#understand-hot-code-paths). Garbage collection is especially expensive on large objects (> 85 K bytes). Large objects are stored on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires a temporary suspension of app execution. Frequent allocation and de-allocation of large objects can cause inconsistent performance.
 
 Recommendations:
@@ -132,7 +131,7 @@ Recommendations:
 
 ## Use the latest ASP.NET Core release
 
-Each new release of ASP.NET Core includes performance improvements. Optimizations in .NET Core and ASP.NET Core mean that newer versions generally outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [`Span<T>`](https://msdn.microsoft.com/magazine/mt814808.aspx). ASP.NET Core 2.2 added support for HTTP/2. If performance is a priority, consider upgrading to the current version of ASP.NET Core.
+Each new release of ASP.NET Core includes performance improvements. Optimizations in .NET Core and ASP.NET Core mean that newer versions generally outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [`Span<T>`](https://msdn.microsoft.com/magazine/mt814808.aspx). ASP.NET Core 2.2 added support for HTTP/2. [ASP.NET Core 3.0 adds many improvements](xref:release-notes/aspnetcore-3.0) that reduce memory usage and improve throughput. If performance is a priority, consider upgrading to the current version of ASP.NET Core.
 
 ## Minimize exceptions
 
@@ -155,7 +154,7 @@ All IO in ASP.NET Core is asynchronous. Servers implement the `Stream` interface
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet1)]
 
-In the preceding code, `Get` synchronously reads the entire http request body into memory. If the client is slowly uploading, the app is doing sync over async. The app does sync over async because Kestrel does **NOT** support synchronous reads.
+In the preceding code, `Get` synchronously reads the entire HTTP request body into memory. If the client is slowly uploading, the app is doing sync over async. The app does sync over async because Kestrel does **NOT** support synchronous reads.
 
 **Do this:** The following example uses <xref:System.IO.StreamReader.ReadToEndAsync*> and does not block the thread while reading.
 
@@ -191,7 +190,7 @@ Use `HttpContext.Request.ReadFormAsync` instead of `HttpContext.Request.Form`.
 In .NET, every object allocation greater than 85 KB ends up in the large object heap ([LOH](https://blogs.msdn.microsoft.com/maoni/2006/04/19/large-object-heap/)). Large objects are expensive in two ways:
 
 * The allocation cost is high because the memory for a newly allocated large object has to be cleared. The CLR guarantees that memory for all newly allocated objects is cleared.
-* LOH is collected with the rest of the heap. LOH requires a "full garbage collection" or Gen2 collection.
+* LOH is collected with the rest of the heap. LOH requires a full [garbage collection](/dotnet/standard/garbage-collection/fundamentals) or [Gen2 collection](/dotnet/standard/garbage-collection/fundamentals#generations).
 
 This [blog post](https://adamsitnik.com/Array-Pool/#the-problem) describes the problem succinctly:
 
@@ -206,8 +205,8 @@ Naively storing a large request or response body into a single `byte[]` or `stri
 
 When using a serializer/de-serializer that only supports synchronous reads and writes:
 
-* Chose to buffer the data into memory before passing data into the serializer/de-serializer.
-* [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)) is only synchronous.
+* Choose to buffer the data into memory before passing data into the serializer/de-serializer.
+* [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm) is only synchronous.
 
 > [!WARNING]
 > If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
@@ -249,7 +248,7 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 
 ## Do not use the HttpContext after the request is complete
 
-<!-- Review, original uses `in flight`, which won't MT (Machine translate) 
+<!-- TODO Review, original uses `in flight`, which won't MT (Machine translate) 
 `HttpContext` is only valid as long as there is an active HTTP request `in flight`.
 -->
 `HttpContext` is only valid as long as there is an active HTTP request in the ASP.NET Core pipeline. The entire ASP.NET Core pipeline is an asynchronous chain of delegates that executes every request. When the `Task` returned from this chain completes, the `HttpContext` is recycled.
@@ -311,9 +310,11 @@ ASP.NET Core does not buffer the HTTP response body. The first time the response
 * The headers are sent along with that chunk of the body to the client.
 * It's no longer possible to change response headers.
 
-**Do not do this:** The following example checks if the http response has started before writing to the body
+**Do not do this:** The following code tries to add response headers after the response has already started:
 
 [!code-csharp[](performance-best-practices/samples/3.0/Startup22.cs?name=snippet1)]
+
+In the preceding code, `context.Response.Headers["test"] = "test value";` if `next()` has written to the response.
 
 **Do this:** The following example checks if the HTTP response has started before writing to the body.
 

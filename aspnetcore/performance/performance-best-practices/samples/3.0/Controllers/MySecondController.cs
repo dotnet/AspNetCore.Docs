@@ -8,9 +8,10 @@ namespace performance_best_practices.Controllers
 {
     // Requires review, Original
     //  var form = HttpRequest.Form;
-    #region snippet1
     [Route("api/[controller]")]
     [ApiController]
+    #region snippet1
+
     public class BadReadController : Controller
     {
         [HttpPost("/form-body")]
@@ -31,9 +32,10 @@ namespace performance_best_practices.Controllers
 
     // Requires review, Original
     //  var form = await HttpRequest.ReadAsFormAsync();
-    #region snippet2
+ 
     [Route("api/[controller]")]
     [ApiController]
+    #region snippet2
     public class GoodReadController : Controller
     {
         [HttpPost("/form-body")]
