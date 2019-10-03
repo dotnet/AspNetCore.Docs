@@ -146,4 +146,18 @@ A gRPC client app making gRPC calls only needs the concrete client generated:
 </ItemGroup>
 ```
 
+## gRPC C# assets generated from *\*.proto* fail in WPF projects
+
+WPF projects have a known issue that prevents gRPC code generation from working correctly. Any gRPC types generated in a WPF project by referencing `Grpc.Tools` and *.proto* files will create compilation errors when used:
+
+> error CS0246: The type or namespace name 'MyGrpcServices' could not be found (are you missing a using directive or an assembly reference?)
+
+You can workaround this issue by:
+
+1. Create a new .NET Core class library project.
+2. In the new project, add references to enable [C# code generation from *\*.proto* files](xref:grpc/basics#generated-c-assets):
+    * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) package.
+    * *.proto* files using `<Protobuf>`.
+3. Add a reference to the new project from your WPF application. Your WPF application can now use the gRPC generated types from the referenced project.
+
 [!INCLUDE[](~/includes/gRPCazure.md)]
