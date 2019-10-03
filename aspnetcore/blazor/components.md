@@ -24,7 +24,7 @@ A component's name must start with an uppercase character. For example, *MyCoolC
 
 The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When an app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
 
-Members of the component class are defined in an `@code` block. In the `@code` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic. More than one `@code` block is permissible.
+Members of the component class are defined in a `@code` block. In the `@code` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic. More than one `@code` block is permissible.
 
 > [!NOTE]
 > In prior previews of ASP.NET Core 3.0, `@functions` blocks were used for the same purpose as `@code` blocks in Razor components. `@functions` blocks continue to function in Razor components, but we recommend using the `@code` block in ASP.NET Core 3.0 Preview 6 or later.
