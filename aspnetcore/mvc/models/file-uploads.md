@@ -407,6 +407,10 @@ The complete `StreamingController.UploadDatabase` method for streaming to a data
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
+`MultipartRequestHelper` (*Utilities/MultipartRequestHelper.cs*):
+
+[!code-csharp[](file-uploads/samples/3.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
+
 The complete `StreamingController.UploadPhysical` method for streaming to a physical location:
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadPhysical)]
@@ -1116,6 +1120,10 @@ Since model binding doesn't read the form, parameters that are bound from the fo
 The complete `StreamingController.UploadDatabase` method for streaming to a database with EF Core:
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
+
+`MultipartRequestHelper` (*Utilities/MultipartRequestHelper.cs*):
+
+[!code-csharp[](file-uploads/samples/2.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
 The complete `StreamingController.UploadPhysical` method for streaming to a physical location:
 
