@@ -201,12 +201,11 @@ Naively storing a large request or response body into a single `byte[]` or `stri
 * May result in quickly running out of space in the LOH.
 * May cause performance issues for the app because of full GCs running.
 
-## Use buffered and synchronous reads and writes as an alternative to asynchronous reading and writing
+## Working with a synchronous data processing API
 
-When using a serializer/de-serializer that only supports synchronous reads and writes:
+When using a serializer/de-serializer that only supports synchronous reads and writes (for example,  [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)):
 
 * Choose to buffer the data into memory before passing data into the serializer/de-serializer.
-* [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm) is only synchronous.
 
 > [!WARNING]
 > If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.

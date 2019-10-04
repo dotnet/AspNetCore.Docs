@@ -11,7 +11,6 @@ namespace performance_best_practices.Controllers
     [Route("api/[controller]")]
     [ApiController]
     #region snippet1
-
     public class BadReadController : Controller
     {
         [HttpPost("/form-body")]
