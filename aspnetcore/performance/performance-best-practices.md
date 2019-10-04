@@ -145,7 +145,11 @@ Recommendations:
 
 App diagnostic tools, such as Application Insights, can help to identify common exceptions in an app that may affect performance.
 
-## Avoid synchronous Read or Write on HttpRequest/HttpResponse Body
+## Performance and reliability
+
+The following sections provide performance tips and known reliability problems and solutions.
+
+## Avoid synchronous read or write on HttpRequest/HttpResponse body
 
 All IO in ASP.NET Core is asynchronous. Servers implement the `Stream` interface, which has both synchronous and asynchronous overloads. The asynchronous ones should be preferred to avoid blocking thread pool threads. Blocking threads can lead to thread pool starvation.
 
