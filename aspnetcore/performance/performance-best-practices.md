@@ -210,7 +210,6 @@ Naively storing a large request or response body into a single `byte[]` or `stri
 When using a serializer/de-serializer that only supports synchronous reads and writes (for example,  [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)):
 
 * Buffer the data into memory asynchronously before passing it into the serializer/de-serializer.
-* [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm) is only synchronous.
 
 > [!WARNING]
 > If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
@@ -332,3 +331,7 @@ Checking if the response has not started allows registering a callback that will
 * Doesn't require knowledge of the next middleware in the pipeline.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Startup22.cs?name=snippet3)]
+
+## Do not call next() if you have already started writing to the response body
+
+Components only expect to be called if it's possible for them to handle and manipulate the response.
