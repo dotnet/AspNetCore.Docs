@@ -209,7 +209,8 @@ Naively storing a large request or response body into a single `byte[]` or `stri
 
 When using a serializer/de-serializer that only supports synchronous reads and writes (for example,  [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)):
 
-* Choose to buffer the data into memory before passing data into the serializer/de-serializer.
+* Buffer the data into memory asynchronously before passing it into the serializer/de-serializer.
+* [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm) is only synchronous.
 
 > [!WARNING]
 > If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
@@ -306,7 +307,7 @@ The following highlighted code:
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2&highlight=9-16)]
 
-## Avoid adding headers after the HttpResponse has started
+## Do not modify the status code or headers after the response body has started
 
 ASP.NET Core does not buffer the HTTP response body. The first time the response is written:
 
@@ -317,9 +318,9 @@ ASP.NET Core does not buffer the HTTP response body. The first time the response
 
 [!code-csharp[](performance-best-practices/samples/3.0/Startup22.cs?name=snippet1)]
 
-In the preceding code, `context.Response.Headers["test"] = "test value";` if `next()` has written to the response.
+In the preceding code, `context.Response.Headers["test"] = "test value";` will throw an exception if `next()` has written to the response.
 
-**Do this:** The following example checks if the HTTP response has started before writing to the body.
+**Do this:** The following example checks if the HTTP response has started before modifying the headers.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Startup22.cs?name=snippet2)]
 
