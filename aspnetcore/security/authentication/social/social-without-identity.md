@@ -23,11 +23,11 @@ This sample uses [Google authentication](xref:security/authentication/google-log
 
 ## Configuration
 
-In the `ConfigureServices` method, configure the app's authentication schemes with the `AddAuthentication`, `AddCookie`, and `AddGoogle` methods:
+In the `ConfigureServices` method, configure the app's authentication schemes with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*>, <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>, and <xref:Microsoft.Extensions.DependencyInjection.GoogleExtensions.AddGoogle*> methods:
 
 [!code-csharp[](social-without-identity/3.0sample/Startup.cs?name=snippet1)]
 
-The call to [AddAuthentication](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication#Microsoft_Extensions_DependencyInjection_AuthenticationServiceCollectionExtensions_AddAuthentication_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_AuthenticationOptions__) sets the app's [DefaultScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultScheme). The `DefaultScheme` is the default scheme used by the following `HttpContext` authentication extension methods:
+The call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> sets the app's <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultScheme>. The `DefaultScheme` is the default scheme used by the following `HttpContext` authentication extension methods:
 
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync*>
 * <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync*>
@@ -43,7 +43,7 @@ In `Startup.Configure`, call `UseAuthentication` and `UseAuthorization` to set t
 
 To learn more about authentication schemes and cookie authentication, see <xref:security/authentication/cookie>.
 
-## Applying authorization
+## Apply authorization
 
 Test the app's authentication configuration by applying the `AuthorizeAttribute` attribute to a controller, action, or page. The following code limits access to the *Privacy* page to users that have been authenticated:
 
@@ -98,7 +98,7 @@ In the `Configure` method, call the `UseAuthentication` method to invoke the Aut
 
 To learn more about authentication schemes and cookie authentication, see <xref:security/authentication/cookie>.
 
-## Applying authorization
+## Apply authorization
 
 Test the app's authentication configuration by applying the `AuthorizeAttribute` attribute to a controller, action, or page. The following code limits access to the *Privacy* page to users that have been authenticated:
 
