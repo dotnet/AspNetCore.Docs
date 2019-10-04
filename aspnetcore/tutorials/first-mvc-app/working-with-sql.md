@@ -87,7 +87,7 @@ if (context.Movie.Any())
 
 Replace the contents of *Program.cs* with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Program.cs)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Program.cs)]
 
 Test the app
 
