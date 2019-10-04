@@ -1,11 +1,3 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
 namespace WebApp1
 {
     public class Startup
@@ -16,10 +8,14 @@ namespace WebApp1
         }
 
         public IConfiguration Configuration { get; }
-
+        
+        #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-            #region snippet1
+            // requires
+            // using Microsoft.AspNetCore.Authentication.Cookies;
+            // using Microsoft.AspNetCore.Authentication.Google;
+            // NuGet package Microsoft.AspNetCore.Authentication.Google
             services
                 .AddAuthentication(options =>
                 {
@@ -32,10 +28,11 @@ namespace WebApp1
                     options.ClientId = Configuration["Authentication:Google:ClientId"];
                     options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
                 });
-            #endregion
 
             services.AddRazorPages();
         }
+        #endregion
+
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
