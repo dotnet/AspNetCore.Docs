@@ -10,7 +10,7 @@ uid: blazor/call-web-api
 ---
 # Call a web API from ASP.NET Core Blazor
 
-By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
+By [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), and [Juan De la Cruz](https://github.com/juandelacruz23)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
@@ -65,7 +65,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
       private TodoItem[] _todoItems;
 
       protected override async Task OnInitializedAsync() => 
-          _todoItems = await Http.GetJsonAsync<TodoItem[]>("api/todo");
+          _todoItems = await Http.GetJsonAsync<TodoItem[]>("api/TodoItems");
   }
   ```
 
@@ -86,7 +86,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
       private async Task AddItem()
       {
           var addItem = new TodoItem { Name = _newItemName, IsComplete = false };
-          await Http.PostJsonAsync("api/todo", addItem);
+          await Http.PostJsonAsync("api/TodoItems", addItem);
       }
   }
   ```
@@ -114,7 +114,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
       }
 
       private async Task SaveItem() =>
-          await Http.PutJsonAsync($"api/todo/{_editItem.Id}, _editItem);
+          await Http.PutJsonAsync($"api/TodoItems/{_editItem.Id}, _editItem);
   }
   ```
 
@@ -133,7 +133,7 @@ In the following code, the Delete `<button>` element calls the `DeleteItem` meth
     private long _id;
 
     private async Task DeleteItem() =>
-        await Http.DeleteAsync($"api/todo/{_id}");
+        await Http.DeleteAsync($"api/TodoItems/{_id}");
 }
 ```
 
@@ -169,7 +169,7 @@ Supply request options to the underlying JavaScript [Fetch API](https://develope
         var requestMessage = new HttpRequestMessage()
         {
             Method = new HttpMethod("POST"),
-            RequestUri = new Uri("https://localhost:10000/api/todo"),
+            RequestUri = new Uri("https://localhost:10000/api/TodoItems"),
             Content = 
                 new StringContent(
                     @"{""name"":""A New Todo Item"",""isComplete"":false}")
@@ -218,4 +218,6 @@ For more information, see <xref:security/cors> and the sample app's HTTP Request
 ## Additional resources
 
 * <xref:fundamentals/http-requests>
+* <xref:security/enforcing-ssl>
+* [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration)
 * [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
