@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/30/2019
+ms.date: 10/05/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -674,7 +674,7 @@ Component references provide a way to reference a component instance so that you
 When the component is rendered, the `loginDialog` field is populated with the `MyLoginDialog` child component instance. You can then invoke .NET methods on the component instance.
 
 > [!IMPORTANT]
-> The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the `OnAfterRenderAsync` or `OnAfterRender` methods.
+> The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the [OnAfterRenderAsync or OnAfterRender methods](#lifecycle-methods).
 
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/javascript-interop#capture-references-to-elements), it isn't a [JavaScript interop](xref:blazor/javascript-interop) feature. Component references aren't passed to JavaScript code&mdash;they're only used in .NET code.
 
@@ -823,6 +823,9 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
+> [!NOTE]
+> Asynchronous work during component initialization must occur during the `OnInitializedAsync` lifecycle event.
+
 For a synchronous operation, use `OnInitialized`:
 
 ```csharp
@@ -841,6 +844,9 @@ protected override async Task OnParametersSetAsync()
 }
 ```
 
+> [!NOTE]
+> Asynchronous work when applying parameters and property values must occur during the `OnParametersSetAsync` lifecycle event.
+
 ```csharp
 protected override void OnParametersSet()
 {
@@ -850,7 +856,7 @@ protected override void OnParametersSet()
 
 `OnAfterRenderAsync` and `OnAfterRender` are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps using the rendered content, such as activating third-party JavaScript libraries that operate on the rendered DOM elements.
 
-`OnAfterRender` *is not called when prerendering on the server.*
+`OnAfterRender` *isn't called when prerendering on the server.*
 
 The `firstRender` parameter for `OnAfterRenderAsync` and `OnAfterRender` is:
 
@@ -866,6 +872,9 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
     }
 }
 ```
+
+> [!NOTE]
+> Asynchronous work immediately after rendering must occur during the `OnAfterRenderAsync` lifecycle event.
 
 ```csharp
 protected override void OnAfterRender(bool firstRender)
