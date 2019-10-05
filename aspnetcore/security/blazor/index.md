@@ -346,7 +346,7 @@ This approach isn't normally applicable to Blazor Server apps. Blazor Server app
 
 ## [Authorize] attribute
 
-The `[Authorize]` attribute can be used in Razor Components:
+The `[Authorize]` attribute can be used in Razor components:
 
 ```cshtml
 @page "/"
