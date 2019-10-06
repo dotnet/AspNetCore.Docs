@@ -203,9 +203,11 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
        </Directory>
 
        <IfModule mod_deflate.c>
-           AddOutputFilterByType DEFLATE text/css application/x-javascript 
-	       text/x-component text/html text/plain text/xml 
-	       application/javascript application/json aplication/wasm 
+           AddOutputFilterByType DEFLATE text/css
+           AddOutputFilterByType DEFLATE application/javascript
+           AddOutputFilterByType DEFLATE text/html
+           AddOutputFilterByType DEFLATE application/octet-stream
+           AddOutputFilterByType DEFLATE application/wasm
            <IfModule mod_setenvif.c>
 	       BrowserMatch ^Mozilla/4 gzip-only-text/html
 	       BrowserMatch ^Mozilla/4.0[678] no-gzip
