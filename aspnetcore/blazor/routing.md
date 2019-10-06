@@ -91,7 +91,7 @@ The router uses route parameters to populate the corresponding component paramet
 
 [!code-cshtml[](common/samples/3.x/BlazorSample/Pages/RouteParameter.razor?name=snippet_RouteParameter&highlight=2,7-8)]
 
-Optional parameters aren't supported for Blazor apps in ASP.NET Core 3.0 Preview. Two `@page` directives are applied in the previous example. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
+Optional parameters aren't supported for Blazor apps in ASP.NET Core 3.0. Two `@page` directives are applied in the previous example. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
 
 ## Route constraints
 
