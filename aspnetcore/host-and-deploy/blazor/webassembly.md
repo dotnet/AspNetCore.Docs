@@ -180,6 +180,42 @@ COPY ./bin/Release/netstandard2.0/publish /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/nginx.conf
 ```
 
+### Apache
+
+Place Blazor webassembly application files into `/var/www/blazorapp` directory. Create Apache config file `blazorapp.config` in `/etc/httpd/conf.d/` (default Apache config directory in CentOs 7) directory and restart Apache service. The following blazor `blazorapp.config` file is simplified to show what it should look like:
+
+```
+<VirtualHost *:80>
+    ServerName www.example.com
+    ServerAlias *.example.com
+
+    DocumentRoot "/var/www/blazorapp"
+    ErrorDocument 404 /index.html
+
+    AddType aplication/wasm .wasm
+    AddType application/octet-stream .dll
+   
+    <Directory "/var/www/blazorapp">
+        Options -Indexes
+        AllowOverride None
+    </Directory>
+
+    <IfModule mod_deflate.c>
+        AddOutputFilterByType DEFLATE text/css application/x-javascript text/x-component text/html text/plain text/xml application/javascript application/json aplication/wasm 
+        <IfModule mod_setenvif.c>
+	    BrowserMatch ^Mozilla/4 gzip-only-text/html
+	    BrowserMatch ^Mozilla/4.0[678] no-gzip
+	    BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+	</IfModule>
+    </IfModule>
+
+    ErrorLog /var/log/httpd/blazorapp-error.log
+    CustomLog /var/log/httpd/blazorapp-access.log common
+</VirtualHost>
+```
+
+For more information see [mod_mime](https://httpd.apache.org/docs/2.4/mod/mod_mime.html) and [mod_deflate](https://httpd.apache.org/docs/current/mod/mod_deflate.html) documentation.
+
 ### GitHub Pages
 
 To handle URL rewrites, add a *404.html* file with a script that handles redirecting the request to the *index.html* page. For an example implementation provided by the community, see [Single Page Apps for GitHub Pages](https://spa-github-pages.rafrex.com/) ([rafrex/spa-github-pages on GitHub](https://github.com/rafrex/spa-github-pages#readme)). An example using the community approach can be seen at [blazor-demo/blazor-demo.github.io on GitHub](https://github.com/blazor-demo/blazor-demo.github.io) ([live site](https://blazor-demo.github.io/)).
