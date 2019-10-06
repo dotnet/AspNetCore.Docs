@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 10/06/2019
 uid: host-and-deploy/blazor/webassembly
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly
@@ -182,39 +182,49 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 ### Apache
 
-Place Blazor webassembly application files into `/var/www/blazorapp` directory. Create Apache config file `blazorapp.config` in `/etc/httpd/conf.d/` (default Apache config directory in CentOs 7) directory and restart Apache service. The following blazor `blazorapp.config` file is simplified to show what it should look like:
+To deploy a Blazor WebAssembly app to CentOS 7 or later:
 
-```
-<VirtualHost *:80>
-    ServerName www.example.com
-    ServerAlias *.example.com
+1. Create the Apache configuration file. The following example is a simplified configuration file (*blazorapp.config*):
 
-    DocumentRoot "/var/www/blazorapp"
-    ErrorDocument 404 /index.html
+   ```
+   <VirtualHost *:80>
+       ServerName www.example.com
+       ServerAlias *.example.com
 
-    AddType aplication/wasm .wasm
-    AddType application/octet-stream .dll
+       DocumentRoot "/var/www/blazorapp"
+       ErrorDocument 404 /index.html
+
+       AddType aplication/wasm .wasm
+       AddType application/octet-stream .dll
    
-    <Directory "/var/www/blazorapp">
-        Options -Indexes
-        AllowOverride None
-    </Directory>
+       <Directory "/var/www/blazorapp">
+           Options -Indexes
+           AllowOverride None
+       </Directory>
 
-    <IfModule mod_deflate.c>
-        AddOutputFilterByType DEFLATE text/css application/x-javascript text/x-component text/html text/plain text/xml application/javascript application/json aplication/wasm 
-        <IfModule mod_setenvif.c>
-	    BrowserMatch ^Mozilla/4 gzip-only-text/html
-	    BrowserMatch ^Mozilla/4.0[678] no-gzip
-	    BrowserMatch bMSIE !no-gzip !gzip-only-text/html
-	</IfModule>
-    </IfModule>
+       <IfModule mod_deflate.c>
+           AddOutputFilterByType DEFLATE text/css application/x-javascript 
+	       text/x-component text/html text/plain text/xml 
+	       application/javascript application/json aplication/wasm 
+           <IfModule mod_setenvif.c>
+	       BrowserMatch ^Mozilla/4 gzip-only-text/html
+	       BrowserMatch ^Mozilla/4.0[678] no-gzip
+	       BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+	   </IfModule>
+       </IfModule>
 
-    ErrorLog /var/log/httpd/blazorapp-error.log
-    CustomLog /var/log/httpd/blazorapp-access.log common
-</VirtualHost>
-```
+       ErrorLog /var/log/httpd/blazorapp-error.log
+       CustomLog /var/log/httpd/blazorapp-access.log common
+   </VirtualHost>
+   ```
 
-For more information see [mod_mime](https://httpd.apache.org/docs/2.4/mod/mod_mime.html) and [mod_deflate](https://httpd.apache.org/docs/current/mod/mod_deflate.html) documentation.
+1. Place the Apache configuration file into the `/etc/httpd/conf.d/` directory, which is the default Apache configuration directory in CentOS 7.
+
+1. Place the app's files into the `/var/www/blazorapp` directory (the location specified to `DocumentRoot` in the configuration file).
+
+1. Restart the Apache service.
+
+For more information, see [mod_mime](https://httpd.apache.org/docs/2.4/mod/mod_mime.html) and [mod_deflate](https://httpd.apache.org/docs/current/mod/mod_deflate.html).
 
 ### GitHub Pages
 
