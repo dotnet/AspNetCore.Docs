@@ -397,7 +397,7 @@ The relative path to the app's static assets.
 
 **Key**: webroot  
 **Type**: *string*  
-**Default**: *{content root}/wwwroot*, if the path exists. If the path doesn't exist, a no-op file provider is used.  
+**Default**: The default is `wwwroot`. The path to *{content root}/wwwroot* must exist. If the path doesn't exist, a no-op file provider is used.  
 **Environment variable**: `<PREFIX_>WEBROOT`
 
 To set this value, use the environment variable or call `UseWebRoot`:

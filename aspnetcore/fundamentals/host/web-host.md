@@ -382,7 +382,7 @@ Sets the relative path to the app's static assets.
 
 **Key**: webroot  
 **Type**: *string*  
-**Default**: If not specified, the default is `wwwroot`, if the formed the path *{content root}/wwwroot* exists. If the path doesn't exist, then a no-op file provider is used.  
+**Default**: The default is `wwwroot`. The path to *{content root}/wwwroot* must exist. If the path doesn't exist, a no-op file provider is used.  
 **Set using**: `UseWebRoot`  
 **Environment variable**: `ASPNETCORE_WEBROOT`
 
