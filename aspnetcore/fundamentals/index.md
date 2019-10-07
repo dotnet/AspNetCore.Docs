@@ -293,7 +293,7 @@ The web root path defaults to *{content root}/wwwroot*, but a different web root
 
 ::: moniker range="< aspnetcore-3.0"
 
-The web root path defaults to *{content root}/wwwroot*, but a different web root can be specified when [building the host](#host). For more information, see [Web root](xref:fundamentals/host/web-host#webroot).
+The web root path defaults to *{content root}/wwwroot*, but a different web root can be specified when [building the host](#host). For more information, see [Web root](xref:fundamentals/host/web-host#web-root).
 
 ::: moniker-end
 
