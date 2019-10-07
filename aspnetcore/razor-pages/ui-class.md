@@ -115,10 +115,10 @@ To include TypeScript files in an RCL:
 1. Include the TypeScript target as a dependency of the `ResolveCurrentProjectStaticWebAssets` target by adding the following target inside of a `PropertyGroup` in the project file:
 
    ```xml
-   <ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
-     TypeScriptCompile;
-     $(ResolveCurrentProjectStaticWebAssetsInputs)
-   </ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
+  <ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
+    CompileTypeScript;
+    $(ResolveCurrentProjectStaticWebAssetsInputs)
+  </ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
    ```
 
 ### Consume content from a referenced RCL
