@@ -268,6 +268,23 @@ The [Accept-Language header](https://www.w3.org/International/questions/qa-accep
 
 6. Tap the language, then tap **Move Up**.
 
+::: moniker range=">= aspnetcore-3.0"
+### The Content-Language HTTP header
+
+The [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) an entity header, is used to describe the language(s) intended for the audience, so that it allows a user to differentiate according to the users' own preferred language. Entity headers are used in both, HTTP requests and responses.
+
+In ASP.NET Core 3.0 the `Content-Language` header can be added optionally by setting the property `ApplyCurrentCultureToResponseHeaders`.
+
+This will allow the `RequestLocalizationMiddleware` to set the `Content-Language` header with the `CurrentUICulture`, instead to manage the response header `Content-Language` yourself.
+
+```csharp
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    ApplyCurrentCultureToResponseHeaders = true
+});
+```
+::: moniker-end
+
 ### Use a custom provider
 
 Suppose you want to let your customers store their language and culture in your databases. You could write a provider to look up these values for the user. The following code shows how to add a custom provider:
