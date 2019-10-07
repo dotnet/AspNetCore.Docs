@@ -75,6 +75,32 @@ public bool DoAuthenticatedCall(
 }
 ```
 
+Configuring `ChannelCredentials` on a channel is an alternative way to send the token to the service with gRPC calls. The credential is run each time a gRPC call is made, which avoids the need to write code in multiple places to pass the token yourself.
+
+The credential in the following example configures the channel to send the token with every gRPC call:
+
+```csharp
+private static GrpcChannel CreateAuthenticatedChannel(string address)
+{
+    var credentials = CallCredentials.FromInterceptor((context, metadata) =>
+    {
+        if (!string.IsNullOrEmpty(_token))
+        {
+            metadata.Add("Authorization", $"Bearer {_token}");
+        }
+        return Task.CompletedTask;
+    });
+
+    // SslCredentials is used here because this channel is using TLS.
+    // Channels that aren't using TLS should use ChannelCredentials.Insecure instead.
+    var channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
+    {
+        Credentials = ChannelCredentials.Create(new SslCredentials(), credentials)
+    });
+    return channel;
+}
+```
+
 ### Client certificate authentication
 
 A client could alternatively provide a client certificate for authentication. [Certificate authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) happens at the TLS level, long before it ever gets to ASP.NET Core. When the request enters ASP.NET Core, the [client certificate authentication package](xref:security/authentication/certauth) allows you to resolve the certificate to a `ClaimsPrincipal`.
@@ -93,11 +119,13 @@ public Ticketer.TicketerClient CreateClientWithCert(
     var handler = new HttpClientHandler();
     handler.ClientCertificates.Add(certificate);
 
-    // Create the gRPC client
-    var httpClient = new HttpClient(handler);
-    httpClient.BaseAddress = new Uri(baseAddress);
+    // Create the gRPC channel
+    var channel = GrpcChannel.ForAddress(baseAddress, new GrpcChannelOptions
+    {
+        HttpClient = new HttpClient(handler)
+    });
 
-    return GrpcClient.Create<Ticketer.TicketerClient>(httpClient);
+    return new Ticketer.TicketerClient(channel);
 }
 ```
 
