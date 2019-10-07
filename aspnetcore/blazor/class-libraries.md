@@ -95,11 +95,7 @@ Because component libraries are standard .NET libraries, packaging and shipping 
 dotnet pack
 ```
 
-Upload the package to NuGet using the [dotnet nuget publish](/dotnet/core/tools/dotnet-nuget-push) command in a command shell:
-
-```dotnetcli
-dotnet nuget publish
-```
+Upload the package to NuGet using the [dotnet nuget push](/dotnet/core/tools/dotnet-nuget-push) command in a command shell.
 
 ## Create a Razor components class library with static assets
 
