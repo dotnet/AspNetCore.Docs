@@ -5,7 +5,7 @@ description: Learn about the .NET Core Generic Host, which is responsible for ap
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/05/2019
+ms.date: 10/07/2019
 uid: fundamentals/host/generic-host
 ---
 # .NET Generic Host
@@ -72,7 +72,7 @@ If the app uses Entity Framework Core, don't change the name or signature of the
 
 The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method:
 
-* Sets the content root to the path returned by <xref:System.IO.Directory.GetCurrentDirectory*>.
+* Sets the [content root](xref:fundamentals/index#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory*>.
 * Loads host configuration from:
   * Environment variables prefixed with "DOTNET_".
   * Command-line arguments.
@@ -193,6 +193,11 @@ Host.CreateDefaultBuilder(args)
     .UseContentRoot("c:\\content-root")
     //...
 ```
+
+For more information, see:
+
+* [Fundamentals: Content root](xref:fundamentals/index#content-root)
+* [WebRoot](#webroot)
 
 ### EnvironmentName
 
@@ -392,7 +397,7 @@ The relative path to the app's static assets.
 
 **Key**: webroot  
 **Type**: *string*  
-**Default**: *(Content Root)/wwwroot*, if the path exists. If the path doesn't exist, a no-op file provider is used.  
+**Default**: *{content root}/wwwroot*, if the path exists. If the path doesn't exist, a no-op file provider is used.  
 **Environment variable**: `<PREFIX_>WEBROOT`
 
 To set this value, use the environment variable or call `UseWebRoot`:
@@ -400,6 +405,11 @@ To set this value, use the environment variable or call `UseWebRoot`:
 ```csharp
 webBuilder.UseWebRoot("public");
 ```
+
+For more information, see:
+
+* [Fundamentals: Web root](xref:fundamentals/index#web-root)
+* [ContentRootPath](#contentrootpath)
 
 ## Manage the host lifetime
 
@@ -569,6 +579,8 @@ This setting determines where the host begins searching for content files.
 If the path doesn't exist, the host fails to start.
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_UseContentRoot)]
+
+For more information, see [Fundamentals: Content root](xref:fundamentals/index#content-root).
 
 ### Environment
 

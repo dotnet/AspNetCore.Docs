@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 10/07/2019
 uid: host-and-deploy/blazor/webassembly
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly
@@ -190,9 +190,9 @@ When using a project site instead of an organization site, add or update the `<b
 
 [Blazor WebAssembly apps](xref:blazor/hosting-models#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the development environment.
 
-### Content Root
+### Content root
 
-The `--contentroot` argument sets the absolute path to the directory that contains the app's content files. In the following examples, `/content-root-path` is the app's content root path.
+The `--contentroot` argument sets the absolute path to the directory that contains the app's content files ([content root](xref:fundamentals/index#content-root)). In the following examples, `/content-root-path` is the app's content root path.
 
 * Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
 
