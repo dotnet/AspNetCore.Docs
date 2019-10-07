@@ -75,7 +75,9 @@ public bool DoAuthenticatedCall(
 }
 ```
 
-Configuring a `CallCredential` is an alternative way to send the token with each gRPC call. By specifing a call credential when the channel is created, the token will be sent with gRPC calls automatically.
+Configuring `ChannelCredentials` on a channel is an alternative way to send the token to the service with gRPC calls. The credential is run each time a gRPC call is made, which avoids the need to write code in multiple places to pass the token yourself.
+
+The credential in the following example configures the channel to send the token with every gRPC call:
 
 ```csharp
 private static GrpcChannel CreateAuthenticatedChannel(string address)
