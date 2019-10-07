@@ -265,7 +265,7 @@ During development:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-An alternative content root path can be specified when [building the host](#host). For more information, see <xref:fundamentals/host/generic-host>.
+An alternative content root path can be specified when [building the host](#host). For more information, see <xref:fundamentals/host/generic-host#contentrootpath>.
 
 ::: moniker-end
 
@@ -287,7 +287,7 @@ Static files are only served by default from the web root directory (and sub-dir
 
 ::: moniker range=">= aspnetcore-3.0"
 
-The web root path defaults to *{content root}/wwwroot*, but a different web root can be specified when [building the host](#host). For more information, see <xref:fundamentals/host/generic-host>.
+The web root path defaults to *{content root}/wwwroot*, but a different web root can be specified when [building the host](#host). For more information, see <xref:fundamentals/host/generic-host#webroot>.
 
 ::: moniker-end
 
