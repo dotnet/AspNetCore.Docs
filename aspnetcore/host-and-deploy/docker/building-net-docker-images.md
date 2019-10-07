@@ -103,7 +103,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 * In the Docker client, switch to Windows containers.
 
-Navigate to the docker file folder at `dotnet-docker/samples/aspnetapp`.
+Navigate to the Dockerfile folder at `dotnet-docker/samples/aspnetapp`.
 
 * Run the following commands to build and run the sample in Docker:
 
@@ -164,7 +164,7 @@ In some scenarios, you might want to deploy an app to a container by copying to 
 To use the manually published application within a Docker container, create a new Dockerfile and use the `docker build .` command to build the container.
 
 ```console
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
 COPY published/aspnetapp.dll ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
@@ -175,7 +175,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 Here's the *Dockerfile* used by the `docker build` command you ran earlier.  It uses `dotnet publish` the same way you did in this section to build and deploy.  
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
 WORKDIR /app
 
 # copy csproj and restore as distinct layers
@@ -189,7 +189,7 @@ WORKDIR /app/aspnetapp
 RUN dotnet publish -c Release -o out
 
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/aspnetapp/out ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
