@@ -216,7 +216,7 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 * In the integrated terminal, run the following command:
 
   ```dotnetcli
-  dotnet run -p SignalRChat.csproj
+  dotnet watch run -p SignalRChat.csproj
   ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
