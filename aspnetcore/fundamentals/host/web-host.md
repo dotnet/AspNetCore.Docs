@@ -5,7 +5,7 @@ description: Learn about Web Host in ASP.NET Core, which is responsible for app 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/06/2019
+ms.date: 10/07/2019
 uid: fundamentals/host/web-host
 ---
 # ASP.NET Core Web Host
@@ -49,7 +49,7 @@ The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBu
 `CreateDefaultBuilder` performs the following tasks:
 
 * Configures [Kestrel](xref:fundamentals/servers/kestrel) server as the web server using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel#kestrel-options>.
-* Sets the content root to the path returned by [Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory).
+* Sets the [content root](xref:fundamentals/index#content-root) to the path returned by [Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory).
 * Loads [host configuration](#host-configuration-values) from:
   * Environment variables prefixed with `ASPNETCORE_` (for example, `ASPNETCORE_ENVIRONMENT`).
   * Command-line arguments.
@@ -115,7 +115,7 @@ The configuration defined by `CreateDefaultBuilder` can be overridden and augmen
 
 ::: moniker-end
 
-The *content root* determines where the host searches for content files, such as MVC view files. When the app is started from the project's root folder, the project's root folder is used as the content root. This is the default used in [Visual Studio](https://visualstudio.microsoft.com) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
+The [content root](xref:fundamentals/index#content-root) determines where the host searches for content files, such as MVC view files. When the app is started from the project's root folder, the project's root folder is used as the content root. This is the default used in [Visual Studio](https://visualstudio.microsoft.com) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
 
 For more information on app configuration, see <xref:fundamentals/configuration/index>.
 
@@ -176,9 +176,9 @@ WebHost.CreateDefaultBuilder(args)
     .CaptureStartupErrors(true)
 ```
 
-### Content Root
+### Content root
 
-This setting determines where ASP.NET Core begins searching for content files, such as MVC views. 
+This setting determines where ASP.NET Core begins searching for content files.
 
 **Key**: contentRoot  
 **Type**: *string*  
@@ -186,12 +186,17 @@ This setting determines where ASP.NET Core begins searching for content files, s
 **Set using**: `UseContentRoot`  
 **Environment variable**: `ASPNETCORE_CONTENTROOT`
 
-The content root is also used as the base path for the [Web Root setting](#web-root). If the path doesn't exist, the host fails to start.
+The content root is also used as the base path for the [web root](xref:fundamentals/index#web-root). If the content root path doesn't exist, the host fails to start.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
     .UseContentRoot("c:\\<content-root>")
 ```
+
+For more information, see:
+
+* [Fundamentals: Content root](xref:fundamentals/index#content-root)
+* [Web root](#web-root)
 
 ### Detailed Errors
 
@@ -371,13 +376,13 @@ WebHost.CreateDefaultBuilder(args)
     .UseStartup<TStartup>()
 ```
 
-### Web Root
+### Web root
 
 Sets the relative path to the app's static assets.
 
 **Key**: webroot  
 **Type**: *string*  
-**Default**: If not specified, the default is "(Content Root)/wwwroot", if the path exists. If the path doesn't exist, then a no-op file provider is used.  
+**Default**: The default is `wwwroot`. The path to *{content root}/wwwroot* must exist. If the path doesn't exist, a no-op file provider is used.  
 **Set using**: `UseWebRoot`  
 **Environment variable**: `ASPNETCORE_WEBROOT`
 
@@ -385,6 +390,11 @@ Sets the relative path to the app's static assets.
 WebHost.CreateDefaultBuilder(args)
     .UseWebRoot("public")
 ```
+
+For more information, see:
+
+* [Fundamentals: Web root](xref:fundamentals/index#web-root)
+* [Content root](#content-root)
 
 ## Override configuration
 

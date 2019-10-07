@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to configure Data Protection in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/11/2019
+ms.date: 10/07/2019
 uid: security/data-protection/configuration/overview
 ---
 # Configure ASP.NET Core Data Protection
@@ -129,7 +129,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## SetApplicationName
 
-By default, the Data Protection system isolates apps from one another based on their content root paths, even if they're sharing the same physical key repository. This prevents the apps from understanding each other's protected payloads.
+By default, the Data Protection system isolates apps from one another based on their [content root](xref:fundamentals/index#content-root) paths, even if they're sharing the same physical key repository. This prevents the apps from understanding each other's protected payloads.
 
 To share protected payloads among apps:
 

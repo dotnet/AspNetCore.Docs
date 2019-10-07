@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 08/29/2019
+ms.date: 10/07/2019
 uid: web-api/http-repl
 ---
 # Test web APIs with the HTTP REPL
@@ -803,6 +803,88 @@ To set an HTTP request header, use one of the following approaches:
   ```console
   https://localhost:5001/people~ set header Content-Type
   ```
+
+## Test secured endpoints
+
+The HTTP REPL supports the testing of secured endpoints through the use of HTTP request headers. Examples of supported authentication and authorization schemes include basic authentication, JWT bearer tokens, and digest authentication. For example, you can send a bearer token to an endpoint with the following command:
+
+```console
+set header Authorization "bearer <TOKEN VALUE>"
+```
+
+To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azure/), you need a bearer token. Use the following steps to obtain a bearer token for your Azure subscription via the [Azure CLI](/cli/azure/). The HTTP REPL sets the bearer token in an HTTP request header and retrieves a list of Azure App Service Web Apps.
+
+1. Log in to Azure:
+
+    ```azcli
+    az login
+    ```
+
+1. Get your subscription ID with the following command:
+
+    ```azcli
+    az account show --query id
+    ```
+
+1. Copy your subscription ID and run the following command:
+
+    ```azcli
+    az account set --subscription "<SUBSCRIPTION ID>"
+    ```
+
+1. Get your bearer token with the following command:
+
+    ```azcli
+    az account get-access-token --query accessToken
+    ```
+
+1. Connect to the Azure REST API via the HTTP REPL:
+
+    ```console
+    httprepl https://management.azure.com
+    ```
+
+1. Set the `Authorization` HTTP request header:
+
+    ```console
+    https://management.azure.com/> set header Authorization "bearer <ACCESS TOKEN>"
+    ```
+
+1. Navigate to the subscription:
+
+    ```console
+    https://management.azure.com/> cd subscriptions/<SUBSCRIPTION ID>
+    ```
+
+1. Get a list of your subscription's Azure App Service Web Apps:
+
+    ```console
+    https://management.azure.com/subscriptions/{SUBSCRIPTION ID}> get providers/Microsoft.Web/sites?api-version=2016-08-01
+    ```
+
+    The following response is displayed:
+
+    ```console
+    HTTP/1.1 200 OK
+    Cache-Control: no-cache
+    Content-Length: 35948
+    Content-Type: application/json; charset=utf-8
+    Date: Thu, 19 Sep 2019 23:04:03 GMT
+    Expires: -1
+    Pragma: no-cache
+    Strict-Transport-Security: max-age=31536000; includeSubDomains
+    X-Content-Type-Options: nosniff
+    x-ms-correlation-request-id: <em>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</em>
+    x-ms-original-request-ids: <em>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</em>
+    x-ms-ratelimit-remaining-subscription-reads: 11999
+    x-ms-request-id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    x-ms-routing-request-id: WESTUS:xxxxxxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx
+    {
+      "value": [
+        <AZURE RESOURCES LIST>
+      ]
+    }
+    ```
 
 ## Toggle HTTP request display
 
