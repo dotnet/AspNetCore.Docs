@@ -806,13 +806,13 @@ To set an HTTP request header, use one of the following approaches:
 
 ## Test secured endpoints
 
-The HTTP REPL supports the testing of secured endpoints through the use of HTTP request headers. Examples of supported authentication and authorization schemes include basic authentication, JWT bearer tokens, and digest authentication. For example, send a bearer token to an endpoint with the following command:
+The HTTP REPL supports the testing of secured endpoints through the use of HTTP request headers. Examples of supported authentication and authorization schemes include basic authentication, JWT bearer tokens, and digest authentication. For example, you can send a bearer token to an endpoint with the following command:
 
 ```console
 set header Authorization "bearer <TOKEN VALUE>"
 ```
 
-To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azure/), you need a bearer token. Use the following steps to obtain a bearer token for your Azure subscription and to retrieve a list of your Azure App Service instances:
+To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azure/), you need a bearer token. Use the following steps to obtain a bearer token for your Azure subscription via the [Azure CLI](/cli/azure/). The HTTP REPL sets the bearer token in an HTTP request header and retrieves a list of Azure App Service Web Apps.
 
 1. Log in to Azure:
 
@@ -838,7 +838,7 @@ To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azur
     az account get-access-token --query accessToken
     ```
 
-1. Connect to the Azure Management API via the HTTP REPL:
+1. Connect to the Azure REST API via the HTTP REPL:
 
     ```console
     httprepl https://management.azure.com
@@ -856,7 +856,7 @@ To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azur
     https://management.azure.com/> cd subscriptions/<SUBSCRIPTION ID>
     ```
 
-1. Get a list of your Azure App Service instances:
+1. Get a list of your subscription's Azure App Service Web Apps:
 
     ```console
     https://management.azure.com/subscriptions/{SUBSCRIPTION ID}> get providers/Microsoft.Web/sites?api-version=2016-08-01
