@@ -24,13 +24,13 @@ namespace Ticketer
             // Negative ticket count means there weren't enough available tickets
             if (updatedCount < 0)
             {
-                _logger.LogError("{User} failed to purchase tickets. Not enough available tickets.", user);
+                _logger.LogWarning("{User} failed to purchase tickets. Not enough available tickets.", user);
                 return false;
             }
 
             _availableTickets = updatedCount;
 
-            _logger.LogError("{User} successfully purchased tickets.", user);
+            _logger.LogInformation("{User} successfully purchased tickets.", user);
             return true;
         }
     }
