@@ -5,7 +5,7 @@ description: Learn the foundational concepts for building ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/06/2019
+ms.date: 10/07/2019
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals
@@ -246,36 +246,57 @@ For more information, see <xref:fundamentals/http-requests>.
 
 ## Content root
 
-The content root is the base path to any private content used by the app, such as its Razor files. By default, the content root is the base path for the executable hosting the app. An alternative location can be specified when [building the host](#host).
+The content root is the base path to the:
+
+* Executable hosting the app (*.exe*).
+* Compiled assemblies that make up the app (*.dll*).
+* Non-code content files used by the app, such as:
+  * Razor files (*.cshtml*, *.razor*)
+  * Configuration files (*.json*, *.xml*)
+  * Data files (*.db*)
+* [Web root](#web-root), typically the published *wwwroot* folder.
+
+During development:
+
+* The content root defaults to the project's root directory.
+* The project's root directory is used to create the:
+  * Path to the app's non-code content files in the project's root directory.
+  * [Web root](#web-root), typically the *wwwroot* folder in the project's root directory.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-For more information, see [Content root](xref:fundamentals/host/generic-host#content-root).
+An alternative content root path can be specified when [building the host](#host). For more information, see <xref:fundamentals/host/generic-host#contentrootpath>.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-For more information, see [Content root](xref:fundamentals/host/web-host#content-root).
+An alternative content root path can be specified when [building the host](#host). For more information, see <xref:fundamentals/host/web-host#content-root>.
 
 ::: moniker-end
 
 ## Web root
 
-The web root (also known as *webroot*) is the base path to public, static resources, such as CSS, JavaScript, and image files. The static files middleware will only serve files from the web root directory (and sub-directories) by default. The web root path defaults to *{Content Root}/wwwroot*, but a different location can be specified when [building the host](#host).
+The web root is the base path to public, non-code, static resource files, such as:
+
+* Stylesheets (*.css*)
+* JavaScript (*.js*)
+* Images (*.png*, *.jpg*)
+
+Static files are only served by default from the web root directory (and sub-directories).
 
 ::: moniker range=">= aspnetcore-3.0"
 
-For more information, see [WebRoot](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#webroot)
+The web root path defaults to *{content root}/wwwroot*, but a different web root can be specified when [building the host](#host). For more information, see <xref:fundamentals/host/generic-host#webroot>.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-For more information, see [Web root](/aspnet/core/fundamentals/host/web-host#webroot).
+The web root path defaults to *{content root}/wwwroot*, but a different web root can be specified when [building the host](#host). For more information, see [Web root](xref:fundamentals/host/web-host#web-root).
 
 ::: moniker-end
 
-In Razor (*.cshtml*) files, the tilde-slash `~/` points to the web root. Paths beginning with `~/` are referred to as virtual paths.
+In Razor (*.cshtml*) files, the tilde-slash (`~/`) points to the web root. A path beginning with `~/` is referred to as a *virtual path*.
 
 For more information, see <xref:fundamentals/static-files>.
