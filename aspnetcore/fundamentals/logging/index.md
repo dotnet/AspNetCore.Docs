@@ -390,7 +390,7 @@ Use the log level to control how much log output is written to a particular stor
 
 * In production:
   * Logging at the `Trace` through `Information` levels produces a high-volume of detailed log messages. To control costs and not exceed data storage limits, log `Trace` through `Information` level messages to a high-volume, low-cost data store.
-  * Logging at `Warning` through `Critical` levels typically produces fewer, smaller log messages. Therefore, costs and storage limits usually aren't a concern.
+  * Logging at `Warning` through `Critical` levels typically produces fewer, smaller log messages. Therefore, costs and storage limits usually aren't a concern, which results in greater flexibility of data store choice.
 * During development:
   * Log `Warning` through `Critical` messages to the console.
   * Add `Trace` through `Information` messages when troubleshooting.
