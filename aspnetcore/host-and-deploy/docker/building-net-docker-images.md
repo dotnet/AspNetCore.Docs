@@ -171,7 +171,7 @@ In some scenarios, you might want to deploy an app to a container by copying to 
 
 To use the manually published application within a Docker container, create a new Dockerfile and use the `docker build .` command to build the container.
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range="< aspnetcore-3.0"
 
 ```console
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
@@ -207,8 +207,41 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.0"
 
+```console
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+WORKDIR /app
+COPY published/aspnetapp.dll ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+```
+
+### The Dockerfile
+
+Here's the *Dockerfile* used by the `docker build` command you ran earlier.  It uses `dotnet publish` the same way you did in this section to build and deploy.  
+
+```dockerfile
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
+WORKDIR /app
+
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY aspnetapp/*.csproj ./aspnetapp/
+RUN dotnet restore
+
+# copy everything else and build app
+COPY aspnetapp/. ./aspnetapp/
+WORKDIR /app/aspnetapp
+RUN dotnet publish -c Release -o out
+
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+WORKDIR /app
+COPY --from=build /app/aspnetapp/out ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+```
+
+::: moniker-end
 ```console
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
