@@ -1,7 +1,7 @@
 ---
 title: Manage Protobuf references with dotnet-grpc
 author: juntaoluo
-description: Learn about adding, updating, removing and listing Protobuf references with the dotnet-grpc global tool.
+description: Learn about adding, updating, removing, and listing Protobuf references with the dotnet-grpc global tool.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/24/2019
@@ -29,11 +29,22 @@ The global tool can be used to add Protobuf references as `<Protobuf />` items t
 <Protobuf Include="..\Proto\count.proto" GrpcServices="Server" Link="Protos\count.proto" />
 ```
 
-The Protobuf references are used to generate the C# client and/or server assets. The tool can be used to create a Protobuf reference from local file(s) on disk or a remote file specified by an URL. The tool will also ensure the correct gRPC package dependencies are added to the project. For example, the `Grpc.AspNetCore` package, which contains gRPC server and client libraries as well as tooling support, will be added to a Web app. Alternatively, the `Grpc.Net.Client`, `Grpc.Tools` and `Google.Protobuf` packages, which contains only the gRPC client libraries and tooling support, will be added to a Console app.
+The Protobuf references are used to generate the C# client and/or server assets. The `dotnet-grpc`tool can:
 
-### Add file 
+* Create a Protobuf reference from local files on disk.
+* Create a Protobuf reference from  a remote file specified by a URL.
+* Ensure the correct gRPC package dependencies are added to the project.
 
-The `add-file` command is used to add local file(s) on disk as Protobuf reference(s). The file path(s) provided can be relative to the current directory or absolute paths and may contain wild cards for pattern based file globbing. If any file(s) are outside the project directory, a `Link` element will be added to display the file under the folder `Protos` in Visual Studio.
+For example, the `Grpc.AspNetCore` package is added to the web app. `Grpc.AspNetCore` contains gRPC server and client libraries, and tooling support. Alternatively, the `Grpc.Net.Client`, `Grpc.Tools` and `Google.Protobuf` packages, which contain only the gRPC client libraries and tooling support, are added to a Console app.
+
+### Add file
+
+The `add-file` command is used to add local files on disk as Protobuf references. The file paths provided can be:
+
+* Relative to the current directory or absolute paths.
+* May contain wild cards for pattern-based file globbing.
+
+If any files are outside the project directory, a `Link` element is added to display the file under the folder `Protos` in Visual Studio.
 
 ### Usage
 
@@ -45,20 +56,20 @@ dotnet grpc add-file [options] <files>...
 
 | Argument | Description |
 |-|-|
-| files | The protobuf file reference(s). These can be a path to glob for local protobuf file(s). |
+| files | The protobuf file references. These can be a path to glob for local protobuf files. |
 
 #### Options
 
 | Short option | Long option | Description |
 |-|-|-|
 | -p | --project | The path to the project file to operate on. If a file is not specified, the command will search the current directory for one.
-| -s | --services | The type of gRPC services that should be generated. If Default is specified, Both will be used for Web projects and Client will be used for non-Web projects. Accepted values are Both, Client, Default, None, Server.
+| -s | --services | The type of gRPC services that should be generated. If `Default` is specified, `Both` is used for Web projects and `Client` is used for non-Web projects. Accepted values are `Both`, `Client`, `Default`, `None`, `Server`.
 | -i | --additional-import-dirs | Additional directories to be used when resolving imports for the protobuf files. This is a semicolon separated list of paths.
-| | --access | The access modifier to use for the generated C# classes. Default value is Public. Accepted values are Internal and Public.
+| | --access | The access modifier to use for the generated C# classes. Default value is `Public`. Accepted values are `Internal` and `Public`.
 
 ### Add URL
 
-The `add-url` command is used to add a remote file specified by an source URL as Protobuf reference. A file path must be provided to specify where to download the remote file and it can be relative to the current directory or an absolute path. If the file path is outside the project directory, a `Link` element will be added to display the file under the virtual folder `Protos` in Visual Studio. 
+The `add-url` command is used to add a remote file specified by an source URL as Protobuf reference. A file path must be provided to specify where to download the remote file. The file path can be relative to the current directory or an absolute path. If the file path is outside the project directory, a `Link` element is added to display the file under the virtual folder `Protos` in Visual Studio.
 
 ### Usage
 
@@ -72,20 +83,22 @@ dotnet-grpc add-url [options] <url>
 |-|-|
 | url | The URL to a remote protobuf file. |
 
-
 #### Options
 
 | Short option | Long option | Description |
 |-|-|-|
-| -o | --output | Specify the download path for the remote protobuf file. This is a required option.
+| -o | --output | Specifies the download path for the remote protobuf file. This is a required option.
 | -p | --project | The path to the project file to operate on. If a file is not specified, the command will search the current directory for one.
-| -s | --services | The type of gRPC services that should be generated. If Default is specified, Both will be used for Web projects and Client will be used for non-Web projects. Accepted values are Both, Client, Default, None, Server.
+| -s | --services | The type of gRPC services that should be generated. If `Default` is specified, `Both` is used for Web projects and `Client` is used for non-Web projects. Accepted values are `Both`, `Client`, `Default`, `None`, `Server`.
 | -i | --additional-import-dirs | Additional directories to be used when resolving imports for the protobuf files. This is a semicolon separated list of paths.
-| | --access | The access modifier to use for the generated C# classes. Default value is Public. Accepted values are Internal and Public.
+| | --access | The access modifier to use for the generated C# classes. Default value is `Public`. Accepted values are `Internal` and `Public`.
 
 ## Remove
 
-The `remove` command is used to remove Protobuf references from the *.csproj* file. The command accepts path(s) arguments and source URL as arguments. Note that the tool only removes the Protobuf reference but the actual *.proto* file is not deleted, even if it were originally downloaded from a remote URL.
+The `remove` command is used to remove Protobuf references from the *.csproj* file. The command accepts path arguments and source URLs as arguments. The tool:
+
+* Only removes the Protobuf reference.
+* The actual *.proto* file is not deleted, even if it was originally downloaded from a remote URL.
 
 ### Usage
 
@@ -97,7 +110,7 @@ dotnet-grpc remove [options] <references>...
 
 | Argument | Description |
 |-|-|
-| references | The URL(s) or file path(s) of the protobuf references to remove. |
+| references | The URLs or file paths of the protobuf references to remove. |
 
 ### Options
 
@@ -107,7 +120,12 @@ dotnet-grpc remove [options] <references>...
 
 ## Refresh
 
-The `refresh` command is used to update a remote reference with the latest content from the source URL. Both the download file path and the source URL can be used to specify the reference to be updated. Note that the hashes of the file contents is compared to determine whether the local file should be updated and no timestamp information is compared. The tool will always replace the the local file with the remote file if an update is needed.
+The `refresh` command is used to update a remote reference with the latest content from the source URL. Both the download file path and the source URL can be used to specify the reference to be updated. Note:
+
+* The hashes of the file contents are compared to determine whether the local file should be updated.
+* No timestamp information is compared.
+
+The tool always replaces the local file with the remote file if an update is needed.
 
 ### Usage
 
@@ -119,18 +137,18 @@ dotnet-grpc refresh [options] [<references>...]
 
 | Argument | Description |
 |-|-|
-| references | The URL(s) or file path(s) to remote protobuf references(s) that should be updated. Leave this argument empty to refresh all remote references. |
+| references | The URLs or file paths to remote protobuf references that should be updated. Leave this argument empty to refresh all remote references. |
 
 ### Options
 
 | Short option | Long option | Description |
 |-|-|-|
-| -p | --project | The path to the project file to operate on. If a file is not specified, the command will search the current directory for one.
-| | --dry-run | Output a list of file(s) that will be updated without downloading any new content.
+| -p | --project | The path to the project file to operate on. If a file is not specified, the command searches the current directory for one.
+| | --dry-run | Output a list of files that will be updated without downloading any new content.
 
 ## List
 
-The `list` command is used to diplay all the Protobuf references in the project file. Note that if all values of a column are default values, the column may be omitted.
+The `list` command is used to display all the Protobuf references in the project file. If all values of a column are default values, the column may be omitted.
 
 ### Usage
 
@@ -142,7 +160,7 @@ dotnet-grpc list [options]
 
 | Short option | Long option | Description |
 |-|-|-|
-| -p | --project | The path to the project file to operate on. If a file is not specified, the command will search the current directory for one.
+| -p | --project | The path to the project file to operate on. If a file is not specified, the command searches the current directory for one.
 
 ## Additional resources
 
