@@ -81,7 +81,7 @@ FUTURE UPDATE
 
 On the next topic overhaul/release update, add API crosslink to "Database Error Page Middleware" in Item 1 of the list ...
 
-(<xref:Microsoft.AspNetCore.Builder.DatabaseErrorPageExtensions.UseDatabaseErrorPage*>)
+Microsoft.AspNetCore.Builder.DatabaseErrorPageExtensions.UseDatabaseErrorPage*
 
 ... when available via the API docs.
 
