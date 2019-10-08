@@ -388,7 +388,9 @@ ASP.NET Core defines the following log levels, ordered here from lowest to highe
 
 Use the log level to control how much log output is written to a particular storage medium or display window. For example:
 
-* In production, logging at the `Trace` through `Information` levels produces a high-volume of detailed log messages. To control costs and not exceed data storage limits, log `Trace` through `Information` level messages to a high-volume, low-cost data store. Because logging at `Warning` through `Critical` levels typically produces fewer, smaller log messages, any data store choice is usually acceptable.
+* In production:
+  * Logging at the `Trace` through `Information` levels produces a high-volume of detailed log messages. To control costs and not exceed data storage limits, log `Trace` through `Information` level messages to a high-volume, low-cost data store.
+  * Logging at `Warning` through `Critical` levels typically produces fewer, smaller log messages. Therefore, costs and storage limits usually aren't a concern.
 * During development:
   * Log `Warning` through `Critical` messages to the console.
   * Add `Trace` through `Information` messages when troubleshooting.
