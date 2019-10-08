@@ -132,7 +132,7 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider that loads app settings from a file (*appsettings.json* or *appsettings.{Environment}.json*) when `CreateDefaultBuilder` is called can also load Kestrel configuration:
+Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from a file (*appsettings.json* or *appsettings.{Environment}.json*) when `CreateDefaultBuilder` is called:
 
 ```json
 {
