@@ -11,17 +11,17 @@ uid: grpc/dotnet-grpc
 
 By [John Luo](https://github.com/juntaoluo)
 
-`dotnet-grpc` is a .NET Core global tool for managing Protobuf references within a .NET gRPC project. The tool can be used to add, refresh, remove and list Protobuf references.
+`dotnet-grpc` is a .NET Core Global Tool for managing Protobuf references within a .NET gRPC project. The tool can be used to add, refresh, remove, and list Protobuf references.
 
 ## Installation
 
-To install `dotnet-grpc` [.NET Core Global Tool](/dotnet/core/tools/global-tools), run the following command:
+To install the `dotnet-grpc` [.NET Core Global Tool](/dotnet/core/tools/global-tools), run the following command:
 
-```console
+```dotnetcli
 dotnet tool install -g dotnet-grpc
 ```
 
-## Add References
+## Add references
 
 The global tool can be used to add Protobuf references as `<Protobuf />` items to the *.csproj* file:
 
@@ -31,13 +31,13 @@ The global tool can be used to add Protobuf references as `<Protobuf />` items t
 
 The Protobuf references are used to generate the C# client and/or server assets. The tool can be used to create a Protobuf reference from local file(s) on disk or a remote file specified by an URL. The tool will also ensure the correct gRPC package dependencies are added to the project. For example, the `Grpc.AspNetCore` package, which contains gRPC server and client libraries as well as tooling support, will be added to a Web app. Alternatively, the `Grpc.Net.Client`, `Grpc.Tools` and `Google.Protobuf` packages, which contains only the gRPC client libraries and tooling support, will be added to a Console app.
 
-### Add File
+### Add file 
 
 The `add-file` command is used to add local file(s) on disk as Protobuf reference(s). The file path(s) provided can be relative to the current directory or absolute paths and may contain wild cards for pattern based file globbing. If any file(s) are outside the project directory, a `Link` element will be added to display the file under the folder `Protos` in Visual Studio.
 
 ### Usage
 
-```console
+```dotnetcli
 dotnet grpc add-file [options] <files>...
 ```
 
@@ -62,7 +62,7 @@ The `add-url` command is used to add a remote file specified by an source URL as
 
 ### Usage
 
-```console
+```dotnetcli
 dotnet-grpc add-url [options] <url>
 ```
 
@@ -89,7 +89,7 @@ The `remove` command is used to remove Protobuf references from the *.csproj* fi
 
 ### Usage
 
-```console
+```dotnetcli
 dotnet-grpc remove [options] <references>...
 ```
 
@@ -111,7 +111,7 @@ The `refresh` command is used to update a remote reference with the latest conte
 
 ### Usage
 
-```console
+```dotnetcli
 dotnet-grpc refresh [options] [<references>...]
 ```
 
@@ -128,13 +128,13 @@ dotnet-grpc refresh [options] [<references>...]
 | -p | --project | The path to the project file to operate on. If a file is not specified, the command will search the current directory for one.
 | | --dry-run | Output a list of file(s) that will be updated without downloading any new content.
 
-## Refresh
+## List
 
-The `list` command is used to diplay all the Protobuf references in the project file. Note that if all values of a column are default values, the column may not be omitted.
+The `list` command is used to diplay all the Protobuf references in the project file. Note that if all values of a column are default values, the column may be omitted.
 
 ### Usage
 
-```console
+```dotnetcli
 dotnet-grpc list [options]
 ```
 
