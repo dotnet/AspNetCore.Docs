@@ -39,10 +39,10 @@ namespace ValidationSample.Controllers
         {
             if (!_userRepository.VerifyName(firstName, lastName))
             {
-                return Json(data: $"A user named {firstName} {lastName} already exists.");
+                return Json($"A user named {firstName} {lastName} already exists.");
             }
 
-            return Json(data: true);
+            return Json(true);
         }
         #endregion
 
@@ -64,6 +64,11 @@ namespace ValidationSample.Controllers
             return Json(true);
         }
         #endregion
+
+        public IActionResult CheckName()
+        {
+            return View();
+        }
 
         public IActionResult CheckAge()
         {
