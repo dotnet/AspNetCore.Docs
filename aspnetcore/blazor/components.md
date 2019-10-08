@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/30/2019
+ms.date: 10/05/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -971,29 +971,32 @@ The base class should derive from `ComponentBase`.
 
 ## Import components
 
-The namespace of a component authored with Razor is based on:
+The namespace of a component authored with Razor is based on (in priority order):
 
-* The project's `RootNamespace`.
-* The path from the project root to the component. For example, `ComponentsSample/Pages/Index.razor` is in the namespace `ComponentsSample.Pages`. Components follow C# name binding rules. In the case of *Index.razor*, all components in the same folder, *Pages*, and the parent folder, *ComponentsSample*, are in scope.
+* [@namespace](xref:mvc/views/razor#namespace) designation in Razor file (*.razor*) markup (`@namespace BlazorSample.MyNamespace`).
+* The project's `RootNamespace` in the project file (`<RootNamespace>BlazorSample</RootNamespace>`).
+* The project name, taken from the project file's file name (*.csproj*), and the path from the project root to the component. For example, the framework resolves *{PROJECT ROOT}/Pages/Index.razor* (*BlazorSample.csproj*) to the namespace `BlazorSample.Pages`. Components follow C# name binding rules. For the `Index` component in this example, the components in scope are all of the components:
+  * In the same folder, *Pages*.
+  * The components in the project's root that don't explicitly specify a different namespace.
 
-Components defined in a different namespace can be brought into scope using Razor's [\@using](xref:mvc/views/razor#using) directive.
+Components defined in a different namespace are brought into scope using Razor's [@using](xref:mvc/views/razor#using) directive.
 
-If another component, `NavMenu.razor`, exists in the folder `ComponentsSample/Shared/`, the component can be used in `Index.razor` with the following `@using` statement:
+If another component, `NavMenu.razor`, exists in the *BlazorSample/Shared/* folder, the component can be used in `Index.razor` with the following `@using` statement:
 
 ```cshtml
-@using ComponentsSample.Shared
+@using BlazorSample.Shared
 
 This is the Index page.
 
 <NavMenu></NavMenu>
 ```
 
-Components can also be referenced using their fully qualified names, which removes the need for the [\@using](xref:mvc/views/razor#using) directive:
+Components can also be referenced using their fully qualified names, which doesn't require the [@using](xref:mvc/views/razor#using) directive:
 
 ```cshtml
 This is the Index page.
 
-<ComponentsSample.Shared.NavMenu></ComponentsSample.Shared.NavMenu>
+<BlazorSample.Shared.NavMenu></BlazorSample.Shared.NavMenu>
 ```
 
 > [!NOTE]
@@ -1001,7 +1004,7 @@ This is the Index page.
 >
 > Importing components with aliased `using` statements (for example, `@using Foo = Bar`) isn't supported.
 >
-> Partially qualified names aren't supported. For example, adding `@using ComponentsSample` and referencing `NavMenu.razor` with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.
+> Partially qualified names aren't supported. For example, adding `@using BlazorSample` and referencing `NavMenu.razor` with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.
 
 ## Conditional HTML element attributes
 
