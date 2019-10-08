@@ -14,7 +14,7 @@ By [John Luo](https://github.com/juntaoluo) and [James Newton-King](https://twit
 [gRPC](https://grpc.io/docs/guides/) is a language agnostic, high-performance Remote Procedure Call (RPC) framework.
 
 The main benefits of gRPC are:
-* Modern high-performance lightweight RPC framework.
+* Modern, high-performance, lightweight RPC framework.
 * Contract-first API development, using Protocol Buffers by default, allowing for language agnostic implementations.
 * Tooling available for many languages to generate strongly-typed servers and clients.
 * Supports client, server, and bi-directional streaming calls.
@@ -114,6 +114,8 @@ Console.WriteLine(response.Message);
 A gRPC client is created using a channel, which represents a long-lived connection to a gRPC service. A channel can be created using `GrpcChannel.ForAddress`.
 
 For more information on creating clients, and calling different service methods, see <xref:grpc/client>.
+
+[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## Additional resources
 

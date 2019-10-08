@@ -7,7 +7,7 @@
 <p>The default values of the following form POST (add a Todo item) to the web API created in the <a href="https://docs.microsoft.com/aspnet/core/tutorials/first-web-api">Tutorial: Create a web API with ASP.NET Core MVC</a> topic with:</p>
 
 <ul>
-    <li>An endpoint URI of <code>https://localhost:10000/api/todo</code>.</li>
+    <li>An endpoint URI of <code>https://localhost:10000/api/TodoItems</code>.</li>
     <li>The <code>Content-Type</code> header set to <code>application/json</code>, which describes the payload of a POST/PUT request to the service.</li>
     <li>Fetch API credentials of <code>include</code>, which is permitted by the service's CORS Middleware policy with an <code>Authorization</code> header included in the request.</li>
 </ul>
@@ -82,7 +82,7 @@
 }
 
 @code {
-    private string _uri = "https://localhost:10000/api/todo";
+    private string _uri = "https://localhost:10000/api/TodoItems";
     private string _method = "POST";
     private string _requestBody = @"{""name"":""A New Todo Item"",""isComplete"":false}";
     private List<RequestHeader> _requestHeaders = new List<RequestHeader>()

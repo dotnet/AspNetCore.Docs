@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to serve and secure static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/8/2019
+ms.date: 10/07/2019
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
@@ -17,7 +17,7 @@ Static files, such as HTML, CSS, images, and JavaScript, are assets an ASP.NET C
 
 ## Serve static files
 
-Static files are stored within the project's web root directory. The default directory is *\<content_root>/wwwroot*, but it can be changed via the [UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) method. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information.
+Static files are stored within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is *{content root}/wwwroot*, but it can be changed via the [UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) method. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information.
 
 The app's web host must be made aware of the content root directory.
 
@@ -37,7 +37,7 @@ Set the content root to the current directory by invoking [UseContentRoot](/dotn
 
 ::: moniker-end
 
-Static files are accessible via a path relative to the web root. For example, the **Web Application** project template contains several folders within the *wwwroot* folder:
+Static files are accessible via a path relative to the [web root](xref:fundamentals/index#web-root). For example, the **Web Application** project template contains several folders within the *wwwroot* folder:
 
 * **wwwroot**
   * **css**
@@ -72,15 +72,15 @@ Invoke the [UseStaticFiles](/dotnet/api/microsoft.aspnetcore.builder.staticfilee
 
 [!code-csharp[](static-files/samples/1x/StartupStaticFiles.cs?name=snippet_ConfigureMethod&highlight=3)]
 
-The parameterless `UseStaticFiles` method overload marks the files in web root as servable. The following markup references *wwwroot/images/banner1.svg*:
+The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references *wwwroot/images/banner1.svg*:
 
 [!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_wwwroot)]
 
-In the preceding code, the tilde character `~/` points to webroot. For more information, see [Web root](xref:fundamentals/index#web-root).
+In the preceding code, the tilde character `~/` points to the [web root](xref:fundamentals/index#web-root).
 
 ### Serve files outside of web root
 
-Consider a directory hierarchy in which the static files to be served reside outside of the web root:
+Consider a directory hierarchy in which the static files to be served reside outside of the [web root](xref:fundamentals/index#web-root):
 
 * **wwwroot**
   * **css**
@@ -102,7 +102,7 @@ The following markup references *MyStaticFiles/images/banner1.svg*:
 
 ### Set HTTP response headers
 
-A [StaticFileOptions](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions) object can be used to set HTTP response headers. In addition to configuring static file serving from the web root, the following code sets the `Cache-Control` header:
+A [StaticFileOptions](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions) object can be used to set HTTP response headers. In addition to configuring static file serving from the [web root](xref:fundamentals/index#web-root), the following code sets the `Cache-Control` header:
 
 [!code-csharp[](static-files/samples/1x/StartupAddHeader.cs?name=snippet_ConfigureMethod)]
 
@@ -250,7 +250,7 @@ With the preceding code, a request for a file with an unknown content type is re
 > [!WARNING]
 > If the IIS static file handler is enabled **and** the ASP.NET Core Module is configured incorrectly, static files are served. This happens, for example, if the *web.config* file isn't deployed.
 
-* Place code files (including *.cs* and *.cshtml*) outside of the app project's web root. A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
+* Place code files (including *.cs* and *.cshtml*) outside of the app project's [web root](xref:fundamentals/index#web-root). A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
 
 ## Additional resources
 

@@ -5,9 +5,9 @@
 
 <h2>Blazor Example</h2>
 
-<p>This example requires a running web API based on the sample app for the <a href="https://docs.microsoft.com/aspnet/core/tutorials/first-web-api">Tutorial: Create a web API with ASP.NET Core MVC</a> topic. This Blazor sample app makes requests to the web API at <code>https://localhost:10000/api/todo</code>. If a different web API address is used, update the <code>ServiceEndpoint</code> constant value in the Razor component's <code>@@code</code> block.</p>
+<p>This example requires a running web API based on the sample app for the <a href="https://docs.microsoft.com/aspnet/core/tutorials/first-web-api">Tutorial: Create a web API with ASP.NET Core</a> topic. This Blazor sample app makes requests to the web API at <code>https://localhost:10000/api/TodoItems</code>. If a different web API address is used, update the <code>ServiceEndpoint</code> constant value in the Razor component's <code>@@code</code> block.</p>
 
-<p>The Blazor sample app makes a <a href="https://docs.microsoft.com/aspnet/core/security/cors">cross-origin resource sharing (CORS)</a> request from <code>http://localhost:5000</code> or <code>https://localhost:5001</code> to the web API service app. Add the following CORS middleware configuration to the web API's service's <code>Startup.Configure</code> method before it calls <code>UseMvc</code>:</p>
+<p>The Blazor sample app makes a <a href="https://docs.microsoft.com/aspnet/core/security/cors">cross-origin resource sharing (CORS)</a> request from <code>http://localhost:5000</code> or <code>https://localhost:5001</code> to the web API service app. Add the following CORS middleware configuration to the web API's service's <code>Startup.Configure</code> method:</p>
 
 <pre><code>app.UseCors(policy => 
     policy.WithOrigins("http://localhost:5000", "https://localhost:5001")
@@ -15,6 +15,8 @@
     .WithHeaders(HeaderNames.ContentType));</code></pre>
 
 <p>Adjust the domains and ports of <code>WithOrigins</code> as needed for the Blazor app.</p>
+
+<p>By default, ASP.NET Core apps use ports 5000 (HTTP) and 5001 (HTTPS). To run both apps on the same machine at the same time for testing, use a different port for the web API app (for example, port 10000). For more information on setting the port, see the <a href="https://docs.microsoft.com/aspnet/core/fundamentals/servers/kestrel#endpoint-configuration">Kestrel web server implementation: Endpoint configuration</a>.</p>
 
 <h3>Todo Items</h3>
 
@@ -77,7 +79,7 @@ else
 <HTTPRequestTester />
 
 @code {
-    private const string ServiceEndpoint = "https://localhost:10000/api/todo";
+    private const string ServiceEndpoint = "https://localhost:10000/api/TodoItems";
     private TodoItem[] _todoItems;
     private TodoItem _editItem = new TodoItem();
     private string _editRowStyle = "none";

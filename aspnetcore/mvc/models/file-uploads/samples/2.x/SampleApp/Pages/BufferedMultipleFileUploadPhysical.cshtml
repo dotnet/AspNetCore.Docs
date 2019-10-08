@@ -1,0 +1,30 @@
+﻿@page
+@model BufferedMultipleFileUploadPhysicalModel
+@{
+    ViewData["Title"] = "Buffered Multiple File Upload (Physical)";
+}
+
+<h1>Upload multiple buffered files to physical storage with one file upload control</h1>
+
+<p>One or more files can be selected by the visitor. The following form's page handler saves the file(s) to disk.</p>
+
+<form enctype="multipart/form-data" method="post">
+    <dl>
+        <dt>
+            <label asp-for="FileUpload.FormFiles"></label>
+        </dt>
+        <dd>
+            <input asp-for="FileUpload.FormFiles" type="file" multiple />
+            <span asp-validation-for="FileUpload.FormFiles"></span>
+        </dd>
+    </dl>
+    <input asp-page-handler="Upload" class="btn" type="submit" value="Upload" />
+</form>
+
+<p class="result">
+    @Model.Result
+</p>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

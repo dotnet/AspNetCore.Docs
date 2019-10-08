@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to configure Data Protection in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/11/2019
+ms.date: 10/07/2019
 uid: security/data-protection/configuration/overview
 ---
 # Configure ASP.NET Core Data Protection
@@ -129,7 +129,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## SetApplicationName
 
-By default, the Data Protection system isolates apps from one another based on their content root paths, even if they're sharing the same physical key repository. This prevents the apps from understanding each other's protected payloads.
+By default, the Data Protection system isolates apps from one another based on their [content root](xref:fundamentals/index#content-root) paths, even if they're sharing the same physical key repository. This prevents the apps from understanding each other's protected payloads.
 
 To share protected payloads among apps:
 
@@ -371,6 +371,10 @@ When hosting in a [Docker](/dotnet/standard/microservices-architecture/container
 
 * A folder that's a Docker volume that persists beyond the container's lifetime, such as a shared volume or a host-mounted volume.
 * An external provider, such as [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) or [Redis](https://redis.io/).
+
+## Persisting keys with Redis
+
+Only Redis versions supporting [Redis Data Persistence](/azure/azure-cache-for-redis/cache-how-to-premium-persistence) should be used to store keys. [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction) is persistent and can be used to store keys. For more information, see [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/13476).
 
 ## Additional resources
 

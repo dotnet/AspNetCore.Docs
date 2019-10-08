@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/09/2019
+ms.date: 10/07/2019
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -30,21 +30,7 @@ The ASP.NET Core Worker Service template provides a starting point for writing l
 1. Create a Worker Service app from the .NET Core template.
 1. Follow the guidance in the [App configuration](#app-configuration) section to update the Worker Service app so that it can run as a Windows Service.
 
-# [Visual Studio](#tab/visual-studio)
-
-1. Create a new project.
-1. Select **ASP.NET Core Web Application**. Select **Next**.
-1. Provide a project name in the **Project name** field or accept the default project name. Select **Create**.
-1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected.
-1. Select the **Worker Service** template. Select **Create**.
-
-# [.NET Core CLI](#tab/netcore-cli)
-
-Use the Worker Service (`worker`) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell. In the following example, a Worker Service app is created named `ContosoWorkerService`. A folder for the `ContosoWorkerService` app is created automatically when the command is executed.
-
-```dotnetcli
-dotnet new worker -o ContosoWorkerService
-```
+[!INCLUDE[](~/includes/worker-template-instructions.md)]
 
 ---
 
@@ -57,7 +43,7 @@ dotnet new worker -o ContosoWorkerService
 `IHostBuilder.UseWindowsService`, provided by the [Microsoft.Extensions.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices) package, is called when building the host. If the app is running as a Windows Service, the method:
 
 * Sets the host lifetime to `WindowsServiceLifetime`.
-* Sets the content root.
+* Sets the [content root](xref:fundamentals/index#content-root).
 * Enables logging to the event log with the application name as the default source name.
   * The log level can be configured using the `Logging:LogLevel:Default` key in the *appsettings.Production.json* file.
   * Only administrators can create new event sources. When an event source can't be created using the application name, a warning is logged to the *Application* source and event logs are disabled.
@@ -334,7 +320,7 @@ Use [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEn
 
 ### Set the content root path to the app's folder
 
-The <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> is the same path provided to the `binPath` argument when a service is created. Instead of calling `GetCurrentDirectory` to create paths to settings files, call <xref:System.IO.Directory.SetCurrentDirectory*> with the path to the app's content root.
+The <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> is the same path provided to the `binPath` argument when a service is created. Instead of calling `GetCurrentDirectory` to create paths to settings files, call <xref:System.IO.Directory.SetCurrentDirectory*> with the path to the app's [content root](xref:fundamentals/index#content-root).
 
 In `Program.Main`, determine the path to the folder of the service's executable and use the path to establish the app's content root:
 

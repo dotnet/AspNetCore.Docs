@@ -5,7 +5,7 @@ description: Learn how to use the logging framework provided by the Microsoft.Ex
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/11/2019
+ms.date: 10/08/2019
 uid: fundamentals/logging/index
 ---
 # Logging in .NET Core and ASP.NET Core
@@ -388,8 +388,12 @@ ASP.NET Core defines the following log levels, ordered here from lowest to highe
 
 Use the log level to control how much log output is written to a particular storage medium or display window. For example:
 
-* In production, send `Trace` through `Information` level to a volume data store. Send `Warning` through `Critical` to a value data store.
-* During development, send `Warning` through `Critical` to the console, and add `Trace` through `Information` when troubleshooting.
+* In production:
+  * Logging at the `Trace` through `Information` levels produces a high-volume of detailed log messages. To control costs and not exceed data storage limits, log `Trace` through `Information` level messages to a high-volume, low-cost data store.
+  * Logging at `Warning` through `Critical` levels typically produces fewer, smaller log messages. Therefore, costs and storage limits usually aren't a concern, which results in greater flexibility of data store choice.
+* During development:
+  * Log `Warning` through `Critical` messages to the console.
+  * Add `Trace` through `Information` messages when troubleshooting.
 
 The [Log filtering](#log-filtering) section later in this article explains how to control which log levels a provider handles.
 
@@ -523,7 +527,7 @@ The order of placeholders, not their names, determines which parameters are used
 ```csharp
 string p1 = "parm1";
 string p2 = "parm2";
-_logger.LogInformation("Parameter values: {p1}, {p2}", p1, p2);
+_logger.LogInformation("Parameter values: {p2}, {p1}", p1, p2);
 ```
 
 This code creates a log message with the parameter values in sequence:
@@ -919,6 +923,7 @@ Third-party logging frameworks that work with ASP.NET Core:
 * [Gelf](https://docs.graylog.org/en/2.3/pages/gelf.html) ([GitHub repo](https://github.com/mattwcole/gelf-extensions-logging))
 * [JSNLog](https://jsnlog.com/) ([GitHub repo](https://github.com/mperdeck/jsnlog))
 * [KissLog.net](https://kisslog.net/) ([GitHub repo](https://github.com/catalingavan/KissLog-net))
+* [Log4Net](https://logging.apache.org/log4net/) ([GitHub repo](https://github.com/huorswords/Microsoft.Extensions.Logging.Log4Net.AspNetCore))
 * [Loggr](https://loggr.net/) ([GitHub repo](https://github.com/imobile3/Loggr.Extensions.Logging))
 * [NLog](https://nlog-project.org/) ([GitHub repo](https://github.com/NLog/NLog.Extensions.Logging))
 * [Sentry](https://sentry.io/welcome/) ([GitHub repo](https://github.com/getsentry/sentry-dotnet))

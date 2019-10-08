@@ -3,7 +3,7 @@ title: Develop ASP.NET Core apps using OpenAPI
 author: ryanbrandenburg
 description: Demonstrates how to use the 'Microsoft.dotnet-openapi' tool to add references to OpenAPI files.
 ms.author: rybrande
-ms.date: 08/26/2019
+ms.date: 09/26/2019
 monikerRange: '>= aspnetcore-3.0'
 uid: web-api/Microsoft.dotnet-openapi
 ---
@@ -11,21 +11,19 @@ uid: web-api/Microsoft.dotnet-openapi
 
 By Ryan Brandenburg
 
-`Microsoft.dotnet-openapi` is a .NET Core global tool for managing [OpenAPI](https://github.com/OAI/OpenAPI-Specification) references within a project.
+[Microsoft.dotnet-openapi](https://www.nuget.org/packages/Microsoft.dotnet-openapi) is a [.NET Core Global Tool](/dotnet/core/tools/global-tools) for managing [OpenAPI](https://github.com/OAI/OpenAPI-Specification) references within a project.
 
 ## Installation
 
 To install `Microsoft.dotnet-openapi`, run the following command:
 
-```console
+```dotnetcli
 dotnet tool install -g Microsoft.dotnet-openapi
 ```
 
-`Microsoft.dotnet-openapi` is a [.NET Core Global Tool](/dotnet/core/tools/global-tools).
-
 ## Add
 
-Adding an OpenAPI reference using any of the commands on this page adds an `<OpenApiReference />`  element similar to the following to the *.csproj* file:
+Adding an OpenAPI reference using any of the commands on this page adds an `<OpenApiReference />` element similar to the following to the *.csproj* file:
 
 ```xml
 <OpenApiReference Include="openapi.json" />

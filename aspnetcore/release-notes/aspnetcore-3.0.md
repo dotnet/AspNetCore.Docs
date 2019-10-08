@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 09/26/2019
 uid: aspnetcore-3.0
 ---
 # What's new in ASP.NET Core 3.0
@@ -296,7 +296,7 @@ subject.complete();
 
 Using code like the two preceding snippets, real-time streaming experiences can be created.
 
-### New JSON serialization
+## New JSON serialization
 
 ASP.NET Core 3.0 now uses <xref:System.Text.Json> by default for JSON serialization:
 
@@ -312,6 +312,17 @@ The following list contains new Razor directives:
 
 * [@attribute](xref:mvc/views/razor#attribute) &ndash; The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@attribute [Authorize]`.
 * [@implements](xref:mvc/views/razor#implements) &ndash; The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
+
+## IdentityServer4 supports authentication and authorization for web APIs and SPAs
+
+[IdentityServer4](https://identityserver.io) is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core 3.0. IdentityServer4 enables the following security features:
+
+* Authentication as a Service (AaaS)
+* Single sign-on/off (SSO) over multiple application types
+* Access control for APIs
+* Federation Gateway
+
+For more information, see [Welcome to IdentityServer4](http://docs.identityserver.io/en/latest/index.html).
 
 ## Certificate and Kerberos authentication
 
@@ -406,7 +417,7 @@ All services can still be injected directly as arguments to the `Startup.Configu
 * Connection Adapters have been removed from Kestrel and replaced with Connection Middleware, which is similar to HTTP Middleware in the ASP.NET Core pipeline but for lower-level connections.
 * The Kestrel transport layer has been exposed as a public interface in `Connections.Abstractions`.
 * Ambiguity between headers and trailers has been resolved by moving trailing headers to a new collection.
-* Synchronous IO APIs, such as `HttpReqeuest.Body.Read`, are a common source of thread starvation leading to app crashes. In 3.0, `AllowSynchronousIO` is disabled by default.
+* Synchronous IO APIs, such as `HttpRequest.Body.Read`, are a common source of thread starvation leading to app crashes. In 3.0, `AllowSynchronousIO` is disabled by default.
 
 For more information, see <xref:migration/22-to-30#kestrel>.
 
@@ -414,9 +425,9 @@ For more information, see <xref:migration/22-to-30#kestrel>.
 
 HTTP/2 is enabled by default in Kestrel for HTTPS endpoints. HTTP/2 support for IIS or HTTP.sys is enabled when supported by the operating system.
 
-## Request counters
+## EventCounters on request
 
-The Hosting EventSource (Microsoft.AspNetCore.Hosting) emits the following EventCounters related to incoming requests:
+The Hosting EventSource, `Microsoft.AspNetCore.Hosting`, emits the following new <xref:System.Diagnostics.Tracing.EventCounter> types related to incoming requests:
 
 * `requests-per-second`
 * `total-requests`
@@ -468,7 +479,7 @@ Startup errors when hosting ASP.NET Core apps in IIS now produce richer diagnost
 
 ## Worker Service and Worker SDK
 
-.NET Core 3.0 introduces the new Worker Service app template. This template is provides a starting point for writing long running services in .NET Core.
+.NET Core 3.0 introduces the new Worker Service app template. This template provides a starting point for writing long running services in .NET Core.
 
 For more information, see:
 

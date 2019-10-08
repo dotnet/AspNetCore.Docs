@@ -5,7 +5,7 @@ description: Learn how to transform the web.config file when publishing an ASP.N
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/07/2019
+ms.date: 10/07/2019
 uid: host-and-deploy/iis/transform-webconfig
 ---
 # Transform web.config
@@ -22,7 +22,7 @@ Transformations to the *web.config* file can be applied automatically when an ap
 These transformations occur for either of the following *web.config* generation scenarios:
 
 * Generated automatically by the `Microsoft.NET.Sdk.Web` SDK.
-* Provided by the developer in the content root of the app.
+* Provided by the developer in the [content root](xref:fundamentals/index#content-root) of the app.
 
 ## Build configuration
 
