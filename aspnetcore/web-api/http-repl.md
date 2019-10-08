@@ -784,25 +784,25 @@ The route parameter, if any, expected by the associated controller action method
 
 To set an HTTP request header, use one of the following approaches:
 
-1. Set inline with the HTTP request. For example:
+* Set inline with the HTTP request. For example:
 
-  ```console
-  https://localhost:5001/people~ post -h Content-Type=application/json
-  ```
+    ```console
+    https://localhost:5001/people~ post -h Content-Type=application/json
+    ```
+    
+    With the preceding approach, each distinct HTTP request header requires its own `-h` option.
 
-  With the preceding approach, each distinct HTTP request header requires its own `-h` option.
+* Set before sending the HTTP request. For example:
 
-1. Set before sending the HTTP request. For example:
-
-  ```console
-  https://localhost:5001/people~ set header Content-Type application/json
-  ```
-
-  When setting the header before sending a request, the header remains set for the duration of the command shell session. To clear the header, provide an empty value. For example:
-
-  ```console
-  https://localhost:5001/people~ set header Content-Type
-  ```
+    ```console
+    https://localhost:5001/people~ set header Content-Type application/json
+    ```
+    
+    When setting the header before sending a request, the header remains set for the duration of the command shell session. To clear the header, provide an empty value. For example:
+    
+    ```console
+    https://localhost:5001/people~ set header Content-Type
+    ```
 
 ## Test secured endpoints
 
