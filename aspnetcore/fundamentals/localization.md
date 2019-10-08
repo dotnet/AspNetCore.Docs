@@ -271,11 +271,19 @@ The [Accept-Language header](https://www.w3.org/International/questions/qa-accep
 ::: moniker range=">= aspnetcore-3.0"
 ### The Content-Language HTTP header
 
-The [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) an entity header, is used to describe the language(s) intended for the audience, so that it allows a user to differentiate according to the users' own preferred language. Entity headers are used in both, HTTP requests and responses.
+The [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) entity header:
 
-In ASP.NET Core 3.0 the `Content-Language` header can be added optionally by setting the property `ApplyCurrentCultureToResponseHeaders`.
+ - Is used to describe the language(s) intended for the audience.
+ - Allows a user to differentiate according to the users' own preferred language.
 
-This will allow the `RequestLocalizationMiddleware` to set the `Content-Language` header with the `CurrentUICulture`, instead to manage the response header `Content-Language` yourself.
+Entity headers are used in both, HTTP requests and responses.
+
+In ASP.NET Core 3.0 the `Content-Language` header can be added by setting the property `ApplyCurrentCultureToResponseHeaders`.
+
+Adding the `Content-Language` header:
+
+ - Allows the RequestLocalizationMiddleware to set the `Content-Language` header with the `CurrentUICulture`.
+ - Eliminates the need to set the response header `Content-Language` explicitly.
 
 ```csharp
 app.UseRequestLocalization(new RequestLocalizationOptions
