@@ -296,7 +296,7 @@ subject.complete();
 
 Using code like the two preceding snippets, real-time streaming experiences can be created.
 
-### New JSON serialization
+## New JSON serialization
 
 ASP.NET Core 3.0 now uses <xref:System.Text.Json> by default for JSON serialization:
 
