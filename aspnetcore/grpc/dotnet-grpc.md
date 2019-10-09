@@ -144,7 +144,7 @@ dotnet-grpc refresh [options] [<references>...]
 | Short option | Long option | Description |
 |-|-|-|
 | -p | --project | The path to the project file to operate on. If a file is not specified, the command searches the current directory for one.
-| | --dry-run | Output a list of files that will be updated without downloading any new content.
+| | --dry-run | Outputs a list of files that would be updated without downloading any new content.
 
 ## List
 
