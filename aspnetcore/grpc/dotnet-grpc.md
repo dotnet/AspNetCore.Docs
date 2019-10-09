@@ -23,7 +23,7 @@ dotnet tool install -g dotnet-grpc
 
 ## Add references
 
-The global tool can be used to add Protobuf references as `<Protobuf />` items to the *.csproj* file:
+`dotnet-grp` can be used to add Protobuf references as `<Protobuf />` items to the *.csproj* file:
 
 ```xml
 <Protobuf Include="..\Proto\count.proto" GrpcServices="Server" Link="Protos\count.proto" />
@@ -35,14 +35,14 @@ The Protobuf references are used to generate the C# client and/or server assets.
 * Create a Protobuf reference from  a remote file specified by a URL.
 * Ensure the correct gRPC package dependencies are added to the project.
 
-For example, the `Grpc.AspNetCore` package is added to the web app. `Grpc.AspNetCore` contains gRPC server and client libraries, and tooling support. Alternatively, the `Grpc.Net.Client`, `Grpc.Tools` and `Google.Protobuf` packages, which contain only the gRPC client libraries and tooling support, are added to a Console app.
+For example, the `Grpc.AspNetCore` package is added to a web app. `Grpc.AspNetCore` contains gRPC server and client libraries and tooling support. Alternatively, the `Grpc.Net.Client`, `Grpc.Tools` and `Google.Protobuf` packages, which contain only the gRPC client libraries and tooling support, are added to a Console app.
 
 ### Add file
 
-The `add-file` command is used to add local files on disk as Protobuf references. The file paths provided can be:
+The `add-file` command is used to add local files on disk as a Protobuf references. The file paths provided:
 
-* Relative to the current directory or absolute paths.
-* May contain wild cards for pattern-based file globbing.
+* Can be relative to the current directory or absolute paths.
+* May contain wild cards for pattern-based file [globbing](https://wikipedia.org/wiki/Glob_(programming)).
 
 If any files are outside the project directory, a `Link` element is added to display the file under the folder `Protos` in Visual Studio.
 
@@ -62,10 +62,10 @@ dotnet grpc add-file [options] <files>...
 
 | Short option | Long option | Description |
 |-|-|-|
-| -p | --project | The path to the project file to operate on. If a file is not specified, the command will search the current directory for one.
+| -p | --project | The path to the project file to operate on. If a file is not specified, the command searchs the current directory for one.
 | -s | --services | The type of gRPC services that should be generated. If `Default` is specified, `Both` is used for Web projects and `Client` is used for non-Web projects. Accepted values are `Both`, `Client`, `Default`, `None`, `Server`.
 | -i | --additional-import-dirs | Additional directories to be used when resolving imports for the protobuf files. This is a semicolon separated list of paths.
-| | --access | The access modifier to use for the generated C# classes. Default value is `Public`. Accepted values are `Internal` and `Public`.
+| | --access | The access modifier to use for the generated C# classes. The default value is `Public`. Accepted values are `Internal` and `Public`.
 
 ### Add URL
 
@@ -88,7 +88,7 @@ dotnet-grpc add-url [options] <url>
 | Short option | Long option | Description |
 |-|-|-|
 | -o | --output | Specifies the download path for the remote protobuf file. This is a required option.
-| -p | --project | The path to the project file to operate on. If a file is not specified, the command will search the current directory for one.
+| -p | --project | The path to the project file to operate on. If a file is not specified, the command searches the current directory for one.
 | -s | --services | The type of gRPC services that should be generated. If `Default` is specified, `Both` is used for Web projects and `Client` is used for non-Web projects. Accepted values are `Both`, `Client`, `Default`, `None`, `Server`.
 | -i | --additional-import-dirs | Additional directories to be used when resolving imports for the protobuf files. This is a semicolon separated list of paths.
 | | --access | The access modifier to use for the generated C# classes. Default value is `Public`. Accepted values are `Internal` and `Public`.
@@ -116,7 +116,7 @@ dotnet-grpc remove [options] <references>...
 
 | Short option | Long option | Description |
 |-|-|-|
-| -p | --project | The path to the project file to operate on. If a file is not specified, the command will search the current directory for one.
+| -p | --project | The path to the project file to operate on. If a file is not specified, the command searches the current directory for one.
 
 ## Refresh
 
