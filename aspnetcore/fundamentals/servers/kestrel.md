@@ -141,7 +141,6 @@ Kestrel options, which are configured in C# code in the following examples, can 
       "MaxConcurrentConnections": 100,
       "MaxConcurrentUpgradedConnections": 100
     },
-    "AllowSynchronousIO": true,
     "AddServerHeader": false
   }
 }
@@ -1057,7 +1056,6 @@ Kestrel options, which are configured in C# code in the following examples, can 
       "MaxConcurrentConnections": 100,
       "MaxConcurrentUpgradedConnections": 100
     },
-    "AllowSynchronousIO": true,
     "AddServerHeader": false
   }
 }
@@ -1923,7 +1921,6 @@ Kestrel options, which are configured in C# code in the following examples, can 
       "MaxConcurrentConnections": 100,
       "MaxConcurrentUpgradedConnections": 100
     },
-    "AllowSynchronousIO": true,
     "AddServerHeader": false
   }
 }
