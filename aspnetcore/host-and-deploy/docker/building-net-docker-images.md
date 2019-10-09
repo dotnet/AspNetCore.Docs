@@ -242,6 +242,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
 ::: moniker-end
+
 ```console
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
@@ -273,8 +274,6 @@ WORKDIR /app
 COPY --from=build /app/aspnetapp/out ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
-
-::: moniker-end
 
 ## Additional resources
 
