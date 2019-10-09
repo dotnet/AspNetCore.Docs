@@ -141,7 +141,7 @@ Kestrel options, which are configured in C# code in the following examples, can 
       "MaxConcurrentConnections": 100,
       "MaxConcurrentUpgradedConnections": 100
     },
-    "AddServerHeader": false
+    "ShutdownTimeout": "00:00:20"
   }
 }
 ```
@@ -1056,7 +1056,7 @@ Kestrel options, which are configured in C# code in the following examples, can 
       "MaxConcurrentConnections": 100,
       "MaxConcurrentUpgradedConnections": 100
     },
-    "AddServerHeader": false
+    "ShutdownTimeout": "00:00:20"
   }
 }
 ```
@@ -1921,7 +1921,7 @@ Kestrel options, which are configured in C# code in the following examples, can 
       "MaxConcurrentConnections": 100,
       "MaxConcurrentUpgradedConnections": 100
     },
-    "AddServerHeader": false
+    "ShutdownTimeout": "00:00:20"
   }
 }
 ```
