@@ -132,7 +132,7 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from a file (*appsettings.json* or *appsettings.{Environment}.json*) when `CreateDefaultBuilder` is called:
+Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from a file (*appsettings.json* or *appsettings.{Environment}.json*):
 
 ```json
 {
@@ -146,6 +146,38 @@ Kestrel options, which are configured in C# code in the following examples, can 
   }
 }
 ```
+
+Use **one** of the following approaches:
+
+* Inject an instance of `IConfiguration` into the `Startup` class from the `Microsoft.Extensions.Configuration` namespace (`Configuration` in the following example). In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.Configure<KestrelServerOptions>(
+        Configuration.GetSection("Kestrel"));
+}
+```
+
+* In the `Program` class (*Program.cs*), load the `Kestrel` section of configuration into Kestrel's configuration:
+
+```csharp
+// using Microsoft.Extensions.DependencyInjection;
+
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureServices((context, services) =>
+        {
+            services.Configure<KestrelServerOptions>(
+                context.Configuration.GetSection("Kestrel"));
+        })
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.UseStartup<Startup>();
+        });
+```
+
+Both of the preceding approaches work with any [configuration provider](xref:fundamentals/configuration/index).
 
 ### Keep-alive timeout
 
@@ -1016,6 +1048,50 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
+Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from a file (*appsettings.json* or *appsettings.{Environment}.json*):
+
+```json
+{
+  "Kestrel": {
+    "Limits": {
+      "MaxConcurrentConnections": 100,
+      "MaxConcurrentUpgradedConnections": 100
+    },
+    "AllowSynchronousIO": true,
+    "AddServerHeader": false
+  }
+}
+```
+
+Use **one** of the following approaches:
+
+* Inject an instance of `IConfiguration` into the `Startup` class from the `Microsoft.Extensions.Configuration` namespace (`Configuration` in the following example). In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.Configure<KestrelServerOptions>(
+        Configuration.GetSection("Kestrel"));
+}
+```
+
+* In the `Program` class (*Program.cs*), load the `Kestrel` section of configuration into Kestrel's configuration:
+
+```csharp
+// using Microsoft.Extensions.DependencyInjection;
+
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .ConfigureServices((context, services) =>
+        {
+            services.Configure<KestrelServerOptions>(
+                context.Configuration.GetSection("Kestrel"));
+        })
+        .UseStartup<Startup>();
+```
+
+Both of the preceding approaches work with any [configuration provider](xref:fundamentals/configuration/index).
+
 ### Keep-alive timeout
 
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.KeepAliveTimeout>
@@ -1837,6 +1913,50 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 ```csharp
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
+
+Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from a file (*appsettings.json* or *appsettings.{Environment}.json*):
+
+```json
+{
+  "Kestrel": {
+    "Limits": {
+      "MaxConcurrentConnections": 100,
+      "MaxConcurrentUpgradedConnections": 100
+    },
+    "AllowSynchronousIO": true,
+    "AddServerHeader": false
+  }
+}
+```
+
+Use **one** of the following approaches:
+
+* Inject an instance of `IConfiguration` into the `Startup` class from the `Microsoft.Extensions.Configuration` namespace (`Configuration` in the following example). In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.Configure<KestrelServerOptions>(
+        Configuration.GetSection("Kestrel"));
+}
+```
+
+* In the `Program` class (*Program.cs*), load the `Kestrel` section of configuration into Kestrel's configuration:
+
+```csharp
+// using Microsoft.Extensions.DependencyInjection;
+
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .ConfigureServices((context, services) =>
+        {
+            services.Configure<KestrelServerOptions>(
+                context.Configuration.GetSection("Kestrel"));
+        })
+        .UseStartup<Startup>();
+```
+
+Both of the preceding approaches work with any [configuration provider](xref:fundamentals/configuration/index).
 
 ### Keep-alive timeout
 
