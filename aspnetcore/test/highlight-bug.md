@@ -11,4 +11,4 @@ uid: test/x
 
 This shows the problem with highlighted lines. They get progressively worse the further down the code snippet. Chrome at 100% (default magnification) is terrible.
 
-[!code-csharp[](first-web-api/sample/src/TodoApi/Controllers/Startup.cs?name=snippet?highlight=11,54,97,140,183,227)]
+[!code-csharp[](Startup.cs?name=snippet?highlight=11,54,97,140,183,227)]
