@@ -27,7 +27,9 @@ namespace performance_best_practices.Controllers
         [HttpGet("/contoso")]
         public async Task<ActionResult<ContosoData>> Get()
         {
-            return await JsonSerializer.DeserializeAsync<ContosoData>(Request.Body);
+            var json = await new StreamReader(Request.Body).ReadToEndAsync();
+            
+            return await JsonSerializer.DeserializeAsync<ContosoData>(json);
         }
 
     }
