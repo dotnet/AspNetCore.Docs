@@ -170,7 +170,6 @@ The preceding code asynchronously reads the entire HTTP request body into memory
 > If the request is large, reading the entire HTTP request body into memory could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
 
 ## Prefer ReadAsFormAsync over Request.Form
-<!-- TODO Review required. I change all the API's here from original -->
 
 Use `HttpContext.Request.ReadFormAsync` instead of `HttpContext.Request.Form`.
 `HttpContext.Request.Form` can be safely read only with the following conditions:
@@ -251,9 +250,6 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 
 ## Do not use the HttpContext after the request is complete
 
-<!-- TODO Review, original uses `in flight`, which won't MT (Machine translate) 
-`HttpContext` is only valid as long as there is an active HTTP request `in flight`.
--->
 `HttpContext` is only valid as long as there is an active HTTP request in the ASP.NET Core pipeline. The entire ASP.NET Core pipeline is an asynchronous chain of delegates that executes every request. When the `Task` returned from this chain completes, the `HttpContext` is recycled.
 
 **Do not do this:** The following example uses `async void`:
@@ -286,7 +282,7 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 
 ## Do not capture services injected into the controllers on background threads
 
-**Do not do this:** The following example shows a closure is capturing the `DbContext` from the `Controller` action parameter. This is a bad practice.  The work item could run outside of the request scope. The `PokemonDbContext` is scoped to the request, resulting in an `ObjectDisposedException`.
+**Do not do this:** The following example shows a closure is capturing the `DbContext` from the `Controller` action parameter. This is a bad practice.  The work item could run outside of the request scope. The `ContosoDbContext` is scoped to the request, resulting in an `ObjectDisposedException`.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet1)]
 
@@ -295,14 +291,14 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 * Injects an <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory> in order to create a scope in the background work item. `IServiceScopeFactory` is a singleton.
 * Creates a new dependency injection scope in the background thread.
 * Doesn't reference anything from the controller.
-* Doesn't capture the `PokemonDbContext` from the incoming request.
+* Doesn't capture the `ContosoDbContext` from the incoming request.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2)]
 
 The following highlighted code:
 
 * Creates a scope for the lifetime of the background operation and resolves services from it.
-* Uses `PokemonDbContext` from the correct scope.
+* Uses `ContosoDbContext` from the correct scope.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2&highlight=9-16)]
 
