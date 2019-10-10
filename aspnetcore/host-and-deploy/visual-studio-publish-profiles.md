@@ -5,7 +5,7 @@ description: Learn how to create publish profiles in Visual Studio and use them 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/21/2019
+ms.date: 10/10/2019
 uid: host-and-deploy/visual-studio-publish-profiles
 ---
 # Visual Studio publish profiles for ASP.NET Core app deployment
@@ -148,6 +148,10 @@ Sensitive information (like the publish password) is encrypted on a per user/mac
 
 For an overview of how to publish an ASP.NET Core web app, see <xref:host-and-deploy/index>. The MSBuild tasks and targets necessary to publish an ASP.NET Core web app are open-source at the [aspnet/websdk repository](https://github.com/aspnet/websdk).
 
+<!--
+
+NOTE: The following content is temporarily changed to use 'dotnet build' due to a possible issue with the Web SDK, which is under investigation on https://github.com/aspnet/websdk/issues/888. This section can be reverted back to using 'dotnet publish' when the engineering issue is resolved. Content follows ...
+
 The `dotnet publish` command can use folder, MSDeploy, and [Kudu](https://github.com/projectkudu/kudu/wiki) publish profiles. Because MSDeploy lacks cross-platform support, the following MSDeploy options are supported only on Windows.
 
 **Folder (works cross-platform):**
@@ -170,9 +174,37 @@ dotnet publish WebApplication.csproj /p:PublishProfile=<MsDeployPackageProfileNa
 
 In the preceding examples, don't pass `deployonbuild` to `dotnet publish`.
 
+
+
 For more information, see [Microsoft.NET.Sdk.Publish](https://github.com/aspnet/websdk#microsoftnetsdkpublish).
 
 `dotnet publish` supports Kudu APIs to publish to Azure from any platform. Visual Studio publish supports the Kudu APIs, but it's supported by WebSDK for cross-platform publish to Azure.
+
+-->
+
+The `dotnet build` command can use folder, MSDeploy, and [Kudu](https://github.com/projectkudu/kudu/wiki) publish profiles. Because MSDeploy lacks cross-platform support, the following MSDeploy options are supported only on Windows.
+
+**Folder (works cross-platform):**
+
+```dotnetcli
+dotnet build WebApplication.csproj /p:DeployOnBuild=true /p:PublishProfile=<FolderProfileName>
+```
+
+**MSDeploy:**
+
+```dotnetcli
+dotnet build WebApplication.csproj /p:DeployOnBuild=true /p:PublishProfile=<MsDeployProfileName> /p:Password=<DeploymentPassword>
+```
+
+**MSDeploy package:**
+
+```dotnetcli
+dotnet build WebApplication.csproj /p:DeployOnBuild=true /p:PublishProfile=<MsDeployPackageProfileName>
+```
+
+In the preceding examples, don't pass `deployonbuild` to `dotnet build`.
+
+`dotnet build` supports Kudu APIs to publish to Azure from any platform. Visual Studio publish supports the Kudu APIs, but it's supported by WebSDK for cross-platform publish to Azure.
 
 Add a publish profile to the project's *Properties/PublishProfiles* folder with the following content:
 
@@ -187,21 +219,27 @@ Add a publish profile to the project's *Properties/PublishProfiles* folder with 
 </Project>
 ```
 
+<!--
+
+NOTE: Temporarily removed until https://github.com/aspnet/websdk/issues/888 is resolved. The topic will use the 'dotnet build' approach with DeployOnBuild for now. Content follows ...
+
 Run the following command to zip up the publish contents and publish it to Azure using the Kudu APIs:
 
 ```dotnetcli
 dotnet publish /p:PublishProfile=Azure /p:Configuration=Release
 ```
 
+-->
+
 Set the following MSBuild properties when using a publish profile:
 
 * `DeployOnBuild=true`
 * `PublishProfile={PUBLISH PROFILE}`
 
-When publishing with a profile named *FolderProfile*, either of the commands below can be executed:
+When publishing with a profile named *FolderProfile*, use either of the following commands:
 
 * `dotnet build /p:DeployOnBuild=true /p:PublishProfile=FolderProfile`
-* `msbuild      /p:DeployOnBuild=true /p:PublishProfile=FolderProfile`
+* `msbuild /p:DeployOnBuild=true /p:PublishProfile=FolderProfile`
 
 The .NET Core CLI's [dotnet build](/dotnet/core/tools/dotnet-build) command calls `msbuild` to run the build and publish process. The `dotnet build` and `msbuild` commands are equivalent when passing in a folder profile. When calling `msbuild` directly on Windows, the .NET Framework version of MSBuild is used. Calling `dotnet build` on a non-folder profile:
 
