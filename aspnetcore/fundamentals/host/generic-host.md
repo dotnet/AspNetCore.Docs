@@ -1,6 +1,6 @@
 ---
 title: .NET Generic Host
-author: tdykstra
+author: rick-anderson
 description: Learn about the .NET Core Generic Host, which is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande

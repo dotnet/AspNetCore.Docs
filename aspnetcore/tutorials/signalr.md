@@ -112,7 +112,7 @@ The SignalR server library is included in the ASP.NET Core 3.0 shared framework.
 * Run the following command to get the SignalR client library by using LibMan. You might have to wait a few seconds before seeing output.
 
   ```console
-  libman install @microsoft/signalr@latest -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
+  libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
   ```
 
   The parameters specify the following options:

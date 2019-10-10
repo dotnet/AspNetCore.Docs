@@ -1,6 +1,6 @@
 ---
 title: Razor Pages with EF Core in ASP.NET Core - Data Model - 5 of 8
-author: tdykstra
+author: rick-anderson
 description: In this tutorial, add more entities and relationships and customize the data model by specifying formatting, validation, and mapping rules.
 ms.author: riande
 ms.custom: mvc
