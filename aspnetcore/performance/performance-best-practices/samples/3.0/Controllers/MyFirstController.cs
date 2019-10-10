@@ -16,7 +16,7 @@ namespace performance_best_practices.Controllers
         {           
             var json = new StreamReader(Request.Body).ReadToEnd();
 
-            return JsonSerializer.Deserialize<ContosoData>(json);
+            return System.Text.Json.JsonSerializer.Deserialize<ContosoData>(json);
         }
     }
     #endregion
@@ -29,11 +29,23 @@ namespace performance_best_practices.Controllers
         {
             var json = await new StreamReader(Request.Body).ReadToEndAsync();
             
-            return await JsonSerializer.DeserializeAsync<ContosoData>(json);
+            return await System.Text.Json.JsonSerializer.Deserialize<ContosoData>(json);
         }
 
     }
     #endregion
+    
+    #region snippet3
+    public class GoodStreamReaderController : Controller
+    {
+        [HttpGet("/contoso")]
+        public async Task<ActionResult<ContosoData>> Get()
+        {
+            return await System.Text.Json.JsonSerializer.DeserializeAsync<ContosoData>(Request.Body);
+        }
+    }
+    #endregion
+    
     public class ContosoData
     {
     }
