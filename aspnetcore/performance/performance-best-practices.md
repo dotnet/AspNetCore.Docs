@@ -169,12 +169,12 @@ The preceding code asynchronously reads the entire HTTP request body into memory
 > [!WARNING]
 > If the request is large, reading the entire HTTP request body into memory could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
 
-## Prefer ReadAsFormAsync over Request.Form
+## Prefer ReadFormAsync over Request.Form
 
 Use `HttpContext.Request.ReadFormAsync` instead of `HttpContext.Request.Form`.
 `HttpContext.Request.Form` can be safely read only with the following conditions:
 
-* The form has been read by a call to `ReadAsFormAsync`, and
+* The form has been read by a call to `ReadFormAsync`, and
 * The cached form value is being read using `HttpContext.Request.Form`
 
 **Do not do this:** The following example uses `HttpContext.Request.Form`.  `HttpContext.Request.Form` uses [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
