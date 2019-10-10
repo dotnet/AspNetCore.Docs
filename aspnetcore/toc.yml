@@ -310,7 +310,7 @@
           uid: blazor/debug
         - name: Call a web API
           uid: blazor/call-web-api
-        - name: Hosting and deployment
+        - name: Host and deploy
           items:
             - name: Overview
               uid: host-and-deploy/blazor/index
@@ -507,7 +507,7 @@
         - name: JavaScript API reference
           href: /javascript/api/?view=signalr-js-latest
           displayName: signalr
-    - name: Hosting and scaling
+    - name: Host and scale
       displayName: signalr
       items:
         - name: Overview
@@ -661,13 +661,13 @@
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-queues?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Table storage
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-tables?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-- name: Hosting and deployment
+- name: Host and deploy
   displayName: publish
   items:
     - name: Overview
       displayName: azure, deploy, publish
       uid: host-and-deploy/index
-    - name: Host on Azure App Service
+    - name: Azure App Service
       displayName: deploy, publish
       items:
         - name: Overview
@@ -717,7 +717,7 @@
         - name: Next steps
           displayName: azure, deploy, publish
           uid: azure/devops/next-steps
-    - name: Host on Windows with IIS
+    - name: IIS
       displayName: deploy, publish
       items:
         - name: Overview
@@ -749,16 +749,16 @@
     - name: HTTP.sys
       displayName: deploy, publish, server
       uid: fundamentals/servers/httpsys
-    - name: Host in a Windows service
+    - name: Windows service
       displayName: deploy, publish
       uid: host-and-deploy/windows-service
-    - name: Host on Linux with Nginx
+    - name: Linux with Nginx
       displayName: deploy, publish
       uid: host-and-deploy/linux-nginx
-    - name: Host on Linux with Apache
+    - name: Linux with Apache
       displayName: deploy, publish
       uid: host-and-deploy/linux-apache
-    - name: Host in Docker
+    - name: Docker
       displayName: deploy, publish
       items:
         - name: Overview
@@ -779,7 +779,7 @@
     - name: Proxy and load balancer configuration
       displayName: deploy, publish
       uid: host-and-deploy/proxy-load-balancer
-    - name: Host in a web farm
+    - name: Web farm
       displayName: deploy, publish
       uid: host-and-deploy/web-farm
     - name: Visual Studio publish profiles
