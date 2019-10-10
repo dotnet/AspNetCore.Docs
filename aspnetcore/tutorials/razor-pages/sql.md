@@ -101,10 +101,10 @@ The following code shows the updated *Program.cs* file.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Program.cs)]
 
-A production app would not call `Database.Migrate`. It's added to the preceding code to prevent the following exception when `Update-Database` has not been run:
+The following exception occurs when `Update-Database` has not been run:
 
-SqlException: Cannot open database "RazorPagesMovieContext-21" requested by the login. The login failed.
-Login failed for user 'user name'.
+`SqlException: Cannot open database "RazorPagesMovieContext-" requested by the login. The login failed.`
+`Login failed for user 'user name'.`
 
 ### Test the app
 
