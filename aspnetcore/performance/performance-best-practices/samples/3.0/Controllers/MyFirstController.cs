@@ -11,12 +11,12 @@ namespace performance_best_practices.Controllers
     #region snippet1
     public class BadStreamReaderController : Controller
     {
-        [HttpGet("/pokemon")]
-        public ActionResult<PokemonData> Get()
+        [HttpGet("/contoso")]
+        public ActionResult<ContosoData> Get()
         {           
             var json = new StreamReader(Request.Body).ReadToEnd();
 
-            return JsonSerializer.Deserialize<PokemonData>(json);
+            return JsonSerializer.Deserialize<ContosoData>(json);
         }
     }
     #endregion
@@ -24,15 +24,15 @@ namespace performance_best_practices.Controllers
     #region snippet2
     public class GoodStreamReaderController : Controller
     {
-        [HttpGet("/pokemon")]
-        public async Task<ActionResult<PokemonData>> Get()
+        [HttpGet("/contoso")]
+        public async Task<ActionResult<ContosoData>> Get()
         {
-            return await JsonSerializer.DeserializeAsync<PokemonData>(Request.Body);
+            return await JsonSerializer.DeserializeAsync<ContosoData>(Request.Body);
         }
 
     }
     #endregion
-    public class PokemonData
+    public class ContosoData
     {
     }
 }
