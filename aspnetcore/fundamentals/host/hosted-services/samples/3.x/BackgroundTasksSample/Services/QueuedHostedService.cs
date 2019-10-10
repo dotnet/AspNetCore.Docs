@@ -9,7 +9,6 @@ namespace BackgroundTasksSample.Services
     #region snippet1
     public class QueuedHostedService : BackgroundService
     {
-        private Task _backgroundTask;
         private readonly ILogger<QueuedHostedService> _logger;
 
         public QueuedHostedService(IBackgroundTaskQueue taskQueue, 
@@ -28,12 +27,7 @@ namespace BackgroundTasksSample.Services
                 $"{Environment.NewLine}Tap W to add a work item to the " +
                 $"background queue.{Environment.NewLine}");
 
-            _backgroundTask = Task.Run(async () =>
-                {
-                    await BackgroundProcessing(stoppingToken);
-                }, stoppingToken);
-
-            await _backgroundTask;
+            await BackgroundProcessing(stoppingToken);
         }
 
         private async Task BackgroundProcessing(CancellationToken stoppingToken)
@@ -58,9 +52,6 @@ namespace BackgroundTasksSample.Services
         public override async Task StopAsync(CancellationToken stoppingToken)
         {
             _logger.LogInformation("Queued Hosted Service is stopping.");
-
-            await Task.WhenAny(_backgroundTask, 
-                    Task.Delay(Timeout.Infinite, stoppingToken));
 
             await base.StopAsync(stoppingToken);
         }
