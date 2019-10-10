@@ -7,6 +7,8 @@
       "(?i).*master\/aspnetcore\/blazor.*": "Blazor",
       "(?i).*master\/aspnetcore\/host-and-deploy\/blazor.*": "Blazor",
       "(?i).*master\/aspnetcore\/tutorials\/*blazor*.*": "Blazor",
+      "(?i).*master\/aspnetcore\/grpc.*": "gRPC",
+      "(?i).*master\/aspnetcore\/tutorials\/grpc*.*": "gRPC",
       "(?i).*master\/aspnetcore\/signalr.*": "SignalR",
       "(?i).*master\/aspnetcore\/tutorials\/signalr*.*": "SignalR"
     }
