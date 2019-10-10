@@ -23,7 +23,7 @@ dotnet tool install -g dotnet-grpc
 
 ## Add references
 
-`dotnet-grp` can be used to add Protobuf references as `<Protobuf />` items to the *.csproj* file:
+`dotnet-grpc` can be used to add Protobuf references as `<Protobuf />` items to the *.csproj* file:
 
 ```xml
 <Protobuf Include="..\Proto\count.proto" GrpcServices="Server" Link="Protos\count.proto" />
@@ -32,14 +32,14 @@ dotnet tool install -g dotnet-grpc
 The Protobuf references are used to generate the C# client and/or server assets. The `dotnet-grpc`tool can:
 
 * Create a Protobuf reference from local files on disk.
-* Create a Protobuf reference from  a remote file specified by a URL.
+* Create a Protobuf reference from a remote file specified by a URL.
 * Ensure the correct gRPC package dependencies are added to the project.
 
 For example, the `Grpc.AspNetCore` package is added to a web app. `Grpc.AspNetCore` contains gRPC server and client libraries and tooling support. Alternatively, the `Grpc.Net.Client`, `Grpc.Tools` and `Google.Protobuf` packages, which contain only the gRPC client libraries and tooling support, are added to a Console app.
 
 ### Add file
 
-The `add-file` command is used to add local files on disk as a Protobuf references. The file paths provided:
+The `add-file` command is used to add local files on disk as Protobuf references. The file paths provided:
 
 * Can be relative to the current directory or absolute paths.
 * May contain wild cards for pattern-based file [globbing](https://wikipedia.org/wiki/Glob_(programming)).
@@ -62,7 +62,7 @@ dotnet grpc add-file [options] <files>...
 
 | Short option | Long option | Description |
 |-|-|-|
-| -p | --project | The path to the project file to operate on. If a file is not specified, the command searchs the current directory for one.
+| -p | --project | The path to the project file to operate on. If a file is not specified, the command searches the current directory for one.
 | -s | --services | The type of gRPC services that should be generated. If `Default` is specified, `Both` is used for Web projects and `Client` is used for non-Web projects. Accepted values are `Both`, `Client`, `Default`, `None`, `Server`.
 | -i | --additional-import-dirs | Additional directories to be used when resolving imports for the protobuf files. This is a semicolon separated list of paths.
 | | --access | The access modifier to use for the generated C# classes. The default value is `Public`. Accepted values are `Internal` and `Public`.
@@ -98,7 +98,7 @@ dotnet-grpc add-url [options] <url>
 The `remove` command is used to remove Protobuf references from the *.csproj* file. The command accepts path arguments and source URLs as arguments. The tool:
 
 * Only removes the Protobuf reference.
-* The actual *.proto* file is not deleted, even if it was originally downloaded from a remote URL.
+* Does not delete the *.proto* file, even if it was originally downloaded from a remote URL.
 
 ### Usage
 
