@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/08/2019
+ms.date: 10/10/2019
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -141,7 +141,7 @@ Kestrel options, which are configured in C# code in the following examples, can 
       "MaxConcurrentConnections": 100,
       "MaxConcurrentUpgradedConnections": 100
     },
-    "ShutdownTimeout": "00:00:20"
+    "DisableStringReuse": true
   }
 }
 ```
@@ -1055,8 +1055,7 @@ Kestrel options, which are configured in C# code in the following examples, can 
     "Limits": {
       "MaxConcurrentConnections": 100,
       "MaxConcurrentUpgradedConnections": 100
-    },
-    "ShutdownTimeout": "00:00:20"
+    }
   }
 }
 ```
@@ -1920,8 +1919,7 @@ Kestrel options, which are configured in C# code in the following examples, can 
     "Limits": {
       "MaxConcurrentConnections": 100,
       "MaxConcurrentUpgradedConnections": 100
-    },
-    "ShutdownTimeout": "00:00:20"
+    }
   }
 }
 ```
