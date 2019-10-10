@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core MVC with EF Core - tutorial series
-author: tdykstra
+author: rick-anderson
 description: 
 ms.author: riande
 ms.date: 03/27/2017
