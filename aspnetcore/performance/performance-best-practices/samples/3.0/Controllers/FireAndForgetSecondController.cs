@@ -11,13 +11,13 @@ namespace performance_best_practices.Controllers
     {
     #region snippet1
         [HttpGet("/fire-and-forget-1")]
-        public IActionResult FireAndForget1([FromServices]PokemonDbContext context)
+        public IActionResult FireAndForget1([FromServices]ContosoDbContext context)
         {
             _ = Task.Run(async () =>
             {
                 await Task.Delay(1000);
 
-                context.Pokemon.Add(new Pokemon());
+                context.Contoso.Add(new Contoso());
                 await context.SaveChangesAsync();
             });
 
@@ -27,18 +27,18 @@ namespace performance_best_practices.Controllers
         #endregion
     }
 
-    public class Pokemon
+    public class Contoso
     {
-        public Pokemon()
+        public Contoso()
         {
         }
 
-        public void Add (Pokemon p) { }
+        public void Add (Contoso p) { }
     }
 
-    public class PokemonDbContext
+    public class ContosoDbContext
     {
-        public  Pokemon  Pokemon;
+        public  Contoso  Contoso;
 
         internal Task SaveChangesAsync()
         {
@@ -61,9 +61,9 @@ namespace performance_best_practices.Controllers
 
                 using (var scope = serviceScopeFactory.CreateScope())
                 {
-                    var context = scope.ServiceProvider.GetRequiredService<PokemonDbContext>();
+                    var context = scope.ServiceProvider.GetRequiredService<ContosoDbContext>();
 
-                    context.Pokemon.Add(new Pokemon());
+                    context.Contoso.Add(new Contoso());
 
                     await context.SaveChangesAsync();                                        
                 }
