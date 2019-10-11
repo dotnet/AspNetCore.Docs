@@ -173,10 +173,7 @@ The preceding code asynchronously reads the entire HTTP request body into memory
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet3)]
 
-The preceding code asynchronously reads the entire HTTP request body into memory.
-
-> [!WARNING]
-> If the request is large, reading the entire HTTP request body into memory could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
+The preceding code asynchronously de-serializes the request body into a C# object.
 
 ## Prefer ReadFormAsync over Request.Form
 
