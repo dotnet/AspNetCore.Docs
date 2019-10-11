@@ -49,7 +49,7 @@ By sharing the *.proto* file between the server and client, messages and client 
 
 A formal specification for HTTP API with JSON doesn't exist. Developers debate the best format of URLs, HTTP verbs, and response codes.
 
-The [gRPC specification](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) is prescriptive about the format a gRPC service must follow. gRPC eliminates debate and saves developer time because gPRC is consistent across platforms and implementations.
+The [gRPC specification](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) is prescriptive about the format a gRPC service must follow. gRPC eliminates debate and saves developer time because gRPC is consistent across platforms and implementations.
 
 ### Streaming
 
