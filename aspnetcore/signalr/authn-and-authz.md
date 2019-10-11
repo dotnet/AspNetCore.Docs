@@ -53,6 +53,9 @@ In standard web APIs, bearer tokens are sent in an HTTP header. However, SignalR
 
 [!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/sample/Startup.cs?name=snippet)]
 
+> [!NOTE]
+> The query string is used on browser when connecting with WebSockets and Server-Sent Events due to browser API limitations. When using HTTPS, query string values are secured by the TLS connection. However, many servers log query string values. See the [Security considerations in ASP.NET Core SignalR](xref:signalr/security) article for more information. SignalR uses headers to transmit tokens in environments which support them (such as the .NET and Java Clients).
+
 ### Cookies vs. bearer tokens 
 
 Because cookies are specific to browsers, sending them from other kinds of clients adds complexity compared to sending bearer tokens. For this reason, cookie authentication isn't recommended unless the app only needs to authenticate users from the browser client. Bearer token authentication is the recommended approach when using clients other than the browser client.

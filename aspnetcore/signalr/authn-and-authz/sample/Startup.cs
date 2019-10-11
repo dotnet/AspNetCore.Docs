@@ -49,21 +49,6 @@ namespace SignalRAuthenticationSample
                 })
                 .AddJwtBearer(options =>
                 {
-                    // Configure JWT Bearer Auth to expect our security key
-                    options.TokenValidationParameters =
-                        new TokenValidationParameters
-                        {
-                            LifetimeValidator = (before, expires, token, param) =>
-                            {
-                                return expires > DateTime.UtcNow;
-                            },
-                            ValidateAudience = false,
-                            ValidateIssuer = false,
-                            ValidateActor = false,
-                            ValidateLifetime = true,
-                            IssuerSigningKey = SecurityKey
-                        };
-
                     // We have to hook the OnMessageReceived event in order to
                     // allow the JWT authentication handler to read the access
                     // token from the query string when a WebSocket or 
