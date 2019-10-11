@@ -274,6 +274,7 @@ The [Accept-Language header](https://www.w3.org/International/questions/qa-accep
 
 Suppose you want to let your customers store their language and culture in your databases. You could write a provider to look up these values for the user. The following code shows how to add a custom provider:
 
+::: moniker range="< aspnetcore-3.0"
 ```csharp
 private const string enUSCulture = "en-US";
 
@@ -296,6 +297,32 @@ services.Configure<RequestLocalizationOptions>(options =>
     }));
 });
 ```
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+```csharp
+private const string enUSCulture = "en-US";
+
+services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+        new CultureInfo(enUSCulture),
+        new CultureInfo("fr")
+    };
+
+    options.DefaultRequestCulture = new RequestCulture(culture: enUSCulture, uiCulture: enUSCulture);
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+
+    options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async context =>
+    {
+        // My custom request culture logic
+        return new ProviderCultureResult("en");
+    }));
+});
+```
+::: moniker-end
 
 Use `RequestLocalizationOptions` to add or remove localization providers.
 

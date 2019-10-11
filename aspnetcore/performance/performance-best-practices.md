@@ -173,10 +173,7 @@ The preceding code asynchronously reads the entire HTTP request body into memory
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet3)]
 
-The preceding code asynchronously reads the entire HTTP request body into memory.
-
-> [!WARNING]
-> If the request is large, reading the entire HTTP request body into memory could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
+The preceding code asynchronously de-serializes the request body into a C# object.
 
 ## Prefer ReadFormAsync over Request.Form
 
@@ -261,7 +258,7 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 
 `HttpContext` is only valid as long as there is an active HTTP request in the ASP.NET Core pipeline. The entire ASP.NET Core pipeline is an asynchronous chain of delegates that executes every request. When the `Task` returned from this chain completes, the `HttpContext` is recycled.
 
-**Do not do this:** The following example uses `async void`:
+**Do not do this:** The following example uses `async void` which makes the HTTP request complete when the first `await` is reached:
 
 * Which is **ALWAYS** a bad practice in ASP.NET Core apps.
 * Accesses the `HttpResponse` after the HTTP request is complete.

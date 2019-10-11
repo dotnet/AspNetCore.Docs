@@ -117,7 +117,7 @@ To specify custom error-handling and response-writing code, use the overload of 
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_StatusCodePagesLambda)]
 
-## UseStatusCodePagesWithRedirect
+## UseStatusCodePagesWithRedirects
 
 The <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects*> extension method:
 
