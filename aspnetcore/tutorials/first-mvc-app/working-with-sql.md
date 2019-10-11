@@ -70,7 +70,7 @@ Note the key icon next to `ID`. By default, EF will make a property named `ID` t
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/SeedData.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/SeedData.cs?name=snippet_1)]
 
 If there are any movies in the DB, the seed initializer returns and no movies are added.
 
