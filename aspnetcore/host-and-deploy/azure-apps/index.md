@@ -1,11 +1,11 @@
 ---
 title: Deploy ASP.NET Core apps to Azure App Service
-author: guardrex
+author: bradygaster
 description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: bradyg
 ms.custom: mvc
-ms.date: 10/02/2019
+ms.date: 10/11/2019
 uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
@@ -23,6 +23,8 @@ Use Visual Studio to create and deploy an ASP.NET Core web app to Azure App Serv
 Use the command line to create and deploy an ASP.NET Core web app to Azure App Service on Linux.
 
 See the [ASP.NET Core on App Service Dashboard](https://aspnetcoreon.azurewebsites.net/) for the version of ASP.NET Core available on Azure App service.
+
+Subscribe to the [App Service Announcements](https://github.com/Azure/app-service-announcements/) repository and watch the issues. The App Service team regularly posts updates in the issues section of the repository to announce updates and features arriving in App Service. 
 
 The following articles are available in ASP.NET Core documentation:
 
@@ -135,24 +137,48 @@ When swapping between deployment slots, any system using data protection won't b
 
 For more information, see <xref:security/data-protection/implementation/key-storage-providers>.
 <a name="deploy-aspnet-core-preview-release-to-azure-app-service"></a>
-<!-- revert this after 3.0 supported
-## Deploy ASP.NET Core preview release to Azure App Service
 
-Use one of the following approaches if the app relies on a preview release of .NET Core:
-
-* [Install the preview site extension](#install-the-preview-site-extension).
-* [Deploy a self-contained preview app](#deploy-a-self-contained-preview-app).
-* [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers).
--->
 ## Deploy ASP.NET Core 3.0 to Azure App Service
 
-We hope to have ASP.NET Core 3.0 available on Azure App Service soon.
+ASP.NET Core 3.0 is supported on Azure App Service. If you want to deploy preview releases of .NET Core 3.0+ in between major releases, or in the rare case during a deployment when the runtime is available but the SDK is not yet installed, use one of the techniques below to deploy an ASP.NET Core 3.0 (or later) app. 
 
-Use one of the following approaches if the app relies on .NET Core 3.0:
-
-* [Install the preview site extension](#install-the-preview-site-extension).
+* [Specify the .NET Core SDK Version using Azure Pipelines](#specify-the-net-core-sdk-version-using-azure-pipelines)
 * [Deploy a self-contained preview app](#deploy-a-self-contained-preview-app).
 * [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers).
+* [Install the preview site extension](#install-the-preview-site-extension).
+
+### Specify the .NET Core SDK Version using Azure Pipelines
+
+Using [Azure App Service's CI/CD features](https://docs.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment) makes it easy to set up a continuous integration build with Azure DevOps. Once this build has been created, a few additional tweaks can be made to not only "pin" your SDK version so that you're always confident to build against a consistent .NET Core SDK version. 
+
+#### Specifying the .NET Core SDK Version
+
+If you use the App Service deployment center to create your Azure DevOps build, the resulting build pipeline will have steps for `Restore`, `Build`, `Test`, and `Publish`. To specify the SDK version, click the "Add (+)" button in the Agent job list to add a new step. Search for **.NET Core SDK** in the search bar. 
+
+![Add the .NET Core SDK step](index/add-sdk-step.png)
+
+Move the step into the first position in the build, so that the steps following it are sure to use that version of the .NET Core SDK. Specify the version of the .NET Core SDK you wish to use. In this example, the SDK has been set to the `3.0.100`. 
+
+![Completed SDK step](index/sdk-step-first-place.png)
+
+If you want to publish a self-contained app, you can specify in the `Publish` step to self-contain the app and the [RID](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) you want to use. 
+
+![Self-contained publish](index/self-contained.png)
+
+### Deploy a self-contained preview app
+
+A [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) that targets a preview runtime carries the preview runtime in the deployment.
+
+When deploying a self-contained app:
+
+* The site in Azure App Service doesn't require the [preview site extension](#install-the-preview-site-extension).
+* The app must be published following a different approach than when publishing for a [framework-dependent deployment (FDD)](/dotnet/core/deploying#framework-dependent-deployments-fdd).
+
+Follow the guidance in the [Deploy the app self-contained](#deploy-the-app-self-contained) section.
+
+### Use Docker with Web Apps for containers
+
+The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the latest preview Docker images. The images can be used as a base image. Use the image and deploy to Web Apps for Containers normally.
 
 ### Install the preview site extension
 
@@ -199,21 +225,6 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
 If an ARM template is used to create and deploy apps, the `siteextensions` resource type can be used to add the site extension to a web app. For example:
 
 [!code-json[](index/sample/arm.json?highlight=2)]
-
-### Deploy a self-contained preview app
-
-A [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) that targets a preview runtime carries the preview runtime in the deployment.
-
-When deploying a self-contained app:
-
-* The site in Azure App Service doesn't require the [preview site extension](#install-the-preview-site-extension).
-* The app must be published following a different approach than when publishing for a [framework-dependent deployment (FDD)](/dotnet/core/deploying#framework-dependent-deployments-fdd).
-
-Follow the guidance in the [Deploy the app self-contained](#deploy-the-app-self-contained) section.
-
-### Use Docker with Web Apps for containers
-
-The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the latest preview Docker images. The images can be used as a base image. Use the image and deploy to Web Apps for Containers normally.
 
 ## Publish and deploy the app
 
