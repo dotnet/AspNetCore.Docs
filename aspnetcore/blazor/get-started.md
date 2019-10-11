@@ -121,7 +121,7 @@ Multiple pages are available from tabs in the sidebar:
 * Counter
 * Fetch data
 
-On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript, but Razor components provide a better approach using C#.
+On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript, but with Blazor you can use C#.
 
 *Pages/Counter.razor*:
 
