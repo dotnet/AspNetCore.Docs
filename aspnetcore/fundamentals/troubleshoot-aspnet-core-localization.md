@@ -69,6 +69,7 @@ The [CustomRequestCultureProvider](/dotnet/api/microsoft.aspnetcore.localization
 
 - Insert the custom provider at the position 0 in the `RequestCultureProviders` list as the following:
 
+::: moniker range="< aspnetcore-3.0"
 ```csharp
 options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
     {
@@ -76,6 +77,17 @@ options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async
         return new ProviderCultureResult("en");
     }));
 ```
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+```csharp
+options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async context =>
+    {
+        // My custom request culture logic
+        return new ProviderCultureResult("en");
+    }));
+```
+::: moniker-end
 
 - Use `AddInitialRequestCultureProvider` extension method to set the custom provider as initial provider.
 
