@@ -417,11 +417,11 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 In the PMC, enter the following commands:
 
 ```PMC
-Add-Migration Initial
+Add-Migration InitialCreate
 Update-Database
 ```
 
-The `Add-Migration Initial` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *RazorPagesMovieContext.cs* file). The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *RazorPagesMovieContext.cs* file). The `InitialCreate` argument is used to name the migration. Any name can be used, but by convention a name that describes the migration is used. For more information, see <xref:data/ef-mvc/migrations>.
 
 The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file. The `Up` method creates the database.
 
@@ -466,10 +466,6 @@ Examine the `Up` method.
 Examine the `Up` method.
 
 ---
-
-The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `RazorPagesMovieContext` (In the *Data/RazorPagesMovieContext.cs* file). The `Initial` argument is used to name the migrations. Any name can be used, but by convention a name that describes the migration is used. For more information, see <xref:data/ef-mvc/migrations>.
-
-The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
 <a name="test"></a>
 
