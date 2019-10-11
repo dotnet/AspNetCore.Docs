@@ -16,7 +16,7 @@ namespace performance_best_practices.Controllers
             await Task.Delay(1000);
 
             // The following line will crash the process because of writing after the 
-            // response has completed on a background thread.
+            // response has completed on a background thread. Notice async void Get()
 
             await Response.WriteAsync("Hello World");
         }

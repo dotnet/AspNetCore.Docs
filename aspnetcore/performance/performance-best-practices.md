@@ -261,7 +261,7 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 
 `HttpContext` is only valid as long as there is an active HTTP request in the ASP.NET Core pipeline. The entire ASP.NET Core pipeline is an asynchronous chain of delegates that executes every request. When the `Task` returned from this chain completes, the `HttpContext` is recycled.
 
-**Do not do this:** The following example uses `async void`:
+**Do not do this:** The following example uses `async void` which makes the HTTP request complete when the first `await` is reached:
 
 * Which is **ALWAYS** a bad practice in ASP.NET Core apps.
 * Accesses the `HttpResponse` after the HTTP request is complete.
