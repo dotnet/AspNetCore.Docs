@@ -5,7 +5,7 @@ description: Learn how to host ASP.NET Core apps on Windows Server Internet Info
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 10/11/2019
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
@@ -402,7 +402,7 @@ Files in the deployment folder are locked when the app is running. Locked files 
 
 * Use Web Deploy and reference `Microsoft.NET.Sdk.Web` in the project file. An *app_offline.htm* file is placed at the root of the web app directory. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the *app_offline.htm* file during the deployment. For more information, see the [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
 * Manually stop the app pool in the IIS Manager on the server.
-* Use PowerShell to drop *app_offline.html* (requires PowerShell 5 or later):
+* Use PowerShell to drop *app_offline.htm* (requires PowerShell 5 or later):
 
   ```PowerShell
   $pathToApp = 'PATH_TO_APP'
