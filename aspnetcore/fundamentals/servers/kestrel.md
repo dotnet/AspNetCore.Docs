@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/10/2019
+ms.date: 10/11/2019
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -132,7 +132,7 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from a file (*appsettings.json* or *appsettings.{Environment}.json*):
+Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from an *appsettings.json* or *appsettings.{Environment}.json* file:
 
 ```json
 {
@@ -148,33 +148,40 @@ Kestrel options, which are configured in C# code in the following examples, can 
 
 Use **one** of the following approaches:
 
-* Inject an instance of `IConfiguration` into the `Startup` class from the `Microsoft.Extensions.Configuration` namespace (`Configuration` in the following example). In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration:
+* Configure Kestrel in `Startup.ConfigureServices`:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.Configure<KestrelServerOptions>(
-        Configuration.GetSection("Kestrel"));
-}
-```
+  1. Inject an instance of `IConfiguration` into the `Startup` class. The following example assumes that the injected configuration is assigned to the `Configuration` property.
+  2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration.
 
-* In the `Program` class (*Program.cs*), load the `Kestrel` section of configuration into Kestrel's configuration:
+     ```csharp
+     // using Microsoft.Extensions.Configuration
 
-```csharp
-// using Microsoft.Extensions.DependencyInjection;
+     public void ConfigureServices(IServiceCollection services)
+     {
+         services.Configure<KestrelServerOptions>(
+             Configuration.GetSection("Kestrel"));
+     }
+     ```
 
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureServices((context, services) =>
-        {
-            services.Configure<KestrelServerOptions>(
-                context.Configuration.GetSection("Kestrel"));
-        })
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-        });
-```
+* Configure Kestrel when building the host:
+
+  In *Program.cs*, load the `Kestrel` section of configuration into Kestrel's configuration:
+
+  ```csharp
+  // using Microsoft.Extensions.DependencyInjection;
+
+  public static IHostBuilder CreateHostBuilder(string[] args) =>
+      Host.CreateDefaultBuilder(args)
+          .ConfigureServices((context, services) =>
+          {
+              services.Configure<KestrelServerOptions>(
+                  context.Configuration.GetSection("Kestrel"));
+          })
+          .ConfigureWebHostDefaults(webBuilder =>
+          {
+              webBuilder.UseStartup<Startup>();
+          });
+  ```
 
 Both of the preceding approaches work with any [configuration provider](xref:fundamentals/configuration/index).
 
@@ -1047,7 +1054,7 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from a file (*appsettings.json* or *appsettings.{Environment}.json*):
+Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from an *appsettings.json* or *appsettings.{Environment}.json* file:
 
 ```json
 {
@@ -1062,30 +1069,37 @@ Kestrel options, which are configured in C# code in the following examples, can 
 
 Use **one** of the following approaches:
 
-* Inject an instance of `IConfiguration` into the `Startup` class from the `Microsoft.Extensions.Configuration` namespace (`Configuration` in the following example). In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration:
+* Configure Kestrel in `Startup.ConfigureServices`:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.Configure<KestrelServerOptions>(
-        Configuration.GetSection("Kestrel"));
-}
-```
+  1. Inject an instance of `IConfiguration` into the `Startup` class. The following example assumes that the injected configuration is assigned to the `Configuration` property.
+  2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration.
 
-* In the `Program` class (*Program.cs*), load the `Kestrel` section of configuration into Kestrel's configuration:
+     ```csharp
+     // using Microsoft.Extensions.Configuration
 
-```csharp
-// using Microsoft.Extensions.DependencyInjection;
+     public void ConfigureServices(IServiceCollection services)
+     {
+         services.Configure<KestrelServerOptions>(
+             Configuration.GetSection("Kestrel"));
+     }
+     ```
 
-public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        .ConfigureServices((context, services) =>
-        {
-            services.Configure<KestrelServerOptions>(
-                context.Configuration.GetSection("Kestrel"));
-        })
-        .UseStartup<Startup>();
-```
+* Configure Kestrel when building the host:
+
+  In *Program.cs*, load the `Kestrel` section of configuration into Kestrel's configuration:
+
+  ```csharp
+  // using Microsoft.Extensions.DependencyInjection;
+
+  public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+      WebHost.CreateDefaultBuilder(args)
+          .ConfigureServices((context, services) =>
+          {
+              services.Configure<KestrelServerOptions>(
+                  context.Configuration.GetSection("Kestrel"));
+          })
+          .UseStartup<Startup>();
+  ```
 
 Both of the preceding approaches work with any [configuration provider](xref:fundamentals/configuration/index).
 
@@ -1911,7 +1925,7 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from a file (*appsettings.json* or *appsettings.{Environment}.json*):
+Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from an *appsettings.json* or *appsettings.{Environment}.json* file:
 
 ```json
 {
@@ -1926,30 +1940,37 @@ Kestrel options, which are configured in C# code in the following examples, can 
 
 Use **one** of the following approaches:
 
-* Inject an instance of `IConfiguration` into the `Startup` class from the `Microsoft.Extensions.Configuration` namespace (`Configuration` in the following example). In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration:
+* Configure Kestrel in `Startup.ConfigureServices`:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.Configure<KestrelServerOptions>(
-        Configuration.GetSection("Kestrel"));
-}
-```
+  1. Inject an instance of `IConfiguration` into the `Startup` class. The following example assumes that the injected configuration is assigned to the `Configuration` property.
+  2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration.
 
-* In the `Program` class (*Program.cs*), load the `Kestrel` section of configuration into Kestrel's configuration:
+     ```csharp
+     // using Microsoft.Extensions.Configuration
 
-```csharp
-// using Microsoft.Extensions.DependencyInjection;
+     public void ConfigureServices(IServiceCollection services)
+     {
+         services.Configure<KestrelServerOptions>(
+             Configuration.GetSection("Kestrel"));
+     }
+     ```
 
-public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        .ConfigureServices((context, services) =>
-        {
-            services.Configure<KestrelServerOptions>(
-                context.Configuration.GetSection("Kestrel"));
-        })
-        .UseStartup<Startup>();
-```
+* Configure Kestrel when building the host:
+
+  In *Program.cs*, load the `Kestrel` section of configuration into Kestrel's configuration:
+
+  ```csharp
+  // using Microsoft.Extensions.DependencyInjection;
+
+  public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+      WebHost.CreateDefaultBuilder(args)
+          .ConfigureServices((context, services) =>
+          {
+              services.Configure<KestrelServerOptions>(
+                  context.Configuration.GetSection("Kestrel"));
+          })
+          .UseStartup<Startup>();
+  ```
 
 Both of the preceding approaches work with any [configuration provider](xref:fundamentals/configuration/index).
 
