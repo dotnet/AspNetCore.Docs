@@ -189,7 +189,7 @@ dotnet build WebApplication.csproj /p:DeployOnBuild=true /p:PublishProfile=<MsDe
 In the preceding examples:
 
 * `dotnet publish` and `dotnet build` support Kudu APIs to publish to Azure from any platform. Visual Studio publish supports the Kudu APIs, but it's supported by WebSDK for cross-platform publish to Azure.
-* For `dotnet publish`, don't pass `deployonbuild` to the command.
+* Don't pass `DeployOnBuild` to the `dotnet publish` command.
 
 For more information, see [Microsoft.NET.Sdk.Publish](https://github.com/aspnet/websdk#microsoftnetsdkpublish).
 
