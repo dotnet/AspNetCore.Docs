@@ -46,7 +46,7 @@ When the app is deployed to a test or production server, an environment variable
 
 ## SQL Server Express LocalDB
 
-LocalDB is a lightweight version of the SQL Server Express database engine that's targeted for program development. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB database creates `*.mdf` files in the `C:/Users/<user/>` directory.
+LocalDB is a lightweight version of the SQL Server Express database engine that's targeted for program development. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB database creates `*.mdf` files in the `C:\Users\<user>\` directory.
 
 <a name="ssox"></a>
 * From the **View** menu, open **SQL Server Object Explorer** (SSOX).
