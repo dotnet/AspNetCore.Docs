@@ -32,7 +32,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 The name value for the database (`Database={Database name}`) will be different for your generated code. The name value is arbitrary.
 
-[!code-json[](razor-pages-start/sample/RazorPagesMovie30/appsettings.json)]
+[!code-json[](razor-pages-start/sample/RazorPagesMovie30/appsettings.json?highlight=10-12))]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
