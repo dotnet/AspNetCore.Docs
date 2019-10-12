@@ -103,8 +103,8 @@ The following code shows the updated *Program.cs* file.
 
 The following exception occurs when `Update-Database` has not been run:
 
-`SqlException: Cannot open database "RazorPagesMovieContext-" requested by the login. The login failed.`
-`Login failed for user 'user name'.`
+> `SqlException: Cannot open database "RazorPagesMovieContext-" requested by the login. The login failed.`
+> `Login failed for user 'user name'.`
 
 ### Test the app
 
