@@ -124,7 +124,7 @@ For more information on scaffolding Identity, see [Scaffold identity into a Razo
 
 When a user clicks the **Register** link, the `RegisterModel.OnPostAsync` action is invoked. The user is created by [CreateAsync](/dotnet/api/microsoft.aspnetcore.identity.usermanager-1.createasync#Microsoft_AspNetCore_Identity_UserManager_1_CreateAsync__0_System_String_) on the `_userManager` object. `_userManager` is provided by dependency injection):
 
-[!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=7,22)]
+[!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=9,22-23)]
 
 If the user was created successfully, the user is logged in by the call to `_signInManager.SignInAsync`.
 
@@ -358,7 +358,7 @@ Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
 
 The default web project templates allow anonymous access to the home pages. To test Identity, add [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) to the Privacy page.
 
-[!code-csharp[](identity/sample/WebApp1/Pages/Privacy.cshtml.cs?highlight=6)]
+[!code-csharp[](identity/sample/WebApp1/Pages/Privacy.cshtml.cs?highlight=7)]
 
 If you are signed in, sign out. Run the app and select the **Privacy** link. You are redirected to the login page.
 
