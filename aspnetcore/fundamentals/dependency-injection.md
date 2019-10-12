@@ -264,7 +264,7 @@ Singleton lifetime services (<xref:Microsoft.Extensions.DependencyInjection.Serv
 
 ## Service registration methods
 
-Service registration extension method offer overloads that are useful in specific scenarios.
+Service registration extension methods offer overloads that are useful in specific scenarios.
 
 | Method | Automatic<br>object<br>disposal | Multiple<br>implementations | Pass args |
 | ------ | :-----------------------------: | :-------------------------: | :-------: |
