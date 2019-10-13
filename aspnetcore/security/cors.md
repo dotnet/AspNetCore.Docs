@@ -487,7 +487,7 @@ To test CORS:
 
      **Access to XMLHttpRequest at `https://webapi.azurewebsites.net/api/values/1` from origin `https://localhost:44375` has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.**
      
-CORS-enabled endpoints can be tested with a tool, such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/). When using a tool, the origin of the request specififed by the `Origin` header must differ from the host receiving the request. If the request isn't *cross-origin* based on the value of the the `Origin` header:
+CORS-enabled endpoints can be tested with a tool, such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/). When using a tool, the origin of the request specified by the `Origin` header must differ from the host receiving the request. If the request isn't *cross-origin* based on the value of the the `Origin` header:
 
 * There's no need for CORS Middleware to process the request.
 * CORS headers aren't returned in the response.
