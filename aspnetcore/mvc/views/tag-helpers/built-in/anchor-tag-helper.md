@@ -4,7 +4,7 @@ author: pkellner
 description: Discover the ASP.NET Core Anchor Tag Helper attributes and the role each attribute plays in extending behavior of the HTML anchor tag.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 04/18/2019
+ms.date: 10/13/2019
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 ---
 # Anchor Tag Helper in ASP.NET Core
@@ -41,7 +41,7 @@ If the `asp-controller` attribute is specified and `asp-action` isn't, the defau
 <a href="/Home">All Speakers</a>
 ```
 
-## asp-action
+### asp-action
 
 The [asp-action](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Action*) attribute value represents the controller action name included in the generated `href` attribute. The following markup sets the generated `href` attribute value to the speaker evaluations page:
 
@@ -129,7 +129,7 @@ The Anchor Tag Helper generates a route directly to that controller action using
 
 If `asp-controller` or `asp-action` is specified in addition to `asp-route`, the route generated may not be what you expect. To avoid a route conflict, `asp-route` shouldn't be used with the `asp-controller` and `asp-action` attributes.
 
-## asp-all-route-data
+### asp-all-route-data
 
 The [asp-all-route-data](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.RouteValues*) attribute supports the creation of a dictionary of key-value pairs. The key is the parameter name, and the value is the parameter value.
 
@@ -167,7 +167,7 @@ Hash tags are useful when building client-side apps. They can be used for easy m
 
 The [asp-area](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Area*) attribute sets the area name used to set the appropriate route. The following examples depict how the `asp-area` attribute causes a remapping of routes.
 
-### Usage in Razor Pages
+#### Usage in Razor Pages
 
 Razor Pages areas are supported in ASP.NET Core 2.1 or later.
 
@@ -201,7 +201,7 @@ The generated HTML:
 >
 >   [!code-csharp[](samples/TagHelpersBuiltIn/Startup.cs?name=snippet_AllowAreas)]
 
-### Usage in MVC
+#### Usage in MVC
 
 Consider the following directory hierarchy:
 
