@@ -489,7 +489,7 @@ To test CORS:
      
 When testing a CORS-enabled endpoint with a tool, such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/), the request `Origin` header must differ from the host receiving the request. When the `Origin` header isn't present or indicates the same host, the CORS Middleware assumes that the request is from the same origin. Since the request isn't *cross-origin*:
 
-* There is no need for CORS Middleware to process the request.
+* There's no need for CORS Middleware to process the request.
 * CORS headers aren't returned in the response.
 
 ## Additional resources
