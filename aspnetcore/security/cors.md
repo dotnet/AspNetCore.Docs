@@ -425,7 +425,7 @@ This section describes what happens in a [CORS](https://developer.mozilla.org/en
 
 The [CORS specification](https://www.w3.org/TR/cors/) introduced several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests. Custom JavaScript code isn't required to enable CORS.
 
-The following is an example of a cross-origin request. The `Origin` header provides the domain of the site that's making the request. The `Origin` header is required and must be different from from the host.
+The following is an example of a cross-origin request. The `Origin` header provides the domain of the site that's making the request. The `Origin` header is required and must be different from the host.
 
 ```
 GET https://myservice.azurewebsites.net/api/test HTTP/1.1
