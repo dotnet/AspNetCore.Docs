@@ -45,13 +45,13 @@ Update the following pages:
 * Update [Create.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) with a `Rating` field.
 * Add the `Rating` field to the Edit Page.
 
-The app won't work until the DB is updated to include the new field. If run now, the app throws a `SqlException`:
+The app won't work until the DB is updated to include the new field. Running the app now would throw a `SqlException`:
 
-`SqlException: Invalid column name 'Rating'.`
+> `SqlException: Invalid column name 'Rating'.`
 
-This error is caused by the updated Movie model class being different than the schema of the Movie table of the database. (There's no `Rating` column in the database table.)
+This exception is caused by the updated Movie model class being different than the schema of the Movie table of the database. (There's no `Rating` column in the database table.)
 
-There are a few approaches to resolving the error:
+There are a few approaches to preventing this exception:
 
 1. Have the Entity Framework automatically drop and re-create the database using the new model class schema. This approach is convenient early in the development cycle; it allows you to quickly evolve the model and database schema together. The downside is that you lose existing data in the database. Don't use this approach on a production database! Dropping the DB on schema changes and using an initializer to automatically seed the database with test data is often a productive way to develop an app.
 
