@@ -90,7 +90,7 @@ The `Add-Migration` command tells the framework to:
 
 The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
-The `Update-Database` command tells the framework to apply the schema changes to the database.
+The `Update-Database` command tells the framework to apply the schema changes to the database and to preserve existing data.
 
 <a name="ssox"></a>
 
