@@ -104,7 +104,7 @@ Another option is to delete the database and use migrations to re-create the dat
 * Select **OK**.
 * In the [PMC](xref:tutorials/razor-pages/new-field#pmc), update the database:
 
-  ```PMC
+  ```powershell
   Update-Database
   ```
 
