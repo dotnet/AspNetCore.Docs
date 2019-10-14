@@ -5,7 +5,7 @@ description: Learn how to use the Azure Key Vault Configuration Provider to conf
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 10/14/2019
 uid: security/key-vault-configuration
 ---
 # Azure Key Vault Configuration Provider in ASP.NET Core
@@ -184,7 +184,10 @@ The sample app:
 
 [!code-csharp[](key-vault-configuration/sample/Program.cs?name=snippet2&highlight=13-21)]
 
+Key vault name example value: `contosovault`
+    
 *appsettings.json*:
+
 ```
 {
   "KeyVaultName": "Key Vault Name"
