@@ -43,11 +43,11 @@ For more information on how to configure a sample app using preprocessor directi
 
 Set secrets locally using the [Secret Manager tool](xref:security/app-secrets). When the sample app runs on the local machine in the Development environment, secrets are loaded from the local Secret Manager store.
 
-The Secret Manager tool requires a `<UserSecretsId>` property in the app's project file. Set the property value (`{GUID}`) to any unique GUID:
+The Secret Manager tool requires a `<UserSecretsId>` property in the app's project file. Set the property value (`GUID`) to any unique GUID:
 
 ```xml
 <PropertyGroup>
-  <UserSecretsId>{GUID}</UserSecretsId>
+  <UserSecretsId>GUID</UserSecretsId>
 </PropertyGroup>
 ```
 
@@ -217,11 +217,11 @@ When this approach is implemented:
    </PropertyGroup>
    ```
 
-1. Confirm that a `<UserSecretsId>` property is present in the app's project file, where `{GUID}` is a user-supplied GUID:
+1. Confirm that a `<UserSecretsId>` property is present in the app's project file, where `GUID` is a user-supplied GUID:
 
    ```xml
    <PropertyGroup>
-     <UserSecretsId>{GUID}</UserSecretsId>
+     <UserSecretsId>GUID</UserSecretsId>
    </PropertyGroup>
    ```
 
