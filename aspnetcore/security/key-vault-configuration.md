@@ -5,7 +5,7 @@ description: Learn how to use the Azure Key Vault Configuration Provider to conf
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 10/14/2019
 uid: security/key-vault-configuration
 ---
 # Azure Key Vault Configuration Provider in ASP.NET Core
@@ -183,6 +183,16 @@ The sample app:
 * The `KeyVaultClient` instance is used with a default implementation of `IKeyVaultSecretManager` that loads all secret values and replaces double-dashes (`--`) with colons (`:`) in key names.
 
 [!code-csharp[](key-vault-configuration/sample/Program.cs?name=snippet2&highlight=13-21)]
+
+Key vault name example value: `contosovault`
+    
+*appsettings.json*:
+
+```json
+{
+  "KeyVaultName": "Key Vault Name"
+}
+```
 
 When you run the app, a webpage shows the loaded secret values. In the Development environment, secret values have the `_dev` suffix because they're provided by User Secrets. In the Production environment, the values load with the `_prod` suffix because they're provided by Azure Key Vault.
 
