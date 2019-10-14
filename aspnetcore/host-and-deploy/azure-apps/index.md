@@ -157,7 +157,7 @@ When using the App Service deployment center to create an Azure DevOps build, th
 
 ![Add the .NET Core SDK step](index/add-sdk-step.png)
 
-Move the step into the first position in the build, so that the steps following it are sure to use that version of the .NET Core SDK. Specify the version of the .NET Core SDK you wish to use. In this example, the SDK has been set to the `3.0.100`. 
+Move the step into the first position in the build so that the steps following it use the specified version of the .NET Core SDK. Specify the version of the .NET Core SDK. In this example, the SDK is set to `3.0.100`.
 
 ![Completed SDK step](index/sdk-step-first-place.png)
 
