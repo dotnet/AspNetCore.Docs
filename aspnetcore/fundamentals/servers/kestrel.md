@@ -711,7 +711,98 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
-Use `CipherSuitesPolicy` to filter TLS handshakes on a per-connection basis for specific ciphers if required:
+Use Connection Middleware to filter TLS handshakes on a per-connection basis for specific ciphers if required:
+
+```csharp
+// using System.Net;
+// using Microsoft.AspNetCore.Connections;
+
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Listen(IPAddress.Any, 8000, listenOptions =>
+    {
+        listenOptions.UseHttps("testCert.pfx", "testPassword");
+        listenOptions.UseConnectionHandler<TlsFilterConnectionHandler>();
+    });
+});
+```
+
+```csharp
+using System;
+using System.Buffers;
+using System.Security.Authentication;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Connections;
+using Microsoft.AspNetCore.Connections.Features;
+
+public class TlsFilterConnectionHandler : ConnectionHandler
+{
+    public override async Task OnConnectedAsync(ConnectionContext connection)
+    {
+        var tlsFeature = connection.Features.Get<ITlsHandshakeFeature>();
+
+        // Throw NotSupportedException for any cipher algorithm that the app doesn't
+        // wish to support. Alternatively, define and compare
+        // ITlsHandshakeFeature.CipherAlgorithm to a list of acceptable cipher
+        // suites.
+        //
+        // A ITlsHandshakeFeature.CipherAlgorithm of CipherAlgorithmType.Null
+        // indicates that no cipher algorithm supported by Kestrel matches the
+        // requested algorithm(s).
+        if (tlsFeature.CipherAlgorithm == CipherAlgorithmType.Null)
+        {
+            throw new NotSupportedException("Prohibited cipher: " + 
+                tlsFeature.CipherAlgorithm);
+        }
+
+        var result = await connection.Transport.Input.ReadAsync();
+        var buffer = result.Buffer;
+
+        if (!buffer.IsEmpty)
+        {
+            await connection.Transport.Output.WriteAsync(buffer.ToArray());
+        }
+        else if (result.IsCompleted)
+        {
+            break;
+        }
+
+        connection.Transport.Input.AdvanceTo(buffer.End);
+    }
+}
+```
+
+Connection filtering can also be configured via an <xref:Microsoft.AspNetCore.Connections.IConnectionBuilder> lambda:
+
+```csharp
+// using System;
+// using System.Net;
+// using System.Security.Authentication;
+// using Microsoft.AspNetCore.Connections;
+// using Microsoft.AspNetCore.Connections.Features;
+
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Listen(IPAddress.Any, 8000, listenOptions =>
+    {
+        listenOptions.UseHttps("testCert.pfx", "testPassword");
+        listenOptions.Use((context, next) =>
+        {
+            var tlsFeature = context.Features.Get<ITlsHandshakeFeature>();
+
+            if (tlsFeature.CipherAlgorithm == CipherAlgorithmType.Null)
+            {
+                throw new NotSupportedException(
+                    "Prohibited cipher: " + tlsFeature.CipherAlgorithm);
+            }
+
+            return next();
+        });
+    });
+});
+```
+
+On Linux, <xref:System.Net.Security.CipherSuitesPolicy> can be used to filter TLS handshakes on a per-connection basis:
 
 ```csharp
 // using System.Net.Security;
