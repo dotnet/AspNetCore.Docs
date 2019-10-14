@@ -45,7 +45,7 @@ Update the following pages:
 * Update [Create.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) with a `Rating` field.
 * Add the `Rating` field to the Edit Page.
 
-The app won't work until the DB is updated to include the new field. If run now, the app throws a `SqlException`:
+The app won't work until the DB is updated to include the new field. Running the app without updating the database throws a `SqlException`:
 
 `SqlException: Invalid column name 'Rating'.`
 
