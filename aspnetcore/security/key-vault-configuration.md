@@ -188,7 +188,7 @@ Key vault name example value: `contosovault`
     
 *appsettings.json*:
 
-```
+```json
 {
   "KeyVaultName": "Key Vault Name"
 }
