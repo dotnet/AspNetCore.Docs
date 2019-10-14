@@ -772,7 +772,7 @@ public class TlsFilterConnectionHandler : ConnectionHandler
 }
 ```
 
-Connection filtering can also be configured via an <xref:Microsoft.AspNetCore.Connections.IConnectionBuilder> lambda:
+Connection filtering can also be configured via an <xref:Microsoft.AspNetCore.Connections.IConnectionBuilder> lambda. The following example throws a <xref:System.NotSupportedException> for [CipherAlgorithmType.TripleDes](xref:System.Security.Authentication.CipherAlgorithmType):
 
 ```csharp
 // using System;
@@ -790,7 +790,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
         {
             var tlsFeature = context.Features.Get<ITlsHandshakeFeature>();
 
-            if (tlsFeature.CipherAlgorithm == CipherAlgorithmType.Null)
+            if (tlsFeature.CipherAlgorithm == CipherAlgorithmType.TripleDes)
             {
                 throw new NotSupportedException(
                     "Prohibited cipher: " + tlsFeature.CipherAlgorithm);
