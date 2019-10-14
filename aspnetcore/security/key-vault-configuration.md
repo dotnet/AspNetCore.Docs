@@ -184,6 +184,13 @@ The sample app:
 
 [!code-csharp[](key-vault-configuration/sample/Program.cs?name=snippet2&highlight=13-21)]
 
+*appsettings.json*:
+```
+{
+  "KeyVaultName": "Key Vault Name"
+}
+```
+
 When you run the app, a webpage shows the loaded secret values. In the Development environment, secret values have the `_dev` suffix because they're provided by User Secrets. In the Production environment, the values load with the `_prod` suffix because they're provided by Azure Key Vault.
 
 If you receive an `Access denied` error, confirm that the app is registered with Azure AD and provided access to the key vault. Confirm that you've restarted the service in Azure.
