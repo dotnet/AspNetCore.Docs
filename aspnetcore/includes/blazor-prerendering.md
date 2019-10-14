@@ -15,7 +15,7 @@ To delay JavaScript interop calls until after the connection with the browser is
     {
         if (firstRender)
         {
-            JSRuntime.InvokeAsync<object>(
+            JSRuntime.InvokeVoidAsync(
                 "setElementValue", myInput, "Value set after render");
         }
     }
