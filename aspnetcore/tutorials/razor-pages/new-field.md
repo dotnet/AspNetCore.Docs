@@ -78,7 +78,7 @@ Build the solution.
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 In the PMC, enter the following commands:
 
-```PMC
+```powershell
 Add-Migration Rating
 Update-Database
 ```
