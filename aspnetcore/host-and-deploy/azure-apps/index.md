@@ -24,7 +24,7 @@ Use the command line to create and deploy an ASP.NET Core web app to Azure App S
 
 See the [ASP.NET Core on App Service Dashboard](https://aspnetcoreon.azurewebsites.net/) for the version of ASP.NET Core available on Azure App service.
 
-Subscribe to the [App Service Announcements](https://github.com/Azure/app-service-announcements/) repository and watch the issues. The App Service team regularly posts updates in the issues section of the repository to announce updates and features arriving in App Service. 
+Subscribe to the [App Service Announcements](https://github.com/Azure/app-service-announcements/) repository and monitor the issues. The App Service team regularly posts announcements and scenarios arriving in App Service.
 
 The following articles are available in ASP.NET Core documentation:
 
