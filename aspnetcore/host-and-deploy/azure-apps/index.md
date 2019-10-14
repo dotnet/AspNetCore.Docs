@@ -161,7 +161,7 @@ Move the step into the first position in the build so that the steps following i
 
 ![Completed SDK step](index/sdk-step-first-place.png)
 
-If you want to publish a self-contained app, you can specify in the `Publish` step to self-contain the app and the [RID](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) you want to use. 
+To publish a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd), configure SCD in the `Publish` step and provide the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
 
 ![Self-contained publish](index/self-contained.png)
 
