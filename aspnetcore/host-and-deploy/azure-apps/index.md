@@ -149,7 +149,7 @@ ASP.NET Core 3.0 is supported on Azure App Service. To deploy a preview release 
 
 ### Specify the .NET Core SDK Version using Azure Pipelines
 
-Using [Azure App Service's CI/CD features](https://docs.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment) makes it easy to set up a continuous integration build with Azure DevOps. Once this build has been created, a few additional tweaks can be made to not only "pin" your SDK version so that you're always confident to build against a consistent .NET Core SDK version. 
+Use [Azure App Service CI/CD scenarios](/azure/app-service/deploy-continuous-deployment) to set up a continuous integration build with Azure DevOps. After the Azure DevOps build is created, optionally configure the build to use a specific SDK version. 
 
 #### Specifying the .NET Core SDK Version
 
