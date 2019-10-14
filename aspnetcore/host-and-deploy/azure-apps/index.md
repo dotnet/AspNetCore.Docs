@@ -140,7 +140,7 @@ For more information, see <xref:security/data-protection/implementation/key-stor
 
 ## Deploy ASP.NET Core 3.0 to Azure App Service
 
-ASP.NET Core 3.0 is supported on Azure App Service. If you want to deploy preview releases of .NET Core 3.0+ in between major releases, or in the rare case during a deployment when the runtime is available but the SDK is not yet installed, use one of the techniques below to deploy an ASP.NET Core 3.0 (or later) app. 
+ASP.NET Core 3.0 is supported on Azure App Service. To deploy a preview release of a .NET Core version later than .NET Core 3.0, use one of the following techniques. These approaches are also used when the runtime is available but the SDK hasn't been installed on Azure App Service.
 
 * [Specify the .NET Core SDK Version using Azure Pipelines](#specify-the-net-core-sdk-version-using-azure-pipelines)
 * [Deploy a self-contained preview app](#deploy-a-self-contained-preview-app).
