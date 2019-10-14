@@ -153,7 +153,7 @@ Use [Azure App Service CI/CD scenarios](/azure/app-service/deploy-continuous-dep
 
 #### Specify the .NET Core SDK version
 
-If you use the App Service deployment center to create your Azure DevOps build, the resulting build pipeline will have steps for `Restore`, `Build`, `Test`, and `Publish`. To specify the SDK version, click the "Add (+)" button in the Agent job list to add a new step. Search for **.NET Core SDK** in the search bar. 
+When using the App Service deployment center to create an Azure DevOps build, the default build pipeline includes steps for `Restore`, `Build`, `Test`, and `Publish`. To specify the SDK version, select the **Add (+)** button in the Agent job list to add a new step. Search for **.NET Core SDK** in the search bar. 
 
 ![Add the .NET Core SDK step](index/add-sdk-step.png)
 
