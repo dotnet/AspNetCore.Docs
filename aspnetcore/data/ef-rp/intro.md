@@ -501,7 +501,7 @@ Run the app.
 ```dotnetcli
 dotnet new webapp -o ContosoUniversity
 cd ContosoUniversity
-dotnet run
+dotnet watch run
 ```
 
 ---
