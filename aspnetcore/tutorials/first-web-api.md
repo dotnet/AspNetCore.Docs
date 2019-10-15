@@ -257,9 +257,9 @@ The preceding code:
 1. Select **Add** > **New Scaffolded Item**.
 1. Select **API Controller with actions, using Entity Framework**, and then select **Add**.
 1. In the **Add API Controller with actions, using Entity Framework** dialog:
-  * Select **TodoItem (TodoApi.Models)** in the **Model class**.
-  * Select **TodoContext (TodoApi.Models)** in the **Data context class**.
-  * Select **Add**.
+    * Select **TodoItem (TodoApi.Models)** in the **Model class**.
+    * Select **TodoContext (TodoApi.Models)** in the **Data context class**.
+    * Select **Add**.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
