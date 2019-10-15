@@ -77,6 +77,7 @@ The following diagram shows the design of the app.
    ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoApi
+   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    code -r ../TodoApi
    ```
@@ -106,9 +107,10 @@ The following diagram shows the design of the app.
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
-Open a command terminal in the project folder and run the following command:
+Open a command terminal in the project folder and run the following commands:
 
    ```dotnetcli
+   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    ```
 
@@ -215,11 +217,21 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 # [Visual Studio](#tab/visual-studio)
 
-### Add the in-memory database package
+### Add Microsoft.EntityFrameworkCore.SqlServer
 
+<<<<<<< HEAD
 1. In **Solution Explorer**, right-click the project name and select **Manage NuGet Packages**.
 1. Select the **Browse** tab, and enter **Microsoft.EntityFrameworkCore.InMemory** in the search box.
 1. Select **Microsoft.EntityFrameworkCore.InMemory** in the left pane, and select **Install** in the right pane.
+=======
+* From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
+* Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.SqlServer** in the search box.
+* Select **Microsoft.EntityFrameworkCore.SqlServer** in the left pane.
+* Select the **Project** check box in the right pane and then select **Install**.
+* Use the preceding instructions to add the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.
+
+![NuGet Package Manager](first-web-api/_static/vs3NuGet.png)
+>>>>>>> parent of 83c1e9dab... Remove instructions to add .SqlServer package
 
 ## Add the TodoContext database context
 
@@ -317,12 +329,21 @@ This tutorial uses Postman to test the web API.
 
 ### Test PostTodoItem with Postman
 
+<<<<<<< HEAD
 1. Create a new request.
 1. Set the HTTP method to `POST`.
 1. Select the **Body** tab.
 1. Select the **raw** radio button.
 1. Set the type to **JSON (application/json)**.
 1. In the request body, enter JSON for a to-do item:
+=======
+* Create a new request.
+* Set the HTTP method to `POST`.
+* Select the **Body** tab.
+* Select the **raw** radio button.
+* Set the type to **JSON (application/json)**.
+* In the request body enter JSON for a to-do item:
+>>>>>>> parent of 83c1e9dab... Remove instructions to add .SqlServer package
 
     ```json
     {
@@ -372,11 +393,19 @@ A response similar to the following is produced by the call to `GetTodoItems`:
 
 ### Test Get with Postman
 
+<<<<<<< HEAD
 1. Create a new request.
 1. Set the HTTP method to **GET**.
 1. Set the request URL to `https://localhost:<port>/api/TodoItems`. For example, `https://localhost:5001/api/TodoItems`.
 1. Set **Two pane view** in Postman.
 1. Select **Send**.
+=======
+* Create a new request.
+* Set the HTTP method to **GET**.
+* Set the request URL to `https://localhost:<port>/TodoItems`. For example, `https://localhost:5001/TodoItems`.
+* Set **Two pane view** in Postman.
+* Select **Send**.
+>>>>>>> parent of 83c1e9dab... Remove instructions to add .SqlServer package
 
 This app uses an in-memory database. If the app is stopped and started, the preceding GET request won't return any data. If no data is returned, [POST](#post) data to the app.
 
