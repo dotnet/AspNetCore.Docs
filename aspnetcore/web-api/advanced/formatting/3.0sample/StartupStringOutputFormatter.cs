@@ -7,9 +7,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace ResponseFormattingSample
 {
-    public class StartupTextOutputFormatter
+    public class StartupStringOutputFormatter
     {
-        public StartupTextOutputFormatter(IConfiguration configuration)
+        public StartupStringOutputFormatter(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -22,7 +22,7 @@ namespace ResponseFormattingSample
             services.AddControllers(options =>
             {
                 // requires using Microsoft.AspNetCore.Mvc.Formatters;
-                options.OutputFormatters.RemoveType<TextOutputFormatter>();
+                options.OutputFormatters.RemoveType<StringOutputFormatter>();
                 options.OutputFormatters.RemoveType<HttpNoContentOutputFormatter>();
             });
         }
