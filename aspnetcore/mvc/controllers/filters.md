@@ -152,7 +152,7 @@ For example, in the download sample, `MySampleActionFilter` is applied globally 
 
 The `TestController`:
 
-* Applies the `SampleActionFilterAttribute` (`[SampleActionFilter]`) to the `FilterTest2` action:
+* Applies the `SampleActionFilterAttribute` (`[SampleActionFilter]`) to the `FilterTest2` action.
 * Overrides `OnActionExecuting` and `OnActionExecuted`.
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/TestController.cs?name=snippet)]
@@ -443,18 +443,7 @@ The <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuting*?disp
 * Prevent execution of the action result and subsequent filters.
 * Be treated as a failure instead of a successful result.
 
-When the <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuted*?displayProperty=fullName> method runs:
-
-* The response has likely been sent to the client and cannot be changed.
-* If an exception was thrown, the response body is not sent.
-
-<!-- Review preceding "If an exception was thrown: Original 
-When the OnResultExecuted method runs, the response has likely been sent to the client and cannot be changed further (unless an exception was thrown).
-
-SHould that be , 
-If an exception was thrown **IN THE RESULT FILTER**, the response body is not sent.
-
- -->
+When the <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter.OnResultExecuted*?displayProperty=fullName> method runs, the response has likely already been sent to the client. If the response has already been sent to the client, it cannot be changed further.
 
 `ResultExecutedContext.Canceled` is set to `true` if the action result execution was short-circuited by another filter.
 
@@ -488,7 +477,7 @@ For example, the following filter always runs and sets an action result (<xref:M
 The preceding code can be tested by running the [download sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample):
 
 * Invoke the F12 developer tools.
-* Navigate to `https://localhost:5001/Sample/HeaderWithFactory`
+* Navigate to `https://localhost:5001/Sample/HeaderWithFactory`.
 
 The F12 developer tools display the following response headers added by the sample code:
 
@@ -526,7 +515,7 @@ Resource filters work like [middleware](xref:fundamentals/middleware/index) in t
 
 To use middleware as a filter, create a type with a `Configure` method that specifies the middleware to inject into the filter pipeline. The following example uses the localization middleware to establish the current culture for a request:
 
-[!code-csharp[](./filters/sample/FiltersSample/Filters/LocalizationPipeline.cs?name=snippet_MiddlewareFilter&highlight=3,21)]
+[!code-csharp[](./filters/sample/FiltersSample/Filters/LocalizationPipeline.cs?name=snippet_MiddlewareFilter&highlight=3,22)]
 
 Use the <xref:Microsoft.AspNetCore.Mvc.MiddlewareFilterAttribute> to run the middleware:
 
@@ -536,5 +525,5 @@ Middleware filters run at the same stage of the filter pipeline as Resource filt
 
 ## Next actions
 
-* See [Filter methods for Razor Pages](xref:razor-pages/filter)
+* See [Filter methods for Razor Pages](xref:razor-pages/filter).
 * To experiment with filters, [download, test, and modify the GitHub sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).

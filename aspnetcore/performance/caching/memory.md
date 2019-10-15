@@ -101,7 +101,7 @@ The following sample:
 
 ## Use SetSize, Size, and SizeLimit to limit cache size
 
-A `MemoryCache` instance may optionally specify and enforce a size limit. The memory size limit does not have a defined unit of measure because the cache has no mechanism to measure the size of entries. If the cache memory size limit is set, all entries must specify size. The ASP.NET Core runtime does not limit cache size based on memory pressure. It's up to the developer to limit cache size. The size specified is in units the developer chooses.
+A `MemoryCache` instance may optionally specify and enforce a size limit. The cache size limit does not have a defined unit of measure because the cache has no mechanism to measure the size of entries. If the cache size limit is set, all entries must specify size. The ASP.NET Core runtime does not limit cache size based on memory pressure. It's up to the developer to limit cache size. The size specified is in units the developer chooses.
 
 For example:
 
@@ -117,7 +117,7 @@ The following code creates a unitless fixed size <xref:Microsoft.Extensions.Cach
 
 [!code-csharp[](memory/sample/RPcache/Services/MyMemoryCache.cs?name=snippet)]
 
-`SizeLimit` does not have units. Cached entries must specify size in whatever units they deem most appropriate if the cache memory size has been set. All users of a cache instance should use the same unit system. An entry will not be cached if the sum of the cached entry sizes exceeds the value specified by `SizeLimit`. If no cache size limit is set, the cache size set on the entry will be ignored.
+`SizeLimit` does not have units. Cached entries must specify size in whatever units they deem most appropriate if the cache size limit has been set. All users of a cache instance should use the same unit system. An entry will not be cached if the sum of the cached entry sizes exceeds the value specified by `SizeLimit`. If no cache size limit is set, the cache size set on the entry will be ignored.
 
 The following code registers `MyMemoryCache` with the [dependency injection](xref:fundamentals/dependency-injection) container.
 
@@ -270,7 +270,7 @@ The following sample:
 
 ## Use SetSize, Size, and SizeLimit to limit cache size
 
-A `MemoryCache` instance may optionally specify and enforce a size limit. The memory size limit does not have a defined unit of measure because the cache has no mechanism to measure the size of entries. If the cache memory size limit is set, all entries must specify size. The ASP.NET Core runtime does not limit cache size based on memory pressure. It's up to the developer to limit cache size. The size specified is in units the developer chooses.
+A `MemoryCache` instance may optionally specify and enforce a size limit. The cache size limit does not have a defined unit of measure because the cache has no mechanism to measure the size of entries. If the cache size limit is set, all entries must specify size. The ASP.NET Core runtime does not limit cache size based on memory pressure. It's up to the developer to limit cache size. The size specified is in units the developer chooses.
 
 For example:
 
@@ -286,7 +286,7 @@ The following code creates a unitless fixed size <xref:Microsoft.Extensions.Cach
 
 [!code-csharp[](memory/sample/RPcache/Services/MyMemoryCache.cs?name=snippet)]
 
-`SizeLimit` does not have units. Cached entries must specify size in whatever units they deem most appropriate if the cache memory size has been set. All users of a cache instance should use the same unit system. An entry will not be cached if the sum of the cached entry sizes exceeds the value specified by `SizeLimit`. If no cache size limit is set, the cache size set on the entry will be ignored.
+`SizeLimit` does not have units. Cached entries must specify size in whatever units they deem most appropriate if the cache size limit has been set. All users of a cache instance should use the same unit system. An entry will not be cached if the sum of the cached entry sizes exceeds the value specified by `SizeLimit`. If no cache size limit is set, the cache size set on the entry will be ignored.
 
 The following code registers `MyMemoryCache` with the [dependency injection](xref:fundamentals/dependency-injection) container.
 

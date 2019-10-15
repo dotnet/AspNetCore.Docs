@@ -58,7 +58,7 @@ Select the **Create New** link. Complete the form with some invalid values. When
 
 ![Movie view form with multiple jQuery client-side validation errors](validation/_static/val.png)
 
-[!INCLUDE[](~/includes/currency.md)]
+[!INCLUDE[](~/includes/localization/currency.md)]
 
 Notice how the form has automatically rendered a validation error message in each field containing an invalid value. The errors are enforced both client-side (using JavaScript and jQuery) and server-side (when a user has JavaScript disabled).
 

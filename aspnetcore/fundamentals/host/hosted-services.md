@@ -10,7 +10,7 @@ uid: fundamentals/host/hosted-services
 ---
 # Background tasks with hosted services in ASP.NET Core
 
-By [Luke Latham](https://github.com/guardrex)
+By [Luke Latham](https://github.com/guardrex) and [Jeow Li Huan](https://github.com/huan086)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -141,13 +141,17 @@ In the following `QueueHostedService` example:
 
 * The `BackgroundProcessing` method returns a `Task`, which is awaited in `ExecuteAsync`.
 * Background tasks in the queue are dequeued and executed in `BackgroundProcessing`.
+* Work items are awaited before the service stops in `StopAsync`.
 
-[!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/QueuedHostedService.cs?name=snippet1&highlight=28,39-40,44)]
+[!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/QueuedHostedService.cs?name=snippet1&highlight=28-29,33)]
 
 A `MonitorLoop` service handles enqueuing tasks for the hosted service whenever the `w` key is selected on an input device:
 
 * The `IBackgroundTaskQueue` is injected into the `MonitorLoop` service.
 * `IBackgroundTaskQueue.QueueBackgroundWorkItem` is called to enqueue a work item.
+* The work item simulates a long-running background task:
+  * Three 5-second delays are executed (`Task.Delay`).
+  * A `try-catch` statement traps <xref:System.OperationCanceledException> if the task is cancelled.
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/MonitorLoop.cs?name=snippet_Monitor&highlight=7,33)]
 
@@ -228,7 +232,7 @@ The services are registered in `Startup.ConfigureServices`. The `IHostedService`
 
 ## Queued background tasks
 
-A background task queue is based on the .NET 4.x <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> ([tentatively scheduled to be built-in for ASP.NET Core](https://github.com/aspnet/Hosting/issues/1280)):
+A background task queue is based on the .NET Framework 4.x <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> ([tentatively scheduled to be built-in for ASP.NET Core](https://github.com/aspnet/Hosting/issues/1280)):
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Services/BackgroundTaskQueue.cs?name=snippet1)]
 

@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/13/2019
+ms.date: 10/11/2019
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -81,6 +81,8 @@ ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the temp
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_DefaultBuilder&highlight=7)]
 
+For more information on `CreateDefaultBuilder` and building the host, see the *Set up a host* and *Default builder settings* sections of <xref:fundamentals/host/generic-host#set-up-a-host>.
+
 To provide additional configuration after calling `CreateDefaultBuilder` and `ConfigureWebHostDefaults`, use `ConfigureKestrel`:
 
 ```csharp
@@ -129,6 +131,59 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 ```csharp
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
+
+Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from an *appsettings.json* or *appsettings.{Environment}.json* file:
+
+```json
+{
+  "Kestrel": {
+    "Limits": {
+      "MaxConcurrentConnections": 100,
+      "MaxConcurrentUpgradedConnections": 100
+    },
+    "DisableStringReuse": true
+  }
+}
+```
+
+Use **one** of the following approaches:
+
+* Configure Kestrel in `Startup.ConfigureServices`:
+
+  1. Inject an instance of `IConfiguration` into the `Startup` class. The following example assumes that the injected configuration is assigned to the `Configuration` property.
+  2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration.
+
+     ```csharp
+     // using Microsoft.Extensions.Configuration
+
+     public void ConfigureServices(IServiceCollection services)
+     {
+         services.Configure<KestrelServerOptions>(
+             Configuration.GetSection("Kestrel"));
+     }
+     ```
+
+* Configure Kestrel when building the host:
+
+  In *Program.cs*, load the `Kestrel` section of configuration into Kestrel's configuration:
+
+  ```csharp
+  // using Microsoft.Extensions.DependencyInjection;
+
+  public static IHostBuilder CreateHostBuilder(string[] args) =>
+      Host.CreateDefaultBuilder(args)
+          .ConfigureServices((context, services) =>
+          {
+              services.Configure<KestrelServerOptions>(
+                  context.Configuration.GetSection("Kestrel"));
+          })
+          .ConfigureWebHostDefaults(webBuilder =>
+          {
+              webBuilder.UseStartup<Startup>();
+          });
+  ```
+
+Both of the preceding approaches work with any [configuration provider](xref:fundamentals/configuration/index).
 
 ### Keep-alive timeout
 
@@ -523,7 +578,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 `KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.
 
-* The configuration section for each endpoint is a available on the options in the `Endpoint` method so that custom settings may be read.
+* The configuration section for each endpoint is available on the options in the `Endpoint` method so that custom settings may be read.
 * Multiple configurations may be loaded by calling `options.Configure(context.Configuration.GetSection("{SECTION}"))` again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
 * `KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints may be configured in the same place. These overloads don't use names and only consume default settings from configuration.
 
@@ -953,6 +1008,8 @@ ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the temp
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_DefaultBuilder&highlight=7)]
 
+For more information on `CreateDefaultBuilder` and building the host, see the *Set up a host* section of <xref:fundamentals/host/web-host#set-up-a-host>.
+
 To provide additional configuration after calling `CreateDefaultBuilder`, use `ConfigureKestrel`:
 
 ```csharp
@@ -996,6 +1053,55 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 ```csharp
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
+
+Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from an *appsettings.json* or *appsettings.{Environment}.json* file:
+
+```json
+{
+  "Kestrel": {
+    "Limits": {
+      "MaxConcurrentConnections": 100,
+      "MaxConcurrentUpgradedConnections": 100
+    }
+  }
+}
+```
+
+Use **one** of the following approaches:
+
+* Configure Kestrel in `Startup.ConfigureServices`:
+
+  1. Inject an instance of `IConfiguration` into the `Startup` class. The following example assumes that the injected configuration is assigned to the `Configuration` property.
+  2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration.
+
+     ```csharp
+     // using Microsoft.Extensions.Configuration
+
+     public void ConfigureServices(IServiceCollection services)
+     {
+         services.Configure<KestrelServerOptions>(
+             Configuration.GetSection("Kestrel"));
+     }
+     ```
+
+* Configure Kestrel when building the host:
+
+  In *Program.cs*, load the `Kestrel` section of configuration into Kestrel's configuration:
+
+  ```csharp
+  // using Microsoft.Extensions.DependencyInjection;
+
+  public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+      WebHost.CreateDefaultBuilder(args)
+          .ConfigureServices((context, services) =>
+          {
+              services.Configure<KestrelServerOptions>(
+                  context.Configuration.GetSection("Kestrel"));
+          })
+          .UseStartup<Startup>();
+  ```
+
+Both of the preceding approaches work with any [configuration provider](xref:fundamentals/configuration/index).
 
 ### Keep-alive timeout
 
@@ -1396,7 +1502,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 `KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.
 
-* The configuration section for each endpoint is a available on the options in the `Endpoint` method so that custom settings may be read.
+* The configuration section for each endpoint is available on the options in the `Endpoint` method so that custom settings may be read.
 * Multiple configurations may be loaded by calling `options.Configure(context.Configuration.GetSection("{SECTION}"))` again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
 * `KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints may be configured in the same place. These overloads don't use names and only consume default settings from configuration.
 
@@ -1805,6 +1911,8 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
+For more information on `CreateDefaultBuilder` and building the host, see the *Set up a host* section of <xref:fundamentals/host/web-host#set-up-a-host>.
+
 ## Kestrel options
 
 The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments.
@@ -1816,6 +1924,55 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 ```csharp
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
+
+Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from an *appsettings.json* or *appsettings.{Environment}.json* file:
+
+```json
+{
+  "Kestrel": {
+    "Limits": {
+      "MaxConcurrentConnections": 100,
+      "MaxConcurrentUpgradedConnections": 100
+    }
+  }
+}
+```
+
+Use **one** of the following approaches:
+
+* Configure Kestrel in `Startup.ConfigureServices`:
+
+  1. Inject an instance of `IConfiguration` into the `Startup` class. The following example assumes that the injected configuration is assigned to the `Configuration` property.
+  2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration.
+
+     ```csharp
+     // using Microsoft.Extensions.Configuration
+
+     public void ConfigureServices(IServiceCollection services)
+     {
+         services.Configure<KestrelServerOptions>(
+             Configuration.GetSection("Kestrel"));
+     }
+     ```
+
+* Configure Kestrel when building the host:
+
+  In *Program.cs*, load the `Kestrel` section of configuration into Kestrel's configuration:
+
+  ```csharp
+  // using Microsoft.Extensions.DependencyInjection;
+
+  public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+      WebHost.CreateDefaultBuilder(args)
+          .ConfigureServices((context, services) =>
+          {
+              services.Configure<KestrelServerOptions>(
+                  context.Configuration.GetSection("Kestrel"));
+          })
+          .UseStartup<Startup>();
+  ```
+
+Both of the preceding approaches work with any [configuration provider](xref:fundamentals/configuration/index).
 
 ### Keep-alive timeout
 
@@ -2173,7 +2330,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 `KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.
 
-* The configuration section for each endpoint is a available on the options in the `Endpoint` method so that custom settings may be read.
+* The configuration section for each endpoint is available on the options in the `Endpoint` method so that custom settings may be read.
 * Multiple configurations may be loaded by calling `options.Configure(context.Configuration.GetSection("{SECTION}"))` again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
 * `KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints may be configured in the same place. These overloads don't use names and only consume default settings from configuration.
 
