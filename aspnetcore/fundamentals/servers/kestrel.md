@@ -753,7 +753,6 @@ namespace Microsoft.AspNetCore.Connections
                         tlsFeature.CipherAlgorithm);
                 }
 
-                // Call the next connection middleware in the pipeline
                 return next();
             });
         }
