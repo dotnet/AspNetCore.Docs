@@ -191,7 +191,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 1. Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
 
-  ![new folder](first-web-api-mac/_static/folder.png)
+    ![new folder](first-web-api-mac/_static/folder.png)
 
 1. Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
 1. Name the class *TodoItem*, and then click **New**.
