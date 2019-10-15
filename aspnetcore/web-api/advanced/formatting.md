@@ -224,7 +224,7 @@ Some special cases are implemented using built-in formatters. By default, `strin
 [!code-csharp[](./formatting/sample/StartupStringOutputFormatter.cs?name=snippet)]
 ::: moniker-end
 
-Without the `StringOutputFormatter`, `string` return types are formatted by the built-in JSON formatter. If the built-in JSON formatter is removed and an XML formatter is available, the response is formatted by the XML formatter. If the JSON formatter is removed and no XML formatter is available, `string` return types return `406 Not Acceptable`.
+Without the `StringOutputFormatter`, the built-in JSON formatter formats `string` return types. If the built-in JSON formatter is removed and an XML formatter is available, the XML formatter formats `string` return types. Otherwise, `string` return types return `406 Not Acceptable`.
 
 Without the `HttpNoContentOutputFormatter`, null objects are formatted using the configured formatter. For example:
 
