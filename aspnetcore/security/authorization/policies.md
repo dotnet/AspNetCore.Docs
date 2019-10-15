@@ -203,7 +203,7 @@ There may be situations in which fulfilling a policy is simple to express in cod
 
 For example, the previous `BadgeEntryHandler` could be rewritten as follows:
 
-[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=50-51,55-61)]
+[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=42-43,47-53)]
 
 ## Accessing MVC request context in handlers
 
