@@ -340,7 +340,7 @@ This tutorial uses Postman to test the web API.
 1. Select the **Headers** tab in the **Response** pane.
 1. Copy the **Location** header value:
 
-  ![Headers tab of the Postman console](first-web-api/_static/create.png)
+    ![Headers tab of the Postman console](first-web-api/_static/create.png)
 
 1. Set the method to GET.
 1. Paste the URI (for example, `https://localhost:5001/api/TodoItems/1`).
