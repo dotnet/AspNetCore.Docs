@@ -27,15 +27,15 @@ At the end, you have a web API that can manage "to-do" items stored in a databas
 
 ## Overview
 
-This tutorial creates the following API:
+This tutorial creates a web API containing the following endpoints:
 
-|API | Description | Request body | Response body |
-|--- | ---- | ---- | ---- |
-|GET /api/TodoItems | Get all to-do items | None | Array of to-do items|
-|GET /api/TodoItems/{id} | Get an item by ID | None | To-do item|
-|POST /api/TodoItems | Add a new item | To-do item | To-do item |
-|PUT /api/TodoItems/{id} | Update an existing item &nbsp; | To-do item | None |
-|DELETE /api/TodoItems/{id} &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+|Endpoint              |Description            |Request body|Response body       |
+|----------------------|-----------------------|------------|--------------------|
+|GET /TodoItems        |Get all to-do items    |None        |Array of to-do items|
+|GET /TodoItems/{id}   |Get an item by ID      |None        |To-do item          |
+|POST /TodoItems       |Add a new item         |To-do item  |To-do item          |
+|PUT /TodoItems/{id}   |Update an existing item|To-do item  |None                |
+|DELETE /TodoItems/{id}|Delete an item         |None        |None                |
 
 The following diagram shows the design of the app.
 
@@ -122,13 +122,13 @@ The project template creates a `WeatherForecast` API. Call the `Get` method from
 
 # [Visual Studio](#tab/visual-studio)
 
-Press Ctrl+F5 to run the app. Visual Studio launches a browser and navigates to `https://localhost:<port>/WeatherForecast`, where `<port>` is a randomly chosen port number.
+Press <kbd>Ctrl+F5</kbd> to run the app. Visual Studio launches a browser and navigates to `https://localhost:<port>/WeatherForecast`, where `<port>` is a randomly chosen port number.
 
 If you get a dialog box that asks if you should trust the IIS Express certificate, select **Yes**. In the **Security Warning** dialog that appears next, select **Yes**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001/WeatherForecast](https://localhost:5001/WeatherForecast).
+Press <kbd>Ctrl+F5</kbd> to run the app. In a browser, go to following URL: [https://localhost:5001/WeatherForecast](https://localhost:5001/WeatherForecast).
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -243,7 +243,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 ## Register the database context
 
-In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
+In ASP.NET Core, services such as the database context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
 
 Update *Startup.cs* with the following highlighted code:
 
@@ -290,7 +290,7 @@ The preceding commands:
 The generated code:
 
 * Defines an API controller class without methods.
-* Decorates the class with the [[ApiController]](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute. This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see <xref:web-api/index>.
+* Decorates the class with the [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute. This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see <xref:web-api/index>.
 * Uses DI to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 ## Examine the PostTodoItem create method
@@ -299,7 +299,7 @@ Replace the return statement in the `PostTodoItem` to use the [nameof](/dotnet/c
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
-The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](/dotnet/api/microsoft.aspnetcore.mvc.httppostattribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
+The preceding code is an HTTP POST method, as indicated by the [[HttpPost]](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
 
 The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 
@@ -349,20 +349,20 @@ This tutorial uses Postman to test the web API.
   ![Headers tab of the Postman console](first-web-api/_static/create.png)
 
 * Set the method to GET.
-* Paste the URI (for example, `https://localhost:5001/api/TodoItems/1`).
+* Paste the URI (for example, `https://localhost:5001/TodoItems/1`).
 * Select **Send**.
 
 ## Examine the GET methods
 
 These methods implement two GET endpoints:
 
-* `GET /api/TodoItems`
-* `GET /api/TodoItems/{id}`
+* `GET /TodoItems`
+* `GET /TodoItems/{id}`
 
 Test the app by calling the two endpoints from a browser or Postman. For example:
 
-* [https://localhost:5001/api/TodoItems](https://localhost:5001/api/TodoItems)
-* [https://localhost:5001/api/TodoItems/1](https://localhost:5001/api/TodoItems/1)
+* [https://localhost:5001/TodoItems](https://localhost:5001/TodoItems)
+* [https://localhost:5001/TodoItems/1](https://localhost:5001/TodoItems/1)
 
 A response similar to the following is produced by the call to `GetTodoItems`:
 
@@ -380,7 +380,7 @@ A response similar to the following is produced by the call to `GetTodoItems`:
 
 * Create a new request.
 * Set the HTTP method to **GET**.
-* Set the request URL to `https://localhost:<port>/api/TodoItems`. For example, `https://localhost:5001/api/TodoItems`.
+* Set the request URL to `https://localhost:<port>/TodoItems`. For example, `https://localhost:5001/TodoItems`.
 * Set **Two pane view** in Postman.
 * Select **Send**.
 
@@ -388,7 +388,7 @@ This app uses an in-memory database. If the app is stopped and started, the prec
 
 ## Routing and URL paths
 
-The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
+The [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
 
 * Start with the template string in the controller's `Route` attribute:
 
@@ -407,7 +407,7 @@ The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult
 
 `ActionResult` return types can represent a wide range of HTTP status codes. For example, `GetTodoItem` can return two different status values:
 
-* If no item matches the requested ID, the method returns a 404 [NotFound](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.notfound) error code.
+* If no item matches the requested ID, the method returns a 404 <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound> error code.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
 ## The PutTodoItem method
@@ -424,14 +424,14 @@ If you get an error calling `PutTodoItem`, call `GET` to ensure there's an item 
 
 This sample uses an in-memory database that must be initialed each time the app is started. There must be an item in the database before you make a PUT call. Call GET to insure there's an item in the database before making a PUT call.
 
-Update the to-do item that has ID = 1 and set its name to "feed fish":
+Update the to-do item that has an ID of 1. Set its name to "feed fish":
 
 ```json
-  {
-    "ID":1,
-    "name":"feed fish",
-    "isComplete":true
-  }
+{
+  "ID":1,
+  "name":"feed fish",
+  "isComplete":true
+}
 ```
 
 The following image shows the Postman update:
@@ -451,7 +451,7 @@ The `DeleteTodoItem` response is [204 (No Content)](https://www.w3.org/Protocols
 Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
-* Set the URI of the object to delete (for example `https://localhost:5001/api/TodoItems/1`).
+* Set the URI of the object to delete (for example, `https://localhost:5001/TodoItems/1`).
 * Select **Send**.
 
 ## Call the web API with JavaScript
