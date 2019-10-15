@@ -24,6 +24,8 @@ The simplest type of claim policy looks for the presence of a claim and doesn't 
 
 First you need to build and register the policy. This takes place as part of the Authorization service configuration, which normally takes part in `ConfigureServices()` in your *Startup.cs* file.
 
+::: moniker range=">= aspnetcore-3.0"
+
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -36,6 +38,24 @@ public void ConfigureServices(IServiceCollection services)
     });
 }
 ```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+
+    services.AddAuthorization(options =>
+    {
+        options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("EmployeeNumber"));
+    });
+}
+```
+
+::: moniker-end
 
 In this case the `EmployeeOnly` policy checks for the presence of an `EmployeeNumber` claim on the current identity.
 
@@ -80,6 +100,8 @@ public class VacationController : Controller
 
 Most claims come with a value. You can specify a list of allowed values when creating the policy. The following example would only succeed for employees whose employee number was 1, 2, 3, 4 or 5.
 
+::: moniker range=">= aspnetcore-3.0"
+
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -94,6 +116,24 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+
+    services.AddAuthorization(options =>
+    {
+        options.AddPolicy("Founders", policy =>
+                          policy.RequireClaim("EmployeeNumber", "1", "2", "3", "4", "5"));
+    });
+}
+```
+
+::: moniker-end
 ### Add a generic claim check
 
 If the claim value isn't a single value or a transformation is required, use [RequireAssertion](/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicybuilder.requireassertion). For more information, see [Using a func to fulfill a policy](xref:security/authorization/policies#using-a-func-to-fulfill-a-policy).
