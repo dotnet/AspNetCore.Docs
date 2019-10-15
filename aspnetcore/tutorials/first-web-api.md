@@ -253,11 +253,10 @@ The preceding code:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Right-click the *Controllers* folder.
-* Select **Add** > **New Scaffolded Item**.
-* Select **API Controller with actions, using Entity Framework**, and then select **Add**.
-* In the **Add API Controller with actions, using Entity Framework** dialog:
-
+1. Right-click the *Controllers* folder.
+1. Select **Add** > **New Scaffolded Item**.
+1. Select **API Controller with actions, using Entity Framework**, and then select **Add**.
+1. In the **Add API Controller with actions, using Entity Framework** dialog:
   * Select **TodoItem (TodoApi.Models)** in the **Model class**.
   * Select **TodoContext (TodoApi.Models)** in the **Data context class**.
   * Select **Add**.
@@ -305,11 +304,12 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 
 This tutorial uses Postman to test the web API.
 
-* Install [Postman](https://www.getpostman.com/downloads/)
-* Start the web app.
-* Start Postman.
-* Disable **SSL certificate verification**
-* From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+1. Install [Postman](https://www.getpostman.com/downloads/)
+1. Start the web app.
+1. Start Postman.
+1. Disable **SSL certificate verification**
+1. From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the controller.
 
@@ -317,12 +317,12 @@ This tutorial uses Postman to test the web API.
 
 ### Test PostTodoItem with Postman
 
-* Create a new request.
-* Set the HTTP method to `POST`.
-* Select the **Body** tab.
-* Select the **raw** radio button.
-* Set the type to **JSON (application/json)**.
-* In the request body, enter JSON for a to-do item:
+1. Create a new request.
+1. Set the HTTP method to `POST`.
+1. Select the **Body** tab.
+1. Select the **raw** radio button.
+1. Set the type to **JSON (application/json)**.
+1. In the request body, enter JSON for a to-do item:
 
     ```json
     {
@@ -331,20 +331,20 @@ This tutorial uses Postman to test the web API.
     }
     ```
 
-* Select **Send**.
+1. Select **Send**.
 
   ![Postman with create request](first-web-api/_static/create.png)
 
 ### Test the location header URI
 
-* Select the **Headers** tab in the **Response** pane.
-* Copy the **Location** header value:
+1. Select the **Headers** tab in the **Response** pane.
+1. Copy the **Location** header value:
 
   ![Headers tab of the Postman console](first-web-api/_static/create.png)
 
-* Set the method to GET.
-* Paste the URI (for example, `https://localhost:5001/api/TodoItems/1`).
-* Select **Send**.
+1. Set the method to GET.
+1. Paste the URI (for example, `https://localhost:5001/api/TodoItems/1`).
+1. Select **Send**.
 
 ## Examine the GET methods
 
@@ -378,7 +378,7 @@ A response similar to the following is produced by the call to `GetTodoItems`:
 1. Set **Two pane view** in Postman.
 1. Select **Send**.
 
-This app uses an in-memory database. If the app is stopped and started, the preceding GET request will not return any data. If no data is returned, [POST](#post) data to the app.
+This app uses an in-memory database. If the app is stopped and started, the preceding GET request won't return any data. If no data is returned, [POST](#post) data to the app.
 
 ## Routing and URL paths
 
@@ -444,9 +444,9 @@ The `DeleteTodoItem` response is [204 (No Content)](https://www.w3.org/Protocols
 
 Use Postman to delete a to-do item:
 
-* Set the method to `DELETE`.
-* Set the URI of the object to delete (for example, `https://localhost:5001/api/TodoItems/1`).
-* Select **Send**.
+1. Set the method to `DELETE`.
+1. Set the URI of the object to delete (for example, `https://localhost:5001/api/TodoItems/1`).
+1. Select **Send**.
 
 ## Call the web API with JavaScript
 
