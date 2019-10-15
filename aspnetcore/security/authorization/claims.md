@@ -27,7 +27,8 @@ First you need to build and register the policy. This takes place as part of the
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-    services.AddMvc();
+    services.AddControllersWithViews();
+    services.AddRazorPages();
 
     services.AddAuthorization(options =>
     {
@@ -82,7 +83,8 @@ Most claims come with a value. You can specify a list of allowed values when cre
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-    services.AddMvc();
+    services.AddControllersWithViews();
+    services.AddRazorPages();
 
     services.AddAuthorization(options =>
     {
