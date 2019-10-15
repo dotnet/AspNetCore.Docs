@@ -13,7 +13,7 @@ Underneath the covers, [role-based authorization](xref:security/authorization/ro
 
 An authorization policy consists of one or more requirements. It's registered as part of the authorization service configuration, in the `Startup.ConfigureServices` method:
 
-[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,48-53,61,66)]
+[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=31-32,39-40,42-45, 53, 58)]
 
 In the preceding example, an "AtLeast21" policy is created. It has a single requirement&mdash;that of a minimum age, which is supplied as a parameter to the requirement.
 
