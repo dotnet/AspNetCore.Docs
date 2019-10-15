@@ -61,18 +61,18 @@ The following diagram shows the design of the app.
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the **File** menu, select **New** > **Project**.
-* Select the **ASP.NET Core Web Application** template and click **Next**.
-* Name the project *TodoApi* and click **Create**.
-* In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected. Select the **API** template and click **Create**.
+1. From the **File** menu, select **New** > **Project**.
+1. Select the **ASP.NET Core Web Application** template and click **Next**.
+1. Name the project *TodoApi* and click **Create**.
+1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected. Select the **API** template and click **Create**.
 
 ![VS new project dialog](first-web-api/_static/vs3.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Change directories (`cd`) to the folder that will contain the project folder.
-* Run the following commands:
+1. Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+1. Change directories (`cd`) to the folder that will contain the project folder.
+1. Run the following commands:
 
    ```dotnetcli
    dotnet new webapi -o TodoApi
@@ -81,26 +81,26 @@ The following diagram shows the design of the app.
    code -r ../TodoApi
    ```
 
-* When a dialog box asks if you want to add required assets to the project, select **Yes**.
+1. When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
   The preceding commands:
 
-  * Creates a new web API project and opens it in Visual Studio Code.
-  * Adds the NuGet packages which are required in the next section.
+  * Create a new web API project and open it in Visual Studio Code.
+  * Add the NuGet packages which are required in the next section.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Select **File** > **New Solution**.
+1. Select **File** > **New Solution**.
 
   ![macOS New solution](first-web-api-mac/_static/sln.png)
 
-* Select **.NET Core** > **App** > **API** > **Next**.
+1. Select **.NET Core** > **App** > **API** > **Next**.
 
   ![macOS New project dialog](first-web-api-mac/_static/1.png)
   
-* In the **Configure your new ASP.NET Core Web API** dialog, select **Target Framework** of **.NET Core 3.0*.
+1. In the **Configure your new ASP.NET Core Web API** dialog, select **Target Framework** of **.NET Core 3.0*.
 
-* Enter *TodoApi* for the **Project Name** and then select **Create**.
+1. Enter *TodoApi* for the **Project Name** and then select **Create**.
 
   ![config dialog](first-web-api-mac/_static/2.png)
 
