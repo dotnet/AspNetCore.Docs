@@ -244,7 +244,7 @@ dotnet build
 Move to the *WebApp1* directory and run the app:
 
 ```dotnetcli
-dotnet run
+dotnet watch run
 ```
 
 ---
@@ -348,7 +348,7 @@ Build and run the web app:
 
 ```dotnetcli
 cd WebApp1
-dotnet run
+dotnet watch run
 ```
 
 ---
