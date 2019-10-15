@@ -276,7 +276,7 @@ The [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
  - Is used to describe the language(s) intended for the audience.
  - Allows a user to differentiate according to the users' own preferred language.
 
-Entity headers are used in both, HTTP requests and responses.
+Entity headers are used in both HTTP requests and responses.
 
 In ASP.NET Core 3.0 the `Content-Language` header can be added by setting the property `ApplyCurrentCultureToResponseHeaders`.
 
