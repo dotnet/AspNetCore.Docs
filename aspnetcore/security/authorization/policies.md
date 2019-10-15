@@ -157,7 +157,7 @@ The preceding code traverses [PendingRequirements](/dotnet/api/microsoft.aspnetc
 
 Handlers are registered in the services collection during configuration. For example:
 
-[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,48-53,61,62-63,66)]
+[!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=31-32,39-40,42-45, 53-55, 58)]
 
 The preceding code registers `MinimumAgeHandler` as a singleton by invoking `services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();`. Handlers can be registered using any of the built-in [service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes).
 
