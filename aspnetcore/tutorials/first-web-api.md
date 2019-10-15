@@ -93,14 +93,13 @@ The following diagram shows the design of the app.
 
 1. Select **File** > **New Solution**.
 
-  ![macOS New solution](first-web-api-mac/_static/sln.png)
+    ![macOS New solution](first-web-api-mac/_static/sln.png)
 
 1. Select **.NET Core** > **App** > **API** > **Next**.
 
-  ![macOS New project dialog](first-web-api-mac/_static/1.png)
+    ![macOS New project dialog](first-web-api-mac/_static/1.png)
   
 1. In the **Configure your new ASP.NET Core Web API** dialog, select **Target Framework** of **.NET Core 3.0*.
-
 1. Enter *TodoApi* for the **Project Name** and then select **Create**.
 
   ![config dialog](first-web-api-mac/_static/2.png)
