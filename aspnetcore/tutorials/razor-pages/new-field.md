@@ -22,7 +22,7 @@ In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code 
 
 When using EF Code First to automatically create a database, Code First:
 
-* Adds a table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
+* Adds an `__EFMigrationsHistory` table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
 * If the model classes aren't in sync with the DB, EF throws an exception.
 
 Automatic verification of schema/model in sync makes it easier to find inconsistent database/code issues.
@@ -45,11 +45,11 @@ Update the following pages:
 * Update [Create.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) with a `Rating` field.
 * Add the `Rating` field to the Edit Page.
 
-The app won't work until the DB is updated to include the new field. If run now, the app throws a `SqlException`:
+The app won't work until the DB is updated to include the new field. Running the app without updating the database throws a `SqlException`:
 
 `SqlException: Invalid column name 'Rating'.`
 
-This error is caused by the updated Movie model class being different than the schema of the Movie table of the database. (There's no `Rating` column in the database table.)
+The `SqlException` exception is caused by the updated Movie model class being different than the schema of the Movie table of the database. (There's no `Rating` column in the database table.)
 
 There are a few approaches to resolving the error:
 
@@ -90,7 +90,7 @@ The `Add-Migration` command tells the framework to:
 
 The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
-The `Update-Database` command tells the framework to apply the schema changes to the database.
+The `Update-Database` command tells the framework to apply the schema changes to the database and to preserve existing data.
 
 <a name="ssox"></a>
 
