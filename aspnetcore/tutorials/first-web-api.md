@@ -77,7 +77,6 @@ The following diagram shows the design of the app.
    ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoApi
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    code -r ../TodoApi
    ```
@@ -107,10 +106,9 @@ The following diagram shows the design of the app.
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
-Open a command terminal in the project folder and run the following commands:
+Open a command terminal in the project folder and run the following command:
 
    ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    ```
 
@@ -217,11 +215,11 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 # [Visual Studio](#tab/visual-studio)
 
-### Add Microsoft.EntityFrameworkCore.SqlServer
+### Add the in-memory database package
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.SqlServer** in the search box.
-* Select **Microsoft.EntityFrameworkCore.SqlServer** in the left pane.
+* Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.InMemory** in the search box.
+* Select **Microsoft.EntityFrameworkCore.InMemory** in the left pane.
 * Select the **Project** check box in the right pane and then select **Install**.
 * Use the preceding instructions to add the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.
 
@@ -328,7 +326,7 @@ This tutorial uses Postman to test the web API.
 * Select the **Body** tab.
 * Select the **raw** radio button.
 * Set the type to **JSON (application/json)**.
-* In the request body enter JSON for a to-do item:
+* In the request body, enter JSON for a to-do item:
 
     ```json
     {
@@ -378,11 +376,11 @@ A response similar to the following is produced by the call to `GetTodoItems`:
 
 ### Test Get with Postman
 
-* Create a new request.
-* Set the HTTP method to **GET**.
-* Set the request URL to `https://localhost:<port>/TodoItems`. For example, `https://localhost:5001/TodoItems`.
-* Set **Two pane view** in Postman.
-* Select **Send**.
+1. Create a new request.
+1. Set the HTTP method to **GET**.
+1. Set the request URL to `https://localhost:<port>/TodoItems`. For example, `https://localhost:5001/TodoItems`.
+1. Set **Two pane view** in Postman.
+1. Select **Send**.
 
 This app uses an in-memory database. If the app is stopped and started, the preceding GET request will not return any data. If no data is returned, [POST](#post) data to the app.
 
