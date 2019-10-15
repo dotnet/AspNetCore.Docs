@@ -29,13 +29,13 @@ At the end, you have a web API that can manage "to-do" items stored in a databas
 
 This tutorial creates a web API containing the following endpoints:
 
-|Endpoint              |Description            |Request body|Response body       |
-|----------------------|-----------------------|------------|--------------------|
-|GET /TodoItems        |Get all to-do items    |None        |Array of to-do items|
-|GET /TodoItems/{id}   |Get an item by ID      |None        |To-do item          |
-|POST /TodoItems       |Add a new item         |To-do item  |To-do item          |
-|PUT /TodoItems/{id}   |Update an existing item|To-do item  |None                |
-|DELETE /TodoItems/{id}|Delete an item         |None        |None                |
+|Endpoint                  |Description            |Request body|Response body       |
+|--------------------------|-----------------------|------------|--------------------|
+|GET /api/TodoItems        |Get all to-do items    |None        |Array of to-do items|
+|GET /api/TodoItems/{id}   |Get an item by ID      |None        |To-do item          |
+|POST /api/TodoItems       |Add a new item         |To-do item  |To-do item          |
+|PUT /api/TodoItems/{id}   |Update an existing item|To-do item  |None                |
+|DELETE /api/TodoItems/{id}|Delete an item         |None        |None                |
 
 The following diagram shows the design of the app.
 
@@ -347,20 +347,20 @@ This tutorial uses Postman to test the web API.
   ![Headers tab of the Postman console](first-web-api/_static/create.png)
 
 * Set the method to GET.
-* Paste the URI (for example, `https://localhost:5001/TodoItems/1`).
+* Paste the URI (for example, `https://localhost:5001/api/TodoItems/1`).
 * Select **Send**.
 
 ## Examine the GET methods
 
 These methods implement two GET endpoints:
 
-* `GET /TodoItems`
-* `GET /TodoItems/{id}`
+* `GET /api/TodoItems`
+* `GET /api/TodoItems/{id}`
 
 Test the app by calling the two endpoints from a browser or Postman. For example:
 
-* [https://localhost:5001/TodoItems](https://localhost:5001/TodoItems)
-* [https://localhost:5001/TodoItems/1](https://localhost:5001/TodoItems/1)
+* [https://localhost:5001/api/TodoItems](https://localhost:5001/api/TodoItems)
+* [https://localhost:5001/api/TodoItems/1](https://localhost:5001/api/TodoItems/1)
 
 A response similar to the following is produced by the call to `GetTodoItems`:
 
@@ -378,7 +378,7 @@ A response similar to the following is produced by the call to `GetTodoItems`:
 
 1. Create a new request.
 1. Set the HTTP method to **GET**.
-1. Set the request URL to `https://localhost:<port>/TodoItems`. For example, `https://localhost:5001/TodoItems`.
+1. Set the request URL to `https://localhost:<port>/api/TodoItems`. For example, `https://localhost:5001/api/TodoItems`.
 1. Set **Two pane view** in Postman.
 1. Select **Send**.
 
@@ -449,7 +449,7 @@ The `DeleteTodoItem` response is [204 (No Content)](https://www.w3.org/Protocols
 Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
-* Set the URI of the object to delete (for example, `https://localhost:5001/TodoItems/1`).
+* Set the URI of the object to delete (for example, `https://localhost:5001/api/TodoItems/1`).
 * Select **Send**.
 
 ## Call the web API with JavaScript
