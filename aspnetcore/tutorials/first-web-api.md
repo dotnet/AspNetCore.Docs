@@ -217,13 +217,9 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 ### Add the in-memory database package
 
-* From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.InMemory** in the search box.
-* Select **Microsoft.EntityFrameworkCore.InMemory** in the left pane.
-* Select the **Project** check box in the right pane and then select **Install**.
-* Use the preceding instructions to add the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.
-
-![NuGet Package Manager](first-web-api/_static/vs3NuGet.png)
+1. In **Solution Explorer**, right-click the project name and select **Manage NuGet Packages**.
+1. Select the **Browse** tab, and enter **Microsoft.EntityFrameworkCore.InMemory** in the search box.
+1. Select **Microsoft.EntityFrameworkCore.InMemory** in the left pane, and select **Install** in the right pane.
 
 ## Add the TodoContext database context
 
