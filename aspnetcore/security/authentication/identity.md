@@ -3,7 +3,7 @@ title: Introduction to Identity on ASP.NET Core
 author: rick-anderson
 description: Use Identity with an ASP.NET Core app. Learn how to set password requirements (RequireDigit, RequiredLength, RequiredUniqueChars, and more).
 ms.author: riande
-ms.date: 10/16/2019
+ms.date: 10/15/2019
 uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
@@ -174,7 +174,7 @@ To explore Identity in more detail:
 
 ## Identity Components
 
-All the Identity-dependent NuGet packages are included in the [ASP.NET Core shared framework](xref:release-notes/aspnetcore-3.0#use-the-aspnet-core-shared-framework).
+All the Identity-dependent NuGet packages are included in the [ASP.NET Core shared framework](xref:aspnetcore-3.0#use-the-aspnet-core-shared-framework).
 
 The primary package for Identity is [Microsoft.AspNetCore.Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/). This package contains the core set of interfaces for ASP.NET Core Identity, and is included by `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
 
