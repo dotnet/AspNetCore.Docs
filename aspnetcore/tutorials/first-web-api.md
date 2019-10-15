@@ -422,7 +422,7 @@ If you get an error calling `PutTodoItem`, call `GET` to ensure there's an item 
 
 ### Test the PutTodoItem method
 
-This sample uses an in-memory database that must be initialed each time the app is started. There must be an item in the database before you make a PUT call. Call GET to insure there's an item in the database before making a PUT call.
+This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to insure there's an item in the database before making a PUT call.
 
 Update the to-do item that has an ID of 1. Set its name to "feed fish":
 

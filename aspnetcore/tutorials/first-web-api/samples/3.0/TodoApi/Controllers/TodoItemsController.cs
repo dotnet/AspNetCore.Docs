@@ -10,7 +10,7 @@ using TodoApi.Models;
 namespace TodoApi.Controllers
 {
     #region TodoController
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TodoItemsController : ControllerBase
     {
@@ -22,7 +22,7 @@ namespace TodoApi.Controllers
         }
         #endregion
 
-        // GET: api/TodoItems
+        // GET: TodoItems
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {
@@ -30,7 +30,7 @@ namespace TodoApi.Controllers
         }
 
         #region snippet_GetByID
-        // GET: api/TodoItems/5
+        // GET: TodoItems/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
         {
@@ -46,7 +46,7 @@ namespace TodoApi.Controllers
         #endregion
 
         #region snippet_Update
-        // PUT: api/TodoItems/5
+        // PUT: TodoItems/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
         {
@@ -78,7 +78,7 @@ namespace TodoApi.Controllers
         #endregion
 
         #region snippet_Create
-        // POST: api/TodoItems
+        // POST: TodoItems
         [HttpPost]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
@@ -91,7 +91,7 @@ namespace TodoApi.Controllers
         #endregion
 
         #region snippet_Delete
-        // DELETE: api/TodoItems/5
+        // DELETE: TodoItems/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<TodoItem>> DeleteTodoItem(long id)
         {
