@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/14/2019
+ms.date: 10/15/2019
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -711,7 +711,11 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
-Use Connection Middleware to filter TLS handshakes on a per-connection basis for specific ciphers if required:
+Use Connection Middleware to filter TLS handshakes on a per-connection basis for specific ciphers if required.
+
+The following example throws <xref:System.NotSupportedException> for any cipher algorithm that the app doesn't support. Alternatively, define and compare [ITlsHandshakeFeature.CipherAlgorithm](xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm) to a list of acceptable cipher suites.
+
+[CipherAlgorithmType.Null](xref:System.Security.Authentication.CipherAlgorithmType) indicates that no cipher algorithm supported by Kestrel matches the requested algorithm.
 
 ```csharp
 // using System.Net;
@@ -722,57 +726,42 @@ webBuilder.ConfigureKestrel(serverOptions =>
     serverOptions.Listen(IPAddress.Any, 8000, listenOptions =>
     {
         listenOptions.UseHttps("testCert.pfx", "testPassword");
-        listenOptions.UseConnectionHandler<TlsFilterConnectionHandler>();
+        listenOptions.UseTlsFilter();
     });
 });
 ```
 
 ```csharp
 using System;
-using System.Buffers;
 using System.Security.Authentication;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Connections.Features;
 
-public class TlsFilterConnectionHandler : ConnectionHandler
+namespace Microsoft.AspNetCore.Connections
 {
-    public override async Task OnConnectedAsync(ConnectionContext connection)
+    public static class TlsFilterConnectionMiddlewareExtensions
     {
-        var tlsFeature = connection.Features.Get<ITlsHandshakeFeature>();
-
-        // Throw NotSupportedException for any cipher algorithm that the app doesn't
-        // wish to support. Alternatively, define and compare
-        // ITlsHandshakeFeature.CipherAlgorithm to a list of acceptable cipher
-        // suites.
-        //
-        // A ITlsHandshakeFeature.CipherAlgorithm of CipherAlgorithmType.Null
-        // indicates that no cipher algorithm supported by Kestrel matches the
-        // requested algorithm(s).
-        if (tlsFeature.CipherAlgorithm == CipherAlgorithmType.Null)
+        public static IConnectionBuilder UseTlsFilter(
+            this IConnectionBuilder builder)
         {
-            throw new NotSupportedException("Prohibited cipher: " + 
-                tlsFeature.CipherAlgorithm);
-        }
+            return builder.Use((connection, next) =>
+            {
+                var tlsFeature = connection.Features.Get<ITlsHandshakeFeature>();
 
-        var result = await connection.Transport.Input.ReadAsync();
-        var buffer = result.Buffer;
+                if (tlsFeature.CipherAlgorithm == CipherAlgorithmType.Null)
+                {
+                    throw new NotSupportedException("Prohibited cipher: " +
+                        tlsFeature.CipherAlgorithm);
+                }
 
-        if (!buffer.IsEmpty)
-        {
-            await connection.Transport.Output.WriteAsync(buffer.ToArray());
+                // Call the next connection middleware in the pipeline
+                return next();
+            });
         }
-        else if (result.IsCompleted)
-        {
-            break;
-        }
-
-        connection.Transport.Input.AdvanceTo(buffer.End);
     }
 }
 ```
 
-Connection filtering can also be configured via an <xref:Microsoft.AspNetCore.Connections.IConnectionBuilder> lambda. The following example throws a <xref:System.NotSupportedException> for [CipherAlgorithmType.TripleDes](xref:System.Security.Authentication.CipherAlgorithmType):
+Connection filtering can also be configured via an <xref:Microsoft.AspNetCore.Connections.IConnectionBuilder> lambda:
 
 ```csharp
 // using System;
@@ -790,10 +779,10 @@ webBuilder.ConfigureKestrel(serverOptions =>
         {
             var tlsFeature = context.Features.Get<ITlsHandshakeFeature>();
 
-            if (tlsFeature.CipherAlgorithm == CipherAlgorithmType.TripleDes)
+            if (tlsFeature.CipherAlgorithm == CipherAlgorithmType.Null)
             {
                 throw new NotSupportedException(
-                    "Prohibited cipher: " + tlsFeature.CipherAlgorithm);
+                    $"Prohibited cipher: {tlsFeature.CipherAlgorithm}");
             }
 
             return next();
