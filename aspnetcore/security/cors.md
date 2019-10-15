@@ -68,6 +68,10 @@ Note: The URL must **not** contain a trailing slash (`/`). If the URL terminates
 
 ::: moniker range=">= aspnetcore-3.0"
 
+<a name="acpall"></a>
+
+### Apply CORS policies to all endpoints
+
 The following code applies CORS policies to all the apps endpoints via CORS Middleware:
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
