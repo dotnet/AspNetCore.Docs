@@ -49,7 +49,7 @@ The app won't work until the DB is updated to include the new field. Running the
 
 `SqlException: Invalid column name 'Rating'.`
 
-This exception is caused by the updated Movie model class being different than the schema of the Movie table of the database. (There's no `Rating` column in the database table.)
+The `SqlException` exception is caused by the updated Movie model class being different than the schema of the Movie table of the database. (There's no `Rating` column in the database table.)
 
 There are a few approaches to resolving the error:
 
