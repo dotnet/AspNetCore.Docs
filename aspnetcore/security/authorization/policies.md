@@ -92,7 +92,8 @@ public void ConfigureServices(IServiceCollection services)
           policy => policy.RequireClaim("Permission", "CanViewPage", "CanViewAnything")));
 
 
-    services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+    services.AddControllersWithViews();
+    services.AddRazorPages();
 }
 ```
 
