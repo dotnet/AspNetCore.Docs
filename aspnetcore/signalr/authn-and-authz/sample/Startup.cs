@@ -61,7 +61,7 @@ namespace SignalRAuthenticationSample
                     // Sending the access token in the query string is required due to
                     // a limitation in Browser APIs. We restrict it to only calls to the
                     // SignalR hub in this code.
-                    // See https://docs.microsoft.com/aspnet/core/signalr/security?view=aspnetcore-3.0#access-token-logging
+                    // See https://docs.microsoft.com/aspnet/core/signalr/security#access-token-logging
                     // for more information about security considerations when using
                     // the query string to transmit the access token.
                     options.Events = new JwtBearerEvents
