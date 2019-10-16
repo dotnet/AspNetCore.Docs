@@ -15,11 +15,19 @@ To delay JavaScript interop calls until after the connection with the browser is
     {
         if (firstRender)
         {
-            JSRuntime.InvokeAsync<object>(
+            await JSRuntime.InvokeVoidAsync<object>(
                 "setElementValue", myInput, "Value set after render");
         }
     }
 }
+```
+
+For the preceding example code, provide a `setElementValue` JavaScript function inside the `<head>` element of *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server). The function is called with `JSRuntime.InvokeVoidAsync` and doesn't return a value:
+
+```html
+<script>
+  window.setElementValue = (elem, val) => elem.value = val;
+</script>
 ```
 
 The following component demonstrates how to use JavaScript interop as part of a component's initialization logic in a way that's compatible with prerendering. The component shows that it's possible to trigger a rendering update from inside `OnAfterRenderAsync`. The developer must avoid creating an infinite loop in this scenario.
@@ -59,4 +67,15 @@ Where `JSRuntime.InvokeAsync` is called, `ElementRef` is only used in `OnAfterRe
         }
     }
 }
+```
+
+For the preceding example code, provide a `setElementValue` JavaScript function inside the `<head>` element of *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server). The function is called with `JSRuntime.InvokeAsync` and returns a value:
+
+```html
+<script>
+  window.setElementValue = (elem, val) => {
+    elem.value = val;
+    return val;
+  };
+</script>
 ```

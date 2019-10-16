@@ -32,7 +32,7 @@
     private async void ConvertArray()
     {
         var text =
-            await JsRuntime.InvokeAsync<string>("ConvertArray", QuoteArray);
+            await JsRuntime.InvokeAsync<string>("convertArray", QuoteArray);
 
         ConvertedText = new MarkupString(text);
 
