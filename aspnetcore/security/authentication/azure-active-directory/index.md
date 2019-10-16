@@ -13,7 +13,7 @@ uid: security/authentication/azure-active-directory/index
 
 The following samples show how to integrate Azure AD V1, enabling users to sign-in with a work and school account:
 * [Integrating Azure AD Into an ASP.NET Core Web App](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect-aspnetcore)
-* [Calling a ASP.NET Core Web API From a WPF Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/)
+* [Calling a ASP.NET Core Web API From a WPF Application Using Azure AD](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore)
 * [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
 
 ## Azure AD V2 samples
