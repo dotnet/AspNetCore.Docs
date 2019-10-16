@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/30/2019
+ms.date: 10/05/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -188,30 +188,42 @@ The `CaptureUnmatchedValues` property on `[Parameter]` allows the parameter to m
 
 ## Data binding
 
-Data binding to both components and DOM elements is accomplished with the [@bind](xref:mvc/views/razor#bind) attribute. The following example binds the `_italicsCheck` field to the check box's checked state:
+Data binding to both components and DOM elements is accomplished with the [@bind](xref:mvc/views/razor#bind) attribute. The following example binds a `CurrentValue` property to the text box's value:
 
 ```cshtml
-<input type="checkbox" class="form-check-input" id="italicsCheck" 
-    @bind="_italicsCheck" />
+<input @bind="CurrentValue" />
+
+@code {
+    private string CurrentValue { get; set; }
+}
 ```
 
-When the check box is selected and cleared, the property's value is updated to `true` and `false`, respectively.
+When the text box loses focus, the property's value is updated.
 
-The check box is updated in the UI only when the component is rendered, not in response to changing the property's value. Since components render themselves after event handler code executes, property updates are usually reflected in the UI immediately.
+The text box is updated in the UI only when the component is rendered, not in response to changing the property's value. Since components render themselves after event handler code executes, property updates are *usually* reflected in the UI immediately after an event handler is triggered.
 
-Using `@bind` with a `CurrentValue` property (`<input @bind="CurrentValue" />`) is essentially equivalent to the following:
+Using `@bind` with the `CurrentValue` property (`<input @bind="CurrentValue" />`) is essentially equivalent to the following:
 
 ```cshtml
 <input value="@CurrentValue"
-    @onchange="@((ChangeEventArgs __e) => CurrentValue = __e.Value)" />
+    @onchange="@((ChangeEventArgs __e) => CurrentValue = 
+        __e.Value.ToString())" />
+        
+@code {
+    private string CurrentValue { get; set; }
+}
 ```
 
-When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `@bind` handles a few cases where type conversions are performed. In principle, `@bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
+When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box and changes element focus, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is more complex because `@bind` handles cases where type conversions are performed. In principle, `@bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
 In addition to handling `onchange` events with `@bind` syntax, a property or field can be bound using other events by specifying an [@bind-value](xref:mvc/views/razor#bind) attribute with an `event` parameter ([@bind-value:event](xref:mvc/views/razor#bind)). The following example binds the `CurrentValue` property for the `oninput` event:
 
 ```cshtml
 <input @bind-value="CurrentValue" @bind-value:event="oninput" />
+
+@code {
+    private string CurrentValue { get; set; }
+}
 ```
 
 Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
@@ -674,7 +686,7 @@ Component references provide a way to reference a component instance so that you
 When the component is rendered, the `loginDialog` field is populated with the `MyLoginDialog` child component instance. You can then invoke .NET methods on the component instance.
 
 > [!IMPORTANT]
-> The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the `OnAfterRenderAsync` or `OnAfterRender` methods.
+> The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the [OnAfterRenderAsync or OnAfterRender methods](#lifecycle-methods).
 
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/javascript-interop#capture-references-to-elements), it isn't a [JavaScript interop](xref:blazor/javascript-interop) feature. Component references aren't passed to JavaScript code&mdash;they're only used in .NET code.
 
@@ -823,6 +835,9 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
+> [!NOTE]
+> Asynchronous work during component initialization must occur during the `OnInitializedAsync` lifecycle event.
+
 For a synchronous operation, use `OnInitialized`:
 
 ```csharp
@@ -841,6 +856,9 @@ protected override async Task OnParametersSetAsync()
 }
 ```
 
+> [!NOTE]
+> Asynchronous work when applying parameters and property values must occur during the `OnParametersSetAsync` lifecycle event.
+
 ```csharp
 protected override void OnParametersSet()
 {
@@ -850,7 +868,7 @@ protected override void OnParametersSet()
 
 `OnAfterRenderAsync` and `OnAfterRender` are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps using the rendered content, such as activating third-party JavaScript libraries that operate on the rendered DOM elements.
 
-`OnAfterRender` *is not called when prerendering on the server.*
+`OnAfterRender` *isn't called when prerendering on the server.*
 
 The `firstRender` parameter for `OnAfterRenderAsync` and `OnAfterRender` is:
 
@@ -866,6 +884,9 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
     }
 }
 ```
+
+> [!NOTE]
+> Asynchronous work immediately after rendering must occur during the `OnAfterRenderAsync` lifecycle event.
 
 ```csharp
 protected override void OnAfterRender(bool firstRender)
@@ -971,29 +992,32 @@ The base class should derive from `ComponentBase`.
 
 ## Import components
 
-The namespace of a component authored with Razor is based on:
+The namespace of a component authored with Razor is based on (in priority order):
 
-* The project's `RootNamespace`.
-* The path from the project root to the component. For example, `ComponentsSample/Pages/Index.razor` is in the namespace `ComponentsSample.Pages`. Components follow C# name binding rules. In the case of *Index.razor*, all components in the same folder, *Pages*, and the parent folder, *ComponentsSample*, are in scope.
+* [@namespace](xref:mvc/views/razor#namespace) designation in Razor file (*.razor*) markup (`@namespace BlazorSample.MyNamespace`).
+* The project's `RootNamespace` in the project file (`<RootNamespace>BlazorSample</RootNamespace>`).
+* The project name, taken from the project file's file name (*.csproj*), and the path from the project root to the component. For example, the framework resolves *{PROJECT ROOT}/Pages/Index.razor* (*BlazorSample.csproj*) to the namespace `BlazorSample.Pages`. Components follow C# name binding rules. For the `Index` component in this example, the components in scope are all of the components:
+  * In the same folder, *Pages*.
+  * The components in the project's root that don't explicitly specify a different namespace.
 
-Components defined in a different namespace can be brought into scope using Razor's [\@using](xref:mvc/views/razor#using) directive.
+Components defined in a different namespace are brought into scope using Razor's [@using](xref:mvc/views/razor#using) directive.
 
-If another component, `NavMenu.razor`, exists in the folder `ComponentsSample/Shared/`, the component can be used in `Index.razor` with the following `@using` statement:
+If another component, `NavMenu.razor`, exists in the *BlazorSample/Shared/* folder, the component can be used in `Index.razor` with the following `@using` statement:
 
 ```cshtml
-@using ComponentsSample.Shared
+@using BlazorSample.Shared
 
 This is the Index page.
 
 <NavMenu></NavMenu>
 ```
 
-Components can also be referenced using their fully qualified names, which removes the need for the [\@using](xref:mvc/views/razor#using) directive:
+Components can also be referenced using their fully qualified names, which doesn't require the [@using](xref:mvc/views/razor#using) directive:
 
 ```cshtml
 This is the Index page.
 
-<ComponentsSample.Shared.NavMenu></ComponentsSample.Shared.NavMenu>
+<BlazorSample.Shared.NavMenu></BlazorSample.Shared.NavMenu>
 ```
 
 > [!NOTE]
@@ -1001,7 +1025,7 @@ This is the Index page.
 >
 > Importing components with aliased `using` statements (for example, `@using Foo = Bar`) isn't supported.
 >
-> Partially qualified names aren't supported. For example, adding `@using ComponentsSample` and referencing `NavMenu.razor` with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.
+> Partially qualified names aren't supported. For example, adding `@using BlazorSample` and referencing `NavMenu.razor` with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.
 
 ## Conditional HTML element attributes
 

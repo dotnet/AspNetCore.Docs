@@ -4,7 +4,7 @@ author: juntaoluo
 description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 8/26/2019
+ms.date: 10/10/2019
 uid: tutorials/grpc/grpc-start
 ---
 # Tutorial: Create a gRPC client and server in ASP.NET Core
@@ -85,7 +85,7 @@ The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to cre
 
 ### Open the project
 
-From Visual Studio, select **File** > **Open**, and then select the *GrpcGreeter.sln* file.
+From Visual Studio, select **File** > **Open**, and then select the *GrpcGreeter.csproj* file.
 
 ---
 

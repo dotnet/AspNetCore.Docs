@@ -5,7 +5,7 @@ description: Learn how to host ASP.NET Core apps on Windows Server Internet Info
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/31/2019
+ms.date: 10/13/2019
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
@@ -60,7 +60,7 @@ The following diagram illustrates the relationship between IIS, the ASP.NET Core
 
 ![ASP.NET Core Module in the in-process hosting scenario](index/_static/ancm-inprocess.png)
 
-A request arrives from the web to the kernel-mode HTTP.sys driver. The driver routes the native request to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module receives the native request and passes it to IIS HTTP Server (`IISHttpServer`). IIS HTTP Server is an in-process server implementation for IIS that converts the request from native to managed.
+A request arrives from the web to the kernel-mode HTTP.sys driver. The driver routes the native request to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The ASP.NET Core Module receives the native request and passes it to IIS HTTP Server (`IISHttpServer`). IIS HTTP Server is an in-process server implementation for IIS that converts the request from native to managed.
 
 After the IIS HTTP Server processes the request, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. The app's response is passed back to IIS through IIS HTTP Server. IIS sends the response to the client that initiated the request.
 
@@ -81,7 +81,7 @@ In-process hosting is opt-in for existing apps, but [dotnet new](/dotnet/core/to
 
 ### Out-of-process hosting model
 
-Because ASP.NET Core apps run in a process separate from the IIS worker process, the module handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it shuts down or crashes. This is essentially the same behavior as seen with apps that run in-process that are managed by the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
+Because ASP.NET Core apps run in a process separate from the IIS worker process, the ASP.NET Core Module handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it shuts down or crashes. This is essentially the same behavior as seen with apps that run in-process that are managed by the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
 The following diagram illustrates the relationship between IIS, the ASP.NET Core Module, and an app hosted out-of-process:
 
@@ -233,7 +233,7 @@ When disabling the Web SDK from transforming the file, the *processPath* and *ar
 
 ### web.config file location
 
-In order to set up the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) correctly, the *web.config* file must be present at the content root path (typically the app base path) of the deployed app. This is the same location as the website physical path provided to IIS. The *web.config* file is required at the root of the app to enable the publishing of multiple apps using Web Deploy.
+In order to set up the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) correctly, the *web.config* file must be present at the [content root](xref:fundamentals/index#content-root) path (typically the app base path) of the deployed app. This is the same location as the website physical path provided to IIS. The *web.config* file is required at the root of the app to enable the publishing of multiple apps using Web Deploy.
 
 Sensitive files exist on the app's physical path, such as *\<assembly>.runtimeconfig.json*, *\<assembly>.xml* (XML Documentation comments), and *\<assembly>.deps.json*. When the *web.config* file is present and the site starts normally, IIS doesn't serve these sensitive files if they're requested. If the *web.config* file is missing, incorrectly named, or unable to configure the site for normal startup, IIS may serve sensitive files publicly.
 
@@ -402,7 +402,7 @@ Files in the deployment folder are locked when the app is running. Locked files 
 
 * Use Web Deploy and reference `Microsoft.NET.Sdk.Web` in the project file. An *app_offline.htm* file is placed at the root of the web app directory. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the *app_offline.htm* file during the deployment. For more information, see the [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
 * Manually stop the app pool in the IIS Manager on the server.
-* Use PowerShell to drop *app_offline.html* (requires PowerShell 5 or later):
+* Use PowerShell to drop *app_offline.htm* (requires PowerShell 5 or later):
 
   ```PowerShell
   $pathToApp = 'PATH_TO_APP'

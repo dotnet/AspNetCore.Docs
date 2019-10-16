@@ -52,9 +52,7 @@ The following action method uses the `Ok` and `NotFound` helper methods:
 
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_search)]
 
-A JSON-formatted response is returned unless another format was requested and the server can return the requested format. Tools such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/tools) can set the `Accept` header to specify the return format. When the `Accept` contains a type the server supports, that type is returned.
-
-By default, ASP.NET Core only supports JSON. For apps not changing the default, JSON-formatted responses are alway returned regardless of the client request. The next section shows how to add additional formatters.
+By default, ASP.NET Core supports `application/json`, `text/json`, and `text/plain` media types. Tools such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/tools) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
 
 Controller actions can return POCOs (Plain Old CLR Objects). When a POCO is returned, the runtime automatically creates an `ObjectResult` that wraps the object. The client gets the formatted serialized object. If the object being returned is `null`, a `204 No Content` response is returned.
 
@@ -217,16 +215,16 @@ For more information, see [Filters](xref:mvc/controllers/filters).
 
 ### Special case formatters
 
-Some special cases are implemented using built-in formatters. By default, `string` return types are formatted as *text/plain* (*text/html* if requested via the `Accept` header). This behavior can be deleted by removing the <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter>. Formatters are removed in the `Configure` method. Actions that have a model object return type return `204 No Content` when returning `null`. This behavior can be deleted by removing the <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter>. The following code removes the `TextOutputFormatter` and `HttpNoContentOutputFormatter`.
+Some special cases are implemented using built-in formatters. By default, `string` return types are formatted as *text/plain* (*text/html* if requested via the `Accept` header). This behavior can be deleted by removing the <xref:Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter>. Formatters are removed in the `ConfigureServices` method. Actions that have a model object return type return `204 No Content` when returning `null`. This behavior can be deleted by removing the <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter>. The following code removes the `StringOutputFormatter` and `HttpNoContentOutputFormatter`.
 
 ::: moniker range=">= aspnetcore-3.0"
-[!code-csharp[](./formatting/3.0sample/StartupTextOutputFormatter.cs?name=snippet)]
+[!code-csharp[](./formatting/3.0sample/StartupStringOutputFormatter.cs?name=snippet)]
 ::: moniker-end
 ::: moniker range="< aspnetcore-3.0"
-[!code-csharp[](./formatting/sample/StartupTextOutputFormatter.cs?name=snippet)]
+[!code-csharp[](./formatting/sample/StartupStringOutputFormatter.cs?name=snippet)]
 ::: moniker-end
 
-Without the `TextOutputFormatter`, `string` return types return `406 Not Acceptable`. If an XML formatter exists, it formats `string` return types if the `TextOutputFormatter` is removed.
+Without the `StringOutputFormatter`, the built-in JSON formatter formats `string` return types. If the built-in JSON formatter is removed and an XML formatter is available, the XML formatter formats `string` return types. Otherwise, `string` return types return `406 Not Acceptable`.
 
 Without the `HttpNoContentOutputFormatter`, null objects are formatted using the configured formatter. For example:
 

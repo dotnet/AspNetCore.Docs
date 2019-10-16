@@ -1,11 +1,11 @@
 ---
 title: .NET Generic Host
-author: tdykstra
+author: rick-anderson
 description: Learn about the .NET Core Generic Host, which is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/05/2019
+ms.date: 10/15/2019
 uid: fundamentals/host/generic-host
 ---
 # .NET Generic Host
@@ -68,11 +68,11 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 If the app uses Entity Framework Core, don't change the name or signature of the `CreateHostBuilder` method. The [Entity Framework Core tools](/ef/core/miscellaneous/cli/) expect to find a `CreateHostBuilder` method that configures the host without running the app. For more information, see [Design-time DbContext Creation](/ef/core/miscellaneous/cli/dbcontext-creation).
 
-## Default builder settings 
+## Default builder settings
 
 The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method:
 
-* Sets the content root to the path returned by <xref:System.IO.Directory.GetCurrentDirectory*>.
+* Sets the [content root](xref:fundamentals/index#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory*>.
 * Loads host configuration from:
   * Environment variables prefixed with "DOTNET_".
   * Command-line arguments.
@@ -121,7 +121,7 @@ The following example is an `IHostedService` implementation that registers `IHos
 
 The <xref:Microsoft.Extensions.Hosting.IHostLifetime> implementation controls when the host starts and when it stops. The last implementation registered is used.
 
-<xref:Microsoft.Extensions.Hosting.Internal.ConsoleLifetime> is the default `IHostLifetime` implementation. `ConsoleLifetime`:
+`Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` is the default `IHostLifetime` implementation. `ConsoleLifetime`:
 
 * listens for Ctrl+C/SIGINT or SIGTERM and calls <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> to start the shutdown process.
 * Unblocks extensions such as [RunAsync](#runasync) and [WaitForShutdownAsync](#waitforshutdownasync).
@@ -193,6 +193,11 @@ Host.CreateDefaultBuilder(args)
     .UseContentRoot("c:\\content-root")
     //...
 ```
+
+For more information, see:
+
+* [Fundamentals: Content root](xref:fundamentals/index#content-root)
+* [WebRoot](#webroot)
 
 ### EnvironmentName
 
@@ -392,7 +397,7 @@ The relative path to the app's static assets.
 
 **Key**: webroot  
 **Type**: *string*  
-**Default**: *(Content Root)/wwwroot*, if the path exists. If the path doesn't exist, a no-op file provider is used.  
+**Default**: The default is `wwwroot`. The path to *{content root}/wwwroot* must exist. If the path doesn't exist, a no-op file provider is used.  
 **Environment variable**: `<PREFIX_>WEBROOT`
 
 To set this value, use the environment variable or call `UseWebRoot`:
@@ -400,6 +405,11 @@ To set this value, use the environment variable or call `UseWebRoot`:
 ```csharp
 webBuilder.UseWebRoot("public");
 ```
+
+For more information, see:
+
+* [Fundamentals: Web root](xref:fundamentals/index#web-root)
+* [ContentRootPath](#contentrootpath)
 
 ## Manage the host lifetime
 
@@ -531,8 +541,8 @@ The following services are registered during host initialization:
 * [Environment](xref:fundamentals/environments) (<xref:Microsoft.Extensions.Hosting.IHostingEnvironment>)
 * <xref:Microsoft.Extensions.Hosting.HostBuilderContext>
 * [Configuration](xref:fundamentals/configuration/index) (<xref:Microsoft.Extensions.Configuration.IConfiguration>)
-* <xref:Microsoft.Extensions.Hosting.IApplicationLifetime> (<xref:Microsoft.Extensions.Hosting.Internal.ApplicationLifetime>)
-* <xref:Microsoft.Extensions.Hosting.IHostLifetime> (<xref:Microsoft.Extensions.Hosting.Internal.ConsoleLifetime>)
+* <xref:Microsoft.Extensions.Hosting.IApplicationLifetime> (`Microsoft.Extensions.Hosting.Internal.ApplicationLifetime`)
+* <xref:Microsoft.Extensions.Hosting.IHostLifetime> (`Microsoft.Extensions.Hosting.Internal.ConsoleLifetime`)
 * <xref:Microsoft.Extensions.Hosting.IHost>
 * [Options](xref:fundamentals/configuration/options) (<xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions*>)
 * [Logging](xref:fundamentals/logging/index) (<xref:Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions.AddLogging*>)
@@ -569,6 +579,8 @@ This setting determines where the host begins searching for content files.
 If the path doesn't exist, the host fails to start.
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_UseContentRoot)]
+
+For more information, see [Fundamentals: Content root](xref:fundamentals/index#content-root).
 
 ### Environment
 
@@ -667,7 +679,7 @@ The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcor
 
 ### UseConsoleLifetime
 
-<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> listens for Ctrl+C/SIGINT or SIGTERM and calls <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> to start the shutdown process. <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> unblocks extensions such as [RunAsync](#runasync) and [WaitForShutdownAsync](#waitforshutdownasync). <xref:Microsoft.Extensions.Hosting.Internal.ConsoleLifetime> is pre-registered as the default lifetime implementation. The last lifetime registered is used.
+<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> listens for Ctrl+C/SIGINT or SIGTERM and calls <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> to start the shutdown process. <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> unblocks extensions such as [RunAsync](#runasync) and [WaitForShutdownAsync](#waitforshutdownasync). `Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` is pre-registered as the default lifetime implementation. The last lifetime registered is used.
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_UseConsoleLifetime)]
 
@@ -823,7 +835,7 @@ public class Program
 
 ### WaitForShutdown
 
-<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> is triggered via the <xref:Microsoft.Extensions.Hosting.IHostLifetime>, such as <xref:Microsoft.Extensions.Hosting.Internal.ConsoleLifetime> (listens for Ctrl+C/SIGINT or SIGTERM). <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> calls <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>.
+<xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> is triggered via the <xref:Microsoft.Extensions.Hosting.IHostLifetime>, such as `Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` (listens for Ctrl+C/SIGINT or SIGTERM). <xref:Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.WaitForShutdown*> calls <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>.
 
 ```csharp
 public class Program

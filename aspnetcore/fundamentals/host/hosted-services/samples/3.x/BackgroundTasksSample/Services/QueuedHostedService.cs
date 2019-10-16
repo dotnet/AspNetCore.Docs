@@ -9,9 +9,6 @@ namespace BackgroundTasksSample.Services
     #region snippet1
     public class QueuedHostedService : BackgroundService
     {
-        private CancellationTokenSource _shutdown = 
-            new CancellationTokenSource();
-        private Task _backgroundTask;
         private readonly ILogger<QueuedHostedService> _logger;
 
         public QueuedHostedService(IBackgroundTaskQueue taskQueue, 
@@ -30,27 +27,19 @@ namespace BackgroundTasksSample.Services
                 $"{Environment.NewLine}Tap W to add a work item to the " +
                 $"background queue.{Environment.NewLine}");
 
-            _backgroundTask = Task.Run(async () =>
-                {
-                    while (!stoppingToken.IsCancellationRequested)
-                    {
-                        await BackgroundProcessing();
-                    }
-                }, stoppingToken);
-
-            await _backgroundTask;
+            await BackgroundProcessing(stoppingToken);
         }
 
-        private async Task BackgroundProcessing()
+        private async Task BackgroundProcessing(CancellationToken stoppingToken)
         {
-            while (!_shutdown.IsCancellationRequested)
+            while (!stoppingToken.IsCancellationRequested)
             {
                 var workItem = 
-                    await TaskQueue.DequeueAsync(_shutdown.Token);
+                    await TaskQueue.DequeueAsync(stoppingToken);
 
                 try
                 {
-                    await workItem(_shutdown.Token);
+                    await workItem(stoppingToken);
                 }
                 catch (Exception ex)
                 {
@@ -64,10 +53,7 @@ namespace BackgroundTasksSample.Services
         {
             _logger.LogInformation("Queued Hosted Service is stopping.");
 
-            _shutdown.Cancel();
-
-            await Task.WhenAny(_backgroundTask, 
-                    Task.Delay(Timeout.Infinite, stoppingToken));
+            await base.StopAsync(stoppingToken);
         }
     }
     #endregion

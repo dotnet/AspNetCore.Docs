@@ -5,7 +5,7 @@ description: Learn how integration tests ensure that an app's components functio
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/11/2019
+ms.date: 10/14/2019
 uid: test/integration-tests
 ---
 # Integration tests in ASP.NET Core
@@ -83,7 +83,7 @@ Infrastructure components, such as the test web host and in-memory test server (
 The `Microsoft.AspNetCore.Mvc.Testing` package handles the following tasks:
 
 * Copies the dependencies file (*.deps*) from the SUT into the test project's *bin* directory.
-* Sets the content root to the SUT's project root so that static files and pages/views are found when the tests are executed.
+* Sets the [content root](xref:fundamentals/index#content-root) to the SUT's project root so that static files and pages/views are found when the tests are executed.
 * Provides the [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) class to streamline bootstrapping the SUT with `TestServer`.
 
 The [unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) documentation describes how to set up a test project and test runner, along with detailed instructions on how to run tests and recommendations for how to name tests and test classes.
@@ -162,6 +162,23 @@ Web host configuration can be created independently of the test classes by inher
    [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
 
    Database seeding in the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) is performed by the `InitializeDbForTests` method. The method is described in the [Integration tests sample: Test app organization](#test-app-organization) section.
+
+   The SUT's database context is registered in its `Startup.ConfigureServices` method. The test app's `builder.ConfigureServices` callback is executed *after* the app's `Startup.ConfigureServices` code is executed. To use a different database for the tests than the app's database, the app's database context must be replaced in `builder.ConfigureServices`.
+
+   The sample app finds the service descriptor for the database context and uses the descriptor to remove the service registration. Next, the factory adds a new `ApplicationDbContext` that uses an in-memory database for the tests.
+
+   To connect to a different database than the in-memory database, change the `UseInMemoryDatabase` call to connect the context to a different database. To use a SQL Server test database:
+
+   * Reference the [Microsoft.EntityFrameworkCore.SqlServer]https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/) NuGet package in the project file.
+   * Call `UseSqlServer` with a connection string to the database.
+
+   ```csharp
+   services.AddDbContext<ApplicationDbContext>((options, context) => 
+   {
+       context.UseSqlServer(
+           Configuration.GetConnectionString("TestingDbConnectionString"));
+   });
+   ```
 
 2. Use the custom `CustomWebApplicationFactory` in test classes. The following example uses the factory in the `IndexPageTests` class:
 
@@ -276,7 +293,7 @@ The markup produced during the test's execution reflects the quote text supplied
 
 ## How the test infrastructure infers the app content root path
 
-The `WebApplicationFactory` constructor infers the app content root path by searching for a [WebApplicationFactoryContentRootAttribute](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) on the assembly containing the integration tests with a key equal to the `TEntryPoint` assembly `System.Reflection.Assembly.FullName`. In case an attribute with the correct key isn't found, `WebApplicationFactory` falls back to searching for a solution file (*.sln*) and appends the `TEntryPoint` assembly name to the solution directory. The app root directory (the content root path) is used to discover views and content files.
+The `WebApplicationFactory` constructor infers the app [content root](xref:fundamentals/index#content-root) path by searching for a [WebApplicationFactoryContentRootAttribute](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) on the assembly containing the integration tests with a key equal to the `TEntryPoint` assembly `System.Reflection.Assembly.FullName`. In case an attribute with the correct key isn't found, `WebApplicationFactory` falls back to searching for a solution file (*.sln*) and appends the `TEntryPoint` assembly name to the solution directory. The app root directory (the content root path) is used to discover views and content files.
 
 ## Disable shadow copying
 
@@ -343,6 +360,8 @@ Integration tests usually require a small dataset in the database prior to the t
 The sample app seeds the database with three messages in *Utilities.cs* that tests can use when they execute:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/Helpers/Utilities.cs?name=snippet1)]
+
+The SUT's database context is registered in its `Startup.ConfigureServices` method. The test app's `builder.ConfigureServices` callback is executed *after* the app's `Startup.ConfigureServices` code is executed. To use a different database for the tests, the app's database context must be replaced in `builder.ConfigureServices`. For more information, see the [Customize WebApplicationFactory](#customize-webapplicationfactory) section.
 
 ::: moniker-end
 
@@ -417,7 +436,7 @@ Infrastructure components, such as the test web host and in-memory test server (
 The `Microsoft.AspNetCore.Mvc.Testing` package handles the following tasks:
 
 * Copies the dependencies file (*.deps*) from the SUT into the test project's *bin* directory.
-* Sets the content root to the SUT's project root so that static files and pages/views are found when the tests are executed.
+* Sets the [content root](xref:fundamentals/index#content-root) to the SUT's project root so that static files and pages/views are found when the tests are executed.
 * Provides the [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) class to streamline bootstrapping the SUT with `TestServer`.
 
 The [unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) documentation describes how to set up a test project and test runner, along with detailed instructions on how to run tests and recommendations for how to name tests and test classes.
@@ -604,7 +623,7 @@ The markup produced during the test's execution reflects the quote text supplied
 
 ## How the test infrastructure infers the app content root path
 
-The `WebApplicationFactory` constructor infers the app content root path by searching for a [WebApplicationFactoryContentRootAttribute](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) on the assembly containing the integration tests with a key equal to the `TEntryPoint` assembly `System.Reflection.Assembly.FullName`. In case an attribute with the correct key isn't found, `WebApplicationFactory` falls back to searching for a solution file (*.sln*) and appends the `TEntryPoint` assembly name to the solution directory. The app root directory (the content root path) is used to discover views and content files.
+The `WebApplicationFactory` constructor infers the app [content root](xref:fundamentals/index#content-root) path by searching for a [WebApplicationFactoryContentRootAttribute](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) on the assembly containing the integration tests with a key equal to the `TEntryPoint` assembly `System.Reflection.Assembly.FullName`. In case an attribute with the correct key isn't found, `WebApplicationFactory` falls back to searching for a solution file (*.sln*) and appends the `TEntryPoint` assembly name to the solution directory. The app root directory (the content root path) is used to discover views and content files.
 
 ## Disable shadow copying
 
