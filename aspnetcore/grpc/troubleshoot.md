@@ -146,7 +146,7 @@ A gRPC client app making gRPC calls only needs the concrete client generated:
 </ItemGroup>
 ```
 
-## WPF projects unable to generated gRPC C# assets from *\*.proto* files
+## WPF projects unable to generate gRPC C# assets from *\*.proto* files
 
 WPF projects have a [known issue](https://github.com/dotnet/wpf/issues/810) that prevents gRPC code generation from working correctly. Any gRPC types generated in a WPF project by referencing `Grpc.Tools` and *.proto* files will create compilation errors when used:
 
