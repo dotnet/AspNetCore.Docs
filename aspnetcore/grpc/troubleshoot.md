@@ -5,7 +5,7 @@ description: Troubleshoot errors when using gRPC on .NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
-ms.date: 09/21/2019
+ms.date: 10/16/2019
 uid: grpc/troubleshoot
 ---
 # Troubleshoot gRPC on .NET Core
@@ -114,7 +114,7 @@ The gRPC client must also be configured to not use TLS. For more information, se
 > [!WARNING]
 > HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
 
-## gRPC C# assets are not code generated from *\*.proto* files
+## gRPC C# assets are not code generated from .proto files
 
 gRPC code generation of concrete clients and service base classes requires protobuf files and tooling to be referenced from a project. You must include:
 
@@ -146,7 +146,7 @@ A gRPC client app making gRPC calls only needs the concrete client generated:
 </ItemGroup>
 ```
 
-## WPF projects unable to generated gRPC C# assets from *\*.proto* files
+## WPF projects unable to generate gRPC C# assets from .proto files
 
 WPF projects have a [known issue](https://github.com/dotnet/wpf/issues/810) that prevents gRPC code generation from working correctly. Any gRPC types generated in a WPF project by referencing `Grpc.Tools` and *.proto* files will create compilation errors when used:
 
