@@ -190,9 +190,9 @@ The preceding commands generate the following warning: "No type was specified fo
 
 You can ignore that warning, it will be fixed in a later tutorial.
 
-The migrations command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+The migrations command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
-The `update` command: runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in  *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
+The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in  *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
 # [Visual Studio](#tab/visual-studio)
 
