@@ -3,7 +3,7 @@ title: Get started with ASP.NET Core MVC
 author: rick-anderson
 description: Learn how to get started with ASP.NET Core MVC.
 ms.author: riande
-ms.date: 08/05/2019
+ms.date: 10/16/2019
 uid: tutorials/first-mvc-app/start-mvc
 ---
 # Get started with ASP.NET Core MVC
@@ -60,7 +60,7 @@ At the end, you have an app that can manage and display movie data.
 
 * Select **Web Application(Model-View-Controller)**, and then select **Create**.
 
-![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22-21.png)
+![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project30.png)
 
 Visual Studio used the default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project.
 
