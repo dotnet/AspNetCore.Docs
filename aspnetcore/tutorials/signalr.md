@@ -253,7 +253,7 @@ To learn more about SignalR, see the introduction:
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"	
+::: moniker range="< aspnetcore-3.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:	
 
