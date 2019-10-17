@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to call an ASP.NET Core web API with JavaScript.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 08/27/2019
 uid: tutorials/web-api-javascript
 ---
 # Tutorial: Call an ASP.NET Core web API with JavaScript
@@ -12,6 +12,14 @@ uid: tutorials/web-api-javascript
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial shows how to call an ASP.NET Core web API with JavaScript, using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API).
+
+::: moniker range="< aspnetcore-3.0"
+
+For ASP.NET Core 2.2, see the 2.2 version of [Call the web API with JavaScript](xref:tutorials/first-web-api#call-the-web-api-with-javascript).
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 ## Prerequisites
 
@@ -61,9 +69,9 @@ In the following code:
 
 * An `item` variable is declared to construct an object literal representation of the to-do item.
 * A Fetch request is configured with the following options:
-  * `method`&mdash;specifies the POST HTTP action verb.
-  * `body`&mdash;specifies the JSON representation of the request body. The JSON is produced by passing the object literal stored in `item` to the [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) function.
-  * `headers`&mdash;specifies the `Accept` and `Content-Type` HTTP request headers. Both headers are set to `application/json` to specify the media type being received and sent, respectively.
+    * `method`&mdash;specifies the POST HTTP action verb.
+    * `body`&mdash;specifies the JSON representation of the request body. The JSON is produced by passing the object literal stored in `item` to the [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) function.
+    * `headers`&mdash;specifies the `Accept` and `Content-Type` HTTP request headers. Both headers are set to `application/json` to specify the media type being received and sent, respectively.
 * An HTTP POST request is sent to the *api/TodoItems* route.
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_AddItem)]
@@ -89,3 +97,5 @@ Advance to the next tutorial to learn how to generate web API help pages:
 
 > [!div class="nextstepaction"]
 > <xref:tutorials/get-started-with-swashbuckle>
+
+::: moniker-end
