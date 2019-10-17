@@ -13,15 +13,26 @@ By Ryan Brandenburg
 
 [Microsoft.dotnet-openapi](https://www.nuget.org/packages/Microsoft.dotnet-openapi) is a [.NET Core Global Tool](/dotnet/core/tools/global-tools) for managing [OpenAPI](https://github.com/OAI/OpenAPI-Specification) references within a project.
 
-## Installation
+# Prerequisites
 
-To install `Microsoft.dotnet-openapi`, run the following command:
+# [.NET Core CLI](#tab/netcore-cli) 
+
+Install `Microsoft.dotnet-openapi`, with the following command:
 
 ```dotnetcli
 dotnet tool install -g Microsoft.dotnet-openapi
 ```
 
+# [Visual Studio](#tab/visual-studio)
+
+* [Visual Studio 2019(16.3 or later)](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
+* [.NET Core 3.0 SDK or later](https://dotnet.microsoft.com/download/dotnet-core/3.0)
+
+------
+
 ## Add
+
+# [.NET Core CLI](#tab/netcore-cli) 
 
 Adding an OpenAPI reference using any of the commands on this page adds an `<OpenApiReference />` element similar to the following to the *.csproj* file:
 
@@ -30,6 +41,14 @@ Adding an OpenAPI reference using any of the commands on this page adds an `<Ope
 ```
 
 The preceding reference is required for the app to call the generated client code.
+
+# [Visual Studio](#tab/visual-studio)
+
+Add a new OpenAPI reference using the Service References tab. You can quickly navigate to this tab by right clicking on your project in Solution Explorer and selecting **Add > Service Reference...**
+
+![Add OpenAPI reference](images/openapi_add.png)
+
+------
 
 <!-- TODO: Restore after https://github.com/aspnet/AspNetCore/issues/12738
 ### Add Project
