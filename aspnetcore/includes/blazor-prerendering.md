@@ -11,7 +11,7 @@ To delay JavaScript interop calls until after the connection with the browser is
 @code {
     private ElementReference myInput;
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
@@ -22,7 +22,7 @@ To delay JavaScript interop calls until after the connection with the browser is
 }
 ```
 
-For the preceding example code, provide a `setElementValue` JavaScript function inside the `<head>` element of *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server). The function is called with `JSRuntime.InvokeVoidAsync` and doesn't return a value:
+For the preceding example code, provide a `setElementValue` JavaScript function inside the `<head>` element of *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server). The function is called with `IJSRuntime.InvokeVoidAsync` and doesn't return a value:
 
 ```html
 <script>
@@ -69,7 +69,7 @@ Where `JSRuntime.InvokeAsync` is called, `ElementRef` is only used in `OnAfterRe
 }
 ```
 
-For the preceding example code, provide a `setElementValue` JavaScript function inside the `<head>` element of *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server). The function is called with `JSRuntime.InvokeAsync` and returns a value:
+For the preceding example code, provide a `setElementValue` JavaScript function inside the `<head>` element of *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server). The function is called with `IJSRuntime.InvokeAsync` and returns a value:
 
 ```html
 <script>

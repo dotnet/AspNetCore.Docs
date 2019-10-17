@@ -1,4 +1,4 @@
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JsRuntime
 @using JsInteropClasses
 
 <input @ref="username" />
@@ -9,6 +9,6 @@
 
     public async Task SetFocus()
     {
-        await username.Focus(JSRuntime);
+        await username.Focus(JsRuntime);
     }
 }
