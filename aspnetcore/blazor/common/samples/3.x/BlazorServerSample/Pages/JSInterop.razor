@@ -67,7 +67,7 @@
 </button>
 
 @code {
-    public async void TriggerNetInstanceMethod()
+    public async Task TriggerNetInstanceMethod()
     {
         var exampleJsInterop = new ExampleJsInterop(JSRuntime);
         await exampleJsInterop.CallHelloHelperSayHello("Blazor");
