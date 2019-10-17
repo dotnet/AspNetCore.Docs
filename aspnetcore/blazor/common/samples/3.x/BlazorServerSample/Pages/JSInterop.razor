@@ -14,7 +14,7 @@
 <h3 id="welcome" style="color:green;font-style:italic"></h3>
 
 @code {
-    public async void TriggerJsPrompt()
+    public async Task TriggerJsPrompt()
     {
         // showPrompt is implemented in wwwroot/exampleJsInterop.js
         var name = await JSRuntime.InvokeAsync<string>(
