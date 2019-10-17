@@ -24,11 +24,9 @@ namespace ClientIpAspNetCore.Filters
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            _logger.LogInformation(
-                $"Remote IpAddress: {context.HttpContext.Connection.RemoteIpAddress}");
-
             var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
-            _logger.LogDebug($"Request from Remote IP address: {remoteIp}");
+            _logger.LogInformation(
+                "Remote IpAddress: {RemoteIp}", remoteIp);
 
             string[] ip = _safelist.Split(';');
 
@@ -47,7 +45,7 @@ namespace ClientIpAspNetCore.Filters
             if (badIp)
             {
                 _logger.LogInformation(
-                    $"Forbidden Request from Remote IP address: {remoteIp}");
+                    "Forbidden Request from Remote IP address: {RemoteIp}", remoteIp);
                 context.Result = new StatusCodeResult(401);
                 return;
             }

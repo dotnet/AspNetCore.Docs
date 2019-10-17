@@ -9,7 +9,7 @@ uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
 ---
 # Image Tag Helper in ASP.NET Core
 
-By [Peter Kellner](http://peterkellner.net)
+By [Peter Kellner](https://peterkellner.net)
 
 The Image Tag Helper enhances the `<img>` tag to provide cache-busting behavior for static image files.
 

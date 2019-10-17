@@ -29,7 +29,7 @@ namespace ClientIpAspNetCore
             if (context.Request.Method != "GET")
             {
                 var remoteIp = context.Connection.RemoteIpAddress;
-                _logger.LogDebug($"Request from Remote IP address: {remoteIp}");
+                _logger.LogDebug("Request from Remote IP address: {RemoteIp}", remoteIp);
 
                 string[] ip = _adminSafeList.Split(';');
 
@@ -48,14 +48,13 @@ namespace ClientIpAspNetCore
                 if(badIp)
                 {
                     _logger.LogInformation(
-                        $"Forbidden Request from Remote IP address: {remoteIp}");
-                    context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                        "Forbidden Request from Remote IP address: {RemoteIp}", remoteIp);
+                    context.Response.StatusCode = 401;
                     return;
                 }
             }
 
             await _next.Invoke(context);
-
         }
     }
     #endregion

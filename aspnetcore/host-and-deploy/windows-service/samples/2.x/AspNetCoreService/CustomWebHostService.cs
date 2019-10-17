@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System.ComponentModel;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.WindowsServices;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace SampleApp
 {
     #region snippet_CustomWebHostService
+    [DesignerCategory("Code")]
     internal class CustomWebHostService : WebHostService
     {
         private ILogger _logger;

@@ -20,7 +20,7 @@ If you have ASP.NET Core 2.1 installed, there's no need to install the React pro
 
 Create a new project from a command prompt using the command `dotnet new react` in an empty directory. For example, the following commands create the app in a *my-new-app* directory and switch to that directory:
 
-```console
+```dotnetcli
 dotnet new react -o my-new-app
 cd my-new-app
 ```

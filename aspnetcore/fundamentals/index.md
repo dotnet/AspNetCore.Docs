@@ -5,7 +5,7 @@ description: Learn the foundational concepts for building ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/31/2019
+ms.date: 10/07/2019
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals
@@ -16,11 +16,12 @@ This article is an overview of key topics for understanding how to develop ASP.N
 
 The `Startup` class is where:
 
-* Any services required by the app are configured.
+* Services required by the app are configured.
 * The request handling pipeline is defined.
 
-* Code to configure (or *register*) services is added to the `Startup.ConfigureServices` method. *Services* are components that are used by the app. For example, an Entity Framework Core context object is a service.
-* Code to configure the request handling pipeline is added to the `Startup.Configure` method. The pipeline is composed as a series of *middleware* components. For example, a middleware might handle requests for static files or redirect HTTP requests to HTTPS. Each middleware performs asynchronous operations on an `HttpContext` and then either invokes the next middleware in the pipeline or terminates the request.
+*Services* are components that are used by the app. For example, a logging component is a service. Code to configure (or *register*) services is added to the `Startup.ConfigureServices` method.
+
+The request handling pipeline is composed as a series of *middleware* components. For example, a middleware might handle requests for static files or redirect HTTP requests to HTTPS. Each middleware performs asynchronous operations on an `HttpContext` and then either invokes the next middleware in the pipeline or terminates the request. Code to configure the request handling pipeline is added to the `Startup.Configure` method.
 
 Here's a sample `Startup` class:
 
@@ -54,9 +55,7 @@ ASP.NET Core includes a rich set of built-in middleware, and you can write custo
 
 For more information, see <xref:fundamentals/middleware/index>.
 
-<a id="host"/>
-
-## The host
+## Host
 
 An ASP.NET Core app builds a *host* on startup. The host is an object that encapsulates all of the app's resources, such as:
 
@@ -68,57 +67,45 @@ An ASP.NET Core app builds a *host* on startup. The host is an object that encap
 
 The main reason for including all of the app's interdependent resources in one object is lifetime management: control over app startup and graceful shutdown.
 
-The code to create a host is in `Program.Main` and follows the [builder pattern](https://wikipedia.org/wiki/Builder_pattern). Methods are called to configure each resource that is part of the host. A builder method is called to pull it all together and instantiate the host object.
-
 ::: moniker range=">= aspnetcore-3.0"
 
-In ASP.NET Core 3.0 or later, Generic Host (`Host` class) or Web Host (`WebHost` class) can be used in a web app. Generic Host is recommended, and Web Host is available for backwards compatibility.
+Two hosts are available: the Generic Host and the Web Host. The Generic Host is recommended, and the Web Host is available only for backwards compatibility.
 
-The framework provides the `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods to set up a host with commonly used options, such as the following:
+The code to create a host is in `Program.Main`:
+
+[!code-csharp[](index/snapshots/3.x/Program1.cs)]
+
+The `CreateDefaultBuilder` and `ConfigureWebHostDefaults` methods configure a host with commonly used options, such as the following:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
 * Load configuration from *appsettings.json*, *appsettings.{Environment Name}.json*, environment variables, command line arguments, and other configuration sources.
 * Send logging output to the console and debug providers.
 
-Here's sample code that builds a host. The methods that set up the host with commonly used options are highlighted:
-
-[!code-csharp[](index/snapshots/3.x/Program1.cs?highlight=9-10)]
-
-For more information, see <xref:fundamentals/host/generic-host> and <xref:fundamentals/host/web-host>.
+For more information, see <xref:fundamentals/host/generic-host>.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-ASP.NET Core 2.x uses Web Host (`WebHost` class) for web apps. The framework provides `CreateDefaultBuilder` to set up a host with commonly used options, such as the following:
+Two hosts are available: the Web Host and the Generic Host. In ASP.NET Core 2.x, the Generic Host is only for non-web scenarios.
+
+The code to create a host is in `Program.Main`:
+
+[!code-csharp[](index/snapshots/2.x/Program1.cs)]
+
+The `CreateDefaultBuilder` method configures a host with commonly used options, such as the following:
 
 * Use [Kestrel](#servers) as the web server and enable IIS integration.
 * Load configuration from *appsettings.json*, *appsettings.{Environment Name}.json*, environment variables, command line arguments, and other configuration sources.
 * Send logging output to the console and debug providers.
-
-Here's sample code that builds a host:
-
-[!code-csharp[](index/snapshots/2.x/Program1.cs?highlight=9)]
 
 For more information, see <xref:fundamentals/host/web-host>.
 
 ::: moniker-end
 
-### Advanced host scenarios
+### Non-web scenarios
 
-::: moniker range=">= aspnetcore-3.0"
-
-Generic Host is available for any .NET Core app to use&mdash;not just ASP.NET Core apps. Generic Host (`Host` class) allows other types of apps to use cross-cutting framework extensions, such as logging, DI, configuration, and app lifetime management. For more information, see <xref:fundamentals/host/generic-host>.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-Web Host is designed to include an HTTP server implementation, which isn't required for other kinds of .NET apps. Starting in ASP.NET Core 2.1, the Generic Host (`Host` class) is available for any .NET Core app to use&mdash;not just ASP.NET Core apps. Generic Host allows other types of apps to use cross-cutting framework extensions, such as logging, DI, configuration, and app lifetime management. For more information, see <xref:fundamentals/host/generic-host>.
-
-::: moniker-end
-
-You can also use the host to run background tasks. For more information, see <xref:fundamentals/host/hosted-services>.
+The Generic Host allows other types of apps to use cross-cutting framework extensions, such as logging, dependency injection (DI), configuration, and app lifetime management. For more information, see <xref:fundamentals/host/generic-host> and <xref:fundamentals/host/hosted-services>.
 
 ## Servers
 
@@ -161,7 +148,7 @@ ASP.NET Core provides the *Kestrel* cross-platform server implementation. In ASP
 
 # [Linux](#tab/linux)
 
-ASP.NET Core provides the *Kestrel* cross-platform server implementation. In ASP.NET Core 2.0 or later, Kestrel can be run as a public-facing edge server exposed directly to the Internet. Kestrel is often run in a reverse proxy configuration with [Nginx](http://nginx.org) or [Apache](https://httpd.apache.org/).
+ASP.NET Core provides the *Kestrel* cross-platform server implementation. In ASP.NET Core 2.0 or later, Kestrel can be run as a public-facing edge server exposed directly to the Internet. Kestrel is often run in a reverse proxy configuration with [Nginx](https://nginx.org) or [Apache](https://httpd.apache.org/).
 
 ---
 
@@ -259,24 +246,57 @@ For more information, see <xref:fundamentals/http-requests>.
 
 ## Content root
 
-The content root is the base path to any private content used by the app, such as its Razor files. By default, the content root is the base path for the executable hosting the app. An alternative location can be specified when [building the host](#host).
+The content root is the base path to the:
+
+* Executable hosting the app (*.exe*).
+* Compiled assemblies that make up the app (*.dll*).
+* Non-code content files used by the app, such as:
+  * Razor files (*.cshtml*, *.razor*)
+  * Configuration files (*.json*, *.xml*)
+  * Data files (*.db*)
+* [Web root](#web-root), typically the published *wwwroot* folder.
+
+During development:
+
+* The content root defaults to the project's root directory.
+* The project's root directory is used to create the:
+  * Path to the app's non-code content files in the project's root directory.
+  * [Web root](#web-root), typically the *wwwroot* folder in the project's root directory.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-For more information, see [Content root](xref:fundamentals/host/generic-host#content-root).
+An alternative content root path can be specified when [building the host](#host). For more information, see <xref:fundamentals/host/generic-host#contentrootpath>.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-For more information, see [Content root](xref:fundamentals/host/web-host#content-root).
+An alternative content root path can be specified when [building the host](#host). For more information, see <xref:fundamentals/host/web-host#content-root>.
 
 ::: moniker-end
 
 ## Web root
 
-The web root (also known as *webroot*) is the base path to public, static resources, such as CSS, JavaScript, and image files. The static files middleware will only serve files from the web root directory (and sub-directories) by default. The web root path defaults to *{Content Root}/wwwroot*, but a different location can be specified when [building the host](#host).
+The web root is the base path to public, non-code, static resource files, such as:
 
-In Razor (*.cshtml*) files, the tilde-slash `~/` points to the web root. Paths beginning with `~/` are referred to as virtual paths.
+* Stylesheets (*.css*)
+* JavaScript (*.js*)
+* Images (*.png*, *.jpg*)
+
+Static files are only served by default from the web root directory (and sub-directories).
+
+::: moniker range=">= aspnetcore-3.0"
+
+The web root path defaults to *{content root}/wwwroot*, but a different web root can be specified when [building the host](#host). For more information, see <xref:fundamentals/host/generic-host#webroot>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+The web root path defaults to *{content root}/wwwroot*, but a different web root can be specified when [building the host](#host). For more information, see [Web root](xref:fundamentals/host/web-host#web-root).
+
+::: moniker-end
+
+In Razor (*.cshtml*) files, the tilde-slash (`~/`) points to the web root. A path beginning with `~/` is referred to as a *virtual path*.
 
 For more information, see <xref:fundamentals/static-files>.

@@ -31,7 +31,7 @@ In this tutorial, learn how to:
 The following are required for this walkthrough:
 
 * [Microsoft Azure subscription](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
-* [Visual Studio 2017](https://aka.ms/vsdownload?utm_source=mscom&utm_campaign=msdocs) (any edition)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 * [Postman](https://www.getpostman.com/postman)
 
 ## Create the Azure Active Directory B2C tenant
@@ -40,11 +40,11 @@ Create an Azure AD B2C tenant [as described in the documentation](/azure/active-
 
 ## Configure a sign-up or sign-in policy
 
-Use the steps in the Azure AD B2C documentation to [create a sign-up or sign-in policy](/azure/active-directory-b2c/active-directory-b2c-reference-policies#create-a-sign-up-or-sign-in-policy). Name the policy **SiUpIn**.  Use the example values provided in the documentation for **Identity providers**, **Sign-up attributes**, and **Application claims**. Using the **Run now** button to test the policy as described in the documentation is optional.
+Use the steps in the Azure AD B2C documentation to [create a sign-up or sign-in policy](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions). Name the policy **SiUpIn**.  Use the example values provided in the documentation for **Identity providers**, **Sign-up attributes**, and **Application claims**. Using the **Run now** button to test the policy as described in the documentation is optional.
 
 ## Register the API in Azure AD B2C
 
-In the newly created Azure AD B2C tenant, register your API using [the steps in the documentation](/azure/active-directory-b2c/active-directory-b2c-app-registration#register-a-web-api) under the **Register a web API** section.
+In the newly created Azure AD B2C tenant, register your API using [the steps in the documentation](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application) under the **Register a web API** section.
 
 Use the following values:
 
@@ -59,7 +59,7 @@ Use the following values:
 
 After the API is registered, the list of apps and APIs in the tenant is displayed. Select the API that was previously registered. Select the **Copy** icon to the right of the **Application ID** field to copy it to the clipboard. Select **Published scopes** and verify the default *user_impersonation* scope is present.
 
-## Create an ASP.NET Core app in Visual Studio 2017
+## Create an ASP.NET Core app in Visual Studio
 
 The Visual Studio Web Application template can be configured to use the Azure AD B2C tenant for authentication.
 
@@ -100,7 +100,7 @@ In Visual Studio, run the API. Visual Studio launches a browser pointed at the A
 
 ### Register Postman as a web app
 
-Since Postman simulates a web app that obtains tokens from the Azure AD B2C tenant, it must be registered in the tenant as a web app. Register Postman using [the steps in the documentation](/azure/active-directory-b2c/active-directory-b2c-app-registration#register-a-web-app) under the **Register a web app** section. Stop at the **Create a web app client secret** section. A client secret isn't required for this tutorial. 
+Since Postman simulates a web app that obtains tokens from the Azure AD B2C tenant, it must be registered in the tenant as a web app. Register Postman using [the steps in the documentation](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application) under the **Register a web app** section. Stop at the **Create a web app client secret** section. A client secret isn't required for this tutorial. 
 
 Use the following values:
 

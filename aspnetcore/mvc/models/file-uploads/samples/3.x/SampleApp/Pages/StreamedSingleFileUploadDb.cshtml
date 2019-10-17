@@ -1,0 +1,62 @@
+﻿@page
+@model StreamedSingleFileUploadDbModel
+@{
+    ViewData["Title"] = "Streamed Single File Upload with AJAX (Db)";
+}
+
+<h1>Stream a file with AJAX to a database with a controller endpoint</h1>
+
+<form id="uploadForm" action="Streaming/UploadDatabase" method="post" 
+    enctype="multipart/form-data" onsubmit="AJAXSubmit(this);return false;">
+    <dl>
+        <dt>
+            <label for="note">Note</label>
+        </dt>
+        <dd>
+            <input id="note" type="text" name="note"  />
+        </dd>
+        <dt>
+            <label for="file">File</label>
+        </dt>
+        <dd>
+            <input id="file" type="file" name="file" />
+        </dd>
+    </dl>
+
+    <input class="btn" type="submit" value="Upload" />
+
+    <div style="margin-top:15px">
+        <output form="uploadForm" name="result"></output>
+    </div>
+</form>
+
+@section Scripts {
+  <script>
+    "use strict";
+
+    async function AJAXSubmit (oFormElement) {
+      const formData = new FormData(oFormElement);
+
+      try {
+        const response = await fetch(oFormElement.action, {
+          method: 'POST',
+          headers: {
+            'RequestVerificationToken': getCookie('RequestVerificationToken')
+          },
+          body: formData
+        });
+
+        oFormElement.elements.namedItem("result").value = 
+          'Result: ' + response.status + ' ' + response.statusText;
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+
+    function getCookie (name) {
+      var value = "; " + document.cookie;
+      var parts = value.split("; " + name + "=");
+      if (parts.length == 2) return parts.pop().split(";").shift();
+    }
+  </script>
+}

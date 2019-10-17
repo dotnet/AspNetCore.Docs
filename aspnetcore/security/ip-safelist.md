@@ -2,7 +2,7 @@
 title: Client IP safelist for ASP.NET Core
 author: damienbod
 description: Learn how to write Middleware or action filters to validate remote IP addresses against a list of approved IP addresses.
-ms.author: tdykstra
+ms.author: riande
 ms.custom: mvc
 ms.date: 08/31/2018
 uid: security/ip-safelist
@@ -17,9 +17,9 @@ This article shows three ways to implement an IP safelist (also known as a white
 * Action filters to check the remote IP address of requests for specific controllers or action methods.
 * Razor Pages filters to check the remote IP address of requests for Razor pages.
 
-The sample app illustrates both approaches. In each case, a string containing approved client IP addresses is stored in an app setting. The middleware or filter parses the string into a list and  checks if the remote IP is in the list. If not, an HTTP 403 Forbidden status code is returned.
+In each case, a string containing approved client IP addresses is stored in an app setting. The middleware or filter parses the string into a list and checks if the remote IP is in the list. If not, an HTTP 403 Forbidden status code is returned.
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/security/ip-safelist/samples/2.x/ClientIpAspNetCore) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/ip-safelist/samples/2.x/ClientIpAspNetCore) ([how to download](xref:index#how-to-download-a-sample))
 
 ## The safelist
 
@@ -31,7 +31,7 @@ The list is configured in the *appsettings.json* file. It's a semicolon-delimite
 
 The `Configure` method adds the middleware and passes the safelist string to it in a constructor parameter.
 
-[!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Startup.cs?name=snippet_Configure&highlight=7)]
+[!code-csharp[](ip-safelist/samples/2.x/ClientIpAspNetCore/Startup.cs?name=snippet_Configure&highlight=10)]
 
 The middleware parses the string into an array and looks for the remote IP address in the array. If the remote IP address is not found, the middleware returns HTTP 401 Forbidden. This validation process is bypassed for HTTP Get requests.
 

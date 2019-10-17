@@ -1,0 +1,16 @@
+@inherits LayoutComponentBase
+
+<header>...</header>
+<nav>...</nav>
+
+@Body
+
+<footer>
+    @TrademarkMessage
+</footer>
+
+@code {
+    public string TrademarkMessage { get; set; } = 
+        "Doctor Who is a registered trademark of the BBC. " +
+        "https://www.doctorwho.tv/";
+}

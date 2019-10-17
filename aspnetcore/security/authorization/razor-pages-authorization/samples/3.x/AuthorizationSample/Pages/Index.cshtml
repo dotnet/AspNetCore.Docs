@@ -1,0 +1,13 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Authorization Sample";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="row">
+        <div>Hello @User.Claims.FirstOrDefault(c => c.Type == "FullName")?.Value!</div>
+        <p>Username: @User.Identity.Name</p>
+    </div>
+}

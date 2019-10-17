@@ -1,0 +1,9 @@
+@inject HttpClient Http
+
+...
+
+protected override async Task OnInitializedAsync()
+{
+    forecasts = 
+        await Http.GetJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+}

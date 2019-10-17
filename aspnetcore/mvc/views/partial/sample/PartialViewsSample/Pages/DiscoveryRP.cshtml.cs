@@ -7,14 +7,9 @@ namespace PartialViewsSample.Pages
     {
         public void OnGet() => Page();
 
-        public IActionResult OnGetPartial()
-        {
-            return new PartialViewResult
-            {
-                ViewName = "_AuthorPartialRP",
-                ViewData = ViewData,
-            };
-        }
-
+        #region snippet_OnGetPartial
+        public IActionResult OnGetPartial() =>
+            Partial("_AuthorPartialRP");
+        #endregion
     }
 }

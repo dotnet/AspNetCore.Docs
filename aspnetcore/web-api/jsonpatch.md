@@ -1,8 +1,8 @@
 ---
 title: JsonPatch in ASP.NET Core web API
-author: tdykstra
+author: rick-anderson
 description: Learn how to handle JSON Patch requests in an ASP.NET Core web API.
-ms.author: tdykstra
+ms.author: riande
 ms.custom: mvc
 ms.date: 03/24/2019
 uid: web-api/jsonpatch
@@ -13,6 +13,29 @@ uid: web-api/jsonpatch
 By [Tom Dykstra](https://github.com/tdykstra)
 
 This article explains how to handle JSON Patch requests in an ASP.NET Core web API.
+
+::: moniker range=">= aspnetcore-3.0"
+
+## Package installation
+
+Support for JsonPatch is enabled using the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package. To enable this feature, apps must:
+
+* Install the [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.
+* Update the project's `Startup.ConfigureServices` method to include a call to `AddNewtonsoftJson`:
+
+  ```csharp
+  services
+      .AddControllersWithViews()
+      .AddNewtonsoftJson();
+  ```
+
+`AddNewtonsoftJson` is compatible with the MVC service registration methods:
+
+  * `AddRazorPages`
+  * `AddControllersWithViews`
+  * `AddControllers`
+
+::: moniker-end
 
 ## PATCH HTTP request method
 
@@ -26,7 +49,7 @@ For example, the following JSON documents represent a resource, a JSON patch doc
 
 ### Resource example
 
-[!code-csharp[](jsonpatch/samples/2.2/JSON/customer.json)]
+[!code-json[](jsonpatch/samples/2.2/JSON/customer.json)]
 
 ### JSON patch example
 
@@ -66,7 +89,7 @@ The changes made by applying a JSON Patch document to a resource are atomic: if 
 
 ## Path syntax
 
-The [path](http://tools.ietf.org/html/rfc6901) property of an operation object has slashes between levels. For example, `"/address/zipCode"`.
+The [path](https://tools.ietf.org/html/rfc6901) property of an operation object has slashes between levels. For example, `"/address/zipCode"`.
 
 Zero-based indexes are used to specify array elements. The first element of the `addresses` array would be at `/addresses/0`. To `add` to the end of an array, use a hyphen (-) rather than an index number: `/addresses/-`.
 
@@ -92,7 +115,7 @@ The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspN
 In an API controller, an action method for JSON Patch:
 
 * Is annotated with the `HttpPatch` attribute.
-* Accepts a `JsonPatchDocument<T>`, typically with [FromBody].
+* Accepts a `JsonPatchDocument<T>`, typically with `[FromBody]`.
 * Calls `ApplyTo` on the patch document to apply the changes.
 
 Here's an example:
@@ -148,7 +171,7 @@ The following sample patch document sets the value of `CustomerName` and adds an
 * If `path` points to an array element: removes the element.
 * If `path` points to a property:
   * If resource to patch is a dynamic object: removes the property.
-  * If resource to patch is a static object: 
+  * If resource to patch is a static object:
     * If the property is nullable: sets it to null.
     * If the property is non-nullable, sets it to `default<T>`.
 
@@ -203,7 +226,7 @@ The following sample patch document has no effect if the initial value of `Custo
 
 ## Get the code
 
-[View or download sample code](https://github.com/aspnet/Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([How to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([How to download](xref:index#how-to-download-a-sample)).
 
 To test the sample, run the app and send HTTP requests with the following settings:
 
@@ -216,6 +239,6 @@ To test the sample, run the app and send HTTP requests with the following settin
 
 * [IETF RFC 5789 PATCH method specification](https://tools.ietf.org/html/rfc5789)
 * [IETF RFC 6902 JSON Patch specification](https://tools.ietf.org/html/rfc6902)
-* [IETF RFC 6901 JSON Patch path format spec](http://tools.ietf.org/html/rfc6901)
-* [JSON Patch documentation](http://jsonpatch.com/). Includes links to resources for creating JSON Patch documents.
+* [IETF RFC 6901 JSON Patch path format spec](https://tools.ietf.org/html/rfc6901)
+* [JSON Patch documentation](https://jsonpatch.com/). Includes links to resources for creating JSON Patch documents.
 * [ASP.NET Core JSON Patch source code](https://github.com/aspnet/AspNetCore/tree/master/src/Features/JsonPatch/src)

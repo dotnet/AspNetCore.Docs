@@ -19,7 +19,7 @@ In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code 
 When EF Code First is used to automatically create a database, Code First:
 
 * Adds a table to the database to  track the schema of the database.
-* Verify the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to find inconsistent database/code issues.
+* Verifies the database is in sync with the model classes it was generated from. If they aren't in sync, EF throws an exception. This makes it easier to find inconsistent database/code issues.
 
 ## Add a Rating Property to the Movie Model
 
@@ -27,7 +27,23 @@ Add a `Rating` property to *Models/Movie.cs*:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 
-Build the app (Ctrl+Shift+B).
+Build the app
+
+### [Visual Studio](#tab/visual-studio)
+
+ Ctrl+Shift+B
+
+### [Visual Studio Code](#tab/visual-studio-code)
+
+```dotnetcli
+dotnet build
+```
+
+### [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Command ⌘ + B
+
+------
 
 Because you've added a new field to the `Movie` class, you need to update the binding white list so this new property will be included. In *MoviesController.cs*, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
 
@@ -54,6 +70,8 @@ You can copy/paste the previous "form group" and let intelliSense help you updat
 <!-- This tab intentionally left blank. -->
 
 ---
+
+Update the remaining templates.
 
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
 
@@ -100,7 +118,7 @@ If all the records in the DB are deleted, the initialize method will seed the DB
 
 Delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command:
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 

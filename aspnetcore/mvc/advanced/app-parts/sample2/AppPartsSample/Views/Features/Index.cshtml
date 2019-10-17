@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model FeaturesViewModel
+
+<h1>Features</h1>
+
+<b>Controllers:</b>
+<div class="pre-scrollable" style="max-height:100px">
+    <ul>
+        @foreach (var item in Model.Controllers)
+        {
+            <li>@item.Name</li>
+        }
+    </ul>
+</div>
+
+<b>Tag Helpers:</b>
+<div class="pre-scrollable" style="max-height: 100px">
+    <ul>
+        @foreach (var item in Model.TagHelpers)
+        {
+            <li>@item.Name</li>
+        }
+    </ul>
+</div>
+<b>View Components:</b>
+<div class="pre-scrollable" style="max-height: 100px">
+    <ul>
+        @foreach (var item in Model.ViewComponents)
+            {
+            <li>@item.Name</li>
+        }
+    </ul>
+</div>
+<a asp-controller="Home">Home</a>

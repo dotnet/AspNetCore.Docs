@@ -596,7 +596,7 @@ The generated HTML:
 
 ### Multiple select
 
-The Select Tag Helper  will automatically generate the [multiple = "multiple"](http://w3c.github.io/html-reference/select.html)  attribute if the property specified in the `asp-for` attribute is an `IEnumerable`. For example, given the following model:
+The Select Tag Helper  will automatically generate the [multiple = "multiple"](https://w3c.github.io/html-reference/select.html)  attribute if the property specified in the `asp-for` attribute is an `IEnumerable`. For example, given the following model:
 
 [!code-csharp[](../../mvc/views/working-with-forms/sample/final/ViewModels/CountryViewModelIEnumerable.cs?highlight=6)]
 
@@ -640,6 +640,8 @@ Adding HTML [\<option>](https://www.w3.org/wiki/HTML/Elements/option) elements i
 
 The correct `<option>` element will be selected ( contain the `selected="selected"` attribute) depending on the current `Country` value.
 
+[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=114-119)]
+
 ```HTML
  <form method="post" action="/Home/IndexEmpty">
       <select id="Country" name="Country">
@@ -661,4 +663,4 @@ The correct `<option>` element will be selected ( contain the `selected="selecte
 * <xref:mvc/models/model-binding>
 * <xref:mvc/models/validation>
 * [IAttributeAdapter Interface](/dotnet/api/Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter)
-* [Code snippets for this document](https://github.com/aspnet/Docs/tree/master/aspnetcore/mvc/views/working-with-forms/sample/final)
+* [Code snippets for this document](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/working-with-forms/sample/final)

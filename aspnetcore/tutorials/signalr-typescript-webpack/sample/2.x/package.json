@@ -1,0 +1,28 @@
+{
+  "name": "SignalRWebPack",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode=development --watch",
+    "release": "webpack --mode=production",
+    "publish": "npm run release && dotnet publish -c Release"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "1.0.1",
+    "css-loader": "2.1.1",
+    "html-webpack-plugin": "4.0.0-beta.7",
+    "mini-css-extract-plugin": "0.5.0",
+    "ts-loader": "5.3.3",
+    "typescript": "3.3.3",
+    "webpack": "4.29.3",
+    "webpack-cli": "3.2.3"
+  },
+  "dependencies": {
+    "@aspnet/signalr": "^1.1.0"
+  }
+}

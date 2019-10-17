@@ -2,7 +2,7 @@
 title: "Tutorial: Using the migrations feature - ASP.NET MVC with EF Core"
 description: "In this tutorial, you start using the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC application."
 author: rick-anderson
-ms.author: tdykstra
+ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
@@ -46,7 +46,7 @@ This change sets up the project so that the first migration will create a new da
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
 >
-> ```console
+> ```dotnetcli
 > dotnet ef database drop
 > ```
 >
@@ -66,7 +66,7 @@ Save your changes and build the project. Then open a command window and navigate
 
 Enter the following command in the command window:
 
-```console
+```dotnetcli
 dotnet ef migrations add InitialCreate
 ```
 
@@ -79,7 +79,7 @@ Done. To undo this action, use 'ef migrations remove'
 ```
 
 > [!NOTE]
-> If you see an error message *No executable found matching command "dotnet-ef"*, see [this blog post](http://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/) for help troubleshooting.
+> If you see an error message *No executable found matching command "dotnet-ef"*, see [this blog post](https://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/) for help troubleshooting.
 
 If you see an error message "*cannot access the file ... ContosoUniversity.dll because it is being used by another process.*", find the IIS Express icon in the Windows System Tray, and right-click it, then click **ContosoUniversity > Stop Site**.
 
@@ -107,7 +107,7 @@ See [EF Core Migrations in Team Environments](/ef/core/managing-schemas/migratio
 
 In the command window, enter the following command to create the database and tables in it.
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 
@@ -164,7 +164,7 @@ For more information about the PMC commands, see [Package Manager Console (Visua
 
 ## Get the code
 
-[Download or view the completed application.](https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Download or view the completed application.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## Next step
 

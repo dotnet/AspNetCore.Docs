@@ -14,11 +14,11 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Victor Hurdugaci](https
 
 This tutorial uses an existing web API with two endpoints: one that returns a sum and one that returns a product. The product method has a bug, which is fixed in this tutorial.
 
-Download the [sample app](https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). It consists of two projects: *WebApp* (an ASP.NET Core web API) and *WebAppTests* (unit tests for the web API).
+Download the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). It consists of two projects: *WebApp* (an ASP.NET Core web API) and *WebAppTests* (unit tests for the web API).
 
 In a command shell, navigate to the *WebApp* folder. Run the following command:
 
-```console
+```dotnetcli
 dotnet run
 ```
 
@@ -55,7 +55,7 @@ The `dotnet watch` file watcher tool is included with version 2.1.300 of the .NE
 
 1. Install the `Microsoft.DotNet.Watcher.Tools` package by running the following command:
 
-    ```console
+    ```dotnetcli
     dotnet restore
     ```
 
@@ -171,7 +171,7 @@ If the goal is to watch both projects, create a custom project file configured t
 
 To start file watching on both projects, change to the *test* folder. Execute the following command:
 
-```console
+```dotnetcli
 dotnet watch msbuild /t:Test
 ```
 

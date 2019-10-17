@@ -4,7 +4,7 @@
 
 * Run the following commands in the command prompt:
 
-  ```console
+  ```dotnetcli
   dotnet restore
   dotnet ef migrations add Initial
   dotnet ef database update
