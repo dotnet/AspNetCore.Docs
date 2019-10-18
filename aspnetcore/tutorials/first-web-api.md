@@ -424,7 +424,7 @@ If you get an error calling `PutTodoItem`, call `GET` to ensure there's an item 
 
 ### Test the PutTodoItem method
 
-This sample uses an in-memory database that must be initialed each time the app is started. There must be an item in the database before you make a PUT call. Call GET to insure there's an item in the database before making a PUT call.
+This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to insure there's an item in the database before making a PUT call.
 
 Update the to-do item that has ID = 1 and set its name to "feed fish":
 
@@ -823,7 +823,7 @@ If you get an error calling `PutTodoItem`, call `GET` to ensure there's an item 
 
 ### Test the PutTodoItem method
 
-This sample uses an in-memory database that must be initialed each time the app is started. There must be an item in the database before you make a PUT call. Call GET to insure there's an item in the database before making a PUT call.
+This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to insure there's an item in the database before making a PUT call.
 
 Update the to-do item that has id = 1 and set its name to "feed fish":
 
@@ -859,7 +859,7 @@ The sample app allows you to delete all the items. However, when the last item i
 
 ## Call the web API with JavaScript
 
-In this section, an HTML page is added that uses JavaScript to call the web API. The Fetch API initiates the request. JavaScript updates the page with the details from the web API's response.
+In this section, an HTML page is added that uses JavaScript to call the web API. jQuery initiates the request. JavaScript updates the page with the details from the web API's response.
 
 Configure the app to [serve static files](/dotnet/api/microsoft.aspnetcore.builder.staticfileextensions.usestaticfiles#Microsoft_AspNetCore_Builder_StaticFileExtensions_UseStaticFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) and [enable default file mapping](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) by updating *Startup.cs* with the following highlighted code:
 
@@ -884,13 +884,13 @@ This sample calls all of the CRUD methods of the web API. Following are explanat
 
 ### Get a list of to-do items
 
-Fetch sends an HTTP GET request to the web API, which returns JSON representing an array of to-do items. The `success` callback function is invoked if the request succeeds. In the callback, the DOM is updated with the to-do information.
+jQuery sends an HTTP GET request to the web API, which returns JSON representing an array of to-do items. The `success` callback function is invoked if the request succeeds. In the callback, the DOM is updated with the to-do information.
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_GetData)]
 
 ### Add a to-do item
 
-Fetch sends an HTTP POST request with the to-do item in the request body. The `accepts` and `contentType` options are set to `application/json` to specify the media type being received and sent. The to-do item is converted to JSON by using [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify). When the API returns a successful status code, the `getData` function is invoked to update the HTML table.
+jQuery sends an HTTP POST request with the to-do item in the request body. The `accepts` and `contentType` options are set to `application/json` to specify the media type being received and sent. The to-do item is converted to JSON by using [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify). When the API returns a successful status code, the `getData` function is invoked to update the HTML table.
 
 [!code-javascript[](first-web-api/samples/2.2/TodoApi/wwwroot/site.js?name=snippet_AddItem)]
 

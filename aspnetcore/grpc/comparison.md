@@ -20,12 +20,12 @@ The following table offers a high-level comparison of features between gRPC and 
 | Feature          | gRPC                                               | HTTP APIs with JSON           |
 | ---------------- | -------------------------------------------------- | ----------------------------- |
 | Contract         | Required (*.proto*)                                | Optional (OpenAPI)            |
-| Transport        | HTTP/2                                             | HTTP                          |
+| Protocol         | HTTP/2                                             | HTTP                          |
 | Payload          | [Protobuf (small, binary)](#performance)           | JSON (large, human readable)  |
-| Prescriptiveness | [Strict specification](#strict-specification)      | Loose. Any HTTP is valid.      |
+| Prescriptiveness | [Strict specification](#strict-specification)      | Loose. Any HTTP is valid.     |
 | Streaming        | [Client, server, bi-directional](#streaming)       | Client, server                |
 | Browser support  | [No (requires grpc-web)](#limited-browser-support) | Yes                           |
-| Security         | Transport (HTTPS)                                  | Transport (HTTPS)             |
+| Security         | Transport (TLS)                                    | Transport (TLS)               |
 | Client code-generation | [Yes](#code-generation)                      | OpenAPI + third-party tooling |
 
 ## gRPC strengths

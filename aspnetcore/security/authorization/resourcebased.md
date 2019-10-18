@@ -116,6 +116,10 @@ The handler is implemented as follows, using an `OperationAuthorizationRequireme
 
 The preceding handler validates the operation using the resource, the user's identity, and the requirement's `Name` property.
 
+## Challenge and forbid with an operational resource handler
+
+This section shows how the challenge and forbid action results are processed and how challenge and forbid differ.
+
 To call an operational resource handler, specify the operation when invoking `AuthorizeAsync` in your page handler or action. The following example determines whether the authenticated user is permitted to view the provided document.
 
 > [!NOTE]

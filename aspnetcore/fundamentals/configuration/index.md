@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/12/2019
+ms.date: 10/18/2019
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -767,7 +767,7 @@ The dictionary is used with a call to `AddInMemoryCollection` to provide the con
 
 ## GetValue
 
-[ConfigurationBinder.GetValue\<T>](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a value from configuration with a specified key and converts it to the specified type. An overload permits you to provide a default value if the key isn't found.
+[ConfigurationBinder.GetValue\<T>](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified noncollection type. An overload accepts a default value.
 
 The following example:
 

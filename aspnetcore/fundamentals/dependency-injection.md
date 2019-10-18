@@ -5,7 +5,7 @@ description: Learn how ASP.NET Core implements dependency injection and how to u
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/24/2019
+ms.date: 10/12/2019
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -264,15 +264,15 @@ Singleton lifetime services (<xref:Microsoft.Extensions.DependencyInjection.Serv
 
 ## Service registration methods
 
-Each service registration extension method offers overloads that are useful in specific scenarios.
+Service registration extension methods offer overloads that are useful in specific scenarios.
 
 | Method | Automatic<br>object<br>disposal | Multiple<br>implementations | Pass args |
 | ------ | :-----------------------------: | :-------------------------: | :-------: |
-| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Example:<br>`services.AddScoped<IMyDep, MyDep>();` | Yes | Yes | No |
-| `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Examples:<br>`services.AddScoped<IMyDep>(sp => new MyDep());`<br>`services.AddScoped<IMyDep>(sp => new MyDep("A string!"));` | Yes | Yes | Yes |
-| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Example:<br>`services.AddScoped<MyDep>();` | Yes | No | No |
-| `Add{LIFETIME}<{SERVICE}>(new {IMPLEMENTATION})`<br>Examples:<br>`services.AddScoped<IMyDep>(new MyDep());`<br>`services.AddScoped<IMyDep>(new MyDep("A string!"));` | No | Yes | Yes |
-| `Add{LIFETIME}(new {IMPLEMENTATION})`<br>Examples:<br>`services.AddScoped(new MyDep());`<br>`services.AddScoped(new MyDep("A string!"));` | No | No | Yes |
+| `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Example:<br>`services.AddSingleton<IMyDep, MyDep>();` | Yes | Yes | No |
+| `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Examples:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Yes | Yes | Yes |
+| `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Example:<br>`services.AddSingleton<MyDep>();` | Yes | No | No |
+| `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Examples:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | No | Yes | Yes |
+| `AddSingleton(new {IMPLEMENTATION})`<br>Examples:<br>`services.AddSingleton(new MyDep());`<br>`services.AddSingleton(new MyDep("A string!"));` | No | No | Yes |
 
 For more information on type disposal, see the [Disposal of services](#disposal-of-services) section. A common scenario for multiple implementations is [mocking types for testing](xref:test/integration-tests#inject-mock-services).
 
