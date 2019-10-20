@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ContactManager.Pages.Contacts
 {
+    #region snippet
     [AllowAnonymous]
     public class Details2Model : DI_BasePageModel
     {
@@ -22,7 +23,6 @@ namespace ContactManager.Pages.Contacts
 
         public Contact Contact { get; set; }
 
-        #region snippet
         public async Task<IActionResult> OnGetAsync(int id)
         {
             Contact = await Context.Contact.FirstOrDefaultAsync(m => m.ContactId == id);
@@ -51,6 +51,6 @@ namespace ContactManager.Pages.Contacts
 
             return Page();
         }
-        #endregion
     }
+    #endregion
 }
