@@ -206,6 +206,47 @@ For example, the previous `BadgeEntryHandler` could be rewritten as follows:
 
 ## Accessing MVC request context in handlers
 
+::: moniker range=">= aspnetcore-3.0"
+
+<!--
+    Questions:
+
+    1. Is the code shown below a valid demonstration?
+    2. Should this just assume endpoint-routing, or should it also cover that disabling endpoint-routing gives the 2.2 behavior?
+    3. Should this call out that filters can also be accessed directly from the Metadata collection?
+       However, I wonder if that kind of detail would be better placed in the MVC pages. The sample code here might be just a way of "getting started" with this stuff.
+    4. Should there be a suggestion of injecting IHttpContextAccessor for non-MVC stuff like HttpRequest?
+-->
+
+```csharp
+if (context.Resource is Endpoint endpoint)
+{
+    var actionDescriptor = endpoint.Metadata.GetMetadata<ActionDescriptor>();
+
+    if (actionDescriptor != null)
+    {
+        // Examine MVC-specific things like routing data.
+    }
+
+    var controllerActionDescriptor = endpoint.Metadata.GetMetadata<ControllerActionDescriptor>();
+
+    if (controllerActionDescriptor != null)
+    {
+        // Examine controller-specific things like its name.
+    }
+
+    var pageActionDescriptor = endpoint.Metadata.GetMetadata<PageActionDescriptor>();
+
+    if (pageActionDescriptor != null)
+    {
+        // Examine page-specific things like its path.
+    }
+}
+```
+
+::: moniker-end
+::: moniker range="< aspnetcore-3.0"
+
 The `HandleRequirementAsync` method you implement in an authorization handler has two parameters: an `AuthorizationHandlerContext` and the `TRequirement` you are handling. Frameworks such as MVC or Jabbr are free to add any object to the `Resource` property on the `AuthorizationHandlerContext` to pass extra information.
 
 For example, MVC passes an instance of [AuthorizationFilterContext](/dotnet/api/?term=AuthorizationFilterContext) in the `Resource` property. This property provides access to `HttpContext`, `RouteData`, and everything else provided by MVC and Razor Pages.
@@ -220,3 +261,5 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
     // Examine MVC-specific things like routing data.
 }
 ```
+
+::: moniker-end
