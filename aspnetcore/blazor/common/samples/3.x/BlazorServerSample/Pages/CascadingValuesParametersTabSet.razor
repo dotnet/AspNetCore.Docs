@@ -126,7 +126,6 @@ namespace BlazorSample.UIInterfaces
 <p>The descendent <code>Tab</code> components capture the containing <code>TabSet</code> as a cascading parameter, so the <code>Tab</code> components add themselves to the <code>TabSet</code> and coordinate on which <code>Tab</code> is active.</p>
 
 <pre><code>@@using BlazorSample.UIInterfaces
-@@implements IDisposable
 @@implements ITab
 
 &lt;li&gt;
@@ -150,11 +149,6 @@ namespace BlazorSample.UIInterfaces
     protected override void OnInitialized()
     {
         ContainerTabSet.AddTab(this);
-    }
-
-    public void Dispose()
-    {
-        ContainerTabSet.RemoveTab(this);
     }
 
     private void Activate()

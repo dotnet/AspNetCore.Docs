@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/05/2019
+ms.date: 10/20/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -953,6 +953,9 @@ If a component implements <xref:System.IDisposable>, the [Dispose method](/dotne
     }
 }
 ```
+
+> [!NOTE]
+> Calling `StateHasChanged` in `Dispose` isn't recommended.
 
 ## Routing
 
