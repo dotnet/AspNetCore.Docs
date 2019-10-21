@@ -21,7 +21,7 @@
                 "exampleJsFunctions.showPrompt",
                 "What's your name?");
         // displayWelcome is implemented in wwwroot/exampleJsInterop.js
-        await JSRuntime.InvokeAsync<string>(
+        await JSRuntime.InvokeVoidAsync(
                 "exampleJsFunctions.displayWelcome",
                 $"Hello {name}! Welcome to Blazor!");
     }
@@ -67,7 +67,7 @@
 </button>
 
 @code {
-    public async void TriggerNetInstanceMethod()
+    public async Task TriggerNetInstanceMethod()
     {
         var exampleJsInterop = new ExampleJsInterop(JSRuntime);
         await exampleJsInterop.CallHelloHelperSayHello("Blazor");
