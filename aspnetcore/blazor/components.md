@@ -954,6 +954,9 @@ If a component implements <xref:System.IDisposable>, the [Dispose method](/dotne
 }
 ```
 
+> [!NOTE]
+> Calling `StateHasChanged` in `Dispose` isn't supported. `StateHasChanged` might be invoked as part of the renderer being torn down. Requesting UI updates at that point isn't supported.
+
 ## Routing
 
 Routing in Blazor is achieved by providing a route template to each accessible component in the app.
