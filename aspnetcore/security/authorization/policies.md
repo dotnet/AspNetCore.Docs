@@ -218,6 +218,8 @@ For example, the previous `BadgeEntryHandler` could be rewritten as follows:
     4. Should there be a suggestion of injecting IHttpContextAccessor for non-MVC stuff like HttpRequest?
 -->
 
+The following code shows how to access MVC request context in handlers
+
 ```csharp
 if (context.Resource is Endpoint endpoint)
 {
