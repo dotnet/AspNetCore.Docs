@@ -955,7 +955,7 @@ If a component implements <xref:System.IDisposable>, the [Dispose method](/dotne
 ```
 
 > [!NOTE]
-> Calling `StateHasChanged` in `Dispose` isn't recommended.
+> Calling `StateHasChanged` in `Dispose` isn't supported. `StateHasChanged` might be invoked as part of the renderer being torn down. Requesting UI updates at that point isn't supported.
 
 ## Routing
 
