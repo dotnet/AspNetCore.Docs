@@ -40,7 +40,7 @@ Get started with Blazor:
 
    5\. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
-   6\. Press **<kbd>Ctrl</kbd>+<kbd>F5</kbd>** to run the app.
+   6\. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
 
    > [!NOTE]
    > If you installed the Blazor Visual Studio extension for a prior preview release of ASP.NET Core Blazor (Preview 6 or earlier), you can uninstall the extension. Installing the Blazor templates in a command shell is now sufficient to surface the templates in Visual Studio.
