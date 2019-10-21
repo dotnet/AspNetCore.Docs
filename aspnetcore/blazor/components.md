@@ -1041,9 +1041,9 @@ namespace BlazorApp.Pages
 
 ::: moniker range="< aspnetcore-3.1"
 
-## Base class inheritance for a "code-behind" experience
+## Specify a component base class
 
-Component files mix HTML markup and C# processing code in the same file. The `@inherits` directive can be used to provide Blazor apps with a "code-behind" experience that separates component markup from processing code.
+The `@inherits` directive can be used to specify a base class for a component.
 
 The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) shows how a component can inherit a base class, `BlazorRocksBase`, to provide the component's properties and methods.
 
