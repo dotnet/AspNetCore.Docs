@@ -1,28 +1,26 @@
-﻿using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Authorization;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using System.Net;
 
-namespace ClientIpAspNetCore.Filters
+namespace ClientIpAspNetCore
 {
-    public class ClientIdCheckFilter : ActionFilterAttribute
+    public class ClientIpCheckPageFilter : IPageFilter
     {
         private readonly ILogger _logger;
         private readonly string _safelist;
 
-        public ClientIdCheckFilter
+        public ClientIpCheckPageFilter
             (ILoggerFactory loggerFactory, IConfiguration configuration)
         {
-            _logger = loggerFactory.CreateLogger("ClientIdCheckFilter");
+            _logger = loggerFactory.CreateLogger("ClientIdCheckPageFilter");
             _safelist = configuration["AdminSafeList"];
         }
 
-        public override void OnActionExecuting(ActionExecutingContext context)
+        public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
             var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
             _logger.LogInformation(
@@ -52,8 +50,14 @@ namespace ClientIpAspNetCore.Filters
                 context.Result = new StatusCodeResult(401);
                 return;
             }
+        }
 
-            base.OnActionExecuting(context);
+        public void OnPageHandlerExecuted(PageHandlerExecutedContext context)
+        {
+        }
+
+        public void OnPageHandlerSelected(PageHandlerSelectedContext context)
+        {
         }
     }
 }
