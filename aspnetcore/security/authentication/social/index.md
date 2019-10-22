@@ -1,7 +1,8 @@
 ---
 title: Facebook, Google, and external provider authentication in ASP.NET Core
 author: rick-anderson
-description: This tutorial demonstrates how to build an ASP.NET Core 2.x app using OAuth 2.0 with external authentication providers.
+description: This tutorial demonstrates how to build an ASP.NET Core app using OAuth 2.0 with external authentication providers.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/21/2019
@@ -9,9 +10,9 @@ uid: security/authentication/social/index
 ---
 # Facebook, Google, and external provider authentication in ASP.NET Core
 
-::: moniker range=">= aspnetcore-3.0"
-
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+::: moniker range=">= aspnetcore-3.0"
 
 This tutorial demonstrates how to build an ASP.NET Core 3.0 app that enables users to sign in using OAuth 2.0 with credentials from external authentication providers.
 
@@ -117,8 +118,6 @@ To create a password and sign in using your email that you set during the sign i
 
 ::: moniker-end
 ::: moniker range="< aspnetcore-3.0"
-
-By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial demonstrates how to build an ASP.NET Core 2.2 app that enables users to sign in using OAuth 2.0 with credentials from external authentication providers.
 

@@ -2,6 +2,7 @@
 title: Google external login setup in ASP.NET Core
 author: rick-anderson
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
 ms.date: 10/21/2019
@@ -9,9 +10,9 @@ uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
 
-::: moniker range=">= aspnetcore-3.0"
-
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+::: moniker range=">= aspnetcore-3.0"
 
 This tutorial shows you how to enable users to sign in with their Google account using the ASP.NET Core 3.0 project created on the [previous page](xref:security/authentication/social/index).
 
