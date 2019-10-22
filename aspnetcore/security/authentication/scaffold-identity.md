@@ -182,8 +182,19 @@ To disable user registration:
 
 * Update *Areas/Identity/Pages/Account/Register.cshtml.cs* so users can't register from this endpoint:
 
-[!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
+  [!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
 
+* Update *Areas/Identity/Pages/Account/Register.cshtml* to be consistent with the preceding changes:
+
+  [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
+
+* Remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*
+
+```cshtml
+<p>
+    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+</p>
+```
 
 ## Additional resources
 
