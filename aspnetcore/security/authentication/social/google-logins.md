@@ -80,6 +80,7 @@ The URI segment `/signin-google` is set as the default callback of the Google au
 * Set the `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
 
 ::: moniker-end
+
 ::: moniker range="< aspnetcore-3.0"
 
 [Legacy Google+ APIs have been shut down as of March 7, 2019](https://developers.google.com/+/api-shutdown). Google+ sign in and developers must move to a new Google sign in system. The ASP.NET Core 2.1 and 2.2 packages for Google Authentication have be updated to accommodate the changes. For more information and temporary mitigations for ASP.NET Core, see [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/6486). This tutorial has been updated with the new setup process.
