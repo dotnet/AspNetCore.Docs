@@ -169,7 +169,7 @@ Web host configuration can be created independently of the test classes by inher
 
    To connect to a different database than the in-memory database, change the `UseInMemoryDatabase` call to connect the context to a different database. To use a SQL Server test database:
 
-   * Reference the [Microsoft.EntityFrameworkCore.SqlServer]https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/) NuGet package in the project file.
+   * Reference the [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/) NuGet package in the project file.
    * Call `UseSqlServer` with a connection string to the database.
 
    ```csharp
