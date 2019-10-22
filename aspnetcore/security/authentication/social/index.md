@@ -11,7 +11,7 @@ uid: security/authentication/social/index
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.0"
 
 This tutorial demonstrates how to build an ASP.NET Core 3.0 app that enables users to sign in using OAuth 2.0 with credentials from external authentication providers.
 
@@ -224,4 +224,4 @@ To create a password and sign in using your email that you set during the sign i
 
 * You may want to persist additional data about the user and their access and refresh tokens. For more information, see <xref:security/authentication/social/additional-claims>.
 
-::: moniker-end
+::: moniker-end
