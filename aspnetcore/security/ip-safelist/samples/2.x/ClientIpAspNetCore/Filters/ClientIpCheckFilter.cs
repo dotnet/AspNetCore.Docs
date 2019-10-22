@@ -10,12 +10,12 @@ using Microsoft.Extensions.Logging;
 
 namespace ClientIpAspNetCore.Filters
 {
-    public class ClientIdCheckFilter : ActionFilterAttribute
+    public class ClientIpCheckFilter : ActionFilterAttribute
     {
         private readonly ILogger _logger;
         private readonly string _safelist;
 
-        public ClientIdCheckFilter
+        public ClientIpCheckFilter
             (ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _logger = loggerFactory.CreateLogger("ClientIdCheckFilter");

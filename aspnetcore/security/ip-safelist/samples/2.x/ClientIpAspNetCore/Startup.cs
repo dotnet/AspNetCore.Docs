@@ -34,12 +34,12 @@ namespace ClientIpAspNetCore
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<ClientIdCheckFilter>();
+            services.AddScoped<ClientIpCheckFilter>();
 
             services.AddMvc(options =>
             {
                 options.Filters.Add
-                    (new ClientIdCheckPageFilter
+                    (new ClientIpCheckPageFilter
                         (_loggerFactory, Configuration));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
