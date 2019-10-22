@@ -200,7 +200,7 @@ The position of `@attributes` relative to the position of element attributes is 
 <div @attributes="AdditionalAttributes" extra="5" />
 
 [Parameter(CaptureUnmatchedValues = true)]
-public IDictionary<string,object> AdditionalAttributes { get; set; }
+public IDictionary<string, object> AdditionalAttributes { get; set; }
 ```
 
 The `Child` component's `extra` attribute is set to the right of `@attributes`. The `Parent` component's rendered `<div>` contains `extra="5"` when passed through the additional attribute because the attributes are processed right to left (last to first):
@@ -223,7 +223,7 @@ In the following example, the order of `extra` and `@attributes` is reversed in 
 <div extra="5" @attributes="AdditionalAttributes" />
 
 [Parameter(CaptureUnmatchedValues = true)]
-public IDictionary<string,object> AdditionalAttributes { get; set; }
+public IDictionary<string, object> AdditionalAttributes { get; set; }
 ```
 
 The rendered `<div>` in the `Parent` component contains `extra="10"` when passed through the additional attribute:
