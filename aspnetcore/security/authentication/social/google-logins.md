@@ -12,13 +12,14 @@ uid: security/authentication/google-logins
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
+
 This tutorial shows you how to enable users to sign in with their Google account using the ASP.NET Core 3.0 project created on the [previous page](xref:security/authentication/social/index).
 
 ## Install the latest supporting NuGet package
 
 Add the latest version of the following NuGet Package to your ASP.NET Core project:
 
-- [Microsoft.AspNetCore.Authentication.Google (https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google)
+- [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google)
 
 ## Create a Google API Console project and client ID
 
@@ -76,8 +77,11 @@ The URI segment `/signin-google` is set as the default callback of the Google au
 * This article showed how you can authenticate with Google. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
 * Once you publish the app to Azure, reset the `ClientSecret` in the Google API Console.
 * Set the `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
+
 ::: moniker-end
-::: moniker range="< aspnetcore-3.0"
+
+::: moniker range="< aspnetcore-3.0"
+
 [Legacy Google+ APIs have been shut down as of March 7, 2019](https://developers.google.com/+/api-shutdown). Google+ sign in and developers must move to a new Google sign in system. The ASP.NET Core 2.1 and 2.2 packages for Google Authentication have be updated to accommodate the changes. For more information and temporary mitigations for ASP.NET Core, see [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/6486). This tutorial has been updated with the new setup process.
 
 This tutorial shows you how to enable users to sign in with their Google account using the ASP.NET Core 2.2 project created on the [previous page](xref:security/authentication/social/index).
@@ -138,4 +142,5 @@ The URI segment `/signin-google` is set as the default callback of the Google au
 * This article showed how you can authenticate with Google. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
 * Once you publish the app to Azure, reset the `ClientSecret` in the Google API Console.
 * Set the `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret` as application settings in the Azure portal. The configuration system is set up to read keys from environment variables.
+
 ::: moniker-end
