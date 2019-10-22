@@ -2,7 +2,6 @@
 title: Persist additional claims and tokens from external providers in ASP.NET Core
 author: guardrex
 description: Learn how to establish additional claims and tokens from external providers.
-monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/15/2019
