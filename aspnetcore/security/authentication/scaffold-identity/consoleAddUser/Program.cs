@@ -23,7 +23,7 @@ namespace WebApplication1
 
                 try
                 {
-                    var context = services.GetRequiredService<ApplicationDbContext>();
+                    var context = services.GetRequiredService<AppDbCntx>();
                     context.Database.Migrate();
 
                     var config = host.Services.GetRequiredService<IConfiguration>();

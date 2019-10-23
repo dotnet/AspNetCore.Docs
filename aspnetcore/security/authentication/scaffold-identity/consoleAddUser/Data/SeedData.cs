@@ -13,8 +13,8 @@ namespace ContactManager.Data
 
         public static async Task Initialize(IServiceProvider serviceProvider, string userList)
         {
-            using (var context = new ApplicationDbContext(
-                serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
+            using (var context = new AppDbCntx(
+                serviceProvider.GetRequiredService<DbContextOptions<AppDbCntx>>()))
             {
                 var userPW = GetNextUserGeneratePW(userList);
                 while (userPW.user != null)
