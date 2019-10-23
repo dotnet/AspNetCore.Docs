@@ -5,18 +5,23 @@ using System;
 using System.Threading.Tasks;
 using WebApplication1.Data;
 
-// dotnet aspnet-codegenerator razorpage -m Contact -dc ApplicationDbContext -outDir Pages\Contacts --referenceScriptLibraries
 namespace ContactManager.Data
 {
     #region snippet
     public static class SeedData
     {
-        public static async Task Initialize(IServiceProvider serviceProvider, string testUserPw)
+        public static async Task Initialize(IServiceProvider serviceProvider, string userList)
         {
             using (var context = new ApplicationDbContext(
                 serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
             {
-                var adminID = await EnsureUser(serviceProvider, testUserPw, "admin@contoso.com");
+                var userPW = GetNextUserGeneratePW(userList);
+                while (userPW.user != null)
+                {
+                    var userID = await EnsureUser(serviceProvider, userPW.password, userPW.user);
+                    NotifyUser(userPW);
+                    userPW = GetNextUserGeneratePW(userList);
+                }
             }
         }
 
@@ -38,11 +43,21 @@ namespace ContactManager.Data
 
             if (user == null)
             {
-                throw new Exception("The password is probably not strong enough!");
+                throw new Exception("Create user failed");
             }
 
             return user.Id;
         }
+        #endregion
+
+        private static (string password, string user) GetNextUserGeneratePW(string userList)
+        {
+            return (password: "strong password", user: "useralias");
+        }
+
+        private static void NotifyUser((string password, string user) userPW)
+        {
+            throw new NotImplementedException();
+        }
     }
-    #endregion
 }

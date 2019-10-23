@@ -205,9 +205,12 @@ Provide a mechanism to add users outside the web app. Options to add users inclu
 * A dedicated admin web app.
 * A console app.
 
-In the code that follows, use `dotnet user-secrets set SeedUserPW <pw>` to set the password for the user account that is added. For more information, see [Secret Manager tool](xref:security/app-secrets).
+In the code that follows:
 
-The following code shows a console app for adding a user:
+* A list of users is read into memory.
+* A strong unique password is generated for each user.
+* The user is added to the Identity database.
+* The user is notified and told to change the password.
 
 [!code-csharp[](scaffold-identity/consoleAddUser/Program.cs?name=snippet)]
 
