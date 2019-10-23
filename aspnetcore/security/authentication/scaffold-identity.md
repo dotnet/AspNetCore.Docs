@@ -211,11 +211,11 @@ To disable user registration:
   * Remove the code and links from the cshtml file.
   * Remove the confirmation code from the `PageModel`:
 
-  ```
-[AllowAnonymous]
+  ```csharp
+   [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel
     {
-        public IActionResult OnGet(string email)
+        public IActionResult OnGet()
         {  
             return Page();
         }
