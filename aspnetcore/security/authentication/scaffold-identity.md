@@ -170,14 +170,22 @@ Register an `IEmailSender` implementation, for example:
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet)]
 
+<!--
+uld option: Use Local DB, not SQLite
+
+dotnet new webapp -au Individual -uld -o RPauth
+cd RPauth
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
+-->
 ## Disable register page
 
 To disable user registration:
 
-* Scaffold Identity. Include Account.Register and Account.Login. For example:
+* Scaffold Identity. Include Account.Register, Account.Login, and Account.RegisterConfirmation. For example:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files "Account.Register;Account.Login"
+   dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
   ```
 
 * Update *Areas/Identity/Pages/Account/Register.cshtml.cs* so users can't register from this endpoint:
@@ -198,6 +206,22 @@ To disable user registration:
 *@
 ```
 
+* Update the *Areas/Identity/Pages/Account/RegisterConfirmation* page.
+
+  * Remove the code and links from the cshtml file.
+  * Remove the confirmation code from the `PageModel`:
+
+  ```
+[AllowAnonymous]
+    public class RegisterConfirmationModel : PageModel
+    {
+        public IActionResult OnGet(string email)
+        {  
+            return Page();
+        }
+    }
+  ```
+  
 ### Use another app to add users
 
 Provide a mechanism to add users outside the web app. Options to add users include:
@@ -205,7 +229,7 @@ Provide a mechanism to add users outside the web app. Options to add users inclu
 * A dedicated admin web app.
 * A console app.
 
-In the code that follows:
+The following code outlines one approach to adding users:
 
 * A list of users is read into memory.
 * A strong unique password is generated for each user.
@@ -214,7 +238,7 @@ In the code that follows:
 
 [!code-csharp[](scaffold-identity/consoleAddUser/Program.cs?name=snippet)]
 
-The following code shows the `SeedData` class that adds a user:
+The following code outlines adding a user:
 
 [!code-csharp[](scaffold-identity/consoleAddUser/Data/SeedData.cs?name=snippet)]
 

@@ -7,9 +7,10 @@ using WebApplication1.Data;
 
 namespace ContactManager.Data
 {
-    #region snippet
     public static class SeedData
     {
+        #region snippet
+
         public static async Task Initialize(IServiceProvider serviceProvider, string userList)
         {
             using (var context = new ApplicationDbContext(
