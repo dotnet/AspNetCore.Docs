@@ -174,7 +174,7 @@ Register an `IEmailSender` implementation, for example:
 
 To disable user registration:
 
-* Scaffold the Identity, include Account.Register and Account.Login. For example:
+* Scaffold Identity. Include Account.Register and Account.Login. For example:
 
   ```dotnetcli
   dotnet aspnet-codegenerator identity -dc MyWeb.Data.ApplicationDbContext --files "Account.Register;Account.Login"
