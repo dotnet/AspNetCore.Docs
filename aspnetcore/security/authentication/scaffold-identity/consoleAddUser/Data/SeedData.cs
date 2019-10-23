@@ -19,7 +19,8 @@ namespace ContactManager.Data
                 var userPW = GetNextUserGeneratePW(userList);
                 while (userPW.user != null)
                 {
-                    var userID = await EnsureUser(serviceProvider, userPW.password, userPW.user);
+                    var userID = await EnsureUser(serviceProvider, userPW.password, 
+                                                  userPW.user);
                     NotifyUser(userPW);
                     userPW = GetNextUserGeneratePW(userList);
                 }
