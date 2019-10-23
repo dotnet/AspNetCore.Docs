@@ -262,7 +262,7 @@ The <xref:System.ComponentModel.DataAnnotations> namespace provides a set of bui
 
 Consider the `Customer` model:
 
-[!code-cs[](index/sample/RazorPagesContacts/Data/Customer.cs)]
+[!code-cs[](index/3.0sample/RazorPagesContacts/Models/Customer.cs)]
 
 Using the following *Create.cshtml* view file:
 
