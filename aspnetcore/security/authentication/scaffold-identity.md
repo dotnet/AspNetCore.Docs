@@ -213,7 +213,7 @@ The following code shows a console app for adding a user:
 
 The following code shows the `SeedData` class that adds a user:
 
-[!code-csharp[](scaffold-identity/consoleAddUser/Program.cs?name=snippet)]
+[!code-csharp[](scaffold-identity/consoleAddUser/Data/SeedData.cs?name=snippet)]
 
 A similar approach can be followed for production scenarios.
 

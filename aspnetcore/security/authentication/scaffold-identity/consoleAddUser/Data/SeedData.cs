@@ -16,9 +16,6 @@ namespace ContactManager.Data
             using (var context = new ApplicationDbContext(
                 serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
             {
-                // Password is set with the following:
-                // dotnet user-secrets set SeedUserPW <pw>
-
                 var adminID = await EnsureUser(serviceProvider, testUserPw, "admin@contoso.com");
             }
         }
