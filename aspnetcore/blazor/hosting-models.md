@@ -5,7 +5,7 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 10/23/2019
 uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
@@ -161,7 +161,17 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 
 Rendering server components from a static HTML page isn't supported.
 
+::: moniker range=">= aspnetcore-3.1"
+
+When `RenderMode` is `ServerPrerendered`, the renderer waits until the client has completed the intial render of static HTML before rendering the final component. If a [lifecycle method](xref:blazor/components#lifecycle-methods) for initializing the component (`OnInitialized{Async}`) is present, the method is executed *twice*. This can have the effect that data changes in the UI when the component is finally rendered.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.1"
+
 The client reconnects to the server with the same state that was used to prerender the app. If the app's state is still in memory, the component state isn't rerendered after the SignalR connection is established.
+
+::: moniker-end
 
 ### Render stateful interactive components from Razor pages and views
 
