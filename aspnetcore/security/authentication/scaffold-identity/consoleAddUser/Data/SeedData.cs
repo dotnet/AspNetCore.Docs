@@ -50,14 +50,21 @@ namespace ContactManager.Data
         }
         #endregion
 
+        static int cnt;
+
         private static (string password, string user) GetNextUserGeneratePW(string userList)
         {
-            return (password: "strong password", user: "useralias");
+            if (cnt++ > 0)
+                return (password: null, user: null);
+
+
+            return (password: "A Str0ng Pa$$w0rd !", user: "joe@example.com");
         }
 
         private static void NotifyUser((string password, string user) userPW)
         {
-            throw new NotImplementedException();
+            return;
+            // Notify user
         }
     }
 }
