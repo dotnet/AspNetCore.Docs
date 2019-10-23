@@ -126,7 +126,9 @@ This tutorial demonstrates how to build an ASP.NET Core 2.2 app that enables use
 ![Social media icons for Facebook, Twitter, Google plus, and Windows](index/_static/social.png)
 
 Enabling users to sign in with their existing credentials:
+
 * Is convenient for the users.
+
 * Shifts many of the complexities of managing the sign-in process onto a third party. 
 
 For examples of how social logins can drive traffic and customer conversions, see case studies by [Facebook](https://www.facebook.com/unsupportedbrowser) and [Twitter](https://dev.twitter.com/resources/case-studies).
