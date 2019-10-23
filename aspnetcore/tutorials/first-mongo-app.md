@@ -232,7 +232,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
    The preceding `BookstoreDatabaseSettings` class is used to store the *appsettings.json* file's `BookstoreDatabaseSettings` property values. The JSON and C# property names are named identically to ease the mapping process.
 
-1. Add the following highlighted code to `Startup.ConfigureServices`:
+1. Add the following highlighted code to `Startup.ConfigureServices` located in `Startup.cs`:
 
    [!code-csharp[](first-mongo-app/samples_snapshot/3.x/SampleApp/Startup.ConfigureServices.AddDbSettings.cs?highlight=3-7)]
 
@@ -582,8 +582,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
    The preceding `BookstoreDatabaseSettings` class is used to store the *appsettings.json* file's `BookstoreDatabaseSettings` property values. The JSON and C# property names are named identically to ease the mapping process.
 
-1. Add the following highlighted code to `Startup.ConfigureServices`:
-
+1. Add the following highlighted code to `Startup.ConfigureServices` located in `Startup.cs`:
    [!code-csharp[](first-mongo-app/samples_snapshot/2.x/SampleApp/Startup.ConfigureServices.AddDbSettings.cs?highlight=3-7)]
 
    In the preceding code:
