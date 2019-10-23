@@ -188,13 +188,34 @@ To disable user registration:
 
   [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
 
-* Remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*
+* Comment out or remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*
 
 ```cshtml
+@*
 <p>
     <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
 </p>
+*@
 ```
+
+### Use another app to add users
+
+Provide a mechanism to add users outside the web app. Options to add users include:
+
+* A dedicated admin web app.
+* A console app.
+
+In the code that follows, use `dotnet user-secrets set SeedUserPW <pw>` to set the password for the user account that is added. For more information, see [Secret Manager tool](xref:security/app-secrets).
+
+The following code shows a console app for adding a user:
+
+[!code-csharp[](scaffold-identity\consoleAddUser\Program.cs?name=snippet)]
+
+The following code shows the `SeedData` class that adds a user:
+
+[!code-csharp[](scaffold-identity\consoleAddUser\Program.cs?name=snippet)]
+
+A similar approach can be followed for production scenarios.
 
 ## Additional resources
 
