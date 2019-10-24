@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using ContactManager.Data;
+using System.Collections.Generic;
 
 namespace WebApplication1
 {
@@ -27,8 +28,7 @@ namespace WebApplication1
                     context.Database.Migrate();
 
                     var config = host.Services.GetRequiredService<IConfiguration>();
-
-                    var userList = config["userList"];
+                    var userList = config.GetSection("userList").Get<List<string>>();
 
                     SeedData.Initialize(services, userList).Wait();
                 }
