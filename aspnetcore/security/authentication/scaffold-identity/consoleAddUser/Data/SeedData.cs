@@ -16,13 +16,15 @@ namespace ContactManager.Data
             using (var context = new AppDbCntx(
                 serviceProvider.GetRequiredService<DbContextOptions<AppDbCntx>>()))
             {
-                var userPW = GetNextUserGeneratePW(userList);
-                while (userPW.user != null)
+                while (true)
                 {
-                    var userID = await EnsureUser(serviceProvider, userPW.password, 
+                    var userPW = GetNextUserGeneratePW(userList);
+                    if (userPW.user == null)
+                        break;
+
+                    var userID = await EnsureUser(serviceProvider, userPW.password,
                                                   userPW.user);
                     NotifyUser(userPW);
-                    userPW = GetNextUserGeneratePW(userList);
                 }
             }
         }
