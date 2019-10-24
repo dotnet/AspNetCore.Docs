@@ -1001,13 +1001,13 @@ These keys and values are loaded in the sample app using the Memory Configuratio
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=5-12,23)]
+[!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=5-12,22)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=5-12,23)]
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=5-12,22)]
 
 ::: moniker-end
 
@@ -1185,7 +1185,7 @@ An `AddEFConfiguration` extension method permits adding the configuration source
 
 The following code shows how to use the custom `EFConfigurationProvider` in *Program.cs*:
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=30-31)]
+[!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=29-30)]
 
 ::: moniker-end
 
@@ -1221,7 +1221,7 @@ An `AddEFConfiguration` extension method permits adding the configuration source
 
 The following code shows how to use the custom `EFConfigurationProvider` in *Program.cs*:
 
-[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=30-31)]
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=29-30)]
 
 ::: moniker-end
 
