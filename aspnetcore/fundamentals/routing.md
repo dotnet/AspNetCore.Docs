@@ -591,10 +591,10 @@ Complex segments (for example `[Route("/x{token}y")]`) are processed by matching
 The following links provide information on configuring endpoint metadata:
 
 * [Enable Cors with endpoint routing](xref:security/cors#enable-cors-with-endpoint-routing)
-* [`IAuthorizationPolicyProvider` sample](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Security/samples/CustomPolicyProvider) using custom `[MinimumAgeAuthorize]` Attribute.
-* [Test authentication with the `[Authorize]` attribute](xref:security/authentication/identity#test-identity)
-* [Selecting the scheme with the `[Authorize]` attribute](xref:security/authorization/limitingidentitybyscheme#selecting-the-scheme-with-the-authorize-attribute)
-* [Applying policies using the `[Authorize]` attribute](xref:security/authorization/policies#applying-policies-to-mvc-controllers)
+* [IAuthorizationPolicyProvider sample](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Security/samples/CustomPolicyProvider) using a custom `[MinimumAgeAuthorize]` attribute
+* [Test authentication with the [Authorize] attribute](xref:security/authentication/identity#test-identity)
+* [Selecting the scheme with the [Authorize] attribute](xref:security/authorization/limitingidentitybyscheme#selecting-the-scheme-with-the-authorize-attribute)
+* [Applying policies using the [Authorize] attribute](xref:security/authorization/policies#applying-policies-to-mvc-controllers)
 * <xref:security/authorization/roles>
 
 ::: moniker-end
