@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 10/08/2019
+ms.date: 10/24/2019
 ms.custom: "mvc, seodec18"
 uid: razor-pages/ui-class
 ---
@@ -22,13 +22,13 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/cla
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio **File** menu, select **New** > **Project**.
-* Select **ASP.NET Core Web Application**.
-* Name the library (for example, "RazorClassLib") > **OK**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
-* Verify **ASP.NET Core 3.0** or later is selected.
-* Select **Razor Class Library** > **OK**.
+* From the Visual Studio **File** menu, select **New**, then select **Project**.
+* Select **ASP.NET Core Web Application**.	* Select **Razor Class Library**, then select **Next**.
+* Name the library (for example, "RazorClassLib") > **OK**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.	* Name the library (for example, "RazorClassLib"), then select **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
+* Verify **ASP.NET Core 3.0** or later is selected.	* Verify **ASP.NET Core 3.0** or later is selected. The **Razor Class Library** should remain selected.
+* Select **Razor Class Library** > **OK**.	* Select **Support pages and views**, then select **Create**.
 
-The Razor class library (RCL) template defaults to Razor component development by default. A template option in Visual Studio provides template support for pages and views.
+The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** template option in Visual Studio provides template support for pages and views.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
