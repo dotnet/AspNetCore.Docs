@@ -8,12 +8,12 @@ using System.Net;
 
 namespace ClientIpAspNetCore
 {
-    public class ClientIdCheckPageFilter : IPageFilter
+    public class ClientIpCheckPageFilter : IPageFilter
     {
         private readonly ILogger _logger;
         private readonly string _safelist;
 
-        public ClientIdCheckPageFilter
+        public ClientIpCheckPageFilter
             (ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _logger = loggerFactory.CreateLogger("ClientIdCheckPageFilter");
