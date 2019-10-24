@@ -586,6 +586,17 @@ Complex segments (for example `[Route("/x{token}y")]`) are processed by matching
 <!-- While that code is no longer used by ASP.NET Core for complex segment matching, it provides a good match to the current algorithm. The [current code](https://github.com/aspnet/AspNetCore/blob/91514c9af7e0f4c44029b51f05a01c6fe4c96e4c/src/Http/Routing/src/Matching/DfaMatcherBuilder.cs#L227-L244) is too abstracted from matching to be useful for understanding complex segment matching.
 -->
 
+## Configuring endpoint metadata
+
+The following links provide information on configuring endpoint metadata:
+
+* [Enable Cors with endpoint routing](https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-3.0#enable-cors-with-endpoint-routing)
+* [`IAuthorizationPolicyProvider` sample](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Security/samples/CustomPolicyProvider) using custom `[MinimumAgeAuthorize]` Attribute.
+* [Test authentication with the `[Authorize]` attribute](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.0&tabs=visual-studio#test-identity)
+* [Selecting the scheme with the `[Authorize]` attribute](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/limitingidentitybyscheme?view=aspnetcore-3.0&tabs=aspnetcore2x#selecting-the-scheme-with-the-authorize-attribute)
+* [Applying policies using the `[Authorize]` attribute](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-3.0#applying-policies-to-mvc-controllers)
+* <xref:security/authorization/roles>
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.2"
