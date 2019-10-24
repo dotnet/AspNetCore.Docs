@@ -10,7 +10,8 @@ namespace ContactManager.Data
     {
         #region snippet
 
-        public static async Task Initialize(IServiceProvider serviceProvider, List<string> userList)
+        public static async Task Initialize(IServiceProvider serviceProvider,
+                                            List<string> userList)
         {
             var userManager = serviceProvider.GetService<UserManager<IdentityUser>>();
 
@@ -24,7 +25,7 @@ namespace ContactManager.Data
         }
 
         private static async Task<string> EnsureUser(UserManager<IdentityUser> userManager,
-                                                    string userName, string userPassword)
+                                                     string userName, string userPassword)
         {
             var user = await userManager.FindByNameAsync(userName);
 
