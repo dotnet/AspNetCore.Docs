@@ -677,8 +677,7 @@ In the `ComplexDataModel` migration class, update the `Up` method:
 
 Add the following highlighted code. The new code goes after the `.CreateTable( name: "Department"` block:
 
-[!code-csharp[](intro/samples/cu30snapshots/5-complex/Migrations/
-ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=23-31)]
+[!code-csharp[](intro/samples/cu30snapshots/5-complex/Migrations/ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=23-31)]
 
 With the preceding changes, existing `Course` rows will be related to the "Temp" department after the `ComplexDataModel.Up` method runs.
 
