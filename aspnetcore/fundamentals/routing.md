@@ -593,9 +593,61 @@ The following links provide information on configuring endpoint metadata:
 * [Enable Cors with endpoint routing](xref:security/cors#enable-cors-with-endpoint-routing)
 * [IAuthorizationPolicyProvider sample](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Security/samples/CustomPolicyProvider) using a custom `[MinimumAgeAuthorize]` attribute
 * [Test authentication with the [Authorize] attribute](xref:security/authentication/identity#test-identity)
+* <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>
 * [Selecting the scheme with the [Authorize] attribute](xref:security/authorization/limitingidentitybyscheme#selecting-the-scheme-with-the-authorize-attribute)
 * [Applying policies using the [Authorize] attribute](xref:security/authorization/policies#applying-policies-to-mvc-controllers)
 * <xref:security/authorization/roles>
+
+<a name="hostmatch"></a>
+
+## Host matching in routes
+
+The following code uses `RequireHost` to require the specified host on the route:
+
+```csharp
+public void Configure(IApplicationBuilder app)
+{
+    app.UseRouting();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapGet("/", context => context.Response.WriteAsync("Hi Contoso!"))
+            .RequireHost("contoso.com");
+        endpoints.MapGet("/", context => context.Response.WriteAsync("Hi AdventureWorks!"))
+            .RequireHost("adventure-works.com");
+        endpoints.MapHealthChecks("/healthz").RequireHost("*:8080");
+    });
+}
+```
+
+The following code uses the `[Host]` attribute to require the specified host on the controller:
+
+```csharp
+[Host("contoso.com", "adventure-works.com")]
+public class HomeController : Controller
+{
+    private readonly ILogger<HomeController> _logger;
+
+    public HomeController(ILogger<HomeController> logger)
+    {
+        _logger = logger;
+    }
+
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    [Host("example.com:8080")]
+    public IActionResult Privacy()
+    {
+        return View();
+    }
+
+}
+```
+
+When the `[Host]` attribute is applied to both the controller and action method, 
 
 ::: moniker-end
 
