@@ -23,10 +23,10 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/cla
 # [Visual Studio](#tab/visual-studio)
 
 * From the Visual Studio **File** menu, select **New**, then select **Project**.
-* Select **ASP.NET Core Web Application**.	* Select **Razor Class Library**, then select **Next**.
-* Name the library (for example, "RazorClassLib") > **OK**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.	* Name the library (for example, "RazorClassLib"), then select **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
-* Verify **ASP.NET Core 3.0** or later is selected.	* Verify **ASP.NET Core 3.0** or later is selected. The **Razor Class Library** should remain selected.
-* Select **Razor Class Library** > **OK**.	* Select **Support pages and views**, then select **Create**.
+* Select **Razor Class Library**, then select **Next**.
+* Name the library (for example, "RazorClassLib"), then select **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
+* Verify **ASP.NET Core 3.0** or later is selected. The **Razor Class Library** should remain selected.
+* Select **Support pages and views**, then select **Create**.
 
 The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** template option in Visual Studio provides template support for pages and views.
 
