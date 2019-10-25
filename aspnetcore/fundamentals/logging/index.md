@@ -804,18 +804,24 @@ The [Microsoft.Extensions.Logging.EventSource](https://www.nuget.org/packages/Mi
 logging.AddEventSourceLogger();
 ```
 
-The Event Source Provider is added automatically when `CreateDefaultBuilder` is called to build the host.
+The Event Source provider is added automatically when `CreateDefaultBuilder` is called to build the host.
 
 ::: moniker range=">= aspnetcore-3.0"
 
 #### dotnet trace tooling
 
-The [dotnet-trace](/dotnet/core/diagnostics/dotnet-trace) tool allows you to consume Event Source Provider data.
+The [dotnet-trace](/dotnet/core/diagnostics/dotnet-trace) tool allows you to consume Event Source provider data.
 
 General syntax:
 
 ```dotnetcli
-dotnet trace collect -p {pid} --providers Microsoft-Extensions-Logging:{Keyword}:{Event Level}:FilterSpecs={Logger Category 1}:{Event Level 1};{Logger Category 2}:{Event Level 2}; ... {Logger Category N}:{Event Level N}
+dotnet trace collect -p {pid} 
+    --providers Microsoft-Extensions-Logging:{Keyword}:{Event Level}
+        :FilterSpecs=
+            {Logger Category 1}:{Event Level 1};
+            {Logger Category 2}:{Event Level 2};
+            ...
+            {Logger Category N}:{Event Level N}
 ```
 
 | Keyword | Description |
@@ -833,6 +839,8 @@ dotnet trace collect -p {pid} --providers Microsoft-Extensions-Logging:{Keyword}
 | 3           | `Warning`       |
 | 4           | `Informational` |
 | 5           | `Verbose`       |
+
+`FilterSpecs` entries for `{Logger Category}` and `{Event Level}` represent additional log filtering conditions. Separate `FilterSpecs` entries with a semicolon (`;`).
 
 Example:
 
