@@ -54,6 +54,7 @@
       "feedback_product_url": "https://github.com/aspnet/Home/blob/master/CONTRIBUTING.md",
       "feedback_system": "GitHub",
       "ms.prod": "aspnet-core",
+      "no-loc": "[Blazor]",
       "uhfHeaderId": "MSDocsHeader-DotNet",
       "searchScope": [
         "ASP.NET Core"
