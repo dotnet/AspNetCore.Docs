@@ -2,7 +2,6 @@
 title: Reusable Razor UI in class libraries with ASP.NET Core
 author: Rick-Anderson
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
-monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 10/24/2019
 ms.custom: "mvc, seodec18"
@@ -25,7 +24,7 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/cla
 * From Visual Studio select **Create new a new project**.
 * Select **Razor Class Library** > **Next**.
 * Name the library (for example, "RazorClassLib"), > **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
-* For ASP.NET 3.0, select **Support pages and views** if you need to support views. By default, only Razor Pages are supported. Select **Create**.
+* Select **Support pages and views** if you need to support views. By default, only Razor Pages are supported. Select **Create**.
 
 The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views.
 
