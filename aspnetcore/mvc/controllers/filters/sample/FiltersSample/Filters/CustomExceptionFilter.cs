@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 namespace FiltersSample.Filters
 {
     #region snippet_ExceptionFilter
-    public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
+    public class CustomExceptionFilter : IExceptionFilter
     {
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IModelMetadataProvider _modelMetadataProvider;
 
-        public CustomExceptionFilterAttribute(
+        public CustomExceptionFilter(
             IHostingEnvironment hostingEnvironment,
             IModelMetadataProvider modelMetadataProvider)
         {
@@ -20,7 +20,7 @@ namespace FiltersSample.Filters
             _modelMetadataProvider = modelMetadataProvider;
         }
 
-        public override void OnException(ExceptionContext context)
+        public void OnException(ExceptionContext context)
         {
             if (!_hostingEnvironment.IsDevelopment())
             {
