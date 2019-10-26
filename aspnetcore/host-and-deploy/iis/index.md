@@ -522,7 +522,7 @@ To host an ASP.NET Core app as a sub-app under another ASP.NET Core app:
 
 The assignment of a separate app pool to the sub-app is a requirement when using the in-process hosting model.
 
-For more information on the in-process hosting model and configuring the ASP.NET Core Module, see <xref:host-and-deploy/aspnet-core-module> and <xref:host-and-deploy/aspnet-core-module>.
+For more information on the in-process hosting model and configuring the ASP.NET Core Module, see <xref:host-and-deploy/aspnet-core-module>.
 
 ## Configuration of IIS with web.config
 
