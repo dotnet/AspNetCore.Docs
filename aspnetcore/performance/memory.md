@@ -8,9 +8,9 @@ ms.date: 10/26/2019
 uid: performance/memory
 ---
 
-https://docs.microsoft.com/en-us/visualstudio/profiling/memory-usage-without-debugging2
-
 # Memory management and garbage collection (GC) in ASP.NET Core
+
+https://docs.microsoft.com/en-us/visualstudio/profiling/memory-usage-without-debugging2
 
 By [Sébastien Ros](https://github.com/sebastienros)
 
@@ -60,12 +60,12 @@ Use the following tools to analyze memory usage:
 
 ### Detecting memory issues
 
-__Task Manager__ can be used to get an idea of how much memory an ASP.NET app is using. The __Task Manager__ memory value:
+**Task Manager** can be used to get an idea of how much memory an ASP.NET app is using. The **Task Manager** memory value:
 
 * Represents the amount of memory that is used by the ASP.NET process.
 * Includes the app's living objects and other memory consumers such as native memory usage.
 
-If the __Task Manager__ memory value increases indefinitely and never flattens out, the apps has a memory leak. The following sections demonstrate and explain several memory usage patterns.
+If the **Task Manager** memory value increases indefinitely and never flattens out, the apps has a memory leak. The following sections demonstrate and explain several memory usage patterns.
 
 ## Sample display memory usage app
 
@@ -75,7 +75,7 @@ The [MemoryLeak sample app](https://github.com/sebastienros/memoryleak) is avail
 * An Index page that displays the memory and GC data. The Index page is refreshed every second.
 * An API controller that provides various memory load patterns.
 
-Run MemoryLeak. Allocated memory slowly increases until a GC occurs. Memory increases because the tool allocates custom object to capture data. The following image shows the MemoryLeak Index page when a Gen 0 GC occurs. The chart shows 0 RPS because no API endpoints from the API controller have been called.
+Run MemoryLeak. Allocated memory slowly increases until a GC occurs. Memory increases because the tool allocates custom object to capture data. The following image shows the MemoryLeak Index page when a Gen 0 GC occurs. The chart shows 0 RPS (Requests per second) because no API endpoints from the API controller have been called.
 
 ![preceding chart](memory/_static/0RPS.png)
 
@@ -96,55 +96,68 @@ public ActionResult<string> GetBigString()
 }
 ```
 
-The following graph is generated with a relatively small load of 5K RPS in order to see how the memory allocations are impacted by the GC.
+The following graph is generated with a relatively small load in to show how memory allocations are impacted by the GC.
 
 ![preceding chart](memory/_static/bigstring.png)
 
-In this example, the GC collect the generation 0 instances about every two seconds once the allocations reach a threshold of a little above 300 MB. The working set is stable at around 500 MB, and the CPU usage is low.
+The preceding chart shows:
 
-What this graph shows is how on a relatively low requests throughput the memory consumption is very stable to an amount that has been chosen by the GC.
+* 5K RPS (Requests per second).
+* Generation 0 GC collections occur about every two seconds once the allocations get above 300 MB.
+* The working set is constant at approximately 500 MB.
+* CPU is 12%.
+* The memory consumption and release (through GC) is stable.
 
-The following chart is taken once the load is increased to the max throughput that can be handled by the machine.
+The following chart is taken at the max throughput that can be handled by the machine.
 
 ![preceding chart](memory/_static/bigstring2.png)
 
-There are some notable points:
-- The collections happen much more frequently, as in many times per second
-- There are now generation 1 collections, which is due to the fact that we allocated much more of them in the same time interval
-- The working set is still stable
+The preceding chart shows:
 
-What we see is that as long as the CPU is not over-utilized, the garbage collection can deal with a high number of allocations.
+* 22 RPS
+* Generation 0 GC collections occur several times per second.
+* Generation 1 collections are triggered because the app allocated significantly more memory per second.
+* The working set is constant at approximately 500 MB.
+* CPU is 33%.
+* The memory consumption and release (through GC) is stable.
+* The CPU is not over-utilized, therefor the garbage collection can keep up with a high number of allocations.
 
 #### Workstation GC vs. Server GC
 
-The .NET Garbage Collector can work in two different modes, namely the __Workstation GC__ and the __Server GC__. As their names suggest, they are optimized for different workloads. ASP.NET applications default to the Server GC mode, while desktop applications use the Workstation GC mode.
+The .NET Garbage Collector has two different modes:
 
-To visualize the actual impact of these modes, we can force the Workstation GC on our web application by using the `ServerGarbageCollection` parameter in the project file (`.csproj`). This will require the application to be rebuilt.
+*  **Workstation GC** : Optimized for the desktop.
+*  **Server GC**. The default GC for ASP.NET Core apps. Optimized for the server.
+
+The GC mode can be set explicitly in the project file or in the *runtimeconfig.json* file of the published app. The following markup shows setting `ServerGarbageCollection` in the project file:
 
 ```xml
-    <ServerGarbageCollection>false</ServerGarbageCollection>
+<PropertyGroup>
+  <ServerGarbageCollection>true</ServerGarbageCollection>
+</PropertyGroup>
 ```
 
-It can also be done by setting the `System.GC.Server` property in the `runtimeconfig.json` file of the published application.
+Changing `ServerGarbageCollection` in the project file requires the app to be rebuilt.
 
-Here is the memory profile under a 5K RPS for the Workstation GC.
+**Note:** [Server garbage collection is **not** available on machines with a single core](https://msdn.microsoft.com/en-us/library/system.runtime.gcsettings.isservergc(v=vs.110).aspx).
+
+The following image shows the memory profile under a 5K RPS using the Workstation GC.
 
 ![preceding chart](memory/_static/workstation.png)
 
-The differences are drastic:
-- The working set came from 500MB to 70MB
-- The GC does generation 0 collections multiple times per second instead of every two seconds
-- The GC threshold went from 300MB to 10MB
+The differences between this chart and the server version are significant:
 
-On a typical web server environment the CPU resource is more critical than memory, hence using the Server GC is better suited. However, some server scenarios might be more adapted for a Workstation GC, for instance on a high density hosting several web application where memory becomes a scarce resource. 
+- The working set drops from 500MB to 70MB.
+- The GC does generation 0 collections multiple times per second instead of every two seconds.
+- The GC threshold went from 300MB to 10MB.
 
-> Note: On machines with a single core, the GC mode will always be Workstation.
+On a typical web server environment, CPU usage is more important than memory, therefore the Server GC is better. If memory utilization is high and CPU usage is relatively low, the Workstation GC might be more performant. For example, high density hosting several web apps where memory is scarce.
 
-#### Eternal references
+#### Persistent object references
 
-Even though the garbage collector does a good job at preventing memory to grow, if objects are simply held live by the user code GC cannot release them. If the amount of memory used by such objects keeps increasing, it’s called a managed memory leak.
+The GC cannot free objects that are referenced. Objects that are referenced but no longer needed result in a memory leak. If the app frequently allocates objects and fails to free them after they are no longer needed, memory usage will increase over time.
 
-The following API creates a 10KB `String` instance and returns it to the client. The difference with the first example is that this instance is referenced by a static member, which means it will never available for collection.
+The following API creates a 10KB `String` instance and returns it to the client. The difference with the first example is that this instance is referenced by a static member, which means it's never available for collection.
 
 ```csharp
 private static ConcurrentBag<string> _staticStrings = new ConcurrentBag<string>();
@@ -158,21 +171,28 @@ public ActionResult<string> GetStaticString()
 }
 ```
 
-This is a typical user code memory leak as the memory will keep increasing until the process crashes with an `OutOfMemory` exception.
+The preceding code:
+
+* Is an example of a typical memory leak.
+* With frequent calls, causes app memory to increases until the process crashes with an `OutOfMemory` exception.
 
 ![preceding chart](memory/_static/eternal.png)
 
-What we can see on this chart once we start issuing requests on this new endpoint is that the working set is no more stable and increases constantly. During that increase the GC tries to free memory as the memory pressure grows, by calling a generation 2 collection. This succeeds and frees some of it, but this can't stop the working set from increasing.
+In the preceding image:
 
-Some scenarios require to keep object references indefinitely, in which case a way to mitigate this issue would be to use the `WeakReference` class in order to keep a reference on an object that can still be collected under memory pressure. This is what the default implementation of `IMemoryCache` does in ASP.NET Core. 
+* Load testing the `/api/staticstring` endpoint causes a linear increase in memory.
+* The GC tries to free memory as the memory pressure grows, by calling a generation 2 collection.
+* The GC cannot free the leaked memory. Allocated and working set increase with time.
+
+Some scenarios, such as caching, require object references to be held until memory pressure forces them to be released. The <xref:System.WeakReference> class can be used for this type of caching code. A `WeakReference` object is collected under memory pressures. The default implementation of <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> uses `WeakReference`.
 
 #### Native memory
 
-Memory leaks don't have to be caused by eternal references to managed objects. Some .NET objects rely on native memory to function. This memory cannot be collected by the GC and the .NET objects need to free it using native code.
+Some .NET Core objects rely on native memory. Native memory can **not** be collected by the GC. The .NET object using native memory must free it using native code.
 
-Fortunately .NET provides the `IDisposable` interface to let developers release this native memory proactively. And even if `Dispose()` is not called in time, classes usually do it automatically when the finalizer runs... unless the class is not correctly implemented.
+.NET provides the <xref:System.IDisposable> interface to let developers release native memory. Even if <xref:System.IDisposable.Dispose*> is not called, correctly implemented classes call `Dispose` when the [finalizer](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/destructors) runs.
 
-Let's take a look at this code for instance:
+Consider the following code:
 
 ```csharp
 [HttpGet("fileprovider")]
@@ -183,23 +203,33 @@ public void GetFileProvider()
 }
 ```
 
-`PhysicaFileProvider` is a managed class, so any instance will be collected at the end of the request.
+[PhysicaFileProvider](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider?view=dotnet-plat-ext-3.0) is a managed class, so any instance will be collected at the end of the request.
 
 Here is the resulting memory profile while invoking this API continuously.
 
 ![preceding chart](memory/_static/fileprovider.png)
 
-This chart shows an obvious issue with the implementation of this class, as it keeps increasing memory usage. This is a known issue that is being tracked here https://github.com/aspnet/Home/issues/3110
+This chart shows an obvious issue with the implementation of this class, as it keeps increasing memory usage. This is a known problem that is being tracked in [this issue](https://github.com/aspnet/Home/issues/3110).
 
-The same issue could be easily happening in user code, by not releasing the class correctly or forgetting to invoke the `Dispose()` method of the dependent objects which should be disposed. 
+The same leak could be happen in user code, by one of the following:
 
-#### Large Objects Heap
+* Not releasing the class correctly.
+* Forgetting to invoke the `Dispose`method of the dependent objects which should be disposed.
 
-As memory gets allocated and freed continuously, fragmentation in the memory can happen. This is an issue as objects have to be allocated in a contiguous block of memory. To mitigate this issue, whenever the garbage collector frees some memory, it will try to defragment it. This process is called __compaction__.
+#### Large objects heap
 
-The problem that compaction faces is that the bigger the object, the slower it is to move it. There is a size after which an object will take so much time to be moved that it is not as efficient anymore to move it. For this reason the GC creates a special memory zone for these _large_ objects, called the __Large Object Heap__ (LOH). Object that are greater than 85,000 bytes (not 85 KB) are placed there, not compacted, and eventually released during generation 2 collections. But another effect is that whenever the LOH is full, it will trigger an automatic generation 2 collection, which is inherently slower as it triggers a collection on all other generations too.
+Frequent memory allocation/free cycles can fragment memory, especially when allocating large chunks of memory. Objects are allocated in contiguous blocks of memory. To mitigate fragmentation, when the GC frees memory, it will try to defragment it. This process is called **compaction**. Compaction involves moving objects. Moving big objects imposes a performance penalty. For this reason the GC creates a special memory zone for  _large_ objects, called the [large object heap](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap) (LOH). Object that are greater than 85,000 bytes (approximately 83 KB) are:
 
-Here is an API that illustrates this behavior:
+* Placed on the LOH.
+* Not compacted.
+* Eventually released during generation 2 collections.
+
+When the LOH is full, the GC will trigger an automatic generation 2 collection. Generation 2 collections:
+
+* Are inherently slow on their own.
+* Additionally incur the cost of triggering a collection on all other generations.
+
+The following API that illustrates this behavior:
 
 ```csharp
 [HttpGet("loh/{size=85000}")]
@@ -209,21 +239,27 @@ public int GetLOH1(int size)
 }
 ```
 
-The following chart shows the memory profile of calling this endpoint with a `84,975` bytes array, under maximum load:
+The following chart shows the memory profile of calling the `/api/loh/84975` endpoint, under maximum load:
 
 ![preceding chart](memory/_static/loh1.png)
 
-And then the chart when calling the same endpoint but using _just_ one more byte, i.e. `84,976` bytes (the `byte[]` structure has some little overhead on top of the actual bytes serialization).
+The following chart shows the memory profile of calling the `/api/loh/84976` endpoint, allocating *just one more byte*:
 
 ![preceding chart](memory/_static/loh2.png)
 
-The working set is about the same on both scenarios, at a steady 450 MB. But what we notice is that instead of having mostly generation 0 collections, we instead get generation 2 collections, which require more CPU time and directly impacts the throughput which decreases from 35K to 18K RPS, __almost halving it__.
+Note: The `byte[]` structure has some overhead on top of the actual bytes serialization.
 
-This shows that very large objects should be avoided. As an example the __Response Caching__ middleware in ASP.NET Core split the cache entries in block of a size lower than 85,000 bytes to handle this scenario.
+Comparing the two preceding charts:
+
+* The working set is similar for both scenarios, about 450 MB. But what we notice is that instead of having mostly generation 0 collections, we instead get generation 2 collections, which require more CPU time and directly impacts the throughput which decreases from 35K to 18K RPS, **almost halving it**.
+
+This shows that very large objects should be avoided. As an example the **Response Caching** middleware in ASP.NET Core split the cache entries in block of a size lower than 85,000 bytes to handle this scenario.
 
 Here are some links to the specific implementation handling this behavior 
 - https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Streams/StreamUtilities.cs#L16
 - https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Internal/MemoryResponseCache.cs#L55
+
+For more information, see the [large object heap](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap).
 
 #### HttpClient
 
@@ -305,7 +341,7 @@ With some load we can see generation 0 collections happening around every second
 
 To optimize this code we can pool the `byte` buffer by using the `ArrayPool<>` class. A static instance is reused across requests. 
 
-The special part of this scenario is that we are returning a pooled object from the API, which means we lose control of it as soon as we return from the method, and we can't release it. To solve that we need to encapsulate the pooled array in a disposable object and then register this special object with `HttpContext.Response.RegisterForDispose()`. This method will take care of calling `Dispose()` on the target object so that it's only released when the HTTP request is done.
+The special part of this scenario is that we are returning a pooled object from the API, which means we lose control of it as soon as we return from the method, and we can't release it. To solve that we need to encapsulate the pooled array in a disposable object and then register this special object with `HttpContext.Response.RegisterForDispose()`. This method will take care of calling `Dispose`on the target object so that it's only released when the HTTP request is done.
 
 ```csharp
 private static ArrayPool<byte> _arrayPool = ArrayPool<byte>.Create();
