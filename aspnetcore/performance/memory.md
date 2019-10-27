@@ -1,7 +1,7 @@
 ---
 title: Memory management and patterns in ASP.NET Core
 author: rick-anderson
-description: Learn how memory is managed in ASP.NET Core and the c.
+description: Learn how memory is managed in ASP.NET Core and how the garbage collector (GC) works.
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/26/2019
@@ -10,9 +10,7 @@ uid: performance/memory
 
 # Memory management and garbage collection (GC) in ASP.NET Core
 
-https://docs.microsoft.com/en-us/visualstudio/profiling/memory-usage-without-debugging2
-
-By [Sébastien Ros](https://github.com/sebastienros)
+By [Sébastien Ros](https://github.com/sebastienros) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Memory management is complex, even in a managed framework like .NET. Analyzing and understanding memory issues can be challenging.
 
@@ -55,8 +53,8 @@ Dedicated tools can help analyzing memory usage:
 
 Use the following tools to analyze memory usage:
 
-* [Analyze memory usage without the Visual Studio debugger](https://docs.microsoft.com/en-us/visualstudio/profiling/memory-usage-without-debugging2)
-* [Profile memory usage in Visual Studio](https://docs.microsoft.com/en-us/visualstudio/profiling/memory-usage)
+* [Analyze memory usage without the Visual Studio debugger](/visualstudio/profiling/memory-usage-without-debugging2)
+* [Profile memory usage in Visual Studio](/visualstudio/profiling/memory-usage)
 
 ### Detecting memory issues
 
@@ -190,7 +188,7 @@ Some scenarios, such as caching, require object references to be held until memo
 
 Some .NET Core objects rely on native memory. Native memory can **not** be collected by the GC. The .NET object using native memory must free it using native code.
 
-.NET provides the <xref:System.IDisposable> interface to let developers release native memory. Even if <xref:System.IDisposable.Dispose*> is not called, correctly implemented classes call `Dispose` when the [finalizer](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/destructors) runs.
+.NET provides the <xref:System.IDisposable> interface to let developers release native memory. Even if <xref:System.IDisposable.Dispose*> is not called, correctly implemented classes call `Dispose` when the [finalizer](/dotnet/csharp/programming-guide/classes-and-structs/destructors) runs.
 
 Consider the following code:
 
@@ -203,7 +201,7 @@ public void GetFileProvider()
 }
 ```
 
-[PhysicaFileProvider](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider?view=dotnet-plat-ext-3.0) is a managed class, so any instance will be collected at the end of the request.
+[PhysicaFileProvider](/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider?view=dotnet-plat-ext-3.0) is a managed class, so any instance will be collected at the end of the request.
 
 Here is the resulting memory profile while invoking this API continuously.
 
@@ -218,7 +216,7 @@ The same leak could be happen in user code, by one of the following:
 
 #### Large objects heap
 
-Frequent memory allocation/free cycles can fragment memory, especially when allocating large chunks of memory. Objects are allocated in contiguous blocks of memory. To mitigate fragmentation, when the GC frees memory, it will try to defragment it. This process is called **compaction**. Compaction involves moving objects. Moving big objects imposes a performance penalty. For this reason the GC creates a special memory zone for  _large_ objects, called the [large object heap](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap) (LOH). Object that are greater than 85,000 bytes (approximately 83 KB) are:
+Frequent memory allocation/free cycles can fragment memory, especially when allocating large chunks of memory. Objects are allocated in contiguous blocks of memory. To mitigate fragmentation, when the GC frees memory, it will try to defragment it. This process is called **compaction**. Compaction involves moving objects. Moving big objects imposes a performance penalty. For this reason the GC creates a special memory zone for  _large_ objects, called the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Object that are greater than 85,000 bytes (approximately 83 KB) are:
 
 * Placed on the LOH.
 * Not compacted.
@@ -226,7 +224,7 @@ Frequent memory allocation/free cycles can fragment memory, especially when allo
 
 When the LOH is full, the GC will trigger an automatic generation 2 collection. Generation 2 collections:
 
-* Are inherently slow on their own.
+* Are inherently slow.
 * Additionally incur the cost of triggering a collection on all other generations.
 
 The following API that illustrates this behavior:
@@ -247,29 +245,34 @@ The following chart shows the memory profile of calling the `/api/loh/84976` end
 
 ![preceding chart](memory/_static/loh2.png)
 
-Note: The `byte[]` structure has some overhead on top of the actual bytes serialization.
+Note: The `byte[]` structure has overhead bytes. That's why 84,976 bytes triggers the 85,000 limit.
 
 Comparing the two preceding charts:
 
-* The working set is similar for both scenarios, about 450 MB. But what we notice is that instead of having mostly generation 0 collections, we instead get generation 2 collections, which require more CPU time and directly impacts the throughput which decreases from 35K to 18K RPS, **almost halving it**.
+* The working set is similar for both scenarios, about 450 MB.
+* The under LOH requests (84,975 bytes) shows mostly generation 0 collections.
+* The over LOH requests generate constant generation 2 collections. Generation 2 collections are expensive. More CPU is required and throughput drops almost 50%.
 
-This shows that very large objects should be avoided. As an example the **Response Caching** middleware in ASP.NET Core split the cache entries in block of a size lower than 85,000 bytes to handle this scenario.
+For maximum performance, large object use should be minimized. If possible, split up large objects. For example, [Response Caching](xref:performance/caching/response) middleware in ASP.NET Core split the cache entries into blocks less than  85,000 bytes.
 
-Here are some links to the specific implementation handling this behavior 
-- https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Streams/StreamUtilities.cs#L16
-- https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Internal/MemoryResponseCache.cs#L55
+The following links show the ASP.NET Core approach to keeping objects under the LOH limit:
+- [ResponseCaching/Streams/StreamUtilities.cs](https://github.com/aspnet/AspNetCore/blob/v3.0.0/src/Middleware/ResponseCaching/src/Streams/StreamUtilities.cs#L16)
+- [ResponseCaching/MemoryResponseCache.cs](https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Internal/MemoryResponseCache.cs#L55)
 
-For more information, see the [large object heap](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap).
+For more information, see the [large object heap](/dotnet/standard/garbage-collection/large-object-heap).
 
 #### HttpClient
 
-Not specifically a memory leak issue, more of a resource leak one, but this has been seen enough times in user code that it deserved to be mentioned here.
+Incorrectly using <xref:System.Net.Http.HttpClient> can result in a resource leak. System resources, such as database connections, sockets, file handles, etc:
 
-Seasoned .NET developer are used to disposing objects that implement `IDisposable`. Not doing so might result is leaked memory (see previous examples), or other native resources like database connections and file handlers.
+* Are more scarce than memory.
+* Are more problematic when leaked than memory.
 
-But `HttpClient`, even though it implements `IDisposable`, should not be used then disposed on every invocation but reused instead.
+Experienced .NET developers know to call <xref:System.IDisposable.Dispose*> on objects that implement <xref:System.IDisposable>. Not disposing objects that implement `IDisposable` typically results in leaked memory or leaked system resources.
 
-Here is an API endpoint that creates and disposes a new instance on every request.
+`HttpClient` implements `IDisposable`, but should **not** be disposed on every invocation. Rather, `HttpClient` should be reused.
+
+The following endpoint creates and disposes a new  `HttpClient` instance on every request:
 
 ```csharp
 [HttpGet("httpclient1")]
@@ -283,18 +286,23 @@ public async Task<int> GetHttpClient1(string url)
 }
 ```
 
-While putting some load on this endpoint, some error messages are logged:
+Under load, the following error messages are logged:
 
 ```
 fail: Microsoft.AspNetCore.Server.Kestrel[13]
-      Connection id "0HLG70PBE1CR1", Request id "0HLG70PBE1CR1:00000031": An unhandled exception was thrown by the application.
-System.Net.Http.HttpRequestException: Only one usage of each socket address (protocol/network address/port) is normally permitted ---> System.Net.Sockets.SocketException: Only one usage of each socket address (protocol/network address/port) is normally permitted
-   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+      Connection id "0HLG70PBE1CR1", Request id "0HLG70PBE1CR1:00000031":
+      An unhandled exception was thrown by the application.
+System.Net.Http.HttpRequestException: Only one usage of each socket address
+    (protocol/network address/port) is normally permitted --->
+    System.Net.Sockets.SocketException: Only one usage of each socket address
+    (protocol/network address/port) is normally permitted
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port,
+    CancellationToken cancellationToken)
 ```
 
-What happens is that even though the `HttpClient` instances are disposed, the actual network connection will take some time to be released by the operating system. By continuously creating new connections we finally hit _ports exhaustion_ as each client connection requires its own client port.
+Even though the `HttpClient` instances are disposed, the actual network connection takes some time to be released by the operating system. By continuously creating new connections,  _ports exhaustion_  occurs. Each client connection requires its own client port.
 
-The solution is to actually reuse the same `HttpClient` instance like this:
+One way to prevent port exhaustion is to reuse the same `HttpClient` instance:
 
 ```csharp
 private static readonly HttpClient _httpClient = new HttpClient();
@@ -307,21 +315,24 @@ public async Task<int> GetHttpClient2(string url)
 }
 ```
 
-This instance will eventually get released when the application stops.
+The `HttpClient` instance is released when the app stops. This example shows that not every disposable resource should be disposed after each use.
 
-This shows that it's not because a resource is disposable that it needs to be disposed right away.
-
-> Note: there are better ways to handle the lifetime of an `HttpClient` instance since ASP.NET Core 2.1 https://blogs.msdn.microsoft.com/webdev/2018/02/28/asp-net-core-2-1-preview1-introducing-httpclient-factory/
+See the [HTTPClient factory](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/) blog for a better way to handle the lifetime of an `HttpClient` instance.
 
 #### Object pooling
 
-In the previous example we saw how the `HttpClient` instance can be made static and reused by all requests to prevent resource exhaustion.
+The previous example showed how the `HttpClient` instance can be made static and reused by all requests. Reuse prevents running out of resources.
 
-A similar pattern is to use object pooling. The idea is that if an object is expensive to create, then we should reuse its instances to prevent resource allocations. A pool is a collection of pre-initialized objects that can be reserved and released across threads. Pools can define allocation rules like hard limits, predefined sizes, or growth rate.
+Object pooling:
 
-The Nuget package `Microsoft.Extensions.ObjectPool` contains classes that help to manage such pools.
+* Uses the reuse pattern.
+* Is designed for objects that are expensive to create.
 
-To show how beneficial it can be, let's use an API endpoint that instantiates a `byte` buffer that is filled with random numbers on each request:
+A pool is a collection of pre-initialized objects that can be reserved and released across threads. Pools can define allocation rules such as limits, predefined sizes, or growth rate.
+
+The NuGet package [Microsoft.Extensions.ObjectPool](https://www.nuget.org/packages/Microsoft.Extensions.ObjectPool/) contains classes that help to manage such pools.
+
+The following API endpoint instantiates a `byte` buffer that is filled with random numbers on each request:
 
 ```csharp
         [HttpGet("array/{size}")]
@@ -335,13 +346,25 @@ To show how beneficial it can be, let's use an API endpoint that instantiates a 
         }
 ```
 
-With some load we can see generation 0 collections happening around every second.
+The following chart display calling the preceding API with moderate load:
 
 ![preceding chart](memory/_static/array.png)
 
-To optimize this code we can pool the `byte` buffer by using the `ArrayPool<>` class. A static instance is reused across requests. 
+In the preceding chart, generation 0 collections happen approximately once per second.
 
-The special part of this scenario is that we are returning a pooled object from the API, which means we lose control of it as soon as we return from the method, and we can't release it. To solve that we need to encapsulate the pooled array in a disposable object and then register this special object with `HttpContext.Response.RegisterForDispose()`. This method will take care of calling `Dispose`on the target object so that it's only released when the HTTP request is done.
+The preceding code can be optimized by pooling the `byte` buffer by using [`ArrayPool<T>`](xref:System.Buffers.ArrayPool`1). A static instance is reused across requests.
+
+What's different with this approach is that a pooled object is returned from the API. That means:
+
+* The object is out of your control as soon as you return from the method.
+* You can't release the object.
+
+To set up disposal of the object:
+
+* Encapsulate the pooled array in a disposable object.
+* Register the pooled object with [HttpContext.Response.RegisterForDispose](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose*).
+
+`RegisterForDispose` will take care of calling `Dispose`on the target object so that it's only released when the HTTP request is complete.
 
 ```csharp
 private static ArrayPool<byte> _arrayPool = ArrayPool<byte>.Create();
@@ -379,18 +402,9 @@ Applying the same load as the non-pooled version results in the following chart:
 
 ![preceding chart](memory/_static/pooledarray.png)
 
-You can see that the main difference is allocated bytes, and as a consequence much fewer generation 0 collections.
+The main difference is allocated bytes, and as a consequence much fewer generation 0 collections.
 
-## Conclusion
+## Additional resources
 
-Understanding how garbage collection works together with ASP.NET Core can be helpful to investigate memory pressure issues, and ultimately the performance of an application. 
-
-Applying the practices explained in this article should prevent applications from showing signs of memory leaks.
-
-### Reference Articles
-
-To go further in the understanding of how memory management works in .NET, here are some recommended articles.
-
-[Garbage Collection](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/)
-
-[Understanding different GC modes with Concurrency Visualizer](https://blogs.msdn.microsoft.com/seteplia/2017/01/05/understanding-different-gc-modes-with-concurrency-visualizer/)
+* [Garbage Collection](/dotnet/standard/garbage-collection/)
+* [Understanding different GC modes with Concurrency Visualizer](https://blogs.msdn.microsoft.com/seteplia/2017/01/05/understanding-different-gc-modes-with-concurrency-visualizer/)
