@@ -647,7 +647,10 @@ public class HomeController : Controller
 }
 ```
 
-When the `[Host]` attribute is applied to both the controller and action method, 
+When the `[Host]` attribute is applied to both the controller and action method:
+
+* The attribute on the action is used.
+* The controller attribute is ignored.
 
 ::: moniker-end
 
