@@ -173,13 +173,13 @@ To avoid the double-rendering scenario in a Blazor Server app:
 
 The following code demonstrates an updated `WeatherForecastService` in a template-based Blazor Server app that avoids the double rendering:
 
-```cshtml
+```csharp
 public class WeatherForecastService
 {
     private static readonly string[] Summaries = new[]
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild",
-	"Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
     
     public WeatherForecastService(IMemoryCache memoryCache)
