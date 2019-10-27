@@ -114,8 +114,8 @@ To include TypeScript files in an RCL:
 
    ```xml
    <ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
-       CompileTypeScript;
-       $(ResolveCurrentProjectStaticWebAssetsInputs)
+     CompileTypeScript;
+     $(ResolveCurrentProjectStaticWebAssetsInputs)
    </ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
    ```
 
