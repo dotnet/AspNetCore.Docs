@@ -131,8 +131,7 @@ namespace HttpClientFactorySample
                 });
             #endregion
 
-            services.AddControllers()
-                .AddNewtonsoftJson();
+            services.AddControllers();
             services.AddRazorPages();
         }
         
