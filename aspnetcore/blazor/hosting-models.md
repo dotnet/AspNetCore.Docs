@@ -5,7 +5,7 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/23/2019
+ms.date: 10/27/2019
 uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
@@ -163,7 +163,56 @@ Rendering server components from a static HTML page isn't supported.
 
 ::: moniker range=">= aspnetcore-3.1"
 
-When `RenderMode` is `ServerPrerendered`, the renderer waits until the client has completed the intial render of static HTML before rendering the final component. If a [lifecycle method](xref:blazor/components#lifecycle-methods) for initializing the component (`OnInitialized{Async}`) is present, the method is executed *twice*. This can have the effect that data changes in the UI when the component is finally rendered.
+When `RenderMode` is `ServerPrerendered`, the renderer waits until the client has completed the intial render of static HTML before rendering the final component. If a [lifecycle method](xref:blazor/components#lifecycle-methods) for initializing the component (`OnInitialized{Async}`) is present, the method is executed *twice*. The first render is made before the final data is received. The second render occurs after the final data is available. This can result in a noticeable change in the data displayed in the UI when the component is finally rendered.
+
+To avoid the double-rendering scenario in a Blazor Server app:
+
+* Pass in an identifier that can be used to cache the state during prerendering and to retrieve the state after the app restarts.
+* Use the identifier during prerendering to save component state.
+* Use the identifier after prerendering to retrieve the cached state.
+
+The following code demonstrates an updated `WeatherForecastService` in a template-based Blazor Server app that avoids the double rendering:
+
+```cshtml
+public class WeatherForecastService
+{
+    private static readonly string[] Summaries = new[]
+	   {
+	      	"Freezing", "Bracing", "Chilly", "Cool", "Mild", 
+        "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+	   };
+    
+    public WeatherForecastService(IMemoryCache memoryCache)
+    {
+        MemoryCache = memoryCache;
+    }
+    
+    public IMemoryCache MemoryCache { get; }
+
+    public Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
+	   {
+        return MemoryCache.GetOrCreateAsync(startDate, async e =>
+        {
+            e.SetOptions(new MemoryCacheEntryOptions
+                {
+                    AbsoluteExpirationRelativeToNow = 
+                        TimeSpan.FromSeconds(30)
+                });
+
+            var rng = new Random();
+
+            await Task.Delay(TimeSpan.FromSeconds(10));
+
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = startDate.AddDays(index),
+                TemperatureC = rng.Next(-20, 55),
+                Summary = Summaries[rng.Next(Summaries.Length)]
+            }).ToArray();
+        });
+	   }
+}
+```
 
 ::: moniker-end
 
