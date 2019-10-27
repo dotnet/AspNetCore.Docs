@@ -557,7 +557,7 @@ In the following example:
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.1"
+::: moniker range="<= aspnetcore-2.1"
 
 By [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak), and [Steve Gordon](https://github.com/stevejgordon)
 
