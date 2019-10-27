@@ -177,10 +177,10 @@ The following code demonstrates an updated `WeatherForecastService` in a templat
 public class WeatherForecastService
 {
     private static readonly string[] Summaries = new[]
-	   {
-	      	"Freezing", "Bracing", "Chilly", "Cool", "Mild", 
-        "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-	   };
+    {
+        "Freezing", "Bracing", "Chilly", "Cool", "Mild",
+	"Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+    };
     
     public WeatherForecastService(IMemoryCache memoryCache)
     {
@@ -190,14 +190,14 @@ public class WeatherForecastService
     public IMemoryCache MemoryCache { get; }
 
     public Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
-	   {
+    {
         return MemoryCache.GetOrCreateAsync(startDate, async e =>
         {
             e.SetOptions(new MemoryCacheEntryOptions
-                {
-                    AbsoluteExpirationRelativeToNow = 
-                        TimeSpan.FromSeconds(30)
-                });
+            {
+                AbsoluteExpirationRelativeToNow = 
+                    TimeSpan.FromSeconds(30)
+            });
 
             var rng = new Random();
 
@@ -210,7 +210,7 @@ public class WeatherForecastService
                 Summary = Summaries[rng.Next(Summaries.Length)]
             }).ToArray();
         });
-	   }
+    }
 }
 ```
 
