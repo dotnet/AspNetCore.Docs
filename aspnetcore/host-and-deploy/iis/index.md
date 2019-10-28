@@ -325,6 +325,10 @@ To obtain an earlier version of the installer:
    * `OPT_NO_SHARED_CONFIG_CHECK=1` &ndash; Disable the check for using an IIS Shared Configuration when the shared configuration (*applicationHost.config*) is on the same machine as the IIS installation. *Only available for ASP.NET Core 2.2 or later Hosting Bundler installers.* For more information, see <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
 1. Restart the system or execute **net stop was /y**, followed by **net start w3svc** from a command shell. Restarting IIS picks up a change to the system PATH, which is an environment variable, made by the installer.
 
+It isn't necessary to manually stop individual sites in IIS when installing the Hosting Bundle. Hosted apps (IIS sites) restart when IIS restarts. Apps start up again when they receive their first request, including from the [Application Initialization Module](#application-initialization-module-and-idle-timeout).
+
+ASP.NET Core adopts roll-forward behavior for patch releases of shared framework packages. When apps hosted by IIS restart with IIS, the apps load with the latest patch releases of their referenced packages when they receive their first request. If IIS isn't restarted, apps restart and exhibit roll-forward behavior when their worker processes are recycled and they receive their first request.
+
 > [!NOTE]
 > For information on IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).
 
