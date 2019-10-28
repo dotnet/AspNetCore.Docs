@@ -5,7 +5,7 @@ description: Discover how to use the options pattern to represent groups of rela
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/11/2019
+ms.date: 10/28/2019
 uid: fundamentals/configuration/options
 ---
 # Options pattern in ASP.NET Core
@@ -132,7 +132,7 @@ In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOpti
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-The `GetSection` extension method requires the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) NuGet package. `Microsoft.Extensions.Options.ConfigurationExtensions` is implicitly referenced in ASP.NET Core apps.
+The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
 
 The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:
 
@@ -548,7 +548,7 @@ In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOpti
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-The `GetSection` extension method requires the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) NuGet package. If the app uses the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later), the package is automatically included.
+The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
 
 The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:
 
@@ -962,7 +962,7 @@ In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOpti
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-The `GetSection` extension method requires the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) NuGet package. If the app uses the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later), the package is automatically included.
+The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
 
 The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:
 
