@@ -152,7 +152,7 @@ The *Pages/Create.cshtml* view file:
 
 The rendered HTML from *Pages/Create.cshtml*:
 
-[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.html)]
+[!code-html[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.html)]
 
 In the previous code, posting the form:
 
