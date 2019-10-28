@@ -12,15 +12,12 @@ uid: performance/memory
 
 By [Sébastien Ros](https://github.com/sebastienros) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Memory management is complex, even in a managed framework like .NET. Analyzing and understanding memory issues can be challenging.
+Memory management is complex, even in a managed framework like .NET. Analyzing and understanding memory issues can be challenging. This article:
 
-This article contains information on the resolution of multiple "Garbage collector not working" issues. Most of the problems are a result of misunderstanding of how memory consumption and release works or how memory is measured.
+* Was motivated by many *memory leak* and *GC not working* issues. Most of these issues were caused by not understanding how memory consumption works in .NET Core, or not understanding how it's measured.
+* Demonstrates problematic memory use, and suggests alternative approaches.
 
-<!-- >
-To help .NET developers better understand their applications, we need to understand how memory management works in ASP.NET Core, how to detect memory related issues, and how to prevent common mistakes.
--->
-
-## How garbage collection (GC) works in ASP.NET Core
+## How garbage collection (GC) works in .NET Core
 
 The GC allocates heap segments where each segment is a contiguous range of memory. Objects placed in the heap are categorized into one of 3 generations: 0, 1, or 2. The generation determines the frequency the GC attempts to release memory on managed objects that are no longer referenced by the app. Lower numbered generations are GC'd more frequently.
 
@@ -67,11 +64,12 @@ If the **Task Manager** memory value increases indefinitely and never flattens o
 
 ## Sample display memory usage app
 
-The [MemoryLeak sample app](https://github.com/sebastienros/memoryleak) is available on GitHub. The MemoryLeak app contains:
+The [MemoryLeak sample app](https://github.com/sebastienros/memoryleak) is available on GitHub. The MemoryLeak app:
 
-* A diagnostic controller that gathers real-tine memory and GC data for the app.
-* An Index page that displays the memory and GC data. The Index page is refreshed every second.
-* An API controller that provides various memory load patterns.
+* Includes a diagnostic controller that gathers real-tine memory and GC data for the app.
+* Has an Index page that displays the memory and GC data. The Index page is refreshed every second.
+* Contains an API controller that provides various memory load patterns.
+* Is not a supported tool, however, it can be used to display memory usage patterns of ASP.NET Core apps.
 
 Run MemoryLeak. Allocated memory slowly increases until a GC occurs. Memory increases because the tool allocates custom object to capture data. The following image shows the MemoryLeak Index page when a Gen 0 GC occurs. The chart shows 0 RPS (Requests per second) because no API endpoints from the API controller have been called.
 
