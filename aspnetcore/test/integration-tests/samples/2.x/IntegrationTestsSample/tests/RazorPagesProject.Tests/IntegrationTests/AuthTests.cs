@@ -111,7 +111,7 @@ namespace RazorPagesProject.Tests
                     builder.ConfigureTestServices(services =>
                     {
                         services.AddAuthentication("Test")
-                            .AddScheme<AuthenticationSchemeOptions, AuthTestHandler>(
+                            .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>(
                                 "Test", options => {});
                     });
                 })
@@ -133,9 +133,9 @@ namespace RazorPagesProject.Tests
     }
 
     #region snippet4
-    public class AuthTestHandler : AuthenticationHandler<AuthenticationSchemeOptions>
+    public class TestAuthHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
-        public AuthTestHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, 
+        public TestAuthHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, 
             ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)
             : base(options, logger, encoder, clock)
         {
