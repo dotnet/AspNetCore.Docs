@@ -4,7 +4,7 @@ author: rick-anderson
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 10/21/2019
+ms.date: 10/28/2019
 uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
@@ -13,14 +13,9 @@ By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://
 
 This tutorial shows you how to enable users to sign in with their Google account using the ASP.NET Core 3.0 project created on the [previous page](xref:security/authentication/social/index).
 
-## Install the latest supporting NuGet package
-
-Add the latest version of the following NuGet Package to your ASP.NET Core project:
-
-- [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google)
-
 ## Create a Google API Console project and client ID
 
+* Install [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google).
 * Navigate to [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/devconsole-project) and select **CONFIGURE A PROJECT**.
 * In the **Configure your OAuth client** dialog, select **Web server**.
 * In the **Authorized redirect URIs** text entry box, set the redirect URI. For example, `https://localhost:44312/signin-google`
