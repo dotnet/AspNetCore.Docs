@@ -34,12 +34,9 @@ namespace HttpClientFactorySample.GitHub
 
             response.EnsureSuccessStatusCode();
 
-            using (var responseStream =
-                    await response.Content.ReadAsStreamAsync())
-            {
-                return await JsonSerializer.DeserializeAsync
-                    <IEnumerable<GitHubIssue>>(responseStream);
-            }
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            return await JsonSerializer.DeserializeAsync
+                <IEnumerable<GitHubIssue>>(responseStream);
         }
     }
     #endregion

@@ -36,12 +36,9 @@ namespace HttpClientFactorySample.Pages
 
             if (response.IsSuccessStatusCode)
             {
-                using (var responseStream =
-                    await response.Content.ReadAsStreamAsync())
-                {
-                    PullRequests = await JsonSerializer.DeserializeAsync
+                using var responseStream = await response.Content.ReadAsStreamAsync();
+                PullRequests = await JsonSerializer.DeserializeAsync
                         <IEnumerable<GitHubPullRequest>>(responseStream);
-                }
             }
             else
             {

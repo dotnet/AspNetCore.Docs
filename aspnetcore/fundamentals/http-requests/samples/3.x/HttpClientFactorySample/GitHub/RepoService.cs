@@ -22,12 +22,9 @@ namespace HttpClientFactorySample.GitHub
 
             response.EnsureSuccessStatusCode();
 
-            using (var responseStream =
-                    await response.Content.ReadAsStreamAsync())
-            {
-                return await JsonSerializer.DeserializeAsync
-                    <IEnumerable<string>>(responseStream);
-            }
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            return await JsonSerializer.DeserializeAsync
+                <IEnumerable<string>>(responseStream);
         }
     }
     #endregion
