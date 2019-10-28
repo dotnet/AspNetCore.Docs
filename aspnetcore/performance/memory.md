@@ -21,7 +21,7 @@ Memory management is complex, even in a managed framework like .NET. Analyzing a
 
 The GC allocates heap segments where each segment is a contiguous range of memory. Objects placed in the heap are categorized into one of 3 generations: 0, 1, or 2. The generation determines the frequency the GC attempts to release memory on managed objects that are no longer referenced by the app. Lower numbered generations are GC'd more frequently.
 
-Objects are moved from one generation to another based on their lifetime. As objects live longer they are moved into a higher generation. As mentioned previously, higher generations are GC'd less often. Short term lived objects always remain in generation 0. For example, objects that are referenced during the life of a web request are short lived. Application level singletons generally move to generation 1 and eventually 2.
+Objects are moved from one generation to another based on their lifetime. As objects live longer, they are moved into a higher generation. As mentioned previously, higher generations are GC'd less often. Short term lived objects always remain in generation 0. For example, objects that are referenced during the life of a web request are short lived. Application level singletons generally move to generation 1 and eventually 2.
 
 When an ASP.NET Core app starts, the GC:
 
@@ -30,7 +30,7 @@ When an ASP.NET Core app starts, the GC:
 
 The preceding memory allocations are done for performance reasons. The performance benefit comes from heap segments in contiguous memory.
 
-**ASP.NET Core apps allocate a significant amount of memory at startup for better performance .**
+**ASP.NET Core apps allocate a significant amount of memory at startup for better performance.**
 
 ### Call GC.Collect
 
@@ -60,7 +60,7 @@ Use the following tools to analyze memory usage:
 * Represents the amount of memory that is used by the ASP.NET process.
 * Includes the app's living objects and other memory consumers such as native memory usage.
 
-If the **Task Manager** memory value increases indefinitely and never flattens out, the apps has a memory leak. The following sections demonstrate and explain several memory usage patterns.
+If the **Task Manager** memory value increases indefinitely and never flattens out, the app has a memory leak. The following sections demonstrate and explain several memory usage patterns.
 
 ## Sample display memory usage app
 
@@ -82,7 +82,7 @@ The chart displays two values for the memory usage:
 
 ### Transient objects
 
-The following API creates a 10KB `String` instance and returns it to the client. On each request a new object is allocated in memory and written on the response. Strings are stored as UTF-16 characters in .NET so each char takes two bytes in memory.
+The following API creates a 10-KB String` instance and returns it to the client. On each request, a new object is allocated in memory and written on the response. Strings are stored as UTF-16 characters in .NET so each char takes 2 bytes in memory.
 
 ```csharp
 [HttpGet("bigstring")]
@@ -116,13 +116,13 @@ The preceding chart shows:
 * The working set is constant at approximately 500 MB.
 * CPU is 33%.
 * The memory consumption and release (through GC) is stable.
-* The CPU is not over-utilized, therefor the garbage collection can keep up with a high number of allocations.
+* The CPU is not over-utilized, therefore the garbage collection can keep up with a high number of allocations.
 
 #### Workstation GC vs. Server GC
 
 The .NET Garbage Collector has two different modes:
 
-*  **Workstation GC** : Optimized for the desktop.
+*  **Workstation GC: Optimized for the desktop.
 *  **Server GC**. The default GC for ASP.NET Core apps. Optimized for the server.
 
 The GC mode can be set explicitly in the project file or in the *runtimeconfig.json* file of the published app. The following markup shows setting `ServerGarbageCollection` in the project file:
@@ -143,9 +143,9 @@ The following image shows the memory profile under a 5K RPS using the Workstatio
 
 The differences between this chart and the server version are significant:
 
-- The working set drops from 500MB to 70MB.
+- The working set drops from 500 MB to 70 MB.
 - The GC does generation 0 collections multiple times per second instead of every two seconds.
-- The GC threshold went from 300MB to 10MB.
+- The GC threshold went from 300 MB to 10 MB.
 
 On a typical web server environment, CPU usage is more important than memory, therefore the Server GC is better. If memory utilization is high and CPU usage is relatively low, the Workstation GC might be more performant. For example, high density hosting several web apps where memory is scarce.
 
@@ -153,7 +153,7 @@ On a typical web server environment, CPU usage is more important than memory, th
 
 The GC cannot free objects that are referenced. Objects that are referenced but no longer needed result in a memory leak. If the app frequently allocates objects and fails to free them after they are no longer needed, memory usage will increase over time.
 
-The following API creates a 10KB `String` instance and returns it to the client. The difference with the first example is that this instance is referenced by a static member, which means it's never available for collection.
+The following API creates a 10-KB String` instance and returns it to the client. The difference with the first example is that this instance is referenced by a static member, which means it's never available for collection.
 
 ```csharp
 private static ConcurrentBag<string> _staticStrings = new ConcurrentBag<string>();
@@ -205,16 +205,16 @@ Here is the resulting memory profile while invoking this API continuously.
 
 ![preceding chart](memory/_static/fileprovider.png)
 
-This chart shows an obvious issue with the implementation of this class, as it keeps increasing memory usage. This is a known problem that is being tracked in [this issue](https://github.com/aspnet/Home/issues/3110).
+The preceding chart shows an obvious issue with the implementation of this class, as it keeps increasing memory usage. This is a known problem that is being tracked in [this issue](https://github.com/aspnet/Home/issues/3110).
 
 The same leak could be happen in user code, by one of the following:
 
 * Not releasing the class correctly.
-* Forgetting to invoke the `Dispose`method of the dependent objects which should be disposed.
+* Forgetting to invoke the `Dispose`method of the dependent objects that should be disposed.
 
 #### Large objects heap
 
-Frequent memory allocation/free cycles can fragment memory, especially when allocating large chunks of memory. Objects are allocated in contiguous blocks of memory. To mitigate fragmentation, when the GC frees memory, it will try to defragment it. This process is called **compaction**. Compaction involves moving objects. Moving big objects imposes a performance penalty. For this reason the GC creates a special memory zone for  _large_ objects, called the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Object that are greater than 85,000 bytes (approximately 83 KB) are:
+Frequent memory allocation/free cycles can fragment memory, especially when allocating large chunks of memory. Objects are allocated in contiguous blocks of memory. To mitigate fragmentation, when the GC frees memory, it will try to defragment it. This process is called **compaction**. Compaction involves moving objects. Moving large objects imposes a performance penalty. For this reason the GC creates a special memory zone for  _large_ objects, called the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Object that are greater than 85,000 bytes (approximately 83 KB) are:
 
 * Placed on the LOH.
 * Not compacted.
@@ -261,7 +261,7 @@ For more information, see the [large object heap](/dotnet/standard/garbage-colle
 
 #### HttpClient
 
-Incorrectly using <xref:System.Net.Http.HttpClient> can result in a resource leak. System resources, such as database connections, sockets, file handles, etc:
+Incorrectly using <xref:System.Net.Http.HttpClient> can result in a resource leak. System resources, such as database connections, sockets, file handles, etc.:
 
 * Are more scarce than memory.
 * Are more problematic when leaked than memory.
