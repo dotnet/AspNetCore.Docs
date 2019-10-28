@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/20/2019
+ms.date: 10/21/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -185,6 +185,52 @@ To accept arbitrary attributes, define a component parameter using the `[Paramet
 ```
 
 The `CaptureUnmatchedValues` property on `[Parameter]` allows the parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with `CaptureUnmatchedValues`. The property type used with `CaptureUnmatchedValues` must be assignable from `Dictionary<string, object>` with string keys. `IEnumerable<KeyValuePair<string, object>>` or `IReadOnlyDictionary<string, object>` are also options in this scenario.
+
+The position of `@attributes` relative to the position of element attributes is important. When `@attributes` are splatted on the element, the attributes are processed from right to left (last to first). Consider the following example of a component that consumes a `Child` component:
+
+*ParentComponent.razor*:
+
+```cshtml
+<ChildComponent extra="10" />
+```
+
+*ChildComponent.razor*:
+
+```cshtml
+<div @attributes="AdditionalAttributes" extra="5" />
+
+[Parameter(CaptureUnmatchedValues = true)]
+public IDictionary<string, object> AdditionalAttributes { get; set; }
+```
+
+The `Child` component's `extra` attribute is set to the right of `@attributes`. The `Parent` component's rendered `<div>` contains `extra="5"` when passed through the additional attribute because the attributes are processed right to left (last to first):
+
+```html
+<div extra="5" />
+```
+
+In the following example, the order of `extra` and `@attributes` is reversed in the `Child` component's `<div>`:
+
+*ParentComponent.razor*:
+
+```cshtml
+<ChildComponent extra="10" />
+```
+
+*ChildComponent.razor*:
+
+```cshtml
+<div extra="5" @attributes="AdditionalAttributes" />
+
+[Parameter(CaptureUnmatchedValues = true)]
+public IDictionary<string, object> AdditionalAttributes { get; set; }
+```
+
+The rendered `<div>` in the `Parent` component contains `extra="10"` when passed through the additional attribute:
+
+```html
+<div extra="10" />
+```
 
 ## Data binding
 
