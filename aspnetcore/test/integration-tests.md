@@ -754,6 +754,6 @@ The sample app seeds the database with three messages in *Utilities.cs* that tes
 ## Additional resources
 
 * [Unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
-* [Razor Pages unit tests](xref:test/razor-pages-tests)
-* [Middleware](xref:fundamentals/middleware/index)
-* [Test controllers](xref:mvc/controllers/testing)
+* <xref:test/razor-pages-tests>
+* <xref:fundamentals/middleware/index>
+* <xref:mvc/controllers/testing>
