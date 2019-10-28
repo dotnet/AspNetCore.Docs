@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
-using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Security.Claims;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using AngleSharp.Dom.Html;
 using Xunit;
-using RazorPagesProject.Data;
 using RazorPagesProject.Services;
 using RazorPagesProject.Tests.Helpers;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.Extensions.Options;
-using System.Text.Encodings.Web;
-using System.Security.Claims;
-using AngleSharp.Dom.Html;
 
 namespace RazorPagesProject.Tests
 {
@@ -121,6 +119,9 @@ namespace RazorPagesProject.Tests
                 {
                     AllowAutoRedirect = false,
                 });
+
+            client.DefaultRequestHeaders.Authorization = 
+                new AuthenticationHeaderValue("Test");
 
             //Act
             var response = await client.GetAsync("/SecurePage");
