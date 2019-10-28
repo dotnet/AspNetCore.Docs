@@ -161,8 +161,6 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 
 Rendering server components from a static HTML page isn't supported.
 
-::: moniker range=">= aspnetcore-3.1"
-
 When `RenderMode` is `ServerPrerendered`, the component is initially rendered statically as part of the page. Once the browser establishes a connection back to the server, the component is rendered *again*, and the component is now interactive. If a [lifecycle method](xref:blazor/components#lifecycle-methods) for initializing the component (`OnInitialized{Async}`) is present, the method is executed *twice*:
 
 * When the component is prerendered statically.
@@ -218,14 +216,6 @@ public class WeatherForecastService
     }
 }
 ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.1"
-
-The client reconnects to the server with the same state that was used to prerender the app. If the app's state is still in memory, the component state isn't rerendered after the SignalR connection is established.
-
-::: moniker-end
 
 ### Render stateful interactive components from Razor pages and views
 
