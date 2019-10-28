@@ -132,7 +132,7 @@ In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOpti
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-The `GetSection` method requires the `Microsoft.Extensions.Configuration` namespace.
+The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
 
 The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:
 
@@ -548,7 +548,7 @@ In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOpti
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-The `GetSection` method requires the `Microsoft.Extensions.Configuration` namespace.
+The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
 
 The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:
 
@@ -962,7 +962,7 @@ In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOpti
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-The `GetSection` method requires the `Microsoft.Extensions.Configuration` namespace.
+The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
 
 The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:
 
