@@ -222,7 +222,7 @@ To configure the SignalR client in the *Pages/_Host.cshtml* file:
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
-      builder.configureLogging(2); // LogLevel.Information
+      builder.configureLogging("information"); // LogLevel.Information
     }
   });
 </script>
