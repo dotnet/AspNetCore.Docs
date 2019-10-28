@@ -4,22 +4,26 @@ author: rick-anderson
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 06/19/2019
+ms.date: 10/21/2019
 uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[Legacy Google+ APIs have been shut down as of March 7, 2019](https://developers.google.com/+/api-shutdown). Google+ sign in and developers must move to a new Google sign in system. The ASP.NET Core 2.1 and 2.2 packages for Google Authentication have be updated to accommodate the changes. For more information and temporary mitigations for ASP.NET Core, see [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/6486). This tutorial has been updated with the new setup process.
+This tutorial shows you how to enable users to sign in with their Google account using the ASP.NET Core 3.0 project created on the [previous page](xref:security/authentication/social/index).
 
-This tutorial shows you how to enable users to sign in with their Google account using the ASP.NET Core 2.2 project created on the [previous page](xref:security/authentication/social/index).
+## Install the latest supporting NuGet package
+
+Add the latest version of the following NuGet Package to your ASP.NET Core project:
+
+- [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google)
 
 ## Create a Google API Console project and client ID
 
 * Navigate to [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/devconsole-project) and select **CONFIGURE A PROJECT**.
 * In the **Configure your OAuth client** dialog, select **Web server**.
-* In the **Authorized redirect URIs** text entry box, set the redirect URI. For example, `https://localhost:5001/signin-google`
+* In the **Authorized redirect URIs** text entry box, set the redirect URI. For example, `https://localhost:44312/signin-google`
 * Save the **Client ID** and **Client Secret**.
 * When deploying the site, register the new public url from the **Google Console**.
 
@@ -28,7 +32,7 @@ This tutorial shows you how to enable users to sign in with their Google account
 Store sensitive settings such as the Google `Client ID` and `Client Secret` with the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret`:
 
 ```dotnetcli
-dotnet user-secrets set "Authentication:Google:ClientId" "X.apps.googleusercontent.com"
+dotnet user-secrets set "Authentication:Google:ClientId" "<client id>"
 dotnet user-secrets set "Authentication:Google:ClientSecret" "<client secret>"
 ```
 
@@ -40,7 +44,7 @@ You can manage your API credentials and usage in the [API Console](https://conso
 
 Add the Google service to `Startup.ConfigureServices`:
 
-[!code-csharp[](~/security/authentication/social/social-code/StartupGoogle.cs?name=snippet_ConfigureServices&highlight=10-18)]
+[!code-csharp[](~/security/authentication/social/social-code/3.x/StartupGoogle3x.cs?name=snippet_ConfigureServices&highlight=10-18)]
 
 [!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
 
