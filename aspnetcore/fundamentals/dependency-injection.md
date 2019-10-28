@@ -603,6 +603,7 @@ public void ConfigureServices(IServiceCollection services)
 The built-in service container is designed to serve the needs of the framework and most consumer apps. We recommend using the built-in container unless you need a specific feature that the built-in container doesn't support, such as:
 
 * Property injection
+* Interceptors
 * Injection based on name
 * Child containers
 * Custom lifetime management
