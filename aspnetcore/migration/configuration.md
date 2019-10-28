@@ -24,7 +24,7 @@ For this article, we are starting with the partially migrated ASP.NET Core proje
 
 [!code-csharp[](configuration/samples/WebApp1/src/WebApp1/Startup.cs?range=11-16)]
 
-Note that at this point, the *Startup.cs* file will not compile, as we still need to add the following `using` statement:
+Note that at this point, the *Startup.cs* file won't compile, as we still need to add the following `using` statement:
 
 ```csharp
 using Microsoft.Extensions.Configuration;
