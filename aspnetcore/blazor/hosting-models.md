@@ -163,7 +163,12 @@ Rendering server components from a static HTML page isn't supported.
 
 ::: moniker range=">= aspnetcore-3.1"
 
-When `RenderMode` is `ServerPrerendered`, the renderer waits until the client has completed the intial render of static HTML before rendering the final component. If a [lifecycle method](xref:blazor/components#lifecycle-methods) for initializing the component (`OnInitialized{Async}`) is present, the method is executed *twice*. The first render is made before the final data is received. The second render occurs after the final data is available. This can result in a noticeable change in the data displayed in the UI when the component is finally rendered.
+When `RenderMode` is `ServerPrerendered`, the component is initially rendered statically as part of the page. Once the browser establishes a connection back to the server, the component is rendered *again*, and the component is now interactive. If a [lifecycle method](xref:blazor/components#lifecycle-methods) for initializing the component (`OnInitialized{Async}`) is present, the method is executed *twice*:
+
+* When the component is prerendered statically.
+* After the server connection has been established.
+
+This can result in a noticeable change in the data displayed in the UI when the component is finally rendered.
 
 To avoid the double-rendering scenario in a Blazor Server app:
 
