@@ -72,7 +72,7 @@ The following applies to apps using the [Generic Host](xref:fundamentals/host/ge
   * Environment variables using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
   * Command-line arguments using the [Command-line Configuration Provider](#command-line-configuration-provider).
   
-To remove the providers added by `CreateDefaultBuilder`, call `Sources.Clear()` first:
+To remove the providers added by `CreateDefaultBuilder`, call [Clear](xref:System.Collections.Generic.ICollection*) on the [IConfigurationBuilder.Sources](xref:Microsoft.Extensions.Configuration.IConfigurationBuilder.Sources) first:
 
 ```csharp
 Host.CreateDefaultBuilder(args)
