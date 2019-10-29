@@ -75,11 +75,13 @@ The following applies to apps using the [Generic Host](xref:fundamentals/host/ge
 To remove the providers added by `CreateDefaultBuilder`, call `Sources.Clear()` first:
 
 ```csharp
-.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.Sources.Clear();
-    // Add providers here
-})
+Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration((hostingContext, config) =>
+    {
+        config.Sources.Clear();
+        // Add providers here
+    })
+    ...
 ```
 
 ::: moniker-end
