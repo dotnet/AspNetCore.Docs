@@ -295,7 +295,7 @@ To provide app configuration that can be overridden with command-line arguments,
 
 ### Remove providers added by CreateDefaultBuilder
 
-To remove the providers added by `CreateDefaultBuilder`, call [Clear](xref:System.Collections.Generic.ICollection*) on the [IConfigurationBuilder.Sources](xref:Microsoft.Extensions.Configuration.IConfigurationBuilder.Sources) first:
+To remove the providers added by `CreateDefaultBuilder`, call [Clear](/dotnet/api/system.collections.generic.icollection-1.clear) on the [IConfigurationBuilder.Sources](xref:Microsoft.Extensions.Configuration.IConfigurationBuilder.Sources) first:
 
 ```csharp
 .ConfigureAppConfiguration((hostingContext, config) =>
