@@ -92,6 +92,18 @@ The following applies to apps using the [Web Host](xref:fundamentals/host/web-ho
 
 ::: moniker-end
 
+### Remove default providers
+
+To remove the providers added by `CreateDefaultBuilder`, call `Sources.Clear()` first:
+
+```csharp
+.ConfigureAppConfiguration((hostingContext, config) =>
+{
+    config.Sources.Clear();
+    // Add providers here
+})
+```
+
 ## Security
 
 Adopt the following practices to secure sensitive configuration data:
