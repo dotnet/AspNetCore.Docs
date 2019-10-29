@@ -245,7 +245,7 @@ To test the sample, run the app and send HTTP requests with the following settin
 
 ::: moniker-end
 
-::: moniker range="<= aspnetcore-3.0"
+::: moniker range="< aspnetcore-3.0"
 
 This article explains how to handle JSON Patch requests in an ASP.NET Core web API.
 
