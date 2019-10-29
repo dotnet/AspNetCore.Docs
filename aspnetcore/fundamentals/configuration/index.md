@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2019
+ms.date: 10/29/2019
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -290,6 +290,18 @@ To provide app configuration that can be overridden with command-line arguments,
 {
     // Call other providers here
     config.AddCommandLine(args);
+})
+```
+
+### Remove providers added by CreateDefaultBuilder
+
+To remove the providers added by `CreateDefaultBuilder`, call [Clear](xref:System.Collections.Generic.ICollection*) on the [IConfigurationBuilder.Sources](xref:Microsoft.Extensions.Configuration.IConfigurationBuilder.Sources) first:
+
+```csharp
+.ConfigureAppConfiguration((hostingContext, config) =>
+{
+    config.Sources.Clear();
+    // Add providers here
 })
 ```
 
