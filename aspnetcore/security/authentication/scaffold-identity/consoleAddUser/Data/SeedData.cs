@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebApplication1.Data;
 
 namespace ContactManager.Data
 {
@@ -11,61 +10,46 @@ namespace ContactManager.Data
     {
         #region snippet
 
-        public static async Task Initialize(IServiceProvider serviceProvider, string userList)
-        {
-            using (var context = new AppDbCntx(
-                serviceProvider.GetRequiredService<DbContextOptions<AppDbCntx>>()))
-            {
-                var userPW = GetNextUserGeneratePW(userList);
-                while (userPW.user != null)
-                {
-                    var userID = await EnsureUser(serviceProvider, userPW.password, 
-                                                  userPW.user);
-                    NotifyUser(userPW);
-                    userPW = GetNextUserGeneratePW(userList);
-                }
-            }
-        }
-
-        private static async Task<string> EnsureUser(IServiceProvider serviceProvider,
-                                                    string testUserPw, string UserName)
+        public static async Task Initialize(IServiceProvider serviceProvider,
+                                            List<string> userList)
         {
             var userManager = serviceProvider.GetService<UserManager<IdentityUser>>();
 
-            var user = await userManager.FindByNameAsync(UserName);
-            if (user == null)
+            foreach (var userName in userList)
             {
-                user = new IdentityUser
-                {
-                    UserName = UserName,
-                    EmailConfirmed = true
-                };
-                await userManager.CreateAsync(user, testUserPw);
+                var userPassword = GenerateSecurePassword();
+                var userId = await EnsureUser(userManager, userName, userPassword);
+
+                NotifyUser(userName, userPassword);
             }
+        }
+
+        private static async Task<string> EnsureUser(UserManager<IdentityUser> userManager,
+                                                     string userName, string userPassword)
+        {
+            var user = await userManager.FindByNameAsync(userName);
 
             if (user == null)
             {
-                throw new Exception("Create user failed");
+                user = new IdentityUser(userName)
+                {
+                    EmailConfirmed = true
+                };
+                await userManager.CreateAsync(user, userPassword);
             }
 
             return user.Id;
         }
         #endregion
 
-        static int cnt;
-
-        private static (string password, string user) GetNextUserGeneratePW(string userList)
+        private static string GenerateSecurePassword()
         {
-            if (cnt++ > 0)
-                return (password: null, user: null);
-
-
-            return (password: "A Str0ng Pa$$w0rd !", user: "joe@example.com");
+            // Generate a secure password
+            return "A Str0ng Pa$$w0rd !";
         }
 
-        private static void NotifyUser((string password, string user) userPW)
+        private static void NotifyUser(string userName, string userPassword)
         {
-            return;
             // Notify user
         }
     }
