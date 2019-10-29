@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 10/29/2019
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -625,6 +625,20 @@ webBuilder.ConfigureKestrel(serverOptions =>
                 return exampleCert;
             };
         });
+    });
+});
+```
+
+### Connection logging
+
+Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> to emit Debug level logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies. If `UseConnectionLogging` is placed before `UseHttps`, encrypted traffic is logged. If `UseConnectionLogging` is placed after `UseHttps`, decrypted traffic is logged.
+
+```csharp
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Listen(IPAddress.Any, 8000, listenOptions =>
+    {
+        listenOptions.UseConnectionLogging();
     });
 });
 ```
@@ -1591,6 +1605,20 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
+### Connection logging
+
+Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> to emit Debug level logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies. If `UseConnectionLogging` is placed before `UseHttps`, encrypted traffic is logged. If `UseConnectionLogging` is placed after `UseHttps`, decrypted traffic is logged.
+
+```csharp
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Listen(IPAddress.Any, 8000, listenOptions =>
+    {
+        listenOptions.UseConnectionLogging();
+    });
+});
+```
+
 ### Bind to a TCP socket
 
 The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> method binds to a TCP socket, and an options lambda permits X.509 certificate configuration:
@@ -2416,6 +2444,20 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             });
         })
         .Build();
+```
+
+### Connection logging
+
+Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> to emit Debug level logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies. If `UseConnectionLogging` is placed before `UseHttps`, encrypted traffic is logged. If `UseConnectionLogging` is placed after `UseHttps`, decrypted traffic is logged.
+
+```csharp
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Listen(IPAddress.Any, 8000, listenOptions =>
+    {
+        listenOptions.UseConnectionLogging();
+    });
+});
 ```
 
 ### Bind to a TCP socket
