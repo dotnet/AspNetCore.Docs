@@ -50,7 +50,7 @@ Dedicated tools can help analyzing memory usage:
 
 Use the following tools to analyze memory usage:
 
-* [dotnet-trace](/dotnet/core/diagnostics/dotnet-trace)
+* [dotnet-trace](/dotnet/core/diagnostics/dotnet-trace): Can be  used on production machines.
 * [Analyze memory usage without the Visual Studio debugger](/visualstudio/profiling/memory-usage-without-debugging2)
 * [Profile memory usage in Visual Studio](/visualstudio/profiling/memory-usage)
 
@@ -146,7 +146,7 @@ The differences between this chart and the server version are significant:
 
 - The working set drops from 500 MB to 70 MB.
 - The GC does generation 0 collections multiple times per second instead of every two seconds.
-- The GC threshold went from 300 MB to 10 MB.
+- GC drops from 300 MB to 10 MB.
 
 On a typical web server environment, CPU usage is more important than memory, therefore the Server GC is better. If memory utilization is high and CPU usage is relatively low, the Workstation GC might be more performant. For example, high density hosting several web apps where memory is scarce.
 
@@ -219,12 +219,23 @@ Frequent memory allocation/free cycles can fragment memory, especially when allo
 
 * Placed on the LOH.
 * Not compacted.
-* Eventually released during generation 2 collections.
+* Collected during generation 2 GCs.
 
 When the LOH is full, the GC will trigger a generation 2 collection. Generation 2 collections:
 
 * Are inherently slow.
 * Additionally incur the cost of triggering a collection on all other generations.
+
+The following code compacts the LOH immediately:
+
+```csharp
+GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
+GC.Collect();
+```
+
+See <xref:System.Runtime.GCSettings.LargeObjectHeapCompactionMode> for information on compacting the LOH.
+
+In containers using .NET Core 3.0 and later, the LOH is automatically compacted.
 
 The following API that illustrates this behavior:
 
