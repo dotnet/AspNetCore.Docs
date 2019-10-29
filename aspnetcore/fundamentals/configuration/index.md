@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/24/2019
+ms.date: 10/29/2019
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -71,6 +71,16 @@ The following applies to apps using the [Generic Host](xref:fundamentals/host/ge
   * [Secret Manager](xref:security/app-secrets) when the app runs in the `Development` environment using the entry assembly.
   * Environment variables using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
   * Command-line arguments using the [Command-line Configuration Provider](#command-line-configuration-provider).
+  
+To remove the providers added by `CreateDefaultBuilder`, call `Sources.Clear()` first:
+
+```csharp
+.ConfigureAppConfiguration((hostingContext, config) =>
+{
+    config.Sources.Clear();
+    // Add providers here
+})
+```
 
 ::: moniker-end
 
@@ -91,18 +101,6 @@ The following applies to apps using the [Web Host](xref:fundamentals/host/web-ho
   * Command-line arguments using the [Command-line Configuration Provider](#command-line-configuration-provider).
 
 ::: moniker-end
-
-### Remove default providers
-
-To remove the providers added by `CreateDefaultBuilder`, call `Sources.Clear()` first:
-
-```csharp
-.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.Sources.Clear();
-    // Add providers here
-})
-```
 
 ## Security
 
