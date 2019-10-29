@@ -12,6 +12,7 @@ using System.Net.Http;
 
 namespace HttpClientFactorySample
 {
+    #region snippet1
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -23,9 +24,8 @@ namespace HttpClientFactorySample
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // basic usage
-            #region snippet1
             services.AddHttpClient();
+            // Remaining code deleted for brevity.
             #endregion
 
             // named client
