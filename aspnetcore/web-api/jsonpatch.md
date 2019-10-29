@@ -14,7 +14,9 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Kirk Larkin](https://github.c
 
 ::: moniker range=">= aspnetcore-3.0"
 
-This article explains how to handle JSON Patch requests in an ASP.NET Core web API.
+<!--   Uncomment this when you update 
+This article explains how to handle JSON Patch requests in an ASP.NET Core web API using `Microsoft.AspNetCore.JsonPatch`. For instructions on using [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/), use the version selector on this page to select an ASP.NET Core 2.x version.
+-->
 
 ## Package installation
 
