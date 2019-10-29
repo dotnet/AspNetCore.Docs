@@ -631,7 +631,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 ## Connection logging
 
-<xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> to emit verbose logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies.
+Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> to emit verbose logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies.
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -1607,7 +1607,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ## Connection logging
 
-<xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> to emit verbose logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies.
+Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> to emit verbose logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies.
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -2448,7 +2448,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 ## Connection logging
 
-<xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> to emit verbose logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies.
+Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging*> to emit verbose logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies.
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
