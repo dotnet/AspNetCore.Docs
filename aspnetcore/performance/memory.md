@@ -21,7 +21,7 @@ Memory management is complex, even in a managed framework like .NET. Analyzing a
 
 The GC allocates heap segments where each segment is a contiguous range of memory. Objects placed in the heap are categorized into one of 3 generations: 0, 1, or 2. The generation determines the frequency the GC attempts to release memory on managed objects that are no longer referenced by the app. Lower numbered generations are GC'd more frequently.
 
-Objects are moved from one generation to another based on their lifetime. As objects live longer, they are moved into a higher generation. As mentioned previously, higher generations are GC'd less often. Short term lived objects always remain in generation 0. For example, objects that are referenced during the life of a web request are short lived. Application level singletons generally move to generation 1 and eventually 2.
+Objects are moved from one generation to another based on their lifetime. As objects live longer, they are moved into a higher generation. As mentioned previously, higher generations are GC'd less often. Short term lived objects always remain in generation 0. For example, objects that are referenced during the life of a web request are short lived. Application level [singletons](xref:fundamentals/dependency-injection#service-lifetimes) generally migrate to generation 2.
 
 When an ASP.NET Core app starts, the GC:
 
@@ -30,15 +30,15 @@ When an ASP.NET Core app starts, the GC:
 
 The preceding memory allocations are done for performance reasons. The performance benefit comes from heap segments in contiguous memory.
 
-**ASP.NET Core apps allocate a significant amount of memory at startup for better performance.**
+ASP.NET Core apps allocate  **significant** memory at startup for better performance.
 
 ### Call GC.Collect
 
 Calling [GC.Collect](xref:System.GC.Collect*) explicitly:
 
-* Should **not** be done by ASP.NET Core apps.
+* Should **not** be done by production ASP.NET Core apps.
 * Is useful when investigating memory leaks.
-* Verifies the GC has removed all dangling objects from memory so memory can be  measured.
+* When investigating, verifies the GC has removed all dangling objects from memory so memory can be measured.
 
 ## Analyzing the memory usage of an app
 
@@ -55,12 +55,12 @@ Use the following tools to analyze memory usage:
 
 ### Detecting memory issues
 
-**Task Manager** can be used to get an idea of how much memory an ASP.NET app is using. The **Task Manager** memory value:
+Task Manager can be used to get an idea of how much memory an ASP.NET app is using. The Task Manager memory value:
 
 * Represents the amount of memory that is used by the ASP.NET process.
 * Includes the app's living objects and other memory consumers such as native memory usage.
 
-If the **Task Manager** memory value increases indefinitely and never flattens out, the app has a memory leak. The following sections demonstrate and explain several memory usage patterns.
+If the Task Manager memory value increases indefinitely and never flattens out, the app has a memory leak. The following sections demonstrate and explain several memory usage patterns.
 
 ## Sample display memory usage app
 
@@ -82,7 +82,7 @@ The chart displays two values for the memory usage:
 
 ### Transient objects
 
-The following API creates a 10-KB String` instance and returns it to the client. On each request, a new object is allocated in memory and written on the response. Strings are stored as UTF-16 characters in .NET so each char takes 2 bytes in memory.
+The following API creates a 10-KB String instance and returns it to the client. On each request, a new object is allocated in memory and written to the response. Strings are stored as UTF-16 characters in .NET so each character takes 2 bytes in memory.
 
 ```csharp
 [HttpGet("bigstring")]
@@ -98,8 +98,8 @@ The following graph is generated with a relatively small load in to show how mem
 
 The preceding chart shows:
 
-* 5K RPS (Requests per second).
-* Generation 0 GC collections occur about every two seconds once the allocations get above 300 MB.
+* 4K RPS (Requests per second).
+* Generation 0 GC collections occur about every two seconds.
 * The working set is constant at approximately 500 MB.
 * CPU is 12%.
 * The memory consumption and release (through GC) is stable.
@@ -116,14 +116,14 @@ The preceding chart shows:
 * The working set is constant at approximately 500 MB.
 * CPU is 33%.
 * The memory consumption and release (through GC) is stable.
-* The CPU is not over-utilized, therefore the garbage collection can keep up with a high number of allocations.
+* The CPU (33%) is not over-utilized, therefore the garbage collection can keep up with a high number of allocations.
 
-#### Workstation GC vs. Server GC
+### Workstation GC vs. Server GC
 
 The .NET Garbage Collector has two different modes:
 
-*  **Workstation GC: Optimized for the desktop.
-*  **Server GC**. The default GC for ASP.NET Core apps. Optimized for the server.
+* **Workstation GC: Optimized for the desktop.
+* **Server GC**. The default GC for ASP.NET Core apps. Optimized for the server.
 
 The GC mode can be set explicitly in the project file or in the *runtimeconfig.json* file of the published app. The following markup shows setting `ServerGarbageCollection` in the project file:
 
@@ -149,11 +149,11 @@ The differences between this chart and the server version are significant:
 
 On a typical web server environment, CPU usage is more important than memory, therefore the Server GC is better. If memory utilization is high and CPU usage is relatively low, the Workstation GC might be more performant. For example, high density hosting several web apps where memory is scarce.
 
-#### Persistent object references
+### Persistent object references
 
 The GC cannot free objects that are referenced. Objects that are referenced but no longer needed result in a memory leak. If the app frequently allocates objects and fails to free them after they are no longer needed, memory usage will increase over time.
 
-The following API creates a 10-KB String` instance and returns it to the client. The difference with the first example is that this instance is referenced by a static member, which means it's never available for collection.
+The following API creates a 10-KB String instance and returns it to the client. The difference with the previous example is that this instance is referenced by a static member, which means it's never available for collection.
 
 ```csharp
 private static ConcurrentBag<string> _staticStrings = new ConcurrentBag<string>();
@@ -182,7 +182,7 @@ In the preceding image:
 
 Some scenarios, such as caching, require object references to be held until memory pressure forces them to be released. The <xref:System.WeakReference> class can be used for this type of caching code. A `WeakReference` object is collected under memory pressures. The default implementation of <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> uses `WeakReference`.
 
-#### Native memory
+### Native memory
 
 Some .NET Core objects rely on native memory. Native memory can **not** be collected by the GC. The .NET object using native memory must free it using native code.
 
@@ -201,7 +201,7 @@ public void GetFileProvider()
 
 [PhysicaFileProvider](/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider?view=dotnet-plat-ext-3.0) is a managed class, so any instance will be collected at the end of the request.
 
-Here is the resulting memory profile while invoking this API continuously.
+The following image shows the memory profile while invoking the `fileprovider` API continuously.
 
 ![preceding chart](memory/_static/fileprovider.png)
 
@@ -212,15 +212,15 @@ The same leak could be happen in user code, by one of the following:
 * Not releasing the class correctly.
 * Forgetting to invoke the `Dispose`method of the dependent objects that should be disposed.
 
-#### Large objects heap
+### Large objects heap
 
-Frequent memory allocation/free cycles can fragment memory, especially when allocating large chunks of memory. Objects are allocated in contiguous blocks of memory. To mitigate fragmentation, when the GC frees memory, it will try to defragment it. This process is called **compaction**. Compaction involves moving objects. Moving large objects imposes a performance penalty. For this reason the GC creates a special memory zone for  _large_ objects, called the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Object that are greater than 85,000 bytes (approximately 83 KB) are:
+Frequent memory allocation/free cycles can fragment memory, especially when allocating large chunks of memory. Objects are allocated in contiguous blocks of memory. To mitigate fragmentation, when the GC frees memory, it trys to defragment it. This process is called **compaction**. Compaction involves moving objects. Moving large objects imposes a performance penalty. For this reason the GC creates a special memory zone for _large_ objects, called the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Object that are greater than 85,000 bytes (approximately 83 KB) are:
 
 * Placed on the LOH.
 * Not compacted.
 * Eventually released during generation 2 collections.
 
-When the LOH is full, the GC will trigger an automatic generation 2 collection. Generation 2 collections:
+When the LOH is full, the GC will trigger a generation 2 collection. Generation 2 collections:
 
 * Are inherently slow.
 * Additionally incur the cost of triggering a collection on all other generations.
@@ -231,7 +231,7 @@ The following API that illustrates this behavior:
 [HttpGet("loh/{size=85000}")]
 public int GetLOH1(int size)
 {
-    return new byte[size].Length;
+   return new byte[size].Length;
 }
 ```
 
@@ -251,7 +251,7 @@ Comparing the two preceding charts:
 * The under LOH requests (84,975 bytes) shows mostly generation 0 collections.
 * The over LOH requests generate constant generation 2 collections. Generation 2 collections are expensive. More CPU is required and throughput drops almost 50%.
 
-For maximum performance, large object use should be minimized. If possible, split up large objects. For example, [Response Caching](xref:performance/caching/response) middleware in ASP.NET Core split the cache entries into blocks less than  85,000 bytes.
+For maximum performance, large object use should be minimized. If possible, split up large objects. For example, [Response Caching](xref:performance/caching/response) middleware in ASP.NET Core split the cache entries into blocks less than 85,000 bytes.
 
 The following links show the ASP.NET Core approach to keeping objects under the LOH limit:
 - [ResponseCaching/Streams/StreamUtilities.cs](https://github.com/aspnet/AspNetCore/blob/v3.0.0/src/Middleware/ResponseCaching/src/Streams/StreamUtilities.cs#L16)
@@ -259,7 +259,7 @@ The following links show the ASP.NET Core approach to keeping objects under the 
 
 For more information, see the [large object heap](/dotnet/standard/garbage-collection/large-object-heap).
 
-#### HttpClient
+### HttpClient
 
 Incorrectly using <xref:System.Net.Http.HttpClient> can result in a resource leak. System resources, such as database connections, sockets, file handles, etc.:
 
@@ -298,7 +298,7 @@ System.Net.Http.HttpRequestException: Only one usage of each socket address
     CancellationToken cancellationToken)
 ```
 
-Even though the `HttpClient` instances are disposed, the actual network connection takes some time to be released by the operating system. By continuously creating new connections,  _ports exhaustion_  occurs. Each client connection requires its own client port.
+Even though the `HttpClient` instances are disposed, the actual network connection takes some time to be released by the operating system. By continuously creating new connections, _ports exhaustion_ occurs. Each client connection requires its own client port.
 
 One way to prevent port exhaustion is to reuse the same `HttpClient` instance:
 
@@ -317,7 +317,7 @@ The `HttpClient` instance is released when the app stops. This example shows tha
 
 See the [HTTPClient factory](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/) blog for a better way to handle the lifetime of an `HttpClient` instance.
 
-#### Object pooling
+### Object pooling
 
 The previous example showed how the `HttpClient` instance can be made static and reused by all requests. Reuse prevents running out of resources.
 
