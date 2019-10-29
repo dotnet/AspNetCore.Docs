@@ -50,6 +50,7 @@ Dedicated tools can help analyzing memory usage:
 
 Use the following tools to analyze memory usage:
 
+* [dotnet-trace](/dotnet/core/diagnostics/dotnet-trace)
 * [Analyze memory usage without the Visual Studio debugger](/visualstudio/profiling/memory-usage-without-debugging2)
 * [Profile memory usage in Visual Studio](/visualstudio/profiling/memory-usage)
 
