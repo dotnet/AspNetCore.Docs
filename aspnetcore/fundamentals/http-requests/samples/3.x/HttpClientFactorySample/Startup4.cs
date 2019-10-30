@@ -33,8 +33,11 @@ namespace HttpClientFactorySample
             registry.Add("regular", timeout);
             registry.Add("long", longTimeout);
             
-            services.AddHttpClient("regulartimeouthandler")
+            services.AddHttpClient("regularTimeoutHandler")
                 .AddPolicyHandlerFromRegistry("regular");
+
+            services.AddHttpClient("longTimeoutHandler")
+               .AddPolicyHandlerFromRegistry("long");
 
             // Remaining code deleted for brevity.
             #endregion

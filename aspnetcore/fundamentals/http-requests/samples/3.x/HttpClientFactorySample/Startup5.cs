@@ -29,18 +29,6 @@ namespace HttpClientFactorySample
             // Remaining code deleted for brevity.
             #endregion
 
-            #region snippet12
-            services.AddHttpClient("configured-inner-handler")
-                .ConfigurePrimaryHttpMessageHandler(() =>
-                {
-                    return new HttpClientHandler()
-                    {
-                        AllowAutoRedirect = false,
-                        UseDefaultCredentials = true
-                    };
-                });
-            #endregion
-
             services.AddControllers();
             services.AddRazorPages();
         }

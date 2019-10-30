@@ -26,53 +26,8 @@ namespace HttpClientFactorySample
             services.AddHttpClient<UnreliableEndpointCallerService>()
                 .AddTransientHttpErrorPolicy(p => 
                     p.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(600)));
+
             // Remaining code deleted for brevity.
-            #endregion
-
-            #region snippet8
-            var timeout = Policy.TimeoutAsync<HttpResponseMessage>(
-                TimeSpan.FromSeconds(10));
-            var longTimeout = Policy.TimeoutAsync<HttpResponseMessage>(
-                TimeSpan.FromSeconds(30));
-
-            services.AddHttpClient("conditionalpolicy")
-            // Run some code to select a policy based on the request
-                .AddPolicyHandler(request => 
-                    request.Method == HttpMethod.Get ? timeout : longTimeout);
-            #endregion
-
-            #region snippet9
-            services.AddHttpClient("multiplepolicies")
-                .AddTransientHttpErrorPolicy(p => p.RetryAsync(3))
-                .AddTransientHttpErrorPolicy(
-                    p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
-            #endregion
-
-            #region snippet10
-            var registry = services.AddPolicyRegistry();
-
-            registry.Add("regular", timeout);
-            registry.Add("long", longTimeout);
-            
-            services.AddHttpClient("regulartimeouthandler")
-                .AddPolicyHandlerFromRegistry("regular");
-            #endregion
-
-            #region snippet11
-            services.AddHttpClient("extendedhandlerlifetime")
-                .SetHandlerLifetime(TimeSpan.FromMinutes(5));
-            #endregion
-
-            #region snippet12
-            services.AddHttpClient("configured-inner-handler")
-                .ConfigurePrimaryHttpMessageHandler(() =>
-                {
-                    return new HttpClientHandler()
-                    {
-                        AllowAutoRedirect = false,
-                        UseDefaultCredentials = true
-                    };
-                });
             #endregion
 
             services.AddControllers();
