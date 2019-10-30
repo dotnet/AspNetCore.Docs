@@ -39,7 +39,7 @@ You can manage your API credentials and usage in the [API Console](https://conso
 
 Add the Google service to `Startup.ConfigureServices`:
 
-[!code-csharp[](~/security/authentication/social/social-code/3.x/StartupGoogle3x.cs?highlight=10-19)]
+[!code-csharp[](~/security/authentication/social/social-code/3.x/StartupGoogle3x.cs?highlight=11-19)]
 
 [!INCLUDE [default settings configuration](includes/default-settings2-2.md)]
 
