@@ -600,7 +600,14 @@ The following links provide information on configuring endpoint metadata:
 
 <a name="hostmatch"></a>
 
-## Host matching in routes
+## Host matching in routes with RequireHost
+
+`RequireHost` applies a constraint to the route which requires the specified host. The `RequireHost` or `[Host]` parameter can be:
+
+* Host: `www.domain.com` (matches `www.domain.com` with any port)
+* Host with wildcard sub-domain: `*.domain.com` (matches`domain.com`, `www.domain.com`, `subdomain.domain.com`, or `www.subdomain.domain.com` on any port)
+* Port: `*:5000` (matches port 5000)
+* Host and port: `www.domain.com:5000`, `*.domain.com:5000` (matches host and port)
 
 The following code uses `RequireHost` to require the specified host on the route:
 
