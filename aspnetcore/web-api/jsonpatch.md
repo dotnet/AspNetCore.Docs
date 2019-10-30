@@ -37,7 +37,7 @@ Support for JsonPatch is enabled using the `Microsoft.AspNetCore.Mvc.NewtonsoftJ
   * `AddControllersWithViews`
   * `AddControllers`
   
-Note: `AddNewtonsoftJson` replaces the System.Text.Json-based input and output formatters used for formatting all JSON content. If you'd like to specifically add support for JsonPatch using Newtonsoft.Json, while leaving the other formatters unchanged, update the project's `Startup.ConfigureServices` as follows:
+`AddNewtonsoftJson` replaces the `System.Text.Json` based input and output formatters used for formatting **all** JSON content. To add support for `JsonPatch` using `Newtonsoft.Json`, while leaving the other formatters unchanged, update the project's `Startup.ConfigureServices` as follows:
 
 ```csharp
    var jsonPatchServices = new ServiceCollection()
