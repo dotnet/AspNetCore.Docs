@@ -15,14 +15,14 @@ By [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/r
 
 An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to configure and create <xref:System.Net.Http.HttpClient> instances in an app. `IHttpClientFactory` offers the following benefits:
 
-* Provides a central location for naming and configuring logical `HttpClient` instances. For example, a *github* client can be registered and configured to access [GitHub](https://github.com/). A default client can be registered for other purposes.
+* Provides a central location for naming and configuring logical `HttpClient` instances. For example, a client named  *github* could be registered and configured to access [GitHub](https://github.com/). A default client can be registered for general access.
 * Codifies the concept of outgoing middleware via delegating handlers in `HttpClient`. Provides extensions for Polly-based middleware to take advantage of delegating handlers in `HttpClient`.
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances. Automatic management avoids common DNS problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample)). 
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
-The sample code in this topic version uses <xref:System.Text.Json> to deserialize JSON content returned in HTTP responses. For samples that use `Json.NET` and `ReadAsAsync<T>`, use the version selector to select a previous version of this topic.
+The sample code in this topic version uses <xref:System.Text.Json> to deserialize JSON content returned in HTTP responses. For samples that use `Json.NET` and `ReadAsAsync<T>`, use the version selector to select a 2.x version of this topic.
 
 ## Consumption patterns
 
@@ -33,11 +33,11 @@ There are several ways `IHttpClientFactory` can be used in an app:
 * [Typed clients](#typed-clients)
 * [Generated clients](#generated-clients)
 
-None of them are strictly superior to another. The best approach depends upon the app's constraints.
+The best approach depends upon the app's requirements.
 
 ### Basic usage
 
-The `IHttpClientFactory` can be registered by calling the `AddHttpClient` in `Startup.ConfigureServices`:
+`IHttpClientFactory` can be registered by calling `AddHttpClient`:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1)]
 
@@ -45,24 +45,22 @@ An `IHttpClientFactory` can be registered anywhere services can be injected with
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs?name=snippet1&highlight=9-12,21)]
 
-Using `IHttpClientFactory` in this fashion is a good way to refactor an existing app. It has no impact on the way `HttpClient` is used. In places where `HttpClient` instances are currently created, replace those occurrences with a call to <xref:System.Net.Http.IHttpClientFactory.CreateClient*>.
+Using `IHttpClientFactory` like the preceding example is a good way to refactor an existing app. It has no impact on the way `HttpClient` is used. In places where `HttpClient` instances are currently created, replace those occurrences with a call to <xref:System.Net.Http.IHttpClientFactory.CreateClient*>.
 
 ### Named clients
 
 **named clients** are a good choice when:
 
 * The app requires many distinct uses of `HttpClient`.
-* Many `HttpClient`s with different configuration.
+* Many `HttpClient`s have different configuration.
 
 Configuration for a named `HttpClient` can be specified during registration in `Startup.ConfigureServices`:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet2)]
 
-In the preceding code:
+In the preceding code the client has some configuration applied:
 
-The client has some default configuration applied:
-   
-* The base address "https://api.github.com/". 
+* The base address `https://api.github.com/`
 * Two headers required to work with the GitHub API.
 
 #### CreateClient
@@ -72,7 +70,7 @@ Each time <xref:System.Net.Http.IHttpClientFactory.CreateClient*> is called:
 * A new instance of `HttpClient` is created.
 * The configuration action is called.
 
-A string parameter is passed to `CreateClient` to consume a named client. Specify the name of the client to be created:
+A string is passed to `CreateClient` to consume a named client:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/NamedClient.cshtml.cs?name=snippet1&highlight=21)]
 
@@ -88,7 +86,7 @@ Typed clients:
 
   * For a single backend endpoint.
   * To encapsulate all logic dealing with the endpoint.
-* Work with DI and can be injected where required in your app.
+* Work with DI and can be injected where required in the app.
 
 A typed client accepts a `HttpClient` parameter in its constructor:
 
@@ -113,7 +111,7 @@ The configuration for a typed client can be specified during registration in `St
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet4)]
 
-The `HttpClient` can be encapsulated within a typed client. Rather than exposing it as a property, a method is defined which call the `HttpClient` instance internally:
+The `HttpClient` can be encapsulated within a typed client. Rather than exposing it as a property, a method is defined which calls the `HttpClient` instance internally:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/GitHub/RepoService.cs?name=snippet1&highlight=4)]
 
@@ -179,7 +177,10 @@ public class ValuesController : ControllerBase
 `HttpClient` has the concept of delegating handlers that can be linked together for outgoing HTTP requests. `IHttpClientFactory`:
 
 * Simplifies defining the handlers to apply for each named client.
-* Supports registration and chaining of multiple handlers to build an outgoing request middleware pipeline. Each of these handlers is able to perform work before and after the outgoing request. This pattern is similar to the inbound middleware pipeline in ASP.NET Core. The pattern provides a mechanism to manage cross-cutting concerns around HTTP requests, including caching, error handling, serialization, and logging.
+* Supports registration and chaining of multiple handlers to build an outgoing request middleware pipeline. Each of these handlers is able to perform work before and after the outgoing request. This pattern:
+
+  * Is similar to the inbound middleware pipeline in ASP.NET Core.
+  * Provides a mechanism to manage cross-cutting concerns around HTTP requests, including caching, error handling, serialization, and logging.
 
 To create a delegating handler:
 
