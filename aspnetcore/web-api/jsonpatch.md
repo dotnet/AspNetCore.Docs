@@ -43,6 +43,10 @@ Support for JsonPatch is enabled using the `Microsoft.AspNetCore.Mvc.NewtonsoftJ
 
 [!code-csharp[](jsonpatch/samples/3.0/WebApp1/Startup.cs?name=snippet)]
 
+The preceding code requires a reference to [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) and the following using statements:
+
+[!code-csharp[](jsonpatch/samples/3.0/WebApp1/Startup.cs?name=snippet1)]
+
 ## PATCH HTTP request method
 
 The PUT and [PATCH](https://tools.ietf.org/html/rfc5789) methods are used to update an existing resource. The difference between them is that PUT replaces the entire resource, while PATCH specifies only the changes.
