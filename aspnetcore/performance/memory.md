@@ -327,8 +327,11 @@ public async Task<int> GetHttpClient2(string url)
 
 The `HttpClient` instance is released when the app stops. This example shows that not every disposable resource should be disposed after each use.
 
-See the [HTTPClient factory](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/) blog for a better way to handle the lifetime of an `HttpClient` instance.
+See the following for a better way to handle the lifetime of an `HttpClient` instance:
 
+* [HttpClient and lifetime management](/aspnet/core/fundamentals/http-requests#httpclient-and-lifetime-management)
+* [HTTPClient factory blog](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/)
+ 
 ### Object pooling
 
 The previous example showed how the `HttpClient` instance can be made static and reused by all requests. Reuse prevents running out of resources.
