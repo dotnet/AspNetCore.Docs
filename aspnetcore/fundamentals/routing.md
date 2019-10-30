@@ -609,6 +609,8 @@ The following links provide information on configuring endpoint metadata:
 * Port: `*:5000` (matches port 5000 with any host)
 * Host and port: `www.domain.com:5000`, `*.domain.com:5000` (matches host and port)
 
+Multiple parameters can be specified using `RequireHost` or `[Host]`. The constraint will match hosts valid for any of the parameters. For example, `[Host("domain.com", "*.domain.com")]` will match `domain.com`, `www.domain.com`, or `subdomain.domain.com`.
+
 The following code uses `RequireHost` to require the specified host on the route:
 
 ```csharp
