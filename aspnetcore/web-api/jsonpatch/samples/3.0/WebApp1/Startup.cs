@@ -1,13 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using System.Linq;
 
 namespace WebApp1
 {
@@ -20,20 +19,24 @@ namespace WebApp1
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-            var jsonPatchServices = new ServiceCollection()
-        .AddLogging()
-        .AddMvc()
-        .AddNewtonsoftJson()
-        .BuildServiceProvider();
-            var jsonPatchOptions = jsonPatchServices.GetRequiredService<IOptions<MvcOptions>>().Value;
+            var jsonPatchServices = new ServiceCollection();
+
+            jsonPatchServices.AddLogging()
+                .AddMvc()
+                .AddNewtonsoftJson();
+
+            var jsonPatchServiceProvider = jsonPatchServices.BuildServiceProvider();
+
+            var jsonPatchOptions = jsonPatchServiceProvider.GetRequiredService<IOptions<MvcOptions>>().Value;
             var jsonPatchInputFormatter = jsonPatchOptions.InputFormatters.OfType<NewtonsoftJsonPatchInputFormatter>().First();
 
             services.AddControllersWithViews(options => jsonPatchOptions.InputFormatters.Insert(0, jsonPatchInputFormatter));
 
         }
+        #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
