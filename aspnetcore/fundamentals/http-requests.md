@@ -41,15 +41,15 @@ The best approach depends upon the app's requirements.
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1)]
 
-An `IHttpClientFactory` can be registered anywhere services can be injected with [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
+An `IHttpClientFactory` can be requested using [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs?name=snippet1&highlight=9-12,21)]
 
-Using `IHttpClientFactory` like the preceding example is a good way to refactor an existing app. It has no impact on the way `HttpClient` is used. In places where `HttpClient` instances are currently created, replace those occurrences with a call to <xref:System.Net.Http.IHttpClientFactory.CreateClient*>.
+Using `IHttpClientFactory` like in the preceding example is a good way to refactor an existing app. It has no impact on how `HttpClient` is used. In places where `HttpClient` instances are created in an existing app, replace those occurrences with calls to <xref:System.Net.Http.IHttpClientFactory.CreateClient*>.
 
 ### Named clients
 
-**named clients** are a good choice when:
+Named clients are a good choice when:
 
 * The app requires many distinct uses of `HttpClient`.
 * Many `HttpClient`s have different configuration.
@@ -58,9 +58,9 @@ Configuration for a named `HttpClient` can be specified during registration in `
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet2)]
 
-In the preceding code the client has some configuration applied:
+In the preceding code the client is configured with:
 
-* The base address `https://api.github.com/`
+* The base address `https://api.github.com/`.
 * Two headers required to work with the GitHub API.
 
 #### CreateClient
@@ -70,7 +70,7 @@ Each time <xref:System.Net.Http.IHttpClientFactory.CreateClient*> is called:
 * A new instance of `HttpClient` is created.
 * The configuration action is called.
 
-A string is passed to `CreateClient` to consume a named client:
+To create a named client, pass its name into `CreateClient`:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/NamedClient.cshtml.cs?name=snippet1&highlight=21)]
 
@@ -111,7 +111,7 @@ The configuration for a typed client can be specified during registration in `St
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet4)]
 
-The `HttpClient` can be encapsulated within a typed client. Rather than exposing it as a property, a method is defined which calls the `HttpClient` instance internally:
+The `HttpClient` can be encapsulated within a typed client. Rather than exposing it as a property, define a method which calls the `HttpClient` instance internally:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/GitHub/RepoService.cs?name=snippet1&highlight=4)]
 
@@ -218,7 +218,7 @@ Use one of the following approaches to share per-request state with message hand
 
 `IHttpClientFactory` integrates with the third-party library [Polly](https://github.com/App-vNext/Polly). Polly is a comprehensive resilience and transient fault-handling library for .NET. It allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner.
 
-Extension methods are provided to enable the use of Polly policies with configured `HttpClient` instances. The Polly extensionsupport adding Polly-based handlers to clients. Polly requires the [Microsoft.Extensions.Http.Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/) NuGet package.
+Extension methods are provided to enable the use of Polly policies with configured `HttpClient` instances. The Polly extensions support adding Polly-based handlers to clients. Polly requires the [Microsoft.Extensions.Http.Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/) NuGet package.
 
 ### Handle transient faults
 
@@ -236,7 +236,7 @@ In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests 
 
 ### Dynamically select policies
 
-Extension methods are provided to add Polly-based handlers, for example, <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandler*>. The following `AddPolicyHandler` overload inspects the request to defining which policy to apply:
+Extension methods are provided to add Polly-based handlers, for example, <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandler*>. The following `AddPolicyHandler` overload inspects the request to decide which policy to apply:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet8)]
 
