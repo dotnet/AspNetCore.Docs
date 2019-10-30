@@ -398,7 +398,7 @@ Exception filters:
 
 The following sample exception filter uses a custom error view to display details about exceptions that occur when the app is in development:
 
-[!code-csharp[](./filters/sample/FiltersSample/Filters/CustomExceptionFilterAttribute.cs?name=snippet_ExceptionFilter&highlight=16-19)]
+[!code-csharp[](./filters/sample/FiltersSample/Filters/CustomExceptionFilter.cs?name=snippet_ExceptionFilter&highlight=16-19)]
 
 Exception filters:
 
