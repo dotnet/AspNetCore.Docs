@@ -36,6 +36,21 @@ Support for JsonPatch is enabled using the `Microsoft.AspNetCore.Mvc.NewtonsoftJ
   * `AddRazorPages`
   * `AddControllersWithViews`
   * `AddControllers`
+  
+Note: `AddNewtonsoftJson` replaces the System.Text.Json-based input and output formatters used for formatting all JSON content. If you'd like to specifically add support for JsonPatch using Newtonsoft.Json, while leaving the other formatters unchanged, update the project's `Startup.ConfigureServices` as follows:
+
+```csharp
+   var jsonPatchServices = new ServiceCollection()
+        .AddLogging()
+        .AddMvc()
+        .AddNewtonsoftJson()
+        .BuildServiceProvider();
+
+    var jsonPatchOptions = jsonPatchServices.GetRequiredService<IOptions<MvcOptions>>().Value;
+    var jsonPatchInputFormatter = jsonPatchOptions.InputFormatters.OfType<NewtonsoftJsonPatchInputFormatter>().First();
+    
+    services.AddControllersWithViews(options => jsonPatchOptions.InputFormatters.Insert(0, jsonPatchInputFormatter));
+```
 
 ## PATCH HTTP request method
 
