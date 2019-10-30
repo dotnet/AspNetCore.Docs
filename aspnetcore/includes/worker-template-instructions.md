@@ -10,7 +10,7 @@
 1. Create a new project.
 1. Select **App** under **.NET Core** in the sidebar.
 1. Select **Worker** under **ASP.NET Core**. Select **Next**.
-1. Select **.NET Core 3.0** for the **Target Framework**. Select **Next**.
+1. Select **.NET Core 3.0** or later for the **Target Framework**. Select **Next**.
 1. Provide a name in the **Project Name** field. Select **Create**.
 
 # [.NET Core CLI](#tab/netcore-cli)
@@ -20,3 +20,5 @@ Use the Worker Service (`worker`) template with the [dotnet new](/dotnet/core/to
 ```dotnetcli
 dotnet new worker -o ContosoWorker
 ```
+
+---
