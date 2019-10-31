@@ -168,7 +168,7 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 Blazor components can be prerendered using `Html.RenderComponentAsync` so that their rendered HTML markup is returned as part of the user's initial HTTP request. This works by:
 
-* Creating a new circuit to update the prerendered components that are part of the same page.
+* Creating a new circuit for all of the prerendered components that are part of the same page.
 * Generating the initial HTML.
 * Treating the circuit as `disconnected` until the user's browser establishes a SignalR connection back to the same server. When the connection is established, interactivity on the circuit is resumed and the components' HTML markup is updated.
 
