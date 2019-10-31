@@ -30,8 +30,6 @@ When an ASP.NET Core app starts, the GC:
 
 The preceding memory allocations are done for performance reasons. The performance benefit comes from heap segments in contiguous memory.
 
-ASP.NET Core apps allocate  **significant** memory at startup for better performance.
-
 ### Call GC.Collect
 
 Calling [GC.Collect](xref:System.GC.Collect*) explicitly:
