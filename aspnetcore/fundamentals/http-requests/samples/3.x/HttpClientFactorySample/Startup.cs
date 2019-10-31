@@ -55,17 +55,6 @@ namespace HttpClientFactorySample
             });
             #endregion
 
-            #region snippet5
-            services.AddTransient<ValidateHeaderHandler>();
-
-            services.AddHttpClient("externalservice", c =>
-            {
-                // Assume this is an "external" service which requires an API KEY
-                c.BaseAddress = new Uri("https://localhost:5000/");
-            })
-            .AddHttpMessageHandler<ValidateHeaderHandler>();
-            #endregion
-
             #region snippet6
             services.AddTransient<SecureRequestHandler>();
             services.AddTransient<RequestDataHandler>();

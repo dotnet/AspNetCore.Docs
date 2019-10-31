@@ -83,7 +83,6 @@ Typed clients:
 * Provide the same capabilities as named clients without the need to use strings as keys.
 * Provides IntelliSense and compiler help when consuming clients.
 * Provide a single location to configure and interact with a particular `HttpClient`. For example, a single typed client might be used:
-
   * For a single backend endpoint.
   * To encapsulate all logic dealing with the endpoint.
 * Work with DI and can be injected where required in the app.
@@ -437,7 +436,7 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddHttpClient("hello", c =>
     {
-        c.BaseAddress = new Uri("http://localhost:5000");
+        c.BaseAddress = new Uri("https://localhost:5001");
     })
     .AddTypedClient(c => Refit.RestService.For<IHelloClient>(c));
 

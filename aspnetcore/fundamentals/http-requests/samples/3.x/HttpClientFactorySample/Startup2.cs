@@ -28,7 +28,7 @@ namespace HttpClientFactorySample
             services.AddHttpClient("externalservice", c =>
             {
                 // Assume this is an "external" service which requires an API KEY
-                c.BaseAddress = new Uri("https://localhost:5000/");
+                c.BaseAddress = new Uri("https://localhost:5001/");
             })
             .AddHttpMessageHandler<ValidateHeaderHandler>();
 
