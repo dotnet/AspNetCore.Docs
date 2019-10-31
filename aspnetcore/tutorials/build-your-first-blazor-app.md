@@ -22,7 +22,7 @@ Follow the guidance in the <xref:blazor/get-started> article to create a Blazor 
 
 1. Browse to each of the app's three pages in the *Pages* folder: Home, Counter, and Fetch data. These pages are implemented by the Razor component files *Index.razor*, *Counter.razor*, and *FetchData.razor*.
 
-1. On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing code in two languages, JavaScript and C#. Blazor provides an approach that only requires one language, C#.
+1. On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript. With Blazor, you can write C# instead.
 
 1. Examine the implementation of the `Counter` component in the *Counter.razor* file.
 
