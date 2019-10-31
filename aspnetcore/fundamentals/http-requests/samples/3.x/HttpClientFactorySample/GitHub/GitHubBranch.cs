@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace HttpClientFactorySample.GitHub
 {
     /// <summary>
@@ -5,6 +7,7 @@ namespace HttpClientFactorySample.GitHub
     /// </summary>
     public class GitHubBranch
     {
+        [JsonPropertyName("name")]
         public string Name { get; set; }
     }
 }
