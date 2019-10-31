@@ -263,13 +263,18 @@ Comparing the two preceding charts:
 * The under LOH requests (84,975 bytes) shows mostly generation 0 collections.
 * The over LOH requests generate constant generation 2 collections. Generation 2 collections are expensive. More CPU is required and throughput drops almost 50%.
 
+Temporary large objects are particularly problematic because they cause gen2 GCs.
+
 For maximum performance, large object use should be minimized. If possible, split up large objects. For example, [Response Caching](xref:performance/caching/response) middleware in ASP.NET Core split the cache entries into blocks less than 85,000 bytes.
 
 The following links show the ASP.NET Core approach to keeping objects under the LOH limit:
 - [ResponseCaching/Streams/StreamUtilities.cs](https://github.com/aspnet/AspNetCore/blob/v3.0.0/src/Middleware/ResponseCaching/src/Streams/StreamUtilities.cs#L16)
 - [ResponseCaching/MemoryResponseCache.cs](https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Internal/MemoryResponseCache.cs#L55)
 
-For more information, see the [large object heap](/dotnet/standard/garbage-collection/large-object-heap).
+For more information, see:
+
+* [Large Object Heap Uncovered](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)
+* [Large object heap](/dotnet/standard/garbage-collection/large-object-heap)
 
 ### HttpClient
 
@@ -421,3 +426,5 @@ The main difference is allocated bytes, and as a consequence much fewer generati
 
 * [Garbage Collection](/dotnet/standard/garbage-collection/)
 * [Understanding different GC modes with Concurrency Visualizer](https://blogs.msdn.microsoft.com/seteplia/2017/01/05/understanding-different-gc-modes-with-concurrency-visualizer/)
+* [Large Object Heap Uncovered](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)
+* [Large object heap](/dotnet/standard/garbage-collection/large-object-heap)
