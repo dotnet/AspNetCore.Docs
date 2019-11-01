@@ -140,8 +140,6 @@ public void ConfigureServices(IServiceCollection services)
 ```
 ::: moniker-end
 
-
-
 Policies are applied using the `Policy` property on the `AuthorizeAttribute` attribute:
 
 ```csharp
@@ -165,4 +163,11 @@ This example authorizes users who belong to the `Administrator`, `PowerUser` or 
 
 Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
 
-[!code-csharp[](roles/samples/Startup.cs?name=snippet&highlight=7)]
+::: moniker range=">= aspnetcore-3.0"
+[!code-csharp[](roles/samples/3_0/Startup.cs?name=snippet&highlight=7)]
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+[!code-csharp[](roles/samples/2_2/Startup.cs?name=snippet&highlight=7)]
+::: moniker-end
+
