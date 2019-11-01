@@ -213,7 +213,7 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 >
 > * Remove the path from the user-supplied filename.
 > * Save the HTML-encoded, path-removed filename for UI or logging.
-> * Generate a new filename.
+> * Generate a new random filename for storage.
 >
 > The following code removes the path from the file name:
 >
