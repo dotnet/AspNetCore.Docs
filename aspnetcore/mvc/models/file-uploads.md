@@ -29,9 +29,9 @@ Use caution when providing users with the ability to upload files to a server. A
 Security steps that reduce the likelihood of a successful attack are:
 
 * Upload files to a dedicated file upload area, preferably to a non-system drive. A dedicated location makes it easier to impose security restrictions on uploaded files. Disable execute permissions on the file upload location.&dagger;
-* Do *not** persist uploaded files in the same directory tree as the app.&dagger;
-* Use a safe file name determined by the app. Don't use a file name provided by the user or the untrusted file name of the uploaded file.&dagger; HTML-encode the untrusted file name when displaying it. For example, logging the file name or displaying in UI.
-* Allow only approved file extensions.&dagger;
+* Do **not** persist uploaded files in the same directory tree as the app.&dagger;
+* Use a safe file name determined by the app. Don't use a file name provided by the user or the untrusted file name of the uploaded file.&dagger; HTML encode the untrusted file name when displaying it. For example, logging the file name or displaying in UI (Razor automatically HTML encodes output).
+* Allow only approved file extensions for the app's design specification.&dagger;
 * Check the file format signature to prevent a user from uploading a masqueraded file.&dagger; For example, don't permit uploading an *.exe* file with a *.txt* extension.
 * Verify that client-side checks are performed on the server.&dagger; Client-side checks are easy to circumvent.
 * Check the size of an uploaded file. Set a maximum size limit to prevent large uploads.&dagger;
@@ -211,14 +211,14 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 > [!WARNING]
 > Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. An attacker can provide a malicious filename, including full paths or relative paths. Applications should:
 >
-> * Strip the path from the user supplied filename.
-> * Save the HTML encoded stripped filename for UI or logging
+> * Strip the path from the user-supplied filename.
+> * Save the HTML-encoded, stripped filename for UI or logging.
 > * Generate a new filename.
 >
 > The following code removes the path from the file name:
 >
 > ```csharp
-> string fileName = Path.GetFileName(pathName);
+> string untrustedFileName = Path.GetFileName(pathName);
 > ```
 >
 > The examples provided thus far don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
