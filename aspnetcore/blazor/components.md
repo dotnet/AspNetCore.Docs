@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/21/2019
+ms.date: 11/01/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -893,7 +893,10 @@ protected override void OnInitialized()
 }
 ```
 
-`OnParametersSetAsync` and `OnParametersSet` are called after component initialization or when a component has received parameters from its parent and the values are assigned to properties:
+`OnParametersSetAsync` and `OnParametersSet` are called:
+
+* After component initialization.
+* When a component has received parameters from its parent and the values are assigned to properties.
 
 ```csharp
 protected override async Task OnParametersSetAsync()
