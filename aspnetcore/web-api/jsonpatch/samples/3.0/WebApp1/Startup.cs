@@ -35,8 +35,7 @@ namespace WebApp1
             var jsonPatchOptions = jsonPatchServiceProvider.GetRequiredService<IOptions<MvcOptions>>().Value;
             var jsonPatchInputFormatter = jsonPatchOptions.InputFormatters.OfType<NewtonsoftJsonPatchInputFormatter>().First();
 
-            services.AddControllersWithViews(options => jsonPatchOptions.InputFormatters.Insert(0, jsonPatchInputFormatter));
-
+            services.AddControllersWithViews(options => options.InputFormatters.Insert(0, jsonPatchInputFormatter));
         }
         #endregion
 

@@ -121,7 +121,7 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 >
 > * Use <xref:Microsoft.AspNetCore.Routing.LinkGenerator> with caution in middleware in combination with `Map` or `MapWhen`. `Map*` changes the base path of the executing request, which affects the output of link generation. All of the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> APIs allow specifying a base path. Always specify an empty base path to undo `Map*`'s affect on link generation.
 
-## Differences from earlier versions of routing
+## Endpoint routing differences from earlier versions of routing
 
 A few differences exist between endpoint routing and versions of routing earlier than in ASP.NET Core 2.2:
 
