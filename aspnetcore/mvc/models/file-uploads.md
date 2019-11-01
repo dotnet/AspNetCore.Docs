@@ -211,8 +211,8 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 > [!WARNING]
 > Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. An attacker can provide a malicious filename, including full paths or relative paths. Applications should:
 >
-> * Strip the path from the user-supplied filename.
-> * Save the HTML-encoded, stripped filename for UI or logging.
+> * Remove the path from the user-supplied filename.
+> * Save the HTML-encoded, path-removed filename for UI or logging.
 > * Generate a new filename.
 >
 > The following code removes the path from the file name:
