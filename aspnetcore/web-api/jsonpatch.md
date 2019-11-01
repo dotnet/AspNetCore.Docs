@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to handle JSON Patch requests in an ASP.NET Core web API.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/24/2019
+ms.date: 11/01/2019
 uid: web-api/jsonpatch
 ---
 
@@ -14,9 +14,7 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Kirk Larkin](https://github.c
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<!--   Uncomment this when you update 
-This article explains how to handle JSON Patch requests in an ASP.NET Core web API using `Microsoft.AspNetCore.JsonPatch`. For instructions on using [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/), use the version selector on this page to select an ASP.NET Core 2.x version.
--->
+This article explains how to handle JSON Patch requests in an ASP.NET Core web API.
 
 ## Package installation
 
@@ -118,7 +116,7 @@ The following table shows supported operations as defined in the [JSON Patch spe
 
 ## JsonPatch in ASP.NET Core
 
-The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/) NuGet package. The package is included in the [Microsoft.AspnetCore.App](xref:fundamentals/metapackage-app) metapackage.
+The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/) NuGet package.
 
 ## Action method code
 
@@ -330,7 +328,7 @@ The following table shows supported operations as defined in the [JSON Patch spe
 
 ## JsonPatch in ASP.NET Core
 
-The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/) NuGet package.
+The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/) NuGet package. The package is included in the [Microsoft.AspnetCore.App](xref:fundamentals/metapackage-app) metapackage.
 
 ## Action method code
 
