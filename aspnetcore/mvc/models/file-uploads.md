@@ -5,7 +5,7 @@ description: How to use model binding and streaming to upload files in ASP.NET C
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/02/2019
+ms.date: 10/31/2019
 uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
@@ -28,13 +28,12 @@ Use caution when providing users with the ability to upload files to a server. A
 
 Security steps that reduce the likelihood of a successful attack are:
 
-* Upload files to a dedicated file upload area on the system, preferably to a non-system drive. Using a dedicated location makes it easier to impose security restrictions on uploaded files. Disable execute permissions on the file upload location.&dagger;
-* Never persist uploaded files in the same directory tree as the app.&dagger;
-* Use a safe file name determined by the app. Don't use a file name provided by the user or the untrusted file name of the uploaded file.&dagger; To display an untrusted file name in a UI or in a logging message, HTML-encode the value.
-* Only allow a specific set of approved file extensions.&dagger;
-* Check the file format signature to prevent a user from uploading a masqueraded file.&dagger; For example, don't permit a user to upload an *.exe* file with a *.txt* extension.
-* Verify that client-side checks are also performed on the server.&dagger; Client-side checks are easy to circumvent.
-* Check the size of an uploaded file and prevent uploads that are larger than expected.&dagger;
+* Upload files to a dedicated file upload area, preferably to a non-system drive. A dedicated location makes it easier to impose security restrictions on uploaded files. Disable execute permissions on the file upload location.&dagger;
+* Do **not** persist uploaded files in the same directory tree as the app.&dagger;
+* Use a safe file name determined by the app. Don't use a file name provided by the user or the untrusted file name of the uploaded file.&dagger; HTML encode the untrusted file name when displaying it. For example, logging the file name or displaying in UI (Razor automatically HTML encodes output).
+* Allow only approved file extensions for the app's design specification.&dagger; <!-- * Check the file format signature to prevent a user from uploading a masqueraded file.&dagger; For example, don't permit a user to upload an *.exe* file with a *.txt* extension. Add this back when we get instructions how to do this.  -->
+* Verify that client-side checks are performed on the server.&dagger; Client-side checks are easy to circumvent.
+* Check the size of an uploaded file. Set a maximum size limit to prevent large uploads.&dagger;
 * When files shouldn't be overwritten by an uploaded file with the same name, check the file name against the database or physical storage before uploading the file.
 * **Run a virus/malware scanner on uploaded content before the file is stored.**
 
@@ -206,8 +205,20 @@ For a `files` input element to support uploading multiple files provide the `mul
 
 The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
 
+<a name="filename"></a>
+
 > [!WARNING]
-> Don't rely on or trust the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> without validation. The `FileName` property should only be used for display purposes and only after HTML encoding the value.
+> Do **not** use the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> other than for display and logging. When displaying or logging, HTML encode the file name. An attacker can provide a malicious filename, including full paths or relative paths. Applications should:
+>
+> * Remove the path from the user-supplied filename.
+> * Save the HTML-encoded, path-removed filename for UI or logging.
+> * Generate a new random filename for storage.
+>
+> The following code removes the path from the file name:
+>
+> ```csharp
+> string untrustedFileName = Path.GetFileName(pathName);
+> ```
 >
 > The examples provided thus far don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
@@ -921,7 +932,7 @@ For a `files` input element to support uploading multiple files provide the `mul
 The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
 
 > [!WARNING]
-> Don't rely on or trust the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> without validation. The `FileName` property should only be used for display purposes and only after HTML encoding the value.
+> Don't rely on or trust the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> without validation. The `FileName` property should only be used for display purposes and only after HTML encoding the value. <!- This is the 2.x version, copy here after approval -->
 >
 > The examples provided thus far don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
