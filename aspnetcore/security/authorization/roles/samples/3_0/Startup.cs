@@ -26,9 +26,8 @@ namespace WebApplication13
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
 					Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
-                .AddDefaultUI()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
