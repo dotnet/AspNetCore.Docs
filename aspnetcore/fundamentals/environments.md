@@ -326,6 +326,24 @@ When the host is built, the last environment setting read by the app determines 
 
 ::: moniker range=">= aspnetcore-3.0"
 
+### Inject IWebHostEnvironment into Startup.Configure
+
+Inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup.Configure`. This approach is useful when the app only requires configuring `Startup.Configure` for only a few environments with minimal code differences per environment.
+
+```csharp
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        // Development environment code
+    }
+    else
+    {
+        // Code for all other environments
+    }
+}
+```
+
 ### Inject IWebHostEnvironment into the Startup class
 
 Inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into the `Startup` constructor and assign the service to a field for use throughout the `Startup` class. This approach is useful when the app requires configuring `Startup` for only a few environments with minimal code differences per environment.
@@ -374,6 +392,24 @@ public class Startup
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
+
+### Inject IHostingEnvironment into Startup.Configure
+
+Inject <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment> into `Startup.Configure`. This approach is useful when the app only requires configuring `Startup.Configure` for only a few environments with minimal code differences per environment.
+
+```csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        // Development environment code
+    }
+    else
+    {
+        // Code for all other environments
+    }
+}
+```
 
 ### Inject IHostingEnvironment into the Startup class
 
