@@ -111,7 +111,7 @@ Register the requirement and handler in `Startup.ConfigureServices`:
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-1.1"
-[!code-csharp[](resourcebased/samples/1_1/ResourceBasedAuthApp2/Startup.cs?name=snippet_ConfigureServicesSample&highlight=3-7,9)]
+[!code-csharp[](resourcebased/samples/1_1/ResourceBasedAuthApp1/Startup.cs?name=snippet_ConfigureServicesSample&highlight=3-7,9)]
 ::: moniker-end
 
 
