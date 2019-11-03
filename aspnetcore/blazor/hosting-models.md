@@ -142,7 +142,9 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 
 ```cshtml
 <body>
-    <app>@(await Html.RenderComponentAsync<App>(RenderMode.ServerPrerendered))</app>
+    <app>
+      <component type="typeof(App)" render-mode="ServerPrerendered" />
+    </app>
 
     <script src="_framework/blazor.server.js"></script>
 </body>
@@ -155,13 +157,12 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 
 | `RenderMode`        | Description |
 | ------------------- | ----------- |
-| `ServerPrerendered` | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. Parameters aren't supported. |
-| `Server`            | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. Parameters aren't supported. |
-| `Static`            | Renders the component into static HTML. Parameters are supported. |
+| `ServerPrerendered` | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| `Server`            | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| `Static`            | Renders the component into static HTML. |
 
 Rendering server components from a static HTML page isn't supported.
 
-The client reconnects to the server with the same state that was used to prerender the app. If the app's state is still in memory, the component state isn't rerendered after the SignalR connection is established.
 
 ### Render stateful interactive components from Razor pages and views
 
@@ -178,7 +179,12 @@ The following Razor page renders a `Counter` component:
 ```cshtml
 <h1>My Razor Page</h1>
 
-@(await Html.RenderComponentAsync<Counter>(RenderMode.ServerPrerendered))
+<component type="typeof(Counter)" render-mode="ServerPrerendered" param-InitialValue="InitialValue" />
+
+@code {
+    [BindProperty(SupportsGet=true)]
+    public int InitialValue { get; set; }
+}
 ```
 
 ### Render noninteractive components from Razor pages and views
@@ -193,8 +199,7 @@ In the following Razor page, the `MyComponent` component is statically rendered 
     <button type="submit">Set initial value</button>
 </form>
 
-@(await Html.RenderComponentAsync<MyComponent>(RenderMode.Static, 
-    new { InitialValue = InitialValue }))
+<component type="typeof(Counter)" render-mode="Static" param-InitialValue="InitialValue" />
 
 @code {
     [BindProperty(SupportsGet=true)]
