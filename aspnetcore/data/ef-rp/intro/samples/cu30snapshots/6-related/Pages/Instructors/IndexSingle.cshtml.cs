@@ -19,16 +19,16 @@ namespace ContosoUniversity.Pages.Instructors
             _context = context;
         }
 
-        public InstructorIndexData Instructor { get; set; }
+        public InstructorIndexData InstructorData { get; set; }
         public int InstructorID { get; set; }
         public int CourseID { get; set; }
 
         #region snippet_single
         public async Task OnGetAsync(int? id, int? courseID)
         {
-            Instructor = new InstructorIndexData();
+            InstructorData = new InstructorIndexData();
 
-            Instructor.Instructors = await _context.Instructors
+            InstructorData.Instructors = await _context.Instructors
                   .Include(i => i.OfficeAssignment)
                   .Include(i => i.CourseAssignments)
                     .ThenInclude(i => i.Course)
@@ -44,7 +44,7 @@ namespace ContosoUniversity.Pages.Instructors
             if (id != null)
             {
                 InstructorID = id.Value;
-                Instructor instructor = Instructor.Instructors.Single(
+                Instructor instructor = InstructorData.Instructors.Single(
                     i => i.ID == id.Value);
                 InstructorData.Courses = instructor.CourseAssignments.Select(
                     s => s.Course);
@@ -53,7 +53,7 @@ namespace ContosoUniversity.Pages.Instructors
             if (courseID != null)
             {
                 CourseID = courseID.Value;
-                Instructor.Enrollments = InstructorData.Courses.Single(
+                InstructorData.Enrollments = InstructorData.Courses.Single(
                     x => x.CourseID == courseID).Enrollments;
             }
         }
