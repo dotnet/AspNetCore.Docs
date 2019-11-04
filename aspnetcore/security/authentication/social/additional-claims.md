@@ -5,7 +5,7 @@ description: Learn how to establish additional claims and tokens from external p
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 11/04/2019
 uid: security/authentication/social/additional-claims
 ---
 # Persist additional claims and tokens from external providers in ASP.NET Core
@@ -77,6 +77,8 @@ If a large amount of user data is required for processing user requests:
 
 * Limit the number and size of user claims for request processing to only what the app requires.
 * Use a custom <xref:Microsoft.AspNetCore.Authentication.Cookies.ITicketStore> for the Cookie Authentication Middleware's <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions.SessionStore> to store identity across requests. Preserve large quantities of identity information on the server while only sending a small session identifier key to the client.
+
+Claims are added to the user on first registration, not on sign in. If additional claims are enabled in an app after a user registers to use the app, delete the user and have them register again.
 
 ## Save the access token
 

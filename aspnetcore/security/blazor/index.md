@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 11/04/2019
 uid: security/blazor/index
 ---
 # ASP.NET Core Blazor authentication and authorization
@@ -114,6 +114,12 @@ In Blazor WebAssembly apps, authentication checks can be bypassed because all cl
 Add a package reference for [Microsoft.AspNetCore.Components.Authorization](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization/) to the app's project file.
 
 Implementation of a custom `AuthenticationStateProvider` service for Blazor WebAssembly apps is covered in the following sections.
+
+### Additional claims and tokens from external providers
+
+To store additional claims from external providers, see <xref:security/authentication/social/additional-claims>.
+
+Currently, `GetAuthenticationStateAsync` hasn't been extended to include authentication properties. Therefore, the guidance in the *Save the access token* and *How to add additional custom tokens* sections of the [Additional claims](xref:security/authentication/social/additional-claims#save-the-access-token) topic can't be followed for Blazor apps. Until the framework supports authentication token access in Blazor apps, you can add an API endpoint to the app that returns the tokens for the current user.
 
 ## AuthenticationStateProvider service
 
@@ -508,3 +514,4 @@ The `CascadingAuthenticationState` supplies the `Task<AuthenticationState>` casc
 * <xref:security/index>
 * <xref:security/blazor/server>
 * <xref:security/authentication/windowsauth>
+* <xref:security/authentication/social/additional-claims>
