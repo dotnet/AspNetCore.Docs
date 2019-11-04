@@ -207,7 +207,7 @@ The `DataAnnotationsValidator` component doesn't validate subproperties of compl
 ](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
 
 The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the `DataAnnotationsValidator` component. The `Microsoft.AspNetCore.Blazor.DataAnnotations.Validation` package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `ComparePropertyAttribute` is a direct replacement for the `CompareAttribute`. For more information, see [CompareAttribute ignored with OnValidSubmit EditForm (aspnet/AspNetCore
- #10643)](https://github.com/aspnet/AspNetCore/issues/10643#issuecomment-543909748).
+ \#10643)](https://github.com/aspnet/AspNetCore/issues/10643#issuecomment-543909748).
 
 ::: moniker-end
 
