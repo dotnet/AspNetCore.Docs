@@ -74,9 +74,26 @@ public class GreeterService : Greeter.GreeterBase
 
 C-core-based apps configure HTTPS through the [Server.Ports property](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server_Ports). A similar concept is used to configure servers in ASP.NET Core. For example, Kestrel uses [endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) for this functionality.
 
-## Interceptors and Middleware
+## gRPC Interceptors vs Middleware
 
-ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar functionalities compared to interceptors in C-core-based gRPC apps. Middleware and interceptors are conceptually the same as both are used to construct a pipeline that handles a gRPC request. They both allow work to be performed before or after the next component in the pipeline. However, ASP.NET Core middleware operates on the underlying HTTP/2 messages, while interceptors operate on the gRPC layer of abstraction using the [ServerCallContext](https://grpc.io/grpc/csharp/api/Grpc.Core.ServerCallContext.html).
+ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar functionalities compared to interceptors in C-core-based gRPC apps. Middleware and interceptors are conceptually similar. Both:
+
+* Are used to construct a pipeline that handles a gRPC request.
+* Allow work to be performed before or after the next component in the pipeline.
+
+gRPC Interceptors differences from ASP.NET Core Middleware:
+
+* Middleware operates on the underlying HTTP/2 messages.
+* Interceptors operate on the gRPC layer of abstraction using the [ServerCallContext](https://grpc.io/grpc/csharp/api/Grpc.Core.ServerCallContext.html).
+* ASP.NET Core middleware runs before gRPC interceptors.
+* ASP.NET Core middleware provides access to `HttpContext`, `HttpRequest`, and `HttpResponse`.
+* gRPC interceptors provide access to:
+  * The deserialized message sent to a call.
+  * The message being returned from the call before it is serialized.
+* Middleware can only access bytes from the request and response streams.
+
+
+
 
 ## Additional resources
 
