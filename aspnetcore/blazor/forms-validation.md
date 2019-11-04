@@ -197,6 +197,22 @@ The `ValidationMessage` component displays validation messages for a specific fi
 
 The `ValidationMessage` and `ValidationSummary` components support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the generated `<div>` or `<ul>` element.
 
+::: moniker range=">= aspnetcore-3.1"
+
+### Microsoft.AspNetCore.Blazor.DataAnnotations.Validation
+
+The [`Microsoft.AspNetCore.Blazor.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) is an experimental package that fills some experience gaps with validation using the `DataAnnotationsValidator` component. The package is considered experimental as these features are planned to be rolled in to the .NET Core framework in a future release.
+
+The `DataAnnotationsValidator` component does not validate sub-properties of complex properties on a model being validated. Items of collection type properties are also not validated. To validate these types, the `Microsoft.AspNetCore.Blazor.DataAnnotations.Validation`package introduces the `ValidateComplexType` validation attribute that works in tandem with the `ObjectGraphDataAnnotationsValidator` component. For a complete sample of these types being used, see https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation.
+
+The <xref:System.ComponentModel.DataAnnotations.CompareAttribute /> [does not work well](https://github.com/aspnet/AspNetCore/issues/10643#issuecomment-543909748) with the `DataAnnotationsValidator` component. The `Microsoft.AspNetCore.Blazor.DataAnnotations.Validation` package introduces an additional validation attribute - `ComparePropertyAttribute` that works around these limitations. In a Blazor application, `ComparePropertyAttribute` can be is a direct replacement to the `CompareAttribute`.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.1"
+
 ### Validation of complex or collection type properties
 
-Validation attributes applied to the properties of a model validate when the form is submitted. However, the properties of collections or complex data types of a model aren't validated on form submission. To honor the nested validation attributes in this scenario, use a custom validation component. For an example, see the [Blazor Validation sample in the aspnet/samples GitHub repository](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
+Validation attributes applied to the properties of a model validate when the form is submitted. However, the properties of collections or complex data types of a model aren't validated on form submission by the `DataAnnotationsValidator` component. To honor the nested validation attributes in this scenario, use a custom validation component. For an example, see the [Blazor Validation sample in the aspnet/samples GitHub repository](https://github.com/aspnet/samples/tree/2a1657066fbc5a0564405865942c87c08c4e0a1f/samples/aspnetcore/blazor/Validation).
+
+::: moniker-end
