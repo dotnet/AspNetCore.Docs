@@ -20,7 +20,7 @@ This article explains how to configure Response Caching Middleware in an ASP.NET
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Response Caching Middleware is made available by the [Microsoft.AspNetCore.ResponseCaching](https://www.nuget.org/packages/Microsoft.AspNetCore.ResponseCaching/) package, which is implicitly added to ASP.NET Core apps.
+Response Caching Middleware is implicitly available for ASP.NET Core apps via the shared framework.
 
 In `Startup.ConfigureServices`, add the Response Caching Middleware to the service collection:
 
