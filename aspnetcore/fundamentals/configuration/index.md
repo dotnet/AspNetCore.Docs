@@ -1183,7 +1183,7 @@ Create a class that implements <xref:Microsoft.Extensions.Configuration.IConfigu
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationSource.cs?name=snippet1)]
 
-Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty.
+Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. The dictionary used to initialize the database is created with [StringComparer.OrdinalIgnoreCase](xref:System.StringComparer.OrdinalIgnoreCase), which makes keys case insensitive to match how ordinary configuration keys are matched.
 
 *EFConfigurationProvider/EFConfigurationProvider.cs*:
 
