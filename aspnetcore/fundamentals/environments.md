@@ -328,7 +328,7 @@ When the host is built, the last environment setting read by the app determines 
 
 ### Inject IWebHostEnvironment into Startup.Configure
 
-Inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup.Configure`. This approach is useful when the app only requires configuring `Startup.Configure` for only a few environments with minimal code differences per environment.
+Inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup.Configure`. This approach is useful when the app only requires adjusting `Startup.Configure` for a few environments with minimal code differences per environment.
 
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
