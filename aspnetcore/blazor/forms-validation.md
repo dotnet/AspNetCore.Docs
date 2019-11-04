@@ -206,8 +206,7 @@ The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.o
 The `DataAnnotationsValidator` component doesn't validate subproperties of complex properties on a validating model. Items of collection-type properties aren't validated. To validate these types, the `Microsoft.AspNetCore.Blazor.DataAnnotations.Validation` package introduces the `ValidateComplexType` validation attribute that works in tandem with the `ObjectGraphDataAnnotationsValidator` component. For an example of these types in use, see the [Blazor Validation sample in the aspnet/samples GitHub repository
 ](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
 
-The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the `DataAnnotationsValidator` component. The `Microsoft.AspNetCore.Blazor.DataAnnotations.Validation` package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `ComparePropertyAttribute` is a direct replacement for the `CompareAttribute`. For more information, see [CompareAttribute ignored with OnValidSubmit EditForm (aspnet/AspNetCore
- \#10643)](https://github.com/aspnet/AspNetCore/issues/10643#issuecomment-543909748).
+The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the `DataAnnotationsValidator` component. The `Microsoft.AspNetCore.Blazor.DataAnnotations.Validation` package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `ComparePropertyAttribute` is a direct replacement for the `CompareAttribute`. For more information, see [CompareAttribute ignored with OnValidSubmit EditForm (aspnet/AspNetCore \#10643)](https://github.com/aspnet/AspNetCore/issues/10643#issuecomment-543909748).
 
 ::: moniker-end
 
