@@ -139,7 +139,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var host = CreateWebHostBuilder(args);
+        var host = CreateHostBuilder(args);
         
         if (host != null)
         {
@@ -147,7 +147,7 @@ public class Program
         }
     }
 
-    public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+    public static IHostBuilder CreateHostBuilder(string[] args)
     {
         var builtConfig = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
@@ -161,10 +161,10 @@ public class Program
 
         try
         {
-            return WebHost.CreateDefaultBuilder(args)
+            return Host.CreateDefaultBuilder(args)
                 .ConfigureServices((context, services) =>
                 {
-                    services.AddMvc();
+                    services.AddRazorPages();
                 })
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
