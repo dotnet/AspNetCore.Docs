@@ -5,7 +5,7 @@ description: Learn how to control app behavior across multiple environments in A
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/02/2019
+ms.date: 11/05/2019
 uid: fundamentals/environments
 ---
 # Use multiple environments in ASP.NET Core
@@ -306,8 +306,6 @@ To load configuration by environment, we recommend:
 * Environment variables (set on each system where the app is hosted). See <xref:fundamentals/host/generic-host#environmentname> and <xref:security/app-secrets#environment-variables>.
 * Secret Manager (in the Development environment only). See <xref:security/app-secrets>.
 
-In addition to the recommended approaches, an app can also call <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseEnvironment*> when building the host. See <xref:fundamentals/host/generic-host#environmentname>.
-
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -315,8 +313,6 @@ In addition to the recommended approaches, an app can also call <xref:Microsoft.
 * *appsettings* files (*appsettings.{Environment}.json*). See <xref:fundamentals/configuration/index#json-configuration-provider>.
 * Environment variables (set on each system where the app is hosted). See <xref:fundamentals/host/web-host#environment> and <xref:security/app-secrets#environment-variables>.
 * Secret Manager (in the Development environment only). See <xref:security/app-secrets>.
-
-In addition to the recommended approaches, an app can also call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseEnvironment*> when building the host. See <xref:fundamentals/host/web-host#environment>.
 
 ::: moniker-end
 
@@ -346,7 +342,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 ### Inject IWebHostEnvironment into the Startup class
 
-Inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into the `Startup` constructor and assign the service to a field for use throughout the `Startup` class. This approach is useful when the app requires configuring `Startup` for only a few environments with minimal code differences per environment.
+Inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into the `Startup` constructor. This approach is useful when the app requires configuring `Startup` for only a few environments with minimal code differences per environment.
 
 In the following example:
 
@@ -365,7 +361,11 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        if (_env.IsStaging())
+        if (_env.IsDevelopment())
+        {
+            // Development environment code
+        }
+        else if (_env.IsStaging())
         {
             // Staging environment code
         }
@@ -432,7 +432,11 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        if (_env.IsStaging())
+        if (_env.IsDevelopment())
+        {
+            // Development environment code
+        }
+        else if (_env.IsStaging())
         {
             // Staging environment code
         }
