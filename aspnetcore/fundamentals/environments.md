@@ -183,9 +183,21 @@ The production environment should be configured to maximize security, performanc
 
 ## Set the environment
 
-It's often useful to set a specific environment for testing. If the environment isn't set, it defaults to `Production`, which disables most debugging features. The method for setting the environment depends on the operating system.
+It's often useful to set a specific environment for testing with an environment variable or platform setting. If the environment isn't set, it defaults to `Production`, which disables most debugging features. The method for setting the environment depends on the operating system.
 
 When the host is built, the last environment setting read by the app determines the app's environment. The app's environment can't be changed while the app is running.
+
+::: moniker range=">= aspnetcore-3.0"
+
+In addition to the following methods for setting the environment, the environment can also be set by calling <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseEnvironment*> when building the host. See <xref:fundamentals/host/generic-host#environmentname>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+In addition to the following methods for setting the environment, the environment can also be set by calling <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseEnvironment*> when building the host. See <xref:fundamentals/host/web-host#environment>.
+
+::: moniker-end
 
 ### Azure App Service
 
