@@ -249,8 +249,6 @@ public class WeatherForecastService
 }
 ```
 
-::: moniker-end
-
 ### Render stateful interactive components from Razor pages and views
 
 Stateful interactive components can be added to a Razor page or view.
