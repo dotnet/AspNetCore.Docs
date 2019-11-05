@@ -80,9 +80,9 @@ ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar fun
 
 * Are used to construct a pipeline that handles a gRPC request.
 * Allow work to be performed before or after the next component in the pipeline.
-* Provide access to `HttpContext`
-  * Middleware provides access to `HttpContext`, `HttpRequest`, and `HttpResponse`.
-  * gRPC interceptors provide access to `HttpContext`. The `HttpContext` is a parameter passed to middleware. Inside an interceptor the `HttpContext` cab be accessed using the `ServerCallContext` parameter and the `ServerCallContext.GetHttpContext` extension method.
+* Provide access to `HttpContext`:
+  * In middleware the `HttpContext` is a parameter.
+  * In interceptors the `HttpContext` can be accessed using the `ServerCallContext` parameter with the `ServerCallContext.GetHttpContext` extension method. Note that this feature is specific to interceptors running in ASP.NET Core.
 
 gRPC Interceptor differences from ASP.NET Core Middleware:
 
