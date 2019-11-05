@@ -172,6 +172,7 @@ public class Program
                 })
                 .ConfigureLogging(logging =>
                 {
+                    // AddSerilog utilizes the static config specified above in `Log.Logger`.
                     logging.AddSerilog();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
@@ -183,7 +184,7 @@ public class Program
         {
             Log.Fatal(ex, "Host builder error");
 
-            return null;
+            throw;
         }
         finally
         {
