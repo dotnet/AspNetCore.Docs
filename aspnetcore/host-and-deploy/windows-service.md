@@ -38,7 +38,7 @@ The ASP.NET Core Worker Service template provides a starting point for writing l
 
 ::: moniker range=">= aspnetcore-3.0"
 
-The app requires a package reference for [Microsoft.AspNetCore.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.AspNetCore.Hosting.WindowsServices).
+The app requires a package reference for [Microsoft.Extensions.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices).
 
 `IHostBuilder.UseWindowsService` is called when building the host. If the app is running as a Windows Service, the method:
 
