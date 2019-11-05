@@ -181,16 +181,24 @@ Conceptually, the validation of the certificate is an authorization concern. Add
 In *Program.cs*, configure Kestrel as follows:
 
 ```csharp
-public static IWebHost BuildWebHost(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder => {
+
+public static void Main(string[] args)
+{
+    CreateHostBuilder(args).Build().Run();
+}
+
+public static IHostBuilder CreateHostBuilder(string[] args)
+{
+    return Host.CreateDefaultBuilder(args)
+               .ConfigureWebHostDefaults(webBuilder =>
+                {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.ConfigureKestrel(options =>
-                        {
-                            options.ConfigureHttpsDefaults(opt => opt.ClientCertificateMode = ClientCertificateMode.RequireCertificate);
-                        });
-                    })
-        .Build();
+                    webBuilder.ConfigureKestrel(o =>
+                    {
+                        o.ConfigureHttpsDefaults(o => o.ClientCertificateMode = ClientCertificateMode.RequireCertificate);
+                    });
+                });
+}
 ```
 
 ### IIS
