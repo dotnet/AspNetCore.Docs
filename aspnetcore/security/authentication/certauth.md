@@ -182,7 +182,7 @@ In *Program.cs*, configure Kestrel as follows:
 
 ```csharp
 public static IWebHost BuildWebHost(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
+    Host.CreateDefaultBuilder(args)
         .UseStartup<Startup>()
         .ConfigureKestrel(options =>
         {
