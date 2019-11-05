@@ -183,13 +183,13 @@ In *Program.cs*, configure Kestrel as follows:
 ```csharp
 public static IWebHost BuildWebHost(string[] args) =>
     Host.CreateDefaultBuilder(args)
-        .UseStartup<Startup>()
-        .ConfigureKestrel(options =>
-        {
-            options.ConfigureHttpsDefaults(opt => 
-                opt.ClientCertificateMode = 
-                    ClientCertificateMode.RequireCertificate);
-        })
+        .ConfigureWebHostDefaults(webBuilder => {
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.ConfigureKestrel(options =>
+                        {
+                            options.ConfigureHttpsDefaults(opt => opt.ClientCertificateMode = ClientCertificateMode.RequireCertificate);
+                        });
+                    })
         .Build();
 ```
 
