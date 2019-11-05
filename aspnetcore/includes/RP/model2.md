@@ -46,7 +46,7 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 ### Add required NuGet packages
 
-Run the following .NET Core CLI command to add SQLite and CodeGeneration.Design  to the project:
+Run the following .NET Core CLI command to add SQLite and CodeGeneration.Design to the project:
 
 ```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
@@ -72,4 +72,5 @@ Register the database context with the [dependency injection](xref:fundamentals/
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 Build the project as a check for errors.
+
 ::: moniker-end
