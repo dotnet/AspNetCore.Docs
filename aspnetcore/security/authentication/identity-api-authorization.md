@@ -169,7 +169,7 @@ To customize the configuration of the API's JWT handler, configure its <xref:Mic
 services.AddAuthentication()
     .AddIdentityServerJwt();
 
-services.ConfigureOptions<JwtBearerOptions>(
+services.Configure<JwtBearerOptions>(
     IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
     options =>
     {
