@@ -125,7 +125,7 @@ To write logs in the `Program` class of an ASP.NET Core app, get an `ILogger` in
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=9,10)]
 
-Logging in `ConfigureServices` isn't directly supported. However, a static third-party logger can be used. In the following example, a [Serilog](https://serilog.net/) logger is used to log in `CreateHostBuilder`:
+Logging in `ConfigureServices` isn't directly supported. However, a static third-party logger can be used. In the following example, a [Serilog](https://serilog.net/) logger is used to log in `CreateHostBuilder`. `AddSerilog` uses the static configuration specified in `Log.Logger`:
 
 ```csharp
 using System;
@@ -166,9 +166,7 @@ public class Program
                     config.AddConfiguration(builtConfig);
                 })
                 .ConfigureLogging(logging =>
-                {
-                    // AddSerilog utilizes the static config
-                    // specified above in `Log.Logger`.
+                {   
                     logging.AddSerilog();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
@@ -227,7 +225,7 @@ To write logs in the `Program` class, get an `ILogger` instance from DI:
 
 [!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=9,10)]
 
-Logging in `ConfigureServices` isn't directly supported. However, a static third-party logger can be used. In the following example, a [Serilog](https://serilog.net/) logger is used to log in `CreateWebHostBuilder`:
+Logging in `ConfigureServices` isn't directly supported. However, a static third-party logger can be used. In the following example, a [Serilog](https://serilog.net/) logger is used to log in `CreateWebHostBuilder`. `AddSerilog` uses the static configuration specified in `Log.Logger`:
 
 ```csharp
 using System;
@@ -269,8 +267,6 @@ public class Program
                 })
                 .ConfigureLogging(logging =>
                 {
-                    // AddSerilog utilizes the static config
-                    // specified above in `Log.Logger`.
                     logging.AddSerilog();
                 })
                 .UseStartup<Startup>();
