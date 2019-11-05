@@ -193,11 +193,61 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 
 Rendering server components from a static HTML page isn't supported.
 
-::: moniker range="< aspnetcore-3.1"
+When `RenderMode` is `ServerPrerendered`, the component is initially rendered statically as part of the page. Once the browser establishes a connection back to the server, the component is rendered *again*, and the component is now interactive. If a [lifecycle method](xref:blazor/components#lifecycle-methods) for initializing the component (`OnInitialized{Async}`) is present, the method is executed *twice*:
 
-The client reconnects to the server with the same state that was used to prerender the app. If the app's state is still in memory, the component state isn't rerendered after the SignalR connection is established.
+* When the component is prerendered statically.
+* After the server connection has been established.
 
-::: moniker-end
+This can result in a noticeable change in the data displayed in the UI when the component is finally rendered.
+
+To avoid the double-rendering scenario in a Blazor Server app:
+
+* Pass in an identifier that can be used to cache the state during prerendering and to retrieve the state after the app restarts.
+* Use the identifier during prerendering to save component state.
+* Use the identifier after prerendering to retrieve the cached state.
+
+The following code demonstrates an updated `WeatherForecastService` in a template-based Blazor Server app that avoids the double rendering:
+
+```csharp
+public class WeatherForecastService
+{
+    private static readonly string[] Summaries = new[]
+    {
+        "Freezing", "Bracing", "Chilly", "Cool", "Mild",
+        "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+    };
+    
+    public WeatherForecastService(IMemoryCache memoryCache)
+    {
+        MemoryCache = memoryCache;
+    }
+    
+    public IMemoryCache MemoryCache { get; }
+
+    public Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
+    {
+        return MemoryCache.GetOrCreateAsync(startDate, async e =>
+        {
+            e.SetOptions(new MemoryCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = 
+                    TimeSpan.FromSeconds(30)
+            });
+
+            var rng = new Random();
+
+            await Task.Delay(TimeSpan.FromSeconds(10));
+
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = startDate.AddDays(index),
+                TemperatureC = rng.Next(-20, 55),
+                Summary = Summaries[rng.Next(Summaries.Length)]
+            }).ToArray();
+        });
+    }
+}
+```
 
 ### Render stateful interactive components from Razor pages and views
 
