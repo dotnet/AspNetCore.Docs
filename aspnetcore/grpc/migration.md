@@ -76,21 +76,25 @@ C-core-based apps configure HTTPS through the [Server.Ports property](https://gr
 
 ## gRPC Interceptors vs Middleware
 
-ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar functionalities compared to interceptors in C-core-based gRPC apps. Middleware and interceptors are conceptually similar. Both:
+ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar functionalities compared to interceptors in C-core-based gRPC apps. ASP.NET Core middleware and interceptors are conceptually similar. Both:
 
 * Are used to construct a pipeline that handles a gRPC request.
 * Allow work to be performed before or after the next component in the pipeline.
+* Provide access to `HttpContext`
+  * Middleware provides access to `HttpContext`, `HttpRequest`, and `HttpResponse`.
+  * gRPC interceptors provide access to `HttpContext`. The `HttpContext` is a parameter passed to middleware. Inside an interceptor the `HttpContext` cab be accessed using the `ServerCallContext` parameter and the `ServerCallContext.GetHttpContext` extension method.
 
 gRPC Interceptor differences from ASP.NET Core Middleware:
 
-* Interceptors operate on the gRPC layer of abstraction using the [ServerCallContext](https://grpc.io/grpc/csharp/api/Grpc.Core.ServerCallContext.html).
-* ASP.NET Core middleware runs before gRPC interceptors.
-* Middleware operates on the underlying HTTP/2 messages.
-* ASP.NET Core middleware provides access to `HttpContext`, `HttpRequest`, and `HttpResponse`.
-* gRPC interceptors provide access to:
-  * The deserialized message sent to a call.
-  * The message being returned from the call before it is serialized.
-* Middleware can only access bytes from the request and response streams.
+* Interceptors:
+  * Operate on the gRPC layer of abstraction using the [ServerCallContext](https://grpc.io/grpc/csharp/api/Grpc.Core.ServerCallContext.html).
+  * Provide access to:
+    * The deserialized message sent to a call.
+    * The message being returned from the call before it is serialized.
+* Middleware:
+  * Runs before gRPC interceptors.
+  * Operates on the underlying HTTP/2 messages.
+  * Can only access bytes from the request and response streams.
 
 ## Additional resources
 
