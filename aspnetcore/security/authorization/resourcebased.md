@@ -17,7 +17,7 @@ Attribute evaluation occurs before data binding and before execution of the page
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/resourcebased/samples/3_0) ([how to download](xref:index#how-to-download-a-sample)).
 ::: moniker-end
 
-::: moniker range="== aspnetcore-2.0"
+::: moniker range="= aspnetcore-2.0"
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/resourcebased/samples/2_2) ([how to download](xref:index#how-to-download-a-sample)).
 ::: moniker-end
 
