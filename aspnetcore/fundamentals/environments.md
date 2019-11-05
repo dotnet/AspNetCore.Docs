@@ -5,7 +5,7 @@ description: Learn how to control app behavior across multiple environments in A
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/10/2019
+ms.date: 11/05/2019
 uid: fundamentals/environments
 ---
 # Use multiple environments in ASP.NET Core
@@ -18,7 +18,25 @@ ASP.NET Core configures app behavior based on the runtime environment using an e
 
 ## Environments
 
-ASP.NET Core reads the environment variable `ASPNETCORE_ENVIRONMENT` at app startup and stores the value in [IHostingEnvironment.EnvironmentName](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname). You can set `ASPNETCORE_ENVIRONMENT` to any value, but [three values](/dotnet/api/microsoft.aspnetcore.hosting.environmentname) are supported by the framework: [Development](/dotnet/api/microsoft.aspnetcore.hosting.environmentname.development), [Staging](/dotnet/api/microsoft.aspnetcore.hosting.environmentname.staging), and [Production](/dotnet/api/microsoft.aspnetcore.hosting.environmentname.production). If `ASPNETCORE_ENVIRONMENT` isn't set, it defaults to `Production`.
+::: moniker range=">= aspnetcore-3.0"
+
+ASP.NET Core reads the environment variable `ASPNETCORE_ENVIRONMENT` at app startup and stores the value in [IWebHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName). `ASPNETCORE_ENVIRONMENT` can be set to any value, but three values are provided by the framework:
+
+* <xref:Microsoft.Extensions.Hosting.Environments.Development>
+* <xref:Microsoft.Extensions.Hosting.Environments.Staging>
+* <xref:Microsoft.Extensions.Hosting.Environments.Production> (default)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+ASP.NET Core reads the environment variable `ASPNETCORE_ENVIRONMENT` at app startup and stores the value in [IHostingEnvironment.EnvironmentName](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName). `ASPNETCORE_ENVIRONMENT` can be set to any value, but three values are provided by the framework:
+
+* <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Development>
+* <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Staging>
+* <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Production> (default)
+
+::: moniker-end
 
 [!code-csharp[](environments/sample/EnvironmentsSample/Startup.cs?name=snippet)]
 
@@ -165,9 +183,13 @@ The production environment should be configured to maximize security, performanc
 
 ## Set the environment
 
-It's often useful to set a specific environment for testing. If the environment isn't set, it defaults to `Production`, which disables most debugging features. The method for setting the environment depends on the operating system.
+It's often useful to set a specific environment for testing with an environment variable or platform setting. If the environment isn't set, it defaults to `Production`, which disables most debugging features. The method for setting the environment depends on the operating system.
 
-### Azure App Service
+When the host is built, the last environment setting read by the app determines the app's environment. The app's environment can't be changed while the app is running.
+
+### Environment variable or platform setting
+
+#### Azure App Service
 
 To set the environment in [Azure App Service](https://azure.microsoft.com/services/app-service/), perform the following steps:
 
@@ -180,7 +202,7 @@ To set the environment in [Azure App Service](https://azure.microsoft.com/servic
 
 Azure App Service automatically restarts the app after an app setting (environment variable) is added, changed, or deleted in the Azure portal.
 
-### Windows
+#### Windows
 
 To set the `ASPNETCORE_ENVIRONMENT` for the current session when the app is started using [dotnet run](/dotnet/core/tools/dotnet-run), the following commands are used:
 
@@ -254,7 +276,7 @@ To set the `ASPNETCORE_ENVIRONMENT` environment variable for an app running in a
 > * Execute `net stop was /y` followed by `net start w3svc` from a command prompt.
 > * Restart the server.
 
-### macOS
+#### macOS
 
 Setting the current environment for macOS can be performed in-line when running the app:
 
@@ -274,23 +296,191 @@ Machine-level environment variables are set in the *.bashrc* or *.bash_profile* 
 export ASPNETCORE_ENVIRONMENT=Development
 ```
 
-### Linux
+#### Linux
 
 For Linux distros, use the `export` command at a command prompt for session-based variable settings and *bash_profile* file for machine-level environment settings.
+
+### Set the environment in code
+
+::: moniker range=">= aspnetcore-3.0"
+
+Call <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseEnvironment*> when building the host. See <xref:fundamentals/host/generic-host#environmentname>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+Call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseEnvironment*> when building the host. See <xref:fundamentals/host/web-host#environment>.
+
+::: moniker-end
 
 ### Configuration by environment
 
 To load configuration by environment, we recommend:
 
-* *appsettings* files (*appsettings.\<Environment>.json*). See [Configuration: File configuration provider](xref:fundamentals/configuration/index#file-configuration-provider).
-* environment variables (set on each system where the app is hosted). See [Configuration: File configuration provider](xref:fundamentals/configuration/index#file-configuration-provider) and [Safe storage of app secrets in development: Environment variables](xref:security/app-secrets#environment-variables).
+::: moniker range=">= aspnetcore-3.0"
+
+* *appsettings* files (*appsettings.{Environment}.json*). See <xref:fundamentals/configuration/index#json-configuration-provider>.
+* Environment variables (set on each system where the app is hosted). See <xref:fundamentals/host/generic-host#environmentname> and <xref:security/app-secrets#environment-variables>.
 * Secret Manager (in the Development environment only). See <xref:security/app-secrets>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+* *appsettings* files (*appsettings.{Environment}.json*). See <xref:fundamentals/configuration/index#json-configuration-provider>.
+* Environment variables (set on each system where the app is hosted). See <xref:fundamentals/host/web-host#environment> and <xref:security/app-secrets#environment-variables>.
+* Secret Manager (in the Development environment only). See <xref:security/app-secrets>.
+
+::: moniker-end
 
 ## Environment-based Startup class and methods
 
+::: moniker range=">= aspnetcore-3.0"
+
+### Inject IWebHostEnvironment into Startup.Configure
+
+Inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup.Configure`. This approach is useful when the app only requires adjusting `Startup.Configure` for a few environments with minimal code differences per environment.
+
+```csharp
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        // Development environment code
+    }
+    else
+    {
+        // Code for all other environments
+    }
+}
+```
+
+### Inject IWebHostEnvironment into the Startup class
+
+Inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into the `Startup` constructor. This approach is useful when the app requires configuring `Startup` for only a few environments with minimal code differences per environment.
+
+In the following example:
+
+* The environment is held in the `_env` field.
+* `_env` is used in `ConfigureServices` and `Configure` to apply startup configuration based on the app's environment.
+
+```csharp
+public class Startup
+{
+    private readonly IWebHostEnvironment _env;
+
+    public Startup(IWebHostEnvironment env)
+    {
+        _env = env;
+    }
+
+    public void ConfigureServices(IServiceCollection services)
+    {
+        if (_env.IsDevelopment())
+        {
+            // Development environment code
+        }
+        else if (_env.IsStaging())
+        {
+            // Staging environment code
+        }
+        else
+        {
+            // Code for all other environments
+        }
+    }
+
+    public void Configure(IApplicationBuilder app)
+    {
+        if (_env.IsDevelopment())
+        {
+            // Development environment code
+        }
+        else
+        {
+            // Code for all other environments
+        }
+    }
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+### Inject IHostingEnvironment into Startup.Configure
+
+Inject <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment> into `Startup.Configure`. This approach is useful when the app only requires configuring `Startup.Configure` for only a few environments with minimal code differences per environment.
+
+```csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        // Development environment code
+    }
+    else
+    {
+        // Code for all other environments
+    }
+}
+```
+
+### Inject IHostingEnvironment into the Startup class
+
+Inject <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment> into the `Startup` constructor and assign the service to a field for use throughout the `Startup` class. This approach is useful when the app requires configuring startup for only a few environments with minimal code differences per environment.
+
+In the following example:
+
+* The environment is held in the `_env` field.
+* `_env` is used in `ConfigureServices` and `Configure` to apply startup configuration based on the app's environment.
+
+```csharp
+public class Startup
+{
+    private readonly IHostingEnvironment _env;
+
+    public Startup(IHostingEnvironment env)
+    {
+        _env = env;
+    }
+
+    public void ConfigureServices(IServiceCollection services)
+    {
+        if (_env.IsDevelopment())
+        {
+            // Development environment code
+        }
+        else if (_env.IsStaging())
+        {
+            // Staging environment code
+        }
+        else
+        {
+            // Code for all other environments
+        }
+    }
+
+    public void Configure(IApplicationBuilder app)
+    {
+        if (_env.IsDevelopment())
+        {
+            // Development environment code
+        }
+        else
+        {
+            // Code for all other environments
+        }
+    }
+}
+```
+
+::: moniker-end
+
 ### Startup class conventions
 
-When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) bootstraps the app. The app can define separate `Startup` classes for different environments (for example, `StartupDevelopment`), and the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If a matching `Startup{EnvironmentName}` class isn't found, the `Startup` class is used.
+When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) bootstraps the app. The app can define separate `Startup` classes for different environments (for example, `StartupDevelopment`). The appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If a matching `Startup{EnvironmentName}` class isn't found, the `Startup` class is used. This approach is useful when the app requires configuring startup for several environments with many code differences per environment.
 
 To implement environment-based `Startup` classes, create a `Startup{EnvironmentName}` class for each environment in use and a fallback `Startup` class:
 
@@ -300,12 +490,10 @@ public class StartupDevelopment
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        ...
     }
 
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     {
-        ...
     }
 }
 
@@ -314,12 +502,10 @@ public class StartupProduction
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        ...
     }
 
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     {
-        ...
     }
 }
 
@@ -329,12 +515,10 @@ public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        ...
     }
 
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     {
-        ...
     }
 }
 ```
@@ -358,7 +542,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args)
 
 ### Startup method conventions
 
-[Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) support environment-specific versions of the form `Configure<EnvironmentName>` and `Configure<EnvironmentName>Services`:
+[Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) support environment-specific versions of the form `Configure<EnvironmentName>` and `Configure<EnvironmentName>Services`. This approach is useful when the app requires configuring startup for several environments with many code differences per environment.
 
 [!code-csharp[](environments/sample/EnvironmentsSample/Startup.cs?name=snippet_all&highlight=15,42)]
 
@@ -366,4 +550,3 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args)
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/configuration/index>
-* [IHostingEnvironment.EnvironmentName](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.environmentname)

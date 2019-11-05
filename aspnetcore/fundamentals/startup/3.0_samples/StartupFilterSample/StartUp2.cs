@@ -11,13 +11,14 @@ namespace StartupFilterSample
     public class Startup
     {
         private readonly IWebHostEnvironment _env;
-        public IConfiguration Configuration { get; }
 
-        public Startup(IWebHostEnvironment env, IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
             _env = env;
         }
+
+        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -27,7 +28,6 @@ namespace StartupFilterSample
             else
             {
             }
-            //   _config["key"]
         }
     }
     #endregion
