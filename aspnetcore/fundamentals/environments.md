@@ -187,7 +187,7 @@ It's often useful to set a specific environment for testing with an environment 
 
 When the host is built, the last environment setting read by the app determines the app's environment. The app's environment can't be changed while the app is running.
 
-### Set the environment with an environment variable
+### Environment variable or platform setting
 
 #### Azure App Service
 
@@ -300,7 +300,7 @@ export ASPNETCORE_ENVIRONMENT=Development
 
 For Linux distros, use the `export` command at a command prompt for session-based variable settings and *bash_profile* file for machine-level environment settings.
 
-### Set the environemt in code
+### Set the environment in code
 
 ::: moniker range=">= aspnetcore-3.0"
 
