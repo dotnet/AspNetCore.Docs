@@ -139,12 +139,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var host = CreateHostBuilder(args);
-        
-        if (host != null)
-        {
-            host.Build().Run();
-        }
+        CreateHostBuilder(args).Build().Run();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args)
@@ -172,7 +167,8 @@ public class Program
                 })
                 .ConfigureLogging(logging =>
                 {
-                    // AddSerilog utilizes the static config specified above in `Log.Logger`.
+                    // AddSerilog utilizes the static config
+                    // specified above in `Log.Logger`.
                     logging.AddSerilog();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
@@ -245,12 +241,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var host = CreateWebHostBuilder(args);
-        
-        if (host != null)
-        {
-            host.Build().Run();
-        }
+        CreateWebHostBuilder(args).Build().Run();
     }
 
     public static IWebHostBuilder CreateWebHostBuilder(string[] args)
@@ -278,6 +269,8 @@ public class Program
                 })
                 .ConfigureLogging(logging =>
                 {
+                    // AddSerilog utilizes the static config
+                    // specified above in `Log.Logger`.
                     logging.AddSerilog();
                 })
                 .UseStartup<Startup>();
@@ -286,7 +279,7 @@ public class Program
         {
             Log.Fatal(ex, "Host builder error");
 
-            return null;
+            throw;
         }
         finally
         {
