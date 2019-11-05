@@ -1020,6 +1020,8 @@
   items:
     - name: Overview
       uid: performance/performance-best-practices
+    - name: Memory and GC
+      uid: performance/memory
     - name: Response caching
       items:
         - name: Overview
