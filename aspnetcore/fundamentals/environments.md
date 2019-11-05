@@ -185,6 +185,8 @@ The production environment should be configured to maximize security, performanc
 
 It's often useful to set a specific environment for testing. If the environment isn't set, it defaults to `Production`, which disables most debugging features. The method for setting the environment depends on the operating system.
 
+When the host is built, the last environment setting read by the app determines the app's environment. The app's environment can't be changed while the app is running.
+
 ### Azure App Service
 
 To set the environment in [Azure App Service](https://azure.microsoft.com/services/app-service/), perform the following steps:
@@ -315,8 +317,6 @@ To load configuration by environment, we recommend:
 * Secret Manager (in the Development environment only). See <xref:security/app-secrets>.
 
 ::: moniker-end
-
-When the host is built, the last environment setting read by the app determines the app's environment. The app's environment can't be changed while the app is running.
 
 ## Environment-based Startup class and methods
 
