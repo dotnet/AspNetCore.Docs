@@ -187,19 +187,9 @@ It's often useful to set a specific environment for testing with an environment 
 
 When the host is built, the last environment setting read by the app determines the app's environment. The app's environment can't be changed while the app is running.
 
-::: moniker range=">= aspnetcore-3.0"
+### Set the environment with an environment variable
 
-In addition to the following methods for setting the environment, the environment can also be set by calling <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseEnvironment*> when building the host. See <xref:fundamentals/host/generic-host#environmentname>.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-In addition to the following methods for setting the environment, the environment can also be set by calling <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseEnvironment*> when building the host. See <xref:fundamentals/host/web-host#environment>.
-
-::: moniker-end
-
-### Azure App Service
+#### Azure App Service
 
 To set the environment in [Azure App Service](https://azure.microsoft.com/services/app-service/), perform the following steps:
 
@@ -212,7 +202,7 @@ To set the environment in [Azure App Service](https://azure.microsoft.com/servic
 
 Azure App Service automatically restarts the app after an app setting (environment variable) is added, changed, or deleted in the Azure portal.
 
-### Windows
+#### Windows
 
 To set the `ASPNETCORE_ENVIRONMENT` for the current session when the app is started using [dotnet run](/dotnet/core/tools/dotnet-run), the following commands are used:
 
@@ -286,7 +276,7 @@ To set the `ASPNETCORE_ENVIRONMENT` environment variable for an app running in a
 > * Execute `net stop was /y` followed by `net start w3svc` from a command prompt.
 > * Restart the server.
 
-### macOS
+#### macOS
 
 Setting the current environment for macOS can be performed in-line when running the app:
 
@@ -306,9 +296,23 @@ Machine-level environment variables are set in the *.bashrc* or *.bash_profile* 
 export ASPNETCORE_ENVIRONMENT=Development
 ```
 
-### Linux
+#### Linux
 
 For Linux distros, use the `export` command at a command prompt for session-based variable settings and *bash_profile* file for machine-level environment settings.
+
+### Set the environemt in code
+
+::: moniker range=">= aspnetcore-3.0"
+
+Call <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseEnvironment*> when building the host. See <xref:fundamentals/host/generic-host#environmentname>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+Call <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseEnvironment*> when building the host. See <xref:fundamentals/host/web-host#environment>.
+
+::: moniker-end
 
 ### Configuration by environment
 
