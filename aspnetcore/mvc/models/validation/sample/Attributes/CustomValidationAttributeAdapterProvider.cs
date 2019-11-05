@@ -18,10 +18,9 @@ namespace ValidationSample.Attributes
         public IAttributeAdapter GetAttributeAdapter(ValidationAttribute attribute,
             IStringLocalizer stringLocalizer)
         {
-            if (attribute is ClassicMovieAttribute)
+            if (attribute is ClassicMovieAttribute classicMovieAttribute)
             {
-                return new ClassicMovieAttributeAdapter(
-                    attribute as ClassicMovieAttribute, stringLocalizer);
+                return new ClassicMovieAttributeAdapter(classicMovieAttribute, stringLocalizer);
             }
             else
             {

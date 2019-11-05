@@ -92,8 +92,7 @@ uld option: Use Local DB, not SQLite
 dotnet new webapp -au Individual -uld -o RPauth
 cd RPauth
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet restore
-dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files Account.Register
+dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Register"
 -->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
@@ -140,7 +139,7 @@ dotnet new mvc -au Individual -o MvcAuth
 cd MvcAuth
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet restore
-dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext --files Account.Register
+dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --files "Account.Login;Account.Register"
 -->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
@@ -170,6 +169,80 @@ Register an `IEmailSender` implementation, for example:
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet)]
+
+<!--
+uld option: Use Local DB, not SQLite
+
+dotnet new webapp -au Individual -uld -o RPauth
+cd RPauth
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
+-->
+## Disable register page
+
+To disable user registration:
+
+* Scaffold Identity. Include Account.Register, Account.Login, and Account.RegisterConfirmation. For example:
+
+  ```dotnetcli
+   dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
+  ```
+
+* Update *Areas/Identity/Pages/Account/Register.cshtml.cs* so users can't register from this endpoint:
+
+  [!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
+
+* Update *Areas/Identity/Pages/Account/Register.cshtml* to be consistent with the preceding changes:
+
+  [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
+
+* Comment out or remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*
+
+```cshtml
+@*
+<p>
+    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+</p>
+*@
+```
+
+* Update the *Areas/Identity/Pages/Account/RegisterConfirmation* page.
+
+  * Remove the code and links from the cshtml file.
+  * Remove the confirmation code from the `PageModel`:
+
+  ```csharp
+   [AllowAnonymous]
+    public class RegisterConfirmationModel : PageModel
+    {
+        public IActionResult OnGet()
+        {  
+            return Page();
+        }
+    }
+  ```
+  
+### Use another app to add users
+
+Provide a mechanism to add users outside the web app. Options to add users include:
+
+* A dedicated admin web app.
+* A console app.
+
+The following code outlines one approach to adding users:
+
+* A list of users is read into memory.
+* A strong unique password is generated for each user.
+* The user is added to the Identity database.
+* The user is notified and told to change the password.
+
+[!code-csharp[](scaffold-identity/consoleAddUser/Program.cs?name=snippet)]
+
+The following code outlines adding a user:
+
+[!code-csharp[](scaffold-identity/consoleAddUser/Data/SeedData.cs?name=snippet)]
+
+A similar approach can be followed for production scenarios.
 
 ## Additional resources
 

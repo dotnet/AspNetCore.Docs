@@ -3,7 +3,7 @@ title: Community OSS authentication options for ASP.NET Core
 author: rick-anderson
 description: Discover open-source authentication options for ASP.NET Core.
 ms.author: riande
-ms.date: 02/15/2019
+ms.date: 10/28/2019
 uid: security/authentication/community
 ---
 # Community OSS authentication options for ASP.NET Core
@@ -17,7 +17,6 @@ The list below is sorted alphabetically.
 | Name | Description |
 | ---- | ----------- |
 | [AspNet.Security.OpenIdConnect.Server (ASOS)](https://github.com/aspnet-contrib/AspNet.Security.OpenIdConnect.Server) | ASOS is a low-level, protocol-first OpenID Connect server framework for ASP.NET Core and OWIN/Katana. |
-| [Cierge](https://github.com/pwdless/Cierge) | Cierge is an OpenID Connect server that handles user signup, login, profiles, management, and social logins. |
 | [Gluu Server](https://gluu.org/) | Enterprise ready, open source software for identity, access management (IAM), and single sign-on (SSO). For more information, see the [Gluu Product Documentation](https://gluu.org/docs/). |
 | [IdentityServer](https://identityserver.io/) | IdentityServer is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core, officially certified by the OpenID Foundation and under governance of the .NET Foundation. For more information, see [Welcome to IdentityServer4 (Documentation)](https://identityserver4.readthedocs.io/en/latest/). |
 | [OpenIddict](https://github.com/openiddict/openiddict-core) | OpenIddict is an easy-to-use OpenID Connect server for ASP.NET Core. |

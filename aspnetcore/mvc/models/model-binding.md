@@ -389,7 +389,7 @@ To use the built-in XML input formatters:
   public ActionResult<Pet> Create(Pet pet)
   ```
 
-  For more information, see [Introducing XML Serialization](https://docs.microsoft.com/en-us/dotnet/standard/serialization/introducing-xml-serialization).
+  For more information, see [Introducing XML Serialization](/dotnet/standard/serialization/introducing-xml-serialization).
 
 ## Exclude specified types from model binding
 

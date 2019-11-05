@@ -17,7 +17,7 @@ namespace ClientIpAspNetCore.Controllers
 
         // GET api/values
         #region snippet_Filter
-        [ServiceFilter(typeof(ClientIdCheckFilter))]
+        [ServiceFilter(typeof(ClientIpCheckFilter))]
         [HttpGet]
         public IEnumerable<string> Get()
         #endregion

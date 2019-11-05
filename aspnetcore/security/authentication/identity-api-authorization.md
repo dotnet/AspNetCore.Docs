@@ -5,7 +5,7 @@ description: Use Identity with a Single Page App hosted inside an ASP.NET Core a
 monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 08/05/2019
+ms.date: 10/29/2019
 uid: security/authentication/identity/spa
 ---
 # Authentication and authorization for SPAs
@@ -160,6 +160,22 @@ Now that you've seen the main components of the solution, you can take a deeper 
 ## Require authorization on a new API
 
 By default, the system is configured to easily require authorization for new APIs. To do so, create a new controller and add the `[Authorize]` attribute to the controller class or to any action within the controller.
+
+## Customize the API authentication handler
+
+To customize the configuration of the API's JWT handler, configure its <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> instance:
+
+```csharp
+services.AddAuthentication()
+    .AddIdentityServerJwt();
+
+services.ConfigureOptions<JwtBearerOptions>(
+    IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
+    options =>
+    {
+        ...
+    });
+```
 
 ## Protect a client-side route (Angular)
 

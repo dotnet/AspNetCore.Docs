@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 10/31/2019
 uid: blazor/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps
@@ -168,9 +168,9 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 Blazor components can be prerendered using `Html.RenderComponentAsync` so that their rendered HTML markup is returned as part of the user's initial HTTP request. This works by:
 
-* Creating a new circuit containing all of the prerendered components that are part of the same page.
+* Creating a new circuit for all of the prerendered components that are part of the same page.
 * Generating the initial HTML.
-* Treating the circuit as `disconnected` until the user's browser establishes a SignalR connection back to the same server to resume interactivity on the circuit.
+* Treating the circuit as `disconnected` until the user's browser establishes a SignalR connection back to the same server. When the connection is established, interactivity on the circuit is resumed and the components' HTML markup is updated.
 
 If any component throws an unhandled exception during prerendering, for example, during a lifecycle method or in rendering logic:
 

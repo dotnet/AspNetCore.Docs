@@ -39,9 +39,11 @@ namespace SampleApp
                 { "Gen1Collections", GC.CollectionCount(1) },
                 { "Gen2Collections", GC.CollectionCount(2) },
             };
+            var status = (allocated < options.Threshold) ? 
+                HealthStatus.Healthy : context.Registration.FailureStatus;
 
             return Task.FromResult(new HealthCheckResult(
-                context.Registration.FailureStatus,
+                status,
                 description: "Reports degraded status if allocated bytes " +
                     $">= {options.Threshold} bytes.",
                 exception: null,

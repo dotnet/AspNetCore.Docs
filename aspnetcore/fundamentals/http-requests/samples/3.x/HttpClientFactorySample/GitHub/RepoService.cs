@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace HttpClientFactorySample.GitHub
@@ -21,10 +22,9 @@ namespace HttpClientFactorySample.GitHub
 
             response.EnsureSuccessStatusCode();
 
-            var result = await response.Content
-                .ReadAsAsync<IEnumerable<string>>();
-
-            return result;
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            return await JsonSerializer.DeserializeAsync
+                <IEnumerable<string>>(responseStream);
         }
     }
     #endregion
