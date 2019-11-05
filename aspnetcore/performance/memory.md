@@ -134,7 +134,7 @@ The GC mode can be set explicitly in the project file or in the *runtimeconfig.j
 
 Changing `ServerGarbageCollection` in the project file requires the app to be rebuilt.
 
-**Note:** [Server garbage collection is **not** available on machines with a single core](/dotnet/api/system.runtime.gcsettings.isservergc).
+**Note:** Server garbage collection is **not** available on machines with a single core. For more information, see [GCSettings.IsServerGC Property](/dotnet/api/system.runtime.gcsettings.isservergc).
 
 The following image shows the memory profile under a 5K RPS using the Workstation GC.
 
