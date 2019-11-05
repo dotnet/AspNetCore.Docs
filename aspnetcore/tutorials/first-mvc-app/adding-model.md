@@ -207,7 +207,7 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 
 In the PMC, enter the following commands:
 
-```console
+```PMC
 Add-Migration InitialCreate
 Update-Database
 ```
@@ -512,7 +512,7 @@ In this section, the following tasks are completed:
 
 1. In the PMC, enter the following commands:
 
-   ```console
+   ```PMC
    Add-Migration Initial
    Update-Database
    ```
