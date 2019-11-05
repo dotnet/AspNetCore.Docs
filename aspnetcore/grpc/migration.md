@@ -81,19 +81,16 @@ ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar fun
 * Are used to construct a pipeline that handles a gRPC request.
 * Allow work to be performed before or after the next component in the pipeline.
 
-gRPC Interceptors differences from ASP.NET Core Middleware:
+gRPC Interceptor differences from ASP.NET Core Middleware:
 
-* Middleware operates on the underlying HTTP/2 messages.
 * Interceptors operate on the gRPC layer of abstraction using the [ServerCallContext](https://grpc.io/grpc/csharp/api/Grpc.Core.ServerCallContext.html).
 * ASP.NET Core middleware runs before gRPC interceptors.
+* Middleware operates on the underlying HTTP/2 messages.
 * ASP.NET Core middleware provides access to `HttpContext`, `HttpRequest`, and `HttpResponse`.
 * gRPC interceptors provide access to:
   * The deserialized message sent to a call.
   * The message being returned from the call before it is serialized.
 * Middleware can only access bytes from the request and response streams.
-
-
-
 
 ## Additional resources
 
