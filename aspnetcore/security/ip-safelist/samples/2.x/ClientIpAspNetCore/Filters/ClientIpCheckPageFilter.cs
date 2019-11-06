@@ -28,12 +28,15 @@ namespace ClientIpAspNetCore
 
             string[] ip = _safelist.Split(';');
 
-            var bytes = remoteIp.GetAddressBytes();
             var badIp = true;
             foreach (var address in ip)
             {
+                if (remoteIp.IsIPv4MappedToIPv6)
+                {
+                    remoteIp = remoteIp.MapToIPv4();
+                }
                 var testIp = IPAddress.Parse(address);
-                if (testIp.GetAddressBytes().SequenceEqual(bytes))
+                if (testIp.Equals(remoteIp))
                 {
                     badIp = false;
                     break;

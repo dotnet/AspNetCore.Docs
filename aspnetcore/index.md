@@ -4,7 +4,7 @@ author: rick-anderson
 description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/10/2019
+ms.date: 11/03/2019
 uid: index
 ---
 # Introduction to ASP.NET Core
@@ -92,6 +92,10 @@ We recommend the following sequence of tutorials and articles for an introductio
 1. Browse the Table of Contents for other topics of interest.
 
 \* There is a new [web API tutorial that you follow entirely in the browser](https://docs.microsoft.com/learn/modules/build-web-api-net-core), no local IDE installation required.  The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), and [curl](https://curl.haxx.se/) is used for testing.
+
+## Migration from the .NET Framework
+
+For a reference guide to migrating ASP.NET apps to ASP.NET Core, see <migration/proper-to-2x/index>.
 
 ## How to download a sample
 

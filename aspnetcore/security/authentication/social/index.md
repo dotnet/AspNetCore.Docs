@@ -1,25 +1,24 @@
 ---
 title: Facebook, Google, and external provider authentication in ASP.NET Core
 author: rick-anderson
-description: This tutorial demonstrates how to build an ASP.NET Core 2.x app using OAuth 2.0 with external authentication providers.
+description: This tutorial demonstrates how to build an ASP.NET Core app using OAuth 2.0 with external authentication providers.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/10/2019
+ms.date: 10/21/2019
 uid: security/authentication/social/index
 ---
 # Facebook, Google, and external provider authentication in ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This tutorial demonstrates how to build an ASP.NET Core 2.2 app that enables users to sign in using OAuth 2.0 with credentials from external authentication providers.
+This tutorial demonstrates how to build an ASP.NET Core 3.0 app that enables users to sign in using OAuth 2.0 with credentials from external authentication providers.
 
-[Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins), and [Microsoft](xref:security/authentication/microsoft-logins) providers are covered in the following sections. Other providers are available in third-party packages such as [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) and [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
-
-![Social media icons for Facebook, Twitter, Google plus, and Windows](index/_static/social.png)
+[Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins), and [Microsoft](xref:security/authentication/microsoft-logins) providers are covered in the following sections and use the starter project created in this article. Other providers are available in third-party packages such as [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) and [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
 
 Enabling users to sign in with their existing credentials:
+
 * Is convenient for the users.
-* Shifts many of the complexities of managing the sign-in process onto a third party. 
+* Shifts many of the complexities of managing the sign-in process onto a third party.
 
 For examples of how social logins can drive traffic and customer conversions, see case studies by [Facebook](https://www.facebook.com/unsupportedbrowser) and [Twitter](https://dev.twitter.com/resources/case-studies).
 
@@ -30,36 +29,32 @@ For examples of how social logins can drive traffic and customer conversions, se
 * Create a new project.
 * Select **ASP.NET Core Web Application** and **Next**.
 * Provide a **Project name** and confirm or change the **Location**. Select **Create**.
-* Select **ASP.NET Core 2.2** in the drop down. Select **Web Application** in the template list.
+* Select **ASP.NET Core 3.0** in the drop-down, and then select **Web Application**.
 * Under **Authentication**, select **Change** and set the authentication to **Individual User Accounts**. Select **OK**.
 * In the **Create a new ASP.NET Core Web Application** window, select **Create**.
 
-# [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Open the terminal.  For Visual Studio Code you can open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
 * Change directories (`cd`) to a folder which will contain the project.
 
-* Run the following commands:
+* For Windows, run the following command:
 
   ```dotnetcli
   dotnet new webapp -o WebApp1 -au Individual -uld
-  code -r WebApp1
+  ```
+
+  For macOS and Linux, run the following command:
+
+  ```dotnetcli
+  dotnet new webapp -o WebApp1 -au Individual
   ```
 
   * The `dotnet new` command creates a new Razor Pages project in the *WebApp1* folder.
-  * `-uld` uses LocalDB instead of SQLite. Omit `-uld` to use SQLite.
   * `-au Individual` creates the code for Individual authentication.
+  * `-uld` uses LocalDB, a lightweight version of SQL Server Express for Windows. Omit `-uld` to use SQLite.
   * The `code` command opens the *WebApp1* folder in a new instance of Visual Studio Code.
-
-* A dialog box appears with **Required assets to build and debug are missing from 'WebApp1'. Add them?** Select **Yes**.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* Select **File** > **New Solution**.
-* Select **.NET Core** > **App** in the sidebar. Select the **Web Application** template. Select **Next**.
-* Set the **Target Framework** drop down to **.NET Core 2.2**. Select **Next**.
-* Provide a **Project Name**. Confirm or change the **Location**. Select **Create**.
 
 ---
 
