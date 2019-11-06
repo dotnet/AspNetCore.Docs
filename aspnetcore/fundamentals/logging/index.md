@@ -921,7 +921,7 @@ logging.AddDebug();
 
 ### Event Source provider
 
-The [Microsoft.Extensions.Logging.EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource) provider package can implement event tracing cross-platform. On Windows, the provider uses [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803).
+The [Microsoft.Extensions.Logging.EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource) provider package writes to an Event Source cross-platform with the name `Microsoft-Extensions-Logging`. On Windows, the provider uses [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803).
 
 ```csharp
 logging.AddEventSourceLogger();
@@ -933,18 +933,18 @@ The Event Source provider is added automatically when `CreateDefaultBuilder` is 
 
 #### dotnet trace tooling
 
-The [dotnet-trace](/dotnet/core/diagnostics/dotnet-trace) tool allows you to consume Event Source provider data.
+The [dotnet-trace](/dotnet/core/diagnostics/dotnet-trace) tool allows you to consume <xref:Microsoft.Extensions.Logging.EventSource> provider data using a <xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource>.
 
 General syntax:
 
 ```dotnetcli
 dotnet trace collect -p {pid} 
-    --providers Microsoft-Extensions-Logging:{Keyword}:{Event Level}
-        :FilterSpecs=
+    --providers 'Microsoft-Extensions-Logging:{Keyword}:{Event Level}
+        :FilterSpecs=\"
             {Logger Category 1}:{Event Level 1};
             {Logger Category 2}:{Event Level 2};
             ...
-            {Logger Category N}:{Event Level N}
+            {Logger Category N}:{Event Level N}\"'
 ```
 
 | Keyword | Description |
@@ -968,7 +968,7 @@ dotnet trace collect -p {pid}
 Example:
 
 ```dotnetcli
-dotnet trace collect -p {pid} --providers Microsoft-Extensions-Logging:4:2:FilterSpecs=Microsoft.AspNetCore.Hosting*:4
+dotnet trace collect -p {pid} --providers 'Microsoft-Extensions-Logging:4:2:FilterSpecs=\"Microsoft.AspNetCore.Hosting*:4\"'
 ```
 
 The preceding command activates:
@@ -983,6 +983,7 @@ For more information, see:
 * [LoggingEventSource Class](xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource) (.NET API Browser)
 * <xref:System.Diagnostics.Tracing.EventLevel>
 * [LoggingEventSource reference source (3.0)](https://github.com/aspnet/Extensions/blob/release/3.0/src/Logging/Logging.EventSource/src/LoggingEventSource.cs) &ndash; To obtain reference source for a different version, change the branch to `release/{Version}`, where `{Version}` is the version of ASP.NET Core desired.
+* [Perfview](#perfview) &ndash; Useful for viewing Event Source traces.
 
 #### Perfview
 
