@@ -51,13 +51,22 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 >
 > <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted*> is a useful hint to indicate if headers have been sent or the body has been written to.
 
-## Order
+## Middleware order
 
-The order that middleware components are added in the `Startup.Configure` method defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is critical for security, performance, and functionality.
+The order that middleware components are added in the `Startup.Configure` method defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
-The following `Startup.Configure` method adds middleware components for common app scenarios:
+The following `Startup.Configure` method adds all middleware components in the recommended order:
 
 ::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](index/snapshot/StartupAll3.cs?name=snippet)]
+
+In the preceding code:
+
+* Middleware that is not added when creating a new web app with [individual users accounts](xref:security/authentication/identity) is commented out.
+* Not every middleware needs to go in this exact order, but many do. For example, `UseCors`, `UseAuthentication`, and `UseAuthorization` must go in the order shown.
+
+The following `Startup.Configure` method adds middleware components for common app scenarios:
 
 1. Exception/error handling
    * When the app runs in the Development environment:
@@ -144,6 +153,13 @@ public void Configure(IApplicationBuilder app)
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
+
+In the preceding code:
+
+* Middleware that is not added when creating a new web app with [individual users accounts](xref:security/authentication/identity) is commented out.
+* Not every middleware needs to go in this exact order, but many do. For example, `UseCors`, `UseAuthentication`, and `UseAuthorization` must go in the order shown.
+
+The following `Startup.Configure` method adds middleware components for common app scenarios:
 
 1. Exception/error handling
    * When the app runs in the Development environment:
