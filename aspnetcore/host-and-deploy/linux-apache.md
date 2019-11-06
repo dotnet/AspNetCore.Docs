@@ -5,7 +5,7 @@ description: Learn how to set up Apache as a reverse proxy server on CentOS to r
 monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
 ms.custom: mvc
-ms.date: 03/31/2019
+ms.date: 11/05/2019
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
@@ -478,7 +478,7 @@ The example file limits bandwidth as 600 KB/sec under the root location:
 
 ### Long request header fields
 
-If the app requires request header fields longer than permitted by the proxy server's default setting (typically 8,190 bytes), adjust the value of the [LimitRequestFieldSize](https://httpd.apache.org/docs/2.4/mod/core.html#LimitRequestFieldSize) directive. The value to apply is scenario-dependent. For more information, see your server's documentation.
+Proxy server default settings typically limit request header fields to 8,190 bytes. An app may require fields longer than the default (for example, apps that use [Azure Active Directory](https://azure.microsoft.com/services/active-directory/)). If longer fields are required, the proxy server's [LimitRequestFieldSize](https://httpd.apache.org/docs/2.4/mod/core.html#LimitRequestFieldSize) directive requires adjustment. The value to apply depends on the scenario. For more information, see your server's documentation.
 
 > [!WARNING]
 > Don't increase the default value of `LimitRequestFieldSize` unless necessary. Increasing the value increases the risk of buffer overrun (overflow) and Denial of Service (DoS) attacks by malicious users.
