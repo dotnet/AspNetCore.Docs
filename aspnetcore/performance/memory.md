@@ -109,7 +109,7 @@ The following chart is taken at the max throughput that can be handled by the ma
 
 The preceding chart shows:
 
-* 22 RPS
+* 22K RPS
 * Generation 0 GC collections occur several times per second.
 * Generation 1 collections are triggered because the app allocated significantly more memory per second.
 * The working set is constant at approximately 500 MB.
