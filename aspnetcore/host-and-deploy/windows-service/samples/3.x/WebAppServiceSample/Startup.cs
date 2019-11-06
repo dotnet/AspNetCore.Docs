@@ -5,19 +5,16 @@ using Microsoft.Extensions.Hosting;
 
 namespace SampleApp
 {
+    #region snippet_Startup
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            // Only required if the service uses Razor Pages.
-            services.AddRazorPages()
-                .AddNewtonsoftJson();
+            services.AddRazorPages();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // This pipeline is only required if the service uses Razor Pages.
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -36,4 +33,5 @@ namespace SampleApp
             });
         }
     }
+    #endregion
 }
