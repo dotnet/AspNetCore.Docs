@@ -51,11 +51,13 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 >
 > <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted*> is a useful hint to indicate if headers have been sent or the body has been written to.
 
+<a name="order"></a>
+
 ## Middleware order
 
 The order that middleware components are added in the `Startup.Configure` method defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
-The following `Startup.Configure` method adds all middleware components in the recommended order:
+The following `Startup.Configure` method adds security related middleware components in the recommended order:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -153,6 +155,8 @@ public void Configure(IApplicationBuilder app)
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
+
+[!code-csharp[](index/snapshot/Startup22.cs?name=snippet)]
 
 In the preceding code:
 
