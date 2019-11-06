@@ -65,7 +65,7 @@ If the Task Manager memory value increases indefinitely and never flattens out, 
 
 The [MemoryLeak sample app](https://github.com/sebastienros/memoryleak) is available on GitHub. The MemoryLeak app:
 
-* Includes a diagnostic controller that gathers real-tine memory and GC data for the app.
+* Includes a diagnostic controller that gathers real-time memory and GC data for the app.
 * Has an Index page that displays the memory and GC data. The Index page is refreshed every second.
 * Contains an API controller that provides various memory load patterns.
 * Is not a supported tool, however, it can be used to display memory usage patterns of ASP.NET Core apps.
@@ -109,7 +109,7 @@ The following chart is taken at the max throughput that can be handled by the ma
 
 The preceding chart shows:
 
-* 22 RPS
+* 22K RPS
 * Generation 0 GC collections occur several times per second.
 * Generation 1 collections are triggered because the app allocated significantly more memory per second.
 * The working set is constant at approximately 500 MB.
