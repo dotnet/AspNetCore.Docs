@@ -214,7 +214,7 @@ The `AddCertificateForwarding` method is used to specify:
 * The client header name.
 * How the certificate is to be loaded (using the `HeaderConverter` property).
 
-When sending the certificate with the `HttpClient` using the default settings, the `ClientCertificate` will always be null. The `X-ARR-ClientCert` header is used to pass the client certificate. The certificate is passed as a string to work around this problem.
+In Azure Web Applications the certificate is passed as a custom header, X-ARR-ClientCert. In order to use it you must configure certificate forwarding.
 
 ```csharp
 services.AddCertificateForwarding(options =>
