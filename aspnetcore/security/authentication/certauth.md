@@ -323,7 +323,7 @@ If the correct certificate is sent to the server, the data is returned. If no ce
 
 ### Create certificates in PowerShell
 
-Creating the certificates is the hardest part in setting up this flow. A self-signed root certificate authority (CA) certificate is created using the `New-SelfSignedCertificate` PowerShell cmdlet. When creating the certificate, use a strong password. It's important to add the `KeyUsageProperty` parameter and the `KeyUsage` parameter as shown.
+Creating the certificates is the hardest part in setting up this flow. A root certificate can be created using the `New-SelfSignedCertificate` PowerShell cmdlet. When creating the certificate, use a strong password. It's important to add the `KeyUsageProperty` parameter and the `KeyUsage` parameter as shown.
 
 #### Create root CA
 
@@ -345,7 +345,7 @@ https://social.msdn.microsoft.com/Forums/SqlServer/5ed119ef-1704-4be4-8a4f-ef11d
 
 #### Intermediate certificate
 
-A self-signed, intermediate certificate can now be created from the root certificate. This isn't required for all use cases, but you might need to create many certificates or need to activate or disable groups of certificates. The `TextExtension` parameter is required to set the path length in the basic constraints of the certificate.
+An intermediate certificate can now be created from the root certificate. This isn't required for all use cases, but you might need to create many certificates or need to activate or disable groups of certificates. The `TextExtension` parameter is required to set the path length in the basic constraints of the certificate.
 
 The intermediate certificate can then be added to the trusted intermediate certificate in the Windows host system.
 
