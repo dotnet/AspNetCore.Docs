@@ -110,6 +110,8 @@ The *appsettings.json* file is updated with the connection string used to connec
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
 
+[!INCLUDE [use SQL Server in production](~/includes/RP/sqlitedev.md)]
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
@@ -126,6 +128,8 @@ The *appsettings.json* file is updated with the connection string used to connec
   ```
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
+
+[!INCLUDE [use SQL Server in production](~/includes/RP/sqlitedev.md)]
 
 ---
 
