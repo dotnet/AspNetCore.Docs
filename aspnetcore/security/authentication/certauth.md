@@ -379,7 +379,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath chi
 
 #### Create child certificate from root certificate
 
-A child certificate can also be created from the root certificate directly. If you don't have many web API clients, the following script can be used.
+A child certificate can also be created from the root certificate directly. 
 
 ```powershell
 $rootcert = ( Get-ChildItem -Path cert:\LocalMachine\My\"The thumbprint from the root cert..." )
