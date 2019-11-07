@@ -266,6 +266,7 @@ namespace AspNetCoreCertificateAuthApi
     {
         public bool ValidateCertificate(X509Certificate2 clientCertificate)
         {
+			// Do not hardcode passwords in production code, use thumbprint or key vault
             var cert = new X509Certificate2(Path.Combine("sts_dev_cert.pfx"), "1234");
             if (clientCertificate.Thumbprint == cert.Thumbprint)
             {
@@ -287,6 +288,7 @@ private async Task<JsonDocument> GetApiDataAsync()
 {
 	try
 	{
+		// Do not hardcode passwords in production code, use thumbprint or key vault
 		var cert = new X509Certificate2(Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
 
 		var client = _clientFactory.CreateClient();
