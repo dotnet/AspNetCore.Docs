@@ -207,7 +207,7 @@ Complete the following steps In IIS Manager:
 
 See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding) for how to configure the certificate forwarding middleware.
 
-### Use certificate authentication with the X-ARR-ClientCert header
+### Using certificate authentication in Azure Web Applications.
 
 The `AddCertificateForwarding` method is used to specify:
 
