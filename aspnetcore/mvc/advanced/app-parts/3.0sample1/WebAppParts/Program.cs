@@ -16,8 +16,9 @@ namespace WebAppParts
                 {
                     webBuilder
                     // .UseStartup<Startup>();
-                      .UseStartup<Startup2>();
+                    // .UseStartup<Startup2>();
                     //.UseStartup<StartupViews>();
+                    .UseStartup<StartupRm>();
                 });
     }
 }

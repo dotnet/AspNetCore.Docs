@@ -11,8 +11,8 @@ namespace MySharedApp.Controllers
 
         public IActionResult IndexView()
         {
-            // This method requires 
-            // .UseStartup<StartupViews>(); or StartUp
+            // This method works with all the startup files 
+            // .UseStartup<StartupViews>(); 
             // in Program.cs
             return View("Index");
         }

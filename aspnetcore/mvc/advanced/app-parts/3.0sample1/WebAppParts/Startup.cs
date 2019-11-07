@@ -19,9 +19,9 @@ namespace WebAppParts
         public IConfiguration Configuration { get; }
 
         #region snippet
+        // Requires using System.Reflection;
         public void ConfigureServices(IServiceCollection services)
         {
-            // Requires using System.Reflection;
             var assembly = typeof(MySharedController).GetTypeInfo().Assembly;
             services.AddControllersWithViews()
                 .AddApplicationPart(assembly);

@@ -20,10 +20,10 @@ namespace WebAppParts
         public IConfiguration Configuration { get; }
 
         #region snippet
+        // Requires using System.Reflection;
+        // Requires using Microsoft.AspNetCore.Mvc.ApplicationParts;
         public void ConfigureServices(IServiceCollection services)
         {
-            // Requires using System.Reflection;
-            // Requires using Microsoft.AspNetCore.Mvc.ApplicationParts;
             var assembly = typeof(MySharedController).GetTypeInfo().Assembly;
             var part = new AssemblyPart(assembly);
             services.AddControllersWithViews()

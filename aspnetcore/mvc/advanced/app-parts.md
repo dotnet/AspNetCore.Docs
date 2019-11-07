@@ -54,7 +54,7 @@ To include views in the assembly:
 Application parts can be used to *avoid* loading resources in a particular assembly or location. Add or remove members of the  <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> collection to hide or make available resources. The order of the entries in the `ApplicationParts` collection isn't important. Configure the `ApplicationPartManager` before using it to configure services in the container. For example, configure the `ApplicationPartManager` before invoking `AddControllersAsServices`. Call `Remove` on the `ApplicationParts` collection to remove a resource.
 
 The following code uses <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> to remove `MyDependentLibrary` from the app:
-[!code-csharp[](./app-parts/sample1/WebAppParts/StartupRm.cs?name=snippet)]
+[!code-csharp[](./app-parts/3.0sample1/WebAppParts/StartupRm.cs?name=snippet)]
 
 The `ApplicationPartManager` includes parts for:
 

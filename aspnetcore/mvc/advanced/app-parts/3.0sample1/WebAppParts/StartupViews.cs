@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using MySharedApp.Controllers;
 using System.Reflection;
-
 
 namespace WebAppParts
 {
@@ -22,6 +20,9 @@ namespace WebAppParts
         public IConfiguration Configuration { get; }
 
         #region snippet
+        // requires 
+        // using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+        // using System.Reflection;
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
@@ -29,7 +30,6 @@ namespace WebAppParts
                 options.FileProviders.Add(   // <-
                  new EmbeddedFileProvider(typeof(MySharedController).GetTypeInfo().Assembly));
             });
-            // Requires using System.Reflection;
             var assembly = typeof(MySharedController).GetTypeInfo().Assembly;
             services.AddMvc()
                 .AddApplicationPart(assembly);
