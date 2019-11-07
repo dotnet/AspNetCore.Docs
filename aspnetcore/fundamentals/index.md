@@ -5,7 +5,7 @@ description: Learn the foundational concepts for building ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 11/07/2019
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals
@@ -296,6 +296,14 @@ The web root path defaults to *{content root}/wwwroot*, but a different web root
 The web root path defaults to *{content root}/wwwroot*, but a different web root can be specified when [building the host](#host). For more information, see [Web root](xref:fundamentals/host/web-host#web-root).
 
 ::: moniker-end
+
+Prevent publishing files in *wwwroot* with the [\<Content> project item](/visualstudio/msbuild/common-msbuild-project-items#content) in the project file. The following example prevents publishing content in the *wwwroot/local* directory and sub-directories:
+
+```xml
+<ItemGroup>
+  <Content Update="wwwroot\local\**\*.*" CopyToPublishDirectory="Never" />
+</ItemGroup>
+```
 
 In Razor (*.cshtml*) files, the tilde-slash (`~/`) points to the web root. A path beginning with `~/` is referred to as a *virtual path*.
 
