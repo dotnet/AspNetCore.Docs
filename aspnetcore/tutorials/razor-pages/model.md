@@ -3,7 +3,7 @@ title: Add a model to a Razor Pages app in ASP.NET Core
 author: rick-anderson
 description: Discover how to add classes for managing movies in a database using Entity Framework Core (EF Core).
 ms.author: riande
-ms.date: 9/22/2019
+ms.date: 11/05/2019
 uid: tutorials/razor-pages/model
 ---
 # Add a model to a Razor Pages app in ASP.NET Core
@@ -12,7 +12,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In this section, classes are added for managing movies in a database. These classes are used with [Entity Framework Core](/ef/core) (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies data access.
+In this section, classes are added for managing movies in a cross-platform [SQLite database](https://www.sqlite.org/index.html). Apps created from an ASP.NET Core template use a SQLite database. The app's model classes are used with [Entity Framework Core (EF Core)](/ef/core) ([SQLite EF Core Database Provider](/ef/core/providers/sqlite)) to work with the database. EF Core is an object-relational mapping (ORM) framework that simplifies data access.
 
 The model classes are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
 
@@ -261,7 +261,7 @@ The next tutorial explains the files created by scaffolding.
 <!--  ::: moniker previous version   -->
 ::: moniker range="< aspnetcore-3.0"
 
-In this section, classes are added for managing movies in a database. These classes are used with [Entity Framework Core](/ef/core) (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies data access code.
+In this section, classes are added for managing movies in a cross-platform [SQLite database](https://www.sqlite.org/index.html). Apps created from an ASP.NET Core template use a SQLite database. The app's model classes are used with [Entity Framework Core (EF Core)](/ef/core) ([SQLite EF Core Database Provider](/ef/core/providers/sqlite)) to work with the database. EF Core is an object-relational mapping (ORM) framework that simplifies data access.
 
 The model classes are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
 

@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 11/04/2019
 uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
@@ -197,6 +197,23 @@ The `ValidationMessage` component displays validation messages for a specific fi
 
 The `ValidationMessage` and `ValidationSummary` components support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the generated `<div>` or `<ul>` element.
 
+::: moniker range=">= aspnetcore-3.1"
+
+**Microsoft.AspNetCore.Blazor.DataAnnotations.Validation package**
+
+The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) is a package that fills validation experience gaps using the `DataAnnotationsValidator` component. The package is currently *experimental*, and we plan to add these scenarios into the ASP.NET Core framework in a future release.
+
+The `DataAnnotationsValidator` component doesn't validate subproperties of complex properties on a validating model. Items of collection-type properties aren't validated. To validate these types, the `Microsoft.AspNetCore.Blazor.DataAnnotations.Validation` package introduces the `ValidateComplexType` validation attribute that works in tandem with the `ObjectGraphDataAnnotationsValidator` component. For an example of these types in use, see the [Blazor Validation sample in the aspnet/samples GitHub repository
+](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
+
+The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the `DataAnnotationsValidator` component. The `Microsoft.AspNetCore.Blazor.DataAnnotations.Validation` package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `ComparePropertyAttribute` is a direct replacement for the `CompareAttribute`. For more information, see [CompareAttribute ignored with OnValidSubmit EditForm (aspnet/AspNetCore \#10643)](https://github.com/aspnet/AspNetCore/issues/10643#issuecomment-543909748).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.1"
+
 ### Validation of complex or collection type properties
 
-Validation attributes applied to the properties of a model validate when the form is submitted. However, the properties of collections or complex data types of a model aren't validated on form submission. To honor the nested validation attributes in this scenario, use a custom validation component. For an example, see the [Blazor Validation sample in the aspnet/samples GitHub repository](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
+Validation attributes applied to the properties of a model validate when the form is submitted. However, the properties of collections or complex data types of a model aren't validated on form submission by the `DataAnnotationsValidator` component. To honor the nested validation attributes in this scenario, use a custom validation component. For an example, see the [Blazor Validation sample in the aspnet/samples GitHub repository](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
+
+::: moniker-end

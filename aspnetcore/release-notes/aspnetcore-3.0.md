@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/08/2019
+ms.date: 10/31/2019
 uid: aspnetcore-3.0
 ---
 # What's new in ASP.NET Core 3.0
@@ -64,7 +64,7 @@ Components in Blazor are typically authored using Razor syntax, a natural blend 
 
 gRPC functionality in ASP.NET Core 3.0 includes:
 
-* [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) &ndash; An ASP.NET Core framework for hosting gRPC services. gRPC on ASP.NET Core integrates with standard ASP.NET Core features like logging, dependency injection (DI), authentication and authorization.
+* [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) &ndash; An ASP.NET Core framework for hosting gRPC services. gRPC on ASP.NET Core integrates with standard ASP.NET Core features like logging, dependency injection (DI), authentication, and authorization.
 * [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) &ndash; A gRPC client for .NET Core that builds upon the familiar `HttpClient`.
 * [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) &ndash; gRPC client integration with `HttpClientFactory`.
 
@@ -225,7 +225,7 @@ app.UseSignalR(routes =>
 });
 ```
 
-In the previous version, developers needed to wire up controllers, Razor pages, and hubs in a variety of different places. Explicit connection results in a series of nearly-identical routing segments:
+In the previous version, developers needed to wire up controllers, Razor pages, and hubs in a variety of places. Explicit connection results in a series of nearly-identical routing segments:
 
 ```csharp
 app.UseSignalR(routes =>
@@ -315,14 +315,16 @@ The following list contains new Razor directives:
 
 ## IdentityServer4 supports authentication and authorization for web APIs and SPAs
 
-[IdentityServer4](https://identityserver.io) is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core 3.0. IdentityServer4 enables the following security features:
+ASP.NET Core 3.0 offers authentication in Single Page Apps (SPAs) using the support for web API authorization. ASP.NET Core Identity for authenticating and storing users is combined with [IdentityServer4](https://identityserver.io/) for implementing Open ID Connect.
+
+IdentityServer4 is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core 3.0. It enables the following security features:
 
 * Authentication as a Service (AaaS)
 * Single sign-on/off (SSO) over multiple application types
 * Access control for APIs
 * Federation Gateway
 
-For more information, see [Welcome to IdentityServer4](http://docs.identityserver.io/en/latest/index.html).
+For more information, see [the IdentityServer4 documentation](http://docs.identityserver.io/en/latest/index.html) or [Authentication and authorization for SPAs](xref:security/authentication/identity/spa).
 
 ## Certificate and Kerberos authentication
 
@@ -386,7 +388,7 @@ For more information, see <xref:security/authentication/windowsauth>.
 
 The web UI templates (Razor Pages, MVC with controller and views) have the following removed:
 
-* The cookie consent UI is no longer included. To enable the cookie consent feature in an ASP.NET Core 3.0 template generated app, see <xref:security/gdpr>.
+* The cookie consent UI is no longer included. To enable the cookie consent feature in an ASP.NET Core 3.0 template-generated app, see <xref:security/gdpr>.
 * Scripts and related static assets are now referenced as local files instead of using CDNs. For more information, see [Scripts and related static assets are now referenced as local files instead of using CDNs based on the current environment (aspnet/AspNetCore.Docs #14350)](https://github.com/aspnet/AspNetCore.Docs/issues/14350).
 
 The Angular template updated to use Angular 8.
@@ -395,13 +397,13 @@ The Razor class library (RCL) template defaults to Razor component development b
 
 ## Generic Host
 
-The ASP.NET Core 3.0 templates use <xref:fundamentals/host/generic-host>. Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that are not web specific. For more information, see [HostBuilder replaces WebHostBuilder](xref:migration/22-to-30?view=aspnetcore-2.2#hostbuilder-replaces-webhostbuilder).
+The ASP.NET Core 3.0 templates use <xref:fundamentals/host/generic-host>. Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that aren't web-specific. For more information, see [HostBuilder replaces WebHostBuilder](xref:migration/22-to-30?view=aspnetcore-2.2#hostbuilder-replaces-webhostbuilder).
 
 ### Host configuration
 
 Prior to the release of ASP.NET Core 3.0, environment variables prefixed with `ASPNETCORE_` were loaded for host configuration of the Web Host. In 3.0, `AddEnvironmentVariables` is used to load environment variables prefixed with `DOTNET_` for host configuration with `CreateDefaultBuilder`.
 
-### Changes to Startup contructor injection
+### Changes to Startup constructor injection
 
 The Generic Host only supports the following types for `Startup` constructor injection:
 
@@ -506,7 +508,7 @@ ASP.NET Core 3.0 includes many improvements that reduce memory usage and improve
 
 ## ASP.NET Core 3.0 only runs on .NET Core 3.0
 
-As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://www.microsoft.com/net/download/dotnet-core/2.1). Most ASP.NET Core 2.1.x related packages will be supported indefinitely, beyond the 3 year LTS period for .NET Core 2.1.
+As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://www.microsoft.com/net/download/dotnet-core/2.1). Most ASP.NET Core 2.1.x related packages will be supported indefinitely, beyond the three-year LTS period for .NET Core 2.1.
 
 For migration information, see [Port your code from .NET Framework to .NET Core](/dotnet/core/porting/).
 

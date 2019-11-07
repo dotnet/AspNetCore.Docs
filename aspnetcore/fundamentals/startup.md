@@ -2,9 +2,10 @@
 title: App startup in ASP.NET Core
 author: rick-anderson
 description: Learn how the Startup class in ASP.NET Core configures services and the app's request pipeline.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 8/7/2019
+ms.date: 11/02/2019
 uid: fundamentals/startup
 ---
 # App startup in ASP.NET Core
@@ -17,7 +18,7 @@ The `Startup` class configures services and the app's request pipeline.
 
 ASP.NET Core apps use a `Startup` class, which is named `Startup` by convention. The `Startup` class:
 
-* Optionally includes a <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> method to configure the app's *services*. A service is a reusable component that provides app functionality. Services are configured&mdash;also described as *registered*&mdash;in `ConfigureServices` and consumed across the app via [dependency injection (DI)](xref:fundamentals/dependency-injection) or <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
+* Optionally includes a <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> method to configure the app's *services*. A service is a reusable component that provides app functionality. Services are *registered* in `ConfigureServices` and consumed across the app via [dependency injection (DI)](xref:fundamentals/dependency-injection) or <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices*>.
 * Includes a <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> method to create the app's request processing pipeline.
 
 `ConfigureServices` and `Configure` are called by the ASP.NET Core runtime when the app starts:
@@ -50,9 +51,9 @@ The `Startup` class is specified when the app's [host](xref:fundamentals/index#h
 
 The host provides services that are available to the `Startup` class constructor. The app adds additional services via `ConfigureServices`. Both the host and app services are available in `Configure` and throughout the app.
 
-Only the following service types can be injected into the `Startup` constructor when using <xref:Microsoft.Extensions.Hosting.IHostBuilder>:
+Only the following service types can be injected into the `Startup` constructor when using the [Generic Host](xref:fundamentals/host/generic-host) (<xref:Microsoft.Extensions.Hosting.IHostBuilder>):
 
-* `IWebHostEnvironment`
+* <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment>
 * <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
 * <xref:Microsoft.Extensions.Configuration.IConfiguration>
 
@@ -78,7 +79,7 @@ Most services are not available until the `Configure` method is called.
 
 ::: moniker-end
 
-### Multiple StartUp
+### Multiple Startup
 
 When the app defines separate `Startup` classes for different environments (for example, `StartupDevelopment`), the appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If the app is run in the Development environment and includes both a `Startup` class and a `StartupDevelopment` class, the `StartupDevelopment` class is used. For more information, see [Use multiple environments](xref:fundamentals/environments#environment-based-startup-class-and-methods).
 
@@ -174,6 +175,7 @@ For more information on how to use `IApplicationBuilder` and the order of middle
 To configure services and the request processing pipeline without using a `Startup` class, call `ConfigureServices` and `Configure` convenience methods on the host builder. Multiple calls to `ConfigureServices` append to one another. If multiple `Configure` method calls exist, the last `Configure` call is used.
 
 ::: moniker range=">= aspnetcore-3.0"
+
 [!code-csharp[](startup/3.0_samples/StartupFilterSample/Program1.cs?name=snippet)]
 
 ::: moniker-end

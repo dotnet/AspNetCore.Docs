@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to handle JSON Patch requests in an ASP.NET Core web API.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/24/2019
+ms.date: 11/01/2019
 uid: web-api/jsonpatch
 ---
 
@@ -14,9 +14,7 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Kirk Larkin](https://github.c
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<!--   Uncomment this when you update 
-This article explains how to handle JSON Patch requests in an ASP.NET Core web API using `Microsoft.AspNetCore.JsonPatch`. For instructions on using [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/), use the version selector on this page to select an ASP.NET Core 2.x version.
--->
+This article explains how to handle JSON Patch requests in an ASP.NET Core web API.
 
 ## Package installation
 
@@ -51,6 +49,16 @@ Support for JsonPatch is enabled using the `Microsoft.AspNetCore.Mvc.NewtonsoftJ
     
     services.AddControllersWithViews(options => jsonPatchOptions.InputFormatters.Insert(0, jsonPatchInputFormatter));
 ```
+
+## JsonPatch, AddNewtonsoftJson, and System.Text.Json
+  
+`AddNewtonsoftJson` replaces the `System.Text.Json` based input and output formatters used for formatting **all** JSON content. To add support for `JsonPatch` using `Newtonsoft.Json`, while leaving the other formatters unchanged, update the project's `Startup.ConfigureServices` as follows:
+
+[!code-csharp[](jsonpatch/samples/3.0/WebApp1/Startup.cs?name=snippet)]
+
+The preceding code requires a reference to [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) and the following using statements:
+
+[!code-csharp[](jsonpatch/samples/3.0/WebApp1/Startup.cs?name=snippet1)]
 
 ## PATCH HTTP request method
 
@@ -123,7 +131,7 @@ The following table shows supported operations as defined in the [JSON Patch spe
 
 ## JsonPatch in ASP.NET Core
 
-The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/) NuGet package. The package is included in the [Microsoft.AspnetCore.App](xref:fundamentals/metapackage-app) metapackage.
+The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/) NuGet package.
 
 ## Action method code
 
@@ -335,7 +343,7 @@ The following table shows supported operations as defined in the [JSON Patch spe
 
 ## JsonPatch in ASP.NET Core
 
-The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/) NuGet package.
+The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/) NuGet package. The package is included in the [Microsoft.AspnetCore.App](xref:fundamentals/metapackage-app) metapackage.
 
 ## Action method code
 
