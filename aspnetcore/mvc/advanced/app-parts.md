@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts) ([how to download](xref:index#how-to-download-a-sample))
 
-An *Application Part* is an abstraction over the resources of an app. Application Parts allow ASP.NET Core to discover controllers, view components, tag helpers, Razor Pages, razor compilation sources, and more. [AssemblyPart](/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.assemblypart#Microsoft_AspNetCore_Mvc_ApplicationParts_AssemblyPart) is an Application part. `AssemblyPart` encapsulates an assembly reference and exposes types and compilation references.
+An *Application Part* is an abstraction over the resources of an app. Application Parts allow ASP.NET Core to discover controllers, view components, tag helpers, Razor Pages, razor compilation sources, and more. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> is an Application part. `AssemblyPart` encapsulates an assembly reference and exposes types and compilation references.
 
 *Feature providers* work with application parts to populate the features of an ASP.NET Core app. The main use case for application parts is to configure an app to discover (or avoid loading) ASP.NET Core features from an assembly. For example, you might want to share common functionality between multiple apps. Using Application Parts, you can share an assembly (DLL) containing controllers, views, Razor Pages, razor compilation sources, Tag Helpers, and more with multiple apps. Sharing an assembly is preferred to duplicating code in multiple projects.
 
@@ -25,13 +25,13 @@ ASP.NET Core apps load features from <xref:System.Web.WebPages.ApplicationPart>.
 
 Use the `ApplicationPart` and `AssemblyPart` classes to discover and load ASP.NET Core features (controllers, view components, etc.). The <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> tracks the application parts and feature providers available. `ApplicationPartManager` is configured in `Startup.ConfigureServices`:
 
-[!code-csharp[](./app-parts/sample1/WebAppParts/Startup.cs?name=snippet)]
+[!code-csharp[](./app-parts/3.0sample1/WebAppParts/Startup.cs?name=snippet)]
 
 The following code provides an alternative approach to configuring `ApplicationPartManager` using `AssemblyPart`:
 
-[!code-csharp[](./app-parts/sample1/WebAppParts/Startup2.cs?name=snippet)]
+[!code-csharp[](./app-parts/3.0sample1/WebAppParts/Startup2.cs?name=snippet)]
 
-The preceding two code samples load the `SharedController` from an assembly. The `SharedController` is not in the application's project. See the [WebAppParts solution](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts/sample1/WebAppParts) sample download.
+The preceding two code samples load the `SharedController` from an assembly. The `SharedController` is not in the app's project. See the [WebAppParts solution](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/app-parts/3.0sample1/WebAppParts) sample download.
 
 ### Include views
 
@@ -47,7 +47,7 @@ To include views in the assembly:
 
 * Add the <xref:Microsoft.Extensions.FileProviders.EmbeddedFileProvider> to the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine>:
 
-  [!code-csharp[](./app-parts/sample1/WebAppParts/StartupViews.cs?name=snippet&highlight=3-7)]
+[!code-csharp[](./app-parts/3.0sample1/WebAppParts/StartupViews.cs?name=snippet&highlight=3-7)]
 
 ### Prevent loading resources
 
