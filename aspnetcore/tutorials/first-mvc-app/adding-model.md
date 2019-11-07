@@ -299,7 +299,8 @@ The constructor uses [Dependency Injection](xref:fundamentals/dependency-injecti
 
 [!INCLUDE [use SQL Server in production](~/includes/RP/sqlitedev.md)]
 
---- <!-- end of tabs --->
+---
+<!-- end of tabs --->
 
 <a name="strongly-typed-models-keyword-label"></a>
 <a name="strongly-typed-models-and-the--keyword"></a>
