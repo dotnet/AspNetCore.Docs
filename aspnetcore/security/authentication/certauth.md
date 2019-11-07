@@ -31,7 +31,7 @@ In your web app, add a reference to the `Microsoft.AspNetCore.Authentication.Cer
 
 If authentication fails, this handler returns a `403 (Forbidden)` response rather a `401 (Unauthorized)`, as you might expect. The reasoning is that the authentication should happen during the initial TLS connection. By the time it reaches the handler, it's too late. There's no way to upgrade the connection from an anonymous connection to one with a certificate.
 
-Also add `app.UseAuthentication();` in the `Startup.Configure` method. Otherwise, the HttpContext.User will not be set to `ClaimsPrincipal` created from the certificate. For example:
+Also add `app.UseAuthentication();` in the `Startup.Configure` method. Otherwise, the `HttpContext.User` will not be set to `ClaimsPrincipal` created from the certificate. For example:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -181,7 +181,6 @@ Conceptually, the validation of the certificate is an authorization concern. Add
 In *Program.cs*, configure Kestrel as follows:
 
 ```csharp
-
 public static void Main(string[] args)
 {
     CreateHostBuilder(args).Build().Run();
@@ -203,7 +202,7 @@ public static IHostBuilder CreateHostBuilder(string[] args)
 
 ### IIS
 
-Complete the following steps In IIS Manager:
+Complete the following steps in IIS Manager:
 
 1. Select your site from the **Connections** tab.
 1. Double-click the **SSL Settings** option in the **Features View** window.
