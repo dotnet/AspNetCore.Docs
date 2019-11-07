@@ -339,7 +339,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath roo
 
 #### Install in the trusted root
 
-The root certificate needs to be trusted on your host system. A self-signed certificate won't be trusted by default. The following link explains how this can be accomplished on Windows:
+The root certificate needs to be trusted on your host system. A root certificate which was not created by a certificate authority won't be trusted by default. The following link explains how this can be accomplished on Windows:
 
 https://social.msdn.microsoft.com/Forums/SqlServer/5ed119ef-1704-4be4-8a4f-ef11de7c8f34/a-certificate-chain-processed-but-terminated-in-a-root-certificate-which-is-not-trusted-by-the
 
