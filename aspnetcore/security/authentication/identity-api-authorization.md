@@ -177,6 +177,30 @@ services.Configure<JwtBearerOptions>(
     });
 ```
 
+The API's JWT handler raises events that enable control over the authentication process using `JwtBearerEvents`. To provide support for API authorization, `AddIdentityServerJwt` registers its own event handlers.
+
+To customize the handling of an event, wrap the existing event handler with additional logic as required. For example:
+
+```csharp
+services.Configure<JwtBearerOptions>(
+    IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
+    options =>
+    {
+        var onTokenValidated = options.Events.OnTokenValidated;       
+        
+        options.Events.OnTokenValidated = async context =>
+        {
+            await onTokenValidated(context);
+            ...
+        }
+    });
+```
+
+In the preceding code, the `OnTokenValidated` event handler is replaced with a custom implementation. This implementation:
+
+1. Calls the original implementation provided by the API authorization support.
+2. Run its own custom logic.
+
 ## Protect a client-side route (Angular)
 
 Protecting a client-side route is done by adding the authorize guard to the list of guards to run when configuring a route. As an example, you can see how the `fetch-data` route is configured within the main app Angular module:
