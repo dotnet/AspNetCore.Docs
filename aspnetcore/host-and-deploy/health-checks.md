@@ -144,6 +144,40 @@ services.AddHealthChecks()
         HealthCheckResult.Healthy("Example is OK!"), tags: new[] { "example" });
 ```
 
+Call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddTypeActivatedCheck*> to pass arugments to a health check implementation. In the following example, `TestHealthCheckWithArgs` accepts an integer and a string for use when <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync*> is called:
+
+```csharp
+private class TestHealthCheckWithArgs : IHealthCheck
+{
+    public TestHealthCheckWithArgs(int i, string s)
+    {
+        I = i;
+        S = s;
+    }
+
+    public int I { get; set; }
+
+    public string S { get; set; }
+
+    public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, 
+        CancellationToken cancellationToken = default)
+    {
+        ...
+    }
+}
+```
+
+`TestHealthCheckWithArgs` is registered by calling `AddTypeActivatedCheck` with the integer and string passed to the implementation:
+
+```csharp
+services.AddHealthChecks()
+    .AddTypeActivatedCheck<TestHealthCheckWithArgs>(
+        "test", 
+        failureStatus: HealthStatus.Degraded, 
+        tags: new[] { "example", }, 
+        args: new object[] { 5, "string", });
+```
+
 ## Use Health Checks Routing
 
 In `Startup.Configure`, call `MapHealthChecks` on the endpoint builder with the endpoint URL or relative path:
