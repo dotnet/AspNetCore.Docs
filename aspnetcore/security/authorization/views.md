@@ -19,7 +19,7 @@ If you want the authorization service in every view, place the `@inject` directi
 
 Use the injected authorization service to invoke `AuthorizeAsync` in exactly the same way you would check during [resource-based authorization](xref:security/authorization/resourcebased#security-authorization-resource-based-imperative):
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 3.x / 2.x](#tab/aspnetcore2x)
 
 ```cshtml
 @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyName")).Succeeded)
@@ -41,7 +41,7 @@ Use the injected authorization service to invoke `AuthorizeAsync` in exactly the
 
 In some cases, the resource will be your view model. Invoke `AuthorizeAsync` in exactly the same way you would check during [resource-based authorization](xref:security/authorization/resourcebased#security-authorization-resource-based-imperative):
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 3.x / 2.x](#tab/aspnetcore2x)
 
 ```cshtml
 @if ((await AuthorizationService.AuthorizeAsync(User, Model, Operations.Edit)).Succeeded)
