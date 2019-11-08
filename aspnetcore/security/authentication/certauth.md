@@ -224,21 +224,35 @@ The `AddCertificateForwarding` method is used to specify:
 In Azure Web Apps, the certificate is passed as a custom request header named `X-ARR-ClientCert`. To use it, configure certificate forwarding in `Startup.ConfigureServices`:
 
 ```csharp
-services.AddCertificateForwarding(options =>
+public void ConfigureServices(IServiceCollection services)
 {
-	options.CertificateHeader = "X-ARR-ClientCert";
-	options.HeaderConverter = (headerValue) =>
+	// ...
+	
+	services.AddCertificateForwarding(options =>
 	{
-		X509Certificate2 clientCertificate = null;
-		if(!string.IsNullOrWhiteSpace(headerValue))
+		options.CertificateHeader = "X-ARR-ClientCert";
+		options.HeaderConverter = (headerValue) =>
 		{
-			byte[] bytes = StringToByteArray(headerValue);
-			clientCertificate = new X509Certificate2(bytes);
-		}
+			X509Certificate2 clientCertificate = null;
+			if(!string.IsNullOrWhiteSpace(headerValue))
+			{
+				byte[] bytes = StringToByteArray(headerValue);
+				clientCertificate = new X509Certificate2(bytes);
+			}
 
-		return clientCertificate;
-	};
-});
+			return clientCertificate;
+		};
+	});
+}
+
+private static byte[] StringToByteArray(string hex)
+{
+	int NumberChars = hex.Length;
+	byte[] bytes = new byte[NumberChars / 2];
+	for (int i = 0; i < NumberChars; i += 2)
+		bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+	return bytes;
+}
 ```
 
 The `Startup.Configure` method then adds the middleware. `UseCertificateForwarding` is called before the calls to `UseAuthentication` and `UseAuthorization`:
