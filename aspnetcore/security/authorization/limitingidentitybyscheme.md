@@ -10,7 +10,7 @@ uid: security/authorization/limitingidentitybyscheme
 
 In some scenarios, such as Single Page Applications (SPAs), it's common to use multiple authentication methods. For example, the app may use cookie-based authentication to log in and JWT bearer authentication for JavaScript requests. In some cases, the app may have multiple instances of an authentication handler. For example, two cookie handlers where one contains a basic identity and one is created when a multi-factor authentication (MFA) has been triggered. MFA may be triggered because the user requested an operation that requires extra security.
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 3.x / 2.x](#tab/aspnetcore2x)
 
 An authentication scheme is named when the authentication service is configured during authentication. For example:
 
@@ -73,7 +73,7 @@ In the preceding code, two authentication middlewares have been added: one for c
 
 At the point of authorization, the app indicates the handler to be used. Select the handler with which the app will authorize by passing a comma-delimited list of authentication schemes to `[Authorize]`. The `[Authorize]` attribute specifies the authentication scheme or schemes to use regardless of whether a default is configured. For example:
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 3.x / 2.x](#tab/aspnetcore2x)
 
 ```csharp
 [Authorize(AuthenticationSchemes = AuthSchemes)]
@@ -103,7 +103,7 @@ public class MixedController : Controller
 
 In the preceding example, both the cookie and bearer handlers run and have a chance to create and append an identity for the current user. By specifying a single scheme only, the corresponding handler runs.
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+# [ASP.NET Core 3.x / 2.x](#tab/aspnetcore2x)
 
 ```csharp
 [Authorize(AuthenticationSchemes = 
