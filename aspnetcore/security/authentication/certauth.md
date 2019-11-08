@@ -429,7 +429,7 @@ Get-ChildItem -Path cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F2
 Export-Certificate -Cert cert:\localMachine\my\141594A0AE38CBBECED7AF680F7945CD51D8F28A -FilePath child_b_from_a_dev_damienbod.crt
 ```
 
-When using the root, intermediate, or child certificates, the certificates can be validated using the Issuer or the Subject as required.
+When using the root, intermediate, or child certificates, the certificates can be validated using the Thumbprint or PublicKey as required.
 
 ```csharp
 using System.Collections.Generic;
