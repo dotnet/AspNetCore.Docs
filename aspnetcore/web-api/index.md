@@ -153,7 +153,7 @@ Actions are inaccessible via [conventional routes](xref:mvc/controllers/routing#
 
 ::: moniker-end
 
-### Automatic HTTP 400 responses
+## Automatic HTTP 400 responses
 
 The `[ApiController]` attribute makes model validation errors automatically trigger an HTTP 400 response. Consequently, the following code is unnecessary in an action method:
 
