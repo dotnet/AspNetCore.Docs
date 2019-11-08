@@ -207,14 +207,14 @@ Complete the following steps In IIS Manager:
 
 See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding) for how to configure the certificate forwarding middleware.
 
-### Using certificate authentication in Azure Web Applications.
+### Use certificate authentication in Azure Web Apps
 
 The `AddCertificateForwarding` method is used to specify:
 
 * The client header name.
 * How the certificate is to be loaded (using the `HeaderConverter` property).
 
-In Azure Web Applications the certificate is passed as a custom header, X-ARR-ClientCert. In order to use it you must configure certificate forwarding.
+In Azure Web Apps, the certificate is passed as a custom request header named `X-ARR-ClientCert`. To use it, configure certificate forwarding in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddCertificateForwarding(options =>
@@ -234,7 +234,7 @@ services.AddCertificateForwarding(options =>
 });
 ```
 
-The `Startup.Configure` method then adds the middleware. `UseCertificateForwarding` is called before the calls to `UseAuthentication` and `UseAuthorization`.
+The `Startup.Configure` method then adds the middleware. `UseCertificateForwarding` is called before the calls to `UseAuthentication` and `UseAuthorization`:
 
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -281,8 +281,8 @@ namespace AspNetCoreCertificateAuthApi
 
 #### Implement an HttpClient using a certificate
 
-The web API client uses an `HttpClient` which was created using an `IHttpClientFactory` instance. This doesn't provide a way to define a handler for the `HttpClient`, so use an `HttpRequestMessage` to add the certificate to the `X-ARR-ClientCert` request header. The certificate is added as a string using the `GetRawCertDataString` method.
- 
+The web API client uses an `HttpClient`, which was created using an `IHttpClientFactory` instance. This doesn't provide a way to define a handler for the `HttpClient`, so use an `HttpRequestMessage` to add the certificate to the `X-ARR-ClientCert` request header. The certificate is added as a string using the `GetRawCertDataString` method. 
+
 ```csharp
 private async Task<JsonDocument> GetApiDataAsync()
 {
