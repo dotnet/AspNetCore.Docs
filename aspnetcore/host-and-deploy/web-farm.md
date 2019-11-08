@@ -5,7 +5,7 @@ description: Learn how to host multiple instances of an ASP.NET Core app with sh
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/22/2019
+ms.date: 11/07/2019
 uid: host-and-deploy/web-farm
 ---
 # Host ASP.NET Core in a web farm
@@ -31,13 +31,6 @@ Learn about configuration for apps hosted behind proxy servers and load balancer
 
 <xref:host-and-deploy/azure-apps/index>  
 [Azure App Service](https://azure.microsoft.com/services/app-service/) is a [Microsoft cloud computing platform service](https://azure.microsoft.com/) for hosting web apps, including ASP.NET Core. App Service is a fully managed platform that provides automatic scaling, load balancing, patching, and continuous deployment.
-
-Azure Custom Script Extension  
-The Custom Script Extension downloads and executes scripts on Azure virtual machines. This extension is useful for post-deployment configuration and software installation, including deploying and running the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) installer. The Custom Script Extension integrates with Azure Resource Manager templates and can be run using the Azure CLI, PowerShell, Azure portal, or the Azure Virtual Machine REST API. For more information, see the following topics in the Azure documentation:
-
-* [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows) (Windows)
-* [Use the Azure Custom Script Extension Version 2 with Linux virtual machines](/azure/virtual-machines/extensions/custom-script-linux) (Linux)
-* [Tutorial - Deploy applications to a Windows virtual machine in Azure with the Custom Script Extension](/azure/virtual-machines/windows/tutorial-automate-vm-deployment)
 
 ## App data
 
@@ -89,3 +82,7 @@ For more information on Data Protection configuration for web farm deployments, 
 ## Obtain data from apps
 
 If the web farm apps are capable of responding to requests, obtain request, connection, and additional data from the apps using terminal inline middleware. For more information and sample code, see <xref:test/troubleshoot#obtain-data-from-an-app>.
+
+## Additional resources
+
+* [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows) &ndash; Downloads and executes scripts on Azure virtual machines, which is useful for post-deployment configuration and software installation.
