@@ -73,7 +73,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 * Run the following commands:
 
-  ```console
+  ```dotnetcli
   dotnet new webapp -o RazorPagesMovie
   code -r RazorPagesMovie
   ```
@@ -250,7 +250,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 * Run the following commands:
 
-  ```console
+  ```dotnetcli
   dotnet new webapp -o RazorPagesMovie
   code -r RazorPagesMovie
   ```
@@ -268,7 +268,7 @@ From a terminal, run the following command:
 
 <!-- TODO: update these instruction once mac support 2.2 projects -->
 
-```console
+```dotnetcli
 dotnet new webapp -o RazorPagesMovie
 ```
 

@@ -13,7 +13,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Luke Latham](https://gi
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core Identity is a complete, full-featured authentication provider for creating and maintaining logins. However, a cookie-based authentication authentication provider without ASP.NET Core Identity can be used. For more information, see <xref:security/authentication/identity>.
+ASP.NET Core Identity is a complete, full-featured authentication provider for creating and maintaining logins. However, a cookie-based authentication provider without ASP.NET Core Identity can be used. For more information, see <xref:security/authentication/identity>.
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([how to download](xref:index#how-to-download-a-sample))
 

@@ -57,28 +57,14 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 In the PMC, run the following command:
 
 ```powershell
-Install-Package Microsoft.EntityFrameworkCore.SqlServer -IncludePrerelease
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 The preceding command adds the EF Core SQL Server provider. The provider package installs the EF Core package as a dependency. Additional packages are installed automatically in the scaffolding step later in the tutorial.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Run the following .NET Core CLI commands:
-
-```console
-dotnet tool install --global dotnet-ef --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 3.0.0-*
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
-```
-
-The preceding commands add:
-
-* The Entity Framework Core Tools for the .NET CLI.
-* The EF Core SQLite provider, which installs the EF Core package as a dependency.
-* Packages needed for scaffolding: `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.SqlServer`.
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
 
 ---
 
@@ -185,8 +171,8 @@ The automatic creation of these files is known as *scaffolding*.
 
 * Run the following command:
 
-  ```console
-     dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+  ```dotnetcli
+   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
   ```
 
   [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
@@ -197,8 +183,8 @@ The automatic creation of these files is known as *scaffolding*.
 
 * Run the following command:
 
-  ```console
-     dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+  ```dotnetcli
+   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
   ```
 
   [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
@@ -221,7 +207,7 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 
 In the PMC, enter the following commands:
 
-```console
+```PMC
 Add-Migration InitialCreate
 Update-Database
 ```
@@ -242,7 +228,7 @@ Update-Database
 
 Run the following .NET Core CLI commands:
 
-```console
+```dotnetcli
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
@@ -295,6 +281,8 @@ Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file:
 
 ## Dependency injection in the controller
 
+# [Visual Studio](#tab/visual-studio)
+
 Open the *Controllers/MoviesController.cs* file and examine the constructor:
 
 <!-- l.. Make copy of Movies controller (or use the old one as I did in the 3.0 upgrade) because we comment out the initial index method and update it later  -->
@@ -302,6 +290,17 @@ Open the *Controllers/MoviesController.cs* file and examine the constructor:
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
 The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
+
+The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+
+[!INCLUDE [use SQL Server in production](~/includes/RP/sqlitedev.md)]
+
+---
+<!-- end of tabs --->
 
 <a name="strongly-typed-models-keyword-label"></a>
 <a name="strongly-typed-models-and-the--keyword"></a>
@@ -442,7 +441,7 @@ The automatic creation of the database context and [CRUD](https://wikipedia.org/
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 * Install the scaffolding tool:
 
-  ```console
+  ```dotnetcli
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
@@ -454,8 +453,8 @@ The automatic creation of the database context and [CRUD](https://wikipedia.org/
 
 * Run the following command:
 
-  ```console
-     dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+  ```dotnetcli
+   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
   ```
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
@@ -467,14 +466,14 @@ The automatic creation of the database context and [CRUD](https://wikipedia.org/
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 * Install the scaffolding tool:
 
-  ```console
+  ```dotnetcli
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
 * Run the following command:
 
-  ```console
-     dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+  ```dotnetcli
+   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
   ```
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
@@ -526,7 +525,7 @@ In this section, the following tasks are completed:
 
 1. In the PMC, enter the following commands:
 
-   ```console
+   ```PMC
    Add-Migration Initial
    Update-Database
    ```

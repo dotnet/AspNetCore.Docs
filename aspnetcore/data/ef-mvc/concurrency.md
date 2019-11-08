@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Handle concurrency - ASP.NET MVC with EF Core"
 description: "This tutorial shows how to handle conflicts when multiple users update the same entity at the same time."
-author: tdykstra
+author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
@@ -111,11 +111,11 @@ By adding a property you changed the database model, so you need to do another m
 
 Save your changes and build the project, and then enter the following commands in the command window:
 
-```console
+```dotnetcli
 dotnet ef migrations add RowVersion
 ```
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 

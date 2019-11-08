@@ -14,13 +14,13 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The [ASP.NET Core repository](https://github.com/aspnet/AspNetCore) contains the following authentication samples in the *AspNetCore/src/Security/samples* folder:
 
-* [Claims transformation](https://github.com/aspnet/AspNetCore/tree/release/2.2/src/Security/samples/ClaimsTransformation)
-* [Cookie authentication](https://github.com/aspnet/AspNetCore/tree/release/2.2/src/Security/samples/Cookies)
-* [Custom policy provider - IAuthorizationPolicyProvider](https://github.com/aspnet/AspNetCore/tree/release/2.2/src/Security/samples/CustomPolicyProvider)
-* [Dynamic authentication schemes and options](https://github.com/aspnet/AspNetCore/tree/release/2.2/src/Security/samples/DynamicSchemes)
-* [External claims](https://github.com/aspnet/AspNetCore/tree/release/2.2/src/Security/samples/Identity.ExternalClaims)
-* [Selecting between cookie and another authentication scheme based on the request](https://github.com/aspnet/AspNetCore/tree/release/2.2/src/Security/samples/PathSchemeSelection)
-* [Restricts access to static files](https://github.com/aspnet/AspNetCore/tree/release/2.2/src/Security/samples/StaticFilesAuth)
+* [Claims transformation](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Security/samples/ClaimsTransformation)
+* [Cookie authentication](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Security/samples/Cookies)
+* [Custom policy provider - IAuthorizationPolicyProvider](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Security/samples/CustomPolicyProvider)
+* [Dynamic authentication schemes and options](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Security/samples/DynamicSchemes)
+* [External claims](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Security/samples/Identity.ExternalClaims)
+* [Selecting between cookie and another authentication scheme based on the request](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Security/samples/PathSchemeSelection)
+* [Restricts access to static files](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Security/samples/StaticFilesAuth)
 
 ## Run the samples
 

@@ -312,8 +312,8 @@ Add a [\<remarks>](/dotnet/csharp/programming-guide/xmldoc/remarks) element to t
 /// <response code="201">Returns the newly created item</response>
 /// <response code="400">If the item is null</response>            
 [HttpPost]
-[ProducesResponseType(201)]
-[ProducesResponseType(400)]
+[ProducesResponseType(StatusCodes.Status201Created)]
+[ProducesResponseType(StatusCodes.Status400BadRequest)]
 public ActionResult<TodoItem> Create(TodoItem item)
 {
     _context.TodoItems.Add(item);
@@ -404,8 +404,8 @@ The `Create` action returns an HTTP 201 status code on success. An HTTP 400 stat
 /// <response code="201">Returns the newly created item</response>
 /// <response code="400">If the item is null</response>            
 [HttpPost]
-[ProducesResponseType(201)]
-[ProducesResponseType(400)]
+[ProducesResponseType(StatusCodes.Status201Created)]
+[ProducesResponseType(StatusCodes.Status400BadRequest)]
 public ActionResult<TodoItem> Create(TodoItem item)
 ```
 

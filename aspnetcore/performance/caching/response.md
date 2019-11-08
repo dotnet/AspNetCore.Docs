@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use response caching to lower bandwidth requirements and increase performance of ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 02/28/2019
+ms.date: 11/04/2019
 uid: performance/caching/response
 ---
 # Response caching in ASP.NET Core
@@ -15,7 +15,9 @@ By [John Luo](https://github.com/JunTaoLuo), [Rick Anderson](https://twitter.com
 
 Response caching reduces the number of requests a client or proxy makes to a web server. Response caching also reduces the amount of work the web server performs to generate a response. Response caching is controlled by headers that specify how you want client, proxy, and middleware to cache responses.
 
-The [ResponseCache attribute](#responsecache-attribute) participates in setting response caching headers, which clients may honor when caching responses. [Response Caching Middleware](xref:performance/caching/middleware) can be used to cache responses on the server. The middleware can use <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> properties to influence server-side caching behavior.
+The [ResponseCache attribute](#responsecache-attribute) participates in setting response caching headers. Clients and intermediate proxies should honor the headers for caching responses under the the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234).
+
+For server-side caching that follows the HTTP 1.1 Caching specification, use [Response Caching Middleware](xref:performance/caching/middleware). The middleware can use the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> properties to influence server-side caching behavior.
 
 ## HTTP-based response caching
 
@@ -93,7 +95,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> specifies the paramet
 
 The first request is returned by the server and cached in middleware. The second request is returned by middleware because the query string matches the previous request. The third request isn't in the middleware cache because the query string value doesn't match a previous request.
 
-The <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> is used to configure and create (via <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>) a <xref:Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter>. The <xref:Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter> performs the work of updating the appropriate HTTP headers and features of the response. The filter:
+The <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> is used to configure and create (via <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory>) a `Microsoft.AspNetCore.Mvc.Internal.ResponseCacheFilter`. The `ResponseCacheFilter` performs the work of updating the appropriate HTTP headers and features of the response. The filter:
 
 * Removes any existing headers for `Vary`, `Cache-Control`, and `Pragma`.
 * Writes out the appropriate headers based on the properties set in the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute>.
@@ -134,10 +136,15 @@ Pragma: no-cache
 
 ### Location and Duration
 
-To enable caching, <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> must be set to a positive value and <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> must be either `Any` (the default) or `Client`. In this case, the `Cache-Control` header is set to the location value followed by the `max-age` of the response.
+To enable caching, <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> must be set to a positive value and <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> must be either `Any` (the default) or `Client`. The framework sets the `Cache-Control` header to the location value followed by the `max-age` of the response.
 
-> [!NOTE]
-> <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>'s options of `Any` and `Client` translate into `Cache-Control` header values of `public` and `private`, respectively. As noted previously, setting <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> to `None` sets both `Cache-Control` and `Pragma` headers to `no-cache`.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>'s options of `Any` and `Client` translate into `Cache-Control` header values of `public` and `private`, respectively. As noted in the [NoStore and Location.None](#nostore-and-locationnone) section, setting <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> to `None` sets both `Cache-Control` and `Pragma` headers to `no-cache`.
+
+`Location.Any` (`Cache-Control` set to `public`) indicates that the *client or any intermediate proxy* may cache the value, including [Response Caching Middleware](xref:performance/caching/middleware).
+
+`Location.Client` (`Cache-Control` set to `private`) indicates that *only the client* may cache the value. No intermediate cache should cache the value, including [Response Caching Middleware](xref:performance/caching/middleware).
+
+Cache control headers merely provide guidance to clients and intermediary proxies when and how to cache responses. There's no guarantee that clients and proxies will honor the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234). [Response Caching Middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
 
 The following example shows the Cache3 page model from the sample app and the headers produced by setting <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> and leaving the default <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> value:
 

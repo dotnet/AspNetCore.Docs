@@ -1,0 +1,40 @@
+﻿@using TestingControllersSample.ViewModels
+@model IEnumerable<StormSessionViewModel>
+
+@{
+    ViewBag.Title = "Brainstormer";
+    Layout = "_Layout";
+}
+
+<h2>Brainstorm Sessions</h2>
+<div class="row">
+    <div class="col-md-9">
+        @foreach (var storm in Model)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="@Url.Action("Index","Session", new {id=@storm.Id})">@storm.Name</a> - @storm.DateCreated.ToString()
+                </div>
+                <div class="panel-body">
+                    @storm.IdeaCount ideas
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Add New Session
+            </div>
+            <div class="panel-body">
+                <form method="post" asp-controller="Home" asp-action="Index">
+                    <fieldset class="form-group">
+                        <label for="sessionName">New Session Name</label>
+                        <input type="text" class="form-control" id="sessionName" name="SessionName" placeholder="Name" required />
+                    </fieldset>
+                    <input type="submit" value="Save" id="SaveButton" name="SaveButton" class="btn btn-primary" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

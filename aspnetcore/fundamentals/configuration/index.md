@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/12/2019
+ms.date: 11/04/2019
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -220,7 +220,7 @@ To configure the host builder, call <xref:Microsoft.Extensions.Hosting.HostBuild
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
-        .ConfigureHostConfiguration((hostingContext, config) =>
+        .ConfigureHostConfiguration(config =>
         {
             var dict = new Dictionary<string, string>
             {
@@ -293,6 +293,18 @@ To provide app configuration that can be overridden with command-line arguments,
 })
 ```
 
+### Remove providers added by CreateDefaultBuilder
+
+To remove the providers added by `CreateDefaultBuilder`, call [Clear](/dotnet/api/system.collections.generic.icollection-1.clear) on the [IConfigurationBuilder.Sources](xref:Microsoft.Extensions.Configuration.IConfigurationBuilder.Sources) first:
+
+```csharp
+.ConfigureAppConfiguration((hostingContext, config) =>
+{
+    config.Sources.Clear();
+    // Add providers here
+})
+```
+
 ### Consume configuration during app startup
 
 Configuration supplied to the app in `ConfigureAppConfiguration` is available during the app's startup, including `Startup.ConfigureServices`. For more information, see the [Access configuration during startup](#access-configuration-during-startup) section.
@@ -348,7 +360,7 @@ Within the same command, don't mix command-line argument key-value pairs that us
 
 Example commands:
 
-```console
+```dotnetcli
 dotnet run CommandLineKey1=value1 --CommandLineKey2=value2 /CommandLineKey3=value3
 dotnet run --CommandLineKey1 value1 /CommandLineKey2 value2
 dotnet run CommandLineKey1= CommandLineKey2=value2
@@ -396,7 +408,7 @@ After the switch mappings dictionary is created, it contains the data shown in t
 
 If the switch-mapped keys are used when starting the app, configuration receives the configuration value on the key supplied by the dictionary:
 
-```console
+```dotnetcli
 dotnet run -CLKey1=value1 -CLKey2=value2
 ```
 
@@ -531,13 +543,10 @@ Call `ConfigureAppConfiguration` when building the host to specify the app's con
 ```csharp
 .ConfigureAppConfiguration((hostingContext, config) =>
 {
-    config.SetBasePath(Directory.GetCurrentDirectory());
     config.AddIniFile(
         "config.ini", optional: true, reloadOnChange: true);
 })
 ```
-
-The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>.
 
 A generic example of an INI configuration file:
 
@@ -596,13 +605,10 @@ Call `ConfigureAppConfiguration` when building the host to specify the app's con
 ```csharp
 .ConfigureAppConfiguration((hostingContext, config) =>
 {
-    config.SetBasePath(Directory.GetCurrentDirectory());
     config.AddJsonFile(
         "config.json", optional: true, reloadOnChange: true);
 })
 ```
-
-The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>.
 
 **Example**
 
@@ -637,13 +643,10 @@ Call `ConfigureAppConfiguration` when building the host to specify the app's con
 ```csharp
 .ConfigureAppConfiguration((hostingContext, config) =>
 {
-    config.SetBasePath(Directory.GetCurrentDirectory());
     config.AddXmlFile(
         "config.xml", optional: true, reloadOnChange: true);
 })
 ```
-
-The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>.
 
 XML configuration files can use distinct element names for repeating sections:
 
@@ -726,14 +729,11 @@ Call `ConfigureAppConfiguration` when building the host to specify the app's con
 ```csharp
 .ConfigureAppConfiguration((hostingContext, config) =>
 {
-    config.SetBasePath(Directory.GetCurrentDirectory());
     var path = Path.Combine(
         Directory.GetCurrentDirectory(), "path/to/files");
     config.AddKeyPerFile(directoryPath: path, optional: true);
 })
 ```
-
-The base path is set with <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>.
 
 ## Memory Configuration Provider
 
@@ -767,7 +767,7 @@ The dictionary is used with a call to `AddInMemoryCollection` to provide the con
 
 ## GetValue
 
-[ConfigurationBinder.GetValue\<T>](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a value from configuration with a specified key and converts it to the specified type. An overload permits you to provide a default value if the key isn't found.
+[ConfigurationBinder.GetValue\<T>](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified noncollection type. An overload accepts a default value.
 
 The following example:
 
@@ -1013,13 +1013,13 @@ These keys and values are loaded in the sample app using the Memory Configuratio
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=5-12,23)]
+[!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=5-12,22)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=5-12,23)]
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=5-12,22)]
 
 ::: moniker-end
 
@@ -1183,7 +1183,7 @@ Create a class that implements <xref:Microsoft.Extensions.Configuration.IConfigu
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationSource.cs?name=snippet1)]
 
-Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty.
+Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since [configuration keys are case-insensitive](#keys), the dictionary used to initialize the database is created with the case-insensitive comparer ([StringComparer.OrdinalIgnoreCase](xref:System.StringComparer.OrdinalIgnoreCase)).
 
 *EFConfigurationProvider/EFConfigurationProvider.cs*:
 
@@ -1197,7 +1197,7 @@ An `AddEFConfiguration` extension method permits adding the configuration source
 
 The following code shows how to use the custom `EFConfigurationProvider` in *Program.cs*:
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=30-31)]
+[!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=29-30)]
 
 ::: moniker-end
 
@@ -1233,7 +1233,7 @@ An `AddEFConfiguration` extension method permits adding the configuration source
 
 The following code shows how to use the custom `EFConfigurationProvider` in *Program.cs*:
 
-[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=30-31)]
+[!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=29-30)]
 
 ::: moniker-end
 

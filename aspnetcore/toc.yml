@@ -12,6 +12,8 @@
   uid: getting-started
 - name: What's new
   items:
+    - name: What's new in 3.0
+      uid: aspnetcore-3.0
     - name: What's new in 2.2
       uid: aspnetcore-2.2
     - name: What's new in 2.1
@@ -97,7 +99,7 @@
           uid: tutorials/signalr-typescript-webpack
     - name: Remote Procedure Call apps
       items:
-        - name: Get started with gRPC service
+        - name: Get started with a gRPC service
           uid: tutorials/grpc/grpc-start
     - name: Data access
       items:
@@ -120,13 +122,8 @@
               uid: data/ef-rp/update-related-data
             - name: Handle concurrency conflicts
               uid: data/ef-rp/concurrency
-        - name: EF Core with MVC, existing database
+        - name: EF Core with MVC
           displayName: tutorial
-          href: /ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-        - name: EF Core with MVC, new database
-          displayName: tutorial
-          href: /ef/core/get-started/aspnetcore/new-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-        - name: EF Core with MVC, 10 tutorials
           items:
             - name: Overview
               uid: data/ef-mvc/index
@@ -153,6 +150,9 @@
 - name: Tutorials (Microsoft Learn)
   displayName: tutorial
   items:
+    - name: Web apps
+      displayName: tutorial, razor, razor pages, ui
+      href: /learn/modules/create-razor-pages-aspnet-core/
     - name: Web API apps
       href: /learn/modules/build-web-api-net-core/
     - name: Data access
@@ -226,8 +226,6 @@
           uid: razor-pages/filter
         - name: Route and app conventions
           uid: razor-pages/razor-pages-conventions
-        - name: Upload files
-          uid: razor-pages/upload-files
         - name: Razor SDK
           uid: razor-pages/sdk
     - name: MVC
@@ -266,8 +264,6 @@
           uid: mvc/controllers/actions
         - name: Routing
           uid: mvc/controllers/routing
-        - name: File uploads
-          uid: mvc/models/file-uploads
         - name: Dependency injection - controllers
           uid: mvc/controllers/dependency-injection
         - name: Dependency injection - views
@@ -304,8 +300,8 @@
           items:
             - name: Overview
               uid: security/blazor/index
-            - name: Server-side
-              uid: security/blazor/server-side
+            - name: Blazor Server
+              uid: security/blazor/server
         - name: State management
           uid: blazor/state-management
         - name: Handle errors
@@ -314,16 +310,18 @@
           uid: blazor/debug
         - name: Call a web API
           uid: blazor/call-web-api
-        - name: Hosting and deployment
+        - name: Host and deploy
           items:
             - name: Overview
               uid: host-and-deploy/blazor/index
-            - name: Client-side
-              uid: host-and-deploy/blazor/client-side
-            - name: Server-side
-              uid: host-and-deploy/blazor/server-side
+            - name: Blazor WebAssembly
+              uid: host-and-deploy/blazor/webassembly
+            - name: Blazor Server
+              uid: host-and-deploy/blazor/server
             - name: Configure the Linker
               uid: host-and-deploy/blazor/configure-linker
+        - name: Samples
+          href: https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor
     - name: Client-side development
       items:
         - name: Single Page Apps
@@ -411,6 +409,8 @@
           uid: mvc/controllers/filters
         - name: Areas
           uid: mvc/controllers/areas
+        - name: Upload files
+          uid: mvc/models/file-uploads
         - name: App parts
           uid: mvc/extensibility/app-parts
         - name: aspnet-codegenerator
@@ -433,8 +433,12 @@
           uid: tutorials/get-started-with-swashbuckle
         - name: Get started with NSwag
           uid: tutorials/get-started-with-nswag
+        - name: OpenAPI tools
+          uid: web-api/Microsoft.dotnet-openapi
     - name: Action return types
       uid: web-api/action-return-types
+    - name: Handle JSON Patch requests
+      uid: web-api/jsonpatch
     - name: Format response data
       uid: web-api/advanced/formatting
     - name: Custom formatters
@@ -443,6 +447,8 @@
       uid: web-api/advanced/analyzers
     - name: Conventions
       uid: web-api/advanced/conventions
+    - name: Handle errors
+      uid: web-api/handle-errors
     - name: Test APIs with HTTP REPL
       uid: web-api/http-repl
 - name: Real-time apps
@@ -480,6 +486,9 @@
     - name: Clients
       displayName: signalr
       items:
+        - name: SignalR client features
+          uid: signalr/client-features
+          displayName: signalr
         - name: .NET client
           uid: signalr/dotnet-client
           displayName: signalr
@@ -498,7 +507,7 @@
         - name: JavaScript API reference
           href: /javascript/api/?view=signalr-js-latest
           displayName: signalr
-    - name: Hosting and scaling
+    - name: Host and scale
       displayName: signalr
       items:
         - name: Overview
@@ -540,6 +549,10 @@
   items:
     - name: Introduction to gRPC services
       uid: grpc/index
+    - name: Tutorials
+      items:
+        - name: Get started with a gRPC service
+          uid: tutorials/grpc/grpc-start
     - name: gRPC services with C#
       uid: grpc/basics
     - name: gRPC services with ASP.NET Core
@@ -552,12 +565,18 @@
       uid: grpc/configuration
     - name: Authentication and authorization
       uid: grpc/authn-and-authz
+    - name: Logging and diagnostics
+      uid: grpc/diagnostics
     - name: Security considerations
       uid: grpc/security
-    - name: Migrate gRPC services from C Core
+    - name: Manage Protobuf references with dotnet-grpc
+      uid: grpc/dotnet-grpc
+    - name: Migrate gRPC services from C-core
       uid: grpc/migration
-    - name: Comparing gRPC services with HTTP APIs
+    - name: Compare gRPC services with HTTP APIs
       uid: grpc/comparison
+    - name: Samples
+      href: https://github.com/grpc/grpc-dotnet/tree/master/examples
     - name: Troubleshoot
       uid: grpc/troubleshoot
 - name: Test, debug, and troubleshoot
@@ -608,11 +627,7 @@
               uid: data/ef-rp/update-related-data
             - name: Handle concurrency conflicts
               uid: data/ef-rp/concurrency
-        - name: EF Core with MVC, new database
-          href: /ef/core/get-started/aspnetcore/new-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-        - name: EF Core with MVC, existing database
-          href: /ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-        - name: EF Core with MVC, 10 tutorials
+        - name: EF Core with MVC
           items:
             - name: Overview
               uid: data/ef-mvc/index
@@ -648,13 +663,13 @@
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-queues?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Table storage
           href: /azure/visual-studio/vs-storage-aspnet5-getting-started-tables?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-- name: Hosting and deployment
+- name: Host and deploy
   displayName: publish
   items:
     - name: Overview
       displayName: azure, deploy, publish
       uid: host-and-deploy/index
-    - name: Host on Azure App Service
+    - name: Azure App Service
       displayName: deploy, publish
       items:
         - name: Overview
@@ -704,7 +719,7 @@
         - name: Next steps
           displayName: azure, deploy, publish
           uid: azure/devops/next-steps
-    - name: Host on Windows with IIS
+    - name: IIS
       displayName: deploy, publish
       items:
         - name: Overview
@@ -736,16 +751,16 @@
     - name: HTTP.sys
       displayName: deploy, publish, server
       uid: fundamentals/servers/httpsys
-    - name: Host in a Windows service
+    - name: Windows service
       displayName: deploy, publish
       uid: host-and-deploy/windows-service
-    - name: Host on Linux with Nginx
+    - name: Linux with Nginx
       displayName: deploy, publish
       uid: host-and-deploy/linux-nginx
-    - name: Host on Linux with Apache
+    - name: Linux with Apache
       displayName: deploy, publish
       uid: host-and-deploy/linux-apache
-    - name: Host in Docker
+    - name: Docker
       displayName: deploy, publish
       items:
         - name: Overview
@@ -766,7 +781,7 @@
     - name: Proxy and load balancer configuration
       displayName: deploy, publish
       uid: host-and-deploy/proxy-load-balancer
-    - name: Host in a web farm
+    - name: Web farm
       displayName: deploy, publish
       uid: host-and-deploy/web-farm
     - name: Visual Studio publish profiles
@@ -785,10 +800,10 @@
       items:
         - name: Overview
           uid: host-and-deploy/blazor/index
-        - name: Client-side
-          uid: host-and-deploy/blazor/client-side
-        - name: Server-side
-          uid: host-and-deploy/blazor/server-side
+        - name: Blazor WebAssembly
+          uid: host-and-deploy/blazor/webassembly
+        - name: Blazor Server
+          uid: host-and-deploy/blazor/server
         - name: Configure the Linker
           uid: host-and-deploy/blazor/configure-linker
 - name: Security and Identity
@@ -994,17 +1009,19 @@
     - name: IP safelist
       uid: security/ip-safelist
     - name: Application security - OWASP
-      href: https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/DotNet_Security_Cheat_Sheet.md
+      href: https://cheatsheetseries.owasp.org/cheatsheets/DotNet_Security_Cheat_Sheet.html
     - name: Blazor
       items:
         - name: Overview
           uid: security/blazor/index
-        - name: Server-side
-          uid: security/blazor/server-side
+        - name: Blazor Server
+          uid: security/blazor/server
 - name: Performance
   items:
     - name: Overview
       uid: performance/performance-best-practices
+    - name: Memory and GC
+      uid: performance/memory
     - name: Response caching
       items:
         - name: Overview

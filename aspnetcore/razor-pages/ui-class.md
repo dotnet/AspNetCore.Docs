@@ -2,9 +2,8 @@
 title: Reusable Razor UI in class libraries with ASP.NET Core
 author: Rick-Anderson
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
-monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 08/22/2019
+ms.date: 10/26/2019
 ms.custom: "mvc, seodec18"
 uid: razor-pages/ui-class
 ---
@@ -12,9 +11,9 @@ uid: razor-pages/ui-class
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Razor views, pages, controllers, page models, [Razor components](xref:blazor/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (*.cshtml* file) in the web app takes precedence.
+::: moniker range=">= aspnetcore-3.0"
 
-This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
+Razor views, pages, controllers, page models, [Razor components](xref:blazor/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (*.cshtml* file) in the web app takes precedence.
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -22,23 +21,22 @@ This feature requires [!INCLUDE[](~/includes/2.1-SDK.md)]
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio **File** menu, select **New** > **Project**.
-* Select **ASP.NET Core Web Application**.
-* Name the library (for example, "RazorClassLib") > **OK**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
-* Verify **ASP.NET Core 2.1** or later is selected.
-* Select **Razor Class Library** > **OK**.
+* From Visual Studio select **Create new a new project**.
+* Select **Razor Class Library** > **Next**.
+* Name the library (for example, "RazorClassLib"), > **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
+* Select **Support pages and views** if you need to support views. By default, only Razor Pages are supported. Select **Create**.
 
-An RCL has the following project file:
-
-[!code-xml[Main](ui-class/samples/cli/RazorUIClassLib/RazorUIClassLib.csproj)]
+The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
 From the command line, run `dotnet new razorclasslib`. For example:
 
-```console
+```dotnetcli
 dotnet new razorclasslib -o RazorUIClassLib
 ```
+
+The Razor class library (RCL) template defaults to Razor component development by default. Pass the `--support-pages-and-views` option (`dotnet new razorclasslib --support-pages-and-views`) to provide support for pages and views.
 
 For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 
@@ -46,154 +44,14 @@ For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid 
 
 Add Razor files to the RCL.
 
-The ASP.NET Core templates assume the RCL content is in the *Areas* folder. See [RCL Pages layout](#afs) to create an RCL that exposes content in `~/Pages` rather than `~/Areas/Pages`.
+The ASP.NET Core templates assume the RCL content is in the *Areas* folder. See [RCL Pages layout](#rcl-pages-layout) to create an RCL that exposes content in `~/Pages` rather than `~/Areas/Pages`.
 
-## Referencing RCL content
+## Reference RCL content
 
 The RCL can be referenced by:
 
 * NuGet package. See [Creating NuGet packages](/nuget/create-packages/creating-a-package) and [dotnet add package](/dotnet/core/tools/dotnet-add-package) and [Create and publish a NuGet package](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
 * *{ProjectName}.csproj*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
-
-## Walkthrough: Create an RCL project and use from a Razor Pages project
-
-You can download the [complete project](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) and test it rather than creating it. The sample download contains additional code and links that make the project easy to test. You can leave feedback in [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/6098) with your comments on download samples versus step-by-step instructions.
-
-### Test the download app
-
-If you haven't downloaded the completed app and would rather create the walkthrough project, skip to the [next section](#create-an-rcl).
-
-# [Visual Studio](#tab/visual-studio)
-
-Open the *.sln* file in Visual Studio. Run the app.
-
-# [.NET Core CLI](#tab/netcore-cli)
-
-From a command prompt in the *cli* directory, build the RCL and web app.
-
-```console
-dotnet build
-```
-
-Move to the *WebApp1* directory and run the app:
-
-```console
-dotnet run
-```
-
----
-
-Follow the instructions in [Test WebApp1](#test)
-
-## Create an RCL
-
-In this section, an RCL is created. Razor files are added to the RCL.
-
-# [Visual Studio](#tab/visual-studio)
-
-Create the RCL project:
-
-* From the Visual Studio **File** menu, select **New** > **Project**.
-* Select **ASP.NET Core Web Application**.
-* Name the app **RazorUIClassLib** > **OK**.
-* Verify **ASP.NET Core 2.1** or later is selected.
-* Select **Razor Class Library** > **OK**.
-* Add a Razor partial view file named *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*.
-
-# [.NET Core CLI](#tab/netcore-cli)
-
-From the command line, run the following:
-
-```console
-dotnet new razorclasslib -o RazorUIClassLib
-dotnet new page -n _Message -np -o RazorUIClassLib/Areas/MyFeature/Pages/Shared
-dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
-```
-
-The preceding commands:
-
-* Creates the `RazorUIClassLib` RCL.
-* Creates a Razor _Message page, and adds it to the RCL. The `-np` parameter creates the page without a `PageModel`.
-* Creates a [_ViewStart.cshtml](xref:mvc/views/layout#running-code-before-each-view) file and adds it to the RCL.
-
-The *_ViewStart.cshtml* file is required to use the layout of the Razor Pages project (which is added in the next section).
-
----
-
-### Add Razor files and folders to the project
-
-* Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* with the following code:
-
-[!code-cshtml[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml)]
-
-* Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following code:
-
-[!code-cshtml[Main](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml)]
-
-`@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including the `@addTagHelper` directive, you can add a *_ViewImports.cshtml* file. For example:
-
-```console
-dotnet new viewimports -o RazorUIClassLib/Areas/MyFeature/Pages
-```
-
-For more information on *_ViewImports.cshtml*, see [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives)
-
-* Build the class library to verify there are no compiler errors:
-
-```console
-dotnet build RazorUIClassLib
-```
-
-The build output contains *RazorUIClassLib.dll* and *RazorUIClassLib.Views.dll*. *RazorUIClassLib.Views.dll* contains the compiled Razor content.
-
-### Use the Razor UI library from a Razor Pages project
-
-# [Visual Studio](#tab/visual-studio)
-
-Create the Razor Pages web app:
-
-* From **Solution Explorer**, right-click the solution > **Add** >  **New Project**.
-* Select **ASP.NET Core Web Application**.
-* Name the app **WebApp1**.
-* Verify **ASP.NET Core 2.1** or later is selected.
-* Select **Web Application** > **OK**.
-
-* From **Solution Explorer**, right-click on **WebApp1** and select **Set as StartUp Project**.
-* From **Solution Explorer**, right-click on **WebApp1** and select **Build Dependencies** > **Project Dependencies**.
-* Check **RazorUIClassLib** as a dependency of **WebApp1**.
-* From **Solution Explorer**, right-click on **WebApp1** and select **Add** > **Reference**.
-* In the **Reference Manager** dialog, check **RazorUIClassLib** > **OK**.
-
-Run the app.
-
-# [.NET Core CLI](#tab/netcore-cli)
-
-Create a Razor Pages web app and a solution file containing the Razor Pages app and the RCL:
-
-```console
-dotnet new webapp -o WebApp1
-dotnet new sln
-dotnet sln add WebApp1
-dotnet sln add RazorUIClassLib
-dotnet add WebApp1 reference RazorUIClassLib
-```
-
-Build and run the web app:
-
-```console
-cd WebApp1
-dotnet run
-```
-
----
-
-<a name="test"></a>
-
-### Test WebApp1
-
-Verify the Razor UI class library is in use:
-
-* Browse to `/MyFeature/Page1`.
 
 ## Override views, partial views, and pages
 
@@ -202,8 +60,6 @@ When a view, partial view, or Razor Page is found in both the web app and the RC
 In the sample download, rename *WebApp1/Areas/MyFeature2* to *WebApp1/Areas/MyFeature* to test precedence.
 
 Copy the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* partial view to *WebApp1/Areas/MyFeature/Pages/Shared/_Message.cshtml*. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
-
-<a name="afs"></a>
 
 ### RCL Pages layout
 
@@ -221,8 +77,6 @@ Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *_Header.csht
   <partial name="_Footer">
 </body>
 ```
-
-::: moniker range=">= aspnetcore-3.0"
 
 ## Create an RCL with static assets
 
@@ -260,7 +114,7 @@ To include TypeScript files in an RCL:
 
    ```xml
    <ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
-     TypeScriptCompile;
+     CompileTypeScript;
      $(ResolveCurrentProjectStaticWebAssetsInputs)
    </ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
    ```
@@ -319,5 +173,211 @@ When the RCL is built, a manifest is produced that describes the static web asse
 ### Publish
 
 When the app is published, the companion assets from all referenced projects and packages are copied into the *wwwroot* folder of the published app under `_content/{LIBRARY NAME}/`.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+Razor views, pages, controllers, page models, [Razor components](xref:blazor/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (*.cshtml* file) in the web app takes precedence.
+
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:index#how-to-download-a-sample))
+
+## Create a class library containing Razor UI
+
+# [Visual Studio](#tab/visual-studio)
+
+* From the Visual Studio **File** menu, select **New** > **Project**.
+* Select **ASP.NET Core Web Application**.
+* Name the library (for example, "RazorClassLib") > **OK**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
+* Verify **ASP.NET Core 2.1** or later is selected.
+* Select **Razor Class Library** > **OK**.
+
+An RCL has the following project file:
+
+[!code-xml[](ui-class/samples/cli/RazorUIClassLib/RazorUIClassLib.csproj)]
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+From the command line, run `dotnet new razorclasslib`. For example:
+
+```dotnetcli
+dotnet new razorclasslib -o RazorUIClassLib
+```
+
+For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
+
+---
+
+Add Razor files to the RCL.
+
+The ASP.NET Core templates assume the RCL content is in the *Areas* folder. See [RCL Pages layout](#rcl-pages-layout) to create an RCL that exposes content in `~/Pages` rather than `~/Areas/Pages`.
+
+## Reference RCL content
+
+The RCL can be referenced by:
+
+* NuGet package. See [Creating NuGet packages](/nuget/create-packages/creating-a-package) and [dotnet add package](/dotnet/core/tools/dotnet-add-package) and [Create and publish a NuGet package](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
+* *{ProjectName}.csproj*. See [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference).
+
+## Walkthrough: Create an RCL project and use from a Razor Pages project
+
+You can download the [complete project](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) and test it rather than creating it. The sample download contains additional code and links that make the project easy to test. You can leave feedback in [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/6098) with your comments on download samples versus step-by-step instructions.
+
+### Test the download app
+
+If you haven't downloaded the completed app and would rather create the walkthrough project, skip to the [next section](#create-an-rcl).
+
+# [Visual Studio](#tab/visual-studio)
+
+Open the *.sln* file in Visual Studio. Run the app.
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+From a command prompt in the *cli* directory, build the RCL and web app.
+
+```dotnetcli
+dotnet build
+```
+
+Move to the *WebApp1* directory and run the app:
+
+```dotnetcli
+dotnet run
+```
+
+---
+
+Follow the instructions in [Test WebApp1](#test-webapp1)
+
+## Create an RCL
+
+In this section, an RCL is created. Razor files are added to the RCL.
+
+# [Visual Studio](#tab/visual-studio)
+
+Create the RCL project:
+
+* From the Visual Studio **File** menu, select **New** > **Project**.
+* Select **ASP.NET Core Web Application**.
+* Name the app **RazorUIClassLib** > **OK**.
+* Verify **ASP.NET Core 2.1** or later is selected.
+* Select **Razor Class Library** > **OK**.
+* Add a Razor partial view file named *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*.
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+From the command line, run the following:
+
+```dotnetcli
+dotnet new razorclasslib -o RazorUIClassLib
+dotnet new page -n _Message -np -o RazorUIClassLib/Areas/MyFeature/Pages/Shared
+dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
+```
+
+The preceding commands:
+
+* Creates the `RazorUIClassLib` RCL.
+* Creates a Razor _Message page, and adds it to the RCL. The `-np` parameter creates the page without a `PageModel`.
+* Creates a [_ViewStart.cshtml](xref:mvc/views/layout#running-code-before-each-view) file and adds it to the RCL.
+
+The *_ViewStart.cshtml* file is required to use the layout of the Razor Pages project (which is added in the next section).
+
+---
+
+### Add Razor files and folders to the project
+
+* Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* with the following code:
+
+  [!code-cshtml[](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml)]
+
+* Replace the markup in *RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml* with the following code:
+
+  [!code-cshtml[](ui-class/samples/cli/RazorUIClassLib/Areas/MyFeature/Pages/Page1.cshtml)]
+
+  `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` is required to use the partial view (`<partial name="_Message" />`). Rather than including the `@addTagHelper` directive, you can add a *_ViewImports.cshtml* file. For example:
+
+  ```dotnetcli
+  dotnet new viewimports -o RazorUIClassLib/Areas/MyFeature/Pages
+  ```
+
+  For more information on *_ViewImports.cshtml*, see [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives)
+
+* Build the class library to verify there are no compiler errors:
+
+  ```dotnetcli
+  dotnet build RazorUIClassLib
+  ```
+
+The build output contains *RazorUIClassLib.dll* and *RazorUIClassLib.Views.dll*. *RazorUIClassLib.Views.dll* contains the compiled Razor content.
+
+### Use the Razor UI library from a Razor Pages project
+
+# [Visual Studio](#tab/visual-studio)
+
+Create the Razor Pages web app:
+
+* From **Solution Explorer**, right-click the solution > **Add** >  **New Project**.
+* Select **ASP.NET Core Web Application**.
+* Name the app **WebApp1**.
+* Verify **ASP.NET Core 2.1** or later is selected.
+* Select **Web Application** > **OK**.
+
+* From **Solution Explorer**, right-click on **WebApp1** and select **Set as StartUp Project**.
+* From **Solution Explorer**, right-click on **WebApp1** and select **Build Dependencies** > **Project Dependencies**.
+* Check **RazorUIClassLib** as a dependency of **WebApp1**.
+* From **Solution Explorer**, right-click on **WebApp1** and select **Add** > **Reference**.
+* In the **Reference Manager** dialog, check **RazorUIClassLib** > **OK**.
+
+Run the app.
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+Create a Razor Pages web app and a solution file containing the Razor Pages app and the RCL:
+
+```dotnetcli
+dotnet new webapp -o WebApp1
+dotnet new sln
+dotnet sln add WebApp1
+dotnet sln add RazorUIClassLib
+dotnet add WebApp1 reference RazorUIClassLib
+```
+
+Build and run the web app:
+
+```dotnetcli
+cd WebApp1
+dotnet run
+```
+
+---
+
+### Test WebApp1
+
+Browse to `/MyFeature/Page1` to verify that the Razor UI class library is in use.
+
+## Override views, partial views, and pages
+
+When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (*.cshtml* file) in the web app takes precedence. For example, add *WebApp1/Areas/MyFeature/Pages/Page1.cshtml* to WebApp1, and Page1 in the WebApp1 will take precedence over Page1 in the RCL.
+
+In the sample download, rename *WebApp1/Areas/MyFeature2* to *WebApp1/Areas/MyFeature* to test precedence.
+
+Copy the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* partial view to *WebApp1/Areas/MyFeature/Pages/Shared/_Message.cshtml*. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
+
+### RCL Pages layout
+
+To reference RCL content as though it is part of the web app's *Pages* folder, create the RCL project with the following file structure:
+
+* *RazorUIClassLib/Pages*
+* *RazorUIClassLib/Pages/Shared*
+
+Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *_Header.cshtml* and *_Footer.cshtml*. The `<partial>` tags could be added to *_Layout.cshtml* file:
+
+```cshtml
+<body>
+  <partial name="_Header">
+  @RenderBody()
+  <partial name="_Footer">
+</body>
+```
 
 ::: moniker-end

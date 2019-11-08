@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/06/2019
+ms.date: 10/31/2019
 uid: blazor/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps
@@ -16,7 +16,7 @@ This article describes how Blazor manages unhandled exceptions and how to develo
 
 ## How the Blazor framework reacts to unhandled exceptions
 
-Blazor server-side is a stateful framework. While users interact with an app, they maintain a connection to the server known as a *circuit*. The circuit holds active component instances, plus many other aspects of state, such as:
+Blazor Server is a stateful framework. While users interact with an app, they maintain a connection to the server known as a *circuit*. The circuit holds active component instances, plus many other aspects of state, such as:
 
 * The most recent rendered output of components.
 * The current set of event-handling delegates that could be triggered by client-side events.
@@ -134,7 +134,7 @@ For more information on component disposal, see <xref:blazor/components#componen
 
 The following conditions apply to error handling with `InvokeAsync<T>`:
 
-* If a call to `InvokeAsync<T>` fails synchronously, a .NET exception occurs. A call to `InvokeAsync<T>` my fail, for example, because the supplied arguments can't be serialized. Developer code must catch the exception. If app code in an event handler or component lifecycle method doesn't handle an exception, the resulting exception is fatal to the circuit.
+* If a call to `InvokeAsync<T>` fails synchronously, a .NET exception occurs. A call to `InvokeAsync<T>` may fail, for example, because the supplied arguments can't be serialized. Developer code must catch the exception. If app code in an event handler or component lifecycle method doesn't handle an exception, the resulting exception is fatal to the circuit.
 * If a call to `InvokeAsync<T>` fails asynchronously, the .NET <xref:System.Threading.Tasks.Task> fails. A call to `InvokeAsync<T>` may fail, for example, because the JavaScript-side code throws an exception or returns a `Promise` that completed as `rejected`. Developer code must catch the exception. If using the [await](/dotnet/csharp/language-reference/keywords/await) operator, consider wrapping the method call in a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging. Otherwise, the failing code results in an unhandled exception that's fatal to the circuit.
 * By default, calls to `InvokeAsync<T>` must complete within a certain period or else the call times out. The default timeout period is one minute. The timeout protects the code against a loss in network connectivity or JavaScript code that never sends back a completion message. If the call times out, the resulting `Task` fails with an <xref:System.OperationCanceledException>. Trap and process the exception with logging.
 
@@ -168,9 +168,9 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 Blazor components can be prerendered using `Html.RenderComponentAsync` so that their rendered HTML markup is returned as part of the user's initial HTTP request. This works by:
 
-* Creating a new circuit containing all of the prerendered components that are part of the same page.
+* Creating a new circuit for all of the prerendered components that are part of the same page.
 * Generating the initial HTML.
-* Treating the circuit as `disconnected` until the user's browser establishes a SignalR connection back to the same server to resume interactivity on the circuit.
+* Treating the circuit as `disconnected` until the user's browser establishes a SignalR connection back to the same server. When the connection is established, interactivity on the circuit is resumed and the components' HTML markup is updated.
 
 If any component throws an unhandled exception during prerendering, for example, during a lifecycle method or in rendering logic:
 

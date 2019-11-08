@@ -4,7 +4,7 @@ author: juntaoluo
 description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 8/26/2019
+ms.date: 10/10/2019
 uid: tutorials/grpc/grpc-start
 ---
 # Tutorial: Create a gRPC client and server in ASP.NET Core
@@ -45,7 +45,7 @@ In this tutorial, you:
 # [Visual Studio](#tab/visual-studio)
 
 * Start Visual Studio and select **Create a new project**. Alternatively, from the Visual Studio **File** menu, select **New** > **Project**.
-* In the **Create a new project** dialog, select **gPRC Service** and select **Next**:
+* In the **Create a new project** dialog, select **gRPC Service** and select **Next**:
 
   ![**Create a new project** dialog](~/tutorials/grpc/grpc-start/static/cnp.png)
 
@@ -61,7 +61,7 @@ In this tutorial, you:
 * Change directories (`cd`) to a folder which will contain the project.
 * Run the following commands:
 
-  ```console
+  ```dotnetcli
   dotnet new grpc -o GrpcGreeter
   code -r GrpcGreeter
   ```
@@ -76,16 +76,16 @@ In this tutorial, you:
 
 From a terminal, run the following commands:
 
-```console
-  dotnet new grpc -o GrpcGreeter
-  cd GrpcGreeter
+```dotnetcli
+dotnet new grpc -o GrpcGreeter
+cd GrpcGreeter
 ```
 
 The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create a gRPC service.
 
 ### Open the project
 
-From Visual Studio, select **File** > **Open**, and then select the *GrpcGreeter.sln* file.
+From Visual Studio, select **File** > **Open**, and then select the *GrpcGreeter.csproj* file.
 
 ---
 
@@ -147,7 +147,7 @@ info: Microsoft.Hosting.Lifetime[0]
 * Change directories (`cd`) to a folder which will contain the project.
 * Run the following commands:
 
-  ```console
+  ```dotnetcli
   dotnet new console -o GrpcGreeterClient
   code -r GrpcGreeterClient
   ```
@@ -177,9 +177,9 @@ Install the packages using either the Package Manager Console (PMC) or Manage Nu
 * Run the following commands:
 
   ```powershell
-  Install-Package Grpc.Net.Client -prerelease
-  Install-Package Google.Protobuf -prerelease
-  Install-Package Grpc.Tools -prerelease
+  Install-Package Grpc.Net.Client
+  Install-Package Google.Protobuf
+  Install-Package Grpc.Tools
   ```
 
 #### Manage NuGet Packages option to install packages
@@ -194,7 +194,7 @@ Install the packages using either the Package Manager Console (PMC) or Manage Nu
 
 Run the following commands from the **Integrated Terminal**:
 
-```console
+```dotnetcli
 dotnet add GrpcGreeterClient.csproj package Grpc.Net.Client
 dotnet add GrpcGreeterClient.csproj package Google.Protobuf
 dotnet add GrpcGreeterClient.csproj package Grpc.Tools
@@ -249,8 +249,8 @@ Update the gRPC client *Program.cs* file with the following code:
 
 The Greeter client is created by:
 
-* Instantiating an `HttpClient` containing the information for creating the connection to the gRPC service.
-* Using the `HttpClient` to construct a gRPC channel and the Greeter client:
+* Instantiating a `GrpcChannel` containing the information for creating the connection to the gRPC service.
+* Using the `GrpcChannel` to construct the Greeter client:
 
 [!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=3-5)]
 
@@ -308,6 +308,8 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 > [!NOTE]
 > The code in this article requires the ASP.NET Core HTTPS development certificate to secure the gRPC service. If the client fails with the message `The remote certificate is invalid according to the validation procedure.`, the development certificate is not trusted. For instructions to fix this issue, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
+
+[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ### Next steps
 

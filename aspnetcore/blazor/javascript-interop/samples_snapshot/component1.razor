@@ -6,9 +6,9 @@
 @code {
     private ElementReference username;
 
-    public async void SetFocus()
+    public async Task SetFocus()
     {
-        await JSRuntime.InvokeAsync<object>(
-                "exampleJsFunctions.focusElement", username);
+        await JSRuntime.InvokeVoidAsync(
+            "exampleJsFunctions.focusElement", username);
     }
 }

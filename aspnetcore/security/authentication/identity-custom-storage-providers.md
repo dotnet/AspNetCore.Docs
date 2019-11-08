@@ -29,7 +29,7 @@ ASP.NET Core Identity is included in project templates in Visual Studio with the
 
 When using the .NET Core CLI, add `-au Individual`:
 
-```console
+```dotnetcli
 dotnet new mvc -au Individual
 ```
 
@@ -232,4 +232,4 @@ public void ConfigureServices(IServiceCollection services)
 ## References
 
 * [Custom Storage Providers for ASP.NET 4.x Identity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
-* [ASP.NET Core Identity](https://github.com/aspnet/identity) &ndash; This repository includes links to community maintained store providers.
+* [ASP.NET Core Identity](https://github.com/aspnet/AspNetCore/tree/master/src/Identity) &ndash; This repository includes links to community maintained store providers.

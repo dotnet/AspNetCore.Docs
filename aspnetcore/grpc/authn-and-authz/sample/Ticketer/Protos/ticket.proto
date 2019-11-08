@@ -1,7 +1,8 @@
 syntax = "proto3";
 
 import "google/protobuf/empty.proto";
-package Ticket;
+
+package ticket;
 
 service Ticketer {
   // Get available ticket count

@@ -1,10 +1,10 @@
 ---
 title: Razor Pages with EF Core in ASP.NET Core - Read Related Data - 6 of 8
-author: tdykstra
+author: rick-anderson
 description: In this tutorial you read and display related data -- that is, data that the Entity Framework loads into navigation properties.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/22/2019
+ms.date: 09/28/2019
 uid: data/ef-rp/read-related-data
 ---
 
@@ -80,13 +80,13 @@ To display the name of the assigned department for a course:
 
   **On Windows:**
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
   ```
 
   **On Linux or macOS:**
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages/Courses --referenceScriptLibraries
   ```
 
@@ -177,13 +177,13 @@ Create *SchoolViewModels/InstructorIndexData.cs* with the following code:
 
   **On Windows:**
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
   ```
 
   **On Linux or macOS:**
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages/Instructors --referenceScriptLibraries
   ```
 
@@ -253,7 +253,7 @@ The preceding code makes the following changes:
   }
   ```
 
-* Adds a **Courses** column that displays courses taught by each instructor. See [Explicit Line Transition with `@:`](xref:mvc/views/razor#explicit-line-transition-with-) for more about this razor syntax.
+* Adds a **Courses** column that displays courses taught by each instructor. See [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) for more about this razor syntax.
 
 * Adds code that dynamically adds `class="success"` to the `tr` element of the selected instructor and course. This sets a background color for the selected row using a Bootstrap class.
 
@@ -385,7 +385,7 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
 
  Run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Course -dc SchoolContext -udl -outDir Pages\Courses --referenceScriptLibraries
   ```
 
@@ -472,7 +472,7 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
 
  Run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Instructor -dc SchoolContext -udl -outDir Pages\Instructors --referenceScriptLibraries
   ```
 
@@ -522,7 +522,7 @@ The preceding markup makes the following changes:
   }
   ```
 
-* Added a **Courses** column that displays courses taught by each instructor. See [Explicit line transition with `@:`](xref:mvc/views/razor#explicit-line-transition-with-) for more about this razor syntax.
+* Added a **Courses** column that displays courses taught by each instructor. See [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) for more about this razor syntax.
 
 * Added code that dynamically adds `class="success"` to the `tr` element of the selected instructor. This sets a background color for the selected row using a Bootstrap class.
 

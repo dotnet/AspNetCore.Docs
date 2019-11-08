@@ -33,7 +33,7 @@ Swashbuckle can be added with the following approaches:
   * Execute the following command:
 
     ```powershell
-    Install-Package Swashbuckle.AspNetCore -Version 5.0.0-rc2
+    Install-Package Swashbuckle.AspNetCore -Version 5.0.0-rc4
     ```
 
 * From the **Manage NuGet Packages** dialog:
@@ -55,16 +55,16 @@ Swashbuckle can be added with the following approaches:
 
 Run the following command from the **Integrated Terminal**:
 
-```console
-dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.0.0-rc2
+```dotnetcli
+dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.0.0-rc4
 ```
 
 ### [.NET Core CLI](#tab/netcore-cli)
 
 Run the following command:
 
-```console
-dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.0.0-rc2
+```dotnetcli
+dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.0.0-rc4
 ```
 
 ---

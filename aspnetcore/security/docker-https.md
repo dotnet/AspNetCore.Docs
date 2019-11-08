@@ -49,7 +49,7 @@ Use the following instructions for your operating system configuration.
 
 Generate certificate and configure local machine:
 
-```console
+```dotnetcli
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
 dotnet dev-certs https --trust
 ```
@@ -69,7 +69,7 @@ The password must match the password used for the certificate.
 
 Generate certificate and configure local machine:
 
-```console
+```dotnetcli
 dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { password here }
 dotnet dev-certs https --trust
 ```
@@ -91,7 +91,7 @@ The password must match the password used for the certificate.
 
 Generate certificate and configure local machine:
 
-```console
+```dotnetcli
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
 dotnet dev-certs https --trust
 ```

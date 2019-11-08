@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app on an IIS server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/08/2019
+ms.date: 10/03/2019
 uid: tutorials/publish-to-iis
 ---
 # Publish an ASP.NET Core app to IIS
@@ -37,7 +37,7 @@ This tutorial covers the following subjects:
 
 ## Install the .NET Core Hosting Bundle
 
-Install the *.NET Core Hosting Bundle* on the IIS server. The bundle installs the .NET Core Runtime, .NET Core Library, and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). The module allows ASP.NET Core apps to run behind IIS. If the system doesn't have an Internet connection, obtain and install the [Microsoft Visual C++ 2015 Redistributable](https://www.microsoft.com/download/details.aspx?id=53840) before installing the .NET Core Hosting Bundle.
+Install the *.NET Core Hosting Bundle* on the IIS server. The bundle installs the .NET Core Runtime, .NET Core Library, and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). The module allows ASP.NET Core apps to run behind IIS.
 
 Download the installer using the following link:
 
@@ -78,7 +78,7 @@ Follow the <xref:getting-started> tutorial to create a Razor Pages app.
 
 1. In a command shell, publish the app in Release configuration with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command:
 
-   ```console
+   ```dotnetcli
    dotnet publish --configuration Release
    ```
 

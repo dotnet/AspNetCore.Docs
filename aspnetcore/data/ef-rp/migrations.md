@@ -1,6 +1,6 @@
 ---
 title: Razor Pages with EF Core in ASP.NET Core - Migrations - 4 of 8
-author: tdykstra
+author: rick-anderson
 description: In this tutorial, you start using the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC app.
 ms.author: riande
 ms.date: 07/22/2019
@@ -39,15 +39,15 @@ Drop-Database
 
 * Run the following command at a command prompt to install the EF CLI tools:
 
-  ```console
-  dotnet tool install --global dotnet-ef --version 3.0.0-*
+  ```dotnetcli
+  dotnet tool install --global dotnet-ef
   ```
 
 * In the command prompt, navigate to the project folder. The project folder contains the *ContosoUniversity.csproj* file.
 
 * Delete the *CU.db* file, or run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet ef database drop --force
   ```
 
@@ -68,7 +68,7 @@ Update-Database
 
 Make sure the command prompt is in the project folder, and run the following commands:
 
-```console
+```dotnetcli
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
@@ -187,7 +187,7 @@ Open a command window and navigate to the project folder. The project folder con
 
 Enter the following in the command window:
 
- ```console
+ ```dotnetcli
  dotnet ef database drop
  ```
 
@@ -206,7 +206,7 @@ Update-Database
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-```console
+```dotnetcli
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
@@ -244,11 +244,11 @@ Remove-Migration
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-```console
+```dotnetcli
 dotnet ef migrations remove
 ```
 
-For more information, see  [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
+For more information, see [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
 ---
 

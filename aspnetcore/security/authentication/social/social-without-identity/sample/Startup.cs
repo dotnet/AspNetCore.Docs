@@ -23,9 +23,9 @@ namespace WebApp1
 
         public IConfiguration Configuration { get; }
 
-                    #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
+            #region snippet1
             services
                 .AddAuthentication(options =>
                 {
@@ -38,10 +38,10 @@ namespace WebApp1
                     options.ClientId = Configuration["Authentication:Google:ClientId"];
                     options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
                 });
+            #endregion
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
-                    #endregion
 
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

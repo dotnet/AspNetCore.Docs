@@ -7,7 +7,7 @@ ms.author: bdorrans
 ms.date: 11/07/2019
 uid: security/authentication/certauth
 ---
-# Overview
+# Configure certificate authentication in ASP.NET Core
 
 `Microsoft.AspNetCore.Authentication.Certificate` contains an implementation similar to [Certificate Authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) for ASP.NET Core. Certificate authentication happens at the TLS level, long before it ever gets to ASP.NET Core. More accurately, this is an authentication handler that validates the certificate and then gives you an event where you can resolve that certificate to a `ClaimsPrincipal`. 
 
@@ -26,12 +26,12 @@ An alternative to certificate authentication in environments where proxies and l
 
 Acquire an HTTPS certificate, apply it, and [configure your host](#configure-your-host-to-require-certificates) to require certificates.
 
-In your web app, add a reference to the `Microsoft.AspNetCore.Authentication.Certificate` package. Then in the `Startup.Configure` method, call
-`app.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).UseCertificateAuthentication(...);` with your options, providing a delegate for `OnCertificateValidated` to do any supplementary validation on the client certificate sent with requests. Turn that information into a `ClaimsPrincipal` and set it on the `context.Principal` property.
+In your web app, add a reference to the `Microsoft.AspNetCore.Authentication.Certificate` package. Then in the `Startup.ConfigureServices` method, call
+`services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(...);` with your options, providing a delegate for `OnCertificateValidated` to do any supplementary validation on the client certificate sent with requests. Turn that information into a `ClaimsPrincipal` and set it on the `context.Principal` property.
 
 If authentication fails, this handler returns a `403 (Forbidden)` response rather a `401 (Unauthorized)`, as you might expect. The reasoning is that the authentication should happen during the initial TLS connection. By the time it reaches the handler, it's too late. There's no way to upgrade the connection from an anonymous connection to one with a certificate.
 
-Also add `app.UseAuthentication();` in the `Startup.Configure` method. Otherwise, the HttpContext.User will not be set to `ClaimsPrincipal` created from the certificate. For example:
+Also add `app.UseAuthentication();` in the `Startup.Configure` method. Otherwise, the `HttpContext.User` will not be set to `ClaimsPrincipal` created from the certificate. For example:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -181,21 +181,28 @@ Conceptually, the validation of the certificate is an authorization concern. Add
 In *Program.cs*, configure Kestrel as follows:
 
 ```csharp
-public static IWebHost BuildWebHost(string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-        .UseStartup<Startup>()
-        .ConfigureKestrel(options =>
-        {
-            options.ConfigureHttpsDefaults(opt => 
-                opt.ClientCertificateMode = 
-                    ClientCertificateMode.RequireCertificate);
-        })
-        .Build();
+public static void Main(string[] args)
+{
+    CreateHostBuilder(args).Build().Run();
+}
+
+public static IHostBuilder CreateHostBuilder(string[] args)
+{
+    return Host.CreateDefaultBuilder(args)
+               .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.ConfigureKestrel(o =>
+                    {
+                        o.ConfigureHttpsDefaults(o => o.ClientCertificateMode = ClientCertificateMode.RequireCertificate);
+                    });
+                });
+}
 ```
 
 ### IIS
 
-Complete the following steps In IIS Manager:
+Complete the following steps in IIS Manager:
 
 1. Select your site from the **Connections** tab.
 1. Double-click the **SSL Settings** option in the **Features View** window.

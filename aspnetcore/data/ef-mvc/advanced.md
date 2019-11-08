@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Learn about advanced scenarios - ASP.NET MVC with EF Core"
 description: "This tutorial introduces useful topics for going beyond the basics of developing ASP.NET Core web apps that use Entity Framework Core."
-author: tdykstra
+author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
@@ -230,7 +230,7 @@ To delete a database in SSOX, right-click the database, click **Delete**, and th
 
 To delete a database by using the CLI, run the `database drop` CLI command:
 
-```console
+```dotnetcli
 dotnet ef database drop
 ```
 

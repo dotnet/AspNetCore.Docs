@@ -21,9 +21,6 @@ namespace GrpcGreeterClient
             var reply = await client.SayHelloAsync(
                               new HelloRequest { Name = "GreeterClient" });
             Console.WriteLine("Greeting: " + reply.Message);
-            await channel.ShutdownAsync();
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
         }
         #endregion
     }

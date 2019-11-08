@@ -68,6 +68,8 @@ By default, server and client assets are generated for each *\*.proto* file incl
 
 Similarly, the attribute is set to `Client` in client projects.
 
+[!INCLUDE[](~/includes/gRPCazure.md)]
+
 ## Additional resources
 
 * <xref:grpc/index>

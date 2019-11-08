@@ -3,7 +3,7 @@ title: Get started with ASP.NET Core MVC
 author: rick-anderson
 description: Learn how to get started with ASP.NET Core MVC.
 ms.author: riande
-ms.date: 08/05/2019
+ms.date: 10/16/2019
 uid: tutorials/first-mvc-app/start-mvc
 ---
 # Get started with ASP.NET Core MVC
@@ -60,7 +60,7 @@ At the end, you have an app that can manage and display movie data.
 
 * Select **Web Application(Model-View-Controller)**, and then select **Create**.
 
-![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22-21.png)
+![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project30.png)
 
 Visual Studio used the default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project.
 
@@ -72,7 +72,7 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 * Change directories (`cd`) to a folder which will contain the project.
 * Run the following command:
 
-   ```console
+   ```dotnetcli
    dotnet new mvc -o MvcMovie
    code -r MvcMovie
    ```
@@ -199,7 +199,7 @@ At the end, you have an app that can manage and display movie data.
 
 * From the Visual Studio select **Create a new project**.
 
-* Selecct **ASP.NET Core Web Application** and then select **Next**.
+* Select **ASP.NET Core Web Application** and then select **Next**.
 
 ![new ASP.NET Core Web Application](start-mvc/_static/np_2.1.png)
 
@@ -222,7 +222,7 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 * Change directories (`cd`) to a folder which will contain the project.
 * Run the following command:
 
-   ```console
+   ```dotnetcli
    dotnet new mvc -o MvcMovie
    code -r MvcMovie
    ```

@@ -5,7 +5,7 @@ description: Discover support for debugging ASP.NET Core apps when running with 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/08/2019
+ms.date: 10/26/2019
 uid: host-and-deploy/iis/development-time-iis-support
 ---
 # Development-time IIS support in Visual Studio for ASP.NET Core
@@ -134,7 +134,7 @@ Confirm that the `applicationUrl` and `launchUrl` endpoints match and use the sa
 Run Visual Studio as an administrator:
 
 * Confirm that the build configuration drop-down list is set to **Debug**.
-* Set the Run button to the **IIS** profile and select the button to start the app.
+* Set the [Start Debugging button](/visualstudio/debugger/debugger-feature-tour) to the **IIS** profile and select the button to start the app.
 
 Visual Studio may prompt a restart if not running as an administrator. If prompted, restart Visual Studio.
 
@@ -146,7 +146,6 @@ If an untrusted development certificate is used, the browser may require you to 
 ## Additional resources
 
 * [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
-* [Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index)
-* [Introduction to ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module)
-* [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module)
-* [Enforce HTTPS](xref:security/enforcing-ssl)
+* <xref:host-and-deploy/iis/index>
+* <xref:host-and-deploy/aspnet-core-module>
+* <xref:security/enforcing-ssl>

@@ -1,6 +1,6 @@
 ---
 title: Razor Pages with EF Core in ASP.NET Core - Data Model - 5 of 8
-author: tdykstra
+author: rick-anderson
 description: In this tutorial, add more entities and relationships and customize the data model by specifying formatting, validation, and mapping rules.
 ms.author: riande
 ms.custom: mvc
@@ -192,7 +192,7 @@ SqliteException: SQLite Error 1: 'no such column: s.FirstName'.
 
 * Open a command window in the project folder. Enter the following commands to create a new migration and update the database:
 
-  ```console
+  ```dotnetcli
   dotnet ef migrations add ColumnFirstName
   dotnet ef database update
   ```
@@ -208,7 +208,7 @@ For this tutorial, the way to get past this error is to delete and re-create the
 * Delete the *Migrations* folder.
 * Run the following commands to drop the database, create a new initial migration, and apply the migration:
 
-  ```console
+  ```dotnetcli
   dotnet ef database drop --force
   dotnet ef migrations add InitialCreate
   dotnet ef database update
@@ -607,13 +607,13 @@ To force EF Core to create a new database, drop and update the database:
 
 * Run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet ef database drop --force
   ```
 
 * Delete the *Migrations* folder, then run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet ef migrations add InitialCreate
   dotnet ef database update
   ```
@@ -677,8 +677,7 @@ In the `ComplexDataModel` migration class, update the `Up` method:
 
 Add the following highlighted code. The new code goes after the `.CreateTable( name: "Department"` block:
 
-[!code-csharp[](intro/samples/cu30snapshots/5-complex/Migrations/
-ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=23-31)]
+[!code-csharp[](intro/samples/cu30snapshots/5-complex/Migrations/ComplexDataModel.cs?name=snippet_CreateDefaultValue&highlight=23-31)]
 
 With the preceding changes, existing `Course` rows will be related to the "Temp" department after the `ComplexDataModel.Up` method runs.
 
@@ -701,7 +700,7 @@ Because the `DbInitializer.Initialize` method is designed to work only with an e
 
 * If you're using SQL Server LocalDB with Visual Studio Code, run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet ef database update
   ```
 
@@ -836,7 +835,7 @@ Update-Database
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-```console
+```dotnetcli
 dotnet ef migrations add ColumnFirstName
 dotnet ef database update
 ```
@@ -1244,13 +1243,13 @@ Build the project.
 
 # [Visual Studio](#tab/visual-studio)
 
-```PMC
+```powershell
 Add-Migration ComplexDataModel
 ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-```console
+```dotnetcli
 dotnet ef migrations add ComplexDataModel
 ```
 
@@ -1301,10 +1300,10 @@ Open a command window and navigate to the project folder. The project folder con
 
 Enter the following in the command window:
 
- ```console
- dotnet ef database drop
+```dotnetcli
+dotnet ef database drop
 dotnet ef database update
- ```
+```
 
 ---
 

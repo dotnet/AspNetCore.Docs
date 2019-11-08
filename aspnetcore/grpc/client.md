@@ -40,6 +40,9 @@ var counterClient = new Count.CounterClient(channel);
 
 `GrpcChannel.ForAddress` isn't the only option for creating a gRPC client. If you are calling gRPC services from an ASP.NET Core app, consider [gRPC client factory integration](xref:grpc/clientfactory). gRPC integration with `HttpClientFactory` offers a centralized alternative to creating gRPC clients.
 
+> [!NOTE]
+> Additional configuration is required to [call insecure gRPC services with the .NET client](xref:grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client).
+
 ## Make gRPC calls
 
 A gRPC call is initiated by calling a method on the client. The gRPC client will handle message serialization and addressing the gRPC call to the correct service.

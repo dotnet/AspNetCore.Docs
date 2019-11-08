@@ -5,26 +5,28 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/23/2019
+ms.date: 10/15/2019
 uid: blazor/routing
 ---
 # ASP.NET Core Blazor routing
 
 By [Luke Latham](https://github.com/guardrex)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 Learn how to route requests and how to use the `NavLink` component to create navigation links in Blazor apps.
 
 ## ASP.NET Core endpoint routing integration
 
-Blazor server-side is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with `MapBlazorHub` in `Startup.Configure`:
+Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with `MapBlazorHub` in `Startup.Configure`:
 
 [!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
+The most typical configuration is to route all requests to a Razor page, which acts as the host for the server-side part of the Blazor Server app. By convention, the *host* page is usually named *_Host.cshtml*. The route specified in the host file is called a *fallback route* because it operates with a low priority in route matching. The fallback route is considered when other routes don't match. This allows the app to use others controllers and pages without interfering with the Blazor Server app.
+
 ## Route templates
 
-The `Router` component enables routing, and a route template is provided to each accessible component. The `Router` component appears in the *App.razor* file:
-
-In a Blazor server-side or client-side app:
+The `Router` component enables routing to each component with a specified route. The `Router` component appears in the *App.razor* file:
 
 ```cshtml
 <Router AppAssembly="typeof(Startup).Assembly">
@@ -37,20 +39,27 @@ In a Blazor server-side or client-side app:
 </Router>
 ```
 
-When a *.razor* file with an `@page` directive is compiled, the generated class is provided a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router looks for component classes with a `RouteAttribute` and renders the component with a route template that matches the requested URL.
+When a *.razor* file with an `@page` directive is compiled, the generated class is provided a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template.
+
+At runtime, the `RouteView` component:
+
+* Receives the `RouteData` from the `Router` along with any desired parameters.
+* Renders the specified component with its layout (or an optional default layout) using the specified parameters.
+
+You can optionally specify a `DefaultLayout` parameter with a layout class to use for components that don't specify a layout. The default Blazor templates specify the `MainLayout` component. *MainLayout.razor* is in the template project's *Shared* folder. For more information on layouts, see <xref:blazor/layouts>.
 
 Multiple route templates can be applied to a component. The following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
 
 > [!IMPORTANT]
-> For URLs to resolve correctly, the app must include a `<base>` tag in its *wwwroot/index.html* file (Blazor client-side) or *Pages/_Host.cshtml* file (Blazor server-side) with the app base path specified in the `href` attribute (`<base href="/">`). For more information, see <xref:host-and-deploy/blazor/client-side#app-base-path>.
+> For URLs to resolve correctly, the app must include a `<base>` tag in its *wwwroot/index.html* file (Blazor WebAssembly) or *Pages/_Host.cshtml* file (Blazor Server) with the app base path specified in the `href` attribute (`<base href="/">`). For more information, see <xref:host-and-deploy/blazor/index#app-base-path>.
 
 ## Provide custom content when content isn't found
 
 The `Router` component allows the app to specify custom content if content isn't found for the requested route.
 
-In the *App.razor* file, set custom content in the `<NotFound>` template parameter of the `Router` component:
+In the *App.razor* file, set custom content in the `NotFound` template parameter of the `Router` component:
 
 ```cshtml
 <Router AppAssembly="typeof(Startup).Assembly">
@@ -64,15 +73,27 @@ In the *App.razor* file, set custom content in the `<NotFound>` template paramet
 </Router>
 ```
 
-The content of `<NotFound>` can include arbitrary items, such as other interactive components.
+The content of `<NotFound>` tags can include arbitrary items, such as other interactive components. To apply a default layout to `NotFound` content, see <xref:blazor/layouts>.
+
+## Route to components from multiple assemblies
+
+Use the `AdditionalAssemblies` parameter to specify additional assemblies for the `Router` component to consider when searching for routable components. Specified assemblies are considered in addition to the `AppAssembly`-specified assembly. In the following example, `Component1` is a routable component defined in a referenced class library. The following `AdditionalAssemblies` example results in routing support for `Component1`:
+
+```cshtml
+<Router
+    AppAssembly="typeof(Program).Assembly"
+    AdditionalAssemblies="new[] { typeof(Component1).Assembly }">
+    ...
+</Router>
+```
 
 ## Route parameters
 
 The router uses route parameters to populate the corresponding component parameters with the same name (case insensitive):
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/RouteParameter.razor?name=snippet_RouteParameter&highlight=2,7-8)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/RouteParameter.razor?name=snippet_RouteParameter&highlight=2,7-8)]
 
-Optional parameters aren't supported for Blazor apps in ASP.NET Core 3.0 Preview. Two `@page` directives are applied in the previous example. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
+Optional parameters aren't supported for Blazor apps in ASP.NET Core 3.0. Two `@page` directives are applied in the previous example. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
 
 ## Route constraints
 
@@ -103,7 +124,7 @@ The route constraints shown in the following table are available. For the route 
 
 ### Routing with URLs that contain dots
 
-In Blazor server-side apps, the default route in *_Host.cshtml* is `/` (`@page "/"`). A request URL that contains a dot (`.`) isn't matched by the default route because the URL appears to request a file. A Blazor app returns a *404 - Not Found* response for a static file that doesn't exist. To use routes that contain a dot, configure *_Host.cshtml* with the following route template:
+In Blazor Server apps, the default route in *_Host.cshtml* is `/` (`@page "/"`). A request URL that contains a dot (`.`) isn't matched by the default route because the URL appears to request a file. A Blazor app returns a *404 - Not Found* response for a static file that doesn't exist. To use routes that contain a dot, configure *_Host.cshtml* with the following route template:
 
 ```cshtml
 @page "/{**path}"
@@ -150,7 +171,7 @@ Use `Microsoft.AspNetCore.Components.NavigationManager` to work with URIs and na
 | Member | Description |
 | ------ | ----------- |
 | `Uri` | Gets the current absolute URI. |
-| `BaseUri` | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, `BaseUri` corresponds to the `href` attribute on the document's `<base>` element in *wwwroot/index.html* (Blazor client-side) or *Pages/_Host.cshtml* (Blazor server-side). |
+| `BaseUri` | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, `BaseUri` corresponds to the `href` attribute on the document's `<base>` element in *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server). |
 | `NavigateTo` | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul> |
 | `LocationChanged` | An event that fires when the navigation location has changed. |
 | `ToAbsoluteUri` | Converts a relative URI into an absolute URI. |
@@ -175,4 +196,3 @@ The following component navigates to the app's `Counter` component when the butt
     }
 }
 ```
-

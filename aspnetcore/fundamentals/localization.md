@@ -268,10 +268,36 @@ The [Accept-Language header](https://www.w3.org/International/questions/qa-accep
 
 6. Tap the language, then tap **Move Up**.
 
+::: moniker range=">= aspnetcore-3.0"
+### The Content-Language HTTP header
+
+The [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) entity header:
+
+ - Is used to describe the language(s) intended for the audience.
+ - Allows a user to differentiate according to the users' own preferred language.
+
+Entity headers are used in both HTTP requests and responses.
+
+In ASP.NET Core 3.0 the `Content-Language` header can be added by setting the property `ApplyCurrentCultureToResponseHeaders`.
+
+Adding the `Content-Language` header:
+
+ - Allows the RequestLocalizationMiddleware to set the `Content-Language` header with the `CurrentUICulture`.
+ - Eliminates the need to set the response header `Content-Language` explicitly.
+
+```csharp
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    ApplyCurrentCultureToResponseHeaders = true
+});
+```
+::: moniker-end
+
 ### Use a custom provider
 
 Suppose you want to let your customers store their language and culture in your databases. You could write a provider to look up these values for the user. The following code shows how to add a custom provider:
 
+::: moniker range="< aspnetcore-3.0"
 ```csharp
 private const string enUSCulture = "en-US";
 
@@ -294,6 +320,32 @@ services.Configure<RequestLocalizationOptions>(options =>
     }));
 });
 ```
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+```csharp
+private const string enUSCulture = "en-US";
+
+services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+        new CultureInfo(enUSCulture),
+        new CultureInfo("fr")
+    };
+
+    options.DefaultRequestCulture = new RequestCulture(culture: enUSCulture, uiCulture: enUSCulture);
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+
+    options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async context =>
+    {
+        // My custom request culture logic
+        return new ProviderCultureResult("en");
+    }));
+});
+```
+::: moniker-end
 
 Use `RequestLocalizationOptions` to add or remove localization providers.
 
@@ -334,7 +386,11 @@ Terms:
 * Parent culture: The neutral culture that contains a specific culture. (for example, "en" is the parent culture of "en-US" and "en-GB")
 * Locale: A locale is the same as a culture.
 
-[!INCLUDE[](~/includes/currency.md)]
+[!INCLUDE[](~/includes/localization/currency.md)]
+
+::: moniker range=">= aspnetcore-3.0"
+[!INCLUDE[](~/includes/localization/unsupported-culture-log-level.md)]
+::: moniker-end
 
 ## Additional resources
 
@@ -344,3 +400,4 @@ Terms:
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
 * [Localization & Generics](https://github.com/hishamco/hishambinateya.com/blob/master/Posts/localization-and-generics.md)
+* [What is new in Localization in ASP.NET Core 3.0](http://hishambinateya.com/what-is-new-in-localization-in-asp.net-core-3.0)

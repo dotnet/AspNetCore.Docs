@@ -3,7 +3,7 @@ title: Add a model to a Razor Pages app in ASP.NET Core
 author: rick-anderson
 description: Discover how to add classes for managing movies in a database using Entity Framework Core (EF Core).
 ms.author: riande
-ms.date: 07/22/2019
+ms.date: 11/05/2019
 uid: tutorials/razor-pages/model
 ---
 # Add a model to a Razor Pages app in ASP.NET Core
@@ -12,7 +12,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In this section, classes are added for managing movies in a database. These classes are used with [Entity Framework Core](/ef/core) (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies data access.
+In this section, classes are added for managing movies in a cross-platform [SQLite database](https://www.sqlite.org/index.html). Apps created from an ASP.NET Core template use a SQLite database. The app's model classes are used with [Entity Framework Core (EF Core)](/ef/core) ([SQLite EF Core Database Provider](/ef/core/providers/sqlite)) to work with the database. EF Core is an object-relational mapping (ORM) framework that simplifies data access.
 
 The model classes are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
 
@@ -92,40 +92,44 @@ The *appsettings.json* file is updated with the connection string used to connec
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 * Install the scaffolding tool:
 
-  ```console
-   dotnet tool install --global dotnet-aspnet-codegenerator --version 3.0.0-*
+  ```dotnetcli
+   dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
 * **For Windows**: Run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
 * **For macOS and Linux**: Run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
+
+[!INCLUDE [use SQL Server in production](~/includes/RP/sqlitedev.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 * Install the scaffolding tool:
 
-  ```console
-   dotnet tool install --global dotnet-aspnet-codegenerator --version 3.0.0-*
+  ```dotnetcli
+   dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
 * Run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
+
+[!INCLUDE [use SQL Server in production](~/includes/RP/sqlitedev.md)]
 
 ---
 
@@ -190,9 +194,9 @@ The preceding commands generate the following warning: "No type was specified fo
 
 You can ignore that warning, it will be fixed in a later tutorial.
 
-The `ef migrations add InitialCreate` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *RazorPagesMovieContext.cs* file). The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+The migrations command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
-The `ef database update` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file. The `Up` method creates the database.
+The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in  *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -223,10 +227,6 @@ Examine the `Up` method.
 Examine the `Up` method.
 
 ---
-
-The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `RazorPagesMovieContext` (In the *Data/RazorPagesMovieContext.cs* file). The `Initial` argument is used to name the migrations. Any name can be used, but by convention a name that describes the migration is used. For more information, see <xref:data/ef-mvc/migrations>.
-
-The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
 <a name="test"></a>
 
@@ -265,7 +265,7 @@ The next tutorial explains the files created by scaffolding.
 <!--  ::: moniker previous version   -->
 ::: moniker range="< aspnetcore-3.0"
 
-In this section, classes are added for managing movies in a database. These classes are used with [Entity Framework Core](/ef/core) (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies data access code.
+In this section, classes are added for managing movies in a cross-platform [SQLite database](https://www.sqlite.org/index.html). Apps created from an ASP.NET Core template use a SQLite database. The app's model classes are used with [Entity Framework Core (EF Core)](/ef/core) ([SQLite EF Core Database Provider](/ef/core/providers/sqlite)) to work with the database. EF Core is an object-relational mapping (ORM) framework that simplifies data access.
 
 The model classes are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
 
@@ -349,19 +349,19 @@ The *appsettings.json* file is updated with the connection string used to connec
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 * Install the scaffolding tool:
 
-  ```console
+  ```dotnetcli
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
 * **For Windows**: Run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
 * **For macOS and Linux**: Run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
@@ -372,13 +372,13 @@ The *appsettings.json* file is updated with the connection string used to connec
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 * Install the scaffolding tool:
 
-  ```console
+  ```dotnetcli
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
 * Run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
@@ -416,10 +416,14 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 
 In the PMC, enter the following commands:
 
-```PMC
+```Powershell
 Add-Migration Initial
 Update-Database
 ```
+
+The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *RazorPagesMovieContext.cs* file). The `InitialCreate` argument is used to name the migration. Any name can be used, but by convention a name that describes the migration is used. For more information, see <xref:data/ef-mvc/migrations>.
+
+The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file. The `Up` method creates the database.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -430,14 +434,8 @@ Update-Database
 [!INCLUDE [initial migration](~/includes/RP/model3.md)]
 
 ---
-
-The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
-
-You can ignore that warning, it will be fixed in a later tutorial.
-
-The `ef migrations add InitialCreate` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *RazorPagesMovieContext.cs* file). The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
-
-The `ef database update` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file. The `Up` method creates the database.
+> [!NOTE]
+> The preceding commands generate the following warning: "*No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.*" You can ignore that warning, it will be fixed in a later tutorial.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -468,10 +466,6 @@ Examine the `Up` method.
 Examine the `Up` method.
 
 ---
-
-The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `RazorPagesMovieContext` (In the *Data/RazorPagesMovieContext.cs* file). The `Initial` argument is used to name the migrations. Any name can be used, but by convention a name that describes the migration is used. For more information, see <xref:data/ef-mvc/migrations>.
-
-The `Update-Database` command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
 <a name="test"></a>
 

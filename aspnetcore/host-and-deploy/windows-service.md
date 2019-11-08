@@ -5,16 +5,16 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/03/2019
+ms.date: 10/30/2019
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
 
-By [Luke Latham](https://github.com/guardrex) and [Tom Dykstra](https://github.com/tdykstra)
+By [Luke Latham](https://github.com/guardrex)
 
 An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications) without using IIS. When hosted as a Windows Service, the app automatically starts after server reboots.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -30,23 +30,7 @@ The ASP.NET Core Worker Service template provides a starting point for writing l
 1. Create a Worker Service app from the .NET Core template.
 1. Follow the guidance in the [App configuration](#app-configuration) section to update the Worker Service app so that it can run as a Windows Service.
 
-# [Visual Studio](#tab/visual-studio)
-
-1. Create a new project.
-1. Select **ASP.NET Core Web Application**. Select **Next**.
-1. Provide a project name in the **Project name** field or accept the default project name. Select **Create**.
-1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected.
-1. Select the **Worker Service** template. Select **Create**.
-
-# [.NET Core CLI](#tab/netcore-cli)
-
-Use the Worker Service (`worker`) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell. In the following example, a Worker Service app is created named `ContosoWorkerService`. A folder for the `ContosoWorkerService` app is created automatically when the command is executed.
-
-```console
-dotnet new worker -o ContosoWorkerService
-```
-
----
+[!INCLUDE[](~/includes/worker-template-instructions.md)]
 
 ::: moniker-end
 
@@ -54,15 +38,30 @@ dotnet new worker -o ContosoWorkerService
 
 ::: moniker range=">= aspnetcore-3.0"
 
-`IHostBuilder.UseWindowsService`, provided by the [Microsoft.Extensions.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices) package, is called when building the host. If the app is running as a Windows Service, the method:
+The app requires a package reference for [Microsoft.Extensions.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices).
+
+`IHostBuilder.UseWindowsService` is called when building the host. If the app is running as a Windows Service, the method:
 
 * Sets the host lifetime to `WindowsServiceLifetime`.
-* Sets the content root.
+* Sets the [content root](xref:fundamentals/index#content-root).
 * Enables logging to the event log with the application name as the default source name.
   * The log level can be configured using the `Logging:LogLevel:Default` key in the *appsettings.Production.json* file.
   * Only administrators can create new event sources. When an event source can't be created using the application name, a warning is logged to the *Application* source and event logs are disabled.
 
-[!code-csharp[](windows-service/samples/3.x/AspNetCoreService/Program.cs?name=snippet_Program)]
+In `CreateHostBuilder` of *Program.cs*:
+
+```csharp
+Host.CreateDefaultBuilder(args)
+    .UseWindowsService()
+    ...
+```
+
+The following sample apps accompany this topic:
+
+* Background Worker Service Sample &ndash; A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
+* Web App Service Sample &ndash; A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
+
+For MVC guidance, see the articles under <xref:mvc/overview> and <xref:migration/22-to-30>.
 
 ::: moniker-end
 
@@ -89,24 +88,31 @@ In the following example from the sample app, `RunAsCustomService` is called ins
 
 For information and advice on deployment scenarios, see [.NET Core application deployment](/dotnet/core/deploying/).
 
+### SDK
+
+For a web app-based service that uses the Razor Pages or MVC frameworks, specify the Web SDK in the project file:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+```
+
+If the service only executes background tasks (for example, [hosted services](xref:fundamentals/host/hosted-services)), specify the Worker SDK in the project file:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+```
+
 ### Framework-dependent deployment (FDD)
 
 Framework-dependent deployment (FDD) relies on the presence of a shared system-wide version of .NET Core on the target system. When the FDD scenario is adopted following the guidance in this article, the SDK produces an executable (*.exe*), called a *framework-dependent executable*.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Add the following property elements to the project file:
-
-* `<OutputType>` &ndash; The app's output type (`Exe` for executable).
-* `<LangVersion>` &ndash; The C# language version (`latest` or `preview`).
-
-A *web.config* file, which is normally produced when publishing an ASP.NET Core app, is unnecessary for a Windows Services app. To disable the creation of the *web.config* file, add the `<IsTransformWebConfigDisabled>` property set to `true`.
+If using the [Web SDK](#sdk), a *web.config* file, which is normally produced when publishing an ASP.NET Core app, is unnecessary for a Windows Services app. To disable the creation of the *web.config* file, add the `<IsTransformWebConfigDisabled>` property set to `true`.
 
 ```xml
 <PropertyGroup>
   <TargetFramework>netcoreapp3.0</TargetFramework>
-  <OutputType>Exe</OutputType>
-  <LangVersion>preview</LangVersion>
   <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
 </PropertyGroup>
 ```
@@ -140,7 +146,7 @@ A *web.config* file, which is normally produced when publishing an ASP.NET Core 
 
 ```xml
 <PropertyGroup>
-  <TargetFramework>netcoreapp2.1</TargetFramework>
+  <TargetFramework>netcoreapp2.2</TargetFramework>
   <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
   <UseAppHost>true</UseAppHost>
   <SelfContained>false</SelfContained>
@@ -306,15 +312,19 @@ To handle <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHostService.OnSt
 
 Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see <xref:host-and-deploy/proxy-load-balancer>.
 
-## Configure HTTPS
+## Configure endpoints
 
-To configure a service with a secure endpoint:
+By default, ASP.NET Core binds to `http://localhost:5000`. Configure the URL and port by setting the `ASPNETCORE_URLS` environment variable.
 
-1. Create an X.509 certificate for the hosting system using your platform's certificate acquisition and deployment mechanisms.
+For additional URL and port configuration approaches, see the relevant server article:
 
-1. Specify a [Kestrel server HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) to use the certificate.
+* <xref:fundamentals/servers/kestrel#endpoint-configuration>
+* <xref:fundamentals/servers/httpsys#configure-windows-server>
 
-Use of the ASP.NET Core HTTPS development certificate to secure a service endpoint isn't supported.
+The preceding guidance covers support for HTTPS endpoints. For example, configure the app for HTTPS when authentication is used with a Windows Service.
+
+> [!NOTE]
+> Use of the ASP.NET Core HTTPS development certificate to secure a service endpoint isn't supported.
 
 ## Current directory and content root
 
@@ -332,7 +342,7 @@ Use [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEn
 
 ### Set the content root path to the app's folder
 
-The <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> is the same path provided to the `binPath` argument when a service is created. Instead of calling `GetCurrentDirectory` to create paths to settings files, call <xref:System.IO.Directory.SetCurrentDirectory*> with the path to the app's content root.
+The <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootPath*> is the same path provided to the `binPath` argument when a service is created. Instead of calling `GetCurrentDirectory` to create paths to settings files, call <xref:System.IO.Directory.SetCurrentDirectory*> with the path to the app's [content root](xref:fundamentals/index#content-root).
 
 In `Program.Main`, determine the path to the folder of the service's executable and use the path to establish the app's content root:
 

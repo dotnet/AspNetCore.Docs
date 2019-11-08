@@ -5,7 +5,7 @@ description: Troubleshoot errors when using gRPC on .NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
-ms.date: 09/05/2019
+ms.date: 10/16/2019
 uid: grpc/troubleshoot
 ---
 # Troubleshoot gRPC on .NET Core
@@ -56,7 +56,8 @@ If you are calling a gRPC service on another machine and are unable to trust the
 ```csharp
 var httpClientHandler = new HttpClientHandler();
 // Return `true` to allow certificates that are untrusted/invalid
-httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+httpClientHandler.ServerCertificateCustomValidationCallback = 
+    HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 var httpClient = new HttpClient(httpClientHandler);
 
 var channel = GrpcChannel.ForAddress("https://localhost:5001",
@@ -73,10 +74,11 @@ Additional configuration is required to call insecure gRPC services with the .NE
 
 ```csharp
 // This switch must be set before creating the GrpcChannel/HttpClient.
-AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+AppContext.SetSwitch(
+    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
 // The port number(5000) must match the port of the gRPC server.
-var channel = GrpcChannel.ForAddress("https://localhost:5001");
+var channel = GrpcChannel.ForAddress("http://localhost:5000");
 var client = new Greet.GreeterClient(channel);
 ```
 
@@ -98,7 +100,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
             webBuilder.ConfigureKestrel(options =>
             {
                 // Setup a HTTP/2 endpoint without TLS.
-                options.ListenLocalhost(5000, o => o.Protocols = HttpProtocols.Http2);
+                options.ListenLocalhost(5000, o => o.Protocols = 
+                    HttpProtocols.Http2);
             });
             webBuilder.UseStartup<Startup>();
         });
@@ -111,7 +114,7 @@ The gRPC client must also be configured to not use TLS. For more information, se
 > [!WARNING]
 > HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
 
-## gRPC C# assets are not code generated from *\*.proto* files
+## gRPC C# assets are not code generated from .proto files
 
 gRPC code generation of concrete clients and service base classes requires protobuf files and tooling to be referenced from a project. You must include:
 
@@ -142,3 +145,21 @@ A gRPC client app making gRPC calls only needs the concrete client generated:
   <Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
 </ItemGroup>
 ```
+
+## WPF projects unable to generate gRPC C# assets from .proto files
+
+WPF projects have a [known issue](https://github.com/dotnet/wpf/issues/810) that prevents gRPC code generation from working correctly. Any gRPC types generated in a WPF project by referencing `Grpc.Tools` and *.proto* files will create compilation errors when used:
+
+> error CS0246: The type or namespace name 'MyGrpcServices' could not be found (are you missing a using directive or an assembly reference?)
+
+You can workaround this issue by:
+
+1. Create a new .NET Core class library project.
+2. In the new project, add references to enable [C# code generation from *\*.proto* files](xref:grpc/basics#generated-c-assets):
+    * Add a package reference to [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) package.
+    * Add *\*.proto* files to the `<Protobuf>` item group.
+3. In the WPF application, add a reference to the new project.
+
+The WPF application can use the gRPC generated types from the new class library project.
+
+[!INCLUDE[](~/includes/gRPCazure.md)]

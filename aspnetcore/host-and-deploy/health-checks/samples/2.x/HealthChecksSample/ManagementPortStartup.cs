@@ -29,7 +29,6 @@ namespace SampleApp
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-
             app.UseHealthChecks("/health", port: Configuration["ManagementPort"]);
 
             app.Run(async (context) =>

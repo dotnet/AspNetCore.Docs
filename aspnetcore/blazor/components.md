@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/04/2019
+ms.date: 10/21/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -21,14 +21,6 @@ Blazor apps are built using *components*. A component is a self-contained chunk 
 Components are implemented in [Razor](xref:mvc/views/razor) component files (*.razor*) using a combination of C# and HTML markup. A component in Blazor is formally referred to as a *Razor component*.
 
 A component's name must start with an uppercase character. For example, *MyCoolComponent.razor* is valid, and *myCoolComponent.razor* is invalid.
-
-Components can be authored using the *.cshtml* file extension as long as the files are identified as Razor component files using the `_RazorComponentInclude` MSBuild property. For example, an app that specifies that all *.cshtml* files under the *Pages* folder should be treated as Razor components files:
-
-```xml
-<PropertyGroup>
-  <_RazorComponentInclude>Pages\**\*.cshtml</_RazorComponentInclude>
-</PropertyGroup>
-```
 
 The UI for a component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). When an app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
 
@@ -73,7 +65,7 @@ To render a component from a page or view, use the `RenderComponentAsync<TCompon
 
 While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
 
-For more information on how components are rendered and component state is managed in Blazor server-side apps, see the <xref:blazor/hosting-models> article.
+For more information on how components are rendered and component state is managed in Blazor Server apps, see the <xref:blazor/hosting-models> article.
 
 ## Use components
 
@@ -83,11 +75,11 @@ Attribute binding is case sensitive. For example, `@bind` is valid, and `@Bind` 
 
 The following markup in *Index.razor* renders a `HeadingComponent` instance:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/Index.razor?name=snippet_HeadingComponent)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/Index.razor?name=snippet_HeadingComponent)]
 
 *Components/HeadingComponent.razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/HeadingComponent.razor)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/HeadingComponent.razor)]
 
 If a component contains an HTML element with an uppercase first letter that doesn't match a component name, a warning is emitted indicating that the element has an unexpected name. Adding an `@using` statement for the component's namespace makes the component available, which removes the warning.
 
@@ -97,13 +89,13 @@ Components can have *component parameters*, which are defined using public prope
 
 *Components/ChildComponent.razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ChildComponent.razor?highlight=11-12)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=11-12)]
 
 In the following example, the `ParentComponent` sets the value of the `Title` property of the `ChildComponent`.
 
 *Pages/ParentComponent.razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=5-6)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=5-6)]
 
 ## Child content
 
@@ -113,7 +105,7 @@ In the following example, the `ChildComponent` has a `ChildContent` property tha
 
 *Components/ChildComponent.razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ChildComponent.razor?highlight=3,14-15)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=3,14-15)]
 
 > [!NOTE]
 > The property receiving the `RenderFragment` content must be named `ChildContent` by convention.
@@ -122,7 +114,7 @@ The following `ParentComponent` can provide content for rendering the `ChildComp
 
 *Pages/ParentComponent.razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=7-8)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=7-8)]
 
 ## Attribute splatting and arbitrary parameters
 
@@ -194,35 +186,121 @@ To accept arbitrary attributes, define a component parameter using the `[Paramet
 
 The `CaptureUnmatchedValues` property on `[Parameter]` allows the parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with `CaptureUnmatchedValues`. The property type used with `CaptureUnmatchedValues` must be assignable from `Dictionary<string, object>` with string keys. `IEnumerable<KeyValuePair<string, object>>` or `IReadOnlyDictionary<string, object>` are also options in this scenario.
 
-## Data binding
+The position of `@attributes` relative to the position of element attributes is important. When `@attributes` are splatted on the element, the attributes are processed from right to left (last to first). Consider the following example of a component that consumes a `Child` component:
 
-Data binding to both components and DOM elements is accomplished with the [@bind](xref:mvc/views/razor#bind) attribute. The following example binds the `_italicsCheck` field to the check box's checked state:
+*ParentComponent.razor*:
 
 ```cshtml
-<input type="checkbox" class="form-check-input" id="italicsCheck" 
-    @bind="_italicsCheck" />
+<ChildComponent extra="10" />
 ```
 
-When the check box is selected and cleared, the property's value is updated to `true` and `false`, respectively.
+*ChildComponent.razor*:
 
-The check box is updated in the UI only when the component is rendered, not in response to changing the property's value. Since components render themselves after event handler code executes, property updates are usually reflected in the UI immediately.
+```cshtml
+<div @attributes="AdditionalAttributes" extra="5" />
 
-Using `@bind` with a `CurrentValue` property (`<input @bind="CurrentValue" />`) is essentially equivalent to the following:
+[Parameter(CaptureUnmatchedValues = true)]
+public IDictionary<string, object> AdditionalAttributes { get; set; }
+```
+
+The `Child` component's `extra` attribute is set to the right of `@attributes`. The `Parent` component's rendered `<div>` contains `extra="5"` when passed through the additional attribute because the attributes are processed right to left (last to first):
+
+```html
+<div extra="5" />
+```
+
+In the following example, the order of `extra` and `@attributes` is reversed in the `Child` component's `<div>`:
+
+*ParentComponent.razor*:
+
+```cshtml
+<ChildComponent extra="10" />
+```
+
+*ChildComponent.razor*:
+
+```cshtml
+<div extra="5" @attributes="AdditionalAttributes" />
+
+[Parameter(CaptureUnmatchedValues = true)]
+public IDictionary<string, object> AdditionalAttributes { get; set; }
+```
+
+The rendered `<div>` in the `Parent` component contains `extra="10"` when passed through the additional attribute:
+
+```html
+<div extra="10" />
+```
+
+## Data binding
+
+Data binding to both components and DOM elements is accomplished with the [@bind](xref:mvc/views/razor#bind) attribute. The following example binds a `CurrentValue` property to the text box's value:
+
+```cshtml
+<input @bind="CurrentValue" />
+
+@code {
+    private string CurrentValue { get; set; }
+}
+```
+
+When the text box loses focus, the property's value is updated.
+
+The text box is updated in the UI only when the component is rendered, not in response to changing the property's value. Since components render themselves after event handler code executes, property updates are *usually* reflected in the UI immediately after an event handler is triggered.
+
+Using `@bind` with the `CurrentValue` property (`<input @bind="CurrentValue" />`) is essentially equivalent to the following:
 
 ```cshtml
 <input value="@CurrentValue"
-    @onchange="@((UIChangeEventArgs __e) => CurrentValue = __e.Value)" />
+    @onchange="@((ChangeEventArgs __e) => CurrentValue = 
+        __e.Value.ToString())" />
+        
+@code {
+    private string CurrentValue { get; set; }
+}
 ```
 
-When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is a little more complex because `@bind` handles a few cases where type conversions are performed. In principle, `@bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
+When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box and changes element focus, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is more complex because `@bind` handles cases where type conversions are performed. In principle, `@bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
 In addition to handling `onchange` events with `@bind` syntax, a property or field can be bound using other events by specifying an [@bind-value](xref:mvc/views/razor#bind) attribute with an `event` parameter ([@bind-value:event](xref:mvc/views/razor#bind)). The following example binds the `CurrentValue` property for the `oninput` event:
 
 ```cshtml
 <input @bind-value="CurrentValue" @bind-value:event="oninput" />
+
+@code {
+    private string CurrentValue { get; set; }
+}
 ```
 
 Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
+
+**Unparsable values**
+
+When a user provides an unparsable value to a databound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
+
+Consider the following scenario:
+
+* An `<input>` element is bound to an `int` type with an initial value of `123`:
+
+  ```cshtml
+  <input @bind="MyProperty" />
+
+  @code {
+      [Parameter]
+      public int MyProperty { get; set; } = 123;
+  }
+  ```
+* The user updates the value of the element to `123.45` in the page and changes the element focus.
+
+In the preceding scenario, the element's value is reverted to `123`. When the value `123.45` is rejected in favor of the original value of `123`, the user understands that their value wasn't accepted.
+
+By default, binding applies to the element's `onchange` event (`@bind="{PROPERTY OR FIELD}"`). Use `@bind-value="{PROPERTY OR FIELD}" @bind-value:event={EVENT}` to set a different event. For the `oninput` event (`@bind-value:event="oninput"`), the reversion occurs after any keystroke that introduces an unparsable value. When targeting the `oninput` event with an `int`-bound type, a user is prevented from typing a `.` character. A `.` character is immediately removed, so the user receives immediate feedback that only whole numbers are permitted. There are scenarios where reverting the value on the `oninput` event isn't ideal, such as when the user should be allowed to clear an unparsable `<input>` value. Alternatives include:
+
+* Don't use the `oninput` event. Use the default `onchange` event (`@bind="{PROPERTY OR FIELD}"`), where an invalid value isn't reverted until the element loses focus.
+* Bind to a nullable type, such as `int?` or `string`, and provide custom logic to handle invalid entries.
+* Use a [form validation component](xref:blazor/forms-validation), such as `InputNumber` or `InputDate`. Form validation components have built-in support to manage invalid inputs. Form validation components:
+  * Permit the user to provide invalid input and receive validation errors on the associated `EditContext`.
+  * Display validation errors in the UI without interfering with the user entering additional webform data.
 
 **Globalization**
 
@@ -373,7 +451,7 @@ The following code calls the `UpdateHeading` method when the button is selected 
 </button>
 
 @code {
-    private void UpdateHeading(UIMouseEventArgs e)
+    private void UpdateHeading(MouseEventArgs e)
     {
         ...
     }
@@ -403,7 +481,7 @@ In the following example, `UpdateHeading` is called asynchronously when the butt
 </button>
 
 @code {
-    private async Task UpdateHeading(UIMouseEventArgs e)
+    private async Task UpdateHeading(MouseEventArgs e)
     {
         ...
     }
@@ -414,7 +492,7 @@ In the following example, `UpdateHeading` is called asynchronously when the butt
 
 For some events, event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
 
-Supported [EventArgs](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src/Components/Web/src/Web) are shown in the following table.
+Supported `EventArgs` are shown in the following table.
 
 | Event | Class |
 | ----- | ----- |
@@ -430,7 +508,7 @@ Supported [EventArgs](https://github.com/aspnet/AspNetCore/tree/release/3.0-prev
 | Progress         | `ProgressEventArgs` |
 | Touch            | `TouchEventArgs` &ndash; `TouchPoint` represents a single contact point on a touch-sensitive device. |
 
-For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source (aspnet/AspNetCore release/3.0-preview9 branch)](https://github.com/aspnet/AspNetCore/tree/release/3.0-preview9/src/Components/Web/src/Web).
+For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source (aspnet/AspNetCore release/3.0 branch)](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Components/Web/src/Web).
 
 ### Lambda expressions
 
@@ -440,7 +518,7 @@ Lambda expressions can also be used:
 <button @onclick="@(e => Console.WriteLine("Hello, world!"))">Say hello</button>
 ```
 
-It's often convenient to close over additional values, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` passing an event argument (`UIMouseEventArgs`) and its button number (`buttonNumber`) when selected in the UI:
+It's often convenient to close over additional values, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` passing an event argument (`MouseEventArgs`) and its button number (`buttonNumber`) when selected in the UI:
 
 ```cshtml
 <h2>@message</h2>
@@ -458,7 +536,7 @@ It's often convenient to close over additional values, such as when iterating ov
 @code {
     private string message = "Select a button to learn its position.";
 
-    private void UpdateHeading(UIMouseEventArgs e, int buttonNumber)
+    private void UpdateHeading(MouseEventArgs e, int buttonNumber)
     {
         message = $"You selected Button #{buttonNumber} at " +
             $"mouse position: {e.ClientX} X {e.ClientY}.";
@@ -473,13 +551,13 @@ It's often convenient to close over additional values, such as when iterating ov
 
 A common scenario with nested components is the desire to run a parent component's method when a child component event occurs&mdash;for example, when an `onclick` event occurs in the child. To expose events across components, use an `EventCallback`. A parent component can assign a callback method to a child component's `EventCallback`.
 
-The `ChildComponent` in the sample app demonstrates how a button's `onclick` handler is set up to receive an `EventCallback` delegate from the sample's `ParentComponent`. The `EventCallback` is typed with `UIMouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device:
+The `ChildComponent` in the sample app demonstrates how a button's `onclick` handler is set up to receive an `EventCallback` delegate from the sample's `ParentComponent`. The `EventCallback` is typed with `MouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ChildComponent.razor?highlight=5-7,17-18)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=5-7,17-18)]
 
 The `ParentComponent` sets the child's `EventCallback<T>` to its `ShowMessage` method:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=6,16-19)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=6,16-19)]
 
 When the button is selected in the `ChildComponent`:
 
@@ -511,6 +589,126 @@ Use `EventCallback` and `EventCallback<T>` for event handling and binding compon
 
 Prefer the strongly typed `EventCallback<T>` over `EventCallback`. `EventCallback<T>` provides better error feedback to users of the component. Similar to other UI event handlers, specifying the event parameter is optional. Use `EventCallback` when there's no value passed to the callback.
 
+## Chained bind
+
+A common scenario is chaining a data-bound parameter to a page element in the component's output. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
+
+A chained bind can't be implemented with `@bind` syntax in the page's element. The event handler and value must be specified separately. A parent component, however, can use `@bind` syntax with the component's parameter.
+
+The following `PasswordField` component (*PasswordField.razor*):
+
+* Sets an `<input>` element's value to a `Password` property.
+* Exposes changes of the `Password` property to a parent component with an [EventCallback](#eventcallback).
+
+```cshtml
+Password: 
+
+<input @oninput="OnPasswordChanged" 
+       required 
+       type="@(showPassword ? "text" : "password")" 
+       value="@Password" />
+
+<button class="btn btn-primary" @onclick="ToggleShowPassword">
+    Show password
+</button>
+
+@code {
+    private bool showPassword;
+
+    [Parameter]
+    public string Password { get; set; }
+
+    [Parameter]
+    public EventCallback<string> PasswordChanged { get; set; }
+
+    private Task OnPasswordChanged(ChangeEventArgs e)
+    {
+        Password = e.Value.ToString();
+
+        return PasswordChanged.InvokeAsync(Password);
+    }
+
+    private void ToggleShowPassword()
+    {
+        showPassword = !showPassword;
+    }
+}
+```
+
+The `PasswordField` component is used in another component:
+
+```cshtml
+<PasswordField @bind-Password="password" />
+
+@code {
+    private string password;
+}
+```
+
+To perform checks or trap errors on the password in the preceding example:
+
+* Create a backing field for `Password` (`password` in the following example code).
+* Perform the checks or trap errors in the `Password` setter.
+
+The following example provides immediate feedback to the user if a space is used in the password's value:
+
+```cshtml
+Password: 
+
+<input @oninput="OnPasswordChanged" 
+       required 
+       type="@(showPassword ? "text" : "password")" 
+       value="@Password" />
+
+<button class="btn btn-primary" @onclick="ToggleShowPassword">
+    Show password
+</button>
+
+<span class="text-danger">@validationMessage</span>
+
+@code {
+    private bool showPassword;
+    private string password;
+    private string validationMessage;
+
+    [Parameter]
+    public string Password
+    {
+        get { return password ?? string.Empty; }
+        set
+        {
+            if (password != value)
+            {
+                if (value.Contains(' '))
+                {
+                    validationMessage = "Spaces not allowed!";
+                }
+                else
+                {
+                    password = value;
+                    validationMessage = string.Empty;
+                }
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string> PasswordChanged { get; set; }
+
+    private Task OnPasswordChanged(ChangeEventArgs e)
+    {
+        Password = e.Value.ToString();
+
+        return PasswordChanged.InvokeAsync(Password);
+    }
+
+    private void ToggleShowPassword()
+    {
+        showPassword = !showPassword;
+    }
+}
+```
+
 ## Capture references to components
 
 Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference:
@@ -534,7 +732,7 @@ Component references provide a way to reference a component instance so that you
 When the component is rendered, the `loginDialog` field is populated with the `MyLoginDialog` child component instance. You can then invoke .NET methods on the component instance.
 
 > [!IMPORTANT]
-> The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the `OnAfterRenderAsync` or `OnAfterRender` methods.
+> The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the [OnAfterRenderAsync or OnAfterRender methods](#lifecycle-methods).
 
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/javascript-interop#capture-references-to-elements), it isn't a [JavaScript interop](xref:blazor/javascript-interop) feature. Component references aren't passed to JavaScript code&mdash;they're only used in .NET code.
 
@@ -559,7 +757,7 @@ public class NotifierService
         }
     }
 
-    public event Action<string, int, Task> Notify;
+    public event Func<string, int, Task> Notify;
 }
 ```
 
@@ -607,7 +805,7 @@ Consider the following example:
 ```csharp
 @foreach (var person in People)
 {
-    <DetailsEditor Details="@person.Details" />
+    <DetailsEditor Details="person.Details" />
 }
 
 @code {
@@ -623,7 +821,7 @@ The mapping process can be controlled with the `@key` directive attribute. `@key
 ```csharp
 @foreach (var person in People)
 {
-    <DetailsEditor @key="@person" Details="@person.Details" />
+    <DetailsEditor @key="person" Details="person.Details" />
 }
 
 @code {
@@ -650,8 +848,8 @@ Typically, it makes sense to use `@key` whenever a list is rendered (for example
 You can also use `@key` to prevent Blazor from preserving an element or component subtree when an object changes:
 
 ```cshtml
-<div @key="@currentPerson">
-    ... content that depends on @currentPerson ...
+<div @key="currentPerson">
+    ... content that depends on currentPerson ...
 </div>
 ```
 
@@ -683,6 +881,9 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
+> [!NOTE]
+> Asynchronous work during component initialization must occur during the `OnInitializedAsync` lifecycle event.
+
 For a synchronous operation, use `OnInitialized`:
 
 ```csharp
@@ -701,6 +902,9 @@ protected override async Task OnParametersSetAsync()
 }
 ```
 
+> [!NOTE]
+> Asynchronous work when applying parameters and property values must occur during the `OnParametersSetAsync` lifecycle event.
+
 ```csharp
 protected override void OnParametersSet()
 {
@@ -710,17 +914,33 @@ protected override void OnParametersSet()
 
 `OnAfterRenderAsync` and `OnAfterRender` are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps using the rendered content, such as activating third-party JavaScript libraries that operate on the rendered DOM elements.
 
+`OnAfterRender` *isn't called when prerendering on the server.*
+
+The `firstRender` parameter for `OnAfterRenderAsync` and `OnAfterRender` is:
+
+* Set to `true` the first time that the component instance is invoked.
+* Ensures that initialization work is only performed once.
+
 ```csharp
-protected override async Task OnAfterRenderAsync()
+protected override async Task OnAfterRenderAsync(bool firstRender)
 {
-    await ...
+    if (firstRender)
+    {
+        await ...
+    }
 }
 ```
 
+> [!NOTE]
+> Asynchronous work immediately after rendering must occur during the `OnAfterRenderAsync` lifecycle event.
+
 ```csharp
-protected override void OnAfterRender()
+protected override void OnAfterRender(bool firstRender)
 {
-    ...
+    if (firstRender)
+    {
+        ...
+    }
 }
 ```
 
@@ -780,6 +1000,9 @@ If a component implements <xref:System.IDisposable>, the [Dispose method](/dotne
 }
 ```
 
+> [!NOTE]
+> Calling `StateHasChanged` in `Dispose` isn't supported. `StateHasChanged` might be invoked as part of the renderer being torn down. Requesting UI updates at that point isn't supported.
+
 ## Routing
 
 Routing in Blazor is achieved by providing a route template to each accessible component in the app.
@@ -788,7 +1011,7 @@ When a Razor file with an `@page` directive is compiled, the generated class is 
 
 Multiple route templates can be applied to a component. The following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
 
 ## Route parameters
 
@@ -796,51 +1019,139 @@ Components can receive route parameters from the route template provided in the 
 
 *Route Parameter component*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/RouteParameter.razor?name=snippet_RouteParameter)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/RouteParameter.razor?name=snippet_RouteParameter)]
 
 Optional parameters aren't supported, so two `@page` directives are applied in the example above. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
 
-## Base class inheritance for a "code-behind" experience
+::: moniker range=">= aspnetcore-3.1"
 
-Component files mix HTML markup and C# processing code in the same file. The `@inherits` directive can be used to provide Blazor apps with a "code-behind" experience that separates component markup from processing code.
+## Partial class support
+
+Razor components are generated as partial classes. Razor components are authored using either of the following approaches:
+
+* C# code is defined in an [@code](xref:mvc/views/razor#code) block with HTML markup and Razor code in a single file. Blazor templates define their Razor components using this approach.
+* C# code is placed in a code-behind file defined as a partial class.
+
+The following example shows the default `Counter` component with an `@code` block in an app generated from a Blazor template. HTML markup, Razor code, and C# code are in the same file:
+
+*Counter.razor*:
+
+```cshtml
+@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    int currentCount = 0;
+
+    void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
+
+The `Counter` component can also be created using a code-behind file with a partial class:
+
+*Counter.razor*:
+
+```cshtml
+@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+```
+
+*Counter.razor.cs*:
+
+```csharp
+namespace BlazorApp.Pages
+{
+    public partial class Counter
+    {
+        int currentCount = 0;
+
+        void IncrementCount()
+        {
+            currentCount++;
+        }
+    }
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.1"
+
+## Specify a component base class
+
+The `@inherits` directive can be used to specify a base class for a component.
 
 The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) shows how a component can inherit a base class, `BlazorRocksBase`, to provide the component's properties and methods.
 
 *Pages/BlazorRocks.razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/BlazorRocks.razor?name=snippet_BlazorRocks)]
+```cshtml
+@page "/BlazorRocks"
+@inherits BlazorRocksBase
+
+<h1>@BlazorRocksText</h1>
+```
 
 *BlazorRocksBase.cs*:
 
-[!code-csharp[](common/samples/3.x/BlazorSample/Pages/BlazorRocksBase.cs)]
+```csharp
+using Microsoft.AspNetCore.Components;
+
+namespace BlazorSample
+{
+    public class BlazorRocksBase : ComponentBase
+    {
+        public string BlazorRocksText { get; set; } = 
+            "Blazor rocks the browser!";
+    }
+}
+```
 
 The base class should derive from `ComponentBase`.
 
+::: moniker-end
+
 ## Import components
 
-The namespace of a component authored with Razor is based on:
+The namespace of a component authored with Razor is based on (in priority order):
 
-* The project's `RootNamespace`.
-* The path from the project root to the component. For example, `ComponentsSample/Pages/Index.razor` is in the namespace `ComponentsSample.Pages`. Components follow C# name binding rules. In the case of *Index.razor*, all components in the same folder, *Pages*, and the parent folder, *ComponentsSample*, are in scope.
+* [@namespace](xref:mvc/views/razor#namespace) designation in Razor file (*.razor*) markup (`@namespace BlazorSample.MyNamespace`).
+* The project's `RootNamespace` in the project file (`<RootNamespace>BlazorSample</RootNamespace>`).
+* The project name, taken from the project file's file name (*.csproj*), and the path from the project root to the component. For example, the framework resolves *{PROJECT ROOT}/Pages/Index.razor* (*BlazorSample.csproj*) to the namespace `BlazorSample.Pages`. Components follow C# name binding rules. For the `Index` component in this example, the components in scope are all of the components:
+  * In the same folder, *Pages*.
+  * The components in the project's root that don't explicitly specify a different namespace.
 
-Components defined in a different namespace can be brought into scope using Razor's [\@using](xref:mvc/views/razor#using) directive.
+Components defined in a different namespace are brought into scope using Razor's [@using](xref:mvc/views/razor#using) directive.
 
-If another component, `NavMenu.razor`, exists in the folder `ComponentsSample/Shared/`, the component can be used in `Index.razor` with the following `@using` statement:
+If another component, `NavMenu.razor`, exists in the *BlazorSample/Shared/* folder, the component can be used in `Index.razor` with the following `@using` statement:
 
 ```cshtml
-@using ComponentsSample.Shared
+@using BlazorSample.Shared
 
 This is the Index page.
 
 <NavMenu></NavMenu>
 ```
 
-Components can also be referenced using their fully qualified names, which removes the need for the [\@using](xref:mvc/views/razor#using) directive:
+Components can also be referenced using their fully qualified names, which doesn't require the [@using](xref:mvc/views/razor#using) directive:
 
 ```cshtml
 This is the Index page.
 
-<ComponentsSample.Shared.NavMenu></ComponentsSample.Shared.NavMenu>
+<BlazorSample.Shared.NavMenu></BlazorSample.Shared.NavMenu>
 ```
 
 > [!NOTE]
@@ -848,7 +1159,7 @@ This is the Index page.
 >
 > Importing components with aliased `using` statements (for example, `@using Foo = Bar`) isn't supported.
 >
-> Partially qualified names aren't supported. For example, adding `@using ComponentsSample` and referencing `NavMenu.razor` with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.
+> Partially qualified names aren't supported. For example, adding `@using BlazorSample` and referencing `NavMenu.razor` with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.
 
 ## Conditional HTML element attributes
 
@@ -878,6 +1189,9 @@ If `IsCompleted` is `false`, the check box is rendered as:
 ```
 
 For more information, see <xref:mvc/views/razor>.
+
+> [!WARNING]
+> Some HTML attributes, such as [aria-pressed](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), don't function properly when the .NET type is a `bool`. In those cases, use a `string` type instead of a `bool`.
 
 ## Raw HTML
 
@@ -910,12 +1224,12 @@ A templated component is defined by specifying one or more component parameters 
 
 `TableTemplate` component:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/TableTemplate.razor)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
 
 When using a templated component, the template parameters can be specified using child elements that match the names of the parameters (`TableHeader` and `RowTemplate` in the following example):
 
 ```cshtml
-<TableTemplate Items="@pets">
+<TableTemplate Items="pets">
     <TableHeader>
         <th>ID</th>
         <th>Name</th>
@@ -932,7 +1246,7 @@ When using a templated component, the template parameters can be specified using
 Component arguments of type `RenderFragment<T>` passed as elements have an implicit parameter named `context` (for example from the preceding code sample, `@context.PetId`), but you can change the parameter name using the `Context` attribute on the child element. In the following example, the `RowTemplate` element's `Context` attribute specifies the `pet` parameter:
 
 ```cshtml
-<TableTemplate Items="@pets">
+<TableTemplate Items="pets">
     <TableHeader>
         <th>ID</th>
         <th>Name</th>
@@ -947,7 +1261,7 @@ Component arguments of type `RenderFragment<T>` passed as elements have an impli
 Alternatively, you can specify the `Context` attribute on the component element. The specified `Context` attribute applies to all specified template parameters. This can be useful when you want to specify the content parameter name for implicit child content (without any wrapping child element). In the following example, the `Context` attribute appears on the `TableTemplate` element and applies to all template parameters:
 
 ```cshtml
-<TableTemplate Items="@pets" Context="pet">
+<TableTemplate Items="pets" Context="pet">
     <TableHeader>
         <th>ID</th>
         <th>Name</th>
@@ -961,14 +1275,14 @@ Alternatively, you can specify the `Context` attribute on the component element.
 
 ### Generic-typed components
 
-Templated components are often generically typed. For example, a generic `ListViewTemplate` component can be used to render `IEnumerable<T>` values. To define a generic component, use the `@typeparam` directive to specify type parameters:
+Templated components are often generically typed. For example, a generic `ListViewTemplate` component can be used to render `IEnumerable<T>` values. To define a generic component, use the [@typeparam](xref:mvc/views/razor#typeparam) directive to specify type parameters:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/ListViewTemplate.razor)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
 
 When using generic-typed components, the type parameter is inferred if possible:
 
 ```cshtml
-<ListViewTemplate Items="@pets">
+<ListViewTemplate Items="pets">
     <ItemTemplate Context="pet">
         <li>@pet.Name</li>
     </ItemTemplate>
@@ -978,7 +1292,7 @@ When using generic-typed components, the type parameter is inferred if possible:
 Otherwise, the type parameter must be explicitly specified using an attribute that matches the name of the type parameter. In the following example, `TItem="Pet"` specifies the type:
 
 ```cshtml
-<ListViewTemplate Items="@pets" TItem="Pet">
+<ListViewTemplate Items="pets" TItem="Pet">
     <ItemTemplate Context="pet">
         <li>@pet.Name</li>
     </ItemTemplate>
@@ -1018,7 +1332,7 @@ For example, the sample app specifies theme information (`ThemeInfo`) in one of 
             <NavMenu />
         </div>
         <div class="col-sm-9">
-            <CascadingValue Value="@theme">
+            <CascadingValue Value="theme">
                 <div class="content px-4">
                     @Body
                 </div>
@@ -1111,23 +1425,23 @@ Cascading parameters also enable components to collaborate across the component 
 
 The sample app has an `ITab` interface that tabs implement:
 
-[!code-csharp[](common/samples/3.x/BlazorSample/UIInterfaces/ITab.cs)]
+[!code-csharp[](common/samples/3.x/BlazorWebAssemblySample/UIInterfaces/ITab.cs)]
 
 The `CascadingValuesParametersTabSet` component uses the `TabSet` component, which contains several `Tab` components:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Pages/CascadingValuesParametersTabSet.razor?name=snippet_TabSet)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/CascadingValuesParametersTabSet.razor?name=snippet_TabSet)]
 
 The child `Tab` components aren't explicitly passed as parameters to the `TabSet`. Instead, the child `Tab` components are part of the child content of the `TabSet`. However, the `TabSet` still needs to know about each `Tab` component so that it can render the headers and the active tab. To enable this coordination without requiring additional code, the `TabSet` component *can provide itself as a cascading value* that is then picked up by the descendent `Tab` components.
 
 `TabSet` component:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/TabSet.razor)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/TabSet.razor)]
 
 The descendent `Tab` components capture the containing `TabSet` as a cascading parameter, so the `Tab` components add themselves to the `TabSet` and coordinate on which tab is active.
 
 `Tab` component:
 
-[!code-cshtml[](common/samples/3.x/BlazorSample/Components/Tab.razor)]
+[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/Tab.razor)]
 
 ## Razor templates
 
@@ -1166,7 +1480,7 @@ Rendered output of the preceding code:
 
 ## Manual RenderTreeBuilder logic
 
-`Microsoft.AspNetCore.Components.RenderTree` provides methods for manipulating components and elements, including building components manually in C# code.
+`Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder` provides methods for manipulating components and elements, including building components manually in C# code.
 
 > [!NOTE]
 > Use of `RenderTreeBuilder` to create components is an advanced scenario. A malformed component (for example, an unclosed markup tag) can result in undefined behavior.
@@ -1219,6 +1533,9 @@ In the following example, the loop in the `CreateComponent` method generates thr
     }
 }
 ```
+
+> ![WARNING]
+> The types in `Microsoft.AspNetCore.Components.RenderTree` allow processing of the *results* of rendering operations. These are internal details of the Blazor framework implementation. These types should be considered *unstable* and subject to change in future releases.
 
 ### Sequence numbers relate to code line numbers and not execution order
 
@@ -1306,13 +1623,13 @@ This is a trivial example. In more realistic cases with complex and deeply neste
 
 * App performance suffers if sequence numbers are generated dynamically.
 * The framework can't create its own sequence numbers automatically at runtime because the necessary information doesn't exist unless it's captured at compile time.
-* Don't write long blocks of manually-implemented `RenderTreeBuilder` logic. Prefer `.razor` files and allow the compiler to deal with the sequence numbers.
+* Don't write long blocks of manually-implemented `RenderTreeBuilder` logic. Prefer `.razor` files and allow the compiler to deal with the sequence numbers. If you're unable to avoid manual `RenderTreeBuilder` logic, split long blocks of code into smaller pieces wrapped in `OpenRegion`/`CloseRegion` calls. Each region has its own separate space of sequence numbers, so you can restart from zero (or any other arbitrary number) inside each region.
 * If sequence numbers are hardcoded, the diff algorithm only requires that sequence numbers increase in value. The initial value and gaps are irrelevant. One legitimate option is to use the code line number as the sequence number, or start from zero and increase by ones or hundreds (or any preferred interval). 
 * Blazor uses sequence numbers, while other tree-diffing UI frameworks don't use them. Diffing is far faster when sequence numbers are used, and Blazor has the advantage of a compile step that deals with sequence numbers automatically for developers authoring `.razor` files.
 
 ## Localization
 
-Blazor server-side apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). The middleware selects the appropriate culture for users requesting resources from the app.
+Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). The middleware selects the appropriate culture for users requesting resources from the app.
 
 The culture can be set using one of the following approaches:
 
@@ -1329,7 +1646,7 @@ Use of a cookie ensures that the WebSocket connection can correctly propagate th
 
 Any technique can be used to assign a culture if the culture is persisted in a localization cookie. If the app already has an established localization scheme for server-side ASP.NET Core, continue to use the app's existing localization infrastructure and set the localization culture cookie within the app's scheme.
 
-The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware. Create a *Pages/Host.cshtml.cs* file with the following contents in the Blazor server-side app:
+The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware. Create a *Pages/Host.cshtml.cs* file with the following contents in the Blazor Server app:
 
 ```csharp
 public class HostModel : PageModel
@@ -1351,9 +1668,9 @@ Localization is handled in the app:
 1. The browser sends an initial HTTP request to the app.
 1. The culture is assigned by the Localization Middleware.
 1. The `OnGet` method in *_Host.cshtml.cs* persists the culture in a cookie as part of the response.
-1. The browser opens a WebSocket connection to create an interactive Blazor server-side session.
+1. The browser opens a WebSocket connection to create an interactive Blazor Server session.
 1. The Localization Middleware reads the cookie and assigns the culture.
-1. The Blazor server-side session begins with the correct culture.
+1. The Blazor Server session begins with the correct culture.
 
 ## Provide UI to choose the culture
 
@@ -1401,7 +1718,7 @@ The following component shows an example of how to perform the initial redirecti
 @code {
     private double textNumber;
 
-    private void OnSelected(UIChangeEventArgs e)
+    private void OnSelected(ChangeEventArgs e)
     {
         var culture = (string)e.Value;
         var uri = new Uri(NavigationManager.Uri())
@@ -1447,3 +1764,7 @@ Similarly, SVG images are supported in the CSS rules of a stylesheet file (*.css
 ```
 
 However, inline SVG markup isn't supported in all scenarios. If you place an `<svg>` tag directly into a component file (*.razor*), basic image rendering is supported but many advanced scenarios aren't yet supported. For example, `<use>` tags aren't currently respected, and `@bind` can't be used with some SVG tags. We expect to address these limitations in a future release.
+
+## Additional resources
+
+* <xref:security/blazor/server> &ndash; Includes guidance on building Blazor Server apps that must contend with resource exhaustion.
