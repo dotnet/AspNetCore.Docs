@@ -23,7 +23,7 @@ ASP.NET Core apps load features from <xref:System.Web.WebPages.ApplicationPart>.
 
 ## Load ASP.NET Core features
 
-Use the `ApplicationPart` and `AssemblyPart` classes to discover and load ASP.NET Core features (controllers, view components, etc.). The <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> tracks the application parts and feature providers available. `ApplicationPartManager` is configured in `Startup.ConfigureServices`:
+Use the <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> and <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> classes to discover and load ASP.NET Core features (controllers, view components, etc.). The <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartManager> tracks the application parts and feature providers available. `ApplicationPartManager` is configured in `Startup.ConfigureServices`:
 
 [!code-csharp[](./app-parts/3.0sample1/WebAppParts/Startup.cs?name=snippet)]
 
@@ -47,7 +47,7 @@ To include views in the assembly:
 
 * Add the <xref:Microsoft.Extensions.FileProviders.EmbeddedFileProvider> to the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine>:
 
-[!code-csharp[](./app-parts/3.0sample1/WebAppParts/StartupViews.cs?name=snippet&highlight=3-7)]
+[!code-csharp[](./app-parts/3.0sample1/WebAppParts/StartupViews.cs?name=snippet)]
 
 ### Prevent loading resources
 
