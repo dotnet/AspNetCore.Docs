@@ -4,7 +4,7 @@ using System.Reflection;
 namespace AppPartsSample.Model
 {
     #region snippet
-    public static class EntityTypes
+    public static class MyTypes
     {
         public static IReadOnlyList<TypeInfo> Types => new List<TypeInfo>()
         {

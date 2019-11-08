@@ -1,13 +1,13 @@
 ---
-title: Application Parts in ASP.NET Core
+title: Share controllers, views, Razor Pages and more with Application Parts in ASP.NET Core
 author: rick-anderson
 description: Share controllers, view, Razor Pages and more with Application Parts in ASP.NET Core
 ms.author: riande
-ms.date: 11/7/2019
+ms.date: 11/11/2019
 uid: mvc/extensibility/app-parts
 ---
 
-# Share controllers, views, Razor Pages and more with Application Parts in ASP.NET Core
+# Share controllers, views, Razor Pages and more with Application Parts
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -17,7 +17,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 An *Application Part* is an abstraction over the resources of an app. Application Parts allow ASP.NET Core to discover controllers, view components, tag helpers, Razor Pages, razor compilation sources, and more. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> is an Application part. `AssemblyPart` encapsulates an assembly reference and exposes types and compilation references.
 
-*Feature providers* work with application parts to populate the features of an ASP.NET Core app. The main use case for application parts is to configure an app to discover (or avoid loading) ASP.NET Core features from an assembly. For example, you might want to share common functionality between multiple apps. Using Application Parts, you can share an assembly (DLL) containing controllers, views, Razor Pages, razor compilation sources, Tag Helpers, and more with multiple apps. Sharing an assembly is preferred to duplicating code in multiple projects.
+[Feature providers](#fp) work with application parts to populate the features of an ASP.NET Core app. The main use case for application parts is to configure an app to discover (or avoid loading) ASP.NET Core features from an assembly. For example, you might want to share common functionality between multiple apps. Using Application Parts, you can share an assembly (DLL) containing controllers, views, Razor Pages, razor compilation sources, Tag Helpers, and more with multiple apps. Sharing an assembly is preferred to duplicating code in multiple projects.
 
 ASP.NET Core apps load features from <xref:System.Web.WebPages.ApplicationPart>. The <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> class represents an application part that's backed by an assembly.
 
@@ -64,13 +64,17 @@ The `ApplicationPartManager` includes parts for:
 * `Microsoft.AspNetCore.Mvc.TagHelpers`.
 * `Microsoft.AspNetCore.Mvc.Razor`.
 
-## Application feature providers
+<a name="fp"></a>
+
+## Feature providers
 
 Application feature providers examine application parts and provide features for those parts. There are built-in feature providers for the following ASP.NET Core features:
 
-* [Controllers](/dotnet/api/microsoft.aspnetcore.mvc.controllers.controllerfeatureprovider)
-* [Tag Helpers](/dotnet/api/microsoft.aspnetcore.mvc.razor.taghelpers.taghelperfeatureprovider)
-* [View Components](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponents.viewcomponentfeatureprovider)
+* <xref:Microsoft.AspNetCore.Mvc.Controllers.ControllerFeatureProvider>
+* <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.TagHelperFeatureProvider>
+* <xref:Microsoft.AspNetCore.Mvc.Razor.Compilation.MetadataReferenceFeatureProvider>
+* <xref:Microsoft.AspNetCore.Mvc.Razor.Compilation.ViewsFeatureProvider>
+* `internal class` [RazorCompiledItemFeatureProvider](https://github.com/aspnet/AspNetCore/blob/master/src/Mvc/Mvc.Razor/src/ApplicationParts/RazorCompiledItemFeatureProvider.cs#L14)
 
 Feature providers inherit from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider`1>, where `T` is the type of the feature. Feature providers can be implemented for any of the previously listed feature types. The order of feature providers in the `ApplicationPartManager.FeatureProviders` can impact run time behavior. Later added providers can react to actions taken by earlier added providers.
 
@@ -80,7 +84,7 @@ ASP.NET Core ignores [generic controllers](/dotnet/csharp/programming-guide/gene
 
 [!code-csharp[](./app-parts/3.0sample2/AppPartsSample/GenericControllerFeatureProvider.cs?name=snippet)]
 
-The types are defined in `EntityTypes.Types`:
+The types are defined in the following class:
 
 [!code-csharp[](./app-parts/3.0sample2/AppPartsSample/Models/EntityTypes.cs?name=snippet)]
 

@@ -24,7 +24,7 @@ namespace AppPartsSample
         {
             // This is designed to run after the default ControllerTypeProvider, 
             // so the list of 'real' controllers has already been populated.
-            foreach (var entityType in EntityTypes.Types)
+            foreach (var entityType in MyTypes.Types)
             {
                 var typeName = entityType.Name + "Controller";
                 if (!feature.Controllers.Any(t => t.Name == typeName))
