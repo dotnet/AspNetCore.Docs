@@ -82,15 +82,15 @@ ASP.NET Core ignores [generic controllers](/dotnet/csharp/programming-guide/gene
 
 The types are defined in `EntityTypes.Types`:
 
-[!code-csharp[](./app-parts/sample2/AppPartsSample/Models/EntityTypes.cs?name=snippet)]
+[!code-csharp[](./app-parts/3.0sample2/AppPartsSample/Models/EntityTypes.cs?name=snippet)]
 
 The feature provider is added in `Startup`:
 
-[!code-csharp[](./app-parts/sample2/AppPartsSample/Startup.cs?name=snippet)]
+[!code-csharp[](./app-parts/3.0sample2/AppPartsSample/Startup.cs?name=snippet)]
 
 Generic controller names used for routing are of the form *GenericController`1[Widget]* rather than *Widget*. The following attribute modifies the name to correspond to the generic type used by the controller:
 
-[!code-csharp[](./app-parts/sample2/AppPartsSample/GenericControllerNameConvention.cs?name=snippet)]
+[!code-csharp[](./app-parts/3.0sample2/AppPartsSample/GenericControllerNameConvention.cs?name=snippet)]
 
 Conventions can be applied as attributes or added to `MvcOptions.Conventions`.
 
@@ -129,6 +129,15 @@ Tag Helpers:
 View Components:
     - SampleViewComponent
 ```
+
+## Discovery in application parts
+
+HTTP 404 errors are not uncommon when developing with application parts. These errors are typically caused by missing an essential requirement for how applications parts are discovered. If your app returns an HTTP 404 error, verify the following requirements have been met:
+
+* The `applicationName` setting needs to be set to the root assembly used for discovery. The root assembly used for discovery is normally the entry point assembly.
+* The root assembly needs to have a reference to the parts used for discovery. The reference can be direct or transitive.
+* The root assembly needs to reference the Web SDK.
+  * The ASP.NET Core framework has custom build logic that stamps attributes into the root assembly that are used for discovery.
 
 ::: moniker-end
 
@@ -248,5 +257,14 @@ Tag Helpers:
 View Components:
     - SampleViewComponent
 ```
+
+## Discovery in application parts
+
+HTTP 404 errors are not uncommon when developing with application parts. These errors are typically caused by missing an essential requirement for how applications parts are discovered. If your app returns an HTTP 404 error, verify the following requirements have been met:
+
+* The `applicationName` setting needs to be set to the root assembly used for discovery. The root assembly used for discovery is normally the entry point assembly.
+* The root assembly needs to have a reference to the parts used for discovery. The reference can be direct or transitive.
+* The root assembly needs to reference the Web SDK.
+  * The ASP.NET Core framework has custom build logic that stamps attributes into the root assembly that are used for discovery.
 
 ::: moniker-end
