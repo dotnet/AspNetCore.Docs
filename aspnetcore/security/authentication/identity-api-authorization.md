@@ -5,7 +5,7 @@ description: Use Identity with a Single Page App hosted inside an ASP.NET Core a
 monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/29/2019
+ms.date: 11/08/2019
 uid: security/authentication/identity/spa
 ---
 # Authentication and authorization for SPAs
@@ -199,7 +199,7 @@ services.Configure<JwtBearerOptions>(
 In the preceding code, the `OnTokenValidated` event handler is replaced with a custom implementation. This implementation:
 
 1. Calls the original implementation provided by the API authorization support.
-2. Run its own custom logic.
+1. Run its own custom logic.
 
 ## Protect a client-side route (Angular)
 
