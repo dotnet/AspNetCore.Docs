@@ -96,7 +96,7 @@ Conventions can be applied as attributes or added to `MvcOptions.Conventions`.
 
 The `GenericController` class sets the controller name based on `typeof(T).Name`:
 
-[!code-csharp[](./app-parts/sample2/AppPartsSample/GenericController.cs)]
+[!code-csharp[](./app-parts/3.0sample2/AppPartsSample/GenericController.cs?name=snippet)]
 
 For example, `https://localhost:5001/Sprocket` results in the following response:
 
@@ -211,7 +211,7 @@ The feature provider is added in `Startup`:
 
 Generic controller names used for routing are of the form *GenericController`1[Widget]* rather than *Widget*. The following attribute modifies the name to correspond to the generic type used by the controller:
 
-[!code-csharp[](./app-parts/sample2/AppPartsSample/GenericControllerNameConvention.cs)]
+[!code-csharp[](./app-parts/3.0sample2/AppPartsSample/GenericControllerNameConvention.cs)]
 
 The `GenericController` class:
 
