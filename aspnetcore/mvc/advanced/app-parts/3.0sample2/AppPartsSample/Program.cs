@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using WebAppParts;
 
-namespace WebAppParts
+namespace AppPartsSample
 {
     public class Program
     {
@@ -15,10 +16,7 @@ namespace WebAppParts
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
-                     .UseStartup<Startup>();
-                    // .UseStartup<Startup2>();
-                    //.UseStartup<StartupViews>();
-                    //.UseStartup<StartupRm>();
+                    .UseStartup<Startup>();
                 });
     }
 }

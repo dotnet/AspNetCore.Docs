@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MySharedApp.Controllers;
 using System.Linq;
-using System.Reflection;
 
 
 namespace WebAppParts
@@ -27,7 +24,7 @@ namespace WebAppParts
                     .ConfigureApplicationPartManager(apm =>
                     {
                         var dependentLibrary = apm.ApplicationParts
-                            .FirstOrDefault(part => part.Name == "MyDependentLibrary");
+                            .FirstOrDefault(part => part.Name == "MySharedApp");
 
                         if (dependentLibrary != null)
                         {

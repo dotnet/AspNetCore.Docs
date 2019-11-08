@@ -53,12 +53,14 @@ To include views in the assembly:
 
 Application parts can be used to *avoid* loading resources in a particular assembly or location. Add or remove members of the  <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> collection to hide or make available resources. The order of the entries in the `ApplicationParts` collection isn't important. Configure the `ApplicationPartManager` before using it to configure services in the container. For example, configure the `ApplicationPartManager` before invoking `AddControllersAsServices`. Call `Remove` on the `ApplicationParts` collection to remove a resource.
 
-The following code uses <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> to remove `MyDependentLibrary` from the app:
+The following code uses <xref:Microsoft.AspNetCore.Mvc.ApplicationParts> to remove `MySharedApp` from the app:
 [!code-csharp[](./app-parts/3.0sample1/WebAppParts/StartupRm.cs?name=snippet)]
 
 The `ApplicationPartManager` includes parts for:
 
 * The app's assembly and dependent assemblies.
+* `Microsoft.AspNetCore.Mvc.ApplicationParts.CompiledRazorAssemblyPart`
+* `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`
 * `Microsoft.AspNetCore.Mvc.TagHelpers`.
 * `Microsoft.AspNetCore.Mvc.Razor`.
 
@@ -76,7 +78,7 @@ Feature providers inherit from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.I
 
 ASP.NET Core ignores [generic controllers](/dotnet/csharp/programming-guide/generics/generic-classes). A generic controller has a type parameter (for example, `MyController<T>`). The following sample adds generic controller instances for a specified list of types:
 
-[!code-csharp[](./app-parts/sample2/AppPartsSample/GenericControllerFeatureProvider.cs?name=snippet)]
+[!code-csharp[](./app-parts/3.0sample2/AppPartsSample/GenericControllerFeatureProvider.cs?name=snippet)]
 
 The types are defined in `EntityTypes.Types`:
 
@@ -88,13 +90,15 @@ The feature provider is added in `Startup`:
 
 Generic controller names used for routing are of the form *GenericController`1[Widget]* rather than *Widget*. The following attribute modifies the name to correspond to the generic type used by the controller:
 
-[!code-csharp[](./app-parts/sample2/AppPartsSample/GenericControllerNameConvention.cs)]
+[!code-csharp[](./app-parts/sample2/AppPartsSample/GenericControllerNameConvention.cs?name=snippet)]
 
-The `GenericController` class:
+Conventions can be applied as attributes or added to `MvcOptions.Conventions`.
+
+The `GenericController` class sets the controller name based on `typeof(T).Name`:
 
 [!code-csharp[](./app-parts/sample2/AppPartsSample/GenericController.cs)]
 
-For example, requesting a URL of `https://localhost:5001/Sprocket` results in the following response:
+For example, `https://localhost:5001/Sprocket` results in the following response:
 
 ```text
 Hello from a generic Sprocket controller.
@@ -128,7 +132,7 @@ View Components:
 
 ::: moniker-end
 
-::: moniker range="<= aspnetcore-3.0"
+::: moniker range="< aspnetcore-3.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

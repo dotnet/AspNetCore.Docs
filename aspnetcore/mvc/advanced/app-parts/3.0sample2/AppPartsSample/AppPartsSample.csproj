@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+ <ItemGroup>
+   <Reference Include="DependentLibrary">
+     <HintPath>..\DependentLibrary\bin\Debug\netcoreapp3.0\DependentLibrary.dll</HintPath>
+   </Reference>
+   <Reference Include="Plugin">
+     <HintPath>..\Plugin\bin\Debug\netcoreapp3.0\Plugin.dll</HintPath>
+   </Reference>
+ </ItemGroup>
+
+</Project>

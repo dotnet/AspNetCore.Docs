@@ -1,18 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AppPartsSample;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using MySharedApp.Controllers;
+using System.Linq;
 using System.Reflection;
 
 namespace WebAppParts
 {
-    public class StartupViews
+    public class StartupRemove
     {
-        public StartupViews(IConfiguration configuration)
+        public StartupRemove(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -20,19 +19,22 @@ namespace WebAppParts
         public IConfiguration Configuration { get; }
 
         #region snippet
-        // requires 
-        // using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
-        // using System.Reflection;
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
-            {
-                options.FileProviders.Add(
-                 new EmbeddedFileProvider(typeof(MySharedController).GetTypeInfo().Assembly));
-            });
-            var assembly = typeof(MySharedController).GetTypeInfo().Assembly;
-            services.AddMvc()
-                .AddApplicationPart(assembly);
+            var pluginAssembly = Assembly.Load(new AssemblyName("Plugin"));
+            services.AddControllersWithViews()
+                .AddApplicationPart(pluginAssembly)
+                .ConfigureApplicationPartManager(p =>
+                {
+                    var dependentLibrary = p.ApplicationParts
+                                .FirstOrDefault(part => part.Name == "DependentLibrary");
+                    if (dependentLibrary != null)
+                    {
+                        p.ApplicationParts.Remove(dependentLibrary);
+                    }
+                })
+                .ConfigureApplicationPartManager(p =>
+                   p.FeatureProviders.Add(new GenericControllerFeatureProvider()));
         }
         #endregion
 
