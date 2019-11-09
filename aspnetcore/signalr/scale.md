@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/28/2018
 uid: signalr/scale
+no-loc: [SignalR]
 ---
 
 # ASP.NET Core SignalR hosting and scaling
