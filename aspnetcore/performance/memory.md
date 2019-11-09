@@ -77,7 +77,7 @@ Run MemoryLeak. Allocated memory slowly increases until a GC occurs. Memory incr
 The chart displays two values for the memory usage:
 
 - Allocated: the amount of memory occupied by managed objects
-- Working set: the total physical memory (RAM) used by the process. The working set shown is the same value Task Manager can display.
+- [Working set](/windows/win32/memory/working-set): The set of pages in the virtual address space of the process that are currently resident in physical memory. The working set shown is the same value Task Manager displays.
 
 ### Transient objects
 
