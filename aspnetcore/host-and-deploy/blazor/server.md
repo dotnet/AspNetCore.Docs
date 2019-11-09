@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/05/2019
+no-loc: [Blazor]
 uid: host-and-deploy/blazor/server
 ---
 # Host and deploy Blazor Server
