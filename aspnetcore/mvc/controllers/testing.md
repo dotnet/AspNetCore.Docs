@@ -5,7 +5,7 @@ description: Learn how to test controller logic in ASP.NET Core with Moq and xUn
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/22/2019
+ms.date: 11/07/2019
 uid: mvc/controllers/testing
 ---
 # Test controller logic in ASP.NET Core
@@ -341,4 +341,6 @@ For a valid session `id`, the final test confirms that:
 ## Additional resources
 
 * <xref:test/integration-tests>
-* [Create and run unit tests with Visual Studio](/visualstudio/test/unit-test-your-code).
+* [Create and run unit tests with Visual Studio](/visualstudio/test/unit-test-your-code)
+* [MyTested.AspNetCore.Mvc - Fluent Testing Library for ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; Strongly-typed unit testing library, providing a fluent interface for testing MVC and web API apps. (*Not maintained or supported by Microsoft.*)
+
