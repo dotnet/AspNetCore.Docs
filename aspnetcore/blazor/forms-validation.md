@@ -34,7 +34,7 @@ A form is defined using the `EditForm` component. The following form demonstrate
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <InputText id="name" @bind-Value="@exampleModel.Name" />
+    <InputText id="name" @bind-Value="exampleModel.Name" />
 
     <button type="submit">Submit</button>
 </EditForm>
