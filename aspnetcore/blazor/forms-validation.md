@@ -200,13 +200,15 @@ The `ValidationMessage` and `ValidationSummary` components support arbitrary att
 
 ::: moniker range=">= aspnetcore-3.1"
 
-**Microsoft.AspNetCore.Blazor.DataAnnotations.Validation package**
+### Microsoft.AspNetCore.Blazor.DataAnnotations.Validation package
 
 The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) is a package that fills validation experience gaps using the `DataAnnotationsValidator` component. The package is currently *experimental*, and we plan to add these scenarios into the ASP.NET Core framework in a future release.
 
-The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the `DataAnnotationsValidator` component. The `Microsoft.AspNetCore.Blazor.DataAnnotations.Validation` package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `ComparePropertyAttribute` is a direct replacement for the `CompareAttribute`. For more information, see [CompareAttribute ignored with OnValidSubmit EditForm (aspnet/AspNetCore \#10643)](https://github.com/aspnet/AspNetCore/issues/10643#issuecomment-543909748).
+### [CompareProperty] attribute
 
-### Validate nested models and complex types
+The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the `DataAnnotationsValidator` component. The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) *experimental* package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the `[Compare]` attribute. For more information, see [CompareAttribute ignored with OnValidSubmit EditForm (aspnet/AspNetCore \#10643)](https://github.com/aspnet/AspNetCore/issues/10643#issuecomment-543909748).
+
+### Validate nested models, collection, and complex types
 
 Blazor provides support for validating form input using data annotations with the built-in `DataAnnotationsValidator`. However, the `DataAnnotationsValidator` only validates top-level properties of the model bound to the form. Complex and collection-type properties aren't validated.
 
