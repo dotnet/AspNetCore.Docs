@@ -254,7 +254,7 @@ public class ShipDescription
     public string ShortDescription { get; set; }
     
     [Required]
-    [StringLength(240, ErrorMessage = "Identifier too long (240 char).")]
+    [StringLength(240, ErrorMessage = "Description too long (240 char).")]
     public string LongDescription { get; set; }
 }
 ```
