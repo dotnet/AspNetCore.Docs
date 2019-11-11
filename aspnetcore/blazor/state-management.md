@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/15/2019
+no-loc: [Blazor]
 uid: blazor/state-management
 ---
 # ASP.NET Core Blazor state management

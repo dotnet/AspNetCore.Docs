@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/16/2019
+no-loc: [Blazor]
 uid: blazor/javascript-interop
 ---
 # ASP.NET Core Blazor JavaScript interop

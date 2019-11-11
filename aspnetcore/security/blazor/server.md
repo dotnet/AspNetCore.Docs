@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/23/2019
+no-loc: [Blazor]
 uid: security/blazor/server
 ---
 # Secure ASP.NET Core Blazor Server apps

@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: "mvc, seoapril2019"
 ms.date: 10/31/2019
+no-loc: [Blazor]
 uid: blazor/index
 ---
 # Introduction to ASP.NET Core Blazor

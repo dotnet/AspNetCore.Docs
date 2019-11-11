@@ -24,18 +24,22 @@ namespace WebApp1
         #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-            var jsonPatchServices = new ServiceCollection();
+            services.AddControllersWithViews(options =>
+            {
+                options.InputFormatters.Insert(0, GetJsonPatchInputFormatter());
+            });
+        }
+        
+        private static NewtonsoftJsonPatchInputFormatter GetJsonPatchInputFormatter()
+        {
+            var builder = new ServiceCollection().AddMvc().Services.BuildServiceProvider();
 
-            jsonPatchServices.AddLogging()
-                .AddMvc()
-                .AddNewtonsoftJson();
-
-            var jsonPatchServiceProvider = jsonPatchServices.BuildServiceProvider();
-
-            var jsonPatchOptions = jsonPatchServiceProvider.GetRequiredService<IOptions<MvcOptions>>().Value;
-            var jsonPatchInputFormatter = jsonPatchOptions.InputFormatters.OfType<NewtonsoftJsonPatchInputFormatter>().First();
-
-            services.AddControllersWithViews(options => options.InputFormatters.Insert(0, jsonPatchInputFormatter));
+            return builder
+                .GetRequiredService<IOptions<MvcOptions>>()
+                .Value
+                .InputFormatters
+                .OfType<NewtonsoftJsonPatchInputFormatter>()
+                .First();
         }
         #endregion
 

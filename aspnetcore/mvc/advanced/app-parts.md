@@ -3,7 +3,7 @@ title: Application Parts in ASP.NET Core
 author: rick-anderson
 description: Share controllers, view, Razor Pages and more with Application Parts in ASP.NET Core
 ms.author: riande
-ms.date: 11/7/2019
+ms.date: 11/10/2019
 uid: mvc/extensibility/app-parts
 ---
 
@@ -128,7 +128,7 @@ View Components:
 
 ::: moniker-end
 
-::: moniker range="<= aspnetcore-3.0"
+::: moniker range="< aspnetcore-3.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
