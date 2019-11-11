@@ -46,10 +46,8 @@ namespace SampleApp.Pages
                 return Page();
             }
 
-            var stream = new MemoryStream(requestFile.Content);
-
             // Don't display the untrusted file name in the UI. HTML-encode the value.
-            return File(stream, MediaTypeNames.Application.Octet, WebUtility.HtmlEncode(requestFile.UntrustedName));
+            return File(requestFile.Content, MediaTypeNames.Application.Octet, WebUtility.HtmlEncode(requestFile.UntrustedName));
         }
 
         public IActionResult OnGetDownloadPhysical(string fileName)
