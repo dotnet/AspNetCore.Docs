@@ -32,7 +32,11 @@ namespace WebApp1
         
         private static NewtonsoftJsonPatchInputFormatter GetJsonPatchInputFormatter()
         {
-            var builder = new ServiceCollection().AddMvc().Services.BuildServiceProvider();
+            var builder = new ServiceCollection()
+                .AddLogging()
+                .AddMvc()
+                .AddNewtonsoftJson()
+                .Services.BuildServiceProvider();
 
             return builder
                 .GetRequiredService<IOptions<MvcOptions>>()
