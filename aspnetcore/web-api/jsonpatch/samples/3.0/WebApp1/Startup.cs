@@ -26,11 +26,11 @@ namespace WebApp1
         {
             services.AddControllersWithViews(options =>
             {
-                options.InputFormatters.Insert(0, GetJsonPatchOutputFormatter());
+                options.InputFormatters.Insert(0, GetJsonPatchInputFormatter());
             });
         }
         
-        private static NewtonsoftJsonPatchInputFormatter GetJsonPatchOutputFormatter()
+        private static NewtonsoftJsonPatchInputFormatter GetJsonPatchInputFormatter()
         {
             var builder = new ServiceCollection().AddMvc().Services.BuildServiceProvider();
 
