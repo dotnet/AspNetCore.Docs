@@ -200,7 +200,7 @@ The `ValidationMessage` and `ValidationSummary` components support arbitrary att
 
 ::: moniker range=">= aspnetcore-3.1"
 
-### Microsoft.AspNetCore.Blazor.DataAnnotations.Validation package
+### Blazor data annotations validation package
 
 The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) is a package that fills validation experience gaps using the `DataAnnotationsValidator` component. The package is currently *experimental*, and we plan to add these scenarios into the ASP.NET Core framework in a future release.
 
