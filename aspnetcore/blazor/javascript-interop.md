@@ -21,7 +21,7 @@ A Blazor app can invoke JavaScript functions from .NET and .NET methods from Jav
 
 ## Invoke JavaScript functions from .NET methods
 
-There are times when .NET code is required to call a JavaScript function. For example, a JavaScript call can expose browser capabilities or functionality from a JavaScript library to the app. This scenario is called *JavaScript interoperability*, abbreviated as *JS interop*.
+There are times when .NET code is required to call a JavaScript function. For example, a JavaScript call can expose browser capabilities or functionality from a JavaScript library to the app. This scenario is called *JavaScript interoperability* (*JS interop*).
 
 To call into JavaScript from .NET, use the `IJSRuntime` abstraction. The `InvokeAsync<T>` method takes an identifier for the JavaScript function that you wish to invoke along with any number of JSON-serializable arguments. The function identifier is relative to the global scope (`window`). If you wish to call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called. The return type `T` must also be JSON serializable.
 
@@ -144,7 +144,7 @@ The following example shows capturing a reference to the `username` `<input>` el
 ```
 
 > [!WARNING]
-> It's acceptable to use an element reference to mutate the contents of an empty element that doesn't interact with Blazor. This scenario is useful when a 3rd party API supplies content to the element. Because Blazor doesn't interact with the element, there's no possibility of a conflict between Blazor's representation of the element and the DOM.
+> Only use an element reference to mutate the contents of an empty element that doesn't interact with Blazor. This scenario is useful when a 3rd party API supplies content to the element. Because Blazor doesn't interact with the element, there's no possibility of a conflict between Blazor's representation of the element and the DOM.
 >
 > Do **not** use a captured element reference as a way of *populating* the DOM. Doing so may interfere with the declarative rendering model.
 >

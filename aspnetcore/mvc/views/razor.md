@@ -715,7 +715,7 @@ In [Razor components](xref:blazor/components), `@using` also controls which comp
 
 Data binding in components is accomplished with the `@bind` attribute. For more information, see <xref:blazor/components#data-binding>.
 
-### \@on{event}
+### \@on{EVENT}
 
 *This scenario only applies to Razor components (.razor).*
 
@@ -725,13 +725,13 @@ Razor provides event handling features for components. For more information, see
 
 ::: moniker range=">= aspnetcore-3.1"
 
-### \@on{event}:preventDefault
+### \@on{EVENT}:preventDefault
 
 *This scenario only applies to Razor components (.razor).*
 
 Prevents the default action for the event.
 
-### \@on{event}:stopPropagation
+### \@on{EVENT}:stopPropagation
 
 *This scenario only applies to Razor components (.razor).*
 
