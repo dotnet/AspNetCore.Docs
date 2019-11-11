@@ -19,11 +19,10 @@ This article describes how Blazor manages unhandled exceptions and how to develo
 
 ## Detailed errors during Blazor Server app development
 
-When a Blazor Server app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor Server apps display a gold bar at the bottom of the screen.
+When a Blazor Server app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor Server apps display a gold bar at the bottom of the screen:
 
-During development, the gold bar directs you to the browser console, where you can see the exception.
-
-In production, the gold bar notifies the user that an error has occurred and recommends refreshing the browser.
+* During development, the gold bar directs you to the browser console, where you can see the exception.
+* In production, the gold bar notifies the user that an error has occurred and recommends refreshing the browser.
 
 The UI for this error handling experience is part of the Blazor Server project templates. The experience can be customized in the *_Host.cshtml* file:
 
