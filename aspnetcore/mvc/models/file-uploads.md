@@ -737,7 +737,7 @@ If the controller is accepting uploaded files using <xref:Microsoft.AspNetCore.H
 
 ### Stream was too long
 
-The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the uploaded file's content. The size limit of a `MemoryStream` is `int.MaxValue`. If the app's file upload scenario requires holding file content larger than `int.MaxValue`, use an alternative approach that doesn't rely upon a single `MemoryStream` for holding an uploaded file's content.
+The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the uploaded file's content. The size limit of a `MemoryStream` is `int.MaxValue`. If the app's file upload scenario requires holding file content larger than 50 MB, use an alternative approach that doesn't rely upon a single `MemoryStream` for holding an uploaded file's content.
 
 ::: moniker-end
 
@@ -1459,7 +1459,7 @@ If the controller is accepting uploaded files using <xref:Microsoft.AspNetCore.H
 
 ### Stream was too long
 
-The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the uploaded file's content. The size limit of a `MemoryStream` is `int.MaxValue`. If the app's file upload scenario requires holding file content larger than `int.MaxValue`, use an alternative approach that doesn't rely upon a single `MemoryStream` for holding an uploaded file's content.
+The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the uploaded file's content. The size limit of a `MemoryStream` is `int.MaxValue`. If the app's file upload scenario requires holding file content larger than 50 MB, use an alternative approach that doesn't rely upon a single `MemoryStream` for holding an uploaded file's content.
 
 ::: moniker-end
 
