@@ -5,6 +5,7 @@ description: Get an introduction to ASP.NET Core, a cross-platform, high-perform
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/03/2019
+no-loc: [Blazor]
 uid: index
 ---
 # Introduction to ASP.NET Core
