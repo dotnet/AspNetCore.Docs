@@ -82,7 +82,7 @@ When using IIS, sticky sessions are enabled with Application Request Routing. Fo
 
 #### Kubernetes
 
-Create an ingress definition with the following settings:
+Create an ingress definition with the following Kubernetes annotations:
 
 ```
 nginx.ingress.kubernetes.io/affinity: "cookie"
