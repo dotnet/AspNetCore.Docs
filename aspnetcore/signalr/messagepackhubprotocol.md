@@ -5,7 +5,8 @@ description: Add MessagePack Hub Protocol to ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 10/08/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/messagepackhubprotocol
 ---
 # Use MessagePack Hub Protocol in SignalR for ASP.NET Core

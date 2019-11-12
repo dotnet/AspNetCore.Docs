@@ -4,7 +4,8 @@ author: jamesnk
 description: Learn how to create gRPC clients using the client factory.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 08/21/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: grpc/clientfactory
 ---
 # gRPC client factory integration in .NET Core
