@@ -4,7 +4,8 @@ author: jamesnk
 description: Learn how gRPC compares with HTTP APIs and what it's recommend scenarios are.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 09/25/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: grpc/comparison
 ---
 # Compare gRPC services with HTTP APIs
