@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/07/2019
+no-loc: [Blazor]
 uid: blazor/get-started
 ---
 # Get started with ASP.NET Core Blazor

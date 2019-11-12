@@ -4,7 +4,8 @@ author: bradygaster
 description: Differences between SignalR and ASP.NET Core SignalR
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
-ms.date: 11/14/2018
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/version-differences
 ---
 

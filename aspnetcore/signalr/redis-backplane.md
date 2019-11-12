@@ -5,7 +5,8 @@ description: Learn how to set up a Redis backplane to enable scale-out for an AS
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/28/2018
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/redis-backplane
 ---
 
