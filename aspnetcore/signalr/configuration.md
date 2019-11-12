@@ -41,6 +41,9 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
+> [!NOTE]
+> It's not possible to configure JSON serialization in the JavaScript client at this time.
+
 ### Switch to Newtonsoft.Json
 
 If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, See [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
@@ -76,10 +79,10 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-::: moniker-end
-
 > [!NOTE]
 > It's not possible to configure JSON serialization in the JavaScript client at this time.
+
+::: moniker-end
 
 ### MessagePack serialization options
 
