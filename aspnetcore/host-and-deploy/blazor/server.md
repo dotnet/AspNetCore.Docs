@@ -85,11 +85,16 @@ When using IIS, sticky sessions are enabled with Application Request Routing. Fo
 
 Create an ingress definition with the following [Kubernetes annotations for sticky sessions](https://kubernetes.github.io/ingress-nginx/examples/affinity/cookie/):
 
-```
-nginx.ingress.kubernetes.io/affinity: "cookie"
-nginx.ingress.kubernetes.io/session-cookie-name: "affinity"
-nginx.ingress.kubernetes.io/session-cookie-expires: "14400"
-nginx.ingress.kubernetes.io/session-cookie-max-age: "14400"
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: <ingress-name>
+  annotations:
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "affinity"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "14400"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "14400"
 ```
 
 ### Measure network latency
