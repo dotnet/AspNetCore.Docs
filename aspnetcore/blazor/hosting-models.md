@@ -153,7 +153,7 @@ The following table describes the CSS classes applied to the `components-reconne
 | CSS class                       | Indicates&hellip; |
 | ------------------------------- | ------------------------- |
 | `components-reconnect-show`     | A lost connection. The client is attempting to reconnect. Show the modal. |
-| `components-reconnect-hide`     | An active connection is re-established to the server. Hide the model. |
+| `components-reconnect-hide`     | An active connection is re-established to the server. Hide the modal. |
 | `components-reconnect-failed`   | Reconnection failed, probably due to a network failure. To attempt reconnection, call `window.Blazor.reconnect()`. |
 | `components-reconnect-rejected` | Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is lost. To reload the app, call `location.reload()`. This connection state may result when:<ul><li>A crash in the server-side circuit occurs.</li><li>The client is disconnected long enough for the server to drop the user's state. Instances of the components that the user is interacting with are disposed.</li></ul> |
 
