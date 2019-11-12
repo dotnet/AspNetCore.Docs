@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/10/2019
-no-loc: [Blazor]
+no-loc: [Blazor, SignalR]
 uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
