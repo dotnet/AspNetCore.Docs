@@ -5,7 +5,8 @@ description: Learn how the ASP.NET Core SignalR library simplifies adding real-t
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 04/25/2018
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/introduction
 ---
 # Introduction to ASP.NET Core SignalR

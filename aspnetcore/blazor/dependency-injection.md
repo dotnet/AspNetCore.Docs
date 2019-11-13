@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/15/2019
+no-loc: [Blazor]
 uid: blazor/dependency-injection
 ---
 # ASP.NET Core Blazor dependency injection

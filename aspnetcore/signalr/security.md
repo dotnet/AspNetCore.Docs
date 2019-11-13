@@ -5,7 +5,8 @@ description: Learn how to use authentication and authorization in ASP.NET Core S
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: mvc
-ms.date: 11/06/2018
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/security
 ---
 # Security considerations in ASP.NET Core SignalR
