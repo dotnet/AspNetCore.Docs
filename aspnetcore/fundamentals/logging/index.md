@@ -969,6 +969,18 @@ Use the dotnet trace tooling to collect a trace from an app:
                {Logger Category N}:{Event Level N}\"
    ```
 
+   When using a PowerShell command shell, enclose the `--providers` value in single quotes (`'`):
+
+   ```dotnetcli
+   dotnet trace collect -p {pid} 
+       --providers 'Microsoft-Extensions-Logging:{Keyword}:{Event Level}
+           :FilterSpecs=\"
+               {Logger Category 1}:{Event Level 1};
+               {Logger Category 2}:{Event Level 2};
+               ...
+               {Logger Category N}:{Event Level N}\"'
+   ```
+
    On non-Windows platforms, add the `-f speedscope` option to change the format of the output trace file to `speedscope`.
 
    | Keyword | Description |
@@ -989,7 +1001,7 @@ Use the dotnet trace tooling to collect a trace from an app:
 
    `FilterSpecs` entries for `{Logger Category}` and `{Event Level}` represent additional log filtering conditions. Separate `FilterSpecs` entries with a semicolon (`;`).
 
-   Example:
+   Example using a Windows command shell (**no** single quotes around the `--providers` value):
 
    ```dotnetcli
    dotnet trace collect -p {pid} --providers Microsoft-Extensions-Logging:4:2:FilterSpecs=\"Microsoft.AspNetCore.Hosting*:4\"
