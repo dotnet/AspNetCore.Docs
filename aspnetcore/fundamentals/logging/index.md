@@ -1016,7 +1016,7 @@ Use the dotnet trace tooling to collect a trace from an app:
 
    The trace is saved with the name *trace.nettrace* in the folder where the `dotnet trace` command is executed.
 
-1. Open the trace with [Perfview](#Perfview). Open the *trace.nettrace* file and explore the trace events.
+1. Open the trace with [Perfview](#perfview). Open the *trace.nettrace* file and explore the trace events.
 
 For more information, see:
 
