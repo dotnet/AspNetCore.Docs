@@ -245,13 +245,6 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 >   dotnet dev-certs https --trust
 >   ```
 
-## Next steps
-
-To learn more about SignalR, see the introduction:
-
-> [!div class="nextstepaction"]
-> [Introduction to ASP.NET Core SignalR](xref:signalr/introduction)
-
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -482,18 +475,4 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 ## Additional resources	
 * [Youtube version of this tutorial](https://www.youtube.com/watch?v=iKlVmu-r0JQ)	
 
-## Next steps	
-
-In this tutorial, you learned how to:	
-
-> [!div class="checklist"]	
-> * Create a web app project.	
-> * Add the SignalR client library.	
-> * Create a SignalR hub.	
-> * Configure the project to use SignalR.	
-> * Add code that uses the hub to send messages from any client to all connected clients.	
-To learn more about SignalR, see the introduction:	
-> [!div class="nextstepaction"]	
-> [Introduction to ASP.NET Core SignalR](xref:signalr/introduction)	
 ::: moniker-end
-
