@@ -129,17 +129,17 @@ In `Startup` add code similar to the following:
 
 ::: moniker range="= aspnetcore-3.1"
 
-[!code-csharp[](samesite\sample\Startup31.cs?name=snippet)]
+[!code-csharp[](samesite/sample/Startup31.cs?name=snippet)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.1"
 
-[!code-csharp[](samesite\sample\Startup.cs?name=snippet)]
+[!code-csharp[](samesite/sample/Startup.cs?name=snippet)]
 
 ::: moniker-end
 
 In the preceding sample, `MyUserAgentDetectionLib.DisallowsSameSiteNone` is a user supplied library that detects if the user agent doesn't support SameSite `None`:
 
-[!code-csharp[](samesite\sample\Startup31.cs?name=snippet2)]
+[!code-csharp[](samesite/sample/Startup31.cs?name=snippet2)]
 
