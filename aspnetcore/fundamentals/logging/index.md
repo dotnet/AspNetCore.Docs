@@ -960,7 +960,7 @@ Use the dotnet trace tooling to collect a trace from an app:
    General command syntax:
 
    ```dotnetcli
-   dotnet trace collect -p {pid} 
+   dotnet trace collect -p {PID} 
        --providers Microsoft-Extensions-Logging:{Keyword}:{Event Level}
            :FilterSpecs=\"
                {Logger Category 1}:{Event Level 1};
@@ -972,7 +972,7 @@ Use the dotnet trace tooling to collect a trace from an app:
    When using a PowerShell command shell, enclose the `--providers` value in single quotes (`'`):
 
    ```dotnetcli
-   dotnet trace collect -p {pid} 
+   dotnet trace collect -p {PID} 
        --providers 'Microsoft-Extensions-Logging:{Keyword}:{Event Level}
            :FilterSpecs=\"
                {Logger Category 1}:{Event Level 1};
@@ -1004,7 +1004,7 @@ Use the dotnet trace tooling to collect a trace from an app:
    Example using a Windows command shell (**no** single quotes around the `--providers` value):
 
    ```dotnetcli
-   dotnet trace collect -p {pid} --providers Microsoft-Extensions-Logging:4:2:FilterSpecs=\"Microsoft.AspNetCore.Hosting*:4\"
+   dotnet trace collect -p {PID} --providers Microsoft-Extensions-Logging:4:2:FilterSpecs=\"Microsoft.AspNetCore.Hosting*:4\"
    ```
 
    The preceding command activates:
