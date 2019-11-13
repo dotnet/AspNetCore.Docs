@@ -17,7 +17,7 @@ SignalR for ASP.NET Core supports any server platform that ASP.NET Core supports
 
 ## JavaScript client
 
-The [JavaScript client](https://www.npmjs.com/package/@aspnet/signalr) runs on NodeJS 8 and later versions and the following browsers:
+The [JavaScript client](https://www.npmjs.com/package/@microsoft/signalr) runs on NodeJS 8 and later versions and the following browsers:
 
 | Browser                         | Version         |
 | ------------------------------- | --------------- |

@@ -113,11 +113,11 @@ The ASP.NET Core SignalR client is written in [TypeScript](https://www.typescrip
 
 ### The JavaScript client is hosted at [npm](https://www.npmjs.com/)
 
-In previous versions, the JavaScript client was obtained through a NuGet package in Visual Studio. For the Core versions, the [@aspnet/signalr](https://www.npmjs.com/package/@aspnet/signalr) npm package contains the JavaScript libraries. This package isn't included in the **ASP.NET Core Web Application** template. Use npm to obtain and install the `@aspnet/signalr` npm package.
+In previous versions, the JavaScript client was obtained through a NuGet package in Visual Studio. For the Core versions, the [@microsoft/signalr](https://www.npmjs.com/package/@microsoft/signalr) npm package contains the JavaScript libraries. This package isn't included in the **ASP.NET Core Web Application** template. Use npm to obtain and install the `@microsoft/signalr` npm package.
 
 ```console
 npm init -y
-npm install @aspnet/signalr
+npm install @microsoft/signalr
 ```
 
 ### jQuery
@@ -138,7 +138,7 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 ```
 
-Use the [on](/javascript/api/@aspnet/signalr/HubConnection#on) method to specify client methods that the hub can call.
+Use the [on](/javascript/api/@microsoft/signalr/HubConnection#on) method to specify client methods that the hub can call.
 
 ```javascript
 connection.on("ReceiveMessage", (user, message) => {

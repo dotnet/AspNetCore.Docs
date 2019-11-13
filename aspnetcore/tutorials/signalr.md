@@ -325,7 +325,7 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
 
 * In the **Add Client-Side Library** dialog, for **Provider** select **unpkg**.	
 
-* For **Library**, enter `@aspnet/signalr@1`, and select the latest version that isn't preview.	
+* For **Library**, enter `@microsoft/signalr@1`, and select the latest version that isn't preview.	
 
   ![Add Client-Side Library dialog - select library](signalr/_static/2.x/libman1.png)	
 
@@ -348,7 +348,7 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
 * Run the following command to get the SignalR client library by using LibMan. You might have to wait a few seconds before seeing output.	
 
   ```console	
-  libman install @aspnet/signalr -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js	
+  libman install @microsoft/signalr -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js	
   ```	
 
   The parameters specify the following options:	
@@ -361,7 +361,7 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
   ```console	
   wwwroot/lib/signalr/dist/browser/signalr.js written to disk	
   wwwroot/lib/signalr/dist/browser/signalr.min.js written to disk	
-  Installed library "@aspnet/signalr@1.0.3" to "wwwroot/lib/signalr"	
+  Installed library "@microsoft/signalr@1.0.3" to "wwwroot/lib/signalr"	
   ```	
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)	
@@ -377,7 +377,7 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
 * Run the following command to get the SignalR client library by using LibMan.	
 
   ```console	
-  libman install @aspnet/signalr -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js	
+  libman install @microsoft/signalr -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js	
   ```	
 
   The parameters specify the following options:	
@@ -390,7 +390,7 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
   ```console	
   wwwroot/lib/signalr/dist/browser/signalr.js written to disk	
   wwwroot/lib/signalr/dist/browser/signalr.min.js written to disk	
-  Installed library "@aspnet/signalr@1.0.3" to "wwwroot/lib/signalr"	
+  Installed library "@microsoft/signalr@3.x.x" to "wwwroot/lib/signalr"	
   ```	
 
 ---	
