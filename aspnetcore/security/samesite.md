@@ -67,15 +67,15 @@ ALL ASP.NET Core components that emit cookies:
 * Override the preceding defaults with settings appropriate for their scenarios.
 * The overridden preceding default values have not changed.
 
-| Component | Default |
+| Component | cookie | Default |
 | ------------- | ------------- |
-| <xref:System.Web.HttpContext.Session>  | `Lax` |
-| <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider>   | `Lax` |
-| `Antiforgery` | `Strict` |
-| `CookieAuthentication` | `Lax` |
-| `TwitterAuthentication` state cookie | `Lax`  |
-| `RemoteAuthentication` correlation cookie (OAuth): | `None` |
-| [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)| `None` |
+| <xref:System.Web.HttpContext.Session>  | [SessionOptions.Cookie](xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie) |`Lax` |
+| <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider>  | [CookieTempDataProviderOptions.Cookie](xref:Microsoft.AspNetCore.Mvc.CookieTempDataProviderOptions.Cookie) | `Lax` |
+| <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> | [AntiforgeryOptions.Cookie](xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie)| `Strict` |
+| [CookieExtensions.AddCookie](xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*) | [CookieAuthenticationOptions.Cookie](xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookieName) | `Lax` |
+| <xref:Microsoft.Extensions.DependencyInjection.TwitterExtensions.AddTwitter*> | [TwitterOptions.StateCookie ](xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterOptions.StateCookie) | `Lax`  |
+| <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationHandler`1> | [RemoteAuthenticationOptions.CorrelationCookie](xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CorrelationCookie)  | `None` |
+| <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect*> | [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)| `None` |
 ::: moniker-end
 
 ## Test apps for SameSite problems
