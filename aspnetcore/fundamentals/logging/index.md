@@ -5,7 +5,7 @@ description: Learn how to use the logging framework provided by the Microsoft.Ex
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/05/2019
+ms.date: 11/13/2019
 uid: fundamentals/logging/index
 ---
 # Logging in .NET Core and ASP.NET Core
@@ -935,46 +935,74 @@ The Event Source provider is added automatically when `CreateDefaultBuilder` is 
 
 The [dotnet-trace](/dotnet/core/diagnostics/dotnet-trace) tool allows you to consume <xref:Microsoft.Extensions.Logging.EventSource> provider data using a <xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource>.
 
-General syntax:
+Install the dotnet trace tooling by running the following command in a command shell:
 
 ```dotnetcli
-dotnet trace collect -p {pid} 
-    --providers 'Microsoft-Extensions-Logging:{Keyword}:{Event Level}
-        :FilterSpecs=\"
-            {Logger Category 1}:{Event Level 1};
-            {Logger Category 2}:{Event Level 2};
-            ...
-            {Logger Category N}:{Event Level N}\"'
+dotnet tool install --global dotnet-trace
 ```
 
-| Keyword | Description |
-| :-----: | ----------- |
-| 1       | Log meta events about the `LoggingEventSource`. Doesn't log events from `ILogger`). |
-| 2       | Turns on the `Message` event when `ILogger.Log()` is called. Provides information in a programmatic (not formatted) way. |
-| 4       | Turns on the `FormatMessage` event when `ILogger.Log()` is called. Provides the formatted string version of the information. |
-| 8       | Turns on the `MessageJson` event when `ILogger.Log()` is called. Provides a JSON representation of the arguments. |
+Use the dotnet trace tooling to collect a trace from an app:
 
-| Event Level | Description     |
-| :---------: | --------------- |
-| 0           | `LogAlways`     |
-| 1           | `Critical`      |
-| 2           | `Error`         |
-| 3           | `Warning`       |
-| 4           | `Informational` |
-| 5           | `Verbose`       |
+1. Run the app with the `dotnet run` command (Development environment).
 
-`FilterSpecs` entries for `{Logger Category}` and `{Event Level}` represent additional log filtering conditions. Separate `FilterSpecs` entries with a semicolon (`;`).
+1. Determine the process identifier (PID) of the .NET Core app:
 
-Example:
+   * On Windows, use one of the following approaches:
+     * Task Manager (Ctrl+Alt+Del)
+     * [tasklist command](/windows-server/administration/windows-commands/tasklist)
+     * [Get-Process Powershell command](/powershell/module/microsoft.powershell.management/get-process)
+   * On Linux, use the [pidof command](https://refspecs.linuxfoundation.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/pidof.html).
 
-```dotnetcli
-dotnet trace collect -p {pid} --providers 'Microsoft-Extensions-Logging:4:2:FilterSpecs=\"Microsoft.AspNetCore.Hosting*:4\"'
-```
+   Find the PID for the process that has the same name as the app's assembly.
 
-The preceding command activates:
+1. Execute the `dotnet trace` command.
 
-* The Event Source logger to produce formatted strings (`4`) for errors (`2`).
-* `Microsoft.AspNetCore.Hosting` logging at the `Informational` logging level (`4`).
+   General command syntax:
+
+   ```dotnetcli
+   dotnet trace collect -p {pid} 
+       --providers 'Microsoft-Extensions-Logging:{Keyword}:{Event Level}
+           :FilterSpecs=\"
+               {Logger Category 1}:{Event Level 1};
+               {Logger Category 2}:{Event Level 2};
+               ...
+               {Logger Category N}:{Event Level N}\"'
+   ```
+
+   | Keyword | Description |
+   | :-----: | ----------- |
+   | 1       | Log meta events about the `LoggingEventSource`. Doesn't log events from `ILogger`). |
+   | 2       | Turns on the `Message` event when `ILogger.Log()` is called. Provides information in a programmatic (not formatted) way. |
+   | 4       | Turns on the `FormatMessage` event when `ILogger.Log()` is called. Provides the formatted string version of the information. |
+   | 8       | Turns on the `MessageJson` event when `ILogger.Log()` is called. Provides a JSON representation of the arguments. |
+
+   | Event Level | Description     |
+   | :---------: | --------------- |
+   | 0           | `LogAlways`     |
+   | 1           | `Critical`      |
+   | 2           | `Error`         |
+   | 3           | `Warning`       |
+   | 4           | `Informational` |
+   | 5           | `Verbose`       |
+
+   `FilterSpecs` entries for `{Logger Category}` and `{Event Level}` represent additional log filtering conditions. Separate `FilterSpecs` entries with a semicolon (`;`).
+
+   Example:
+
+   ```dotnetcli
+   dotnet trace collect -p {pid} --providers 'Microsoft-Extensions-Logging:4:2:FilterSpecs=\"Microsoft.AspNetCore.Hosting*:4\"'
+   ```
+
+   The preceding command activates:
+
+   * The Event Source logger to produce formatted strings (`4`) for errors (`2`).
+   * `Microsoft.AspNetCore.Hosting` logging at the `Informational` logging level (`4`).
+
+1. Stop the dotnet trace tooling by pressing the Enter key or Ctrl+C.
+
+   The trace is saved with the name *trace.nettrace* in the folder where the `dotnet trace` command is executed.
+
+1. Open the trace with [Perfview](#Perfview). Open the *trace.nettrace* file and explore the trace events.
 
 For more information, see:
 
