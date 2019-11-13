@@ -933,9 +933,9 @@ The Event Source provider is added automatically when `CreateDefaultBuilder` is 
 
 #### dotnet trace tooling
 
-The [dotnet-trace](/dotnet/core/diagnostics/dotnet-trace) tool allows you to consume <xref:Microsoft.Extensions.Logging.EventSource> provider data using a <xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource>.
+The [dotnet-trace](/dotnet/core/diagnostics/dotnet-trace) tool is a cross-platform CLI global tool that enables the collection of .NET Core traces of a running process. The tool collects <xref:Microsoft.Extensions.Logging.EventSource> provider data using a <xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource>.
 
-Install the dotnet trace tooling by running the following command in a command shell:
+Install the dotnet trace tooling with the following command:
 
 ```dotnetcli
 dotnet tool install --global dotnet-trace
@@ -943,7 +943,9 @@ dotnet tool install --global dotnet-trace
 
 Use the dotnet trace tooling to collect a trace from an app:
 
-1. Run the app with the `dotnet run` command (Development environment).
+1. If the app doesn't build the host with `CreateDefaultBuilder`, add the [Event Source provider](#event-source-provider) to the app's logging configuration.
+
+1. Run the app with the `dotnet run` command.
 
 1. Determine the process identifier (PID) of the .NET Core app:
 
