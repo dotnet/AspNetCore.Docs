@@ -4,8 +4,8 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/31/2019
-no-loc: [Blazor]
+ms.date: 11/12/2019
+no-loc: [Blazor, SignalR]
 uid: aspnetcore-3.0
 ---
 # What's new in ASP.NET Core 3.0

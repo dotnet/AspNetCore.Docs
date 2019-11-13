@@ -4,7 +4,8 @@ author: mjrousos
 description: Tips for increasing performance in ASP.NET Core apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 09/26/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: performance/performance-best-practices
 ---
 # ASP.NET Core Performance Best Practices

@@ -5,7 +5,8 @@ description: Discover approaches to preserve session and app state between reque
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/12/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: fundamentals/app-state
 ---
 # Session and app state in ASP.NET Core
