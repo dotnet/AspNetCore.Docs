@@ -21,7 +21,7 @@ Model state represents errors that come from two subsystems: model binding and m
 
 Both model binding and validation occur before the execution of a controller action or a Razor Pages handler method. For web apps, it's the app's responsibility to inspect `ModelState.IsValid` and react appropriately. Web apps typically redisplay the page with an error message:
 
-[!code-csharp[](validation/samples_snapshot/2.x/Create.cshtml.cs?name=snippet&highlight=3-6)]
+[!code-csharp[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml.cs?name=snippet_CreateMovie&highlight=3-6)]
 
 Web API controllers don't have to check `ModelState.IsValid` if they have the `[ApiController]` attribute. In that case, an automatic HTTP 400 response containing issue details is returned when model state is invalid. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
 
@@ -35,7 +35,7 @@ Validation is automatic, but you might want to repeat it manually. For example, 
 
 Validation attributes let you specify validation rules for model properties. The following example from [the sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. (Not shown is `[ClassicMovie2]`, which shows an alternative way to implement a custom attribute.)
 
-[!code-csharp[](validation/samples/2.x/ValidationSample/Models/Movie.cs?name=snippet_ModelClass)]
+[!code-csharp[](validation/samples/3.x/ValidationSample/Models/Movie.cs?name=snippet_Class)]
 
 ## Built-in attributes
 
@@ -227,33 +227,25 @@ Client-side validation prevents submission until the form is valid. The Submit b
 
 Client-side validation avoids an unnecessary round trip to the server when there are input errors on a form. The following script references in *_Layout.cshtml* and *_ValidationScriptsPartial.cshtml* support client-side validation:
 
-[!code-cshtml[](validation/samples/2.x/ValidationSample/Views/Shared/_Layout.cshtml?name=snippet_ScriptTag)]
+[!code-cshtml[](validation/samples/3.x/ValidationSample/Pages/Shared/_Layout.cshtml?name=snippet_Scripts)]
 
-[!code-cshtml[](validation/samples/2.x/ValidationSample/Views/Shared/_ValidationScriptsPartial.cshtml?name=snippet_ScriptTags)]
+[!code-cshtml[](validation/samples/3.x/ValidationSample/Pages/Shared/_ValidationScriptsPartial.cshtml?name=snippet_Scripts)]
 
 The [jQuery Unobtrusive Validation](https://github.com/aspnet/jquery-validation-unobtrusive) script is a custom Microsoft front-end library that builds on the popular [jQuery Validate](https://jqueryvalidation.org/) plugin. Without jQuery Unobtrusive Validation, you would have to code the same validation logic in two places: once in the server-side validation attributes on model properties, and then again in client-side scripts. Instead, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML helpers](xref:mvc/views/overview) use the validation attributes and type metadata from model properties to render HTML 5 `data-` attributes for the form elements that need validation. jQuery Unobtrusive Validation parses the `data-` attributes and passes the logic to jQuery Validate, effectively "copying" the server-side validation logic to the client. You can display validation errors on the client using tag helpers as shown here:
 
-[!code-cshtml[](validation/samples/2.x/ValidationSample/Views/Movies/Create.cshtml?name=snippet_ReleaseDate&highlight=4-5)]
+[!code-cshtml[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml?name=snippet_ReleaseDate&highlight=3-4)]
 
 The preceding tag helpers render the following HTML.
 
 ```html
-<form action="/Movies/Create" method="post">
-    <div class="form-horizontal">
-        <h4>Movie</h4>
-        <div class="text-danger"></div>
-        <div class="form-group">
-            <label class="col-md-2 control-label" for="ReleaseDate">ReleaseDate</label>
-            <div class="col-md-10">
-                <input class="form-control" type="datetime"
-                data-val="true" data-val-required="The ReleaseDate field is required."
-                id="ReleaseDate" name="ReleaseDate" value="">
-                <span class="text-danger field-validation-valid"
-                data-valmsg-for="ReleaseDate" data-valmsg-replace="true"></span>
-            </div>
-        </div>
-    </div>
-</form>
+<div class="form-group">
+    <label class="control-label" for="Movie_ReleaseDate">Release Date</label>
+    <input class="form-control" type="date" data-val="true"
+        data-val-required="The Release Date field is required."
+        id="Movie_ReleaseDate" name="Movie.ReleaseDate" value="">
+    <span class="text-danger field-validation-valid"
+        data-valmsg-for="Movie.ReleaseDate" data-valmsg-replace="true"></span>
+</div>
 ```
 
 Notice that the `data-` attributes in the HTML output correspond to the validation attributes for the `ReleaseDate` property. The `data-val-required` attribute contains an error message to display if the user doesn't fill in the release date field. jQuery Unobtrusive Validation passes this value to the jQuery Validate [`required()`](https://jqueryvalidation.org/required-method/) method, which then displays that message in the accompanying **\<span>** element.

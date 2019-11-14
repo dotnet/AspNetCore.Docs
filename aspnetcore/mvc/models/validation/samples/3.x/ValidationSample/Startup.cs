@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ValidationSample.Data;
 
 namespace ValidationSample
 {
@@ -9,6 +11,10 @@ namespace ValidationSample
     {
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<MovieContext>(options =>
+                options.UseInMemoryDatabase("Movies"));
+
             services.AddRazorPages();
         }
 
