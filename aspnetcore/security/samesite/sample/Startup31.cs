@@ -91,7 +91,8 @@ namespace WebSameSite
                 return true;
             }
 
-            // Cover Mac OS X based browsers that use the Mac OS networking stack. This includes:
+            // Cover Mac OS X based browsers that use the Mac OS networking stack. 
+            // This includes:
             // - Safari on Mac OS X.
             // This does not include:
             // - Chrome on Mac OS X

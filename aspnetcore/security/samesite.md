@@ -13,7 +13,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The [SameSite 2016 draft](https://tools.ietf.org/html/draft-west-first-party-cookies-07) states:
 
-  This document updates [RFC6265](https://tools.ietf.org/html/rfc6265) by defining a  a `SameSite` attribute which allows servers to assert that a cookie ought not to be sent
+  This document updates [RFC6265](https://tools.ietf.org/html/rfc6265) by defining a `SameSite` attribute which allows servers to assert that a cookie ought not to be sent
    along with cross-site requests. This assertion allows user agents to mitigate the risk of cross-origin information leakage, and provides some protection against cross-site request forgery attacks.
 
 Firefox and Chrome based browsers are making breaking changes to their implementations of [SameSite](https://tools.ietf.org/html/draft-west-first-party-cookies-07) for cookies. The SameSite changes impact remote authentication scenarios such as:
@@ -42,6 +42,8 @@ The new [SameSite 2019 draft](https://tools.ietf.org/html/draft-west-cookie-incr
 
 `Lax` is OK for most application cookies but breaks cross site scenarios like OIDC and Ws-Federation login. Most [OAuth](https://oauth.net/) logins are not affected due to differences in how the request flows. The new `None` parameter causes compatibility problems with clients that implemented the prior draft standard (for example, iOS 12). Chrome browsers (Chrome 80) are expected to go live in February 2020 confirming to the 2019 SameSite draft standard.
 
+Each ASP.NET Core component that emits cookies needs to decide if `SameSite` is appropriate.
+
 ::: moniker range="= aspnetcore-3.1"
 ASP.NET Core 3.1 provides the following SameSite support:
 
@@ -55,7 +57,7 @@ ASP.NET Core 3.1 provides the following SameSite support:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Each ASP.NET Core component that emits cookies needs to decide if `SameSite` is appropriate. ASP.NET Core 3.0 and later aligns SameSite defaults with the new draft standard. The following API's have changed the default from `SameSiteMode.Lax ` to `SameSiteMode.None`:
+ASP.NET Core 3.0 and later aligns SameSite defaults with the new draft standard. The following APIs have changed the default from `SameSiteMode.Lax ` to `SameSiteMode.None`:
 
 * <xref:Microsoft.AspNetCore.Http.CookieOptions> used with [HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*)
 * <xref:Microsoft.AspNetCore.Http.CookieBuilder>  used as a factory for `CookieOptions`
@@ -63,8 +65,7 @@ Each ASP.NET Core component that emits cookies needs to decide if `SameSite` is 
 
 ALL ASP.NET Core components that emit cookies:
 
-* Override the preceding defaults with settings appropriate for their scenarios.
-* The overridden preceding default values have not changed.
+* Override the preceding defaults with settings appropriate for their scenarios. The overridden preceding default values have not changed.
 
 | Component | cookie | Default |
 | ------------- | ------------- |
@@ -82,41 +83,39 @@ ALL ASP.NET Core components that emit cookies:
 Apps that interact with remote sites such as through 3rd party login need to:
 
 * Test the interaction on multiple browsers.
-* Apply the [CookiePolicy browser detection and mitigation]() discussed in this document. See testing and browser detection in this document.
-
-## Testing
+* Apply the [CookiePolicy browser detection and mitigation](#sob) discussed in this document.
 
 Test web apps using a client version that can opt-in to the new SameSite behavior. Chrome, Firefox, and Chromium Edge all have new opt-in feature flags that can be used for testing. After your app applies the SameSite patches, test it with older client versions, especially Safari. For more information, see [Supporting older browsers](#sob) in this document.
 
 ### Test with Chrome
 
-Chrome 78+ gives misleading results because it has a temporary mitigation in place. The Chrome 78+ temporary mitigation allows cookies less than two minutes old. Chrome 76 or 77 with the appropriate test flags enabled provides more accurate results. To test the new SameSite behavior toggle `chrome://flags/#same-site-by-default-cookies` to enabled. Older versions of Chrome (75 and below) are reported to fail with the new `None` setting. See [Supporting older browsers](#sob) in this document.
+Chrome 78+ gives misleading results because it has a temporary mitigation in place. The Chrome 78+ temporary mitigation allows cookies less than two minutes old. Chrome 76 or 77 with the appropriate test flags enabled provides more accurate results. To test the new SameSite behavior toggle `chrome://flags/#same-site-by-default-cookies` to **Enabled**. Older versions of Chrome (75 and below) are reported to fail with the new `None` setting. See [Supporting older browsers](#sob) in this document.
 
 Google does not make older chrome versions available. Follow the instructions at [Download Chromium](https://www.chromium.org/getting-involved/download-chromium) to test older versions of Chrome. Do **not** download Chrome from from links provided by searching for older versions of chrome.
 
-[Chromium 76 Win64](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Win_x64/664998/)
-[Chromium 74 Win64](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Win_x64/638880/)
+* [Chromium 76 Win64](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Win_x64/664998/)
+* [Chromium 74 Win64](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Win_x64/638880/)
 
 ### Test with Safari
 
-Safari 12 strictly implemented the prior draft and fails when the new `None` value is in a cookie. `None` is avoided via the browser detection code shown below. Test Safari 12, Safari 13, and WebKit based OS style logins using MSAL, ADAL or whatever library you are using. Note that the problem is dependent on the underlying OS version. OSX Mojave (10.14) and iOS 12 are known to have compatibility problems with the new SameSite behavior. Upgrading the OS to OSX Catalina (10.15) or iOS 13 fixes the problem. Safari does not currently have an opt-in flag for testing the new spec behavior.
+Safari 12 strictly implemented the prior draft and fails when the new `None` value is in a cookie. `None` is avoided via the browser detection code [Supporting older browsers](#sob) in this document. Test Safari 12, Safari 13, and WebKit based OS style logins using MSAL, ADAL or whatever library you are using. The problem is dependent on the underlying OS version. OSX Mojave (10.14) and iOS 12 are known to have compatibility problems with the new SameSite behavior. Upgrading the OS to OSX Catalina (10.15) or iOS 13 fixes the problem. Safari does not currently have an opt-in flag for testing the new spec behavior.
 
 ### Test with Firefox
 
 Firefox support for the new standard can be tested on version 68+ by opting in on the `about:config` page with the feature flag `network.cookie.sameSite.laxByDefault`. There haven't been reports of compatibility issues with older versions of Firefox.
 
-### Test with Edge
+### Test with Edge browser
 
-Edge supports the old SameSite standard. Edge version 44 doesn't have any compatibility problems with the new standard.
+Edge supports the old SameSite standard. Edge version 44 doesn't have any known compatibility problems with the new standard.
 
 ### Test with Edge (Chromium)
 
 SameSite flags are set on the `edge://flags/#same-site-by-default-cookies` page. No compatibility issues were discovered with Edge Chromium.
-<!--  No compatibility issues were observed when testing with Edge Chromium 78. Current version is 78 and soon that will change  -->
+<!--  No compatibility issues were observed when testing with Edge Chromium 78. Current version is 79 and soon that will change - So I dropped version #  -->
 
 ### Test with Electron
 
-Versions of electron will include older versions of Chromium. For example the version of Electron used by Teams is Chromium 66 which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in this document..
+Versions of Electron include older versions of Chromium. For example the version of Electron used by Teams is Chromium 66 which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in the following section.
 
 <a name="sob"></a>
 
