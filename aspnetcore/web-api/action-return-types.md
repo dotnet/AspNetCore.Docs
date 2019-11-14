@@ -44,7 +44,7 @@ When known conditions need to be accounted for in an action, multiple return pat
 
 ### Return IEnumerable\<T> or IAsyncEnumerable\<T>
 
-In ASP.NET Core 2.2 and earlier, returning <xref:System.Collections.Generic.IAsyncEnumerable%601> from an action results in synchronous collection iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation. To illustrate, imagine that Entity Framework (EF) Core is being used for the web API's data access needs. The following action's return type is synchronously enumerated during serialization:
+In ASP.NET Core 2.2 and earlier, returning <xref:System.Collections.Generic.IEnumerable%601> from an action results in synchronous collection iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation. To illustrate, imagine that Entity Framework (EF) Core is being used for the web API's data access needs. The following action's return type is synchronously enumerated during serialization:
 
 ```csharp
 public IEnumerable<Product> GetOnSaleProducts() =>
