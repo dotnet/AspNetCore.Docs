@@ -1744,7 +1744,7 @@ Localization is handled in the app:
 1. The Localization Middleware reads the cookie and assigns the culture.
 1. The Blazor Server session begins with the correct culture.
 
-## Provide UI to choose the culture
+### Provide UI to choose the culture
 
 To provide UI to allow a user to select a culture, a *redirect-based approach* is recommended. The process is similar to what happens in a web app when a user attempts to access a secure resource&mdash;the user is redirected to a sign-in page and then redirected back to the original resource. 
 
@@ -1818,6 +1818,32 @@ A limited set of ASP.NET Core's localization scenarios are currently supported:
 * `IHtmlLocalizer<>`, `IViewLocalizer<>`, and Data Annotations localization are ASP.NET Core MVC scenarios and **not supported** in Blazor apps.
 
 For more information, see <xref:fundamentals/localization>.
+
+### Configure the linker for internationalization (Blazor WebAssembly)
+
+By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. Removing these assemblies minimizes the app's size.
+
+To control which I18N assemblies are retained, set the `<MonoLinkerI18NAssemblies>` MSBuild property in the project file:
+
+```xml
+<PropertyGroup>
+  <MonoLinkerI18NAssemblies>{all|none|REGION1,REGION2,...}</MonoLinkerI18NAssemblies>
+</PropertyGroup>
+```
+
+| Region Value     | Mono region assembly    |
+| ---------------- | ----------------------- |
+| `all`            | All assemblies included |
+| `cjk`            | *I18N.CJK.dll*          |
+| `mideast`        | *I18N.MidEast.dll*      |
+| `none` (default) | None                    |
+| `other`          | *I18N.Other.dll*        |
+| `rare`           | *I18N.Rare.dll*         |
+| `west`           | *I18N.West.dll*         |
+
+Use a comma to separate multiple values (for example, `mideast,west`).
+
+For more information, see [I18N: Pnetlib Internationalization Framework Libary (mono/mono GitHub repository)](https://github.com/mono/mono/tree/master/mcs/class/I18N).
 
 ## Scalable Vector Graphics (SVG) images
 
