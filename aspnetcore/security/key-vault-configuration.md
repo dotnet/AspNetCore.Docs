@@ -241,8 +241,8 @@ config.AddAzureKeyVault(
 | ---------------- | ----------- |
 | `Client`         | <xref:Microsoft.Azure.KeyVault.KeyVaultClient> to use for retrieving values. |
 | `Manager`        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> instance used to control secret loading. |
-| `ReloadInterval` | `Timespan` to wait between attempts at polling the Azure KeyVault for changes. The default value is `null` (configuration isn't reloaded). |
-| `Vault`          | Vault URI. |
+| `ReloadInterval` | `Timespan` to wait between attempts at polling the key vault for changes. The default value is `null` (configuration isn't reloaded). |
+| `Vault`          | Key vault URI. |
 
 ::: moniker-end
 
