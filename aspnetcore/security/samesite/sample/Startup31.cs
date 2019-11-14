@@ -76,6 +76,7 @@ namespace WebSameSite
 
     public static class MyUserAgentDetectionLib
     {
+        #region snippetX
         public static bool DisallowsSameSiteNone(string userAgent)
         {
             // Cover all iOS based browsers here. This includes:
@@ -112,6 +113,7 @@ namespace WebSameSite
 
             return false;
         }
+        #endregion
     }
 }
 

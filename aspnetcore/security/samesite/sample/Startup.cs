@@ -22,7 +22,7 @@ namespace WebSameSite
         public IConfiguration Configuration { get; }
 
 
-
+        #region snippet5
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -49,6 +49,7 @@ namespace WebSameSite
                 endpoints.MapRazorPages();
             });
         }
+        #endregion
 
         #region snippet
         public void ConfigureServices(IServiceCollection services)

@@ -10,20 +10,19 @@ uid: security/samesite
 # React to SameSite changes in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
-<!-- >
-Work this in 
-Each ASP.NET Core component that emits cookies need to decide if `SameSite` is appropriate. 
-
-https://docs.microsoft.com/en-us/dotnet/api/system.identitymodel.services.wsfederationauthenticationmodule?view=netframework-4.8
-
--->
 
 The [SameSite 2016 draft](https://tools.ietf.org/html/draft-west-first-party-cookies-07) states:
 
   This document updates [RFC6265](https://tools.ietf.org/html/rfc6265) by defining a  a `SameSite` attribute which allows servers to assert that a cookie ought not to be sent
    along with cross-site requests. This assertion allows user agents to mitigate the risk of cross-origin information leakage, and provides some protection against cross-site request forgery attacks.
 
-Firefox and Chrome based browsers are making breaking changes to their implementations of [SameSite](https://tools.ietf.org/html/draft-west-first-party-cookies-07) for cookies. The SameSite changes impact remote authentication scenarios like [OpenID Connect](https://openid.net/connect/) and [WS-Federation](https://auth0.com/docs/protocols/ws-fed). With this change, OpenID Connect and WS-Federation must opt out by sending `SameSite=None`. However, setting `SameSite=None` doesn't work on iOS 12 and some older versions of other browsers. To support iOS 12 and older browsers, ASP.NET Core app's must detect these browsers and omit `SameSite`.
+Firefox and Chrome based browsers are making breaking changes to their implementations of [SameSite](https://tools.ietf.org/html/draft-west-first-party-cookies-07) for cookies. The SameSite changes impact remote authentication scenarios such as:
+
+* [OpenID Connect](https://openid.net/connect/) (OIDC)
+* [WS-Federation](https://auth0.com/docs/protocols/ws-fed)
+* Other cross domain POST requests which use cookies to correlate or otherwise authorize requests.
+
+With this change, OIDC and WS-Federation must opt out by sending `SameSite=None`. However, setting `SameSite=None` doesn't work on iOS 12 and some older versions of other browsers. To support iOS 12 and older browsers, ASP.NET Core app's must detect these browsers and omit `SameSite`.
 
 ## SameSite 2016 draft standard
 
@@ -38,10 +37,10 @@ The [SameSite 2016 draft](https://tools.ietf.org/html/draft-west-first-party-coo
 The new [SameSite 2019 draft](https://tools.ietf.org/html/draft-west-cookie-incrementalism-00):
 
 * Is not backwards compatible.
-* Cookies should be treated as `SameSite=Lax` by default.
+* Cookies are treated as `SameSite=Lax` by default.
 * Cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
 
-`Lax` is OK for most application cookies but breaks cross site scenarios like OpenIdConnect and Ws-Federation login. Most [OAuth](https://oauth.net/) logins are not affected due to differences in how the request flows. The new `None` parameter causes compatibility problems with clients that implemented the prior draft standard (for example, iOS 12). Chrome browsers (Chrome 80) are expected to go live in February 2020 with the 2019 SameSite draft standard.
+`Lax` is OK for most application cookies but breaks cross site scenarios like OIDC and Ws-Federation login. Most [OAuth](https://oauth.net/) logins are not affected due to differences in how the request flows. The new `None` parameter causes compatibility problems with clients that implemented the prior draft standard (for example, iOS 12). Chrome browsers (Chrome 80) are expected to go live in February 2020 confirming to the 2019 SameSite draft standard.
 
 ::: moniker range="= aspnetcore-3.1"
 ASP.NET Core 3.1 provides the following SameSite support:
@@ -56,7 +55,7 @@ ASP.NET Core 3.1 provides the following SameSite support:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Each ASP.NET Core component that emits cookies need to decide if `SameSite` is appropriate. ASP.NET Core 3.0 and later aligns SameSite defaults with the new draft standard. The following API's have changed the default from `SameSiteMode.Lax ` to `SameSiteMode.None`:
+Each ASP.NET Core component that emits cookies needs to decide if `SameSite` is appropriate. ASP.NET Core 3.0 and later aligns SameSite defaults with the new draft standard. The following API's have changed the default from `SameSiteMode.Lax ` to `SameSiteMode.None`:
 
 * <xref:Microsoft.AspNetCore.Http.CookieOptions> used with [HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*)
 * <xref:Microsoft.AspNetCore.Http.CookieBuilder>  used as a factory for `CookieOptions`
