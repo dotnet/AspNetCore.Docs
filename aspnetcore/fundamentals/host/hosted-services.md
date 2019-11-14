@@ -24,7 +24,13 @@ In ASP.NET Core, background tasks can be implemented as *hosted services*. A hos
 
 ## Worker Service template
 
-The ASP.NET Core Worker Service template provides a starting point for writing long running service apps. To use the template as a basis for a hosted services app:
+The ASP.NET Core Worker Service template provides a starting point for writing long running service apps. An app created from the Worker Service template specifies the Worker SDK in its project file:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+```
+
+To use the template as a basis for a hosted services app:
 
 [!INCLUDE[](~/includes/worker-template-instructions.md)]
 
