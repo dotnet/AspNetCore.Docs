@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/05/2019
+ms.date: 10/21/2019
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -185,6 +185,52 @@ To accept arbitrary attributes, define a component parameter using the `[Paramet
 ```
 
 The `CaptureUnmatchedValues` property on `[Parameter]` allows the parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with `CaptureUnmatchedValues`. The property type used with `CaptureUnmatchedValues` must be assignable from `Dictionary<string, object>` with string keys. `IEnumerable<KeyValuePair<string, object>>` or `IReadOnlyDictionary<string, object>` are also options in this scenario.
+
+The position of `@attributes` relative to the position of element attributes is important. When `@attributes` are splatted on the element, the attributes are processed from right to left (last to first). Consider the following example of a component that consumes a `Child` component:
+
+*ParentComponent.razor*:
+
+```cshtml
+<ChildComponent extra="10" />
+```
+
+*ChildComponent.razor*:
+
+```cshtml
+<div @attributes="AdditionalAttributes" extra="5" />
+
+[Parameter(CaptureUnmatchedValues = true)]
+public IDictionary<string, object> AdditionalAttributes { get; set; }
+```
+
+The `Child` component's `extra` attribute is set to the right of `@attributes`. The `Parent` component's rendered `<div>` contains `extra="5"` when passed through the additional attribute because the attributes are processed right to left (last to first):
+
+```html
+<div extra="5" />
+```
+
+In the following example, the order of `extra` and `@attributes` is reversed in the `Child` component's `<div>`:
+
+*ParentComponent.razor*:
+
+```cshtml
+<ChildComponent extra="10" />
+```
+
+*ChildComponent.razor*:
+
+```cshtml
+<div extra="5" @attributes="AdditionalAttributes" />
+
+[Parameter(CaptureUnmatchedValues = true)]
+public IDictionary<string, object> AdditionalAttributes { get; set; }
+```
+
+The rendered `<div>` in the `Parent` component contains `extra="10"` when passed through the additional attribute:
+
+```html
+<div extra="10" />
+```
 
 ## Data binding
 
@@ -954,6 +1000,9 @@ If a component implements <xref:System.IDisposable>, the [Dispose method](/dotne
 }
 ```
 
+> [!NOTE]
+> Calling `StateHasChanged` in `Dispose` isn't supported. `StateHasChanged` might be invoked as part of the renderer being torn down. Requesting UI updates at that point isn't supported.
+
 ## Routing
 
 Routing in Blazor is achieved by providing a route template to each accessible component in the app.
@@ -974,21 +1023,106 @@ Components can receive route parameters from the route template provided in the 
 
 Optional parameters aren't supported, so two `@page` directives are applied in the example above. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
 
-## Base class inheritance for a "code-behind" experience
+::: moniker range=">= aspnetcore-3.1"
 
-Component files mix HTML markup and C# processing code in the same file. The `@inherits` directive can be used to provide Blazor apps with a "code-behind" experience that separates component markup from processing code.
+## Partial class support
+
+Razor components are generated as partial classes. Razor components are authored using either of the following approaches:
+
+* C# code is defined in an [@code](xref:mvc/views/razor#code) block with HTML markup and Razor code in a single file. Blazor templates define their Razor components using this approach.
+* C# code is placed in a code-behind file defined as a partial class.
+
+The following example shows the default `Counter` component with an `@code` block in an app generated from a Blazor template. HTML markup, Razor code, and C# code are in the same file:
+
+*Counter.razor*:
+
+```cshtml
+@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    int currentCount = 0;
+
+    void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
+
+The `Counter` component can also be created using a code-behind file with a partial class:
+
+*Counter.razor*:
+
+```cshtml
+@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+```
+
+*Counter.razor.cs*:
+
+```csharp
+namespace BlazorApp.Pages
+{
+    public partial class Counter
+    {
+        int currentCount = 0;
+
+        void IncrementCount()
+        {
+            currentCount++;
+        }
+    }
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.1"
+
+## Specify a component base class
+
+The `@inherits` directive can be used to specify a base class for a component.
 
 The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) shows how a component can inherit a base class, `BlazorRocksBase`, to provide the component's properties and methods.
 
 *Pages/BlazorRocks.razor*:
 
-[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/BlazorRocks.razor?name=snippet_BlazorRocks)]
+```cshtml
+@page "/BlazorRocks"
+@inherits BlazorRocksBase
+
+<h1>@BlazorRocksText</h1>
+```
 
 *BlazorRocksBase.cs*:
 
-[!code-csharp[](common/samples/3.x/BlazorWebAssemblySample/Pages/BlazorRocksBase.cs)]
+```csharp
+using Microsoft.AspNetCore.Components;
+
+namespace BlazorSample
+{
+    public class BlazorRocksBase : ComponentBase
+    {
+        public string BlazorRocksText { get; set; } = 
+            "Blazor rocks the browser!";
+    }
+}
+```
 
 The base class should derive from `ComponentBase`.
+
+::: moniker-end
 
 ## Import components
 

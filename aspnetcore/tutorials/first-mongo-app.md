@@ -710,6 +710,10 @@ To satisfy the preceding requirements, make the following changes:
 
 ::: moniker-end
 
+## Add authentication support to a web API
+
+[!INCLUDE[](~/includes/IdentityServer4.md)]
+
 ## Next steps
 
 For more information on building ASP.NET Core web APIs, see the following resources:

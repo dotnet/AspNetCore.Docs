@@ -5,7 +5,7 @@ description: Discover how route and app model provider conventions help you cont
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/08/2019
+ms.date: 10/22/2019
 uid: razor-pages/razor-pages-conventions
 ---
 # Razor Pages route and app conventions in ASP.NET Core
@@ -30,28 +30,59 @@ There are reserved words that can't be used as route segments or parameter names
 
 Razor Pages conventions are added and configured using the <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.AddRazorPagesOptions*> extension method to <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*> on the service collection in the `Startup` class. The following convention examples are explained later in this topic:
 
+::: moniker range=">= aspnetcore-3.0"
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddRazorPages()
+        .AddRazorPagesOptions(options =>
+        {
+            options.Conventions.Add( ... );
+            options.Conventions.AddFolderRouteModelConvention(
+                "/OtherPages", model => { ... });
+            options.Conventions.AddPageRouteModelConvention(
+                "/About", model => { ... });
+            options.Conventions.AddPageRoute(
+                "/Contact", "TheContactPage/{text?}");
+            options.Conventions.AddFolderApplicationModelConvention(
+                "/OtherPages", model => { ... });
+            options.Conventions.AddPageApplicationModelConvention(
+                "/About", model => { ... });
+            options.Conventions.ConfigureFilter(model => { ... });
+            options.Conventions.ConfigureFilter( ... );
+        });
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddMvc()
         .AddRazorPagesOptions(options =>
-            {
-                options.Conventions.Add( ... );
-                options.Conventions.AddFolderRouteModelConvention(
-                    "/OtherPages", model => { ... });
-                options.Conventions.AddPageRouteModelConvention(
-                    "/About", model => { ... });
-                options.Conventions.AddPageRoute(
-                    "/Contact", "TheContactPage/{text?}");
-                options.Conventions.AddFolderApplicationModelConvention(
-                    "/OtherPages", model => { ... });
-                options.Conventions.AddPageApplicationModelConvention(
-                    "/About", model => { ... });
-                options.Conventions.ConfigureFilter(model => { ... });
-                options.Conventions.ConfigureFilter( ... );
-            });
+        {
+            options.Conventions.Add( ... );
+            options.Conventions.AddFolderRouteModelConvention(
+                "/OtherPages", model => { ... });
+            options.Conventions.AddPageRouteModelConvention(
+                "/About", model => { ... });
+            options.Conventions.AddPageRoute(
+                "/Contact", "TheContactPage/{text?}");
+            options.Conventions.AddFolderApplicationModelConvention(
+                "/OtherPages", model => { ... });
+            options.Conventions.AddPageApplicationModelConvention(
+                "/About", model => { ... });
+            options.Conventions.ConfigureFilter(model => { ... });
+            options.Conventions.ConfigureFilter( ... );
+        });
 }
 ```
+
+::: moniker-end
 
 ## Route order
 
@@ -257,16 +288,48 @@ The `PageRouteTransformerConvention` page route model convention applies a param
 
 The `PageRouteTransformerConvention` is registered as an option in `Startup.ConfigureServices`:
 
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddRazorPages()
+        .AddRazorPagesOptions(options =>
+        {
+            options.Conventions.Add(
+                new PageRouteTransformerConvention(
+                    new SlugifyParameterTransformer()));
+        });
+}
+
+public class SlugifyParameterTransformer : IOutboundParameterTransformer
+{
+    public string TransformOutbound(object value)
+    {
+        if (value == null) { return null; }
+
+        // Slugify value
+        return Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1-$2").ToLower();
+    }
+}
+```
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
+
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddMvc()
         .AddRazorPagesOptions(options =>
-            {
-                options.Conventions.Add(
-                    new PageRouteTransformerConvention(
-                        new SlugifyParameterTransformer()));
-            });
+        {
+            options.Conventions.Add(
+                new PageRouteTransformerConvention(
+                    new SlugifyParameterTransformer()));
+        });
 }
 
 public class SlugifyParameterTransformer : IOutboundParameterTransformer

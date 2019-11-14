@@ -249,8 +249,8 @@ Update the gRPC client *Program.cs* file with the following code:
 
 The Greeter client is created by:
 
-* Instantiating an `HttpClient` containing the information for creating the connection to the gRPC service.
-* Using the `HttpClient` to construct a gRPC channel and the Greeter client:
+* Instantiating a `GrpcChannel` containing the information for creating the connection to the gRPC service.
+* Using the `GrpcChannel` to construct the Greeter client:
 
 [!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeterClient/Program.cs?name=snippet&highlight=3-5)]
 

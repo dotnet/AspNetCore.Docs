@@ -2,9 +2,8 @@
 title: Reusable Razor UI in class libraries with ASP.NET Core
 author: Rick-Anderson
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
-monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 10/08/2019
+ms.date: 10/26/2019
 ms.custom: "mvc, seodec18"
 uid: razor-pages/ui-class
 ---
@@ -22,13 +21,12 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/cla
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio **File** menu, select **New** > **Project**.
-* Select **ASP.NET Core Web Application**.
-* Name the library (for example, "RazorClassLib") > **OK**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
-* Verify **ASP.NET Core 3.0** or later is selected.
-* Select **Razor Class Library** > **OK**.
+* From Visual Studio select **Create new a new project**.
+* Select **Razor Class Library** > **Next**.
+* Name the library (for example, "RazorClassLib"), > **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
+* Select **Support pages and views** if you need to support views. By default, only Razor Pages are supported. Select **Create**.
 
-The Razor class library (RCL) template defaults to Razor component development by default. A template option in Visual Studio provides template support for pages and views.
+The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
@@ -115,10 +113,10 @@ To include TypeScript files in an RCL:
 1. Include the TypeScript target as a dependency of the `ResolveCurrentProjectStaticWebAssets` target by adding the following target inside of a `PropertyGroup` in the project file:
 
    ```xml
-  <ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
-    CompileTypeScript;
-    $(ResolveCurrentProjectStaticWebAssetsInputs)
-  </ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
+   <ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
+     CompileTypeScript;
+     $(ResolveCurrentProjectStaticWebAssetsInputs)
+   </ResolveCurrentProjectStaticWebAssetsInputsDependsOn>
    ```
 
 ### Consume content from a referenced RCL

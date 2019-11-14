@@ -4,7 +4,8 @@ author: mjrousos
 description: Tips for increasing performance in ASP.NET Core apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 09/26/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: performance/performance-best-practices
 ---
 # ASP.NET Core Performance Best Practices
@@ -285,6 +286,8 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 * Doesn't reference anything from the controller.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetFirstController.cs?name=snippet2)]
+
+Background tasks should be implemented as hosted services. For more information, see [Background tasks with hosted services](xref:fundamentals/host/hosted-services).
 
 ## Do not capture services injected into the controllers on background threads
 

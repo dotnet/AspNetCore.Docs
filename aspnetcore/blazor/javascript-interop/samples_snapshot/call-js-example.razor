@@ -1,5 +1,5 @@
 @page "/call-js-example"
-@inject IJSRuntime JsRuntime;
+@inject IJSRuntime JSRuntime;
 
 <h1>Call JavaScript Function Example</h1>
 
@@ -32,7 +32,7 @@
     private async void ConvertArray()
     {
         var text =
-            await JsRuntime.InvokeAsync<string>("ConvertArray", QuoteArray);
+            await JSRuntime.InvokeAsync<string>("convertArray", QuoteArray);
 
         ConvertedText = new MarkupString(text);
 

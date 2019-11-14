@@ -4,7 +4,8 @@ author: bradygaster
 description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 10/03/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
@@ -244,13 +245,6 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 >   dotnet dev-certs https --trust
 >   ```
 
-## Next steps
-
-To learn more about SignalR, see the introduction:
-
-> [!div class="nextstepaction"]
-> [Introduction to ASP.NET Core SignalR](xref:signalr/introduction)
-
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -481,18 +475,4 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 ## Additional resources	
 * [Youtube version of this tutorial](https://www.youtube.com/watch?v=iKlVmu-r0JQ)	
 
-## Next steps	
-
-In this tutorial, you learned how to:	
-
-> [!div class="checklist"]	
-> * Create a web app project.	
-> * Add the SignalR client library.	
-> * Create a SignalR hub.	
-> * Configure the project to use SignalR.	
-> * Add code that uses the hub to send messages from any client to all connected clients.	
-To learn more about SignalR, see the introduction:	
-> [!div class="nextstepaction"]	
-> [Introduction to ASP.NET Core SignalR](xref:signalr/introduction)	
 ::: moniker-end
-

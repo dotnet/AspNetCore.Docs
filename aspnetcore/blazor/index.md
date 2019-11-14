@@ -5,7 +5,8 @@ description: Explore ASP.NET Core Blazor, a way to build interactive client-side
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: "mvc, seoapril2019"
-ms.date: 10/15/2019
+ms.date: 11/12/2019
+no-loc: [Blazor, SignalR]
 uid: blazor/index
 ---
 # Introduction to ASP.NET Core Blazor
@@ -146,3 +147,4 @@ APIs that aren't applicable inside of a web browser (for example, accessing the 
 * [C# Guide](/dotnet/csharp/)
 * <xref:mvc/views/razor>
 * [HTML](https://www.w3.org/html/)
+* [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor) community links
