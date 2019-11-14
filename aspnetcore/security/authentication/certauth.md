@@ -200,6 +200,9 @@ public static IHostBuilder CreateHostBuilder(string[] args)
 }
 ```
 
+> [!NOTE]
+> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> or <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> will not be updated with the new defaults.
+
 ### IIS
 
 Complete the following steps in IIS Manager:
