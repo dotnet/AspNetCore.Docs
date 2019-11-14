@@ -133,7 +133,7 @@ The `Certificate` sample app obtains its configuration values from `IConfigurati
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-The X.509 certificate is managed by the OS. The app calls `AddAzureKeyVault` with values supplied by the *appsettings.json* file:
+The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> with values supplied by the *appsettings.json* file:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -192,8 +192,8 @@ az keyvault set-policy --name '{KEY VAULT NAME}' --object-id {OBJECT ID} --secre
 The sample app:
 
 * Creates an instance of the `AzureServiceTokenProvider` class without a connection string. When a connection string isn't provided, the provider attempts to obtain an access token from Managed identities for Azure resources.
-* A new `KeyVaultClient` is created with the `AzureServiceTokenProvider` instance token callback.
-* The `KeyVaultClient` instance is used with a default implementation of `IKeyVaultSecretManager` that loads all secret values and replaces double-dashes (`--`) with colons (`:`) in key names.
+* A new <xref:Microsoft.Azure.KeyVault.KeyVaultClient> is created with the `AzureServiceTokenProvider` instance token callback.
+* The <xref:Microsoft.Azure.KeyVault.KeyVaultClient> instance is used with a default implementation of <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> that loads all secret values and replaces double-dashes (`--`) with colons (`:`) in key names.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -211,20 +211,43 @@ When you run the app, a webpage shows the loaded secret values. In the Developme
 
 If you receive an `Access denied` error, confirm that the app is registered with Azure AD and provided access to the key vault. Confirm that you've restarted the service in Azure.
 
+::: moniker range=">= aspnetcore-3.0"
+
+## Configuration options
+
+<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> can accept an <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions>:
+
+```csharp
+config.AddAzureKeyVault(
+    new AzureKeyVaultConfigurationOptions()
+    {
+        ...
+    });
+```
+
+| Property         | Description |
+| ---------------- | ----------- |
+| `Client`         | <xref:Microsoft.Azure.KeyVault.KeyVaultClient> to use for retrieving values. |
+| `Manager`        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> instance used to control secret loading. |
+| `ReloadInterval` | `Timespan` to wait between attempts at polling the Azure KeyVault for changes. The default value is `null` (configuration isn't reloaded). |
+| `Vault`          | Vault URI. |
+
+::: moniker-end
+
 ## Use a key name prefix
 
-`AddAzureKeyVault` provides an overload that accepts an implementation of `IKeyVaultSecretManager`, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This allows you, for example, to load secrets based on the version of the app.
+<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> provides an overload that accepts an implementation of <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This allows you, for example, to load secrets based on the version of the app.
 
 > [!WARNING]
 > Don't use prefixes on key vault secrets to place secrets for multiple apps into the same key vault or to place environmental secrets (for example, *development* versus *production* secrets) into the same vault. We recommend that different apps and development/production environments use separate key vaults to isolate app environments for the highest level of security.
 
 In the following example, a secret is established in the key vault (and using the Secret Manager tool for the Development environment) for `5000-AppSecret` (periods aren't allowed in key vault secret names). This secret represents an app secret for version 5.0.0.0 of the app. For another version of the app, 5.1.0.0, a secret is added to the key vault (and using the Secret Manager tool) for `5100-AppSecret`. Each app version loads its versioned secret value into its configuration as `AppSecret`, stripping off the version as it loads the secret.
 
-`AddAzureKeyVault` is called with a custom `IKeyVaultSecretManager`:
+<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> is called with a custom <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>:
 
 [!code-csharp[](key-vault-configuration/samples_snapshot/Program.cs)]
 
-The `IKeyVaultSecretManager` implementation reacts to the version prefixes of secrets to load the proper secret into configuration:
+The <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> implementation reacts to the version prefixes of secrets to load the proper secret into configuration:
 
 [!code-csharp[](key-vault-configuration/samples_snapshot/Startup.cs)]
 
@@ -269,7 +292,7 @@ When this approach is implemented:
 1. If the app's version is changed in the project file to `5.1.0.0` and the app is run again, the secret value returned is `5.1.0.0_secret_value_dev` in the Development environment and `5.1.0.0_secret_value_prod` in Production.
 
 > [!NOTE]
-> You can also provide your own `KeyVaultClient` implementation to `AddAzureKeyVault`. A custom client permits sharing a single instance of the client across the app.
+> You can also provide your own <xref:Microsoft.Azure.KeyVault.KeyVaultClient> implementation to <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*>. A custom client permits sharing a single instance of the client across the app.
 
 ## Bind an array to a class
 
@@ -323,7 +346,7 @@ Configuration.Reload();
 
 ## Disabled and expired secrets
 
-Disabled and expired secrets throw a `KeyVaultClientException`. To prevent your app from throwing, replace your app or update the disabled/expired secret.
+Disabled and expired secrets throw a <xref:Microsoft.Azure.KeyVault.Models.KeyVaultErrorException>. To prevent your app from throwing, replace your app or update the disabled/expired secret.
 
 ## Troubleshoot
 
