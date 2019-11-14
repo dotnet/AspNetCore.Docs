@@ -69,6 +69,7 @@ The [CustomRequestCultureProvider](/dotnet/api/microsoft.aspnetcore.localization
 
 - Insert the custom provider at the position 0 in the `RequestCultureProviders` list as the following:
 
+::: moniker range="< aspnetcore-3.0"
 ```csharp
 options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
     {
@@ -76,12 +77,26 @@ options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async
         return new ProviderCultureResult("en");
     }));
 ```
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+```csharp
+options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async context =>
+    {
+        // My custom request culture logic
+        return new ProviderCultureResult("en");
+    }));
+```
+::: moniker-end
 
 - Use `AddInitialRequestCultureProvider` extension method to set the custom provider as initial provider.
 
 ## Root Namespace issues
 
 When the root namespace of an assembly is different than the assembly name, localization doesn't work by default. To avoid this issue use [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1), which is described in detail [here](xref:fundamentals/localization?view=aspnetcore-2.2#resource-file-naming)
+
+> [!WARNING]
+> This can occur when a project's name is not a valid .NET identifier. For instance `my-project-name.csproj` will use the root namespace `my_project_name` and the assembly name `my-project-name` leading to this error. 
 
 ## Resources & Build Action
 

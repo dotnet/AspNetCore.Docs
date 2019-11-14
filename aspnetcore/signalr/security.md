@@ -5,7 +5,8 @@ description: Learn how to use authentication and authorization in ASP.NET Core S
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: mvc
-ms.date: 11/06/2018
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/security
 ---
 # Security considerations in ASP.NET Core SignalR
@@ -31,7 +32,41 @@ For more information on configuring CORS, see [Enable Cross-Origin Requests (COR
 
 For example, the following CORS policy allows a SignalR browser client hosted on `https://example.com` to access the SignalR app hosted on `https://signalr.example.com`:
 
+::: moniker range=">= aspnetcore-3.0"
+
+```csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    // ... other middleware ...
+
+    // Make sure the CORS middleware is ahead of SignalR.
+    app.UseCors(builder =>
+    {
+        builder.WithOrigins("https://example.com")
+            .AllowAnyHeader()
+            .WithMethods("GET", "POST")
+            .AllowCredentials();
+    });
+
+    // ... other middleware ...
+    app.UseRouting();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapHub<ChatHub>("/chatHub");
+    });
+
+    // ... other middleware ...
+}
+```
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
 [!code-csharp[Main](security/sample/Startup.cs?name=snippet1)]
+
+::: moniker-end
 
 > [!NOTE]
 > SignalR is not compatible with the built-in CORS feature in Azure App Service.

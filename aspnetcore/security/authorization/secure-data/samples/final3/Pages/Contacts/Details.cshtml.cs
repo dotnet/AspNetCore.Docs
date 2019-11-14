@@ -36,11 +36,11 @@ namespace ContactManager.Pages.Contacts
 
             var currentUserId = UserManager.GetUserId(User);
 
-            if (!isAuthorized 
-                &&  currentUserId != Contact.OwnerID
-                && Contact.Status != ContactStatus.Approved) 
+            if (!isAuthorized
+                && currentUserId != Contact.OwnerID
+                && Contact.Status != ContactStatus.Approved)
             {
-                return new ChallengeResult();
+                return Forbid();
             }
 
             return Page();
@@ -64,7 +64,7 @@ namespace ContactManager.Pages.Contacts
                                         contactOperation);
             if (!isAuthorized.Succeeded)
             {
-                return new ChallengeResult();
+                return Forbid();
             }
             contact.Status = status;
             Context.Contact.Update(contact);

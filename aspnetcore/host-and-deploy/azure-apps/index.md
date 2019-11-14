@@ -1,11 +1,11 @@
 ---
 title: Deploy ASP.NET Core apps to Azure App Service
-author: guardrex
+author: bradygaster
 description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: riande
+ms.author: bradyg
 ms.custom: mvc
-ms.date: 05/28/2019
+ms.date: 10/11/2019
 uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
@@ -22,6 +22,10 @@ Use Visual Studio to create and deploy an ASP.NET Core web app to Azure App Serv
 [Create an ASP.NET Core app in App Service on Linux](/azure/app-service/containers/quickstart-dotnetcore)  
 Use the command line to create and deploy an ASP.NET Core web app to Azure App Service on Linux.
 
+See the [ASP.NET Core on App Service Dashboard](https://aspnetcoreon.azurewebsites.net/) for the version of ASP.NET Core available on Azure App service.
+
+Subscribe to the [App Service Announcements](https://github.com/Azure/app-service-announcements/) repository and monitor the issues. The App Service team regularly posts announcements and scenarios arriving in App Service.
+
 The following articles are available in ASP.NET Core documentation:
 
 <xref:tutorials/publish-to-azure-webapp-using-vs>  
@@ -36,13 +40,16 @@ Set up a CI build for an ASP.NET Core app, then create a continuous deployment r
 [Azure Web App sandbox](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)  
 Discover Azure App Service runtime execution limitations enforced by the Azure Apps platform.
 
+<xref:test/troubleshoot>  
+Understand and troubleshoot warnings and errors with ASP.NET Core projects.
+
 ## Application configuration
 
 ### Platform
 
 ::: moniker range=">= aspnetcore-2.2"
 
-Runtimes for 64-bit (x64) and 32-bit (x86) apps are present on Azure App Service. The [.NET Core SDK](/dotnet/core/sdk) available on App Service is 32-bit, but you can deploy 64-bit apps using the [Kudu](https://github.com/projectkudu/kudu/wiki) console or via [MSDeploy with a Visual Studio publish profile or CLI command](xref:host-and-deploy/visual-studio-publish-profiles).
+Runtimes for 64-bit (x64) and 32-bit (x86) apps are present on Azure App Service. The [.NET Core SDK](/dotnet/core/sdk) available on App Service is 32-bit, but you can deploy 64-bit apps built locally using the [Kudu](https://github.com/projectkudu/kudu/wiki) console or the publish process in Visual Studio. For more information, see the [Publish and deploy the app](#publish-and-deploy-the-app) section.
 
 ::: moniker-end
 
@@ -51,6 +58,8 @@ Runtimes for 64-bit (x64) and 32-bit (x86) apps are present on Azure App Service
 For apps with native dependencies, runtimes for 32-bit (x86) apps are present on Azure App Service. The [.NET Core SDK](/dotnet/core/sdk) available on App Service is 32-bit.
 
 ::: moniker-end
+
+For more information on .NET Core framework components and distribution methods, such as information on the .NET Core runtime and the .NET Core SDK, see [About .NET Core: Composition](/dotnet/core/about#composition).
 
 ### Packages
 
@@ -74,7 +83,7 @@ When an app uses the [Generic Host](xref:fundamentals/host/generic-host), enviro
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.0 <= aspnetcore-2.2"
+::: moniker range="< aspnetcore-3.0"
 
 When an app builds the host using [WebHost.CreateDefaultBuilder](/dotnet/api/microsoft.aspnetcore.webhost.createdefaultbuilder), environment variables that configure the host use the `ASPNETCORE_` prefix. For more information, see <xref:fundamentals/host/web-host> and the [Environment Variables Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
 
@@ -109,7 +118,7 @@ Discover how to enable and access diagnostic logging for HTTP status codes, fail
 <xref:fundamentals/error-handling>  
 Understand common approaches to handling errors in ASP.NET Core apps.
 
-<xref:host-and-deploy/azure-apps/troubleshoot>  
+<xref:test/troubleshoot-azure-iis>  
 Learn how to diagnose issues with Azure App Service deployments with ASP.NET Core apps.
 
 <xref:host-and-deploy/azure-iis-errors-reference>  
@@ -127,14 +136,49 @@ When swapping between deployment slots, any system using data protection won't b
 * Redis cache
 
 For more information, see <xref:security/data-protection/implementation/key-storage-providers>.
+<a name="deploy-aspnet-core-preview-release-to-azure-app-service"></a>
 
-## Deploy ASP.NET Core preview release to Azure App Service
+## Deploy ASP.NET Core 3.0 to Azure App Service
 
-Use one of the following approaches:
+ASP.NET Core 3.0 is supported on Azure App Service. To deploy a preview release of a .NET Core version later than .NET Core 3.0, use one of the following techniques. These approaches are also used when the runtime is available but the SDK hasn't been installed on Azure App Service.
 
-* [Install the preview site extension](#install-the-preview-site-extension).
-* [Deploy the app self-contained](#deploy-the-app-self-contained).
+* [Specify the .NET Core SDK Version using Azure Pipelines](#specify-the-net-core-sdk-version-using-azure-pipelines)
+* [Deploy a self-contained preview app](#deploy-a-self-contained-preview-app).
 * [Use Docker with Web Apps for containers](#use-docker-with-web-apps-for-containers).
+* [Install the preview site extension](#install-the-preview-site-extension).
+
+### Specify the .NET Core SDK Version using Azure Pipelines
+
+Use [Azure App Service CI/CD scenarios](/azure/app-service/deploy-continuous-deployment) to set up a continuous integration build with Azure DevOps. After the Azure DevOps build is created, optionally configure the build to use a specific SDK version. 
+
+#### Specify the .NET Core SDK version
+
+When using the App Service deployment center to create an Azure DevOps build, the default build pipeline includes steps for `Restore`, `Build`, `Test`, and `Publish`. To specify the SDK version, select the **Add (+)** button in the Agent job list to add a new step. Search for **.NET Core SDK** in the search bar. 
+
+![Add the .NET Core SDK step](index/add-sdk-step.png)
+
+Move the step into the first position in the build so that the steps following it use the specified version of the .NET Core SDK. Specify the version of the .NET Core SDK. In this example, the SDK is set to `3.0.100`.
+
+![Completed SDK step](index/sdk-step-first-place.png)
+
+To publish a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd), configure SCD in the `Publish` step and provide the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+
+![Self-contained publish](index/self-contained.png)
+
+### Deploy a self-contained preview app
+
+A [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) that targets a preview runtime carries the preview runtime in the deployment.
+
+When deploying a self-contained app:
+
+* The site in Azure App Service doesn't require the [preview site extension](#install-the-preview-site-extension).
+* The app must be published following a different approach than when publishing for a [framework-dependent deployment (FDD)](/dotnet/core/deploying#framework-dependent-deployments-fdd).
+
+Follow the guidance in the [Deploy the app self-contained](#deploy-the-app-self-contained) section.
+
+### Use Docker with Web Apps for containers
+
+The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the latest preview Docker images. The images can be used as a base image. Use the image and deploy to Web Apps for Containers normally.
 
 ### Install the preview site extension
 
@@ -182,18 +226,53 @@ If an ARM template is used to create and deploy apps, the `siteextensions` resou
 
 [!code-json[](index/sample/arm.json?highlight=2)]
 
+## Publish and deploy the app
+
+### Deploy the app framework-dependent
+
+::: moniker range=">= aspnetcore-2.2"
+
+For a 64-bit [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd):
+
+* Use a 64-bit .NET Core SDK to build a 64-bit app.
+* Set the **Platform** to **64 Bit** in the App Service's **Configuration** > **General settings**. The app must use a Basic or higher service plan to enable the choice of platform bitness.
+
+::: moniker-end
+
+# [Visual Studio](#tab/visual-studio)
+
+1. Select **Build** > **Publish {Application Name}** from the Visual Studio toolbar or right-click the project in **Solution Explorer** and select **Publish**.
+1. In the **Pick a publish target** dialog, confirm that **App Service** is selected.
+1. Select **Advanced**. The **Publish** dialog opens.
+1. In the **Publish** dialog:
+   * Confirm that the **Release** configuration is selected.
+   * Open the **Deployment Mode** drop-down list and select **Framework-Dependent**.
+   * Select **Portable** as the **Target Runtime**.
+   * If you need to remove additional files upon deployment, open **File Publish Options** and select the check box to remove additional files at the destination.
+   * Select **Save**.
+1. Create a new site or update an existing site by following the remaining prompts of the publish wizard.
+
+# [.NET Core CLI](#tab/netcore-cli/)
+
+1. In the project file, don't specify a [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+
+1. From a command shell, publish the app in Release configuration with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command. In the following example, the app is published as a framework-dependent app:
+
+   ```console
+   dotnet publish --configuration Release
+   ```
+
+1. Move the contents of the *bin/Release/{TARGET FRAMEWORK}/publish* directory to the site in App Service. If dragging the *publish* folder contents from your local hard drive or network share directly to App Service in the [Kudu](https://github.com/projectkudu/kudu/wiki) console, drag the files to the `D:\home\site\wwwroot` folder in the Kudu console.
+
+---
+
 ### Deploy the app self-contained
 
-A [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) that targets a preview runtime carries the preview runtime in the deployment.
+Use Visual Studio or the command-line interface (CLI) tools for a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
 
-When deploying a self-contained app:
+# [Visual Studio](#tab/visual-studio)
 
-* The site in Azure App Service doesn't require the [preview site extension](#install-the-preview-site-extension).
-* The app must be published following a different approach than when publishing for a [framework-dependent deployment (FDD)](/dotnet/core/deploying#framework-dependent-deployments-fdd).
-
-#### Publish from Visual Studio
-
-1. Select **Build** > **Publish {Application Name}** from the Visual Studio toolbar.
+1. Select **Build** > **Publish {Application Name}** from the Visual Studio toolbar or right-click the project in **Solution Explorer** and select **Publish**.
 1. In the **Pick a publish target** dialog, confirm that **App Service** is selected.
 1. Select **Advanced**. The **Publish** dialog opens.
 1. In the **Publish** dialog:
@@ -204,13 +283,13 @@ When deploying a self-contained app:
    * Select **Save**.
 1. Create a new site or update an existing site by following the remaining prompts of the publish wizard.
 
-#### Publish using command-line interface (CLI) tools
+# [.NET Core CLI](#tab/netcore-cli/)
 
 1. In the project file, specify one or more [Runtime Identifiers (RIDs)](/dotnet/core/rid-catalog). Use `<RuntimeIdentifier>` (singular) for a single RID, or use `<RuntimeIdentifiers>` (plural) to provide a semicolon-delimited list of RIDs. In the following example, the `win-x86` RID is specified:
 
    ```xml
    <PropertyGroup>
-     <TargetFramework>netcoreapp2.1</TargetFramework>
+     <TargetFramework>{TARGET FRAMEWORK}</TargetFramework>
      <RuntimeIdentifier>win-x86</RuntimeIdentifier>
    </PropertyGroup>
    ```
@@ -218,14 +297,12 @@ When deploying a self-contained app:
 1. From a command shell, publish the app in Release configuration for the host's runtime with the [dotnet publish](/dotnet/core/tools/dotnet-publish) command. In the following example, the app is published for the `win-x86` RID. The RID supplied to the `--runtime` option must be provided in the `<RuntimeIdentifier>` (or `<RuntimeIdentifiers>`) property in the project file.
 
    ```console
-   dotnet publish --configuration Release --runtime win-x86
+   dotnet publish --configuration Release --runtime win-x86 --self-contained
    ```
 
-1. Move the contents of the *bin/Release/{TARGET FRAMEWORK}/{RUNTIME IDENTIFIER}/publish* directory to the site in App Service.
+1. Move the contents of the *bin/Release/{TARGET FRAMEWORK}/{RUNTIME IDENTIFIER}/publish* directory to the site in App Service. If dragging the *publish* folder contents from your local hard drive or network share directly to App Service in the Kudu console, drag the files to the `D:\home\site\wwwroot` folder in the Kudu console.
 
-### Use Docker with Web Apps for containers
-
-The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the latest preview Docker images. The images can be used as a base image. Use the image and deploy to Web Apps for Containers normally.
+---
 
 ## Protocol settings (HTTPS)
 

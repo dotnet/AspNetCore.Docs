@@ -50,16 +50,18 @@ namespace SignalRChat
                 app.UseHsts();
             }
 
+            app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseSignalR(route =>
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                route.MapHub<StreamHub>("/streamHub");
+                endpoints.MapHub<StreamHub>("/streamHub");
+                endpoints.MapRazorPages();
             });
-            app.UseCors("CorsPolicy");
-            app.UseMvc();
         }
     }
 }

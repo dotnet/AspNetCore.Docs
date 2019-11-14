@@ -42,11 +42,9 @@ namespace SampleApp
         }
         #endregion
 
-        #region snippet_Configure
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseHealthChecks("/health");
-        #endregion
 
             app.Map("/createdatabase", b => b.Run(async (context) =>
             {

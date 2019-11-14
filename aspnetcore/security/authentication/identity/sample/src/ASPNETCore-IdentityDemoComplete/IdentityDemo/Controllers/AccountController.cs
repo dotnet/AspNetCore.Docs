@@ -59,8 +59,9 @@ namespace IdentityDemo.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                // This does not count login failures towards account lockout
+                // To enable password failures to trigger account lockout,
+                // set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
@@ -83,7 +84,7 @@ namespace IdentityDemo.Controllers
                 }
             }
 
-            // If we got this far, something failed, redisplay form
+            // If execution got this far, something failed, redisplay the form.
             return View(model);
         }
 
@@ -91,7 +92,7 @@ namespace IdentityDemo.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
         {
-            // Ensure the user has gone through the username & password screen first
+            // Ensure that the user has gone through the username & password screen first
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
 
             if (user == null)
@@ -237,7 +238,7 @@ namespace IdentityDemo.Controllers
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
+            // If execution got this far, something failed, redisplay the form.
             return View(model);
         }
 
@@ -376,7 +377,7 @@ namespace IdentityDemo.Controllers
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
             }
 
-            // If we got this far, something failed, redisplay form
+            // If execution got this far, something failed, redisplay the form.
             return View(model);
         }
 

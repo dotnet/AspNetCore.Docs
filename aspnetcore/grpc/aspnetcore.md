@@ -4,7 +4,7 @@ author: juntaoluo
 description: Learn the basic concepts when writing gRPC services with ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
-ms.date: 03/08/2019
+ms.date: 09/03/2019
 uid: grpc/aspnetcore
 ---
 # gRPC services with ASP.NET Core
@@ -43,23 +43,54 @@ Run `dotnet new grpc -o GrpcGreeter` from the command line.
 
 ## Add gRPC services to an ASP.NET Core app
 
-gRPC requires the following packages:
-
-* [Grpc.AspNetCore.Server](https://www.nuget.org/packages/Grpc.AspNetCore.Server)
-* [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/) for protobuf message APIs.
-* [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)
+gRPC requires the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) package.
 
 ### Configure gRPC
 
-gRPC is enabled with the `AddGrpc` method:
+In *Startup.cs*:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Startup.cs?name=snippet&highlight=7)]
+* gRPC is enabled with the `AddGrpc` method.
+* Each gRPC service is added to the routing pipeline through the `MapGrpcService` method.
 
-Each gRPC service is added to the routing pipeline through the `MapGrpcService` method:
-
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Startup.cs?name=snippet&highlight=24)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Startup.cs?name=snippet&highlight=7,24)]
 
 ASP.NET Core middlewares and features share the routing pipeline, therefore an app can be configured to serve additional request handlers. The additional request handlers, such as MVC controllers, work in parallel with the configured gRPC services.
+
+### Configure Kestrel
+
+Kestrel gRPC endpoints:
+
+* Require HTTP/2.
+* Should be secured with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246).
+
+#### HTTP/2
+
+gRPC requires HTTP/2. gRPC for ASP.NET Core validates [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) is `HTTP/2`.
+
+Kestrel [supports HTTP/2](xref:fundamentals/servers/kestrel#http2-support) on most modern operating systems. Kestrel endpoints are configured to support HTTP/1.1 and HTTP/2 connections by default.
+
+#### TLS
+
+Kestrel endpoints used for gRPC should be secured with TLS. In development, an endpoint secured with TLS is automatically created at `https://localhost:5001` when the ASP.NET Core development certificate is present. No configuration is required. An `https` prefix verifies the Kestrel endpoint is using TLS.
+
+In production, TLS must be explicitly configured. In the following *appsettings.json* example, an HTTP/2 endpoint secured with TLS is provided:
+
+[!code-json[](~/grpc/aspnetcore/sample/appsettings.json?highlight=4)]
+
+Alternatively, Kestrel endpoints can be configured in *Program.cs*:
+
+[!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
+
+#### Protocol negotiation
+
+TLS is used for more than securing communication. The TLS [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) handshake is used to negotiate the connection protocol between the client and the server when an endpoint supports multiple protocols. This negotiation determines whether the connection uses HTTP/1.1 or HTTP/2.
+
+If an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. An endpoint with multiple protocols (for example, `HttpProtocols.Http1AndHttp2`) can't be used without TLS because there is no negotiation. All connections to the unsecured endpoint default to HTTP/1.1, and gRPC calls fail.
+
+For more information on enabling HTTP/2 and TLS with Kestrel, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+
+> [!NOTE]
+> macOS doesn't support ASP.NET Core gRPC with TLS. Additional configuration is required to successfully run gRPC services on macOS. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
 
 ## Integration with ASP.NET Core APIs
 
@@ -80,15 +111,17 @@ By default, the gRPC service implementation can resolve other DI services with a
 
 The gRPC API provides access to some HTTP/2 message data, such as the method, host, header, and trailers. Access is through the `ServerCallContext` argument passed to each gRPC method:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Services/GreeterService.cs?highlight=3-4&name=snippet)]
+[!code-csharp[](~/grpc/aspnetcore/sample/GrcpService/GreeterService.cs?highlight=3-4&name=snippet)]
 
 `ServerCallContext` does not provide full access to `HttpContext` in all ASP.NET APIs. The `GetHttpContext` extension method provides full access to the `HttpContext` representing the underlying HTTP/2 message in ASP.NET APIs:
 
-[!code-cs[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Services/GreeterService.cs?name=snippet)]
+[!code-csharp[](~/grpc/aspnetcore/sample/GrcpService/GreeterService2.cs?highlight=6-7&name=snippet)]
+
+[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## Additional resources
 
 * <xref:tutorials/grpc/grpc-start>
 * <xref:grpc/index>
 * <xref:grpc/basics>
-* <xref:grpc/migration>
+* <xref:fundamentals/servers/kestrel>

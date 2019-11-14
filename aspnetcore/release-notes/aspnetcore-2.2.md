@@ -1,10 +1,11 @@
 ---
 title: What's new in ASP.NET Core 2.2
-author: tdykstra
+author: rick-anderson
 description: Learn about the new features in ASP.NET Core 2.2.
-ms.author: tdykstra
+ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: aspnetcore-2.2
 ---
 # What's new in ASP.NET Core 2.2

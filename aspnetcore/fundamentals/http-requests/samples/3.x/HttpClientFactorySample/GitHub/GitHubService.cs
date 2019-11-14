@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace HttpClientFactorySample.GitHub
@@ -17,10 +18,10 @@ namespace HttpClientFactorySample.GitHub
         {
             client.BaseAddress = new Uri("https://api.github.com/");
             // GitHub API versioning
-            client.DefaultRequestHeaders.Add("Accept", 
+            client.DefaultRequestHeaders.Add("Accept",
                 "application/vnd.github.v3+json");
             // GitHub requires a user-agent
-            client.DefaultRequestHeaders.Add("User-Agent", 
+            client.DefaultRequestHeaders.Add("User-Agent",
                 "HttpClientFactory-Sample");
 
             Client = client;
@@ -33,10 +34,9 @@ namespace HttpClientFactorySample.GitHub
 
             response.EnsureSuccessStatusCode();
 
-            var result = await response.Content
-                .ReadAsAsync<IEnumerable<GitHubIssue>>();
-
-            return result;
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            return await JsonSerializer.DeserializeAsync
+                <IEnumerable<GitHubIssue>>(responseStream);
         }
     }
     #endregion

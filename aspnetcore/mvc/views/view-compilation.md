@@ -5,7 +5,7 @@ description: Learn how compilation of Razor files occurs in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/20/2019
+ms.date: 10/31/2019
 uid: mvc/views/view-compilation
 ---
 # Razor file compilation in ASP.NET Core
@@ -32,13 +32,14 @@ A Razor file is compiled at runtime, when the associated Razor Page or MVC view 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Razor files are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk). Runtime compilation may be optionally enabled by configuring your application.
+Razor files with a *.cshtml* extension are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk). Runtime compilation may be optionally enabled by configuring your application.
 
 ::: moniker-end
 
 ## Razor compilation
 
 ::: moniker range=">= aspnetcore-3.0"
+
 Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they are edited.
 
 ::: moniker-end
@@ -83,7 +84,7 @@ Set the `MvcRazorCompileOnPublish` property to `true`, and install the [Microsof
 
 Prepare the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd) with the [.NET Core CLI publish command](/dotnet/core/tools/dotnet-publish). For example, execute the following command at the project root:
 
-```console
+```dotnetcli
 dotnet publish -c Release
 ```
 

@@ -3,7 +3,7 @@ title: Migrate from ASP.NET to ASP.NET Core
 author: isaac2004
 description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.web
 ms.author: scaddie
-ms.date: 12/11/2018
+ms.date: 10/18/2019
 uid: migration/proper-to-2x/index
 ---
 # Migrate from ASP.NET to ASP.NET Core
@@ -148,6 +148,10 @@ For example, an image asset in the *wwwroot/images* folder is accessible to the 
 
 > [!NOTE]
 > For a more in-depth reference to serving static files in ASP.NET Core, see [Static files](xref:fundamentals/static-files).
+
+## Multi-value cookies
+
+[Multi-value cookies](xref:System.Web.HttpCookie.Values) aren't supported in ASP.NET Core. Create one cookie per value.
 
 ## Additional resources
 

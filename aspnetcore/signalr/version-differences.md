@@ -1,10 +1,11 @@
 ---
 title: Differences between SignalR and ASP.NET Core SignalR
 author: bradygaster
-description: Differences between SignalR and ASP.NET Core SignalR 
+description: Differences between SignalR and ASP.NET Core SignalR
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
-ms.date: 11/14/2018
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/version-differences
 ---
 
@@ -27,7 +28,7 @@ ASP.NET Core SignalR isn't compatible with clients or servers for ASP.NET Signal
 
 ### Automatic reconnects
 
-Automatic reconnects aren't supported in ASP.NET Core SignalR. If the client is disconnected, the user must explicitly start a new connection if they want to reconnect. In ASP.NET SignalR, SignalR attempts to reconnect to the server if the connection is dropped. 
+Automatic reconnects aren't supported in ASP.NET Core SignalR. If the client is disconnected, the user must explicitly start a new connection if they want to reconnect. In ASP.NET SignalR, SignalR attempts to reconnect to the server if the connection is dropped.
 
 ### Protocol support
 
@@ -47,6 +48,24 @@ ASP.NET Core SignalR is an ASP.NET Core middleware, so it must be configured by 
 services.AddSignalR()
 ```
 
+::: moniker range=">= aspnetcore-3.0"
+
+To configure routing, map routes to hubs inside the [UseEndpoints](/dotnet/api/microsoft.aspnetcore.builder.endpointroutingapplicationbuilderextensions.useendpoints) method call in the `Startup.Configure` method.
+
+
+```csharp
+app.UseRouting();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ChatHub>("/hub");
+});
+```
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+
 To configure routing, map routes to hubs inside the [UseSignalR](/dotnet/api/microsoft.aspnetcore.builder.signalrappbuilderextensions.usesignalr) method call in the `Startup.Configure` method.
 
 ```csharp
@@ -56,9 +75,11 @@ app.UseSignalR(routes =>
 });
 ```
 
+::: moniker-end
+
 ### Sticky sessions
 
-The scaleout model for ASP.NET SignalR allows clients to reconnect and send messages to any server in the farm. In ASP.NET Core SignalR, the client must interact with the same server for the duration of the connection. For scaleout using Redis, that means sticky sessions are required. For scaleout using [Azure SignalR Service](/azure/azure-signalr/), sticky sessions are not required because the service handles connections to clients. 
+The scaleout model for ASP.NET SignalR allows clients to reconnect and send messages to any server in the farm. In ASP.NET Core SignalR, the client must interact with the same server for the duration of the connection. For scaleout using Redis, that means sticky sessions are required. For scaleout using [Azure SignalR Service](/azure/azure-signalr/), sticky sessions are not required because the service handles connections to clients.
 
 ### Single hub per connection
 
@@ -74,7 +95,7 @@ The ability to pass arbitrary state between clients and the hub (often called Hu
 
 ### PersistentConnection removal
 
-In ASP.NET Core SignalR, the [PersistentConnection](https://docs.microsoft.com/previous-versions/aspnet/jj919047(v%3dvs.118)) class has been removed. 
+In ASP.NET Core SignalR, the [PersistentConnection](https://docs.microsoft.com/previous-versions/aspnet/jj919047(v%3dvs.118)) class has been removed.
 
 ### GlobalHost
 

@@ -1,0 +1,106 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Upload Files Sample";
+}
+
+<h1>Files in the database</h1>
+
+@if (Model.DatabaseFiles.Count == 0)
+{
+    <p>
+        No files are available. Visit one of the file upload scenario pages to upload one or more files.
+    </p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DatabaseFiles[0].UntrustedName) /
+                    @Html.DisplayNameFor(model => model.DatabaseFiles[0].Note)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DatabaseFiles[0].UploadDT)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DatabaseFiles[0].Size)
+                </th>
+                <th>
+                    <code>FileStreamResult</code> from database
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var file in Model.DatabaseFiles) {
+                <tr>
+                    <td>
+                        <a asp-page="./DeleteDbFile" asp-route-id="@file.Id">Delete</a>
+                    </td>
+                    <td>
+                        <b>@file.UntrustedName</b><br>
+                        @Html.DisplayFor(modelItem => file.Note)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => file.UploadDT)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => file.Size)
+                    </td>
+                    <td class="text-center">
+                        <a asp-page-handler="DownloadDb" asp-route-id="@file.Id">Download</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<h1>Files stored on disk</h1>
+
+@if (Model.PhysicalFiles.Count() == 0)
+{
+    <p>
+        No files are available. Visit one of the file upload scenario pages to upload one or more files.
+    </p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    Name / Path
+                </th>
+                <th>
+                    Size (bytes)
+                </th>
+                <th>
+                    <code>PhysicalFileResult</code> from storage
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var file in Model.PhysicalFiles) {
+                <tr>
+                    <td>
+                        <a asp-page="./DeletePhysicalFile" asp-route-fileName="@file.Name">Delete</a>
+                    </td>
+                    <td>
+                        <b>@file.Name</b><br>
+                        @file.PhysicalPath
+                    </td>
+                    <td class="text-center">
+                        @file.Length.ToString("N0")
+                    </td>
+                    <td class="text-center">
+                        <a asp-page-handler="DownloadPhysical" asp-route-fileName="@file.Name">Download</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/07/2019
+ms.date: 10/13/2019
 uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
@@ -64,8 +64,39 @@ The <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> method can
 
 [!code-csharp[](cors/sample/Cors/WebAPI/Startup2.cs?name=snippet2)]
 
-The following highlighted code applies CORS policies to all the apps endpoints via CORS Middleware:
+Note: The URL must **not** contain a trailing slash (`/`). If the URL terminates with `/`, the comparison returns `false` and no header is returned.
 
+::: moniker range=">= aspnetcore-3.0"
+
+<a name="acpall"></a>
+
+### Apply CORS policies to all endpoints
+
+The following code applies CORS policies to all the apps endpoints via CORS Middleware:
+```csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    // Preceding code ommitted.
+    app.UseRouting();
+
+    app.UseCors();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllers();
+    });
+
+    // Following code ommited.
+}
+```
+
+> [!WARNING]
+> With endpoint routing, the CORS middleware must be configured to execute between the calls to `UseRouting` and `UseEndpoints`. Incorrect configuration will cause the middleware to stop functioning correctly.
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.2"
+The following code applies CORS policies to all the apps endpoints via CORS Middleware:
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
@@ -84,17 +115,40 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     app.UseMvc();
 }
 ```
+Note: `UseCors` must be called before `UseMvc`.
+
+::: moniker-end
 
 See [Enable CORS in Razor Pages, controllers, and action methods](#ecors) to apply CORS policy at the page/controller/action level.
-
-Note:
-
-* `UseCors` must be called before `UseMvc`.
-* The URL must **not** contain a trailing slash (`/`). If the URL terminates with `/`, the comparison returns `false` and no header is returned.
 
 See [Test CORS](#test) for instructions on testing the preceding code.
 
 <a name="ecors"></a>
+
+::: moniker range=">= aspnetcore-3.0"
+
+## Enable Cors with endpoint routing
+
+With endpoint routing, CORS can be enabled on a per-endpoint basis using the `RequireCors` set of extension methods.
+
+```csharp
+app.UseEndpoints(endpoints =>
+{
+  endpoints.MapGet("/echo", async context => context.Response.WriteAsync("echo"))
+    .RequireCors("policy-name");
+});
+
+```
+
+Similarly, CORS can also be enabled for all controllers:
+
+```csharp
+app.UseEndpoints(endpoints =>
+{
+  endpoints.MapControllers().RequireCors("policy-name");
+});
+```
+::: moniker-end
 
 ## Enable CORS with attributes
 
@@ -155,22 +209,13 @@ This section describes the various options that can be set in a CORS policy:
 
 ::: moniker-end
 
-<!-- REVIEW required
-I changed from
-Specifying `AllowAnyOrigin` and `AllowCredentials` is an insecure configuration. **This** setting affects preflight requests and the ...
-to
-**`AllowAnyOrigin`** affects preflight requests and the
-
-to remove the ambiguous **This**.
--->
-
 `AllowAnyOrigin` affects preflight requests and the `Access-Control-Allow-Origin` header. For more information, see the [Preflight requests](#preflight-requests) section.
 
 ::: moniker range=">= aspnetcore-2.0"
 
 <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.SetIsOriginAllowedToAllowWildcardSubdomains*> &ndash; Sets the <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.IsOriginAllowed*> property of the policy to be a function that allows origins to match a configured wildcard domain when evaluating if the origin is allowed.
 
-[!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=100-104&highlight=4)]
+[!code-csharp[](cors/sample/CorsExample4/Startup.cs?range=100-105&highlight=4-5)]
 
 ::: moniker-end
 
@@ -384,7 +429,7 @@ This section describes what happens in a [CORS](https://developer.mozilla.org/en
 
 The [CORS specification](https://www.w3.org/TR/cors/) introduced several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests. Custom JavaScript code isn't required to enable CORS.
 
-The following is an example of a cross-origin request. The `Origin` header provides the domain of the site that's making the request:
+The following is an example of a cross-origin request. The `Origin` header provides the domain of the site that's making the request. The `Origin` header is required and must be different from the host.
 
 ```
 GET https://myservice.azurewebsites.net/api/test HTTP/1.1
@@ -445,6 +490,11 @@ To test CORS:
    * Using Chrome:
 
      **Access to XMLHttpRequest at `https://webapi.azurewebsites.net/api/values/1` from origin `https://localhost:44375` has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.**
+     
+CORS-enabled endpoints can be tested with a tool, such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/). When using a tool, the origin of the request specified by the `Origin` header must differ from the host receiving the request. If the request isn't *cross-origin* based on the value of the `Origin` header:
+
+* There's no need for CORS Middleware to process the request.
+* CORS headers aren't returned in the response.
 
 ## Additional resources
 

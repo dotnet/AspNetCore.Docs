@@ -5,25 +5,27 @@ description: Obtain troubleshooting advice for common errors when hosting ASP.NE
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/12/2019
+ms.date: 09/11/2019
 uid: host-and-deploy/azure-iis-errors-reference
 ---
 # Common errors reference for Azure App Service and IIS with ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex)
 
-This topic offers troubleshooting advice for common errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
+This topic describes common errors and provides troubleshooting advice for specific errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
+
+For general troubleshooting guidance, see <xref:test/troubleshoot-azure-iis>.
 
 Collect the following information:
 
 * Browser behavior (status code and error message)
 * Application Event Log entries
-  * Azure App Service &ndash; See <xref:host-and-deploy/azure-apps/troubleshoot>.
+  * Azure App Service &ndash; See <xref:test/troubleshoot-azure-iis>.
   * IIS
     1. Select **Start** on the **Windows** menu, type *Event Viewer*, and press **Enter**.
     1. After the **Event Viewer** opens, expand **Windows Logs** > **Application** in the sidebar.
 * ASP.NET Core Module stdout and debug log entries
-  * Azure App Service &ndash; See <xref:host-and-deploy/azure-apps/troubleshoot>.
+  * Azure App Service &ndash; See <xref:test/troubleshoot-azure-iis>.
   * IIS &ndash; Follow the instructions in the [Log creation and redirection](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) and [Enhanced diagnostic logs](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) sections of the ASP.NET Core Module topic.
 
 Compare error information to the following common errors. If a match is found, follow the troubleshooting advice.
@@ -31,18 +33,6 @@ Compare error information to the following common errors. If a match is found, f
 The list of errors in this topic isn't exhaustive. If you encounter an error not listed here, open a new issue using the **Content feedback** button at the bottom of this topic with detailed instructions on how to reproduce the error.
 
 [!INCLUDE[Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
-
-## Installer unable to obtain VC++ Redistributable
-
-* **Installer Exception:** 0x80072efd **--OR--** 0x80072f76 - Unspecified error
-
-* **Installer Log Exception&#8224;:** Error 0x80072efd **--OR--** 0x80072f76: Failed to execute EXE package
-
-  &#8224;The log is located at *C:\Users\{USER}\AppData\Local\Temp\dd_DotNetCoreWinSvrHosting__{TIMESTAMP}.log*.
-
-Troubleshooting:
-
-If the system doesn't have Internet access while [installing the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle), this exception occurs when the installer is prevented from obtaining the *Microsoft Visual C++ 2015 Redistributable*. Obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53840). If the installer fails, the server may not receive the .NET Core runtime required to host a [framework-dependent deployment (FDD)](/dotnet/core/deploying/#framework-dependent-deployments-fdd). If hosting an FDD, confirm that the runtime is installed in **Programs & Features** or **Apps & features**. If a specific runtime is required, download the runtime from the [.NET Download Archives](https://dotnet.microsoft.com/download/archives) and install it on the system. After installing the runtime, restart the system or restart IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
 
 ## OS upgrade removed the 32-bit ASP.NET Core Module
 
@@ -115,7 +105,7 @@ For an x86 framework-dependent deployment (`<PlatformTarget>x86</PlatformTarget>
 
 Troubleshooting:
 
-* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see [Troubleshoot (IIS)](xref:host-and-deploy/iis/troubleshoot) or [Troubleshoot (Azure App Service)](xref:host-and-deploy/azure-apps/troubleshoot).
+* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see <xref:test/troubleshoot-azure-iis>.
 
 * If this exception occurs for an Azure Apps deployment when upgrading an app and deploying newer assemblies, manually delete all files from the prior deployment. Lingering incompatible assemblies can result in a `System.BadImageFormatException` exception when deploying an upgraded app.
 
@@ -225,7 +215,7 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see [Troubleshoot (IIS)](xref:host-and-deploy/iis/troubleshoot) or [Troubleshoot (Azure App Service)](xref:host-and-deploy/azure-apps/troubleshoot).
+* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see <xref:test/troubleshoot-azure-iis>.
 
 * Check the *processPath* attribute on the `<aspNetCore>` element in *web.config* to confirm that it's `dotnet` for a framework-dependent deployment (FDD) or `.\{ASSEMBLY}.exe` for a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
 
@@ -242,8 +232,6 @@ Troubleshooting:
   For more information, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
 
   If a specific runtime is required, download the runtime from the [.NET Download Archives](https://dotnet.microsoft.com/download/archives) and install it on the system. Complete the installation by restarting the system or restarting IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
-
-* An FDD may have been deployed and the *Microsoft Visual C++ 2015 Redistributable (x64)* isn't installed on the system. Obtain an installer from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53840).
 
 ## Incorrect arguments of \<aspNetCore> element
 
@@ -271,7 +259,7 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see [Troubleshoot (IIS)](xref:host-and-deploy/iis/troubleshoot) or [Troubleshoot (Azure App Service)](xref:host-and-deploy/azure-apps/troubleshoot).
+* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see <xref:test/troubleshoot-azure-iis>.
 
 * Examine the *arguments* attribute on the `<aspNetCore>` element in *web.config* to confirm that it's either (a) `.\{ASSEMBLY}.dll` for a framework-dependent deployment (FDD); or (b) not present, an empty string (`arguments=""`), or a list of the app's arguments (`arguments="{ARGUMENT_1}, {ARGUMENT_2}, ... {ARGUMENT_X}"`) for a self-contained deployment (SCD).
 
@@ -401,6 +389,5 @@ The process failed to start, most likely due to an app configuration or programm
 
 For more information, see the following topics:
 
-* <xref:host-and-deploy/iis/troubleshoot>
-* <xref:host-and-deploy/azure-apps/troubleshoot>
+* <xref:test/troubleshoot-azure-iis>
 * <xref:test/troubleshoot>

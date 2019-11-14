@@ -212,7 +212,12 @@
         }, 
         {   
             "source_path": "aspnetcore/data/index.md", 
-            "redirect_url": "/aspnet/core/data/ef-rp", 
+            "redirect_url": "/aspnet/core/data/ef-rp/intro", 
+            "redirect_document_id": false 
+        }, 
+        {   
+            "source_path": "aspnetcore/data/ef-rp/index.md", 
+            "redirect_url": "/aspnet/core/data/ef-rp/intro", 
             "redirect_document_id": false 
         }, 
         {   
@@ -712,7 +717,7 @@
         },
         {
             "source_path": "aspnetcore/tutorials/razor-pages/uploading-files.md",
-            "redirect_url": "/aspnet/core/razor-pages/upload-files",
+            "redirect_url": "/aspnet/core/mvc/models/file-uploads",
             "redirect_document_id": false
         },
         {
@@ -732,7 +737,7 @@
         },
         {
             "source_path": "aspnetcore/security/authentication/identity-primary-key-configuration.md",
-            "redirect_url": "/aspnet/core/security/authentication/customize_identity_model#change-the-primary-key-type",
+            "redirect_url": "/aspnet/core/security/authentication/customize-identity-model#change-the-primary-key-type",
             "redirect_document_id": false
         },
         {
@@ -863,6 +868,46 @@
         {
             "source_path": "aspnetcore/tutorials/build-your-first-razor-components-app.md",
             "redirect_url": "/aspnet/core/tutorials/build-your-first-blazor-app",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/host-and-deploy/iis/troubleshoot.md",
+            "redirect_url": "/aspnet/core/test/troubleshoot-azure-iis",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/host-and-deploy/azure-apps/troubleshoot.md",
+            "redirect_url": "/aspnet/core/test/troubleshoot-azure-iis",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/web-api-jquery.md",
+            "redirect_url": "/aspnet/core/tutorials/web-api-javascript",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/index.md",
+            "redirect_url": "/aspnet/core/migration/proper-to-2x/index",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/server-side.md",
+            "redirect_url": "/aspnet/core/security/blazor/server",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/host-and-deploy/blazor/client-side.md",
+            "redirect_url": "/aspnet/core/host-and-deploy/blazor/webassembly",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/host-and-deploy/blazor/server-side.md",
+            "redirect_url": "/aspnet/core/host-and-deploy/blazor/server",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/razor-pages/upload-files.md",
+            "redirect_url": "/aspnet/core/mvc/models/file-uploads",
             "redirect_document_id": false
         }
     ]
