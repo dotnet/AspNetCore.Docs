@@ -15,7 +15,7 @@ By [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Blazor performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a Release build to remove unnecessary IL from the app's output assemblies.
+Blazor performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a build to remove unnecessary IL from the app's output assemblies.
 
 Control assembly linking using either of the following approaches:
 
@@ -24,7 +24,7 @@ Control assembly linking using either of the following approaches:
 
 ## Disable linking with a MSBuild property
 
-Linking is enabled by default in Release mode when an app is built, which includes publishing. To disable linking for all assemblies, set the `BlazorLinkOnBuild` MSBuild property to `false` in the project file:
+Linking is enabled by default when an app is built, which includes publishing. To disable linking for all assemblies, set the `BlazorLinkOnBuild` MSBuild property to `false` in the project file:
 
 ```xml
 <PropertyGroup>
