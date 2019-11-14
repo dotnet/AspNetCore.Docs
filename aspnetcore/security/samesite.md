@@ -25,7 +25,7 @@ The [SameSite 2016 draft](https://tools.ietf.org/html/draft-west-first-party-coo
 
 Firefox and Chrome based browsers are making breaking changes to their implementations of [SameSite](https://tools.ietf.org/html/draft-west-first-party-cookies-07) for cookies. The SameSite changes impact remote authentication scenarios like [OpenID Connect](https://openid.net/connect/) and [WS-Federation](https://auth0.com/docs/protocols/ws-fed). With this change, OpenID Connect and WS-Federation must opt out by sending `SameSite=None`. However, setting `SameSite=None` doesn't work on iOS 12 and some older versions of other browsers. To support iOS 12 and older browsers, ASP.NET Core app's must detect these browsers and omit `SameSite`.
 
-## SameSite draft standard
+## SameSite 2016 draft standard
 
 The [SameSite 2016 draft](https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-4.1) extension to HTTP cookies:
 
@@ -33,7 +33,7 @@ The [SameSite 2016 draft](https://tools.ietf.org/html/draft-west-first-party-coo
 * Was designed as a feature servers would opt into by adding the new "SameSite" attribute and attribute values to cookies.
 * Is supported in ASP.NET 2.0 and later.
 
-## New (2019) SameSite draft standard
+## New SameSite 2019 draft standard
 
 The new [SameSite 2019 draft](https://tools.ietf.org/html/draft-west-cookie-incrementalism-00):
 
@@ -125,7 +125,11 @@ Versions of electron will include older versions of Chromium. For example the ve
 
 The 2016 SameSite standard mandated that unknown values must be treated as `SameSite=Strict` values. Older browsers which support the 2016 SameSite standard may break when they see a SameSite property with a value of `None`. Web apps must implement browser detection if they intend to support older browsers. ASP.NET Core doesn't implement browser detection because User-Agents values are highly volatile and change frequently. An extension point in <xref:Microsoft.AspNetCore.CookiePolicy> allows plugging in User-Agent specific logic.
 
-In `Startup` add code similar to the following:
+In `Startup.Configure`, add code that calls <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*> before calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> or *any* method that writes cookies:
+
+[!code-csharp[](samesite/sample/Startup.cs?name=snippet5&highlight=18-19)]
+
+In `Startup.ConfigureServices`, add code similar to the following:
 
 ::: moniker range="= aspnetcore-3.1"
 
@@ -143,3 +147,20 @@ In the preceding sample, `MyUserAgentDetectionLib.DisallowsSameSiteNone` is a us
 
 [!code-csharp[](samesite/sample/Startup31.cs?name=snippet2)]
 
+The following code shows a sample `DisallowsSameSiteNone` method:
+
+> [!WARNING]
+> The following code is for demonstration only:
+> * It should not be considered complete.
+> * It is not maintained or supported.
+
+[!code-csharp[](samesite/sample/Startup31.cs?name=snippetX)]
+
+## APIs impacted by the new SameSite 2019 draft standard
+
+* [Http.SameSiteMode](xref:Microsoft.AspNetCore.Http.SameSiteMode)
+* [CookieOptions.SameSite](xref:Microsoft.AspNetCore.Http.CookieOptions.SameSite)
+* [CookieBuilder.SameSite](xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite)
+* [CookiePolicyOptions.MinimumSameSitePolicy](xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy)
+* <xref:Microsoft.Net.Http.Headers.SameSiteMode?displayProperty=fullName>
+* <xref:Microsoft.Net.Http.Headers.SetCookieHeaderValue.SameSite?displayProperty=fullName>
