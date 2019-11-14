@@ -163,7 +163,7 @@ A custom `IAuthorizationPolicyProvider` can optionally implement `GetFallbackPol
 If no fallback policy is required, the provider can return `null` or defer to the fallback provider:
 
 ```csharp
-public Task<AuthorizationPolicy> GetRequiredPolicyAsync() => 
+public Task<AuthorizationPolicy> GetFallbackPolicyAsync() => 
     Task.FromResult<AuthorizationPolicy>(null);
 ```
 
