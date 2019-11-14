@@ -4,7 +4,7 @@ author: mjrousos
 description: Learn how to use a custom IAuthorizationPolicyProvider in an ASP.NET Core app to dynamically generate authorization policies.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/30/2019
+ms.date: 11/14/2019
 uid: security/authorization/iauthorizationpolicyprovider
 ---
 # Custom Authorization Policy Providers using IAuthorizationPolicyProvider in ASP.NET Core 
@@ -158,7 +158,7 @@ As with all aspects of a custom `IAuthorizationPolicyProvider`, you can customiz
 
 ## Fallback policy
 
-A custom `IAuthorizationPolicyProvider` can optionally implement `GetFallbackPolicyAsync` to provide a policy that's used when [combining policies](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicy.combine?view=aspnetcore-3.0) and also by the Authorization Middleware when no policies are specified. If `GetFallbackPolicyAsync` returns a non-null policy, that policy is used by the Authorization Middleware when no policies are specified for the request.
+A custom `IAuthorizationPolicyProvider` can optionally implement `GetFallbackPolicyAsync` to provide a policy that's used when [combining policies](/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicy.combine) and when no policies are specified. If `GetFallbackPolicyAsync` returns a non-null policy, the returned policy is used by the Authorization Middleware when no policies are specified for the request.
 
 If no fallback policy is required, the provider can return `null` or defer to the fallback provider:
 
