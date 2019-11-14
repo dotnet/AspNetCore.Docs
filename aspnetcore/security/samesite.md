@@ -45,13 +45,13 @@ The new [SameSite 2019 draft](https://tools.ietf.org/html/draft-west-cookie-incr
 Each ASP.NET Core component that emits cookies needs to decide if `SameSite` is appropriate.
 
 ::: moniker range="= aspnetcore-3.1"
-ASP.NET Core 3.1 provides the following SameSite support:
+ASP.NET Core 3.1 and later provides the following SameSite support:
 
 * Redefines the behavior of `SameSiteMode.None` to emit `SameSite=None`
 * Adds a new value `SameSiteMode.Unspecified` to omit the `SameSite` attribute.
 * All cookies APIs default to `Unspecified`. Some components that use cookies set values more specific to their scenarios, for example
-  * The `OpenIdConnect` correlation.
-  * `nonce` cookies.
+  * The `OpenIdConnect` correlation cookie.
+  * [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)
 
 ::: moniker-end
 
