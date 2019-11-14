@@ -72,15 +72,15 @@ namespace SampleApp
                     {
                         var builtConfig = config.Build();
 
-                            var azureServiceTokenProvider = new AzureServiceTokenProvider();
-                            var keyVaultClient = new KeyVaultClient(
-                                new KeyVaultClient.AuthenticationCallback(
-                                    azureServiceTokenProvider.KeyVaultTokenCallback));
+                        var azureServiceTokenProvider = new AzureServiceTokenProvider();
+                        var keyVaultClient = new KeyVaultClient(
+                            new KeyVaultClient.AuthenticationCallback(
+                                azureServiceTokenProvider.KeyVaultTokenCallback));
 
-                            config.AddAzureKeyVault(
-                                $"https://{builtConfig["KeyVaultName"]}.vault.azure.net/",
-                                keyVaultClient,
-                                new DefaultKeyVaultSecretManager());
+                        config.AddAzureKeyVault(
+                            $"https://{builtConfig["KeyVaultName"]}.vault.azure.net/",
+                            keyVaultClient,
+                            new DefaultKeyVaultSecretManager());
                     }
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
