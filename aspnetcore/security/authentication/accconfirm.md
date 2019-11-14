@@ -35,7 +35,7 @@ See [this PDF file](https://webpifeed.blob.core.windows.net/webpifeed/Partners/a
 
 Run the following commands to create a web app with authentication.
 
-```console
+```dotnetcli
 dotnet new webapp -au Individual -uld -o WebPWrecover
 cd WebPWrecover
 dotnet run
@@ -60,7 +60,7 @@ Create a class to fetch the secure email key. For this sample, create *Services/
 
 Set the `SendGridUser` and `SendGridKey` with the [secret-manager tool](xref:security/app-secrets). For example:
 
-```console
+```dotnetcli
 dotnet user-secrets set SendGridUser RickAndMSFT
 dotnet user-secrets set SendGridKey <key>
 
@@ -90,7 +90,7 @@ Install the `SendGrid` NuGet package:
 
 From the Package Manager Console, enter the following command:
 
-``` PMC
+```powershell
 Install-Package SendGrid
 ```
 
@@ -98,7 +98,7 @@ Install-Package SendGrid
 
 From the console, enter the following command:
 
-```cli
+```dotnetcli
 dotnet add package SendGrid
 ```
 
@@ -220,7 +220,7 @@ Enabling account confirmation on a site with users locks out all the existing us
 
 Run the following commands to create a web app with authentication.
 
-```console
+```dotnetcli
 dotnet new webapp -au Individual -uld -o WebPWrecover
 cd WebPWrecover
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
@@ -296,7 +296,7 @@ Install the `SendGrid` NuGet package:
 
 From the Package Manager Console, enter the following command:
 
-``` PMC
+```powershell
 Install-Package SendGrid
 ```
 
@@ -304,7 +304,7 @@ Install-Package SendGrid
 
 From the console, enter the following command:
 
-```cli
+```dotnetcli
 dotnet add package SendGrid
 ```
 

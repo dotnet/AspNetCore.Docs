@@ -46,15 +46,15 @@ The Secret Manager tool requires a `<UserSecretsId>` property in the app's proje
 
 Secrets are created as name-value pairs. Hierarchical values (configuration sections) use a `:` (colon) as a separator in [ASP.NET Core configuration](xref:fundamentals/configuration/index) key names.
 
-The Secret Manager is used from a command shell opened to the project's content root, where `{SECRET NAME}` is the name and `{SECRET VALUE}` is the value:
+The Secret Manager is used from a command shell opened to the project's [content root](xref:fundamentals/index#content-root), where `{SECRET NAME}` is the name and `{SECRET VALUE}` is the value:
 
-```console
+```dotnetcli
 dotnet user-secrets set "{SECRET NAME}" "{SECRET VALUE}"
 ```
 
-Execute the following commands in a command shell from the project's content root to set the secrets for the sample app:
+Execute the following commands in a command shell from the project's [content root](xref:fundamentals/index#content-root) to set the secrets for the sample app:
 
-```console
+```dotnetcli
 dotnet user-secrets set "SecretName" "secret_value_1_dev"
 dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
 ```
@@ -77,13 +77,13 @@ The instructions provided by the [Quickstart: Set and retrieve a secret from Azu
 
 1. Create a resource group with the following command, where `{RESOURCE GROUP NAME}` is the resource group name for the new resource group and `{LOCATION}` is the Azure region (datacenter):
 
-   ```console
+   ```azure-cli
    az group create --name "{RESOURCE GROUP NAME}" --location {LOCATION}
    ```
 
 1. Create a key vault in the resource group with the following command, where `{KEY VAULT NAME}` is the name for the new key vault and `{LOCATION}` is the Azure region (datacenter):
 
-   ```console
+   ```azure-cli
    az keyvault create --name "{KEY VAULT NAME}" --resource-group "{RESOURCE GROUP NAME}" --location {LOCATION}
    ```
 
@@ -93,7 +93,7 @@ The instructions provided by the [Quickstart: Set and retrieve a secret from Azu
 
    The following secrets are for use with the sample app. The values include a `_prod` suffix to distinguish them from the `_dev` suffix values loaded in the Development environment from User Secrets. Replace `{KEY VAULT NAME}` with the name of the key vault that you created in the prior step:
 
-   ```console
+   ```azure-cli
    az keyvault secret set --vault-name "{KEY VAULT NAME}" --name "SecretName" --value "secret_value_1_prod"
    az keyvault secret set --vault-name "{KEY VAULT NAME}" --name "Section--SecretName" --value "secret_value_2_prod"
    ```
@@ -183,7 +183,7 @@ An app deployed to Azure App Service is automatically registered with Azure AD w
 
 Using Azure CLI and the app's Object ID, provide the app with `list` and `get` permissions to access the key vault:
 
-```console
+```azure-cli
 az keyvault set-policy --name '{KEY VAULT NAME}' --object-id {OBJECT ID} --secret-permissions get list
 ```
 
@@ -207,9 +207,21 @@ The sample app:
 
 ::: moniker-end
 
+Key vault name example value: `contosovault`
+    
+*appsettings.json*:
+
+```json
+{
+  "KeyVaultName": "Key Vault Name"
+}
+```
+
 When you run the app, a webpage shows the loaded secret values. In the Development environment, secret values have the `_dev` suffix because they're provided by User Secrets. In the Production environment, the values load with the `_prod` suffix because they're provided by Azure Key Vault.
 
 If you receive an `Access denied` error, confirm that the app is registered with Azure AD and provided access to the key vault. Confirm that you've restarted the service in Azure.
+
+For information on using the provider with a managed identity and an Azure DevOps pipeline, see [Create an Azure Resource Manager service connection to a VM with a managed service identity](/azure/devops/pipelines/library/connect-to-azure#create-an-azure-resource-manager-service-connection-to-a-vm-with-a-managed-service-identity).
 
 ## Use a key name prefix
 
@@ -250,14 +262,14 @@ When this approach is implemented:
 
    Save the following secrets locally with the [Secret Manager tool](xref:security/app-secrets):
 
-   ```console
+   ```dotnetcli
    dotnet user-secrets set "5000-AppSecret" "5.0.0.0_secret_value_dev"
    dotnet user-secrets set "5100-AppSecret" "5.1.0.0_secret_value_dev"
    ```
 
 1. Secrets are saved in Azure Key Vault using the following Azure CLI commands:
 
-   ```console
+   ```azure-cli
    az keyvault secret set --vault-name "{KEY VAULT NAME}" --name "5000-AppSecret" --value "5.0.0.0_secret_value_prod"
    az keyvault secret set --vault-name "{KEY VAULT NAME}" --name "5100-AppSecret" --value "5.1.0.0_secret_value_prod"
    ```
@@ -323,7 +335,7 @@ Configuration.Reload();
 
 ## Disabled and expired secrets
 
-Disabled and expired secrets throw a `KeyVaultClientException`. To prevent your app from throwing, replace your app or update the disabled/expired secret.
+Disabled and expired secrets throw a `KeyVaultClientException` at runtime. To prevent the app from throwing, provide the configuration using a different configuration provider or update the disabled or expired secret.
 
 ## Troubleshoot
 

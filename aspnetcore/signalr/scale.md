@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/28/2018
+no-loc: [SignalR]
 uid: signalr/scale
 ---
 
@@ -14,6 +15,18 @@ uid: signalr/scale
 By [Andrew Stanton-Nurse](https://twitter.com/anurse), [Brady Gaster](https://twitter.com/bradygaster), and [Tom Dykstra](https://github.com/tdykstra),
 
 This article explains hosting and scaling considerations for high-traffic apps that use ASP.NET Core SignalR.
+
+## Sticky Sessions
+
+SignalR requires that all HTTP requests for a specific connection be handled by the same server process. When SignalR is running on a server farm (multiple servers), "sticky sessions" must be used. "Sticky sessions" are also called session affinity by some load balancers. Azure App Service uses [Application Request Routing](https://docs.microsoft.com/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) (ARR) to route requests. Enabling the "ARR Affinity" setting in your Azure App Service will enable "sticky sessions". The only circumstances in which sticky sessions are not required are:
+
+1. When hosting on a single server, in a single process.
+1. When using the Azure SignalR Service.
+1. When all clients are configured to **only** use WebSockets, **and** the [SkipNegotiation setting](xref:signalr/configuration#configure-additional-options) is enabled in the client configuration.
+
+In all other circumstances (including when the Redis backplane is used), the server environment must be configured for sticky sessions.
+
+For guidance on configuring Azure App Service for SignalR, see <xref:signalr/publish-to-azure-web-app>.
 
 ## TCP connection resources
 

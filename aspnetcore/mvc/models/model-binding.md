@@ -1,9 +1,9 @@
 ---
 title: Model Binding in ASP.NET Core
-author: tdykstra
+author: rick-anderson
 description: Learn how model binding in ASP.NET Core works and how to customize its behavior.
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
-ms.author: tdykstra
+ms.author: riande
 ms.date: 05/31/2019
 uid: mvc/models/model-binding
 ---
@@ -389,7 +389,7 @@ To use the built-in XML input formatters:
   public ActionResult<Pet> Create(Pet pet)
   ```
 
-  For more information, see [Introducing XML Serialization](https://docs.microsoft.com/en-us/dotnet/standard/serialization/introducing-xml-serialization).
+  For more information, see [Introducing XML Serialization](/dotnet/standard/serialization/introducing-xml-serialization).
 
 ## Exclude specified types from model binding
 

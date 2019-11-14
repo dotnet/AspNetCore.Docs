@@ -1,10 +1,10 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using ConfigurationSample.Extensions;
-using System.Collections.Generic;
 
 namespace ConfigurationSample
 {
@@ -30,7 +30,6 @@ namespace ConfigurationSample
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    config.SetBasePath(Directory.GetCurrentDirectory());
                     config.AddInMemoryCollection(arrayDict);
                     config.AddJsonFile(
                         "json_array.json", optional: false, reloadOnChange: false);

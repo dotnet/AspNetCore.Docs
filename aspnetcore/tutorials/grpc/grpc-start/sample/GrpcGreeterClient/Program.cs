@@ -12,13 +12,9 @@ namespace GrpcGreeterClient
         #region snippet
         static async Task Main(string[] args)
         {
-            AppContext.SetSwitch(
-                "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport",
-                true);
-            var httpClient = new HttpClient();
-            // The port number(50051) must match the port of the gRPC server.
-            httpClient.BaseAddress = new Uri("http://localhost:50051");
-            var client = GrpcClient.Create<Greeter.GreeterClient>(httpClient);
+            // The port number(5001) must match the port of the gRPC server.
+            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            var client =  new Greeter.GreeterClient(channel);
             var reply = await client.SayHelloAsync(
                               new HelloRequest { Name = "GreeterClient" });
             Console.WriteLine("Greeting: " + reply.Message);

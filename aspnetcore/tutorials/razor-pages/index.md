@@ -3,7 +3,7 @@ title: "Tutorial: Create a Razor Pages web app with ASP.NET Core"
 author: rick-anderson
 description: Create a Razor Pages web app on Windows with Visual Studio, ASP.NET Core, and EF Core.
 ms.author: riande
-ms.date: 09/08/2017
+ms.date: 08/09/2019
 uid: tutorials/razor-pages/index
 ---
 # Tutorial: Create a Razor Pages web app with ASP.NET Core
@@ -26,7 +26,3 @@ This series includes the following tutorials:
 At the end, you'll have an app that can display and manage a database of movies.
 
 ![Sample page of sample app](index/_static/sample-page.png)
-
-## Additional resources
-
-* [Youtube version of this tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)

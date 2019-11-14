@@ -5,42 +5,46 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/01/2019
+ms.date: 11/07/2019
+no-loc: [Blazor]
 uid: blazor/get-started
 ---
 # Get started with ASP.NET Core Blazor
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 Get started with Blazor:
 
-1. Install the latest [.NET Core 3.0 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) release.
+::: moniker range=">= aspnetcore-3.1"
 
-1. Install the Blazor templates by running the following command in a command shell:
+1. Install the [.NET Core 3.1 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
-   ```console
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.0.0-preview6.19307.2
+1. Install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template by running the following command in a command shell. The [Microsoft.AspNetCore.Blazor.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.Templates/) package has a preview version while Blazor WebAssembly is in preview.
+
+   ```dotnetcli
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview2.19528.8
    ```
 
 1. Follow the guidance for your choice of tooling:
 
    # [Visual Studio](#tab/visual-studio)
 
-   1\. Install the latest [Visual Studio preview](https://visualstudio.com/vs/preview) with the **ASP.NET and web development** workload.
+   1\. Install [Visual Studio 16.4 Preview 2 or later](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
-   2\. Install the latest [Blazor extension](https://go.microsoft.com/fwlink/?linkid=870389) from the Visual Studio Marketplace. This step makes Blazor templates available to Visual Studio.
+   2\. Create a new project.
 
-   3\. Create a new project.
+   3\. Select **Blazor App**. Select **Next**.
 
-   4\. Select **ASP.NET Core Web Application**. Select **Next**.
+   4\. Provide a project name in the **Project name** field or accept the default project name. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
 
-   5\. Provide a project name in the **Project name** field or accept the default project name. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
+   5\. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
-   6\. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.0** are selected.
+   6\. Press **Ctrl**+**F5** to run the app.
 
-   7\. For a Blazor client-side experience, choose the **Blazor (client-side)** template. For a Blazor server-side experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
-
-   8\. Press **F5** to run the app.
+   > [!NOTE]
+   > If you installed the Blazor Visual Studio extension for a prior preview release of ASP.NET Core Blazor (Preview 6 or earlier), you can uninstall the extension. Installing the Blazor templates in a command shell is now sufficient to surface the templates in Visual Studio.
 
    # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -48,25 +52,25 @@ Get started with Blazor:
 
    2\. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
 
-   3\. For a Blazor client-side experience, execute the following command in a command shell:
+   3\. For a Blazor WebAssembly experience, execute the following command in a command shell:
 
-      ```console
-      dotnet new blazor -o WebApplication1
+      ```dotnetcli
+      dotnet new blazorwasm -o WebApplication1
       ```
 
-      For a Blazor server-side experience, execute the following command in a command shell:
+      For a Blazor Server experience, execute the following command in a command shell:
 
-      ```console
-      dotnet new blazorserverside -o WebApplication1
+      ```dotnetcli
+      dotnet new blazorserver -o WebApplication1
       ```
 
-      For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
+      For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
    4\. Open the *WebApplication1* folder in Visual Studio Code.
 
-   5\. For a Blazor server-side project, the IDE requests that you add assets to build and debug the project. Select **Yes**.
+   5\. For a Blazor Server project, the IDE requests that you add assets to build and debug the project. Select **Yes**.
 
-   6\. If using a Blazor server-side app, run the app using the Visual Studio Code debugger. If using a Blazor client-side app, execute `dotnet run` from the app's project folder.
+   6\. If using a Blazor Server app, run the app using the Visual Studio Code debugger. If using a Blazor WebAssembly app, execute `dotnet run` from the app's project folder.
 
    7\. In a browser, navigate to `https://localhost:5001`.
 
@@ -80,7 +84,7 @@ Get started with Blazor:
 
    3\. In the sidebar, select **.NET Core** > **App**.
 
-   4\. For a Blazor server-side experience, select the **ASP.NET Core Blazor Server App** template. For a Blazor client-side experience, select the **ASP.NET Core Blazor (client-side)** template. Select **Next**. For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
+   4\. For a Blazor Server experience, select the **Blazor Server App** template. For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
    5\. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
 
@@ -92,27 +96,134 @@ Get started with Blazor:
 
    # [.NET Core CLI](#tab/netcore-cli/)
 
-   For a Blazor client-side experience, execute the following commands in a command shell:
+   For a Blazor WebAssembly experience, execute the following commands in a command shell:
 
-   ```console
-   dotnet new blazor -o WebApplication1
+   ```dotnetcli
+   dotnet new blazorwasm -o WebApplication1
    cd WebApplication1
    dotnet run
    ```
 
-   For a Blazor server-side experience, execute the following commands in a command shell:
+   For a Blazor Server experience, execute the following commands in a command shell:
 
-   ```console
-   dotnet new blazorserverside -o WebApplication1
+   ```dotnetcli
+   dotnet new blazorserver -o WebApplication1
    cd WebApplication1
    dotnet run
    ```
 
-   For information on the two Blazor hosting models, server-side and client-side, see <xref:blazor/hosting-models>.
+   For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
    In a browser, navigate to `https://localhost:5001`.
 
    ---
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.1"
+
+1. Install the latest [.NET Core 3.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) release.
+
+1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template by installing the [.NET Core 3.1 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1) and then running the following command in a command shell:
+
+   ```dotnetcli
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview2.19528.8
+   ```
+
+1. Follow the guidance for your choice of tooling:
+
+   # [Visual Studio](#tab/visual-studio)
+
+   1\. Install the latest [Visual Studio](https://visualstudio.com/vs/) with the **ASP.NET and web development** workload.
+
+   2\. Optionally install [Visual Studio 16.4 Preview 2 or later](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload for Blazor WebAssembly app development.
+
+   3\. Create a new project.
+
+   4\. Select **Blazor App**. Select **Next**.
+
+   5\. Provide a project name in the **Project name** field or accept the default project name. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
+
+   6\. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
+
+   7\. Press **F5** to run the app.
+
+   > [!NOTE]
+   > If you installed the Blazor Visual Studio extension for a prior preview release of ASP.NET Core Blazor (Preview 6 or earlier), you can uninstall the extension. Installing the Blazor templates in a command shell is now sufficient to surface the templates in Visual Studio.
+
+   # [Visual Studio Code](#tab/visual-studio-code)
+
+   1\. Install [Visual Studio Code](https://code.visualstudio.com/).
+
+   2\. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
+
+   3\. For a Blazor WebAssembly experience, execute the following command in a command shell:
+
+      ```dotnetcli
+      dotnet new blazorwasm -o WebApplication1
+      ```
+
+      For a Blazor Server experience, execute the following command in a command shell:
+
+      ```dotnetcli
+      dotnet new blazorserver -o WebApplication1
+      ```
+
+      For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
+
+   4\. Open the *WebApplication1* folder in Visual Studio Code.
+
+   5\. For a Blazor Server project, the IDE requests that you add assets to build and debug the project. Select **Yes**.
+
+   6\. If using a Blazor Server app, run the app using the Visual Studio Code debugger. If using a Blazor WebAssembly app, execute `dotnet run` from the app's project folder.
+
+   7\. In a browser, navigate to `https://localhost:5001`.
+
+   <!--
+
+   # [Visual Studio for Mac](#tab/visual-studio-mac)
+
+   1\. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). Switch the [Update channel to Preview](/visualstudio/mac/install-preview).
+
+   2\. Select **File** > **New Solution** or **New Project**.
+
+   3\. In the sidebar, select **.NET Core** > **App**.
+
+   4\. For a Blazor Server experience, select the **Blazor Server App** template. For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
+
+   5\. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
+
+   6\. In the **Project Name** field, enter `WebApplication1`. Select **Create**.
+
+   7\. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Running with the debugger isn't supported at this time.
+
+   -->
+
+   # [.NET Core CLI](#tab/netcore-cli/)
+
+   For a Blazor WebAssembly experience, execute the following commands in a command shell:
+
+   ```dotnetcli
+   dotnet new blazorwasm -o WebApplication1
+   cd WebApplication1
+   dotnet run
+   ```
+
+   For a Blazor Server experience, execute the following commands in a command shell:
+
+   ```dotnetcli
+   dotnet new blazorserver -o WebApplication1
+   cd WebApplication1
+   dotnet run
+   ```
+
+   For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
+
+   In a browser, navigate to `https://localhost:5001`.
+
+   ---
+
+::: moniker-end
 
 Multiple pages are available from tabs in the sidebar:
 
@@ -120,7 +231,7 @@ Multiple pages are available from tabs in the sidebar:
 * Counter
 * Fetch data
 
-On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript, but Razor components provide a better approach using C#.
+On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript, but with Blazor you can use C#.
 
 *Pages/Counter.razor*:
 
@@ -147,7 +258,7 @@ Run the app. The homepage has its own counter provided by the `Counter` componen
 
 Component parameters are specified using attributes or [child content](xref:blazor/components#child-content), which allow you to set properties on the child component. To add a parameter to the `Counter` component, update the component's `@code` block:
 
-* Add a property for `IncrementAmount` with a `[Parameter]` attribute.
+* Add a public property for `IncrementAmount` with a `[Parameter]` attribute.
 * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
 
 *Pages/Counter.razor*:

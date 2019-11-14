@@ -4,7 +4,7 @@ author: coderandhiker
 description: Learn how to access HttpContext in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/27/2018
+ms.date: 10/11/2018
 uid: fundamentals/httpcontext
 ---
 # Access HttpContext in ASP.NET Core
@@ -131,7 +131,7 @@ public class UserRepository : IUserRepository
 `HttpContext` is not thread-safe. Reading or writing properties of the `HttpContext` outside of processing a request can result in a `NullReferenceException`.
 
 > [!NOTE]
-> Using `HttpContext` outside of processing a request often results in a `NullReferenceException`. If your app generates sporadic `NullReferenceException`s , review parts of the code that start background processing, or that continue processing after a request completes. Look for a mistakes like defining a controller method as `async void`.
+> Using `HttpContext` outside of processing a request often results in a `NullReferenceException`. If your app generates sporadic `NullReferenceException`s , review parts of the code that start background processing, or that continue processing after a request completes. Look for mistakes, such as defining a controller method as `async void`.
 
 To safely perform background work with `HttpContext` data:
 

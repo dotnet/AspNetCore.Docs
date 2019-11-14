@@ -3,7 +3,7 @@ title: Overview of ASP.NET Core MVC
 author: ardalis
 description: Learn how ASP.NET Core MVC is a rich framework for building web apps and APIs using the Model-View-Controller design pattern.
 ms.author: riande
-ms.date: 01/08/2018
+ms.date: 11/07/2019
 uid: mvc/overview
 ---
 # Overview of ASP.NET Core MVC
@@ -82,11 +82,11 @@ routes.MapRoute(name: "Default", template: "{controller=Home}/{action=Index}/{id
 [Route("api/[controller]")]
 public class ProductsController : Controller
 {
-  [HttpGet("{id}")]
-  public IActionResult GetProduct(int id)
-  {
-    ...
-  }
+    [HttpGet("{id}")]
+    public IActionResult GetProduct(int id)
+    {
+      ...
+    }
 }
 ```
 
@@ -96,7 +96,7 @@ ASP.NET Core MVC [model binding](models/model-binding.md) converts client reques
 
 ```csharp
 public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null) { ... }
-   ```
+```
 
 ### Model validation
 
@@ -143,6 +143,7 @@ Your app can also use [dependency injection in view files](views/dependency-inje
 
 ```cshtml
 @inject SomeService ServiceName
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -183,11 +184,11 @@ The framework's use of interfaces and dependency injection make it well-suited t
 
 [ASP.NET Core MVC views](views/overview.md) use the [Razor view engine](views/razor.md) to render views. Razor is a compact, expressive and fluid template markup language for defining views using embedded C# code. Razor is used to dynamically generate web content on the server. You can cleanly mix server code with client side content and code.
 
-```text
+```cshtml
 <ul>
-  @for (int i = 0; i < 5; i++) {
-    <li>List item @i</li>
-  }
+    @for (int i = 0; i < 5; i++) {
+        <li>List item @i</li>
+    }
 </ul>
 ```
 
@@ -247,3 +248,8 @@ Tag Helpers provide an HTML-friendly development experience and a rich IntelliSe
 The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
 
 For more information, see <xref:mvc/compatibility-version>.
+
+## Additional resources
+
+* [MyTested.AspNetCore.Mvc - Fluent Testing Library for ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc) &ndash; Strongly-typed unit testing library, providing a fluent interface for testing MVC and web API apps. (*Not maintained or supported by Microsoft.*)
+

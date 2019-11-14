@@ -9,8 +9,8 @@
     }
 </ul>
 
-<input placeholder="Something todo" @bind="@newTodo" />
-<button @onclick="@AddTodo">Add todo</button>
+<input placeholder="Something todo" @bind="newTodo" />
+<button @onclick="AddTodo">Add todo</button>
 
 @code {
     private IList<TodoItem> todos = new List<TodoItem>();

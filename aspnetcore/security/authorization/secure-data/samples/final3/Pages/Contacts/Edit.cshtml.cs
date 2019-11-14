@@ -39,7 +39,7 @@ namespace ContactManager.Pages.Contacts
                                                       ContactOperations.Update);
             if (!isAuthorized.Succeeded)
             {
-                return new ChallengeResult();
+                return Forbid();
             }
 
             return Page();
@@ -67,37 +67,32 @@ namespace ContactManager.Pages.Contacts
                                                      ContactOperations.Update);
             if (!isAuthorized.Succeeded)
             {
-                return new ChallengeResult();
+                return Forbid();
             }
 
             Contact.OwnerID = contact.OwnerID;
 
             Context.Attach(Contact).State = EntityState.Modified;
 
-            if (contact.Status == ContactStatus.Approved)
+            if (Contact.Status == ContactStatus.Approved)
             {
                 // If the contact is updated after approval, 
                 // and the user cannot approve,
                 // set the status back to submitted so the update can be
                 // checked and approved.
                 var canApprove = await AuthorizationService.AuthorizeAsync(User,
-                                        contact,
+                                        Contact,
                                         ContactOperations.Approve);
 
                 if (!canApprove.Succeeded)
                 {
-                    contact.Status = ContactStatus.Submitted;
+                    Contact.Status = ContactStatus.Submitted;
                 }
             }
 
             await Context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
-        }
-
-        private bool ContactExists(int id)
-        {
-            return Context.Contact.Any(e => e.ContactId == id);
         }
     }
     #endregion

@@ -11,6 +11,6 @@ The following table details the ASP.NET Core code generators` parameters:
 
 Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
 
-```console
+```dotnetcli
 dotnet aspnet-codegenerator razorpage -h
 ```

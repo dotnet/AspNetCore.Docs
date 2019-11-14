@@ -5,27 +5,30 @@ description: Learn how to call a web API from a Blazor app using JSON helpers, i
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/25/2019
+ms.date: 10/15/2019
+no-loc: [Blazor]
 uid: blazor/call-web-api
 ---
 # Call a web API from ASP.NET Core Blazor
 
-By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
+By [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), and [Juan De la Cruz](https://github.com/juandelacruz23)
 
-Blazor client-side apps call web APIs using a preconfigured `HttpClient` service. Compose requests, which can include JavaScript [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) options, using Blazor JSON helpers or with <xref:System.Net.Http.HttpRequestMessage>.
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Blazor server-side apps call web APIs using <xref:System.Net.Http.HttpClient> instances typically created using <xref:System.Net.Http.IHttpClientFactory>. For more information, see <xref:fundamentals/http-requests>.
+Blazor WebAssembly apps call web APIs using a preconfigured `HttpClient` service. Compose requests, which can include JavaScript [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) options, using Blazor JSON helpers or with <xref:System.Net.Http.HttpRequestMessage>.
+
+Blazor Server apps call web APIs using <xref:System.Net.Http.HttpClient> instances typically created using <xref:System.Net.Http.IHttpClientFactory>. For more information, see <xref:fundamentals/http-requests>.
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
-For Blazor client-side examples, see the following components in the sample app:
+For Blazor WebAssembly examples, see the following components in the sample app:
 
 * Call Web API (*Pages/CallWebAPI.razor*)
 * HTTP Request Tester (*Components/HTTPRequestTester.razor*)
 
 ## HttpClient and JSON helpers
 
-In Blazor client-side apps, [HttpClient](xref:fundamentals/http-requests) is available as a preconfigured service for making requests back to the origin server. `HttpClient` and JSON helpers are also used to call third-party web API endpoints. `HttpClient` is implemented using the browser [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same origin policy.
+In Blazor WebAssembly apps, [HttpClient](xref:fundamentals/http-requests) is available as a preconfigured service for making requests back to the origin server. To use `HttpClient` JSON helpers, add a package reference to `Microsoft.AspNetCore.Blazor.HttpClient`. `HttpClient` and JSON helpers are also used to call third-party web API endpoints. `HttpClient` is implemented using the browser [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same origin policy.
 
 The client's base address is set to the originating server's address. Inject an `HttpClient` instance using the `@inject` directive:
 
@@ -53,7 +56,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
 
 * `GetJsonAsync` &ndash; Sends an HTTP GET request and parses the JSON response body to create an object.
 
-  In the following code, the `_todoItems` are displayed by the component. The `GetTodoItems` method is triggered when the component is finished rendering ([OnInitAsync](xref:blazor/components#lifecycle-methods)). See the sample app for a complete example.
+  In the following code, the `_todoItems` are displayed by the component. The `GetTodoItems` method is triggered when the component is finished rendering ([OnInitializedAsync](xref:blazor/components#lifecycle-methods)). See the sample app for a complete example.
 
   ```cshtml
   @using System.Net.Http
@@ -62,8 +65,8 @@ JSON helper methods send requests to a URI (a web API in the following examples)
   @code {
       private TodoItem[] _todoItems;
 
-      protected override async Task OnInitAsync() => 
-          _todoItems = await Http.GetJsonAsync<TodoItem[]>("api/todo");
+      protected override async Task OnInitializedAsync() => 
+          _todoItems = await Http.GetJsonAsync<TodoItem[]>("api/TodoItems");
   }
   ```
 
@@ -84,7 +87,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
       private async Task AddItem()
       {
           var addItem = new TodoItem { Name = _newItemName, IsComplete = false };
-          await Http.PostJsonAsync("api/todo", addItem);
+          await Http.PostJsonAsync("api/TodoItems", addItem);
       }
   }
   ```
@@ -112,7 +115,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
       }
 
       private async Task SaveItem() =>
-          await Http.PutJsonAsync($"api/todo/{_editItem.Id}, _editItem);
+          await Http.PutJsonAsync($"api/TodoItems/{_editItem.Id}, _editItem);
   }
   ```
 
@@ -131,7 +134,7 @@ In the following code, the Delete `<button>` element calls the `DeleteItem` meth
     private long _id;
 
     private async Task DeleteItem() =>
-        await Http.DeleteAsync($"api/todo/{_id}");
+        await Http.DeleteAsync($"api/TodoItems/{_id}");
 }
 ```
 
@@ -145,7 +148,7 @@ To allow other sites to make cross-origin resource sharing (CORS) requests to yo
 
 ## HttpClient and HttpRequestMessage with Fetch API request options
 
-When running on WebAssembly in a Blazor client-side app, use [HttpClient](xref:fundamentals/http-requests) and <xref:System.Net.Http.HttpRequestMessage> to customize requests. For example, you can specify the request URI, HTTP method, and any desired request headers.
+When running on WebAssembly in a Blazor WebAssembly app, use [HttpClient](xref:fundamentals/http-requests) and <xref:System.Net.Http.HttpRequestMessage> to customize requests. For example, you can specify the request URI, HTTP method, and any desired request headers.
 
 Supply request options to the underlying JavaScript [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) using the `WebAssemblyHttpMessageHandler.FetchArgs` property on the request. As shown in the following example, the `credentials` property is set to any of the following values:
 
@@ -167,7 +170,7 @@ Supply request options to the underlying JavaScript [Fetch API](https://develope
         var requestMessage = new HttpRequestMessage()
         {
             Method = new HttpMethod("POST"),
-            RequestUri = new Uri("https://localhost:10000/api/todo"),
+            RequestUri = new Uri("https://localhost:10000/api/TodoItems"),
             Content = 
                 new StringContent(
                     @"{""name"":""A New Todo Item"",""isComplete"":false}")
@@ -216,4 +219,6 @@ For more information, see <xref:security/cors> and the sample app's HTTP Request
 ## Additional resources
 
 * <xref:fundamentals/http-requests>
+* <xref:security/enforcing-ssl>
+* [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration)
 * [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)

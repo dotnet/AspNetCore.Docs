@@ -5,12 +5,72 @@ description: Learn how to use strongly-typed middleware with a factory-based act
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/31/2019
+ms.date: 09/22/2019
 uid: fundamentals/middleware/extensibility
 ---
 # Factory-based middleware activation in ASP.NET Core
 
 By [Luke Latham](https://github.com/guardrex)
+
+::: moniker range=">= aspnetcore-3.0"
+
+<xref:Microsoft.AspNetCore.Http.IMiddlewareFactory>/<xref:Microsoft.AspNetCore.Http.IMiddleware> is an extensibility point for [middleware](xref:fundamentals/middleware/index) activation.
+
+<xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> extension methods check if a middleware's registered type implements <xref:Microsoft.AspNetCore.Http.IMiddleware>. If it does, the <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> instance registered in the container is used to resolve the <xref:Microsoft.AspNetCore.Http.IMiddleware> implementation instead of using the convention-based middleware activation logic. The middleware is registered as a [scoped or transient service](xref:fundamentals/dependency-injection#service-lifetimes) in the app's service container.
+
+Benefits:
+
+* Activation per client request (injection of scoped services)
+* Strong typing of middleware
+
+<xref:Microsoft.AspNetCore.Http.IMiddleware> is activated per client request (connection), so scoped services can be injected into the middleware's constructor.
+
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/middleware/extensibility/samples) ([how to download](xref:index#how-to-download-a-sample))
+
+## IMiddleware
+
+<xref:Microsoft.AspNetCore.Http.IMiddleware> defines middleware for the app's request pipeline. The [InvokeAsync(HttpContext, RequestDelegate)](xref:Microsoft.AspNetCore.Http.IMiddleware.InvokeAsync*) method handles requests and returns a <xref:System.Threading.Tasks.Task> that represents the execution of the middleware.
+
+Middleware activated by convention:
+
+[!code-csharp[](extensibility/samples/3.x/MiddlewareExtensibilitySample/Middleware/ConventionalMiddleware.cs?name=snippet1)]
+
+Middleware activated by <xref:Microsoft.AspNetCore.Http.MiddlewareFactory>:
+
+[!code-csharp[](extensibility/samples/3.x/MiddlewareExtensibilitySample/Middleware/FactoryActivatedMiddleware.cs?name=snippet1)]
+
+Extensions are created for the middlewares:
+
+[!code-csharp[](extensibility/samples/3.x/MiddlewareExtensibilitySample/Middleware/MiddlewareExtensions.cs?name=snippet1)]
+
+It isn't possible to pass objects to the factory-activated middleware with <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*>:
+
+```csharp
+public static IApplicationBuilder UseFactoryActivatedMiddleware(
+    this IApplicationBuilder builder, bool option)
+{
+    // Passing 'option' as an argument throws a NotSupportedException at runtime.
+    return builder.UseMiddleware<FactoryActivatedMiddleware>(option);
+}
+```
+
+The factory-activated middleware is added to the built-in container in `Startup.ConfigureServices`:
+
+[!code-csharp[](extensibility/samples/3.x/MiddlewareExtensibilitySample/Startup.cs?name=snippet1&highlight=6)]
+
+Both middlewares are registered in the request processing pipeline in `Startup.Configure`:
+
+[!code-csharp[](extensibility/samples/3.x/MiddlewareExtensibilitySample/Startup.cs?name=snippet2&highlight=12-13)]
+
+## IMiddlewareFactory
+
+<xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> provides methods to create middleware. The middleware factory implementation is registered in the container as a scoped service.
+
+The default <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> implementation, <xref:Microsoft.AspNetCore.Http.MiddlewareFactory>, is found in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
 
 <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory>/<xref:Microsoft.AspNetCore.Http.IMiddleware> is an extensibility point for [middleware](xref:fundamentals/middleware/index) activation.
 
@@ -65,6 +125,8 @@ Both middlewares are registered in the request processing pipeline in `Startup.C
 <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> provides methods to create middleware. The middleware factory implementation is registered in the container as a scoped service.
 
 The default <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> implementation, <xref:Microsoft.AspNetCore.Http.MiddlewareFactory>, is found in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package.
+
+::: moniker-end
 
 ## Additional resources
 

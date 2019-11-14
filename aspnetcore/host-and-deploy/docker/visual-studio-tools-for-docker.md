@@ -1,13 +1,13 @@
 ---
-title: Visual Studio Tools for Docker with ASP.NET Core
+title: Visual Studio Container Tools with ASP.NET Core
 author: spboyer
-description: Learn how to use Visual Studio 2017 tooling and Docker for Windows to containerize an ASP.NET Core app.
+description: Learn how to use Visual Studio tooling and Docker for Windows to containerize an ASP.NET Core app.
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 09/12/2018
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
 ---
-# Visual Studio Tools for Docker with ASP.NET Core
+# Visual Studio Container Tools with ASP.NET Core
 
 Visual Studio 2017 and later versions support building, debugging, and running containerized ASP.NET Core apps targeting .NET Core. Both Windows and Linux containers are supported.
 
@@ -50,7 +50,7 @@ For ASP.NET Core projects targeting .NET Core, there are two options for adding 
 * Select **Docker Support** from the **Project** menu.
 * Right-click the project in **Solution Explorer** and select **Add** > **Docker Support**.
 
-The Visual Studio Tools for Docker don't support adding Docker to an existing ASP.NET Core project targeting .NET Framework.
+The Visual Studio Container Tools don't support adding Docker to an existing ASP.NET Core project targeting .NET Framework.
 
 ## Dockerfile overview
 
@@ -82,7 +82,7 @@ Visual Studio 2017 versions 15.8 or later add an orchestration solution only whe
 
 ### Docker Compose
 
-The Visual Studio Tools for Docker add a *docker-compose* project to the solution with the following files:
+The Visual Studio Container Tools add a *docker-compose* project to the solution with the following files:
 
 * *docker-compose.dcproj* &ndash; The file representing the project. Includes a `<DockerTargetOS>` element specifying the OS to be used.
 * *.dockerignore* &ndash; Lists the file and directory patterns to exclude when generating a build context.
@@ -110,7 +110,7 @@ In addition to the base [Prerequisites](#prerequisites), the [Service Fabric](/a
 
 Service Fabric doesn't support running Linux containers in the local development cluster on Windows. If the project is already using a Linux container, Visual Studio prompts to switch to Windows containers.
 
-The Visual Studio Tools for Docker do the following tasks:
+The Visual Studio Container Tools do the following tasks:
 
 * Adds a *&lt;project_name&gt;Application* **Service Fabric Application** project to the solution.
 * Adds a *Dockerfile* and a *.dockerignore* file to the ASP.NET Core project. If a *Dockerfile* already exists in the ASP.NET Core project, it's renamed to *Dockerfile.original*. A new *Dockerfile*, similar to the following, is created:
@@ -188,7 +188,7 @@ baf9a678c88d        hellodockertools:dev   "C:\\remote_debugge..."   10 minutes 
 
 ## Publish Docker images
 
-Once the develop and debug cycle of the app is completed, the Visual Studio Tools for Docker assist in creating the production image of the app. Change the configuration drop-down to **Release** and build the app. The tooling acquires the compile/publish image from Docker Hub (if not already in the cache). An image is produced with the *latest* tag, which can be pushed to the private registry or Docker Hub.
+Once the develop and debug cycle of the app is completed, the Visual Studio Container Tools assist in creating the production image of the app. Change the configuration drop-down to **Release** and build the app. The tooling acquires the compile/publish image from Docker Hub (if not already in the cache). An image is produced with the *latest* tag, which can be pushed to the private registry or Docker Hub.
 
 Run the `docker images` command in PMC to see the list of images. Output similar to the following is displayed:
 
@@ -228,5 +228,5 @@ There may be an expectation for the production or release image to be smaller in
 * [Container development with Visual Studio](/visualstudio/containers)
 * [Azure Service Fabric: Prepare your development environment](/azure/service-fabric/service-fabric-get-started)
 * [Deploy a .NET app in a Windows container to Azure Service Fabric](/azure/service-fabric/service-fabric-host-app-in-a-container)
-* [Troubleshoot Visual Studio 2017 development with Docker](/azure/vs-azure-tools-docker-troubleshooting-docker-errors)
-* [Visual Studio Tools for Docker GitHub repository](https://github.com/Microsoft/DockerTools)
+* [Troubleshoot Visual Studio development with Docker](/azure/vs-azure-tools-docker-troubleshooting-docker-errors)
+* [Visual Studio Container Tools GitHub repository](https://github.com/Microsoft/DockerTools)

@@ -1,0 +1,42 @@
+﻿@page
+@model BufferedDoubleFileUploadDbModel
+@{
+    ViewData["Title"] = "Buffered Double File Upload (Db)";
+}
+
+<h1>Upload two buffered files to a database with two file upload controls</h1>
+
+<form enctype="multipart/form-data" method="post">
+    <dl>
+        <dt>
+            <label asp-for="FileUpload.Note"></label>
+        </dt>
+        <dd>
+            <input asp-for="FileUpload.Note" type="text" />
+            <span asp-validation-for="FileUpload.Note"></span>
+        </dd>
+        <dt>
+            <label asp-for="FileUpload.FormFile1"></label>
+        </dt>
+        <dd>
+            <input asp-for="FileUpload.FormFile1" type="file" />
+            <span asp-validation-for="FileUpload.FormFile1"></span>
+        </dd>
+        <dt>
+            <label asp-for="FileUpload.FormFile2" class="control-label"></label>
+        </dt>
+        <dd>
+            <input asp-for="FileUpload.FormFile2" type="file" />
+            <span asp-validation-for="FileUpload.FormFile2"></span>
+        </dd>
+    </dl>
+    <input asp-page-handler="Upload" class="btn" type="submit" value="Upload" />
+</form>
+
+<p class="result">
+    @Model.Result
+</p>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

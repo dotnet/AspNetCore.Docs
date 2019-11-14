@@ -5,10 +5,10 @@ description: Add MessagePack Hub Protocol to ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 02/27/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/messagepackhubprotocol
 ---
-
 # Use MessagePack Hub Protocol in SignalR for ASP.NET Core
 
 By [Brennan Conroy](https://github.com/BrennanConroy)
@@ -65,13 +65,41 @@ var hubConnection = new HubConnectionBuilder()
 
 ### JavaScript client
 
-MessagePack support for the JavaScript client is provided by the `@aspnet/signalr-protocol-msgpack` npm package.
+::: moniker range=">= aspnetcore-3.0"
+
+MessagePack support for the JavaScript client is provided by the `@microsoft/signalr-protocol-msgpack` npm package. Install the package by executing the following command in a command shell:
+
+```console
+npm install @microsoft/signalr-protocol-msgpack
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+MessagePack support for the JavaScript client is provided by the `@aspnet/signalr-protocol-msgpack` npm package. Install the package by executing the following command in a command shell:
 
 ```console
 npm install @aspnet/signalr-protocol-msgpack
 ```
 
-After installing the npm package, the module can be used directly via a JavaScript module loader or imported into the browser by referencing the *node_modules\\@aspnet\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* file. In a browser, the `msgpack5` library must also be referenced. Use a `<script>` tag to create a reference. The library can be found at *node_modules\msgpack5\dist\msgpack5.js*.
+::: moniker-end
+
+After installing the npm package, the module can be used directly via a JavaScript module loader or imported into the browser by referencing the following file:
+
+::: moniker range=">= aspnetcore-3.0"
+
+*node_modules\\@microsoft\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* 
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+*node_modules\\@aspnet\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* 
+
+::: moniker-end
+
+In a browser, the `msgpack5` library must also be referenced. Use a `<script>` tag to create a reference. The library can be found at *node_modules\msgpack5\dist\msgpack5.js*.
 
 > [!NOTE]
 > When using the `<script>` element, the order is important. If *signalr-protocol-msgpack.js* is referenced before *msgpack5.js*, an error occurs when trying to connect with MessagePack. *signalr.js* is also required before *signalr-protocol-msgpack.js*.

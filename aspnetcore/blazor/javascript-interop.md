@@ -5,14 +5,19 @@ description: Learn how to invoke JavaScript functions from .NET and .NET methods
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2019
+ms.date: 10/16/2019
+no-loc: [Blazor]
 uid: blazor/javascript-interop
 ---
 # ASP.NET Core Blazor JavaScript interop
 
 By [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), and [Luke Latham](https://github.com/guardrex)
 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
 A Blazor app can invoke JavaScript functions from .NET and .NET methods from JavaScript code.
+
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Invoke JavaScript functions from .NET methods
 
@@ -20,17 +25,17 @@ There are times when .NET code is required to call a JavaScript function. For ex
 
 To call into JavaScript from .NET, use the `IJSRuntime` abstraction. The `InvokeAsync<T>` method takes an identifier for the JavaScript function that you wish to invoke along with any number of JSON-serializable arguments. The function identifier is relative to the global scope (`window`). If you wish to call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called. The return type `T` must also be JSON serializable.
 
-For server-side apps:
+For Blazor Server apps:
 
-* Multiple user requests are processed by the server-side app. Don't call `JSRuntime.Current` in a component to invoke JavaScript functions.
+* Multiple user requests are processed by the Blazor Server app. Don't call `JSRuntime.Current` in a component to invoke JavaScript functions.
 * Inject the `IJSRuntime` abstraction and use the injected object to issue JavaScript interop calls.
 * While a Blazor app is prerendering, calling into JavaScript isn't possible because a connection with the browser hasn't been established. For more information, see the [Detect when a Blazor app is prerendering](#detect-when-a-blazor-app-is-prerendering) section.
 
 The following example is based on [TextDecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder), an experimental JavaScript-based decoder. The example demonstrates how to invoke a JavaScript function from a C# method. The JavaScript function accepts a byte array from a C# method, decodes the array, and returns the text to the component for display.
 
-Inside the `<head>` element of *wwwroot/index.html* (Blazor client-side) or *Pages/_Host.cshtml* (Blazor server-side), provide a function that uses `TextDecoder` to decode a passed array:
+Inside the `<head>` element of *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server), provide a JavaScript function that uses `TextDecoder` to decode a passed array and return the decoded value:
 
-[!code-html[](javascript-interop/samples_snapshot/index-script.html)]
+[!code-html[](javascript-interop/samples_snapshot/index-script-convertarray.html)]
 
 JavaScript code, such as the code shown in the preceding example, can also be loaded from a JavaScript file (*.js*) with a reference to the script file:
 
@@ -40,10 +45,12 @@ JavaScript code, such as the code shown in the preceding example, can also be lo
 
 The following component:
 
-* Invokes the `ConvertArray` JavaScript function using `JsRuntime` when a component button (**Convert Array**) is selected.
+* Invokes the `convertArray` JavaScript function using `JSRuntime` when a component button (**Convert Array**) is selected.
 * After the JavaScript function is called, the passed array is converted into a string. The string is returned to the component for display.
 
 [!code-cshtml[](javascript-interop/samples_snapshot/call-js-example.razor?highlight=2,34-35)]
+
+##  Use of IJSRuntime
 
 To use the `IJSRuntime` abstraction, adopt any of the following approaches:
 
@@ -51,9 +58,17 @@ To use the `IJSRuntime` abstraction, adopt any of the following approaches:
 
   [!code-cshtml[](javascript-interop/samples_snapshot/inject-abstraction.razor?highlight=1)]
 
+  Inside the `<head>` element of *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server), provide a `handleTickerChanged` JavaScript function. The function is called with `IJSRuntime.InvokeVoidAsync` and doesn't return a value:
+
+  [!code-html[](javascript-interop/samples_snapshot/index-script-handleTickerChanged1.html)]
+
 * Inject the `IJSRuntime` abstraction into a class (*.cs*):
 
   [!code-csharp[](javascript-interop/samples_snapshot/inject-abstraction-class.cs?highlight=5)]
+
+  Inside the `<head>` element of *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server), provide a `handleTickerChanged` JavaScript function. The function is called with `JSRuntime.InvokeAsync` and returns a value:
+
+  [!code-html[](javascript-interop/samples_snapshot/index-script-handleTickerChanged2.html)]
 
 * For dynamic content generation with [BuildRenderTree](xref:blazor/components#manual-rendertreebuilder-logic), use the `[Inject]` attribute:
 
@@ -62,30 +77,30 @@ To use the `IJSRuntime` abstraction, adopt any of the following approaches:
   IJSRuntime JSRuntime { get; set; }
   ```
 
-In the client-side sample app that accompanies this topic, two JavaScript functions are available to the client-side app that interact with the DOM to receive user input and display a welcome message:
+In the client-side sample app that accompanies this topic, two JavaScript functions are available to the app that interact with the DOM to receive user input and display a welcome message:
 
 * `showPrompt` &ndash; Produces a prompt to accept user input (the user's name) and returns the name to the caller.
 * `displayWelcome` &ndash; Assigns a welcome message from the caller to a DOM object with an `id` of `welcome`.
 
 *wwwroot/exampleJsInterop.js*:
 
-[!code-javascript[](./common/samples/3.x/BlazorSample/wwwroot/exampleJsInterop.js?highlight=2-7)]
+[!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=2-7)]
 
-Place the `<script>` tag that references the JavaScript file in the *wwwroot/index.html* file (Blazor client-side) or *Pages/_Host.cshtml* file (Blazor server-side).
+Place the `<script>` tag that references the JavaScript file in the *wwwroot/index.html* file (Blazor WebAssembly) or *Pages/_Host.cshtml* file (Blazor Server).
 
-*wwwroot/index.html* (Blazor client-side):
+*wwwroot/index.html* (Blazor WebAssembly):
 
-[!code-html[](./common/samples/3.x/BlazorSample/wwwroot/index.html?highlight=15)]
+[!code-html[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=15)]
 
-*Pages/_Host.cshtml* (Blazor server-side):
+*Pages/_Host.cshtml* (Blazor Server):
 
-[!code-cshtml[](javascript-interop/samples_snapshot/_Host.cshtml?highlight=29)]
+[!code-cshtml[](./common/samples/3.x/BlazorServerSample/Pages/_Host.cshtml?highlight=21)]
 
 Don't place a `<script>` tag in a component file because the `<script>` tag can't be updated dynamically.
 
 .NET methods interop with the JavaScript functions in the *exampleJsInterop.js* file by calling `IJSRuntime.InvokeAsync<T>`.
 
-The `IJSRuntime` abstraction is asynchronous to allow for server-side scenarios. If the app runs client-side and you want to invoke a JavaScript function synchronously, downcast to `IJSInProcessRuntime` and call `Invoke<T>` instead. We recommend that most JavaScript interop libraries use the async APIs to ensure that the libraries are available in all scenarios, client-side or server-side.
+The `IJSRuntime` abstraction is asynchronous to allow for Blazor Server scenarios. If the app is a Blazor WebAssembly app and you want to invoke a JavaScript function synchronously, downcast to `IJSInProcessRuntime` and call `Invoke<T>` instead. We recommend that most JavaScript interop libraries use the async APIs to ensure that the libraries are available in all scenarios.
 
 The sample app includes a component to demonstrate JavaScript interop. The component:
 
@@ -95,7 +110,7 @@ The sample app includes a component to demonstrate JavaScript interop. The compo
 
 *Pages/JSInterop.razor*:
 
-[!code-cshtml[](./common/samples/3.x/BlazorSample/Pages/JsInterop.razor?name=snippet_JSInterop1&highlight=3,19-21,23-25)]
+[!code-cshtml[](./common/samples/3.x/BlazorWebAssemblySample/Pages/JsInterop.razor?name=snippet_JSInterop1&highlight=3,19-21,23-25)]
 
 1. When `TriggerJsPrompt` is executed by selecting the component's **Trigger JavaScript Prompt** button, the JavaScript `showPrompt` function provided in the *wwwroot/exampleJsInterop.js* file is called.
 1. The `showPrompt` function accepts user input (the user's name), which is HTML-encoded and returned to the component. The component stores the user's name in a local variable, `name`.
@@ -103,7 +118,7 @@ The sample app includes a component to demonstrate JavaScript interop. The compo
 
 ## Call a void JavaScript function
 
-JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) are called with `IJSRuntime.InvokeAsync<object>`, which returns `null`.
+JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) are called with `IJSRuntime.InvokeVoidAsync`.
 
 ## Detect when a Blazor app is prerendering
  
@@ -113,10 +128,10 @@ JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/
 
 Some [JavaScript interop](xref:blazor/javascript-interop) scenarios require references to HTML elements. For example, a UI library may require an element reference for initialization, or you might need to call command-like APIs on an element, such as `focus` or `play`.
 
-You can capture references to HTML elements in a component using the following approach:
+Capture references to HTML elements in a component using the following approach:
 
-* Add a `@ref` attribute to the HTML element.
-* Define a field of type `ElementRef` whose name matches the value of the `@ref` attribute.
+* Add an `@ref` attribute to the HTML element.
+* Define a field of type `ElementReference` whose name matches the value of the `@ref` attribute.
 
 The following example shows capturing a reference to the `username` `<input>` element:
 
@@ -124,14 +139,14 @@ The following example shows capturing a reference to the `username` `<input>` el
 <input @ref="username" ... />
 
 @code {
-    ElementRef username;
+    ElementReference username;
 }
 ```
 
 > [!NOTE]
-> Do **not** use captured element references as a way of populating or manipulating the DOM when Blazor interacts with the elements referenced. Doing so may interfere with the declarative rendering model.
+> Do **not** use captured element references as a way of populating the DOM. Doing so may interfere with the declarative rendering model.
 
-As far as .NET code is concerned, an `ElementRef` is an opaque handle. The *only* thing you can do with `ElementRef` is pass it through to JavaScript code via JavaScript interop. When you do so, the JavaScript-side code receives an `HTMLElement` instance, which it can use with normal DOM APIs.
+As far as .NET code is concerned, an `ElementReference` is an opaque handle. The *only* thing you can do with `ElementReference` is pass it through to JavaScript code via JavaScript interop. When you do so, the JavaScript-side code receives an `HTMLElement` instance, which it can use with normal DOM APIs.
 
 For example, the following code defines a .NET extension method that enables setting the focus on an element:
 
@@ -145,14 +160,14 @@ window.exampleJsFunctions = {
 }
 ```
 
-Use `IJSRuntime.InvokeAsync<T>` and call `exampleJsFunctions.focusElement` with an `ElementRef` to focus an element:
+Use `IJSRuntime.InvokeAsync<T>` and call `exampleJsFunctions.focusElement` with an `ElementReference` to focus an element:
 
-[!code-cshtml[](javascript-interop/samples_snapshot/component1.razor?highlight=1,3,7,11-12)]
+[!code-cshtml[](javascript-interop/samples_snapshot/component1.razor?highlight=1,3,11-12)]
 
 To use an extension method to focus an element, create a static extension method that receives the `IJSRuntime` instance:
 
 ```csharp
-public static Task Focus(this ElementRef elementRef, IJSRuntime jsRuntime)
+public static Task Focus(this ElementReference elementRef, IJSRuntime jsRuntime)
 {
     return jsRuntime.InvokeAsync<object>(
         "exampleJsFunctions.focusElement", elementRef);
@@ -161,28 +176,28 @@ public static Task Focus(this ElementRef elementRef, IJSRuntime jsRuntime)
 
 The method is called directly on the object. The following example assumes that the static `Focus` method is available from the `JsInteropClasses` namespace:
 
-[!code-cshtml[](javascript-interop/samples_snapshot/component2.razor?highlight=1,4,8,12)]
+[!code-cshtml[](javascript-interop/samples_snapshot/component2.razor?highlight=1,4,12)]
 
 > [!IMPORTANT]
-> The `username` variable is only populated after the component is rendered. If an unpopulated `ElementRef` is passed to JavaScript code, the JavaScript code receives a value of `null`. To manipulate element references after the component has finished rendering (to set the initial focus on an element) use the `OnAfterRenderAsync` or `OnAfterRender` [component lifecycle methods](xref:blazor/components#lifecycle-methods).
+> The `username` variable is only populated after the component is rendered. If an unpopulated `ElementReference` is passed to JavaScript code, the JavaScript code receives a value of `null`. To manipulate element references after the component has finished rendering (to set the initial focus on an element) use the `OnAfterRenderAsync` or `OnAfterRender` [component lifecycle methods](xref:blazor/components#lifecycle-methods).
 
 ## Invoke .NET methods from JavaScript functions
 
 ### Static .NET method call
 
-To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support server-side scenarios. To invoke a .NET method from JavaScript, the .NET method must be public, static, and have the `[JSInvokable]` attribute. By default, the method identifier is the method name, but you can specify a different identifier using the `JSInvokableAttribute` constructor. Calling open generic methods isn't currently supported.
+To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support Blazor Server scenarios. To invoke a .NET method from JavaScript, the .NET method must be public, static, and have the `[JSInvokable]` attribute. By default, the method identifier is the method name, but you can specify a different identifier using the `JSInvokableAttribute` constructor. Calling open generic methods isn't currently supported.
 
 The sample app includes a C# method to return an array of `int`s. The `JSInvokable` attribute is applied to the method.
 
 *Pages/JsInterop.razor*:
 
-[!code-cshtml[](./common/samples/3.x/BlazorSample/Pages/JsInterop.razor?name=snippet_JSInterop2&highlight=7-11)]
+[!code-cshtml[](./common/samples/3.x/BlazorWebAssemblySample/Pages/JsInterop.razor?name=snippet_JSInterop2&highlight=7-11)]
 
 JavaScript served to the client invokes the C# .NET method.
 
 *wwwroot/exampleJsInterop.js*:
 
-[!code-javascript[](./common/samples/3.x/BlazorSample/wwwroot/exampleJsInterop.js?highlight=8-14)]
+[!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=8-14)]
 
 When the **Trigger .NET static method ReturnArrayAsync** button is selected, examine the console output in the browser's web developer tools.
 
@@ -198,7 +213,7 @@ The fourth array value is pushed to the array (`data.push(4);`) returned by `Ret
 
 You can also call .NET instance methods from JavaScript. To invoke a .NET instance method from JavaScript:
 
-* Pass the .NET instance to JavaScript by wrapping it in a `DotNetObjectRef` instance. The .NET instance is passed by reference to JavaScript.
+* Pass the .NET instance to JavaScript by wrapping it in a `DotNetObjectReference` instance. The .NET instance is passed by reference to JavaScript.
 * Invoke .NET instance methods on the instance using the `invokeMethod` or `invokeMethodAsync` functions. The .NET instance can also be passed as an argument when invoking other .NET methods from JavaScript.
 
 > [!NOTE]
@@ -208,23 +223,23 @@ When the **Trigger .NET instance method HelloHelper.SayHello** button is selecte
 
 *Pages/JsInterop.razor*:
 
-[!code-cshtml[](./common/samples/3.x/BlazorSample/Pages/JsInterop.razor?name=snippet_JSInterop3&highlight=8-9)]
+[!code-cshtml[](./common/samples/3.x/BlazorWebAssemblySample/Pages/JsInterop.razor?name=snippet_JSInterop3&highlight=8-9)]
 
 `CallHelloHelperSayHello` invokes the JavaScript function `sayHello` with a new instance of `HelloHelper`.
 
 *JsInteropClasses/ExampleJsInterop.cs*:
 
-[!code-csharp[](./common/samples/3.x/BlazorSample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=10-16)]
+[!code-csharp[](./common/samples/3.x/BlazorWebAssemblySample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=10-16)]
 
 *wwwroot/exampleJsInterop.js*:
 
-[!code-javascript[](./common/samples/3.x/BlazorSample/wwwroot/exampleJsInterop.js?highlight=15-18)]
+[!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=15-18)]
 
 The name is passed to `HelloHelper`'s constructor, which sets the `HelloHelper.Name` property. When the JavaScript function `sayHello` is executed, `HelloHelper.SayHello` returns the `Hello, {Name}!` message, which is written to the console by the JavaScript function.
 
 *JsInteropClasses/HelloHelper.cs*:
 
-[!code-csharp[](./common/samples/3.x/BlazorSample/JsInteropClasses/HelloHelper.cs?name=snippet1&highlight=5,10-11)]
+[!code-csharp[](./common/samples/3.x/BlazorWebAssemblySample/JsInteropClasses/HelloHelper.cs?name=snippet1&highlight=5,10-11)]
 
 Console output in the browser's web developer tools:
 
@@ -241,3 +256,23 @@ The class library handles embedding JavaScript resources in the built assembly. 
 The built NuGet package is referenced in the app's project file the same way that any NuGet package is referenced. After the package is restored, app code can call into JavaScript as if it were C#.
 
 For more information, see <xref:blazor/class-libraries>.
+
+## Harden JS interop calls
+
+JS interop may fail due to networking errors and should be treated as unreliable. By default, a Blazor Server app times out JS interop calls on the server after one minute. If an app can tolerate a more aggressive timeout, such as 10 seconds, set the timeout using one of the following approaches:
+
+* Globally in `Startup.ConfigureServices`, specify the timeout:
+
+  ```csharp
+  services.AddServerSideBlazor(
+      options => options.JSInteropDefaultCallTimeout = TimeSpan.FromSeconds({SECONDS}));
+  ```
+
+* Per-invocation in component code, a single call can specify the timeout:
+
+  ```csharp
+  var result = await JSRuntime.InvokeAsync<string>("MyJSOperation", 
+      TimeSpan.FromSeconds({SECONDS}), new[] { "Arg1" });
+  ```
+
+For more information on resource exhaustion, see <xref:security/blazor/server>.

@@ -137,7 +137,7 @@ With this package, keys can be shared across multiple instances of a web app.
 
 To configure the EF Core provider, call the [`PersistKeysToDbContext<TContext>`](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) method:
 
-[!code-csharp[Main](key-storage-providers/sample/Startup.cs?name=snippet&highlight=13-15)]
+[!code-csharp[Main](key-storage-providers/sample/Startup.cs?name=snippet&highlight=13-20)]
 
 The generic parameter, `TContext`, must inherit from [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) and implement [IDataProtectionKeyContext](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcore.idataprotectionkeycontext):
 
@@ -158,7 +158,7 @@ Update-Database -Context MyKeysContext
 
 Execute the following commands in a command shell:
 
-```console
+```dotnetcli
 dotnet ef migrations add AddDataProtectionKeys --context MyKeysContext
 dotnet ef database update --context MyKeysContext
 ```

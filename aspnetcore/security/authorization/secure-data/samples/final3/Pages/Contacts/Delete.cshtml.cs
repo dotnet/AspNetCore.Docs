@@ -39,7 +39,7 @@ namespace ContactManager.Pages.Contacts
                                                      ContactOperations.Delete);
             if (!isAuthorized.Succeeded)
             {
-                return new ChallengeResult();
+                return Forbid();
             }
 
             return Page();
@@ -47,8 +47,6 @@ namespace ContactManager.Pages.Contacts
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            Contact = await Context.Contact.FindAsync(id);
-
             var contact = await Context
                 .Contact.AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ContactId == id);
@@ -63,10 +61,10 @@ namespace ContactManager.Pages.Contacts
                                                      ContactOperations.Delete);
             if (!isAuthorized.Succeeded)
             {
-                return new ChallengeResult();
+                return Forbid();
             }
 
-            Context.Contact.Remove(Contact);
+            Context.Contact.Remove(contact);
             await Context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/12/2019
+ms.date: 10/07/2019
 uid: web-api/http-repl
 ---
 # Test web APIs with the HTTP REPL
@@ -15,7 +15,8 @@ By [Scott Addie](https://twitter.com/Scott_Addie)
 The HTTP Read-Eval-Print Loop (REPL) is:
 
 * A lightweight, cross-platform command-line tool that's supported everywhere .NET Core is supported.
-* Used for making HTTP requests to test ASP.NET Core web APIs and view their results.
+* Used for making HTTP requests to test ASP.NET Core web APIs (and non-ASP.NET Core web APIs) and view their results.
+* Capable of testing web APIs hosted in any environment, including localhost and Azure App Service.
 
 The following [HTTP verbs](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods) are supported:
 
@@ -37,83 +38,84 @@ To follow along, [view or download the sample ASP.NET Core web API](https://gith
 
 To install the HTTP REPL, run the following command:
 
-```console
-dotnet tool install -g dotnet-httprepl
-    --version 2.2.0-*
-    --add-source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json
+```dotnetcli
+dotnet tool install -g Microsoft.dotnet-httprepl
 ```
 
-A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [dotnet-httprepl](https://dotnet.myget.org/feed/dotnet-core/package/nuget/dotnet-httprepl
-) NuGet package hosted on MyGet.
+A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl) NuGet package.
 
 ## Usage
 
 After successful installation of the tool, run the following command to start the HTTP REPL:
 
 ```console
-dotnet httprepl
+httprepl
 ```
 
 To view the available HTTP REPL commands, run one of the following commands:
 
 ```console
-dotnet httprepl -h
+httprepl -h
 ```
 
 ```console
-dotnet httprepl --help
+httprepl --help
 ```
 
 The following output is displayed:
 
 ```console
-Usage: dotnet httprepl [<BASE_ADDRESS>] [options]
+Usage:
+  httprepl [<BASE_ADDRESS>] [options]
 
 Arguments:
   <BASE_ADDRESS> - The initial base address for the REPL.
 
 Options:
-  --help - Show help information.
+  -h|--help - Show help information.
 
-REPL Commands:
+Once the REPL starts, these commands are valid:
+
+Setup Commands:
+Use these commands to configure the tool for your API server
+
+connect        Configures the directory structure and base address of the api server
+set header     Sets or clears a header for all requests. e.g. `set header content-type application/json`
 
 HTTP Commands:
 Use these commands to execute requests against your application.
 
-GET            Issues a GET request.
-POST           Issues a POST request.
-PUT            Issues a PUT request.
-DELETE         Issues a DELETE request.
-PATCH          Issues a PATCH request.
-HEAD           Issues a HEAD request.
-OPTIONS        Issues an OPTIONS request.
-
-set header     Sets or clears a header for all requests. e.g. `set header content-type application/json`
-
+GET            get - Issues a GET request
+POST           post - Issues a POST request
+PUT            put - Issues a PUT request
+DELETE         delete - Issues a DELETE request
+PATCH          patch - Issues a PATCH request
+HEAD           head - Issues a HEAD request
+OPTIONS        options - Issues a OPTIONS request
 
 Navigation Commands:
 The REPL allows you to navigate your URL space and focus on specific APIs that you are working on.
 
 set base       Set the base URI. e.g. `set base http://locahost:5000`
-set swagger    Set the URI, relative to your base if set, of the Swagger document for this API. e.g. `set swagger /swagger/v1/swagger.json`
-ls             Show all endpoints for the current path.
-cd             Append the given directory to the currently selected path, or move up a path when using `cd ..`.
+ls             Show all endpoints for the current path
+cd             Append the given directory to the currently selected path, or move up a path when using `cd ..`
 
 Shell Commands:
 Use these commands to interact with the REPL shell.
 
-clear          Removes all text from the shell.
-echo [on/off]  Turns request echoing on or off, show the request that was made when using request commands.
-exit           Exit the shell.
+clear          Removes all text from the shell
+echo [on/off]  Turns request echoing on or off, show the request that was made when using request commands
+exit           Exit the shell
 
 REPL Customization Commands:
 Use these commands to customize the REPL behavior.
 
-pref [get/set] Allows viewing or changing preferences, e.g. 'pref set editor.command.default 'C:\Program Files\Microsoft VS Code\Code.exe'`
-run            Runs the script at the given path. A script is a set of commands that can be typed with one command per line.
-ui             Displays the Swagger UI page, if available, in the default browser.
+pref [get/set] Allows viewing or changing preferences, e.g. 'pref set editor.command.default 'C:\\Program Files\\Microsoft VS Code\\Code.exe'`
+run            Runs the script at the given path. A script is a set of commands that can be typed with one command per line
+ui             Displays the Swagger UI page, if available, in the default browser
 
-Use help <COMMAND> to learn more details about individual commands. e.g. `help get`
+Use `help <COMMAND>` for more detail on an individual command. e.g. `help get`.
+For detailed tool info, see https://aka.ms/http-repl-doc.
 ```
 
 The HTTP REPL offers command completion. Pressing the <kbd>Tab</kbd> key iterates through the list of commands that complete the characters or API endpoint that you typed. The following sections outline the available CLI commands.
@@ -123,39 +125,39 @@ The HTTP REPL offers command completion. Pressing the <kbd>Tab</kbd> key iterate
 Connect to a web API by running the following command:
 
 ```console
-dotnet httprepl <BASE URI>
+httprepl <ROOT URI>
 ```
 
-`<BASE URI>` is the base URI for the web API. For example:
+`<ROOT URI>` is the base URI for the web API. For example:
 
 ```console
-dotnet httprepl https://localhost:5001
+httprepl https://localhost:5001
 ```
 
 Alternatively, run the following command at any time while the HTTP REPL is running:
 
 ```console
-set base <BASE URI>
+connect <ROOT URI>
 ```
 
 For example:
 
 ```console
-(Disconnected)~ set base https://localhost:5001
+(Disconnected)~ connect https://localhost:5001
 ```
 
-## Point to the Swagger document for the web API
+## Manually point to the Swagger document for the web API
 
-To properly inspect the web API, set the relative URI to the Swagger document for the web API. Run the following command:
+The connect command above will attempt to find the Swagger document automatically. If for some reason it is unable to do so, you can specify the URI of the Swagger document for the web API by using the `--swagger` option:
 
 ```console
-set swagger <RELATIVE URI>
+connect <ROOT URI> --swagger <SWAGGER URI>
 ```
 
 For example:
 
 ```console
-https://localhost:5001/~ set swagger /swagger/v1/swagger.json
+(Disconnected)~ connect https://localhost:5001 --swagger /swagger/v1/swagger.json
 ```
 
 ## Navigate the web API
@@ -317,52 +319,6 @@ Subsequent responses honor the setting of four spaces:
 ]
 ```
 
-### Set indentation size
-
-Response indentation size customization is currently supported for JSON only. The default size is two spaces. For example:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Apple"
-  },
-  {
-    "id": 2,
-    "name": "Orange"
-  },
-  {
-    "id": 3,
-    "name": "Strawberry"
-  }
-]
-```
-
-To change the default size, set the `formatting.json.indentSize` key. For example, to always use four spaces:
-
-```console
-pref set formatting.json.indentSize 4
-```
-
-Subsequent responses honor the setting of four spaces:
-
-```json
-[
-    {
-        "id": 1,
-        "name": "Apple"
-    },
-    {
-        "id": 2,
-        "name": "Orange"
-    },
-    {
-        "id": 3,
-        "name": "Strawberry"
-    }
-]
-```
-
 ### Set the default text editor
 
 By default, the HTTP REPL has no text editor configured for use. To test web API methods requiring an HTTP request body, a default text editor must be set. The HTTP REPL tool launches the configured text editor for the sole purpose of composing the request body. Run the following command to set your preferred text editor as the default:
@@ -397,6 +353,21 @@ To launch the default text editor with specific CLI arguments, set the `editor.c
 
 ```console
 pref set editor.command.default.arguments "--disable-extensions --new-window"
+```
+
+### Set the Swagger search paths
+
+By default, the HTTP REPL has a set of relative paths that it uses to find the Swagger document when executing the `connect` command without the `--swagger` option. These relative paths are combined with the root and base paths specified in the `connect` command. The default relative paths are:
+
+- *swagger.json*
+- *swagger/v1/swagger.json*
+- */swagger.json*
+- */swagger/v1/swagger.json*
+
+To use a different set of search paths in your environment, set the `swagger.searchPaths` preference. The value must be a pipe-delimited list of relative paths. For example:
+
+```console
+pref set swagger.searchPaths "swagger/v2/swagger.json|swagger/v3/swagger.json"
 ```
 
 ## Test HTTP GET requests
@@ -527,12 +498,12 @@ To issue an HTTP POST request:
 
 1. Modify the JSON template to satisfy model validation requirements:
 
-  ```json
-  {
-    "id": 0,
-    "name": "Scott Addie"
-  }
-  ```
+    ```json
+    {
+      "id": 0,
+      "name": "Scott Addie"
+    }
+    ```
 
 1. Save the *.tmp* file, and close the text editor. The following output appears in the command shell:
 
@@ -813,25 +784,107 @@ The route parameter, if any, expected by the associated controller action method
 
 To set an HTTP request header, use one of the following approaches:
 
-1. Set inline with the HTTP request. For example:
+* Set inline with the HTTP request. For example:
 
-  ```console
-  https://localhost:5001/people~ post -h Content-Type=application/json
-  ```
+    ```console
+    https://localhost:5001/people~ post -h Content-Type=application/json
+    ```
+    
+    With the preceding approach, each distinct HTTP request header requires its own `-h` option.
 
-  With the preceding approach, each distinct HTTP request header requires its own `-h` option.
+* Set before sending the HTTP request. For example:
 
-1. Set before sending the HTTP request. For example:
+    ```console
+    https://localhost:5001/people~ set header Content-Type application/json
+    ```
+    
+    When setting the header before sending a request, the header remains set for the duration of the command shell session. To clear the header, provide an empty value. For example:
+    
+    ```console
+    https://localhost:5001/people~ set header Content-Type
+    ```
 
-  ```console
-  https://localhost:5001/people~ set header Content-Type application/json
-  ```
+## Test secured endpoints
 
-  When setting the header before sending a request, the header remains set for the duration of the command shell session. To clear the header, provide an empty value. For example:
+The HTTP REPL supports the testing of secured endpoints through the use of HTTP request headers. Examples of supported authentication and authorization schemes include basic authentication, JWT bearer tokens, and digest authentication. For example, you can send a bearer token to an endpoint with the following command:
 
-  ```console
-  https://localhost:5001/people~ set header Content-Type
-  ```
+```console
+set header Authorization "bearer <TOKEN VALUE>"
+```
+
+To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azure/), you need a bearer token. Use the following steps to obtain a bearer token for your Azure subscription via the [Azure CLI](/cli/azure/). The HTTP REPL sets the bearer token in an HTTP request header and retrieves a list of Azure App Service Web Apps.
+
+1. Log in to Azure:
+
+    ```azcli
+    az login
+    ```
+
+1. Get your subscription ID with the following command:
+
+    ```azcli
+    az account show --query id
+    ```
+
+1. Copy your subscription ID and run the following command:
+
+    ```azcli
+    az account set --subscription "<SUBSCRIPTION ID>"
+    ```
+
+1. Get your bearer token with the following command:
+
+    ```azcli
+    az account get-access-token --query accessToken
+    ```
+
+1. Connect to the Azure REST API via the HTTP REPL:
+
+    ```console
+    httprepl https://management.azure.com
+    ```
+
+1. Set the `Authorization` HTTP request header:
+
+    ```console
+    https://management.azure.com/> set header Authorization "bearer <ACCESS TOKEN>"
+    ```
+
+1. Navigate to the subscription:
+
+    ```console
+    https://management.azure.com/> cd subscriptions/<SUBSCRIPTION ID>
+    ```
+
+1. Get a list of your subscription's Azure App Service Web Apps:
+
+    ```console
+    https://management.azure.com/subscriptions/{SUBSCRIPTION ID}> get providers/Microsoft.Web/sites?api-version=2016-08-01
+    ```
+
+    The following response is displayed:
+
+    ```console
+    HTTP/1.1 200 OK
+    Cache-Control: no-cache
+    Content-Length: 35948
+    Content-Type: application/json; charset=utf-8
+    Date: Thu, 19 Sep 2019 23:04:03 GMT
+    Expires: -1
+    Pragma: no-cache
+    Strict-Transport-Security: max-age=31536000; includeSubDomains
+    X-Content-Type-Options: nosniff
+    x-ms-correlation-request-id: <em>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</em>
+    x-ms-original-request-ids: <em>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</em>
+    x-ms-ratelimit-remaining-subscription-reads: 11999
+    x-ms-request-id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    x-ms-routing-request-id: WESTUS:xxxxxxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx
+    {
+      "value": [
+        <AZURE RESOURCES LIST>
+      ]
+    }
+    ```
 
 ## Toggle HTTP request display
 
@@ -951,7 +1004,7 @@ If you frequently execute the same set of HTTP REPL commands, consider storing t
 To remove all output written to the command shell by the HTTP REPL tool, run the `clear` or `cls` command. To illustrate, imagine the command shell contains the following output:
 
 ```console
-dotnet httprepl https://localhost:5001
+httprepl https://localhost:5001
 (Disconnected)~ set base "https://localhost:5001"
 Using swagger metadata from https://localhost:5001/swagger/v1/swagger.json
 
