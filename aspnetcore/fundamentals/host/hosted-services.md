@@ -5,7 +5,7 @@ description: Learn how to implement background tasks with hosted services in ASP
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/26/2019
+ms.date: 11/14/2019
 uid: fundamentals/host/hosted-services
 ---
 # Background tasks with hosted services in ASP.NET Core
@@ -22,22 +22,23 @@ In ASP.NET Core, background tasks can be implemented as *hosted services*. A hos
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
-The sample app is provided in two versions:
-
-* Web Host &ndash; Web Host is useful for hosting web apps. The example code shown in this topic is from Web Host version of the sample. For more information, see the [Web Host](xref:fundamentals/host/web-host) topic.
-* Generic Host &ndash; Generic Host is new in ASP.NET Core 2.1. For more information, see the [Generic Host](xref:fundamentals/host/generic-host) topic.
-
 ## Worker Service template
 
-The ASP.NET Core Worker Service template provides a starting point for writing long running service apps. To use the template as a basis for a hosted services app:
+The ASP.NET Core Worker Service template provides a starting point for writing long running service apps. An app created from the Worker Service template specifies the Worker SDK in its project file:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+```
+
+To use the template as a basis for a hosted services app:
 
 [!INCLUDE[](~/includes/worker-template-instructions.md)]
 
----
-
 ## Package
 
-A package reference to the [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) package is added implicitly for ASP.NET Core apps.
+An app based on the Worker Service template uses the `Microsoft.NET.Sdk.Worker` SDK and has an explicit package reference to the [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) package. For example, see the sample app's project file (*BackgroundTasksSample.csproj*).
+
+For web apps that use the `Microsoft.NET.Sdk.Web` SDK, the [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) package is referenced implicitly from the shared framework. An explicit package reference in the app's project file isn't required.
 
 ## IHostedService interface
 
@@ -170,11 +171,6 @@ In ASP.NET Core, background tasks can be implemented as *hosted services*. A hos
 * Queued background tasks that run sequentially.
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](xref:index#how-to-download-a-sample))
-
-The sample app is provided in two versions:
-
-* Web Host &ndash; Web Host is useful for hosting web apps. The example code shown in this topic is from Web Host version of the sample. For more information, see the [Web Host](xref:fundamentals/host/web-host) topic.
-* Generic Host &ndash; Generic Host is new in ASP.NET Core 2.1. For more information, see the [Generic Host](xref:fundamentals/host/generic-host) topic.
 
 ## Package
 
