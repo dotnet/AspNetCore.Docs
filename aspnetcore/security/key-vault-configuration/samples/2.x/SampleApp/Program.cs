@@ -26,6 +26,7 @@ namespace SampleApp
         // using System.Linq;
         // using System.Security.Cryptography.X509Certificates;
         // using Microsoft.Extensions.Configuration;
+
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((context, config) =>
@@ -34,8 +35,7 @@ namespace SampleApp
                     {
                         var builtConfig = config.Build();
 
-                        using (var store = new X509Store(StoreName.My,
-                            StoreLocation.CurrentUser))
+                        using (var store = new X509Store(StoreLocation.CurrentUser))
                         {
                             store.Open(OpenFlags.ReadOnly);
                             var certs = store.Certificates
@@ -69,15 +69,15 @@ namespace SampleApp
                     {
                         var builtConfig = config.Build();
 
-                            var azureServiceTokenProvider = new AzureServiceTokenProvider();
-                            var keyVaultClient = new KeyVaultClient(
-                                new KeyVaultClient.AuthenticationCallback(
-                                    azureServiceTokenProvider.KeyVaultTokenCallback));
+                        var azureServiceTokenProvider = new AzureServiceTokenProvider();
+                        var keyVaultClient = new KeyVaultClient(
+                            new KeyVaultClient.AuthenticationCallback(
+                                azureServiceTokenProvider.KeyVaultTokenCallback));
 
-                            config.AddAzureKeyVault(
-                                $"https://{builtConfig["KeyVaultName"]}.vault.azure.net/",
-                                keyVaultClient,
-                                new DefaultKeyVaultSecretManager());
+                        config.AddAzureKeyVault(
+                            $"https://{builtConfig["KeyVaultName"]}.vault.azure.net/",
+                            keyVaultClient,
+                            new DefaultKeyVaultSecretManager());
                     }
                 })
                 .UseStartup<Startup>();
