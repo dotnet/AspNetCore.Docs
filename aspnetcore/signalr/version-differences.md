@@ -50,7 +50,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 ::: moniker range="< aspnetcore-3.0"
 
-Automatic reconnects aren't supported in ASP.NET Core SignalR prior to ASP.NET Core 3.0. If the client is disconnected, the user must explicitly start a new connection if they want to reconnect. In ASP.NET SignalR, SignalR attempts to reconnect to the server if the connection is dropped.
+Automatic reconnects aren't supported in ASP.NET Core SignalR prior to ASP.NET Core 3.0. If the client is disconnected, the user must explicitly start a new connection to reconnect. In ASP.NET SignalR, SignalR attempts to reconnect to the server if the connection is dropped.
 
 ::: moniker-end
 
