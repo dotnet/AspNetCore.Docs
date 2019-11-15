@@ -30,7 +30,10 @@ ASP.NET Core SignalR isn't compatible with clients or servers for ASP.NET Signal
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In ASP.NET SignalR, SignalR attempts to reconnect to the server if the connection is dropped by default. In ASP.NET Core SignalR, you can opt in to automatic reconnects with both the [.NET client](xref:signalr/dotnet-client#automatically-reconnect) and the [JS client](xref:signalr/javascript-client#automatically-reconnect):
+In ASP.NET SignalR:
+
+* SignalR attempts to reconnect to the server if the connection is dropped by default. 
+* Automatic reconnects are opt-in with both the [.NET client](xref:signalr/dotnet-client#automatically-reconnect) and the [JS client](xref:signalr/javascript-client#automatically-reconnect):
 
 ```csharp
 HubConnection connection = new HubConnectionBuilder()
