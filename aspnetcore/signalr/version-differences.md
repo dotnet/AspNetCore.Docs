@@ -32,7 +32,7 @@ ASP.NET Core SignalR isn't compatible with clients or servers for ASP.NET Signal
 
 In ASP.NET SignalR:
 
-* SignalR attempts to reconnect to the server if the connection is dropped by default. 
+* By default, SignalR attempts to reconnect to the server if the connection is dropped. 
 * Automatic reconnects are opt-in with both the [.NET client](xref:signalr/dotnet-client#automatically-reconnect) and the [JS client](xref:signalr/javascript-client#automatically-reconnect):
 
 ```csharp
