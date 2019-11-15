@@ -33,7 +33,7 @@ Validation is automatic, but you might want to repeat it manually. For example, 
 
 ## Validation attributes
 
-Validation attributes let you specify validation rules for model properties. The following example from [the sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. (Not shown is `[ClassicMovie2]`, which shows an alternative way to implement a custom attribute.)
+Validation attributes let you specify validation rules for model properties. The following example from [the sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. (Not shown is `[ClassicMovieWithClientValidator]`, which shows an alternative way to implement a custom attribute.)
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Models/Movie.cs?name=snippet_Class)]
 
@@ -154,9 +154,9 @@ For scenarios that the built-in validation attributes don't handle, you can crea
 
 The `IsValid` method accepts an object named *value*, which is the input to be validated. An overload also accepts a `ValidationContext` object, which provides additional information, such as the model instance created by model binding.
 
-The following example validates that the release date for a movie in the *Classic* genre isn't later than a specified year. The `[ClassicMovie2]` attribute checks the genre first and continues only if it's *Classic*. For movies identified as classics, it checks the release date to make sure it's not later than the limit passed to the attribute constructor.)
+The following example validates that the release date for a movie in the *Classic* genre isn't later than a specified year. The `[ClassicMovieWithClientValidator]` attribute checks the genre first and continues only if it's *Classic*. For movies identified as classics, it checks the release date to make sure it's not later than the limit passed to the attribute constructor.)
 
-[!code-csharp[](validation/samples/2.x/ValidationSample/Attributes/ClassicMovieAttribute.cs?name=snippet_ClassicMovieAttribute)]
+[!code-csharp[](validation/samples/3.x/ValidationSample/Validation/ClassicMovieAttribute.cs?name=snippet_Class)]
 
 The `movie` variable in the preceding example represents a `Movie` object that contains the data from the form submission. The `IsValid` method checks the date and genre. Upon successful validation, `IsValid` returns a `ValidationResult.Success` code. When validation fails, a `ValidationResult` with an error message is returned.
 
@@ -164,7 +164,7 @@ The `movie` variable in the preceding example represents a `Movie` object that c
 
 The preceding example works only with `Movie` types. Another option for class-level validation is to implement `IValidatableObject` in the model class, as shown in the following example:
 
-[!code-csharp[](validation/samples/2.x/ValidationSample/Models/MovieIValidatable.cs?name=snippet&highlight=1,26-34)]
+[!code-csharp[](validation/samples/3.x/ValidationSample/Models/ValidatableMovie.cs?name=snippet_Class&highlight=1,26-34)]
 
 ## Top-level node validation
 
@@ -298,9 +298,9 @@ $.get({
 
 ## Custom client-side validation
 
-Custom client-side validation is done by generating `data-` HTML attributes that work with a custom jQuery Validate adapter. The following sample adapter code was written for the `ClassicMovie` and `ClassicMovie2` attributes that were introduced earlier in this article:
+Custom client-side validation is done by generating `data-` HTML attributes that work with a custom jQuery Validate adapter. The following sample adapter code was written for the `ClassicMovie` and `ClassicMovieWithClientValidator` attributes that were introduced earlier in this article:
 
-[!code-javascript[](validation/samples/2.x/ValidationSample/wwwroot/js/classicMovieValidator.js?name=snippet_UnobtrusiveValidation)]
+[!code-javascript[](validation/samples/3.x/ValidationSample/wwwroot/js/classicMovieValidator.js)]
 
 For information about how to write adapters, see the [jQuery Validate documentation](https://jqueryvalidation.org/documentation/).
 
@@ -313,12 +313,12 @@ The use of an adapter for a given field is triggered by `data-` attributes that:
 The following example shows the `data-` attributes for the sample app's `ClassicMovie` attribute:
 
 ```html
-<input class="form-control" type="datetime"
+<input class="form-control" type="date"
     data-val="true"
-    data-val-classicmovie1="Classic movies must have a release year earlier than 1960."
-    data-val-classicmovie1-year="1960"
-    data-val-required="The ReleaseDate field is required."
-    id="ReleaseDate" name="ReleaseDate" value="">
+    data-val-classicmovie="Classic movies must have a release year no later than 1960."
+    data-val-classicmovie-year="1960"
+    data-val-required="The Release Date field is required."
+    id="Movie_ReleaseDate" name="Movie.ReleaseDate" value="">
 ```
 
 As noted earlier, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML helpers](xref:mvc/views/overview) use information from validation attributes to render `data-` attributes. There are two options for writing code that results in the creation of custom `data-` HTML attributes:
@@ -332,23 +332,23 @@ This method of rendering `data-` attributes in HTML is used by the `ClassicMovie
 
 1. Create an attribute adapter class for the custom validation attribute. Derive the class from [AttributeAdapterBase\<T>](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.attributeadapterbase-1?view=aspnetcore-2.2). Create an `AddValidation` method that adds `data-` attributes to the rendered output, as shown in this example:
 
-   [!code-csharp[](validation/samples/2.x/ValidationSample/Attributes/ClassicMovieAttributeAdapter.cs?name=snippet_ClassicMovieAttributeAdapter)]
+   [!code-csharp[](validation/samples/3.x/ValidationSample/Validation/ClassicMovieAttributeAdapter.cs?name=snippet_Class)]
 
 1. Create an adapter provider class that implements <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider>. In the `GetAttributeAdapter` method pass in the custom attribute to the adapter's constructor, as shown in this example:
 
-   [!code-csharp[](validation/samples/2.x/ValidationSample/Attributes/CustomValidationAttributeAdapterProvider.cs?name=snippet_CustomValidationAttributeAdapterProvider)]
+   [!code-csharp[](validation/samples/3.x/ValidationSample/Validation/CustomValidationAttributeAdapterProvider.cs?name=snippet_Class)]
 
 1. Register the adapter provider for DI in `Startup.ConfigureServices`:
 
-   [!code-csharp[](validation/samples/2.x/ValidationSample/Startup.cs?name=snippet_MaxModelValidationErrors&highlight=8-10)]
+   [!code-csharp[](validation/samples/3.x/ValidationSample/Startup.cs?name=snippet_Configuration&highlight=3-4)]
 
 ### IClientModelValidator for client-side validation
 
-This method of rendering `data-` attributes in HTML is used by the `ClassicMovie2` attribute in the sample app. To add client validation by using this method:
+This method of rendering `data-` attributes in HTML is used by the `ClassicMovieWithClientValidator` attribute in the sample app. To add client validation by using this method:
 
 * In the custom validation attribute, implement the `IClientModelValidator` interface and create an `AddValidation` method. In the `AddValidation` method, add `data-` attributes for validation, as shown in the following example:
 
-  [!code-csharp[](validation/samples/2.x/ValidationSample/Attributes/ClassicMovie2Attribute.cs?name=snippet_ClassicMovie2Attribute)]
+  [!code-csharp[](validation/samples/3.x/ValidationSample/Validation/ClassicMovieWithClientValidatorAttribute.cs?name=snippet_Class)]
 
 ## Disable client-side validation
 

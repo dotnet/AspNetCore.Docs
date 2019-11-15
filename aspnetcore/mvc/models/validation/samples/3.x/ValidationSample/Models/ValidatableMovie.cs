@@ -1,19 +1,20 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using ValidationSample.Validation;
 
 namespace ValidationSample.Models
 {
     #region snippet_Class
-    public class Movie
+    public class ValidatableMovie : IValidatableObject
     {
+        private const int _classicYear = 1960;
+
         public int Id { get; set; }
 
         [Required]
         [StringLength(100)]
         public string Title { get; set; }
 
-        [ClassicMovie(1960)]
         [DataType(DataType.Date)]
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
@@ -28,6 +29,16 @@ namespace ValidationSample.Models
         public Genre Genre { get; set; }
 
         public bool Preorder { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (Genre == Genre.Classic && ReleaseDate.Year > _classicYear)
+            {
+                yield return new ValidationResult(
+                    $"Classic movies must have a release year no later than {_classicYear}.",
+                    new[] { nameof(ReleaseDate) });
+            }
+        }
     }
     #endregion
 }
