@@ -261,6 +261,11 @@ In the following example, a secret is established in the key vault (and using th
 
 The <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> implementation reacts to the version prefixes of secrets to load the proper secret into configuration:
 
+* `Load` loads a secret when its name starts with the prefix. Other secrets aren't loaded.
+* `GetKey`:
+  * Removes the prefix from the secret name.
+  * Replaces two dashes in any name with the `KeyDelimiter`, which is the delimiter used in configuration (usually a colon). Azure Key Vault doesn't allow a colon in secret names.
+
 [!code-csharp[](key-vault-configuration/samples_snapshot/Startup.cs)]
 
 The `Load` method is called by a provider algorithm that iterates through the vault secrets to find the ones that have the version prefix. When a version prefix is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It strips off the version prefix from the secret's name and returns the rest of the secret name for loading into the app's configuration name-value pairs.
