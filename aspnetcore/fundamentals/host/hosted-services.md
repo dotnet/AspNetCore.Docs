@@ -102,7 +102,7 @@ The hosted service is activated once at app startup and gracefully shut down at 
 
 No further services are started until `StartAsync` completes. `StartAsync` is blocked from completing until either:
 
-* `await` is called in  `ExecuteAsync`. For more information, see [BackgroundService blocked the execution of whole host (aspnet/Extensions #2149)](https://github.com/aspnet/Extensions/issues/2149).
+* `await` is called in `ExecuteAsync`. For more information, see [BackgroundService blocked the execution of whole host (aspnet/Extensions #2149)](https://github.com/aspnet/Extensions/issues/2149).
 * `ExecuteAsync` completes.
 
 If `StartAsync` is overridden to run startup code for your service, you **must** call (and `await`) the base class method to ensure the service starts properly.
