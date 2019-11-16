@@ -20,8 +20,8 @@ namespace ValidationSample.Validation
             MergeAttribute(context.Attributes, "data-val", "true");
             MergeAttribute(context.Attributes, "data-val-classicmovie", GetErrorMessage(context));
 
-            var classicYear = Attribute.Year.ToString(CultureInfo.InvariantCulture);
-            MergeAttribute(context.Attributes, "data-val-classicmovie-year", classicYear);
+            var year = Attribute.Year.ToString(CultureInfo.InvariantCulture);
+            MergeAttribute(context.Attributes, "data-val-classicmovie-year", year);
         }
 
         public override string GetErrorMessage(ModelValidationContextBase validationContext) =>

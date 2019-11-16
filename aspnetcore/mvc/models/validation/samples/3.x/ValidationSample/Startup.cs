@@ -1,6 +1,10 @@
+// #define DisableValidation
+// #define DisableClientValidation
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
+// using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,11 +22,33 @@ namespace ValidationSample
                 options.UseInMemoryDatabase("Movies"));
 
             #region snippet_Configuration
-            services.AddRazorPages();
+            services.AddRazorPages()
+                .AddMvcOptions(options =>
+                {
+                    options.MaxModelValidationErrors = 50;
+                    options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
+                        _ => "The field is required.");
+                });
 
             services.AddSingleton<IValidationAttributeAdapterProvider,
                 CustomValidationAttributeAdapterProvider>();
             #endregion
+
+#if DisableValidation
+            #region snippet_DisableValidation
+            services.AddSingleton<IObjectModelValidator, NullObjectModelValidator>();
+            #endregion
+#endif
+
+#if DisableClientValidation
+            #region snippet_DisableClientValidation
+            services.AddRazorPages()
+                .AddViewOptions(options =>
+                {
+                    options.HtmlHelperOptions.ClientValidationEnabled = false;
+                });
+            #endregion
+#endif
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
