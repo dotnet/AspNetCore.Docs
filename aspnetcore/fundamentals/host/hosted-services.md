@@ -5,7 +5,7 @@ description: Learn how to implement background tasks with hosted services in ASP
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2019
+ms.date: 11/16/2019
 uid: fundamentals/host/hosted-services
 ---
 # Background tasks with hosted services in ASP.NET Core
@@ -94,14 +94,20 @@ The <xref:Microsoft.Extensions.Hosting.IHostedService> interface defines two met
 
 The hosted service is activated once at app startup and gracefully shut down at app shutdown. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
 
-## BackgroundService
+## BackgroundService base class
 
-`BackgroundService` is a base class for implementing a long running <xref:Microsoft.Extensions.Hosting.IHostedService>. `BackgroundService` provides the `ExecuteAsync(CancellationToken stoppingToken)` abstract method to contain the service's logic. The `stoppingToken` is triggered when [IHostedService.StopAsync](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) is called. The implementation of this method returns a `Task` that represents the entire lifetime of the background service.
+<xref:Microsoft.Extensions.Hosting.BackgroundService> is a base class for implementing a long running <xref:Microsoft.Extensions.Hosting.IHostedService>. `BackgroundService` provides the [ExecuteAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.ExecuteAsync*) abstract method to contain the service's logic. The cancellation token is triggered when [IHostedService.StopAsync](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) is called.
 
-In addition, *optionally* override the methods defined on `IHostedService` to run startup and shutdown code for your service:
+[StartAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.StartAsync*) is called to start the background service. The cancellation token is signalled if the startup process is interrupted. The implementation returns a `Task` that represents the startup process for the service.
 
-* `StopAsync(CancellationToken cancellationToken)` &ndash; `StopAsync` is called when the application host is performing a graceful shutdown. The `cancellationToken` is signalled when the host decides to forcibly terminate the service. If this method is overridden, you **must** call (and `await`) the base class method to ensure the service shuts down properly.
-* `StartAsync(CancellationToken cancellationToken)` &ndash; `StartAsync` is called to start the background service. The `cancellationToken` is signalled if the startup process is interrupted. The implementation returns a `Task` that represents the startup process for the service. No further services are started until this `Task` completes. If this method is overridden, you **must** call (and `await`) the base class method to ensure the service starts properly.
+No further services are started until `StartAsync` completes. `StartAsync` is blocked from completing until either:
+
+* `await` is called in  `ExecuteAsync`. For more information, see [BackgroundService blocked the execution of whole host (aspnet/Extensions #2149)](https://github.com/aspnet/Extensions/issues/2149).
+* `ExecuteAsync` completes.
+
+If `StartAsync` is overridden to run startup code for your service, you **must** call (and `await`) the base class method to ensure the service starts properly.
+
+[StopAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.StopAsync*) is called when the application host is performing a graceful shutdown. The cancellation token is signalled when the host decides to forcibly terminate the service. If this method is overridden to run shutdown code for your service, you **must** call (and `await`) the base class method to ensure the service shuts down properly.
 
 ## Timed background tasks
 
@@ -115,7 +121,7 @@ The service is registered in `IHostBuilder.ConfigureServices` (*Program.cs*) wit
 
 ## Consuming a scoped service in a background task
 
-To use [scoped services](xref:fundamentals/dependency-injection#service-lifetimes) within a `BackgroundService`, create a scope. No scope is created for a hosted service by default.
+To use [scoped services](xref:fundamentals/dependency-injection#service-lifetimes) within a [BackgroundService](#backgroundservice-base-class), create a scope. No scope is created for a hosted service by default.
 
 The scoped background task service contains the background task's logic. In the following example:
 
@@ -232,7 +238,7 @@ A background task queue is based on the .NET Framework 4.x <xref:System.Web.Host
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Services/BackgroundTaskQueue.cs?name=snippet1)]
 
-In `QueueHostedService`, background tasks in the queue are dequeued and executed as a <xref:Microsoft.Extensions.Hosting.BackgroundService>, which is a base class for implementing a long running `IHostedService`:
+In `QueueHostedService`, background tasks in the queue are dequeued and executed as a [BackgroundService](#backgroundservice-base-class), which is a base class for implementing a long running `IHostedService`:
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Services/QueuedHostedService.cs?name=snippet1&highlight=21,25)]
 
