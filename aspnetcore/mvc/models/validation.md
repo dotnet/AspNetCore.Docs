@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 11/11/2019
 uid: mvc/models/validation
 ---
+
 # Model validation in ASP.NET Core MVC and Razor Pages
 
 ::: moniker range=">= aspnetcore-3.0"
@@ -17,9 +18,9 @@ This article explains how to validate user input in an ASP.NET Core MVC or Razor
 
 ## Model state
 
-Model state represents errors that come from two subsystems: model binding and model validation. Errors that originate from [model binding](model-binding.md) are generally data conversion errors (for example, an "x" is entered in a field that expects an integer). Model validation occurs after model binding and reports errors where the data doesn't conform to business rules (for example, a 0 is entered in a field that expects a rating between 1 and 5).
+Model state represents errors that come from two subsystems: model binding and model validation. Errors that originate from [model binding](model-binding.md) are generally data conversion errors (for example, an "x" is entered in a field that expects an integer). Model validation occurs after model binding and reports errors where data doesn't conform to business rules (for example, a 0 is entered in a field that expects a rating between 1 and 5).
 
-Both model binding and validation occur before the execution of a controller action or a Razor Pages handler method. For web apps, it's the app's responsibility to inspect `ModelState.IsValid` and react appropriately. Web apps typically redisplay the page with an error message:
+Both model binding and model validation occur before the execution of a controller action or a Razor Pages handler method. For web apps, it's the app's responsibility to inspect `ModelState.IsValid` and react appropriately. Web apps typically redisplay the page with an error message:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=3-6)]
 
@@ -33,7 +34,7 @@ Validation is automatic, but you might want to repeat it manually. For example, 
 
 ## Validation attributes
 
-Validation attributes let you specify validation rules for model properties. The following example from [the sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. (Not shown is `[ClassicMovieWithClientValidator]`, which shows an alternative way to implement a custom attribute.)
+Validation attributes let you specify validation rules for model properties. The following example from the sample app shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. (Not shown is `[ClassicMovieWithClientValidator]`, which shows an alternative way to implement a custom attribute.)
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Models/Movie.cs?name=snippet_Class)]
 
@@ -78,9 +79,9 @@ By default, the validation system treats non-nullable parameters or properties a
 
 ### [Required] validation on the server
 
-On the server, a required value is considered missing if the property is null. A non-nullable field is always valid, and the [Required] attribute's error message is never displayed.
+On the server, a required value is considered missing if the property is null. A non-nullable field is always valid, and the `[Required]` attribute's error message is never displayed.
 
-However, model binding for a non-nullable property may fail, resulting in an error message such as `The value '' is invalid`. To specify a custom error message for server-side validation of non-nullable types, you have the following options:
+However, model binding for a non-nullable property may fail, resulting in an error message such as "The value '' is invalid". To specify a custom error message for server-side validation of non-nullable types, you have the following options:
 
 * Make the field nullable (for example, `decimal?` instead of `decimal`). [Nullable\<T>](/dotnet/csharp/programming-guide/nullable-types/) value types are treated like standard nullable types.
 * Specify the default error message to be used by model binding, as shown in the following example:
@@ -106,8 +107,8 @@ To implement remote validation:
 
 1. Create an action method for JavaScript to call.  The jQuery Validate [remote](https://jqueryvalidation.org/remote-method/) method expects a JSON response:
 
-   * `"true"` means the input data is valid.
-   * `"false"`, `undefined`, or `null` means the input is invalid.  Display the default error message.
+   * `true` means the input data is valid.
+   * `false`, `undefined`, or `null` means the input is invalid. Display the default error message.
    * Any other string means the input is invalid. Display the string as a custom error message.
 
    Here's an example of an action method that returns a custom error message:
@@ -118,7 +119,7 @@ To implement remote validation:
 
    [!code-csharp[](validation/samples/3.x/ValidationSample/Models/User.cs?name=snippet_Email)]
  
-   The `[Remote]` attribute is in the `Microsoft.AspNetCore.Mvc` namespace. Install the [Microsoft.AspNetCore.Mvc.ViewFeatures](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.ViewFeatures) NuGet package if you're not using the `Microsoft.AspNetCore.App` or `Microsoft.AspNetCore.All` metapackage.
+   The `[Remote]` attribute is in the `Microsoft.AspNetCore.Mvc` namespace.
    
 ### Additional fields
 
@@ -126,7 +127,7 @@ The `AdditionalFields` property of the `[Remote]` attribute lets you validate co
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Models/User.cs?name=snippet_Name&highlight=1,5)]
 
-`AdditionalFields` could be set explicitly to the strings `"FirstName"` and `"LastName"`, but using the [`nameof`](/dotnet/csharp/language-reference/keywords/nameof) operator simplifies later refactoring. The action method for this validation must accept both first name and last name arguments:
+`AdditionalFields` could be set explicitly to the strings `"FirstName"` and `"LastName"`, but using the [`nameof`](/dotnet/csharp/language-reference/keywords/nameof) operator simplifies later refactoring. The action method for this validation must accept both `firstName` and `lastName` arguments:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Controllers/UsersController.cs?name=snippet_VerifyName)]
 
@@ -154,7 +155,7 @@ For scenarios that the built-in validation attributes don't handle, you can crea
 
 The `IsValid` method accepts an object named *value*, which is the input to be validated. An overload also accepts a `ValidationContext` object, which provides additional information, such as the model instance created by model binding.
 
-The following example validates that the release date for a movie in the *Classic* genre isn't later than a specified year. The `[ClassicMovieWithClientValidator]` attribute checks the genre first and continues only if it's *Classic*. For movies identified as classics, it checks the release date to make sure it's not later than the limit passed to the attribute constructor.)
+The following example validates that the release date for a movie in the *Classic* genre isn't later than a specified year. The `[ClassicMovie]` attribute checks the genre first and continues only if it's *Classic*. For movies identified as classics, it checks the release date to make sure it's not later than the limit passed to the attribute constructor:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Validation/ClassicMovieAttribute.cs?name=snippet_Class)]
 
@@ -183,7 +184,7 @@ Top-level nodes can use <xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequired
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Controllers/UsersController.cs?name=snippet_CheckAgeSignature)]
 
-In the Check Age page (*CheckAge.cshtml*), there are two forms. The first form submits an `Age` value of `99` as a query string: `https://localhost:5001/Users/CheckAge?Age=99`.
+In the Check Age page (*CheckAge.cshtml*), there are two forms. The first form submits an `Age` value of `99` as a query string parameter: `https://localhost:5001/Users/CheckAge?Age=99`.
 
 When a properly formatted `age` parameter from the query string is submitted, the form validates.
 
@@ -197,7 +198,7 @@ Validation stops when the maximum number of errors is reached (200 by default). 
 
 ## Maximum recursion
 
-<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor> traverses the object graph of the model being validated. For models that are very deep or are infinitely recursive, validation may result in stack overflow. [MvcOptions.MaxValidationDepth](xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxValidationDepth) provides a way to stop validation early if the visitor recursion exceeds a configured depth. The default value of `MvcOptions.MaxValidationDepth` is 200 when running with `CompatibilityVersion.Version_2_2` or later. For earlier versions, the value is null, which means no depth constraint.
+<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor> traverses the object graph of the model being validated. For models that are very deep or are infinitely recursive, validation may result in stack overflow. [MvcOptions.MaxValidationDepth](xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxValidationDepth) provides a way to stop validation early if the visitor recursion exceeds a configured depth. The default value of `MvcOptions.MaxValidationDepth` is 200.
 
 ## Automatic short-circuit
 
@@ -231,7 +232,7 @@ The [jQuery Unobtrusive Validation](https://github.com/aspnet/jquery-validation-
 
 [!code-cshtml[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml?name=snippet_ReleaseDate&highlight=3-4)]
 
-The preceding tag helpers render the following HTML.
+The preceding tag helpers render the following HTML:
 
 ```html
 <div class="form-group">
@@ -244,7 +245,7 @@ The preceding tag helpers render the following HTML.
 </div>
 ```
 
-Notice that the `data-` attributes in the HTML output correspond to the validation attributes for the `ReleaseDate` property. The `data-val-required` attribute contains an error message to display if the user doesn't fill in the release date field. jQuery Unobtrusive Validation passes this value to the jQuery Validate [`required()`](https://jqueryvalidation.org/required-method/) method, which then displays that message in the accompanying **\<span>** element.
+Notice that the `data-` attributes in the HTML output correspond to the validation attributes for the `Movie.ReleaseDate` property. The `data-val-required` attribute contains an error message to display if the user doesn't fill in the release date field. jQuery Unobtrusive Validation passes this value to the jQuery Validate [`required()`](https://jqueryvalidation.org/required-method/) method, which then displays that message in the accompanying **\<span>** element.
 
 Data type validation is based on the .NET type of a property, unless that is overridden by a `[DataType]` attribute. Browsers have their own default error messages, but the jQuery Validation Unobtrusive Validation package can override those messages. `[DataType]` attributes and subclasses such as `[EmailAddress]` let you specify the error message.
 
@@ -294,7 +295,7 @@ $.get({
 
 ## Custom client-side validation
 
-Custom client-side validation is done by generating `data-` HTML attributes that work with a custom jQuery Validate adapter. The following sample adapter code was written for the `ClassicMovie` and `ClassicMovieWithClientValidator` attributes that were introduced earlier in this article:
+Custom client-side validation is done by generating `data-` HTML attributes that work with a custom jQuery Validate adapter. The following sample adapter code was written for the `[ClassicMovie]` and `[ClassicMovieWithClientValidator]` attributes that were introduced earlier in this article:
 
 [!code-javascript[](validation/samples/3.x/ValidationSample/wwwroot/js/classicMovieValidator.js)]
 
@@ -304,7 +305,7 @@ The use of an adapter for a given field is triggered by `data-` attributes that:
 
 * Flag the field as being subject to validation (`data-val="true"`).
 * Identify a validation rule name and error message text (for example, `data-val-rulename="Error message."`).
-* Provide any additional parameters the validator needs (for example, `data-val-rulename-parm1="value"`).
+* Provide any additional parameters the validator needs (for example, `data-val-rulename-param1="value"`).
 
 The following example shows the `data-` attributes for the sample app's `ClassicMovie` attribute:
 
