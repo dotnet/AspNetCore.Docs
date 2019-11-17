@@ -382,7 +382,7 @@
             - name: Form
               href: mvc/views/working-with-forms.md#the-form-tag-helper
             - name: Form Action
-              href: mvc/views/working-with-forms#the-form-action-tag-helper
+              href: mvc/views/working-with-forms.md#the-form-action-tag-helper
             - name: Image
               uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
             - name: Input
