@@ -8,9 +8,9 @@
 
 **[Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper)**
 
-**[Form Action Tag Helper](xref:mvc/views/working-with-forms#the-form-action-tag-helper)**
-
 **[Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper)**
+
+**[Form Action Tag Helper](xref:mvc/views/working-with-forms#the-form-action-tag-helper)**
 
 **[Image Tag Helper](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper)**
 
