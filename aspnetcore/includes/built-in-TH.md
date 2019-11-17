@@ -20,8 +20,6 @@
 
 **[Link Tag Helper](xref:mvc/views/tag-helpers/builtin-th/link-tag-helper)**
 
-[comment]: **[Option Tag Helper](xref:mvc/views/tag-helpers/builtin-th/option-tag-helper)**
-
 **[Partial Tag Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)**
 
 **[Script Tag Helper](xref:mvc/views/tag-helpers/builtin-th/script-tag-helper)**
