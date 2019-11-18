@@ -5,7 +5,7 @@ description: Learn how to use the logging framework provided by the Microsoft.Ex
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/17/2019
+ms.date: 11/18/2019
 uid: fundamentals/logging/index
 ---
 # Logging in .NET Core and ASP.NET Core
@@ -329,7 +329,7 @@ Other properties under `Logging` specify logging providers. The example is for t
 
 If levels are specified in `Logging.{providername}.LogLevel`, they override anything set in `Logging.LogLevel`.
 
-The Logging API doesn't include a scenario to change log levels while an app is running, but some configuration providers are capable of reloading configuration while an app is running. When configuration is reloaded, logging configuration is also reloaded and takes immediate effect on the Logging API. For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider), which is added by `CreateDefaultBuilder` to read settings files, reloads logging configuration by default. If configuration is changed in code while an app is running, the app can call [IConfigurationRoot.Reload](xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*) to update the app's logging configuration.
+The Logging API doesn't include a scenario to change log levels while an app is running. However, some configuration providers are capable of reloading configuration, which takes immediate effect on logging configuration. For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider), which is added by `CreateDefaultBuilder` to read settings files, reloads logging configuration by default. If configuration is changed in code while an app is running, the app can call [IConfigurationRoot.Reload](xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*) to update the app's logging configuration.
 
 For information on implementing configuration providers, see <xref:fundamentals/configuration/index>.
 
