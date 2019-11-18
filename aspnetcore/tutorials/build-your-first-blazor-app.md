@@ -21,12 +21,12 @@ Follow the guidance in the <xref:blazor/get-started> article to create a Blazor 
 
 ## Blazor app files
 
-Blazor apps use the following special files:
+Blazor apps use the following special files and components:
 
 * [\_Host.cshtml](xref:blazor/routing#aspnet-core-endpoint-routing-integration) &ndash; A Razor page where the app's components are rendered.
 * [\_Imports.razor](xref:blazor/layouts#centralized-layout-selection) &ndash; Imports namespaces for Razor components.
 * [App.razor](xref:blazor/routing#route-templates) &ndash; Maintains the `Router` component, which enables routing to each component in the app with a specified route.
-* [NavLink component](xref:blazor/routing#navlink-component) &ndash; A framework-provided component that renders navigational links to other Razor components. The `NavLink` component automatically indicates a selected state when its component has been loaded, which helps the user understand which component is currently displayed.
+* [NavLink component](xref:blazor/routing#navlink-component) &ndash; A framework-provided component that renders navigational links to other Razor components. The `NavLink` component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
 
 ## Build components
 
