@@ -12,19 +12,21 @@ uid: mvc/models/validation
 
 ::: moniker range=">= aspnetcore-3.0"
 
+By [Kirk Larkin](https://github.com/serpent5)
+
 This article explains how to validate user input in an ASP.NET Core MVC or Razor Pages app.
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Model state
 
-Model state represents errors that come from two subsystems: model binding and model validation. Errors that originate from [model binding](model-binding.md) are generally data conversion errors (for example, an "x" is entered in a field that expects an integer). Model validation occurs after model binding and reports errors where data doesn't conform to business rules (for example, a 0 is entered in a field that expects a rating between 1 and 5).
+Model state represents errors that come from two subsystems: model binding and model validation. Errors that originate from [model binding](model-binding.md) are generally data conversion errors. For example, an "x" is entered in an integer field. Model validation occurs after model binding and reports errors where data doesn't conform to business rules. For example, a 0 is entered in a field that expects a rating between 1 and 5.
 
 Both model binding and model validation occur before the execution of a controller action or a Razor Pages handler method. For web apps, it's the app's responsibility to inspect `ModelState.IsValid` and react appropriately. Web apps typically redisplay the page with an error message:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=3-6)]
 
-Web API controllers don't have to check `ModelState.IsValid` if they have the `[ApiController]` attribute. In that case, an automatic HTTP 400 response containing issue details is returned when model state is invalid. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
+Web API controllers don't have to check `ModelState.IsValid` if they have the `[ApiController]` attribute. In that case, an automatic HTTP 400 response containing error details is returned when model state is invalid. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
 
 ## Rerun validation
 
@@ -34,7 +36,7 @@ Validation is automatic, but you might want to repeat it manually. For example, 
 
 ## Validation attributes
 
-Validation attributes let you specify validation rules for model properties. The following example from the sample app shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. (Not shown is `[ClassicMovieWithClientValidator]`, which shows an alternative way to implement a custom attribute.)
+Validation attributes let you specify validation rules for model properties. The following example from the sample app shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. Not shown is `[ClassicMovieWithClientValidator]`. `[ClassicMovieWithClientValidator]` shows an alternative way to implement a custom attribute.
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Models/Movie.cs?name=snippet_Class)]
 
@@ -81,7 +83,7 @@ By default, the validation system treats non-nullable parameters or properties a
 
 On the server, a required value is considered missing if the property is null. A non-nullable field is always valid, and the `[Required]` attribute's error message is never displayed.
 
-However, model binding for a non-nullable property may fail, resulting in an error message such as "The value '' is invalid". To specify a custom error message for server-side validation of non-nullable types, you have the following options:
+However, model binding for a non-nullable property may fail, resulting in an error message such as `The value '' is invalid`. To specify a custom error message for server-side validation of non-nullable types, you have the following options:
 
 * Make the field nullable (for example, `decimal?` instead of `decimal`). [Nullable\<T>](/dotnet/csharp/programming-guide/nullable-types/) value types are treated like standard nullable types.
 * Specify the default error message to be used by model binding, as shown in the following example:
@@ -155,11 +157,14 @@ For scenarios that the built-in validation attributes don't handle, you can crea
 
 The `IsValid` method accepts an object named *value*, which is the input to be validated. An overload also accepts a `ValidationContext` object, which provides additional information, such as the model instance created by model binding.
 
-The following example validates that the release date for a movie in the *Classic* genre isn't later than a specified year. The `[ClassicMovie]` attribute checks the genre first and continues only if it's *Classic*. For movies identified as classics, it checks the release date to make sure it's not later than the limit passed to the attribute constructor:
+The following example validates that the release date for a movie in the *Classic* genre isn't later than a specified year. The `[ClassicMovie]` attribute:
+
+* Is only run on the server.
+* For Classic movies, validates the release date:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Validation/ClassicMovieAttribute.cs?name=snippet_Class)]
 
-The `movie` variable in the preceding example represents a `Movie` object that contains the data from the form submission. The `IsValid` method checks the date and genre. Upon successful validation, `IsValid` returns a `ValidationResult.Success` code. When validation fails, a `ValidationResult` with an error message is returned.
+The `movie` variable in the preceding example represents a `Movie` object that contains the data from the form submission. When validation fails, a `ValidationResult` with an error message is returned.
 
 ## IValidatableObject
 
@@ -198,7 +203,7 @@ Validation stops when the maximum number of errors is reached (200 by default). 
 
 ## Maximum recursion
 
-<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor> traverses the object graph of the model being validated. For models that are very deep or are infinitely recursive, validation may result in stack overflow. [MvcOptions.MaxValidationDepth](xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxValidationDepth) provides a way to stop validation early if the visitor recursion exceeds a configured depth. The default value of `MvcOptions.MaxValidationDepth` is 200.
+<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor> traverses the object graph of the model being validated. For models that are deep or are infinitely recursive, validation may result in stack overflow. [MvcOptions.MaxValidationDepth](xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxValidationDepth) provides a way to stop validation early if the visitor recursion exceeds a configured depth. The default value of `MvcOptions.MaxValidationDepth` is 200.
 
 ## Automatic short-circuit
 
@@ -353,7 +358,12 @@ The following code disables client validation in Razor Pages:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Startup.cs?name=snippet_DisableClientValidation&highlight=2-5)]
 
-Another option for disabling client validation is to comment out the reference to `_ValidationScriptsPartial` in your *.cshtml* file.
+Other options to disable client-side validation:
+
+* Comment out the reference to `_ValidationScriptsPartial` in all the *.cshtml* files.
+* Remove the contents of the *Pages\Shared\_ValidationScriptsPartial.cshtml* file.
+
+The preceding approach won't prevent client side validation of ASP.NET Core Identity Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>
 
 ## Additional resources
 
@@ -376,7 +386,7 @@ Both model binding and validation occur before the execution of a controller act
 
 [!code-csharp[](validation/samples_snapshot/2.x/Create.cshtml.cs?name=snippet&highlight=3-6)]
 
-Web API controllers don't have to check `ModelState.IsValid` if they have the `[ApiController]` attribute. In that case, an automatic HTTP 400 response containing issue details is returned when model state is invalid. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
+Web API controllers don't have to check `ModelState.IsValid` if they have the `[ApiController]` attribute. In that case, an automatic HTTP 400 response containing error details is returned when model state is invalid. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
 
 ## Rerun validation
 
@@ -386,16 +396,16 @@ Validation is automatic, but you might want to repeat it manually. For example, 
 
 ## Validation attributes
 
-Validation attributes let you specify validation rules for model properties. The following example from [the sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. (Not shown is `[ClassicMovie2]`, which shows an alternative way to implement a custom attribute.)
+Validation attributes let you specify validation rules for model properties. The following example from [the sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. Not shown is `[ClassicMovie2]`, which shows an alternative way to implement a custom attribute.
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Models/Movie.cs?name=snippet_ModelClass)]
 
 ## Built-in attributes
 
-Here are some of the built-in validation attributes:
+Built-in validation attributes include:
 
 * `[CreditCard]`: Validates that the property has a credit card format.
-* `[Compare]`: Validates that two properties in a model match.
+* `[Compare]`: Validates that two properties in a model match. For example, the *Register.cshtml.cs* file uses `[Compare]` to validate the two entered passwords match. [Scaffold Identity](security/authentication/scaffold-identity) to see the Register code.
 * `[EmailAddress]`: Validates that the property has an email format.
 * `[Phone]`: Validates that the property has a telephone number format.
 * `[Range]`: Validates that the property value falls within a specified range.
