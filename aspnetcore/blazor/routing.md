@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 11/18/2019
 no-loc: [Blazor]
 uid: blazor/routing
 ---
@@ -135,6 +135,9 @@ The `"/{**path}"` template includes:
 
 * Double-asterisk *catch-all* syntax (`**`) to capture the path across multiple folder boundaries without encoding forward slashes (`/`).
 * A `path` route parameter name.
+
+> [!NOTE]
+> Although catch-all syntax (`**`) works with Razor pages (*.cshtml*), catch-all syntax isn't a valid scenario in Razor components (*.razor*). [Dedicated conventional routes](xref:mvc/controllers/routing#special-case-for-dedicated-conventional-routes) are valid for use with Razor components (for example, `@page "/foo?{*data}"` with a `data` route parameter name).
 
 For more information, see <xref:fundamentals/routing>.
 
