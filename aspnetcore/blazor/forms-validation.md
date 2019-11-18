@@ -197,6 +197,19 @@ The `ValidationMessage` component displays validation messages for a specific fi
 
 The `ValidationMessage` and `ValidationSummary` components support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the generated `<div>` or `<ul>` element.
 
+On validating fields when their values change, the `DataAnnotationsValidator` associates all validation results produced from validating the backing property with the field. When validating the form as part of submission, uses the member name returned by the validation result to determine the property that the validation needs to be associated with. This behavior is important to understand when authoring custom validation. To ensure that validation is correctly associated with the field both during field change and submit validation, specify a member name when returning a `ValidationResult` instance:
+
+```C#
+pbulic class MyCustomValidationAttribute : ValidationAttribute
+{
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    {
+        ...
+        return new ValidationResult(ErrorMessage, new[] { validationContext.MemberName });
+    }
+}
+```
+
 ::: moniker range=">= aspnetcore-3.1"
 
 **Microsoft.AspNetCore.Blazor.DataAnnotations.Validation package**
