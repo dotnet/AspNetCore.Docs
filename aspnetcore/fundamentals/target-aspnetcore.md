@@ -1,22 +1,23 @@
 ---
-title: Use ASP.NET Core 3.0 APIs in a class library
+title: Use ASP.NET Core APIs in a class library
 author: scottaddie
-description: Learn how to use ASP.NET Core 3.0 APIs in a class library.
+description: Learn how to use ASP.NET Core APIs in a class library.
+monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/18/2019
 no-loc: [Blazor]
-uid: migration/22-to-30/target-aspnetcore
+uid: fundamentals/target-aspnetcore
 ---
-# Use ASP.NET Core 3.0 APIs in a class library
+# Use ASP.NET Core APIs in a class library
 
 By [Scott Addie](https://github.com/scottaddie)
 
-This document provides guidance for using ASP.NET Core 3.0 APIs in a class library. For all other library guidance, see [Open-source library guidance](/dotnet/standard/library-guidance/).
+This document provides guidance for using ASP.NET Core APIs in a class library. For all other library guidance, see [Open-source library guidance](/dotnet/standard/library-guidance/).
 
 ## Use the ASP.NET Core shared framework
 
-With the release of .NET Core 3.0, many ASP.NET Core packages are no longer published to NuGet. Instead, the packages are included in the `Microsoft.AspNetCore.App` shared framework, which is installed with the .NET Core SDK. The shared framework was previously distributed as a NuGet package. For a list of packages no longer being published, see [Remove obsolete package references](xref:migration/22-to-30/index#remove-obsolete-package-references).
+With the release of .NET Core 3.0, many ASP.NET Core packages are no longer published to NuGet. Instead, the packages are included in the `Microsoft.AspNetCore.App` shared framework, which is installed with the .NET Core SDK. The shared framework was previously distributed as a NuGet package. For a list of packages no longer being published, see [Remove obsolete package references](xref:migration/22-to-30#remove-obsolete-package-references).
 
 As of .NET Core 3.0, projects:
 
@@ -25,13 +26,13 @@ As of .NET Core 3.0, projects:
 
 To target ASP.NET Core, add the following `<FrameworkReference>` element to your project file:
 
-[!code-xml[](samples/target-aspnetcore/single-tfm/netcoreapp3.0-basic-library.csproj?highlight=8)]
+[!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-basic-library.csproj?highlight=8)]
 
 Targeting ASP.NET Core in this manner is only supported for projects targeting .NET Core 3.0.
 
 ## Include UI components
 
-The following sections outline recommendations for libraries that include UI components. This guidance assumes the library won't multi-target. For guidance on supporting multiple platforms, see [Support multiple platforms](#support-multiple-platforms).
+The following sections outline recommendations for libraries that include UI components. This guidance assumes the library won't multi-target. For guidance on supporting multiple ASP.NET Core versions, see [Support multiple versions](#support-multiple-versions).
 
 ### Razor views or Razor Pages
 
@@ -44,11 +45,7 @@ If the project targets .NET Core 3.0, it requires:
 
 For example:
 
-[!code-xml[](samples/target-aspnetcore/single-tfm/netcoreapp3.0-razor-views-pages-library.csproj)]
-
-If the project doesn't target .NET Core 3.0, it requires a [Microsoft.AspNetCore.Mvc](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc) package reference. For example:
-
-[!code-xml[](samples/target-aspnetcore/single-tfm/netstandard2.0-razor-views-pages-library.csproj?highlight=8)]
+[!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-razor-views-pages-library.csproj)]
 
 ### Razor components
 
@@ -61,7 +58,7 @@ To support Razor component consumption from [Blazor Server](xref:blazor/hosting-
 
 For example:
 
-[!code-xml[](samples/target-aspnetcore/single-tfm/netcoreapp3.0-razor-components-library.csproj)]
+[!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-razor-components-library.csproj)]
 
 To support Razor component consumption from both Blazor Server and [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly):
 
@@ -73,7 +70,7 @@ To support Razor component consumption from both Blazor Server and [Blazor WebAs
 
 For example:
 
-[!code-xml[](samples/target-aspnetcore/single-tfm/netstandard2.0-razor-components-library.csproj)]
+[!code-xml[](target-aspnetcore/samples/single-tfm/netstandard2.0-razor-components-library.csproj)]
 
 The switch to .NET Standard 2.0 supports both .NET Core 3.0 and Mono, the runtimes used by Blazor Server and Blazor WebAssembly, respectively.
 
@@ -88,9 +85,9 @@ A project that includes [Tag Helpers](xref:mvc/views/tag-helpers/intro) or [View
 
 For example:
 
-[!code-xml[](samples/target-aspnetcore/single-tfm/netcoreapp3.0-basic-library.csproj)]
+[!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-basic-library.csproj)]
 
-## Support multiple platforms
+## Support multiple versions
 
 Multi-targeting is required to author a library that supports multiple variants of ASP.NET Core. Consider a scenario in which a Tag Helpers library must support the following ASP.NET Core variants:
 
@@ -100,7 +97,7 @@ Multi-targeting is required to author a library that supports multiple variants 
 
 The following project file supports these variants via the `TargetFrameworks` property:
 
-[!code-xml[](samples/target-aspnetcore/multi-tfm/recommended-tag-helpers-library.csproj)]
+[!code-xml[](target-aspnetcore/samples/multi-tfm/recommended-tag-helpers-library.csproj)]
 
 With the preceding project file:
 
@@ -110,7 +107,7 @@ With the preceding project file:
 
 Alternatively, .NET Standard 2.0 could be targeted instead of targeting both .NET Core 2.1 and .NET Framework 4.6.1:
 
-[!code-xml[](samples/target-aspnetcore/multi-tfm/alternative-tag-helpers-library.csproj?highlight=4)]
+[!code-xml[](target-aspnetcore/samples/multi-tfm/alternative-tag-helpers-library.csproj?highlight=4)]
 
 With the preceding project file, .NET Core 2.x and .NET Framework 4.6.1 projects are supported because both target frameworks implement .NET Standard 2.0. Since this library only contains Tag Helpers, it's more efficient to target the specific platforms on which ASP.NET Core runs: .NET Core and .NET Framework. Tag Helpers can't be used by other .NET Standard 2.0-compliant target frameworks such as Unity, UWP, and Xamarin. If your library needs to call platform-specific APIs, target specific .NET implementations instead of .NET Standard. For more information, see [Multi-targeting](/dotnet/standard/library-guidance/cross-platform-targeting#multi-targeting).
 
@@ -188,7 +185,7 @@ public class ScriptInliningTagHelper : TagHelper
 
 The following multi-targeted project file supports this Tag Helper scenario:
 
-[!code-xml[](samples/target-aspnetcore/multi-tfm/recommended-tag-helpers-library.csproj)]
+[!code-xml[](target-aspnetcore/samples/multi-tfm/recommended-tag-helpers-library.csproj)]
 
 ## Use an API removed from shared framework
 

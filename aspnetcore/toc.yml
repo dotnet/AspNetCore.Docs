@@ -1088,6 +1088,9 @@
       uid: fundamentals/host/hosted-services
     - name: Hosting startup assemblies
       uid: fundamentals/configuration/platform-specific-configuration
+    - name: ASP.NET Core in class libraries
+      displayName: shared framework
+      uid: fundamentals/target-aspnetcore
     - name: Microsoft.AspNetCore.App metapackage
       uid: fundamentals/metapackage-app
     - name: Microsoft.AspNetCore.All metapackage
@@ -1104,12 +1107,7 @@
   items:
     - name: 2.2 to 3.0
       displayName: migrate, migration
-      items:
-        - name: Overview
-          uid: migration/22-to-30/index
-        - name: ASP.NET Core in class libraries
-          displayName: shared framework
-          uid: migration/22-to-30/target-aspnetcore
+      uid: migration/22-to-30
     - name: 2.1 to 2.2
       displayName: migrate, migration
       uid: migration/21-to-22
