@@ -909,6 +909,11 @@
             "source_path": "aspnetcore/razor-pages/upload-files.md",
             "redirect_url": "/aspnet/core/mvc/models/file-uploads",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/22-to-30.md",
+            "redirect_url": "/aspnet/core/migration/22-to-30/index",
+            "redirect_document_id": false
         }
     ]
 }

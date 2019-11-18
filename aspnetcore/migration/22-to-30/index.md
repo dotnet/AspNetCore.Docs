@@ -4,9 +4,9 @@ author: rick-anderson
 description: Learn how to migrate an ASP.NET Core 2.2 project to ASP.NET Core 3.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 11/18/2019
 no-loc: [SignalR]
-uid: migration/22-to-30
+uid: migration/22-to-30/index
 ---
 # Migrate from ASP.NET Core 2.2 to 3.0
 
@@ -48,7 +48,7 @@ If your solution relies upon a [global.json](/dotnet/core/tools/global-json) fil
 
 ASP.NET Core 3.0 and later only run on .NET Core. Set the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks) to `netcoreapp3.0`:
 
-[!code-xml[](22-to-30/samples/Web1.csproj?highlight=4)]
+[!code-xml[](samples/index/Web1.csproj?highlight=4)]
 
 ### Remove obsolete package references
 
@@ -73,7 +73,7 @@ ASP.NET Core no longer produces a large number of NuGet packages features. These
 
 The updated ASP.NET Core 3.0 project file:
 
-[!code-xml[](22-to-30/samples/Web1.csproj?highlight=4)]
+[!code-xml[](samples/index/Web1.csproj?highlight=4)]
 
 The updated ASP.NET Core 3.0 project file:
 
@@ -246,7 +246,7 @@ ASP.NET Core 3.0 removes some assemblies that were previously part of the `Micro
 
 * A template-generated web app with **Individual User Accounts** requires adding the following packages:
 
-  [!code-xml[](22-to-30/samples/WebFull.csproj?highlight=9-13)]
+  [!code-xml[](samples/index/WebFull.csproj?highlight=9-13)]
 
 * [Microsoft.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore)
 
@@ -281,13 +281,13 @@ ASP.NET Core 3.0 removes some assemblies that were previously part of the `Micro
 
 The following image shows the deleted and changed lines in an ASP.NET Core 2.2 Razor Pages Web app:
 
-![the deleted and changed lines in an ASP.NET Core 2.2 Razor Web app](22-to-30/_static/startup2.2.png)
+![the deleted and changed lines in an ASP.NET Core 2.2 Razor Web app](_static/startup2.2.png)
 
 In the preceding image, deleted code is shown in red. The deleted code doesn't show cookie options code, which was deleted prior to comparing the files.
 
 The following image shows the added and changed lines in an ASP.NET Core 3.0 Razor Pages Web app:
 
-![the added and changed lines in an ASP.NET Core 3.0 Razor Web app](22-to-30/_static/startup3.0.png)
+![the added and changed lines in an ASP.NET Core 3.0 Razor Web app](_static/startup3.0.png)
 
 In the preceding image, added code is shown in green. For information on the following changes:
 
@@ -1032,11 +1032,11 @@ public void Configure(IApplicationBuilder app)
 
 The ASP.NET Core 3.0 templates use [Generic Host](xref:fundamentals/host/generic-host). Previous versions used [Web Host](xref:fundamentals/host/web-host). The following code shows the ASP.NET Core 3.0 template generated `Program` class:
 
-[!code-csharp[](22-to-30/samples/Program.cs?name=snippet)]
+[!code-csharp[](samples/index/Program.cs?name=snippet)]
 
 The following code shows the ASP.NET Core 2.2 template-generated `Program` class:
 
-[!code-csharp[](22-to-30/samples/Program2.2.cs?name=snippet)]
+[!code-csharp[](samples/index/Program2.2.cs?name=snippet)]
 
 <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> remains in 3.0 and is the type of the `webBuilder` seen in the preceding code sample. <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> will be deprecated in a future release and replaced by `HostBuilder`.
 
@@ -1194,6 +1194,8 @@ var webRootFileProvider =
 #error unknown target framework
 #endif
 ```
+
+For more information on using ASP.NET Core 3.0 APIs in a class library, see <xref:migration/22-to-30/target-aspnetcore>.
 
 ### Publish
 

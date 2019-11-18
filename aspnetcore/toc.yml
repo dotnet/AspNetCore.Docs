@@ -1104,7 +1104,12 @@
   items:
     - name: 2.2 to 3.0
       displayName: migrate, migration
-      uid: migration/22-to-30
+      items:
+        - name: Overview
+          uid: migration/22-to-30/index
+        - name: ASP.NET Core in class libraries
+          displayName: shared framework
+          uid: migration/22-to-30/target-aspnetcore
     - name: 2.1 to 2.2
       displayName: migrate, migration
       uid: migration/21-to-22
