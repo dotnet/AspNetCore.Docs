@@ -46,7 +46,7 @@ public void Configure(IApplicationBuilder app)
     // specifying the Swagger JSON endpoint.
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");In the 
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); 
     });
 
     app.UseRouting();
