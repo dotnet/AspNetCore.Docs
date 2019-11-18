@@ -232,7 +232,7 @@
         }, 
         {   
             "source_path": "aspnetcore/security/authentication/index.md", 
-            "redirect_url": "/aspnet/core/security/authentication/identity", 
+            "redirect_url": "/aspnet/core/security/authentication/index", 
             "redirect_document_id": false 
         }, 
         {   
