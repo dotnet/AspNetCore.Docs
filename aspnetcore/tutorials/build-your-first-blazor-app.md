@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/31/2019
+ms.date: 11/18/2019
 no-loc: [Blazor]
 uid: tutorials/first-blazor-app
 ---
@@ -18,6 +18,15 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 This tutorial shows you how to build and modify a Blazor app.
 
 Follow the guidance in the <xref:blazor/get-started> article to create a Blazor project for this tutorial. Name the project *ToDoList*.
+
+## Blazor app files
+
+Blazor apps use the following special files:
+
+* [\_Host.cshtml](xref:blazor/routing#aspnet-core-endpoint-routing-integration) &ndash; A Razor page where the app's components are rendered.
+* [\_Imports.razor](xref:blazor/layouts#centralized-layout-selection) &ndash; Imports namespaces for Razor components.
+* [App.razor](xref:blazor/routing#route-templates) &ndash; Maintains the `Router` component, which enables routing to each component in the app with a specified route.
+* [NavLink component](xref:blazor/routing#navlink-component) &ndash; A framework-provided component that renders navigational links to other Razor components. The `NavLink` component automatically indicates a selected state when its component has been loaded, which helps the user understand which component is currently displayed.
 
 ## Build components
 
