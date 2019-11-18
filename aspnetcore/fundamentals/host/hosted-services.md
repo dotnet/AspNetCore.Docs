@@ -5,7 +5,7 @@ description: Learn how to implement background tasks with hosted services in ASP
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/16/2019
+ms.date: 11/18/2019
 uid: fundamentals/host/hosted-services
 ---
 # Background tasks with hosted services in ASP.NET Core
@@ -96,18 +96,11 @@ The hosted service is activated once at app startup and gracefully shut down at 
 
 ## BackgroundService base class
 
-<xref:Microsoft.Extensions.Hosting.BackgroundService> is a base class for implementing a long running <xref:Microsoft.Extensions.Hosting.IHostedService>. `BackgroundService` provides the [ExecuteAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.ExecuteAsync*) abstract method to contain the service's logic. The cancellation token is triggered when [IHostedService.StopAsync](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) is called.
+<xref:Microsoft.Extensions.Hosting.BackgroundService> is a base class for implementing a long running <xref:Microsoft.Extensions.Hosting.IHostedService>.
 
-[StartAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.StartAsync*) is called to start the background service. The cancellation token is signalled if the startup process is interrupted. The implementation returns a `Task` that represents the startup process for the service.
+[ExecuteAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.ExecuteAsync*) is called to run the background service. The implementation returns a <xref:System.Treading.Tasks.Task> that represents the entire lifetime of the background service. No further services are started until [ExecuteAsync becomes asynchronous](https://github.com/aspnet/Extensions/issues/2149), such as by calling `await`. Avoid performing long, blocking initialization work in `ExecuteAsync`. The host blocks in [StopAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.StopAsync*) waiting for `ExecuteAsync` to complete.
 
-No further services are started until `StartAsync` completes. `StartAsync` is blocked from completing until either:
-
-* `await` is called in `ExecuteAsync`. For more information, see [BackgroundService blocked the execution of whole host (aspnet/Extensions #2149)](https://github.com/aspnet/Extensions/issues/2149).
-* `ExecuteAsync` completes.
-
-If `StartAsync` is overridden to run startup code for your service, you **must** call (and `await`) the base class method to ensure the service starts properly.
-
-[StopAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.StopAsync*) is called when the application host is performing a graceful shutdown. The cancellation token is signalled when the host decides to forcibly terminate the service. If this method is overridden to run shutdown code for your service, you **must** call (and `await`) the base class method to ensure the service shuts down properly.
+The cancellation token is triggered when [IHostedService.StopAsync](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) is called and `ExecuteAsync` finishes.
 
 ## Timed background tasks
 
