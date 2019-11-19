@@ -11,7 +11,7 @@ uid: security/authentication/index
 
 By [Mike Rousos](https://github.com/mjrousos)
 
-Authentication is the process of determining a user's identity. [Authorization](xref:security/authorization/introduction) is the process of determining whether a user has access to certain resources. In ASP.NET Core, authentication is handled by authentication [middleware](xref:fundamentals/middleware/index). The authentication middleware uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
+Authentication is the process of determining a user's identity. [Authorization](xref:security/authorization/introduction) is the process of determining whether a user has access to a resource. In ASP.NET Core, authentication is handled by authentication [middleware](xref:fundamentals/middleware/index). The authentication middleware uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
 
 * Authenticating a user.
 * Responding when an unauthenticated user tries to access a restricted resource.
@@ -20,10 +20,10 @@ The registered authentication handlers and their configuration options, are call
 
 Authentication schemes are specified by registering authentication services in `Startup.ConfigureServices`. This is done by:
 
-* Calling [AuthenticationBuilder.AddScheme]((xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*)
-* Calling a scheme-specific extension methods that call `AddScheme` automatically with appropriate settings. This approach is more command than calling `AuthenticationBuilder.AddScheme`.
+* Calling [AuthenticationBuilder.AddScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*)
+* Calling a scheme-specific extension methods that call `AddScheme` automatically with appropriate settings. This approach is more common than calling `AuthenticationBuilder.AddScheme`.
 
-For example, the following code registers authentication services including handlers for both cookie and JWT bearer authentication schemes:
+For example, the following code registers authentication services and handlers for cookie and JWT bearer authentication schemes:
 
 ```csharp
 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -31,7 +31,7 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddCookie(options => Configuration.Bind("CookieSettings", options));
 ```
 
-The `AddAuthentication` parameter is the name of the scheme to use by default if a specific one isn't requested. In the preceding code, JWT bearer authentication is used by default.
+The `AddAuthentication` parameter `JwtBearerDefaults.AuthenticationScheme` is the name of the scheme to use by default if a specific one isn't requested. In the preceding code, JWT bearer authentication is used by default.
 
 In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity)),`AddAuthentication` is called. If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/limitingidentitybyscheme) they depend on to authenticate the user.
 
@@ -54,7 +54,7 @@ In ASP.NET Core, an authentication scheme consists of:
 * An authentication handler.
 * Options for configuring that specific instance of the handler.
 
-Authentication schemes have names so that they can be referenced in the app. For example, an authorization policy that specifies which authorization scheme (or schemes) should be used to authenticate the user. When configuring authentication, it's common to specify the default authentication scheme. The default scheme is used unless a resource request a specific scheme. It's also possible to:
+Authentication schemes have names so that they can be referenced in the app. For example, an authorization policy that specifies which authorization scheme (or schemes) should be used to authenticate the user. When configuring authentication, it's common to specify the default authentication scheme. The default scheme is used unless a resource requests a specific scheme. It's also possible to:
 
 * Specify different default schemes to use for authenticate, challenge, and forbid actions.
 * Combine multiple schemes into one using [policy schemes](xref:security/authentication/policyschemes).
@@ -77,7 +77,7 @@ Based on the authentication scheme's configuration and the incoming request cont
 
 ### Challenge
 
-An authentication challenge is the action an authentication scheme takes when an unauthenticated user requests an endpoint that requires authentication. For example, to access a restricted resource. Authentication challenge examples include:
+An authentication challenge is the action an authentication scheme takes when an unauthenticated user requests an endpoint that requires authentication. An authentication challenge is issued, for example, on a request to a restricted resource. Authentication challenge examples include:
 
 * Cookie authentication scheme redirecting the user to a login page.
 * The JWT bearer scheme returning a 401 result.
@@ -86,7 +86,11 @@ A challenge action should let the user know that they need to be authenticated t
 
 ### Forbid
 
-An authentication handler's forbid action is used when an authenticated user attempts to access a resource they are not permitted to access. A forbid action usually returns a 403 result. In some custom authentication schemes, forbid could result in a redirect to a page where the user can request access to the resource in question from an admin or something like that. A forbid action should let the user know:
+An authentication handler's forbid action is used when an authenticated user attempts to access a resource they are not permitted to access. A forbid action typically returns a 403 result. In some custom authentication schemes, forbid could result in:
+
+* A redirect to a page where the user can request access to the resource.
+
+For example, the user my request access from an admin. A forbid action should let the user know:
 
 * They are authenticated.
 * They aren't permitted to access the requested resource.
@@ -95,3 +99,9 @@ See the following links for differences between challenge and forbid:
 
 * [Challenge and forbid with an operational resource handler](xref:security/authorization/resourcebased#challenge-and-forbid-with-an-operational-resource-handler).
 * [Differences between challenge and forbid](xref:security/authorization/secure-data#challenge).
+
+## Additional resources
+
+* <xref:security/authorization/limitingidentitybyscheme>
+* <xref:security/authentication/policyschemes>
+* <xref:security/authorization/secure-data>
