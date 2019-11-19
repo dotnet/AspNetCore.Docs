@@ -2,7 +2,6 @@
 title: Use ASP.NET Core APIs in a class library
 author: scottaddie
 description: Learn how to use ASP.NET Core APIs in a class library.
-monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/18/2019
@@ -19,10 +18,7 @@ This document provides guidance for using ASP.NET Core APIs in a class library. 
 
 With the release of .NET Core 3.0, many ASP.NET Core packages are no longer published to NuGet. Instead, the packages are included in the `Microsoft.AspNetCore.App` shared framework, which is installed with the .NET Core SDK. The shared framework was previously distributed as a NuGet package. For a list of packages no longer being published, see [Remove obsolete package references](xref:migration/22-to-30#remove-obsolete-package-references).
 
-As of .NET Core 3.0, projects:
-
-* Using the `Microsoft.NET.Sdk.Web` MSBuild SDK implicitly reference the shared framework.
-* With dependencies on ASP.NET Core APIs in the shared framework need to target ASP.NET Core.
+As of .NET Core 3.0, projects using the `Microsoft.NET.Sdk.Web` MSBuild SDK implicitly reference the shared framework. Projects using the `Microsoft.NET.Sdk` or `Microsoft.NET.Sdk.Razor` SDK must target ASP.NET Core to use ASP.NET Core APIs in the shared framework.
 
 To target ASP.NET Core, add the following `<FrameworkReference>` element to your project file:
 
@@ -32,7 +28,7 @@ Targeting ASP.NET Core in this manner is only supported for projects targeting .
 
 ## Include UI components
 
-The following sections outline recommendations for libraries that include UI components. This guidance assumes the library won't multi-target. For guidance on supporting multiple ASP.NET Core versions, see [Support multiple versions](#support-multiple-versions).
+The following sections outline recommendations for libraries that include UI components. This guidance assumes the library won't multi-target. For guidance on supporting multiple ASP.NET Core versions, see [Support multiple ASP.NET Core versions](#support-multiple-aspnet-core-versions).
 
 ### Razor views or Razor Pages
 
@@ -47,7 +43,7 @@ For example:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-razor-views-pages-library.csproj)]
 
-If the project targets .NET Standard 2.0 instead, it requires a [Microsoft.AspNetCore.Mvc](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc) package reference. For example:
+If the project targets .NET Standard instead, it requires a [Microsoft.AspNetCore.Mvc](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc) package reference. The `Microsoft.AspNetCore.Mvc` package moved into the shared framework and is therefore no longer published. For example:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netstandard2.0-razor-views-pages-library.csproj?highlight=8)]
 
@@ -78,18 +74,27 @@ For example:
 
 For more information on libraries containing Razor components, see [ASP.NET Core Razor components class libraries](xref:blazor/class-libraries).
 
-### Tag Helpers or view components
+### Tag Helpers
 
-A project that includes [Tag Helpers](xref:mvc/views/tag-helpers/intro) or [View components](xref:mvc/views/view-components) should:
-
-* Target .NET Core 3.0.
-* Add a `<FrameworkReference>` element for the shared framework.
-
-For example:
+A project that includes [Tag Helpers](xref:mvc/views/tag-helpers/intro) should use the `Microsoft.NET.Sdk` SDK. If targeting .NET Core 3.0, add a `<FrameworkReference>` element for the shared framework. For example:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-basic-library.csproj)]
 
-## Support multiple versions
+If targeting .NET Standard, add a package reference to [Microsoft.AspNetCore.Mvc.Razor](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor). The `Microsoft.AspNetCore.Mvc.Razor` package moved into the shared framework and is therefore no longer published. For example:
+
+[!code-xml[](target-aspnetcore/samples/single-tfm/netstandard2.0-tag-helpers-library.csproj)]
+
+### View components
+
+A project that includes [View components](xref:mvc/views/view-components) should use the `Microsoft.NET.Sdk` SDK. If targeting .NET Core 3.0, add a `<FrameworkReference>` element for the shared framework. For example:
+
+[!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-basic-library.csproj)]
+
+If targeting .NET Standard, add a package reference to [Microsoft.AspNetCore.Mvc.ViewFeatures](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.ViewFeatures). The `Microsoft.AspNetCore.Mvc.ViewFeatures` package moved into the shared framework and is therefore no longer published. For example:
+
+[!code-xml[](target-aspnetcore/samples/single-tfm/netstandard2.0-view-components-library.csproj)]
+
+## Support multiple ASP.NET Core versions
 
 Multi-targeting is required to author a library that supports multiple variants of ASP.NET Core. Consider a scenario in which a Tag Helpers library must support the following ASP.NET Core variants:
 
@@ -115,7 +120,7 @@ With the preceding project file, .NET Core 2.x and .NET Framework 4.6.1 projects
 
 ## Use an API that hasn't changed
 
-Imagine a scenario in which you're upgrading a middleware library from .NET Core 2.2 to 3.0. The ASP.NET Core middleware APIs being used in the library haven't changed between ASP.NET Core 2.2 and 3.0. To continue supporting a middleware library in .NET Core 3.0, take the following steps:
+Imagine a scenario in which you're upgrading a middleware library from .NET Core 2.2 to 3.0. The ASP.NET Core middleware APIs being used in the library haven't changed between ASP.NET Core 2.2 and 3.0. To continue supporting the middleware library in .NET Core 3.0, take the following steps:
 
 * Follow the [standard library guidance](/dotnet/standard/library-guidance/).
 * Add a `<PackageReference>` element for the API's NuGet package.
@@ -191,14 +196,26 @@ The following multi-targeted project file supports this Tag Helper scenario:
 
 ## Use an API removed from shared framework
 
-TODO
-<!--To use an ASP.NET Core assembly that was removed from the shared framework:
+To use an ASP.NET Core assembly that was removed from the shared framework, add the appropriate package reference. For example, to add the web API client and Razor file runtime compilation assemblies:
 
-TODO: e.g. Tag Helpers, WebApiClient, JsonPatch, EF Core, Identity, JSON.NET
-* Some of these libraries will continue to function in 3.0 apps
-* Should be multi-targeted to `netcoreapp3.0` for best consumption experience
-  * e.g. avoid unused dependencies appearing in application *bin*
-  * Ensure new versions of package-only dependencies are deployed with app-->
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0-preview2.19528.8" Condition="'$(Configuration)' == 'Debug'" />
+  </ItemGroup>
+
+</Project>
+```
 
 ## Additional resources
 
