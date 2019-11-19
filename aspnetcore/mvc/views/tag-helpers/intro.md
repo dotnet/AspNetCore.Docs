@@ -142,7 +142,6 @@ Tag Helpers do not allow C# in the element's attribute or tag declaration area. 
 
 The preceding code can be written as:
 
-
 ```cshtml
 <input asp-for="LastName" 
        disabled="@(Model?.LicenseId == null)" />
