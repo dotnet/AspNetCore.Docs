@@ -5,7 +5,7 @@ description: Learn how to use the logging framework provided by the Microsoft.Ex
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/13/2019
+ms.date: 11/19/2019
 uid: fundamentals/logging/index
 ---
 # Logging in .NET Core and ASP.NET Core
@@ -1124,7 +1124,7 @@ To configure Azure log streaming:
 
 * Navigate to the **App Service logs** page from your app's portal page.
 * Set **Application Logging (Filesystem)** to **On**.
-* Choose the log **Level**.
+* Choose the log **Level**. This setting only applies to Azure log streaming, not other logging providers in the app.
 
 Navigate to the **Log Stream** page to view app messages. They're logged by the app through the `ILogger` interface.
 
