@@ -65,7 +65,20 @@ To render a component from a page or view, use the `Component` Tag Helper:
     param-IncrementAmount="10" />
 ```
 
+`RenderMode` configures whether the component:
+
+* Is prerendered into the page.
+* Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
+
+| `RenderMode`        | Description |
+| ------------------- | ----------- |
+| `ServerPrerendered` | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| `Server`            | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| `Static`            | Renders the component into static HTML. |
+
 While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
+
+Rendering server components from a static HTML page isn't supported.
 
 For more information on how components are rendered, component state, and the `Component` Tag Helper, see <xref:blazor/hosting-models>.
 
@@ -79,7 +92,20 @@ To render a component from a page or view, use the `RenderComponentAsync<TCompon
 @(await Html.RenderComponentAsync<MyComponent>(RenderMode.ServerPrerendered))
 ```
 
+`RenderMode` configures whether the component:
+
+* Is prerendered into the page.
+* Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
+
+| `RenderMode`        | Description |
+| ------------------- | ----------- |
+| `ServerPrerendered` | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. Parameters aren't supported. |
+| `Server`            | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. Parameters aren't supported. |
+| `Static`            | Renders the component into static HTML. Parameters are supported. |
+
 While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
+
+Rendering server components from a static HTML page isn't supported.
 
 For more information on how components are rendered, component state, and the `RenderComponentAsync` HTML Helper, see <xref:blazor/hosting-models>.
 
