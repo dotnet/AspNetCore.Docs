@@ -93,6 +93,37 @@ Note: If using `Microsoft.AspNetCore.SignalR.Redis` then call `AddRedis`
 
 ::: moniker-end
 
+::: moniker range="> aspnetcore-3.0"
+
+* In the SignalR app, install one of the following NuGet packages:
+
+  * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`
+  
+* In the `Startup.ConfigureServices` method, call `AddStackExchangeRedis` after `AddSignalR`:
+
+  ```csharp
+  services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
+  ```
+  
+* Configure options as needed:
+ 
+  Most options can be set in the connection string or in the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) object. Options specified in `ConfigurationOptions` override the ones set in the connection string.
+
+  The following example shows how to set options in the `ConfigurationOptions` object. This example adds a channel prefix so that multiple apps can share the same Redis instance, as explained in the following step.
+
+  ```csharp
+  services.AddSignalR()
+    .AddStackExchangeRedis(connectionString, options => {
+        options.Configuration.ChannelPrefix = "MyApp";
+    });
+  ```
+
+  In the preceding code, `options.Configuration` is initialized with whatever was specified in the connection string.
+
+  For information about Redis options, see the [StackExchange Redis documentation](https://stackexchange.github.io/StackExchange.Redis/Configuration.html).
+
+::: moniker-end
+
 * If you're using one Redis server for multiple SignalR apps, use a different channel prefix for each SignalR app.
 
   Setting a channel prefix isolates one SignalR app from others that use different channel prefixes. If you don't assign different prefixes, a message sent from one app to all of its own clients will go to all clients of all apps that use the Redis server as a backplane.
