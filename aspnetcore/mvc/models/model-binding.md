@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how model binding in ASP.NET Core works and how to customize its behavior.
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
-ms.date: 05/31/2019
+ms.date: 11/15/2019
 uid: mvc/models/model-binding
 ---
 
@@ -35,7 +35,7 @@ And the app receives a request with this URL:
 http://contoso.com/api/pets/2?DogsOnly=true
 ```
 
-Model binding goes though the following steps after the routing system selects the action method:
+Model binding goes through the following steps after the routing system selects the action method:
 
 * Finds the first parameter of `GetByID`, an integer named `id`.
 * Looks through the available sources in the HTTP request and finds `id` = "2" in route data.

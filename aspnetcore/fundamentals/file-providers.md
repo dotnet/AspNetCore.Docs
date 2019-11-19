@@ -5,7 +5,7 @@ description: Learn how ASP.NET Core abstracts file system access through the use
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 11/07/2019
 uid: fundamentals/file-providers
 ---
 # File Providers in ASP.NET Core
@@ -99,7 +99,7 @@ The sample app creates an `ManifestEmbeddedFileProvider` and passes the currentl
 
 ```csharp
 var manifestEmbeddedProvider = 
-    new ManifestEmbeddedFileProvider(Assembly.GetEntryAssembly());
+    new ManifestEmbeddedFileProvider(typeof(Program).Assembly);
 ```
 
 Additional overloads allow you to:
@@ -246,7 +246,7 @@ The sample app creates an `ManifestEmbeddedFileProvider` and passes the currentl
 
 ```csharp
 var manifestEmbeddedProvider = 
-    new ManifestEmbeddedFileProvider(Assembly.GetEntryAssembly());
+    new ManifestEmbeddedFileProvider(typeof(Program).Assembly);
 ```
 
 Additional overloads allow you to:

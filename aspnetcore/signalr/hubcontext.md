@@ -5,7 +5,8 @@ description: Learn how to use the ASP.NET Core SignalR HubContext service for se
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/01/2018
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/hubcontext
 ---
 # Send messages from outside a hub

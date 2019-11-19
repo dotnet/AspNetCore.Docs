@@ -25,7 +25,6 @@ To delay JavaScript interop calls until after the connection with the browser is
 For the preceding example code, provide a `setElementText` JavaScript function inside the `<head>` element of *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server). The function is called with `IJSRuntime.InvokeVoidAsync` and doesn't return a value:
 
 ```html
-<!--  -->
 <script>
   window.setElementText = (element, text) => element.innerText = text;
 </script>

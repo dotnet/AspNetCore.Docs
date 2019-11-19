@@ -5,7 +5,7 @@ description: Learn how ASP.NET Core implements dependency injection and how to u
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/12/2019
+ms.date: 11/05/2019
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -565,7 +565,7 @@ Generally, the app shouldn't use these properties directly. Instead, request the
 Best practices are to:
 
 * Design services to use dependency injection to obtain their dependencies.
-* Avoid stateful, static method calls.
+* Avoid stateful, static classes and members. Design apps to use singleton services instead, which avoid creating global state.
 * Avoid direct instantiation of dependent classes within services. Direct instantiation couples the code to a particular implementation.
 * Make app classes small, well-factored, and easily tested.
 
