@@ -80,7 +80,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostedService> interface defines two met
 
   The cancellation token has a default five second timeout to indicate that the shutdown process should no longer be graceful. When cancellation is requested on the token:
 
-  * Any remaining background operations that the app is performing in `ExceuteAsync` should be aborted.
+  * Any remaining background operations that the app is performing should be aborted.
   * Any methods called in `StopAsync` should return promptly.
 
   However, tasks aren't abandoned after cancellation is requested&mdash;the caller awaits all tasks to complete.
