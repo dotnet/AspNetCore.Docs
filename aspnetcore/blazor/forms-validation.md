@@ -204,7 +204,7 @@ Blazor does two kinds of validation:
 
 The preceding behavior is important to understand when authoring custom validation. To ensure that validation is correctly associated with the field both during field change and submit validation, specify a member name when returning a `ValidationResult` instance. For example, consider the following custom date validator:
 
-[!code-csharp[](forms-validation/sample/CurrentorFutureDateValidation.cs?name=snippet?highlight=17)]
+[!code-csharp[](forms-validation/sample/CurrentorFutureDateValidation.cs?name=snippet&highlight=17)]
 
 ::: moniker range=">= aspnetcore-3.1"
 

@@ -7,7 +7,7 @@ namespace ValidationIssue.Data.Validation
     class CurrentOrFutureDateValidation : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, 
-                                                    ValidationContext validationContext)
+                                               ValidationContext validationContext)
         {
             if (value == null)
             {
