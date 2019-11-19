@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/11/2019
+ms.date: 11/19/2019
 uid: mvc/models/validation
 ---
 
@@ -363,7 +363,7 @@ Other options to disable client-side validation:
 * Comment out the reference to `_ValidationScriptsPartial` in all the *.cshtml* files.
 * Remove the contents of the *Pages\Shared\_ValidationScriptsPartial.cshtml* file.
 
-The preceding approach won't prevent client side validation of ASP.NET Core Identity Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>
+The preceding approach won't prevent client side validation of ASP.NET Core Identity Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>.
 
 ## Additional resources
 
@@ -405,7 +405,7 @@ Validation attributes let you specify validation rules for model properties. The
 Built-in validation attributes include:
 
 * `[CreditCard]`: Validates that the property has a credit card format.
-* `[Compare]`: Validates that two properties in a model match. For example, the *Register.cshtml.cs* file uses `[Compare]` to validate the two entered passwords match. [Scaffold Identity](security/authentication/scaffold-identity) to see the Register code.
+* `[Compare]`: Validates that two properties in a model match. For example, the *Register.cshtml.cs* file uses `[Compare]` to validate the two entered passwords match. [Scaffold Identity](xref:security/authentication/scaffold-identity) to see the Register code.
 * `[EmailAddress]`: Validates that the property has an email format.
 * `[Phone]`: Validates that the property has a telephone number format.
 * `[Range]`: Validates that the property value falls within a specified range.
