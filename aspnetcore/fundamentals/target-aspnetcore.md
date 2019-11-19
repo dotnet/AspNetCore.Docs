@@ -123,7 +123,7 @@ With the preceding project file, .NET Core 2.x and .NET Framework 4.6.1 projects
 Imagine a scenario in which you're upgrading a middleware library from .NET Core 2.2 to 3.0. The ASP.NET Core middleware APIs being used in the library haven't changed between ASP.NET Core 2.2 and 3.0. To continue supporting the middleware library in .NET Core 3.0, take the following steps:
 
 * Follow the [standard library guidance](/dotnet/standard/library-guidance/).
-* Add a `<PackageReference>` element for the API's NuGet package.
+* Add a package reference for the API's NuGet package if the assembly doesn't exist in the shared framework.
 
 ## Use an API that changed
 
