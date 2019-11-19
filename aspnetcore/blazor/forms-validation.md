@@ -220,7 +220,7 @@ private class MyCustomValidator : ValidationAttribute
     {
         ...
 
-        return new ValidationResult("Date is in the past.",
+        return new ValidationResult("Validation message to user.",
             new[] { validationContext.MemberName });
     }
 }
