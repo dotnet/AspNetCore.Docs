@@ -56,17 +56,34 @@ Components are ordinary C# classes and can be placed anywhere within a project. 
 
 Use components with existing Razor Pages and MVC apps. There's no need to rewrite existing pages or views to use Razor components. When the page or view is rendered, components are prerendered at the same time.
 
-To render a component from a page or view, use the `RenderComponentAsync<TComponent>` HTML helper method:
+::: moniker range=">= aspnetcore-3.1"
+
+To render a component from a page or view, use the `Component` Tag Helper:
 
 ```cshtml
-<div id="MyComponent">
-    @(await Html.RenderComponentAsync<MyComponent>(RenderMode.ServerPrerendered))
-</div>
+<component type="typeof(Counter)" render-mode="ServerPrerendered" 
+    param-IncrementAmount="10" />
 ```
 
 While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
 
-For more information on how components are rendered and component state is managed in Blazor Server apps, see the <xref:blazor/hosting-models> article.
+For more information on how components are rendered, component state, and the `Component` Tag Helper, see <xref:blazor/hosting-models>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.1"
+
+To render a component from a page or view, use the `RenderComponentAsync<TComponent>` HTML helper method:
+
+```cshtml
+@(await Html.RenderComponentAsync<MyComponent>(RenderMode.ServerPrerendered))
+```
+
+While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
+
+For more information on how components are rendered, component state, and the `RenderComponentAsync` HTML Helper, see <xref:blazor/hosting-models>.
+
+::: moniker-end
 
 ## Use components
 
