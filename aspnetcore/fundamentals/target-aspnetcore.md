@@ -47,6 +47,10 @@ For example:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-razor-views-pages-library.csproj)]
 
+If the project targets .NET Standard 2.0 instead, it requires a [Microsoft.AspNetCore.Mvc](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc) package reference. For example:
+
+[!code-xml[](target-aspnetcore/samples/single-tfm/netstandard2.0-razor-views-pages-library.csproj?highlight=8)]
+
 ### Razor components
 
 A project that includes [Razor components](xref:blazor/components) must use the [Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk).
@@ -71,8 +75,6 @@ To support Razor component consumption from both Blazor Server and [Blazor WebAs
 For example:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netstandard2.0-razor-components-library.csproj)]
-
-The switch to .NET Standard 2.0 supports both .NET Core 3.0 and Mono, the runtimes used by Blazor Server and Blazor WebAssembly, respectively.
 
 For more information on libraries containing Razor components, see [ASP.NET Core Razor components class libraries](xref:blazor/class-libraries).
 
