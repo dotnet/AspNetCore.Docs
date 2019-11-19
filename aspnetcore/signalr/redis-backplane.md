@@ -95,7 +95,7 @@ Note: If using `Microsoft.AspNetCore.SignalR.Redis` then call `AddRedis`
 
 ::: moniker range="> aspnetcore-3.0"
 
-* In the SignalR app, install the following NuGet packages:
+* In the SignalR app, install the following NuGet package:
 
   * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`
   
