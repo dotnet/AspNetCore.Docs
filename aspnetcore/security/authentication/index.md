@@ -2,45 +2,96 @@
 title: Overview of ASP.NET Core Authentication
 author: mjrousos
 description: Learn about authentication in ASP.NET Core.
-ms.author: 
+ms.author: riande
 ms.custom: mvc
-ms.date: 11/15/2019
+ms.date: 11/22/2019
 uid: security/authentication/index
 ---
 # Overview of ASP.NET Core authentication
 
-Authentication is the process of determining a user's identity (as opposed to [authorization](xref:security/authorization/introduction), which is the process of determining whether a user has access to certain resources). In ASP.NET Core, authentication is handled by authentication [middleware](xref:fundamentals/middleware/index). The authentication middleware uses registered authentication handlers (which, along with their configuration options, are called "schemes") to complete authentication-related actions (like authenticating a user or responding when an unauthenticated user tries to access a restricted resource).
+By [Mike Rousos](https://github.com/mjrousos)
 
-Authentication schemes are specified when registering authentication services in the startup file's `ConfigureServices` method. This is done by calling `AuthenticationBuilder.AddScheme` or, more commonly, with scheme-specific extension methods that call `AddScheme` automatically with appropriate settings. For example, this code registers authentication services including handlers for both cookie and JWT bearer authentication schemes:
+Authentication is the process of determining a user's identity. [Authorization](xref:security/authorization/introduction) is the process of determining whether a user has access to certain resources. In ASP.NET Core, authentication is handled by authentication [middleware](xref:fundamentals/middleware/index). The authentication middleware uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
 
-```CSharp
-// AddAuthentication's parameter is the name of the scheme to use by default
-// (if a specific one isn't requested)
+* Authenticating a user.
+* Responding when an unauthenticated user tries to access a restricted resource.
+
+The registered authentication handlers and their configuration options, are called "schemes".
+
+Authentication schemes are specified by registering authentication services in `Startup.ConfigureServices`. This is done by:
+
+* Calling [AuthenticationBuilder.AddScheme]((xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*)
+* Calling a scheme-specific extension methods that call `AddScheme` automatically with appropriate settings. This approach is more command than calling `AuthenticationBuilder.AddScheme`.
+
+For example, the following code registers authentication services including handlers for both cookie and JWT bearer authentication schemes:
+
+```csharp
 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options => Configuration.Bind("JwtSettings", options))
     .AddCookie(options => Configuration.Bind("CookieSettings", options));
 ```
 
-In some cases (such as when using [ASP.NET Core Identity](xref:security/authentication/identity)), the call to `AddAuthentication` is automatically made by other extension methods. Note that if multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/limitingidentitybyscheme) they depend on to authenticate the user.
+The `AddAuthentication` parameter is the name of the scheme to use by default if a specific one isn't requested. In the preceding code, JWT bearer authentication is used by default.
 
-Authentication middleware is added in the startup file's `Configure` method by calling the `UseAuthentication` extension method on the app's `IApplicationBuilder`. This registers the  middleware which uses the previously-registered authentication schemes. Be sure to call `UseAuthentication` before any middleware that depends on users being authenticated. When using endpoint routing, the call to `UseAuthentication` should go after `UseRouting` (so that route information is available for authentication decisions) and before `UseEndpoints` (so that users are authenticated before accessing the endpoints).
+In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity)),`AddAuthentication` is called. If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/limitingidentitybyscheme) they depend on to authenticate the user.
+
+Authentication middleware is added in `Startup.Configure` by calling the <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> extension method on the app's `IApplicationBuilder`. This registers the  middleware which uses the previously registered authentication schemes. Call `UseAuthentication` before any middleware that depends on users being authenticated. When using endpoint routing, the call to `UseAuthentication` should go:
+
+* After `UseRouting`, so that route information is available for authentication decisions.
+* Before `UseEndpoints`, so that users are authenticated before accessing the endpoints.
 
 ## Authentication Concepts
 
 ### Authentication scheme
 
-An authentication scheme is a way of authenticating a user (and how to proceed if a user isn't authenticated). In ASP.NET Core, an authentication scheme consists of an authentication handler and options for configuring that specific instance of the handler. Authentication schemes have names so that they can be easily referenced elsewhere (for example, by an authorization policy that wants to specify which authorization scheme (or schemes) should be used to authenticate the user). When configuring authentication, it's common to specify the default authentication scheme to use (if a particular resource doesn't request a specific scheme). It's also possible to specify different default schemes to use for authenticate, challenge, and forbid actions, or to combine multiple schemes into one using [policy schemes](xref:security/authentication/policyschemes).
+An authentication scheme is:
+
+* A way of authenticating a user.
+* How the app responds if a user isn't authenticated.
+
+In ASP.NET Core, an authentication scheme consists of:
+
+* An authentication handler.
+* Options for configuring that specific instance of the handler.
+
+Authentication schemes have names so that they can be referenced in the app. For example, an authorization policy that specifies which authorization scheme (or schemes) should be used to authenticate the user. When configuring authentication, it's common to specify the default authentication scheme. The default scheme is used unless a resource request a specific scheme. It's also possible to:
+
+* Specify different default schemes to use for authenticate, challenge, and forbid actions.
+* Combine multiple schemes into one using [policy schemes](xref:security/authentication/policyschemes).
 
 ### Authentication handler
 
-An authentication handler is a type (derived from `IAuthenticationHandler`) that implements the behavior of a scheme. An authentication handler's primary responsibility is to authenticate users. Based on the authentication scheme's configuration and the incoming request context, authentication handlers construct `AuthenticationTicket` objects representing the user's identity. Alternatively, authentication handlers can return 'no result' or 'failure' if authentication is unsuccessful.
+An authentication handler:
 
-In addition to authenticating, authentication handlers have methods for challenge and forbid actions for when users attempt to access resources they are unauthenticated or unauthorized to access.
+* Is a type that implements the behavior of a scheme.
+* Is derived from <xref:Microsoft.AspNetCore.Authentication.IAuthenticationHandler>.
+* Has the primary responsibility to authenticate users.
+
+Based on the authentication scheme's configuration and the incoming request context, authentication handlers:
+
+* Construct <xref:Microsoft.AspNetCore.Authentication.AuthenticationTicket> objects representing the user's identity if authentication is successful.
+* Return 'no result' or 'failure' if authentication is unsuccessful.
+* Have methods for challenge and forbid actions for when users attempt to access resources:
+  * They are unauthorized to access.
+  * When they are unauthenticated.
 
 ### Challenge
 
-An authentication challenge is the action an authentication scheme takes when an unauthenticated user requires authentication (to access a restricted resource, for example). Some examples of this would be the cookie authentication scheme redirecting the user to a login page or the JWT bearer scheme returning a 401 result. A challenge action should let the user know that they need to be authenticated to access a given resource.
+An authentication challenge is the action an authentication scheme takes when an unauthenticated user requests an endpoint that requires authentication. For example, to access a restricted resource. Authentication challenge examples include:
+
+* Cookie authentication scheme redirecting the user to a login page.
+* The JWT bearer scheme returning a 401 result.
+
+A challenge action should let the user know that they need to be authenticated to access a requested resource.
 
 ### Forbid
 
-An authentication handler's forbid action is used when an authenticated user attempts to access a resource they are not permitted to access. A forbid action usually returns a 403 result. In some custom authentication schemes, though, forbid could result in a redirect to a page where the user can request access to the resource in question from an admin or something like that. A forbid action should let the user know that although they are authenticated, the currently authenticated user is not permitted to access a particular resource.
+An authentication handler's forbid action is used when an authenticated user attempts to access a resource they are not permitted to access. A forbid action usually returns a 403 result. In some custom authentication schemes, forbid could result in a redirect to a page where the user can request access to the resource in question from an admin or something like that. A forbid action should let the user know:
+
+* They are authenticated.
+* They aren't permitted to access the requested resource.
+
+See the following links for differences between challenge and forbid:
+
+* [Challenge and forbid with an operational resource handler](xref:security/authorization/resourcebased#challenge-and-forbid-with-an-operational-resource-handler).
+* [Differences between challenge and forbid](xref:security/authorization/secure-data#challenge).
