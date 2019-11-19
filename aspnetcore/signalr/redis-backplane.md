@@ -65,15 +65,20 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
 * In the `Startup.ConfigureServices` method, call `AddStackExchangeRedis` after `AddSignalR`:
 
+Note: If using `Microsoft.AspNetCore.SignalR.Redis` then call `AddRedis`
+
   ```csharp
   services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
   ```
+
 
 * Configure options as needed:
  
   Most options can be set in the connection string or in the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) object. Options specified in `ConfigurationOptions` override the ones set in the connection string.
 
   The following example shows how to set options in the `ConfigurationOptions` object. This example adds a channel prefix so that multiple apps can share the same Redis instance, as explained in the following step.
+
+Note: If using `Microsoft.AspNetCore.SignalR.Redis` then call `AddRedis`
 
   ```csharp
   services.AddSignalR()
