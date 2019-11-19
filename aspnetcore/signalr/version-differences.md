@@ -34,7 +34,7 @@ In ASP.NET SignalR:
 
 * By default, SignalR attempts to reconnect to the server if the connection is dropped. 
 
-In ASP.NET SignalR Core:
+In ASP.NET Core SignalR:
 
 * Automatic reconnects are opt-in with both the [.NET client](xref:signalr/dotnet-client#automatically-reconnect) and the [JavaScript client](xref:signalr/javascript-client#automatically-reconnect):
 
