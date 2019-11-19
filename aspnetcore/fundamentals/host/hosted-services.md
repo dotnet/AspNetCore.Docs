@@ -80,7 +80,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostedService> interface defines two met
 
   The cancellation token has a default five second timeout to indicate that the shutdown process should no longer be graceful. When cancellation is requested on the token:
 
-  * Any remaining background operations that the app is performing should be aborted.
+  * Any remaining background operations that the app is performing in `ExceuteAsync` should be aborted.
   * Any methods called in `StopAsync` should return promptly.
 
   However, tasks aren't abandoned after cancellation is requested&mdash;the caller awaits all tasks to complete.
@@ -100,7 +100,7 @@ The hosted service is activated once at app startup and gracefully shut down at 
 
 [ExecuteAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.ExecuteAsync*) is called to run the background service. The implementation returns a <xref:System.Threading.Tasks.Task> that represents the entire lifetime of the background service. No further services are started until [ExecuteAsync becomes asynchronous](https://github.com/aspnet/Extensions/issues/2149), such as by calling `await`. Avoid performing long, blocking initialization work in `ExecuteAsync`. The host blocks in [StopAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.BackgroundService.StopAsync*) waiting for `ExecuteAsync` to complete.
 
-The cancellation token is triggered when [IHostedService.StopAsync](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) is called. `ExecuteAsync` finishes promptly either gracefully or ungracefully at the shutdown timeout.
+The cancellation token is triggered when [IHostedService.StopAsync](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) is called. Your implementation of `ExecuteAsync` should finish promptly when the cancellation token is fired in order to gracefully shut down the service. Otherwise, the service ungracefully shuts down at the shutdown timeout. For more information, see the [IHostedService interface](#ihostedservice-interface) section.
 
 ## Timed background tasks
 
