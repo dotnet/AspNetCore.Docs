@@ -13,8 +13,9 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The [SameSite 2016 draft](https://tools.ietf.org/html/draft-west-first-party-cookies-07) states:
 
-  This document updates [RFC6265](https://tools.ietf.org/html/rfc6265) by defining a `SameSite` attribute which allows servers to assert that a cookie ought not to be sent
-   along with cross-site requests. This assertion allows user agents to mitigate the risk of cross-origin information leakage, and provides some protection against cross-site request forgery attacks.
+  This document updates [RFC6265](https://tools.ietf.org/html/rfc6265) by defining a `SameSite` attribute which allows servers to assert that a cookie ought not to be sent along with cross-site requests. This assertion allows user agents to mitigate the risk of cross-origin information leakage, and provides some protection against cross-site request forgery attacks.
+
+>This document updates [RFC6265](https://tools.ietf.org/html/rfc6265) by defining a `SameSite` attribute which allows servers to assert that a cookie ought not to be sent along with cross-site requests. This assertion allows user agents to mitigate the risk of cross-origin information leakage, and provides some protection against cross-site request forgery attacks.
 
 Firefox and Chrome based browsers are making breaking changes to their implementations of [SameSite](https://tools.ietf.org/html/draft-west-first-party-cookies-07) for cookies. The SameSite changes impact remote authentication scenarios such as:
 
