@@ -13,8 +13,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The [SameSite 2016 draft](https://tools.ietf.org/html/draft-west-first-party-cookies-07) states:
 
-  This document updates [RFC6265](https://tools.ietf.org/html/rfc6265) by defining a `SameSite` attribute which allows servers to assert that a cookie ought not to be sent along with cross-site requests. This assertion allows user agents to mitigate the risk of cross-origin information leakage, and provides some protection against cross-site request forgery attacks.
-
 >This document updates [RFC6265](https://tools.ietf.org/html/rfc6265) by defining a `SameSite` attribute which allows servers to assert that a cookie ought not to be sent along with cross-site requests. This assertion allows user agents to mitigate the risk of cross-origin information leakage, and provides some protection against cross-site request forgery attacks.
 
 Firefox and Chrome based browsers are making breaking changes to their implementations of [SameSite](https://tools.ietf.org/html/draft-west-first-party-cookies-07) for cookies. The SameSite changes impact remote authentication scenarios such as:
@@ -122,7 +120,7 @@ Versions of Electron include older versions of Chromium. For example the version
 
 ## Supporting older browsers
 
-The 2016 SameSite standard mandated that unknown values must be treated as `SameSite=Strict` values. Older browsers which support the 2016 SameSite standard may break when they see a SameSite property with a value of `None`. Web apps must implement browser detection if they intend to support older browsers. ASP.NET Core doesn't implement browser detection because User-Agents values are highly volatile and change frequently. An extension point in <xref:Microsoft.AspNetCore.CookiePolicy> allows plugging in User-Agent specific logic.
+The 2016 SameSite standard mandated that unknown values must be treated as `SameSite=Strict` values. Apps accessed from older browsers which support the 2016 SameSite standard may break when they get a SameSite property with a value of `None`. Web apps must implement browser detection if they intend to support older browsers. ASP.NET Core doesn't implement browser detection because User-Agents values are highly volatile and change frequently. An extension point in <xref:Microsoft.AspNetCore.CookiePolicy> allows plugging in User-Agent specific logic.
 
 In `Startup.Configure`, add code that calls <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*> before calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> or *any* method that writes cookies:
 
