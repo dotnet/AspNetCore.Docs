@@ -305,8 +305,6 @@ Logging provider configuration is provided by one or more configuration provider
 
 For example, logging configuration is commonly provided by the `Logging` section of app settings files. The following example shows the contents of a typical *appsettings.Development.json* file:
 
-::: moniker range=">= aspnetcore-2.1"
-
 ```json
 {
   "Logging": {
@@ -331,7 +329,7 @@ Other properties under `Logging` specify logging providers. The example is for t
 
 If levels are specified in `Logging.{providername}.LogLevel`, they override anything set in `Logging.LogLevel`.
 
-::: moniker-end
+The Logging API doesn't include a scenario to change log levels while an app is running. However, some configuration providers are capable of reloading configuration, which takes immediate effect on logging configuration. For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider), which is added by `CreateDefaultBuilder` to read settings files, reloads logging configuration by default. If configuration is changed in code while an app is running, the app can call [IConfigurationRoot.Reload](xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*) to update the app's logging configuration.
 
 For information on implementing configuration providers, see <xref:fundamentals/configuration/index>.
 
@@ -700,7 +698,7 @@ To suppress all logs, specify `LogLevel.None` as the minimum log level. The inte
 
 ### Create filter rules in configuration
 
-The project template code calls `CreateDefaultBuilder` to set up logging for the Console and Debug providers. The `CreateDefaultBuilder` method sets up logging to look for configuration in a `Logging` section, as explained [earlier in this article](#configuration).
+The project template code calls `CreateDefaultBuilder` to set up logging for the Console, Debug, and EventSource (ASP.NET Core 2.2 or later) providers. The `CreateDefaultBuilder` method sets up logging to look for configuration in a `Logging` section, as explained [earlier in this article](#configuration).
 
 The configuration data specifies minimum log levels by provider and category, as in the following example:
 
@@ -1075,7 +1073,7 @@ The provider package isn't included in the shared framework. To use the provider
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
+::: moniker range="< aspnetcore-3.0"
 
 The provider package isn't included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). When targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, add the provider package to the project. 
 
