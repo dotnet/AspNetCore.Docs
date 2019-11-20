@@ -16,7 +16,7 @@ An ASP.NET Core app runs with an in-process HTTP server implementation. The serv
 
 ## Kestrel
 
-Kestrel is the default web server that is launched by `dotnet run`.
+Kestrel is the default web server specified by the ASP.NET Core project templates.
 
 Use Kestrel:
 
