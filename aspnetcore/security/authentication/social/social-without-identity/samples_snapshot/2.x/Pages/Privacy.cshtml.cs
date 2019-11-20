@@ -7,9 +7,7 @@ namespace WebApp1.Pages
     [Authorize]
     public class PrivacyModel : PageModel
     {
-        public void OnGet()
-        {
-        }
+        
     }
     #endregion
 }
