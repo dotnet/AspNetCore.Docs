@@ -5,7 +5,7 @@ description: Learn how to diagnose problems with Azure App Service and Internet 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/18/2019
+ms.date: 11/20/2019
 uid: test/troubleshoot-azure-iis
 ---
 # Troubleshoot ASP.NET Core on Azure App Service and IIS
@@ -164,7 +164,7 @@ To fix this error, run apps in separate IIS application pools.
 
 ### 500.35 ANCM Multiple In-Process Applications in same Process
 
-The worker process can't run both an in-process app and an out-of-process app in the same process.
+The worker process can't run multiple in-process apps in the same process.
 
 To fix this error, run apps in separate IIS application pools.
 
