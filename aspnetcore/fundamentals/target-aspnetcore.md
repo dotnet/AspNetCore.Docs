@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn how to use ASP.NET Core APIs in a class library.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 11/18/2019
+ms.date: 11/20/2019
 no-loc: [Blazor]
 uid: fundamentals/target-aspnetcore
 ---
@@ -196,7 +196,7 @@ The following multi-targeted project file supports this Tag Helper scenario:
 
 ## Use an API removed from shared framework
 
-To use an ASP.NET Core assembly that was removed from the shared framework, add the appropriate package reference. For example, to add the web API client and Razor file runtime compilation assemblies:
+To use an ASP.NET Core assembly that was removed from the shared framework, add the appropriate package reference. For example, to add the web API client:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -211,7 +211,6 @@ To use an ASP.NET Core assembly that was removed from the shared framework, add 
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0-preview2.19528.8" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
 </Project>
