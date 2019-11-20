@@ -267,7 +267,9 @@ See [this issue](https://github.com/aspnet/AspNetCore.Docs/issues/8502) for info
 * Removing privileges from a user. For example, muting a user in a chat app.
 * Adding privileges to a user.
 
-## Differences between Challenge vs Forbid
+<a name="challenge"></a>
+
+## Differences between Challenge and Forbid
 
 This app sets the default policy to [require authenticated users](#require-authenticated-users). The following code allows anonymous users. Anonymous users are allowed to show the differences between Challenge vs Forbid.
 
