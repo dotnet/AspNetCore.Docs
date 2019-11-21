@@ -31,8 +31,7 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
 ::: moniker range="= aspnetcore-2.1"
 
-* In the SignalR app, install the `Microsoft.AspNetCore.SignalR.Redis` NuGet package. (There is also a `Microsoft.AspNetCore.SignalR.StackExchangeRedis` package, but that one is for ASP.NET Core 2.2 and later.)
-
+* In the SignalR app, install the `Microsoft.AspNetCore.SignalR.Redis` NuGet package.
 * In the `Startup.ConfigureServices` method, call `AddRedis` after `AddSignalR`:
 
   ```csharp
@@ -56,29 +55,26 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
 
 ::: moniker-end
 
-::: moniker range="> aspnetcore-2.1"
+::: moniker range="= aspnetcore-2.2"
 
 * In the SignalR app, install one of the following NuGet packages:
 
   * `Microsoft.AspNetCore.SignalR.StackExchangeRedis` - Depends on StackExchange.Redis 2.X.X. This is the recommended package for ASP.NET Core 2.2 and later.
-  * `Microsoft.AspNetCore.SignalR.Redis` - Depends on StackExchange.Redis 1.X.X. This package will not be shipping in ASP.NET Core 3.0.
+  * `Microsoft.AspNetCore.SignalR.Redis` - Depends on StackExchange.Redis 1.X.X. This package isn't included in ASP.NET Core 3.0 and later.
 
-* In the `Startup.ConfigureServices` method, call `AddStackExchangeRedis` after `AddSignalR`:
-
-Note: If using `Microsoft.AspNetCore.SignalR.Redis` then call `AddRedis`
+* In the `Startup.ConfigureServices` method, call <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*>:
 
   ```csharp
   services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
   ```
 
+ When using `Microsoft.AspNetCore.SignalR.Redis`, call <xref:Microsoft.Extensions.DependencyInjection.RedisDependencyInjectionExtensions.AddRedis*>.
 
 * Configure options as needed:
  
   Most options can be set in the connection string or in the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) object. Options specified in `ConfigurationOptions` override the ones set in the connection string.
 
   The following example shows how to set options in the `ConfigurationOptions` object. This example adds a channel prefix so that multiple apps can share the same Redis instance, as explained in the following step.
-
-Note: If using `Microsoft.AspNetCore.SignalR.Redis` then call `AddRedis`
 
   ```csharp
   services.AddSignalR()
@@ -87,19 +83,21 @@ Note: If using `Microsoft.AspNetCore.SignalR.Redis` then call `AddRedis`
     });
   ```
 
+ When using `Microsoft.AspNetCore.SignalR.Redis`, call <xref:Microsoft.Extensions.DependencyInjection.RedisDependencyInjectionExtensions.AddRedis*>.
+
   In the preceding code, `options.Configuration` is initialized with whatever was specified in the connection string.
 
   For information about Redis options, see the [StackExchange Redis documentation](https://stackexchange.github.io/StackExchange.Redis/Configuration.html).
 
 ::: moniker-end
 
-::: moniker range="> aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.0"
 
 * In the SignalR app, install the following NuGet package:
 
   * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`
   
-* In the `Startup.ConfigureServices` method, call `AddStackExchangeRedis` after `AddSignalR`:
+* In the `Startup.ConfigureServices` method, call <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*>:
 
   ```csharp
   services.AddSignalR().AddStackExchangeRedis("<your_Redis_connection_string>");
