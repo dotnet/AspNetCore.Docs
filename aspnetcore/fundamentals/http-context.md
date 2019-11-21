@@ -141,9 +141,9 @@ To safely perform background work with `HttpContext` data:
 To avoid unsafe code, never pass the `HttpContext` into a method that does background work - pass the data you need instead.
 
 ```csharp
-public class EmailController
+public class EmailController : Controller
 {
-    public ActionResult SendEmail(string email)
+    public IActionResult SendEmail(string email)
     {
         var correlationId = HttpContext.Request.Headers["x-correlation-id"].ToString();
 

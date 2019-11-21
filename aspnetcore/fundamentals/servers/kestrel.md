@@ -75,9 +75,10 @@ A reverse proxy:
 > [!WARNING]
 > Hosting in a reverse proxy configuration requires [host filtering](#host-filtering).
 
-## How to use Kestrel in ASP.NET Core apps
+## Kestrel in ASP.NET Core apps
 
-ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the app calls `ConfigureWebHostDefaults`, which calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> behind the scenes.
+ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the 
+<xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> method calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*>:
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_DefaultBuilder&highlight=8)]
 
