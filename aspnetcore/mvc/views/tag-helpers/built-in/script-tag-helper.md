@@ -19,13 +19,14 @@ The Script Tag Helper allows you to specify a CDN for the script file and a fall
 
 The following Razor markup shows the `script` element of a layout file created with the ASP.NET Core web app template:
 
-[!code-html[](link-tag-helper/sample/_Layout.cshtml?name=snippet2)]
-
-The following is similar to the rendered HTML from the preceding code (in a non-Development environment):
-
-[!code-csharp[](link-tag-helper/sample/HtmlPage2.html)]
-
-In the preceding code, the Script Tag Helper generated the second script ( `<script>  (window.jQuery || document.write(`) element, which tests for `window.jQuery`. If `window.jQuery` is not found, `document.write(` runs and creates a script 
+```HTML
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+        asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+        asp-fallback-test="window.jQuery"
+        crossorigin="anonymous"
+        integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+</script>
+```
 
 ## Commonly used Script Tag Helper attributes
 
