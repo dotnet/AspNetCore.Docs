@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/19/2019
+ms.date: 11/21/2019
 no-loc: [Blazor]
 uid: blazor/forms-validation
 ---
@@ -195,7 +195,17 @@ Blazor performs two kinds of validation:
 
 ### Validation Summary and Validation Message components
 
-The `ValidationSummary` component summarizes all validation messages, which is similar to the [Validation Summary Tag Helper](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper).
+The `ValidationSummary` component summarizes all validation messages, which is similar to the [Validation Summary Tag Helper](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper):
+
+```csthml
+<ValidationSummary />
+```
+
+Output validation messages for a specific model with the `Model` parameter:
+  
+```csthml
+<ValidationSummary Model="@starship" />
+```
 
 The `ValidationMessage` component displays validation messages for a specific field, which is similar to the [Validation Message Tag Helper](xref:mvc/views/working-with-forms#the-validation-message-tag-helper). Specify the field for validation with the `For` attribute and a lambda expression naming the model property:
 
@@ -210,8 +220,8 @@ The `ValidationMessage` and `ValidationSummary` components support arbitrary att
 To ensure that a validation result is correctly associated with a field when using a [custom validation attribute](xref:mvc/models/validation#custom-attributes), pass the validation context's <xref:System.ComponentModel.DataAnnotations.ValidationContext.MemberName> when creating the <xref:System.ComponentModel.DataAnnotations.ValidationResult>:
 
 ```csharp
-// using System;
-// using System.ComponentModel.DataAnnotations;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 private class MyCustomValidator : ValidationAttribute
 {
