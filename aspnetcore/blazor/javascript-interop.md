@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET and .NET methods
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2019
+ms.date: 11/21/2019
 no-loc: [Blazor]
 uid: blazor/javascript-interop
 ---
@@ -145,8 +145,6 @@ The following example shows capturing a reference to the `username` `<input>` el
 
 > [!WARNING]
 > Only use an element reference to mutate the contents of an empty element that doesn't interact with Blazor. This scenario is useful when a 3rd party API supplies content to the element. Because Blazor doesn't interact with the element, there's no possibility of a conflict between Blazor's representation of the element and the DOM.
->
-> Do **not** use a captured element reference as a way of *populating* the DOM. Doing so may interfere with the declarative rendering model.
 >
 > In the following example, it's *dangerous* to mutate the contents of the unordered list (`ul`) because Blazor interacts with the DOM to populate this element's list items (`<li>`):
 >

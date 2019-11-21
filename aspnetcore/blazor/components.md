@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2019
+ms.date: 11/21/2019
 no-loc: [Blazor]
 uid: blazor/components
 ---
@@ -1740,7 +1740,7 @@ This is a trivial example. In more realistic cases with complex and deeply neste
 * The framework can't create its own sequence numbers automatically at runtime because the necessary information doesn't exist unless it's captured at compile time.
 * Don't write long blocks of manually-implemented `RenderTreeBuilder` logic. Prefer `.razor` files and allow the compiler to deal with the sequence numbers. If you're unable to avoid manual `RenderTreeBuilder` logic, split long blocks of code into smaller pieces wrapped in `OpenRegion`/`CloseRegion` calls. Each region has its own separate space of sequence numbers, so you can restart from zero (or any other arbitrary number) inside each region.
 * If sequence numbers are hardcoded, the diff algorithm only requires that sequence numbers increase in value. The initial value and gaps are irrelevant. One legitimate option is to use the code line number as the sequence number, or start from zero and increase by ones or hundreds (or any preferred interval). 
-* Blazor uses sequence numbers, while other tree-diffing UI frameworks don't use them. Diffing is far faster when sequence numbers are used, and Blazor has the advantage of a compile step that deals with sequence numbers automatically for developers authoring `.razor` files.
+* Blazor uses sequence numbers, while other tree-diffing UI frameworks don't use them. Diffing is far faster when sequence numbers are used, and Blazor has the advantage of a compile step that deals with sequence numbers automatically for developers authoring *.razor* files.
 
 ## Localization
 
@@ -1752,6 +1752,10 @@ The culture can be set using one of the following approaches:
 * [Provide UI to choose the culture](#provide-ui-to-choose-the-culture)
 
 For more information and examples, see <xref:fundamentals/localization>.
+
+### Configure the linker for internationalization (Blazor WebAssembly)
+
+By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. For more information and guidance on controlling the linker's behavior, see <xref:host-and-deploy/blazor/configure-linker#configure-the-linker-for-internationalization>.
 
 ### Cookies
 
@@ -1861,32 +1865,6 @@ A limited set of ASP.NET Core's localization scenarios are currently supported:
 * `IHtmlLocalizer<>`, `IViewLocalizer<>`, and Data Annotations localization are ASP.NET Core MVC scenarios and **not supported** in Blazor apps.
 
 For more information, see <xref:fundamentals/localization>.
-
-### Configure the linker for internationalization (Blazor WebAssembly)
-
-By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. Removing these assemblies minimizes the app's size.
-
-To control which I18N assemblies are retained, set the `<MonoLinkerI18NAssemblies>` MSBuild property in the project file:
-
-```xml
-<PropertyGroup>
-  <MonoLinkerI18NAssemblies>{all|none|REGION1,REGION2,...}</MonoLinkerI18NAssemblies>
-</PropertyGroup>
-```
-
-| Region Value     | Mono region assembly    |
-| ---------------- | ----------------------- |
-| `all`            | All assemblies included |
-| `cjk`            | *I18N.CJK.dll*          |
-| `mideast`        | *I18N.MidEast.dll*      |
-| `none` (default) | None                    |
-| `other`          | *I18N.Other.dll*        |
-| `rare`           | *I18N.Rare.dll*         |
-| `west`           | *I18N.West.dll*         |
-
-Use a comma to separate multiple values (for example, `mideast,west`).
-
-For more information, see [I18N: Pnetlib Internationalization Framework Libary (mono/mono GitHub repository)](https://github.com/mono/mono/tree/master/mcs/class/I18N).
 
 ## Scalable Vector Graphics (SVG) images
 
