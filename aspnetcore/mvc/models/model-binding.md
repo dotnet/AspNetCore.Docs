@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how model binding in ASP.NET Core works and how to customize its behavior.
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
-ms.date: 11/15/2019
+ms.date: 11/21/2019
 uid: mvc/models/model-binding
 ---
 
@@ -89,7 +89,7 @@ For each target parameter or property, the sources are scanned in the order indi
 * Route data and query string values are used only for simple types.
 * Uploaded files are bound only to target types that implement `IFormFile` or `IEnumerable<IFormFile>`.
 
-If the default behavior doesn't give the right results, you can use one of the following attributes to specify the source to use for any given target. 
+If the default behavior doesn't give the right results, you can use one of the following attributes to specify the source to use for any given target.
 
 * [[FromQuery]](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) - Gets values from the query string. 
 * [[FromRoute]](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) - Gets values from route data.
@@ -109,9 +109,29 @@ These attributes:
 
 ### [FromBody] attribute
 
-The request body data is parsed by using input formatters specific to the content type of the request. Input formatters are explained [later in this article](#input-formatters).
+Apply the `[FromBody]` attribute to a type to populate its properties from the body of an HTTP request. The ASP.NET Core runtime delegates the responsibility of reading the body to an input formatter. Input formatters are explained [later in this article](#input-formatters).
 
-Don't apply `[FromBody]` to more than one parameter per action method. The ASP.NET Core runtime delegates the responsibility of reading the request stream to the input formatter. Once the request stream is read, it's no longer available to be read again for binding other `[FromBody]` parameters.
+When `[FromBody]` is applied to a complex type parameter, any binding source attributes applied to its properties are ignored. For example, the following `Create` action specifies that its `pet` parameter is populated from the body:
+
+```csharp
+public ActionResult<Pet> Create([FromBody] Pet pet)
+```
+
+The `Pet` class specifies that its `Breed` property is populated from a query string parameter:
+
+```csharp
+public class Pet
+{
+    public string Name { get; set; }
+
+    [FromQuery] // Attribute is ignored.
+    public string Breed { get; set; }
+}
+```
+
+In the preceding example, the `Breed` property is not populated from a query string parameter. Input formatters read only the body and do not understand binding source attributes. If a suitable value is found in the body, it is used to populate the `Breed` property.
+
+Don't apply `[FromBody]` to more than one parameter per action method. Once the request stream is read by an input formatter, it's no longer available to be read again for binding other `[FromBody]` parameters.
 
 ### Additional sources
 
