@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 09/28/2019
+ms.date: 11/09/2019
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -715,11 +715,31 @@ In [Razor components](xref:blazor/components), `@using` also controls which comp
 
 Data binding in components is accomplished with the `@bind` attribute. For more information, see <xref:blazor/components#data-binding>.
 
-### \@on{event}
+### \@on{EVENT}
 
 *This scenario only applies to Razor components (.razor).*
 
 Razor provides event handling features for components. For more information, see <xref:blazor/components#event-handling>.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.1"
+
+### \@on{EVENT}:preventDefault
+
+*This scenario only applies to Razor components (.razor).*
+
+Prevents the default action for the event.
+
+### \@on{EVENT}:stopPropagation
+
+*This scenario only applies to Razor components (.razor).*
+
+Stops event propagation for the event.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 ### \@key
 

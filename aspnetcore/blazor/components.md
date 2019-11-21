@@ -5,7 +5,8 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/21/2019
+ms.date: 11/21/2019
+no-loc: [Blazor]
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -55,17 +56,60 @@ Components are ordinary C# classes and can be placed anywhere within a project. 
 
 Use components with existing Razor Pages and MVC apps. There's no need to rewrite existing pages or views to use Razor components. When the page or view is rendered, components are prerendered at the same time.
 
-To render a component from a page or view, use the `RenderComponentAsync<TComponent>` HTML helper method:
+::: moniker range=">= aspnetcore-3.1"
+
+To render a component from a page or view, use the `Component` Tag Helper:
 
 ```cshtml
-<div id="MyComponent">
-    @(await Html.RenderComponentAsync<MyComponent>(RenderMode.ServerPrerendered))
-</div>
+<component type="typeof(Counter)" render-mode="ServerPrerendered" 
+    param-IncrementAmount="10" />
 ```
+
+`RenderMode` configures whether the component:
+
+* Is prerendered into the page.
+* Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
+
+| `RenderMode`        | Description |
+| ------------------- | ----------- |
+| `ServerPrerendered` | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| `Server`            | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| `Static`            | Renders the component into static HTML. |
 
 While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
 
-For more information on how components are rendered and component state is managed in Blazor Server apps, see the <xref:blazor/hosting-models> article.
+Rendering server components from a static HTML page isn't supported.
+
+For more information on how components are rendered, component state, and the `Component` Tag Helper, see <xref:blazor/hosting-models>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.1"
+
+To render a component from a page or view, use the `RenderComponentAsync<TComponent>` HTML helper method:
+
+```cshtml
+@(await Html.RenderComponentAsync<MyComponent>(RenderMode.ServerPrerendered))
+```
+
+`RenderMode` configures whether the component:
+
+* Is prerendered into the page.
+* Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
+
+| `RenderMode`        | Description |
+| ------------------- | ----------- |
+| `ServerPrerendered` | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. Parameters aren't supported. |
+| `Server`            | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. Parameters aren't supported. |
+| `Static`            | Renders the component into static HTML. Parameters are supported. |
+
+While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
+
+Rendering server components from a static HTML page isn't supported.
+
+For more information on how components are rendered, component state, and the `RenderComponentAsync` HTML Helper, see <xref:blazor/hosting-models>.
+
+::: moniker-end
 
 ## Use components
 
@@ -441,7 +485,7 @@ In general, a property can be bound to a corresponding event handler using `@bin
 
 ## Event handling
 
-Razor components provide event handling features. For an HTML element attribute named `on{event}` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name is always formatted [@on{event}](xref:mvc/views/razor#onevent).
+Razor components provide event handling features. For an HTML element attribute named `on{EVENT}` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name is always formatted [@on{EVENT}](xref:mvc/views/razor#onevent).
 
 The following code calls the `UpdateHeading` method when the button is selected in the UI:
 
@@ -494,19 +538,20 @@ For some events, event argument types are permitted. If access to one of these e
 
 Supported `EventArgs` are shown in the following table.
 
-| Event | Class |
-| ----- | ----- |
-| Clipboard        | `ClipboardEventArgs` |
-| Drag             | `DragEventArgs` &ndash; `DataTransfer` and `DataTransferItem` hold dragged item data. |
-| Error            | `ErrorEventArgs` |
-| Focus            | `FocusEventArgs` &ndash; Doesn't include support for `relatedTarget`. |
-| `<input>` change | `ChangeEventArgs` |
-| Keyboard         | `KeyboardEventArgs` |
-| Mouse            | `MouseEventArgs` |
-| Mouse pointer    | `PointerEventArgs` |
-| Mouse wheel      | `WheelEventArgs` |
-| Progress         | `ProgressEventArgs` |
-| Touch            | `TouchEventArgs` &ndash; `TouchPoint` represents a single contact point on a touch-sensitive device. |
+| Event            | Class                | DOM events and notes |
+| ---------------- | -------------------- | -------------------- |
+| Clipboard        | `ClipboardEventArgs` | `oncut`, `oncopy`, `onpaste` |
+| Drag             | `DragEventArgs`      | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br>`DataTransfer` and `DataTransferItem` hold dragged item data. |
+| Error            | `ErrorEventArgs`     | `onerror` |
+| Event            | `EventArgs`          | *General*<br>`onactivate`, `onbeforeactivate`, `onbeforedeactivate`, `ondeactivate`, `onended`, `onfullscreenchange`, `onfullscreenerror`, `onloadeddata`, `onloadedmetadata`, `onpointerlockchange`, `onpointerlockerror`, `onreadystatechange`, `onscroll`<br><br>*Clipboard*<br>`onbeforecut`, `onbeforecopy`, `onbeforepaste`<br><br>*Input*<br>`oninvalid`, `onreset`, `onselect`, `onselectionchange`, `onselectstart`, `onsubmit`<br><br>*Media*<br>`oncanplay`, `oncanplaythrough`, `oncuechange`, `ondurationchange`, `onemptied`, `onpause`, `onplay`, `onplaying`, `onratechange`, `onseeked`, `onseeking`, `onstalled`, `onstop`, `onsuspend`, `ontimeupdate`, `onvolumechange`, `onwaiting` |
+| Focus            | `FocusEventArgs`     | `onfocus`, `onblur`, `onfocusin`, `onfocusout`<br><br>Doesn't include support for `relatedTarget`. |
+| Input            | `ChangeEventArgs`    | `onchange`, `oninput` |
+| Keyboard         | `KeyboardEventArgs`  | `onkeydown`, `onkeypress`, `onkeyup` |
+| Mouse            | `MouseEventArgs`     | `onclick`, `oncontextmenu`, `ondblclick`, `onmousedown`, `onmouseup`, `onmouseover`, `onmousemove`, `onmouseout` |
+| Mouse pointer    | `PointerEventArgs`   | `onpointerdown`, `onpointerup`, `onpointercancel`, `onpointermove`, `onpointerover`, `onpointerout`, `onpointerenter`, `onpointerleave`, `ongotpointercapture`, `onlostpointercapture` |
+| Mouse wheel      | `WheelEventArgs`     | `onwheel`, `onmousewheel` |
+| Progress         | `ProgressEventArgs`  | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` |
+| Touch            | `TouchEventArgs`     | `ontouchstart`, `ontouchend`, `ontouchmove`, `ontouchenter`, `ontouchleave`, `ontouchcancel`<br><br>`TouchPoint` represents a single contact point on a touch-sensitive device. |
 
 For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source (aspnet/AspNetCore release/3.0 branch)](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Components/Web/src/Web).
 
@@ -588,6 +633,76 @@ await callback.InvokeAsync(arg);
 Use `EventCallback` and `EventCallback<T>` for event handling and binding component parameters.
 
 Prefer the strongly typed `EventCallback<T>` over `EventCallback`. `EventCallback<T>` provides better error feedback to users of the component. Similar to other UI event handlers, specifying the event parameter is optional. Use `EventCallback` when there's no value passed to the callback.
+
+::: moniker range=">= aspnetcore-3.1"
+
+### Prevent default actions
+
+Use the [@on{EVENT}:preventDefault](xref:mvc/views/razor#oneventpreventdefault) directive attribute to prevent the default action for an event.
+
+When a key is selected on an input device and the element focus is on a text box, a browser normally displays the key's character in the text box. In the following example, the default behavior is prevented by specifying the `@onkeypress:preventDefault` directive attribute. The counter increments, and the **+** key isn't captured into the `<input>` element's value:
+
+```cshtml
+<input value="@_count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
+
+@code {
+    private int _count = 0;
+
+    private void KeyHandler(KeyboardEventArgs e)
+    {
+        if (e.Key == "+")
+        {
+            _count++;
+        }
+    }
+}
+```
+
+Specifying the `@on{EVENT}:preventDefault` attribute without a value is equivalent to `@on{EVENT}:preventDefault="true"`.
+
+The value of the attribute can also be an expression. In the following example, `_shouldPreventDefault` is a `bool` field set to either `true` or `false`:
+
+```cshtml
+<input @onkeypress:preventDefault="_shouldPreventDefault" />
+```
+
+An event handler isn't required to prevent the default action. The event handler and prevent default action scenarios can be used independently.
+
+### Stop event propagation
+
+Use the [@on{EVENT}:stopPropagation](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation.
+
+In the following example, selecting the check box prevents click events from the second child `<div>` from propagating to the parent `<div>`:
+
+```cshtml
+<label>
+    <input @bind="_stopPropagation" type="checkbox" />
+    Stop Propagation
+</label>
+
+<div @onclick="OnSelectParentDiv">
+    <h3>Parent div</h3>
+
+    <div @onclick="OnSelectChildDiv">
+        Child div that doesn't stop propagation when selected.
+    </div>
+
+    <div @onclick="OnSelectChildDiv" @onclick:stopPropagation="_stopPropagation">
+        Child div that stops propagation when selected.
+    </div>
+</div>
+
+@code {
+    private bool _stopPropagation = false;
+
+    private void OnSelectParentDiv() => 
+        Console.WriteLine($"The parent div was selected. {DateTime.Now}");
+    private void OnSelectChildDiv() => 
+        Console.WriteLine($"A child div was selected. {DateTime.Now}");
+}
+```
+
+::: moniker-end
 
 ## Chained bind
 
@@ -893,7 +1008,7 @@ protected override void OnInitialized()
 }
 ```
 
-`OnParametersSetAsync` and `OnParametersSet` are called when a component has received parameters from its parent and the values are assigned to properties. These methods are executed after component initialization and each time the component is rendered:
+`OnParametersSetAsync` and `OnParametersSet` are called when a component has received parameters from its parent and the values are assigned to properties. These methods are executed after component initialization and each time the parent component is rendered:
 
 ```csharp
 protected override async Task OnParametersSetAsync()
@@ -1625,7 +1740,7 @@ This is a trivial example. In more realistic cases with complex and deeply neste
 * The framework can't create its own sequence numbers automatically at runtime because the necessary information doesn't exist unless it's captured at compile time.
 * Don't write long blocks of manually-implemented `RenderTreeBuilder` logic. Prefer `.razor` files and allow the compiler to deal with the sequence numbers. If you're unable to avoid manual `RenderTreeBuilder` logic, split long blocks of code into smaller pieces wrapped in `OpenRegion`/`CloseRegion` calls. Each region has its own separate space of sequence numbers, so you can restart from zero (or any other arbitrary number) inside each region.
 * If sequence numbers are hardcoded, the diff algorithm only requires that sequence numbers increase in value. The initial value and gaps are irrelevant. One legitimate option is to use the code line number as the sequence number, or start from zero and increase by ones or hundreds (or any preferred interval). 
-* Blazor uses sequence numbers, while other tree-diffing UI frameworks don't use them. Diffing is far faster when sequence numbers are used, and Blazor has the advantage of a compile step that deals with sequence numbers automatically for developers authoring `.razor` files.
+* Blazor uses sequence numbers, while other tree-diffing UI frameworks don't use them. Diffing is far faster when sequence numbers are used, and Blazor has the advantage of a compile step that deals with sequence numbers automatically for developers authoring *.razor* files.
 
 ## Localization
 
@@ -1637,6 +1752,10 @@ The culture can be set using one of the following approaches:
 * [Provide UI to choose the culture](#provide-ui-to-choose-the-culture)
 
 For more information and examples, see <xref:fundamentals/localization>.
+
+### Configure the linker for internationalization (Blazor WebAssembly)
+
+By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. For more information and guidance on controlling the linker's behavior, see <xref:host-and-deploy/blazor/configure-linker#configure-the-linker-for-internationalization>.
 
 ### Cookies
 
@@ -1672,7 +1791,7 @@ Localization is handled in the app:
 1. The Localization Middleware reads the cookie and assigns the culture.
 1. The Blazor Server session begins with the correct culture.
 
-## Provide UI to choose the culture
+### Provide UI to choose the culture
 
 To provide UI to allow a user to select a culture, a *redirect-based approach* is recommended. The process is similar to what happens in a web app when a user attempts to access a secure resource&mdash;the user is redirected to a sign-in page and then redirected back to the original resource. 
 
