@@ -49,6 +49,8 @@ In a Blazor Server app, customize the experience in the *Pages/_Host.cshtml* fil
 </div>
 ```
 
+The `blazor-error-ui` element is hidden by the styles included with the Blazor templates and then shown when an error occurs.
+
 ::: moniker-end
 
 ## How the Blazor framework reacts to unhandled exceptions
