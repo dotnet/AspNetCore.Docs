@@ -188,7 +188,7 @@ Create a component with the following markup, and use the component just as `Inp
 
 The `DataAnnotationsValidator` component attaches validation support using data annotations to the cascaded `EditContext`. Enabling support for validation using data annotations requires this explicit gesture. To use a different validation system than data annotations, replace the `DataAnnotationsValidator` with a custom implementation. The ASP.NET Core implementation is available for inspection in the reference source: [DataAnnotationsValidator](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs)/[AddDataAnnotationsValidation](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
 
-Blazor performs two kinds of validation:
+Blazor performs two types of validation:
 
 * *Field validation* is performed when the user tabs out of a field. During field validation, the `DataAnnotationsValidator` component associates all reported validation results with the field.
 * *Model validation* is performed when the user submits the form. During model validation, the `DataAnnotationsValidator` component attempts to determine the field based on the member name that the validation result reports. Validation results that aren't associated with an individual member are associated with the model rather than a field.
