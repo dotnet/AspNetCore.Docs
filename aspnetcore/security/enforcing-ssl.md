@@ -361,7 +361,7 @@ The Windows Subsystem for Linux (WSL) generates a HTTPS self-signed cert. To con
 
 ## Troubleshoot certificate problems
 
-This section provides help when the ASP.NET Core HTTPS development certificate has been [installed and trusted](#trust), but you still have browser warnings that the certificate is not trusted.
+This section provides help when the ASP.NET Core HTTPS development certificate has been [installed and trusted](#trust), but you still have browser warnings that the certificate is not trusted. The ASP.NET Core HTTPS development certificate is used by [Kestrel](xref:fundamentals/servers/kestrel).
 
 ### All platforms - certificate not trusted
 
@@ -412,6 +412,10 @@ dotnet dev-certs https --trust
 Close any browser instances open. Open a new browser window to app.
 
 See [HTTPS Error using IIS Express (aspnet/AspNetCore #16892)](https://github.com/aspnet/AspNetCore/issues/16892) for troubleshooting certificate issues with Visual Studio.
+
+### IIS Express SSL certificate used with Visual Studio
+
+To fix problems with the IIS Express certificate, select **Repair** from the Visual Studio installer.
 
 ## Additional information
 
