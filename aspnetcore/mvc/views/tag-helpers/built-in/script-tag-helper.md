@@ -36,6 +36,10 @@ See [Script Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper
 
 The script method defined in the primary script to use for the fallback test. For more information, see <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackTestExpression>.
 
+### asp-fallback-src
+
+The URL of a Script tag to fallback to in the case the primary one fails. For more information, see <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackSrc>.
+
 ## Additional resources
 
 * <xref:mvc/views/tag-helpers/intro>
