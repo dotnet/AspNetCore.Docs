@@ -56,10 +56,6 @@ The CSS property name to use for the fallback test. For more information, see <x
 
 The CSS property value to use for the fallback test. For more information, see <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackTestValue>.
 
-### asp-fallback-test-value
-
-The CSS property value to use for the fallback test. For more information, see <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackTestValue>
-
 ## Additional resources
 
 * <xref:mvc/views/tag-helpers/intro>
