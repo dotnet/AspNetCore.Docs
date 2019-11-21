@@ -11,7 +11,6 @@ The following dialog is displayed:
 
 Select **Yes** if you agree to trust the development certificate.
 
-See [Trust the ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos) for more information.
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -27,5 +26,4 @@ The following dialog is displayed:
 
 Select **Yes** if you agree to trust the development certificate.
 
-See [Trust the ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos) for more information.
 ::: moniker-end
