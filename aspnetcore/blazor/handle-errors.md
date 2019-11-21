@@ -17,7 +17,7 @@ This article describes how Blazor manages unhandled exceptions and how to develo
 
 ::: moniker range=">= aspnetcore-3.1"
 
-## Detailed errors during Blazor app development
+## Detailed errors during development
 
 When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a gold bar at the bottom of the screen:
 
