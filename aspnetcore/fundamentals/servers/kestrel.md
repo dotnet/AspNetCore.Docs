@@ -77,7 +77,7 @@ A reverse proxy:
 
 ## Kestrel in ASP.NET Core apps
 
-ASP.NET Core project templates use Kestrel by default. In *Program.cs*, `ConfigureWebHostDefaults` calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> behind the scenes:
+ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the `ConfigureWebHostDefaults` method calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel*> :
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_DefaultBuilder&highlight=8)]
 
