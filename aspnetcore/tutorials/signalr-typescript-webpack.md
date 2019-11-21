@@ -4,7 +4,7 @@ author: ssougnez
 description: In this tutorial, you configure Webpack to bundle and build an ASP.NET Core SignalR web app whose client is written in TypeScript.
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 11/21/2019
 no-loc: [SignalR]
 uid: tutorials/signalr-typescript-webpack
 ---
@@ -191,7 +191,7 @@ The app currently displays a simple form to send messages. Nothing happens when 
 1. Execute the following command at the project root:
 
     ```console
-    npm install @micrsofot/signalr
+    npm install @microsoft/signalr
     ```
 
     The preceding command installs the [SignalR TypeScript client](https://www.npmjs.com/package/@microsoft/signalr), which allows the client to send messages to the server.
