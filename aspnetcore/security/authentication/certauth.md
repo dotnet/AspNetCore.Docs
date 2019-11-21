@@ -4,7 +4,7 @@ author: blowdart
 description: Learn how to configure certificate authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
-ms.date: 11/07/2019
+ms.date: 11/14/2019
 uid: security/authentication/certauth
 ---
 # Configure certificate authentication in ASP.NET Core
@@ -199,6 +199,9 @@ public static IHostBuilder CreateHostBuilder(string[] args)
                 });
 }
 ```
+
+> [!NOTE]
+> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> won't have the defaults applied.
 
 ### IIS
 
