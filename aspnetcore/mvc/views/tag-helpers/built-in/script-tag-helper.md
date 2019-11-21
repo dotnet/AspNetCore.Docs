@@ -17,7 +17,7 @@ The [Script Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper
 
 The Script Tag Helper allows you to specify a CDN for the script file and a fallback when the CDN is not available. The Script Tag Helper provides the performance advantage of a CDN with the robustness of local hosting.
 
-The following Razor markup shows the `script` element of a layout file created with the ASP.NET Core web app template:
+The following Razor markup shows the `script` element with fallback resources:
 
 ```HTML
 <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
