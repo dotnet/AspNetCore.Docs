@@ -90,7 +90,7 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Antiforgery middleware is added to the [Dependency injection](fundamentals/dependency-injection) container when one of the following APIs is called in `Startup.ConfigureServices`:
+Antiforgery middleware is added to the [Dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Startup.ConfigureServices`:
 
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*>
 * <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*>
@@ -101,7 +101,7 @@ Antiforgery middleware is added to the [Dependency injection](fundamentals/depen
 
 ::: moniker range="< aspnetcore-3.0"
 
-Antiforgery middleware is added to the [Dependency injection](fundamentals/dependency-injection) container when <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*> is called in `Startup.ConfigureServices`
+Antiforgery middleware is added to the [Dependency injection](xref:fundamentals/dependency-injection) container when <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*> is called in `Startup.ConfigureServices`
 
 ::: moniker-end
 
