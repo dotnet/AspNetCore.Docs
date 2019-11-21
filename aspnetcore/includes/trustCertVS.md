@@ -1,20 +1,3 @@
-::: moniker range=">= aspnetcore-3.0"
-Visual Studio displays the following dialog:
-
-![This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate that ASP.NET Core has generated. Would you like to trust the ASP.NET Core SSL certificate?](~/getting-started/_static/trustCert-3x.png)
-
-Select **Yes** if you trust the ASP.NET Core SSL certificate.
-
-The following dialog is displayed:
-
-![Security warning dialog](~/getting-started/_static/cert.png)
-
-Select **Yes** if you agree to trust the development certificate.
-
-See [Trust the ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos) for more information.
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
 Visual Studio displays the following dialog:
 
 ![This project is configured to use SSL. To avoid SSL warnings in the browser you can choose to trust the self-signed certificate that IIS Express has generated. Would you like to trust the IIS Express SSL certificate?](~/getting-started/_static/trustCert.png)
@@ -26,6 +9,3 @@ The following dialog is displayed:
 ![Security warning dialog](~/getting-started/_static/cert.png)
 
 Select **Yes** if you agree to trust the development certificate.
-
-See [Trust the ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos) for more information.
-::: moniker-end
