@@ -5,7 +5,8 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/31/2019
+ms.date: 11/21/2019
+no-loc: [Blazor, SignalR]
 uid: blazor/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps
@@ -13,6 +14,44 @@ uid: blazor/handle-errors
 By [Steve Sanderson](https://github.com/SteveSandersonMS)
 
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
+
+::: moniker range=">= aspnetcore-3.1"
+
+## Detailed errors during development
+
+When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a gold bar at the bottom of the screen:
+
+* During development, the gold bar directs you to the browser console, where you can see the exception.
+* In production, the gold bar notifies the user that an error has occurred and recommends refreshing the browser.
+
+The UI for this error handling experience is part of the Blazor project templates. In a Blazor WebAssembly app, customize the experience in the *wwwroot/index.html* file:
+
+```html
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+```
+
+In a Blazor Server app, customize the experience in the *Pages/_Host.cshtml* file:
+
+```cshtml
+<div id="blazor-error-ui">
+    <environment include="Staging,Production">
+        An error has occurred. This application may no longer respond until reloaded.
+    </environment>
+    <environment include="Development">
+        An unhandled exception has occurred. See browser dev tools for details.
+    </environment>
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+```
+
+The `blazor-error-ui` element is hidden by the styles included with the Blazor templates and then shown when an error occurs.
+
+::: moniker-end
 
 ## How the Blazor framework reacts to unhandled exceptions
 
