@@ -5,7 +5,7 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/10/2019
+ms.date: 11/21/2019
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-models
 ---
@@ -130,7 +130,7 @@ Blazor Server apps require an active SignalR connection to the server. If the co
 
 #### Reconnection to the same server
 
-A Blazor Server app prerenders in response to the first client request, which sets up the UI state on the server. When the client attempts to create a SignalR connection and is redirected through the SignalR service, the client must reconnect to the same server. Blazor Server apps that use more than one backend SignalR server should implement *sticky sessions* for SignalR connections.
+A Blazor Server app prerenders in response to the first client request, which sets up the UI state on the server. When the client attempts to create a SignalR connection, the client must reconnect to the same server. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections.
 
 We recommend using the [Azure SignalR Service](/azure/azure-signalr) for Blazor Server apps. The service allows for scaling up a Blazor Server app to a large number of concurrent SignalR connections. Sticky sessions are enabled for the Azure SignalR Service by setting the service's `ServerStickyMode` option or configuration value to `Required`. For more information, see <xref:host-and-deploy/blazor/server#signalr-configuration>.
 
@@ -155,7 +155,7 @@ The following table describes the CSS classes applied to the `components-reconne
 | `components-reconnect-show`     | A lost connection. The client is attempting to reconnect. Show the modal. |
 | `components-reconnect-hide`     | An active connection is re-established to the server. Hide the modal. |
 | `components-reconnect-failed`   | Reconnection failed, probably due to a network failure. To attempt reconnection, call `window.Blazor.reconnect()`. |
-| `components-reconnect-rejected` | Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is lost. To reload the app, call `location.reload()`. This connection state may result when:<ul><li>A crash in the server-side circuit occurs.</li><li>The client is disconnected long enough for the server to drop the user's state. Instances of the components that the user is interacting with are disposed.</li></ul> |
+| `components-reconnect-rejected` | Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is lost. To reload the app, call `location.reload()`. This connection state may result when:<ul><li>A crash in the server-side circuit occurs.</li><li>The client is disconnected long enough for the server to drop the user's state. Instances of the components that the user is interacting with are disposed.</li><li>The server is restarted, or the app's worker process is recycled.</li></ul> |
 
 ### Stateful reconnection after prerendering
 
