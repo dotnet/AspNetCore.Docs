@@ -137,7 +137,7 @@ The error message lists all the installed .NET Core versions and the version req
 
 When running in development (the `ASPNETCORE_ENVIRONMENT` environment variable is set to `Development`), the specific error is written to the HTTP response. The cause of a process startup failure is also found in the Application Event Log.
 
-This error can also occur if the asp.net core app is using in-process hosting model and aspnetcore module logging is enabled through the stdoutLogFile switch to log the files to WWWROOT folder (or the application content folder). 
+This error can also occur if the asp.net core app is using in-process hosting model, and aspnetcore module logging is enabled through the stdoutLogFile, to log the stdout files to WWWROOT folder (or the application content folder). 
 
 For Azure App Service, you might see an exception as follows
 
@@ -237,6 +237,25 @@ If an error occurs after the headers are sent, it's too late for the server to s
 ### Default startup limits
 
 The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is configured with a default *startupTimeLimit* of 120 seconds. When left at the default value, an app may take up to two minutes to start before the module logs a process failure. For information on configuring the module, see [Attributes of the aspNetCore element](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
+
+
+
+### ANCM Out-Of-Process Startup Failure 
+
+This error can also occur if the asp.net core app is using out-of-process hosting model, and aspnetcore module logging is enabled through the stdoutLogFile, to log the stdout files to WWWROOT folder (or the application content folder). On Azure App Service, you might see an exception as follows
+
+```
+HTTP Error 502.5 - ANCM Out-Of-Process Startup Failure
+Common solutions to this issue:
+The application process failed to start
+The application process started but then stopped
+The application process started but failed to listen on the configured port
+Troubleshooting steps:
+Check the system event log for error messages
+Enable logging the application process' stdout messages
+Attach a debugger to the application process and inspect
+```
+The best practise is to enable logging to a path outside your application folder, example \\?\%home%\LogFiles\stdout . 
 
 ## Troubleshoot on Azure App Service
 
