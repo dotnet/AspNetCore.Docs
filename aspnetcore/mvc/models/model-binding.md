@@ -78,18 +78,18 @@ By default, properties are not bound for HTTP GET requests. Typically, all you n
 
 By default, model binding gets data in the form of key-value pairs from the following sources in an HTTP request:
 
-1. Form fields 
+1. Form fields
 1. The request body (For [controllers that have the [ApiController] attribute](xref:web-api/index#binding-source-parameter-inference).)
 1. Route data
 1. Query string parameters
-1. Uploaded files 
+1. Uploaded files
 
-For each target parameter or property, the sources are scanned in the order indicated in this list. There are a few exceptions:
+For each target parameter or property, the sources are scanned in the order indicated in the preceding list. There are a few exceptions:
 
 * Route data and query string values are used only for simple types.
 * Uploaded files are bound only to target types that implement `IFormFile` or `IEnumerable<IFormFile>`.
 
-If the default behavior doesn't give the right results, you can use one of the following attributes to specify the source to use for any given target.
+If the default source is not correct, use one of the following attributes to specify the source:
 
 * [[FromQuery]](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) - Gets values from the query string. 
 * [[FromRoute]](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) - Gets values from route data.
@@ -129,7 +129,12 @@ public class Pet
 }
 ```
 
-In the preceding example, the `Breed` property is not populated from a query string parameter. Input formatters read only the body and do not understand binding source attributes. If a suitable value is found in the body, it is used to populate the `Breed` property.
+In the preceding example:
+
+* The  `[FromQuery]`  Attribute is ignored.
+* The `Breed` property is not populated from a query string parameter. 
+
+Input formatters read only the body and don't understand binding source attributes. If a suitable value is found in the body, that value is used to populate the `Breed` property.
 
 Don't apply `[FromBody]` to more than one parameter per action method. Once the request stream is read by an input formatter, it's no longer available to be read again for binding other `[FromBody]` parameters.
 
