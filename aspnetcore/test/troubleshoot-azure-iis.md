@@ -137,11 +137,11 @@ The error message lists all the installed .NET Core versions and the version req
 
 When running in development (the `ASPNETCORE_ENVIRONMENT` environment variable is set to `Development`), the specific error is written to the HTTP response. The cause of a process startup failure is also found in the Application Event Log.
 
-This error can also occur if the asp.net core app is using in-process hosting model and aspnetcore module logging is enabled through the stdoutLogFile switch to log the files to WWWROOT folder (or the application content folder). The best practise is to enable logging to a path outside your application folder, example \\?\%home%\LogFiles\stdout . 
+This error can also occur if the asp.net core app is using in-process hosting model and aspnetcore module logging is enabled through the stdoutLogFile switch to log the files to WWWROOT folder (or the application content folder). 
 
-For Azure App Service, you might see an Exception as follows
+For Azure App Service, you might see an exception as follows
 
-'''
+```
 HTTP Error 500.31 - ANCM Failed to Find Native Dependencies
 Common solutions to this issue:
 The specified version of Microsoft.NetCore.App or Microsoft.AspNetCore.App was not found.
@@ -149,7 +149,9 @@ Troubleshooting steps:
 Check the system event log for error messages
 Enable logging the application process' stdout messages
 Attach a debugger to the application process and inspect
-'''
+```
+
+The best practise is to enable logging to a path outside your application folder, example \\?\%home%\LogFiles\stdout . 
 
 ### 500.32 ANCM Failed to Load dll
 
