@@ -32,29 +32,9 @@ The following Razor markup shows the `script` element of a layout file created w
 
 See [Script Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper) for all the Script Tag Helper attributes, properties, and methods.
 
-### href
-
-Preferred address of the linked resource. The address is passed thought to the generated HTML in all cases.
-
-### asp-fallback-href
-
-The URL of a CSS stylesheet to fallback to in the case the primary URL fails.
-
 ### asp-fallback-test
 
 The script method defined in the primary script to use for the fallback test. For more information, see <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackTestExpression>.
-
-### asp-fallback-test-class
-
-The class name defined in the stylesheet to use for the fallback test. For more information, see <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackTestClass>.
-
-### asp-fallback-test-property
-
-The CSS property name to use for the fallback test. For more information, see <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackTestProperty>.
-
-### asp-fallback-test-value
-
-The CSS property value to use for the fallback test. For more information, see <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackTestValue>.
 
 ## Additional resources
 
