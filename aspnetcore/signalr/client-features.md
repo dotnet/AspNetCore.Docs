@@ -4,7 +4,8 @@ author: bradygaster
 description: Learn which features are supported by the various ASP.NET Core SignalR clients.
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 09/18/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/client-features
 ---
 # ASP.NET Core SignalR client features

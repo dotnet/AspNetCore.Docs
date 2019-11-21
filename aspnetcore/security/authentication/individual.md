@@ -55,6 +55,5 @@ If Windows Authentication is selected, the app is configured to use the [Windows
 
 The following articles show how to use the code generated in ASP.NET Core templates that use individual user accounts:
 
-* [Two-factor authentication with SMS](xref:security/authentication/2fa)
 * [Account confirmation and password recovery in ASP.NET Core](xref:security/authentication/accconfirm)
 * [Create an ASP.NET Core app with user data protected by authorization](xref:security/authorization/secure-data)

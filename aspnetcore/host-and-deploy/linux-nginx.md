@@ -5,7 +5,7 @@ description: Learn how to setup Nginx as a reverse proxy on Ubuntu 16.04 to forw
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/31/2019
+ms.date: 11/05/2019
 uid: host-and-deploy/linux-nginx
 ---
 # Host ASP.NET Core on Linux with Nginx
@@ -281,7 +281,7 @@ To configure data protection to persist and encrypt the key ring, see:
 
 ## Long request header fields
 
-If the app requires request header fields longer than permitted by the proxy server's default settings (typically 4K or 8K depending on the platform), the following directives require adjustment. The values to apply are scenario-dependent. For more information, see your server's documentation.
+Proxy server default settings typically limit request header fields to 4 K or 8 K depending on the platform. An app may require fields longer than the default (for example, apps that use [Azure Active Directory](https://azure.microsoft.com/services/active-directory/)). If longer fields are required, the proxy server's default settings require adjustment. The values to apply depend on the scenario. For more information, see your server's documentation.
 
 * [proxy_buffer_size](https://nginx.org/docs/http/ngx_http_proxy_module.html#proxy_buffer_size)
 * [proxy_buffers](https://nginx.org/docs/http/ngx_http_proxy_module.html#proxy_buffers)

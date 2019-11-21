@@ -199,7 +199,7 @@ At the end, you have an app that can manage and display movie data.
 
 * From the Visual Studio select **Create a new project**.
 
-* Selecct **ASP.NET Core Web Application** and then select **Next**.
+* Select **ASP.NET Core Web Application** and then select **Next**.
 
 ![new ASP.NET Core Web Application](start-mvc/_static/np_2.1.png)
 

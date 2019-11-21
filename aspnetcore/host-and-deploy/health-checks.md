@@ -5,7 +5,7 @@ description: Learn how to set up health checks for ASP.NET Core infrastructure, 
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/27/2019
+ms.date: 11/13/2019
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
@@ -30,7 +30,7 @@ The sample app includes examples of the scenarios described in this topic. To ru
 
 Health checks are usually used with an external monitoring service or container orchestrator to check the status of an app. Before adding health checks to an app, decide on which monitoring system to use. The monitoring system dictates what types of health checks to create and how to configure their endpoints.
 
-Add a package reference to the [Microsoft.AspNetCore.Diagnostics.HealthChecks](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.HealthChecks) package. To perform health checks using Entity Framework Core, add a package reference to the [Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore) package.
+The [Microsoft.AspNetCore.Diagnostics.HealthChecks](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.HealthChecks) package is referenced implicitly for ASP.NET Core apps. To perform health checks using Entity Framework Core, add a package reference to the [Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore) package.
 
 The sample app provides startup code to demonstrate health checks for several scenarios. The [database probe](#database-probe) scenario checks the health of a database connection using [AspNetCore.Diagnostics.HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks). The [DbContext probe](#entity-framework-core-dbcontext-probe) scenario checks a database using an EF Core `DbContext`. To explore the database scenarios, the sample app:
 
@@ -142,6 +142,40 @@ services.AddHealthChecks()
 services.AddHealthChecks()
     .AddCheck("Example", () =>
         HealthCheckResult.Healthy("Example is OK!"), tags: new[] { "example" });
+```
+
+Call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddTypeActivatedCheck*> to pass arugments to a health check implementation. In the following example, `TestHealthCheckWithArgs` accepts an integer and a string for use when <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync*> is called:
+
+```csharp
+private class TestHealthCheckWithArgs : IHealthCheck
+{
+    public TestHealthCheckWithArgs(int i, string s)
+    {
+        I = i;
+        S = s;
+    }
+
+    public int I { get; set; }
+
+    public string S { get; set; }
+
+    public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, 
+        CancellationToken cancellationToken = default)
+    {
+        ...
+    }
+}
+```
+
+`TestHealthCheckWithArgs` is registered by calling `AddTypeActivatedCheck` with the integer and string passed to the implementation:
+
+```csharp
+services.AddHealthChecks()
+    .AddTypeActivatedCheck<TestHealthCheckWithArgs>(
+        "test", 
+        failureStatus: HealthStatus.Degraded, 
+        tags: new[] { "example" }, 
+        args: new object[] { 5, "string" });
 ```
 
 ## Use Health Checks Routing

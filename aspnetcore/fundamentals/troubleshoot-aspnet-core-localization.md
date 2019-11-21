@@ -95,6 +95,9 @@ options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async 
 
 When the root namespace of an assembly is different than the assembly name, localization doesn't work by default. To avoid this issue use [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1), which is described in detail [here](xref:fundamentals/localization?view=aspnetcore-2.2#resource-file-naming)
 
+> [!WARNING]
+> This can occur when a project's name is not a valid .NET identifier. For instance `my-project-name.csproj` will use the root namespace `my_project_name` and the assembly name `my-project-name` leading to this error. 
+
 ## Resources & Build Action
 
 If you use resource files for localization, it's important that they have an appropriate build action. They should be **Embedded Resource**, otherwise the `ResourceStringLocalizer` is not able to find these resources.

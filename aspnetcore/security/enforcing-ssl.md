@@ -411,6 +411,8 @@ dotnet dev-certs https --trust
 
 Close any browser instances open. Open a new browser window to app.
 
+See [HTTPS Error using IIS Express (aspnet/AspNetCore #16892)](https://github.com/aspnet/AspNetCore/issues/16892) for troubleshooting certificate issues with Visual Studio.
+
 ## Additional information
 
 * <xref:host-and-deploy/proxy-load-balancer>

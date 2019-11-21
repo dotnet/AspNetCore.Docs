@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/28/2018
+no-loc: [SignalR]
 uid: signalr/scale
 ---
 

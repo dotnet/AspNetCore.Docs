@@ -4,7 +4,8 @@ author: mjrousos
 description: Tips for increasing performance in ASP.NET Core apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 09/26/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: performance/performance-best-practices
 ---
 # ASP.NET Core Performance Best Practices
@@ -31,11 +32,12 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 
 * Block asynchronous execution by calling [Task.Wait](/dotnet/api/system.threading.tasks.task.wait) or [Task.Result](/dotnet/api/system.threading.tasks.task-1.result).
 * Acquire locks in common code paths. ASP.NET Core apps are most performant when architected to run code in parallel.
+* Call [Task.Run](/dotnet/api/system.threading.tasks.task.run) and immediately await it. ASP.NET Core already runs app code on normal Thread Pool threads, so calling Task.Run only results in extra unnecessary Thread Pool scheduling. Even if the scheduled code would block a thread, Task.Run does not prevent that.
 
 **Do**:
 
 * Make [hot code paths](#understand-hot-code-paths) asynchronous.
-* Call data access and long-running operations APIs asynchronously.
+* Call data access and long-running operations APIs asynchronously if an asynchronous API is available. Once again, do not use [Task.Run](/dotnet/api/system.threading.tasks.task.run) to make a synchronus API asynchronous.
 * Make controller/Razor Page actions asynchronous. The entire call stack is asynchronous in order to benefit from [async/await](/dotnet/csharp/programming-guide/concepts/async/) patterns.
 
 A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be used to find threads frequently added to the [Thread Pool](/windows/desktop/procthread/thread-pools). The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread added to the thread pool. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc)  -->
@@ -285,6 +287,8 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 * Doesn't reference anything from the controller.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetFirstController.cs?name=snippet2)]
+
+Background tasks should be implemented as hosted services. For more information, see [Background tasks with hosted services](xref:fundamentals/host/hosted-services).
 
 ## Do not capture services injected into the controllers on background threads
 

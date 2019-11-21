@@ -5,7 +5,8 @@ description: Learn how to configure ASP.NET Core SignalR apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 08/05/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/configuration
 ---
 # ASP.NET Core SignalR configuration
@@ -40,6 +41,9 @@ var connection = new HubConnectionBuilder()
     })
     .Build();
 ```
+
+> [!NOTE]
+> It's not possible to configure JSON serialization in the JavaScript client at this time.
 
 ### Switch to Newtonsoft.Json
 
@@ -76,10 +80,10 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-::: moniker-end
-
 > [!NOTE]
 > It's not possible to configure JSON serialization in the JavaScript client at this time.
+
+::: moniker-end
 
 ### MessagePack serialization options
 

@@ -74,7 +74,7 @@ function updateItem() {
     body: JSON.stringify(item)
   })
   .then(() => getItems())
-  .catch(error => console.error('Unable to delete item.', error));
+  .catch(error => console.error('Unable to update item.', error));
   // </snippet_UpdateItem>
 
   closeInput();

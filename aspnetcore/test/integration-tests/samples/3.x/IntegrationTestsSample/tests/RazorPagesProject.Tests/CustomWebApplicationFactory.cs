@@ -10,7 +10,7 @@ using RazorPagesProject.Data;
 namespace RazorPagesProject.Tests
 {
     #region snippet1
-    public class CustomWebApplicationFactory<TStartup> 
+    public class CustomWebApplicationFactory<TStartup>
         : WebApplicationFactory<TStartup> where TStartup: class
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -19,7 +19,7 @@ namespace RazorPagesProject.Tests
             {
                 // Remove the app's ApplicationDbContext registration.
                 var descriptor = services.SingleOrDefault(
-                    d => d.ServiceType == 
+                    d => d.ServiceType ==
                         typeof(DbContextOptions<ApplicationDbContext>));
 
                 if (descriptor != null)
@@ -28,9 +28,9 @@ namespace RazorPagesProject.Tests
                 }
 
                 // Add ApplicationDbContext using an in-memory database for testing.
-                services.AddDbContext<ApplicationDbContext>((options, context) => 
+                services.AddDbContext<ApplicationDbContext>(options =>
                 {
-                    context.UseInMemoryDatabase("InMemoryDbForTesting");
+                    options.UseInMemoryDatabase("InMemoryDbForTesting");
                 });
 
                 // Build the service provider.

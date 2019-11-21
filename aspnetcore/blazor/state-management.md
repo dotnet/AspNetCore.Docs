@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/15/2019
+no-loc: [Blazor]
 uid: blazor/state-management
 ---
 # ASP.NET Core Blazor state management
@@ -233,7 +234,17 @@ During prerendering:
 
 One way to resolve the error is to disable prerendering. This is usually the best choice if the app makes heavy use of browser-based storage. Prerendering adds complexity and doesn't benefit the app because the app can't prerender any useful content until `localStorage` or `sessionStorage` are available.
 
+::: moniker range=">= aspnetcore-3.1"
+
+To disable prerendering, open the *Pages/_Host.cshtml* file and change the call to `render-mode` of the `Component` Tag Helper to `Server`.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.1"
+
 To disable prerendering, open the *Pages/_Host.cshtml* file and change the call to `Html.RenderComponentAsync<App>(RenderMode.Server)`.
+
+::: moniker-end
 
 Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`. To keep prerendering enabled, defer the loading operation until the browser is connected to the circuit. The following is an example for storing a counter value:
 
