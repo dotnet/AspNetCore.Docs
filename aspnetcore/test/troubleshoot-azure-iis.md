@@ -151,7 +151,7 @@ Enable logging the application process' stdout messages
 Attach a debugger to the application process and inspect
 ```
 
-The best practise is to enable logging to a path outside your application folder, example \\?\%home%\LogFiles\stdout . 
+The best practise is to enable logging to a path outside your application folder, example \\\?\%home%\LogFiles\stdout . 
 
 ### 500.32 ANCM Failed to Load dll
 
@@ -255,7 +255,7 @@ Check the system event log for error messages
 Enable logging the application process' stdout messages
 Attach a debugger to the application process and inspect
 ```
-The best practise is to enable logging to a path outside your application folder, example \\?\%home%\LogFiles\stdout . 
+The best practise is to enable logging to a path outside your application folder, example \\\?\%home%\LogFiles\stdout . 
 
 ## Troubleshoot on Azure App Service
 
