@@ -3,10 +3,9 @@
 // https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code
 //
 // DefaultBehavior - default ControllerBase and ApiController behavior.
-// InvalidModelStateResponseFactory - customize response for automatic 400 on validation error.
 // SuppressApiControllerBehavior - use 2.1 behaviors although compat version is 2.2.
 
-#define DefaultBehavior // or InvalidModelStateResponseFactory or SuppressApiControllerBehavior
+#define DefaultBehavior // or SuppressApiControllerBehavior
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,32 +41,6 @@ namespace WebApiSample
                     options.SuppressMapClientErrors = true;
                     options.ClientErrorMapping[404].Link =
                         "https://httpstatuses.com/404";
-                });
-            #endregion
-#endif
-#if InvalidModelStateResponseFactory             
-            #region snippet_ConfigureBadRequestResponse
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .ConfigureApiBehaviorOptions(options =>
-                {
-                    options.InvalidModelStateResponseFactory = context =>
-                    {
-                        var problemDetails = 
-                            new ValidationProblemDetails(context.ModelState)
-                        {
-                            Type = "https://contoso.com/probs/modelvalidation",
-                            Title = "One or more model validation errors occurred.",
-                            Status = StatusCodes.Status400BadRequest,
-                            Detail = "See the errors property for details.",
-                            Instance = context.HttpContext.Request.Path
-                        };
-
-                        return new BadRequestObjectResult(problemDetails)
-                        {
-                            ContentTypes = { "application/problem+json" }
-                        };
-                    };
                 });
             #endregion
 #endif
