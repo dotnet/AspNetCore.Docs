@@ -133,11 +133,11 @@ In Blazor Server apps, the default route in *_Host.cshtml* is `/` (`@page "/"`).
 
 The `"/{**path}"` template includes:
 
-* Double-asterisk *catch-all* syntax (`**`) to capture the path across multiple folder boundaries without encoding forward slashes (`/`).
-* A `path` route parameter name.
+* Double-asterisk *catch-all* parameter (`**`) to capture the path across multiple folder boundaries without encoding forward slashes (`/`).
+* `path` route parameter name.
 
 > [!NOTE]
-> Although catch-all syntax (`**`) works with Razor pages (*.cshtml*), catch-all syntax isn't a valid scenario in Razor components (*.razor*). [Dedicated conventional routes](xref:mvc/controllers/routing#special-case-for-dedicated-conventional-routes) are valid for use with Razor components (for example, `@page "/foo?{*data}"` with a `data` route parameter name).
+> *Catch-all* parameters (`*`/`**`) are **not** supported in Razor components (*.razor*).
 
 For more information, see <xref:fundamentals/routing>.
 

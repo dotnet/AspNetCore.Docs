@@ -1023,7 +1023,7 @@ Components can receive route parameters from the route template provided in the 
 
 Optional parameters aren't supported, so two `@page` directives are applied in the example above. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
 
-Double-asterisk *catch-all* syntax (`**`) to capture the path across multiple folder boundaries is **not** supported. [Dedicated conventional routes](xref:mvc/controllers/routing#special-case-for-dedicated-conventional-routes) are valid for use with Razor components (for example, `@page "/foo?{*data}"` with a `data` route parameter name).
+*Catch-all* parameters (`*`/`**`), which capture the path across multiple folder boundaries, are **not** supported in Razor components (*.razor*).
 
 ::: moniker range=">= aspnetcore-3.1"
 
