@@ -5,7 +5,8 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/04/2019
+ms.date: 11/21/2019
+no-loc: [Blazor]
 uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
@@ -187,7 +188,24 @@ Create a component with the following markup, and use the component just as `Inp
 
 The `DataAnnotationsValidator` component attaches validation support using data annotations to the cascaded `EditContext`. Enabling support for validation using data annotations requires this explicit gesture. To use a different validation system than data annotations, replace the `DataAnnotationsValidator` with a custom implementation. The ASP.NET Core implementation is available for inspection in the reference source: [DataAnnotationsValidator](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs)/[AddDataAnnotationsValidation](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
 
-The `ValidationSummary` component summarizes all validation messages, which is similar to the [Validation Summary Tag Helper](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper).
+Blazor performs two types of validation:
+
+* *Field validation* is performed when the user tabs out of a field. During field validation, the `DataAnnotationsValidator` component associates all reported validation results with the field.
+* *Model validation* is performed when the user submits the form. During model validation, the `DataAnnotationsValidator` component attempts to determine the field based on the member name that the validation result reports. Validation results that aren't associated with an individual member are associated with the model rather than a field.
+
+### Validation Summary and Validation Message components
+
+The `ValidationSummary` component summarizes all validation messages, which is similar to the [Validation Summary Tag Helper](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper):
+
+```csthml
+<ValidationSummary />
+```
+
+Output validation messages for a specific model with the `Model` parameter:
+  
+```csthml
+<ValidationSummary Model="@starship" />
+```
 
 The `ValidationMessage` component displays validation messages for a specific field, which is similar to the [Validation Message Tag Helper](xref:mvc/views/working-with-forms#the-validation-message-tag-helper). Specify the field for validation with the `For` attribute and a lambda expression naming the model property:
 
@@ -197,16 +215,86 @@ The `ValidationMessage` component displays validation messages for a specific fi
 
 The `ValidationMessage` and `ValidationSummary` components support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the generated `<div>` or `<ul>` element.
 
+### Custom validation attributes
+
+To ensure that a validation result is correctly associated with a field when using a [custom validation attribute](xref:mvc/models/validation#custom-attributes), pass the validation context's <xref:System.ComponentModel.DataAnnotations.ValidationContext.MemberName> when creating the <xref:System.ComponentModel.DataAnnotations.ValidationResult>:
+
+```csharp
+using System;
+using System.ComponentModel.DataAnnotations;
+
+private class MyCustomValidator : ValidationAttribute
+{
+    protected override ValidationResult IsValid(object value, 
+        ValidationContext validationContext)
+    {
+        ...
+
+        return new ValidationResult("Validation message to user.",
+            new[] { validationContext.MemberName });
+    }
+}
+```
+
 ::: moniker range=">= aspnetcore-3.1"
 
-**Microsoft.AspNetCore.Blazor.DataAnnotations.Validation package**
+### Blazor data annotations validation package
 
-The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) is a package that fills validation experience gaps using the `DataAnnotationsValidator` component. The package is currently *experimental*, and we plan to add these scenarios into the ASP.NET Core framework in a future release.
+The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) is a package that fills validation experience gaps using the `DataAnnotationsValidator` component. The package is currently *experimental*.
 
-The `DataAnnotationsValidator` component doesn't validate subproperties of complex properties on a validating model. Items of collection-type properties aren't validated. To validate these types, the `Microsoft.AspNetCore.Blazor.DataAnnotations.Validation` package introduces the `ValidateComplexType` validation attribute that works in tandem with the `ObjectGraphDataAnnotationsValidator` component. For an example of these types in use, see the [Blazor Validation sample in the aspnet/samples GitHub repository
-](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
+### [CompareProperty] attribute
 
-The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the `DataAnnotationsValidator` component. The `Microsoft.AspNetCore.Blazor.DataAnnotations.Validation` package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `ComparePropertyAttribute` is a direct replacement for the `CompareAttribute`. For more information, see [CompareAttribute ignored with OnValidSubmit EditForm (aspnet/AspNetCore \#10643)](https://github.com/aspnet/AspNetCore/issues/10643#issuecomment-543909748).
+The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the `DataAnnotationsValidator` component. The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) *experimental* package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the `[Compare]` attribute. For more information, see [CompareAttribute ignored with OnValidSubmit EditForm (aspnet/AspNetCore #10643)](https://github.com/aspnet/AspNetCore/issues/10643#issuecomment-543909748).
+
+### Nested models, collection types, and complex types
+
+Blazor provides support for validating form input using data annotations with the built-in `DataAnnotationsValidator`. However, the `DataAnnotationsValidator` only validates top-level properties of the model bound to the form that aren't collection- or complex-type properties.
+
+To validate the bound model's entire object graph, including collection- and complex-type properties, use the `ObjectGraphDataAnnotationsValidator` provided by the *experimental* [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) package:
+
+```cshtml
+<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
+    <ObjectGraphDataAnnotationsValidator />
+    ...
+</EditForm>
+```
+
+Annotate model properties with `[ValidateComplexType]`. In the following model classes, the `ShipDescription` class contains additional data annotations to validate when the model is bound to the form:
+
+*Starship.cs*:
+
+```csharp
+using System;
+using System.ComponentModel.DataAnnotations;
+
+public class Starship
+{
+    ...
+
+    [ValidateComplexType]
+    public ShipDescription ShipDescription { get; set; }
+
+    ...
+}
+```
+
+*ShipDescription.cs*:
+
+```csharp
+using System;
+using System.ComponentModel.DataAnnotations;
+
+public class ShipDescription
+{
+    [Required]
+    [StringLength(40, ErrorMessage = "Description too long (40 char).")]
+    public string ShortDescription { get; set; }
+    
+    [Required]
+    [StringLength(240, ErrorMessage = "Description too long (240 char).")]
+    public string LongDescription { get; set; }
+}
+```
 
 ::: moniker-end
 
@@ -214,6 +302,6 @@ The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work w
 
 ### Validation of complex or collection type properties
 
-Validation attributes applied to the properties of a model validate when the form is submitted. However, the properties of collections or complex data types of a model aren't validated on form submission by the `DataAnnotationsValidator` component. To honor the nested validation attributes in this scenario, use a custom validation component. For an example, see the [Blazor Validation sample in the aspnet/samples GitHub repository](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
+Validation attributes applied to the properties of a model validate when the form is submitted. However, the properties of collections or complex data types of a model aren't validated on form submission by the `DataAnnotationsValidator` component. To honor the nested validation attributes in this scenario, use a custom validation component. For an example, see the [Blazor Validation sample (aspnet/samples)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
 
 ::: moniker-end
