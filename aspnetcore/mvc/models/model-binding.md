@@ -131,7 +131,7 @@ public class Pet
 
 In the preceding example:
 
-* The  `[FromQuery]`  Attribute is ignored.
+* The `[FromQuery]` attribute is ignored.
 * The `Breed` property is not populated from a query string parameter. 
 
 Input formatters read only the body and don't understand binding source attributes. If a suitable value is found in the body, that value is used to populate the `Breed` property.
