@@ -1011,7 +1011,7 @@ protected override void OnInitialized()
 `OnParametersSetAsync` and `OnParametersSet` are called:
 
 * After component initialization.
-* When a component has received parameters from its parent and the values are assigned to properties.
+* When a component has received changed parameters from its parent and the values are assigned to properties.
 
 ```csharp
 protected override async Task OnParametersSetAsync()
