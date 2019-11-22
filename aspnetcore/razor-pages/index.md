@@ -59,7 +59,7 @@ Open the generated *.csproj* file from Visual Studio for Mac.
 
 Razor Pages is enabled in *Startup.cs*:
 
-[!code-cs[](index/3.0sample/RazorPagesIntro/Startup.cs?name=snippet_Startup&highlight=12)]
+[!code-cs[](index/3.0sample/RazorPagesIntro/Startup.cs?name=snippet_Startup&highlight=12,36)]
 
 Consider a basic page:
 <a name="OnGet"></a>
