@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET and .NET methods
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/16/2019
+ms.date: 11/21/2019
 no-loc: [Blazor]
 uid: blazor/javascript-interop
 ---
@@ -21,14 +21,14 @@ A Blazor app can invoke JavaScript functions from .NET and .NET methods from Jav
 
 ## Invoke JavaScript functions from .NET methods
 
-There are times when .NET code is required to call a JavaScript function. For example, a JavaScript call can expose browser capabilities or functionality from a JavaScript library to the app.
+There are times when .NET code is required to call a JavaScript function. For example, a JavaScript call can expose browser capabilities or functionality from a JavaScript library to the app. This scenario is called *JavaScript interoperability* (*JS interop*).
 
 To call into JavaScript from .NET, use the `IJSRuntime` abstraction. The `InvokeAsync<T>` method takes an identifier for the JavaScript function that you wish to invoke along with any number of JSON-serializable arguments. The function identifier is relative to the global scope (`window`). If you wish to call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called. The return type `T` must also be JSON serializable.
 
 For Blazor Server apps:
 
 * Multiple user requests are processed by the Blazor Server app. Don't call `JSRuntime.Current` in a component to invoke JavaScript functions.
-* Inject the `IJSRuntime` abstraction and use the injected object to issue JavaScript interop calls.
+* Inject the `IJSRuntime` abstraction and use the injected object to issue JS interop calls.
 * While a Blazor app is prerendering, calling into JavaScript isn't possible because a connection with the browser hasn't been established. For more information, see the [Detect when a Blazor app is prerendering](#detect-when-a-blazor-app-is-prerendering) section.
 
 The following example is based on [TextDecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder), an experimental JavaScript-based decoder. The example demonstrates how to invoke a JavaScript function from a C# method. The JavaScript function accepts a byte array from a C# method, decodes the array, and returns the text to the component for display.
@@ -50,7 +50,7 @@ The following component:
 
 [!code-cshtml[](javascript-interop/samples_snapshot/call-js-example.razor?highlight=2,34-35)]
 
-##  Use of IJSRuntime
+## Use of IJSRuntime
 
 To use the `IJSRuntime` abstraction, adopt any of the following approaches:
 
@@ -100,9 +100,9 @@ Don't place a `<script>` tag in a component file because the `<script>` tag can'
 
 .NET methods interop with the JavaScript functions in the *exampleJsInterop.js* file by calling `IJSRuntime.InvokeAsync<T>`.
 
-The `IJSRuntime` abstraction is asynchronous to allow for Blazor Server scenarios. If the app is a Blazor WebAssembly app and you want to invoke a JavaScript function synchronously, downcast to `IJSInProcessRuntime` and call `Invoke<T>` instead. We recommend that most JavaScript interop libraries use the async APIs to ensure that the libraries are available in all scenarios.
+The `IJSRuntime` abstraction is asynchronous to allow for Blazor Server scenarios. If the app is a Blazor WebAssembly app and you want to invoke a JavaScript function synchronously, downcast to `IJSInProcessRuntime` and call `Invoke<T>` instead. We recommend that most JS interop libraries use the async APIs to ensure that the libraries are available in all scenarios.
 
-The sample app includes a component to demonstrate JavaScript interop. The component:
+The sample app includes a component to demonstrate JS interop. The component:
 
 * Receives user input via a JavaScript prompt.
 * Returns the text to the component for processing.
@@ -126,7 +126,7 @@ JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/
 
 ## Capture references to elements
 
-Some [JavaScript interop](xref:blazor/javascript-interop) scenarios require references to HTML elements. For example, a UI library may require an element reference for initialization, or you might need to call command-like APIs on an element, such as `focus` or `play`.
+Some JS interop scenarios require references to HTML elements. For example, a UI library may require an element reference for initialization, or you might need to call command-like APIs on an element, such as `focus` or `play`.
 
 Capture references to HTML elements in a component using the following approach:
 
@@ -143,10 +143,23 @@ The following example shows capturing a reference to the `username` `<input>` el
 }
 ```
 
-> [!NOTE]
-> Do **not** use captured element references as a way of populating the DOM. Doing so may interfere with the declarative rendering model.
+> [!WARNING]
+> Only use an element reference to mutate the contents of an empty element that doesn't interact with Blazor. This scenario is useful when a 3rd party API supplies content to the element. Because Blazor doesn't interact with the element, there's no possibility of a conflict between Blazor's representation of the element and the DOM.
+>
+> In the following example, it's *dangerous* to mutate the contents of the unordered list (`ul`) because Blazor interacts with the DOM to populate this element's list items (`<li>`):
+>
+> ```cshtml
+> <ul ref="MyList">
+>     @foreach (var item in Todos)
+>     {
+>         <li>@item.Text</li>
+>     }
+> </ul>
+> ```
+>
+> If JS interop mutates the contents of element `MyList` and Blazor attempts to apply diffs to the element, the diffs won't match the DOM.
 
-As far as .NET code is concerned, an `ElementReference` is an opaque handle. The *only* thing you can do with `ElementReference` is pass it through to JavaScript code via JavaScript interop. When you do so, the JavaScript-side code receives an `HTMLElement` instance, which it can use with normal DOM APIs.
+As far as .NET code is concerned, an `ElementReference` is an opaque handle. The *only* thing you can do with `ElementReference` is pass it through to JavaScript code via JS interop. When you do so, the JavaScript-side code receives an `HTMLElement` instance, which it can use with normal DOM APIs.
 
 For example, the following code defines a .NET extension method that enables setting the focus on an element:
 
@@ -249,7 +262,7 @@ Hello, Blazor!
 
 ## Share interop code in a class library
 
-JavaScript interop code can be included in a class library, which allows you to share the code in a NuGet package.
+JS interop code can be included in a class library, which allows you to share the code in a NuGet package.
 
 The class library handles embedding JavaScript resources in the built assembly. The JavaScript files are placed in the *wwwroot* folder. The tooling takes care of embedding the resources when the library is built.
 

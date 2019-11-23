@@ -56,9 +56,10 @@ namespace WebApp1
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseRouting();
 
             #region snippet2
+            app.UseRouting();
+            
             app.UseAuthentication();
             app.UseAuthorization();
 
