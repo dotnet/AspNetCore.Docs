@@ -284,6 +284,8 @@
           uid: tutorials/first-blazor-app
         - name: Components
           uid: blazor/components
+        - name: Lifecycle
+          uid: blazor/lifecycle
         - name: Forms and validation
           uid: blazor/forms-validation
         - name: Component libraries
