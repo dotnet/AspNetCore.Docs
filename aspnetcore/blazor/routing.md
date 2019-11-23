@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/18/2019
+ms.date: 11/23/2019
 no-loc: [Blazor]
 uid: blazor/routing
 ---
@@ -133,11 +133,11 @@ In Blazor Server apps, the default route in *_Host.cshtml* is `/` (`@page "/"`).
 
 The `"/{**path}"` template includes:
 
-* Double-asterisk *catch-all* parameter (`**`) to capture the path across multiple folder boundaries without encoding forward slashes (`/`).
+* Double-asterisk *catch-all* syntax (`**`) to capture the path across multiple folder boundaries without encoding forward slashes (`/`).
 * `path` route parameter name.
 
 > [!NOTE]
-> *Catch-all* parameters (`*`/`**`) are **not** supported in Razor components (*.razor*).
+> *Catch-all* parameter syntax (`*`/`**`) is **not** supported in Razor components (*.razor*).
 
 For more information, see <xref:fundamentals/routing>.
 
