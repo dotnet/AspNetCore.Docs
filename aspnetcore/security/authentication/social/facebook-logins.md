@@ -127,6 +127,11 @@ You are now logged in using your Facebook credentials:
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
+# Facebook external login setup in ASP.NET Core
+
+By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+This tutorial with code examples shows how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 3.0 project created on the [previous page](xref:security/authentication/social/index). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com).
 
 ## Create the app in Facebook
 
