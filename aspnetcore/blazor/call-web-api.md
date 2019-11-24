@@ -5,7 +5,7 @@ description: Learn how to call a web API from a Blazor app using JSON helpers, i
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 11/23/2019
 no-loc: [Blazor]
 uid: blazor/call-web-api
 ---
@@ -19,16 +19,27 @@ Blazor WebAssembly apps call web APIs using a preconfigured `HttpClient` service
 
 Blazor Server apps call web APIs using <xref:System.Net.Http.HttpClient> instances typically created using <xref:System.Net.Http.IHttpClientFactory>. For more information, see <xref:fundamentals/http-requests>.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
+> [!NOTE]
+> This topic applies to Blazor WebAssembly apps. The JSON helpers described in this topic and shown in examples (for example, `GetJsonAsync`) aren't available for Blazor Server apps at this time. 
+>
+> For information on how to call web APIs from Blazor Server apps, see <xref:fundamentals/http-requests>, which explains how to use <xref:System.Text.Json?displayProperty=fullName> to serialize and deserialize JSON messages.
 
-For Blazor WebAssembly examples, see the following components in the sample app:
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample)) &ndash; Select the *BlazorWebAssemblySample* app.
+
+See the following components in the *BlazorWebAssemblySample* sample app:
 
 * Call Web API (*Pages/CallWebAPI.razor*)
 * HTTP Request Tester (*Components/HTTPRequestTester.razor*)
 
+## Package
+
+In a Blazor WebAssembly app, reference the *experimental* [Microsoft.AspNetCore.Blazor.HttpClient](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.HttpClient/) NuGet package in the project file.
+
+The `Microsoft.AspNetCore.Blazor.HttpClient` package and the JSON helpers it provides aren't available for Blazor Server apps at this time.
+
 ## HttpClient and JSON helpers
 
-In Blazor WebAssembly apps, [HttpClient](xref:fundamentals/http-requests) is available as a preconfigured service for making requests back to the origin server. To use `HttpClient` JSON helpers, add a package reference to `Microsoft.AspNetCore.Blazor.HttpClient`. `HttpClient` and JSON helpers are also used to call third-party web API endpoints. `HttpClient` is implemented using the browser [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same origin policy.
+In Blazor WebAssembly apps, [HttpClient](xref:fundamentals/http-requests) is available as a preconfigured service for making requests back to the origin server. `HttpClient` and JSON helpers are also used to call third-party web API endpoints. `HttpClient` is implemented using the browser [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same origin policy.
 
 The client's base address is set to the originating server's address. Inject an `HttpClient` instance using the `@inject` directive:
 
@@ -142,7 +153,7 @@ In the following code, the Delete `<button>` element calls the `DeleteItem` meth
 
 Browser security prevents a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/).
 
-The sample app demonstrates the use of CORS in the Call Web API component (*Pages/CallWebAPI.razor*).
+The [Blazor WebAssembly sample app (BlazorWebAssemblySample)](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) demonstrates the use of CORS in the Call Web API component (*Pages/CallWebAPI.razor*).
 
 To allow other sites to make cross-origin resource sharing (CORS) requests to your app, see <xref:security/cors>.
 
