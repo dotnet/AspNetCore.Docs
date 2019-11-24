@@ -833,6 +833,20 @@ Disposal of the client isn't required. Disposal cancels outgoing requests and gu
 
 Keeping a single `HttpClient` instance alive for a long duration is a common pattern used before the inception of `IHttpClientFactory`. This pattern becomes unnecessary after migrating to `IHttpClientFactory`.
 
+### Cookies
+
+As a result of `HttpMessageHandler` instances being pooled - the `CookieContainer` objects that handle cookies across requests will also be shared. This can lead to confusion or programming mistakes since the `CookieContainer` object will be reused in ways that your code may not anticipate.
+
+If your use case requires using cookies, then consider either:
+
+ - Turning off automatic cookie handling
+ - Avoiding `IHttpClientFactory`
+
+To turn off automatic cookie handling, use the `ConfigurePrimaryHttpMessageHandler` method.
+
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
+
+
 ## Logging
 
 Clients created via `IHttpClientFactory` record log messages for all requests. Enable the appropriate information level in your logging configuration to see the default log messages. Additional logging, such as the logging of request headers, is only included at trace level.
