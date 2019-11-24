@@ -282,6 +282,22 @@ The default handler lifetime is two minutes. The default value can be overridden
 
 Keeping a single `HttpClient` instance alive for a long duration is a common pattern used before the inception of `IHttpClientFactory`. This pattern becomes unnecessary after migrating to `IHttpClientFactory`.
 
+### Alternatives to IHttpClientFactory
+
+Using `IHttpClientFactory` in a DI-enabled application avoids resource exhaustion problems by pooling `HttpMessageHandler` instances, and avoids stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+
+There are alternative ways to solve these problems using a long-lived `SocketsHttpClientHandler` instance.
+
+- Create an instance of `SocketsHttpClientHandler` when your application starts.
+- Keep this instance until the application shuts down.
+- Configure `SocketsHttpClientHandler.PooledConnectionLifetime` to an appropriate value based on DNS refresh times.
+- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+
+This solves the resource management problems that `IHttpClientFactory` solves in a similar way.
+
+- The `SocketsHttpClientHandler` will share connections across `HttpClient` instances (avoiding socket exhaustion).
+- The `SocketsHttpClientHandler` will cycle connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+
 ## Logging
 
 Clients created via `IHttpClientFactory` record log messages for all requests. Enable the appropriate information level in the logging configuration to see the default log messages. Additional logging, such as the logging of request headers, is only included at trace level.
@@ -553,6 +569,22 @@ The default handler lifetime is two minutes. The default value can be overridden
 Disposal of the client isn't required. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances. The `HttpClient` instances can generally be treated as .NET objects not requiring disposal.
 
 Keeping a single `HttpClient` instance alive for a long duration is a common pattern used before the inception of `IHttpClientFactory`. This pattern becomes unnecessary after migrating to `IHttpClientFactory`.
+
+### Alternatives to IHttpClientFactory
+
+Using `IHttpClientFactory` in a DI-enabled application avoids resource exhaustion problems by pooling `HttpMessageHandler` instances, and avoids stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+
+There are alternative ways to solve these problems using a long-lived `SocketsHttpClientHandler` instance.
+
+- Create an instance of `SocketsHttpClientHandler` when your application starts.
+- Keep this instance until the application shuts down.
+- Configure `SocketsHttpClientHandler.PooledConnectionLifetime` to an appropriate value based on DNS refresh times.
+- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+
+This solves the resource management problems that `IHttpClientFactory` solves in a similar way.
+
+- The `SocketsHttpClientHandler` will share connections across `HttpClient` instances (avoiding socket exhaustion).
+- The `SocketsHttpClientHandler` will cycle connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
 
 ## Logging
 
@@ -832,6 +864,22 @@ The default handler lifetime is two minutes. The default value can be overridden
 Disposal of the client isn't required. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances. The `HttpClient` instances can generally be treated as .NET objects not requiring disposal.
 
 Keeping a single `HttpClient` instance alive for a long duration is a common pattern used before the inception of `IHttpClientFactory`. This pattern becomes unnecessary after migrating to `IHttpClientFactory`.
+
+### Alternatives to IHttpClientFactory
+
+Using `IHttpClientFactory` in a DI-enabled application avoids resource exhaustion problems by pooling `HttpMessageHandler` instances, and avoids stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+
+There are alternative ways to solve these problems using a long-lived `SocketsHttpClientHandler` instance.
+
+- Create an instance of `SocketsHttpClientHandler` when your application starts.
+- Keep this instance until the application shuts down.
+- Configure `SocketsHttpClientHandler.PooledConnectionLifetime` to an appropriate value based on DNS refresh times.
+- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+
+This solves the resource management problems that `IHttpClientFactory` solves in a similar way.
+
+- The `SocketsHttpClientHandler` will share connections across `HttpClient` instances (avoiding socket exhaustion).
+- The `SocketsHttpClientHandler` will cycle connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
 
 ## Logging
 
