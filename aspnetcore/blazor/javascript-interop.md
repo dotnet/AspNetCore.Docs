@@ -180,7 +180,7 @@ For a method that doesn't return a value, such as focusing an element, use `IJSR
 To use an extension method, create a static extension method that receives the `IJSRuntime` instance:
 
 ```csharp
-public static Task Focus(this ElementReference elementRef, IJSRuntime jsRuntime)
+public static async Task Focus(this ElementReference elementRef, IJSRuntime jsRuntime)
 {
     await jsRuntime.InvokeVoidAsync(
         "exampleJsFunctions.focusElement", elementRef);
