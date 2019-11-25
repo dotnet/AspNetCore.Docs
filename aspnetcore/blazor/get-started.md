@@ -279,4 +279,5 @@ Run the app. The `Index` component has its own counter that increments by ten ea
 
 ## Additional resources
 
+* <xref:blazor/templates>
 * <xref:signalr/introduction>
