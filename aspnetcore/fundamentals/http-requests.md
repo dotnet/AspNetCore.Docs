@@ -297,7 +297,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
-- The `SocketsHttpHandler ` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
+- The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
 - The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
 
 ## Logging
