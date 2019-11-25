@@ -11,35 +11,12 @@ uid: security/samesite
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-The [SameSite 2016 draft](https://tools.ietf.org/html/draft-west-first-party-cookies-07) states:
+[SameSite](https://tools.ietf.org/html/draft-west-first-party-cookies-07) is an [IETF](https://ietf.org/about/) draft designed to provide some protection against cross-site request forgery (CSRF) attacks. The [SameSite 2019 draft](https://tools.ietf.org/html/draft-west-cookie-incrementalism-00):
 
->This document updates [RFC6265](https://tools.ietf.org/html/rfc6265) by defining a `SameSite` attribute which allows servers to assert that a cookie ought not to be sent along with cross-site requests. This assertion allows user agents to mitigate the risk of cross-origin information leakage, and provides some protection against cross-site request forgery attacks.
+* Treats cookies as `SameSite=Lax` by default.
+* State cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
 
-Firefox and Chrome based browsers are making breaking changes to their implementations of [SameSite](https://tools.ietf.org/html/draft-west-first-party-cookies-07) for cookies. The SameSite changes impact remote authentication scenarios such as:
-
-* [OpenID Connect](https://openid.net/connect/) (OIDC)
-* [WS-Federation](https://auth0.com/docs/protocols/ws-fed)
-* Other cross domain POST requests which use cookies to correlate or otherwise authorize requests.
-
-With this change, OIDC and WS-Federation must opt out by sending `SameSite=None`. However, setting `SameSite=None` doesn't work on iOS 12 and some older versions of other browsers. To support iOS 12 and older browsers, ASP.NET Core app's must detect these browsers and omit `SameSite`.
-
-## SameSite 2016 draft standard
-
-The [SameSite 2016 draft](https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-4.1) extension to HTTP cookies:
-
-* Was intended to mitigate cross site request forgery (CSRF).
-* Was designed as a feature servers would opt into by adding the new "SameSite" attribute and attribute values to cookies.
-* Is supported in ASP.NET 2.0 and later.
-
-## New SameSite 2019 draft standard
-
-The new [SameSite 2019 draft](https://tools.ietf.org/html/draft-west-cookie-incrementalism-00):
-
-* Is not backwards compatible.
-* Cookies are treated as `SameSite=Lax` by default.
-* Cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
-
-`Lax` is OK for most application cookies but breaks cross site scenarios like OIDC and Ws-Federation login. Most [OAuth](https://oauth.net/) logins are not affected due to differences in how the request flows. The new `None` parameter causes compatibility problems with clients that implemented the prior draft standard (for example, iOS 12). Chrome browsers (Chrome 80) are expected to go live in February 2020 confirming to the 2019 SameSite draft standard.
+`Lax` is OK for most app cookies but breaks cross site scenarios like OIDC and Ws-Federation login. Most [OAuth](https://oauth.net/) logins are not affected due to differences in how the request flows. The new `None` parameter causes compatibility problems with clients that implemented the prior draft standard (for example, iOS 12).
 
 Each ASP.NET Core component that emits cookies needs to decide if `SameSite` is appropriate.
 
