@@ -23,16 +23,7 @@ namespace WebSameSite.Pages
 
         public void OnGet()
         {
-            HttpContext.Response.Cookies.Append(
-            //Response.Cookies.Append(
-                        CookieRequestCultureProvider.DefaultCookieName,
-                        CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                        new CookieOptions
-                        {
-                            Expires = DateTimeOffset.UtcNow.AddYears(1),
-                            IsEssential = true
-                        }
-                    );
+
         }
     }
 }

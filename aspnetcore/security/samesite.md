@@ -20,7 +20,48 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Each ASP.NET Core component that emits cookies needs to decide if `SameSite` is appropriate.
 
+## API usage with SameSite
+
+[HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*) defaults to `Unspecified`. The following code shows how to change the SameSite cookie to `SameSiteMode.Lax`:
+
+[!code-csharp[](samesite/sample/Pages/Index.cshtml.cs?name=snippet)]
+
+<!-- @Tratcher verify you want this API info cut 
+
+
+
+-->
+
+
+
+ALL ASP.NET Core components that emit cookies:
+
+* Override the preceding defaults with settings appropriate for their scenarios. The overridden preceding default values have not changed.
+
+| Component | cookie | Default |
+| ------------- | ------------- |
+| <xref:System.Web.HttpContext.Session>  | [SessionOptions.Cookie](xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie) |`Lax` |
+| <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider>  | [CookieTempDataProviderOptions.Cookie](xref:Microsoft.AspNetCore.Mvc.CookieTempDataProviderOptions.Cookie) | `Lax` |
+| <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> | [AntiforgeryOptions.Cookie](xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie)| `Strict` |
+| [CookieExtensions.AddCookie](xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*) | [CookieAuthenticationOptions.Cookie](xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookieName) | `Lax` |
+| <xref:Microsoft.Extensions.DependencyInjection.TwitterExtensions.AddTwitter*> | [TwitterOptions.StateCookie ](xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterOptions.StateCookie) | `Lax`  |
+| <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationHandler`1> | [RemoteAuthenticationOptions.CorrelationCookie](xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CorrelationCookie)  | `None` |
+| <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect*> | [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)| `None` |
+
+## History and changes
+
+SameSite support was first implemented in ASP.NET Core in 2.0 using the [2016 draft standard](https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-4.1). The 2016 standard was opt-in. ASP.NET Core opted-in by setting several cookies to `Lax` by default. After encountering several [issues](https://github.com/aspnet/Announcements/issues/318) with authentication, most SameSite usage was [disabled](https://github.com/aspnet/Announcements/issues/348).
+
+In 2019 browsers started moving to the [2019 draft of the SameSite specification](https://github.com/aspnet/Announcements/issues/390):
+
+    - The 2019 specification is not backwards compatible with the 2016 draft. For more information, see [Supporting older browsers](#sob) in this document.
+    - Cookies are treated as `SameSite=Lax` by default.
+    - Cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
+    - Patches were issued for ASP.NET Core 2.1, 2.2, and 3.0 to support the new standard. ASP.NET Core 3.1 has additional SameSite support.
+    - Chrome plans to enable the [new SameSite behavior by default in Feb 2020](https://chromestatus.com/feature/5088147346030592).
+
 ::: moniker range="= aspnetcore-3.1"
+
 ASP.NET Core 3.1 and later provides the following SameSite support:
 
 * Redefines the behavior of `SameSiteMode.None` to emit `SameSite=None`
@@ -39,20 +80,44 @@ ASP.NET Core 3.0 and later aligns SameSite defaults with the new draft standard.
 * <xref:Microsoft.AspNetCore.Http.CookieBuilder>  used as a factory for `CookieOptions`
 * [CookiePolicyOptions.MinimumSameSitePolicy](xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy)
 
-ALL ASP.NET Core components that emit cookies:
-
-* Override the preceding defaults with settings appropriate for their scenarios. The overridden preceding default values have not changed.
-
-| Component | cookie | Default |
-| ------------- | ------------- |
-| <xref:System.Web.HttpContext.Session>  | [SessionOptions.Cookie](xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie) |`Lax` |
-| <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider>  | [CookieTempDataProviderOptions.Cookie](xref:Microsoft.AspNetCore.Mvc.CookieTempDataProviderOptions.Cookie) | `Lax` |
-| <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> | [AntiforgeryOptions.Cookie](xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie)| `Strict` |
-| [CookieExtensions.AddCookie](xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*) | [CookieAuthenticationOptions.Cookie](xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookieName) | `Lax` |
-| <xref:Microsoft.Extensions.DependencyInjection.TwitterExtensions.AddTwitter*> | [TwitterOptions.StateCookie ](xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterOptions.StateCookie) | `Lax`  |
-| <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationHandler`1> | [RemoteAuthenticationOptions.CorrelationCookie](xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CorrelationCookie)  | `None` |
-| <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect*> | [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)| `None` |
 ::: moniker-end
+
+<a name="sob"></a>
+
+## Supporting older browsers
+
+The 2016 SameSite standard mandated that unknown values must be treated as `SameSite=Strict` values. Apps accessed from older browsers which support the 2016 SameSite standard may break when they get a SameSite property with a value of `None`. Web apps must implement browser detection if they intend to support older browsers. ASP.NET Core doesn't implement browser detection because User-Agents values are highly volatile and change frequently. An extension point in <xref:Microsoft.AspNetCore.CookiePolicy> allows plugging in User-Agent specific logic.
+
+In `Startup.Configure`, add code that calls <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*> before calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> or *any* method that writes cookies:
+
+[!code-csharp[](samesite/sample/Startup.cs?name=snippet5&highlight=18-19)]
+
+In `Startup.ConfigureServices`, add code similar to the following:
+
+::: moniker range="= aspnetcore-3.1"
+
+[!code-csharp[](samesite/sample/Startup31.cs?name=snippet)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.1"
+
+[!code-csharp[](samesite/sample/Startup.cs?name=snippet)]
+
+::: moniker-end
+
+In the preceding sample, `MyUserAgentDetectionLib.DisallowsSameSiteNone` is a user supplied library that detects if the user agent doesn't support SameSite `None`:
+
+[!code-csharp[](samesite/sample/Startup31.cs?name=snippet2)]
+
+The following code shows a sample `DisallowsSameSiteNone` method:
+
+> [!WARNING]
+> The following code is for demonstration only:
+> * It should not be considered complete.
+> * It is not maintained or supported.
+
+[!code-csharp[](samesite/sample/Startup31.cs?name=snippetX)]
 
 ## Test apps for SameSite problems
 
@@ -93,43 +158,7 @@ SameSite flags are set on the `edge://flags/#same-site-by-default-cookies` page.
 
 Versions of Electron include older versions of Chromium. For example the version of Electron used by Teams is Chromium 66 which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in the following section.
 
-<a name="sob"></a>
-
-## Supporting older browsers
-
-The 2016 SameSite standard mandated that unknown values must be treated as `SameSite=Strict` values. Apps accessed from older browsers which support the 2016 SameSite standard may break when they get a SameSite property with a value of `None`. Web apps must implement browser detection if they intend to support older browsers. ASP.NET Core doesn't implement browser detection because User-Agents values are highly volatile and change frequently. An extension point in <xref:Microsoft.AspNetCore.CookiePolicy> allows plugging in User-Agent specific logic.
-
-In `Startup.Configure`, add code that calls <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*> before calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> or *any* method that writes cookies:
-
-[!code-csharp[](samesite/sample/Startup.cs?name=snippet5&highlight=18-19)]
-
-In `Startup.ConfigureServices`, add code similar to the following:
-
-::: moniker range="= aspnetcore-3.1"
-
-[!code-csharp[](samesite/sample/Startup31.cs?name=snippet)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.1"
-
-[!code-csharp[](samesite/sample/Startup.cs?name=snippet)]
-
-::: moniker-end
-
-In the preceding sample, `MyUserAgentDetectionLib.DisallowsSameSiteNone` is a user supplied library that detects if the user agent doesn't support SameSite `None`:
-
-[!code-csharp[](samesite/sample/Startup31.cs?name=snippet2)]
-
-The following code shows a sample `DisallowsSameSiteNone` method:
-
-> [!WARNING]
-> The following code is for demonstration only:
-> * It should not be considered complete.
-> * It is not maintained or supported.
-
-[!code-csharp[](samesite/sample/Startup31.cs?name=snippetX)]
-
+<!-- Verify you want this deleted >
 ## APIs impacted by the new SameSite 2019 draft standard
 
 * [Http.SameSiteMode](xref:Microsoft.AspNetCore.Http.SameSiteMode)
@@ -138,3 +167,4 @@ The following code shows a sample `DisallowsSameSiteNone` method:
 * [CookiePolicyOptions.MinimumSameSitePolicy](xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy)
 * <xref:Microsoft.Net.Http.Headers.SameSiteMode?displayProperty=fullName>
 * <xref:Microsoft.Net.Http.Headers.SetCookieHeaderValue.SameSite?displayProperty=fullName>
+-->

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
@@ -19,7 +15,11 @@ namespace WebSameSite.Pages
 
         public void OnGet()
         {
-
+            #region snippet
+            HttpContext.Response.Cookies.Append(
+                                 "name", "value",
+                                 new CookieOptions() { SameSite = SameSiteMode.Lax });
+            #endregion
         }
     }
 }
