@@ -14,9 +14,9 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 [SameSite](https://tools.ietf.org/html/draft-west-first-party-cookies-07) is an [IETF](https://ietf.org/about/) draft designed to provide some protection against cross-site request forgery (CSRF) attacks. The [SameSite 2019 draft](https://tools.ietf.org/html/draft-west-cookie-incrementalism-00):
 
 * Treats cookies as `SameSite=Lax` by default.
-* State cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
+* States cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
 
-`Lax` is OK for most app cookies but breaks cross site scenarios like OIDC and Ws-Federation login. Most [OAuth](https://oauth.net/) logins are not affected due to differences in how the request flows. The new `None` parameter causes compatibility problems with clients that implemented the prior draft standard (for example, iOS 12).
+`Lax` is OK for most app cookies but breaks cross site scenarios like [OpenID Connect](https://openid.net/connect/) (OIDC) and [WS-Federation](https://auth0.com/docs/protocols/ws-fed) login. Most [OAuth](https://oauth.net/) logins are not affected due to differences in how the request flows. The new `None` parameter causes compatibility problems with clients that implemented the prior draft standard (for example, iOS 12).
 
 Each ASP.NET Core component that emits cookies needs to decide if `SameSite` is appropriate.
 
@@ -26,17 +26,9 @@ Each ASP.NET Core component that emits cookies needs to decide if `SameSite` is 
 
 [!code-csharp[](samesite/sample/Pages/Index.cshtml.cs?name=snippet)]
 
-<!-- @Tratcher verify you want this API info cut 
-
-
-
--->
-
-
-
 ALL ASP.NET Core components that emit cookies:
 
-* Override the preceding defaults with settings appropriate for their scenarios. The overridden preceding default values have not changed.
+* Override the preceding defaults with settings appropriate for their scenarios. The overridden preceding default values haven't changed.
 
 | Component | cookie | Default |
 | ------------- | ------------- |
@@ -47,6 +39,15 @@ ALL ASP.NET Core components that emit cookies:
 | <xref:Microsoft.Extensions.DependencyInjection.TwitterExtensions.AddTwitter*> | [TwitterOptions.StateCookie ](xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterOptions.StateCookie) | `Lax`  |
 | <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationHandler`1> | [RemoteAuthenticationOptions.CorrelationCookie](xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CorrelationCookie)  | `None` |
 | <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect*> | [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)| `None` |
+
+## APIs impacted by the SameSite 2019 draft standard
+
+* [Http.SameSiteMode](xref:Microsoft.AspNetCore.Http.SameSiteMode)
+* [CookieOptions.SameSite](xref:Microsoft.AspNetCore.Http.CookieOptions.SameSite)
+* [CookieBuilder.SameSite](xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite)
+* [CookiePolicyOptions.MinimumSameSitePolicy](xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy)
+* <xref:Microsoft.Net.Http.Headers.SameSiteMode?displayProperty=fullName>
+* <xref:Microsoft.Net.Http.Headers.SetCookieHeaderValue.SameSite?displayProperty=fullName>
 
 ## History and changes
 
@@ -121,7 +122,7 @@ The following code shows a sample `DisallowsSameSiteNone` method:
 
 ## Test apps for SameSite problems
 
-Apps that interact with remote sites such as through 3rd party login need to:
+Apps that interact with remote sites such as through third-party login need to:
 
 * Test the interaction on multiple browsers.
 * Apply the [CookiePolicy browser detection and mitigation](#sob) discussed in this document.
@@ -132,7 +133,7 @@ Test web apps using a client version that can opt-in to the new SameSite behavio
 
 Chrome 78+ gives misleading results because it has a temporary mitigation in place. The Chrome 78+ temporary mitigation allows cookies less than two minutes old. Chrome 76 or 77 with the appropriate test flags enabled provides more accurate results. To test the new SameSite behavior toggle `chrome://flags/#same-site-by-default-cookies` to **Enabled**. Older versions of Chrome (75 and below) are reported to fail with the new `None` setting. See [Supporting older browsers](#sob) in this document.
 
-Google does not make older chrome versions available. Follow the instructions at [Download Chromium](https://www.chromium.org/getting-involved/download-chromium) to test older versions of Chrome. Do **not** download Chrome from from links provided by searching for older versions of chrome.
+Google does not make older chrome versions available. Follow the instructions at [Download Chromium](https://www.chromium.org/getting-involved/download-chromium) to test older versions of Chrome. Do **not** download Chrome from links provided by searching for older versions of chrome.
 
 * [Chromium 76 Win64](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Win_x64/664998/)
 * [Chromium 74 Win64](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Win_x64/638880/)
@@ -152,19 +153,7 @@ Edge supports the old SameSite standard. Edge version 44 doesn't have any known 
 ### Test with Edge (Chromium)
 
 SameSite flags are set on the `edge://flags/#same-site-by-default-cookies` page. No compatibility issues were discovered with Edge Chromium.
-<!--  No compatibility issues were observed when testing with Edge Chromium 78. Current version is 79 and soon that will change - So I dropped version #  -->
 
 ### Test with Electron
 
-Versions of Electron include older versions of Chromium. For example the version of Electron used by Teams is Chromium 66 which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in the following section.
-
-<!-- Verify you want this deleted >
-## APIs impacted by the new SameSite 2019 draft standard
-
-* [Http.SameSiteMode](xref:Microsoft.AspNetCore.Http.SameSiteMode)
-* [CookieOptions.SameSite](xref:Microsoft.AspNetCore.Http.CookieOptions.SameSite)
-* [CookieBuilder.SameSite](xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite)
-* [CookiePolicyOptions.MinimumSameSitePolicy](xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy)
-* <xref:Microsoft.Net.Http.Headers.SameSiteMode?displayProperty=fullName>
-* <xref:Microsoft.Net.Http.Headers.SetCookieHeaderValue.SameSite?displayProperty=fullName>
--->
+Versions of Electron include older versions of Chromium. For example, the version of Electron used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in the following section.
