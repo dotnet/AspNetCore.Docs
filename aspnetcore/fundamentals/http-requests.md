@@ -300,6 +300,17 @@ The preceding approaches solve the resource management problems that `IHttpClien
 - The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
 - The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
 
+### Cookies
+
+The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
+
+ - Disabling automatic cookie handling
+ - Avoiding `IHttpClientFactory`
+
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
+
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
+
 ## Logging
 
 Clients created via `IHttpClientFactory` record log messages for all requests. Enable the appropriate information level in the logging configuration to see the default log messages. Additional logging, such as the logging of request headers, is only included at trace level.
@@ -589,6 +600,17 @@ The preceding approaches solve the resource management problems that `IHttpClien
 
 - The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
 - The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+
+### Cookies
+
+The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
+
+ - Disabling automatic cookie handling
+ - Avoiding `IHttpClientFactory`
+
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
+
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
 ## Logging
 
@@ -886,6 +908,17 @@ The preceding approaches solve the resource management problems that `IHttpClien
 
 - The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
 - The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+
+### Cookies
+
+The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
+
+ - Disabling automatic cookie handling
+ - Avoiding `IHttpClientFactory`
+
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
+
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
 ## Logging
 
