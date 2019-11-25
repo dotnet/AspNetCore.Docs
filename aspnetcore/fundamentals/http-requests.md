@@ -4,7 +4,7 @@ author: stevejgordon
 description: Learn about using the IHttpClientFactory interface to manage logical HttpClient instances in ASP.NET Core.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/27/2019
+ms.date: 11/27/2019
 uid: fundamentals/http-requests
 ---
 # Make HTTP requests using IHttpClientFactory in ASP.NET Core
@@ -843,10 +843,10 @@ Keeping a single `HttpClient` instance alive for a long duration is a common pat
 
 ### Cookies
 
-The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated  `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
+The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
 
- - Turning off automatic cookie handling
- - Avoid `IHttpClientFactory`
+ - Disabling automatic cookie handling
+ - Avoiding `IHttpClientFactory`
 
 Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
 
