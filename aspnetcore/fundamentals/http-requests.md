@@ -291,7 +291,7 @@ Using `IHttpClientFactory` in a DI-enabled app avoids:
 
 There are alternative ways to solve the preceding problems using a long-lived <xref:System.Net.Http.SocketsHttpHandler> instance.
 
-- Create an instance of `SocketsHttpHandler` when the app starts and use it until the app shuts down.
+- Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
 - Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
 - Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
 
