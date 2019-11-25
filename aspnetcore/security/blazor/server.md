@@ -5,8 +5,8 @@ description: Learn how to mitigate security threats to Blazor Server apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
-no-loc: [Blazor]
+ms.date: 11/12/2019
+no-loc: [Blazor, SignalR]
 uid: security/blazor/server
 ---
 # Secure ASP.NET Core Blazor Server apps

@@ -4,7 +4,8 @@ author: isaac2004
 description: Learn about the new features in ASP.NET Core 2.1.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/30/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: aspnetcore-2.1
 ---
 # What's new in ASP.NET Core 2.1
