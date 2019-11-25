@@ -4,7 +4,7 @@ author: stevejgordon
 description: Learn about using the IHttpClientFactory interface to manage logical HttpClient instances in ASP.NET Core.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/27/2019
+ms.date: 11/27/2019
 uid: fundamentals/http-requests
 ---
 # Make HTTP requests using IHttpClientFactory in ASP.NET Core
@@ -282,6 +282,35 @@ The default handler lifetime is two minutes. The default value can be overridden
 
 Keeping a single `HttpClient` instance alive for a long duration is a common pattern used before the inception of `IHttpClientFactory`. This pattern becomes unnecessary after migrating to `IHttpClientFactory`.
 
+### Alternatives to IHttpClientFactory
+
+Using `IHttpClientFactory` in a DI-enabled app avoids:
+
+* Resource exhaustion problems by pooling `HttpMessageHandler` instances.
+* Stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+
+There are alternative ways to solve the preceding problems using a long-lived <xref:System.Net.Http.SocketsHttpHandler> instance.
+
+- Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
+- Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
+- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+
+The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
+
+- The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
+- The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+
+### Cookies
+
+The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
+
+ - Disabling automatic cookie handling
+ - Avoiding `IHttpClientFactory`
+
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
+
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
+
 ## Logging
 
 Clients created via `IHttpClientFactory` record log messages for all requests. Enable the appropriate information level in the logging configuration to see the default log messages. Additional logging, such as the logging of request headers, is only included at trace level.
@@ -553,6 +582,35 @@ The default handler lifetime is two minutes. The default value can be overridden
 Disposal of the client isn't required. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances. The `HttpClient` instances can generally be treated as .NET objects not requiring disposal.
 
 Keeping a single `HttpClient` instance alive for a long duration is a common pattern used before the inception of `IHttpClientFactory`. This pattern becomes unnecessary after migrating to `IHttpClientFactory`.
+
+### Alternatives to IHttpClientFactory
+
+Using `IHttpClientFactory` in a DI-enabled app avoids:
+
+* Resource exhaustion problems by pooling `HttpMessageHandler` instances.
+* Stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+
+There are alternative ways to solve the preceding problems using a long-lived <xref:System.Net.Http.SocketsHttpHandler> instance.
+
+- Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
+- Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
+- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+
+The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
+
+- The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
+- The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+
+### Cookies
+
+The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
+
+ - Disabling automatic cookie handling
+ - Avoiding `IHttpClientFactory`
+
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
+
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
 ## Logging
 
@@ -832,6 +890,35 @@ The default handler lifetime is two minutes. The default value can be overridden
 Disposal of the client isn't required. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances. The `HttpClient` instances can generally be treated as .NET objects not requiring disposal.
 
 Keeping a single `HttpClient` instance alive for a long duration is a common pattern used before the inception of `IHttpClientFactory`. This pattern becomes unnecessary after migrating to `IHttpClientFactory`.
+
+### Alternatives to IHttpClientFactory
+
+Using `IHttpClientFactory` in a DI-enabled app avoids:
+
+* Resource exhaustion problems by pooling `HttpMessageHandler` instances.
+* Stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+
+There are alternative ways to solve the preceding problems using a long-lived <xref:System.Net.Http.SocketsHttpHandler> instance.
+
+- Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
+- Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
+- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+
+The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
+
+- The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
+- The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+
+### Cookies
+
+The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
+
+ - Disabling automatic cookie handling
+ - Avoiding `IHttpClientFactory`
+
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
+
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
 ## Logging
 

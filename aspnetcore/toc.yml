@@ -587,8 +587,6 @@
       uid: grpc/troubleshoot
 - name: Test, debug, and troubleshoot
   items:
-    - name: Unit testing
-      href: /dotnet/core/testing/unit-testing-with-dotnet-test?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
     - name: Razor Pages unit tests
       uid: test/razor-pages-tests
     - name: Test controllers
