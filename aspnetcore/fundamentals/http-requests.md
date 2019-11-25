@@ -282,9 +282,16 @@ The default handler lifetime is two minutes. The default value can be overridden
 
 Keeping a single `HttpClient` instance alive for a long duration is a common pattern used before the inception of `IHttpClientFactory`. This pattern becomes unnecessary after migrating to `IHttpClientFactory`.
 
-<!-- 
-Copy approved ### Cookies section here
--->
+### Cookies
+
+The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
+
+ - Disabling automatic cookie handling
+ - Avoiding `IHttpClientFactory`
+
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
+
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
 ## Logging
 
@@ -558,9 +565,16 @@ Disposal of the client isn't required. Disposal cancels outgoing requests and gu
 
 Keeping a single `HttpClient` instance alive for a long duration is a common pattern used before the inception of `IHttpClientFactory`. This pattern becomes unnecessary after migrating to `IHttpClientFactory`.
 
-<!-- 
-Copy approved ### Cookies section here
--->
+### Cookies
+
+The pooled `HttpMessageHandler` instances results in `CookieContainer` objects being shared. Unanticipated `CookieContainer` object sharing often results in incorrect code. For apps that require cookies, consider either:
+
+ - Disabling automatic cookie handling
+ - Avoiding `IHttpClientFactory`
+
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
+
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
 ## Logging
 
