@@ -41,7 +41,6 @@ All ASP.NET Core components that emit cookies override the preceding defaults wi
 | <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect*> | [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)| `None` |
 | <xref:Microsoft.AspNetCore.Http.CookieOptions> | A default cookie with a path of '/' | `None` |
 | <xref:Microsoft.AspNetCore.Http.CookieBuilder> | <xref:Microsoft.AspNetCore.Http.CookieBuilder.Name> | `None` |
-| [CookiePolicyOptions.MinimumSameSitePolicy](xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy) | | |
 
 ## APIs impacted by the SameSite 2019 draft standard
 
@@ -85,8 +84,6 @@ The [2019 draft of the SameSite specification](https://github.com/aspnet/Announc
 * Specifies cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
 * Is supported by patches issued for ASP.NET Core 2.1, 2.2, and 3.0. ASP.NET Core 3.1 has additional SameSite support.
 * Is scheduled to be supported by [Chrome](https://chromestatus.com/feature/5088147346030592) by default in [Feb 2020](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html). Browsers 2019 started moving to this standard in 2019.
-
-
 
 <a name="sob"></a>
 
