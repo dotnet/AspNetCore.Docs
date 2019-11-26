@@ -16,11 +16,11 @@ Authentication is the process of determining a user's identity. [Authorization](
 * Authenticating a user.
 * Responding when an unauthenticated user tries to access a restricted resource.
 
-The registered authentication handlers and their configuration options, are called "schemes".
+The registered authentication handlers and their configuration options are called "schemes".
 
-Authentication schemes are specified by registering authentication services in `Startup.ConfigureServices`. This is done by:
+Authentication schemes are specified by registering authentication services in `Startup.ConfigureServices`:
 
-* Calling a scheme-specific extension method after a call to `services.AddAuthentication` (such as `AddJwtBearer` or `AddCookie`, for example). These extension methods use [AuthenticationBuilder.AddScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*) to register schemes with appropriate settings.
+* By calling a scheme-specific extension method after a call to `services.AddAuthentication` (such as `AddJwtBearer` or `AddCookie`, for example). These extension methods use [AuthenticationBuilder.AddScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*) to register schemes with appropriate settings.
 * Less commonly, by calling [AuthenticationBuilder.AddScheme](xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddScheme*) directly.
 
 For example, the following code registers authentication services and handlers for cookie and JWT bearer authentication schemes:
@@ -31,13 +31,17 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => Configuration.Bind("CookieSettings", options));
 ```
 
-The `AddAuthentication` parameter `JwtBearerDefaults.AuthenticationScheme` is the name of the scheme to use by default if a specific one isn't requested when authenticating or authorizing in the application. In the preceding code, JWT bearer authentication is used by default.
+The `AddAuthentication` parameter `JwtBearerDefaults.AuthenticationScheme` is the name of the scheme to use by default if:
+
+* A specific scheme isn't requested when authenticating or authorizing.
+
+In the preceding code, JWT bearer authentication is used by default.
 
 If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/limitingidentitybyscheme) they depend on to authenticate the user. In the example above, the cookie authentication scheme could be used by specifying its name (`CookieAuthenticationDefaults.AuthenticationScheme` by default, though a different name could be provided when calling `AddCookie`).
 
-In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity),`AddAuthentication` is called internally. 
+In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity),`AddAuthentication` is called internally.
 
-The Authentication middleware is added in `Startup.Configure` by calling the <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> extension method on the app's `IApplicationBuilder`. This registers the  middleware which uses the previously registered authentication schemes. Call `UseAuthentication` before any middleware that depends on users being authenticated. When using endpoint routing, the call to `UseAuthentication` must go:
+The Authentication middleware is added in `Startup.Configure` by calling the <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> extension method on the app's `IApplicationBuilder`. Calling `UseAuthentication` registers the middleware which uses the previously registered authentication schemes. Call `UseAuthentication` before any middleware that depends on users being authenticated. When using endpoint routing, the call to `UseAuthentication` must go:
 
 * After `UseRouting`, so that route information is available for authentication decisions.
 * Before `UseEndpoints`, so that users are authenticated before accessing the endpoints.
@@ -48,10 +52,10 @@ The Authentication middleware is added in `Startup.Configure` by calling the <xr
 
 An authentication scheme is a name which corresponds to:
 
-* An authentication handler. 
-* Options for configuring that specific instance of the handler. 
- 
-Schemes are useful as a mechanism for easily referring to the authentication, challenge, and forbid behaviors of the associated handler. For example, an authorization policy can specify by name which authorization scheme (or schemes) should be used to authenticate the user. When configuring authentication, it's common to specify the default authentication scheme. The default scheme is used unless a resource requests a specific scheme. It's also possible to:
+* An authentication handler.
+* Options for configuring that specific instance of the handler.
+
+Schemes are useful as a mechanism for referring to the authentication, challenge, and forbid behaviors of the associated handler. For example, an authorization policy can specify by name which authorization scheme (or schemes) should be used to authenticate the user. When configuring authentication, it's common to specify the default authentication scheme. The default scheme is used unless a resource requests a specific scheme. It's also possible to:
 
 * Specify different default schemes to use for authenticate, challenge, and forbid actions.
 * Combine multiple schemes into one using [policy schemes](xref:security/authentication/policyschemes).
