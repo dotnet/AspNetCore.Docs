@@ -160,8 +160,8 @@ The following form validates user input using the validation defined in the `Sta
     <button type="submit">Submit</button>
 
     <p>
-        <a href="http://www.startrek.com/">Star Trek</a>,
-        &copy;1966-2019 CBS Studios, Inc. and
+        <a href="http://www.startrek.com/">Star Trek</a>, 
+        &copy;1966-2019 CBS Studios, Inc. and 
         <a href="https://www.paramount.com">Paramount Pictures</a>
     </p>
 </EditForm>
