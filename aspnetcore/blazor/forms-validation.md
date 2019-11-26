@@ -182,7 +182,7 @@ In the following example:
 
 * The `HandleSubmit` method runs when the **Submit** button is selected.
 * The form is validated using the form's `EditContext`.
-* The form is further validated by passing `editContext` to a method that calls a web API endpoint on the server (*not shown*).
+* The form is further validated by passing the `EditContext` to the `ServerValidate` method that calls a web API endpoint on the server (*not shown*).
 * Additional code is run depending on the result of the client- and server-side validation by checking `isValid`.
 
 ```cshtml
@@ -202,10 +202,10 @@ In the following example:
         editContext = new EditContext(starship);
     }
 
-    private void HandleSubmit()
+    private async void HandleSubmit()
     {
         var isValid = editContext.Validate() && 
-            await AdditionalServerValidations(editContext);
+            await ServerValidate(editContext);
 
         if (isValid)
         {
@@ -215,6 +215,13 @@ In the following example:
         {
             ...
         }
+    }
+
+    private async Task<bool> ServerValidate(EditContext editContext)
+    {
+        var serverChecksValid = ...
+
+        return serverChecksValid;
     }
 }
 ```
