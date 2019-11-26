@@ -55,11 +55,11 @@ SameSite support was first implemented in ASP.NET Core in 2.0 using the [2016 dr
 
 In 2019 browsers started moving to the [2019 draft of the SameSite specification](https://github.com/aspnet/Announcements/issues/390):
 
-    - The 2019 specification is not backwards compatible with the 2016 draft. For more information, see [Supporting older browsers](#sob) in this document.
-    - Cookies are treated as `SameSite=Lax` by default.
-    - Cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
-    - Patches were issued for ASP.NET Core 2.1, 2.2, and 3.0 to support the new standard. ASP.NET Core 3.1 has additional SameSite support.
-    - Chrome plans to enable the [new SameSite behavior by default in Feb 2020](https://chromestatus.com/feature/5088147346030592).
+* The 2019 specification is not backwards compatible with the 2016 draft. For more information, see [Supporting older browsers](#sob) in this document.
+* Cookies are treated as `SameSite=Lax` by default.
+* Cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
+* Patches were issued for ASP.NET Core 2.1, 2.2, and 3.0 to support the new standard. ASP.NET Core 3.1 has additional SameSite support.
+* Chrome plans to enable the [new SameSite behavior by default in Feb 2020](https://chromestatus.com/feature/5088147346030592).
 
 ::: moniker range="= aspnetcore-3.1"
 
