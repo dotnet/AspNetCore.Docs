@@ -27,8 +27,8 @@ For example, the following code registers authentication services and handlers f
 
 ```csharp
 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options => Configuration.Bind("JwtSettings", options))
-    .AddCookie(options => Configuration.Bind("CookieSettings", options));
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => Configuration.Bind("JwtSettings", options))
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => Configuration.Bind("CookieSettings", options));
 ```
 
 The `AddAuthentication` parameter `JwtBearerDefaults.AuthenticationScheme` is the name of the scheme to use by default if a specific one isn't requested when authenticating or authorizing in the application. In the preceding code, JWT bearer authentication is used by default.
