@@ -395,7 +395,11 @@ In the preceding code, the `<input>` element's field type (`type`) defaults to `
 
 The `@bind:format` attribute specifies the date format to apply to the `value` of the `<input>` element. The format is also used to parse the value when an `onchange` event occurs.
 
-Specifying a format for the `date` field type isn't recommended because Blazor has built-in support to format dates.
+Specifying a format for the `date` field type isn't recommended because Blazor has built-in support to format dates. In spite of the recommendation, use the `yyyy-MM-dd` date format for binding to work correctly if a format is supplied with the `date` field type:
+
+```cshtml
+<input type="date" @bind="StartDate" @bind:format="yyyy-MM-dd">
+```
 
 **Component parameters**
 
