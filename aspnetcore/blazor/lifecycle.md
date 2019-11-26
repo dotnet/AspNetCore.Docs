@@ -5,7 +5,7 @@ description: Learn how to use Razor component lifecycle methods in ASP.NET Core 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/23/2019
+ms.date: 11/26/2019
 no-loc: [Blazor]
 uid: blazor/lifecycle
 ---
@@ -14,6 +14,8 @@ uid: blazor/lifecycle
 By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
 
 The Blazor framework includes synchronous and asynchronous lifecycle methods. Override lifecycle methods to perform additional operations on components during component initialization and rendering.
+
+## Lifecycle methods
 
 ### Component initialization methods
 
