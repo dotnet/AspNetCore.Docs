@@ -178,6 +178,47 @@ The following form validates user input using the validation defined in the `Sta
 
 The `EditForm` creates an `EditContext` as a [cascading value](xref:blazor/components#cascading-values-and-parameters) that tracks metadata about the edit process, including which fields have been modified and the current validation messages. The `EditForm` also provides convenient events for valid and invalid submits (`OnValidSubmit`, `OnInvalidSubmit`). Alternatively, use `OnSubmit` to trigger the validation and check field values with custom validation code.
 
+In the following example:
+
+* The `HandleSubmit` method runs when the **Submit** button is selected.
+* The form is validated using the form's `EditContext`.
+* The form is further validated by passing `editContext` to a method that calls a web API endpoint on the server (*not shown*).
+* Additional code is run depending on the result of the client- and server-side validation by checking `isValid`.
+
+```cshtml
+<EditForm EditContext="@editContext" OnSubmit="@HandleSubmit">
+
+    ...
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private Starship starship = new Starship();
+    private EditContext editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(starship);
+    }
+
+    private void HandleSubmit()
+    {
+        var isValid = editContext.Validate() && 
+            await AdditionalServerValidations(editContext);
+
+        if (isValid)
+        {
+            ...
+        }
+        else
+        {
+            ...
+        }
+    }
+}
+```
+
 ## InputText based on the input event
 
 Use the `InputText` component to create a custom component that uses the `input` event instead of the `change` event.
