@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2019
+ms.date: 11/26/2019
 no-loc: [Blazor]
 uid: blazor/forms-validation
 ---
@@ -116,41 +116,52 @@ The following form validates user input using the validation defined in the `Sta
     <ValidationSummary />
 
     <p>
-        <label for="identifier">Identifier: </label>
-        <InputText id="identifier" @bind-Value="starship.Identifier" />
+        <label>
+            Identifier:
+            <InputText @bind-Value="starship.Identifier" />
+        </label>
     </p>
     <p>
-        <label for="description">Description (optional): </label>
-        <InputTextArea id="description" @bind-Value="starship.Description" />
+        <label>
+            Description (optional):
+            <InputTextArea @bind-Value="starship.Description" />
+        </label>
     </p>
     <p>
-        <label for="classification">Primary Classification: </label>
-        <InputSelect id="classification" @bind-Value="starship.Classification">
-            <option value="">Select classification ...</option>
-            <option value="Exploration">Exploration</option>
-            <option value="Diplomacy">Diplomacy</option>
-            <option value="Defense">Defense</option>
-        </InputSelect>
+        <label>
+            Primary Classification:
+            <InputSelect @bind-Value="starship.Classification">
+                <option value="">Select classification ...</option>
+                <option value="Exploration">Exploration</option>
+                <option value="Diplomacy">Diplomacy</option>
+                <option value="Defense">Defense</option>
+            </InputSelect>
+        </label>
     </p>
     <p>
-        <label for="accommodation">Maximum Accommodation: </label>
-        <InputNumber id="accommodation" 
-            @bind-Value="starship.MaximumAccommodation" />
+        <label>
+            Maximum Accommodation:
+            <InputNumber @bind-Value="starship.MaximumAccommodation" />
+        </label>
     </p>
     <p>
-        <label for="valid">Engineering Approval: </label>
-        <InputCheckbox id="valid" @bind-Value="starship.IsValidatedDesign" />
+        <label>
+            Engineering Approval:
+            <InputCheckbox @bind-Value="starship.IsValidatedDesign" />
+        </label>
     </p>
     <p>
-        <label for="productionDate">Production Date: </label>
-        <InputDate id="productionDate" @bind-Value="starship.ProductionDate" />
+        <label>
+            Production Date:
+            <InputDate @bind-Value="starship.ProductionDate" />
+        </label>
     </p>
 
     <button type="submit">Submit</button>
 
     <p>
-        <a href="http://www.startrek.com/">Star Trek</a>, 
-        &copy;1966-2019 CBS Studios, Inc. and 
+        <a href="http://www.startrek.com/">Star Trek</a>,
+        &copy;1966-2019 CBS Studios, Inc. and
         <a href="https://www.paramount.com">Paramount Pictures</a>
     </p>
 </EditForm>
@@ -183,6 +194,33 @@ Create a component with the following markup, and use the component just as `Inp
     @oninput="EventCallback.Factory.CreateBinder<string>(
         this, __value => CurrentValueAsString = __value, CurrentValueAsString)" />
 ```
+
+## Work with radio buttons
+
+Blazor doesn't provide a built-in scenario for handling radio button `<input>` elements. Radio button support is under consideration for a future Blazor release. The following workaround is recommended:
+
+```cshtml
+@foreach (var choice in new[] { Choices.Red, Choices.Green, Choices.Blue })
+{
+   <label>
+       <input name="yourColor" type="radio"
+            value="@choice"
+            checked="@(currentChoice == choice)"
+            @onchange="@(() => { currentChoice = choice; })" />
+       @choice.ToString()
+   </label>
+}
+
+<p>You chose: @currentChoice</p>
+
+@code {
+   private enum Choices { Red, Green, Blue };
+   private Choices currentChoice = Choices.Red;
+}
+```
+
+> [!NOTE]
+> The workaround shown in this section doesn't fire the `OnFieldChanged` form event that built-in `Input` components support.
 
 ## Validation support
 
@@ -305,3 +343,70 @@ public class ShipDescription
 Validation attributes applied to the properties of a model validate when the form is submitted. However, the properties of collections or complex data types of a model aren't validated on form submission by the `DataAnnotationsValidator` component. To honor the nested validation attributes in this scenario, use a custom validation component. For an example, see the [Blazor Validation sample (aspnet/samples)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
 
 ::: moniker-end
+
+### Enable the submit button based on form validation
+
+To enable and disable the submit button based on form validation:
+
+* Use the form's `EditContext` to assign the model when the component is initialized.
+* Validate the form in the context's `OnFieldChanged` callback to enable and disable the submit button.
+
+```cshtml
+<EditForm EditContext="@editContext">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    ...
+
+    <button type="submit" disabled="@formInvalid">Submit</button>
+</EditForm>
+
+@code {
+    private Starship starship = new Starship();
+    private bool formInvalid = true;
+    private EditContext editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(starship);
+
+        editContext.OnFieldChanged += (sender, e) =>
+        {
+            formInvalid = !editContext.Validate();
+            StateHasChanged();
+        };
+    }
+}
+```
+
+In the preceding example, set `formInvalid` to `false` if:
+
+* The form is preloaded with valid default values.
+* You want the submit button enabled when the form loads.
+
+A side effect of the preceding approach is that a `ValidationSummary` component is populated with invalid fields after the user interacts with any one field. This scenario can be addressed in either of the following ways:
+
+* Don't use a `ValidationSummary` component on the form.
+* Make the `ValidationSummary` component visible when the submit button is selected (for example, in a `HandleValidSubmit` method).
+
+```cshtml
+<EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary style="@displaySummary" />
+
+    ...
+
+    <button type="submit" disabled="@formInvalid">Submit</button>
+</EditForm>
+
+@code {
+    private string displaySummary = "display:none";
+
+    ...
+
+    private void HandleValidSubmit()
+    {
+        displaySummary = "display:block";
+    }
+}
+```
