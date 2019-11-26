@@ -52,18 +52,6 @@ All ASP.NET Core components that emit cookies override the preceding defaults wi
 * <xref:Microsoft.Net.Http.Headers.SameSiteMode?displayProperty=fullName>
 * <xref:Microsoft.Net.Http.Headers.SetCookieHeaderValue.SameSite?displayProperty=fullName>
 
-## History and changes
-
-SameSite support was first implemented in ASP.NET Core in 2.0 using the [2016 draft standard](https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-4.1). The 2016 standard was opt-in. ASP.NET Core opted-in by setting several cookies to `Lax` by default. After encountering several [issues](https://github.com/aspnet/Announcements/issues/318) with authentication, most SameSite usage was [disabled](https://github.com/aspnet/Announcements/issues/348).
-
-In 2019 browsers started moving to the [2019 draft of the SameSite specification](https://github.com/aspnet/Announcements/issues/390):
-
-* The 2019 specification is not backwards compatible with the 2016 draft. For more information, see [Supporting older browsers](#sob) in this document.
-* Cookies are treated as `SameSite=Lax` by default.
-* Cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
-* Patches were issued for ASP.NET Core 2.1, 2.2, and 3.0 to support the new standard. ASP.NET Core 3.1 has additional SameSite support.
-* Chrome plans to enable the [new SameSite behavior](https://chromestatus.com/feature/5088147346030592) by default in [Feb 2020](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html).
-
 ::: moniker range="= aspnetcore-3.1"
 
 ASP.NET Core 3.1 and later provides the following SameSite support:
@@ -85,6 +73,20 @@ ASP.NET Core 3.0 and later aligns SameSite defaults with the new draft standard.
 * [CookiePolicyOptions.MinimumSameSitePolicy](xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy)
 
 ::: moniker-end
+
+## History and changes
+
+SameSite support was first implemented in ASP.NET Core in 2.0 using the [2016 draft standard](https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-4.1). The 2016 standard was opt-in. ASP.NET Core opted-in by setting several cookies to `Lax` by default. After encountering several [issues](https://github.com/aspnet/Announcements/issues/318) with authentication, most SameSite usage was [disabled](https://github.com/aspnet/Announcements/issues/348).
+
+The [2019 draft of the SameSite specification](https://github.com/aspnet/Announcements/issues/390):
+
+* Is **not** backwards compatible with the 2016 draft. For more information, see [Supporting older browsers](#sob) in this document.
+* Specifies cookies are treated as `SameSite=Lax` by default.
+* Specifies cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
+* Is supported by patches issued for ASP.NET Core 2.1, 2.2, and 3.0. ASP.NET Core 3.1 has additional SameSite support.
+* Is scheduled to be supported by [Chrome](https://chromestatus.com/feature/5088147346030592) by default in [Feb 2020](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html). Browsers 2019 started moving to this standard in 2019.
+
+
 
 <a name="sob"></a>
 
