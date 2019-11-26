@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 `Lax` is OK for most app cookies but breaks cross site scenarios like [OpenID Connect](https://openid.net/connect/) (OIDC) and [WS-Federation](https://auth0.com/docs/protocols/ws-fed) login. Most [OAuth](https://oauth.net/) logins are not affected due to differences in how the request flows. The new `None` parameter causes compatibility problems with clients that implemented the prior draft standard (for example, iOS 12).
 
-Each ASP.NET Core component that emits cookies needs to decide if `SameSite` is appropriate.
+Each ASP.NET Core component that emits cookies needs to decide if SameSite is appropriate.
 
 ## API usage with SameSite
 
@@ -59,14 +59,14 @@ In 2019 browsers started moving to the [2019 draft of the SameSite specification
 * Cookies are treated as `SameSite=Lax` by default.
 * Cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
 * Patches were issued for ASP.NET Core 2.1, 2.2, and 3.0 to support the new standard. ASP.NET Core 3.1 has additional SameSite support.
-* Chrome plans to enable the [new SameSite behavior by default in Feb 2020](https://chromestatus.com/feature/5088147346030592).
+* Chrome plans to enable the [new SameSite behavior](https://chromestatus.com/feature/5088147346030592) by default in [Feb 2020](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html).
 
 ::: moniker range="= aspnetcore-3.1"
 
 ASP.NET Core 3.1 and later provides the following SameSite support:
 
 * Redefines the behavior of `SameSiteMode.None` to emit `SameSite=None`
-* Adds a new value `SameSiteMode.Unspecified` to omit the `SameSite` attribute.
+* Adds a new value `SameSiteMode.Unspecified` to omit the SameSite attribute.
 * All cookies APIs default to `Unspecified`. Some components that use cookies set values more specific to their scenarios, for example
   * The `OpenIdConnect` correlation cookie.
   * [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)
@@ -157,3 +157,8 @@ SameSite flags are set on the `edge://flags/#same-site-by-default-cookies` page.
 ### Test with Electron
 
 Versions of Electron include older versions of Chromium. For example, the version of Electron used by Teams is Chromium 66, which exhibits the older behavior. You must perform your own compatibility testing with the version of Electron your product uses. See [Supporting older browsers](#sob) in the following section.
+
+## Additional resources
+
+* [Chromium Blog:Developers: Get Ready for New SameSite=None; Secure Cookie Settings](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html)
+* [SameSite cookies explained](https://web.dev/samesite-cookies-explained/)
