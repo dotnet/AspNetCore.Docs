@@ -376,6 +376,15 @@ For `Dictionary` targets, model binding looks for matches to *parameter_name* or
   * selectedCourses["1050"]="Chemistry"
   * selectedCourses["2000"]="Economics"
 
+## Globalization behavior of value providers
+
+The ASP.NET Core route value provider and query string value provider:
+
+* Treat values as invariant culture.
+* Expect that URLs are culture-invariant.
+
+In contrast, values coming from form data do a culture-sensitive conversion. This is on purpose so that URLs are shareable across locales.
+
 ## Special data types
 
 There are some special data types that model binding can handle.
