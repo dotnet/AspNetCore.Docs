@@ -64,7 +64,6 @@ namespace WebApp
     #region snippet1
     public class CulturedQueryStringValueProviderFactory : IValueProviderFactory
     {
-        /// <inheritdoc />
         public Task CreateValueProviderAsync(ValueProviderFactoryContext context)
         {
             if (context == null)
@@ -85,6 +84,7 @@ namespace WebApp
 
             return Task.CompletedTask;
         }
-        #endregion
     }
+    #endregion
+
 }
