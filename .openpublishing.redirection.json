@@ -229,12 +229,7 @@
             "source_path": "aspnetcore/azure/index.md", 
             "redirect_url": "/aspnet/core/azure/devops", 
             "redirect_document_id": false 
-        }, 
-        {   
-            "source_path": "aspnetcore/security/authentication/index.md", 
-            "redirect_url": "/aspnet/core/security/authentication/identity", 
-            "redirect_document_id": false 
-        }, 
+        },         
         {   
             "source_path": "aspnetcore/security/authorization/index.md", 
             "redirect_url": "/aspnet/core/security/authorization/introduction", 

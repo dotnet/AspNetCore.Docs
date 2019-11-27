@@ -282,8 +282,12 @@
           uid: blazor/hosting-models
         - name: Build your first app
           uid: tutorials/first-blazor-app
+        - name: Templates
+          uid: blazor/templates
         - name: Components
           uid: blazor/components
+        - name: Lifecycle
+          uid: blazor/lifecycle
         - name: Forms and validation
           uid: blazor/forms-validation
         - name: Component libraries
@@ -817,6 +821,8 @@
       uid: security/index
     - name: Authentication
       items:
+        - name: Overview
+          uid: security/authentication/index
         - name: Introduction to Identity
           uid: security/authentication/identity
         - name: Identity with SPA
@@ -1100,6 +1106,9 @@
       uid: fundamentals/middleware/extensibility-third-party-container
 - name: Migration
   items:
+    - name: 3.0 to 3.1
+      displayName: migrate, migration
+      uid: migration/30-to-31
     - name: 2.2 to 3.0
       displayName: migrate, migration
       uid: migration/22-to-30
