@@ -376,14 +376,24 @@ For `Dictionary` targets, model binding looks for matches to *parameter_name* or
   * selectedCourses["1050"]="Chemistry"
   * selectedCourses["2000"]="Economics"
 
-## Globalization behavior of value providers
+## Globalization behavior of model binding route data and query strings
 
 The ASP.NET Core route value provider and query string value provider:
 
 * Treat values as invariant culture.
 * Expect that URLs are culture-invariant.
 
-In contrast, values coming from form data do a culture-sensitive conversion. This is on purpose so that URLs are shareable across locales.
+In contrast, values coming from form data undergo a culture-sensitive conversion. This is by design so that URLs are shareable across locales.
+
+To make the ASP.NET Core route value provider and query string value provider undergo a culture-sensitive conversion:
+
+* Inherit from <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IValueProviderFactory>
+* Copy the code from [QueryStringValueProviderFactory](https://github.com/aspnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/ModelBinding/QueryStringValueProviderFactory.cs) or [RouteValueValueProviderFactory](https://github.com/aspnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/ModelBinding/RouteValueProviderFactory.cs)
+* Replace the [culture value](https://github.com/aspnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/ModelBinding/QueryStringValueProviderFactory.cs#L30) passed to the value provider constructor with [CultureInfo.CurrentCulture](xref:System.Globalization.CultureInfo.CurrentCulture)
+* Replace the default value provider factory in MVC options with your new one:
+
+[!code-csharp[](model-binding/samples/StartupMB.cs?name=snippet]
+[!code-csharp[](model-binding/samples/StartupMB.cs?name=snippet1]
 
 ## Special data types
 
