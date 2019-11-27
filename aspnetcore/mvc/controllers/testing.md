@@ -8,15 +8,11 @@ ms.custom: mvc
 ms.date: 11/07/2019
 uid: mvc/controllers/testing
 ---
-# Test controller logic in ASP.NET Core
+# Unit test controller logic in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/)
 
 ::: moniker range=">= aspnetcore-3.0"
-
-[Controllers](xref:mvc/controllers/actions) play a central role in any ASP.NET Core MVC app. As such, you should have confidence that controllers behave as intended. Automated tests can detect errors before the app is deployed to a production environment.
-
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/testing/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Unit tests of controller logic
 
@@ -26,7 +22,11 @@ Set up unit tests of controller actions to focus on the controller's behavior. A
 
 If you're writing custom filters and routes, unit test them in isolation, not as part of tests on a particular controller action.
 
-To demonstrate controller unit tests, review the following controller in the sample app. The Home controller displays a list of brainstorming sessions and allows the creation of new brainstorming sessions with a POST request:
+To demonstrate controller unit tests, review the following controller in the sample app. 
+
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/testing/samples/) ([how to download](xref:index#how-to-download-a-sample))
+
+The Home controller displays a list of brainstorming sessions and allows the creation of new brainstorming sessions with a POST request:
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/HomeController.cs?name=snippet_HomeController&highlight=1,5,10,31-32)]
 
