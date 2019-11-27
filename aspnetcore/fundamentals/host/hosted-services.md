@@ -139,8 +139,8 @@ A background task queue is based on the .NET 4.x <xref:System.Web.Hosting.Hostin
 
 In the following `QueueHostedService` example:
 
-* The `BackgroundProcessing` method returns a `Task`, which is awaited in `ExecuteAsync`.
-* Background tasks in the queue are dequeued and executed in `BackgroundProcessing`.
+* The `PerformBackgroundProcess` method returns a `Task`, which is awaited in `ExecuteAsync`.
+* Background tasks in the queue are dequeued and executed in `PerformBackgroundProcess`.
 * Work items are awaited before the service stops in `StopAsync`.
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/QueuedHostedService.cs?name=snippet1&highlight=28-29,33)]
