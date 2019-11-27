@@ -282,6 +282,8 @@
           uid: blazor/hosting-models
         - name: Build your first app
           uid: tutorials/first-blazor-app
+        - name: Templates
+          uid: blazor/templates
         - name: Components
           uid: blazor/components
         - name: Forms and validation
