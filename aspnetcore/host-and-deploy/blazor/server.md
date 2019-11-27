@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor Server app using ASP.NET Core
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2019
+ms.date: 11/27/2019
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/server
 ---
@@ -95,6 +95,14 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-name: "affinity"
     nginx.ingress.kubernetes.io/session-cookie-expires: "14400"
     nginx.ingress.kubernetes.io/session-cookie-max-age: "14400"
+```
+
+#### Linux with Nginx
+
+Set the proxy's `Connection` header to `$http_connection` for SignalR WebSockets:
+
+```
+proxy_set_header Connection $http_connection;
 ```
 
 ### Measure network latency
