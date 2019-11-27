@@ -821,6 +821,8 @@
       uid: security/index
     - name: Authentication
       items:
+        - name: Overview
+          uid: security/authentication/index
         - name: Introduction to Identity
           uid: security/authentication/identity
         - name: Identity with SPA
