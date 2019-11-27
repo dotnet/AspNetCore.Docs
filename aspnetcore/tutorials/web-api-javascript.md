@@ -38,15 +38,15 @@ The simplest `fetch` call accepts a single parameter representing the route. A s
 
     [!code-csharp[](first-web-api/samples/3.0/TodoApi/StartupJavaScript.cs?highlight=8-9&name=snippet_configure)]
 
-1. Create a *wwwroot* directory in the project root.
+1. Create a *wwwroot* folder in the project root.
 
-1. Create a *js* directory inside of the *wwwroot* directory.
+1. Create a *js* folder inside of the *wwwroot* folder.
 
-1. Add an HTML file named *index.html* to the *wwwroot* directory. Replace its contents with the following markup:
+1. Add an HTML file named *index.html* to the *wwwroot* folder. Replace the contents of *index.html* with the following markup:
 
     [!code-html[](first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
 
-1. Add a JavaScript file named *site.js* to the *wwwroot/js* directory. Replace its contents with the following code:
+1. Add a JavaScript file named *site.js* to the *wwwroot/js* folder. Replace the contents of *site.js* with the following code:
 
     [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_SiteJs)]
 
