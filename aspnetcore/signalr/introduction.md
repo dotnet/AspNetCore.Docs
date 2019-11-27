@@ -35,7 +35,7 @@ The source is hosted in a [SignalR repository on GitHub](https://github.com/aspn
 
 ## Transports
 
-SignalR supports several techniques for handling real-time communications:
+SignalR supports following techniques for handling real-time communications (in order of gracefull fallback):
 
 * [WebSockets](https://tools.ietf.org/html/rfc7118)
 * Server-Sent Events
