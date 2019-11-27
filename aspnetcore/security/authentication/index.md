@@ -61,7 +61,7 @@ Schemes are useful as a mechanism for referring to the authentication, challenge
 An authentication handler:
 
 * Is a type that implements the behavior of a scheme.
-* Is derived from <xref:Microsoft.AspNetCore.Authentication.IAuthenticationHandler> or <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler>.
+* Is derived from <xref:Microsoft.AspNetCore.Authentication.IAuthenticationHandler> or <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1>.
 * Has the primary responsibility to authenticate users.
 
 Based on the authentication scheme's configuration and the incoming request context, authentication handlers:
