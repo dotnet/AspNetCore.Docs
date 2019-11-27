@@ -88,8 +88,8 @@ protected override void OnParametersSet()
 
 The `firstRender` parameter for `OnAfterRenderAsync` and `OnAfterRender`:
 
-* Is set to `true` the first time that the component instance is invoked.
-* Ensures that initialization work is only performed once.
+* Is set to `true` the first time that the component instance is rendered.
+* Can be used to ensure that initialization work is only performed once.
 
 ```csharp
 protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -104,7 +104,7 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 > [!NOTE]
 > Asynchronous work immediately after rendering must occur during the `OnAfterRenderAsync` lifecycle event.
 >
-> A component doesn't rerender after the completion of any returned <xref:System.Threading.Tasks.Task>. Infinite render loops are avoided.
+> Even if you return a <xref:System.Threading.Tasks.Task> from `OnAfterRenderAsync`, the framework doesn't schedule a further render cycle for your component once that task completes. This is to avoid an infinite render loop. It's different from the other lifecycle methods, which schedule a further render cycle once the returned task completes.
 
 ```csharp
 protected override void OnAfterRender(bool firstRender)
@@ -116,7 +116,7 @@ protected override void OnAfterRender(bool firstRender)
 }
 ```
 
-`OnAfterRender` *isn't called when prerendering on the server.*
+`OnAfterRender` and `OnAfterRenderAsync` *aren't called when prerendering on the server.*
 
 ### Suppress UI refreshing
 
