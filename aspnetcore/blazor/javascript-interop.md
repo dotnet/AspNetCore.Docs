@@ -173,7 +173,7 @@ window.exampleJsFunctions = {
 }
 ```
 
-For a method that doesn't return a value, such as focusing an element, use `IJSRuntime.InvokeVoidAsync` with the preceding JavaScript function and the `ElementReference`:
+To call a JavaScript function that doesn't return a value, use `IJSRuntime.InvokeVoidAsync`. The following code sets the focus on the username input by calling the preceding JavaScript function with the captured `ElementReference`:
 
 [!code-cshtml[](javascript-interop/samples_snapshot/component1.razor?highlight=1,3,11-12)]
 
