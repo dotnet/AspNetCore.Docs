@@ -27,10 +27,10 @@ namespace BackgroundTasksSample.Services
                 $"{Environment.NewLine}Tap W to add a work item to the " +
                 $"background queue.{Environment.NewLine}");
 
-            await BackgroundProcessing(stoppingToken);
+            await PerformBackgroundProcess(stoppingToken);
         }
 
-        private async Task BackgroundProcessing(CancellationToken stoppingToken)
+        private async Task PerformBackgroundProcess(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
