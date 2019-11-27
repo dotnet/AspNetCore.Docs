@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/07/2019
+ms.date: 11/25/2019
 no-loc: [Blazor]
 uid: blazor/get-started
 ---
@@ -74,25 +74,25 @@ Get started with Blazor:
 
    7\. In a browser, navigate to `https://localhost:5001`.
 
-   <!--
-
    # [Visual Studio for Mac](#tab/visual-studio-mac)
 
    1\. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). Switch the [Update channel to Preview](/visualstudio/mac/install-preview).
 
-   2\. Select **File** > **New Solution** or **New Project**.
+   2\. Select **File** > **New Solution** or create a **New Project**.
 
    3\. In the sidebar, select **.NET Core** > **App**.
 
-   4\. For a Blazor Server experience, select the **Blazor Server App** template. For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
+   4\. Select the **Blazor Server App** template. Only the Blazor Server template is available in Visual Studio for Mac at this time. For a Blazor WebAssembly experience, follow the instructions on the **.NET Core CLI** tab. After selecting the Blazor Server template, select **Next**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
-   5\. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
+   <!-- For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. -->
 
-   6\. In the **Project Name** field, enter `WebApplication1`. Select **Create**.
+   5\. The **Target Framework** defaults to **.NET Core 3.0** (or **.NET Core 3.1** if the 3.1 Preview SDK is installed). Select the framework and select **Next**.
 
-   7\. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Running with the debugger isn't supported at this time.
+   6\. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
 
-   -->
+   7\. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Run the app with **Start Debugging** to run the app *with the debugger*.
+
+       If a prompt appears to trust the development certificate, trust the certificate and continue.
 
    # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -179,25 +179,25 @@ Get started with Blazor:
 
    7\. In a browser, navigate to `https://localhost:5001`.
 
-   <!--
-
    # [Visual Studio for Mac](#tab/visual-studio-mac)
 
    1\. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). Switch the [Update channel to Preview](/visualstudio/mac/install-preview).
 
-   2\. Select **File** > **New Solution** or **New Project**.
+   2\. Select **File** > **New Solution** or create a **New Project**.
 
    3\. In the sidebar, select **.NET Core** > **App**.
 
-   4\. For a Blazor Server experience, select the **Blazor Server App** template. For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
+   4\. Select the **Blazor Server App** template. Only the Blazor Server template is available in Visual Studio for Mac at this time. For a Blazor WebAssembly experience, follow the instructions on the **.NET Core CLI** tab. After selecting the Blazor Server template, select **Next**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
-   5\. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
+   <!-- For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. -->
 
-   6\. In the **Project Name** field, enter `WebApplication1`. Select **Create**.
+   5\. The **Target Framework** defaults to **.NET Core 3.0** (or **.NET Core 3.1** if the 3.1 Preview SDK is installed). Select the framework and select **Next**.
 
-   7\. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Running with the debugger isn't supported at this time.
+   6\. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
 
-   -->
+   7\. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Run the app with **Start Debugging** to run the app *with the debugger*.
+
+       If a prompt appears to trust the development certificate, trust the certificate and continue.
 
    # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -279,4 +279,5 @@ Run the app. The `Index` component has its own counter that increments by ten ea
 
 ## Additional resources
 
+* <xref:blazor/templates>
 * <xref:signalr/introduction>
