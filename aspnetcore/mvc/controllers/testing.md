@@ -14,9 +14,9 @@ By [Steve Smith](https://ardalis.com/)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## Unit tests of controller logic
-
 [Unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) involve testing a part of an app in isolation from its infrastructure and dependencies. When unit testing controller logic, only the contents of a single action are tested, not the behavior of its dependencies or of the framework itself.
+
+## Unit testing controllers
 
 Set up unit tests of controller actions to focus on the controller's behavior. A controller unit test avoids scenarios such as [filters](xref:mvc/controllers/filters), [routing](xref:fundamentals/routing), and [model binding](xref:mvc/models/model-binding). Tests that cover the interactions among components that collectively respond to a request are handled by *integration tests*. For more information on integration tests, see <xref:test/integration-tests>.
 
