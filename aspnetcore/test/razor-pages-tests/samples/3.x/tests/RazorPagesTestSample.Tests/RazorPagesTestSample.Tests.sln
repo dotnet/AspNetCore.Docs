@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.161
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorPagesTestSample.Tests", "RazorPagesTestSample.Tests.csproj", "{452049E9-89AA-4069-AA86-606EF4A92B47}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorPagesTestSample", "..\..\src\RazorPagesTestSample\RazorPagesTestSample.csproj", "{FA875310-33EE-43BA-B277-B5204FE10D06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{452049E9-89AA-4069-AA86-606EF4A92B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{452049E9-89AA-4069-AA86-606EF4A92B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{452049E9-89AA-4069-AA86-606EF4A92B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{452049E9-89AA-4069-AA86-606EF4A92B47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA875310-33EE-43BA-B277-B5204FE10D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA875310-33EE-43BA-B277-B5204FE10D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA875310-33EE-43BA-B277-B5204FE10D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA875310-33EE-43BA-B277-B5204FE10D06}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8EFE450C-5306-4CA1-8764-4121D64DBC4A}
+	EndGlobalSection
+EndGlobal
