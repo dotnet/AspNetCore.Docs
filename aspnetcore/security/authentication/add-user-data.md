@@ -22,7 +22,7 @@ The project sample is created from a Razor Pages web app, but the instructions a
 
 ## Prerequisites
 
-[!INCLUDE [](~/includes/2.2-SDK.md)]
+[!INCLUDE [](~/includes/3.0-SDK.md)]
 
 ## Create a Razor web app
 
@@ -30,7 +30,7 @@ The project sample is created from a Razor Pages web app, but the instructions a
 
 * From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to it match the namespace of the [download sample](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) code.
 * Select **ASP.NET Core Web Application** > **OK**
-* Select **ASP.NET Core 2.2** in the dropdown
+* Select **ASP.NET Core 3.0** in the dropdown
 * Select **Web Application**  > **OK**
 * Build and run the project.
 
@@ -102,9 +102,9 @@ Follow the instruction in [Migrations, UseAuthentication, and layout](xref:secur
 
 Update the `IdentityUser` derived class with custom properties. If you named the project WebApp1, the file is named *Areas/Identity/Data/WebApp1User.cs*. Update the file with the following code:
 
-[!code-csharp[Main](add-user-data/sample-2.2/Areas/Identity/Data/WebApp1User.cs)]
+[!code-csharp[Main](add-user-data/sample-3.0/Areas/Identity/Data/WebApp1User.cs)]
 
-Properties decorated with the [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-2.1) attribute are:
+Properties decorated with the [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-3.0) attribute are:
 
 * Deleted when the *Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml* Razor Page calls `UserManager.Delete`.
 * Included in the downloaded data by the *Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml* Razor Page.
@@ -113,21 +113,21 @@ Properties decorated with the [PersonalData](/dotnet/api/microsoft.aspnetcore.id
 
 Update the `InputModel` in *Areas/Identity/Pages/Account/Manage/Index.cshtml.cs* with the following highlighted code:
 
-[!code-csharp[Main](add-user-data/sample-2.2/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=28-36,63-64,98-106,119)]
+[!code-csharp[Main](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=24-32,48-49,91-99,101)]
 
 Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:
 
-[!code-html[Main](add-user-data/sample-2.2/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=35-42)]
+[!code-html[Main](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=16-24)]
 
 ### Update the Account/Register.cshtml page
 
 Update the `InputModel` in *Areas/Identity/Pages/Account/Register.cshtml.cs* with the following highlighted code:
 
-[!code-csharp[Main](add-user-data/sample-2.2/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=28-36,67,66)]
+[!code-csharp[Main](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=30-38,70-71)]
 
 Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
 
-[!code-html[Main](add-user-data/sample-2.2/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
+[!code-html[Main](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
 Build the project.
 
