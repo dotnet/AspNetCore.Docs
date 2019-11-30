@@ -281,7 +281,7 @@ The [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
 
 Entity headers are used in both HTTP requests and responses.
 
-In ASP.NET Core 3.1 the `Content-Language` header can be added by setting the property `ApplyCurrentCultureToResponseHeaders`.
+The `Content-Language` header can be added by setting the property `ApplyCurrentCultureToResponseHeaders`.
 
 Adding the `Content-Language` header:
 
