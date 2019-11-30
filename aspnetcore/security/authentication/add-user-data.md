@@ -152,11 +152,11 @@ Update the `InputModel` in *Areas/Identity/Pages/Account/Manage/Index.cshtml.cs*
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[Main](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=24-32,48-49,91-99,101)]
+[!code-cshtml[](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=24-32,48-49,91-99,101)]
 
 Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:
 
-[!code-html[Main](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=16-24)]
+[!code-cshtml[](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=16-24)]
 
 ::: moniker-end
 
@@ -176,11 +176,11 @@ Update the `InputModel` in *Areas/Identity/Pages/Account/Register.cshtml.cs* wit
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[Main](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=30-38,70-71)]
+[!code-cshtml[](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=30-38,70-71)]
 
 Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
 
-[!code-html[Main](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
+[!code-cshtml[](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
 ::: moniker-end
 
