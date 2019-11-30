@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2019
+ms.date: 11/23/2019
 no-loc: [Blazor, SignalR]
 uid: blazor/handle-errors
 ---
@@ -114,7 +114,7 @@ A circuit fails when any executed constructor or a setter for any `[Inject]` pro
 
 ### Lifecycle methods
 
-During the lifetime of a component, Blazor invokes lifecycle methods:
+During the lifetime of a component, Blazor invokes [lifecycle methods](xref:blazor/lifecycle):
 
 * `OnInitialized` / `OnInitializedAsync`
 * `OnParametersSet` / `OnParametersSetAsync`
@@ -165,7 +165,7 @@ A component may be removed from the UI, for example, because the user has naviga
 
 If the component's `Dispose` method throws an unhandled exception, the exception is fatal to the circuit. If disposal logic may throw exceptions, the app should trap the exceptions using a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
-For more information on component disposal, see <xref:blazor/components#component-disposal-with-idisposable>.
+For more information on component disposal, see <xref:blazor/lifecycle#component-disposal-with-idisposable>.
 
 ### JavaScript interop
 
