@@ -3,7 +3,7 @@ title: Globalization and localization in ASP.NET Core
 author: rick-anderson
 description: Learn how ASP.NET Core provides services and middleware for localizing content into different languages and cultures.
 ms.author: riande
-ms.date: 01/14/2017
+ms.date: 11/30/2019
 uid: fundamentals/localization
 ---
 # Globalization and localization in ASP.NET Core
@@ -271,7 +271,7 @@ The [Accept-Language header](https://www.w3.org/International/questions/qa-accep
 
 6. Tap the language, then tap **Move Up**.
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.1"
 ### The Content-Language HTTP header
 
 The [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) entity header:
@@ -281,7 +281,7 @@ The [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
 
 Entity headers are used in both HTTP requests and responses.
 
-In ASP.NET Core 3.0 the `Content-Language` header can be added by setting the property `ApplyCurrentCultureToResponseHeaders`.
+The `Content-Language` header can be added by setting the property `ApplyCurrentCultureToResponseHeaders`.
 
 Adding the `Content-Language` header:
 
@@ -402,5 +402,4 @@ Terms:
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
-* [Localization & Generics](https://github.com/hishamco/hishambinateya.com/blob/master/Posts/localization-and-generics.md)
-* [What is new in Localization in ASP.NET Core 3.0](http://hishambinateya.com/what-is-new-in-localization-in-asp.net-core-3.0)
+* [Localization & Generics](http://hishambinateya.com/localization-and-generics)
