@@ -156,7 +156,7 @@ Update the `InputModel` in *Areas/Identity/Pages/Account/Manage/Index.cshtml.cs*
 
 Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:
 
-[!code-cshtml[](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=16-24)]
+[!code-cshtml[](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=18-25)]
 
 ::: moniker-end
 
