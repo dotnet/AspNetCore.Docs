@@ -402,5 +402,4 @@ Terms:
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
-* [Localization & Generics](https://github.com/hishamco/hishambinateya.com/blob/master/Posts/localization-and-generics.md)
-* [What is new in Localization in ASP.NET Core 3.0](http://hishambinateya.com/what-is-new-in-localization-in-asp.net-core-3.0)
+* [Localization & Generics](https://http://hishambinateya.com/localization-and-generics)
