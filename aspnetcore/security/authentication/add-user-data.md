@@ -43,7 +43,7 @@ The project sample is created from a Razor Pages web app, but the instructions a
 * From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to it match the namespace of the [download sample](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) code.
 * Select **ASP.NET Core Web Application** > **OK**
 * Select **ASP.NET Core 3.0** in the dropdown
-* Select **Web Application**  > **OK**
+* Select **Web Application** > **OK**
 * Build and run the project.
 
 ::: moniker-end
@@ -53,7 +53,7 @@ The project sample is created from a Razor Pages web app, but the instructions a
 * From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to it match the namespace of the [download sample](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) code.
 * Select **ASP.NET Core Web Application** > **OK**
 * Select **ASP.NET Core 2.2** in the dropdown
-* Select **Web Application**  > **OK**
+* Select **Web Application** > **OK**
 * Build and run the project.
 
 ::: moniker-end
