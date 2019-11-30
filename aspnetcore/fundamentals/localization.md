@@ -271,7 +271,7 @@ The [Accept-Language header](https://www.w3.org/International/questions/qa-accep
 
 6. Tap the language, then tap **Move Up**.
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.1"
 ### The Content-Language HTTP header
 
 The [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) entity header:
@@ -281,7 +281,7 @@ The [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
 
 Entity headers are used in both HTTP requests and responses.
 
-In ASP.NET Core 3.0 the `Content-Language` header can be added by setting the property `ApplyCurrentCultureToResponseHeaders`.
+The `Content-Language` header can be added by setting the property `ApplyCurrentCultureToResponseHeaders`.
 
 Adding the `Content-Language` header:
 
