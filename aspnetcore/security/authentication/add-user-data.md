@@ -129,7 +129,7 @@ Update the `IdentityUser` derived class with custom properties. If you named the
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[Main](add-user-data/sample-3.0/Areas/Identity/Data/WebApp1User.cs)]
+[!code-csharp[](add-user-data/sample-3.0/Areas/Identity/Data/WebApp1User.cs)]
 
 Properties decorated with the [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-3.0) attribute are:
 
@@ -152,7 +152,7 @@ Update the `InputModel` in *Areas/Identity/Pages/Account/Manage/Index.cshtml.cs*
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-cshtml[](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=24-32,48-49,91-99,101)]
+[!code-csharp[](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=24-32,48-49,91-99,101)]
 
 Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:
 
@@ -176,7 +176,7 @@ Update the `InputModel` in *Areas/Identity/Pages/Account/Register.cshtml.cs* wit
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-cshtml[](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=30-38,70-71)]
+[!code-csharp[](add-user-data/sample-3.0/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=30-38,70-71)]
 
 Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
 
