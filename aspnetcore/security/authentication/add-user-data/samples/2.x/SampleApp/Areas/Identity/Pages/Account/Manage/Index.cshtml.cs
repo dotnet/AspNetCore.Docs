@@ -30,11 +30,11 @@ namespace WebApp1.Areas.Identity.Pages.Account.Manage
         }
 
         public string Username { get; set; }
-
         public bool IsEmailConfirmed { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
+
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -99,17 +99,6 @@ namespace WebApp1.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            if (Input.Name != user.Name)
-            {
-                user.Name = Input.Name;
-            }
-
-            if (Input.DOB != user.DOB)
-            {
-                user.DOB = Input.DOB;
-            }
-
-
             var email = await _userManager.GetEmailAsync(user);
             if (Input.Email != email)
             {
@@ -119,6 +108,16 @@ namespace WebApp1.Areas.Identity.Pages.Account.Manage
                     var userId = await _userManager.GetUserIdAsync(user);
                     throw new InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
                 }
+            }
+
+            if (Input.Name != user.Name)
+            {
+                user.Name = Input.Name;
+            }
+
+            if (Input.DOB != user.DOB)
+            {
+                user.DOB = Input.DOB;
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);

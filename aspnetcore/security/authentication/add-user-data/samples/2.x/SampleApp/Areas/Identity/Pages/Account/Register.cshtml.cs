@@ -13,6 +13,7 @@ using WebApp1.Areas.Identity.Data;
 
 namespace WebApp1.Areas.Identity.Pages.Account
 {
+    #region snippet
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
@@ -32,7 +33,7 @@ namespace WebApp1.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
         }
-        #region snippet
+
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -67,16 +68,21 @@ namespace WebApp1.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
+        public void OnGet(string returnUrl = null)
+        {
+            ReturnUrl = returnUrl;
+        }
+
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
                 var user = new WebApp1User {
-                    UserName = Input.Email,
-                    Email = Input.Email,
                     Name = Input.Name,
-                    DOB = Input.DOB
+                    DOB = Input.DOB,
+                    UserName = Input.Email,
+                    Email = Input.Email
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
@@ -105,17 +111,6 @@ namespace WebApp1.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
-        #endregion
-
-        public void OnGet(string returnUrl = null)
-        {
-            Input = new InputModel
-            {
-                DOB = DateTime.Now.AddYears(-21),
-                Email = "rick@example.com",
-                Name = "Rick Anderson"
-            };
-            ReturnUrl = returnUrl;
-        }
     }
+    #endregion
 }

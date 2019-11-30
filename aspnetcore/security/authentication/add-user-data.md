@@ -137,7 +137,7 @@ Properties decorated with the [PersonalData](/dotnet/api/microsoft.aspnetcore.id
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](add-user-data/samples/2.x/SampleApp2/Areas/Identity/Data/WebApp1User.cs)]
+[!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Data/WebApp1User.cs)]
 
 Properties decorated with the [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute?view=aspnetcore-2.1) attribute are:
 
@@ -162,11 +162,11 @@ Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](add-user-data/samples/2.x/SampleApp2/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=28-36,63-64,98-106,119)]
+[!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs?name=snippet&highlight=28-36,63-64,98-106,119)]
 
 Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:
 
-[!code-html[](add-user-data/samples/2.x/SampleApp2/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=35-42)]
+[!code-html[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=35-42)]
 
 ::: moniker-end
 
@@ -186,11 +186,11 @@ Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following hig
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](add-user-data/samples/2.x/SampleApp2/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=28-36,67,66)]
+[!code-csharp[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=28-36,67,66)]
 
 Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
 
-[!code-html[](add-user-data/samples/2.x/SampleApp2/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
+[!code-html[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
 ::: moniker-end
 
