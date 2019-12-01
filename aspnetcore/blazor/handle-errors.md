@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/23/2019
+ms.date: 12/01/2019
 no-loc: [Blazor, SignalR]
 uid: blazor/handle-errors
 ---
@@ -114,7 +114,7 @@ A circuit fails when any executed constructor or a setter for any `[Inject]` pro
 
 ### Lifecycle methods
 
-During the lifetime of a component, Blazor invokes [lifecycle methods](xref:blazor/lifecycle):
+During the lifetime of a component, Blazor invokes the following [lifecycle methods](xref:blazor/lifecycle):
 
 * `OnInitialized` / `OnInitializedAsync`
 * `OnParametersSet` / `OnParametersSetAsync`
