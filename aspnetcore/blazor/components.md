@@ -515,7 +515,7 @@ The following code calls the `CheckChanged` method when the check box is changed
 }
 ```
 
-Event handlers can also be asynchronous and return a <xref:System.Threading.Tasks.Task>. There's no need to manually call `StateHasChanged()`. Exceptions are logged when they occur.
+Event handlers can also be asynchronous and return a <xref:System.Threading.Tasks.Task>. There's no need to manually call [StateHasChanged](xref:blazor/lifecycle#state-changes). Exceptions are logged when they occur.
 
 In the following example, `UpdateHeading` is called asynchronously when the button is selected:
 
@@ -607,7 +607,7 @@ The `ParentComponent` sets the child's `EventCallback<T>` to its `ShowMessage` m
 When the button is selected in the `ChildComponent`:
 
 * The `ParentComponent`'s `ShowMessage` method is called. `messageText` is updated and displayed in the `ParentComponent`.
-* A call to `StateHasChanged` isn't required in the callback's method (`ShowMessage`). `StateHasChanged` is called automatically to rerender the `ParentComponent`, just as child events trigger component rerendering in event handlers that execute within the child.
+* A call to [StateHasChanged](xref:blazor/lifecycle#state-changes) isn't required in the callback's method (`ShowMessage`). `StateHasChanged` is called automatically to rerender the `ParentComponent`, just as child events trigger component rerendering in event handlers that execute within the child.
 
 `EventCallback` and `EventCallback<T>` permit asynchronous delegates. `EventCallback<T>` is strongly typed and requires a specific argument type. `EventCallback` is weakly typed and allows any argument type.
 
@@ -847,7 +847,7 @@ Component references provide a way to reference a component instance so that you
 When the component is rendered, the `loginDialog` field is populated with the `MyLoginDialog` child component instance. You can then invoke .NET methods on the component instance.
 
 > [!IMPORTANT]
-> The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the [OnAfterRenderAsync or OnAfterRender methods](#lifecycle-methods).
+> The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the [OnAfterRenderAsync or OnAfterRender methods](xref:blazor/lifecycle#after-component-render).
 
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/javascript-interop#capture-references-to-elements), it isn't a [JavaScript interop](xref:blazor/javascript-interop) feature. Component references aren't passed to JavaScript code&mdash;they're only used in .NET code.
 
@@ -856,7 +856,7 @@ While capturing component references use a similar syntax to [capturing element 
 
 ## Invoke component methods externally to update state
 
-Blazor uses a `SynchronizationContext` to enforce a single logical thread of execution. A component's lifecycle methods and any event callbacks that are raised by Blazor are executed on this `SynchronizationContext`. In the event a component must be updated based on an external event, such as a timer or other notifications, use the `InvokeAsync` method, which will dispatch to Blazor's `SynchronizationContext`.
+Blazor uses a `SynchronizationContext` to enforce a single logical thread of execution. A component's [lifecycle methods](xref:blazor/lifecycle) and any event callbacks that are raised by Blazor are executed on this `SynchronizationContext`. In the event a component must be updated based on an external event, such as a timer or other notifications, use the `InvokeAsync` method, which will dispatch to Blazor's `SynchronizationContext`.
 
 For example, consider a *notifier service* that can notify any listening component of the updated state:
 
@@ -984,139 +984,6 @@ Generally, it makes sense to supply one of the following kinds of value for `@ke
 * Unique identifiers (for example, primary key values of type `int`, `string`, or `Guid`).
 
 Ensure that values used for `@key` don't clash. If clashing values are detected within the same parent element, Blazor throws an exception because it can't deterministically map old elements or components to new elements or components. Only use distinct values, such as object instances or primary key values.
-
-## Lifecycle methods
-
-`OnInitializedAsync` and `OnInitialized` execute code to initialize the component. To perform an asynchronous operation, use `OnInitializedAsync` and the `await` keyword on the operation:
-
-```csharp
-protected override async Task OnInitializedAsync()
-{
-    await ...
-}
-```
-
-> [!NOTE]
-> Asynchronous work during component initialization must occur during the `OnInitializedAsync` lifecycle event.
-
-For a synchronous operation, use `OnInitialized`:
-
-```csharp
-protected override void OnInitialized()
-{
-    ...
-}
-```
-
-`OnParametersSetAsync` and `OnParametersSet` are called when a component has received parameters from its parent and the values are assigned to properties. These methods are executed after component initialization and each time the parent component is rendered:
-
-```csharp
-protected override async Task OnParametersSetAsync()
-{
-    await ...
-}
-```
-
-> [!NOTE]
-> Asynchronous work when applying parameters and property values must occur during the `OnParametersSetAsync` lifecycle event.
-
-```csharp
-protected override void OnParametersSet()
-{
-    ...
-}
-```
-
-`OnAfterRenderAsync` and `OnAfterRender` are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps using the rendered content, such as activating third-party JavaScript libraries that operate on the rendered DOM elements.
-
-`OnAfterRender` *isn't called when prerendering on the server.*
-
-The `firstRender` parameter for `OnAfterRenderAsync` and `OnAfterRender` is:
-
-* Set to `true` the first time that the component instance is invoked.
-* Ensures that initialization work is only performed once.
-
-```csharp
-protected override async Task OnAfterRenderAsync(bool firstRender)
-{
-    if (firstRender)
-    {
-        await ...
-    }
-}
-```
-
-> [!NOTE]
-> Asynchronous work immediately after rendering must occur during the `OnAfterRenderAsync` lifecycle event.
-
-```csharp
-protected override void OnAfterRender(bool firstRender)
-{
-    if (firstRender)
-    {
-        ...
-    }
-}
-```
-
-### Handle incomplete async actions at render
-
-Asynchronous actions performed in lifecycle events may not have completed before the component is rendered. Objects might be `null` or incompletely populated with data while the lifecycle method is executing. Provide rendering logic to confirm that objects are initialized. Render placeholder UI elements (for example, a loading message) while objects are `null`.
-
-In the `FetchData` component of the Blazor templates, `OnInitializedAsync` is overridden to asychronously receive forecast data (`forecasts`). When `forecasts` is `null`, a loading message is displayed to the user. After the `Task` returned by `OnInitializedAsync` completes, the component is rerendered with the updated state.
-
-*Pages/FetchData.razor*:
-
-[!code-cshtml[](components/samples_snapshot/3.x/FetchData.razor?highlight=9)]
-
-### Execute code before parameters are set
-
-`SetParameters` can be overridden to execute code before parameters are set:
-
-```csharp
-public override void SetParameters(ParameterView parameters)
-{
-    ...
-
-    base.SetParameters(parameters);
-}
-```
-
-If `base.SetParameters` isn't invoked, the custom code can interpret the incoming parameters value in any way required. For example, the incoming parameters aren't required to be assigned to the properties on the class.
-
-### Suppress refreshing of the UI
-
-`ShouldRender` can be overridden to suppress refreshing of the UI. If the implementation returns `true`, the UI is refreshed. Even if `ShouldRender` is overridden, the component is always initially rendered.
-
-```csharp
-protected override bool ShouldRender()
-{
-    var renderUI = true;
-
-    return renderUI;
-}
-```
-
-## Component disposal with IDisposable
-
-If a component implements <xref:System.IDisposable>, the [Dispose method](/dotnet/standard/garbage-collection/implementing-dispose) is called when the component is removed from the UI. The following component uses `@implements IDisposable` and the `Dispose` method:
-
-```csharp
-@using System
-@implements IDisposable
-
-...
-
-@code {
-    public void Dispose()
-    {
-        ...
-    }
-}
-```
-
-> [!NOTE]
-> Calling `StateHasChanged` in `Dispose` isn't supported. `StateHasChanged` might be invoked as part of the renderer being torn down. Requesting UI updates at that point isn't supported.
 
 ## Routing
 
