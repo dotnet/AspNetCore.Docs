@@ -65,6 +65,8 @@ To render a component from a page or view, use the `Component` Tag Helper:
     param-IncrementAmount="10" />
 ```
 
+Passing parameters (for example, `IncrementAmount` in the preceding example) is supported.
+
 `RenderMode` configures whether the component:
 
 * Is prerendered into the page.
