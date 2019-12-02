@@ -5,7 +5,7 @@ description: Learn about the .NET Core Generic Host, which is responsible for ap
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 12/02/2019
 uid: fundamentals/host/generic-host
 ---
 # .NET Generic Host
@@ -541,7 +541,7 @@ The following services are registered during host initialization:
 * [Environment](xref:fundamentals/environments) (<xref:Microsoft.Extensions.Hosting.IHostingEnvironment>)
 * <xref:Microsoft.Extensions.Hosting.HostBuilderContext>
 * [Configuration](xref:fundamentals/configuration/index) (<xref:Microsoft.Extensions.Configuration.IConfiguration>)
-* <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (`Microsoft.Extensions.Hosting.Internal.ApplicationLifetime`)
+* <xref:Microsoft.Extensions.Hosting.IApplicationLifetime> (`Microsoft.Extensions.Hosting.Internal.ApplicationLifetime`)
 * <xref:Microsoft.Extensions.Hosting.IHostLifetime> (`Microsoft.Extensions.Hosting.Internal.ConsoleLifetime`)
 * <xref:Microsoft.Extensions.Hosting.IHost>
 * [Options](xref:fundamentals/configuration/options) (<xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions*>)
@@ -679,7 +679,7 @@ The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcor
 
 ### UseConsoleLifetime
 
-<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> listens for Ctrl+C/SIGINT or SIGTERM and calls <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication*> to start the shutdown process. <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> unblocks extensions such as [RunAsync](#runasync) and [WaitForShutdownAsync](#waitforshutdownasync). `Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` is pre-registered as the default lifetime implementation. The last lifetime registered is used.
+<xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> listens for Ctrl+C/SIGINT or SIGTERM and calls <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> to start the shutdown process. <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseConsoleLifetime*> unblocks extensions such as [RunAsync](#runasync) and [WaitForShutdownAsync](#waitforshutdownasync). `Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` is pre-registered as the default lifetime implementation. The last lifetime registered is used.
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_UseConsoleLifetime)]
 
@@ -933,30 +933,30 @@ public class MyClass
 
 For more information, see <xref:fundamentals/environments>.
 
-## IHostApplicationLifetime interface
+## IApplicationLifetime interface
 
-<xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> allows for post-startup and shutdown activities, including graceful shutdown requests. Three properties on the interface are cancellation tokens used to register <xref:System.Action> methods that define startup and shutdown events.
+<xref:Microsoft.Extensions.Hosting.IApplicationLifetime> allows for post-startup and shutdown activities, including graceful shutdown requests. Three properties on the interface are cancellation tokens used to register <xref:System.Action> methods that define startup and shutdown events.
 
 | Cancellation Token | Triggered when&#8230; |
 | ------------------ | --------------------- |
-| <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStarted*> | The host has fully started. |
-| <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopped*> | The host is completing a graceful shutdown. All requests should be processed. Shutdown blocks until this event completes. |
-| <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping*> | The host is performing a graceful shutdown. Requests may still be processing. Shutdown blocks until this event completes. |
+| <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.ApplicationStarted*> | The host has fully started. |
+| <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.ApplicationStopped*> | The host is completing a graceful shutdown. All requests should be processed. Shutdown blocks until this event completes. |
+| <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.ApplicationStopping*> | The host is performing a graceful shutdown. Requests may still be processing. Shutdown blocks until this event completes. |
 
-Constructor-inject the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> service into any class. The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) uses constructor injection into a `LifetimeEventsHostedService` class (an <xref:Microsoft.Extensions.Hosting.IHostedService> implementation) to register the events.
+Constructor-inject the <xref:Microsoft.Extensions.Hosting.IApplicationLifetime> service into any class. The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) uses constructor injection into a `LifetimeEventsHostedService` class (an <xref:Microsoft.Extensions.Hosting.IHostedService> implementation) to register the events.
 
 *LifetimeEventsHostedService.cs*:
 
 [!code-csharp[](generic-host/samples/2.x/GenericHostSample/LifetimeEventsHostedService.cs?name=snippet1)]
 
-<xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication*> requests termination of the app. The following class uses <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication*> to gracefully shut down an app when the class's `Shutdown` method is called:
+<xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> requests termination of the app. The following class uses <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> to gracefully shut down an app when the class's `Shutdown` method is called:
 
 ```csharp
 public class MyClass
 {
-    private readonly IHostApplicationLifetime _appLifetime;
+    private readonly IApplicationLifetime _appLifetime;
 
-    public MyClass(IHostApplicationLifetime appLifetime)
+    public MyClass(IApplicationLifetime appLifetime)
     {
         _appLifetime = appLifetime;
     }
