@@ -5,7 +5,7 @@ description: Learn how to use Razor component lifecycle methods in ASP.NET Core 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/26/2019
+ms.date: 12/02/2019
 no-loc: [Blazor]
 uid: blazor/lifecycle
 ---
@@ -63,7 +63,10 @@ If `base.SetParametersAync` isn't invoked, the custom code can interpret the inc
 
 ### After parameters are set
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet*> are called when a component has received parameters from its parent and the values are assigned to properties. These methods are executed after component initialization and each time new parameter values are specified:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet*> are called:
+
+* After component initialization.
+* When a component has received changed parameters from its parent and the values are assigned to properties.
 
 ```csharp
 protected override async Task OnParametersSetAsync()
