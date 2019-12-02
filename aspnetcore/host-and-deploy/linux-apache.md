@@ -5,7 +5,7 @@ description: Learn how to set up Apache as a reverse proxy server on CentOS to r
 monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
 ms.custom: mvc
-ms.date: 11/05/2019
+ms.date: 12/02/2019
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
@@ -18,10 +18,13 @@ Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a r
 
 * Server running CentOS 7 with a standard user account with sudo privilege.
 * Install the .NET Core runtime on the server.
-   1. Visit the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
-   1. Select the latest non-preview runtime from the list under **Runtime**.
-   1. Select and follow the instructions for CentOS/Oracle.
+   1. Visit the [Download .NET Core page](https://dotnet.microsoft.com/download/dotnet-core).
+   1. Select the latest non-preview .NET Core version.
+   1. Download the latest non-preview runtime in the table under **Run apps - Runtime**.
+   1. Select the Linux **Package manager instructions** link and follow the CentOS instructions.
 * An existing ASP.NET Core app.
+
+At any point in the future after upgrading the shared framework, restart the ASP.NET Core apps hosted by the server.
 
 ## Publish and copy over the app
 
@@ -374,6 +377,10 @@ sudo systemctl restart httpd
 ```
 
 ## Additional Apache suggestions
+
+### Restart apps with shared framework updates
+
+After upgrading the shared framework on the server, restart the ASP.NET Core apps hosted by the server.
 
 ### Additional headers
 
