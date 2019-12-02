@@ -7,7 +7,7 @@ ms.custom: mvc
 ms.date: 11/11/2019
 uid: security/samesite
 ---
-# React to SameSite changes in ASP.NET Core
+# Working with SameSite cookies in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
