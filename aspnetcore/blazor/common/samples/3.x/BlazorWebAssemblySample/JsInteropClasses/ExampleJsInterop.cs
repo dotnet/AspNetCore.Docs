@@ -17,10 +17,10 @@ namespace BlazorSample.JsInteropClasses
             _jsRuntime = jsRuntime;
         }
 
-        public ValueTask<object> CallHelloHelperSayHello(string name)
+        public ValueTask<string> CallHelloHelperSayHello(string name)
         {
             // sayHello is implemented in wwwroot/exampleJsInterop.js
-            return _jsRuntime.InvokeAsync<object>(
+            return _jsRuntime.InvokeAsync<string>(
                 "exampleJsFunctions.sayHello",
                 DotNetObjectReference.Create(new HelloHelper(name)));
         }
