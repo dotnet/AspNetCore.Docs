@@ -287,7 +287,7 @@ Keeping a single `HttpClient` instance alive for a long duration is a common pat
 Using `IHttpClientFactory` in a DI-enabled app avoids:
 
 * Resource exhaustion problems by pooling `HttpMessageHandler` instances.
-* Stale-DNS problems by cycling `HttpMessageHandler` instances at regular intervals.
+* Stale DNS problems by cycling `HttpMessageHandler` instances at regular intervals.
 
 There are alternative ways to solve the preceding problems using a long-lived <xref:System.Net.Http.SocketsHttpHandler> instance.
 
