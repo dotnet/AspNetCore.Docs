@@ -287,7 +287,7 @@ Keeping a single `HttpClient` instance alive for a long duration is a common pat
 Using `IHttpClientFactory` in a DI-enabled app avoids:
 
 * Resource exhaustion problems by pooling `HttpMessageHandler` instances.
-* Stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+* Stale DNS problems by cycling `HttpMessageHandler` instances at regular intervals.
 
 There are alternative ways to solve the preceding problems using a long-lived <xref:System.Net.Http.SocketsHttpHandler> instance.
 
@@ -298,7 +298,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
 - The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
-- The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+- The `SocketsHttpHandler` cycles connections according to `PooledConnectionLifetime` to avoid stale DNS problems.
 
 ### Cookies
 
@@ -588,7 +588,7 @@ Keeping a single `HttpClient` instance alive for a long duration is a common pat
 Using `IHttpClientFactory` in a DI-enabled app avoids:
 
 * Resource exhaustion problems by pooling `HttpMessageHandler` instances.
-* Stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+* Stale DNS problems by cycling `HttpMessageHandler` instances at regular intervals.
 
 There are alternative ways to solve the preceding problems using a long-lived <xref:System.Net.Http.SocketsHttpHandler> instance.
 
@@ -599,7 +599,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
 - The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
-- The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+- The `SocketsHttpHandler` cycles connections according to `PooledConnectionLifetime` to avoid stale DNS problems.
 
 ### Cookies
 
@@ -896,7 +896,7 @@ Keeping a single `HttpClient` instance alive for a long duration is a common pat
 Using `IHttpClientFactory` in a DI-enabled app avoids:
 
 * Resource exhaustion problems by pooling `HttpMessageHandler` instances.
-* Stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+* Stale DNS problems by cycling `HttpMessageHandler` instances at regular intervals.
 
 There are alternative ways to solve the preceding problems using a long-lived <xref:System.Net.Http.SocketsHttpHandler> instance.
 
@@ -907,7 +907,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
 - The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
-- The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+- The `SocketsHttpHandler` cycles connections according to `PooledConnectionLifetime` to avoid stale DNS problems.
 
 ### Cookies
 
