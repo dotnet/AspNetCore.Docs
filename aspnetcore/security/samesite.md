@@ -1,7 +1,7 @@
 ---
 title: SameSite
 author: rick-anderson
-description: Learn how to react to SameSite changes in ASP.NET Core
+description: Learn how to use to SameSite cookies in ASP.NET Core
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/11/2019
@@ -14,17 +14,17 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 [SameSite](https://tools.ietf.org/html/draft-west-first-party-cookies-07) is an [IETF](https://ietf.org/about/) draft designed to provide some protection against cross-site request forgery (CSRF) attacks. The [SameSite 2019 draft](https://tools.ietf.org/html/draft-west-cookie-incrementalism-00):
 
 * Treats cookies as `SameSite=Lax` by default.
-* States cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
+* States cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`.
 
-`Lax` works for most app cookies. Some forms of authentication like [OpenID Connect](https://openid.net/connect/) (OIDC) and [WS-Federation](https://auth0.com/docs/protocols/ws-fed) default to POST based redirects. The POST based redirects trigger the SameSite browser protections, so SameSite is disabled for these components.
+`Lax` works for most app cookies. Some forms of authentication like [OpenID Connect](https://openid.net/connect/) (OIDC) and [WS-Federation](https://auth0.com/docs/protocols/ws-fed) default to POST based redirects. The POST based redirects trigger the SameSite browser protections, so SameSite is disabled for these components. Most [OAuth](https://oauth.net/) logins are not affected due to differences in how the request flows.
 
-Most [OAuth](https://oauth.net/) logins are not affected due to differences in how the request flows. The new `None` parameter causes compatibility problems with clients that implemented the prior draft standard (for example, iOS 12).
+The `None` parameter causes compatibility problems with clients that implemented the prior 2016 draft standard (for example, iOS 12). See #Supporting-Older-Browsers.
 
 Each ASP.NET Core component that emits cookies needs to decide if SameSite is appropriate.
 
 ## API usage with SameSite
 
-[HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*) defaults to `Unspecified`. The following code shows how to change the SameSite cookie to `SameSiteMode.Lax`:
+[HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*) defaults to `Unspecified`, meaning no SameSite attribute added to the cookie and the client will use its default behavior (Lax for new browsers, None for old ones). The following code shows how to change the cookie SameSite value to `SameSiteMode.Lax`:
 
 [!code-csharp[](samesite/sample/Pages/Index.cshtml.cs?name=snippet)]
 
@@ -32,18 +32,18 @@ All ASP.NET Core components that emit cookies override the preceding defaults wi
 
 | Component | cookie | Default |
 | ------------- | ------------- |
-| <xref:Microsoft.AspNetCore.Http.CookieBuilder> | <xref:Microsoft.AspNetCore.Http.CookieBuilder.Name> | `None` |
-| <xref:System.Web.HttpContext.Session>  | [SessionOptions.Cookie](xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie) |`Lax` |
+| <xref:Microsoft.AspNetCore.Http.CookieBuilder> | <xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite> | `Unspecified` |
+| <xref:Microsoft.AspNetCore.Http.HttpContext.Session>  | [SessionOptions.Cookie](xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie) |`Lax` |
 | <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider>  | [CookieTempDataProviderOptions.Cookie](xref:Microsoft.AspNetCore.Mvc.CookieTempDataProviderOptions.Cookie) | `Lax` |
 | <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> | [AntiforgeryOptions.Cookie](xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie)| `Strict` |
-| [CookieExtensions.AddCookie](xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*) | [CookieAuthenticationOptions.Cookie](xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookieName) | `Lax` |
+| [Cookie Authentication](xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*) | [CookieAuthenticationOptions.Cookie](xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookieName) | `Lax` |
 | <xref:Microsoft.Extensions.DependencyInjection.TwitterExtensions.AddTwitter*> | [TwitterOptions.StateCookie ](xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterOptions.StateCookie) | `Lax`  |
 | <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationHandler`1> | [RemoteAuthenticationOptions.CorrelationCookie](xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CorrelationCookie)  | `None` |
 | <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect*> | [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)| `None` |
-| <xref:Microsoft.AspNetCore.Http.CookieOptions> | A default cookie with a path of '/' | `None` |
+| [HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*) | <xref:Microsoft.AspNetCore.Http.CookieOptions> | `Unspecified` |
 
 
-## APIs impacted by the SameSite 2019 draft standard
+## APIs impacted by the change from the 2016 SameSite draft standard to the 2019 draft standard
 
 * [Http.SameSiteMode](xref:Microsoft.AspNetCore.Http.SameSiteMode)
 * [CookieOptions.SameSite](xref:Microsoft.AspNetCore.Http.CookieOptions.SameSite)
@@ -52,13 +52,13 @@ All ASP.NET Core components that emit cookies override the preceding defaults wi
 * <xref:Microsoft.Net.Http.Headers.SameSiteMode?displayProperty=fullName>
 * <xref:Microsoft.Net.Http.Headers.SetCookieHeaderValue.SameSite?displayProperty=fullName>
 
-::: moniker range="= aspnetcore-3.1"
+::: moniker range=">= aspnetcore-3.1"
 
 ASP.NET Core 3.1 and later provides the following SameSite support:
 
 * Redefines the behavior of `SameSiteMode.None` to emit `SameSite=None`
 * Adds a new value `SameSiteMode.Unspecified` to omit the SameSite attribute.
-* All cookies APIs default to `Unspecified`. Some components that use cookies set values more specific to their scenarios, for example
+* All cookies APIs default to `Unspecified`. Some components that use cookies set values more specific to their scenarios. See the table above for examples.
   * The `OpenIdConnect` correlation cookie.
   * [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)
 
@@ -78,13 +78,13 @@ ASP.NET Core 3.0 and later aligns SameSite defaults with the new draft standard.
 
 SameSite support was first implemented in ASP.NET Core in 2.0 using the [2016 draft standard](https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-4.1). The 2016 standard was opt-in. ASP.NET Core opted-in by setting several cookies to `Lax` by default. After encountering several [issues](https://github.com/aspnet/Announcements/issues/318) with authentication, most SameSite usage was [disabled](https://github.com/aspnet/Announcements/issues/348).
 
-The [2019 draft of the SameSite specification](https://github.com/aspnet/Announcements/issues/390):
+Patches were issued in November 2019 to update from the 2016 standard to the 2019 standard. The [2019 draft of the SameSite specification](https://github.com/aspnet/Announcements/issues/390):
 
 * Is **not** backwards compatible with the 2016 draft. For more information, see [Supporting older browsers](#sob) in this document.
 * Specifies cookies are treated as `SameSite=Lax` by default.
 * Specifies cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`. `None` is a new entry to opt out.
 * Is supported by patches issued for ASP.NET Core 2.1, 2.2, and 3.0. ASP.NET Core 3.1 has additional SameSite support.
-* Is scheduled to be supported by [Chrome](https://chromestatus.com/feature/5088147346030592) by default in [Feb 2020](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html). Browsers started moving to this standard in 2019.
+* Is scheduled to be enabled by [Chrome](https://chromestatus.com/feature/5088147346030592) by default in [Feb 2020](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html). Browsers started moving to this standard in 2019.
 
 <a name="sob"></a>
 
