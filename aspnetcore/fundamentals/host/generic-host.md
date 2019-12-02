@@ -123,7 +123,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostLifetime> implementation controls wh
 
 `Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` is the default `IHostLifetime` implementation. `ConsoleLifetime`:
 
-* listens for Ctrl+C/SIGINT or SIGTERM and calls <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication*> to start the shutdown process.
+* Listens for Ctrl+C/SIGINT or SIGTERM and calls <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication*> to start the shutdown process.
 * Unblocks extensions such as [RunAsync](#runasync) and [WaitForShutdownAsync](#waitforshutdownasync).
 
 ## IHostEnvironment
@@ -134,9 +134,7 @@ Inject the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> service into a c
 * [EnvironmentName](#environmentname)
 * [ContentRootPath](#contentrootpath)
 
-Web apps implement the `IWebHostEnvironment` interface, which inherits `IHostEnvironment` and adds:
-
-* [WebRootPath](#webroot)
+Web apps implement the `IWebHostEnvironment` interface, which inherits `IHostEnvironment` and adds the [WebRootPath](#webroot).
 
 ## Host configuration
 
