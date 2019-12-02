@@ -33,7 +33,7 @@ namespace WebSameSite
 
         private void CheckSameSite(HttpContext httpContext, CookieOptions options)
         {
-            if (options.SameSite == SameSiteMode.Unspecified)
+            if (options.SameSite == SameSiteMode.None)
             {
                 var userAgent = httpContext.Request.Headers["User-Agent"].ToString();
                 #region snippet2

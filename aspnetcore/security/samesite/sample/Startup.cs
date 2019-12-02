@@ -68,7 +68,7 @@ namespace WebSameSite
 
         private void CheckSameSite(HttpContext httpContext, CookieOptions options)
         {
-            if (options.SameSite == (SameSiteMode)(-1))
+            if (options.SameSite == SameSiteMode.None)
             {
                 var userAgent = httpContext.Request.Headers["User-Agent"].ToString();
                 if (MyUserAgentDetectionLib.DisallowsSameSiteNone(userAgent))
