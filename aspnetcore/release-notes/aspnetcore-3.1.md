@@ -6,7 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc: [Blazor, SignalR]
-uid: aspnetcore-3.0
+uid: aspnetcore-3.1
 ---
 # What's new in ASP.NET Core 3.1
 
