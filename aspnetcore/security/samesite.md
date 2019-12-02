@@ -42,7 +42,6 @@ All ASP.NET Core components that emit cookies override the preceding defaults wi
 | <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect*> | [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)| `None` |
 | [HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*) | <xref:Microsoft.AspNetCore.Http.CookieOptions> | `Unspecified` |
 
-
 ## APIs impacted by the change from the 2016 SameSite draft standard to the 2019 draft standard
 
 * [Http.SameSiteMode](xref:Microsoft.AspNetCore.Http.SameSiteMode)
@@ -66,7 +65,7 @@ ASP.NET Core 3.1 and later provides the following SameSite support:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core 3.0 and later aligns SameSite defaults with the new draft standard. The following APIs have changed the default from `SameSiteMode.Lax ` to `SameSiteMode.None`:
+ASP.NET Core 3.0 and later aligns SameSite defaults with the new draft standard. The following APIs have changed the default from `SameSiteMode.Lax ` to `-1`:
 
 * <xref:Microsoft.AspNetCore.Http.CookieOptions> used with [HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*)
 * <xref:Microsoft.AspNetCore.Http.CookieBuilder>  used as a factory for `CookieOptions`
