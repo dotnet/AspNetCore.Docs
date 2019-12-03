@@ -33,4 +33,4 @@ For more information, see [Integrate components into Razor Pages and MVC apps](x
 
 [HTTP.sys](xref:fundamentals/servers/httpsys) supports creating anonymous request queues. In ASP.NET Core 3.1, we’ve added to ability to create or attach to an existing named HTTP.sys request queue. Creating or attaching to an existing named HTTP.sys request queue enables scenarios where the HTTP.Sys controller process that owns the queue is independent to the listener process. This independence makes it possible to preserve existing connections and enqueued requests between listener process restarts:
 
-[!code-csharp[](sample\Program.cs?name=snippet)]
+[!code-csharp[](sample/Program.cs?name=snippet)]
