@@ -5,7 +5,7 @@ description: Learn how to setup Nginx as a reverse proxy on Ubuntu 16.04 to forw
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/05/2019
+ms.date: 12/02/2019
 uid: host-and-deploy/linux-nginx
 ---
 # Host ASP.NET Core on Linux with Nginx
@@ -30,10 +30,13 @@ This guide:
 
 1. Access to an Ubuntu 16.04 server with a standard user account with sudo privilege.
 1. Install the .NET Core runtime on the server.
-   1. Visit the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
-   1. Select the latest non-preview runtime from the list under **Runtime**.
-   1. Select and follow the instructions for Ubuntu that match the Ubuntu version of the server.
+   1. Visit the [Download .NET Core page](https://dotnet.microsoft.com/download/dotnet-core).
+   1. Select the latest non-preview .NET Core version.
+   1. Download the latest non-preview runtime in the table under **Run apps - Runtime**.
+   1. Select the Linux **Package manager instructions** link and follow the Ubuntu instructions for your version of Ubuntu.
 1. An existing ASP.NET Core app.
+
+At any point in the future after upgrading the shared framework, restart the ASP.NET Core apps hosted by the server.
 
 ## Publish and copy over the app
 
@@ -387,6 +390,10 @@ sudo nano /etc/nginx/nginx.conf
 ```
 
 Add the line `add_header X-Content-Type-Options "nosniff";` and save the file, then restart Nginx.
+
+## Additional Nginx suggestions
+
+After upgrading the shared framework on the server, restart the ASP.NET Core apps hosted by the server.
 
 ## Additional resources
 
