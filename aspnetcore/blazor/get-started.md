@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/25/2019
+ms.date: 12/03/2019
 no-loc: [Blazor]
 uid: blazor/get-started
 ---
@@ -19,19 +19,21 @@ Get started with Blazor:
 
 ::: moniker range=">= aspnetcore-3.1"
 
-1. Install the [.NET Core 3.1 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+1. Install the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
-1. Install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template by running the following command in a command shell. The [Microsoft.AspNetCore.Blazor.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.Templates/) package has a preview version while Blazor WebAssembly is in preview.
+1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template:
+   * Install the [.NET Core 3.1 or later (Preview) SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+   * Run the following command in a command shell. The [Microsoft.AspNetCore.Blazor.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.Templates/) package has a preview version while Blazor WebAssembly is in preview.
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview3.19555.2
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview4.19579.2
    ```
 
 1. Follow the guidance for your choice of tooling:
 
    # [Visual Studio](#tab/visual-studio)
 
-   1\. Install [Visual Studio 16.4 Preview 2 or later](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
+   1\. Install [Visual Studio 16.4 or later](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
    2\. Create a new project.
 
@@ -122,12 +124,14 @@ Get started with Blazor:
 
 ::: moniker range="< aspnetcore-3.1"
 
-1. Install the latest [.NET Core 3.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) release.
+1. Install the latest [.NET Core 3.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0).
 
-1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template by installing the [.NET Core 3.1 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1) and then running the following command in a command shell:
+1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template:
+   * Install the [.NET Core 3.1 or later (Preview) SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+   * Run the following command in a command shell. The [Microsoft.AspNetCore.Blazor.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.Templates/) package has a preview version while Blazor WebAssembly is in preview.
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview3.19555.2
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview4.19579.2
    ```
 
 1. Follow the guidance for your choice of tooling:
