@@ -233,6 +233,10 @@ With the preceding code, a request for a file with an unknown content type is re
 > [!WARNING]
 > Enabling [ServeUnknownFileTypes](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions.serveunknownfiletypes#Microsoft_AspNetCore_Builder_StaticFileOptions_ServeUnknownFileTypes) is a security risk. It's disabled by default, and its use is discouraged. [FileExtensionContentTypeProvider](#fileextensioncontenttypeprovider) provides a safer alternative to serving files with non-standard extensions.
 
+## Serve files from multiple locations
+
+`UseStaticFiles` and `UseFileServer` defaults to the file provider pointing at *wwwroot*. You can provide additional instances of `UseStaticFiles` and `UseFileServer` with other file providers to serve files from other locations. For more information, see [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/15578).
+
 ### Considerations
 
 > [!WARNING]
