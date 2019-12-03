@@ -5,7 +5,7 @@ description: Learn how to call a web API from a Blazor app using JSON helpers, i
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/27/2019
+ms.date: 12/03/2019
 no-loc: [Blazor]
 uid: blazor/call-web-api
 ---
@@ -36,10 +36,7 @@ To use a stable API, use the [Microsoft.AspNet.WebApi.Client](https://www.nuget.
 
 In a Blazor WebAssembly app, [HttpClient](xref:fundamentals/http-requests) is available as a preconfigured service for making requests back to the origin server.
 
-A Blazor Server app doesn't include an `HttpClient` configured as a service by default. Provide an `HttpClient` to the app using one of the following approaches:
-
-* Create the `HttpClient` in `Startup.ConfigureServices` (`services.AddScoped<HttpClient>()`).
-* Use the [HttpClient factory infrastructure](xref:fundamentals/http-requests).
+A Blazor Server app doesn't include an `HttpClient` service by default. Provide an `HttpClient` to the app using the [HttpClient factory infrastructure](xref:fundamentals/http-requests).
 
 `HttpClient` and JSON helpers are also used to call third-party web API endpoints. `HttpClient` is implemented using the browser [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same origin policy.
 
