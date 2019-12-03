@@ -9,6 +9,10 @@
       "moniker_ranges": [
         ">= aspnetcore-1.0"
       ],
+      "xref_query_tags": [
+        "/dotnet",
+        "/aspnet"
+      ],
       "open_to_public_contributors": true,
       "type_mapping": {
         "Conceptual": "Content",

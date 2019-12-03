@@ -29,7 +29,7 @@
             105, 118, 101, 114, 115, 101, 10, 10,
         };
 
-    private async void ConvertArray()
+    private async Task ConvertArray()
     {
         var text =
             await JSRuntime.InvokeAsync<string>("convertArray", QuoteArray);
