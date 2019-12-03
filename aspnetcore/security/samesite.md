@@ -49,14 +49,12 @@ ASP.NET Core 3.1 and later provides the following SameSite support:
 * Redefines the behavior of `SameSiteMode.None` to emit `SameSite=None`
 * Adds a new value `SameSiteMode.Unspecified` to omit the SameSite attribute.
 * All cookies APIs default to `Unspecified`. Some components that use cookies set values more specific to their scenarios. See the table above for examples.
-  * The `OpenIdConnect` correlation cookie.
-  * [OpenIdConnectOptions.NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core 3.0 and later aligns SameSite defaults with the new draft standard. The following APIs have changed the default from `SameSiteMode.Lax ` to `-1`:
+In ASP.NET Core 3.0 and later the SameSite defaults were changed to avoid conflicting with inconsistent client defaults. The following APIs have changed the default from `SameSiteMode.Lax ` to `-1` to avoid emitting a SameSite attribute for these cookies:
 
 * <xref:Microsoft.AspNetCore.Http.CookieOptions> used with [HttpContext.Response.Cookies.Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*)
 * <xref:Microsoft.AspNetCore.Http.CookieBuilder>  used as a factory for `CookieOptions`
