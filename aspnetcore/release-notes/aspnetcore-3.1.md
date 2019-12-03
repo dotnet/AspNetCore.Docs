@@ -54,11 +54,17 @@ For more information, see [Prevent default actions](xref:blazor/components#preve
 Use the `@on{EVENT}:stopPropagation` directive attribute to stop event propagation. In the following example, selecting the check box prevents click events from the child `<div>` from propagating to the parent `<div>`:
 
 ```razor
+<input @bind="_stopPropagation" type="checkbox" />
+
 <div @onclick="OnSelectParentDiv">
     <div @onclick="OnSelectChildDiv" @onclick:stopPropagation="_stopPropagation">
         ...
     </div>
 </div>
+
+@code {
+    private bool _stopPropagation = false;
+}
 ```
 
 For more information, see [Stop event propagation](xref:blazor/components#stop-event-propagation).
