@@ -1015,7 +1015,9 @@
     - name: Enable Cross-Origin Requests (CORS)
       uid: security/cors
     - name: Share cookies among apps
-      uid: security/cookie-sharing
+      uid: security/cookie-sharing      
+    - name: SameSite cookies
+      uid: security/samesite
     - name: IP safelist
       uid: security/ip-safelist
     - name: Application security - OWASP
