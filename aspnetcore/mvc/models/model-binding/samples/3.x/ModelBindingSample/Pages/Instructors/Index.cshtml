@@ -1,0 +1,28 @@
+@page
+@model Instructors.IndexModel
+
+@{
+    ViewData["Title"] = "Instructors";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-page="./Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Instructors[0].Id)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Instructors)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+            </tr>
+        }
+    </tbody>
+</table>
