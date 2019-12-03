@@ -16,7 +16,7 @@
 
     private void ShowMessage(MouseEventArgs e)
     {
-        messageText = "Blaze a new trail with Blazor!";
+        messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
     }
 }
 <!-- </snippet_ParentComponent> -->
@@ -46,7 +46,7 @@
 
     private void ShowMessage(MouseEventArgs e)
     {
-        messageText = "Blaze a new trail with Blazor!";
+        messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
     }
 }</code></pre>
 

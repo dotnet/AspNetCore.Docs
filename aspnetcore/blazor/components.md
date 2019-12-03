@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/23/2019
+ms.date: 11/27/2019
 no-loc: [Blazor]
 uid: blazor/components
 ---
@@ -64,6 +64,8 @@ To render a component from a page or view, use the `Component` Tag Helper:
 <component type="typeof(Counter)" render-mode="ServerPrerendered" 
     param-IncrementAmount="10" />
 ```
+
+Passing parameters (for example, `IncrementAmount` in the preceding example) is supported.
 
 `RenderMode` configures whether the component:
 
@@ -395,7 +397,11 @@ In the preceding code, the `<input>` element's field type (`type`) defaults to `
 
 The `@bind:format` attribute specifies the date format to apply to the `value` of the `<input>` element. The format is also used to parse the value when an `onchange` event occurs.
 
-Specifying a format for the `date` field type isn't recommended because Blazor has built-in support to format dates.
+Specifying a format for the `date` field type isn't recommended because Blazor has built-in support to format dates. In spite of the recommendation, only use the `yyyy-MM-dd` date format for binding to work correctly if a format is supplied with the `date` field type:
+
+```razor
+<input type="date" @bind="StartDate" @bind:format="yyyy-MM-dd">
+```
 
 **Component parameters**
 
