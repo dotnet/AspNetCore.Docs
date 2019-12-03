@@ -5,6 +5,7 @@ description: This sample demonstrates the integration of Microsoft account user 
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/03/2019
+monikerRange: '>= aspnetcore-3.0'
 uid: security/authentication/microsoft-logins
 ---
 # Microsoft Account external login setup with ASP.NET Core
