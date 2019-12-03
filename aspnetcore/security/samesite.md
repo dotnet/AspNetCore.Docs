@@ -1,13 +1,13 @@
 ---
-title: SameSite
+title: Work with SameSite cookies in ASP.NET Core
 author: rick-anderson
 description: Learn how to use to SameSite cookies in ASP.NET Core
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/11/2019
+ms.date: 12/03/2019
 uid: security/samesite
 ---
-# Working with SameSite cookies in ASP.NET Core
+# Work with SameSite cookies in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
