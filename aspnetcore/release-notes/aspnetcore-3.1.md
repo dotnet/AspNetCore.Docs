@@ -16,7 +16,15 @@ This article highlights the most significant changes in ASP.NET Core 3.1 with li
 
 Razor components are now generated as partial classes. Code for a Razor component can be written using a code-behind file defined as a partial class rather than defining all the code for the component in a single file. For more information, see [Partial class support](xref:blazor/components#partial-class-support).
 
-## Blazor Apps can pass parameters to top-level components
+## Blazor Component Tag Helper and pass parameters to top-level components
+
+In Blazor with ASP.NET Core 3.0, components were rendered into pages and views using an HTML Helper (`Html.RenderComponentAsync`). In ASP.NET Core 3.1, render a component from a page or view with the new Component Tag Helper:
+
+```razor
+<component type="typeof(Counter)" render-mode="ServerPrerendered" />
+```
+
+The HTML Helper remains supported in ASP.NET Core 3.1, but the Component Tag Helper is recommended.
 
 Blazor Server apps can now pass parameters to top-level components during the initial render. Previously you could only pass parameters to a top-level component with [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static). With this release, both [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) and [RenderModel.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered) are supported. Any specified parameter values are serialized as JSON and included in the initial response.
 
