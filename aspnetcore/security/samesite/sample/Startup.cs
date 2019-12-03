@@ -73,7 +73,7 @@ namespace WebSameSite
                 var userAgent = httpContext.Request.Headers["User-Agent"].ToString();
                 if (MyUserAgentDetectionLib.DisallowsSameSiteNone(userAgent))
                 {
-                    options.SameSite = SameSiteMode.Unspecified;
+                    options.SameSite = (SameSiteMode)(-1);
                 }
 
             }
