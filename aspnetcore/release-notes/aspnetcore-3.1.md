@@ -45,7 +45,7 @@ For more information, see [Integrate components into Razor Pages and MVC apps](x
 
 ## Breaking changes for SameSite cookies
 
-The behavior of SameSite cookies has changed to reflect upcoming browser changes. This may affect authentication scenarios like AzureAd, OpenIdConnect, or WsFederation. For more information, see <security/samesite>.
+The behavior of SameSite cookies has changed to reflect upcoming browser changes. This may affect authentication scenarios like AzureAd, OpenIdConnect, or WsFederation. For more information, see <xref:security/samesite>.
 
 ## Prevent default actions for events in Blazor apps
 
