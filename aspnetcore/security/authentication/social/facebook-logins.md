@@ -17,7 +17,7 @@ This tutorial with code examples shows how to enable your users to sign in with 
 
 ## Create the app in Facebook
 
-* Install [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook).
+* Add the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) NuGet package to the project.
 
 * Navigate to the [Facebook Developers app](https://developers.facebook.com/apps/) page and sign in. If you don't already have a Facebook account, use the **Sign up for Facebook** link on the login page to create one.  Once you have a Facebook account, follow the instructions to register as a Facebook Developer.
 
@@ -29,11 +29,11 @@ This tutorial with code examples shows how to enable your users to sign in with 
 
   ![Create a New App ID form](index/_static/FBNewAppId.png)
 
-* On your new App card, select **Add a Product**.  On the **Facebook Login** card, click **Set Up** 
+* On the new App card, select **Add a Product**.  On the **Facebook Login** card, click **Set Up** 
 
   ![Product Setup page](index/_static/FBProductSetup.png)
 
-* The **Quickstart** wizard will launch with **Choose a Platform** as the first page. Bypass the wizard for now by clicking the **FaceBook Login** **Settings** link in the menu on the lower left:
+* The **Quickstart** wizard launches with **Choose a Platform** as the first page. Bypass the wizard for now by clicking the **FaceBook Login** **Settings** link in the menu on the lower left:
 
   ![Skip Quick Start](index/_static/FBSkipQuickStart.png)
 
@@ -116,8 +116,6 @@ You are now logged in using your Facebook credentials:
 * If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error. Tap **Apply Migrations** to create the database and refresh to continue past the error.
 
 ## Next steps
-
-* Add the [Microsoft.AspNetCore.Authentication.Facebook](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Facebook) NuGet package to your project for advanced Facebook authentication scenarios. This package isn't required to integrate Facebook external login functionality with your app.
 
 * This article showed how you can authenticate with Facebook. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
 
