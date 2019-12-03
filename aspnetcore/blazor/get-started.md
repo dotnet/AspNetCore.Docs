@@ -33,7 +33,7 @@ Get started with Blazor:
 
    # [Visual Studio](#tab/visual-studio)
 
-   1\. Install [Visual Studio 16.4 Preview 6 or later](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
+   1\. Install [Visual Studio 16.4 or later](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
    2\. Create a new project.
 
