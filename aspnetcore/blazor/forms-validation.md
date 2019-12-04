@@ -202,7 +202,7 @@ In the following example:
         editContext = new EditContext(starship);
     }
 
-    private async void HandleSubmit()
+    private async Task HandleSubmit()
     {
         var isValid = editContext.Validate() && 
             await ServerValidate(editContext);
