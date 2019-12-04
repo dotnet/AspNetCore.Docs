@@ -555,6 +555,13 @@
     - name: Logging and diagnostics
       displayName: signalr
       uid: signalr/diagnostics
+    - name: Specifications
+      displayName: signalr, specs
+      items:
+        - name: Hub protocol
+          href: https://github.com/aspnet/AspNetCore/blob/master/src/SignalR/docs/specs/HubProtocol.md
+        - name: Transport protocols
+          href: https://github.com/aspnet/AspNetCore/blob/master/src/SignalR/docs/specs/TransportProtocols.md      
 - name: Remote Procedure Call apps
   items:
     - name: Introduction to gRPC services
