@@ -733,6 +733,10 @@ And in Razor Pages:
 
 Another option for disabling client validation is to comment out the reference to `_ValidationScriptsPartial` in your *.cshtml* file.
 
+## Unobtrusive validation
+
+For information on unobtrusive validation, see [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/1111).
+
 ## Additional resources
 
 * [System.ComponentModel.DataAnnotations namespace](xref:System.ComponentModel.DataAnnotations)
