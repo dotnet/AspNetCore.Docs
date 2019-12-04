@@ -22,7 +22,7 @@ namespace WebAppParts
         // Requires using System.Reflection;
         public void ConfigureServices(IServiceCollection services)
         {
-            var assembly = typeof(MySharedController).GetTypeInfo().Assembly;
+            var assembly = typeof(MySharedController).Assembly;
             services.AddControllersWithViews()
                 .AddApplicationPart(assembly);
         }
