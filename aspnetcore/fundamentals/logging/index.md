@@ -42,10 +42,10 @@ In a non-host console app, call the provider's `Add{provider name}` extension me
 
 The default ASP.NET Core project templates call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>, which adds the following logging providers:
 
-* Console
-* Debug
-* EventSource
-* EventLog (only when running on Windows)
+* [Console](#console-provider)
+* [Debug](#debug-provider)
+* [EventSource](#event-source-provider)
+* [EventLog](#windows-eventlog-provider) (only when running on Windows)
 
 You can replace the default providers with your own choices. Call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A>, and add the providers you want.
 
@@ -1045,7 +1045,11 @@ The [Microsoft.Extensions.Logging.EventLog](https://www.nuget.org/packages/Micro
 logging.AddEventLog();
 ```
 
-[AddEventLog overloads](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) let you pass in <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>.
+[AddEventLog overloads](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) let you pass in <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. If `null` or not specified, the following default settings are used:
+
+* `LogName` &ndash; "Application"
+* `SourceName` &ndash; ".NET Runtime"
+* `MachineName` &ndash; local machine
 
 ### TraceSource provider
 
