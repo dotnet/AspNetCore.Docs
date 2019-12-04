@@ -175,7 +175,7 @@ One approach is to create an IIS sub-application and only move certain routes fr
 </sites>
 ```
 
-And the directory structure:
+Directory structure:
 
 ```
 .
