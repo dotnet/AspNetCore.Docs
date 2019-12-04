@@ -12,11 +12,16 @@ uid: security/authentication/identity
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core Identity is a membership system that supports user interface (UI) login functionality. Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
+ASP.NET Core Identity:
+
+* Is a database API that supports user interface (UI) login functionality.
+* Manages users, passwords, profile data, roles, claims, tokens, email confirmation, and more.
+
+Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
 
 The [Identity source code](https://github.com/aspnet/AspNetCore/tree/master/src/Identity) is available on GitHub. [Scaffold Identity](xref:security/authentication/scaffold-identity) and view the generated files to review the template interaction with Identity.
 
-Identity can be configured using a SQL Server database to store user names, passwords, and profile data. Alternatively, another persistent store can be used, for example, Azure Table Storage.
+Identity is typically configured using a SQL Server database to store user names, passwords, and profile data. Alternatively, another persistent store can be used, for example, Azure Table Storage.
 
 In this topic, you learn how to use Identity to register, log in, and log out a user. For more detailed instructions about creating apps that use Identity, see the Next Steps section at the end of this article.
 
