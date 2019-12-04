@@ -24,7 +24,7 @@ If you don't have a Microsoft account, select **Create one**. After signing in, 
 * Select **New registration**
 * Enter a **Name**.
 * Select an option for **Supported account types**.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts -->
-* Under **Redirect URI**, enter your development URL with `/signin-microsoft` appended. For example, `https://localhost:44353/signin-microsoft`. The Microsoft authentication scheme configured later in this sample will automatically handle requests at `/signin-microsoft` route to implement the OAuth flow.
+* Under **Redirect URI**, enter your development URL with `/signin-microsoft` appended. For example, `https://localhost:5001/signin-microsoft`. The Microsoft authentication scheme configured later in this sample will automatically handle requests at `/signin-microsoft` route to implement the OAuth flow.
 * Select **Register**
 
 ### Create client secret
@@ -55,7 +55,7 @@ Link sensitive settings like Microsoft `ClientId` and `ClientSecret` to your app
 
 ## Configure Microsoft Account Authentication
 
-Add the Microsoft Account service to the `Startup.ConfigureServices` method in the *Startup.cs* file:
+Add the Microsoft Account service to the `Startup.ConfigureServices`:
 
 [!code-csharp[](~/security/authentication/social/social-code/3.x/StartupMS3x.cs?name=snippet&highlight=10-14)]
 
@@ -67,7 +67,7 @@ For more information about configuration options supported by Microsoft Account 
 
 ## Sign in with Microsoft Account
 
-Run the application and click **Log in**. An option to sign in with Microsoft appears. When you click on Microsoft, you are redirected to Microsoft for authentication. After signing in with your Microsoft Account, (if not already signed in) you will be prompted to let the app access your info:
+Run the app and click **Log in**. An option to sign in with Microsoft appears. When you click on Microsoft, you are redirected to Microsoft for authentication. After signing in with your Microsoft Account, you will be prompted to let the app access your info:
 
 Tap **Yes** and you will be redirected back to the web site where you can set your email.
 
