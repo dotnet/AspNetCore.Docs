@@ -5,7 +5,7 @@ description: Learn how to use the logging framework provided by the Microsoft.Ex
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/19/2019
+ms.date: 12/04/2019
 uid: fundamentals/logging/index
 ---
 # Logging in .NET Core and ASP.NET Core
@@ -42,10 +42,10 @@ In a non-host console app, call the provider's `Add{provider name}` extension me
 
 The default ASP.NET Core project templates call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>, which adds the following logging providers:
 
-* Console
-* Debug
-* EventSource
-* EventLog (only when running on Windows)
+* [Console](#console-provider)
+* [Debug](#debug-provider)
+* [EventSource](#event-source-provider)
+* [EventLog](#windows-eventlog-provider) (only when running on Windows)
 
 You can replace the default providers with your own choices. Call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A>, and add the providers you want.
 
@@ -123,7 +123,7 @@ In the following ASP.NET Core and console app examples, the logger is used to cr
 
 To write logs in the `Program` class of an ASP.NET Core app, get an `ILogger` instance from DI after building the host:
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=9,10)]
+[!code-csharp[](index/samples_snapshot/3.x/TodoApiSample/Program.cs?highlight=9,10)]
 
 Logging during host construction isn't directly supported. However, a separate logger can be used. In the following example, a [Serilog](https://serilog.net/) logger is used to log in `CreateHostBuilder`. `AddSerilog` uses the static configuration specified in `Log.Logger`:
 
@@ -1045,7 +1045,11 @@ The [Microsoft.Extensions.Logging.EventLog](https://www.nuget.org/packages/Micro
 logging.AddEventLog();
 ```
 
-[AddEventLog overloads](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) let you pass in <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>.
+[AddEventLog overloads](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) let you pass in <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. If `null` or not specified, the following default settings are used:
+
+* `LogName` &ndash; "Application"
+* `SourceName` &ndash; ".NET Runtime"
+* `MachineName` &ndash; local machine
 
 ### TraceSource provider
 
