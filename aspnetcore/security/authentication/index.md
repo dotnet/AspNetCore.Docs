@@ -4,7 +4,7 @@ author: mjrousos
 description: Learn about authentication in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/22/2019
+ms.date: 12/04/2019
 uid: security/authentication/index
 ---
 # Overview of ASP.NET Core authentication
@@ -51,7 +51,7 @@ An authentication scheme is a name which corresponds to:
 * An authentication handler.
 * Options for configuring that specific instance of the handler.
 
-Schemes are useful as a mechanism for referring to the authentication, challenge, and forbid behaviors of the associated handler. For example, an authorization policy can specify by name which authorization scheme (or schemes) should be used to authenticate the user. When configuring authentication, it's common to specify the default authentication scheme. The default scheme is used unless a resource requests a specific scheme. It's also possible to:
+Schemes are useful as a mechanism for referring to the authentication, challenge, and forbid behaviors of the associated handler. For example, an authorization policy can use scheme names to specify which authentication scheme (or schemes) should be used to authenticate the user. When configuring authentication, it's common to specify the default authentication scheme. The default scheme is used unless a resource requests a specific scheme. It's also possible to:
 
 * Specify different default schemes to use for authenticate, challenge, and forbid actions.
 * Combine multiple schemes into one using [policy schemes](xref:security/authentication/policyschemes).
