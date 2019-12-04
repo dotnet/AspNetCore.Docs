@@ -8,10 +8,6 @@ namespace WebApp1.Pages
     #region snippet
     public class IndexModel : PageModel
     {
-        public void OnGet()
-        {
-        }
-
         public async Task<IActionResult> OnPostLogoutAsync()
         {
             await HttpContext.SignOutAsync();
