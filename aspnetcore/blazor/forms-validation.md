@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/26/2019
+ms.date: 12/05/2019
 no-loc: [Blazor]
 uid: blazor/forms-validation
 ---
@@ -30,7 +30,7 @@ public class ExampleModel
 
 A form is defined using the `EditForm` component. The following form demonstrates typical elements, components, and Razor code:
 
-```csharp
+```razor
 <EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -104,7 +104,7 @@ In the preceding example, `Description` is optional because no data annotations 
 
 The following form validates user input using the validation defined in the `Starship` model:
 
-```cshtml
+```razor
 @page "/FormsValidation"
 
 <h1>Starfleet Starship Database</h1>
@@ -185,7 +185,7 @@ In the following example:
 * The form is further validated by passing the `EditContext` to the `ServerValidate` method that calls a web API endpoint on the server (*not shown*).
 * Additional code is run depending on the result of the client- and server-side validation by checking `isValid`.
 
-```cshtml
+```razor
 <EditForm EditContext="@editContext" OnSubmit="@HandleSubmit">
 
     ...
@@ -232,7 +232,7 @@ Use the `InputText` component to create a custom component that uses the `input`
 
 Create a component with the following markup, and use the component just as `InputText` is used:
 
-```cshtml
+```razor
 @inherits InputText
 
 <input 
@@ -247,7 +247,7 @@ Create a component with the following markup, and use the component just as `Inp
 
 Blazor doesn't provide a built-in scenario for handling radio button `<input>` elements. Radio button support is under consideration for a future Blazor release. The following workaround is recommended:
 
-```cshtml
+```razor
 @foreach (var choice in new[] { Choices.Red, Choices.Green, Choices.Blue })
 {
    <label>
@@ -283,19 +283,19 @@ Blazor performs two types of validation:
 
 The `ValidationSummary` component summarizes all validation messages, which is similar to the [Validation Summary Tag Helper](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper):
 
-```csthml
+```razor
 <ValidationSummary />
 ```
 
 Output validation messages for a specific model with the `Model` parameter:
   
-```csthml
+```razor
 <ValidationSummary Model="@starship" />
 ```
 
 The `ValidationMessage` component displays validation messages for a specific field, which is similar to the [Validation Message Tag Helper](xref:mvc/views/working-with-forms#the-validation-message-tag-helper). Specify the field for validation with the `For` attribute and a lambda expression naming the model property:
 
-```cshtml
+```razor
 <ValidationMessage For="@(() => starship.MaximumAccommodation)" />
 ```
 
@@ -338,7 +338,7 @@ Blazor provides support for validating form input using data annotations with th
 
 To validate the bound model's entire object graph, including collection- and complex-type properties, use the `ObjectGraphDataAnnotationsValidator` provided by the *experimental* [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) package:
 
-```cshtml
+```razor
 <EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
     <ObjectGraphDataAnnotationsValidator />
     ...
@@ -399,7 +399,7 @@ To enable and disable the submit button based on form validation:
 * Use the form's `EditContext` to assign the model when the component is initialized.
 * Validate the form in the context's `OnFieldChanged` callback to enable and disable the submit button.
 
-```cshtml
+```razor
 <EditForm EditContext="@editContext">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -437,7 +437,7 @@ A side effect of the preceding approach is that a `ValidationSummary` component 
 * Don't use a `ValidationSummary` component on the form.
 * Make the `ValidationSummary` component visible when the submit button is selected (for example, in a `HandleValidSubmit` method).
 
-```cshtml
+```razor
 <EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary style="@displaySummary" />
