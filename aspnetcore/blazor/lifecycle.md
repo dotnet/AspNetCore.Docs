@@ -5,7 +5,7 @@ description: Learn how to use Razor component lifecycle methods in ASP.NET Core 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/02/2019
+ms.date: 12/05/2019
 no-loc: [Blazor]
 uid: blazor/lifecycle
 ---
@@ -23,7 +23,7 @@ The Blazor framework includes synchronous and asynchronous lifecycle methods. Ov
 
 To perform an asynchronous operation, use `OnInitializedAsync` and the `await` keyword on the operation:
 
-```csharp
+```razor
 protected override async Task OnInitializedAsync()
 {
     await ...
@@ -35,7 +35,7 @@ protected override async Task OnInitializedAsync()
 
 For a synchronous operation, use `OnInitialized`:
 
-```csharp
+```razor
 protected override void OnInitialized()
 {
     ...
@@ -46,7 +46,7 @@ protected override void OnInitialized()
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*> sets parameters supplied by the component's parent in the render tree:
 
-```csharp
+```razor
 public override async Task SetParametersAsync(ParameterView parameters)
 {
     await ...
@@ -68,7 +68,7 @@ If `base.SetParametersAync` isn't invoked, the custom code can interpret the inc
 * After component initialization.
 * When a component has received changed parameters from its parent and the values are assigned to properties.
 
-```csharp
+```razor
 protected override async Task OnParametersSetAsync()
 {
     await ...
@@ -78,7 +78,7 @@ protected override async Task OnParametersSetAsync()
 > [!NOTE]
 > Asynchronous work when applying parameters and property values must occur during the `OnParametersSetAsync` lifecycle event.
 
-```csharp
+```razor
 protected override void OnParametersSet()
 {
     ...
@@ -94,7 +94,7 @@ The `firstRender` parameter for `OnAfterRenderAsync` and `OnAfterRender`:
 * Is set to `true` the first time that the component instance is rendered.
 * Can be used to ensure that initialization work is only performed once.
 
-```csharp
+```razor
 protected override async Task OnAfterRenderAsync(bool firstRender)
 {
     if (firstRender)
@@ -109,7 +109,7 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 >
 > Even if you return a <xref:System.Threading.Tasks.Task> from `OnAfterRenderAsync`, the framework doesn't schedule a further render cycle for your component once that task completes. This is to avoid an infinite render loop. It's different from the other lifecycle methods, which schedule a further render cycle once the returned task completes.
 
-```csharp
+```razor
 protected override void OnAfterRender(bool firstRender)
 {
     if (firstRender)
@@ -125,7 +125,7 @@ protected override void OnAfterRender(bool firstRender)
 
 Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender*> to suppress UI refreshing. If the implementation returns `true`, the UI is refreshed:
 
-```csharp
+```razor
 protected override bool ShouldRender()
 {
     var renderUI = true;
@@ -150,13 +150,13 @@ In the `FetchData` component of the Blazor templates, `OnInitializedAsync` is ov
 
 *Pages/FetchData.razor* in the Blazor Server template:
 
-[!code-cshtml[](lifecycle/samples_snapshot/3.x/FetchData.razor?highlight=9,21,25)]
+[!code-razor[](lifecycle/samples_snapshot/3.x/FetchData.razor?highlight=9,21,25)]
 
 ## Component disposal with IDisposable
 
 If a component implements <xref:System.IDisposable>, the [Dispose method](/dotnet/standard/garbage-collection/implementing-dispose) is called when the component is removed from the UI. The following component uses `@implements IDisposable` and the `Dispose` method:
 
-```csharp
+```razor
 @using System
 @implements IDisposable
 
