@@ -124,8 +124,6 @@ To enable runtime compilation for all environments and configuration modes:
 1. Update the project's `Startup.ConfigureServices` method to include a call to `AddRazorRuntimeCompilation`. For example:
 
     ```csharp
-    public IWebHostEnvironment Env { get; set; }
-    
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddRazorPages()
