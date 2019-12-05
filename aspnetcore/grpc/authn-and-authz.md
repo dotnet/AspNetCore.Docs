@@ -92,7 +92,7 @@ private static GrpcChannel CreateAuthenticatedChannel(string address)
     });
 
     // SslCredentials is used here because this channel is using TLS.
-    // Channels that aren't using TLS should use ChannelCredentials.Insecure instead.
+    // CallCredentials can't be used with ChannelCredentials.Insecure on non-TLS channels.
     var channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
     {
         Credentials = ChannelCredentials.Create(new SslCredentials(), credentials)
