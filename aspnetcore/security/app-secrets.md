@@ -13,7 +13,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://githu
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/app-secrets/samples) ([how to download](xref:index#how-to-download-a-sample))
 
-This document explains techniques for storing and retrieving sensitive data during the development of an ASP.NET Core app. Never store passwords or other sensitive data in source code. Production secrets shouldn't be used for development or test. You can store and protect Azure test and production secrets with the [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
+This document explains techniques for storing and retrieving sensitive data during the development of an ASP.NET Core app. Never store passwords or other sensitive data in source code. Production secrets shouldn't be used for development or test. Secrets should not be deployed with the app. Secrets should be made available in the production environment through controlled means like environment variables, Azure Key Vault, etc. You can store and protect Azure test and production secrets with the [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
 
 ## Environment variables
 
