@@ -6,6 +6,8 @@ using ModelBindingSample.Models;
 
 namespace ModelBindingSample.Pages.Instructors
 {
+    #region snippet_BindProperties
+    [BindProperties]
     public class EditModel : PageModel
     {
         private readonly InstructorContext _context;
@@ -15,11 +17,13 @@ namespace ModelBindingSample.Pages.Instructors
             _context = context;
         }
 
-        [BindProperty]
         public Instructor Instructor { get; set; }
+        #endregion
 
+        #region snippet_SupportsGet
         [BindProperty(SupportsGet = true)]
         public int? Id { get; set; }
+        #endregion
 
         public async Task<IActionResult> OnGetAsync()
         {

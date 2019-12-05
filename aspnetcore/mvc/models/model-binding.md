@@ -62,19 +62,19 @@ Model binding tries to find values for the following kinds of targets:
 
 Can be applied to a public property of a controller or `PageModel` class to cause model binding to target that property:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Edit.cshtml.cs?name=snippet_BindProperty&highlight=7-8)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_BindProperty&highlight=10-11)]
 
 ### [BindProperties] attribute
 
 Available in ASP.NET Core 2.1 and later.  Can be applied to a controller or `PageModel` class to tell model binding to target all public properties of the class:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_BindProperties&highlight=1-2)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Edit.cshtml.cs?name=snippet_BindProperties&highlight=1-2)]
 
 ### Model binding for HTTP GET requests
 
 By default, properties are not bound for HTTP GET requests. Typically, all you need for a GET request is a record ID parameter. The record ID is used to look up the item in the database. Therefore, there is no need to bind a property that holds an instance of the model. In scenarios where you do want properties bound to data from GET requests, set the `SupportsGet` property to `true`:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Index.cshtml.cs?name=snippet_SupportsGet)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Edit.cshtml.cs?name=snippet_SupportsGet)]
 
 ## Sources
 
@@ -175,9 +175,9 @@ In an API controller that has the `[ApiController]` attribute, invalid model sta
 
 In a Razor page, redisplay the page with an error message:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_ModelState&highlight=3-6)]
 
-Client-side validation catches most bad data that would otherwise be submitted to a Razor Pages form. This validation makes it hard to trigger the preceding highlighted code. The sample app includes a **Submit with Invalid Date** button that puts bad data in the **Hire Date** field and submits the form. This button shows how the code for redisplaying the page works when data conversion errors occur.
+Client-side validation catches most bad data that would otherwise be submitted to a Razor Pages form. This validation makes it hard to trigger the preceding highlighted code. The sample app includes a **Submit with Invalid Date** button that puts bad data in the **Date Hired** field and submits the form. This button shows how the code for redisplaying the page works when data conversion errors occur.
 
 When the page is redisplayed by the preceding code, the invalid input is not shown in the form field. This is because the model property has been set to null or a default value. The invalid input does appear in an error message. But if you want to redisplay the bad data in the form field, consider making the model property a string and doing the data conversion manually.
 
@@ -216,9 +216,9 @@ For example, suppose the complex type is the following `Instructor` class:
   ```csharp
   public class Instructor
   {
-      public int ID { get; set; }
-      public string LastName { get; set; }
+      public int Id { get; set; }
       public string FirstName { get; set; }
+      public string LastName { get; set; }
   }
   ```
 
@@ -230,7 +230,7 @@ If the model to be bound is a parameter named `instructorToUpdate`:
 public IActionResult OnPost(int? id, Instructor instructorToUpdate)
 ```
 
-Model binding starts by looking through the sources for the key `instructorToUpdate.ID`. If that isn't found, it looks for `ID` without a prefix.
+Model binding starts by looking through the sources for the key `instructorToUpdate.Id`. If that isn't found, it looks for `Id` without a prefix.
 
 ### Prefix = property name
 
@@ -241,7 +241,7 @@ If the model to be bound is a property named `Instructor` of the controller or `
 public Instructor Instructor { get; set; }
 ```
 
-Model binding starts by looking through the sources for the key `Instructor.ID`. If that isn't found, it looks for `ID` without a prefix.
+Model binding starts by looking through the sources for the key `Instructor.Id`. If that isn't found, it looks for `Id` without a prefix.
 
 ### Custom prefix
 
@@ -252,7 +252,7 @@ public IActionResult OnPost(
     int? id, [Bind(Prefix = "Instructor")] Instructor instructorToUpdate)
 ```
 
-Model binding starts by looking through the sources for the key `Instructor.ID`. If that isn't found, it looks for `ID` without a prefix.
+Model binding starts by looking through the sources for the key `Instructor.Id`. If that isn't found, it looks for `Id` without a prefix.
 
 ### Attributes for complex type targets
 
@@ -271,13 +271,13 @@ Several built-in attributes are available for controlling model binding of compl
 
 Can only be applied to model properties, not to method parameters. Causes model binding to add a model state error if binding cannot occur for a model's property. Here's an example:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/Instructor.cs?name=snippet_BindRequired)]
 
 ### [BindNever] attribute
 
 Can only be applied to model properties, not to method parameters. Prevents model binding from setting a model's property. Here's an example:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/Instructor.cs?name=snippet_BindNever)]
 
 ### [Bind] attribute
 
@@ -286,7 +286,7 @@ Can be applied to a class or a method parameter. Specifies which properties of a
 In the following example, only the specified properties of the `Instructor` model are bound when any handler or action method is called:
 
 ```csharp
-[Bind("LastName,FirstMidName,HireDate")]
+[Bind("FirstName,LastName,DateHired")]
 public class Instructor
 ```
 
@@ -294,7 +294,7 @@ In the following example, only the specified properties of the `Instructor` mode
 
 ```csharp
 [HttpPost]
-public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
+public IActionResult OnPost([Bind("FirstName,LastName,DateHired")] Instructor instructor)
 ```
 
 The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For defense against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Security note about overposting](xref:data/ef-mvc/crud#security-note-about-overposting).

@@ -6,6 +6,7 @@ using ModelBindingSample.Models;
 
 namespace ModelBindingSample.Pages.Instructors
 {
+    #region snippet_BindProperty
     public class CreateModel : PageModel
     {
         private readonly InstructorContext _context;
@@ -17,7 +18,9 @@ namespace ModelBindingSample.Pages.Instructors
 
         [BindProperty]
         public Instructor Instructor { get; set; }
+        #endregion
 
+        #region snippet_ModelState
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -30,5 +33,6 @@ namespace ModelBindingSample.Pages.Instructors
 
             return RedirectToPage("./Index");
         }
+        #endregion
     }
 }
