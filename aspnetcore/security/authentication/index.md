@@ -35,7 +35,7 @@ The `AddAuthentication` parameter `JwtBearerDefaults.AuthenticationScheme` is th
 
 If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/limitingidentitybyscheme) they depend on to authenticate the user. In the example above, the cookie authentication scheme could be used by specifying its name (`CookieAuthenticationDefaults.AuthenticationScheme` by default, though a different name could be provided when calling `AddCookie`).
 
-In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity),`AddAuthentication` is called internally.
+In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity), `AddAuthentication` is called internally.
 
 The Authentication middleware is added in `Startup.Configure` by calling the <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> extension method on the app's `IApplicationBuilder`. Calling `UseAuthentication` registers the middleware which uses the previously registered authentication schemes. Call `UseAuthentication` before any middleware that depends on users being authenticated. When using endpoint routing, the call to `UseAuthentication` must go:
 
@@ -74,14 +74,14 @@ Based on the authentication scheme's configuration and the incoming request cont
 
 ### Authenticate
 
-An authentication scheme's authenticate action is responsible for constructing the user's identity based on request context. It returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> indicating whether authentication was successful and, if so, the user's identity in an authentication ticket. See HttpContext.AuthenticateAsync. Authenticate examples include:
+An authentication scheme's authenticate action is responsible for constructing the user's identity based on request context. It returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> indicating whether authentication was successful and, if so, the user's identity in an authentication ticket. See `HttpContext.AuthenticateAsync`. Authenticate examples include:
 
 * A cookie authentication scheme constructing the user's identity from cookies.
 * A JWT bearer scheme deserializing and validating a JWT bearer token to construct the user's identity.
 
 ### Challenge
 
-An authentication challenge is invoked by Authorization when an unauthenticated user requests an endpoint that requires authentication. An authentication challenge is issued, for example, when an anonymous user requests a restricted resource or clicks on a login link. Authorization invokes a challenge using the specified authentication scheme(s), or the default if none is specified. See HttpContext.ChallengeAsync. Authentication challenge examples include:
+An authentication challenge is invoked by Authorization when an unauthenticated user requests an endpoint that requires authentication. An authentication challenge is issued, for example, when an anonymous user requests a restricted resource or clicks on a login link. Authorization invokes a challenge using the specified authentication scheme(s), or the default if none is specified. See `HttpContext.ChallengeAsync`. Authentication challenge examples include:
 
 * A cookie authentication scheme redirecting the user to a login page.
 * A JWT bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
@@ -90,7 +90,7 @@ A challenge action should let the user know what authentication mechanism to use
 
 ### Forbid
 
-An authentication scheme's forbid action is called by Authorization when an authenticated user attempts to access a resource they are not permitted to access. See HttpContext.ForbidAsync. Authentication forbid examples include:
+An authentication scheme's forbid action is called by Authorization when an authenticated user attempts to access a resource they are not permitted to access. See `HttpContext.ForbidAsync`. Authentication forbid examples include:
 * A cookie authentication scheme redirecting the user to a page indicating access was forbidden.
 * A JWT bearer scheme returning a 403 result.
 * A custom authentication scheme redirecting to a page where the user can request access to the resource.
