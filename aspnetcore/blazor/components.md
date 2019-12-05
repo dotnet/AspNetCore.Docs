@@ -164,7 +164,7 @@ The following `ParentComponent` can provide content for rendering the `ChildComp
 
 ## Attribute splatting and arbitrary parameters
 
-Components can capture and render additional attributes in addition to the component's declared parameters. Additional attributes can be captured in a dictionary and then *splatted* onto an element when the component is rendered using the [@attributes](xref:mvc/views/razor#attributes) Razor directive. This scenario is useful when defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.
+Components can capture and render additional attributes in addition to the component's declared parameters. Additional attributes can be captured in a dictionary and then *splatted* onto an element when the component is rendered using the [`@attributes`](xref:mvc/views/razor#attributes) Razor directive. This scenario is useful when defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.
 
 In the following example, the first `<input>` element (`id="useIndividualParams"`) uses individual component parameters, while the second `<input>` element (`id="useAttributesDict"`) uses attribute splatting:
 
@@ -280,7 +280,7 @@ The rendered `<div>` in the `Parent` component contains `extra="10"` when passed
 
 ## Data binding
 
-Data binding to both components and DOM elements is accomplished with the [@bind](xref:mvc/views/razor#bind) attribute. The following example binds a `CurrentValue` property to the text box's value:
+Data binding to both components and DOM elements is accomplished with the [`@bind`](xref:mvc/views/razor#bind) attribute. The following example binds a `CurrentValue` property to the text box's value:
 
 ```cshtml
 <input @bind="CurrentValue" />
@@ -308,7 +308,7 @@ Using `@bind` with the `CurrentValue` property (`<input @bind="CurrentValue" />`
 
 When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box and changes element focus, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is more complex because `@bind` handles cases where type conversions are performed. In principle, `@bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-In addition to handling `onchange` events with `@bind` syntax, a property or field can be bound using other events by specifying an [@bind-value](xref:mvc/views/razor#bind) attribute with an `event` parameter ([@bind-value:event](xref:mvc/views/razor#bind)). The following example binds the `CurrentValue` property for the `oninput` event:
+In addition to handling `onchange` events with `@bind` syntax, a property or field can be bound using other events by specifying an [`@bind-value`](xref:mvc/views/razor#bind) attribute with an `event` parameter ([`@bind-value:event`](xref:mvc/views/razor#bind)). The following example binds the `CurrentValue` property for the `oninput` event:
 
 ```cshtml
 <input @bind-value="CurrentValue" @bind-value:event="oninput" />
@@ -377,7 +377,7 @@ For information on how to set the user's culture, see the [Localization](#locali
 
 **Format strings**
 
-Data binding works with <xref:System.DateTime> format strings using [@bind:format](xref:mvc/views/razor#bind). Other format expressions, such as currency or number formats, aren't available at this time.
+Data binding works with <xref:System.DateTime> format strings using [`@bind:format`](xref:mvc/views/razor#bind). Other format expressions, such as currency or number formats, aren't available at this time.
 
 ```cshtml
 <input @bind="StartDate" @bind:format="yyyy-MM-dd" />
@@ -491,7 +491,7 @@ In general, a property can be bound to a corresponding event handler using `@bin
 
 ## Event handling
 
-Razor components provide event handling features. For an HTML element attribute named `on{EVENT}` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name is always formatted [@on{EVENT}](xref:mvc/views/razor#onevent).
+Razor components provide event handling features. For an HTML element attribute named `on{EVENT}` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name is always formatted [`@on{EVENT}`](xref:mvc/views/razor#onevent).
 
 The following code calls the `UpdateHeading` method when the button is selected in the UI:
 
@@ -644,7 +644,7 @@ Prefer the strongly typed `EventCallback<T>` over `EventCallback`. `EventCallbac
 
 ### Prevent default actions
 
-Use the [@on{EVENT}:preventDefault](xref:mvc/views/razor#oneventpreventdefault) directive attribute to prevent the default action for an event.
+Use the [`@on{EVENT}:preventDefault`](xref:mvc/views/razor#oneventpreventdefault) directive attribute to prevent the default action for an event.
 
 When a key is selected on an input device and the element focus is on a text box, a browser normally displays the key's character in the text box. In the following example, the default behavior is prevented by specifying the `@onkeypress:preventDefault` directive attribute. The counter increments, and the **+** key isn't captured into the `<input>` element's value:
 
@@ -676,7 +676,7 @@ An event handler isn't required to prevent the default action. The event handler
 
 ### Stop event propagation
 
-Use the [@on{EVENT}:stopPropagation](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation.
+Use the [`@on{EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation.
 
 In the following example, selecting the check box prevents click events from the second child `<div>` from propagating to the parent `<div>`:
 
@@ -834,7 +834,7 @@ Password:
 
 Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference:
 
-* Add an [@ref](xref:mvc/views/razor#ref) attribute to the child component.
+* Add an [`@ref`](xref:mvc/views/razor#ref) attribute to the child component.
 * Define a field with the same type as the child component.
 
 ```cshtml
@@ -1019,7 +1019,7 @@ Optional parameters aren't supported, so two `@page` directives are applied in t
 
 Razor components are generated as partial classes. Razor components are authored using either of the following approaches:
 
-* C# code is defined in an [@code](xref:mvc/views/razor#code) block with HTML markup and Razor code in a single file. Blazor templates define their Razor components using this approach.
+* C# code is defined in an [`@code`](xref:mvc/views/razor#code) block with HTML markup and Razor code in a single file. Blazor templates define their Razor components using this approach.
 * C# code is placed in a code-behind file defined as a partial class.
 
 The following example shows the default `Counter` component with an `@code` block in an app generated from a Blazor template. HTML markup, Razor code, and C# code are in the same file:
@@ -1118,13 +1118,13 @@ The base class should derive from `ComponentBase`.
 
 The namespace of a component authored with Razor is based on (in priority order):
 
-* [@namespace](xref:mvc/views/razor#namespace) designation in Razor file (*.razor*) markup (`@namespace BlazorSample.MyNamespace`).
+* [`@namespace`](xref:mvc/views/razor#namespace) designation in Razor file (*.razor*) markup (`@namespace BlazorSample.MyNamespace`).
 * The project's `RootNamespace` in the project file (`<RootNamespace>BlazorSample</RootNamespace>`).
 * The project name, taken from the project file's file name (*.csproj*), and the path from the project root to the component. For example, the framework resolves *{PROJECT ROOT}/Pages/Index.razor* (*BlazorSample.csproj*) to the namespace `BlazorSample.Pages`. Components follow C# name binding rules. For the `Index` component in this example, the components in scope are all of the components:
   * In the same folder, *Pages*.
   * The components in the project's root that don't explicitly specify a different namespace.
 
-Components defined in a different namespace are brought into scope using Razor's [@using](xref:mvc/views/razor#using) directive.
+Components defined in a different namespace are brought into scope using Razor's [`@using`](xref:mvc/views/razor#using) directive.
 
 If another component, `NavMenu.razor`, exists in the *BlazorSample/Shared/* folder, the component can be used in `Index.razor` with the following `@using` statement:
 
@@ -1136,7 +1136,7 @@ This is the Index page.
 <NavMenu></NavMenu>
 ```
 
-Components can also be referenced using their fully qualified names, which doesn't require the [@using](xref:mvc/views/razor#using) directive:
+Components can also be referenced using their fully qualified names, which doesn't require the [`@using`](xref:mvc/views/razor#using) directive:
 
 ```cshtml
 This is the Index page.
@@ -1265,7 +1265,7 @@ Alternatively, you can specify the `Context` attribute on the component element.
 
 ### Generic-typed components
 
-Templated components are often generically typed. For example, a generic `ListViewTemplate` component can be used to render `IEnumerable<T>` values. To define a generic component, use the [@typeparam](xref:mvc/views/razor#typeparam) directive to specify type parameters:
+Templated components are often generically typed. For example, a generic `ListViewTemplate` component can be used to render `IEnumerable<T>` values. To define a generic component, use the [`@typeparam`](xref:mvc/views/razor#typeparam) directive to specify type parameters:
 
 [!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
 

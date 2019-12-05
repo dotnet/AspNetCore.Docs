@@ -3,7 +3,7 @@ title: Custom Model Binding in ASP.NET Core
 author: ardalis
 description: Learn how model binding allows controller actions to work directly with model types in ASP.NET Core.
 ms.author: riande
-ms.date: 11/13/2018
+ms.date: 12/05/2019
 uid: mvc/advanced/custom-model-binding
 ---
 # Custom Model Binding in ASP.NET Core
@@ -142,4 +142,4 @@ Custom model binders:
 
 - Shouldn't attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](xref:mvc/controllers/filters) or logic within the action method itself should handle the failure.
 - Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
-- Typically shouldn't be used to convert a string into a custom type, a [`TypeConverter`](/dotnet/api/system.componentmodel.typeconverter) is usually a better option.
+- Typically shouldn't be used to convert a string into a custom type, a [TypeConverter](/dotnet/api/system.componentmodel.typeconverter) is usually a better option.
