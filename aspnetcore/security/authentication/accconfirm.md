@@ -234,7 +234,7 @@ dotnet run
 
 ## Test new user registration
 
-Run the app, select the **Register** link, and register a user. At this point, the only validation on the email is with the [[EmailAddress]](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After submitting the registration, you are logged into the app. Later in the tutorial, the code is updated so new users can't sign in until their email is validated.
+Run the app, select the **Register** link, and register a user. At this point, the only validation on the email is with the [`[EmailAddress]`](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After submitting the registration, you are logged into the app. Later in the tutorial, the code is updated so new users can't sign in until their email is validated.
 
 [!INCLUDE[](~/includes/view-identity-db.md)]
 

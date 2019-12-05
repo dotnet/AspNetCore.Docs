@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 3.1.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc: [Blazor, SignalR]
 uid: aspnetcore-3.1
 ---
@@ -39,7 +39,7 @@ For more information, see [Integrate components into Razor Pages and MVC apps](x
 
 ## Support for shared queues in HTTP.sys
 
-[HTTP.sys](xref:fundamentals/servers/httpsys) supports creating anonymous request queues. In ASP.NET Core 3.1, we’ve added to ability to create or attach to an existing named HTTP.sys request queue. Creating or attaching to an existing named HTTP.sys request queue enables scenarios where the HTTP.Sys controller process that owns the queue is independent of the listener process. This independence makes it possible to preserve existing connections and enqueued requests between listener process restarts:
+[HTTP.sys](xref:fundamentals/servers/httpsys) supports creating anonymous request queues. In ASP.NET Core 3.1, we've added to ability to create or attach to an existing named HTTP.sys request queue. Creating or attaching to an existing named HTTP.sys request queue enables scenarios where the HTTP.sys controller process that owns the queue is independent of the listener process. This independence makes it possible to preserve existing connections and enqueued requests between listener process restarts:
 
 [!code-csharp[](sample/Program.cs?name=snippet)]
 

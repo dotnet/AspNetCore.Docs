@@ -162,7 +162,7 @@ Options injection is demonstrated as Example &num;4 in the sample app.
 
 Inject <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into:
 
-* A Razor page or MVC view with the [@inject](xref:mvc/views/razor#inject) Razor directive.
+* A Razor page or MVC view with the [`@inject`](xref:mvc/views/razor#inject) Razor directive.
 * A page or view model.
 
 The following example from the sample app injects <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into a page model (*Pages/Index.cshtml.cs*):
@@ -586,7 +586,7 @@ Options injection is demonstrated as Example &num;4 in the sample app.
 
 Inject <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into:
 
-* A Razor page or MVC view with the [@inject](xref:mvc/views/razor#inject) Razor directive.
+* A Razor page or MVC view with the [`@inject`](xref:mvc/views/razor#inject) Razor directive.
 * A page or view model.
 
 The following example from the sample app injects <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into a page model (*Pages/Index.cshtml.cs*):

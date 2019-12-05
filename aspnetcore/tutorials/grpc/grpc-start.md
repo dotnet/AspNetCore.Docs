@@ -3,7 +3,7 @@ title: Create a .NET Core gRPC client and server in ASP.NET Core
 author: juntaoluo
 description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
 ms.author: johluo
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 uid: tutorials/grpc/grpc-start
 ---
 # Tutorial: Create a gRPC client and server in ASP.NET Core
@@ -46,7 +46,7 @@ In this tutorial, you:
 * Start Visual Studio and select **Create a new project**. Alternatively, from the Visual Studio **File** menu, select **New** > **Project**.
 * In the **Create a new project** dialog, select **gRPC Service** and select **Next**:
 
-  ![**Create a new project** dialog](~/tutorials/grpc/grpc-start/static/cnp.png)
+  ![Create a new project dialog](~/tutorials/grpc/grpc-start/static/cnp.png)
 
 * Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces will match when you copy and paste code.
 * Select **Create**.
