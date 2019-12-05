@@ -117,7 +117,27 @@ For guidance and examples of setting the app's compatibility version, see <xref:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Runtime compilation is enabled using the `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation` package. To enable runtime compilation:
+To enable runtime compilation for all environments and configuration modes:
+
+1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
+
+1. Update the project's `Startup.ConfigureServices` method to include a call to `AddRazorRuntimeCompilation`. For example:
+
+    ```csharp
+    public IWebHostEnvironment Env { get; set; }
+    
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddRazorPages()
+            .AddRazorRuntimeCompilation();
+
+        // code omitted for brevity
+    }
+    ```
+
+### Conditionally enable runtime compilation
+
+To conditionally enable runtime compilation based on the environment and configuration mode:
 
 1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package. For example, conditionally reference the package based on the active `Configuration` value:
 
@@ -142,6 +162,7 @@ Runtime compilation is enabled using the `Microsoft.AspNetCore.Mvc.Razor.Runtime
     #endif
 
         // code omitted for brevity
+    }
     ```
 
 ::: moniker-end
