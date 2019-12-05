@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace UserSecrets
 {
@@ -10,11 +11,25 @@ namespace UserSecrets
     public class Startup
     {
         private string _moviesApiKey = null;
-
-        public Startup(IConfiguration configuration)
+        
+        #region snippet_StartupConstructor
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", 
+                             optional: false, 
+                             reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            if (env.IsDevelopment())
+            {
+                builder.AddUserSecrets<Startup>();
+            }
+
+            Configuration = builder.Build();
         }
+        #endregion snippet_StartupConstructor
 
         public IConfiguration Configuration { get; }
 
