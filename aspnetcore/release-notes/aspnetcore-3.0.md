@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc: [Blazor, SignalR]
 uid: aspnetcore-3.0
 ---
@@ -133,7 +133,7 @@ SignalR 3.0 and later provides a custom resource to authorization handlers when 
 * Name of the hub method being invoked.
 * Arguments to the hub method.
 
-Consider the following example of a chat room app allowing multiple organization sign-in via Azure Active Directory. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization can ban users or view users’ chat histories. The app could restrict certain functionality from specific users.
+Consider the following example of a chat room app allowing multiple organization sign-in via Azure Active Directory. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization can ban users or view users' chat histories. The app could restrict certain functionality from specific users.
 
 ```csharp
 public class DomainRestrictedRequirement :
