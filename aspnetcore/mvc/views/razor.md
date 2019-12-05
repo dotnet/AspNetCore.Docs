@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 11/09/2019
+ms.date: 12/05/2019
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -455,7 +455,7 @@ The `@attribute` directive adds the given attribute to the class of the generate
 
 The `@code` block enables a [Razor component](xref:blazor/components) to add C# members (fields, properties, and methods) to a component:
 
-```cshtml
+```razor
 @code {
     // C# members (fields, properties, and methods)
 }

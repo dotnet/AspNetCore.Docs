@@ -5,7 +5,7 @@ description: Learn how to use Razor component lifecycle methods in ASP.NET Core 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/26/2019
+ms.date: 12/05/2019
 no-loc: [Blazor]
 uid: blazor/lifecycle
 ---
@@ -147,7 +147,7 @@ In the `FetchData` component of the Blazor templates, `OnInitializedAsync` is ov
 
 *Pages/FetchData.razor* in the Blazor Server template:
 
-[!code-cshtml[](lifecycle/samples_snapshot/3.x/FetchData.razor?highlight=9,21,25)]
+[!code-razor[](lifecycle/samples_snapshot/3.x/FetchData.razor?highlight=9,21,25)]
 
 ## Component disposal with IDisposable
 

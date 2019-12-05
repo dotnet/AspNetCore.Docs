@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc: [Blazor, SignalR]
 uid: security/blazor/index
 ---
@@ -126,7 +126,7 @@ You don't typically use `AuthenticationStateProvider` directly. Use the [Authori
 
 The `AuthenticationStateProvider` service can provide the current user's <xref:System.Security.Claims.ClaimsPrincipal> data, as shown in the following example:
 
-```cshtml
+```razor
 @page "/"
 @using Microsoft.AspNetCore.Components.Authorization
 @inject AuthenticationStateProvider AuthenticationStateProvider
@@ -198,7 +198,7 @@ Using the `CustomAuthStateProvider`, all users are authenticated with the userna
 
 If authentication state data is required for procedural logic, such as when performing an action triggered by the user, obtain the authentication state data by defining a cascading parameter of type `Task<AuthenticationState>`:
 
-```cshtml
+```razor
 @page "/"
 
 <button @onclick="@LogUsername">Log username</button>
@@ -229,9 +229,9 @@ If authentication state data is required for procedural logic, such as when perf
 
 If `user.Identity.IsAuthenticated` is `true`, claims can be enumerated and membership in roles evaluated.
 
-Set up the `Task<AuthenticationState>` cascading parameter using the `AuthorizeRouteView` and `CascadingAuthenticationState` components:
+Set up the `Task<AuthenticationState>` cascading parameter using the `AuthorizeRouteView` and `CascadingAuthenticationState` components in the *App.razor* file:
 
-```cshtml
+```razor
 <Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
         <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
@@ -265,7 +265,7 @@ The `AuthorizeView` component selectively displays UI depending on whether the u
 
 The component exposes a `context` variable of type `AuthenticationState`, which you can use to access information about the signed-in user:
 
-```cshtml
+```razor
 <AuthorizeView>
     <h1>Hello, @context.User.Identity.Name!</h1>
     <p>You can only see this content if you're authenticated.</p>
@@ -274,7 +274,7 @@ The component exposes a `context` variable of type `AuthenticationState`, which 
 
 You can also supply different content for display if the user isn't authenticated:
 
-```cshtml
+```razor
 <AuthorizeView>
     <Authorized>
         <h1>Hello, @context.User.Identity.Name!</h1>
@@ -302,7 +302,7 @@ The `AuthorizeView` component supports *role-based* or *policy-based* authorizat
 
 For role-based authorization, use the `Roles` parameter:
 
-```cshtml
+```razor
 <AuthorizeView Roles="admin, superuser">
     <p>You can only see this if you're an admin or superuser.</p>
 </AuthorizeView>
@@ -312,7 +312,7 @@ For more information, see <xref:security/authorization/roles>.
 
 For policy-based authorization, use the `Policy` parameter:
 
-```cshtml
+```razor
 <AuthorizeView Policy="content-editor">
     <p>You can only see this if you satisfy the "content-editor" policy.</p>
 </AuthorizeView>
@@ -330,7 +330,7 @@ Blazor allows for authentication state to be determined *asynchronously*. The pr
 
 While authentication is in progress, `AuthorizeView` displays no content by default. To display content while authentication occurs, use the `<Authorizing>` element:
 
-```cshtml
+```razor
 <AuthorizeView>
     <Authorized>
         <h1>Hello, @context.User.Identity.Name!</h1>
@@ -349,7 +349,7 @@ This approach isn't normally applicable to Blazor Server apps. Blazor Server app
 
 The `[Authorize]` attribute can be used in Razor components:
 
-```cshtml
+```razor
 @page "/"
 @attribute [Authorize]
 
@@ -364,7 +364,7 @@ You can only see this if you're signed in.
 
 The `[Authorize]` attribute also supports role-based or policy-based authorization. For role-based authorization, use the `Roles` parameter:
 
-```cshtml
+```razor
 @page "/"
 @attribute [Authorize(Roles = "admin, superuser")]
 
@@ -373,7 +373,7 @@ The `[Authorize]` attribute also supports role-based or policy-based authorizati
 
 For policy-based authorization, use the `Policy` parameter:
 
-```cshtml
+```razor
 @page "/"
 @attribute [Authorize(Policy = "content-editor")]
 
@@ -395,7 +395,7 @@ The `Router` component, in conjunction with the `AuthorizeRouteView` component, 
 
 In the default Blazor Server project template, the *App.razor* file demonstrates how to set custom content:
 
-```cshtml
+```razor
 <Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
         <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
@@ -437,7 +437,7 @@ If the app determines that the underlying authentication state data has changed 
 
 If the app is required to check authorization rules as part of procedural logic, use a cascaded parameter of type `Task<AuthenticationState>` to obtain the user's <xref:System.Security.Claims.ClaimsPrincipal>. `Task<AuthenticationState>` can be combined with other services, such as `IAuthorizationService`, to evaluate policies.
 
-```cshtml
+```razor
 @inject IAuthorizationService AuthorizationService
 
 <button @onclick="@DoSomething">Do something important</button>
@@ -473,7 +473,7 @@ If the app is required to check authorization rules as part of procedural logic,
 > [!NOTE]
 > In a Blazor WebAssembly app component, add the `Microsoft.AspNetCore.Authorization` and `Microsoft.AspNetCore.Components.Authorization` namespaces:
 >
-> ```cshtml
+> ```razor
 > @using Microsoft.AspNetCore.Authorization
 > @using Microsoft.AspNetCore.Components.Authorization
 > ```
@@ -494,7 +494,7 @@ Common errors:
 
 It's likely that the project wasn't created using a Blazor Server template with authentication enabled. Wrap a `<CascadingAuthenticationState>` around some part of the UI tree, for example in *App.razor* as follows:
 
-```cshtml
+```razor
 <CascadingAuthenticationState>
     <Router AppAssembly="typeof(Startup).Assembly">
         ...

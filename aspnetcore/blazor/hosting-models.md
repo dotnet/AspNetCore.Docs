@@ -5,7 +5,7 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/23/2019
+ms.date: 12/05/2019
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-models
 ---
@@ -142,7 +142,7 @@ When the client detects that the connection has been lost, a default UI is displ
 
 To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the *_Host.cshtml* Razor page:
 
-```html
+```cshtml
 <div id="components-reconnect-modal">
     ...
 </div>
@@ -315,7 +315,7 @@ The following Razor page renders a `Counter` component:
 
 ### Render noninteractive components from Razor pages and views
 
-In the following Razor page, the `MyComponent` component is statically rendered with an initial value that's specified using a form:
+In the following Razor page, the `Counter` component is statically rendered with an initial value that's specified using a form:
 
 ::: moniker range=">= aspnetcore-3.1"
 
@@ -348,7 +348,7 @@ In the following Razor page, the `MyComponent` component is statically rendered 
     <button type="submit">Set initial value</button>
 </form>
 
-@(await Html.RenderComponentAsync<MyComponent>(RenderMode.Static, 
+@(await Html.RenderComponentAsync<Counter>(RenderMode.Static, 
     new { InitialValue = InitialValue }))
 
 @code {

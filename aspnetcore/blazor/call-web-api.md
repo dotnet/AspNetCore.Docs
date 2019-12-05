@@ -5,7 +5,7 @@ description: Learn how to call a web API from a Blazor app using JSON helpers, i
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/03/2019
+ms.date: 12/05/2019
 no-loc: [Blazor]
 uid: blazor/call-web-api
 ---
@@ -42,7 +42,7 @@ A Blazor Server app doesn't include an `HttpClient` service by default. Provide 
 
 The client's base address is set to the originating server's address. Inject an `HttpClient` instance using the `@inject` directive:
 
-```cshtml
+```razor
 @using System.Net.Http
 @inject HttpClient Http
 ```
@@ -68,7 +68,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
 
   In the following code, the `_todoItems` are displayed by the component. The `GetTodoItems` method is triggered when the component is finished rendering ([OnInitializedAsync](xref:blazor/lifecycle#component-initialization-methods)). See the sample app for a complete example.
 
-  ```cshtml
+  ```razor
   @using System.Net.Http
   @inject HttpClient Http
 
@@ -84,7 +84,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
 
   In the following code, `_newItemName` is provided by a bound element of the component. The `AddItem` method is triggered by selecting a `<button>` element. See the sample app for a complete example.
 
-  ```cshtml
+  ```razor
   @using System.Net.Http
   @inject HttpClient Http
 
@@ -106,7 +106,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
 
   In the following code, `_editItem` values for `Name` and `IsCompleted` are provided by bound elements of the component. The item's `Id` is set when the item is selected in another part of the UI and `EditItem` is called. The `SaveItem` method is triggered by selecting the Save `<button>` element. See the sample app for a complete example.
 
-  ```cshtml
+  ```razor
   @using System.Net.Http
   @inject HttpClient Http
 
@@ -133,7 +133,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
 
 In the following code, the Delete `<button>` element calls the `DeleteItem` method. The bound `<input>` element supplies the `id` of the item to delete. See the sample app for a complete example.
 
-```cshtml
+```razor
 @using System.Net.Http
 @inject HttpClient Http
 
@@ -160,7 +160,7 @@ To allow other sites to make cross-origin resource sharing (CORS) requests to yo
 
 When running on WebAssembly in a Blazor WebAssembly app, use [HttpClient](xref:fundamentals/http-requests) and <xref:System.Net.Http.HttpRequestMessage> to customize requests. For example, you can specify the request URI, HTTP method, and any desired request headers.
 
-```cshtml
+```razor
 @using System.Net.Http
 @using System.Net.Http.Headers
 @inject HttpClient Http

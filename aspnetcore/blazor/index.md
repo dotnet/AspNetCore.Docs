@@ -5,7 +5,7 @@ description: Explore ASP.NET Core Blazor, a way to build interactive client-side
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: "mvc, seoapril2019"
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc: [Blazor, SignalR]
 uid: blazor/index
 ---
@@ -45,7 +45,7 @@ The component class is usually written in the form of a [Razor](xref:mvc/views/r
 
 The following Razor markup demonstrates a component (*Dialog.razor*), which can be nested within another component:
 
-```cshtml
+```razor
 <div>
     <h1>@Title</h1>
 
@@ -76,7 +76,7 @@ In the following example, the `Index` component uses the `Dialog` component. `Ch
 
 *Index.razor*:
 
-```cshtml
+```razor
 @page "/"
 
 <h1>Hello, world!</h1>
