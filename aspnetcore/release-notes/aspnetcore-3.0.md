@@ -311,8 +311,8 @@ To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format 
 
 The following list contains new Razor directives:
 
-* [@attribute](xref:mvc/views/razor#attribute) &ndash; The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@attribute [Authorize]`.
-* [@implements](xref:mvc/views/razor#implements) &ndash; The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
+* [`@attribute`](xref:mvc/views/razor#attribute) &ndash; The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@attribute [Authorize]`.
+* [`@implements`](xref:mvc/views/razor#implements) &ndash; The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
 
 ## IdentityServer4 supports authentication and authorization for web APIs and SPAs
 

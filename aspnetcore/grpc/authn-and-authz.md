@@ -153,7 +153,7 @@ Configuring the gRPC client to use authentication will depend on the authenticat
 
 ## Authorize users to access services and service methods
 
-By default, all methods in a service can be called by unauthenticated users. To require authentication, apply the [[Authorize]](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to the service:
+By default, all methods in a service can be called by unauthenticated users. To require authentication, apply the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to the service:
 
 ```csharp
 [Authorize]

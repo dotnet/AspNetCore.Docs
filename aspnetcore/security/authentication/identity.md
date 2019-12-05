@@ -171,7 +171,7 @@ Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
 
 ## Test Identity
 
-The default web project templates allow anonymous access to the home pages. To test Identity, add [[Authorize]](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute):
+The default web project templates allow anonymous access to the home pages. To test Identity, add [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute):
 
 [!code-csharp[](identity/sample/WebApp3/Pages/Privacy.cshtml.cs?highlight=7)]
 
@@ -368,7 +368,7 @@ Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
 
 ## Test Identity
 
-The default web project templates allow anonymous access to the home pages. To test Identity, add [[Authorize]](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) to the Privacy page.
+The default web project templates allow anonymous access to the home pages. To test Identity, add [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) to the Privacy page.
 
 [!code-csharp[](identity/sample/WebApp1/Pages/Privacy.cshtml.cs?highlight=7)]
 
