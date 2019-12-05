@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc: [Blazor, SignalR]
 uid: aspnetcore-3.0
 ---
@@ -174,7 +174,7 @@ In the preceding code, `DomainRestrictedRequirement` serves as a custom `IAuthor
 * Inspect the context in which the Hub is being called.
 * Make decisions on allowing the user to execute individual Hub methods.
 
-Individual Hub methods can be decorated with the name of the policy the code checks at run-time. As clients attempt to call individual Hub methods, the `DomainRestrictedRequirement` handler runs and controls access to the methods. Based on the way the `DomainRestrictedRequirement` controls access:
+Individual Hub methods can be marked with the name of the policy the code checks at run-time. As clients attempt to call individual Hub methods, the `DomainRestrictedRequirement` handler runs and controls access to the methods. Based on the way the `DomainRestrictedRequirement` controls access:
 
 * All logged-in users can call the `SendMessage` method.
 * Only users who have logged in with a `@jabbr.net` email address can view users’ histories.

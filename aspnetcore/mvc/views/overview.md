@@ -3,7 +3,7 @@ title: Views in ASP.NET Core MVC
 author: ardalis
 description: Learn how views handle the app's data presentation and user interaction in ASP.NET Core MVC.
 ms.author: riande
-ms.date: 04/03/2019
+ms.date: 12/05/2019
 uid: mvc/views/overview
 ---
 # Views in ASP.NET Core MVC
@@ -246,9 +246,9 @@ Work with the data in a view:
 
 **ViewData attribute**
 
-Another approach that uses the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) is [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Properties on controllers or Razor Page models decorated with `[ViewData]` have their values stored and loaded from the dictionary.
+Another approach that uses the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) is [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute). Properties on controllers or Razor Page models marked with the `[ViewData]` attribute have their values stored and loaded from the dictionary.
 
-In the following example, the Home controller contains a `Title` property decorated with `[ViewData]`. The `About` method sets the title for the About view:
+In the following example, the Home controller contains a `Title` property marked with `[ViewData]`. The `About` method sets the title for the About view:
 
 ```csharp
 public class HomeController : Controller

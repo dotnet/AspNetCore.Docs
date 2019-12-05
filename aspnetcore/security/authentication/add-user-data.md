@@ -3,7 +3,7 @@ title: Add, download, and delete user data to Identity in an ASP.NET Core projec
 author: rick-anderson
 description: Learn how to add custom user data to Identity in an ASP.NET Core project. Delete data per GDPR.
 ms.author: riande
-ms.date: 06/18/2019
+ms.date: 12/05/2019
 ms.custom: "mvc, seodec18"
 uid: security/authentication/add-user-data
 ---
@@ -14,7 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 This article shows how to:
 
 * Add custom user data to an ASP.NET Core web app.
-* Decorate the custom user data model with the <xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute> attribute so it's automatically available for download and deletion. Making the data able to be downloaded and deleted helps meet [GDPR](xref:security/gdpr) requirements.
+* Mark the custom user data model with the <xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute> attribute so it's automatically available for download and deletion. Making the data able to be downloaded and deleted helps meet [GDPR](xref:security/gdpr) requirements.
 
 The project sample is created from a Razor Pages web app, but the instructions are similar for a ASP.NET Core MVC web app.
 
@@ -139,7 +139,7 @@ Update the `IdentityUser` derived class with custom properties. If you named the
 
 ::: moniker-end
 
-Properties decorated with the [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute) attribute are:
+Properties with the [PersonalData](/dotnet/api/microsoft.aspnetcore.identity.personaldataattribute) attribute are:
 
 * Deleted when the *Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml* Razor Page calls `UserManager.Delete`.
 * Included in the downloaded data by the *Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml* Razor Page.

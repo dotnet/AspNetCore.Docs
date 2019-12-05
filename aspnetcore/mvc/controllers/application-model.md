@@ -3,7 +3,7 @@ title: Work with the application model in ASP.NET Core
 author: ardalis
 description: Learn how to read and manipulate the application model to modify how MVC elements behave in ASP.NET Core.
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 12/05/2019
 uid: mvc/controllers/application-model
 ---
 # Work with the application model in ASP.NET Core
@@ -190,7 +190,7 @@ The `UseWebApiParameterConventionsAttribute` is used to apply the `WebApiParamet
 
 The `UseWebApiRoutesAttribute` controls whether the `WebApiApplicationModelConvention` controller convention is applied. When enabled, this convention is used to add support for [areas](xref:mvc/controllers/areas) to the route.
 
-In addition to a set of conventions, the compatibility package includes a `System.Web.Http.ApiController` base class that replaces the one provided by Web API. This allows your controllers written for Web API and inheriting from its `ApiController` to work as they were designed, while running on ASP.NET Core MVC. This base controller class is decorated with all of the `UseWebApi*` attributes listed above. The `ApiController` exposes properties, methods, and result types that are compatible with those found in Web API.
+In addition to a set of conventions, the compatibility package includes a `System.Web.Http.ApiController` base class that replaces the one provided by Web API. This allows your controllers written for Web API and inheriting from its `ApiController` to work as they were designed, while running on ASP.NET Core MVC. All of the `UseWebApi*` attributes listed earlier are applied to the base controller class. The `ApiController` exposes properties, methods, and result types that are compatible with those found in Web API.
 
 ## Using ApiExplorer to Document Your App
 
