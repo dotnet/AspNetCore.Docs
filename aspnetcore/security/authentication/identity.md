@@ -3,7 +3,7 @@ title: Introduction to Identity on ASP.NET Core
 author: rick-anderson
 description: Use Identity with an ASP.NET Core app. Learn how to set password requirements (RequireDigit, RequiredLength, RequiredUniqueChars, and more).
 ms.author: riande
-ms.date: 12/7/2019
+ms.date: 12/05/2019
 uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
@@ -171,7 +171,7 @@ Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
 
 ## Test Identity
 
-The default web project templates allow anonymous access to the home pages. To test Identity, add [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute):
+The default web project templates allow anonymous access to the home pages. To test Identity, add [[Authorize]](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute):
 
 [!code-csharp[](identity/sample/WebApp3/Pages/Privacy.cshtml.cs?highlight=7)]
 
@@ -368,7 +368,7 @@ Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
 
 ## Test Identity
 
-The default web project templates allow anonymous access to the home pages. To test Identity, add [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) to the Privacy page.
+The default web project templates allow anonymous access to the home pages. To test Identity, add [[Authorize]](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) to the Privacy page.
 
 [!code-csharp[](identity/sample/WebApp1/Pages/Privacy.cshtml.cs?highlight=7)]
 

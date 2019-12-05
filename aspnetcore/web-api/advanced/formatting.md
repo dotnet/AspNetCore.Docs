@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to format response data in ASP.NET Core Web API.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 8/22/2019
+ms.date: 12/05/2019
 uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API
@@ -202,11 +202,11 @@ When using the preceding code, controller methods should return the appropriate 
 
 ### Specify a format
 
-To restrict the response formats, apply the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter. Like most [Filters](xref:mvc/controllers/filters), `[Produces]` can be applied at the action, controller, or global scope:
+To restrict the response formats, apply the [[Produces]](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter. Like most [Filters](xref:mvc/controllers/filters), `[Produces]` can be applied at the action, controller, or global scope:
 
 [!code-csharp[](./formatting/3.0sample/Controllers/WeatherForecastController.cs?name=snippet)]
 
-The preceding [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter:
+The preceding [[Produces]](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter:
 
 * Forces all actions within the controller to return JSON-formatted responses.
 * If other formatters are configured and the client specifies a different format, JSON is returned.
@@ -242,10 +242,11 @@ The mapping from request path should be specified in the route the API is using.
 
 [!code-csharp[](./formatting/sample/Controllers/ProductsController.cs?name=snippet)]
 
-The preceding route allows the requested format to be specified as an optional file extension. The [`[FormatFilter]`](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) attribute checks for the existence of the format value in the `RouteData` and maps the response format to the appropriate formatter when the response is created.
+The preceding route allows the requested format to be specified as an optional file extension. The [[FormatFilter]](xref:Microsoft.AspNetCore.Mvc.FormatFilterAttribute) attribute checks for the existence of the format value in the `RouteData` and maps the response format to the appropriate formatter when the response is created.
 
 |           Route        |             Formatter              |
 |------------------------|------------------------------------|
 |   `/api/products/5`    |    The default output formatter    |
 | `/api/products/5.json` | The JSON formatter (if configured) |
 | `/api/products/5.xml`  | The XML formatter (if configured)  |
+ 

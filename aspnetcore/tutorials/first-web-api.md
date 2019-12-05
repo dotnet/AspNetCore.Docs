@@ -390,7 +390,7 @@ This app uses an in-memory database. If the app is stopped and started, the prec
 
 ## Routing and URL paths
 
-The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
+The [[HttpGet]](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
 
 * Start with the template string in the controller's `Route` attribute:
 
@@ -710,7 +710,7 @@ The following HTTP response is produced by the call to `GetTodoItems`:
 
 ## Routing and URL paths
 
-The [`[HttpGet]`](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
+The [[HttpGet]](/dotnet/api/microsoft.aspnetcore.mvc.httpgetattribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
 
 * Start with the template string in the controller's `Route` attribute:
 
