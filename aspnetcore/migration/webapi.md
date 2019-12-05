@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to migrate a web API implementation from ASP.NET 4.x Web API to ASP.NET Core MVC.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/10/2018
+ms.date: 12/05/2019
 uid: migration/webapi
 ---
 # Migrate from ASP.NET Web API to ASP.NET Core
@@ -91,7 +91,7 @@ return product;
 
 Configure routing as follows:
 
-1. Decorate the `ProductsController` class with the following attributes:
+1. Mark the `ProductsController` class with the following attributes:
 
     ```csharp
     [Route("api/[controller]")]

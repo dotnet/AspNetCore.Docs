@@ -3,7 +3,7 @@ title: Create backend services for native mobile apps with ASP.NET Core
 author: ardalis
 description: Learn how to create backend services using ASP.NET Core MVC to support native mobile apps.
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 12/05/2019
 uid: mobile/native-mobile-backend
 ---
 # Create backend services for native mobile apps with ASP.NET Core
@@ -57,7 +57,7 @@ The application should respond to all requests made to port 5000. Update *Progra
 > [!NOTE]
 > Make sure you run the application directly, rather than behind IIS Express, which ignores non-local requests by default. Run [dotnet run](/dotnet/core/tools/dotnet-run) from a command prompt, or choose the application name profile from the Debug Target dropdown in the Visual Studio toolbar.
 
-Add a model class to represent To-Do items. Mark required fields using the `[Required]` attribute:
+Add a model class to represent To-Do items. Mark required fields with the `[Required]` attribute:
 
 [!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Models/ToDoItem.cs)]
 
@@ -102,7 +102,7 @@ You can test your new API method using a variety of tools, such as [Postman](htt
 
 ### Creating Items
 
-By convention, creating new data items is mapped to the HTTP POST verb. The `Create` method has an `[HttpPost]` attribute applied to it, and accepts a `ToDoItem` instance. Since the `item` argument will be passed in the body of the POST, this parameter is decorated with the `[FromBody]` attribute.
+By convention, creating new data items is mapped to the HTTP POST verb. The `Create` method has an `[HttpPost]` attribute applied to it and accepts a `ToDoItem` instance. Since the `item` argument is passed in the body of the POST, this parameter specifies the `[FromBody]` attribute.
 
 Inside the method, the item is checked for validity and prior existence in the data store, and if no issues occur, it's added using the repository. Checking `ModelState.IsValid` performs [model validation](../mvc/models/validation.md), and should be done in every API method that accepts user input.
 

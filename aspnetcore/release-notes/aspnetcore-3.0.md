@@ -174,7 +174,7 @@ In the preceding code, `DomainRestrictedRequirement` serves as a custom `IAuthor
 * Inspect the context in which the Hub is being called.
 * Make decisions on allowing the user to execute individual Hub methods.
 
-Individual Hub methods can be decorated with the name of the policy the code checks at run-time. As clients attempt to call individual Hub methods, the `DomainRestrictedRequirement` handler runs and controls access to the methods. Based on the way the `DomainRestrictedRequirement` controls access:
+Individual Hub methods can be marked with the name of the policy the code checks at run-time. As clients attempt to call individual Hub methods, the `DomainRestrictedRequirement` handler runs and controls access to the methods. Based on the way the `DomainRestrictedRequirement` controls access:
 
 * All logged-in users can call the `SendMessage` method.
 * Only users who have logged in with a `@jabbr.net` email address can view users’ histories.
