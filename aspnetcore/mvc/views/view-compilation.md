@@ -135,15 +135,21 @@ To enable runtime compilation for all environments and configuration modes:
 
 ### Conditionally enable runtime compilation
 
-To conditionally enable runtime compilation based on the environment and configuration mode:
+Runtime compilation can be enabled such that it's only available for local development. Conditionally enabling in this manner ensures that the published output:
 
-1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package. For example, conditionally reference the package based on the active `Configuration` value:
+* Uses compiled views.
+* Is smaller in size.
+* Doesn't enable file watchers in production.
+
+To enable runtime compilation based on the environment and configuration mode:
+
+1. Conditionally reference the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) package based on the active `Configuration` value:
 
     ```xml
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0" Condition="'$(Configuration)' == 'Debug'" />
     ```
 
-1. Update the project's `Startup.ConfigureServices` method to include a call to `AddRazorRuntimeCompilation`. For example, conditionally execute `AddRazorRuntimeCompilation` such that it only runs in Debug mode when the `ASPNETCORE_ENVIRONMENT` variable is set to `Development`:
+1. Update the project's `Startup.ConfigureServices` method to include a call to `AddRazorRuntimeCompilation`. Conditionally execute `AddRazorRuntimeCompilation` such that it only runs in Debug mode when the `ASPNETCORE_ENVIRONMENT` variable is set to `Development`:
 
     ```csharp
     public IWebHostEnvironment Env { get; set; }
