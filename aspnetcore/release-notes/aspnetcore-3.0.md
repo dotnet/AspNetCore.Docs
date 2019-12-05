@@ -133,7 +133,7 @@ SignalR 3.0 and later provides a custom resource to authorization handlers when 
 * Name of the hub method being invoked.
 * Arguments to the hub method.
 
-Consider the following example of a chat room app that allows multiple organization sign-in via Azure Active Directory. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization can ban users or view users' chat histories. The app could restrict certain functionality from specific users.
+Consider the following example of a chat room app allowing multiple organization sign-in via Azure Active Directory. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization can ban users or view users' chat histories. The app could restrict certain functionality from specific users.
 
 ```csharp
 public class DomainRestrictedRequirement :
