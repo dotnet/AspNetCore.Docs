@@ -75,7 +75,7 @@ namespace ClaimsSample.Areas.Identity.Pages.Account.Manage
 
             await _signInManager.SignOutAsync();
 
-            _logger.LogInformation("User with ID '{UserId}' deleted themselves.", userId);
+            _logger.LogInformation($"User with ID '{userId}' deleted themselves.");
 
             return Redirect("~/");
         }
