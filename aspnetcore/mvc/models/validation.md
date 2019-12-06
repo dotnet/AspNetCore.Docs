@@ -419,7 +419,7 @@ Built-in validation attributes include:
 * `[Url]`: Validates that the property has a URL format.
 * `[Remote]`: Validates input on the client by calling an action method on the server. See [`[Remote]` attribute](#remote-attribute) for details about this attribute's behavior.
 > [!NOTE]
-> When using the `RegularExpression` attribute expect behavior to match the [ECMAScript](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options?view=netcore-3.0#ecmascript-matching-behavior) options for matching because the processing is done by the view code.
+> When using the `RegularExpression` attribute uses the [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) options for matching. It uses ECMAScript matching because the processing is done by the view code.
 
 A complete list of validation attributes can be found in the [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations) namespace.
 
