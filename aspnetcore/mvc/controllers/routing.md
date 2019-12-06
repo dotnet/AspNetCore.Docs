@@ -3,7 +3,7 @@ title: Routing to controller actions in ASP.NET Core
 author: rick-anderson
 description: Learn how ASP.NET Core MVC uses Routing Middleware to match URLs of incoming requests and map them to actions.
 ms.author: riande
-ms.date: 01/24/2019
+ms.date: 12/05/2019
 uid: mvc/controllers/routing
 ---
 # Routing to controller actions in ASP.NET Core
@@ -330,7 +330,7 @@ public class ProductsApiController : Controller
 }
 ```
 
-In this example the URL path `/products` can match `ProductsApi.ListProducts`, and the URL path `/products/5` can match `ProductsApi.GetProduct(int)`. Both of these actions only match HTTP `GET` because they're decorated with the `HttpGetAttribute`.
+In this example the URL path `/products` can match `ProductsApi.ListProducts`, and the URL path `/products/5` can match `ProductsApi.GetProduct(int)`. Both of these actions only match HTTP `GET` because they're marked with the `HttpGetAttribute`.
 
 Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller. This example matches a set of URL paths similar to the *default route*.
 

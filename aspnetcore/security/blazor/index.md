@@ -390,7 +390,7 @@ If neither `Roles` nor `Policy` is specified, `[Authorize]` uses the default pol
 The `Router` component, in conjunction with the `AuthorizeRouteView` component, allows the app to specify custom content if:
 
 * Content isn't found.
-* The user fails an `[Authorize]` condition applied to the component. The `[Authorize]` attribute is covered in the [[Authorize] attribute](#authorize-attribute) section.
+* The user fails an `[Authorize]` condition applied to the component. The `[Authorize]` attribute is covered in the [`[Authorize]` attribute](#authorize-attribute) section.
 * Asynchronous authentication is in progress.
 
 In the default Blazor Server project template, the *App.razor* file demonstrates how to set custom content:
