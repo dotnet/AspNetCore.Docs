@@ -20,7 +20,10 @@ namespace ModelBindingSample.Pages.Instructors
 
         public async Task OnGetAsync()
         {
-            Instructors = await _context.Instructors.ToListAsync();
+            Instructors = await _context.Instructors
+                .Include(i => i.InstructorCourses)
+                .ThenInclude(ic => ic.Course)
+                .ToListAsync();
         }
     }
 }

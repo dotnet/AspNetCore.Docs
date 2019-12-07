@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -21,9 +22,13 @@ namespace ModelBindingSample.Models
 
         [DataType(DataType.Date)]
         [Display(Name = "Date Hired")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         #region snippet_BindRequired
         [BindRequired]
         public DateTime DateHired { get; set; }
         #endregion
+
+        [BindNever]
+        public List<InstructorCourse> InstructorCourses { get; set; } = new List<InstructorCourse>();
     }
 }

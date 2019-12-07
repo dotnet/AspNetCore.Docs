@@ -12,5 +12,13 @@ namespace ModelBindingSample.Data
         }
 
         public DbSet<Instructor> Instructors { get; set; }
+
+        public DbSet<Course> Courses { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<InstructorCourse>()
+                .HasKey(ic => new { ic.InstructorId, ic.CourseId });
+        }
     }
 }

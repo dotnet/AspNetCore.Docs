@@ -17,6 +17,7 @@
             <th>@Html.DisplayNameFor(model => model.Instructors[0].FirstName)</th>
             <th>@Html.DisplayNameFor(model => model.Instructors[0].LastName)</th>
             <th>@Html.DisplayNameFor(model => model.Instructors[0].DateHired)</th>
+            <th>@Html.DisplayNameFor(model => model.Instructors[0].InstructorCourses[0].Course)</th>
             <th></th>
         </tr>
     </thead>
@@ -27,6 +28,14 @@
                 <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
                 <td>@Html.DisplayFor(modelItem => item.LastName)</td>
                 <td>@Html.DisplayFor(modelItem => item.DateHired)</td>
+                <td>
+                    <ul class="list-unstyled">
+                        @foreach (var course in item.InstructorCourses.Select(ic => ic.Course))
+                        {
+                            <li>@course.Id: @course.Title</li>
+                        }
+                    </ul>
+                </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
                 </td>

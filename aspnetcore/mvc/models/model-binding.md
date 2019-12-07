@@ -175,7 +175,7 @@ In an API controller that has the `[ApiController]` attribute, invalid model sta
 
 In a Razor page, redisplay the page with an error message:
 
-[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_ModelState&highlight=3-6)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_ModelState)]
 
 Client-side validation catches most bad data that would otherwise be submitted to a Razor Pages form. This validation makes it hard to trigger the preceding highlighted code. The sample app includes a **Submit with Invalid Date** button that puts bad data in the **Date Hired** field and submits the form. This button shows how the code for redisplaying the page works when data conversion errors occur.
 

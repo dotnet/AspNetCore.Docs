@@ -31,6 +31,46 @@
             </div>
 
             <div class="form-group">
+                @for (var i = 0; i < Model.Courses.Count; i++)
+                {
+                    var course = Model.Courses[i];
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            @{
+                                var inputFormat = 1;
+
+                                // 1: selectedCourses=1000&selectedCourses=1001
+                                // 2: selectedCourses[0]=1000&selectedCourses[1]=10001
+                                // 3: selectedCourses[]=1000&selectedCourses[]=10001
+
+                                string inputName;
+
+                                switch (inputFormat)
+                                {
+                                    default:
+                                    case 1:
+                                        inputName = "selectedCourses";
+                                        break;
+
+                                    case 2:
+                                        inputName = $"selectedCourses[{i}]";
+                                        break;
+
+                                    case 3:
+                                        inputName = "selectedCourses[]";
+                                        break;
+                                }
+
+                                <input type="checkbox" name="@inputName" value="@course.Id" checked="@Model.SelectedCourses.Contains(course.Id)" class="form-check-input" />
+                            }
+                            @course.Id: @course.Title
+                        </label>
+                    </div>
+                }
+            </div>
+
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
                 <input type="submit" value="Submit with Invalid Date" class="btn btn-danger" />
             </div>
@@ -39,7 +79,7 @@
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="./Index">Back to List</a>
 </div>
 
 @section Scripts {
