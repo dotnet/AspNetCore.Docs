@@ -153,34 +153,6 @@ Application feature providers examine application parts and provide features for
 
 Feature providers inherit from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider`1>, where `T` is the type of the feature. Feature providers can be implemented for any of the previously listed feature types. The order of feature providers in the `ApplicationPartManager.FeatureProviders` can impact run time behavior. Later added providers can react to actions taken by earlier added providers.
 
-### Generic controller feature
-
-ASP.NET Core ignores [generic controllers](/dotnet/csharp/programming-guide/generics/generic-classes). A generic controller has a type parameter (for example, `MyController<T>`). The following sample adds generic controller instances for a specified list of types:
-
-[!code-csharp[](./app-parts/sample2/AppPartsSample/GenericControllerFeatureProvider.cs?name=snippet)]
-
-The types are defined in `EntityTypes.Types`:
-
-[!code-csharp[](./app-parts/sample2/AppPartsSample/Models/EntityTypes.cs?name=snippet)]
-
-The feature provider is added in `Startup`:
-
-[!code-csharp[](./app-parts/sample2/AppPartsSample/Startup.cs?name=snippet)]
-
-Generic controller names used for routing are of the form *GenericController`1[Widget]* rather than *Widget*. The following attribute modifies the name to correspond to the generic type used by the controller:
-
-[!code-csharp[](./app-parts/3.0sample2/AppPartsSample/GenericControllerNameConvention.cs)]
-
-The `GenericController` class:
-
-[!code-csharp[](./app-parts/sample2/AppPartsSample/GenericController.cs)]
-
-For example, requesting a URL of `https://localhost:5001/Sprocket` results in the following response:
-
-```text
-Hello from a generic Sprocket controller.
-```
-
 ### Display available features
 
 The features available to an app can be enumerated by requesting an `ApplicationPartManager` through [dependency injection](../../fundamentals/dependency-injection.md):

@@ -32,7 +32,7 @@ namespace WebAppParts
                     {
                         p.ApplicationParts.Remove(dependentLibrary);
                     }
-                })
+                });
         }
         #endregion
 
