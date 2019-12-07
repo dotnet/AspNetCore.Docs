@@ -419,7 +419,7 @@ Built-in validation attributes include:
 * `[Url]`: Validates that the property has a URL format.
 * `[Remote]`: Validates input on the client by calling an action method on the server. See [`[Remote]` attribute](#remote-attribute) for details about this attribute's behavior.
 
-The `RegularExpression` attribute uses [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) options for matching on client side validation. For more informaion, see [this GitHub issue](https://github.com/dotnet/corefx/issues/42487)
+The `RegularExpression` attribute uses [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) options for matching on client side validation. For more informaion, see [this GitHub issue](https://github.com/dotnet/corefx/issues/42487).
 
 A complete list of validation attributes can be found in the [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations) namespace.
 
