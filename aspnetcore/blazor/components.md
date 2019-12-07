@@ -121,7 +121,9 @@ Attribute binding is case sensitive. For example, `@bind` is valid, and `@Bind` 
 
 The following markup in *Index.razor* renders a `HeadingComponent` instance:
 
-[!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Pages/Index.razor?name=snippet_HeadingComponent)]
+```razor
+<HeadingComponent />
+```
 
 *Components/HeadingComponent.razor*:
 
@@ -137,11 +139,23 @@ Components can have *component parameters*, which are defined using public prope
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=11-12)]
 
-In the following example, the `ParentComponent` sets the value of the `Title` property of the `ChildComponent`.
+In the following example from the sample app, the `ParentComponent` sets the value of the `Title` property of the `ChildComponent`.
 
 *Pages/ParentComponent.razor*:
 
-[!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=5-6)]
+```razor
+@page "/ParentComponent"
+
+<h1>Parent-child example</h1>
+
+<ChildComponent Title="Panel Title from Parent"
+                OnClick="@ShowMessage">
+    Content of the child component is supplied
+    by the parent component.
+</ChildComponent>
+
+...
+```
 
 ## Child content
 
@@ -156,11 +170,23 @@ In the following example, the `ChildComponent` has a `ChildContent` property tha
 > [!NOTE]
 > The property receiving the `RenderFragment` content must be named `ChildContent` by convention.
 
-The following `ParentComponent` can provide content for rendering the `ChildComponent` by placing the content inside the `<ChildComponent>` tags.
+The `ParentComponent` in the sample app can provide content for rendering the `ChildComponent` by placing the content inside the `<ChildComponent>` tags.
 
 *Pages/ParentComponent.razor*:
 
-[!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=7-8)]
+```razor
+@page "/ParentComponent"
+
+<h1>Parent-child example</h1>
+
+<ChildComponent Title="Panel Title from Parent"
+                OnClick="@ShowMessage">
+    Content of the child component is supplied
+    by the parent component.
+</ChildComponent>
+
+...
+```
 
 ## Attribute splatting and arbitrary parameters
 
@@ -602,13 +628,36 @@ It's often convenient to close over additional values, such as when iterating ov
 
 A common scenario with nested components is the desire to run a parent component's method when a child component event occurs&mdash;for example, when an `onclick` event occurs in the child. To expose events across components, use an `EventCallback`. A parent component can assign a callback method to a child component's `EventCallback`.
 
-The `ChildComponent` in the sample app demonstrates how a button's `onclick` handler is set up to receive an `EventCallback` delegate from the sample's `ParentComponent`. The `EventCallback` is typed with `MouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device:
+The `ChildComponent` in the sample app (*Components/ChildComponent.razor*) demonstrates how a button's `onclick` handler is set up to receive an `EventCallback` delegate from the sample's `ParentComponent`. The `EventCallback` is typed with `MouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device:
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=5-7,17-18)]
 
-The `ParentComponent` sets the child's `EventCallback<T>` to its `ShowMessage` method:
+The `ParentComponent` sets the child's `EventCallback<T>` to its `ShowMessage` method.
 
-[!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Pages/ParentComponent.razor?name=snippet_ParentComponent&highlight=6,16-19)]
+*Pages/ParentComponent.razor*:
+
+```razor
+@page "/ParentComponent"
+
+<h1>Parent-child example</h1>
+
+<ChildComponent Title="Panel Title from Parent"
+                OnClick="@ShowMessage">
+    Content of the child component is supplied
+    by the parent component.
+</ChildComponent>
+
+<p><b>@messageText</b></p>
+
+@code {
+    private string messageText;
+
+    private void ShowMessage(MouseEventArgs e)
+    {
+        messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
+    }
+}
+```
 
 When the button is selected in the `ChildComponent`:
 
@@ -997,17 +1046,39 @@ Routing in Blazor is achieved by providing a route template to each accessible c
 
 When a Razor file with an `@page` directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router looks for component classes with a `RouteAttribute` and renders whichever component has a route template that matches the requested URL.
 
-Multiple route templates can be applied to a component. The following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`:
+Multiple route templates can be applied to a component. The following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`.
 
-[!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
+*Pages/BlazorRoute.razor*:
+
+```razor
+@page "/BlazorRoute"
+@page "/DifferentBlazorRoute"
+
+<h1>Blazor routing</h1>
+```
 
 ## Route parameters
 
 Components can receive route parameters from the route template provided in the `@page` directive. The router uses route parameters to populate the corresponding component parameters.
 
-*Route Parameter component*:
+*Pages/RouteParameter.razor*:
 
-[!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Pages/RouteParameter.razor?name=snippet_RouteParameter)]
+```razor
+@page "/RouteParameter"
+@page "/RouteParameter/{text}"
+
+<h1>Blazor is @Text!</h1>
+
+@code {
+    [Parameter]
+    public string Text { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Text = Text ?? "fantastic";
+    }
+}
+```
 
 Optional parameters aren't supported, so two `@page` directives are applied in the example above. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
 
@@ -1419,7 +1490,29 @@ The sample app has an `ITab` interface that tabs implement:
 
 The `CascadingValuesParametersTabSet` component uses the `TabSet` component, which contains several `Tab` components:
 
-[!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Pages/CascadingValuesParametersTabSet.razor?name=snippet_TabSet)]
+```razor
+<TabSet>
+    <Tab Title="First tab">
+        <h4>Greetings from the first tab!</h4>
+
+        <label>
+            <input type="checkbox" @bind="showThirdTab" />
+            Toggle third tab
+        </label>
+    </Tab>
+    <Tab Title="Second tab">
+        <h4>The second tab says Hello World!</h4>
+    </Tab>
+
+    @if (showThirdTab)
+    {
+        <Tab Title="Third tab">
+            <h4>Welcome to the disappearing third tab!</h4>
+            <p>Toggle this tab from the first tab.</p>
+        </Tab>
+    }
+</TabSet>
+```
 
 The child `Tab` components aren't explicitly passed as parameters to the `TabSet`. Instead, the child `Tab` components are part of the child content of the `TabSet`. However, the `TabSet` still needs to know about each `Tab` component so that it can render the headers and the active tab. To enable this coordination without requiring additional code, the `TabSet` component *can provide itself as a cascading value* that is then picked up by the descendent `Tab` components.
 

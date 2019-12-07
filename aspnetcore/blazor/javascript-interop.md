@@ -110,7 +110,35 @@ The sample app includes a component to demonstrate JS interop. The component:
 
 *Pages/JSInterop.razor*:
 
-[!code-razor[](./common/samples/3.x/BlazorWebAssemblySample/Pages/JsInterop.razor?name=snippet_JSInterop1&highlight=3,19-21,23-25)]
+```razor
+@page "/JSInterop"
+@using BlazorSample.JsInteropClasses
+@inject IJSRuntime JSRuntime
+
+<h1>JavaScript Interop</h1>
+
+<h2>Invoke JavaScript functions from .NET methods</h2>
+
+<button type="button" class="btn btn-primary" @onclick="TriggerJsPrompt">
+    Trigger JavaScript Prompt
+</button>
+
+<h3 id="welcome" style="color:green;font-style:italic"></h3>
+
+@code {
+    public async Task TriggerJsPrompt()
+    {
+        // showPrompt is implemented in wwwroot/exampleJsInterop.js
+        var name = await JSRuntime.InvokeAsync<string>(
+                "exampleJsFunctions.showPrompt",
+                "What's your name?");
+        // displayWelcome is implemented in wwwroot/exampleJsInterop.js
+        await JSRuntime.InvokeVoidAsync(
+                "exampleJsFunctions.displayWelcome",
+                $"Hello {name}! Welcome to Blazor!");
+    }
+}
+```
 
 1. When `TriggerJsPrompt` is executed by selecting the component's **Trigger JavaScript Prompt** button, the JavaScript `showPrompt` function provided in the *wwwroot/exampleJsInterop.js* file is called.
 1. The `showPrompt` function accepts user input (the user's name), which is HTML-encoded and returned to the component. The component stores the user's name in a local variable, `name`.
@@ -219,7 +247,20 @@ The sample app includes a C# method to return an array of `int`s. The `JSInvokab
 
 *Pages/JsInterop.razor*:
 
-[!code-razor[](./common/samples/3.x/BlazorWebAssemblySample/Pages/JsInterop.razor?name=snippet_JSInterop2&highlight=7-11)]
+```razor
+<button type="button" class="btn btn-primary"
+        onclick="exampleJsFunctions.returnArrayAsyncJs()">
+    Trigger .NET static method ReturnArrayAsync
+</button>
+
+@code {
+    [JSInvokable]
+    public static Task<int[]> ReturnArrayAsync()
+    {
+        return Task.FromResult(new int[] { 1, 2, 3 });
+    }
+}
+```
 
 JavaScript served to the client invokes the C# .NET method.
 
@@ -251,7 +292,19 @@ When the **Trigger .NET instance method HelloHelper.SayHello** button is selecte
 
 *Pages/JsInterop.razor*:
 
-[!code-razor[](./common/samples/3.x/BlazorWebAssemblySample/Pages/JsInterop.razor?name=snippet_JSInterop3&highlight=8-9)]
+```razor
+<button type="button" class="btn btn-primary" @onclick="TriggerNetInstanceMethod">
+    Trigger .NET instance method HelloHelper.SayHello
+</button>
+
+@code {
+    public async Task TriggerNetInstanceMethod()
+    {
+        var exampleJsInterop = new ExampleJsInterop(JSRuntime);
+        await exampleJsInterop.CallHelloHelperSayHello("Blazor");
+    }
+}
+```
 
 `CallHelloHelperSayHello` invokes the JavaScript function `sayHello` with a new instance of `HelloHelper`.
 
