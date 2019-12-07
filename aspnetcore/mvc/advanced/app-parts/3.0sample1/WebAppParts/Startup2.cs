@@ -25,6 +25,7 @@ namespace WebAppParts
         public void ConfigureServices(IServiceCollection services)
         {
             var assembly = typeof(MySharedController).GetTypeInfo().Assembly;
+            // This creates an AssemblyPart, but does not create any related parts for items such as views.
             var part = new AssemblyPart(assembly);
             services.AddControllersWithViews()
                 .ConfigureApplicationPartManager(apm => apm.ApplicationParts.Add(part));
