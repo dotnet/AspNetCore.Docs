@@ -35,19 +35,7 @@ The preceding two code samples load the `SharedController` from an assembly. The
 
 ### Include views
 
-To include views in the assembly:
-
-* Add the following markup to the shared project file:
-
-  ```csproj
-  <ItemGroup>
-      <EmbeddedResource Include="Views\**\*.cshtml" />
-  </ItemGroup>
-  ```
-
-* Add the <xref:Microsoft.Extensions.FileProviders.EmbeddedFileProvider> to the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine>:
-
-[!code-csharp[](./app-parts/3.0sample1/WebAppParts/StartupViews.cs?name=snippet)]
+Use a [Razor class library](xref:razor-pages/ui-class) to include views in the assembly.
 
 ### Prevent loading resources
 
@@ -77,36 +65,6 @@ Application feature providers examine application parts and provide features for
 * `internal class` [RazorCompiledItemFeatureProvider](https://github.com/aspnet/AspNetCore/blob/master/src/Mvc/Mvc.Razor/src/ApplicationParts/RazorCompiledItemFeatureProvider.cs#L14)
 
 Feature providers inherit from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider`1>, where `T` is the type of the feature. Feature providers can be implemented for any of the previously listed feature types. The order of feature providers in the `ApplicationPartManager.FeatureProviders` can impact run time behavior. Later added providers can react to actions taken by earlier added providers.
-
-### Generic controller feature
-
-ASP.NET Core ignores [generic controllers](/dotnet/csharp/programming-guide/generics/generic-classes). A generic controller has a type parameter (for example, `MyController<T>`). The following sample adds generic controller instances for a specified list of types:
-
-[!code-csharp[](./app-parts/3.0sample2/AppPartsSample/GenericControllerFeatureProvider.cs?name=snippet)]
-
-The types are defined in the following class:
-
-[!code-csharp[](./app-parts/sample2/AppPartsSample/Models/EntityTypes.cs?name=snippet)]
-
-The feature provider is added in `Startup`:
-
-[!code-csharp[](./app-parts/3.0sample2/AppPartsSample/Startup.cs?name=snippet)]
-
-Generic controller names used for routing are of the form *GenericController`1[Widget]* rather than *Widget*. The following attribute modifies the name to correspond to the generic type used by the controller:
-
-[!code-csharp[](./app-parts/3.0sample2/AppPartsSample/GenericControllerNameConvention.cs?name=snippet)]
-
-Conventions can be applied as attributes or added to `MvcOptions.Conventions`.
-
-The `GenericController` class sets the controller name based on `typeof(T).Name`:
-
-[!code-csharp[](./app-parts/3.0sample2/AppPartsSample/GenericController.cs?name=snippet)]
-
-For example, `https://localhost:5001/Sprocket` results in the following response:
-
-```text
-Hello from a generic Sprocket controller.
-```
 
 ### Display available features
 
@@ -140,8 +98,7 @@ HTTP 404 errors are not uncommon when developing with application parts. These e
 
 * The `applicationName` setting needs to be set to the root assembly used for discovery. The root assembly used for discovery is normally the entry point assembly.
 * The root assembly needs to have a reference to the parts used for discovery. The reference can be direct or transitive.
-* The root assembly needs to reference the Web SDK.
-  * The ASP.NET Core framework has custom build logic that stamps attributes into the root assembly that are used for discovery.
+* The root assembly needs to reference the Web SDK. The framework has logic that stamps attributes into the root assembly that are used for discovery.
 
 ::: moniker-end
 
@@ -171,19 +128,7 @@ The preceding two code samples load the `SharedController` from an assembly. The
 
 ### Include views
 
-To include views in the assembly:
-
-* Add the following markup to the shared project file:
-
-  ```csproj
-  <ItemGroup>
-      <EmbeddedResource Include="Views\**\*.cshtml" />
-  </ItemGroup>
-  ```
-
-* Add the <xref:Microsoft.Extensions.FileProviders.EmbeddedFileProvider> to the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine>:
-
-  [!code-csharp[](./app-parts/sample1/WebAppParts/StartupViews.cs?name=snippet&highlight=3-7)]
+Use a [Razor class library](xref:razor-pages/ui-class) to include views in the assembly.
 
 ### Prevent loading resources
 

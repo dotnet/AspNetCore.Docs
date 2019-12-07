@@ -33,8 +33,6 @@ namespace WebAppParts
                         p.ApplicationParts.Remove(dependentLibrary);
                     }
                 })
-                .ConfigureApplicationPartManager(p =>
-                   p.FeatureProviders.Add(new GenericControllerFeatureProvider()));
         }
         #endregion
 
