@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace RazorPagesMovie.Models
+namespace RazorPagesMovie.Data
 {
     public class RazorPagesMovieContext : DbContext
     {
