@@ -1,8 +1,6 @@
 using ModelBindingSample.Models;
-using ModelBindingSample.Models.SchoolViewModels;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
-using System.Linq;
 using System;
 
 namespace ModelBindingSample.Pages.Instructors
@@ -45,8 +43,6 @@ namespace ModelBindingSample.Pages.Instructors
                 HireDate = DateTime.Parse("1998-07-01"),
                 OfficeAssignment = new OfficeAssignment { Location = "Thompson 304" }
             });
-
         }
-
     }
 }

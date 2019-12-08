@@ -1,8 +1,5 @@
 using ModelBindingSample.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Threading.Tasks;
 using System.Linq;
 
 namespace ModelBindingSample.Pages.Instructors
@@ -10,13 +7,10 @@ namespace ModelBindingSample.Pages.Instructors
     #region snippet_BindProperty
     public class EditModel : InstructorsPageModel
     {
-        public EditModel() : base()
-        {
-        }
-
         [BindProperty]
         public Instructor Instructor { get; set; }
         #endregion
+
         public IActionResult OnGet(int? id)
         {
             if (id == null)

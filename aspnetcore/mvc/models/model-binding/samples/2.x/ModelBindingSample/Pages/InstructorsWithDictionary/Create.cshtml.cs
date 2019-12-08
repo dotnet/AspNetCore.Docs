@@ -2,16 +2,11 @@ using ModelBindingSample.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace ModelBindingSample.Pages.InstructorsWithDictionary
 {
     public class CreateModel : InstructorsPageModel
     {
-        public CreateModel() : base()
-        {
-        }
-
         public IActionResult OnGet()
         {
 

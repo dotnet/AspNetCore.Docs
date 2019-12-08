@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.ComponentModel.DataAnnotations;
-
-namespace WebApiSample.DataAccess.Models
+﻿namespace WebApiSample.DataAccess.Models
 {
     public class Pet
     {

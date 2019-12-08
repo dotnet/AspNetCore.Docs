@@ -8,10 +8,6 @@ namespace ModelBindingSample.Pages.InstructorsWithCollection
 {
     public class CreateModel : InstructorsPageModel
     {
-        public CreateModel() : base()
-        {
-        }
-
         public IActionResult OnGet()
         {
             var instructor = new InstructorWithCollection();

@@ -2,8 +2,6 @@
 
 using ModelBindingSample.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
@@ -12,11 +10,6 @@ namespace ModelBindingSample.Pages.InstructorsWithDictionary
 {
     public class EditModel : InstructorsPageModel
     {
-
-        public EditModel() : base()
-        {
-        }
-
         [BindProperty]
         public InstructorWithDictionary Instructor { get; set; }
 
@@ -53,7 +46,7 @@ namespace ModelBindingSample.Pages.InstructorsWithDictionary
                 i => i.FirstMidName, i => i.LastName,
                 i => i.HireDate, i => i.Courses))
             {
-                 return RedirectToPage("./Index");
+                return RedirectToPage("./Index");
             }
             return Page();
         }
@@ -73,13 +66,10 @@ namespace ModelBindingSample.Pages.InstructorsWithDictionary
             return RedirectToPage("./Index");
         }
 #endif
-
-
     }
 
     public class LastNameTest
     {
         public string LastName { get; set; }
-
     }
 }

@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace ModelBindingSample.Models
+﻿namespace ModelBindingSample.Models
 {
     public class Course
     {

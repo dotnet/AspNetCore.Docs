@@ -1,19 +1,11 @@
 using ModelBindingSample.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Threading.Tasks;
 using System.Linq;
 
 namespace ModelBindingSample.Pages.InstructorsWithCollection
 {
     public class EditModel : InstructorsPageModel
     {
-
-        public EditModel() : base()
-        {
-        }
-
         [BindProperty]
         public InstructorWithCollection Instructor { get; set; }
 

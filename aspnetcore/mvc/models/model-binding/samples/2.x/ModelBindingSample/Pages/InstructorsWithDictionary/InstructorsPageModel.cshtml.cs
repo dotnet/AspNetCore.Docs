@@ -1,8 +1,6 @@
 using ModelBindingSample.Models;
-using ModelBindingSample.Models.SchoolViewModels;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
-using System.Linq;
 using System;
 
 namespace ModelBindingSample.Pages.InstructorsWithDictionary
@@ -57,7 +55,6 @@ namespace ModelBindingSample.Pages.InstructorsWithDictionary
                 HireDate = DateTime.Parse("1998-07-01"),
                 Courses = courseList
             });
-
         }
     }
 }
