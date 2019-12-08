@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace WebApp
 {
-    public class StartupMB
+    public class Startup
     {
-        public StartupMB(IConfiguration configuration)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
