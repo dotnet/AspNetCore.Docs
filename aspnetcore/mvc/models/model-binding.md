@@ -62,7 +62,7 @@ Model binding tries to find values for the following kinds of targets:
 
 Can be applied to a public property of a controller or `PageModel` class to cause model binding to target that property:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Edit.cshtml.cs?name=snippet_BindProperty&highlight=7-8)]
+[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Edit.cshtml.cs?name=snippet_BindProperty&highlight=3-4)]
 
 ### [BindProperties] attribute
 
@@ -523,7 +523,7 @@ Model binding tries to find values for the following kinds of targets:
 
 Can be applied to a public property of a controller or `PageModel` class to cause model binding to target that property:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Edit.cshtml.cs?name=snippet_BindProperty&highlight=7-8)]
+[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Edit.cshtml.cs?name=snippet_BindProperty&highlight=3-4)]
 
 ### [BindProperties] attribute
 
