@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/03/2019
+ms.date: 12/09/2019
 no-loc: [Blazor]
 uid: blazor/get-started
 ---
@@ -88,7 +88,7 @@ Get started with Blazor:
 
    <!-- For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. -->
 
-   5\. The **Target Framework** defaults to **.NET Core 3.0** (or **.NET Core 3.1** if the 3.1 Preview SDK is installed). Select the framework and select **Next**.
+   5\. Set the **Target Framework** to **.NET Core 3.1** and select **Next**.
 
    6\. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
 
@@ -195,7 +195,7 @@ Get started with Blazor:
 
    <!-- For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. -->
 
-   5\. The **Target Framework** defaults to **.NET Core 3.0** (or **.NET Core 3.1** if the 3.1 Preview SDK is installed). Select the framework and select **Next**.
+   5\. Set the **Target Framework** to **.NET Core 3.0** and select **Next**.
 
    6\. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
 
