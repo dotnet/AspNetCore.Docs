@@ -77,7 +77,7 @@ Use multiple `@inject` statements to inject different services.
 
 The following example shows how to use `@inject`. The service implementing `Services.IDataAccess` is injected into the component's property `DataRepository`. Note how the code is only using the `IDataAccess` abstraction:
 
-[!code-cshtml[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,23)]
+[!code-razor[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,23)]
 
 Internally, the generated property (`DataRepository`) uses the `InjectAttribute` attribute. Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, manually add the `InjectAttribute`:
 
@@ -93,7 +93,7 @@ public class ComponentBase : IComponent
 
 In components derived from the base class, the `@inject` directive isn't required. The `InjectAttribute` of the base class is sufficient:
 
-```cshtml
+```razor
 @page "/demo"
 @inherits ComponentBase
 
@@ -128,7 +128,7 @@ In ASP.NET Core apps, scoped services are typically scoped to the current reques
 
 To scope services to the lifetime of a component, can use the `OwningComponentBase` and `OwningComponentBase<TService>` base classes. These base classes expose a `ScopedServices` property of type `IServiceProvider` that resolve services that are scoped to the lifetime of the component. To author a component that inherits from a base class in Razor, use the `@inherits` directive.
 
-```cshtml
+```razor
 @page "/users"
 @attribute [Authorize]
 @inherits OwningComponentBase<Data.ApplicationDbContext>
