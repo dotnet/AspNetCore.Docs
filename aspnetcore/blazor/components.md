@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/09/2019
 no-loc: [Blazor]
 uid: blazor/components
 ---
@@ -54,7 +54,20 @@ Components are ordinary C# classes and can be placed anywhere within a project. 
 
 ## Integrate components into Razor Pages and MVC apps
 
-Use components with existing Razor Pages and MVC apps. There's no need to rewrite existing pages or views to use Razor components. When the page or view is rendered, components are prerendered at the same time.
+Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components are prerendered at the same time.
+
+To prepare a Razor Pages or MVC app to host Razor components, follow the guidance in the *Integrate Razor components into Razor Pages and MVC apps* section of the <xref:blazor/hosting-models#integrate-razor-components-into-razor-pages-and-mvc-apps> article.
+
+When using a custom folder to hold the app's components, add the namespace representing the folder to either the page/view or to the *_ViewImports.cshtml* file. In the following example:
+
+* Change `MyAppNamespace` to the app's namespace.
+* If a folder named *Components* isn't used to hold the components, change `Components` to the folder where the components reside.
+
+```csharp
+@using MyAppNamespace.Components
+```
+
+The *_ViewImports.cshtml* file is located in the *Pages* folder of a Razor Pages app or the *Views* folder of an MVC app.
 
 ::: moniker range=">= aspnetcore-3.1"
 

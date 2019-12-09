@@ -5,7 +5,7 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/09/2019
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-models
 ---
@@ -102,6 +102,57 @@ A UI update in Blazor is triggered by:
 The graph is rerendered, and a UI *diff* (difference) is calculated. This diff is the smallest set of DOM edits required to update the UI on the client. The diff is sent to the client in a binary format and applied by the browser.
 
 A component is disposed after the user navigates away from it on the client. While a user is interacting with a component, the component's state (services, resources) must be held in the server's memory. Because the state of many components might be maintained by the server concurrently, memory exhaustion is a concern that must be addressed. For guidance on how to author a Blazor Server app to ensure the best use of server memory, see <xref:security/blazor/server>.
+
+### Integrate Razor components into Razor Pages and MVC apps
+
+An existing Razor Pages or MVC app can integrate Razor components into pages and views:
+
+1. In the app's layout file (*_Layout.cshtml*):
+
+   * Add the following `<base>` tag to the `<head>` elements:
+
+     ```html
+     <base href="~/" />
+     ```
+
+     The *_Layout.cshtml* file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.
+
+     If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:host-and-deploy/blazor/index#app-base-path> article.
+
+   * Add a `<script>` tag for the *blazor.server.js* script inside of the closing `</body>` tag:
+
+     ```html
+     <script src="_framework/blazor.server.js"></script>
+     ```
+
+     The framework adds the *blazor.server.js* script to the app. There's no need to manually add the script to the app.
+
+1. Add an *_Imports.razor* file to the root folder of the project with the following content (change the last namespace, `MyAppNamespace`, to the namespace of the app):
+
+   ```csharp
+   @using System.Net.Http
+   @using Microsoft.AspNetCore.Authorization
+   @using Microsoft.AspNetCore.Components.Authorization
+   @using Microsoft.AspNetCore.Components.Forms
+   @using Microsoft.AspNetCore.Components.Routing
+   @using Microsoft.AspNetCore.Components.Web
+   @using Microsoft.JSInterop
+   @using MyAppNamespace
+   ```
+
+1. In `Startup.ConfigureServices`, add the Blazor Server service:
+
+   ```csharp
+   services.AddServerSideBlazor();
+   ```
+
+1. In `Startup.Configure`, add the Blazor Hub endpoint to `app.UseEndpoints`:
+
+   ```csharp
+   endpoints.MapBlazorHub();
+   ```
+
+1. Integrate components into any page or view. For more information, see the *Integrate components into Razor Pages and MVC apps* section of the <xref:blazor/components#integrate-components-into-razor-pages-and-mvc-apps> article.
 
 ### Circuits
 
