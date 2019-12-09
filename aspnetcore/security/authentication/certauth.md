@@ -238,7 +238,7 @@ public void ConfigureServices(IServiceCollection services)
         {
             X509Certificate2 clientCertificate = null;
 	    
-	    if(!string.IsNullOrWhiteSpace(headerValue))
+            if(!string.IsNullOrWhiteSpace(headerValue))
             {
                 byte[] bytes = StringToByteArray(headerValue);
                 clientCertificate = new X509Certificate2(bytes);
@@ -296,7 +296,7 @@ namespace AspNetCoreCertificateAuthApi
         public bool ValidateCertificate(X509Certificate2 clientCertificate)
         {
             // Do not hardcode passwords in production code
-	    // Use thumbprint or key vault
+            // Use thumbprint or key vault
             var cert = new X509Certificate2(
 	        Path.Combine("sts_dev_cert.pfx"), "1234");
 
@@ -321,7 +321,7 @@ private async Task<JsonDocument> GetApiDataAsync()
     try
     {
         // Do not hardcode passwords in production code
-	// Use thumbprint or key vault
+        // Use thumbprint or key vault
         var cert = new X509Certificate2(
 	    Path.Combine(_environment.ContentRootPath, 
 	        "sts_dev_cert.pfx"), "1234");
@@ -344,8 +344,8 @@ private async Task<JsonDocument> GetApiDataAsync()
         }
 
         throw new ApplicationException(
-	    $"Status code: {response.StatusCode}, " +
-	    $"Error: {response.ReasonPhrase}");
+            $"Status code: {response.StatusCode}, " +
+            $"Error: {response.ReasonPhrase}");
     }
     catch (Exception e)
     {
