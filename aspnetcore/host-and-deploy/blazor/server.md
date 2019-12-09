@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor Server app using ASP.NET Core
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2019
+ms.date: 12/05/2019
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/server
 ---
@@ -101,7 +101,7 @@ metadata:
 
 [JS interop](xref:blazor/javascript-interop) can be used to measure network latency, as the following example demonstrates:
 
-```cshtml
+```razor
 @inject IJSRuntime JS
 
 @if (latency is null)

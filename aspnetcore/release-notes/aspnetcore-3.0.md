@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc: [Blazor, SignalR]
 uid: aspnetcore-3.0
 ---
@@ -133,7 +133,7 @@ SignalR 3.0 and later provides a custom resource to authorization handlers when 
 * Name of the hub method being invoked.
 * Arguments to the hub method.
 
-Consider the following example of a chat room app allowing multiple organization sign-in via Azure Active Directory. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization can ban users or view users’ chat histories. The app could restrict certain functionality from specific users.
+Consider the following example of a chat room app allowing multiple organization sign-in via Azure Active Directory. Anyone with a Microsoft account can sign in to chat, but only members of the owning organization can ban users or view users' chat histories. The app could restrict certain functionality from specific users.
 
 ```csharp
 public class DomainRestrictedRequirement :
@@ -174,7 +174,7 @@ In the preceding code, `DomainRestrictedRequirement` serves as a custom `IAuthor
 * Inspect the context in which the Hub is being called.
 * Make decisions on allowing the user to execute individual Hub methods.
 
-Individual Hub methods can be decorated with the name of the policy the code checks at run-time. As clients attempt to call individual Hub methods, the `DomainRestrictedRequirement` handler runs and controls access to the methods. Based on the way the `DomainRestrictedRequirement` controls access:
+Individual Hub methods can be marked with the name of the policy the code checks at run-time. As clients attempt to call individual Hub methods, the `DomainRestrictedRequirement` handler runs and controls access to the methods. Based on the way the `DomainRestrictedRequirement` controls access:
 
 * All logged-in users can call the `SendMessage` method.
 * Only users who have logged in with a `@jabbr.net` email address can view users’ histories.
@@ -311,8 +311,8 @@ To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format 
 
 The following list contains new Razor directives:
 
-* [@attribute](xref:mvc/views/razor#attribute) &ndash; The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@attribute [Authorize]`.
-* [@implements](xref:mvc/views/razor#implements) &ndash; The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
+* [`@attribute`](xref:mvc/views/razor#attribute) &ndash; The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@attribute [Authorize]`.
+* [`@implements`](xref:mvc/views/razor#implements) &ndash; The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
 
 ## IdentityServer4 supports authentication and authorization for web APIs and SPAs
 

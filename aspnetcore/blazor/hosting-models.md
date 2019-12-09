@@ -5,7 +5,7 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2019
+ms.date: 12/05/2019
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-models
 ---
@@ -142,7 +142,7 @@ When the client detects that the connection has been lost, a default UI is displ
 
 To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the *_Host.cshtml* Razor page:
 
-```html
+```cshtml
 <div id="components-reconnect-modal">
     ...
 </div>
@@ -214,7 +214,7 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 
 Rendering server components from a static HTML page isn't supported.
 
-When `RenderMode` is `ServerPrerendered`, the component is initially rendered statically as part of the page. Once the browser establishes a connection back to the server, the component is rendered *again*, and the component is now interactive. If a [lifecycle method](xref:blazor/components#lifecycle-methods) for initializing the component (`OnInitialized{Async}`) is present, the method is executed *twice*:
+When `RenderMode` is `ServerPrerendered`, the component is initially rendered statically as part of the page. Once the browser establishes a connection back to the server, the component is rendered *again*, and the component is now interactive. If the [OnInitialized{Async}](xref:blazor/lifecycle#component-initialization-methods) lifecycle method for initializing the component is present, the method is executed *twice*:
 
 * When the component is prerendered statically.
 * After the server connection has been established.
@@ -315,7 +315,7 @@ The following Razor page renders a `Counter` component:
 
 ### Render noninteractive components from Razor pages and views
 
-In the following Razor page, the `MyComponent` component is statically rendered with an initial value that's specified using a form:
+In the following Razor page, the `Counter` component is statically rendered with an initial value that's specified using a form:
 
 ::: moniker range=">= aspnetcore-3.1"
 
@@ -348,7 +348,7 @@ In the following Razor page, the `MyComponent` component is statically rendered 
     <button type="submit">Set initial value</button>
 </form>
 
-@(await Html.RenderComponentAsync<MyComponent>(RenderMode.Static, 
+@(await Html.RenderComponentAsync<Counter>(RenderMode.Static, 
     new { InitialValue = InitialValue }))
 
 @code {

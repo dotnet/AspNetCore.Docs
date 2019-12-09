@@ -87,7 +87,7 @@ Typed clients:
   * To encapsulate all logic dealing with the endpoint.
 * Work with DI and can be injected where required in the app.
 
-A typed client accepts a `HttpClient` parameter in its constructor:
+A typed client accepts an `HttpClient` parameter in its constructor:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/GitHub/GitHubService.cs?name=snippet1&highlight=5)]
 
@@ -195,7 +195,7 @@ To create a delegating handler:
 
 The preceding code checks if the `X-API-KEY` header is in the request. If `X-API-KEY` is missing, <xref:System.Net.HttpStatusCode.BadRequest> is returned.
 
-More than one handler can be added to the configuration for a `HttpClient` with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*?displayProperty=fullName>:
+More than one handler can be added to the configuration for an `HttpClient` with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*?displayProperty=fullName>:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs?name=snippet1)]
 
@@ -287,7 +287,7 @@ Keeping a single `HttpClient` instance alive for a long duration is a common pat
 Using `IHttpClientFactory` in a DI-enabled app avoids:
 
 * Resource exhaustion problems by pooling `HttpMessageHandler` instances.
-* Stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+* Stale DNS problems by cycling `HttpMessageHandler` instances at regular intervals.
 
 There are alternative ways to solve the preceding problems using a long-lived <xref:System.Net.Http.SocketsHttpHandler> instance.
 
@@ -298,7 +298,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
 - The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
-- The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+- The `SocketsHttpHandler` cycles connections according to `PooledConnectionLifetime` to avoid stale DNS problems.
 
 ### Cookies
 
@@ -384,7 +384,7 @@ The `IHttpClientFactory` can be registered by calling the `AddHttpClient` extens
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet1)]
 
-Once registered, code can accept an `IHttpClientFactory` anywhere services can be injected with [dependency injection (DI)](xref:fundamentals/dependency-injection). The `IHttpClientFactory` can be used to create a `HttpClient` instance:
+Once registered, code can accept an `IHttpClientFactory` anywhere services can be injected with [dependency injection (DI)](xref:fundamentals/dependency-injection). The `IHttpClientFactory` can be used to create an `HttpClient` instance:
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs?name=snippet1&highlight=9-12,21)]
 
@@ -415,7 +415,7 @@ Typed clients:
 * Provide a single location to configure and interact with a particular `HttpClient`. For example, a single typed client might be used for a single backend endpoint and encapsulate all logic dealing with that endpoint.
 * Work with DI and can be injected where required in your app.
 
-A typed client accepts a `HttpClient` parameter in its constructor:
+A typed client accepts an `HttpClient` parameter in its constructor:
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/GitHub/GitHubService.cs?name=snippet1&highlight=5)]
 
@@ -504,7 +504,7 @@ To create a handler, define a class deriving from <xref:System.Net.Http.Delegati
 
 The preceding code defines a basic handler. It checks to see if an `X-API-KEY` header has been included on the request. If the header is missing, it can avoid the HTTP call and return a suitable response.
 
-During registration, one or more handlers can be added to the configuration for a `HttpClient`. This task is accomplished via extension methods on the <xref:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder>.
+During registration, one or more handlers can be added to the configuration for an `HttpClient`. This task is accomplished via extension methods on the <xref:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder>.
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet5)]
 
@@ -588,7 +588,7 @@ Keeping a single `HttpClient` instance alive for a long duration is a common pat
 Using `IHttpClientFactory` in a DI-enabled app avoids:
 
 * Resource exhaustion problems by pooling `HttpMessageHandler` instances.
-* Stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+* Stale DNS problems by cycling `HttpMessageHandler` instances at regular intervals.
 
 There are alternative ways to solve the preceding problems using a long-lived <xref:System.Net.Http.SocketsHttpHandler> instance.
 
@@ -599,7 +599,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
 - The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
-- The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+- The `SocketsHttpHandler` cycles connections according to `PooledConnectionLifetime` to avoid stale DNS problems.
 
 ### Cookies
 
@@ -689,7 +689,7 @@ The `IHttpClientFactory` can be registered by calling the `AddHttpClient` extens
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet1)]
 
-Once registered, code can accept an `IHttpClientFactory` anywhere services can be injected with [dependency injection (DI)](xref:fundamentals/dependency-injection). The `IHttpClientFactory` can be used to create a `HttpClient` instance:
+Once registered, code can accept an `IHttpClientFactory` anywhere services can be injected with [dependency injection (DI)](xref:fundamentals/dependency-injection). The `IHttpClientFactory` can be used to create an `HttpClient` instance:
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs?name=snippet1&highlight=9-12,21)]
 
@@ -720,7 +720,7 @@ Typed clients:
 * Provide a single location to configure and interact with a particular `HttpClient`. For example, a single typed client might be used for a single backend endpoint and encapsulate all logic dealing with that endpoint.
 * Work with DI and can be injected where required in your app.
 
-A typed client accepts a `HttpClient` parameter in its constructor:
+A typed client accepts an `HttpClient` parameter in its constructor:
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/GitHub/GitHubService.cs?name=snippet1&highlight=5)]
 
@@ -809,7 +809,7 @@ To create a handler, define a class deriving from <xref:System.Net.Http.Delegati
 
 The preceding code defines a basic handler. It checks to see if an `X-API-KEY` header has been included on the request. If the header is missing, it can avoid the HTTP call and return a suitable response.
 
-During registration, one or more handlers can be added to the configuration for a `HttpClient`. This task is accomplished via extension methods on the <xref:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder>.
+During registration, one or more handlers can be added to the configuration for an `HttpClient`. This task is accomplished via extension methods on the <xref:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder>.
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet5)]
 
@@ -896,7 +896,7 @@ Keeping a single `HttpClient` instance alive for a long duration is a common pat
 Using `IHttpClientFactory` in a DI-enabled app avoids:
 
 * Resource exhaustion problems by pooling `HttpMessageHandler` instances.
-* Stale-DNS problems by cycling `HttpMessageHandler` instances at regular instances.
+* Stale DNS problems by cycling `HttpMessageHandler` instances at regular intervals.
 
 There are alternative ways to solve the preceding problems using a long-lived <xref:System.Net.Http.SocketsHttpHandler> instance.
 
@@ -907,7 +907,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
 - The `SocketsHttpHandler` shares connections across `HttpClient` instances. This sharing prevents socket exhaustion.
-- The `SocketsHttpHandler ` cycles connections according to `PooledConnectionLifetime` to avoid state-DNS problems.
+- The `SocketsHttpHandler` cycles connections according to `PooledConnectionLifetime` to avoid stale DNS problems.
 
 ### Cookies
 

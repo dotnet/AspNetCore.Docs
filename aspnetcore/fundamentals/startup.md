@@ -5,7 +5,7 @@ description: Learn how the Startup class in ASP.NET Core configures services and
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/02/2019
+ms.date: 12/05/2019
 uid: fundamentals/startup
 ---
 # App startup in ASP.NET Core
@@ -37,7 +37,7 @@ The preceding sample is for [Razor Pages](xref:razor-pages/index); the MVC versi
 
 ::: moniker-end
 
-The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is typically specified by calling the [`WebHostBuilderExtensions.UseStartup<TStartup>`](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
+The `Startup` class is specified when the app's [host](xref:fundamentals/index#host) is built. The `Startup` class is typically specified by calling the [WebHostBuilderExtensions.UseStartup\<TStartup>](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method on the host builder:
 
 ::: moniker range="< aspnetcore-3.0"
 

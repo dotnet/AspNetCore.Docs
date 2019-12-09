@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/07/2019
+ms.date: 12/09/2019
 no-loc: [Blazor]
 uid: blazor/get-started
 ---
@@ -19,19 +19,21 @@ Get started with Blazor:
 
 ::: moniker range=">= aspnetcore-3.1"
 
-1. Install the [.NET Core 3.1 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+1. Install the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
-1. Install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template by running the following command in a command shell. The [Microsoft.AspNetCore.Blazor.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.Templates/) package has a preview version while Blazor WebAssembly is in preview.
+1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template:
+   * Install the [.NET Core 3.1 or later (Preview) SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+   * Run the following command in a command shell. The [Microsoft.AspNetCore.Blazor.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.Templates/) package has a preview version while Blazor WebAssembly is in preview.
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview3.19555.2
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview4.19579.2
    ```
 
 1. Follow the guidance for your choice of tooling:
 
    # [Visual Studio](#tab/visual-studio)
 
-   1\. Install [Visual Studio 16.4 Preview 2 or later](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
+   1\. Install [Visual Studio 16.4 or later](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
    2\. Create a new project.
 
@@ -74,25 +76,25 @@ Get started with Blazor:
 
    7\. In a browser, navigate to `https://localhost:5001`.
 
-   <!--
-
    # [Visual Studio for Mac](#tab/visual-studio-mac)
 
    1\. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). Switch the [Update channel to Preview](/visualstudio/mac/install-preview).
 
-   2\. Select **File** > **New Solution** or **New Project**.
+   2\. Select **File** > **New Solution** or create a **New Project**.
 
    3\. In the sidebar, select **.NET Core** > **App**.
 
-   4\. For a Blazor Server experience, select the **Blazor Server App** template. For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
+   4\. Select the **Blazor Server App** template. Only the Blazor Server template is available in Visual Studio for Mac at this time. For a Blazor WebAssembly experience, follow the instructions on the **.NET Core CLI** tab. After selecting the Blazor Server template, select **Next**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
-   5\. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
+   <!-- For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. -->
 
-   6\. In the **Project Name** field, enter `WebApplication1`. Select **Create**.
+   5\. Set the **Target Framework** to **.NET Core 3.1** and select **Next**.
 
-   7\. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Running with the debugger isn't supported at this time.
+   6\. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
 
-   -->
+   7\. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Run the app with **Start Debugging** to run the app *with the debugger*.
+
+       If a prompt appears to trust the development certificate, trust the certificate and continue.
 
    # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -122,12 +124,14 @@ Get started with Blazor:
 
 ::: moniker range="< aspnetcore-3.1"
 
-1. Install the latest [.NET Core 3.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) release.
+1. Install the latest [.NET Core 3.0 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0).
 
-1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template by installing the [.NET Core 3.1 Preview SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1) and then running the following command in a command shell:
+1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template:
+   * Install the [.NET Core 3.1 or later (Preview) SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+   * Run the following command in a command shell. The [Microsoft.AspNetCore.Blazor.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.Templates/) package has a preview version while Blazor WebAssembly is in preview.
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview3.19555.2
+   dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview4.19579.2
    ```
 
 1. Follow the guidance for your choice of tooling:
@@ -179,25 +183,25 @@ Get started with Blazor:
 
    7\. In a browser, navigate to `https://localhost:5001`.
 
-   <!--
-
    # [Visual Studio for Mac](#tab/visual-studio-mac)
 
    1\. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). Switch the [Update channel to Preview](/visualstudio/mac/install-preview).
 
-   2\. Select **File** > **New Solution** or **New Project**.
+   2\. Select **File** > **New Solution** or create a **New Project**.
 
    3\. In the sidebar, select **.NET Core** > **App**.
 
-   4\. For a Blazor Server experience, select the **Blazor Server App** template. For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
+   4\. Select the **Blazor Server App** template. Only the Blazor Server template is available in Visual Studio for Mac at this time. For a Blazor WebAssembly experience, follow the instructions on the **.NET Core CLI** tab. After selecting the Blazor Server template, select **Next**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
-   5\. The **Target Framework** defaults to **.NET Core 3.0**. Select **Next**.
+   <!-- For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. -->
 
-   6\. In the **Project Name** field, enter `WebApplication1`. Select **Create**.
+   5\. Set the **Target Framework** to **.NET Core 3.0** and select **Next**.
 
-   7\. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Running with the debugger isn't supported at this time.
+   6\. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
 
-   -->
+   7\. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Run the app with **Start Debugging** to run the app *with the debugger*.
+
+       If a prompt appears to trust the development certificate, trust the certificate and continue.
 
    # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -235,7 +239,7 @@ On the Counter page, select the **Click me** button to increment the counter wit
 
 *Pages/Counter.razor*:
 
-[!code-cshtml[](get-started/samples_snapshot/3.x/Counter1.razor?highlight=7,12-15)]
+[!code-razor[](get-started/samples_snapshot/3.x/Counter1.razor?highlight=7,12-15)]
 
 A request for `/counter` in the browser, as specified by the `@page` directive at the top, causes the `Counter` component to render its content. Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.
 
@@ -252,7 +256,7 @@ Add a component to another component using HTML syntax. For example, add the `Co
 
 *Pages/Index.razor*:
 
-[!code-cshtml[](get-started/samples_snapshot/3.x/Index1.razor?highlight=7)]
+[!code-razor[](get-started/samples_snapshot/3.x/Index1.razor?highlight=7)]
 
 Run the app. The homepage has its own counter provided by the `Counter` component.
 
@@ -263,13 +267,13 @@ Component parameters are specified using attributes or [child content](xref:blaz
 
 *Pages/Counter.razor*:
 
-[!code-cshtml[](get-started/samples_snapshot/3.x/Counter2.razor?highlight=12-13,17)]
+[!code-razor[](get-started/samples_snapshot/3.x/Counter2.razor?highlight=12-13,17)]
 
 Specify the `IncrementAmount` in the `Index` component's `<Counter>` element using an attribute.
 
 *Pages/Index.razor*:
 
-[!code-cshtml[](get-started/samples_snapshot/3.x/Index2.razor?highlight=7)]
+[!code-razor[](get-started/samples_snapshot/3.x/Index2.razor?highlight=7)]
 
 Run the app. The `Index` component has its own counter that increments by ten each time the **Click me** button is selected. The `Counter` component (*Counter.razor*) at `/counter` continues to increment by one.
 
@@ -279,4 +283,5 @@ Run the app. The `Index` component has its own counter that increments by ten ea
 
 ## Additional resources
 
+* <xref:blazor/templates>
 * <xref:signalr/introduction>

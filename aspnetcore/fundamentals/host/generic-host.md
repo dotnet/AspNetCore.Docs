@@ -5,7 +5,7 @@ description: Learn about the .NET Core Generic Host, which is responsible for ap
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 12/02/2019
 uid: fundamentals/host/generic-host
 ---
 # .NET Generic Host
@@ -123,7 +123,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostLifetime> implementation controls wh
 
 `Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` is the default `IHostLifetime` implementation. `ConsoleLifetime`:
 
-* listens for Ctrl+C/SIGINT or SIGTERM and calls <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.StopApplication*> to start the shutdown process.
+* Listens for Ctrl+C/SIGINT or SIGTERM and calls <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication*> to start the shutdown process.
 * Unblocks extensions such as [RunAsync](#runasync) and [WaitForShutdownAsync](#waitforshutdownasync).
 
 ## IHostEnvironment
@@ -134,9 +134,7 @@ Inject the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> service into a c
 * [EnvironmentName](#environmentname)
 * [ContentRootPath](#contentrootpath)
 
-Web apps implement the `IWebHostEnvironment` interface, which inherits `IHostEnvironment` and adds:
-
-* [WebRootPath](#webroot)
+Web apps implement the `IWebHostEnvironment` interface, which inherits `IHostEnvironment` and adds the [WebRootPath](#webroot).
 
 ## Host configuration
 
@@ -220,7 +218,7 @@ Host.CreateDefaultBuilder(args)
 
 [HostOptions.ShutdownTimeout](xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*) sets the timeout for <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>. The default value is five seconds.  During the timeout period, the host:
 
-* Triggers [IHostApplicationLifetime.ApplicationStopping](/dotnet/api/microsoft.aspnetcore.hosting.iapplicationlifetime.applicationstopping).
+* Triggers [IHostApplicationLifetime.ApplicationStopping](/dotnet/api/microsoft.aspnetcore.hosting.ihostapplicationlifetime.applicationstopping).
 * Attempts to stop hosted services, logging errors for services that fail to stop.
 
 If the timeout period expires before all of the hosted services stop, any remaining active services are stopped when the app shuts down. The services stop even if they haven't finished processing. If services require additional time to stop, increase the timeout.
