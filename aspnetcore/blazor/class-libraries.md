@@ -5,7 +5,7 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
+ms.date: 12/05/2019
 no-loc: [Blazor]
 uid: blazor/class-libraries
 ---
@@ -66,7 +66,7 @@ In the following examples, `MyComponentLib1` is a component library containing a
 
 The `SalesReport` component can be referenced using its full type name with namespace:
 
-```cshtml
+```razor
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
@@ -76,7 +76,7 @@ Welcome to your new app.
 
 The component can also be referenced if the library is brought into scope with an `@using` directive:
 
-```cshtml
+```razor
 @using MyComponentLib1
 
 <h1>Hello, world!</h1>

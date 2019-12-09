@@ -7,7 +7,7 @@ public class JsInteropClasses
         _jsRuntime = jsRuntime;
     }
 
-    public Task<string> TickerChanged(string data)
+    public ValueTask<string> TickerChanged(string data)
     {
         return _jsRuntime.InvokeAsync<string>(
             "handleTickerChanged",

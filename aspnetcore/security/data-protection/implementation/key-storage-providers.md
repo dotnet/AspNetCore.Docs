@@ -3,7 +3,7 @@ title: Key storage providers in ASP.NET Core
 author: rick-anderson
 description: Learn about key storage providers in ASP.NET Core and how to configure key storage locations.
 ms.author: riande
-ms.date: 06/11/2019
+ms.date: 12/05/2019
 uid: security/data-protection/implementation/key-storage-providers
 ---
 # Key storage providers in ASP.NET Core
@@ -135,7 +135,7 @@ The [Microsoft.AspNetCore.DataProtection.EntityFrameworkCore](https://www.nuget.
 
 With this package, keys can be shared across multiple instances of a web app.
 
-To configure the EF Core provider, call the [`PersistKeysToDbContext<TContext>`](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) method:
+To configure the EF Core provider, call the [PersistKeysToDbContext\<TContext>](/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcoredataprotectionextensions.persistkeystodbcontext) method:
 
 [!code-csharp[Main](key-storage-providers/sample/Startup.cs?name=snippet&highlight=13-20)]
 

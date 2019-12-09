@@ -31,8 +31,9 @@ app {
 }
 
     .main .top-row {
-        background-color: #e6e6e6;
+		background-color: #f7f7f7;
         border-bottom: 1px solid #d6d5d5;
+		justify-content: flex-end;
     }
 
         .main .top-row > a, .main .top-row .btn-link {
@@ -228,7 +229,7 @@ textarea {
 }
 
 @media (max-width: 767.98px) {
-    .main .top-row {
+    .main .top-row:not(.auth) {
         display: none;
     }
 

@@ -1,1 +1,3 @@
-!wwwroot/css/**
+!*.min.css
+!*.min.js
+!*.map

@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 12/02/2019
 uid: web-api/http-repl
 ---
 # Test web APIs with the HTTP REPL
@@ -264,7 +264,7 @@ Response colorization is currently supported for JSON only. To customize the def
 https://localhost:5001/people~ pref set colors.json White
 ```
 
-Only the [allowed colors](https://github.com/aspnet/HttpRepl/blob/01d5c3c3373e98fe566ff5ef8a17c571de880293/src/Microsoft.Repl/ConsoleHandling/AllowedColors.cs) may be used. Subsequent HTTP requests display output with the new coloring.
+Only the [allowed colors](https://github.com/dotnet/HttpRepl/blob/01d5c3c3373e98fe566ff5ef8a17c571de880293/src/Microsoft.Repl/ConsoleHandling/AllowedColors.cs) may be used. Subsequent HTTP requests display output with the new coloring.
 
 When specific color keys aren't set, more generic keys are considered. To demonstrate this fallback behavior, consider the following example:
 
@@ -1031,4 +1031,4 @@ https://localhost:5001/~
 ## Additional resources
 
 * [REST API requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
-* [HTTP REPL GitHub repository](https://github.com/aspnet/HttpRepl)
+* [HTTP REPL GitHub repository](https://github.com/dotnet/HttpRepl)

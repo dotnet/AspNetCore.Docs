@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how memory is managed in ASP.NET Core and how the garbage collector (GC) works.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/05/2019
+ms.date: 12/05/2019
 uid: performance/memory
 ---
 
@@ -368,7 +368,7 @@ The following chart display calling the preceding API with moderate load:
 
 In the preceding chart, generation 0 collections happen approximately once per second.
 
-The preceding code can be optimized by pooling the `byte` buffer by using [`ArrayPool<T>`](xref:System.Buffers.ArrayPool`1). A static instance is reused across requests.
+The preceding code can be optimized by pooling the `byte` buffer by using [ArrayPool\<T>](xref:System.Buffers.ArrayPool`1). A static instance is reused across requests.
 
 What's different with this approach is that a pooled object is returned from the API. That means:
 

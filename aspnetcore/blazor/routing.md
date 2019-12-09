@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/23/2019
+ms.date: 12/05/2019
 no-loc: [Blazor]
 uid: blazor/routing
 ---
@@ -29,7 +29,7 @@ The most typical configuration is to route all requests to a Razor page, which a
 
 The `Router` component enables routing to each component with a specified route. The `Router` component appears in the *App.razor* file:
 
-```cshtml
+```razor
 <Router AppAssembly="typeof(Startup).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
@@ -51,7 +51,12 @@ You can optionally specify a `DefaultLayout` parameter with a layout class to us
 
 Multiple route templates can be applied to a component. The following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`:
 
-[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/BlazorRoute.razor?name=snippet_BlazorRoute)]
+```razor
+@page "/BlazorRoute"
+@page "/DifferentBlazorRoute"
+
+<h1>Blazor routing</h1>
+```
 
 > [!IMPORTANT]
 > For URLs to resolve correctly, the app must include a `<base>` tag in its *wwwroot/index.html* file (Blazor WebAssembly) or *Pages/_Host.cshtml* file (Blazor Server) with the app base path specified in the `href` attribute (`<base href="/">`). For more information, see <xref:host-and-deploy/blazor/index#app-base-path>.
@@ -62,7 +67,7 @@ The `Router` component allows the app to specify custom content if content isn't
 
 In the *App.razor* file, set custom content in the `NotFound` template parameter of the `Router` component:
 
-```cshtml
+```razor
 <Router AppAssembly="typeof(Startup).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
@@ -80,7 +85,7 @@ The content of `<NotFound>` tags can include arbitrary items, such as other inte
 
 Use the `AdditionalAssemblies` parameter to specify additional assemblies for the `Router` component to consider when searching for routable components. Specified assemblies are considered in addition to the `AppAssembly`-specified assembly. In the following example, `Component1` is a routable component defined in a referenced class library. The following `AdditionalAssemblies` example results in routing support for `Component1`:
 
-```cshtml
+```razor
 <Router
     AppAssembly="typeof(Program).Assembly"
     AdditionalAssemblies="new[] { typeof(Component1).Assembly }">
@@ -92,7 +97,22 @@ Use the `AdditionalAssemblies` parameter to specify additional assemblies for th
 
 The router uses route parameters to populate the corresponding component parameters with the same name (case insensitive):
 
-[!code-cshtml[](common/samples/3.x/BlazorWebAssemblySample/Pages/RouteParameter.razor?name=snippet_RouteParameter&highlight=2,7-8)]
+```razor
+@page "/RouteParameter"
+@page "/RouteParameter/{text}"
+
+<h1>Blazor is @Text!</h1>
+
+@code {
+    [Parameter]
+    public string Text { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Text = Text ?? "fantastic";
+    }
+}
+```
 
 Optional parameters aren't supported for Blazor apps in ASP.NET Core 3.0. Two `@page` directives are applied in the previous example. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
 
@@ -105,7 +125,7 @@ In the following example, the route to the `Users` component only matches if:
 * An `Id` route segment is present on the request URL.
 * The `Id` segment is an integer (`int`).
 
-[!code-cshtml[](routing/samples_snapshot/3.x/Constraint.razor?highlight=1)]
+[!code-razor[](routing/samples_snapshot/3.x/Constraint.razor?highlight=1)]
 
 The route constraints shown in the following table are available. For the route constraints that match with the invariant culture, see the warning below the table for more information.
 
@@ -147,7 +167,7 @@ Use a `NavLink` component in place of HTML hyperlink elements (`<a>`) when creat
 
 The following `NavMenu` component creates a [Bootstrap](https://getbootstrap.com/docs/) navigation bar that demonstrates how to use `NavLink` components:
 
-[!code-cshtml[](routing/samples_snapshot/3.x/NavMenu.razor?highlight=4,9)]
+[!code-razor[](routing/samples_snapshot/3.x/NavMenu.razor?highlight=4,9)]
 
 There are two `NavLinkMatch` options that you can assign to the `Match` attribute of the `<NavLink>` element:
 
@@ -158,7 +178,7 @@ In the preceding example, the Home `NavLink` `href=""` matches the home URL and 
 
 Additional `NavLink` component attributes are passed through to the rendered anchor tag. In the following example, the `NavLink` component includes the `target` attribute:
 
-```cshtml
+```razor
 <NavLink href="my-page" target="_blank">My page</NavLink>
 ```
 
@@ -183,7 +203,7 @@ Use `Microsoft.AspNetCore.Components.NavigationManager` to work with URIs and na
 
 The following component navigates to the app's `Counter` component when the button is selected:
 
-```cshtml
+```razor
 @page "/navigate"
 @inject NavigationManager NavigationManager
 

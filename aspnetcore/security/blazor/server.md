@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats to Blazor Server apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc: [Blazor, SignalR]
 uid: security/blazor/server
 ---
@@ -151,7 +151,7 @@ Blazor Server events are asynchronous, so multiple events can be dispatched to t
 
 Consider a counter component that should allow a user to increment a counter a maximum of three times. The button to increment the counter is conditionally based on the value of `count`:
 
-```cshtml
+```razor
 <p>Count: @count<p>
 
 @if (count < 3)
@@ -172,7 +172,7 @@ Consider a counter component that should allow a user to increment a counter a m
 
 A client can dispatch one or more increment events before the framework produces a new render of this component. The result is that the `count` can be incremented *over three times* by the user because the button isn't removed by the UI quickly enough. The correct way to achieve the limit of three `count` increments is shown in the following example:
 
-```cshtml
+```razor
 <p>Count: @count<p>
 
 @if (count < 3)
@@ -200,7 +200,7 @@ By adding the `if (count < 3) { ... }` check inside the handler, the decision to
 
 If an event callback invokes a long running operation, such as fetching data from an external service or database, consider using a guard. The guard can prevent the user from queueing up multiple operations while the operation is in progress with visual feedback. The following component code sets `isLoading` to `true` while `GetForecastAsync` obtains data from the server. While `isLoading` is `true`, the button is disabled in the UI:
 
-```cshtml
+```razor
 @page "/fetchdata"
 @using BlazorServerSample.Data
 @inject WeatherForecastService ForecastService
@@ -227,7 +227,7 @@ If an event callback invokes a long running operation, such as fetching data fro
 
 In addition to using a guard as described in the [Guard against multiple dispatches](#guard-against-multiple-dispatches) section, consider using a <xref:System.Threading.CancellationToken> to cancel long-running operations when the component is disposed. This approach has the added benefit of avoiding *use-after-dispose* in components:
 
-```cshtml
+```razor
 @implements IDisposable
 
 ...

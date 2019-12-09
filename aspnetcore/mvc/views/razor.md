@@ -3,7 +3,7 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 11/09/2019
+ms.date: 12/05/2019
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -455,13 +455,13 @@ The `@attribute` directive adds the given attribute to the class of the generate
 
 The `@code` block enables a [Razor component](xref:blazor/components) to add C# members (fields, properties, and methods) to a component:
 
-```cshtml
+```razor
 @code {
     // C# members (fields, properties, and methods)
 }
 ```
 
-For Razor components, `@code` is an alias of [@functions](#functions) and recommended over `@functions`. More than one `@code` block is permissible.
+For Razor components, `@code` is an alias of [`@functions`](#functions) and recommended over `@functions`. More than one `@code` block is permissible.
 
 ::: moniker-end
 
@@ -868,9 +868,9 @@ There are three directives that pertain to [Tag Helpers](xref:mvc/views/tag-help
 
 | Directive | Function |
 | --------- | -------- |
-| [@addTagHelper](xref:mvc/views/tag-helpers/intro#add-helper-label) | Makes Tag Helpers available to a view. |
-| [@removeTagHelper](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Removes Tag Helpers previously added from a view. |
-| [@tagHelperPrefix](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Specifies a tag prefix to enable Tag Helper support and to make Tag Helper usage explicit. |
+| [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#add-helper-label) | Makes Tag Helpers available to a view. |
+| [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Removes Tag Helpers previously added from a view. |
+| [`@tagHelperPrefix`](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Specifies a tag prefix to enable Tag Helper support and to make Tag Helper usage explicit. |
 
 ## Razor reserved keywords
 

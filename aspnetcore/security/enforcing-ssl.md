@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to require HTTPS/TLS in a ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/14/2019
+ms.date: 12/06/2019
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
@@ -167,7 +167,7 @@ Calling `AddHttpsRedirection` is only necessary to change the values of `HttpsPo
 The preceding highlighted code:
 
 * Sets [HttpsRedirectionOptions.RedirectStatusCode](xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode*) to <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect>, which is the default value. Use the fields of the <xref:Microsoft.AspNetCore.Http.StatusCodes> class for assignments to `RedirectStatusCode`.
-* Sets the HTTPS port to 5001. The default value is 443.
+* Sets the HTTPS port to 5001.
 
 #### Configure permanent redirects in production
 

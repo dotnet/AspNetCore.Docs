@@ -53,7 +53,7 @@ The following files and folders make up a Blazor app generated from a Blazor tem
 
 * *App.razor* &ndash; The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The `Router` component intercepts browser navigation and renders the page that matches the requested address.
 
-* *Pages* folder &ndash; Contains the routable components/pages (*.razor*) that make up the Blazor app. The route for each page is specified using the [@page](xref:mvc/views/razor#page) directive. The template includes the following components:
+* *Pages* folder &ndash; Contains the routable components/pages (*.razor*) that make up the Blazor app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
   * `Index` (*Index.razor*) &ndash; Implements the Home page.
   * `Counter` (*Counter.razor*) &ndash; Implements the Counter page.
   * `Error` (*Error.razor*, Blazor Server app only) &ndash; Rendered when an unhandled exception occurs in the app.
@@ -63,7 +63,7 @@ The following files and folders make up a Blazor app generated from a Blazor tem
   * `MainLayout` (*MainLayout.razor*) &ndash; The app's layout component.
   * `NavMenu` (*NavMenu.razor*) &ndash; Implements sidebar navigation. Includes the [NavLink component](xref:blazor/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The `NavLink` component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
 
-* *_Imports.razor* &ndash; Includes common Razor directives to include in the app's components (*.razor*), such as [@using](xref:mvc/views/razor#using) directives for namespaces.
+* *_Imports.razor* &ndash; Includes common Razor directives to include in the app's components (*.razor*), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
 * *Data* folder (Blazor Server) &ndash; Contains the `WeatherForecast` class and implementation of the `WeatherForecastService` that provide example weather data to the app's `FetchData` component.
 
