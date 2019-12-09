@@ -103,7 +103,7 @@ You can take advantage of NSwag's code generation capabilities by choosing one o
 
 ### Generate code with NSwagStudio
 
-* Install NSwagStudio by following the instructions at the [NSwagStudio GitHub repository](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio).
+* Install NSwagStudio by following the instructions at the [NSwagStudio GitHub repository](https://github.com/RicoSuter/NSwag/wiki/NSwagStudio). On the NSwag release page you can download an xcopy version which can be started without installation and admin privileges.
 * Launch NSwagStudio and enter the *swagger.json* file URL in the **Swagger Specification URL** text box. For example, *http://localhost:44354/swagger/v1/swagger.json*.
 * Click the **Create local Copy** button to generate a JSON representation of your Swagger specification.
 

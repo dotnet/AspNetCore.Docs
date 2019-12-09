@@ -147,7 +147,7 @@ In the `FetchData` component of the Blazor templates, `OnInitializedAsync` is ov
 
 *Pages/FetchData.razor* in the Blazor Server template:
 
-[!code-cshtml[](lifecycle/samples_snapshot/3.x/FetchData.razor?highlight=9,21,25)]
+[!code-razor[](lifecycle/samples_snapshot/3.x/FetchData.razor?highlight=9,21,25)]
 
 ## Component disposal with IDisposable
 
