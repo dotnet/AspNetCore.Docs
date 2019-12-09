@@ -65,8 +65,10 @@ If `base.SetParametersAync` isn't invoked, the custom code can interpret the inc
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet*> are called:
 
-* After component initialization.
-* When a component has received changed parameters from its parent and the values are assigned to properties.
+* After component initialization when its parent component is rendered.
+* When a component has assigned values to properties:
+  * From changes to simple parameters by its parent.
+  * When complex type parameters are used.
 
 ```csharp
 protected override async Task OnParametersSetAsync()
