@@ -5,7 +5,7 @@ description: Learn how to configure ASP.NET Core SignalR apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 12/06/2019
+ms.date: 12/09/2019
 no-loc: [SignalR]
 uid: signalr/configuration
 ---
@@ -15,14 +15,10 @@ uid: signalr/configuration
 
 ASP.NET Core SignalR supports two protocols for encoding messages: [JSON](https://www.json.org/) and [MessagePack](https://msgpack.org/index.html). Each protocol has serialization configuration options.
 
-::: moniker range="= aspnetcore-3.1"
+::: moniker range=">= aspnetcore-3.0"
 
 > [!NOTE]
 > This topic has not been updated to ASP.NET Core 3.1
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-3.0"
 
 JSON serialization can be configured on the server using the [AddJsonProtocol](/dotnet/api/microsoft.extensions.dependencyinjection.jsonprotocoldependencyinjectionextensions.addjsonprotocol) extension method. `AddJsonProtocol` can be added after [AddSignalR](/dotnet/api/microsoft.extensions.dependencyinjection.signalrdependencyinjectionextensions.addsignalr) in `Startup.ConfigureServices`. The `AddJsonProtocol` method takes a delegate that receives an `options` object. The [PayloadSerializerOptions](/dotnet/api/microsoft.aspnetcore.signalr.jsonhubprotocoloptions.payloadserializeroptions) property on that object is a `System.Text.Json` <xref:System.Text.Json.JsonSerializerOptions> object that can be used to configure serialization of arguments and return values. For more information, see the [System.Text.Json documentation](/dotnet/api/system.text.json).
 
@@ -516,10 +512,6 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
 The following table describes options for configuring ASP.NET Core SignalR's advanced HTTP options:
 
 | Option | Default Value | Description |
@@ -531,9 +523,6 @@ The following table describes options for configuring ASP.NET Core SignalR's adv
 | `LongPolling` | See below. | Additional options specific to the Long Polling transport. |
 | `WebSockets` | See below. | Additional options specific to the WebSockets transport. |
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
 
 The Long Polling transport has additional options that can be configured using the `LongPolling` property:
 
