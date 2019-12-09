@@ -680,7 +680,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 }
 ```
 
-The `RequestSizeLimitAttribute` can also be applied using the [@attribute](xref:mvc/views/razor#attribute) Razor directive:
+The `RequestSizeLimitAttribute` can also be applied using the [`@attribute`](xref:mvc/views/razor#attribute) Razor directive:
 
 ```cshtml
 @attribute [RequestSizeLimitAttribute(52428800)]

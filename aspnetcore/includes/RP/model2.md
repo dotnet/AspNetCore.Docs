@@ -30,7 +30,7 @@ Add a connection string to the *appsettings.json* file as shown in the following
 Add the following `using` statements at the top of *Startup.cs*:
 
 ```csharp
-using RazorPagesMovie.Models;
+using RazorPagesMovie.Data;
 using Microsoft.EntityFrameworkCore;
 ```
 
