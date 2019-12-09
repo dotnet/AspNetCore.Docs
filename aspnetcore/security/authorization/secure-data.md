@@ -449,7 +449,43 @@ Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addr
 
 Set the default authentication policy to require users to be authenticated:
 
+::: moniker range=">= aspnetcore-3.0"
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    ...
+    services.AddControllers();
+}
+
+public void Configure(IApplicationBuilder app)
+{
+    ...
+    app.UseRouting();
+    app.UseAuthentication();
+    app.UseAuthorization();
+
+    app.UseEndpoints(endpoints =>
+    {
+        // using Microsoft.AspNetCore.Mvc.Authorization;
+        // using Microsoft.AspNetCore.Authorization;
+        var policy = new AuthorizationPolicyBuilder()
+                         .RequireAuthenticatedUser()
+                         .Build();
+        
+        endpoints.MapControllers()
+            .RequireAuthorization(policy);
+    });
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet&highlight=17-99)] 
+
+::: moniker-end
 
  You can opt out of authentication at the Razor Page, controller, or action method level with the `[AllowAnonymous]` attribute. Setting the default authentication policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authentication required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
 
