@@ -19,7 +19,7 @@ The Blazor framework includes synchronous and asynchronous lifecycle methods. Ov
 
 ### Component initialization methods
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*> are invoked when the component is ready to start after having received its initial parameters from its parent component. Use `OnInitializedAsync` when the component performs an asynchronous operation and should refresh when the operation is completed. These methods are only called one time when the component is first instantiated.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*> are invoked when the component is initialized after having received its initial parameters from its parent component. Use `OnInitializedAsync` when the component performs an asynchronous operation and should refresh when the operation is completed. These methods are only called one time when the component is first instantiated.
 
 For a synchronous operation, override `OnInitialized`:
 
