@@ -368,6 +368,10 @@ The `SetLanguage` method sets the culture cookie.
 
 You can't plug in the *_SelectLanguagePartial.cshtml* to sample code for this project. The **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) has code to flow the `RequestLocalizationOptions` to a Razor partial through the [Dependency Injection](dependency-injection.md) container.
 
+## Model binding route data and query strings
+
+See [Globalization behavior of model binding route data and query strings](xref:mvc/models/model-binding#glob).
+
 ## Globalization and localization terms
 
 The process of localizing your app also requires a basic understanding of relevant character sets commonly used in modern software development and an understanding of the issues associated with them. Although all computers store text as numbers (codes), different systems store the same text using different numbers. The localization process refers to translating the app user interface (UI) for a specific culture/locale.

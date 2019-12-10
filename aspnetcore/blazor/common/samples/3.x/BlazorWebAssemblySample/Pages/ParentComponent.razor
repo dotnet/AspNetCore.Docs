@@ -1,4 +1,3 @@
-<!-- <snippet_ParentComponent> -->
 @page "/ParentComponent"
 
 <h1>Parent-child example</h1>
@@ -16,10 +15,9 @@
 
     private void ShowMessage(MouseEventArgs e)
     {
-        messageText = "Blaze a new trail with Blazor!";
+        messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
     }
 }
-<!-- </snippet_ParentComponent> -->
 
 <p>
     <code>ParentComponent</code> (<em>ParentComponent</em>; this page)
@@ -46,7 +44,7 @@
 
     private void ShowMessage(MouseEventArgs e)
     {
-        messageText = "Blaze a new trail with Blazor!";
+        messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
     }
 }</code></pre>
 

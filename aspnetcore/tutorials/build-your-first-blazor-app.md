@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/27/2019
+ms.date: 12/05/2019
 no-loc: [Blazor]
 uid: tutorials/first-blazor-app
 ---
@@ -118,7 +118,7 @@ If working with a Blazor WebAssembly app, `HttpClient` is injected to obtain wea
 
 [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-8)]
 
-An [@foreach](/dotnet/csharp/language-reference/keywords/foreach-in) loop is used to render each forecast instance as a row in the table of weather data:
+An [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop is used to render each forecast instance as a row in the table of weather data:
 
 [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData3.razor?highlight=11-19)]
 
@@ -177,7 +177,7 @@ Add a new component to the app that implements a simple todo list.
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo7.razor?highlight=2)]
 
-   ```cshtml
+   ```razor
    <input placeholder="Something todo" @bind="newTodo" />
    ```
 

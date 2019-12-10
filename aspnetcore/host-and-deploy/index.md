@@ -83,3 +83,5 @@ Use Health Check Middleware to perform health checks on an app and its dependenc
 
 * <xref:host-and-deploy/docker/index>
 * <xref:test/troubleshoot>
+* [ASP.NET Hosting](https://dotnet.microsoft.com/apps/aspnet/hosting)
+

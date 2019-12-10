@@ -3,7 +3,7 @@ title: Add a model to a Razor Pages app in ASP.NET Core
 author: rick-anderson
 description: Discover how to add classes for managing movies in a database using Entity Framework Core (EF Core).
 ms.author: riande
-ms.date: 11/05/2019
+ms.date: 12/05/2019
 uid: tutorials/razor-pages/model
 ---
 # Add a model to a Razor Pages app in ASP.NET Core
@@ -214,7 +214,7 @@ The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Up
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 
-The preceding code creates a [`DbSet<Movie>`](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
+The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
@@ -347,11 +347,6 @@ The *appsettings.json* file is updated with the connection string used to connec
 -->
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Install the scaffolding tool:
-
-  ```dotnetcli
-   dotnet tool install --global dotnet-aspnet-codegenerator
-   ```
 
 * **For Windows**: Run the following command:
 
@@ -370,12 +365,6 @@ The *appsettings.json* file is updated with the connection string used to connec
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Install the scaffolding tool:
-
-  ```dotnetcli
-   dotnet tool install --global dotnet-aspnet-codegenerator
-   ```
-
 * Run the following command:
 
   ```dotnetcli
@@ -453,7 +442,7 @@ The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Up
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 
-The preceding code creates a [`DbSet<Movie>`](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
+The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 

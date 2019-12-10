@@ -12,6 +12,8 @@
   uid: getting-started
 - name: What's new
   items:
+    - name: What's new in 3.1
+      uid: aspnetcore-3.1
     - name: What's new in 3.0
       uid: aspnetcore-3.0
     - name: What's new in 2.2
@@ -348,8 +350,6 @@
               uid: client-side/libman/libman-vs
         - name: Grunt
           uid: client-side/using-grunt
-        - name: Bower
-          uid: client-side/bower
         - name: Bundle and minify
           uid: client-side/bundling-and-minification
         - name: Browser Link
@@ -555,6 +555,13 @@
     - name: Logging and diagnostics
       displayName: signalr
       uid: signalr/diagnostics
+    - name: Specifications
+      displayName: signalr, specs
+      items:
+        - name: Hub protocol
+          href: https://github.com/aspnet/AspNetCore/blob/master/src/SignalR/docs/specs/HubProtocol.md
+        - name: Transport protocols
+          href: https://github.com/aspnet/AspNetCore/blob/master/src/SignalR/docs/specs/TransportProtocols.md      
 - name: Remote Procedure Call apps
   items:
     - name: Introduction to gRPC services
@@ -1015,7 +1022,9 @@
     - name: Enable Cross-Origin Requests (CORS)
       uid: security/cors
     - name: Share cookies among apps
-      uid: security/cookie-sharing
+      uid: security/cookie-sharing      
+    - name: SameSite cookies
+      uid: security/samesite
     - name: IP safelist
       uid: security/ip-safelist
     - name: Application security - OWASP

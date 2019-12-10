@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 2.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2019
+ms.date: 12/05/2019
 uid: aspnetcore-2.0
 ---
 
@@ -99,7 +99,7 @@ var entityTag = new EntityTagHeaderValue("\"MyCalculatedEtagValue\"");
 return File(data, "text/plain", "downloadName.txt", lastModified: DateTime.UtcNow.AddSeconds(-5), entityTag: entityTag);
 ```
 
-The file returned to your visitors will be decorated with the appropriate HTTP headers for the `ETag` and `LastModified` values.
+The file returned to your visitors has the appropriate HTTP headers for the `ETag` and `LastModified` values.
 
 If an application visitor requests content with a Range Request header, ASP.NET Core recognizes the request and handles the header. If the requested content can be partially delivered, ASP.NET Core appropriately skips and returns just the requested set of bytes. You don't need to write any special handlers into your methods to adapt or handle this feature; it's automatically handled for you.
 

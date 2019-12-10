@@ -5,7 +5,7 @@ description: See how Blazor apps can inject services into components.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 12/05/2019
 no-loc: [Blazor]
 uid: blazor/dependency-injection
 ---
@@ -28,7 +28,7 @@ Default services are automatically added to the app's service collection.
 
 | Service | Lifetime | Description |
 | ------- | -------- | ----------- |
-| <xref:System.Net.Http.HttpClient> | Singleton | Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI. Note that this instance of `HttpClient` uses the browser for handling the HTTP traffic in the background. [HttpClient.BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress) is automatically set to the base URI prefix of the app. For more information, see <xref:blazor/call-web-api>. |
+| <xref:System.Net.Http.HttpClient> | Singleton | Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI.<br><br>The instance of `HttpClient` in a Blazor WebAssembly app uses the browser for handling the HTTP traffic in the background.<br><br>Blazor Server apps don't include an `HttpClient` configured as a service by default. Provide an `HttpClient` to a Blazor Server app.<br><br>For more information, see <xref:blazor/call-web-api>. |
 | `IJSRuntime` | Singleton | Represents an instance of a JavaScript runtime where JavaScript calls are dispatched. For more information, see <xref:blazor/javascript-interop>. |
 | `NavigationManager` | Singleton | Contains helpers for working with URIs and navigation state. For more information, see [URI and navigation state helpers](xref:blazor/routing#uri-and-navigation-state-helpers). |
 
@@ -77,9 +77,9 @@ Use multiple `@inject` statements to inject different services.
 
 The following example shows how to use `@inject`. The service implementing `Services.IDataAccess` is injected into the component's property `DataRepository`. Note how the code is only using the `IDataAccess` abstraction:
 
-[!code-cshtml[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,23)]
+[!code-razor[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,23)]
 
-Internally, the generated property (`DataRepository`) is decorated with the `InjectAttribute` attribute. Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, manually add the `InjectAttribute`:
+Internally, the generated property (`DataRepository`) uses the `InjectAttribute` attribute. Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, manually add the `InjectAttribute`:
 
 ```csharp
 public class ComponentBase : IComponent
@@ -93,7 +93,7 @@ public class ComponentBase : IComponent
 
 In components derived from the base class, the `@inject` directive isn't required. The `InjectAttribute` of the base class is sufficient:
 
-```cshtml
+```razor
 @page "/demo"
 @inherits ComponentBase
 
@@ -128,7 +128,7 @@ In ASP.NET Core apps, scoped services are typically scoped to the current reques
 
 To scope services to the lifetime of a component, can use the `OwningComponentBase` and `OwningComponentBase<TService>` base classes. These base classes expose a `ScopedServices` property of type `IServiceProvider` that resolve services that are scoped to the lifetime of the component. To author a component that inherits from a base class in Razor, use the `@inherits` directive.
 
-```cshtml
+```razor
 @page "/users"
 @attribute [Authorize]
 @inherits OwningComponentBase<Data.ApplicationDbContext>

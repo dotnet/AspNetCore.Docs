@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+            "source_path": "aspnet/core/client-side/bower.md",
+            "redirect_url": "/aspnet/core/client-side/libman/index",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/tutorials/grpc/grpc-client.md",
             "redirect_url": "/aspnet/core/tutorials/grpc/grpc-start",
             "redirect_document_id": false

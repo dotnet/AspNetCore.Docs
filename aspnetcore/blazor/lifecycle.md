@@ -57,7 +57,7 @@ public override async Task SetParametersAsync(ParameterView parameters)
 
 <xref:Microsoft.AspNetCore.Components.ParameterView> contains the entire set of parameter values each time `SetParametersAsync` is called.
 
-The default implementation of `SetParametersAsync` sets the value of each property decorated with the `[Parameter]` or `[CascadingParameter]` attribute that has a corresponding value in the `ParameterView`. Parameters that don't have a corresponding value in `ParameterView` are left unchanged.
+The default implementation of `SetParametersAsync` sets the value of each property with the `[Parameter]` or `[CascadingParameter]` attribute that has a corresponding value in the `ParameterView`. Parameters that don't have a corresponding value in `ParameterView` are left unchanged.
 
 If `base.SetParametersAync` isn't invoked, the custom code can interpret the incoming parameters value in any way required. For example, there's no requirement to assign the incoming parameters to the properties on the class.
 

@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2019
+ms.date: 12/05/2019
 no-loc: [Blazor]
 uid: blazor/forms-validation
 ---
@@ -104,7 +104,7 @@ In the preceding example, `Description` is optional because no data annotations 
 
 The following form validates user input using the validation defined in the `Starship` model:
 
-```cshtml
+```razor
 @page "/FormsValidation"
 
 <h1>Starfleet Starship Database</h1>
@@ -173,7 +173,7 @@ Use the `InputText` component to create a custom component that uses the `input`
 
 Create a component with the following markup, and use the component just as `InputText` is used:
 
-```cshtml
+```razor
 @inherits InputText
 
 <input 
@@ -197,19 +197,19 @@ Blazor performs two types of validation:
 
 The `ValidationSummary` component summarizes all validation messages, which is similar to the [Validation Summary Tag Helper](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper):
 
-```csthml
+```razor
 <ValidationSummary />
 ```
 
 Output validation messages for a specific model with the `Model` parameter:
   
-```csthml
+```razor
 <ValidationSummary Model="@starship" />
 ```
 
 The `ValidationMessage` component displays validation messages for a specific field, which is similar to the [Validation Message Tag Helper](xref:mvc/views/working-with-forms#the-validation-message-tag-helper). Specify the field for validation with the `For` attribute and a lambda expression naming the model property:
 
-```cshtml
+```razor
 <ValidationMessage For="@(() => starship.MaximumAccommodation)" />
 ```
 
@@ -252,7 +252,7 @@ Blazor provides support for validating form input using data annotations with th
 
 To validate the bound model's entire object graph, including collection- and complex-type properties, use the `ObjectGraphDataAnnotationsValidator` provided by the *experimental* [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) package:
 
-```cshtml
+```razor
 <EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
     <ObjectGraphDataAnnotationsValidator />
     ...
