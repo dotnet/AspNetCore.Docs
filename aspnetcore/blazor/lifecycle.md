@@ -5,7 +5,7 @@ description: Learn how to use Razor component lifecycle methods in ASP.NET Core 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/10/2019
 no-loc: [Blazor]
 uid: blazor/lifecycle
 ---
@@ -19,9 +19,18 @@ The Blazor framework includes synchronous and asynchronous lifecycle methods. Ov
 
 ### Component initialization methods
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*> execute code that initializes a component. These methods are only called one time when the component is first instantiated.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*> are invoked when the component is ready to start after having received its initial parameters from its parent component. Use `OnInitializedAsync` when the component performs an asynchronous operation and should refresh when the operation is completed. These methods are only called one time when the component is first instantiated.
 
-To perform an asynchronous operation, use `OnInitializedAsync` and the `await` keyword on the operation:
+For a synchronous operation, override `OnInitialized`:
+
+```csharp
+protected override void OnInitialized()
+{
+    ...
+}
+```
+
+To perform an asynchronous operation, override `OnInitializedAsync` and use the `await` keyword on the operation:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -32,15 +41,6 @@ protected override async Task OnInitializedAsync()
 
 > [!NOTE]
 > Asynchronous work during component initialization must occur during the `OnInitializedAsync` lifecycle event.
-
-For a synchronous operation, use `OnInitialized`:
-
-```csharp
-protected override void OnInitialized()
-{
-    ...
-}
-```
 
 ### Before parameters are set
 
@@ -67,8 +67,8 @@ If `base.SetParametersAync` isn't invoked, the custom code can interpret the inc
 
 * After component initialization when its parent component is rendered.
 * When a component has assigned values to properties:
-  * From changes to simple parameters by its parent.
-  * When complex type parameters are used.
+  * From *changes* to simple parameters by its parent.
+  * When complex-type parameters *are used*, even when complex-type parameter values don't change.
 
 ```csharp
 protected override async Task OnParametersSetAsync()
