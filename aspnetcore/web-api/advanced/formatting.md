@@ -114,7 +114,7 @@ XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer> a
 
 The preceding code serializes results using `XmlSerializer`.
 
-When using the preceding code, controller methods should return the appropriate format based on the request's `Accept` header.
+When using the preceding code, controller methods return the appropriate format based on the request's `Accept` header.
 
 ### Configure System.Text.Json-based formatters
 
