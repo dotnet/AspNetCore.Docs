@@ -262,8 +262,8 @@ Blazor doesn't provide a built-in scenario for handling radio button `<input>` e
 <p>You chose: @currentChoice</p>
 
 @code {
-   private enum Choices { Red, Green, Blue };
-   private Choices currentChoice = Choices.Red;
+    private enum Choices { Red, Green, Blue };
+    private Choices currentChoice = Choices.Red;
 }
 ```
 
