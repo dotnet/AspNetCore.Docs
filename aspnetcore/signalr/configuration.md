@@ -5,7 +5,7 @@ description: Learn how to configure ASP.NET Core SignalR apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 12/09/2019
+ms.date: 12/10/2019
 no-loc: [SignalR]
 uid: signalr/configuration
 ---
@@ -937,8 +937,6 @@ let connection = new signalR.HubConnectionBuilder()
     .withUrl("/myhub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
     .build();
 ```
-
-In this version of the Java client websockets is the only available transport.
 
 ### Configure bearer authentication
 
