@@ -57,7 +57,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 * Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code.
   ![new ASP.NET Core Web Application](razor-pages-start/_static/config.png)
 
-* Select **ASP.NET Core 3.0** in the dropdown, **Web Application**, and then select **Create**.
+* Select **ASP.NET Core 3.1** in the dropdown, **Web Application**, and then select **Create**.
 
 ![new ASP.NET Core Web Application](razor-pages-start/_static/3/npx.png)
 
