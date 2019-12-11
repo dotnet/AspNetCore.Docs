@@ -160,7 +160,7 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
 To support routable Razor components in Razor Pages apps:
 
-1. Follow the guidance in the [Use components in pages and views without routing](#use-components-in-pages-and-views-without-routing) section.
+1. Follow the guidance in the [Use components in pages and views](#use-components-in-pages-and-views) section.
 
 1. Add an *App.razor* file at the root of the project with the following content:
 
