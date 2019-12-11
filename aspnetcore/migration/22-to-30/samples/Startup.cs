@@ -23,7 +23,7 @@ namespace WebApplication66
             Configuration = configuration;
         }
 
-        private const string _RequireAuthenticatedUserPolicy = 
+        static readonly string _RequireAuthenticatedUserPolicy = 
                                 "RequireAuthenticatedUserPolicy";
         public IConfiguration Configuration { get; }
 
@@ -68,11 +68,8 @@ namespace WebApplication66
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers().RequireAuthorization(
-                                                    _RequireAuthenticatedUserPolicy);
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapDefaultControllerRoute()
+                    .RequireAuthorization(_RequireAuthenticatedUserPolicy);
                 endpoints.MapRazorPages();
             });
         }
