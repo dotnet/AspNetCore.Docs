@@ -614,6 +614,8 @@
       uid: test/loadtests
     - name: Troubleshoot
       uid: test/troubleshoot
+    - name: Debug ASP.NET Core apps
+      uid: test/debug
     - name: Logging
       uid: fundamentals/logging/index
     - name: Troubleshoot Azure and IIS
