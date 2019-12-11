@@ -23,7 +23,7 @@ namespace WebApplication66
             Configuration = configuration;
         }
 
-        static readonly string _RequireAuthenticatedUserPolicy = 
+        private const string _RequireAuthenticatedUserPolicy = 
                                 "RequireAuthenticatedUserPolicy";
         public IConfiguration Configuration { get; }
 
