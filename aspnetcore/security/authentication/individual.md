@@ -8,8 +8,6 @@ uid: security/authentication/individual
 ---
 # Articles based on ASP.NET Core projects created with individual user accounts
 
-https://docs.microsoft.com/en-us/azure/active-directory-b2c/
-
 ASP.NET Core Identity is included in project templates in Visual Studio with the "Individual User Accounts" option.
 
 The authentication templates are available in .NET Core CLI with `-au Individual`:
@@ -61,9 +59,9 @@ The following table shows the authentication options available for new web apps:
  | ----------------- | ------------ | ---------- |
 | None            |  No authentication | | 
 | Individual      |  Individual authentication | <xref:security/authentication/identity>
-| IndividualB2C   |  Individual authentication with Azure AD B2C | [Azure AD B2C](https://docs.microsoft.com/en-us/azure/active-directory-b2c/) |
-| SingleOrg       |  Organizational authentication for a single tenant | [Add sign-in](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| MultiOrg        |  Organizational authentication for multiple tenants | Add sign-in](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| IndividualB2C   |  Individual authentication with Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
+| SingleOrg       |  Organizational authentication for a single tenant | [Add sign-in](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| MultiOrg        |  Organizational authentication for multiple tenants | Add sign-in](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
 | Windows         |  Windows authentication | [Windows Authentication](xref:security/authentication/windowsauth)
 
 ## Visual Studio new webapp authentication options
@@ -74,8 +72,8 @@ The following table shows the authentication options available when creating a n
  | ----------------- | ------------ | ---------- |
 | None            |  No authentication | | 
 | Individual User Accounts    |  Individual authentication | <xref:security/authentication/identity>
-| Work or School Cloud Single Org  |  Organizational authentication for a single tenant | [Add sign-in](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| Work or School Cloud Multiple Org |  Organizational authentication for multiple tenants | Add sign-in](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| Work or School Cloud Single Org  |  Organizational authentication for a single tenant | [Add sign-in](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| Work or School Cloud Multiple Org |  Organizational authentication for multiple tenants | Add sign-in](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
 | Windows         |  Windows authentication | [Windows Authentication](xref:security/authentication/windowsauth)
 
 ## Additional resources
