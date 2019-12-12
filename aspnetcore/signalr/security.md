@@ -28,7 +28,15 @@ For more information on configuring CORS, see [Enable Cross-Origin Requests (COR
 
 * Allow the specific expected origins. Allowing any origin is possible but is **not** secure or recommended.
 * HTTP methods `GET` and `POST` must be allowed.
-* Credentials must be enabled, even when authentication is not used.
+* Credentials must be enabled:
+  * Even when authentication is not used.
+  * Because there is no customization in the browser client to not use credentials.
+
+<!--However, in 5.0 we have provided an option in the Typescript client to not use credentials.
+The not to use credentials option should only be used when you know 100% that credentials like Cookies are not needed in your app (cookies are used by azure app service when using multiple servers)
+
+For more info, see https://github.com/aspnet/AspNetCore.Docs/issues/16003
+.-->
 
 For example, the following CORS policy allows a SignalR browser client hosted on `https://example.com` to access the SignalR app hosted on `https://signalr.example.com`:
 
