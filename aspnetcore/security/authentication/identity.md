@@ -210,6 +210,7 @@ See [AddDefaultIdentity source](https://github.com/aspnet/AspNetCore/blob/releas
 
 ## Next Steps
 
+* See [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/5131) for information on configuring Identity using SQLite.
 * [Configure Identity](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>
 * <xref:security/authentication/add-user-data>
@@ -397,6 +398,7 @@ See [Configuration](#pw) for a sample that sets the minimum password requirement
 
 ## Next Steps
 
+* See [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/5131) for information on configuring Identity using SQLite.
 * [Configure Identity](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>
 * <xref:security/authentication/add-user-data>
