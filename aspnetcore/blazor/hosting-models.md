@@ -156,13 +156,13 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
 1. Integrate components into any page or view. For more information, see the *Integrate components into Razor Pages and MVC apps* section of the <xref:blazor/components#integrate-components-into-razor-pages-and-mvc-apps> article.
 
-#### Use routable components in Razor Pages
+#### Use routable components in a Razor Pages app
 
 To support routable Razor components in Razor Pages apps:
 
 1. Follow the guidance in the [Use components in pages and views](#use-components-in-pages-and-views) section.
 
-1. Add an *App.razor* file at the root of the project with the following content:
+1. Add an *App.razor* file to the root of the project with the following content:
 
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
@@ -178,7 +178,7 @@ To support routable Razor components in Razor Pages apps:
    </Router>
    ```
 
-1. Add a *_Host.cshtml* file in the *Pages* folder with the following content:
+1. Add a *_Host.cshtml* file to the *Pages* folder with the following content:
 
    ```cshtml
    @page "/blazor"
@@ -215,6 +215,74 @@ To support routable Razor components in Razor Pages apps:
    ```
 
    When using a custom folder to hold the app's components, add the namespace representing the folder to the *Pages/_ViewImports.cshtml* file. For more information, see <xref:blazor/components#integrate-components-into-razor-pages-and-mvc-apps>.
+
+#### Use routable components in an MVC app
+
+To support routable Razor components in MVC apps:
+
+1. Follow the guidance in the [Use components in pages and views](#use-components-in-pages-and-views) section.
+
+1. Add an *App.razor* file to the root of the project with the following content:
+
+   ```razor
+   @using Microsoft.AspNetCore.Components.Routing
+
+   <Router AppAssembly="typeof(Program).Assembly">
+       <Found Context="routeData">
+           <RouteView RouteData="routeData" />
+       </Found>
+       <NotFound>
+           <h1>Page not found</h1>
+           <p>Sorry, but there's nothing here!</p>
+       </NotFound>
+   </Router>
+   ```
+
+1. Add a *_Host.cshtml* file to the *Views/Home* folder with the following content:
+
+   ```cshtml
+   @{
+       Layout = "_Layout";
+   }
+
+   <app>
+       <component type="typeof(App)" render-mode="ServerPrerendered" />
+   </app>
+   ```
+
+   Components use the shared *_Layout.cshtml* file for their layout.
+
+1. Add an action to the Home controller:
+
+   ```csharp
+   public IActionResult Blazor()
+   {
+      return View("_Host");
+   }
+   ```
+
+1. Add a low-priority route for the controller action that returns the *_Host.cshtml* view to the endpoint configuration in `Startup.Configure`:
+
+   ```csharp
+   app.UseEndpoints(endpoints =>
+   {
+       ...
+
+       endpoints.MapFallbackToController("Blazor", "Home");
+   });
+   ```
+
+1. Create a *Pages* folder and add routable components to the app. For example:
+
+   ```razor
+   @page "/counter"
+
+   <h1>Counter</h1>
+
+   ...
+   ```
+
+   When using a custom folder to hold the app's components, add the namespace representing the folder to the *Views/_ViewImports.cshtml* file. For more information, see <xref:blazor/components#integrate-components-into-razor-pages-and-mvc-apps>.
 
 ### Circuits
 
