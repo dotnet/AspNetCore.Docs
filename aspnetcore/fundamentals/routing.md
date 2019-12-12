@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core routing is responsible for mapping reques
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/24/2019
+ms.date: 12/13/2019
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -120,6 +120,13 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 > * Use `GetUri*` extension methods with caution in an app configuration that doesn't validate the `Host` header of incoming requests. If the `Host` header of incoming requests isn't validated, untrusted request input can be sent back to the client in URIs in a view/page. We recommend that all production apps configure their server to validate the `Host` header against known valid values.
 >
 > * Use <xref:Microsoft.AspNetCore.Routing.LinkGenerator> with caution in middleware in combination with `Map` or `MapWhen`. `Map*` changes the base path of the executing request, which affects the output of link generation. All of the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> APIs allow specifying a base path. Always specify an empty base path to undo `Map*`'s affect on link generation.
+
+## Endpoint routing
+
+* A route endpoint has a template, metadata, and a request delegate that serves the endpoint's response.
+* Routing is connected to the [middleware](xref:fundamentals/middleware/index) pipeline by the <xref:Microsoft.AspNetCore.Builder.RouterMiddleware> class. [ASP.NET Core MVC](xref:mvc/overview) adds routing to the middleware pipeline as part of its configuration and handles routing in MVC and Razor Pages apps. Endpoint data sources are mapped when MVC adds routing to the middleware pipeline. This routing middleware handles matching the template. At the end of the request pipeline a matched endpoint's request delegate is automatically called.
+* If the apps endpoints are static, endpoints can be mapped using <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>, and MapVerb helper methods. Static endpoints don't change during the lifetime of the app.
+* If endpoints are dynamic, you must create a custom data source. For example, a new Razor page is added to the app at runtime and needs a new endpoint.
 
 ## Endpoint routing differences from earlier versions of routing
 
