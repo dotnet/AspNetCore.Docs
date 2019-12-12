@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/12/2019
 no-loc: [Blazor]
 uid: blazor/components
 ---
@@ -345,6 +345,11 @@ In addition to handling `onchange` events with `@bind` syntax, a property or fie
 ```
 
 Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
+
+`@bind-value` in the preceding example binds:
+
+* The specified expression (`CurrentValue`) to the element's `value` attribute.
+* A change event delegate to the event specified by `@bind-value:event`.
 
 **Unparsable values**
 
