@@ -123,7 +123,7 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 
 ## Endpoint routing
 
-* A route endpoint has a template, metadata, and a request delegate that serves the endpoint's response.
+* A route endpoint has a template, metadata, and a request delegate that serves the endpoint's response. The metadata is used to implement cross-cutting concerns based on policies and configuration attached to each endpoint. For example, an Authorization Middleware can interrogate the endpoint's metadata collection for an `[authorization policy](xref:security/authorization/policies#applying-policies-to-mvc-controllers)`.
 * Routing is connected to the [middleware](xref:fundamentals/middleware/index) pipeline by the <xref:Microsoft.AspNetCore.Builder.RouterMiddleware> class. [ASP.NET Core MVC](xref:mvc/overview) adds routing to the middleware pipeline as part of its configuration and handles routing in MVC and Razor Pages apps. Endpoint data sources are mapped when MVC adds routing to the middleware pipeline. This routing middleware handles matching the template. At the end of the request pipeline a matched endpoint's request delegate is automatically called.
 * If the apps endpoints are static, endpoints can be mapped using <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>, and MapVerb helper methods. Static endpoints don't change during the lifetime of the app.
 * If endpoints are dynamic, a custom data source must be created. For example, a new Razor page is added to the app at runtime and needs a new endpoint.
