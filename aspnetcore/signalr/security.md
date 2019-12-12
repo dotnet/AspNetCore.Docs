@@ -33,7 +33,7 @@ For more information on configuring CORS, see [Enable Cross-Origin Requests (COR
   * Because there is no customization in the browser client to not use credentials.
 
 <!--
-::: moniker range=">= aspnetcore-5.0"  // Moniker her just to make sure this doesn't get missed in the 5.0 version update.
+::: moniker range=">= aspnetcore-5.0"  // Moniker here just to make sure this doesn't get missed in the 5.0 version update.
 However, in 5.0 we have provided an option in the Typescript client to not use credentials.
 The not to use credentials option should only be used when you know 100% that credentials like Cookies are not needed in your app (cookies are used by azure app service when using multiple servers)
 
