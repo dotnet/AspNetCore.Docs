@@ -612,7 +612,7 @@
       uid: test/integration-tests
     - name: Load and stress testing
       uid: test/loadtests
-    - name: Troubleshoot
+    - name: Troubleshoot and debug
       uid: test/troubleshoot
     - name: Logging
       uid: fundamentals/logging/index
