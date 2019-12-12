@@ -126,7 +126,7 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 * A route endpoint has a template, metadata, and a request delegate that serves the endpoint's response.
 * Routing is connected to the [middleware](xref:fundamentals/middleware/index) pipeline by the <xref:Microsoft.AspNetCore.Builder.RouterMiddleware> class. [ASP.NET Core MVC](xref:mvc/overview) adds routing to the middleware pipeline as part of its configuration and handles routing in MVC and Razor Pages apps. Endpoint data sources are mapped when MVC adds routing to the middleware pipeline. This routing middleware handles matching the template. At the end of the request pipeline a matched endpoint's request delegate is automatically called.
 * If the apps endpoints are static, endpoints can be mapped using <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>, and MapVerb helper methods. Static endpoints don't change during the lifetime of the app.
-* If endpoints are dynamic, you must create a custom data source. For example, a new Razor page is added to the app at runtime and needs a new endpoint.
+* If endpoints are dynamic, a custom data source must be created. For example, a new Razor page is added to the app at runtime and needs a new endpoint.
 
 ## Endpoint routing differences from earlier versions of routing
 
@@ -209,6 +209,8 @@ A few differences exist between endpoint routing and versions of routing earlier
   | ------------------ | --------------------------------------------------------------------- |
   | `/search/{*page}`  | `/search/admin%2Fproducts` (the forward slash is encoded)             |
   | `/search/{**page}` | `/search/admin/products`                                              |
+
+* The endpoint routing system is lower level than the MVC routing system.
 
 ### Middleware example
 
