@@ -69,7 +69,7 @@ When a Routing Middleware executes, it sets an endpoint (`Endpoint`) and route v
 * Calling `HttpContext.GetEndpoint` gets the endpoint.
 * `HttpRequest.RouteValues` gets the collection of route values.
 
-Middleware running after the Routing Middleware can see the endpoint and take action. For example, an authorization middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
+Middleware running after the Routing Middleware can see the endpoint and take action. For example, an Authorization Middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
 
 The routing system in endpoint routing is responsible for all dispatching decisions. Since the middleware applies policies based on the selected endpoint, it's important that any decision that can affect dispatching or the application of security policies is made inside the routing system.
 
@@ -123,7 +123,7 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 
 ## Endpoint routing
 
-* A route endpoint has a template, metadata, and a request delegate that serves the endpoint's response. The metadata is used to implement cross-cutting concerns based on policies and configuration attached to each endpoint. For example, an Authorization Middleware can interrogate the endpoint's metadata collection for an [authorization policy](xref:security/authorization/policies#applying-policies-to-mvc-controllers).
+* A route endpoint has a template, metadata, and a request delegate that serves the endpoint's response. The metadata is used to implement cross-cutting concerns based on policies and configuration attached to each endpoint. For example, an authorization middleware can interrogate the endpoint's metadata collection for an [authorization policy](xref:security/authorization/policies#applying-policies-to-mvc-controllers).
 * Endpoint routing integrates with middleware using two extension methods:
   * [EndpointRoutingApplicationBuilderExtensions.UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) adds route matching to the middleware pipeline. It must come before any route-aware middleware such as authorization, endpoint execution, etc.
   * [EndpointRoutingApplicationBuilderExtensions.UseEndpoints](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*) adds endpoint execution to the middleware pipeline. It runs the request delegate that serves the endpoint's response.
@@ -137,6 +137,8 @@ Dynamic routes change after the app starts. For example, loading route configura
 The following code shows a basic example of endpoint routing:
 
 [!code-csharp[](routing/samples/3.x/Startup.cs?name=snippet)]
+
+See [URL matching](#url-matching) in this document for more information on endpoint routing.
 
 ## Endpoint routing differences from earlier versions of routing
 
