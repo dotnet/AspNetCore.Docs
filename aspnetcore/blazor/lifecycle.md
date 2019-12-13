@@ -63,9 +63,9 @@ If `base.SetParametersAync` isn't invoked, the custom code can interpret the inc
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet*> are called:
 
 * When the component is initialized and has received its first set of parameters from its parent component.
-* When the parent component re-renders and supplies a possibly-changed set of parameters:
-  * If the parameters are all of known primitive immutable types and the framework skips re-rendering the child when their values are unchanged.
-  * If there are any complex-typed parameters. The framework can't know whether the values have mutated internally, so it treats the parameter set as changed.
+* When the parent component re-renders and supplies:
+  * Only known primitive immutable types of which at least one parameter has changed.
+  * Any complex-typed parameters. The framework can't know whether the values of a complex-typed parameter have mutated internally, so it treats the parameter set as changed.
 
 ```csharp
 protected override async Task OnParametersSetAsync()
