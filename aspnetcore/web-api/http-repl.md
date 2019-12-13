@@ -684,6 +684,7 @@ To issue an HTTP DELETE request:
         "data": "Strawberry"
       }
     ]
+    ```
 
 1. Run the `delete` command on an endpoint that supports it:
 
