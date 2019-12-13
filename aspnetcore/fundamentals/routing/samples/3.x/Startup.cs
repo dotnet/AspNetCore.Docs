@@ -12,6 +12,7 @@ namespace WebApplication67
 {
     public class Startup
     {
+        #region snippet
         public void Configure(IApplicationBuilder app)
         {
             // Matches request to an endpoint.
@@ -30,6 +31,7 @@ namespace WebApplication67
                 endpoints.MapHealthChecks("/healthz");
             });
         }
+        #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
