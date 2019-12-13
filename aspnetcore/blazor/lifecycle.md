@@ -5,7 +5,7 @@ description: Learn how to use Razor component lifecycle methods in ASP.NET Core 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/10/2019
+ms.date: 12/13/2019
 no-loc: [Blazor]
 uid: blazor/lifecycle
 ---
@@ -39,9 +39,6 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-> [!NOTE]
-> Asynchronous work during component initialization must occur during the `OnInitializedAsync` lifecycle event.
-
 ### Before parameters are set
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*> sets parameters supplied by the component's parent in the render tree:
@@ -65,10 +62,10 @@ If `base.SetParametersAync` isn't invoked, the custom code can interpret the inc
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet*> are called:
 
-* After component initialization when its parent component is rendered.
-* When a component has assigned values to properties:
-  * From *changes* to simple parameters by its parent.
-  * When complex-type parameters *are used*, even when complex-type parameter values don't change.
+* When the component is initialized and has received its first set of parameters from its parent component.
+* When the parent component re-renders and supplies a possibly-changed set of parameters:
+  * If the parameters are all of known primitive immutable types and the framework skips re-rendering the child when their values are unchanged.
+  * If there are any complex-typed parameters. The framework can't know whether the values have mutated internally, so it treats the parameter set as changed.
 
 ```csharp
 protected override async Task OnParametersSetAsync()
