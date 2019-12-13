@@ -14,7 +14,7 @@ By [Ryan Nowak](https://github.com/rynowak), [Steve Smith](https://ardalis.com/)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Routing is responsible for mapping request URIs to endpoints and dispatching incoming requests to those endpoints. Routes are defined in the app and configured when the app starts. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the app, routing is also able to generate URLs that map to endpoints. Most apps don't need custom routes. <!-- Insert here why you would need custom routing -->
+Routing is responsible for mapping request URIs to endpoints and dispatching incoming requests to those endpoints. Routes are defined in the app and configured when the app starts. A route can optionally extract values from the URL contained in the request, and these values can then be used for request processing. Using route information from the app, routing is also able to generate URLs that map to endpoints. Many apps don't need to add routes beyond what the templates provide. <!-- Insert here why you would need to add routing -->
 
 > [!IMPORTANT]
 > This document covers low-level ASP.NET Core routing. For information on ASP.NET Core MVC routing, see <xref:mvc/controllers/routing>. For information on routing conventions in Razor Pages, see <xref:razor-pages/razor-pages-conventions>.
@@ -128,11 +128,8 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
   * [UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) adds route matching to the middleware pipeline. It must come before any route-aware middleware such as authorization, endpoint execution, etc.
   * [UseEndpoints](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*) adds endpoint execution to the middleware pipeline. It runs the request delegate that serves the endpoint's response.
   `UseEndpoints` is also where route endpoints are configured that can be matched and executed by the app. For example, <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>.
-  The `UseEndpoints` middleware handles matching the template. At the end of the request pipeline a matched endpoint's request delegate is automatically called.
 * If the apps endpoints are static, endpoints can be mapped using <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>, and MapVerb helper methods. Static endpoints don't change during the lifetime of the app.
-* If endpoints are dynamic, a custom data source must be created. For example, a new Razor page is added to the app at runtime and needs a new endpoint.
-
-Dynamic routes change after the app starts. For example, loading route configuration from a file or database at startup is not dynamic. Adding a new Razor Page after the app is started is dynamic. Most apps don't use dynamic routes.
+* If endpoints are dynamic, a custom data source must be created. For example, a new Razor page is added to the app at runtime and needs a new endpoint. Loading route configuration from a file or database at startup is not dynamic.
 
 The following code shows a basic example of endpoint routing:
 
