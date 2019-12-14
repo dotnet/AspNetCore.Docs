@@ -1055,7 +1055,7 @@ Events are logged for [Warning level and higher](#log-level). To log events lowe
 
 ```JSON
 "EventLog": {
-      "LogLevel": {
+  "LogLevel": {
     "Default": "Information"
   }
 }
