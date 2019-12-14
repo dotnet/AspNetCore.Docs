@@ -1053,7 +1053,7 @@ logging.AddEventLog();
 
 Events are logged for [Warning level and higher](#log-level). To log events lower than `Warning`, explicitly set the log level. For example, add the following to the *appsettings.json* file:
 
-```JSON
+```json
 "EventLog": {
   "LogLevel": {
     "Default": "Information"
