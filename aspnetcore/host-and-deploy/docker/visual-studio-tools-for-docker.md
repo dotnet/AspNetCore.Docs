@@ -101,7 +101,7 @@ If you want different behavior based on the build configuration (for example, De
 
 Using the configuration-specific override files, you can specify different configuration settings (such as environment variables or entry points) for Debug and Release build configurations.
 
-For Docker Compose to displayy an option to run in Visual Studio, the docker project must be the startup project.
+For Docker Compose to display an option to run in Visual Studio, the docker project must be the startup project.
 
 ### Service Fabric
 
