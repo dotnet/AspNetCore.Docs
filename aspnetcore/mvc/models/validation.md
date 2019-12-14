@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/15/2019
 uid: mvc/models/validation
 ---
 
