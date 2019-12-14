@@ -429,13 +429,16 @@ For example, the previous `BadgeEntryHandler` could be rewritten as follows:
 ::: moniker range=">= aspnetcore-3.0"
 
 <!--
-    Questions:
+    Which of the following should this section cover?
+    
+    1. Using the following sample code to access endpoint metadata for actions, controllers, and pages?
+    2. Using GetOrderedMetadata to access endpoint attributes? e.g. filters.
+    3. Injecting IHttpContextAccessor to get to route data, etc?
 
-    1. Is the code shown below a valid demonstration?
-    2. Should this just assume endpoint-routing, or should it also cover that disabling endpoint-routing gives the 2.2 behavior?
-    3. Should this call out that filters can also be accessed directly from the Metadata collection?
-       However, I wonder if that kind of detail would be better placed in the MVC pages. The sample code here might be just a way of "getting started" with this stuff.
-    4. Should there be a suggestion of injecting IHttpContextAccessor for non-MVC stuff like HttpRequest?
+    Thoughts:
+
+    The section name could drop "MVC" (i.e. "Accessing request context in handlers") and just cover #3 above.
+    Accessing the endpoint metadata might be a more advanced use case that could be covered at a later date, if needed.
 -->
 
 The following code shows how to access MVC request context in handlers
