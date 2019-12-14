@@ -1051,14 +1051,14 @@ logging.AddEventLog();
 * `SourceName` &ndash; ".NET Runtime"
 * `MachineName` &ndash; local machine
 
-Events are logged for [Warning level and higher](https://github.com/aspnet/Extensions/blob/master/src/Hosting/Hosting/src/Host.cs). To log events lower than `Warning`, explicitly set the log level. For example, add the following to the *appsettings.json* file:
+Events are logged for [Warning level and higher](#log-level). To log events lower than `Warning`, explicitly set the log level. For example, add the following to the *appsettings.json* file:
 
 ```JSON
 "EventLog": {
       "LogLevel": {
-        "Default":  "Information" 
-      }
-    } 
+    "Default": "Information"
+  }
+}
 ```
 
 ### TraceSource provider
