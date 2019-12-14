@@ -419,7 +419,7 @@ Built-in validation attributes include:
 * `[Url]`: Validates that the property has a URL format.
 * `[Remote]`: Validates input on the client by calling an action method on the server. See [`[Remote]` attribute](#remote-attribute) for details about this attribute's behavior.
 
-When using the `[RegularExpression]` validation in an ASP.NET Core app, [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) options are used for matching on client side validation. On client side validation, the validation rules are translated to JavaScript. For more information, see [this GitHub issue](https://github.com/dotnet/corefx/issues/42487).
+When using the `[RegularExpression]` attribute with client-side validation, the regex is executed in JavaScript on the client. This means [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) matching behavior will be used. For more information, see [this GitHub issue](https://github.com/dotnet/corefx/issues/42487).
 
 A complete list of validation attributes can be found in the [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations) namespace.
 
