@@ -1,8 +1,13 @@
-﻿using System.Linq;
+﻿#define SYSTEM_TEXT_JSON
+
+using System;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -49,11 +54,53 @@ namespace SampleApp
             });
         }
 
-        #region snippet_WriteResponse
-        private static Task WriteResponse(HttpContext httpContext, 
-            HealthReport result)
+#if SYSTEM_TEXT_JSON
+        #region snippet_WriteResponse_SystemTextJson
+        private static Task WriteResponse(HttpContext context, HealthReport result)
         {
-            httpContext.Response.ContentType = "application/json";
+            context.Response.ContentType = "application/json";
+
+            var options = new JsonWriterOptions
+            {
+                Indented = true
+            };
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new Utf8JsonWriter(stream, options))
+                {
+                    writer.WriteStartObject();
+                    writer.WriteString("status", result.Status.ToString());
+                    writer.WriteStartObject("results");
+                    foreach (var entry in result.Entries)
+                    {
+                        writer.WriteStartObject(entry.Key);
+                        writer.WriteString("status", entry.Value.Status.ToString());
+                        writer.WriteString("description", entry.Value.Description);
+                        writer.WriteStartObject("data");
+                        foreach (var item in entry.Value.Data)
+                        {
+                            var value = Convert.ToDecimal(item.Value);
+                            writer.WriteNumber(item.Key, value);
+                        }
+                        writer.WriteEndObject();
+                        writer.WriteEndObject();
+                    }
+                    writer.WriteEndObject();
+                    writer.WriteEndObject();
+                }
+
+                var json = Encoding.UTF8.GetString(stream.ToArray());
+
+                return context.Response.WriteAsync(json);
+            }
+        }
+        #endregion
+#else
+        #region snippet_WriteResponse_NewtonSoftJson
+        private static Task WriteResponse(HttpContext context, HealthReport result)
+        {
+            context.Response.ContentType = "application/json";
 
             var json = new JObject(
                 new JProperty("status", result.Status.ToString()),
@@ -63,9 +110,11 @@ namespace SampleApp
                         new JProperty("description", pair.Value.Description),
                         new JProperty("data", new JObject(pair.Value.Data.Select(
                             p => new JProperty(p.Key, p.Value))))))))));
-            return httpContext.Response.WriteAsync(
+
+            return context.Response.WriteAsync(
                 json.ToString(Formatting.Indented));
         }
         #endregion
+#endif
     }
 }
