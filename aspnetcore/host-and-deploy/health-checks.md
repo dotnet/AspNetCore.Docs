@@ -531,7 +531,7 @@ app.UseEndpoints(endpoints =>
 }
 ```
 
-A `WriteResponse` delegate formats the `CompositeHealthCheckResult` into a JSON object and yields JSON output for the health check response. For more information, see the [Customize output](#customize-output) section.
+The `WriteResponse` delegate formats the `CompositeHealthCheckResult` into a JSON object and yields JSON output for the health check response. For more information, see the [Customize output](#customize-output) section.
 
 To run the metric-based probe with custom response writer output using the sample app, execute the following command from the project's folder in a command shell:
 
