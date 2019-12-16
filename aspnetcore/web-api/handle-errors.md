@@ -260,7 +260,13 @@ For web API controllers, MVC responds with a <xref:Microsoft.AspNetCore.Mvc.Vali
 
 ## Client error response
 
-An *error result* is defined as a result with an HTTP status code of 400 or higher. For web API controllers, MVC transforms an error result to a result with <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
+An *error result* is defined as a result with an HTTP status code of 400 or higher.
+
+::: moniker range="> aspnetcore-2.1"
+
+For web API controllers, MVC transforms an error result to a result with <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
+
+::: moniker-end
 
 ::: moniker range="= aspnetcore-2.1"
 
