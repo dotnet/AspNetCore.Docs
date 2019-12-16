@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET and .NET methods
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/16/2019
 no-loc: [Blazor]
 uid: blazor/javascript-interop
 ---
@@ -27,7 +27,6 @@ To call into JavaScript from .NET, use the `IJSRuntime` abstraction. The `Invoke
 
 For Blazor Server apps:
 
-* Multiple user requests are processed by the Blazor Server app. Don't call `JSRuntime.Current` in a component to invoke JavaScript functions.
 * Inject the `IJSRuntime` abstraction and use the injected object to issue JS interop calls.
 * While a Blazor app is prerendering, calling into JavaScript isn't possible because a connection with the browser hasn't been established. For more information, see the [Detect when a Blazor app is prerendering](#detect-when-a-blazor-app-is-prerendering) section.
 
