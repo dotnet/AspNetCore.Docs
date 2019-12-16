@@ -3,16 +3,20 @@
 using System;
 using System.IO;
 using System.Linq;
+#if SYSTEM_TEXT_JSON
 using System.Text;
 using System.Text.Json;
+#endif
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+#if !SYSTEM_TEXT_JSON
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+#endif
 
 namespace SampleApp
 {
