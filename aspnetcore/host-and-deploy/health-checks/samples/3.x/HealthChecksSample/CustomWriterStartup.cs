@@ -58,7 +58,7 @@ namespace SampleApp
         #region snippet_WriteResponse_SystemTextJson
         private static Task WriteResponse(HttpContext context, HealthReport result)
         {
-            context.Response.ContentType = "application/json";
+            context.Response.ContentType = "application/json; charset=utf-8";
 
             var options = new JsonWriterOptions
             {
