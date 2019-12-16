@@ -48,7 +48,7 @@ namespace SampleApp
         private static Task WriteResponse(HttpContext httpContext, 
             HealthReport result)
         {
-            httpContext.Response.ContentType = "application/json";
+            httpContext.Response.ContentType = "application/json; charset=utf-8";
 
             var json = new JObject(
                 new JProperty("status", result.Status.ToString()),
