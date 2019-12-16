@@ -80,8 +80,10 @@ namespace SampleApp
                         writer.WriteStartObject("data");
                         foreach (var item in entry.Value.Data)
                         {
-                            var value = Convert.ToDecimal(item.Value);
-                            writer.WriteNumber(item.Key, value);
+                            writer.WritePropertyName(item.Key);
+                            JsonSerializer.Serialize(
+                                writer, item.Value, item.Value?.GetType() ?? 
+                                typeof(object));
                         }
                         writer.WriteEndObject();
                         writer.WriteEndObject();
