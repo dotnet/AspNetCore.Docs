@@ -16,10 +16,10 @@ This document provides guidance for using ASP.NET Core APIs in a class library. 
 
 ## Determine which ASP.NET Core versions to support
 
-ASP.NET Core adheres to the [.NET Core support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core). Consult the support policy when determining which ASP.NET Core versions to support in a library. A library should make an effort to:
+ASP.NET Core adheres to the [.NET Core support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core). Consult the support policy when determining which ASP.NET Core versions to support in a library. A library should:
 
-* Support all ASP.NET Core versions classified with *Long-Term Support* (LTS).
-* Ignore non-LTS ASP.NET Core versions, such as those classified with *End of Life* (EOL).
+* Make an effort to support all ASP.NET Core versions classified as *Long-Term Support* (LTS).
+* Not feel obligated to support ASP.NET Core versions classified as *End of Life* (EOL).
 
 As preview releases of ASP.NET Core are made available, breaking changes are posted in the [aspnet/Announcements](https://github.com/aspnet/Announcements/issues) GitHub repository. Compatibility testing of libraries can be conducted as framework features are being developed.
 
@@ -187,7 +187,7 @@ If your library needs to call platform-specific APIs, target specific .NET imple
 Imagine a scenario in which you're upgrading a middleware library from .NET Core 2.2 to 3.0. The ASP.NET Core middleware APIs being used in the library haven't changed between ASP.NET Core 2.2 and 3.0. To continue supporting the middleware library in .NET Core 3.0, take the following steps:
 
 * Follow the [standard library guidance](/dotnet/standard/library-guidance/).
-* Add a package reference for the API's NuGet package if the assembly doesn't exist in the shared framework.
+* Add a package reference for each API's NuGet package if the corresponding assembly doesn't exist in the shared framework.
 
 ## Use an API that changed
 
