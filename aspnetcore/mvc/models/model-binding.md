@@ -78,7 +78,10 @@ By default, properties are not bound for HTTP GET requests. Typically, all you n
 
 ### Prevent over posting with TryUpdateModelAsync
 
-Model binding includes [TryUpdateModelAsync](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.tryupdatemodelasync#Microsoft_AspNetCore_Mvc_ControllerBase_TryUpdateModelAsync_System_Object_System_Type_System_String_), which uses value providers to get data from the form body, query string, and route data. `TryUpdateModelAsync` is typically used with Razor Pages and MVC apps using controllers and views. `TryUpdateModelAsync` is generally not used with Web API.
+Model binding includes <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>, which uses value providers to get data from the form body, query string, and route data. `TryUpdateModelAsync` is typically:
+
+* Used with Razor Pages and MVC apps using controllers and views.
+* Is generally not used with Web API. Web API uses [Input formatters](#input-formatters) to deserialize the request body into an object.
 
 For more information, see [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateModelAsync).
 
