@@ -180,6 +180,7 @@ When the host is built, the last environment setting read by the app determines 
 #### Azure App Service
 
 To set the environment in [Azure App Service](https://azure.microsoft.com/services/app-service/), perform the following steps:
+
 1. Select the app from the **App Services** blade.
 1. In the **Settings** group, select the **Configuration** blade.
 1. In the **Application settings** tab, select **New application setting**.
