@@ -90,8 +90,15 @@ The Azure SignalR Service advantages noted earlier are disadvantages for the Red
 
 ## IIS limitations on Windows client OS
 
-IIS on client operating systems (Windows 10 or Windows 8.x) has a hard limit of 10 concurrent connections. SignalR's connections are transient, frequently re-established, and are not disposed immediately upon no longer being used making it very prone to hitting these limits. If a client OS is used for development, we recommend avoiding IIS and instead using Kestrel of IIS Express as deployment targets.
+Windows 10 and Windows 8.x are client operating systems. IIS on client operating systems has a limit of 10 concurrent connections. SignalR's connections are:
 
+* Transient and frequently re-established.
+* **Not** disposed immediately when no longer used.
+
+The preceding conditions make it likely to hit the 10 connection limit on a client OS. When a client OS is used for development, we recommend:
+
+* Avoid IIS.
+* Use Kestrel or IIS Express as deployment targets.
 
 ## Next steps
 
