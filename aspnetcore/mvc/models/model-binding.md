@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how model binding in ASP.NET Core works and how to customize its behavior.
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
-ms.date: 11/21/2019
+ms.date: 12/17/2019
 uid: mvc/models/model-binding
 ---
 
@@ -29,7 +29,7 @@ Controllers and Razor pages work with data that comes from HTTP requests. For ex
 
 Suppose you have the following action method:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Controllers/PetsController.cs?name=snippet_DogsOnly)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Controllers/PetsController.cs?name=snippet_DogsOnly)]
 
 And the app receives a request with this URL:
 
@@ -62,19 +62,28 @@ Model binding tries to find values for the following kinds of targets:
 
 Can be applied to a public property of a controller or `PageModel` class to cause model binding to target that property:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Edit.cshtml.cs?name=snippet_BindProperty&highlight=3-4)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Edit.cshtml.cs?name=snippet_BindProperty&highlight=3-4)]
 
 ### [BindProperties] attribute
 
 Available in ASP.NET Core 2.1 and later.  Can be applied to a controller or `PageModel` class to tell model binding to target all public properties of the class:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_BindProperties&highlight=1-2)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_BindProperties&highlight=1-2)]
 
 ### Model binding for HTTP GET requests
 
 By default, properties are not bound for HTTP GET requests. Typically, all you need for a GET request is a record ID parameter. The record ID is used to look up the item in the database. Therefore, there is no need to bind a property that holds an instance of the model. In scenarios where you do want properties bound to data from GET requests, set the `SupportsGet` property to `true`:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Index.cshtml.cs?name=snippet_SupportsGet)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Index.cshtml.cs?name=snippet_SupportsGet)]
+
+### Prevent over posting with TryUpdateModelAsync
+
+Model binding includes <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>, which uses value providers to get data from the form body, query string, and route data. `TryUpdateModelAsync` is typically:
+
+* Used with Razor Pages and MVC apps using controllers and views.
+* Not used with Web API. Web API uses [Input formatters](#input-formatters) to deserialize the request body into an object.
+
+For more information, see [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateModelAsync).
 
 ## Sources
 
@@ -103,11 +112,11 @@ These attributes:
 
 * Are added to model properties individually (not to the model class), as in the following example:
 
-  [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/Instructor.cs?name=snippet_FromQuery&highlight=5-6)]
+  [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/Instructor.cs?name=snippet_FromQuery&highlight=5-6)]
 
 * Optionally accept a model name value in the constructor. This option is provided in case the property name doesn't match the value in the request. For instance, the value in the request might be a header with a hyphen in its name, as in the following example:
 
-  [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Index.cshtml.cs?name=snippet_FromHeader)]
+  [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Index.cshtml.cs?name=snippet_FromHeader)]
 
 ### [FromBody] attribute
 
@@ -148,9 +157,9 @@ Source data is provided to the model binding system by *value providers*. You ca
 * Create a class that implements `IValueProviderFactory`.
 * Register the factory class in `Startup.ConfigureServices`.
 
-The sample app includes a [value provider](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProvider.cs) and [factory](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/2.x/ModelBindingSample/CookieValueProviderFactory.cs) example that gets values from cookies. Here's the registration code in `Startup.ConfigureServices`:
+The sample app includes a [value provider](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProvider.cs) and [factory](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/models/model-binding/samples/3.x/ModelBindingSample/CookieValueProviderFactory.cs) example that gets values from cookies. Here's the registration code in `Startup.ConfigureServices`:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Startup.cs?name=snippet_ValueProvider&highlight=3)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Startup.cs?name=snippet_ValueProvider&highlight=4)]
 
 The code shown puts the custom value provider after all the built-in value providers.  To make it the first in the list, call `Insert(0, new CookieValueProviderFactory())` instead of `Add`.
 
@@ -175,7 +184,7 @@ In an API controller that has the `[ApiController]` attribute, invalid model sta
 
 In a Razor page, redisplay the page with an error message:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Create.cshtml.cs?name=snippet_HandleMBError&highlight=3-6)]
 
 Client-side validation catches most bad data that would otherwise be submitted to a Razor Pages form. This validation makes it hard to trigger the preceding highlighted code. The sample app includes a **Submit with Invalid Date** button that puts bad data in the **Hire Date** field and submits the form. This button shows how the code for redisplaying the page works when data conversion errors occur.
 
@@ -271,13 +280,13 @@ Several built-in attributes are available for controlling model binding of compl
 
 Can only be applied to model properties, not to method parameters. Causes model binding to add a model state error if binding cannot occur for a model's property. Here's an example:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
 
 ### [BindNever] attribute
 
 Can only be applied to model properties, not to method parameters. Prevents model binding from setting a model's property. Here's an example:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
 ### [Bind] attribute
 
@@ -396,8 +405,8 @@ To make the ASP.NET Core route value provider and query string value provider un
 * Replace the [culture value](https://github.com/aspnet/AspNetCore/blob/e625fe29b049c60242e8048b4ea743cca65aa7b5/src/Mvc/Mvc.Core/src/ModelBinding/QueryStringValueProviderFactory.cs#L30) passed to the value provider constructor with [CultureInfo.CurrentCulture](xref:System.Globalization.CultureInfo.CurrentCulture)
 * Replace the default value provider factory in MVC options with your new one:
 
-[!code-csharp[](model-binding/samples_snapshot/2.x/Startup.cs?name=snippet)]
-[!code-csharp[](model-binding/samples_snapshot/2.x/Startup.cs?name=snippet1)]
+[!code-csharp[](model-binding/samples_snapshot/3.x/Startup.cs?name=snippet)]
+[!code-csharp[](model-binding/samples_snapshot/3.x/Startup.cs?name=snippet1)]
 
 ## Special data types
 
@@ -427,7 +436,7 @@ To use the built-in XML input formatters:
 
 * In `Startup.ConfigureServices`, call <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlSerializerFormatters*> or <xref:Microsoft.Extensions.DependencyInjection.MvcXmlMvcCoreBuilderExtensions.AddXmlDataContractSerializerFormatters*>.
 
-  [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Startup.cs?name=snippet_ValueProvider&highlight=9)]
+  [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Startup.cs?name=snippet_ValueProvider&highlight=10)]
 
 * Apply the `Consumes` attribute to controller classes or action methods that should expect XML in the request body.
 
@@ -445,11 +454,11 @@ The model binding and validation systems' behavior is driven by [ModelMetadata](
 
 To disable model binding on all models of a specified type, add an <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.ExcludeBindingMetadataProvider> in `Startup.ConfigureServices`. For example, to disable model binding on all models of type `System.Version`:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Startup.cs?name=snippet_ValueProvider&highlight=4-5)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Startup.cs?name=snippet_ValueProvider&highlight=5-6)]
 
 To disable validation on properties of a specified type, add a <xref:Microsoft.AspNetCore.Mvc.ModelBinding.SuppressChildValidationMetadataProvider> in `Startup.ConfigureServices`. For example, to disable validation on properties of type `System.Guid`:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Startup.cs?name=snippet_ValueProvider&highlight=6-7)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Startup.cs?name=snippet_ValueProvider&highlight=7-8)]
 
 ## Custom model binders
 
@@ -459,7 +468,7 @@ You can extend model binding by writing a custom model binder and using the `[Mo
 
 Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> method. The method is defined on both `ControllerBase` and `PageModel` classes. Method overloads let you specify the prefix and value provider to use. The method returns `false` if model binding fails. Here's an example:
 
-[!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
 
 ## [FromServices] attribute
 
