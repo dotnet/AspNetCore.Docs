@@ -1099,6 +1099,9 @@
       uid: fundamentals/host/hosted-services
     - name: Hosting startup assemblies
       uid: fundamentals/configuration/platform-specific-configuration
+    - name: ASP.NET Core in class libraries
+      displayName: shared framework
+      uid: fundamentals/target-aspnetcore
     - name: Microsoft.AspNetCore.App metapackage
       uid: fundamentals/metapackage-app
     - name: Microsoft.AspNetCore.All metapackage
