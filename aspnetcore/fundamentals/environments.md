@@ -611,7 +611,7 @@ When the host is built, the last environment setting read by the app determines 
 To set the environment in [Azure App Service](https://azure.microsoft.com/services/app-service/), perform the following steps:
 
 1. Select the app from the **App Services** blade.
-1. In the **SETTINGS** group, select the **Application settings** blade.
+1. In the **SETTINGS** group, select the **Configuration** blade.
 1. In the **Application settings** area, select **Add new setting**.
 1. For **Enter a name**, provide `ASPNETCORE_ENVIRONMENT`. For **Enter a value**, provide the environment (for example, `Staging`).
 1. Select the **Slot Setting** check box if you wish the environment setting to remain with the current slot when deployment slots are swapped. For more information, see [Azure Documentation: Which settings are swapped?](/azure/app-service/web-sites-staged-publishing).
