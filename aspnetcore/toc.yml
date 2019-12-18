@@ -883,15 +883,15 @@
             - name: Overview
               uid: security/authentication/azure-active-directory/index
             - name: Integrate Azure AD into a web app
-              href: https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/
+              href: https://github.com/Azure-Samples/ms-identity-aspnetcore-webapp-tutorial
             - name: Integrate Azure AD B2C into a web app
               uid: security/authentication/azure-ad-b2c
             - name: Integrate Azure AD B2C into a web API
               uid: security/authentication/azure-ad-b2c-webapi
             - name: Call a web API from WPF
-              href: https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/
+              href: https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore
             - name: Call a web API in a web app using Azure AD
-              href: https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/
+              href: https://github.com/Azure-Samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore
         - name: Secure ASP.NET Core apps with IdentityServer4
           href: https://identityserver4.readthedocs.io/
         - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
