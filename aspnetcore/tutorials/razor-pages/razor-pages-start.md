@@ -35,15 +35,15 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.1.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-mac-3.1.md)]
 
 ---
 
@@ -57,7 +57,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 * Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code.
   ![new ASP.NET Core Web Application](razor-pages-start/_static/config.png)
 
-* Select **ASP.NET Core 3.0** in the dropdown, **Web Application**, and then select **Create**.
+* Select **ASP.NET Core 3.1** in the dropdown, **Web Application**, and then select **Create**.
 
 ![new ASP.NET Core Web Application](razor-pages-start/_static/3/npx.png)
 
@@ -95,7 +95,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   ![macOS New project dialog](razor-pages-start/_static/webapp.png)
 
-* In the **Configure your new ASP.NET Core Web API** dialog, set the  **Target Framework** to **.NET Core 3.0**.
+* In the **Configure your new ASP.NET Core Web API** dialog, set the  **Target Framework** to **.NET Core 3.1**.
 
   ![macOS .NET Core 3.0 selection](razor-pages-start/_static/targetframework3.png)
 

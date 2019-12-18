@@ -3,13 +3,15 @@ title: Authentication in web APIs with Azure Active Directory B2C in ASP.NET Cor
 author: camsoper
 description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core Web API. Test the authenticated web API with Postman.
 ms.author: casoper
-ms.date: 09/21/2018
+ms.date: 12/05/2019
 ms.custom: "mvc, seodec18"
 uid: security/authentication/azure-ad-b2c-webapi
 ---
 # Authentication in web APIs with Azure Active Directory B2C in ASP.NET Core
 
 By [Cam Soper](https://twitter.com/camsoper)
+
+<!-- Next update remove screenshots. They become obsolete too soon and are more work to update -->
 
 [Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) is a cloud identity management solution for web and mobile apps. The service provides authentication for apps hosted in the cloud and on-premises. Authentication types include individual accounts, social network accounts, and federated enterprise accounts. Azure AD B2C also provides multi-factor authentication with minimal configuration.
 
@@ -85,7 +87,7 @@ In Visual Studio:
 
     Select **OK** to close the **Change Authentication** dialog. Select **OK** to create the web app.
 
-Visual Studio creates the web API with a controller named *ValuesController.cs* that returns hard-coded values for GET requests. The class is decorated with the [Authorize attribute](xref:security/authorization/simple), so all requests require authentication.
+Visual Studio creates the web API with a controller named *ValuesController.cs* that returns hard-coded values for GET requests. The class is marked with the [Authorize](xref:security/authorization/simple) attribute, so all requests require authentication.
 
 ## Run the web API
 

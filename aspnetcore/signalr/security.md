@@ -5,7 +5,7 @@ description: Learn how to use authentication and authorization in ASP.NET Core S
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc: [SignalR]
 uid: signalr/security
 ---
@@ -110,7 +110,7 @@ If you have concerns about logging this data with your server logs, you can disa
 
 ## Exceptions
 
-Exception messages are generally considered sensitive data that shouldn't be revealed to a client. By default, SignalR doesn't send the details of an exception thrown by a hub method to the client. Instead, the client receives a generic message indicating an error occurred. Exception message delivery to the client can be overridden (for example in development or test) with [`EnableDetailedErrors`](xref:signalr/configuration#configure-server-options). Exception messages should not be exposed to the client in production apps.
+Exception messages are generally considered sensitive data that shouldn't be revealed to a client. By default, SignalR doesn't send the details of an exception thrown by a hub method to the client. Instead, the client receives a generic message indicating an error occurred. Exception message delivery to the client can be overridden (for example in development or test) with [EnableDetailedErrors](xref:signalr/configuration#configure-server-options). Exception messages should not be exposed to the client in production apps.
 
 ## Buffer management
 
@@ -124,7 +124,7 @@ If your messages are larger than 32 KB, you can increase the limit. Increasing t
 * The client can cause the server to allocate large memory buffers.
 * Server allocation of large buffers may reduce the number of concurrent connections.
 
-There are limits for incoming and outgoing messages, both can be configured on the [`HttpConnectionDispatcherOptions`](xref:signalr/configuration#configure-server-options) object configured in `MapHub`:
+There are limits for incoming and outgoing messages, both can be configured on the [HttpConnectionDispatcherOptions](xref:signalr/configuration#configure-server-options) object configured in `MapHub`:
 
 * `ApplicationMaxBufferSize` represents the maximum number of bytes from the client that the server buffers. If the client attempts to send a message larger than this limit, the connection may be closed.
 * `TransportMaxBufferSize` represents the maximum number of bytes the server can send. If the server attempts to send a message (including return values from hub methods) larger than this limit, an exception will be thrown.

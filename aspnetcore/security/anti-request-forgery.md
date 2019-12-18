@@ -4,7 +4,7 @@ author: steve-smith
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/11/2019
+ms.date: 12/05/2019
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
@@ -166,7 +166,7 @@ The token is unique and unpredictable. The token can also be used to ensure prop
 }
 ```
 
-Explicitly add an antiforgery token to a `<form>` element without using Tag Helpers with the HTML helper [@Html.AntiForgeryToken](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.htmlhelper.antiforgerytoken):
+Explicitly add an antiforgery token to a `<form>` element without using Tag Helpers with the HTML helper [`@Html.AntiForgeryToken`](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.htmlhelper.antiforgerytoken):
 
 ```cshtml
 <form action="/" method="post">
@@ -299,7 +299,7 @@ public async Task<IActionResult> RemoveLogin(RemoveLoginViewModel account)
 }
 ```
 
-The `ValidateAntiForgeryToken` attribute requires a token for requests to the action methods it decorates, including HTTP GET requests. If the `ValidateAntiForgeryToken` attribute is applied across the app's controllers, it can be overridden with the `IgnoreAntiforgeryToken` attribute.
+The `ValidateAntiForgeryToken` attribute requires a token for requests to the action methods it marks, including HTTP GET requests. If the `ValidateAntiForgeryToken` attribute is applied across the app's controllers, it can be overridden with the `IgnoreAntiforgeryToken` attribute.
 
 > [!NOTE]
 > ASP.NET Core doesn't support adding antiforgery tokens to GET requests automatically.

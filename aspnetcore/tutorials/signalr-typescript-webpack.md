@@ -426,7 +426,7 @@ The app currently displays a simple form to send messages. Nothing happens when 
 1. Execute the following command at the project root:
 
     ```console
-    npm install @microsoft/signalr
+    npm install @aspnet/signalr
     ```
 
     The preceding command installs the [SignalR TypeScript client](https://www.npmjs.com/package/@microsoft/signalr), which allows the client to send messages to the server.
