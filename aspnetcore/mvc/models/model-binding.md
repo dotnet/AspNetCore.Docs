@@ -450,13 +450,13 @@ To use the built-in XML input formatters:
 
 ### Customize model binding with input formatters
 
-An input formatter takes full responsibility for reading data from the request body. To customize this process, configure the APIs used by the input formatter. This section describes how to customize the `System.Text.Json` based input formatter to understand a custom type named `ObjectId`. 
+An input formatter takes full responsibility for reading data from the request body. To customize this process, configure the APIs used by the input formatter. This section describes how to customize the `System.Text.Json`-based input formatter to understand a custom type named `ObjectId`. 
 
 Consider the following model, which contains a custom `ObjectId` property named `Id`:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/ModelWithObjectId.cs?name=snippet_Class&highlight=3)]
 
-To customize the model binding process when using `System.Text.Json`, create a class which subclasses <xref:System.Text.Json.Serialization.JsonConverter`1>:
+To customize the model binding process when using `System.Text.Json`, create a class derived from <xref:System.Text.Json.Serialization.JsonConverter`1>:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/JsonConverters/ObjectIdConverter.cs?name=snippet_Class)]
 
