@@ -53,7 +53,7 @@ Here are some of the built-in validation attributes:
 * `[Required]`: Validates that the field is not null. See [`[Required]` attribute](#required-attribute) for details about this attribute's behavior.
 * `[StringLength]`: Validates that a string property value doesn't exceed a specified length limit.
 * `[Url]`: Validates that the property has a URL format.
-* `[Remote]`: Validates input on the client by calling an action method on the server. See `[`[Remote]` attribute](#remote-attribute) for details about this attribute's behavior.
+* `[Remote]`: Validates input on the client by calling an action method on the server. See [`[Remote]` attribute](#remote-attribute) for details about this attribute's behavior.
 
 A complete list of validation attributes can be found in the [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations) namespace.
 

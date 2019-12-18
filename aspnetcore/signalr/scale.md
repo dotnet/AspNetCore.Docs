@@ -88,6 +88,18 @@ The Azure SignalR Service advantages noted earlier are disadvantages for the Red
 * A SignalR app must scale out based on number of clients even if few messages are being sent.
 * A SignalR app uses significantly more connection resources than a web app without SignalR.
 
+## IIS limitations on Windows client OS
+
+Windows 10 and Windows 8.x are client operating systems. IIS on client operating systems has a limit of 10 concurrent connections. SignalR's connections are:
+
+* Transient and frequently re-established.
+* **Not** disposed immediately when no longer used.
+
+The preceding conditions make it likely to hit the 10 connection limit on a client OS. When a client OS is used for development, we recommend:
+
+* Avoid IIS.
+* Use Kestrel or IIS Express as deployment targets.
+
 ## Next steps
 
 For more information, see the following resources:
