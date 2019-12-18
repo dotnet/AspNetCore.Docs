@@ -28,7 +28,7 @@ For more information on configuring CORS, see [Enable Cross-Origin Requests (COR
 
 * Allow the specific expected origins. Allowing any origin is possible but is **not** secure or recommended.
 * HTTP methods `GET` and `POST` must be allowed.
-* Credentials must be enabled:
+* Credentials must be enabled in order for cookie-based sticky sessions to work correctly:
   * Even when authentication is not used.
   * Because there is no customization in the browser client to not use credentials.
 
