@@ -18,22 +18,21 @@ ASP.NET Core 2.1 and later provides [ASP.NET Core Identity](xref:security/authen
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
-Although the scaffolder generates most of the necessary code, you'll have to update your project to complete the process. This document explains the steps needed to complete an Identity scaffolding update.
-
-When the Identity scaffolder is run, a *ScaffoldingReadme.txt* file is created in the project directory. The *ScaffoldingReadme.txt* file contains general instructions on what's needed to complete the Identity scaffolding update. This document contains more complete instructions than the *ScaffoldingReadme.txt* file.
+Although the scaffolder generates most of the necessary code, you need to update your project to complete the process. This document explains the steps needed to complete an Identity scaffolding update.
 
 We recommend using a source control system that shows file differences and allows you to back out of changes. Inspect the changes after running the Identity scaffolder.
 
-> [!NOTE]
-> Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).
+Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).
+
+This document contains more complete instructions than the *ScaffoldingReadme.txt* file which is generated when running the the scaffolder.
 
 ## Scaffold identity into an empty project
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Add the following highlighted calls to the `Startup` class:
+Update the `Startup` class with code similar to the following:
 
-[!code-csharp[](scaffold-identity/sample/StartupEmpty.cs?name=snippet1&highlight=5,20-23)]
+[!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
@@ -72,9 +71,9 @@ Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. for more i
 
 ### Enable authentication
 
-In the `Configure` method of the `Startup` class, call [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:
+Update the `Startup` class with code similar to the following:
 
-[!code-csharp[](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]
+[!code-csharp[](scaffold-identity/3.1sample/StartupRP.cs?name=snippet)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
@@ -82,7 +81,7 @@ In the `Configure` method of the `Startup` class, call [UseAuthentication](/dotn
 
 Optional: Add the login partial (`_LoginPartial`) to the layout file:
 
-[!code-html[Main](scaffold-identity/sample/_Layout.cshtml?highlight=37)]
+[!code-html[Main](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
 ## Scaffold identity into a Razor project with authorization
 
@@ -120,7 +119,7 @@ dotnet ef database update
 
 Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:
 
-[!code-html[](scaffold-identity/sample/_LayoutMvc.cshtml?highlight=37)]
+[!code-html[Main](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
 * Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*
 
@@ -128,9 +127,9 @@ Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more i
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-Call [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:
+Update the `Startup` class with code similar to the following:
 
-[!code-csharp[](scaffold-identity/sample/StartupMvcNoAuth.cs?name=snippet1&highlight=23)]
+[!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
@@ -145,8 +144,6 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 -->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
-
-Delete the *Pages/Shared* folder and the files in that folder.
 
 <a name="full"></a>
 
