@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how model binding in ASP.NET Core works and how to customize its behavior.
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
-ms.date: 12/17/2019
+ms.date: 12/18/2019
 uid: mvc/models/model-binding
 ---
 
@@ -456,7 +456,7 @@ Consider the following model, which contains a custom `ObjectId` property named 
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/ModelWithObjectId.cs?name=snippet_Class&highlight=3)]
 
-To customize the model binding process when using `System.Text.Json`, create a class derived from <xref:System.Text.Json.Serialization.JsonConverter`1>:
+To customize the model binding process when using `System.Text.Json`, create a class derived from <xref:System.Text.Json.Serialization.JsonConverter%601>:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/JsonConverters/ObjectIdConverter.cs?name=snippet_Class)]
 
