@@ -76,15 +76,6 @@ By default, properties are not bound for HTTP GET requests. Typically, all you n
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Index.cshtml.cs?name=snippet_SupportsGet)]
 
-### Prevent over posting with TryUpdateModelAsync
-
-Model binding includes <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>, which uses value providers to get data from the form body, query string, and route data. `TryUpdateModelAsync` is typically:
-
-* Used with Razor Pages and MVC apps using controllers and views.
-* Not used with Web API. Web API uses [Input formatters](#input-formatters) to deserialize the request body into an object.
-
-For more information, see [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateModelAsync).
-
 ## Sources
 
 By default, model binding gets data in the form of key-value pairs from the following sources in an HTTP request:
@@ -469,6 +460,8 @@ You can extend model binding by writing a custom model binder and using the `[Mo
 Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> method. The method is defined on both `ControllerBase` and `PageModel` classes. Method overloads let you specify the prefix and value provider to use. The method returns `false` if model binding fails. Here's an example:
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/InstructorsWithCollection/Create.cshtml.cs?name=snippet_TryUpdate&highlight=1-4)]
+
+For more information, see [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateModelAsync).
 
 ## [FromServices] attribute
 
