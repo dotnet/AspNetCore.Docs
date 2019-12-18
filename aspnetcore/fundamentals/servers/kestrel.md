@@ -130,7 +130,7 @@ Use **one** of the following approaches:
 * Configure Kestrel in `Startup.ConfigureServices`:
 
   1. Inject an instance of `IConfiguration` into the `Startup` class. The following example assumes that the injected configuration is assigned to the `Configuration` property.
-  2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration.
+  2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration:
 
      ```csharp
      using Microsoft.Extensions.Configuration
@@ -1099,7 +1099,7 @@ Use **one** of the following approaches:
 * Configure Kestrel in `Startup.ConfigureServices`:
 
   1. Inject an instance of `IConfiguration` into the `Startup` class. The following example assumes that the injected configuration is assigned to the `Configuration` property.
-  2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration.
+  2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration:
 
      ```csharp
      using Microsoft.Extensions.Configuration
@@ -2004,7 +2004,7 @@ Use **one** of the following approaches:
 * Configure Kestrel in `Startup.ConfigureServices`:
 
   1. Inject an instance of `IConfiguration` into the `Startup` class. The following example assumes that the injected configuration is assigned to the `Configuration` property.
-  2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration.
+  2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration:
 
      ```csharp
      using Microsoft.Extensions.Configuration
