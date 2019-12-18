@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/14/2019
+ms.date: 12/18/2019
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -133,12 +133,27 @@ Use **one** of the following approaches:
   2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration.
 
      ```csharp
-     // using Microsoft.Extensions.Configuration
-
-     public void ConfigureServices(IServiceCollection services)
+     using Microsoft.Extensions.Configuration
+     
+     public class Startup
      {
-         services.Configure<KestrelServerOptions>(
-             Configuration.GetSection("Kestrel"));
+         public Startup(IConfiguration configuration)
+         {
+             Configuration = configuration;
+         }
+
+         public IConfiguration Configuration { get; }
+
+         public void ConfigureServices(IServiceCollection services)
+         {
+             services.Configure<KestrelServerOptions>(
+                 Configuration.GetSection("Kestrel"));
+         }
+
+         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+         {
+             ...
+         }
      }
      ```
 
@@ -1087,12 +1102,27 @@ Use **one** of the following approaches:
   2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration.
 
      ```csharp
-     // using Microsoft.Extensions.Configuration
-
-     public void ConfigureServices(IServiceCollection services)
+     using Microsoft.Extensions.Configuration
+     
+     public class Startup
      {
-         services.Configure<KestrelServerOptions>(
-             Configuration.GetSection("Kestrel"));
+         public Startup(IConfiguration configuration)
+         {
+             Configuration = configuration;
+         }
+
+         public IConfiguration Configuration { get; }
+
+         public void ConfigureServices(IServiceCollection services)
+         {
+             services.Configure<KestrelServerOptions>(
+                 Configuration.GetSection("Kestrel"));
+         }
+
+         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+         {
+             ...
+         }
      }
      ```
 
@@ -1977,12 +2007,27 @@ Use **one** of the following approaches:
   2. In `Startup.ConfigureServices`, load the `Kestrel` section of configuration into Kestrel's configuration.
 
      ```csharp
-     // using Microsoft.Extensions.Configuration
-
-     public void ConfigureServices(IServiceCollection services)
+     using Microsoft.Extensions.Configuration
+     
+     public class Startup
      {
-         services.Configure<KestrelServerOptions>(
-             Configuration.GetSection("Kestrel"));
+         public Startup(IConfiguration configuration)
+         {
+             Configuration = configuration;
+         }
+
+         public IConfiguration Configuration { get; }
+
+         public void ConfigureServices(IServiceCollection services)
+         {
+             services.Configure<KestrelServerOptions>(
+                 Configuration.GetSection("Kestrel"));
+         }
+
+         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+         {
+             ...
+         }
      }
      ```
 
