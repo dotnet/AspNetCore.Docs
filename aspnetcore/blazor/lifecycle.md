@@ -2,10 +2,10 @@
 title: ASP.NET Core Blazor lifecycle
 author: guardrex
 description: Learn how to use Razor component lifecycle methods in ASP.NET Core Blazor apps.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/13/2019
+ms.date: 12/18/2019
 no-loc: [Blazor]
 uid: blazor/lifecycle
 ---
