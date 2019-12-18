@@ -464,7 +464,7 @@ Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mv
 <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>  uses value providers to get data from the form body, query string, and route data. `TryUpdateModelAsync` is typically:	
 
 * Used with Razor Pages and MVC apps using controllers and views to prevent over-posting.
-* Not used with Web API unless consumed from form data, query strings, and route data. Web API endpoints that consume JSON use [Input formatters](#input-formatters) to deserialize the request body into an object.	
+* Not used with a web API unless consumed from form data, query strings, and route data. Web API endpoints that consume JSON use [Input formatters](#input-formatters) to deserialize the request body into an object.
 
 For more information, see [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateModelAsync).
 
