@@ -2,10 +2,10 @@
 title: ASP.NET Core Blazor templates
 author: guardrex
 description: Learn about ASP.NET Core Blazor app templates and Blazor project structure.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/25/2019
+ms.date: 12/18/2019
 no-loc: [Blazor, SignalR]
 uid: blazor/templates
 ---

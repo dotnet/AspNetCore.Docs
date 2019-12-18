@@ -2,10 +2,10 @@
 title: Configure the Linker for ASP.NET Core Blazor
 author: guardrex
 description: Learn how to control the Intermediate Language (IL) Linker when building a Blazor app.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2019
+ms.date: 12/18/2019
 no-loc: [Blazor]
 uid: host-and-deploy/blazor/configure-linker
 ---

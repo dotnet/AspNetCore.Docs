@@ -2,10 +2,10 @@
 title: ASP.NET Core Blazor supported platforms
 author: guardrex
 description: Learn about the supported platforms for ASP.NET Core Blazor.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 12/18/2019
 no-loc: [Blazor]
 uid: blazor/supported-platforms
 ---

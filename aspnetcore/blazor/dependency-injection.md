@@ -2,10 +2,10 @@
 title: ASP.NET Core Blazor dependency injection
 author: guardrex
 description: See how Blazor apps can inject services into components.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/18/2019
 no-loc: [Blazor]
 uid: blazor/dependency-injection
 ---

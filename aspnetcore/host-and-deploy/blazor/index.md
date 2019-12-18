@@ -2,10 +2,10 @@
 title: Host and deploy ASP.NET Core Blazor
 author: guardrex
 description: Discover how to host and deploy Blazor apps.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/23/2019
+ms.date: 12/18/2019
 no-loc: [Blazor]
 uid: host-and-deploy/blazor/index
 ---
