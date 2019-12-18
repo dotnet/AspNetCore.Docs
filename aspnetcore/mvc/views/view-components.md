@@ -82,11 +82,11 @@ The default view name for a view component is *Default*, which means your view f
 
 We recommend you name the view file *Default.cshtml* and use the *Views/Shared/Components/{View Component Name}/{View Name}* path. The `PriorityList` view component used in this sample uses *Views/Shared/Components/PriorityList/Default.cshtml* for the view component view.
 
-### Customizing the view search path
+### Customize the view search path
 
 To customize the view search path, modify Razor's `ViewLocationFormats` collection. For example, to search for views within the path "/Components/{View Component Name}/{View Name}", add a new item to the collection:
 
-[!code-cshtml[](view-components/samples_snapshot/2.x/Startup.cs?name=snippet_ViewLocationFormats&highlight=4)]
+[!code-cs[](view-components/samples_snapshot/2.x/Startup.cs?name=snippet_ViewLocationFormats&highlight=4)]
 
 In the preceding code, the placeholder "{0}" represents the path "Components/{View Component Name}/{View Name}". For more information, see <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats>.
 
