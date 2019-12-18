@@ -455,7 +455,12 @@ To disable validation on properties of a specified type, add a <xref:Microsoft.A
 
 You can extend model binding by writing a custom model binder and using the `[ModelBinder]` attribute to select it for a given target. Learn more about [custom model binding](xref:mvc/advanced/custom-model-binding).
 
-## Manual model binding
+### Prevent over posting with TryUpdateModelAsync	
+
+Model binding includes <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>, which uses value providers to get data from the form body, query string, and route data. `TryUpdateModelAsync` is typically:	
+
+* Used with Razor Pages and MVC apps using controllers and views.	
+* Not used with Web API. Web API uses [Input formatters](#input-formatters) to deserialize the request body into an object.	
 
 Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> method. The method is defined on both `ControllerBase` and `PageModel` classes. Method overloads let you specify the prefix and value provider to use. The method returns `false` if model binding fails. Here's an example:
 
