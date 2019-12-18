@@ -448,6 +448,24 @@ To use the built-in XML input formatters:
 
   For more information, see [Introducing XML Serialization](/dotnet/standard/serialization/introducing-xml-serialization).
 
+### Customize model binding with input formatters
+
+An input formatter takes full responsibility for reading data from the request body. To customize this process, configure the APIs used by the input formatter. This section describes how to customize the `System.Text.Json` based input formatter to understand a custom type named `ObjectId`. 
+
+Consider the following model, which contains a custom `ObjectId` property named `Id`:
+
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/ModelWithObjectId.cs?name=snippet_Class&highlight=3)]
+
+To customize the model binding process when using `System.Text.Json`, create a class which subclasses <xref:System.Text.Json.Serialization.JsonConverter`1>:
+
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/JsonConverters/ObjectIdConverter.cs?name=snippet_Class)]
+
+To use a custom converter, apply the <xref:System.Text.Json.Serialization.JsonConverterAttribute> attribute to the type. In the following example, the `ObjectId` type is configured with `ObjectIdConverter` as its custom converter:
+
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/ObjectId.cs?name=snippet_Class&highlight=1)]
+
+For more information, see [How to write custom converters](/dotnet/standard/serialization/system-text-json-converters-how-to).
+
 ## Exclude specified types from model binding
 
 The model binding and validation systems' behavior is driven by [ModelMetadata](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.modelmetadata). You can customize `ModelMetadata` by adding a details provider to [MvcOptions.ModelMetadataDetailsProviders](xref:Microsoft.AspNetCore.Mvc.MvcOptions.ModelMetadataDetailsProviders). Built-in details providers are available for disabling model binding or validation for specified types.
