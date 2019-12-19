@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2019
-no-loc: [Blazor]
+no-loc: [Blazor, SignalR, blazor.webassembly.js]
 uid: blazor/class-libraries
 ---
 # ASP.NET Core Razor components class libraries

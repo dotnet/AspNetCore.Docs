@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2019
-no-loc: [Blazor, SignalR]
+no-loc: [Blazor, SignalR, blazor.webassembly.js]
 uid: host-and-deploy/blazor/server
 ---
 # Host and deploy Blazor Server
