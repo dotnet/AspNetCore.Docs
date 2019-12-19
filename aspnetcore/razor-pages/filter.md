@@ -43,24 +43,23 @@ Razor Page filters provide the following methods, which can be applied globally 
   * [OnPageHandlerSelectionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerselectionasync?view=aspnetcore-2.0) : Called asynchronously after the handler method has been selected, but before model binding occurs.
   * [OnPageHandlerExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter.onpagehandlerexecutionasync?view=aspnetcore-2.0) : Called asynchronously before the handler method is invoked, after model binding is complete.
 
-> [!NOTE]
-> Implement **either** the synchronous or the async version of a filter interface, not both. The framework checks first to see if the filter implements the async interface, and if so, it calls that. If not, it calls the synchronous interface's method(s). If both interfaces are implemented, only the async methods are called. The same rule applies to overrides in pages, implement the synchronous or the async version of the override, not both.
+Implement **either** the synchronous or the async version of a filter interface, **not** both. The framework checks first to see if the filter implements the async interface, and if so, it calls that. If not, it calls the synchronous interface's method(s). If both interfaces are implemented, only the async methods are called. The same rule applies to overrides in pages, implement the synchronous or the async version of the override, not both.
 
 ## Implement Razor Page filters globally
 
 The following code implements `IAsyncPageFilter`:
 
-[!code-csharp[Main](filter/sample/PageFilter/Filters/SampleAsyncPageFilter.cs?name=snippet1)]
+[!code-csharp[Main](filter/3.1sample/PageFilter/Filters/SampleAsyncPageFilter.cs?name=snippet1)]
 
-In the preceding code, [ILogger](/dotnet/api/microsoft.extensions.logging.ilogger?view=aspnetcore-2.0) is not required. It's used in the sample to provide trace information for the application.
+In the preceding code, `ProcessUserAgent.Write` is user supplied code that works with the user agent string.
 
 The following code enables the `SampleAsyncPageFilter` in the `Startup` class:
 
-[!code-csharp[Main](filter/sample/PageFilter/Startup.cs?name=snippet2&highlight=11)]
+[!code-csharp[Main](filter/3.1sample/PageFilter/Startup.cs?name=snippet2&highlight=11)]
 
 The following code shows the complete `Startup` class:
 
-[!code-csharp[Main](filter/sample/PageFilter/Startup.cs?name=snippet1)]
+[!code-csharp[Main](filter/3.1sample/PageFilter/Startup.cs?name=snippet1)]
 
 The following code calls `AddFolderApplicationModelConvention` to apply the `SampleAsyncPageFilter` to only pages in */subFolder*:
 
