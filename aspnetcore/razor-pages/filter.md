@@ -13,6 +13,9 @@ uid: razor-pages/filter
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+> [!WARNING]
+> This content has not been updated to ASP.NET Core 3.1.
+
 Razor Page filters [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) allow Razor Pages to run code before and after a Razor Page handler is run. Razor Page filters are similar to [ASP.NET Core MVC action filters](xref:mvc/controllers/filters#action-filters), except they can't be applied to individual page handler methods.
 
 Razor Page filters:
@@ -91,7 +94,7 @@ The following code applies the `AddHeader` attribute:
 
 See [Overriding the default order](xref:mvc/controllers/filters#overriding-the-default-order) for instructions on overriding the order.
 
-See [Cancellation and short circuiting](xref:mvc/controllers/filters#cancellation-and-short-circuiting) for instructions to short-circuit the filter pipeline from a filter. 
+See [Cancellation and short circuiting](xref:mvc/controllers/filters#cancellation-and-short-circuiting) for instructions to short-circuit the filter pipeline from a filter.
 
 <a name="auth"></a>
 
@@ -102,7 +105,6 @@ The [Authorize](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribut
 [!code-csharp[Main](filter/sample/PageFilter/Pages/ModelWithAuthFilter.cshtml.cs?highlight=7)]
 
 ::: moniker-end
-
 
 ::: moniker range="< aspnetcore-3.0"
 
