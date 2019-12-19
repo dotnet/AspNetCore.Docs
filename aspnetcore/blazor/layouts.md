@@ -5,8 +5,8 @@ description: Learn how to create reusable layout components for Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/11/2019
-no-loc: [Blazor]
+ms.date: 12/18/2019
+no-loc: [Blazor, SignalR, blazor.webassembly.js]
 uid: blazor/layouts
 ---
 # ASP.NET Core Blazor layouts

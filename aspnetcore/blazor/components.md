@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/12/2019
+ms.date: 12/18/2019
 no-loc: [Blazor]
 uid: blazor/components
 ---
