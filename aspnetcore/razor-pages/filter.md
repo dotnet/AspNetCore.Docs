@@ -70,19 +70,19 @@ The following code implements the synchronous `IPageFilter`:
 
 The following code enables the `SamplePageFilter`:
 
-[!code-csharp[Main](filter/3.1sample/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
+[!code-csharp[Main](filter/3.1sample/PageFilter/StartupSync.cs?name=snippet2)]
 
 ## Implement Razor Page filters by overriding filter methods
 
-The following code overrides the synchronous Razor Page filters:
+The following code overrides the asynchronous Razor Page filters:
 
-[!code-csharp[Main](filter/sample/PageFilter/Pages/Index.cshtml.cs)]
+[!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Index.cshtml.cs)]
 
 <a name="ifa"></a>
 
 ## Implement a filter attribute
 
-The built-in attribute-based filter [OnResultExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncresultfilter.onresultexecutionasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Filters_IAsyncResultFilter_OnResultExecutionAsync_Microsoft_AspNetCore_Mvc_Filters_ResultExecutingContext_Microsoft_AspNetCore_Mvc_Filters_ResultExecutionDelegate_) filter can be subclassed. The following filter adds a header to the response:
+The built-in attribute-based filter <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter.OnResultExecutionAsync*> filter can be subclassed. The following filter adds a header to the response:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Filters/AddHeaderAttribute.cs)]
 
@@ -90,7 +90,7 @@ The following code applies the `AddHeader` attribute:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Movies/Test.cshtml.cs)]
 
-Using a tool such as the browser developer tools, under **Response Headers**, `author: Rick` is displayed.
+Use a tool such as the browser developer tools to examine the headers. Under **Response Headers**, `author: Rick` is displayed.
 
 See [Overriding the default order](xref:mvc/controllers/filters#overriding-the-default-order) for instructions on overriding the order.
 

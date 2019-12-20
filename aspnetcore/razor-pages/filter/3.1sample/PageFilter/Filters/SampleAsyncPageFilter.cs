@@ -18,7 +18,8 @@ namespace PageFilter.Filters
                                             PageHandlerSelectedContext context)
         {
             var key = _config.GetValue(typeof(string), "UserAgentID");
-            context.HttpContext.Request.Headers.TryGetValue("user-agent", out StringValues value);
+            context.HttpContext.Request.Headers.TryGetValue("user-agent", 
+                                                            out StringValues value);
             ProcessUserAgent.Write(context.ActionDescriptor.DisplayName,
                                    "SampleAsyncPageFilter.OnPageHandlerSelectionAsync",
                                     value, key.ToString()); 
