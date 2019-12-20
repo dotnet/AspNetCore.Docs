@@ -20,13 +20,18 @@ Razor Page filters:
 * Run code after a handler method has been selected, but before model binding occurs.
 * Run code before the handler method executes, after model binding is complete.
 * Run code after the handler method executes.
-* Can be implemented on a page or globally.
+* Can be implemented on a page or globally. Use `ServiceFilterAttribute` or `TypeFilterAttribute` to create global filters. For more information, see [ServiceFilterAttribute](/aspnet/core/mvc/controllers/filters#servicefilterattribute) and [TypeFilterAttribute](/aspnet/core/mvc/controllers/filters#typefilterattribute).
 * Cannot be applied to specific page handler methods.
-* Do **not** have access to ser
+* Have access to the following services:
+  * <xref:Microsoft.Extensions.Configuration.IConfiguration>
+  * <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
+  * <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment>
 
-Code can be run before a handler method executes using the page constructor or middleware, but only Razor Page filters have access to [HttpContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.httpcontext?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_HttpContext). Filters have a [FilterContext](/dotnet/api/microsoft.aspnetcore.mvc.filters.filtercontext?view=aspnetcore-2.0) derived parameter, which provides access to `HttpContext`. For example, the [Implement a filter attribute](#ifa) sample adds a header to the response, something that can't be done with constructors or middleware.
+Services other than the preceding can **not** be accessed by [Dependency Injection](xref:fundamentals/dependency-injection) (DI). The <xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute> and <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> can access the services registered in the DI container.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/filter/sample/PageFilter) ([how to download](xref:index#how-to-download-a-sample))
+Code can be run before a handler method executes using the page constructor or middleware, but only Razor Page filters have access to <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext>. Filters have a <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> derived parameter, which provides access to `HttpContext`. For example, the [Implement a filter attribute](#ifa) sample adds a header to the response, something that can't be done with constructors or middleware.
+
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/filter/3.1sample) ([how to download](xref:index#how-to-download-a-sample))
 
 Razor Page filters provide the following methods, which can be applied globally or at the page level:
 
