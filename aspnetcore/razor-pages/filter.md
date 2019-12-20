@@ -13,9 +13,6 @@ uid: razor-pages/filter
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-> [!WARNING]
-> This content has not been updated to ASP.NET Core 3.1.
-
 Razor Page filters [IPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.ipagefilter?view=aspnetcore-2.0) and [IAsyncPageFilter](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncpagefilter?view=aspnetcore-2.0) allow Razor Pages to run code before and after a Razor Page handler is run. Razor Page filters are similar to [ASP.NET Core MVC action filters](xref:mvc/controllers/filters#action-filters), except they can't be applied to individual page handler methods.
 
 Razor Page filters:
@@ -25,6 +22,7 @@ Razor Page filters:
 * Run code after the handler method executes.
 * Can be implemented on a page or globally.
 * Cannot be applied to specific page handler methods.
+* Do **not** have access to ser
 
 Code can be run before a handler method executes using the page constructor or middleware, but only Razor Page filters have access to [HttpContext](/dotnet/api/microsoft.aspnetcore.mvc.razorpages.pagemodel.httpcontext?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_RazorPages_PageModel_HttpContext). Filters have a [FilterContext](/dotnet/api/microsoft.aspnetcore.mvc.filters.filtercontext?view=aspnetcore-2.0) derived parameter, which provides access to `HttpContext`. For example, the [Implement a filter attribute](#ifa) sample adds a header to the response, something that can't be done with constructors or middleware.
 
@@ -57,11 +55,7 @@ The following code enables the `SampleAsyncPageFilter` in the `Startup` class:
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/Startup.cs?name=snippet2&highlight=11)]
 
-The following code shows the complete `Startup` class:
-
-[!code-csharp[Main](filter/3.1sample/PageFilter/Startup.cs?name=snippet1)]
-
-The following code calls `AddFolderApplicationModelConvention` to apply the `SampleAsyncPageFilter` to only pages in */subFolder*:
+The following code calls <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderApplicationModelConvention*> to apply the `SampleAsyncPageFilter` to only pages in */subFolder*:
 
 [!code-csharp[Main](filter/sample/PageFilter/Startup2.cs?name=snippet2)]
 

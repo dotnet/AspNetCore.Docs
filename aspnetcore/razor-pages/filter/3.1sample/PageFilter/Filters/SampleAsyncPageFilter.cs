@@ -1,5 +1,6 @@
 ﻿#region snippet1
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 using System.Threading.Tasks;
 
@@ -7,14 +8,20 @@ namespace PageFilter.Filters
 {
     public class SampleAsyncPageFilter : IAsyncPageFilter
     {
+        private readonly IConfiguration _config;
 
+        public SampleAsyncPageFilter(IConfiguration config)
+        {
+            _config = config;
+        }
         public async Task OnPageHandlerSelectionAsync(
                                             PageHandlerSelectedContext context)
         {
+            var key = _config.GetValue(typeof(string), "UserAgentID");
             context.HttpContext.Request.Headers.TryGetValue("user-agent", out StringValues value);
             ProcessUserAgent.Write(context.ActionDescriptor.DisplayName,
                                    "SampleAsyncPageFilter.OnPageHandlerSelectionAsync",
-                                    value); 
+                                    value, key.ToString()); 
 
              await Task.CompletedTask;
         }

@@ -1,5 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -7,9 +12,9 @@ using PageFilter.Filters;
 
 namespace PageFilter
 {
-    public class Startup
+    public class Startup2
     {
-        public Startup(IConfiguration configuration)
+        public Startup2(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -17,15 +22,17 @@ namespace PageFilter
         public IConfiguration Configuration { get; }
 
         #region snippet2
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
 
-            services.AddMvc(options =>
-            {
-                options.Filters.Add(new SampleAsyncPageFilter( Configuration));
-            });
+            services.AddMvc()
+                           .AddRazorPagesOptions(options =>
+                           {
+                               options.Conventions.AddFolderApplicationModelConvention(
+                                   "/Movies",
+                                   model => model.Filters.Add(new SampleAsyncPageFilter(Configuration)));
+                           });
 
         }
         #endregion

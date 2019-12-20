@@ -12,9 +12,9 @@ namespace PageFilter
         }
         static EventLog _eventLog;
 
-        public static void Write(string actionName, string filter, string userAgent)
+        public static void Write(string actionName, string filter, string userAgent, string userAgentID)
         {
-            if (!userAgent.Contains("AppleWebKit"))
+            if (!userAgent.Contains(userAgentID))
             {
                 return;
             }
