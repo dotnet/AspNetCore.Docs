@@ -55,15 +55,7 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 
 [!code-csharp[](index/snapshot/Chain/Startup.cs?highlight=12-15)]
 
-In the preceding example:
-
-* The `Use` delegate runs first.
-* The `Run` delegate:
-  * Runs after the `Use` delegate.
-  * Writes "Hello from 2nd delegate." to the response.
-  * Terminates the pipeline.
-
-If another `Use` or `Run` delegate is added after the `Run` delegate shown above, it will not be called.
+In the preceding example, the `Run` delegate writes `"Hello from 2nd delegate."` to the response and then terminates the pipeline. If another `Use` or `Run` delegate is added after the `Run` delegate, it's not called.
 
 <a name="order"></a>
 
