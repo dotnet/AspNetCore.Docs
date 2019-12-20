@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using PageFilter.Filters;
 
 namespace PageFilter.Movies
 {
-    public class IndexModel : PageModel
+    [AddHeader("Author", "Rick")]
+    public class TestModel : PageModel
     {
         public void OnGet()
         {

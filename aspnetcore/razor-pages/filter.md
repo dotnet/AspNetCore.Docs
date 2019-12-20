@@ -20,14 +20,14 @@ Razor Page filters:
 * Run code after a handler method has been selected, but before model binding occurs.
 * Run code before the handler method executes, after model binding is complete.
 * Run code after the handler method executes.
-* Can be implemented on a page or globally. Use `ServiceFilterAttribute` or `TypeFilterAttribute` to create global filters. For more information, see [ServiceFilterAttribute](/aspnet/core/mvc/controllers/filters#servicefilterattribute) and [TypeFilterAttribute](/aspnet/core/mvc/controllers/filters#typefilterattribute).
+* Can be implemented on a page or globally.
 * Cannot be applied to specific page handler methods.
 * Have access to the following services:
   * <xref:Microsoft.Extensions.Configuration.IConfiguration>
   * <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
   * <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment>
 
-Services other than the preceding can **not** be accessed by [Dependency Injection](xref:fundamentals/dependency-injection) (DI). The <xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute> and <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> can access the services registered in the DI container.
+Services other than the preceding can **not** be accessed by [Dependency Injection](xref:fundamentals/dependency-injection) (DI). The <xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute> and <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> can access the services registered in the DI container. For more information, see [ServiceFilterAttribute](/aspnet/core/mvc/controllers/filters#servicefilterattribute) and [TypeFilterAttribute](/aspnet/core/mvc/controllers/filters#typefilterattribute).
 
 Code can be run before a handler method executes using the page constructor or middleware, but only Razor Page filters have access to <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext>. Filters have a <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> derived parameter, which provides access to `HttpContext`. For example, the [Implement a filter attribute](#ifa) sample adds a header to the response, something that can't be done with constructors or middleware.
 
@@ -58,19 +58,19 @@ In the preceding code, `ProcessUserAgent.Write` is user supplied code that works
 
 The following code enables the `SampleAsyncPageFilter` in the `Startup` class:
 
-[!code-csharp[Main](filter/3.1sample/PageFilter/Startup.cs?name=snippet2&highlight=11)]
+[!code-csharp[Main](filter/3.1sample/PageFilter/Startup.cs?name=snippet2)]
 
-The following code calls <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderApplicationModelConvention*> to apply the `SampleAsyncPageFilter` to only pages in */subFolder*:
+The following code calls <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderApplicationModelConvention*> to apply the `SampleAsyncPageFilter` to only pages in */Movies*:
 
-[!code-csharp[Main](filter/sample/PageFilter/Startup2.cs?name=snippet2)]
+[!code-csharp[Main](filter/3.1sample/PageFilter/Startup2.cs?name=snippet2)]
 
 The following code implements the synchronous `IPageFilter`:
 
-[!code-csharp[Main](filter/sample/PageFilter/Filters/SamplePageFilter.cs?name=snippet1)]
+[!code-csharp[Main](filter/3.1sample/PageFilter/Filters/SamplePageFilter.cs?name=snippet1)]
 
 The following code enables the `SamplePageFilter`:
 
-[!code-csharp[Main](filter/sample/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
+[!code-csharp[Main](filter/3.1sample/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
 
 ## Implement Razor Page filters by overriding filter methods
 
@@ -84,11 +84,13 @@ The following code overrides the synchronous Razor Page filters:
 
 The built-in attribute-based filter [OnResultExecutionAsync](/dotnet/api/microsoft.aspnetcore.mvc.filters.iasyncresultfilter.onresultexecutionasync?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Filters_IAsyncResultFilter_OnResultExecutionAsync_Microsoft_AspNetCore_Mvc_Filters_ResultExecutingContext_Microsoft_AspNetCore_Mvc_Filters_ResultExecutionDelegate_) filter can be subclassed. The following filter adds a header to the response:
 
-[!code-csharp[Main](filter/sample/PageFilter/Filters/AddHeaderAttribute.cs)]
+[!code-csharp[Main](filter/3.1sample/PageFilter/Filters/AddHeaderAttribute.cs)]
 
 The following code applies the `AddHeader` attribute:
 
-[!code-csharp[Main](filter/sample/PageFilter/Pages/Contact.cshtml.cs?name=snippet1)]
+[!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Movies/Test.cshtml.cs)]
+
+Using a tool such as the browser developer tools, under **Response Headers**, `author: Rick` is displayed.
 
 See [Overriding the default order](xref:mvc/controllers/filters#overriding-the-default-order) for instructions on overriding the order.
 

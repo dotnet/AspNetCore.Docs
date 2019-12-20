@@ -1,11 +1,11 @@
-﻿#region snippet1
-using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 using System.Threading.Tasks;
 
 namespace PageFilter.Filters
 {
+    #region snippet1
     public class SampleAsyncPageFilter : IAsyncPageFilter
     {
         private readonly IConfiguration _config;
@@ -33,6 +33,7 @@ namespace PageFilter.Filters
             // Do post work.
             await next.Invoke();
         }
-    } 
+    }
+    #endregion
+
 }
-#endregion

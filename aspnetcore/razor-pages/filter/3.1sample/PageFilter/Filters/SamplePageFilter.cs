@@ -1,32 +1,38 @@
-﻿#region snippet1
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Primitives;
+using System.Diagnostics;
 
 namespace PageFilter.Filters
 {
+    #region snippet1
     public class SamplePageFilter : IPageFilter
     {
-        private readonly ILogger _logger;
+        private readonly IConfiguration _config;
 
-        public SamplePageFilter(ILogger logger)
+        public SamplePageFilter(IConfiguration config)
         {
-            _logger = logger;
+            _config = config;
         }
 
         public void OnPageHandlerSelected(PageHandlerSelectedContext context)
         {
-            _logger.LogDebug("Global sync OnPageHandlerSelected called.");
+            var key = _config.GetValue(typeof(string), "UserAgentID");
+            context.HttpContext.Request.Headers.TryGetValue("user-agent", out StringValues value);
+            ProcessUserAgent.Write(context.ActionDescriptor.DisplayName,
+                                   "SamplePageFilter.OnPageHandlerSelected",
+                                    value, key.ToString());
         }
 
         public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
-            _logger.LogDebug("Global sync PageHandlerExecutingContext called.");
+            Debug.WriteLine("Global sync PageHandlerExecutingContext called.");
         }
 
         public void OnPageHandlerExecuted(PageHandlerExecutedContext context)
         {
-            _logger.LogDebug("Global sync OnPageHandlerExecuted called.");
+            Debug.WriteLine("Global sync OnPageHandlerExecuted called.");
         }
     }
+    #endregion
 }
-#endregion

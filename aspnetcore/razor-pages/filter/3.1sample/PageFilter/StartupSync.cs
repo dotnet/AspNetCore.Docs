@@ -7,9 +7,9 @@ using PageFilter.Filters;
 
 namespace PageFilter
 {
-    public class Startup
+    public class StartupSync
     {
-        public Startup(IConfiguration configuration)
+        public StartupSync(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -17,14 +17,13 @@ namespace PageFilter
         public IConfiguration Configuration { get; }
 
         #region snippet2
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
 
             services.AddMvc(options =>
             {
-                options.Filters.Add(new SampleAsyncPageFilter(Configuration));
+                options.Filters.Add(new SamplePageFilter(Configuration));
             });
 
         }
