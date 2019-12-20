@@ -27,12 +27,12 @@ namespace PageFilter
             services.AddRazorPages();
 
             services.AddMvc()
-                           .AddRazorPagesOptions(options =>
-                           {
-                               options.Conventions.AddFolderApplicationModelConvention(
-                                   "/Movies",
-                                   model => model.Filters.Add(new SampleAsyncPageFilter(Configuration)));
-                           });
+                    .AddRazorPagesOptions(options =>
+                    {
+                        options.Conventions.AddFolderApplicationModelConvention(
+                            "/Movies",
+                            model => model.Filters.Add(new SampleAsyncPageFilter(Configuration)));
+                    });
 
         }
         #endregion
