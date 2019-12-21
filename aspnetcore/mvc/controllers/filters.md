@@ -104,7 +104,7 @@ The following code implements an `ActionFilterAttribute` that:
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/MyActionFilterAttribute.cs?name=snippet)]
 
-The configuration options are provided from the [configuration system](xref:fundamentals/configuration) using the [options pattern](fundamentals/configuration/options). For example, from the *appsettings.json* file:
+The configuration options are provided from the [configuration system](xref:fundamentals/configuration/index) using the [options pattern](xref:fundamentals/configuration/options). For example, from the *appsettings.json* file:
 
 [!code-csharp[](filters/3.1sample/FiltersSample/appsettings.json)]
 
@@ -115,11 +115,17 @@ In the `StartUp.ConfigureServices`:
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/StartupAF.cs?name=snippet)]
 
+The following code applies the `MyActionFilterAttribute` and the `AddHeaderAttribute` to the Razor Pages `Index` method:
+
+[!code-csharp[](filters/3.1sample/FiltersSample/Pages/Movies/Index.cshtml.cs?name=snippet)]
+
+ Under **Response Headers**, `author: Rick Anderson`, and `Editor: Rick Anderson` is displayed.
+
 The following code applies the `MyActionFilterAttribute` to the `Index2` method:
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet2&highlight=9)]
 
- Under **Response Headers**, `author: Rick Anderson`, and `Editor: Rick Anderson` is displayed.
+Filters cannot be applied to Razor Page handler methods. They can be applied either to the Razor Page model or globally.
 
 Several of the filter interfaces have corresponding attributes that can be used as base classes for custom implementations.
 

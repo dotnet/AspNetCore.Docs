@@ -1,7 +1,5 @@
 ﻿using FiltersSample.Filters;
-using FiltersSample.Helper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 
 namespace FiltersSample.Controllers
 {
