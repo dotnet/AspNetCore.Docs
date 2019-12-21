@@ -1,6 +1,6 @@
 ---
 title: Filters in ASP.NET Core
-author: ardalis
+author: Rick-Anderson
 description: Learn how filters work and how to use them in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
@@ -38,19 +38,24 @@ Filters run within the *ASP.NET Core action invocation pipeline*, sometimes refe
 
 Each filter type is executed at a different stage in the filter pipeline:
 
-* [Authorization filters](#authorization-filters) run first and are used to determine whether the user is authorized for the request. Authorization filters short-circuit the pipeline if the request is unauthorized.
+* [Authorization filters](#authorization-filters) run first and are used to determine whether the user is authorized for the request. Authorization filters short-circuit the pipeline if the request is not authorized.
 
 * [Resource filters](#resource-filters):
 
   * Run after authorization.  
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuting*> can run code before the rest of the filter pipeline. For example, `OnResourceExecuting` can run code before model binding.
-  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuted*> can run code after the rest of the pipeline has completed.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuting*> runs code before the rest of the filter pipeline. For example, `OnResourceExecuting` runs code before model binding.
+  * <xref:Microsoft.AspNetCore.Mvc.Filters.IResourceFilter.OnResourceExecuted*> runs code after the rest of the pipeline has completed.
 
-* [Action filters](#action-filters) can run code immediately before and after an individual action method is called. They can be used to manipulate the arguments passed into an action and the result returned from the action. Action filters are **not** supported in Razor Pages.
+* [Action filters](#action-filters):
 
-* [Exception filters](#exception-filters) are used to apply global policies to unhandled exceptions that occur before anything has been written to the response body.
+  * Run code immediately before and after an action method is called.
+  * Can change the arguments passed into an action.
+  * Can change the result returned from the action.
+  * Are **not** supported in Razor Pages.
 
-* [Result filters](#result-filters) can run code immediately before and after the execution of individual action results. They run only when the action method has executed successfully. They are useful for logic that must surround view or formatter execution.
+* [Exception filters](#exception-filters) apply global policies to unhandled exceptions that occur before the response body has been written to.
+
+* [Result filters](#result-filters) run code immediately before and after the execution of action results. They run only when the action method has executed successfully. They are useful for logic that must surround view or formatter execution.
 
 The following diagram shows how filter types interact in the filter pipeline.
 
@@ -60,19 +65,23 @@ The following diagram shows how filter types interact in the filter pipeline.
 
 Filters support both synchronous and asynchronous implementations through different interface definitions.
 
-Synchronous filters can run code before (`On-Stage-Executing`) and after (`On-Stage-Executed`) their pipeline stage. For example, `OnActionExecuting` is called before the action method is called. `OnActionExecuted` is called after the action method returns.
+Synchronous filters run code before and after their pipeline stage. For example, <xref:System.Web.Mvc.Controller.OnActionExecuting*> is called before the action method is called. <xref:System.Web.Mvc.Controller.OnActionExecuted*> is called after the action method returns.
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/MySampleActionFilter.cs?name=snippet_ActionFilter)]
 
-Asynchronous filters define an `On-Stage-ExecutionAsync` method:
+Asynchronous filters define an `On-Stage-ExecutionAsync` method. For example, <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*>:
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/SampleAsyncActionFilter.cs?name=snippet)]
 
-In the preceding code, the `SampleAsyncActionFilter` has an <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate> (`next`)  that executes the action method.  Each of the `On-Stage-ExecutionAsync` methods take a `FilterType-ExecutionDelegate` that executes the filter's pipeline stage.
+In the preceding code, the `SampleAsyncActionFilter` has an <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate> (`next`) that executes the action method.
 
 ### Multiple filter stages
 
-Interfaces for multiple filter stages can be implemented in a single class. For example, the <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> class implements `IActionFilter`, `IResultFilter`, and their async equivalents.
+Interfaces for multiple filter stages can be implemented in a single class. For example, the <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> class implements:
+
+* Synchronous: <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter> and  <xref:Microsoft.AspNetCore.Mvc.Filters.IResultFilter>
+* Asynchronous: <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>
+* <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter>
 
 Implement **either** the synchronous or the async version of a filter interface, **not** both. The runtime checks first to see if the filter implements the async interface, and if so, it calls that. If not, it calls the synchronous interface's method(s). If both asynchronous and synchronous interfaces are implemented in one class, only the async method is called. When using abstract classes like <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> override only the synchronous methods or the async method for each filter type.
 
