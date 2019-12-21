@@ -14,8 +14,8 @@ namespace FiltersSample
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                     webBuilder.UseStartup<Startup>();
-                    //webBuilder.UseStartup<StartupAsync>();
+                   //  webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<StartupAF>();
                     //webBuilder.UseStartup<StartupAsync>();
                     //webBuilder.UseStartup<StartupAsync>();
                     //webBuilder.UseStartup<StartupAsync>();

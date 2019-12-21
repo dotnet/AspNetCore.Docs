@@ -8,25 +8,24 @@ using Microsoft.Extensions.Hosting;
 
 namespace FiltersSample
 {
-    public class Startup
+    public class StartupAF
     {
-        public Startup(IConfiguration configuration)
+        public StartupAF(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews(options =>
-           {
-               options.Filters.Add(new AddHeaderAttribute("GlobalAddHeader",
-                   "Result filter added to MvcOptions.Filters"));         // An instance
-                options.Filters.Add(typeof(MySampleActionFilter));         // By type
-                options.Filters.Add(new SampleGlobalActionFilter());       // An instance
-            });
+            services.Configure<PositionOptions>(Configuration.GetSection("Position"));
+            services.AddScoped<MyActionFilterAttribute>();
+
+            services.AddControllersWithViews();
         }
+        #endregion
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

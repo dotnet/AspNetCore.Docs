@@ -13,8 +13,6 @@ uid: mvc/controllers/filters
 
 By [Kirk Larkin](https://github.com/serpent5), [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra/), and [Steve Smith](https://ardalis.com/)
 
-[!INCLUDE[Not yet updated to 3.1](~/includes/notUpdated31.md)]
-
 *Filters* in ASP.NET Core allow code to be run before or after specific stages in the request processing pipeline.
 
 Built-in filters handle tasks such as:
@@ -67,11 +65,11 @@ Filters support both synchronous and asynchronous implementations through differ
 
 Synchronous filters run code before and after their pipeline stage. For example, <xref:System.Web.Mvc.Controller.OnActionExecuting*> is called before the action method is called. <xref:System.Web.Mvc.Controller.OnActionExecuted*> is called after the action method returns.
 
-[!code-csharp[](./filters/sample/FiltersSample/Filters/MySampleActionFilter.cs?name=snippet_ActionFilter)]
+[!code-csharp[](./filters/3.1sample/FiltersSample/Filters/MySampleActionFilter.cs?name=snippet_ActionFilter)]
 
 Asynchronous filters define an `On-Stage-ExecutionAsync` method. For example, <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*>:
 
-[!code-csharp[](./filters/sample/FiltersSample/Filters/SampleAsyncActionFilter.cs?name=snippet)]
+[!code-csharp[](./filters/3.1sample/FiltersSample/Filters/SampleAsyncActionFilter.cs?name=snippet)]
 
 In the preceding code, the `SampleAsyncActionFilter` has an <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate> (`next`) that executes the action method.
 
@@ -83,7 +81,7 @@ Interfaces for multiple filter stages can be implemented in a single class. For 
 * Asynchronous: <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>
 * <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter>
 
-Implement **either** the synchronous or the async version of a filter interface, **not** both. The runtime checks first to see if the filter implements the async interface, and if so, it calls that. If not, it calls the synchronous interface's method(s). If both asynchronous and synchronous interfaces are implemented in one class, only the async method is called. When using abstract classes like <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> override only the synchronous methods or the async method for each filter type.
+Implement **either** the synchronous or the async version of a filter interface, **not** both. The runtime checks first to see if the filter implements the async interface, and if so, it calls that. If not, it calls the synchronous interface's method(s). If both asynchronous and synchronous interfaces are implemented in one class, only the async method is called. When using abstract classes like <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute>, override only the synchronous methods or the asynchronous method for each filter type.
 
 ### Built-in filter attributes
 
@@ -91,13 +89,37 @@ ASP.NET Core includes built-in attribute-based filters that can be subclassed an
 
 <a name="add-header-attribute"></a>
 
-[!code-csharp[](./filters/sample/FiltersSample/Filters/AddHeaderAttribute.cs?name=snippet)]
+[!code-csharp[](./filters/3.1sample/FiltersSample/Filters/AddHeaderAttribute.cs?name=snippet)]
 
 Attributes allow filters to accept arguments, as shown in the preceding example. Apply the `AddHeaderAttribute` to a controller or action method and specify the name and value of the HTTP header:
 
-[!code-csharp[](./filters/sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1)]
+[!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1)]
 
-<!-- `https://localhost:5001/Sample` -->
+Use a tool such as the browser developer tools to examine the headers. Under **Response Headers**, `author: Rick Anderson` is displayed.
+
+The following code implements an `ActionFilterAttribute` that:
+
+* Reads the title and name from the configuration system.
+* Adds the title and name to the response header.
+
+[!code-csharp[](./filters/3.1sample/FiltersSample/Filters/MyActionFilterAttribute.cs?name=snippet)]
+
+The configuration options are provided from the [configuration system](xref:fundamentals/configuration) using the [options pattern](fundamentals/configuration/options). For example, from the *appsettings.json* file:
+
+[!code-csharp[](filters/3.1sample/FiltersSample/appsettings.json)]
+
+In the `StartUp.ConfigureServices`:
+
+* The `PositionOptions` class is added to the service container with the `"Position"` configuration area.
+* The `MyActionFilterAttribute` is added to the service container.
+
+[!code-csharp[](./filters/3.1sample/FiltersSample/StartupAF.cs?name=snippet)]
+
+The following code applies the `MyActionFilterAttribute` to the `Index2` method:
+
+[!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet2&highlight=9)]
+
+ Under **Response Headers**, `author: Rick Anderson`, and `Editor: Rick Anderson` is displayed.
 
 Several of the filter interfaces have corresponding attributes that can be used as base classes for custom implementations.
 
