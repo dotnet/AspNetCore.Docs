@@ -2,6 +2,8 @@ using FiltersSample.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
+// In Program.cs, call webBuilder.UseStartup<StartupRP>();
+
 namespace FiltersSample.Pages.Movies
 {
     #region snippet

@@ -17,10 +17,9 @@ namespace FiltersSample.Controllers
         [ServiceFilter(typeof(MyActionFilterAttribute))]
         public IActionResult Index2()
         {
-            return Content("Examine the headers using the F12 developer tools.");
+            return Content("Header values by configuration.");
         }
 #endregion
-
 
         [ShortCircuitingResourceFilter]
         public IActionResult SomeResource()

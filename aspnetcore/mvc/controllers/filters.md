@@ -95,7 +95,7 @@ Attributes allow filters to accept arguments, as shown in the preceding example.
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1)]
 
-Use a tool such as the browser developer tools to examine the headers. Under **Response Headers**, `author: Rick Anderson` is displayed.
+Use a tool such as the [browser developer tools](https://developer.mozilla.org/docs/Learn/Common_questions/What_are_browser_developer_tools) to examine the headers. Under **Response Headers**, `author: Rick Anderson` is displayed.
 
 The following code implements an `ActionFilterAttribute` that:
 
@@ -118,6 +118,8 @@ In the `StartUp.ConfigureServices`:
 The following code applies the `MyActionFilterAttribute` to the `Index2` method:
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet2&highlight=9)]
+
+Under **Response Headers**, `author: Rick Anderson`, and `Editor: Joe Smith` is displayed when the `Sample/Index2` endpoint is called.
 
 The following code applies the `MyActionFilterAttribute` and the `AddHeaderAttribute` to the Razor Pages `Index` method:
 
