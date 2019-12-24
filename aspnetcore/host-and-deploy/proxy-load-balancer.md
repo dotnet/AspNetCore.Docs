@@ -320,7 +320,7 @@ app.Run(async (context) =>
         $"Request Path: {context.Request.Path}{Environment.NewLine}");
 
     // Headers
-    await context.Response.WriteAsync($"Request Headers:{Environment.NewLine}");
+    await context.Response.WriteAsync($"Request Headers: {Environment.NewLine}");
 
     foreach (var header in context.Request.Headers)
     {
