@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FiltersSample.Helper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace FiltersSample.Filters
 {
@@ -9,6 +11,7 @@ namespace FiltersSample.Filters
     {
         public SampleActionFilterAttribute():base(typeof(SampleActionFilterImpl))
         {
+            var ord = Order;
         }
 
         private class SampleActionFilterImpl : IActionFilter
@@ -21,7 +24,8 @@ namespace FiltersSample.Filters
 
             public void OnActionExecuting(ActionExecutingContext context)
             {
-                _logger.LogInformation("Business action starting...");
+                MyDebug.Write(MethodBase.GetCurrentMethod(), context.HttpContext.Request.Path);
+                // _logger.LogInformation("SampleActionFilterAttribute.OnActionExecuting");
                 // perform some business logic work
 
             }
@@ -29,7 +33,8 @@ namespace FiltersSample.Filters
             public void OnActionExecuted(ActionExecutedContext context)
             {
                 // perform some business logic work
-                _logger.LogInformation("Business action completed.");
+                // _logger.LogInformation("SampleActionFilterAttribute.OnActionExecuted");
+                MyDebug.Write(MethodBase.GetCurrentMethod(), context.HttpContext.Request.Path);
             }
         }
     }

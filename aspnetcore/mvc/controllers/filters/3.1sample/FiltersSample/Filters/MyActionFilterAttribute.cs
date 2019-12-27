@@ -1,6 +1,7 @@
 ﻿using FiltersSample.Helper;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
+using System.Reflection;
 
 namespace FiltersSample.Filters
 {
@@ -12,6 +13,7 @@ namespace FiltersSample.Filters
         public MyActionFilterAttribute(IOptions<PositionOptions> options)
         {
             _settings = options.Value;
+            Order = 1;
         }
 
         public override void OnResultExecuting(ResultExecutingContext context)
@@ -23,3 +25,5 @@ namespace FiltersSample.Filters
     }
     #endregion
 }
+
+//            MyDebug.Write(MethodBase.GetCurrentMethod(), context.HttpContext.Request.Path);

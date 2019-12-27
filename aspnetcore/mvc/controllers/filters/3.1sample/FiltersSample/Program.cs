@@ -14,11 +14,15 @@ namespace FiltersSample
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                   //  webBuilder.UseStartup<Startup>();
-                   // webBuilder.UseStartup<StartupAF>();
+                   //webBuilder.UseStartup<Startup>();
+                    // webBuilder.UseStartup<StartupAF>();
                     //webBuilder.UseStartup<StartupAsync>();
-                    webBuilder.UseStartup<StartupRP>();
-                    //webBuilder.UseStartup<StartupAsync>();
+                    //webBuilder.UseStartup<StartupRP>();
+                    // webBuilder.UseStartup<StartupGF>();
+                    webBuilder.UseStartup<StartupOrder>();
+                    //webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseStartup<Startup>();
+
                 });
     }
 }

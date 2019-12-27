@@ -144,13 +144,18 @@ Filter attributes:
 
 A filter can be added to the pipeline at one of three *scopes*:
 
-* Using an attribute on an action.
-* Using an attribute on a controller.
-* Globally for all controllers and actions as shown in the following code:
+* Using an attribute on an controller action. Filter attributes cannot be applied to Razor Pages handler methods.
+* Using an attribute on a controller or Razor Page.
+* Globally for all controllers, actions, and Razor Pages as shown in the following code:
 
-[!code-csharp[](./filters/sample/FiltersSample/StartupGF.cs?name=snippet_ConfigureServices)]
+[!code-csharp[](./filters/3.1sample/FiltersSample/StartupGF.cs?name=snippet_ConfigureServices)]
 
-The preceding code adds three filters globally using the [MvcOptions.Filters](xref:Microsoft.AspNetCore.Mvc.MvcOptions.Filters) collection.
+The preceding code:
+
+* Adds three filters globally using the [MvcOptions.Filters](xref:Microsoft.AspNetCore.Mvc.MvcOptions.Filters) collection.
+* Generates the response headers similar to the following on the `/Sample/Index2` endpoint:
+
+[!code-text[](./filters/3.1sample/response.txt?highlight=1,5,6)]
 
 ### Default order of execution
 
@@ -159,10 +164,10 @@ When there are multiple filters for a particular stage of the pipeline, scope de
 As a result of filter nesting, the *after* code of filters runs in the reverse order of the *before* code. The filter sequence:
 
 * The *before* code of global filters.
-  * The *before* code of controller filters.
+  * The *before* code of controller and Razor Page filters.
     * The *before* code of action method filters.
     * The *after* code of action method filters.
-  * The *after* code of controller filters.
+  * The *after* code of controller and Razor Page filters.
 * The *after* code of global filters.
   
 The following example that illustrates the order in which filter methods are called for synchronous action filters.
@@ -181,7 +186,7 @@ This sequence shows:
 * The method filter is nested within the controller filter.
 * The controller filter is nested within the global filter.
 
-### Controller and Razor Page level filters
+### Controller level filters
 
 Every controller that inherits from the <xref:Microsoft.AspNetCore.Mvc.Controller> base class includes [Controller.OnActionExecuting](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting*),  [Controller.OnActionExecutionAsync](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*), and [Controller.OnActionExecuted](xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted*)
 `OnActionExecuted` methods. These methods:
@@ -198,7 +203,8 @@ The `TestController`:
 * Applies the `SampleActionFilterAttribute` (`[SampleActionFilter]`) to the `FilterTest2` action.
 * Overrides `OnActionExecuting` and `OnActionExecuted`.
 
-[!code-csharp[](./filters/sample/FiltersSample/Controllers/TestController.cs?name=snippet)]
+[!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/TestController.cs?name=snippet)]
+<!-- test via  webBuilder.UseStartup<Startup>(); -->
 
 Navigating to `https://localhost:5001/Test/FilterTest2` runs the following code:
 
@@ -677,7 +683,7 @@ The preceding code adds three filters globally using the [MvcOptions.Filters](xr
 
 ### Default order of execution
 
-When there are multiple filters for a particular stage of the pipeline, scope determines the default order of filter execution.  Global filters surround class filters, which in turn surround method filters.
+When there are multiple filters *of the same type*, scope determines the default order of filter execution.  Global filters surround class filters. Class filters surround method filters.
 
 As a result of filter nesting, the *after* code of filters runs in the reverse order of the *before* code. The filter sequence:
 
@@ -703,6 +709,8 @@ This sequence shows:
 
 * The method filter is nested within the controller filter.
 * The controller filter is nested within the global filter.
+
+<!-- https://github.com/aspnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L17 -->
 
 ### Controller and Razor Page level filters
 

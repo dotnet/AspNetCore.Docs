@@ -4,20 +4,18 @@ using System.Reflection;
 
 namespace FiltersSample.Filters
 {
-    #region snippet_ActionFilter
-    public class MySampleActionFilter : IActionFilter 
+    public class TestActionFilterAttribute : ActionFilterAttribute
     {
-        public void OnActionExecuting(ActionExecutingContext context)
+        public override void OnActionExecuted(ActionExecutedContext context)
         {
-            // Do something before the action executes.
             MyDebug.Write(MethodBase.GetCurrentMethod(), context.HttpContext.Request.Path);
+            base.OnActionExecuted(context);
         }
 
-        public void OnActionExecuted(ActionExecutedContext context)
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
-            // Do something after the action executes.
             MyDebug.Write(MethodBase.GetCurrentMethod(), context.HttpContext.Request.Path);
+            base.OnActionExecuting(context);
         }
     }
-    #endregion
-}    
+}

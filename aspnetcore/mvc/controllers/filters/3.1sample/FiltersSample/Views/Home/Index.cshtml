@@ -1,8 +1,23 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!DOCTYPE html>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<html>
+<head>
+    <title>Filters Sample</title>
+</head>
+<body>
+    <div>
+        <h1>Filters Sample</h1>
+
+
+
+        <ul>
+            <li> <a asp-action="FilterTest">FilterTest</a></li>
+            <li> <a asp-action="ServiceFilterTest">ServiceFilterTest</a></li>
+            <li> <a asp-action="TypeFilterTest">TypeFilterTest</a></li>
+            <li> <a asp-action="FilterTest2" asp-controller="Test">FilterTest 2</a></li>
+            <li> <a asp-action="FilterTest3" asp-controller="Test2">FilterTest 3</a></li>
+
+        </ul>
+    </div>
+</body>
+</html>
