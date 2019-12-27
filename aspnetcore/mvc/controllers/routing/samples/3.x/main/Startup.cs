@@ -53,11 +53,11 @@ namespace WebMvcRouting
             //app.UseMvcWithDefaultRoute();
 
             // <snippet_1>
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute("blog", "blog/{*article}",
+                endpoints.MapControllerRoute("blog", "blog/{*article}",
                     defaults: new { controller = "Blog", action = "Article" });
-                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
             //</snippet_1>
         }

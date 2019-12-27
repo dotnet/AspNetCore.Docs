@@ -50,30 +50,30 @@ namespace AreasRouting
 
 #if First
             #region snippet1
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapAreaRoute("blog_route", "Blog",
+                endpoints.MapAreaControllerRoute("blog_route", "Blog",
                     "Manage/{controller}/{action}/{id?}");
-                routes.MapRoute("default_route", "{controller}/{action}/{id?}");
+                endpoints.MapControllerRoute("default_route", "{controller}/{action}/{id?}");
             });
             #endregion
 #else
             #region snippet2
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute("blog_route", "Manage/{controller}/{action}/{id?}",
+                endpoints.MapControllerRoute("blog_route", "Manage/{controller}/{action}/{id?}",
                     defaults: new { area = "Blog" }, constraints: new { area = "Blog" });
-                routes.MapRoute("default_route", "{controller}/{action}/{id?}");
+                endpoints.MapControllerRoute("default_route", "{controller}/{action}/{id?}");
             });
             #endregion
 #endif
 #if Third
             #region snippet3
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapAreaRoute("duck_route", "Duck",
+                endpoints.MapAreaControllerRoute("duck_route", "Duck",
                     "Manage/{controller}/{action}/{id?}");
-                routes.MapRoute("default", "Manage/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default", "Manage/{controller=Home}/{action=Index}/{id?}");
             });
             #endregion
 #endif

@@ -10,9 +10,8 @@ using Microsoft.Extensions.Hosting;
 
 namespace RoutingSample
 {
-    public class Startup
+    public class TerminalMiddlewareStartup
     {
-        #region snippet
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -20,16 +19,30 @@ namespace RoutingSample
                 app.UseDeveloperExceptionPage();
             }
 
+            #region snippet
+            // Approach 1: writing a terminal middleware
+            app.Use(next => async context =>
+            {
+                if (context.Request.Path == "/")
+                {
+                    await context.Response.WriteAsync("Hello World!");
+                    return;
+                }
+
+                await next(context);
+            });
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
+                // Approach 2: using routing
                 endpoints.MapGet("/", async context =>
                 {
                     await context.Response.WriteAsync("Hello World!");
                 });
             });
+            #endregion
         }
-        #endregion
     }
 }
