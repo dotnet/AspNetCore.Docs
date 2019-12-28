@@ -17,16 +17,16 @@ namespace PageFilter.Filters
 
         public void OnPageHandlerSelected(PageHandlerSelectedContext context)
         {
-            var key = _config.GetValue(typeof(string), "UserAgentID");
+            var key = _config["UserAgentID"];
             context.HttpContext.Request.Headers.TryGetValue("user-agent", out StringValues value);
             ProcessUserAgent.Write(context.ActionDescriptor.DisplayName,
                                    "SamplePageFilter.OnPageHandlerSelected",
-                                    value, key.ToString());
+                                   value, key.ToString());
         }
 
         public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
-            Debug.WriteLine("Global sync PageHandlerExecutingContext called.");
+            Debug.WriteLine("Global sync OnPageHandlerExecuting called.");
         }
 
         public void OnPageHandlerExecuted(PageHandlerExecutedContext context)
