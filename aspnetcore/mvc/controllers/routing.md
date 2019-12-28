@@ -19,7 +19,7 @@ Actions are either conventionally routed or attribute routed. Placing a route on
 This document will explain the interactions between MVC and routing, and how typical MVC apps make use of routing features. See [Routing](xref:fundamentals/routing) for details on advanced routing.
 
 > [!NOTE]
-> This documentation refers to the default routing system added in ASP.NET Core 3.0 called Endpoint Routing. It is still possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to30.md) for instructions. Refer to the 2.2 version of this document for reference material on the legacy routing system.
+> This documentation refers to the default routing system added in ASP.NET Core 3.0 called Endpoint Routing. It is still possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to30) for instructions. Refer to the 2.2 version of this document for reference material on the legacy routing system.
 
 ## Setting up Routing Middleware
 
@@ -43,7 +43,7 @@ public class ProductsController : Controller
 }
 ```
 
-Note that in this example, model binding would use the value of `id = 5` to set the `id` parameter to `5` when invoking this action. See the [Model Binding](../models/model-binding.md) for more details.
+Note that in this example, model binding would use the value of `id = 5` to set the `id` parameter to `5` when invoking this action. See the [Model Binding](xref:mvc/models/model-binding) for more details.
 
 Using the `default` route:
 
@@ -59,7 +59,7 @@ The route template:
 
 * `{id?}` defines `id` as optional
 
-Default and optional route parameters don't need to be present in the URL path for a match. See [Route Template Reference](../../fundamentals/routing.md#route-template-reference) for a detailed description of route template syntax.
+Default and optional route parameters don't need to be present in the URL path for a match. See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 
 `"{controller=Home}/{action=Index}/{id?}"` can match the URL path `/` and will produce the route values `{ controller = Home, action = Index }`. The values for `controller` and `action` make use of the default values, `id` doesn't produce a value since there's no corresponding segment in the URL path. This will only match if there exists a `HomeController` and `Index` action:
 
@@ -151,7 +151,7 @@ Adding routes using `MapControllerRoute` defines a priority order for the routin
 > *Dedicated conventional routes* often use catch-all route parameters like `{*article}` to capture the remaining portion of the URL path. This can make a route 'too greedy' meaning that it matches URLs that you intended to be matched by other routes. Put the 'greedy' routes later in the route table to solve this.
 
 > [!WARNING]
-> As of ASP.NET Core 3.0 the routing system does not define a concept called a *route*, nor does it provide guarantees about the execution order of extensbility like `IRouteContraint` or `IActionConstraint`. See the [routing](xref:fundamentals/routing.md) for reference material on routing.
+> As of ASP.NET Core 3.0 the routing system does not define a concept called a *route*, nor does it provide guarantees about the execution order of extensbility like `IRouteContraint` or `IActionConstraint`. See the [routing](xref:fundamentals/routing) for reference material on routing.
 
 ### Disambiguating actions
 
@@ -317,7 +317,7 @@ public class ProductsApiController : Controller
 }
 ```
 
-The `ProductsApi.GetProduct(int)` action will be executed for a URL path like `/products/3` but not for a URL path like `/products`. See [Routing](../../fundamentals/routing.md) for a full description of route templates and related options.
+The `ProductsApi.GetProduct(int)` action will be executed for a URL path like `/products/3` but not for a URL path like `/products`. See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
 
 ## Route Name
 
@@ -529,7 +529,7 @@ public IActionResult ShowProduct(int id)
 }
 ```
 
-See [Route Template Reference](../../fundamentals/routing.md#route-template-reference) for a detailed description of route template syntax.
+See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 
 <a name="routing-cust-rt-attr-irt-ref-label"></a>
 
@@ -575,7 +575,7 @@ Actions are either conventionally routed or attribute routed. Placing a route on
 
 ## URL Generation
 
-Applications can use routing's URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making your code more robust and maintainable. This section focuses on the URL generation features provided by MVC and will only cover basics of how URL generation works. See [Routing](../../fundamentals/routing.md) for a detailed description of URL generation.
+Applications can use routing's URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making your code more robust and maintainable. This section focuses on the URL generation features provided by MVC and will only cover basics of how URL generation works. See [Routing](xref:fundamentals/routing) for a detailed description of URL generation.
 
 The `IUrlHelper` interface is the underlying piece of infrastructure between MVC and routing for URL generation. You'll find an instance of `IUrlHelper` available through the `Url` property in controllers, views, and view components.
 
@@ -780,7 +780,7 @@ The route template:
 
 * `{id?}` defines `id` as optional
 
-Default and optional route parameters don't need to be present in the URL path for a match. See [Route Template Reference](../../fundamentals/routing.md#route-template-reference) for a detailed description of route template syntax.
+Default and optional route parameters don't need to be present in the URL path for a match. See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 
 `"{controller=Home}/{action=Index}/{id?}"` can match the URL path `/` and will produce the route values `{ controller = Home, action = Index }`. The values for `controller` and `action` make use of the default values, `id` doesn't produce a value since there's no corresponding segment in the URL path. MVC would use these route values to select the `HomeController` and `Index` action:
 
@@ -1019,7 +1019,7 @@ public class ProductsApiController : Controller
 }
 ```
 
-The `ProductsApi.GetProduct(int)` action will be executed for a URL path like `/products/3` but not for a URL path like `/products`. See [Routing](../../fundamentals/routing.md) for a full description of route templates and related options.
+The `ProductsApi.GetProduct(int)` action will be executed for a URL path like `/products/3` but not for a URL path like `/products`. See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
 
 ## Route Name
 
@@ -1235,7 +1235,7 @@ public IActionResult ShowProduct(int id)
 }
 ```
 
-See [Route Template Reference](../../fundamentals/routing.md#route-template-reference) for a detailed description of route template syntax.
+See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 
 <a name="routing-cust-rt-attr-irt-ref-label"></a>
 
@@ -1285,7 +1285,7 @@ Complex segments (for example, `[Route("/dog{token}cat")]`), are processed by ma
 
 ## URL Generation
 
-MVC applications can use routing's URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making your code more robust and maintainable. This section focuses on the URL generation features provided by MVC and will only cover basics of how URL generation works. See [Routing](../../fundamentals/routing.md) for a detailed description of URL generation.
+MVC applications can use routing's URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making your code more robust and maintainable. This section focuses on the URL generation features provided by MVC and will only cover basics of how URL generation works. See [Routing](xref:fundamentals/routing) for a detailed description of URL generation.
 
 The `IUrlHelper` interface is the underlying piece of infrastructure between MVC and routing for URL generation. You'll find an instance of `IUrlHelper` available through the `Url` property in controllers, views, and view components.
 
