@@ -13,7 +13,7 @@
     });
   },
   sayHello: function (dotnetHelper) {
-    return dotnetHelper.invokeMethodAsync('SayHello')
+    return dotnetHelper.invokeMethodAsync('BlazorSample', 'SayHello')
       .then(r => console.log(r));
   }
 };
