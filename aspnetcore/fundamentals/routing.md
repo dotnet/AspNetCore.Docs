@@ -521,7 +521,7 @@ ASP.NET Core provides API conventions for using a parameter transformers with ge
 
 ## URL generation reference
 
-This section contains a reference for the algorithm implemented by URL generation. Most complex examples of URL generation in practice use Controllers or Razor Pages. See the documentation [routing in controllers](xref:controllers/routing) for additional information.
+This section contains a reference for the algorithm implemented by URL generation. Most complex examples of URL generation in practice use Controllers or Razor Pages. See the documentation [routing in controllers](xref:mvc/controllers/routing) for additional information.
 
 > [!TIP]
 > The first step in troubleshooting URL generation should be to set the logging level of `Microsoft.AspNetCore.Routing` to `TRACE`. `LinkGenerator` logs many details about its processing which can be useful to troubleshoot problems.
