@@ -71,7 +71,7 @@ The following code enables the `SamplePageFilter`:
 
 The following code overrides the asynchronous Razor Page filters:
 
-[!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Index.cshtml.cs)]
+[!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Index.cshtml.cs?name=snippet)]
 
 <a name="ifa"></a>
 
