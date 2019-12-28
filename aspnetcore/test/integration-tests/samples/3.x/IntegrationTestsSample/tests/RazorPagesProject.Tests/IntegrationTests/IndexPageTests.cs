@@ -17,7 +17,7 @@ namespace RazorPagesProject.Tests
 {
     #region snippet1
     public class IndexPageTests : 
-        IClassFixture<CustomWebApplicationFactory<RazorPagesProject.Startup>>
+        IClassFixture<CustomWebApplicationFactory<RazorPagesProject.Startup>>, IDisposable
     {
         private readonly HttpClient _client;
         private readonly CustomWebApplicationFactory<RazorPagesProject.Startup> 
@@ -59,42 +59,11 @@ namespace RazorPagesProject.Tests
         public async Task Post_DeleteMessageHandler_ReturnsRedirectToRoot()
         {
             // Arrange
-            var client = _factory.WithWebHostBuilder(builder =>
-                {
-                    builder.ConfigureServices(services =>
-                    {
-                        var serviceProvider = services.BuildServiceProvider();
-
-                        using (var scope = serviceProvider.CreateScope())
-                        {
-                            var scopedServices = scope.ServiceProvider;
-                            var db = scopedServices
-                                .GetRequiredService<ApplicationDbContext>();
-                            var logger = scopedServices
-                                .GetRequiredService<ILogger<IndexPageTests>>();
-
-                            try
-                            {
-                                Utilities.ReinitializeDbForTests(db);
-                            }
-                            catch (Exception ex)
-                            {
-                                logger.LogError(ex, "An error occurred seeding " +
-                                    "the database with test messages. Error: {Message}", 
-                                    ex.Message);
-                            }
-                        }
-                    });
-                })
-                .CreateClient(new WebApplicationFactoryClientOptions
-                {
-                    AllowAutoRedirect = false
-                });
-            var defaultPage = await client.GetAsync("/");
+            var defaultPage = await _client.GetAsync("/");
             var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
 
             //Act
-            var response = await client.SendAsync(
+            var response = await _client.SendAsync(
                 (IHtmlFormElement)content.QuerySelector("form[id='messages']"),
                 (IHtmlButtonElement)content.QuerySelector("form[id='messages']")
                     .QuerySelector("div[class='panel-body']")
@@ -209,5 +178,15 @@ namespace RazorPagesProject.Tests
                 "and time is my business.", quoteElement.Attributes["value"].Value);
         }
         #endregion
+
+        public void Dispose()
+        {
+            using (IServiceScope scope = this._factory.Server.Services.CreateScope())
+            {
+                IServiceProvider scopedServices = scope.ServiceProvider;
+                ApplicationDbContext dbContext = scopedServices.GetRequiredService<ApplicationDbContext>();
+                Utilities.ReinitializeDbForTests(dbContext);
+            }
+        }
     }
 }
