@@ -55,13 +55,14 @@ This basic example includes a single *Route to Code* endpoint using the [MapGet]
 
 The `MapGet` method is used to define an *endpoint* - that is, something that can be selected (by matching the URL and HTTP method), and can be executed (by running the delegate).
 
-`UseEndpoints` is where endpoints are configured that can be matched and executed by the app. For example, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>, and [similar methods](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions*) can be used to wire up your own code to the routing system.
+`UseEndpoints` is where endpoints are configured that can be matched and executed by the app. For example, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>, and [similar methods](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions)can be used to wire up your own code to the routing system.
 
 ASP.NET Core frameworks provide extend the builder provided by `UseEndpoints`:
 - [MapRazorPages (Razor Pages)](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
 - [MapControllers (Controllers)](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
-- [MapHub<THub> (SignalR)](xref:Microsoft.AspNetCore.Builder.HubEndpointConventionBuilder.MapHub<THub>*)
+- [MapHub<THub> (SignalR)](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) <!-- Review required -->
 - MapGrpcService<TService> (gRPC)
+<!-- TODO provide link to MapGrpcService -->
 
 The following code shows an example of routing with a more sophisticated route template:
 
@@ -520,7 +521,7 @@ ASP.NET Core provides API conventions for using a parameter transformers with ge
 
 ## URL generation reference
 
-This section contains a reference for the algorithm implemented by URL generation. Most complex examples of URL generation in practice use Controllers or Razor Pages. See the documentation [routing in controllers](xref:controllers/routing.md) for additional information.
+This section contains a reference for the algorithm implemented by URL generation. Most complex examples of URL generation in practice use Controllers or Razor Pages. See the documentation [routing in controllers](xref:controllers/routing) for additional information.
 
 > [!TIP]
 > The first step in troubleshooting URL generation should be to set the logging level of `Microsoft.AspNetCore.Routing` to `TRACE`. `LinkGenerator` logs many details about its processing which can be useful to troubleshoot problems.
