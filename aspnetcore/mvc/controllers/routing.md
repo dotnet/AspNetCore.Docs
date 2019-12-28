@@ -1129,6 +1129,8 @@ Token replacement also applies to route names defined by attribute routes. `[Rou
 
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
 
+::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.2"
 
 <a name="routing-token-replacement-transformers-ref-label"></a>
