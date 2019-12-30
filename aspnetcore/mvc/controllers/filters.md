@@ -146,14 +146,7 @@ A filter can be added to the pipeline at one of three *scopes*:
 * Using an attribute on a controller or Razor Page.
 * Globally for all controllers, actions, and Razor Pages as shown in the following code:
 
-[!code-csharp[](./filters/3.1sample/FiltersSample/StartupOrder.cs?name=snippet]
-
-The preceding code:
-
-* Adds three filters globally using the [MvcOptions.Filters](xref:Microsoft.AspNetCore.Mvc.MvcOptions.Filters) collection.
-* Generates the response headers similar to the following on the `/Sample/Index2` endpoint:
-
-[!code-text[](./filters/3.1sample/response.txt?highlight=1,5,6)]
+[!code-csharp[](./filters/3.1sample/FiltersSample/StartupOrder.cs?name=snippet)]
 
 ### Default order of execution
 
@@ -173,16 +166,11 @@ The following example that illustrates the order in which filter methods are cal
 | Sequence | Filter scope | Filter method |
 |:--------:|:------------:|:-------------:|
 | 1 | Global | `OnActionExecuting` |
-| 2 | Controller | `OnActionExecuting` |
+| 2 | Controller or Razor Page| `OnActionExecuting` |
 | 3 | Method | `OnActionExecuting` |
 | 4 | Method | `OnActionExecuted` |
-| 5 | Controller | `OnActionExecuted` |
+| 5 | Controller or Razor Page | `OnActionExecuted` |
 | 6 | Global | `OnActionExecuted` |
-
-This sequence shows:
-
-* The method filter is nested within the controller filter.
-* The controller filter is nested within the global filter.
 
 ### Controller level filters
 
@@ -202,6 +190,7 @@ The `TestController`:
 * Overrides `OnActionExecuting` and `OnActionExecuted`.
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/TestController.cs?name=snippet)]
+
 <!-- test via  webBuilder.UseStartup<Startup>(); -->
 
 Navigating to `https://localhost:5001/Test/FilterTest2` runs the following code:
