@@ -23,7 +23,7 @@ namespace FiltersSample
             services.AddControllersWithViews(options =>
            {
                 options.Filters.Add(typeof(MySampleActionFilter)
-                   //                   , int.MinValue + 1
+                            //         , int.MinValue + 1
                     );
             });
         }

@@ -7,19 +7,15 @@ namespace FiltersSample.Controllers
 {
     #region snippet
     [TestActionFilter]
-    public class Test2Controller : Controller
+public class Test2Controller : Controller
+{
+    [SampleActionFilter(Order = int.MinValue)]
+    public IActionResult FilterTest3()
     {
-        //         [SampleActionFilter(Order = int.MinValue)]
-        // 
-        [SampleActionFilter]
-        public IActionResult FilterTest3()
-        {
-            var method = MethodBase.GetCurrentMethod();
-            MyDebug.Write(method, HttpContext.Request.Path);
-
-            return Content("From " + method);
+            var m = MethodBase.GetCurrentMethod();
+            MyDebug.Write(m, HttpContext.Request.Path);
+            return Content(m.ReflectedType.Name + "." + m.Name);
         }
-
-    }
+}
     #endregion
 }

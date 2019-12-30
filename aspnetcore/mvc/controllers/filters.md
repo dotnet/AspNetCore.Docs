@@ -125,8 +125,6 @@ The following code applies the `MyActionFilterAttribute` and the `AddHeaderAttri
 
 [!code-csharp[](filters/3.1sample/FiltersSample/Pages/Movies/Index.cshtml.cs?name=snippet)]
 
- Under **Response Headers**, `author: Rick Anderson`, and `Editor: Joe Smith` is displayed when the `Index` endpoint is called.
-
 Filters cannot be applied to Razor Page handler methods. They can be applied either to the Razor Page model or globally.
 
 Several of the filter interfaces have corresponding attributes that can be used as base classes for custom implementations.
