@@ -146,7 +146,7 @@ A filter can be added to the pipeline at one of three *scopes*:
 * Using an attribute on a controller or Razor Page.
 * Globally for all controllers, actions, and Razor Pages as shown in the following code:
 
-[!code-csharp[](./filters/3.1sample/FiltersSample/StartupGF.cs?name=snippet_ConfigureServices)]
+[!code-csharp[](./filters/3.1sample/FiltersSample/StartupOrder.cs?name=snippet]
 
 The preceding code:
 
