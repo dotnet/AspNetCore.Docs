@@ -24,7 +24,7 @@ Custom filters can be created to handle cross-cutting concerns. Examples of cros
 
 This document applies to Razor Pages, API controllers, and controllers with views.
 
-[View or download sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/3.1sample) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## How filters work
 
@@ -529,14 +529,18 @@ For example, the following filter always runs and sets an action result (<xref:M
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/AddHeaderWithFactoryAttribute.cs?name=snippet_IFilterFactory&highlight=1,4,5,6,7)]
 
-The preceding code can be tested by running the [download sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample):
+The filter is applied in the following code:
+
+[!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet3&highlight=15)]
+
+Test the preceding code by running the [download sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/3.1sample):
 
 * Invoke the F12 developer tools.
 * Navigate to `https://localhost:5001/Sample/HeaderWithFactory`.
 
 The F12 developer tools display the following response headers added by the sample code:
 
-* **author:** `Joe Smith`
+* **author:** `Rick Anderson`
 * **globaladdheader:** `Result filter added to MvcOptions.Filters`
 * **internal:** `My header`
 
@@ -581,7 +585,7 @@ Middleware filters run at the same stage of the filter pipeline as Resource filt
 ## Next actions
 
 * See [Filter methods for Razor Pages](xref:razor-pages/filter).
-* To experiment with filters, [download, test, and modify the GitHub sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/sample).
+* To experiment with filters, [download, test, and modify the GitHub sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/3.1sample).
 
 ::: moniker-end
 
