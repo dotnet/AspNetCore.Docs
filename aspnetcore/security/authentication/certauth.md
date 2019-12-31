@@ -228,6 +228,9 @@ The `AddCertificateForwarding` method is used to specify:
 
 In Azure Web Apps, the certificate is passed as a custom request header named `X-ARR-ClientCert`. To use it, configure certificate forwarding in `Startup.ConfigureServices`:
 
+> [!NOTE]
+> When processing certificates from a HTTP header, some of the default validation steps will not be executed. These need to be implemented in your code, or the header should not be processed when the validation steps are required.
+
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
