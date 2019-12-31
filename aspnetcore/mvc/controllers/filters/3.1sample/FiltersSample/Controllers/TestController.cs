@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Filters;
 namespace FiltersSample.Controllers
 {
     #region snippet
-[SampleActionFilter(Order = int.MinValue)]
 public class TestController : Controller
 {
     [SampleActionFilter(Order = int.MinValue)]

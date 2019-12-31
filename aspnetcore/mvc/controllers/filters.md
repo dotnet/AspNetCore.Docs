@@ -121,7 +121,7 @@ The following code applies the `MyActionFilterAttribute` to the `Index2` method:
 
 Under **Response Headers**, `author: Rick Anderson`, and `Editor: Joe Smith` is displayed when the `Sample/Index2` endpoint is called.
 
-The following code applies the `MyActionFilterAttribute` and the `AddHeaderAttribute` to the Razor Pages `Index` method:
+The following code applies the `MyActionFilterAttribute` and the `AddHeaderAttribute` to the Razor Page:
 
 [!code-csharp[](filters/3.1sample/FiltersSample/Pages/Movies/Index.cshtml.cs?name=snippet)]
 
@@ -193,7 +193,7 @@ The `TestController`:
 
 <!-- test via  webBuilder.UseStartup<Startup>(); -->
 
-Navigating to `https://localhost:5001/Test/FilterTest2` runs the following code:
+Navigating to `https://localhost:5001/Test2/FilterTest2` runs the following code:
 
 * `TestController.OnActionExecuting`
   * `MySampleActionFilter.OnActionExecuting`
@@ -202,6 +202,8 @@ Navigating to `https://localhost:5001/Test/FilterTest2` runs the following code:
     * `SampleActionFilterAttribute.OnActionExecuted`
   * `MySampleActionFilter.OnActionExecuted`
 * `TestController.OnActionExecuted`
+
+Controller level filters set the [Order](https://github.com/aspnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L15-L17) property to `int.MinValue`, therefore, Controller level filters can **not** be set to run after filters applied to method. Order is explained in the next section.
 
 For Razor Pages, see [Implement Razor Page filters by overriding filter methods](xref:razor-pages/filter#implement-razor-page-filters-by-overriding-filter-methods).
 
@@ -212,24 +214,37 @@ The default sequence of execution can be overridden by implementing <xref:Micros
 * Runs the *before* code before that of a filter with a higher value of `Order`.
 * Runs the *after* code after that of a filter with a higher `Order` value.
 
-The `Order` property can be set with a constructor parameter:
+The `Order` property is set with a constructor parameter:
 
-```csharp
-[MyFilter(Name = "Controller Level Attribute", Order=1)]
-```
+[!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/Test3Controller.cs?name=snippet)]
 
-Consider the same 3 action filters shown in the preceding example. If the `Order` property of the controller and global filters is set to 1 and 2 respectively, the order of execution is reversed.
+Consider the two action filters in the following controller:
 
-| Sequence | Filter scope | `Order` property | Filter method |
-|:--------:|:------------:|:-----------------:|:-------------:|
-| 1 | Method | 0 | `OnActionExecuting` |
-| 2 | Controller | 1  | `OnActionExecuting` |
-| 3 | Global | 2  | `OnActionExecuting` |
-| 4 | Global | 2  | `OnActionExecuted` |
-| 5 | Controller | 1  | `OnActionExecuted` |
-| 6 | Method | 0  | `OnActionExecuted` |
+[!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/Test2Controller.cs?name=snippet)]
 
-The `Order` property overrides scope when determining the order in which filters run. Filters are sorted first by order, then scope is used to break ties. All of the built-in filters implement `IOrderedFilter` and set the default `Order` value to 0. For built-in filters, scope determines order unless `Order` is set to a non-zero value.
+A global filter is added in `StartUp.ConfigureServices`:
+
+[!code-csharp[](./filters/3.1sample/FiltersSample/StartupOrder.cs?name=snippet)]
+
+The 3 filters run with in the following order:
+
+* `Test2Controller.OnActionExecuting`
+  * `MySampleActionFilter.OnActionExecuting`
+    * `MyAction2FilterAttribute.OnActionExecuting`
+      * `Test2Controller.FilterTest2`
+    * `MySampleActionFilter.OnActionExecuted`
+  * `MyAction2FilterAttribute.OnResultExecuting`
+* `Test2Controller.OnActionExecuted`
+
+The `Order` property overrides scope when determining the order in which filters run. Filters are sorted first by order, then scope is used to break ties. All of the built-in filters implement `IOrderedFilter` and set the default `Order` value to 0. As mentioned previously, controller level filters set the [Order](https://github.com/aspnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L15-L17) property to `int.MinValue` For built-in filters, scope determines order unless `Order` is set to a non-zero value.
+
+In the preceding code, `MySampleActionFilter` has global scope so it runs before `MyAction2FilterAttribute`, which has controller scope. To make `MyAction2FilterAttribute` run first, set the order to `int.MinValue`:
+
+[!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/Test2Controller.cs?name=snippet2)]
+
+To make the global filter `MySampleActionFilter` run first, set `Order` to `int.MinValue`:
+
+[!code-csharp[](./filters/3.1sample/FiltersSample/StartupOrder2.cs?name=snippet&highlight=6)]
 
 ## Cancellation and short-circuiting
 

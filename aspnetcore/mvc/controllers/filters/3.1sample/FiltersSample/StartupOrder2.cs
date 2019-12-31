@@ -8,9 +8,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace FiltersSample
 {
-    public class StartupOrder
+    public class StartupOrder2
     {
-        public StartupOrder(IConfiguration configuration)
+        public StartupOrder2(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -22,7 +22,8 @@ namespace FiltersSample
         {
             services.AddControllersWithViews(options =>
            {
-                options.Filters.Add(typeof(MySampleActionFilter));
+                options.Filters.Add(typeof(MySampleActionFilter),
+                                    int.MinValue);
             });
         }
         #endregion

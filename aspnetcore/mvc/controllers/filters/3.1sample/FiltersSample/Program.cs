@@ -19,8 +19,8 @@ namespace FiltersSample
                     //webBuilder.UseStartup<StartupAsync>();
                     //webBuilder.UseStartup<StartupRP>();
                     // webBuilder.UseStartup<StartupGF>();
-                    webBuilder.UseStartup<StartupOrder>();
-                    //webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseStartup<StartupOrder>();
+                    webBuilder.UseStartup<StartupOrder2>();
                     //webBuilder.UseStartup<Startup>();
 
                 });
