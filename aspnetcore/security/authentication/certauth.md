@@ -372,6 +372,9 @@ Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertif
 Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath root_ca_dev_damienbod.crt
 ```
 
+> [!NOTE]
+> The -DnsName parameter must match the deployment target of the application, for example "localhost" for development.
+
 #### Install in the trusted root
 
 The root certificate needs to be trusted on your host system. A root certificate which was not created by a certificate authority won't be trusted by default. The following link explains how this can be accomplished on Windows:
