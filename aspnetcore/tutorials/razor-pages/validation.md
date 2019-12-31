@@ -87,6 +87,8 @@ Optional, test server-side validation:
       return Page();
    }
   ```
+  
+Alternatively, you can [Disable client-side validation on the server](xref:mvc/models/validation#disable-client-side-validation).
 
 The following code shows a portion of the *Create.cshtml* page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to display the initial form and to redisplay the form in the event of an error.
 

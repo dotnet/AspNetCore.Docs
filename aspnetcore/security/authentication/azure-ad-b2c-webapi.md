@@ -11,6 +11,8 @@ uid: security/authentication/azure-ad-b2c-webapi
 
 By [Cam Soper](https://twitter.com/camsoper)
 
+<!-- Next update remove screenshots. They become obsolete too soon and are more work to update -->
+
 [Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) is a cloud identity management solution for web and mobile apps. The service provides authentication for apps hosted in the cloud and on-premises. Authentication types include individual accounts, social network accounts, and federated enterprise accounts. Azure AD B2C also provides multi-factor authentication with minimal configuration.
 
 Azure Active Directory (Azure AD) and Azure AD B2C are separate product offerings. An Azure AD tenant represents an organization, while an Azure AD B2C tenant represents a collection of identities to be used with relying party applications. To learn more, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
