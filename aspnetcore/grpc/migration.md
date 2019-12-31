@@ -91,6 +91,7 @@ gRPC Interceptor differences from ASP.NET Core Middleware:
   * Provide access to:
     * The deserialized message sent to a call.
     * The message being returned from the call before it is serialized.
+  * Can catch and handle exceptions thrown from gRPC services.
 * Middleware:
   * Runs before gRPC interceptors.
   * Operates on the underlying HTTP/2 messages.

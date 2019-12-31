@@ -213,6 +213,8 @@ Make the following changes in *Startup.cs*:
 
 ### Microsoft Account authentication
 
+For more information on Microsoft account authentication, see [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/14455).
+
 Make the following changes in *Startup.cs*:
 - Replace the `UseMicrosoftAccountAuthentication` method call in the `Configure` method with `UseAuthentication`:
 

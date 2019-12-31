@@ -5,7 +5,7 @@ description: Learn how to control app behavior across multiple environments in A
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/07/2019
+ms.date: 12/17/2019
 uid: fundamentals/environments
 ---
 # Use multiple environments in ASP.NET Core
@@ -182,11 +182,12 @@ When the host is built, the last environment setting read by the app determines 
 To set the environment in [Azure App Service](https://azure.microsoft.com/services/app-service/), perform the following steps:
 
 1. Select the app from the **App Services** blade.
-1. In the **SETTINGS** group, select the **Application settings** blade.
-1. In the **Application settings** area, select **Add new setting**.
-1. For **Enter a name**, provide `ASPNETCORE_ENVIRONMENT`. For **Enter a value**, provide the environment (for example, `Staging`).
-1. Select the **Slot Setting** check box if you wish the environment setting to remain with the current slot when deployment slots are swapped. For more information, see [Azure Documentation: Which settings are swapped?](/azure/app-service/web-sites-staged-publishing).
-1. Select **Save** at the top of the blade.
+1. In the **Settings** group, select the **Configuration** blade.
+1. In the **Application settings** tab, select **New application setting**.
+1. In the **Add/Edit application setting** window, provide `ASPNETCORE_ENVIRONMENT` for the **Name**. For **Value**, provide the environment (for example, `Staging`).
+1. Select the **Deployment slot setting** check box if you wish the environment setting to remain with the current slot when deployment slots are swapped. For more information, see [Set up staging environments in Azure App Service](/azure/app-service/web-sites-staged-publishing) in the Azure documentation.
+1. Select **OK** to close the **Add/Edit application setting** window.
+1. Select **Save** at the top of the **Configuration** blade.
 
 Azure App Service automatically restarts the app after an app setting (environment variable) is added, changed, or deleted in the Azure portal.
 
@@ -611,11 +612,12 @@ When the host is built, the last environment setting read by the app determines 
 To set the environment in [Azure App Service](https://azure.microsoft.com/services/app-service/), perform the following steps:
 
 1. Select the app from the **App Services** blade.
-1. In the **SETTINGS** group, select the **Application settings** blade.
-1. In the **Application settings** area, select **Add new setting**.
-1. For **Enter a name**, provide `ASPNETCORE_ENVIRONMENT`. For **Enter a value**, provide the environment (for example, `Staging`).
-1. Select the **Slot Setting** check box if you wish the environment setting to remain with the current slot when deployment slots are swapped. For more information, see [Azure Documentation: Which settings are swapped?](/azure/app-service/web-sites-staged-publishing).
-1. Select **Save** at the top of the blade.
+1. In the **Settings** group, select the **Configuration** blade.
+1. In the **Application settings** tab, select **New application setting**.
+1. In the **Add/Edit application setting** window, provide `ASPNETCORE_ENVIRONMENT` for the **Name**. For **Value**, provide the environment (for example, `Staging`).
+1. Select the **Deployment slot setting** check box if you wish the environment setting to remain with the current slot when deployment slots are swapped. For more information, see [Set up staging environments in Azure App Service](/azure/app-service/web-sites-staged-publishing) in the Azure documentation.
+1. Select **OK** to close the **Add/Edit application setting** window.
+1. Select **Save** at the top of the **Configuration** blade.
 
 Azure App Service automatically restarts the app after an app setting (environment variable) is added, changed, or deleted in the Azure portal.
 

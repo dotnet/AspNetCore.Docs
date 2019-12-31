@@ -5,7 +5,7 @@ description: Learn about error handling with ASP.NET Core web APIs.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: prkrishn
 ms.custom: mvc
-ms.date: 09/27/2019
+ms.date: 12/10/2019
 uid: web-api/handle-errors
 ---
 # Handle errors in ASP.NET Core web APIs
@@ -143,7 +143,7 @@ In non-development environments, [Exception Handling Middleware](xref:fundamenta
 
     ::: moniker-end
 
-The preceding `Error` action sends an [RFC7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client.
+The preceding `Error` action sends an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client.
 
 Exception Handling Middleware can also provide more detailed content-negotiated output in the local development environment. Use the following steps to produce a consistent payload format across development and production environments:
 
@@ -261,6 +261,13 @@ For web API controllers, MVC responds with a <xref:Microsoft.AspNetCore.Mvc.Vali
 ## Client error response
 
 An *error result* is defined as a result with an HTTP status code of 400 or higher. For web API controllers, MVC transforms an error result to a result with <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
+
+::: moniker range="= aspnetcore-2.1"
+
+> [!IMPORTANT]
+> ASP.NET Core 2.1 generates a problem details response that's nearly RFC 7807-compliant. If 100 percent compliance is important, upgrade the project to ASP.NET Core 2.2 or later.
+
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0"
 
