@@ -17,8 +17,13 @@ namespace FiltersSample
 
         public IConfiguration Configuration { get; }
 
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add service filters.
+            services.AddScoped<AddHeaderResultServiceFilter>();
+            services.AddScoped<SampleActionFilterAttribute>();
+
             services.AddControllersWithViews(options =>
            {
                options.Filters.Add(new AddHeaderAttribute("GlobalAddHeader",
@@ -27,6 +32,7 @@ namespace FiltersSample
                 options.Filters.Add(new SampleGlobalActionFilter());       // An instance
             });
         }
+        #endregion
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
