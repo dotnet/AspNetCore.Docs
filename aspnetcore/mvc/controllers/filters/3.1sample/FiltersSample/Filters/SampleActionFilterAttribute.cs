@@ -11,7 +11,6 @@ namespace FiltersSample.Filters
     {
         public SampleActionFilterAttribute():base(typeof(SampleActionFilterImpl))
         {
-            var ord = Order;
         }
 
         private class SampleActionFilterImpl : IActionFilter

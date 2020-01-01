@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FiltersSample.Controllers
 {
+    #region snippet3
     #region snippet2
     #region snippet_AddHeader
     [AddHeader("Author", "Rick Anderson")]
@@ -33,4 +34,5 @@ namespace FiltersSample.Controllers
             return Content("Examine the headers using the F12 developer tools.");
         }
     }
+    #endregion
 }
