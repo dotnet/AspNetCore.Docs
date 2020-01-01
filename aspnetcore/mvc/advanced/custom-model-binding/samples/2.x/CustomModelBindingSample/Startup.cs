@@ -9,13 +9,12 @@ namespace CustomModelBindingSample
 {
     public class Startup
     {
-        #region callout
+        #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("App"));
 
-            services
-                .AddMvc(options =>
+            services.AddMvc(options =>
                 {
                     // add custom binder to beginning of collection
                     options.ModelBinderProviders.Insert(0, new AuthorEntityBinderProvider());
