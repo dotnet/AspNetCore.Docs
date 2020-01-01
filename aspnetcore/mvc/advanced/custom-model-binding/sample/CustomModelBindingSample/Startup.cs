@@ -1,6 +1,7 @@
 ﻿using CustomModelBindingSample.Binders;
 using CustomModelBindingSample.Data;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,17 +9,18 @@ namespace CustomModelBindingSample
 {
     public class Startup
     {
-
         #region callout
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase());
+            services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("App"));
 
-            services.AddMvc(options =>
-            {
-                // add custom binder to beginning of collection
-                options.ModelBinderProviders.Insert(0, new AuthorEntityBinderProvider());
-            });
+            services
+                .AddMvc(options =>
+                {
+                    // add custom binder to beginning of collection
+                    options.ModelBinderProviders.Insert(0, new AuthorEntityBinderProvider());
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
         #endregion
 
