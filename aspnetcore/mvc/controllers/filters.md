@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Learn how filters work and how to use them in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/28/2019
+ms.date: 1/1/2019
 uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
@@ -531,7 +531,7 @@ For example, the following filter always runs and sets an action result (<xref:M
 
 The filter is applied in the following code:
 
-[!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet3&highlight=15)]
+[!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet3&highlight=11)]
 
 Test the preceding code by running the [download sample](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/filters/3.1sample):
 
