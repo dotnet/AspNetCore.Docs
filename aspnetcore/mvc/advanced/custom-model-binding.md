@@ -22,21 +22,13 @@ The default model binders support most of the common .NET Core data types and sh
 
 Model binding uses specific definitions for the types it operates on. A *simple type* is converted from a single string in the input. A *complex type* is converted from multiple input values. The framework determines the difference based on the existence of a `TypeConverter`. We recommended you create a type converter if you have a simple `string` -> `SomeType` mapping that doesn't require external resources.
 
-Before creating your own custom model binder, it's worth reviewing how existing model binders are implemented. Consider the [ByteArrayModelBinder](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.binders.bytearraymodelbinder) which can be used to convert base64-encoded strings into byte arrays. The byte arrays are often stored as files or database BLOB fields.
+Before creating your own custom model binder, it's worth reviewing how existing model binders are implemented. Consider the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinder> which can be used to convert base64-encoded strings into byte arrays. The byte arrays are often stored as files or database BLOB fields.
 
 ### Working with the ByteArrayModelBinder
 
-Base64-encoded strings can be used to represent binary data. For example, the following image can be encoded as a string.
+Base64-encoded strings can be used to represent binary data. For example, an image can be encoded as a string. Follow the instructions in the [sample's README](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/advanced/custom-model-binding/samples/2.x/CustomModelBindingSample/README.md) to convert a base64-encoded string into a file.
 
-![dotnet bot](custom-model-binding/images/bot.png "dotnet bot")
-
-A small portion of the encoded string is shown in the following image:
-
-![dotnet bot encoded](custom-model-binding/images/encoded-bot.png "dotnet bot encoded")
-
-Follow the instructions in the [sample's README](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/advanced/custom-model-binding/samples/2.x/CustomModelBindingSample/README.md) to convert the base64-encoded string into a file.
-
-ASP.NET Core MVC can take a base64-encoded string and use a `ByteArrayModelBinder` to convert it into a byte array. The [ByteArrayModelBinderProvider](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.binders.bytearraymodelbinderprovider) which implements [IModelBinderProvider](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.imodelbinderprovider) maps `byte[]` arguments to `ByteArrayModelBinder`:
+ASP.NET Core MVC can take a base64-encoded string and use a `ByteArrayModelBinder` to convert it into a byte array. The <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider> maps `byte[]` arguments to `ByteArrayModelBinder`:
 
 ```csharp
 public IModelBinder GetBinder(ModelBinderProviderContext context)
@@ -55,7 +47,7 @@ public IModelBinder GetBinder(ModelBinderProviderContext context)
 }
 ```
 
-When creating your own custom model binder, you can implement your own `IModelBinderProvider` type, or use the [ModelBinderAttribute](/dotnet/api/microsoft.aspnetcore.mvc.modelbinderattribute).
+When creating your own custom model binder, you can implement your own `IModelBinderProvider` type, or use the <xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute>.
 
 The following example shows how to use `ByteArrayModelBinder` to convert a base64-encoded string to a `byte[]` and save the result to a file:
 
@@ -115,15 +107,7 @@ To use a custom model binder provider, add it in `ConfigureServices`:
 
 [!code-csharp[](custom-model-binding/samples/2.x/CustomModelBindingSample/Startup.cs?name=snippet_ConfigureServices&highlight=5-10)]
 
-When evaluating model binders, the collection of providers is examined in order. The first provider that returns a binder is used.
-
-The following image shows the default model binders from the debugger.
-
-![default model binders](custom-model-binding/images/default-model-binders.png "default model binders")
-
-Adding your provider to the end of the collection may result in a built-in model binder being called before your custom binder has a chance. In this example, the custom provider is added to the beginning of the collection to ensure it's used for `Author` action arguments.
-
-[!code-csharp[](custom-model-binding/samples/2.x/CustomModelBindingSample/Startup.cs?name=snippet_ConfigureServices&highlight=5-10)]
+When evaluating model binders, the collection of providers is examined in order. The first provider that returns a binder is used. Adding your provider to the end of the collection may result in a built-in model binder being called before your custom binder has a chance. In this example, the custom provider is added to the beginning of the collection to ensure it's used for `Author` action arguments.
 
 ### Polymorphic model binding
 
@@ -142,4 +126,4 @@ Custom model binders:
 
 - Shouldn't attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](xref:mvc/controllers/filters) or logic within the action method itself should handle the failure.
 - Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
-- Typically shouldn't be used to convert a string into a custom type, a [TypeConverter](/dotnet/api/system.componentmodel.typeconverter) is usually a better option.
+- Typically shouldn't be used to convert a string into a custom type, a <xref:System.ComponentModel.TypeConverter> is usually a better option.
