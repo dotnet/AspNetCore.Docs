@@ -45,23 +45,23 @@ namespace FiltersSample.Controllers
         [SampleActionFilter]
         public IActionResult FilterTest()
         {
-            return Content($"From FilterTest");
+            return Content("From FilterTest");
         }
         #endregion
 
         [TypeFilter(typeof(SampleActionFilterAttribute))]
         public IActionResult TypeFilterTest()
         {
-            return Content($"From ServiceFilterTest");
+            return Content("From TypeFilterTest");
         }
 
         // ServiceFilter must be registered in ConfigureServices or
-        // System.InvalidOperationException: No service for type '<filter>' has been registered.
-        // Is thrown.
+        // System.InvalidOperationException: No service for type '<filter>'
+        // has been registered. Is thrown.
         [ServiceFilter(typeof(SampleActionFilterAttribute))]
         public IActionResult ServiceFilterTest()
         {
-            return Content($"From ServiceFilterTest");
+            return Content("From ServiceFilterTest");
         }
         #endregion
     }

@@ -9,7 +9,8 @@ namespace FiltersSample.Filters
     #region snippet_TypeFilterAttribute
     public class SampleActionFilterAttribute : TypeFilterAttribute
     {
-        public SampleActionFilterAttribute():base(typeof(SampleActionFilterImpl))
+        public SampleActionFilterAttribute()
+                             :base(typeof(SampleActionFilterImpl))
         {
         }
 
@@ -18,13 +19,14 @@ namespace FiltersSample.Filters
             private readonly ILogger _logger;
             public SampleActionFilterImpl(ILoggerFactory loggerFactory)
             {
-                _logger = loggerFactory.CreateLogger<SampleActionFilterAttribute>();
+                _logger = loggerFactory.CreateLogger<
+                                        SampleActionFilterAttribute>();
             }
 
             public void OnActionExecuting(ActionExecutingContext context)
             {
-                MyDebug.Write(MethodBase.GetCurrentMethod(), context.HttpContext.Request.Path);
-                // _logger.LogInformation("SampleActionFilterAttribute.OnActionExecuting");
+               _logger.LogInformation(
+                         "SampleActionFilterAttribute.OnActionExecuting");
                 // perform some business logic work
 
             }
@@ -32,8 +34,8 @@ namespace FiltersSample.Filters
             public void OnActionExecuted(ActionExecutedContext context)
             {
                 // perform some business logic work
-                // _logger.LogInformation("SampleActionFilterAttribute.OnActionExecuted");
-                MyDebug.Write(MethodBase.GetCurrentMethod(), context.HttpContext.Request.Path);
+                _logger.LogInformation(
+                         "SampleActionFilterAttribute.OnActionExecuted");
             }
         }
     }

@@ -7,7 +7,8 @@ namespace FiltersSample.Filters
     public class AddHeaderWithFactoryAttribute : Attribute, IFilterFactory
     {
         // Implement IFilterFactory
-        public IFilterMetadata CreateInstance(IServiceProvider serviceProvider)
+        public IFilterMetadata CreateInstance(IServiceProvider 
+                                              serviceProvider)
         {
             return new InternalAddHeaderFilter();
         }
