@@ -9,6 +9,7 @@ namespace CustomModelBindingSample.Binders
     public class AuthorEntityBinder : IModelBinder
     {
         private readonly AppDbContext _db;
+
         public AuthorEntityBinder(AppDbContext db)
         {
             _db = db;
@@ -22,18 +23,16 @@ namespace CustomModelBindingSample.Binders
             }
 
             var modelName = bindingContext.ModelName;
-            
+
             // Try to fetch the value of the argument by name
-            var valueProviderResult =
-                bindingContext.ValueProvider.GetValue(modelName);
+            var valueProviderResult = bindingContext.ValueProvider.GetValue(modelName);
 
             if (valueProviderResult == ValueProviderResult.None)
             {
                 return Task.CompletedTask;
             }
 
-            bindingContext.ModelState.SetModelValue(modelName,
-                valueProviderResult);
+            bindingContext.ModelState.SetModelValue(modelName, valueProviderResult);
 
             var value = valueProviderResult.FirstValue;
 
@@ -43,13 +42,12 @@ namespace CustomModelBindingSample.Binders
                 return Task.CompletedTask;
             }
 
-            int id = 0;
-            if (!int.TryParse(value, out id))
+            if (!int.TryParse(value, out var id))
             {
                 // Non-integer arguments result in model state errors
                 bindingContext.ModelState.TryAddModelError(
-                                        modelName,
-                                        "Author Id must be an integer.");
+                    modelName, "Author Id must be an integer.");
+
                 return Task.CompletedTask;
             }
 
