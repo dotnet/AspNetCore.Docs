@@ -1,8 +1,6 @@
-﻿using FiltersSample.Helper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
-using System.Reflection;
 
 namespace FiltersSample.Filters
 {
@@ -11,30 +9,25 @@ namespace FiltersSample.Filters
     {
         public SampleActionFilterAttribute()
                              :base(typeof(SampleActionFilterImpl))
-        { }
+        { 
+        }
 
         private class SampleActionFilterImpl : IActionFilter
         {
             private readonly ILogger _logger;
             public SampleActionFilterImpl(ILoggerFactory loggerFactory)
             {
-                _logger = loggerFactory.CreateLogger<
-                                        SampleActionFilterAttribute>();
+                _logger = loggerFactory.CreateLogger<SampleActionFilterAttribute>();
             }
 
             public void OnActionExecuting(ActionExecutingContext context)
             {
-               _logger.LogInformation(
-                         "SampleActionFilterAttribute.OnActionExecuting");
-                // perform some business logic work
-
+               _logger.LogInformation("SampleActionFilterAttribute.OnActionExecuting");
             }
 
             public void OnActionExecuted(ActionExecutedContext context)
             {
-                // perform some business logic work
-                _logger.LogInformation(
-                         "SampleActionFilterAttribute.OnActionExecuted");
+                _logger.LogInformation("SampleActionFilterAttribute.OnActionExecuted");
             }
         }
     }

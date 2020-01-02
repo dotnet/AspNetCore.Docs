@@ -30,7 +30,7 @@ This document applies to Razor Pages, API controllers, and controllers with view
 
 Filters run within the *ASP.NET Core action invocation pipeline*, sometimes referred to as the *filter pipeline*.  The filter pipeline runs after ASP.NET Core selects the action to execute.
 
-![The request is processed through Other Middleware, Routing Middleware, Action Selection, and the ASP.NET Core Action Invocation Pipeline. The request processing continues back through Action Selection, Routing Middleware, and various Other Middleware before becoming a response sent to the client.](filters/_static/filter-pipeline-1.png)
+![The request is processed through Other Middleware, Routing Middleware, Action Selection, and the Action Invocation Pipeline. The request processing continues back through Action Selection, Routing Middleware, and various Other Middleware before becoming a response sent to the client.](filters/_static/filter-pipeline-1.png)
 
 ### Filter types
 
@@ -146,7 +146,7 @@ Filter attributes:
 
 A filter can be added to the pipeline at one of three *scopes*:
 
-* Using an attribute on an controller action. Filter attributes cannot be applied to Razor Pages handler methods.
+* Using an attribute on a controller action. Filter attributes cannot be applied to Razor Pages handler methods.
 * Using an attribute on a controller or Razor Page.
 * Globally for all controllers, actions, and Razor Pages as shown in the following code:
 
@@ -290,7 +290,7 @@ The preceding filters can be applied to a controller or action method:
 Loggers are available from DI. However, avoid creating and using filters purely for logging purposes. The [built-in framework logging](xref:fundamentals/logging/index) typically provides what's needed for logging. Logging added to filters:
 
 * Should focus on business domain concerns or behavior specific to the filter.
-* Should **not** log actions or other framework events. The built in filters log actions and framework events.
+* Should **not** log actions or other framework events. The built-in filters log actions and framework events.
 
 ### ServiceFilterAttribute
 
