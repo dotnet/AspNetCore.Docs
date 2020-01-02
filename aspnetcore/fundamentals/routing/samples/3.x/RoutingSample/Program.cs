@@ -14,6 +14,7 @@ namespace RoutingSample
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    // Modify which startup class is used to run the various samples.
                     webBuilder.UseStartup<Startup>();
                 });
     }

@@ -10,6 +10,731 @@ uid: mvc/controllers/routing
 
 By [Ryan Nowak](https://github.com/rynowak) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+::: moniker range=">= aspnetcore-3.0"
+
+ASP.NET Core Controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to actions. Routes templates are defined in startup code or attributes. Route templates describe how URL paths should be matched to actions. Route templates are also used to generate URLs (for links) sent out in responses.
+
+Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. See [Mixed routing](#routing-mixed-ref-label) for more information.
+
+This document will explain the interactions between MVC and routing, and how typical MVC apps make use of routing features. See [Routing](xref:fundamentals/routing) for details on advanced routing.
+
+> [!NOTE]
+> This documentation refers to the default routing system added in ASP.NET Core 3.0 called Endpoint Routing. It is still possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions. Refer to the 2.2 version of this document for reference material on the legacy routing system.
+
+## Setting up Routing Middleware
+
+In your *Configure* method you may see code similar to:
+
+```csharp
+app.UseEndpoints(endpoints =>
+{
+   endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+});
+```
+
+Inside the call to `UseEndpoints`, `MapControllerRoute` is used to create a single route, which we'll refer to as the `default` route. Most apps with controllers will use a route with a template similar to the `default` route.
+
+The route template `"{controller=Home}/{action=Index}/{id?}"` can match a URL path like `/Products/Details/5` and will extract the route values `{ controller = Products, action = Details, id = 5 }` by tokenizing the path. This result in a match if the app has a controller named `ProductsController` and an action `Details`:
+
+```csharp
+public class ProductsController : Controller
+{
+   public IActionResult Details(int id) { ... }
+}
+```
+
+Note that in this example, model binding would use the value of `id = 5` to set the `id` parameter to `5` when invoking this action. See the [Model Binding](xref:mvc/models/model-binding) for more details.
+
+Using the `default` route:
+
+```csharp
+endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+```
+
+The route template:
+
+* `{controller=Home}` defines `Home` as the default `controller`
+
+* `{action=Index}` defines `Index` as the default `action`
+
+* `{id?}` defines `id` as optional
+
+Default and optional route parameters don't need to be present in the URL path for a match. See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
+
+`"{controller=Home}/{action=Index}/{id?}"` can match the URL path `/` and will produce the route values `{ controller = Home, action = Index }`. The values for `controller` and `action` make use of the default values, `id` doesn't produce a value since there's no corresponding segment in the URL path. This will only match if there exists a `HomeController` and `Index` action:
+
+```csharp
+public class HomeController : Controller
+{
+  public IActionResult Index() { ... }
+}
+```
+
+Using this controller definition and route template, the `HomeController.Index` action would be executed for any of the following URL paths:
+
+* `/Home/Index/17`
+
+* `/Home/Index`
+
+* `/Home`
+
+* `/`
+
+The convenience method `UseMvcWithDefaultRoute`:
+
+```csharp
+endpoints.MapDefaultControllerRoute();
+```
+
+Can be used to replace:
+
+```csharp
+endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+```
+
+Routing is configured using the `UseRouting()` and `UseEndpoints()` middleware. To use controllers:
+* Call `MapControllers()` inside `UseEndpoints()` to map attribute-routed controllers.
+* Call `MapControllerRoute()` (or similar) to map conventionally-routed controllers.
+
+Using `MapControllerRoute()` (or similar) will also map attribute-routed controllers.
+
+<a name="routing-conventional-ref-label"></a>
+
+## Conventional routing
+
+The `default` route:
+
+```csharp
+endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+```
+
+is an example of a *conventional routing*. We call this style *conventional routing* because it establishes a *convention* for URL paths:
+
+* the first path segment maps to the controller name
+
+* the second maps to the action name.
+
+* the third segment is used for an optional `id` used to map to a model entity
+
+Using this `default` route, the URL path `/Products/List` maps to the `ProductsController.List` action, and `/Blog/Article/17` maps to `BlogController.Article`. This mapping is based on the controller and action names **only** and isn't based on namespaces, source file locations, or method parameters.
+
+> [!TIP]
+> Using conventional routing with the default route allows you to build the application quickly without having to come up with a new URL pattern for each action you define. For an application with CRUD style actions, having consistency for the URLs across your controllers can help simplify your code and make your UI more predictable.
+
+Most apps should choose a basic and descriptive routing scheme so that URLs are readable and meaningful. The default conventional route `{controller=Home}/{action=Index}/{id?}`:
+* Supports a basic and descriptive routing scheme.
+* Is a useful starting point for UI-based apps.
+
+> [!WARNING]
+> The `id` is defined as optional by the route template, meaning that your actions can execute without the ID provided as part of the URL. Usually what will happen if `id` is omitted from the URL is that it will be set to `0` by model binding, and as a result no entity will be found in the database matching `id == 0`. Attribute routing can give you fine-grained control to make the ID required for some actions and not for others. By convention the documentation will include optional parameters like `id` when they're likely to appear in correct usage.
+
+Routing will only match a combination of action and controller that are defined by the app. This is intended to simplify cases where conventional routes overlap.
+
+## Multiple routes
+
+You can add multiple routes inside `UseEndpoints` by adding more calls to `MapControlleRoute`. Doing so allows you to define multiple conventions, or to add conventional routes that are dedicated to a specific action, such as:
+
+```csharp
+app.UseEndpoints(endpoints =>
+{
+   endpoints.MapControllerRoute("blog", "blog/{*article}",
+            defaults: new { controller = "Blog", action = "Article" });
+   endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+});
+```
+
+The `blog` route here is a *dedicated conventional route*, meaning that it uses the conventional routing system, but is dedicated to a specific action. Since `controller` and `action` don't appear in the route template as parameters, they can only have the default values, and thus this route will always map to the action `BlogController.Article`.
+
+Adding routes using `MapControllerRoute` defines a priority order for the routing system to respect. Matches from a route that appears earlier will have a higher priority. So in this example, the `blog` route will have a higher priority for matches than the `default` route.
+
+> [!NOTE]
+> *Dedicated conventional routes* often use catch-all route parameters like `{*article}` to capture the remaining portion of the URL path. This can make a route 'too greedy' meaning that it matches URLs that you intended to be matched by other routes. Put the 'greedy' routes later in the route table to solve this.
+
+> [!WARNING]
+> As of ASP.NET Core 3.0 the routing system does not define a concept called a *route*, nor does it provide guarantees about the execution order of extensbility like `IRouteContraint` or `IActionConstraint`. See the [routing](xref:fundamentals/routing) for reference material on routing.
+
+### Disambiguating actions
+
+When two endpoints match through routing, routing must disambiguate to choose the 'best' candidate or else throw an exception. For example:
+
+```csharp
+public class ProductsController : Controller
+{
+   public IActionResult Edit(int id) { ... }
+
+   [HttpPost]
+   public IActionResult Edit(int id, Product product) { ... }
+}
+```
+
+This controller defines two actions that would match the URL path `/Products/Edit/17` and route data `{ controller = Products, action = Edit, id = 17 }`. This is a typical pattern for MVC controllers where `Edit(int)` shows a form to edit a product, and `Edit(int, Product)` processes  the posted form. To make this possible MVC would need to choose `Edit(int, Product)` when the request is an HTTP `POST` and `Edit(int)` when the HTTP verb is anything else.
+
+The `HttpPostAttribute` ( `[HttpPost]` ) is provided to the routing system so that it can choose based on the HTTP method of the request. The presence of an `HttpPostAttribute` makes the `Edit(int, Product)` a 'better' match than `Edit(int)`, so `Edit(int, Product)` will be prioritized.
+
+It's important to understand the role of attributes like `HttpPostAttribute` - similar attributes are defined for other HTTP verbs. In conventional routing it's common for actions to use the same action name when they're part of a `show form -> submit form` workflow.
+
+<a name="routing-route-name-ref-label"></a>
+
+### Route names
+
+The strings  `"blog"` and `"default"` in the following examples are route names:
+
+```csharp
+app.UseEndpoints(endpoints =>
+{
+   endpoints.MapControllerRoute("blog", "blog/{*article}",
+               defaults: new { controller = "Blog", action = "Article" });
+   endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+});
+```
+
+The route names give the route a logical name so that the named route can be used for URL generation. This greatly simplifies URL creation when the ordering of routes could make URL generation complicated. Route names must be unique application-wide.
+
+Route names have no impact on URL matching or handling of requests; they're used only for URL generation.
+
+> [!NOTE]
+> The route name concept is represented in the routing system as [IEndpointNameMetadata](xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata). The terms `route name` and `endpoint name` are interchangable, which one will appear in documentation and code depends on the API being described.
+
+<a name="attribute-routing-ref-label"></a>
+
+## Attribute routing
+
+Attribute routing uses a set of attributes to map actions directly to route templates. In the following example, `app.UsedEndpoints();` is used in the `Configure` method and `MapControllers()` is called. The `HomeController` will match a set of URLs similar to what the default route `{controller=Home}/{action=Index}/{id?}` would match:
+
+```csharp
+public class HomeController : Controller
+{
+   [Route("")]
+   [Route("Home")]
+   [Route("Home/Index")]
+   public IActionResult Index()
+   {
+      return View();
+   }
+   [Route("Home/About")]
+   public IActionResult About()
+   {
+      return View();
+   }
+   [Route("Home/Contact")]
+   public IActionResult Contact()
+   {
+      return View();
+   }
+}
+```
+
+The `HomeController.Index()` action will be executed for any of the URL paths `/`, `/Home`, or `/Home/Index`.
+
+> [!NOTE]
+> This example highlights a key programming difference between attribute routing and conventional routing. Attribute routing requires more input to specify a route; the conventional default route handles routes more succinctly. However, attribute routing allows (and requires) precise control of which route templates apply to each action.
+
+With attribute routing the controller name and action names play **no** role in which action is matched. This example will match the same URLs as the previous example.
+
+```csharp
+public class MyDemoController : Controller
+{
+   [Route("")]
+   [Route("Home")]
+   [Route("Home/Index")]
+   public IActionResult MyIndex()
+   {
+      return View("Index");
+   }
+   [Route("Home/About")]
+   public IActionResult MyAbout()
+   {
+      return View("About");
+   }
+   [Route("Home/Contact")]
+   public IActionResult MyContact()
+   {
+      return View("Contact");
+   }
+}
+```
+
+> [!NOTE]
+> The route templates above don't define route parameters for `action`, `area`, and `controller`. If these route parameters are used in the route template, the value associated with where the attribute is applied will be substituted.
+
+## Reserved routing names
+
+The following keywords are reserved route parameter names when using Controllers or Razor Pages in the application.
+
+* `action`
+* `area`
+* `controller`
+* `handler`
+* `page`
+
+
+It's a common mistake to use `page` as a route parameter with attribute routing. This will result in inconsistent and confusing behavior with URL generation.
+
+```csharp
+public class MyDemoController : Controller
+{
+    [Route("/articles/{page})]
+    public IActionResult ListArticles(int page)
+    {
+        return View("Index");
+    }
+}
+```
+
+These special parameter names are used by the URL generation system to determine if a URL generation operation refers to a Razor Page or to a Controller.
+
+## Attribute routing with Http[Verb] attributes
+
+Attribute routing can also make use of the `Http[Verb]` attributes such as `HttpPostAttribute`. All of these attributes can accept a route template. This example shows two actions that match the same route template:
+
+```csharp
+[HttpGet("/products")]
+public IActionResult ListProducts()
+{
+   // ...
+}
+
+[HttpPost("/products")]
+public IActionResult CreateProduct(...)
+{
+   // ...
+}
+```
+
+For a URL path like `/products` the `ProductsApi.ListProducts` action will be executed when the HTTP verb is `GET` and `ProductsApi.CreateProduct` will be executed when the HTTP verb is `POST`. 
+
+> [!TIP]
+> When building a REST API, it's rare that you will want to use `[Route(...)]` on an action method as the action will accept all HTTP methods. It's better to use the more specific `Http*Verb*Attributes` to be precise about what your API supports. Clients of REST APIs are expected to know what paths and HTTP verbs map to specific logical operations.
+> REST APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations (for example, GET, POST) on the same logical resource will use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
+
+Since an attribute route applies to a specific action, it's easy to make parameters required as part of the route template definition. In this example, `id` is required as part of the URL path.
+
+```csharp
+public class ProductsApiController : Controller
+{
+   [HttpGet("/products/{id}", Name = "Products_List")]
+   public IActionResult GetProduct(int id) { ... }
+}
+```
+
+The `ProductsApi.GetProduct(int)` action will be executed for a URL path like `/products/3` but not for a URL path like `/products`. See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
+
+## Route Name
+
+The following code  defines a *route name* of `Products_List`:
+
+```csharp
+public class ProductsApiController : Controller
+{
+   [HttpGet("/products/{id}", Name = "Products_List")]
+   public IActionResult GetProduct(int id) { ... }
+}
+```
+
+Route names can be used to generate a URL based on a specific route. Route names have no impact on the URL matching behavior of routing and are only used for URL generation. Route names must be unique application-wide.
+
+> [!NOTE]
+> Contrast this with the conventional *default route*, which defines the `id` parameter as optional (`{id?}`). This ability to precisely specify APIs has advantages, such as  allowing `/products` and `/products/5` to be dispatched to different actions.
+
+<a name="routing-combining-ref-label"></a>
+
+### Combining routes
+
+To make attribute routing less repetitive, route attributes on the controller are combined with route attributes on the individual actions. Any route templates defined on the controller are prepended to route templates on the actions. Placing a route attribute on the controller makes **all** actions in the controller use attribute routing.
+
+```csharp
+[Route("products")]
+public class ProductsApiController : Controller
+{
+   [HttpGet]
+   public IActionResult ListProducts() { ... }
+
+   [HttpGet("{id}")]
+   public ActionResult GetProduct(int id) { ... }
+}
+```
+
+In this example the URL path `/products` can match `ProductsApi.ListProducts`, and the URL path `/products/5` can match `ProductsApi.GetProduct(int)`. Both of these actions only match HTTP `GET` because they're marked with the `HttpGetAttribute`.
+
+Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller. This example matches a set of URL paths similar to the *default route*.
+
+```csharp
+[Route("Home")]
+public class HomeController : Controller
+{
+    [Route("")]      // Combines to define the route template "Home"
+    [Route("Index")] // Combines to define the route template "Home/Index"
+    [Route("/")]     // Doesn't combine, defines the route template ""
+    public IActionResult Index()
+    {
+        ViewData["Message"] = "Home index";
+        var url = Url.Action("Index", "Home");
+        ViewData["Message"] = "Home index" + "var url = Url.Action; =  " + url;
+        return View();
+    }
+
+    [Route("About")] // Combines to define the route template "Home/About"
+    public IActionResult About()
+    {
+        return View();
+    }   
+}
+```
+
+<a name="routing-ordering-ref-label"></a>
+
+### Ordering attribute routes
+
+Routing builds a tree and matches all routes simultaneously. This behaves as-if the route entries were placed in an ideal ordering; the most specific routes have a chance to execute before the more general routes.
+
+For example, a route like `blog/search/{topic}` is more specific than a route like `blog/{*article}`. The `blog/search/{topic}` route has higher priority, by default, because that's the only sensible ordering. Using conventional routing, the developer is responsible for placing routes in the desired order.
+
+Attribute routes can configure an order, using the `Order` property of all of the framework provided route attributes. Routes are processed according to an ascending sort of the `Order` property. The default order is `0`. Setting a route using `Order = -1` will run before routes that don't set an order. Setting a route using `Order = 1` will run after default route ordering.
+
+> [!TIP]
+> Avoid depending on `Order`. If your URL-space requires explicit order values to route correctly, then it's likely confusing to clients as well. In general attribute routing will select the correct route with URL matching. If the default order used for URL generation isn't working, using route name as an override is usually simpler than applying the `Order` property.
+
+Information on route order in the Razor Pages topics is available at [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order).
+
+<a name="routing-token-replacement-templates-ref-label"></a>
+
+## Token replacement in route templates ([controller], [action], [area])
+
+For convenience, attribute routes support *token replacement* for reserved route parameters by enclosing a token in square-braces (`[`, `]`) or curly-braces (`{`, `}`). The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined. In the following example, the actions match URL paths as described in the comments:
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?range=7-11,13-17,20-22)]
+
+Token replacement occurs as the last step of building the attribute routes. The above example will behave the same as the following code:
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController2.cs?range=7-11,13-17,20-22)]
+
+Attribute routes can also be combined with inheritance. This is particularly powerful combined with token replacement.
+
+```csharp
+[Route("api/[controller]")]
+public abstract class MyBaseController : Controller { ... }
+
+public class ProductsController : MyBaseController
+{
+   [HttpGet] // Matches '/api/Products'
+   public IActionResult List() { ... }
+
+   [HttpPut("{id}")] // Matches '/api/Products/{id}'
+   public IActionResult Edit(int id) { ... }
+}
+```
+
+Token replacement also applies to route names defined by attribute routes. `[Route("[controller]/[action]", Name="[controller]_[action]")]` generates a unique route name for each action.
+
+To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
+
+<a name="routing-token-replacement-transformers-ref-label"></a>
+
+### Use a parameter transformer to customize token replacement
+
+Token replacement can be customized using a parameter transformer. A parameter transformer implements `IOutboundParameterTransformer` and transforms the value of parameters. For example, a custom `SlugifyParameterTransformer` parameter transformer changes the `SubscriptionManagement` route value to `subscription-management`.
+
+The `RouteTokenTransformerConvention` is an application model convention that:
+
+* Applies a parameter transformer to all attribute routes in an application.
+* Customizes the attribute route token values as they are replaced.
+
+```csharp
+public class SubscriptionManagementController : Controller
+{
+    [HttpGet("[controller]/[action]")] // Matches '/subscription-management/list-all'
+    public IActionResult ListAll() { ... }
+}
+```
+
+The `RouteTokenTransformerConvention` is registered as an option in `ConfigureServices`.
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllers(options =>
+    {
+        options.Conventions.Add(new RouteTokenTransformerConvention(
+                                     new SlugifyParameterTransformer()));
+    });
+}
+
+public class SlugifyParameterTransformer : IOutboundParameterTransformer
+{
+    public string TransformOutbound(object value)
+    {
+        if (value == null) { return null; }
+
+        // Slugify value
+        return Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1-$2").ToLower();
+    }
+}
+```
+
+<a name="routing-multiple-routes-ref-label"></a>
+
+### Multiple Routes
+
+Attribute routing supports defining multiple routes that reach the same action. The most common usage of this is to mimic the behavior of the *default conventional route* as shown in the following example:
+
+```csharp
+[Route("[controller]")]
+public class ProductsController : Controller
+{
+   [Route("")]     // Matches 'Products'
+   [Route("Index")] // Matches 'Products/Index'
+   public IActionResult Index()
+}
+```
+
+Putting multiple route attributes on the controller means that each one will combine with each of the route attributes on the action methods.
+
+```csharp
+[Route("Store")]
+[Route("[controller]")]
+public class ProductsController : Controller
+{
+   [HttpPost("Buy")]     // Matches 'Products/Buy' and 'Store/Buy'
+   [HttpPost("Checkout")] // Matches 'Products/Checkout' and 'Store/Checkout'
+   public IActionResult Buy()
+}
+```
+
+When multiple route attributes (that implement `IActionConstraint`) are placed on an action, then each action constraint combines with the route template from the attribute that defined it.
+
+```csharp
+[Route("api/[controller]")]
+public class ProductsController : Controller
+{
+   [HttpPut("Buy")]      // Matches PUT 'api/Products/Buy'
+   [HttpPost("Checkout")] // Matches POST 'api/Products/Checkout'
+   public IActionResult Buy()
+}
+```
+
+> [!TIP]
+> While using multiple routes on actions can seem powerful, it's better to keep your application's URL space simple and well-defined. Use multiple routes on actions only where needed, for example to support existing clients.
+
+<a name="routing-attr-options"></a>
+
+### Specifying attribute route optional parameters, default values, and constraints
+
+Attribute routes support the same inline syntax as conventional routes to specify optional parameters, default values, and constraints.
+
+```csharp
+[HttpPost("product/{id:int}")]
+public IActionResult ShowProduct(int id)
+{
+   // ...
+}
+```
+
+See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
+
+<a name="routing-cust-rt-attr-irt-ref-label"></a>
+
+### Custom route attributes using `IRouteTemplateProvider`
+
+All of the route attributes provided in the framework ( `[Route(...)]`, `[HttpGet(...)]` , etc.) implement the `IRouteTemplateProvider` interface. MVC looks for attributes on controller classes and action methods when the app starts and uses the ones that implement `IRouteTemplateProvider` to build the initial set of routes.
+
+You can implement `IRouteTemplateProvider` to define your own route attributes. Each `IRouteTemplateProvider` allows you to define a single route with a custom route template, order, and name:
+
+```csharp
+public class MyApiControllerAttribute : Attribute, IRouteTemplateProvider
+{
+   public string Template => "api/[controller]";
+
+   public int? Order { get; set; }
+
+   public string Name { get; set; }
+}
+```
+
+The attribute from the above example automatically sets the `Template` to `"api/[controller]"` when `[MyApiController]` is applied.
+
+<a name="routing-app-model-ref-label"></a>
+
+### Using Application Model to customize attribute routes
+
+The *application model* is an object model created at startup with all of the metadata used by MVC to route and execute your actions. The *application model* includes all of the data gathered from route attributes (through `IRouteTemplateProvider`). You can write *conventions* to modify the application model at startup time to customize how routing behaves. This section shows a simple example of customizing routing using application model.
+
+[!code-csharp[](routing/samples/3.x/main/NamespaceRoutingConvention.cs)]
+
+<a name="routing-mixed-ref-label"></a>
+
+## Mixed routing: Attribute routing vs conventional routing
+
+MVC applications can mix the use of conventional routing and attribute routing. It's typical to use conventional routes for controllers serving HTML pages for browsers, and attribute routing for controllers serving REST APIs.
+
+Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. Actions that define attribute routes cannot be reached through the conventional routes and vice-versa. **Any** route attribute on the controller makes all actions in the controller attribute routed.
+
+> [!NOTE]
+> Attribute routing and conventional routing actually use the same routing engine. They differ in details of how URL generation works based on the historical use cases for each system. This different is expressed by how MVC interfaces with and provides data to the routing system.
+
+<a name="routing-url-gen-ref-label"></a>
+
+## URL Generation
+
+Applications can use routing's URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making your code more robust and maintainable. This section focuses on the URL generation features provided by MVC and will only cover basics of how URL generation works. See [Routing](xref:fundamentals/routing) for a detailed description of URL generation.
+
+The `IUrlHelper` interface is the underlying piece of infrastructure between MVC and routing for URL generation. You'll find an instance of `IUrlHelper` available through the `Url` property in controllers, views, and view components.
+
+In this example, the `IUrlHelper` interface is used through the `Controller.Url` property to generate a URL to another action.
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/UrlGenerationController.cs?name=snippet_1)]
+
+If the application is using the default conventional route, the value of the `url` variable will be the URL path string `/UrlGeneration/Destination`. This URL path is created by routing by combining the route values from the current request (ambient values), with the values passed to `Url.Action` and substituting those values into the route template:
+
+```
+ambient values: { controller = "UrlGeneration", action = "Source" }
+values passed to Url.Action: { controller = "UrlGeneration", action = "Destination" }
+route template: {controller}/{action}/{id?}
+
+result: /UrlGeneration/Destination
+```
+
+Each route parameter in the route template has its value substituted by matching names with the values and ambient values. A route parameter that doesn't have a value can use a default value if it has one, or be skipped if it's optional (as in the case of `id` in this example). URL generation will fail if any required route parameter doesn't have a corresponding value. If URL generation fails for a route, the next route is tried until all routes have been tried or a match is found.
+
+The example of `Url.Action` above assumes conventional routing, but URL generation works similarly with attribute routing, though the concepts are different. With conventional routing, the route values are used to expand a template, and the route values for `controller` and `action` usually appear in that template - this works because the URLs matched by routing adhere to a *convention*.
+
+This example uses attribute routing:
+<!-- review required -->
+[!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/UrlGenerationControllerAttr.cs?name=snippet_1)]
+
+In the sample above, `custom/url/to/destination` is generated.
+
+The `LinkGenerator` API was added in ASP.NET Core 3.0 as an alternative to `IUrlHelper`. `LinkGenerator` offers similar but more flexible functionality. Each other the methods on `IUrlHelper` has a corresponding family of methods on `LinkGenerator` as well.
+
+### Generating URLs by action name
+
+`Url.Action` (`IUrlHelper` . `Action` or `LinkGenerator` . `GetPathByAction`) and all related overloads all are based on that idea that you want to specify what you're linking to by specifying a controller name and action name.
+
+> [!NOTE]
+> When using `Url.Action`, the current route values for `controller` and `action` are specified for you - the value of `controller` and `action` are part of both *ambient values* **and** *values*. The method `Url.Action`, always uses the current values of `action` and `controller` and will generate a URL path that routes to the current action.
+
+Routing attempts to use the values in ambient values to fill in information that you didn't provide when generating a URL. Using a route like `{a}/{b}/{c}/{d}` and ambient values `{ a = Alice, b = Bob, c = Carol, d = David }`, routing has enough information to generate a URL without any additional values - since all route parameters have a value. If you added the value `{ d = Donovan }`, the value `{ d = David }` would be ignored, and the generated URL path would be `Alice/Bob/Carol/Donovan`.
+
+> [!WARNING]
+> URL paths are hierarchical. In the example above, if you added the value `{ c = Cheryl }`, both of the values `{ c = Carol, d = David }` would be ignored. In this case we no longer have a value for `d` and URL generation will fail. You would need to specify the desired value of `c` and `d`.  You might expect to hit this problem with the default route (`{controller}/{action}/{id?}`) - but you will rarely encounter this behavior in practice as `Url.Action` will always explicitly specify a `controller` and `action` value.
+
+Longer overloads of `Url.Action` also take an additional *route values* object to provide values for route parameters other than `controller` and `action`. You will most commonly see this used with `id` like `Url.Action("Buy", "Products", new { id = 17 })`. By convention the *route values* object is usually an object of anonymous type, but it can also be an `IDictionary<>` or a *plain old .NET object*. Any additional route values that don't match route parameters are put in the query string.
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/TestController.cs)]
+
+> [!TIP]
+> To create an absolute URL, use an overload that accepts a `protocol`: `Url.Action("Buy", "Products", new { id = 17 }, protocol: Request.Scheme)`
+>
+> Alternatively use `LinkGenerator.GetUriByAction(...)`, which generates absolute URIs by default.
+
+<a name="routing-gen-urls-route-ref-label"></a>
+
+### Generating URLs by route
+
+The code above demonstrated generating a URL by passing in the controller and action name. `IUrlHelper` also provides the `Url.RouteUrl` family of methods. These methods are similar to `Url.Action`, but they don't copy the current values of `action` and `controller` to the route values. The most common usage is to specify a route name to use a specific route to generate the URL, generally *without* specifying a controller or action name.
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/UrlGenerationControllerRouting.cs?name=snippet_1)]
+
+<a name="routing-gen-urls-html-ref-label"></a>
+
+### Generating URLs in HTML
+
+`IHtmlHelper` provides the `HtmlHelper` methods `Html.BeginForm` and `Html.ActionLink` to generate `<form>` and `<a>` elements respectively. These methods use the `Url.Action` method to generate a URL and they accept similar arguments. The `Url.RouteUrl` companions for `HtmlHelper` are `Html.BeginRouteForm` and `Html.RouteLink` which have similar functionality.
+
+TagHelpers generate URLs through the `form` TagHelper and the `<a>` TagHelper. Both of these use `IUrlHelper` for their implementation. See [Working with Forms](../views/working-with-forms.md) for more information.
+
+Inside views, the `IUrlHelper` is available through the `Url` property for any ad-hoc URL generation not covered by the above.
+
+<a name="routing-gen-urls-action-ref-label"></a>
+
+### Generating URLS in Action Results
+
+The examples above have shown using `IUrlHelper` in a controller, while the most common usage in a controller is to generate a URL as part of an action result.
+
+The `ControllerBase` and `Controller` base classes provide convenience methods for action results that reference another action. One typical usage is to redirect after accepting user input.
+
+```csharp
+public IActionResult Edit(int id, Customer customer)
+{
+    if (ModelState.IsValid)
+    {
+        // Update DB with new details.
+        return RedirectToAction("Index");
+    }
+    return View(customer);
+}
+```
+
+The action results factory methods follow a similar pattern to the methods on `IUrlHelper`.
+
+<a name="routing-dedicated-ref-label"></a>
+
+### Special case for dedicated conventional routes
+
+Conventional routing can use a special kind of route definition called a *dedicated conventional route*. In the example below, the route named `blog` is a dedicated conventional route.
+
+```csharp
+app.Endpoints(endpoints =>
+{
+    endpoints.MapControllerRoute("blog", "blog/{*article}",
+        defaults: new { controller = "Blog", action = "Article" });
+    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+});
+```
+
+Using these route definitions, `Url.Action("Index", "Home")` will generate the URL path `/` with the `default` route, but why? You might guess the route values `{ controller = Home, action = Index }` would be enough to generate a URL using `blog`, and the result would be `/blog?action=Index&controller=Home`.
+
+Dedicated conventional routes rely on a special behavior of default values that don't have a corresponding route parameter that prevents the route from being "too greedy" with URL generation. In this case the default values are `{ controller = Blog, action = Article }`, and neither `controller` nor `action` appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using `blog` will fail because the values `{ controller = Home, action = Index }` don't match `{ controller = Blog, action = Article }`. Routing then falls back to try `default`, which succeeds.
+
+<a name="routing-areas-ref-label"></a>
+
+## Areas
+
+[Areas](areas.md) are an MVC feature used to organize related functionality into a group as a separate routing-namespace (for controller actions) and folder structure (for views). Using areas allows an application to have multiple controllers with the same name - as long as they have different *areas*. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area` to `controller` and `action`. This section will discuss how routing interacts with areas - see [Areas](areas.md) for details about how areas are used with views.
+
+The following example configures MVC to use the default conventional route and an *area route* for an area named `Blog`:
+
+[!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet1)]
+When matching a URL path like `/Manage/Users/AddUser`, the first route will produce the route values `{ area = Blog, controller = Users, action = AddUser }`. The `area` route value is produced by a default value for `area`, in fact the route created by `MapAreaControllerRoute` is equivalent to the following:
+
+[!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet2)]
+
+`MapAreaControllerRoute` creates a route using both a default value and constraint for `area` using the provided area name, in this case `Blog`. The default value ensures that the route always produces `{ area = Blog, ... }`, the constraint requires the value `{ area = Blog, ... }` for URL generation.
+
+> [!TIP]
+> Conventional routing is order-dependent. In general, routes with areas should be placed earlieras they're more specific than routes without an area.
+
+Using the above example, the route values would match the following action:
+
+[!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Blog/Controllers/UsersController.cs)]
+
+The `AreaAttribute` is what denotes a controller as part of an area, we say that this controller is in the `Blog` area. Controllers without an `[Area]` attribute are not members of any area, and will **not** match when the `area` route value is provided by routing. In the following example, only the first controller listed can match the route values `{ area = Blog, controller = Users, action = AddUser }`.
+
+[!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Blog/Controllers/UsersController.cs)]
+
+[!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Zebra/Controllers/UsersController.cs)]
+
+[!code-csharp[](routing/samples/3.x/AreasRouting/Controllers/UsersController.cs)]
+
+> [!NOTE]
+> The namespace of each controller is shown here for completeness - otherwise the controllers would have a naming conflict and generate a compiler error. Class namespaces have no effect on MVC's routing.
+
+The first two controllers are members of areas, and only match when their respective area name is provided by the `area` route value. The third controller isn't a member of any area, and can only match when no value for `area` is provided by routing.
+
+> [!NOTE]
+> In terms of matching *no value*, the absence of the `area` value is the same as if the value for `area` were null or the empty string.
+
+When executing an action inside an area, the route value for `area` will be available as an *ambient value* for routing to use for URL generation. This means that by default areas act *sticky* for URL generation as demonstrated by the following sample.
+
+[!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet3)]
+
+[!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Duck/Controllers/UsersController.cs)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 ASP.NET Core MVC uses the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to actions. Routes are defined in startup code or attributes. Routes describe how URL paths should be matched to actions. Routes are also used to generate URLs (for links) sent out in responses.
 
 Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. See [Mixed routing](#routing-mixed-ref-label) for more information.
@@ -54,7 +779,7 @@ The route template:
 
 * `{id?}` defines `id` as optional
 
-Default and optional route parameters don't need to be present in the URL path for a match. See [Route Template Reference](../../fundamentals/routing.md#route-template-reference) for a detailed description of route template syntax.
+Default and optional route parameters don't need to be present in the URL path for a match. See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 
 `"{controller=Home}/{action=Index}/{id?}"` can match the URL path `/` and will produce the route values `{ controller = Home, action = Index }`. The values for `controller` and `action` make use of the default values, `id` doesn't produce a value since there's no corresponding segment in the URL path. MVC would use these route values to select the `HomeController` and `Index` action:
 
@@ -293,7 +1018,7 @@ public class ProductsApiController : Controller
 }
 ```
 
-The `ProductsApi.GetProduct(int)` action will be executed for a URL path like `/products/3` but not for a URL path like `/products`. See [Routing](../../fundamentals/routing.md) for a full description of route templates and related options.
+The `ProductsApi.GetProduct(int)` action will be executed for a URL path like `/products/3` but not for a URL path like `/products`. See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
 
 ## Route Name
 
@@ -378,11 +1103,11 @@ Razor Pages routing and MVC controller routing share an implementation. Informat
 
 For convenience, attribute routes support *token replacement* by enclosing a token in square-braces (`[`, `]`). The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined. In the following example, the actions match URL paths as described in the comments:
 
-[!code-csharp[](routing/sample/main/Controllers/ProductsController.cs?range=7-11,13-17,20-22)]
+[!code-csharp[](routing/samples/2.x/main/Controllers/ProductsController.cs?range=7-11,13-17,20-22)]
 
 Token replacement occurs as the last step of building the attribute routes. The above example will behave the same as the following code:
 
-[!code-csharp[](routing/sample/main/Controllers/ProductsController2.cs?range=7-11,13-17,20-22)]
+[!code-csharp[](routing/samples/2.x/main/Controllers/ProductsController2.cs?range=7-11,13-17,20-22)]
 
 Attribute routes can also be combined with inheritance. This is particularly powerful combined with token replacement.
 
@@ -403,6 +1128,8 @@ public class ProductsController : MyBaseController
 Token replacement also applies to route names defined by attribute routes. `[Route("[controller]/[action]", Name="[controller]_[action]")]` generates a unique route name for each action.
 
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
+
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.2"
 
@@ -509,7 +1236,7 @@ public IActionResult ShowProduct(int id)
 }
 ```
 
-See [Route Template Reference](../../fundamentals/routing.md#route-template-reference) for a detailed description of route template syntax.
+See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 
 <a name="routing-cust-rt-attr-irt-ref-label"></a>
 
@@ -538,7 +1265,7 @@ The attribute from the above example automatically sets the `Template` to `"api/
 
 The *application model* is an object model created at startup with all of the metadata used by MVC to route and execute your actions. The *application model* includes all of the data gathered from route attributes (through `IRouteTemplateProvider`). You can write *conventions* to modify the application model at startup time to customize how routing behaves. This section shows a simple example of customizing routing using application model.
 
-[!code-csharp[](routing/sample/main/NamespaceRoutingConvention.cs)]
+[!code-csharp[](routing/samples/2.x/main/NamespaceRoutingConvention.cs)]
 
 <a name="routing-mixed-ref-label"></a>
 
@@ -559,13 +1286,13 @@ Complex segments (for example, `[Route("/dog{token}cat")]`), are processed by ma
 
 ## URL Generation
 
-MVC applications can use routing's URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making your code more robust and maintainable. This section focuses on the URL generation features provided by MVC and will only cover basics of how URL generation works. See [Routing](../../fundamentals/routing.md) for a detailed description of URL generation.
+MVC applications can use routing's URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making your code more robust and maintainable. This section focuses on the URL generation features provided by MVC and will only cover basics of how URL generation works. See [Routing](xref:fundamentals/routing) for a detailed description of URL generation.
 
 The `IUrlHelper` interface is the underlying piece of infrastructure between MVC and routing for URL generation. You'll find an instance of `IUrlHelper` available through the `Url` property in controllers, views, and view components.
 
 In this example, the `IUrlHelper` interface is used through the `Controller.Url` property to generate a URL to another action.
 
-[!code-csharp[](routing/sample/main/Controllers/UrlGenerationController.cs?name=snippet_1)]
+[!code-csharp[](routing/samples/2.x/main/Controllers/UrlGenerationController.cs?name=snippet_1)]
 
 If the application is using the default conventional route, the value of the `url` variable will be the URL path string `/UrlGeneration/Destination`. This URL path is created by routing by combining the route values from the current request (ambient values), with the values passed to `Url.Action` and substituting those values into the route template:
 
@@ -583,9 +1310,9 @@ The example of `Url.Action` above assumes conventional routing, but URL generati
 
 This example uses attribute routing:
 
-[!code-csharp[](routing/sample/main/StartupUseMvc.cs?name=snippet_1)]
+[!code-csharp[](routing/samples/2.x/main/StartupUseMvc.cs?name=snippet_1)]
 
-[!code-csharp[](routing/sample/main/Controllers/UrlGenerationControllerAttr.cs?name=snippet_1)]
+[!code-csharp[](routing/samples/2.x/main/Controllers/UrlGenerationControllerAttr.cs?name=snippet_1)]
 
 MVC builds a lookup table of all attribute routed actions and will match the `controller` and `action` values to select the route template to use for URL generation. In the sample above,   `custom/url/to/destination` is generated.
 
@@ -603,7 +1330,7 @@ Routing attempts to use the values in ambient values to fill in information that
 
 Longer overloads of `Url.Action` also take an additional *route values* object to provide values for route parameters other than `controller` and `action`. You will most commonly see this used with `id` like `Url.Action("Buy", "Products", new { id = 17 })`. By convention the *route values* object is usually an object of anonymous type, but it can also be an `IDictionary<>` or a *plain old .NET object*. Any additional route values that don't match route parameters are put in the query string.
 
-[!code-csharp[](routing/sample/main/Controllers/TestController.cs)]
+[!code-csharp[](routing/samples/2.x/main/Controllers/TestController.cs)]
 
 > [!TIP]
 > To create an absolute URL, use an overload that accepts a `protocol`: `Url.Action("Buy", "Products", new { id = 17 }, protocol: Request.Scheme)`
@@ -614,7 +1341,7 @@ Longer overloads of `Url.Action` also take an additional *route values* object t
 
 The code above demonstrated generating a URL by passing in the controller and action name. `IUrlHelper` also provides the `Url.RouteUrl` family of methods. These methods are similar to `Url.Action`, but they don't copy the current values of `action` and `controller` to the route values. The most common usage is to specify a route name to use a specific route to generate the URL, generally *without* specifying a controller or action name.
 
-[!code-csharp[](routing/sample/main/Controllers/UrlGenerationControllerRouting.cs?name=snippet_1)]
+[!code-csharp[](routing/samples/2.x/main/Controllers/UrlGenerationControllerRouting.cs?name=snippet_1)]
 
 <a name="routing-gen-urls-html-ref-label"></a>
 
@@ -675,11 +1402,11 @@ Dedicated conventional routes rely on a special behavior of default values that 
 
 The following example configures MVC to use the default conventional route and an *area route* for an area named `Blog`:
 
-[!code-csharp[](routing/sample/AreasRouting/Startup.cs?name=snippet1)]
+[!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet1)]
 
 When matching a URL path like `/Manage/Users/AddUser`, the first route will produce the route values `{ area = Blog, controller = Users, action = AddUser }`. The `area` route value is produced by a default value for `area`, in fact the route created by `MapAreaRoute` is equivalent to the following:
 
-[!code-csharp[](routing/sample/AreasRouting/Startup.cs?name=snippet2)]
+[!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet2)]
 
 `MapAreaRoute` creates a route using both a default value and constraint for `area` using the provided area name, in this case `Blog`. The default value ensures that the route always produces `{ area = Blog, ... }`, the constraint requires the value `{ area = Blog, ... }` for URL generation.
 
@@ -688,15 +1415,15 @@ When matching a URL path like `/Manage/Users/AddUser`, the first route will prod
 
 Using the above example, the route values would match the following action:
 
-[!code-csharp[](routing/sample/AreasRouting/Areas/Blog/Controllers/UsersController.cs)]
+[!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Blog/Controllers/UsersController.cs)]
 
 The `AreaAttribute` is what denotes a controller as part of an area, we say that this controller is in the `Blog` area. Controllers without an `[Area]` attribute are not members of any area, and will **not** match when the `area` route value is provided by routing. In the following example, only the first controller listed can match the route values `{ area = Blog, controller = Users, action = AddUser }`.
 
-[!code-csharp[](routing/sample/AreasRouting/Areas/Blog/Controllers/UsersController.cs)]
+[!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Blog/Controllers/UsersController.cs)]
 
-[!code-csharp[](routing/sample/AreasRouting/Areas/Zebra/Controllers/UsersController.cs)]
+[!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Zebra/Controllers/UsersController.cs)]
 
-[!code-csharp[](routing/sample/AreasRouting/Controllers/UsersController.cs)]
+[!code-csharp[](routing/samples/3.x/AreasRouting/Controllers/UsersController.cs)]
 
 > [!NOTE]
 > The namespace of each controller is shown here for completeness - otherwise the controllers would have a naming conflict and generate a compiler error. Class namespaces have no effect on MVC's routing.
@@ -708,9 +1435,9 @@ The first two controllers are members of areas, and only match when their respec
 
 When executing an action inside an area, the route value for `area` will be available as an *ambient value* for routing to use for URL generation. This means that by default areas act *sticky* for URL generation as demonstrated by the following sample.
 
-[!code-csharp[](routing/sample/AreasRouting/Startup.cs?name=snippet3)]
+[!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet3)]
 
-[!code-csharp[](routing/sample/AreasRouting/Areas/Duck/Controllers/UsersController.cs)]
+[!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Duck/Controllers/UsersController.cs)]
 
 <a name="iactionconstraint-ref-label"></a>
 

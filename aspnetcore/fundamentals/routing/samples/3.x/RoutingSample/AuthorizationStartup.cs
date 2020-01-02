@@ -10,8 +10,13 @@ using Microsoft.Extensions.Hosting;
 
 namespace RoutingSample
 {
-    public class Startup
+    public class AuthorizationStartup
     {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddAuthorization();
+        }
+
         #region snippet
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -20,10 +25,21 @@ namespace RoutingSample
                 app.UseDeveloperExceptionPage();
             }
 
+            // Matches request to an endpoint.
             app.UseRouting();
 
+            // Endpoint aware middleware. 
+            // Middleware can use metadata from the matched endpoint.
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            // Execute the matched endpoint.
             app.UseEndpoints(endpoints =>
             {
+                // Configure the Health Check endpoint, require an authorized user
+                endpoints.MapHealthChecks("/healthz").RequireAuthorization();
+
+                // Configure another endpoint, no authorization requirements
                 endpoints.MapGet("/", async context =>
                 {
                     await context.Response.WriteAsync("Hello World!");
