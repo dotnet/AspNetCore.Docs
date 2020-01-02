@@ -336,7 +336,6 @@ When using `TypeFilterAttribute`, setting [TypeFilterAttribute.IsReusable](xref:
 The following example shows how to pass arguments to a type using `TypeFilterAttribute`:
 
 [!code-csharp[](filters/3.1sample/FiltersSample/Controllers/HomeController.cs?name=snippet_TypeFilter&highlight=1,2)]
-[!code-csharp[](filters/3.1sample/FiltersSample/Filters/LogConstantFilter.cs?name=snippet_TypeFilter_Implementation&highlight=6)]
 
 <!-- 
 https://localhost:5001/home/hi?name=joe
