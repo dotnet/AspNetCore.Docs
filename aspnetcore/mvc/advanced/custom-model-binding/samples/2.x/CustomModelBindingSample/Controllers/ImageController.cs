@@ -1,28 +1,24 @@
 using System.IO;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
 namespace CustomModelBindingSample.Controllers
 {
 
-    [Produces("application/json")]
-    [Route("api/Image")]
-    public class ImageController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ImageController : ControllerBase
     {
-        private readonly IHostingEnvironment _env;
         private readonly string _targetFilePath;
 
-        public ImageController(IHostingEnvironment env, IConfiguration config)
+        public ImageController(IConfiguration config)
         {
-            _env = env;
-            _targetFilePath = config.GetValue<string>("StoredFilesPath");
+            _targetFilePath = config["StoredFilesPath"];
         }
 
         #region post1
-        // POST: api/image
         [HttpPost]
-        public void Post(byte[] file, string filename)
+        public void Post([FromForm] byte[] file, string filename)
         {
             // Don't trust the file name sent by the client. Use
             // Path.GetRandomFileName to generate a safe random
@@ -43,7 +39,7 @@ namespace CustomModelBindingSample.Controllers
 
         #region post2
         [HttpPost("Profile")]
-        public void SaveProfile(ProfileViewModel model)
+        public void SaveProfile([FromForm] ProfileViewModel model)
         {
             // Don't trust the file name sent by the client. Use
             // Path.GetRandomFileName to generate a safe random
@@ -52,7 +48,7 @@ namespace CustomModelBindingSample.Controllers
             // the sample app).
             var trustedFileName = Path.GetRandomFileName();
             var filePath = Path.Combine(_targetFilePath, trustedFileName);
-            
+
             if (System.IO.File.Exists(filePath))
             {
                 return;

@@ -1,35 +1,34 @@
 using Microsoft.AspNetCore.Mvc;
 using CustomModelBindingSample.Data;
-using System.Linq;
 
 namespace CustomModelBindingSample.Controllers
 {
-    [Produces("application/json")]
+    [ApiController]
     [Route("api/[controller]")]
-    public class BoundAuthorsController : Controller
+    public class BoundAuthorsController : ControllerBase
     {
-        // GET: api/boundauthors/1
         #region demo1
         [HttpGet("{id}")]
-        public IActionResult GetById([ModelBinder(Name = "id")]Author author)
+        public IActionResult GetById([ModelBinder(Name = "id")] Author author)
         {
             if (author == null)
             {
                 return NotFound();
             }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+
             return Ok(author);
         }
         #endregion
 
-        // GET: api/boundauthors/get/1
         #region demo2
         [HttpGet("get/{authorId}")]
         public IActionResult Get(Author author)
         {
+            if (author == null)
+            {
+                return NotFound();
+            }
+            
             return Ok(author);
         }
         #endregion
