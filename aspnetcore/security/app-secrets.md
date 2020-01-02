@@ -404,6 +404,6 @@ No secrets configured for this application.
 
 ## Additional resources
 
-* See [this issue](https://github.com/aspnet/AspNetCore.Docs/issues/16328) for information on accessing secret manager from IIS.
+* See [this issue](https://github.com/aspnet/AspNetCore.Docs/issues/16328) for information on accessing Secret Manager from IIS.
 * <xref:fundamentals/configuration/index>
 * <xref:security/key-vault-configuration>
