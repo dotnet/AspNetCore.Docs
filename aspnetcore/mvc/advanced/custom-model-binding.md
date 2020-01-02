@@ -12,7 +12,7 @@ By [Steve Smith](https://ardalis.com/)
 
 Model binding allows controller actions to work directly with model types (passed in as method arguments), rather than HTTP requests. Mapping between incoming request data and application models is handled by model binders. Developers can extend the built-in model binding functionality by implementing custom model binders (though typically, you don't need to write your own provider).
 
-[View or download sample from GitHub](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/custom-model-binding/)
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/advanced/custom-model-binding/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Default model binder limitations
 
@@ -51,7 +51,7 @@ When creating your own custom model binder, you can implement your own `IModelBi
 
 The following example shows how to use `ByteArrayModelBinder` to convert a base64-encoded string to a `byte[]` and save the result to a file:
 
-[!code-csharp[](custom-model-binding/samples/2.x/CustomModelBindingSample/Controllers/ImageController.cs?name=post1&highlight=3)]
+[!code-csharp[](custom-model-binding/samples/2.x/CustomModelBindingSample/Controllers/ImageController.cs?name=post1)]
 
 You can POST a base64-encoded string to this api method using a tool like [Postman](https://www.getpostman.com/):
 
