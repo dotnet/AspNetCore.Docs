@@ -19,14 +19,15 @@ namespace FiltersSample.Filters
 
             var options = new RequestLocalizationOptions
             {
-
-                DefaultRequestCulture = new RequestCulture(culture: "en-US", 
-                                                         uiCulture: "en-US"),
+                DefaultRequestCulture = new RequestCulture(
+                                           culture: "en-US", 
+                                           uiCulture: "en-US"),
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             };
             options.RequestCultureProviders = new[] 
-                { new RouteDataRequestCultureProvider() { Options = options } };
+                { new RouteDataRequestCultureProvider() {
+                    Options = options } };
 
             applicationBuilder.UseRequestLocalization(options);
         }

@@ -20,7 +20,8 @@ namespace FiltersSample
         #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<PositionOptions>(Configuration.GetSection("Position"));
+            services.Configure<PositionOptions>(
+                     Configuration.GetSection("Position"));
             services.AddScoped<MyActionFilterAttribute>();
 
             services.AddControllersWithViews();

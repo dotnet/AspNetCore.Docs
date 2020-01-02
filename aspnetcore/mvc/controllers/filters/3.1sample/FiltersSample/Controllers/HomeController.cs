@@ -35,7 +35,8 @@ namespace FiltersSample.Controllers
         [MiddlewareFilter(typeof(LocalizationPipeline))]
         public IActionResult CultureFromRouteData()
         {
-            return Content($"CurrentCulture:{CultureInfo.CurrentCulture.Name},"
+            return Content(
+                  $"CurrentCulture:{CultureInfo.CurrentCulture.Name},"
                 + $"CurrentUICulture:{CultureInfo.CurrentUICulture.Name}");
         }
         #endregion

@@ -99,7 +99,7 @@ Use a tool such as the [browser developer tools](https://developer.mozilla.org/d
 
 The following code implements an `ActionFilterAttribute` that:
 
-* Reads the title and name from the configuration system.
+* Reads the title and name from the configuration system. Unlike the previous sample, the following code doesn't require filter parameters to be added to the code.
 * Adds the title and name to the response header.
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/MyActionFilterAttribute.cs?name=snippet)]
@@ -114,6 +114,10 @@ In the `StartUp.ConfigureServices`:
 * The `MyActionFilterAttribute` is added to the service container.
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/StartupAF.cs?name=snippet)]
+
+The following code shows the `PositionOptions` class:
+
+[!code-csharp[](filters/3.1sample/FiltersSample/Helper/PositionOptions.cs?name=snippet)]
 
 The following code applies the `MyActionFilterAttribute` to the `Index2` method:
 
@@ -297,7 +301,7 @@ The following code shows the `AddHeaderResultServiceFilter`:
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/LoggingAddHeaderFilter.cs?name=snippet_ResultFilter)]
 
 In the following code, `AddHeaderResultServiceFilter` is added to the DI container:
-zz
+
 [!code-csharp[](./filters/3.1sample/FiltersSample/Startup.cs?name=snippet&highlight=4)]
 
 In the following code, the `ServiceFilter` attribute retrieves an instance of the `AddHeaderResultServiceFilter` filter from DI:
@@ -382,8 +386,7 @@ Resource filter examples:
 
 ## Action filters
 
-> [!IMPORTANT]
-> Action filters do **not** apply to Razor Pages. Razor Pages supports <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
+Action filters do **not** apply to Razor Pages. Razor Pages supports <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
 
 Action filters:
 

@@ -11,8 +11,7 @@ namespace FiltersSample.Filters
     {
         public SampleActionFilterAttribute()
                              :base(typeof(SampleActionFilterImpl))
-        {
-        }
+        { }
 
         private class SampleActionFilterImpl : IActionFilter
         {
