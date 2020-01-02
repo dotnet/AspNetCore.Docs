@@ -4,7 +4,7 @@ author: blowdart
 description: Learn how to configure certificate authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
-ms.date: 12/09/2019
+ms.date: 01/02/2020
 uid: security/authentication/certauth
 ---
 # Configure certificate authentication in ASP.NET Core
@@ -373,7 +373,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath roo
 ```
 
 > [!NOTE]
-> The -DnsName parameter must match the deployment target of the application, for example "localhost" for development.
+> The `-DnsName` parameter must match the deployment target of the app. For example, "localhost" for development.
 
 #### Install in the trusted root
 
