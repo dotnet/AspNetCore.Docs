@@ -84,7 +84,7 @@ The Redis backplane is the recommended scale-out approach for apps hosted on you
 
 The Azure SignalR Service advantages noted earlier are disadvantages for the Redis backplane:
 
-* Sticky sessions, also known as [client affinity](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), is required, except when:
+* Sticky sessions, also known as [client affinity](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), is required, except when **both** of the below are true:
   * All clients are configured to **only** use WebSockets.
   * The [SkipNegotiation setting](xref:signalr/configuration#configure-additional-options) is enabled in the client configuration. 
    Once a connection is initiated on a server, the connection has to stay on that server.
