@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Learn how filters work and how to use them in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/1/2019
+ms.date: 1/1/2020
 uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
@@ -63,7 +63,7 @@ The following diagram shows how filter types interact in the filter pipeline.
 
 Filters support both synchronous and asynchronous implementations through different interface definitions.
 
-Synchronous filters run code before and after their pipeline stage. For example, <xref:System.Web.Mvc.Controller.OnActionExecuting*> is called before the action method is called. <xref:System.Web.Mvc.Controller.OnActionExecuted*> is called after the action method returns.
+Synchronous filters run code before and after their pipeline stage. For example, <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuting*> is called before the action method is called. <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted*> is called after the action method returns.
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/MySampleActionFilter.cs?name=snippet_ActionFilter)]
 
@@ -207,7 +207,7 @@ Navigating to `https://localhost:5001/Test2/FilterTest2` runs the following code
   * `MySampleActionFilter.OnActionExecuted`
 * `TestController.OnActionExecuted`
 
-Controller level filters set the [Order](https://github.com/aspnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L15-L17) property to `int.MinValue`, therefore, Controller level filters can **not** be set to run after filters applied to method. Order is explained in the next section.
+Controller level filters set the [Order](https://github.com/aspnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L15-L17) property to `int.MinValue`. Controller level filters can **not** be set to run after filters applied to methods. Order is explained in the next section.
 
 For Razor Pages, see [Implement Razor Page filters by overriding filter methods](xref:razor-pages/filter#implement-razor-page-filters-by-overriding-filter-methods).
 
@@ -230,7 +230,7 @@ A global filter is added in `StartUp.ConfigureServices`:
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/StartupOrder.cs?name=snippet)]
 
-The 3 filters run with in the following order:
+The 3 filters run in the following order:
 
 * `Test2Controller.OnActionExecuting`
   * `MySampleActionFilter.OnActionExecuting`
@@ -388,7 +388,7 @@ Resource filter examples:
 Action filters do **not** apply to Razor Pages. Razor Pages supports <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
 
 Action filters:
-git st
+
 * Implement either the <xref:Microsoft.AspNetCore.Mvc.Filters.IActionFilter> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter> interface.
 * Their execution surrounds the execution of action methods.
 
@@ -721,8 +721,6 @@ This sequence shows:
 
 * The method filter is nested within the controller filter.
 * The controller filter is nested within the global filter.
-
-<!-- https://github.com/aspnet/AspNetCore/blob/master/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L17 -->
 
 ### Controller and Razor Page level filters
 
