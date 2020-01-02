@@ -65,5 +65,11 @@ namespace FiltersSample.Controllers
             return Content("From ServiceFilterTest");
         }
         #endregion
+
+        public IActionResult CultureFromRouteData2()
+        {
+            return Redirect("/en.en/Home/CultureFromRouteData");
+        }
+
     }
 }
