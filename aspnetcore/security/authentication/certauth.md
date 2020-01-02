@@ -373,7 +373,7 @@ Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath roo
 ```
 
 > [!NOTE]
-> The `-DnsName` parameter must match the deployment target of the app. For example, "localhost" for development.
+> The `-DnsName` parameter value must match the deployment target of the app. For example, "localhost" for development.
 
 #### Install in the trusted root
 
