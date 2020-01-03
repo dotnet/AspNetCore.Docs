@@ -41,8 +41,8 @@ Right click the *Models* folder. Select **Add** > **Class**. Name the class **Mo
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In Solution Explorer, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder**. Name the folder *Models*.
-* Right-click the *Models* folder, and then select **Add** > **New File**.
+* In Solution Pad, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
+* Right-click the *Models* folder, and then select **Add** > **New File...**.
 * In the **New File** dialog:
 
   * Select **General** in the left pane.
