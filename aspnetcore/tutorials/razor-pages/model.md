@@ -321,8 +321,6 @@ Right click the *Models* folder. Select **Add** > **Class**. Name the class **Mo
 
 [!INCLUDE [model 1b](~/includes/RP/model1b.md)]
 
-[!INCLUDE [model 2](~/includes/RP/model2.md)]
-
 ---
 
 Build the project to verify there are no compilation errors.
