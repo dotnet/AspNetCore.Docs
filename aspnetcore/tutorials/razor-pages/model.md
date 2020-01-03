@@ -400,7 +400,7 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 * In the **Data context class** row, type select the **RazorPagesMovieContext** this will create a new db context class with the correct namespace. In this case it will be  **RazorPagesMovie.Models.RazorPagesMovieContext**.
 * Select **Add**.
 
-![Image from the previous instructions.](model/_static/arp.png)
+![Image from the previous instructions.](model/_static/arpMac.png)
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
