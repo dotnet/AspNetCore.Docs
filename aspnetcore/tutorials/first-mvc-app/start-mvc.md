@@ -94,9 +94,7 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 
 * In the **Configure your new ASP.NET Core Web API** dialog, set the  **Target Framework** of **.NET Core 3.1**.
 
-<!-- 
-  ![macOS .NET Core 2.2 selection](./start-mvc/_static/new_project_22_vsmac.png)
--->
+  ![macOS .NET Core 3.1 selection](./start-mvc/_static/new_project_31_vsmac.png)
 
 * Name the project **MvcMovie**, and then select **Create**.
 
