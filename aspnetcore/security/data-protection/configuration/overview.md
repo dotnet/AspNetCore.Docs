@@ -21,6 +21,15 @@ For these scenarios, the Data Protection system offers a rich configuration API.
 >
 > The extension method [AddDataProtection](/dotnet/api/microsoft.extensions.dependencyinjection.dataprotectionservicecollectionextensions.adddataprotection) returns an [IDataProtectionBuilder](/dotnet/api/microsoft.aspnetcore.dataprotection.idataprotectionbuilder). `IDataProtectionBuilder` exposes extension methods that you can chain together to configure Data Protection options.
 
+::: moniker range=">= aspnetcore-3.0"
+
+The following NuGet packages are required for the Data Protection extensions used in this article:
+
+* [Microsoft.AspNetCore.DataProtection.AzureStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/)
+* [Microsoft.AspNetCore.DataProtection.AzureKeyVault](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureKeyVault/)
+
+::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.1"
 
 ## ProtectKeysWithAzureKeyVault

@@ -19,11 +19,15 @@ If you have not previously installed the ASP.NET Core scaffolder, install it now
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
-Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (\*.csproj) file. Run the following command in the project directory:
+Add required NuGet package references to the project (\*.csproj) file. Run the following command in the project directory:
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet restore
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet add package Microsoft.AspNetCore.Identity.UI
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
 ```
 
 Run the following command to list the Identity scaffolder options:
@@ -31,6 +35,8 @@ Run the following command to list the Identity scaffolder options:
 ```dotnetcli
 dotnet aspnet-codegenerator identity -h
 ```
+
+[!INCLUDE[](~/includes/scaffoldTFM.md)]
 
 In the project folder, run the Identity scaffolder with the options you want. For example, to setup identity with the default UI and the minimum number of files, run the following command:
 

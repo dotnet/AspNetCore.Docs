@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/28/2019
 no-loc: [Blazor]
 uid: blazor/components
 ---
@@ -1617,7 +1617,7 @@ In the following example, the loop in the `CreateComponent` method generates thr
 }
 ```
 
-> ![WARNING]
+> [!WARNING]
 > The types in `Microsoft.AspNetCore.Components.RenderTree` allow processing of the *results* of rendering operations. These are internal details of the Blazor framework implementation. These types should be considered *unstable* and subject to change in future releases.
 
 ### Sequence numbers relate to code line numbers and not execution order

@@ -198,7 +198,7 @@ public void GetFileProvider()
 }
 ```
 
-[PhysicaFileProvider](/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider?view=dotnet-plat-ext-3.0) is a managed class, so any instance will be collected at the end of the request.
+[PhysicalFileProvider](/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider?view=dotnet-plat-ext-3.0) is a managed class, so any instance will be collected at the end of the request.
 
 The following image shows the memory profile while invoking the `fileprovider` API continuously.
 
