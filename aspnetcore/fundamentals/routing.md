@@ -5,16 +5,16 @@ description: Discover how ASP.NET Core routing is responsible for matching HTTP 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/13/2019
+ms.date: 1/9/2020
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
 
-By [Ryan Nowak](https://github.com/rynowak), [Steve Smith](https://ardalis.com/), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Ryan Nowak](https://github.com/rynowak), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Routing is responsible for matching incoming HTTP requests and dispatching those requests to the applications executable endpoints. Endpoints are the apps' units of executable request-handling code. Endpoints are defined in the app and configured when the app starts. The matching process can extract values from the request's URL, and these values can then be used for request processing. Using endpoint information from the app, routing is also able to generate URLs that map to endpoints. 
+Routing is responsible for matching incoming HTTP requests and dispatching those requests to the apps executable endpoints. Endpoints are the apps' units of executable request-handling code. Endpoints are defined in the app and configured when the app starts. The matching process can extract values from the request's URL, and these values can be used for request processing. Using endpoint information from the app, routing is also able to generate URLs that map to endpoints.
 
 Apps can configure routing using:
 
@@ -22,47 +22,53 @@ Apps can configure routing using:
 - Razor Pages
 - SignalR
 - gRPC Services
-- Endpoint-enabled middleware (*routerware*) such as Health Checks
-- Using routing primitives directly.
+- Endpoint-enabled middleware (*routerware*) such as Health Checks.
+- Routing primitives directly.
 
-> [!IMPORTANT]
-> This document covers low-level details of ASP.NET Core routing. For information on configuring routing for Controllers, see <xref:mvc/controllers/routing>. For information on routing conventions in Razor Pages, see <xref:razor-pages/razor-pages-conventions>.
-a
-> [!IMPORTANT]
-> The routing system described here (Endpoint Routing) is new as of ASP.NET Core 3.0. For information on the previous routing system based on `IRouter` see //REVIEW - how do I link to another version of the doc???
+This document covers low-level details of ASP.NET Core routing. For information on configuring routing for Controllers, see <xref:mvc/controllers/routing>. For information on routing conventions in Razor Pages, see <xref:razor-pages/razor-pages-conventions>.
+
+The routing system described here (Endpoint Routing) applies to ASP.NET Core 3.0 and later. For information on the previous routing system based on `IRouter`, use one of the following approaches:
+
+* Use the version selector for a previous version.
+* Select [ASP.NET Core 2.2 routing](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-2.2)
+* Select [ASP.NET Core 2.1 routing](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-2.1)
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples) ([how to download](xref:index#how-to-download-a-sample))
 
-> [!INFO]
-> The samples shown here are a set of separate *Startup* classes. To run different samples, modify `Program.cs` to use the desired *Startup* class.
+The download samples for this document are enabled by specific *Startup* classes. To run a specific sample, modify *Program.cs* to call the desired `Startup` class.
 
 ## Routing basics
 
-All ASP.NET Core templates include routing in the starter code. Routing is registered in the middleware pipeline in the `Configure(...)` method of `Startup.cs`.
+All ASP.NET Core templates include routing in the generated code. Routing is registered in the middleware pipeline in `Startup.Configure`.
 
-The following code shows a basic example of using routing:
+The following code shows a basic example of routing:
 
-[!code-csharp[](routing/samples/3.x/RoutingSample/Startup.cs?name=snippet)]
+[!code-csharp[](routing/samples/3.x/RoutingSample/Startup.cs?name=snippet&highlight=8,10)]
 
-Routing uses a pair of middleware, registered by [UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) and [UseEndpoints](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*).
+Routing uses a pair of middleware, registered by [UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) and [UseEndpoints](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*):
 
-* [UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) adds route matching to the middleware pipeline. This middleware will look at the set of endpoints defined in the application, and select the best match based on the request.
-* [UseEndpoints](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*) adds endpoint execution to the middleware pipeline. It runs the delegate associated with the selected endpoint.
+* `UseRouting` adds route matching to the middleware pipeline. This middleware looks at the set of endpoints defined in the app, and selects the best match based on the request.
+* `UseEndpoints` adds endpoint execution to the middleware pipeline. It runs the delegate associated with the selected endpoint.
 
-This basic example includes a single *Route to Code* endpoint using the [MapGet](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*) method. 
-* If an HTTP `GET` request is sent to the root URL `/` (`http://localhost:5000/` by default) then the request delegate shown here will execute, and `Hello World!` will be written to the HTTP resonse.
-* If the request is not a `GET` or if the URL is anything else, this will not be a match and the result will be an HTTP 404.
+The preceding example includes a single *Route to Code* endpoint using the [MapGet](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*) method:
 
-The `MapGet` method is used to define an *endpoint* - that is, something that can be selected (by matching the URL and HTTP method), and can be executed (by running the delegate).
+* When an HTTP `GET` request is sent to the root URL `/` (`http://localhost:5000/` by default), the request delegate shown executes, and `Hello World!` is written to the HTTP response.
+* If the request is not a `GET` or if the URL is anything else, no route matches and an HTTP 404 is returned.
 
-`UseEndpoints` is where endpoints are configured that can be matched and executed by the app. For example, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>, and [similar methods](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions)can be used to wire up your own code to the routing system.
+The `MapGet` method is used to define an *endpoint*, that is, something that can be:
 
-ASP.NET Core frameworks provide extend the builder provided by `UseEndpoints`:
+* Selected, by matching the URL and HTTP method.
+* Executed, by running the delegate.
+
+`UseEndpoints` is where endpoints are configured that can be matched and executed by the app. For example, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>, and [similar methods](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) can be used to connect code to the routing system.
+<!-- wire up doesn't MT - AS IN: can be used to wire up code -->
+The ASP.NET Core framework extends the builder provided by `UseEndpoints`:
 - [MapRazorPages (Razor Pages)](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
 - [MapControllers (Controllers)](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
-- [MapHub<THub> (SignalR)](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) <!-- Review required -->
+- [MapHub<THub> (SignalR)](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) <!-- Review required for URL change-->
 - MapGrpcService<TService> (gRPC)
-<!-- TODO provide link to MapGrpcService -->
+<!-- TODO provide link to MapGrpcService see  -->
+<!-- start rick updates here, delete this comment  -->
 
 The following code shows an example of routing with a more sophisticated route template:
 
@@ -70,8 +76,7 @@ The following code shows an example of routing with a more sophisticated route t
 
 The string `/hello/{name:alpha}` is a *route template*, and is used to configure how the endpoint is matche3d. In this case, the template will match a URL like `/hello/Ryan` - any URL path that begins with `/hello/` followed by a sequence of alphabetic characters. The second segment of the URL path will be bound to the `name` parameter, and the captured value will be stored in [HttpRequest.RouteValues](xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues*).
 
-> [!INFO]
-> The routing system described here (Endpoint Routing) is new as of ASP.NET Core 3.0. However, all versions of ASP.NET Core support the same set of route template features and route constraints.
+The routing system described here (Endpoint Routing) is new as of ASP.NET Core 3.0. However, all versions of ASP.NET Core support the same set of route template features and route constraints.
 
 The following code shows an example of routing with other middleware:
 
