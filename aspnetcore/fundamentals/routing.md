@@ -115,13 +115,13 @@ An endpoint is:
 * Selectable: (optionally) Has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern*) 
 * Enumerable: the collection of endpoints can be listed by retrieving the [EndpointDataSource](xref:Microsoft.AspNetCore.Routing.EndpointDataSource) from [DI](xref:fundamentals/dependency-injection)
 
-The following code sample shows how to retrieve and inspect an endpoint:
+The following code shows how to retrieve and inspect an endpoint:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/EndpointInspectorStartup.cs?name=snippet)]
 
 The endpoint (if one is selected) can be retrieved from the `HttpContext`. It's properties can be inspected to for informational purposes. Endpoints objects are immutable, and cannot be modified after creation. The most common kind of endpoint to encounter is a `RouteEndpoint`, which includes information allowing to be to selected by the routing system.
 
-The following code sample shows how the endpoint associated with the request changes:
+The following code shows how the endpoint associated with the request changes:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/MiddlewareFlowStartup.cs?name=snippet)]
 
@@ -132,11 +132,9 @@ The preceding code contains the following `// Location` comments:
 * // Location 3: runs when this endpoint matches
 * // Location 4: runs after UseEndpoints - will only run if there was no match
 
-This preceding sample adds `Console.WriteLine` statements that print to the console about whether or not an endpoint has been selected at various points in the middleware pipeline. For clarity, the sample assigns a display name to the provided "hello world" endpoint.
+This preceding sample adds `Console.WriteLine` statements that display whether or not an endpoint has been selected. For clarity, the sample assigns a display name to the provided "hello world" endpoint.
 
-Running this code with a URL match `/` will produce different output than without.
-
-URL is `/`:
+Running this code with a URL of `/` displays:
 
 ```txt
 1. Endpoint is: (null)
@@ -144,7 +142,7 @@ URL is `/`:
 3. Endpoint is: Hello
 ```
 
-URL is not `/`:
+Running this code with a URL **not** `/` displays:
 
 ```txt
 1. Endpoint is: (null)
@@ -155,23 +153,21 @@ URL is not `/`:
 This output demonstrates that:
 
 * The endpoint is always null before `UseRouting` executes.
-* The endpoint will be non-null in between `UseRouting` and `UseEndpoints` if a match was found.
-* The `UseEndpoints` middleware is *terminal* if a match was found.
+* The endpoint is non-null between `UseRouting` and `UseEndpoints` if a match is found.
+* The `UseEndpoints` middleware is *terminal* when a match is found. <!-- need to define what Terminal means -->
 * The middleware after `UseEndpoints` will execute only when no match was found.
 
-> [!INFO]
-> The `UseRouting` middleware uses the [SetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.SetEndpoint*) method to attach the endpoint to the current context. It's possible to replace the `UseRouting` middleware with custom logic and still get the benefits of using endpoints. Endpoints are a low-level primitive like middleware, and not coupled to the routing implementation.
+The `UseRouting` middleware uses the [SetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.SetEndpoint*) method to attach the endpoint to the current context. It's possible to replace the `UseRouting` middleware with custom logic and still get the benefits of using endpoints. Endpoints are a low-level primitive like middleware, and not coupled to the routing implementation. <!-- REVIEW what I added - most apps ... --> Most apps will **not** need to replace `UseRouting` with custom routing.
 
-> [!INFO]
-> The `UseEndpoints` middleware is designed to be used in tandem with the `UseRouting` middleware. The core logic to *execute* an endpoint is simple. Use `GetEndpoint` to retrieve the endpoint, and then invoke its `RequestDelegate` property.
+The `UseEndpoints` middleware is **designed** to be used in tandem with the `UseRouting` middleware. The core logic to *execute* an endpoint isn't complicated. Use `GetEndpoint` to retrieve the endpoint, and then invoke its `RequestDelegate` property.
 
-The following code sample demonstrates how middleware can influence or react to routing:
+The following code demonstrates how middleware can influence or react to routing:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/IntegratedMiddlewareStartup.cs?name=snippet)]
 
 This example demonstrates two important concepts:
 * Middleware can run before `UseRouting` to modify the data that routing operates upon. 
-    * Usually middleware that appear before routing to modify some property of the request, such as `UseRewriter`, `UseHttpMethodOverride`, or `UsePathBase`.
+    * Typically middleware that appears before routing modifies some property of the request, such as <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>, <xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions.UseHttpMethodOverride*>, or <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*>.
 * Middleware can run between `UseRouting` and `UseEndpoints` to process the results of routing before the endpoint is executed.
     * Usually middleware that run *between* inspect metadata to understand the endpoints.
     * Often middleware that run *between* make a security decision, such as `UseAuthorization`, or `UseCors`.
