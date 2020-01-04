@@ -118,7 +118,7 @@ Binding to different models of derived types is known as polymorphic model bindi
 
 However, if an app requires polymorphic model binding, an implementation might look like the following code:
 
-[!code-csharp[](custom-model-binding/3.0sample/PolymorphicModelBinding/ModelBinders/PolymorphicModelBinder.cs?name=snippet)]
+[!code-csharp[](custom-model-binding/samples/3.x/PolymorphicModelBindingSample/ModelBinders/PolymorphicModelBinder.cs?name=snippet)]
 
 ## Recommendations and best practices
 
