@@ -76,7 +76,7 @@ From the **Project** menu, select **Manage Nuget Packages**.
 
 In the **Search** field in the upper right, enter `Microsoft.EntityFrameworkCore.SQLite` and press the **Return** key to search. Select the matching NuGet package and press the **Add Package** button.
 
-![Add Entity Framework Core NuGet Package](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac.png)
+![Add Entity Framework Core NuGet Package](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
 
 The **Select Projects** dialog will be displayed, with the `MvcMovie` project selected. Press the **Ok** button.
 
