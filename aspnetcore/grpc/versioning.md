@@ -46,10 +46,10 @@ These changes are non-breaking at a gRPC protocol level, but the client will nee
 
 These are protocol and binary breaking changes.
 
-1. **Changing a field data type** - Changing a field's data type to an [incompatible type](https://developers.google.com/protocol-buffers/docs/proto3#updating) will cause errors when deserializing the message. Even if the new data type is compatible, it is likely the client will need to be updated to support the new type if it upgrades to the latest contract.
-2. **Changing a field number** - The field number is used to identify fields on the wire.
-3. **Renaming a package, service or method** - gRPC uses the package name, service name and method name to build the URL. The client will get an *UNIMPLEMENTED* status from the server.
-4. **Removing a service or method** - The client will get an *UNIMPLEMENTED* status from the server when calling the removed method.
+- **Changing a field data type** - Changing a field's data type to an [incompatible type](https://developers.google.com/protocol-buffers/docs/proto3#updating) will cause errors when deserializing the message. Even if the new data type is compatible, it is likely the client will need to be updated to support the new type if it upgrades to the latest contract.
+- **Changing a field number** - The field number is used to identify fields on the wire.
+- **Renaming a package, service or method** - gRPC uses the package name, service name and method name to build the URL. The client will get an *UNIMPLEMENTED* status from the server.
+- **Removing a service or method** - The client will get an *UNIMPLEMENTED* status from the server when calling the removed method.
 
 ## Version number your services
 
