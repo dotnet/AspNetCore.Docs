@@ -1156,8 +1156,6 @@ The `Counter` component can also be created using a code-behind file with a part
 *Counter.razor.cs*:
 
 ```csharp
-using Microsoft.AspNetCore.Components;
-
 namespace BlazorApp.Pages
 {
     public partial class Counter
@@ -1170,6 +1168,17 @@ namespace BlazorApp.Pages
         }
     }
 }
+```
+
+Add any required namespaces to the partial class file as needed. Typical namespaces used by Razor components include:
+
+```csharp
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components.Routing;
+using Microsoft.AspNetCore.Components.Web;
 ```
 
 ::: moniker-end
