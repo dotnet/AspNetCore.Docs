@@ -1,23 +1,21 @@
 ---
-title: gRPC versioning
+title: Versioning gRPC services
 author: jamesnk
 description: Learn how to version gRPC services.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 06/01/2020
+ms.date: 01/06/2020
 uid: grpc/versioning
 ---
-# Versioning
+# Versioning gRPC services
 
-Most apps will change over time. As new features are added and bugs are fixed in an app, the services exposed to clients will also evolve, in unexpected and potentially breaking ways. As you make changes after your initial release you need to consider how changes to services will impact clients of your gRPC services, and come up with a versioning strategy to support them.
-
-A simple answer to versioning is to break old clients and force them to be updated along with your service, but that isn't a good experience for users. This article looks at strategies to evolve gRPC services while providing backwards compatibility with older clients.
+As new features are added to an app, the services exposed to clients will also evolve, in potentially unexpected and breaking ways. You need to consider how changes to gRPC services will impact clients, and come up with a versioning strategy to support them.
 
 ## Backwards compatibility
 
 The gRPC protocol is designed to support services that change over time. A general rule of thumb is adding to a *.proto* contract is backwards compatible, and clients implemented using an older contract are able to call the updated gRPC services. Changing and deleting what already exists in a contract is breaking to old clients, and requires them to be updated to continue working correctly.
 
-> !NOTE
+> [!NOTE]
 > This content focuses on whether changes are breaking at a gRPC protocol and .NET binary compatibility level. When making changes you must also consider whether older clients can logically still work. For example, adding a new field to a request message is not a protocol breaking change, but if the service errors when the field is not set then older clients will still be broken.
 
 Making non-breaking changes to a service has a number of benefits:
@@ -29,8 +27,8 @@ Making non-breaking changes to a service has a number of benefits:
 
 These changes are non-breaking at a gRPC protocol level, and .NET binary level.
 
-- **Adding a new service** - Services are independent of each other. Adding a new service to an app has no impact on existing clients.
-- **Adding a new method to a service** - Methods are independent of each other. Adding a new method to a service has no impact on existing clients.
+- **Adding a new service** - Adding a new service to an app has no impact on existing clients.
+- **Adding a new method to a service** - Adding a new method to a service has no impact on existing clients.
 - **Adding a field to a request message** - Fields added to a request message will be deserialized with the [default value](https://developers.google.com/protocol-buffers/docs/proto3#default) on the server when not set.
 - **Adding a field to a response message** - Fields added to a response message will be deserialized into the message's [unknown fields](https://developers.google.com/protocol-buffers/docs/proto3#unknowns) collection on the client.
 - **Adding a value to an enum** - Enums are serialized as a numeric value. New enum values are deserialized on the client to the enum value without an enum name.
@@ -52,9 +50,9 @@ These are protocol and binary breaking changes.
 3. **Renaming a package, service or method** - gRPC uses the package name, service name and method name to build the URL. The client will get an *UNIMPLEMENTED* status from the server.
 4. **Removing a service or method** - The client will get an *UNIMPLEMENTED* status from the server when calling the removed method.
 
-## Versioning your services
+## Version number your services
 
-Services should strive to remain backwards compatible with old clients, but eventually changes to your app may force you to make breaking changes. In this situation you can continue to maintain backwards compatibility by publishing multiple versions of a service.
+Services should strive to remain backwards compatible with old clients, but eventually changes to your app may force you to make breaking changes. A simple answer is to break old clients and force them to be updated along with your service, but that isn't a good experience for users. A way to maintain backwards compatibility while making breaking changes is to publish multiple versions of a service.
 
 gRPC supports an optional [`package`](https://developers.google.com/protocol-buffers/docs/proto3#packages) specifier, which functions much like a .NET namespace. In fact the `package` will be used as the .NET namespace for generated .NET types if `option csharp_namespace` is not set in the *.proto* file. The package can be used to specify a version number for your service and its messages:
 
@@ -65,9 +63,9 @@ The package name is combined with the service name to identify a service address
 * `greet.v1.Greeter`
 * `greet.v2.Greeter`
 
-Including a version number in the package gives you the opporutunity to publish a *v2* version of your service with breaking changes, while continuing to support older clients who call the *v1* version. To avoid duplication you should considering moving business logic from the service implementations to a centralized location that can be reused by the old and new implementations:
+Including a [SemVer major version number](https://semver.org/) in the package name gives you the opporutunity to publish a *v2* version of your service with breaking changes, while continuing to support older clients who call the *v1* version. To avoid duplication you should considering moving business logic from the service implementations to a centralized location that can be reused by the old and new implementations:
 
 [!code-csharp[](versioning/sample/GreeterServiceV1.cs?highlight=19)]
 
-> !NOTE
+> [!NOTE]
 > Services and messages generated from different packages are different .NET types. Moving business logic to a centralized location will require mapping messages to common types.
