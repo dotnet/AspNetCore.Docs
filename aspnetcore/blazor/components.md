@@ -1146,6 +1146,8 @@ The `Counter` component can also be created using a code-behind file with a part
 *Counter.razor.cs*:
 
 ```csharp
+using Microsoft.AspNetCore.Components;
+
 namespace BlazorApp.Pages
 {
     public partial class Counter
