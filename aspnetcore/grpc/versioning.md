@@ -13,15 +13,16 @@ As new features are added to an app, the services exposed to clients will also e
 
 ## Backwards compatibility
 
-The gRPC protocol is designed to support services that change over time. A general rule of thumb is adding to a *.proto* contract is backwards compatible, and clients implemented using an older contract are able to call the updated gRPC services. Changing and deleting what already exists in a contract is breaking to old clients, and requires them to be updated to continue working correctly.
-
-> [!NOTE]
-> This content focuses on whether changes are breaking at a gRPC protocol and .NET binary compatibility level. When making changes you must also consider whether older clients can logically still work. For example, adding a new field to a request message is not a protocol breaking change, but if the service errors when the field is not set then older clients will still be broken.
+The gRPC protocol is designed to support services that change over time while maintaining backwards comptability.
 
 Making non-breaking changes to a service has a number of benefits:
 
 - Existing clients continue to run correctly
 - You only need to maintain and document one version of your service
+- Avoid work involved with notifying clients of breaking and upgrading them
+
+> [!NOTE]
+> This content focuses on whether changes are breaking at a gRPC protocol and .NET binary compatibility level. When making changes you must also consider whether older clients can logically still work. For example, adding a new field to a request message is not a protocol breaking change, but if the service errors when the field is not set then older clients will still be broken.
 
 ### Non-breaking changes
 
@@ -65,7 +66,7 @@ The package name is combined with the service name to identify a service address
 
 Including a [SemVer major version number](https://semver.org/) in the package name gives you the opporutunity to publish a *v2* version of your service with breaking changes, while continuing to support older clients who call the *v1* version. To avoid duplication you should considering moving business logic from the service implementations to a centralized location that can be reused by the old and new implementations:
 
-[!code-csharp[](versioning/sample/GreeterServiceV1.cs?highlight=19)]
+[!code-csharp[](versioning/sample/GreeterServiceV1.cs?highlight=10,19)]
 
 > [!NOTE]
 > Services and messages generated from different packages are different .NET types. Moving business logic to a centralized location will require mapping messages to common types.
