@@ -9,17 +9,17 @@ uid: grpc/versioning
 ---
 # Versioning gRPC services
 
-As new features are added to an app, the services exposed to clients will also evolve, in potentially unexpected and breaking ways. You need to consider how changes to gRPC services will impact clients, and come up with a versioning strategy to support them.
+New features added to an app can require gRPC services provided to clients to evolve, sometimes in unexpected and breaking ways. You need to consider how changes to gRPC services will impact clients, and come up with a versioning strategy to support them.
 
 ## Backwards compatibility
 
-The gRPC protocol is designed to support services that change over time while maintaining backwards comptability.
+The gRPC protocol is designed to support services that change over time. Generally additions to gRPC services and methods are non-breaking (existing clients continue to work), while changing or deleting gRPC services are breaking (existing clients will fail).
 
 Making non-breaking changes to a service has a number of benefits:
 
-- Existing clients continue to run correctly
-- You only need to maintain and document one version of your service
-- Avoid work involved with notifying clients of breaking and upgrading them
+- Existing clients continue to run.
+- Avoid work involved with notifying clients of breaking changes, and updating them.
+- You only need to maintain and document one version of your service.
 
 > [!NOTE]
 > This content focuses on whether changes are breaking at a gRPC protocol and .NET binary compatibility level. When making changes you must also consider whether older clients can logically still work. For example, adding a new field to a request message is not a protocol breaking change, but if the service errors when the field is not set then older clients will still be broken.
