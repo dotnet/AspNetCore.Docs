@@ -46,10 +46,18 @@ Component members can be used as part of the component's rendering logic using C
 
 After the component is initially rendered, the component regenerates its render tree in response to events. Blazor then compares the new render tree against the previous one and applies any modifications to the browser's Document Object Model (DOM).
 
-Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the *Pages* folder. Non-page components are frequently placed in the *Shared* folder or a custom folder added to the project. To use a custom folder, add the custom folder's namespace to either the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `WebApplication`:
+Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the *Pages* folder. Non-page components are frequently placed in the *Shared* folder or a custom folder added to the project. Typically, a component's namespace is derived from the app's root namespace and the component's location (folder) within the app. If the app's root namespace is `BlazorApp` and the `Counter` component resides in the *Pages* folder:
+
+* The `Counter` component's namespace is `BlazorApp.Pages`.
+* The fully qualified component reference is `BlazorApp.Pages.Counter`.
+* Public class members are referenced by the namespace and component class. If the `Counter` component has a component parameter named `MyParameter`, its member reference is `BlazorApp.Pages.Counter.MyParameter`.
+
+For more information, see the [Import components](#import-components) section.
+
+To use a custom folder, add the custom folder's namespace to either the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `BlazorApp`:
 
 ```razor
-@using WebApplication.Components
+@using BlazorApp.Components
 ```
 
 ## Integrate components into Razor Pages and MVC apps
