@@ -24,7 +24,7 @@ Making non-breaking changes to a service has a number of benefits:
 - You only need to maintain and document one version of your service.
 
 > [!NOTE]
-> This content focuses on whether changes are breaking changing for the gRPC protocol and .NET binary compatibility. You must also consider whether older clients can logically still work. For example, adding a new field to a request message is not a protocol breaking change, but if business logic errors when it is not set then it is a breaking change for old clients.
+> This content focuses on whether changes are breaking at a gRPC protocol and .NET binary compatibility level. When making changes you must also consider whether older clients can logically still work. For example, adding a new field to a request message is not a protocol breaking change, but erroring if it is not set makes it a breaking change for old clients.
 
 ### Non-breaking changes
 
