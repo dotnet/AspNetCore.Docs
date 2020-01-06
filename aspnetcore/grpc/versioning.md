@@ -66,7 +66,7 @@ gRPC supports an optional [`package`](https://developers.google.com/protocol-buf
 
 [!code-protobuf[](versioning/sample/greet.v1.proto?highlight=3)]
 
-The package name is combined with the service name to identify a service address, which allows multiple versions of a service to be hosted side-by-side:
+The package name is combined with the service name to identify a service address. A service address allows multiple versions of a service to be hosted side-by-side:
 
 * `greet.v1.Greeter`
 * `greet.v2.Greeter`
