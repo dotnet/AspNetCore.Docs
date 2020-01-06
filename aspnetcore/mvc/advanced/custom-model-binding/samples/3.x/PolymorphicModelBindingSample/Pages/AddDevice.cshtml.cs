@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using PolymorphicModelBinding.ModelBinders;
+using PolymorphicModelBindingSample.ModelBinders;
 
-namespace PolymorphicModelBinding.Pages
+namespace PolymorphicModelBindingSample.Pages
 {
     public class AddDeviceModel : PageModel
     {
