@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reactive.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -30,6 +31,7 @@ namespace SignalRChat.Hubs
             ChannelWriter<int> writer,
             int count,
             int delay,
+            [EnumeratorCancellation]
             CancellationToken cancellationToken)
         {
             Exception localException = null;
