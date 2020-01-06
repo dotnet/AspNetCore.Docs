@@ -29,7 +29,7 @@ Making non-breaking changes to a service has a number of benefits:
 This content focuses on whether changes are **breaking at a gRPC protocol and .NET binary compatibility level**. When making changes, consider whether older clients can logically continue working. For example, adding a new field to a request message:
 
 * Is not a protocol breaking change.
-* Setting an error condition if the new field is not set makes it a breaking change for old clients.
+* Returning an error status on the server if the new field is not set makes it a breaking change for old clients.
 
 ### Non-breaking changes
 
@@ -37,9 +37,9 @@ These changes are non-breaking at a gRPC protocol level, and .NET binary level.
 
 - **Adding a new service**
 - **Adding a new method to a service**
-- **Adding a field to a request message** - Fields added to a request message are deserialized with the [default value](https://developers.google.com/protocol-buffers/docs/proto3#default) on the server when not set.
+- **Adding a field to a request message** - Fields added to a request message are deserialized with the [default value](https://developers.google.com/protocol-buffers/docs/proto3#default) on the server when not set. To be non-breaking the service will need to succeed when it is not set by older clients.
 - **Adding a field to a response message** - Fields added to a response message are deserialized into the message's [unknown fields](https://developers.google.com/protocol-buffers/docs/proto3#unknowns) collection on the client.
-- **Adding a value to an enum** - Enums are serialized as a numeric value. New enum values are deserialized on the client to the enum value without an enum name.
+- **Adding a value to an enum** - Enums are serialized as a numeric value. New enum values are deserialized on the client to the enum value without an enum name. To be non-breaking older clients will need to run correctly when they receive and unexcepted value.
 
 ### Binary breaking changes
 
@@ -84,10 +84,14 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-Including a [SemVer major version number](https://semver.org/) in the package name gives you the opportunity to publish a *v2* version of your service with breaking changes, while continuing to support older clients who call the *v1* version. Once clients have updated to use the *v2* service you can choose to remove the old version.
+Including a version number in the package name gives you the opportunity to publish a *v2* version of your service with breaking changes, while continuing to support older clients who call the *v1* version. Once clients have updated to use the *v2* service you can choose to remove the old version. When versioning your services:
 
-To avoid duplication, consider moving business logic from the service implementations to a centralized location that can be reused by the old and new implementations:
+- Avoid breaking changes if reasonable.
+- Do not update the version number unless making breaking changes.
+- Do update the version number when you make breaking changes.
+
+Publishing multiple versions of a service duplicates it. To reduce duplication, consider moving business logic from the service implementations to a centralized location that can be reused by the old and new implementations:
 
 [!code-csharp[](versioning/sample/GreeterServiceV1.cs?highlight=10,19)]
 
-Services and messages generated from different packages are **different .NET types**. Moving business logic to a centralized location requires mapping messages to common types.
+Services and messages generated with package names are **different .NET types**. Moving business logic to a centralized location requires mapping messages to common types.
