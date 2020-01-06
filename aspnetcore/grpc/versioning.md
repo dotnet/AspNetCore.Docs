@@ -94,4 +94,4 @@ Publishing multiple versions of a service duplicates it. To reduce duplication, 
 
 [!code-csharp[](versioning/sample/GreeterServiceV1.cs?highlight=10,19)]
 
-Services and messages generated with package names are **different .NET types**. Moving business logic to a centralized location requires mapping messages to common types.
+Services and messages generated with different package names are **different .NET types**. Moving business logic to a centralized location requires mapping messages to common types.
