@@ -71,7 +71,22 @@ The package name is combined with the service name to identify a service address
 * `greet.v1.Greeter`
 * `greet.v2.Greeter`
 
-Including a [SemVer major version number](https://semver.org/) in the package name gives you the opportunity to publish a *v2* version of your service with breaking changes, while continuing to support older clients who call the *v1* version. To avoid duplication, consider moving business logic from the service implementations to a centralized location that can be reused by the old and new implementations:
+Implementations of the versioned service are registered in *Startup.cs*:
+
+```csharp
+app.UseEndpoints(endpoints =>
+{
+    // Implements greet.v1.Greeter
+    endpoints.MapGrpcService<GreeterServiceV1>();
+
+    // Implements greet.v2.Greeter
+    endpoints.MapGrpcService<GreeterServiceV2>();
+});
+```
+
+Including a [SemVer major version number](https://semver.org/) in the package name gives you the opportunity to publish a *v2* version of your service with breaking changes, while continuing to support older clients who call the *v1* version. Once clients have updated to use the *v2* service you can choose to remove the old version.
+
+To avoid duplication, consider moving business logic from the service implementations to a centralized location that can be reused by the old and new implementations:
 
 [!code-csharp[](versioning/sample/GreeterServiceV1.cs?highlight=10,19)]
 
