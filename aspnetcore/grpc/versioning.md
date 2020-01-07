@@ -43,11 +43,12 @@ These changes are non-breaking at a gRPC protocol level, and .NET binary level.
 
 ### Binary breaking changes
 
-The following changes are non-breaking at a gRPC protocol level, but the client needs to be updated if it upgrades to the latest *.proto* contract or client .NET assembly.
+The following changes are non-breaking at a gRPC protocol level, but the client needs to be updated if it upgrades to the latest *.proto* contract or client .NET assembly. Binary compatibility is important if you plan to publish a gRPC library to NuGet.
 
 - **Removing a field** - Values from a removed field are deserialized to a message's [unknown fields](https://developers.google.com/protocol-buffers/docs/proto3#unknowns). This isn't a gRPC protocol breaking change, but the client needs to be updated if it upgrades to the latest contract. It is important that a removed field number isn't accidentally reused in the future. One way to make sure this doesn't happen is to specify deleted field numbers and names on the message using Protobuf's [`reserved`](https://developers.google.com/protocol-buffers/docs/proto3#reserved) keyword.
 - **Renaming a field** - Field names are only used in generated code. The field number is used to identify fields on the network. The client will need to be updated if it upgrades to the latest contract.
 - **Renaming a message** - Message names are not sent on the network so this isn't a gRPC protocol breaking change, but the client will need to be updated if it upgrades to the latest contract.
+- **Changing csharp_namespace** - Changing `csharp_namespace` will change the namespace of generated .NET types. This isn't a gRPC protocol breaking change, but the client needs to be updated if it upgrades to the latest contract.
 
 ### Breaking changes
 
