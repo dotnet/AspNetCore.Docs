@@ -225,7 +225,7 @@ Delete all the records in the DB (So the seed method will run). Stop and start t
 
 The app shows the seeded data.
 
-![MVC Movie application open in Microsoft Edge showing movie data](working-with-sql/_static/m55.png)
+![MVC Movie application open in Microsoft Edge showing movie data](working-with-sql/_static/m55_mac.png)
 
 > [!div class="step-by-step"]
 > [Previous](adding-model.md)

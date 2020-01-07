@@ -30,7 +30,7 @@ Blazor Server apps can now pass parameters to top-level components during the in
 
 For example, prerender a `Counter` component with an increment amount (`IncrementAmount`):
 
-```razor
+```cshtml
 <component type="typeof(Counter)" render-mode="ServerPrerendered" 
     param-IncrementAmount="10" />
 ```
