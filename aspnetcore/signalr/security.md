@@ -28,9 +28,7 @@ For more information on configuring CORS, see [Enable Cross-Origin Requests (COR
 
 * Allow the specific expected origins. Allowing any origin is possible but is **not** secure or recommended.
 * HTTP methods `GET` and `POST` must be allowed.
-* Credentials must be enabled in order for cookie-based sticky sessions to work correctly:
-  * Even when authentication is not used.
-  * Because there is no customization in the browser client to not use credentials.
+* Credentials must be allowed in order for cookie-based sticky sessions to work correctly. They must be enabled even when authentication is not used.
 
 <!--
 ::: moniker range=">= aspnetcore-5.0"  // Moniker here just to make sure this doesn't get missed in the 5.0 version update.
