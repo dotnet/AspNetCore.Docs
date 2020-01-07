@@ -125,12 +125,13 @@ The following code shows how the endpoint associated with the request changes:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/MiddlewareFlowStartup.cs?name=snippet)]
 
+<!-- Probably remove this // Location section. I added it so the code comments could be localized -->
 The preceding code contains the following `// Location` comments:
 
-* // Location 1: before routing runs, endpoint is always null here
-* // Location 2: after routing runs, endpoint will be non-null if routing found a match
-* // Location 3: runs when this endpoint matches
-* // Location 4: runs after UseEndpoints - will only run if there was no match
+* // `Location 1`: Before routing runs. Endpoint is always null here.
+* // `Location 2`: After routing runs, endpoint will be non-null if routing found a match.
+* // `Location 3`: Runs when this endpoint matches.
+* // `Location 4`: Runs after UseEndpoints. Runs only if there was no match.
 
 This preceding sample adds `Console.WriteLine` statements that display whether or not an endpoint has been selected. For clarity, the sample assigns a display name to the provided "hello world" endpoint.
 
@@ -157,7 +158,7 @@ This output demonstrates that:
 * The `UseEndpoints` middleware is *terminal* when a match is found. <!-- need to define what Terminal means -->
 * The middleware after `UseEndpoints` will execute only when no match was found.
 
-The `UseRouting` middleware uses the [SetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.SetEndpoint*) method to attach the endpoint to the current context. It's possible to replace the `UseRouting` middleware with custom logic and still get the benefits of using endpoints. Endpoints are a low-level primitive like middleware, and not coupled to the routing implementation. <!-- REVIEW what I added - most apps ... --> Most apps will **not** need to replace `UseRouting` with custom routing.
+The `UseRouting` middleware uses the [SetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.SetEndpoint*) method to attach the endpoint to the current context. It's possible to replace the `UseRouting` middleware with custom logic and still get the benefits of using endpoints. Endpoints are a low-level primitive like middleware, and not coupled to the routing implementation. <!-- REVIEW what I added - most apps ... --> Most apps will **not** need to replace `UseRouting` with custom logic.
 
 The `UseEndpoints` middleware is **designed** to be used in tandem with the `UseRouting` middleware. The core logic to *execute* an endpoint isn't complicated. Use `GetEndpoint` to retrieve the endpoint, and then invoke its `RequestDelegate` property.
 
@@ -165,21 +166,23 @@ The following code demonstrates how middleware can influence or react to routing
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/IntegratedMiddlewareStartup.cs?name=snippet)]
 
-This example demonstrates two important concepts:
-* Middleware can run before `UseRouting` to modify the data that routing operates upon. 
+The preceding example demonstrates two important concepts:
+
+* Middleware can run before `UseRouting` to modify the data that routing operates upon.
     * Typically middleware that appears before routing modifies some property of the request, such as <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>, <xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions.UseHttpMethodOverride*>, or <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*>.
 * Middleware can run between `UseRouting` and `UseEndpoints` to process the results of routing before the endpoint is executed.
-    * Usually middleware that run *between* inspect metadata to understand the endpoints.
-    * Often middleware that run *between* make a security decision, such as `UseAuthorization`, or `UseCors`.
+    * Usually middleware that run between `UseRouting` and `UseEndpoints` inspect metadata to understand the endpoints.
+    * Often middleware that run between `UseRouting` and `UseEndpoints` make a security decision, such as `UseAuthorization`, or `UseCors`.
     * The combination of middleware and metadata allows configuring policies per-endpoint.
 
-This sample shows an example of a custom middleware that supports per-endpoint policies. The middleware writes an *audit log* of access to sensitive data to the console. The middleware can be configured to *audit* an endpoint with the `AuditPolicyAttribute` metadata. This sample demonstrates an *opt-in* pattern, only endpoints that are marked as sensitive will be audited. It would be possible to define this logic in the reverse, auditing everything that isn't marked as safe for example. The endpoint metadata system is flexible, this logic could be designed in whatever way suits the use case.
+The preceding example shows an example of a custom middleware that supports per-endpoint policies. The middleware writes an *audit log* of access to sensitive data to the console. The middleware can be configured to *audit* an endpoint with the `AuditPolicyAttribute` metadata. This sample demonstrates an *opt-in* pattern, only endpoints that are marked as sensitive will be audited. It is possible to define this logic in the reverse, auditing everything that isn't marked as safe for example. The endpoint metadata system is flexible, this logic could be designed in whatever way suits the use case.
 
-> [!WARNING]
-> The sample code here is intended to demonstrate the concepts of endpoints in a simple way, and is not intended for production use. A more complete version of such an *audit log* middleware would log to a file or database, and would included details like the user, ip address, name of the sensitive endpoint, etc.
+The preceding sample code here is intended to demonstrate the concepts of endpoints in a basic way, and is **not** intended for production use. A more complete version of such an *audit log* middleware would:
 
-> [!INFO]
-> The audit policy metadata (`AuditPolicyAttribute`) is defined as an `Attribute` for easier use with class-based frameworks such as Controllers and SignalR. When using *Route to Code*, metadata is attached with a builder API, but class-based frameworks will include all attributes on the corresponding method and class when creating endpoints. The best practices for metadata types are to define them either was interfaces or as attributes for maximum reuse. The metadata system is flexible, and doesn't impose any limitations.
+* Log to a file or database.
+* Include details such as the user, ip address, name of the sensitive endpoint, etc.
+<!-- Rick-Anderson start here-->
+The audit policy metadata (`AuditPolicyAttribute`) is defined as an `Attribute` for easier use with class-based frameworks such as Controllers and SignalR. When using *Route to Code*, metadata is attached with a builder API, but class-based frameworks will include all attributes on the corresponding method and class when creating endpoints. The best practices for metadata types are to define them either was interfaces or as attributes for maximum reuse. The metadata system is flexible, and doesn't impose any limitations.
 
 > [!INFO]
 > The fact that routing uses two separate middleware can be confusing at first, but this design supports the kind of flexible designs demonstrated here. 
