@@ -85,10 +85,10 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-Including a version number in the package name gives you the opportunity to publish a *v2* version of your service with breaking changes, while continuing to support older clients who call the *v1* version. Once clients have updated to use the *v2* service you can choose to remove the old version. When versioning your services:
+Including a version number in the package name gives you the opportunity to publish a *v2* version of your service with breaking changes, while continuing to support older clients who call the *v1* version. Once clients have updated to use the *v2* service you can choose to remove the old version. When planning to publish multiple versions of a service:
 
 - Avoid breaking changes if reasonable.
-- Do not update the version number unless making breaking changes.
+- Don't update the version number unless making breaking changes.
 - Do update the version number when you make breaking changes.
 
 Publishing multiple versions of a service duplicates it. To reduce duplication, consider moving business logic from the service implementations to a centralized location that can be reused by the old and new implementations:
