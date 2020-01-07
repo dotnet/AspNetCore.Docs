@@ -18,7 +18,7 @@ New features added to an app can require gRPC services provided to clients to ch
 
 ## Backwards compatibility
 
-The gRPC protocol is designed to support services that change over time. Generally additions to gRPC services and methods are non-breaking. Non-breaking means existing clients continue to work. Changing or deleting gRPC services are breaking changes. Breaking changes mean existing clients fail.
+The gRPC protocol is designed to support services that change over time. Generally additions to gRPC services and methods are non-breaking. Non-breaking changes allow existing clients continue to work without changes. Changing or deleting gRPC services are breaking changes. When gRPC services have breaking changes then clients that use that service have to be updated and redeployed.
 
 Making non-breaking changes to a service has a number of benefits:
 
@@ -26,7 +26,7 @@ Making non-breaking changes to a service has a number of benefits:
 - Avoids work involved with notifying clients of breaking changes, and updating them.
 - Only one version of the service needs to be documented and maintained.
 
-This content focuses on whether changes are **breaking at a gRPC protocol and .NET binary compatibility level**. When making changes, consider whether older clients can logically continue working. For example, adding a new field to a request message:
+This content focuses on whether changes are **breaking at a gRPC protocol and .NET binary compatibility level**. When making changes, you must also consider whether older clients can logically continue working. For example, adding a new field to a request message:
 
 * Is not a protocol breaking change.
 * Returning an error status on the server if the new field is not set makes it a breaking change for old clients.
@@ -37,9 +37,9 @@ These changes are non-breaking at a gRPC protocol level, and .NET binary level.
 
 - **Adding a new service**
 - **Adding a new method to a service**
-- **Adding a field to a request message** - Fields added to a request message are deserialized with the [default value](https://developers.google.com/protocol-buffers/docs/proto3#default) on the server when not set. To be non-breaking the service will need to succeed when it is not set by older clients.
+- **Adding a field to a request message** - Fields added to a request message are deserialized with the [default value](https://developers.google.com/protocol-buffers/docs/proto3#default) on the server when not set. To be a non-breaking change the service will need to succeed when the field is not set by older clients.
 - **Adding a field to a response message** - Fields added to a response message are deserialized into the message's [unknown fields](https://developers.google.com/protocol-buffers/docs/proto3#unknowns) collection on the client.
-- **Adding a value to an enum** - Enums are serialized as a numeric value. New enum values are deserialized on the client to the enum value without an enum name. To be non-breaking older clients will need to run correctly when they receive and unexcepted value.
+- **Adding a value to an enum** - Enums are serialized as a numeric value. New enum values are deserialized on the client to the enum value without an enum name. To be a non-breaking change older clients will need to run correctly when they receive the new enum value.
 
 ### Binary breaking changes
 
