@@ -17,7 +17,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 ::: moniker-end
 
 
-See [Publish a Web app to Azure App Service using Visual Studio for Mac](https://docs.microsoft.com/en-us/visualstudio/mac/publish-app-svc?view=vsmac-2019) if you are working on macOS.
+See [Publish a Web app to Azure App Service using Visual Studio for Mac](https://docs.microsoft.com/visualstudio/mac/publish-app-svc?view=vsmac-2019) if you are working on macOS.
 
 To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azure-iis>.
 
