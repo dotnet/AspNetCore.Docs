@@ -27,9 +27,13 @@ In this tutorial, you write the model classes first, and EF Core creates the dat
 
 Right-click the *Models* folder > **Add** > **Class**. Name the file *Movie.cs*.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Add a file named *Movie.cs* to the *Models* folder.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Right-click the *Models* folder > **Add** > **New Class** > **Empty Class**. Name the file *Movie.cs*.
 
 ---
 
@@ -62,9 +66,26 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer
 
 The preceding command adds the EF Core SQL Server provider. The provider package installs the EF Core package as a dependency. Additional packages are installed automatically in the scaffolding step later in the tutorial.
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+From the **Project** menu, select **Manage Nuget Packages**.
+
+In the **Search** field in the upper right, enter `Microsoft.EntityFrameworkCore.SQLite` and press the **Return** key to search. Select the matching NuGet package and press the **Add Package** button.
+
+![Add Entity Framework Core NuGet Package](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
+
+The **Select Projects** dialog will be displayed, with the `MvcMovie` project selected. Press the **Ok** button.
+
+A **License Acceptance** dialog will be displayed. Review the licenses as desired, then click the **Accept** button.
+
+Repeat the above steps to install the following NuGet packages:
+ * `Microsoft.VisualStudio.Web.CodeGeneration.Design`
+ * `Microsoft.EntityFrameworkCore.SqlServer`
+ * `Microsoft.EntityFrameworkCore.Design`
 
 ---
 
@@ -684,6 +705,6 @@ Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object)
 
 > [!div class="step-by-step"]
 > [Previous Adding a View](adding-view.md)
-> [Next Working with SQL](working-with-sql.md)
+> [Next Working with a database](working-with-sql.md)
 
 ::: moniker-end
