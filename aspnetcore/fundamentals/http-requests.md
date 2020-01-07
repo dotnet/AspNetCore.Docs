@@ -294,7 +294,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 
 - Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
 - Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
-- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+- Create `HttpClient` instances using `new HttpClient(handler, disposeHandler: false)` as needed.
 
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
@@ -596,7 +596,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 
 - Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
 - Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
-- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+- Create `HttpClient` instances using `new HttpClient(handler, disposeHandler: false)` as needed.
 
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
@@ -904,7 +904,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 
 - Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
 - Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
-- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+- Create `HttpClient` instances using `new HttpClient(handler, disposeHandler: false)` as needed.
 
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
