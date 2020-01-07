@@ -48,7 +48,6 @@ These changes are non-breaking at a gRPC protocol level, and .NET binary level.
 The following changes are non-breaking at a gRPC protocol level, but the client needs to be updated if it upgrades to the latest *.proto* contract or client .NET assembly. Binary compatibility is important if you plan to publish a gRPC library to NuGet.
 
 - **Removing a field** - Values from a removed field are deserialized to a message's [unknown fields](https://developers.google.com/protocol-buffers/docs/proto3#unknowns). This isn't a gRPC protocol breaking change, but the client needs to be updated if it upgrades to the latest contract. It is important that a removed field number isn't accidentally reused in the future. One way to make sure this doesn't happen is to specify deleted field numbers and names on the message using Protobuf's [`reserved`](https://developers.google.com/protocol-buffers/docs/proto3#reserved) keyword.
-- **Renaming a field** - With Protobuf payloads the field names are only used in generated code. The field number is used to identify fields on the network. If a server is using JSON payloads then renaming a field is a breaking change. The client will need to be updated if it upgrades to the latest contract.
 - **Renaming a message** - Message names are typically not sent on the network so this isn't a gRPC protocol breaking change, but the client will need to be updated if it upgrades to the latest contract. One situation where message names **are** sent on the network is with [`Any`](https://developers.google.com/protocol-buffers/docs/proto3#any) fields, when the message name is used to identity the message type.
 - **Changing csharp_namespace** - Changing `csharp_namespace` will change the namespace of generated .NET types. This isn't a gRPC protocol breaking change, but the client needs to be updated if it upgrades to the latest contract.
 
@@ -56,8 +55,9 @@ The following changes are non-breaking at a gRPC protocol level, but the client 
 
 These are protocol and binary breaking changes.
 
+- **Renaming a field** - With Protobuf content the field names are only used in generated code. The field number is used to identify fields on the network, so renaming a field isn't a protocol breaking change for Protobuf. However, if a server is using JSON content then renaming a field is a breaking change.
 - **Changing a field data type** - Changing a field's data type to an [incompatible type](https://developers.google.com/protocol-buffers/docs/proto3#updating) will cause errors when deserializing the message. Even if the new data type is compatible, it is likely the client will need to be updated to support the new type if it upgrades to the latest contract.
-- **Changing a field number** - The field number is used to identify fields on the network.
+- **Changing a field number** - With Protobuf payloads the field number is used to identify fields on the network.
 - **Renaming a package, service or method** - gRPC uses the package name, service name and method name to build the URL. The client gets an *UNIMPLEMENTED* status from the server.
 - **Removing a service or method** - The client gets an *UNIMPLEMENTED* status from the server when calling the removed method.
 
