@@ -60,8 +60,8 @@ The following table shows the authentication options available for new web apps:
 | None            |  No authentication | | 
 | Individual      |  Individual authentication | <xref:security/authentication/identity>
 | IndividualB2C   |  Individual authentication with Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
-| SingleOrg       |  Organizational authentication for a single tenant | [Add sign-in](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| MultiOrg        |  Organizational authentication for multiple tenants | [Add sign-in](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| SingleOrg       |  Organizational authentication for a single tenant | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| MultiOrg        |  Organizational authentication for multiple tenants | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
 | Windows         |  Windows authentication | [Windows Authentication](xref:security/authentication/windowsauth)
 
 ## Visual Studio new webapp authentication options
@@ -72,8 +72,8 @@ The following table shows the authentication options available when creating a n
  | ----------------- | ------------ | ---------- |
 | None            |  No authentication | | 
 | Individual User Accounts    |  Individual authentication | <xref:security/authentication/identity>
-| Work or School Cloud Single Org  |  Organizational authentication for a single tenant | [Add sign-in](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
-| Work or School Cloud Multiple Org |  Organizational authentication for multiple tenants | [Add sign-in](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| Work or School Cloud Single Org  |  Organizational authentication for a single tenant | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| Work or School Cloud Multiple Org |  Organizational authentication for multiple tenants | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
 | Windows         |  Windows authentication | [Windows Authentication](xref:security/authentication/windowsauth)
 
 ## Additional resources
