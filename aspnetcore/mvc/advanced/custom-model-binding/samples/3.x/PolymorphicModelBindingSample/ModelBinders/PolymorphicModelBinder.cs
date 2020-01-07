@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-namespace PolymorphicModelBinding.ModelBinders
+namespace PolymorphicModelBindingSample.ModelBinders
 {
     #region snippet
     public abstract class Device

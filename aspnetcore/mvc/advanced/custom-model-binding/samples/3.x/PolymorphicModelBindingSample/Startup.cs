@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PolymorphicModelBinding.ModelBinders;
+using PolymorphicModelBindingSample.ModelBinders;
 
-namespace PolymorphicModelBinding
+namespace PolymorphicModelBindingSample
 {
     public class Startup
     {
