@@ -392,7 +392,7 @@ Visit the Contact page at either its ordinary route, `/Contact`, or the custom r
 
 ## Page model action conventions
 
-The default page model provider that implements <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageApplicationModelProvider> invokes conventions which are designed to provide extensibility points for configuring page models. These conventions are useful when building and modifying page discovery and processing scenarios.
+The default page model provider that implements <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageApplicationModelProvider> invokes conventions that are designed to provide extensibility points for configuring page models. These conventions are useful when building and modifying page discovery and processing scenarios.
 
 For the examples in this section, the sample app uses an `AddHeaderAttribute` class, which is a <xref:Microsoft.AspNetCore.Mvc.Filters.ResultFilterAttribute>, that applies a response header:
 
