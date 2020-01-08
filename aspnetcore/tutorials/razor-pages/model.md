@@ -121,7 +121,7 @@ Create a *Pages/Movies* folder:
 
 Right click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
 
-![Image from the previous instructions.](model/_static/sca.png)
+![Image from the previous instructions.](model/_static/scaMac.png)
 
 In the **New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Next**.
 
