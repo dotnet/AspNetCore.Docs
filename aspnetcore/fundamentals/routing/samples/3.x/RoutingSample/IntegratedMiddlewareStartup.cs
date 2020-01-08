@@ -47,7 +47,7 @@ namespace RoutingSample
                 // Using metadata to configure the audit policy
                 endpoints.MapGet("/sensitive", async context =>
                 {
-                    await context.Response.WriteAsync("<sensitive data>");
+                    await context.Response.WriteAsync("sensitive data");
                 })
                 .WithMetadata(new AuditPolicyAttribute(needsAudit: true));
             });

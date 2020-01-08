@@ -120,7 +120,7 @@ The following code shows how to retrieve and inspect an endpoint:
 
 The endpoint, if selected, can be retrieved from the `HttpContext`. It's properties can be inspected for informational purposes. Endpoints objects are immutable and cannot be modified after creation. The most common kind of endpoint is a <xref:Microsoft.AspNetCore.Routing.RouteEndpoint>. `RouteEndpoint` includes information allowing it to be to selected by the routing system.
 
-In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*) configures an in-line [middleware](fundamentals/middleware).
+In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*) configures an in-line [middleware](fundamentals/middleware/index).
 
 <a name="mt"></a>
 
