@@ -121,7 +121,7 @@ Create a *Pages/Movies* folder:
 
 Right click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
 
-![Image from the previous instructions.](model/_static/sca.png)
+![Image from the previous instructions.](model/_static/scaMac.png)
 
 In the **New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Next**.
 
@@ -133,7 +133,7 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 * In the **Data context class** row, type the name for the new class, RazorPagesMovie.**Data**.RazorPagesMovieContext. [This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) is not required. It creates the database context class with the correct namespace.
 * Select **Add**.
 
-![Image from the previous instructions.](model/_static/3/arpMac.png)
+![Image from the previous instructions.](model/_static/arpMac.png)
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
