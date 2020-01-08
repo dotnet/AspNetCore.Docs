@@ -67,7 +67,6 @@ The ASP.NET Core framework extends the builder provided by `UseEndpoints`:
 - [MapControllers (Controllers)](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
 - [MapHub<THub> (SignalR)](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) <!-- Review required for URL change-->
 - MapGrpcService<TService> (gRPC)
-<!-- TODO provide link to MapGrpcService see  -->
 
 The following code shows an example of routing with a more sophisticated route template:
 
@@ -119,19 +118,18 @@ The following code shows how to retrieve and inspect an endpoint:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/EndpointInspectorStartup.cs?name=snippet)]
 
-The endpoint (if one is selected) can be retrieved from the `HttpContext`. It's properties can be inspected to for informational purposes. Endpoints objects are immutable, and cannot be modified after creation. The most common kind of endpoint to encounter is a `RouteEndpoint`, which includes information allowing to be to selected by the routing system.
+The endpoint, if selected, can be retrieved from the `HttpContext`. It's properties can be inspected for informational purposes. Endpoints objects are immutable and cannot be modified after creation. The most common kind of endpoint is a <xref:Microsoft.AspNetCore.Routing.RouteEndpoint>. `RouteEndpoint` includes information allowing it to be to selected by the routing system.
 
+In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*) configures an in-line [middleware](fundamentals/middleware).
+
+<a name="mt"></a>
+
+<!-- Review: How does it change? -->
 The following code shows how the endpoint associated with the request changes:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/MiddlewareFlowStartup.cs?name=snippet)]
 
-<!-- Probably remove this // Location section. I added it so the code comments could be localized -->
-The preceding code contains the following `// Location` comments:
-
-* // `Location 1`: Before routing runs. Endpoint is always null here.
-* // `Location 2`: After routing runs, endpoint will be non-null if routing found a match.
-* // `Location 3`: Runs when this endpoint matches.
-* // `Location 4`: Runs after UseEndpoints. Runs only if there was no match.
+[!INCLUDE[](~/includes/MTcomments.md)]
 
 This preceding sample adds `Console.WriteLine` statements that display whether or not an endpoint has been selected. For clarity, the sample assigns a display name to the provided "hello world" endpoint.
 
@@ -181,7 +179,7 @@ The preceding sample code here is intended to demonstrate the concepts of endpoi
 
 * Log to a file or database.
 * Include details such as the user, ip address, name of the sensitive endpoint, etc.
-<!-- Rick-Anderson start here-->
+
 The audit policy metadata (`AuditPolicyAttribute`) is defined as an `Attribute` for easier use with class-based frameworks such as Controllers and SignalR. When using *Route to Code*, metadata is attached with a builder API, but class-based frameworks will include all attributes on the corresponding method and class when creating endpoints. The best practices for metadata types are to define them either was interfaces or as attributes for maximum reuse. The metadata system is flexible, and doesn't impose any limitations.
 
 > [!INFO]
