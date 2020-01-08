@@ -56,7 +56,7 @@ The following items are protocol and binary breaking changes:
 
 ### Behavior breaking changes
 
-When making non-breaking changes, you must also consider whether older clients can continue working with the new server behavior. For example, adding a new field to a request message:
+When making non-breaking changes, you must also consider whether older clients can continue working with the new service behavior. For example, adding a new field to a request message:
 
 * Isn't a protocol breaking change.
 * Returning an error status on the server if the new field isn't set makes it a breaking change for old clients.
