@@ -51,7 +51,7 @@ Right click the *Models* folder. Select **Add** > **Class**. Name the class **Mo
 
 [!INCLUDE [model 1b](~/includes/RP/model1b.md)]
 
-## Add EF tools
+### Add EF tools
 
 Run the following .NET Core CLI command:
 
