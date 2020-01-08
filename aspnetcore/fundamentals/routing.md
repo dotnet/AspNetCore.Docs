@@ -86,7 +86,6 @@ The endpoint routing system described in this document is new as of ASP.NET Core
 
 The following code shows an example of routing with [health checks](xref:host-and-deploy/health-checks) authorization and middleware:
 
-<!-- TODO, move comments out of code, code comments are **not** MT (machine translated) -->
 [!code-csharp[](routing/samples/3.x/RoutingSample/AuthorizationStartup.cs?name=snippet)]
 
 This preceding demonstrates how:
@@ -109,7 +108,7 @@ The routing system builds on top of the middleware pipeline by adding the powerf
 
 An endpoint is:
 
-* Executable: Has a [RequestDelegate](xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate*)
+* Executable: Has a <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate>
 * Extensible: Has an [Metadata](xref:Microsoft.AspNetCore.Http.Endpoint.Metadata*) collection
 * Selectable: (optionally) Has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern*) 
 * Enumerable: the collection of endpoints can be listed by retrieving the [EndpointDataSource](xref:Microsoft.AspNetCore.Routing.EndpointDataSource) from [DI](xref:fundamentals/dependency-injection)
@@ -120,7 +119,7 @@ The following code shows how to retrieve and inspect an endpoint:
 
 The endpoint, if selected, can be retrieved from the `HttpContext`. It's properties can be inspected for informational purposes. Endpoints objects are immutable and cannot be modified after creation. The most common kind of endpoint is a <xref:Microsoft.AspNetCore.Routing.RouteEndpoint>. `RouteEndpoint` includes information allowing it to be to selected by the routing system.
 
-In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*) configures an in-line [middleware](fundamentals/middleware/index).
+In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*) configures an in-line [middleware](xref:fundamentals/middleware/index).
 
 <a name="mt"></a>
 
@@ -152,13 +151,13 @@ Running this code with a URL **not** `/` displays:
 This output demonstrates that:
 
 * The endpoint is always null before `UseRouting` executes.
-* The endpoint is non-null between `UseRouting` and `UseEndpoints` if a match is found.
-* The `UseEndpoints` middleware is *terminal* when a match is found. <!-- need to define what Terminal means -->
+* If a match is found, the endpoint is non-null between `UseRouting` and `UseEndpoints`.
+* The `UseEndpoints` middleware is terminal* when a match is found. [Terminal middleware](#tm) is defined later in this document.
 * The middleware after `UseEndpoints` execute **only** when **no** match is found.
 
 The `UseRouting` middleware uses the [SetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.SetEndpoint*) method to attach the endpoint to the current context. It's possible to replace the `UseRouting` middleware with custom logic and still get the benefits of using endpoints. Endpoints are a low-level primitive like middleware, and not coupled to the routing implementation. <!-- REVIEW what I added - most apps ... --> Most apps do  **not** need to replace `UseRouting` with custom logic.
 
-The `UseEndpoints` middleware is **designed** to be used in tandem with the `UseRouting` middleware. The core logic to *execute* an endpoint isn't complicated. Use `GetEndpoint` to retrieve the endpoint, and then invoke its `RequestDelegate` property.
+The `UseEndpoints` middleware is **designed** to be used in tandem with the `UseRouting` middleware. The core logic to *execute* an endpoint isn't complicated. Use <xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*> to retrieve the endpoint, and then invoke its <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate> property.
 
 The following code demonstrates how middleware can influence or react to routing:
 
@@ -170,17 +169,17 @@ The preceding example demonstrates two important concepts:
     * Typically middleware that appears before routing modifies some property of the request, such as <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>, <xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions.UseHttpMethodOverride*>, or <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*>.
 * Middleware can run between `UseRouting` and `UseEndpoints` to process the results of routing before the endpoint is executed.
     * Usually middleware that run between `UseRouting` and `UseEndpoints` inspect metadata to understand the endpoints.
-    * Often middleware that run between `UseRouting` and `UseEndpoints` make a security decision, such as `UseAuthorization`, or `UseCors`.
+    * Middleware that run between `UseRouting` and `UseEndpoints` typically makes a security decision, such as `UseAuthorization`, or `UseCors`.
     * The combination of middleware and metadata allows configuring policies per-endpoint.
 
 The preceding example shows an example of a custom middleware that supports per-endpoint policies. The middleware writes an *audit log* of access to sensitive data to the console. The middleware can be configured to *audit* an endpoint with the `AuditPolicyAttribute` metadata. This sample demonstrates an *opt-in* pattern, only endpoints that are marked as sensitive are audited. It is possible to define this logic in the reverse, auditing everything that isn't marked as safe for example. The endpoint metadata system is flexible, this logic could be designed in whatever way suits the use case.
 
-The preceding sample code here is intended to demonstrate the concepts of endpoints in a basic way, and is **not** intended for production use. A more complete version of such an *audit log* middleware would:
+The preceding sample code here is intended to demonstrate the basic concepts of endpoints and is **not** intended for production use. A more complete version of an *audit log* middleware would:
 
 * Log to a file or database.
-* Include details such as the user, ip address, name of the sensitive endpoint, etc.
+* Include details such as the user, ip address, name of the sensitive endpoint, and more.
 
-The audit policy metadata (`AuditPolicyAttribute`) is defined as an `Attribute` for easier use with class-based frameworks such as Controllers and SignalR. When using *Route to Code*:
+The audit policy metadata `AuditPolicyAttribute` is defined as an `Attribute` for easier use with class-based frameworks such as Controllers and SignalR. When using *Route to Code*:
 
 * Metadata is attached with a builder API.
 * Class-based frameworks include all attributes on the corresponding method and class when creating endpoints.
@@ -195,31 +194,39 @@ The following code sample contrasts using middleware with using routing:
 
 <a name="tm"></a>
 
-We refer to the style of middleware shown with `Approach 1:` as a *terminal middleware*. It's called *terminal middleware* because it does a matching operation:
+The style of middleware shown with `Approach 1:` is *terminal middleware*. It's called *terminal middleware* because it does a matching operation:
 
-* The matching operation in the preceding sample is `Path == "/"`
-* If the match is successful, it executes some functionality, and `return` rather than invoking the `next` middleware.
+* The matching operation in the preceding sample is `Path == "/"` for the middleware and `Path == "/Movie"` for routing.
+* When a match is successful, it executes some functionality and calls `return` rather than invoking the `next` middleware.
 
 Comparing a terminal middleware and routing:
-* Both approaches allow *terminating* the processing pipeline
-    * Middleware can do this by returning rather than invoking `next`
-    * Endpoints are always terminal
-* Terminal middleware allow you to position the middleware at an arbitrary place in the pipeline
-    * Endpoints execute at the position of `UseEndpoints`
-* Terminal middleware allow you to write arbitrary logic to detemine when they match
-    * Custom logic can be verbose, or complicated to get right
-    * Routing provides straightforward solutions for common needs 
-* Endpoints interface with middleware such as `UseAuthorization` or `UseCors`
-    * Using a terminal middleware in this fashion requires you to manually interface with the authorization system
+* Both approaches allow *terminating* the processing pipeline:
+    * Middleware terminates the pipeline by returning rather than invoking `next`.
+    * Endpoints are always terminal.
+* Terminal middleware allows positioning the middleware at an arbitrary place in the pipeline:
+    * Endpoints execute at the position of `UseEndpoints`.
+* Terminal middleware allows arbitrary code to determine when the route matches:
+    * Custom route matching code can be verbose and difficult to get correct.
+    * Routing provides straightforward solutions for typical apps. <!-- Review next--> Most apps do **not** require custom route matching code.
+* Endpoints interface with middleware such as `UseAuthorization` or `UseCors`.
+    * Using a terminal middleware with `UseAuthorization` or `UseCors` requires manual interfacing with the authorization system.
 
-An endpoint defines a delegate to process requests and a collection of arbitrary metadata. The metadata is used to implement cross-cutting concerns based on policies and configuration attached to each endpoint.
+An endpoint defines both:
 
-Terminal middleware can still be an effective tool, but can require a lot of manual work, and manual integration with other systems to achieve the desired level of flexibility. Before writing a terminal middleware, think about integrating with routing instead. 
+* A delegate to process requests.
+* A collection of arbitrary metadata. The metadata is used to implement cross-cutting concerns based on policies and configuration attached to each endpoint.
 
-Existing terminal middleware that integrate with `Map` or `MapWhen` can usually be turned into a *router-ware* endpoint easily. [MapHealthChecks](https://github.com/aspnet/AspNetCore/blob/master/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for *router-ware*:
+Terminal middleware can be an effective tool, but can require:
+
+* A significant amount of coding and testing.
+* Manual integration with other systems to achieve the desired level of flexibility.
+
+Before writing a terminal middleware, consider integrating with routing instead.
+
+Existing terminal middleware that integrate with `Map` or `MapWhen` can usually be turned into a *router-ware* endpoint. [MapHealthChecks](https://github.com/aspnet/AspNetCore/blob/master/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for *router-ware*:
 * Write an extension method on `IEndpointRouteBuilder`.
 * Create a nested middleware pipeline using `CreateApplicationBuilder`.
-* Attach your middleware to the new pipeline (in this case, `UseHealthChecks`).
+* Attach your middleware to the new pipeline. In this case, `UseHealthChecks`.
 * `Build` the middleware pipeline into a `RequestDelegate`.
 * Call `Map` and provide the new middleware pipeline.
 * Return the builder object provided by `Map` from the extension method.
@@ -228,17 +235,20 @@ The following code sample shows use of `MapHealthChecks`:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/AuthorizationStartup.cs?name=snippet)]
 
-This demonstrates why returning the builder object is important. This allows the application developer to configure policies such as authorization for the endpoint. In this example the health checks middleware has no direct integration with the authorization system, it is layered on top with metadata.
+The preceding sample shows why returning the builder object is important. Returning the builder object allows the app developer to configure policies such as authorization for the endpoint. In this example the health checks middleware:
 
-The metadata system was created by the ASP.NET Core team as a reaction to the problems encountered by extensibility authors using terminal middleware. It's not desirable for each middleware to implement its own integration with the authorization system.
+* Has no direct integration with the authorization system.
+* Is layered on top with metadata.  <!-- review: layered on top with metadata won't MT. Can you rewrite that? -->
+
+The metadata system was created in response to the problems encountered by extensibility authors using terminal middleware. It's problematic for each middleware to implement its own integration with the authorization system.
 
 ### URL matching concepts
 
 URL matching is the process by which routing matches an incoming request to an *endpoint*. This process is based on data in the URL path and headers but can be extended to consider any data in the request.
 
-When a Routing Middleware executes, it sets an endpoint (`Endpoint`) and route values to a feature on the <xref:Microsoft.AspNetCore.Http.HttpContext>. For the current request:
+When a Routing Middleware executes, it sets an `Endpoint` and route values to a feature on the <xref:Microsoft.AspNetCore.Http.HttpContext>. For the current request:
 
-* Calling `HttpContext.GetEndpoint` gets the endpoint.
+* Calling [HttpContext.GetEndpoint](<xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*>) gets the endpoint.
 * `HttpRequest.RouteValues` gets the collection of route values.
 
 Middleware running after the Routing Middleware can see the endpoint and take action. For example, an Authorization Middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
@@ -1907,7 +1917,5 @@ Link generation only generates a link for this route when the matching values fo
 ## Complex segments
 
 Complex segments (for example `[Route("/x{token}y")]`) are processed by matching up literals from right to left in a non-greedy way. See [this code](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) for a detailed explanation of how complex segments are matched. The [code sample](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) is not used by ASP.NET Core, but it provides a good explanation of complex segments.
-<!-- While that code is no longer used by ASP.NET Core for complex segment matching, it provides a good match to the current algorithm. The [current code](https://github.com/aspnet/AspNetCore/blob/91514c9af7e0f4c44029b51f05a01c6fe4c96e4c/src/Http/Routing/src/Matching/DfaMatcherBuilder.cs#L227-L244) is too abstracted from matching to be useful for understanding complex segment matching.
--->
 
 ::: moniker-end

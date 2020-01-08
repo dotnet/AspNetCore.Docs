@@ -17,10 +17,10 @@ namespace RoutingSample
                     // Modify which startup class is used to run the various samples.
                     // webBuilder.UseStartup<Startup>();
                     //  webBuilder.UseStartup<AuthorizationStartup>();
-                    webBuilder.UseStartup<EndpointInspectorStartup>();
+                    // webBuilder.UseStartup<EndpointInspectorStartup>();
                     //  webBuilder.UseStartup<IntegratedMiddlewareStartup>();
                     //  webBuilder.UseStartup<MiddlewareFlowStartup>();
-                    //  webBuilder.UseStartup<TerminalMiddlewareStartup>();
+                      webBuilder.UseStartup<TerminalMiddlewareStartup>();
 
                 });
     }

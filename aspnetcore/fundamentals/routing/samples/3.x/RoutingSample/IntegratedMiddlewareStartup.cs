@@ -20,18 +20,18 @@ namespace RoutingSample
                 app.UseDeveloperExceptionPage();
             }
 
-            // Location 1: before routing runs, can influence request before routing runs
+            // Location 1: Before routing runs. Can influence request before routing runs.
             app.UseHttpMethodOverride();
 
             app.UseRouting();
 
-            // Location 2: after routing runs, middleware can match based on metadata
+            // Location 2: After routing runs. Middleware can match based on metadata.
             app.Use(next => context =>
             {
                 var endpoint = context.GetEndpoint();
                 if (endpoint?.Metadata.GetMetadata<AuditPolicyAttribute>()?.NeedsAudit == true)
                 {
-                    Console.WriteLine($"ACCESS TO SENSITIVE INFORMATION AT: {DateTime.UtcNow}");
+                    Console.WriteLine($"ACCESS TO SENSITIVE DATA AT: {DateTime.UtcNow}");
                 }
 
                 return next(context);
