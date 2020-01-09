@@ -27,14 +27,6 @@ var client = new Greet.GreeterClient(channel);
 
 A channel represents a long-lived connection to a gRPC service. When a channel is created it is configured with options related to calling a service. For example, the `HttpClient` used to make calls, the maximum send and receive message size, and logging can be specified on `GrpcChannelOptions` and used with `GrpcChannel.ForAddress`. For a complete list of options, see [client configuration options](xref:grpc/configuration#configure-client-options).
 
-Channel and client usage information:
-
-* Creating a channel can be an expensive operation. Reusing a channel for gRPC calls offers performance benefits.
-* gRPC clients are created with channels. gRPC clients are lightweight objects and don't need to be cached or reused.
-* Multiple concrete gRPC clients can be created from a channel, including different types of clients.
-* A channel and clients created from the channel can safely be used by multiple threads.
-* Clients created from the channel can make multiple simultaneous calls.
-
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
 
@@ -43,6 +35,14 @@ var counterClient = new Count.CounterClient(channel);
 
 // Use clients to call gRPC services
 ```
+
+Channel and client usage information:
+
+* Creating a channel can be an expensive operation. Reusing a channel for gRPC calls offers performance benefits.
+* gRPC clients are created with channels. gRPC clients are lightweight objects and don't need to be cached or reused.
+* Multiple concrete gRPC clients can be created from a channel, including different types of clients.
+* A channel and clients created from the channel can safely be used by multiple threads.
+* Clients created from the channel can make multiple simultaneous calls.
 
 `GrpcChannel.ForAddress` isn't the only option for creating a gRPC client. If you are calling gRPC services from an ASP.NET Core app, consider [gRPC client factory integration](xref:grpc/clientfactory). gRPC integration with `HttpClientFactory` offers a centralized alternative to creating gRPC clients.
 
