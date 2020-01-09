@@ -31,7 +31,7 @@ Adding an OpenAPI reference using any of the commands on this page adds an `<Ope
 
 The preceding reference is required for the app to call the generated client code.
 
-<!-- TODO: Restore after https://github.com/aspnet/AspNetCore/issues/12738
+<!-- TODO: Restore after https://github.com/dotnet/AspNetCore/issues/12738
 ### Add Project
 
 #### Options

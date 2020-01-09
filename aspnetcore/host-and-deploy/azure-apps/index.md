@@ -186,7 +186,7 @@ The [Docker Hub](https://hub.docker.com/r/microsoft/aspnetcore/) contains the la
 
 ### Install the preview site extension
 
-If a problem occurs using the preview site extension, open an [aspnet/AspNetCore issue](https://github.com/aspnet/AspNetCore/issues).
+If a problem occurs using the preview site extension, open an [dotnet/AspNetCore issue](https://github.com/dotnet/AspNetCore/issues).
 
 1. From the Azure Portal, navigate to the App Service.
 1. Select the web app.
