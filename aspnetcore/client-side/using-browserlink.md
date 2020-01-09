@@ -36,23 +36,23 @@ The ASP.NET Core 2.0 **Web Application**, **Empty**, and **Web API** project tem
 
 ::: moniker range="<= aspnetcore-1.1"
 
-The ASP.NET Core 1.x **Web Application** project template has a package reference for the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package. The **Empty** or **Web API** template projects require you to add a package reference to `Microsoft.VisualStudio.Web.BrowserLink`.
+The ASP.NET Core 1.x **Web Application** project template has a package reference for the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package. Other project types require you to add a package reference to `Microsoft.VisualStudio.Web.BrowserLink`.
 
-Since Browser Link is a Visual Studio feature, the easiest way to add the package to a project is to open the **Package Manager Console** (**View** > **Other Windows** > **Package Manager Console**) and run the following command:
+::: moniker-end
+
+One way to add the package to a project is to open the **Package Manager Console** (**View** > **Other Windows** > **Package Manager Console**) and run the following command:
 
 ```powershell
 Install-Package Microsoft.VisualStudio.Web.BrowserLink
 ```
 
-Alternatively, you can use **NuGet Package Manager**. Right-click the project name in **Solution Explorer** and choose **Manage NuGet Packages**:
+Alternatively, right-click the project name in **Solution Explorer** and choose **Manage NuGet Packages**:
 
 ![Open NuGet Package Manager](using-browserlink/_static/open-nuget-package-manager.png)
 
 Find and install the package:
 
 ![Add package with NuGet Package Manager](using-browserlink/_static/add-package-with-nuget-package-manager.png)
-
-::: moniker-end
 
 ### Configuration
 
@@ -72,7 +72,7 @@ if (env.IsDevelopment())
 }
 ```
 
-For more information, see [Use multiple environments](xref:fundamentals/environments).
+For more information, see <xref:fundamentals/environments>.
 
 ## How to use Browser Link
 
@@ -93,7 +93,7 @@ To choose a single web browser to launch when starting the project, use the drop
 
 ![F5 drop-down menu](using-browserlink/_static/debug-target-dropdown-menu.png)
 
-To open multiple browsers at once, choose **Browse with...** from the same drop-down. Hold down the <kbd>CTRL</kbd> key to select the browsers you want, and then click **Browse**:
+To open multiple browsers at once, choose **Browse with...** from the same drop-down. Hold down the <kbd>Ctrl</kbd> key to select the browsers you want, and then click **Browse**:
 
 ![Open many browsers at once](using-browserlink/_static/open-many-browsers-at-once.png)
 
