@@ -90,7 +90,7 @@ The following code uses <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderEx
 
 [!code-csharp[](areas/samples/MVCareas/StartupMapAreaRoute.cs?name=snippet&highlight=18-27)]
 
-When using `MapAreaRoute` with ASP.NET Core 2.2, see [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/7772).
+When using `MapAreaRoute` with ASP.NET Core 2.2, see [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/7772).
 
 For more information, see [Area routing](xref:mvc/controllers/routing#areas).
 

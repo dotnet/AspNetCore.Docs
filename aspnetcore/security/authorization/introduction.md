@@ -14,6 +14,8 @@ Authorization refers to the process that determines what a user is able to do. F
 
 Authorization is orthogonal and independent from authentication. However, authorization requires an authentication mechanism. Authentication is the process of ascertaining who a user is. Authentication may create one or more identities for the current user.
 
+For more information about authentication in ASP.NET Core, see <xref:security/authentication/index>.
+
 ## Authorization types
 
 ASP.NET Core authorization provides a simple, declarative [role](xref:security/authorization/roles) and a rich [policy-based](xref:security/authorization/policies) model. Authorization is expressed in requirements, and handlers evaluate a user's claims against requirements. Imperative checks can be based on simple policies or policies which evaluate both the user identity and properties of the resource that the user is attempting to access.

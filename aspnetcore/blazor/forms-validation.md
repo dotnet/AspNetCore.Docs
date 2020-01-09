@@ -191,7 +191,7 @@ Create a component with the following markup, and use the component just as `Inp
 
 ## Validation support
 
-The `DataAnnotationsValidator` component attaches validation support using data annotations to the cascaded `EditContext`. Enabling support for validation using data annotations requires this explicit gesture. To use a different validation system than data annotations, replace the `DataAnnotationsValidator` with a custom implementation. The ASP.NET Core implementation is available for inspection in the reference source: [DataAnnotationsValidator](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs)/[AddDataAnnotationsValidation](https://github.com/aspnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
+The `DataAnnotationsValidator` component attaches validation support using data annotations to the cascaded `EditContext`. Enabling support for validation using data annotations requires this explicit gesture. To use a different validation system than data annotations, replace the `DataAnnotationsValidator` with a custom implementation. The ASP.NET Core implementation is available for inspection in the reference source: [DataAnnotationsValidator](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs)/[AddDataAnnotationsValidation](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
 
 Blazor performs two types of validation:
 
@@ -249,7 +249,7 @@ The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.o
 
 ### [CompareProperty] attribute
 
-The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the `DataAnnotationsValidator` component. The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) *experimental* package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the `[Compare]` attribute. For more information, see [CompareAttribute ignored with OnValidSubmit EditForm (aspnet/AspNetCore #10643)](https://github.com/aspnet/AspNetCore/issues/10643#issuecomment-543909748).
+The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the `DataAnnotationsValidator` component. The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) *experimental* package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the `[Compare]` attribute. For more information, see [CompareAttribute ignored with OnValidSubmit EditForm (dotnet/AspNetCore #10643)](https://github.com/dotnet/AspNetCore/issues/10643#issuecomment-543909748).
 
 ### Nested models, collection types, and complex types
 
