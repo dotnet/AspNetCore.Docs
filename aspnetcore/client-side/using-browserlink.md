@@ -18,7 +18,7 @@ Browser Link is a Visual Studio feature. It creates a communication channel betw
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Install the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package. For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (*.cshtml*) files as described in <xref:mvc/views/view-compilation>. Razor syntax changes are applied only when runtime compilation has been enabled.
+Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project. For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (*.cshtml*) files as described in <xref:mvc/views/view-compilation>. Razor syntax changes are applied only when runtime compilation has been enabled.
 
 ::: moniker-end
 
@@ -39,20 +39,6 @@ The ASP.NET Core 2.0 **Web Application**, **Empty**, and **Web API** project tem
 The ASP.NET Core 1.x **Web Application** project template has a package reference for the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package. Other project types require you to add a package reference to `Microsoft.VisualStudio.Web.BrowserLink`.
 
 ::: moniker-end
-
-One way to add the package to a project is to open the **Package Manager Console** (**View** > **Other Windows** > **Package Manager Console**) and run the following command:
-
-```powershell
-Install-Package Microsoft.VisualStudio.Web.BrowserLink
-```
-
-Alternatively, right-click the project name in **Solution Explorer** and choose **Manage NuGet Packages**:
-
-![Open NuGet Package Manager](using-browserlink/_static/open-nuget-package-manager.png)
-
-Find and install the package:
-
-![Add package with NuGet Package Manager](using-browserlink/_static/add-package-with-nuget-package-manager.png)
 
 ### Configuration
 
