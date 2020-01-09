@@ -137,6 +137,16 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
+### Add EF tools
+
+Run the following .NET Core CLI command:
+
+```dotnetcli
+dotnet tool install --global dotnet-ef
+```
+
+The preceding command adds the Entity Framework Core Tools for the .NET Core CLI.
+
 ---
 
 ### Files created
