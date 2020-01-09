@@ -40,7 +40,7 @@ Channel and client usage information:
 
 * Creating a channel can be an expensive operation. Reusing a channel for gRPC calls offers performance benefits.
 * gRPC clients are created with channels. gRPC clients are lightweight objects and don't need to be cached or reused.
-* Multiple concrete gRPC clients can be created from a channel, including different types of clients.
+* Multiple gRPC clients can be created from a channel, including different types of clients.
 * A channel and clients created from the channel can safely be used by multiple threads.
 * Clients created from the channel can make multiple simultaneous calls.
 
