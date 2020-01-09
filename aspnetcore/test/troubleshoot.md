@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot ASP.NET Core projects
+title: Troubleshoot and debug ASP.NET Core projects
 author: Rick-Anderson
 description: Understand and troubleshoot warnings and errors with ASP.NET Core projects.
 ms.author: riande
@@ -7,7 +7,7 @@ ms.custom: mvc
 ms.date: 07/10/2019
 uid: test/troubleshoot
 ---
-# Troubleshoot ASP.NET Core projects
+# Troubleshoot and debug ASP.NET Core projects
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -156,3 +156,12 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env,
     }
 }
 ```
+
+## Debug ASP.NET Core apps
+
+The following links provide information on debugging ASP.NET Core apps.
+
+* [Debugging ASP Core on Linux](https://devblogs.microsoft.com/premier-developer/debugging-asp-core-on-linux-with-visual-studio-2017/)
+* [Debugging .NET Core on Unix over SSH](https://devblogs.microsoft.com/devops/debugging-net-core-on-unix-over-ssh/)
+* [Quickstart: Debug ASP.NET with the Visual Studio debugger](/visualstudio/debugger/quickstart-debug-aspnet)
+* See [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/2960) for more debugging information.

@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/02/2019
+ms.date: 12/11/2019
 uid: web-api/http-repl
 ---
 # Test web APIs with the HTTP REPL
@@ -684,6 +684,7 @@ To issue an HTTP DELETE request:
         "data": "Strawberry"
       }
     ]
+    ```
 
 1. Run the `delete` command on an endpoint that supports it:
 

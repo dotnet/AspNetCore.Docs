@@ -326,8 +326,6 @@
               uid: host-and-deploy/blazor/server
             - name: Configure the Linker
               uid: host-and-deploy/blazor/configure-linker
-        - name: Samples
-          href: https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor
     - name: Client-side development
       items:
         - name: Single Page Apps
@@ -586,6 +584,8 @@
       uid: grpc/diagnostics
     - name: Security considerations
       uid: grpc/security
+    - name: Versioning gRPC services
+      uid: grpc/versioning
     - name: Manage Protobuf references with dotnet-grpc
       uid: grpc/dotnet-grpc
     - name: Migrate gRPC services from C-core
@@ -612,7 +612,7 @@
       uid: test/integration-tests
     - name: Load and stress testing
       uid: test/loadtests
-    - name: Troubleshoot
+    - name: Troubleshoot and debug
       uid: test/troubleshoot
     - name: Logging
       uid: fundamentals/logging/index
@@ -885,15 +885,15 @@
             - name: Overview
               uid: security/authentication/azure-active-directory/index
             - name: Integrate Azure AD into a web app
-              href: https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/
+              href: https://github.com/Azure-Samples/ms-identity-aspnetcore-webapp-tutorial
             - name: Integrate Azure AD B2C into a web app
               uid: security/authentication/azure-ad-b2c
             - name: Integrate Azure AD B2C into a web API
               uid: security/authentication/azure-ad-b2c-webapi
             - name: Call a web API from WPF
-              href: https://azure.microsoft.com/documentation/samples/active-directory-dotnet-native-aspnetcore/
+              href: https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore
             - name: Call a web API in a web app using Azure AD
-              href: https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/
+              href: https://github.com/Azure-Samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore
         - name: Secure ASP.NET Core apps with IdentityServer4
           href: https://identityserver4.readthedocs.io/
         - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
@@ -1101,6 +1101,9 @@
       uid: fundamentals/host/hosted-services
     - name: Hosting startup assemblies
       uid: fundamentals/configuration/platform-specific-configuration
+    - name: ASP.NET Core in class libraries
+      displayName: shared framework
+      uid: fundamentals/target-aspnetcore
     - name: Microsoft.AspNetCore.App metapackage
       uid: fundamentals/metapackage-app
     - name: Microsoft.AspNetCore.All metapackage

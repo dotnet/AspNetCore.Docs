@@ -84,9 +84,24 @@ The Redis backplane is the recommended scale-out approach for apps hosted on you
 
 The Azure SignalR Service advantages noted earlier are disadvantages for the Redis backplane:
 
-* Sticky sessions, also known as [client affinity](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), is required. Once a connection is initiated on a server, the connection has to stay on that server.
+* Sticky sessions, also known as [client affinity](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), is required, except when **both** of the following are true:
+  * All clients are configured to **only** use WebSockets.
+  * The [SkipNegotiation setting](xref:signalr/configuration#configure-additional-options) is enabled in the client configuration. 
+   Once a connection is initiated on a server, the connection has to stay on that server.
 * A SignalR app must scale out based on number of clients even if few messages are being sent.
 * A SignalR app uses significantly more connection resources than a web app without SignalR.
+
+## IIS limitations on Windows client OS
+
+Windows 10 and Windows 8.x are client operating systems. IIS on client operating systems has a limit of 10 concurrent connections. SignalR's connections are:
+
+* Transient and frequently re-established.
+* **Not** disposed immediately when no longer used.
+
+The preceding conditions make it likely to hit the 10 connection limit on a client OS. When a client OS is used for development, we recommend:
+
+* Avoid IIS.
+* Use Kestrel or IIS Express as deployment targets.
 
 ## Next steps
 

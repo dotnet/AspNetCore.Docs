@@ -2,9 +2,10 @@
 title: Make HTTP requests using IHttpClientFactory in ASP.NET Core
 author: stevejgordon
 description: Learn about using the IHttpClientFactory interface to manage logical HttpClient instances in ASP.NET Core.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 11/27/2019
+ms.date: 12/16/2019
 uid: fundamentals/http-requests
 ---
 # Make HTTP requests using IHttpClientFactory in ASP.NET Core
@@ -293,7 +294,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 
 - Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
 - Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
-- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+- Create `HttpClient` instances using `new HttpClient(handler, disposeHandler: false)` as needed.
 
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
@@ -351,6 +352,7 @@ In the following example:
 * [Use HttpClientFactory to implement resilient HTTP requests](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)
 * [Implement HTTP call retries with exponential backoff with HttpClientFactory and Polly policies](/dotnet/standard/microservices-architecture/implement-resilient-applications/implement-http-call-retries-exponential-backoff-polly)
 * [Implement the Circuit Breaker pattern](/dotnet/standard/microservices-architecture/implement-resilient-applications/implement-circuit-breaker-pattern)
+* [How to serialize and deserialize JSON in .NET](/dotnet/standard/serialization/system-text-json-how-to)
 
 ::: moniker-end
 
@@ -594,7 +596,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 
 - Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
 - Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
-- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+- Create `HttpClient` instances using `new HttpClient(handler, disposeHandler: false)` as needed.
 
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
@@ -655,7 +657,7 @@ In the following example:
 
 ::: moniker-end
 
-::: moniker range="<= aspnetcore-2.1"
+::: moniker range="= aspnetcore-2.1"
 
 By [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak), and [Steve Gordon](https://github.com/stevejgordon)
 
@@ -902,7 +904,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 
 - Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
 - Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
-- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+- Create `HttpClient` instances using `new HttpClient(handler, disposeHandler: false)` as needed.
 
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 

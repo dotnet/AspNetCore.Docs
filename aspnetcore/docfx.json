@@ -43,15 +43,12 @@
     ],
     "overwrite": [],
     "externalReference": [],
-    "xrefService": [
-      "https://xref.docs.microsoft.com/query?uid={uid}"
-    ],
     "globalMetadata": {
       "_navPath": "/foo",
       "_navRel": "/foo",
       "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
       "feedback_github_repo": "aspnet/AspNetCore.Docs",
-      "feedback_product_url": "https://github.com/aspnet/Home/blob/master/CONTRIBUTING.md",
+      "feedback_product_url": "https://github.com/dotnet/aspnetcore/blob/master/CONTRIBUTING.md",
       "feedback_system": "GitHub",
       "ms.prod": "aspnet-core",
       "uhfHeaderId": "MSDocsHeader-DotNet",
