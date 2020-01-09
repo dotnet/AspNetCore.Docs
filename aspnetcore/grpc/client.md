@@ -32,7 +32,7 @@ Creating a channel can be an expensive operation and reusing a channel for gRPC 
 * Multiple concrete gRPC clients can be created from a channel, including different types of clients.
 * gRPC clients are created with channels. gRPC clients are lightweight objects and don't need to be cached or reused.
 * A channel can safetly be used by multiple threads.
-* A channel can make multiple simultanious calls.
+* A channel can make multiple simultaneous calls.
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
