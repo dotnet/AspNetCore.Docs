@@ -204,7 +204,7 @@ The following image shows the memory profile while invoking the `fileprovider` A
 
 ![preceding chart](memory/_static/fileprovider.png)
 
-The preceding chart shows an obvious issue with the implementation of this class, as it keeps increasing memory usage. This is a known problem that is being tracked in [this issue](https://github.com/aspnet/Home/issues/3110).
+The preceding chart shows an obvious issue with the implementation of this class, as it keeps increasing memory usage. This is a known problem that is being tracked in [this issue](https://github.com/dotnet/aspnetcore/issues/3110).
 
 The same leak could be happen in user code, by one of the following:
 
