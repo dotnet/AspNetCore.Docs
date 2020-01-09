@@ -103,7 +103,7 @@ An unknown error occurred loading [ASP.NET Core Module](xref:host-and-deploy/asp
 
 * Contact [Microsoft Support](https://support.microsoft.com/oas/default.aspx?prid=15832) (select **Developer Tools** then **ASP.NET Core**).
 * Ask a question on Stack Overflow.
-* File an issue on our [GitHub repository](https://github.com/aspnet/AspNetCore).
+* File an issue on our [GitHub repository](https://github.com/dotnet/AspNetCore).
 
 ### 500.30 In-Process Startup Failure
 

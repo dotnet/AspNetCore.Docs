@@ -101,7 +101,7 @@ This interface is implemented by a concrete type, `MyDependency`:
 The container resolves `ILogger<TCategoryName>` by taking advantage of [(generic) open types](/dotnet/csharp/language-reference/language-specification/types#open-and-closed-types), eliminating the need to register every [(generic) constructed type](/dotnet/csharp/language-reference/language-specification/types#constructed-types):
 
 ```csharp
-services.AddSingleton(typeof(ILogger<T>), typeof(Logger<T>));
+services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
 ```
 
 In the sample app, the `IMyDependency` service is registered with the concrete type `MyDependency`. The registration scopes the service lifetime to the lifetime of a single request. [Service lifetimes](#service-lifetimes) are described later in this topic.

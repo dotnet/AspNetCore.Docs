@@ -95,18 +95,13 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   ![macOS New project dialog](razor-pages-start/_static/webapp.png)
 
-* In the **Configure your new ASP.NET Core Web API** dialog, set the  **Target Framework** to **.NET Core 3.1**.
+* In the **Configure your new Web Application** dialog, set the  **Target Framework** to **.NET Core 3.1**.
 
-  ![macOS .NET Core 3.0 selection](razor-pages-start/_static/targetframework3.png)
+  ![macOS .NET Core 3.1 selection](razor-pages-start/_static/targetframework3.png)
 
 * Name the project **RazorPagesMovie**, and then select **Create**.
 
   ![nameproj](razor-pages-start/_static/RazorPagesMovie.png)
-
-
-## Open the project
-
-From Visual Studio, select **File > Open**, and then select the *RazorPagesMovie.csproj* file.
 
 <!-- End of VS tabs -->
 
@@ -237,19 +232,21 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-From a terminal, run the following command:
+* Select **File** > **New Solution**.
 
-<!-- TODO: update these instruction once mac support 2.2 projects -->
+![macOS New solution](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-```dotnetcli
-dotnet new webapp -o RazorPagesMovie
-```
+* Select **.NET Core** > **App** > **Web Application** > **Next**.
 
-The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create a Razor Pages project.
+  ![macOS New project dialog](razor-pages-start/_static/webapp.png)
 
-## Open the project
+* In the **Configure your new ASP.NET Core Web API** dialog, set the  **Target Framework** to **.NET Core 3.1**.
 
-From Visual Studio, select **File > Open**, and then select the *RazorPagesMovie.csproj* file.
+  ![macOS .NET Core 3.0 selection](razor-pages-start/_static/targetframework3.png)
+
+* Name the project **RazorPagesMovie**, and then select **Create**.
+
+  ![nameproj](razor-pages-start/_static/RazorPagesMovie.png)
 
 <!-- End of VS tabs -->
 

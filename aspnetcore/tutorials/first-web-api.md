@@ -446,8 +446,6 @@ Examine the `DeleteTodoItem` method:
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Delete)]
 
-The `DeleteTodoItem` response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
-
 ### Test the DeleteTodoItem method
 
 Use Postman to delete a to-do item:

@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core middleware and the request pipeline.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/08/2019
+ms.date: 12/19/2019
 uid: fundamentals/middleware/index
 ---
 # ASP.NET Core Middleware
@@ -37,11 +37,9 @@ The simplest possible ASP.NET Core app sets up a single request delegate that ha
 
 [!code-csharp[](index/snapshot/Middleware/Startup.cs)]
 
-The first <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run*> delegate terminates the pipeline.
-
 Chain multiple request delegates together with <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*>. The `next` parameter represents the next delegate in the pipeline. You can short-circuit the pipeline by *not* calling the *next* parameter. You can typically perform actions both before and after the next delegate, as the following example demonstrates:
 
-[!code-csharp[](index/snapshot/Chain/Startup.cs)]
+[!code-csharp[](index/snapshot/Chain/Startup.cs?highlight=5-10)]
 
 When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the middleware that terminates further processing still processes code after their `next.Invoke` statements. However, see the following warning about attempting to write to a response that has already been sent.
 
@@ -52,6 +50,12 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 > * May corrupt the body format. For example, writing an HTML footer to a CSS file.
 >
 > <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted*> is a useful hint to indicate if headers have been sent or the body has been written to.
+
+<xref:Microsoft.AspNetCore.Builder.RunExtensions.Run*> delegates don't receive a `next` parameter. The first `Run` delegate is always terminal and terminates the pipeline. `Run` is a convention. Some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline:
+
+[!code-csharp[](index/snapshot/Chain/Startup.cs?highlight=12-15)]
+
+In the preceding example, the `Run` delegate writes `"Hello from 2nd delegate."` to the response and then terminates the pipeline. If another `Use` or `Run` delegate is added after the `Run` delegate, it's not called.
 
 <a name="order"></a>
 
@@ -152,9 +156,7 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-## Use, Run, and Map
-
-Configure the HTTP pipeline using <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*>, <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run*>, and <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map*>. The `Use` method can short-circuit the pipeline (that is, if it doesn't call a `next` request delegate). `Run` is a convention, and some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline.
+## Branch the middleware pipeline
 
 <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map*> extensions are used as a convention for branching the pipeline. `Map` branches the request pipeline based on matches of the given request path. If the request path starts with the given path, the branch is executed.
 
@@ -170,17 +172,6 @@ The following table shows the requests and responses from `http://localhost:1234
 | localhost:1234/map3 | Hello from non-Map delegate. |
 
 When `Map` is used, the matched path segments are removed from `HttpRequest.Path` and appended to `HttpRequest.PathBase` for each request.
-
-<xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> branches the request pipeline based on the result of the given predicate. Any predicate of type `Func<HttpContext, bool>` can be used to map requests to a new branch of the pipeline. In the following example, a predicate is used to detect the presence of a query string variable `branch`:
-
-[!code-csharp[](index/snapshot/Chain/StartupMapWhen.cs)]
-
-The following table shows the requests and responses from `http://localhost:1234` using the previous code.
-
-| Request                       | Response                     |
-| ----------------------------- | ---------------------------- |
-| localhost:1234                | Hello from non-Map delegate. |
-| localhost:1234/?branch=master | Branch used = master         |
 
 `Map` supports nesting, for example:
 
@@ -199,6 +190,23 @@ app.Map("/level1", level1App => {
 
 [!code-csharp[](index/snapshot/Chain/StartupMultiSeg.cs?highlight=13)]
 
+<xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> branches the request pipeline based on the result of the given predicate. Any predicate of type `Func<HttpContext, bool>` can be used to map requests to a new branch of the pipeline. In the following example, a predicate is used to detect the presence of a query string variable `branch`:
+
+[!code-csharp[](index/snapshot/Chain/StartupMapWhen.cs?highlight=14-15)]
+
+The following table shows the requests and responses from `http://localhost:1234` using the previous code:
+
+| Request                       | Response                     |
+| ----------------------------- | ---------------------------- |
+| localhost:1234                | Hello from non-Map delegate. |
+| localhost:1234/?branch=master | Branch used = master         |
+
+<xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen*> also branches the request pipeline based on the result of the given predicate. Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it does short-circuit or contain a terminal middleware:
+
+[!code-csharp[](index/snapshot/Chain/StartupUseWhen.cs?highlight=23-24)]
+
+In the preceding example, a response of "Hello from main pipeline." is written for all requests. If the request includes a query string variable `branch`, its value is logged before the main pipeline is rejoined.
+
 ## Built-in middleware
 
 ASP.NET Core ships with the following middleware components. The *Order* column provides notes on middleware placement in the request processing pipeline and under what conditions the middleware may terminate request processing. When a middleware short-circuits the request processing pipeline and prevents further downstream middleware from processing a request, it's called a *terminal middleware*. For more information on short-circuiting, see the [Create a middleware pipeline with IApplicationBuilder](#create-a-middleware-pipeline-with-iapplicationbuilder) section.
@@ -206,6 +214,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 | Middleware | Description | Order |
 | ---------- | ----------- | ----- |
 | [Authentication](xref:security/authentication/identity) | Provides authentication support. | Before `HttpContext.User` is needed. Terminal for OAuth callbacks. |
+| [Authorization](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*) | Provides authorization support. | Immediately after the Authentication Middleware. |
 | [Cookie Policy](xref:security/gdpr) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. | Before middleware that issues cookies. Examples: Authentication, Session, MVC (TempData). |
 | [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | Before components that use CORS. |
 | [Diagnostics](xref:fundamentals/error-handling) | Several separate middlewares that provide a developer exception page, exception handling, status code pages, and the default web page for new apps. | Before components that generate errors. Terminal for exceptions or serving the default web page for new apps. |
