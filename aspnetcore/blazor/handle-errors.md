@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2019
-no-loc: [Blazor, SignalR, "blazor.webassembly.js"]
+no-loc: [Blazor, SignalR]
 uid: blazor/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps

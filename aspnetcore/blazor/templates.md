@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2019
-no-loc: [Blazor, SignalR, "blazor.webassembly.js"]
+no-loc: [Blazor, SignalR]
 uid: blazor/templates
 ---
 # ASP.NET Core Blazor templates
@@ -42,13 +42,13 @@ The following files and folders make up a Blazor app generated from a Blazor tem
 * *wwwroot/index.html* (Blazor WebAssembly) &ndash; The root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The `App` component (*App.razor*) is specified as the `app` DOM element to the `AddComponent` method in `Startup.Configure`.
-  * The *_framework/blazor.webassembly.js* JavaScript file is loaded, which:
+  * The `_framework/blazor.webassembly.js` JavaScript file is loaded, which:
     * Downloads the .NET runtime, the app, and the app's dependencies.
     * Initializes the runtime to run the app.
 
 * *Pages/_Host.cshtml* (Blazor Server) &ndash; The root page of the app implemented as a Razor Page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
-  * The *_framework/blazor.server.js* JavaScript file is loaded, which sets up the real-time SignalR connection between the browser and the server.
+  * The `_framework/blazor.server.js` JavaScript file is loaded, which sets up the real-time SignalR connection between the browser and the server.
   * The Host page specifies where the root `App` component (*App.razor*) is rendered.
 
 * *App.razor* &ndash; The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The `Router` component intercepts browser navigation and renders the page that matches the requested address.

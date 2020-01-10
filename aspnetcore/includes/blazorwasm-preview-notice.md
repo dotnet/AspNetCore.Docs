@@ -1,5 +1,5 @@
 ---
-no-loc: [Blazor, SignalR, "blazor.webassembly.js"]
+no-loc: [Blazor, SignalR]
 ---
 > [!IMPORTANT]
 > **Blazor WebAssembly in preview**
