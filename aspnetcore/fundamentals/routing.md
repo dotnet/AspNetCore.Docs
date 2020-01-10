@@ -221,17 +221,17 @@ Terminal middleware can be an effective tool, but can require:
 * A significant amount of coding and testing.
 * Manual integration with other systems to achieve the desired level of flexibility.
 
-Before writing a terminal middleware, consider integrating with routing instead.
+Consider integrating with routing before writing a terminal middleware.
 
-Existing terminal middleware that integrate with `Map` or `MapWhen` can usually be turned into a *router-ware* endpoint. [MapHealthChecks](https://github.com/aspnet/AspNetCore/blob/master/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for *router-ware*:
-* Write an extension method on `IEndpointRouteBuilder`.
-* Create a nested middleware pipeline using `CreateApplicationBuilder`.
-* Attach your middleware to the new pipeline. In this case, `UseHealthChecks`.
-* `Build` the middleware pipeline into a `RequestDelegate`.
+Existing terminal middleware that integrate with [Map](xref:fundamentals/middleware#branch-the-middleware-pipeline) or <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> can usually be turned into a *router-ware* endpoint. [MapHealthChecks](https://github.com/aspnet/AspNetCore/blob/master/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for *router-ware*:
+* Write an extension method on <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>.
+* Create a nested middleware pipeline using <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder.CreateApplicationBuilder*>.
+* Attach your middleware to the new pipeline. In this case, <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*>. <!-- review: what is `Build` ? -->
+* `Build` the middleware pipeline into a <xref:Microsoft.AspNetCore.Http.RequestDelegate>.
 * Call `Map` and provide the new middleware pipeline.
 * Return the builder object provided by `Map` from the extension method.
 
-The following code sample shows use of `MapHealthChecks`:
+The following code shows use of [MapHealthChecks](xref:host-and-deploy/health-checks):
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/AuthorizationStartup.cs?name=snippet)]
 
