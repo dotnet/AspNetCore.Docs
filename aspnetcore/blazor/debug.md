@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/19/2019
-no-loc: [Blazor, SignalR, "blazor.webassembly.js"]
+no-loc: [Blazor, SignalR]
 uid: blazor/debug
 ---
 # Debug ASP.NET Core Blazor
