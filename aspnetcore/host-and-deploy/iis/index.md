@@ -5,7 +5,7 @@ description: Learn how to host ASP.NET Core apps on Windows Server Internet Info
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/06/2020
+ms.date: 01/10/2020
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
@@ -20,8 +20,19 @@ For a tutorial experience on publishing an ASP.NET Core app to an IIS server, se
 
 The following operating systems are supported:
 
+::: moniker range=">= aspnetcore-3.0"
+
+* Windows 7 or later
+* Windows Server 2012 R2 or later
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 * Windows 7 or later
 * Windows Server 2008 R2 or later
+
+::: moniker-end
 
 [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called WebListener) doesn't work in a reverse proxy configuration with IIS. Use the [Kestrel server](xref:fundamentals/servers/kestrel).
 
