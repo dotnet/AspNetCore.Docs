@@ -242,61 +242,86 @@ The preceding sample shows why returning the builder object is important. Return
 
 The metadata system was created in response to the problems encountered by extensibility authors using terminal middleware. It's problematic for each middleware to implement its own integration with the authorization system.
 
-### URL matching concepts
+### URL matching
 
-URL matching is the process by which routing matches an incoming request to an *endpoint*. This process is based on data in the URL path and headers but can be extended to consider any data in the request.
+URL matching:
 
-When a Routing Middleware executes, it sets an `Endpoint` and route values to a feature on the <xref:Microsoft.AspNetCore.Http.HttpContext>. For the current request:
+* Is the process by which routing matches an incoming request to an *endpoint*.
+* Is based on data in the URL path and headers.
+* Can be extended to consider any data in the request.
+
+<!-- review required [request feature] -->
+When a Routing Middleware executes, it sets an `Endpoint` and route values to a [request feature](xref:fundamentals/request-features) on the <xref:Microsoft.AspNetCore.Http.HttpContext>. For the current request:
 
 * Calling [HttpContext.GetEndpoint](<xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*>) gets the endpoint.
 * `HttpRequest.RouteValues` gets the collection of route values.
 
-Middleware running after the Routing Middleware can see the endpoint and take action. For example, an Authorization Middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
+[Middleware](xref:fundamentals/middleware) running after the routing middleware can see the endpoint and take action. For example, an authorization middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
 
-The routing system in endpoint routing is responsible for all dispatching decisions. Since the middleware applies policies based on the selected endpoint, it's important that any decision that can affect dispatching or the application of security policies is made inside the routing system.
+<!-- Review
+Because the middleware applies policies based on the selected endpoint, it's important that any decision that can affect dispatching or the application of security policies is made inside the routing system. 
+31 words won't MT well.  Can you split up or should we just use the single bullet list? Try for 15-20 words max.
+-->
+The routing system in endpoint routing is responsible for all dispatching decisions. Because the middleware applies policies based on the selected endpoint, it's important that:
+
+* Any decision that can affect dispatching or the application of security policies is made inside the routing system.
 
 > [!WARNING]
-> For backwards-compatibility, when an MVC (Controller or Razor Pages) endpoint delegate is executed, the properties of [RouteContext.RouteData](xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData) are set to appropriate values based on the request processing performed thus far. 
+> For backwards-compatibility, when an Controller or Razor Pages endpoint delegate is executed, the properties of [RouteContext.RouteData](xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData) are set to appropriate values based on the request processing performed thus far.
 >
-> The `RouteContext` type will be marked obsolete in a future release. 
+> The `RouteContext` type will be marked obsolete in a future release.
 > * Migrate usage of `RouteData.Values` to `HttpRequest.RouteValues`.
 > * Migrate usage of `RouteData.DataTokens` to retrieve [IDataTokensMetadata](xref:Microsoft.AspNetCore.Routing.IDataTokensMetadata) from the endpoint metadata.
 
-URL Matching operates in a configurable set of phases. In each phase the output is a set of matches, which can be narrowed down further by the next phase. The routing implementation does not guarantee a *processing order* for matching endpoints, all possible matches are processed at once.
+URL matching operates in a configurable set of phases. In each phase the output is a set of matches, which can be narrowed down further by the next phase. The routing implementation does not guarantee a *processing order* for matching endpoints, all possible matches are processed at once. The URL matching phases occur in the following order:
 
-* First the URL path is processed according to the set of endpoints and their route templates.
-* Next route values are extracted and then `IRouteConstraint` implementations are executed.
-* Next the set of [MatcherPolicy](xref:Microsoft.AspNetCore.Routing.MatcherPolicy) instances are executed.
-* Last the [EndpointSelector](xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector) is executed.
+1. The URL path is processed according to the set of endpoints and their route templates.
+1. Route values are extracted and then `IRouteConstraint` implementations are executed.
+1. The set of [MatcherPolicy](xref:Microsoft.AspNetCore.Routing.MatcherPolicy) instances are executed.
+1. The [EndpointSelector](xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector) is executed.
 
 The list of endpoints is prioritized according to:
-* The [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*) which is configurable.
+
+* The [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*), which is configurable.
 * The route template precedence, which is computed based on the route template.
 
-All matching endpoints are processed in each phase until the `EndpointSelector` (final phase) is reached. The `EndpointSelector` will choose the highest priority endpoint from the matches as the *best match*. If there are other matches with the same priority as the *best match* then an exception will be thrown to report an ambiguity.
+All matching endpoints are processed in each phase until the <xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector> is reached. The `EndpointSelector` is the final phase. The `EndpointSelector` will choose the highest priority endpoint from the matches as the *best match*. If there are other matches with the same priority as the *best match*, an ambiguous match exception is thrown.
 
-> [!INFO]
-> The route precedence is computed based on the idea that a *more specific* route template is higher priority. As an example the templates `/hello` and `/{message}` would both match the URL path `/hello`, but the former is more specific and thus higher priority. 
->
-> In general route precedence does a very good job of choosing the best match for the kinds of URL schemes used in practice. Use `Order` only when necessary to avoid an ambiguity.
+The route precedence is computed based on a *more specific* route template is higher priority. For example, consider the templates `/hello` and `/{message}`:
 
-> [!INFO]
-> Due to the kinds of extensibility provided by routing, it is not possible for the routing system to compute ahead of time the cases that will cause ambiguity. Consider an example like the route templates `/{message:alpha}`, `/{message:int}`, the `alpha` constraint matches only alphabetic characters, and `int` matches only numbers. These templates have the same route precedence, but there's no single URL they will both match - if the routing system reported an ambiguity error at startup, it would block this valid use case.
+* Both match the URL path `/hello`.
+* `/hello`  is more specific and therefore higher priority.
 
-> [!WARNING]
-> The order of operations inside `UseEndpoints` **does not** influence the behavior of routing with one notable exception.
->
-> The `MapControllerRoute` and `MapAreaRoute` methods will automatically assign an order value to their endpoints based on the order that they are invoked. This simulates long-time behavior of Controllers without the routing system providing the same guarantees as older routing implementations.
->
-> It's possible in the legacy implementation of routing to implement routing extensbility that has a dependency on the order in which *routes* are processed. Endpoint routing in ASP.NET Core 3.0 does not have a concept of *routes*, and up does not provide ordering guarantees, all endpoints are processed at once. If you are stuck using the legacy routing system  for this reason please reach out to the team for assistance.
+In general route precedence does a good job of choosing the best match for the kinds of URL schemes used in practice. Use <xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order> only when necessary to avoid an ambiguity.
+
+Due to the kinds of extensibility provided by routing, it is **not** possible for the routing system to compute ahead of time the cases that will cause ambiguity. Consider an example such as the route templates `/{message:alpha}` and `/{message:int}`:
+
+* The `alpha` constraint matches only alphabetic characters.
+* The `int` constraint matches only numbers.
+* These templates have the same route precedence, but there's no single URL they will both match.
+* If the routing system reported an ambiguity error at startup, it would block this valid use case.
+
+<!-- review I don't understand the preceding why you're talking about not possible to compute ahead of time the cases that will cause ambiguity. Your sample is never ambiguous. Can you provide two templates that are useful but do have potential ambiguities?  -->
+
+The order of operations inside `UseEndpoints` **does not** influence the behavior of routing with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of Controllers without the routing system providing the same guarantees as older routing implementations.
+
+It's possible in the legacy implementation of routing to implement routing extensbility that has a dependency on the order in which *routes* are processed. Endpoint routing in ASP.NET Core 3.0 and later:
+
+* Does **not** have a concept of *routes*.
+* Does **not** provide ordering guarantees, all endpoints are processed at once.
+
+If you are stuck using the legacy routing system for this reason, [open a GitHub issue for assistance](https://github.com/dotnet/aspnetcore/issues).
 
 <a name="lg"></a>
 
 ### URL generation concepts
 
-URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between your endpoints and the URLs that access them.
+URL generation:
 
-Endpoint routing includes the Link Generator API (<xref:Microsoft.AspNetCore.Routing.LinkGenerator>). <xref:Microsoft.AspNetCore.Routing.LinkGenerator> is a singleton service that can be retrieved from [DI](xref:fundamentals/dependency-injection). The API can be used outside of the context of an executing request. MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> and scenarios that rely on <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the `LinkGenerator` internally to provide link generating capabilities.
+* Is the process by which routing can create a URL path based on a set of route values.
+* Allows for a logical separation between endpoints and the URLs that access them.
+
+Endpoint routing includes the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> link generator API .`LinkGenerator` is a singleton service that can be retrieved from [DI](xref:fundamentals/dependency-injection). The API can be used outside of the context of an executing request. MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> and scenarios that rely on <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the `LinkGenerator` internally to provide link generating capabilities.
 
 The link generator is backed by the concept of an *address* and *address schemes*. An address scheme is a way of determining the endpoints that should be considered for link generation. For example, the route name and route values scenarios many users are familiar with from Controllers/Razor Pages are implemented as an address scheme.
 
@@ -307,14 +332,14 @@ The link generator can link to Controllers/Razor Pages actions and pages via the
 * <xref:Microsoft.AspNetCore.Routing.PageLinkGeneratorExtensions.GetPathByPage*>
 * <xref:Microsoft.AspNetCore.Routing.PageLinkGeneratorExtensions.GetUriByPage*>
 
-An overload of these methods accepts arguments that include the `HttpContext`. These methods are functionally equivalent to `Url.Action` and `Url.Page` but offer additional flexibility and options.
+An overload of these methods accepts arguments that include the `HttpContext`. These methods are functionally equivalent to [Url.Action](xref:System.Web.Mvc.UrlHelper.Action*) and [Url.Page](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Page*) but offer additional flexibility and options.
 
-The `GetPath*` methods are most similar to `Url.Action` and `Url.Page` in that they generate a URI containing an absolute path. The `GetUri*` methods always generate an absolute URI containing a scheme and host. The methods that accept an `HttpContext` generate a URI in the context of the executing request. The ambient route values, URL base path, scheme, and host from the executing request are used unless overridden.
+The `GetPath*` methods are most similar to `Url.Action` and `Url.Page` in that they generate a URI containing an absolute path. The `GetUri*` methods always generate an absolute URI containing a scheme and host. The methods that accept an `HttpContext` generate a URI in the context of the executing request. The [ambient](#ambient) route values, URL base path, scheme, and host from the executing request are used unless overridden.
 
 <xref:Microsoft.AspNetCore.Routing.LinkGenerator> is called with an address. Generating a URI occurs in two steps:
 
 1. An address is bound to a list of endpoints that match the address.
-1. Each endpoint's `RoutePattern` is evaluated until a route pattern that matches the supplied values is found. The resulting output is combined with the other URI parts supplied to the link generator and returned.
+1. Each endpoint's <xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern> is evaluated until a route pattern that matches the supplied values is found. The resulting output is combined with the other URI parts supplied to the link generator and returned.
 
 The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> support standard link generation capabilities for any type of address. The most convenient way to use the link generator is through extension methods that perform operations for a specific address type.
 
@@ -326,7 +351,7 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 > [!WARNING]
 > Pay attention to the following implications of calling <xref:Microsoft.AspNetCore.Routing.LinkGenerator> methods:
 >
-> * Use `GetUri*` extension methods with caution in an app configuration that doesn't validate the `Host` header of incoming requests. If the `Host` header of incoming requests isn't validated, untrusted request input can be sent back to the client in URIs in a view/page. We recommend that all production apps configure their server to validate the `Host` header against known valid values.
+> * Use `GetUri*` extension methods with caution in an app configuration that doesn't validate the `Host` header of incoming requests. If the `Host` header of incoming requests isn't validated, untrusted request input can be sent back to the client in URIs in a view ir page. We recommend that all production apps configure their server to validate the `Host` header against known valid values.
 >
 > * Use <xref:Microsoft.AspNetCore.Routing.LinkGenerator> with caution in middleware in combination with `Map` or `MapWhen`. `Map*` changes the base path of the executing request, which affects the output of link generation. All of the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> APIs allow specifying a base path. Always specify an empty base path to undo `Map*`'s affect on link generation.
 
@@ -334,32 +359,11 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 
 In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API to create link to an action method that lists store products. Using the link generator by injecting it into a class and calling `GenerateLink` is available to any class in an app.
 
-```csharp
-using Microsoft.AspNetCore.Routing;
-
-public class ProductsLinkMiddleware
-{
-    private readonly LinkGenerator _linkGenerator;
-
-    public ProductsLinkMiddleware(RequestDelegate next, LinkGenerator linkGenerator)
-    {
-        _linkGenerator = linkGenerator;
-    }
-
-    public async Task InvokeAsync(HttpContext httpContext)
-    {
-        var url = _linkGenerator.GetPathByAction("ListProducts", "Store");
-
-        httpContext.Response.ContentType = "text/plain";
-
-        await httpContext.Response.WriteAsync($"Go to {url} to see our products.");
-    }
-}
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/Middleware/ProductsLinkMiddleware.cs?name=snippet)]
 
 ## Route template reference
 
-Tokens within curly braces (`{ ... }`) define *route parameters* that are bound if the route is matched. You can define more than one route parameter in a route segment, but they must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`. These route parameters must have a name and may have additional attributes specified.
+Tokens within `{}` define *route parameters* that are bound if the route is matched. More than one route parameter can be defined in a route segment, but route parameters  must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`. `{controller=Home}/{action=Index}` is a valid route. Route parameters must have a name and may have additional attributes specified.
 
 Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match a literal route parameter delimiter (`{` or `}`), escape the delimiter by repeating the character (`{{` or `}}`).
 
@@ -368,17 +372,25 @@ URL patterns that attempt to capture a file name with an optional file extension
 * `/files/myFile.txt`
 * `/files/myFile`
 
-You can use an asterisk (`*`) or double asterisk (`**`) as a prefix to a route parameter to bind to the rest of the URI. These are called a *catch-all* parameters. For example, `blog/{**slug}` matches any URI that starts with `/blog` and has any value following it, which is assigned to the `slug` route value. Catch-all parameters can also match the empty string.
+An asterisk (`*`) or double asterisk (`**`) can be used as a prefix to a route parameter to bind to the rest of the URI. These are called a *catch-all* parameters. For example, `blog/{**slug}`:
+
+* Matches any URI that starts with `/blog` and has any value following it.
+* The value following `/blog` is assigned to the `slug` route value.
+
+Catch-all parameters can also match the empty string.
 
 The catch-all parameter escapes the appropriate characters when the route is used to generate a URL, including path separator (`/`) characters. For example, the route `foo/{*path}` with route values `{ path = "my/path" }` generates `foo/my%2Fpath`. Note the escaped forward slash. To round-trip path separator characters, use the `**` route parameter prefix. The route `foo/{**path}` with `{ path = "my/path" }` generates `foo/my/path`.
 
-Route parameters may have *default values* designated by specifying the default value after the parameter name separated by an equals sign (`=`). For example, `{controller=Home}` defines `Home` as the default value for `controller`. The default value is used if no value is present in the URL for the parameter. Route parameters are made optional by appending a question mark (`?`) to the end of the parameter name, as in `id?`. The difference between optional values and default route parameters is that a route parameter with a default value always produces a value&mdash;an optional parameter has a value only when a value is provided by the request URL.
+Route parameters may have *default values* designated by specifying the default value after the parameter name separated by an equals sign (`=`). For example, `{controller=Home}` defines `Home` as the default value for `controller`. The default value is used if no value is present in the URL for the parameter. Route parameters are made optional by appending a question mark (`?`) to the end of the parameter name, as in `id?`. The difference between optional values and default route parameters is:
 
-Route parameters may have constraints that must match the route value bound from the URL. Adding a colon (`:`) and constraint name after the route parameter name specifies an *inline constraint* on a route parameter. If the constraint requires arguments, they're enclosed in parentheses (`(...)`) after the constraint name. Multiple inline constraints can be specified by appending another colon (`:`) and constraint name.
+* A route parameter with a default value always produces a value.
+* An optional parameter has a value only when a value is provided by the request URL.
+
+Route parameters may have constraints that must match the route value bound from the URL. Adding a colon (`:`) and constraint name after the route parameter name specifies an *inline constraint* on a route parameter. If the constraint requires arguments, they're enclosed in parentheses `(...)` after the constraint name. Multiple inline constraints can be specified by appending another colon (`:`) and constraint name.
 
 The constraint name and arguments are passed to the <xref:Microsoft.AspNetCore.Routing.IInlineConstraintResolver> service to create an instance of <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> to use in URL processing. For example, the route template `blog/{article:minlength(10)}` specifies a `minlength` constraint with the argument `10`. For more information on route constraints and a list of the constraints provided by the framework, see the [Route constraint reference](#route-constraint-reference) section.
 
-Route parameters may also have parameter transformers, which transform a parameter's value when generating links and matching actions and pages to URLs. Like constraints, parameter transformers can be added inline to a route parameter by adding a colon (`:`) and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer. For more information on parameter transformers, see the [Parameter transformer reference](#parameter-transformer-reference) section.
+Route parameters may also have parameter transformers. Parameter transformers transform a parameter's value when generating links and matching actions and pages to URLs. Like constraints, parameter transformers can be added inline to a route parameter by adding a colon (`:`) and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer. For more information on parameter transformers, see the [Parameter transformer reference](#parameter-transformer-reference) section.
 
 The following table demonstrates example route templates and their behavior.
 
@@ -389,21 +401,20 @@ The following table demonstrates example route templates and their behavior.
 | `{Page=Home}`                            | `/Contact`              | Matches and sets `Page` to `Contact`.                                      |
 | `{controller}/{action}/{id?}`            | `/Products/List`        | Maps to the `Products` controller and `List` action.                       |
 | `{controller}/{action}/{id?}`            | `/Products/Details/123` | Maps to the `Products` controller and  `Details` action (`id` set to 123). |
-| `{controller=Home}/{action=Index}/{id?}` | `/`                     | Maps to the `Home` controller and `Index` method (`id` is ignored).        |
+| `{controller=Home}/{action=Index}/{id?}` | `/`                     | Maps to the `Home` controller and `Index` method. `id` is ignored.        |
 
 Using a template is generally the simplest approach to routing. Constraints and defaults can also be specified outside the route template.
 
-> [!TIP]
-> Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routing implementations, such as <xref:Microsoft.AspNetCore.Routing.Route>, match requests.
+Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routing implementations, such as <xref:Microsoft.AspNetCore.Routing.Route>, match requests.
 
 ### Complex segments
 
-Complex segments (for example `[Route("/a{b}c{d}")]`) are processed by matching up literal delimiters from **right to left** in a non-greedy way.
-
-> [!TIP]
-> Complex segments work in a particular way that must be understood to use them successfully. The example in this section will demonstrate why complex segments only really work well when the *delimiter* text doesn't appread inside the parameter values. Using a regex and then manually extracting the values is needed for more complex cases.
+Complex segments are processed by matching up literal delimiters from **right to left** in a non-greedy way. For example, `[Route("/a{b}c{d}")]` is a complex segment.
+<!-- review: need to define greedy or non-greedy -->
+Complex segments work in a particular way that must be understood to use them successfully. The example in this section demonstrates why complex segments only really work well when the *delimiter* text doesn't appear inside the parameter values. Using a [regex](/dotnet/standard/base-types/regular-expressions) and then manually extracting the values is needed for more complex cases.
 
 This is a summary of the steps that routing would perform with the template `/a{b}c{d}` and the URL path `/abcd`. The `|` is used to help visualize how the algorithm works.
+
 * The first literal (right to left) is `c`, so `/abcd` is searched from right and found `/ab|c|d`.
 * Everything to the right (`d`) is now matched to the route parameter `{d}`.
 * The next literal (right to left) is `a`, so `/ab|c|d` is searched starting where we left off, then `a` is found `/|a|b|c|d`. 
@@ -417,25 +428,30 @@ Now here's an example of a negative case using the same template `/a{b}c{d}` and
 * The value to the right (`b`) is now matched to the route parameter `{b}`.
 * At this point there is remaining text `a`, but the algorithm has run out of route template to parse, so this is not a match.
 
-Since the matching algorithm is non-greedy - it matches the smallest amount of text possible in each step - any case where the *delimiter value* will appear inside the parameter values will result in no match. Regular expressions provide much more control over their matching behavior.
+Since the matching algorithm is non-greedy:
+
+* It matches the smallest amount of text possible in each step.
+* Any case where the *delimiter value* appear inside the parameter values results in not matching.
+
+Regular expressions provide much more control over their matching behavior.
 
 ## Route constraint reference
 
 Route constraints execute when a match has occurred to the incoming URL and the URL path is tokenized into route values. Route constraints generally inspect the route value associated via the route template and make a yes/no decision about whether or not the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> can accept or reject a request based on its HTTP verb. Constraints are used in routing requests and link generation.
 
 > [!WARNING]
-> Don't use constraints for **input validation**. If constraints are used for **input validation**, invalid input results in a *404 - Not Found* response instead of a *400 - Bad Request* with an appropriate error message. Route constraints are used to **disambiguate** similar routes, not to validate the inputs for a particular route.
+> Do **not** use constraints for input validation. If constraints are used for input validation, invalid input results in a *404 - Not Found* response. Invalid input should produced a *400 - Bad Request* with an appropriate error message. Route constraints are used to *disambiguate* similar routes, not to validate the inputs for a particular route.
 
 The following table demonstrates example route constraints and their expected behavior.
 
 | constraint | Example | Example Matches | Notes |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer |
-| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false` (case-insensitive) |
-| `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value (in the invariant culture - see warning) |
-| `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value (in the invariant culture - see warning) |
-| `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value (in the invariant culture - see warning) |
-| `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Matches a valid `float` value (in the invariant culture - see warning) |
+| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false`. Case-insensitive |
+| `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value in the invariant culture. See preceding warning. |
+| `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value in the invariant culture. See preceding warning.|
+| `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value in the invariant culture. See preceding warning.|
+| `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Matches a valid `float` value in the invariant culture. See preceding warning.|
 | `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Matches a valid `Guid` value |
 | `long` | `{ticks:long}` | `123456789`, `-123456789` | Matches a valid `long` value |
 | `minlength(value)` | `{username:minlength(4)}` | `Rick` | String must be at least 4 characters |
@@ -457,7 +473,9 @@ public User GetUserById(int id) { }
 ```
 
 > [!WARNING]
-> Route constraints that verify the URL and are converted to a CLR type (such as `int` or `DateTime`) always use the invariant culture. These constraints assume that the URL is non-localizable. The framework-provided route constraints don't modify the values stored in route values. All route values parsed from the URL are stored as strings. For example, the `float` constraint attempts to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
+> Route constraints that verify the URL and are converted to a CLR type always use the invariant culture. For example, conversion to the CLR type `int` or `DateTime`. These constraints assume that the URL is non-localizable. The framework-provided route constraints don't modify the values stored in route values. All route values parsed from the URL are stored as strings. For example, the `float` constraint attempts to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
+
+<!-- zz -->
 
 ### Regular expressions in constraints
 
@@ -593,9 +611,11 @@ The role of the address scheme is to make the assocation between the address and
 * The *endpoint name* scheme performs a simple dictionary lookup.
 * The *route values* scheme has a complex best-subset-of-set algorithm.
 
+<a name="ambient"></a>
+
 ### Ambient values and explicit values
 
-From the current request, routing will access the route values of the current request `HttpContext.Request.RouteValues`. The values associated with the current request are referred to as the *ambient values*. For the purpose of clarity, the documentation will refer to the route values passed in to method as *explicit values*.
+From the current request, routing will access the route values of the current request `HttpContext.Request.RouteValues`. The values associated with the current request are referred to as the *ambient values*. For the purpose of clarity, the documentation refers to the route values passed in to method as *explicit values*.
 
 This example shows ambient values and explicit values:
 
@@ -1367,10 +1387,10 @@ The following table demonstrates example route constraints and their expected be
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false` (case-insensitive) |
-| `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value (in the invariant culture - see warning) |
-| `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value (in the invariant culture - see warning) |
-| `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value (in the invariant culture - see warning) |
-| `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Matches a valid `float` value (in the invariant culture - see warning) |
+| `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value in the invariant culture. See  preceding warning.|
+| `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value in the invariant culture. See  preceding warning.|
+| `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value in the invariant culture. See  preceding warning.|
+| `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Matches a valid `float` value in the invariant culture. See  preceding warning.|
 | `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Matches a valid `Guid` value |
 | `long` | `{ticks:long}` | `123456789`, `-123456789` | Matches a valid `long` value |
 | `minlength(value)` | `{username:minlength(4)}` | `Rick` | String must be at least 4 characters |
@@ -1811,10 +1831,10 @@ The following table demonstrates example route constraints and their expected be
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false` (case-insensitive) |
-| `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value (in the invariant culture - see warning) |
-| `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value (in the invariant culture - see warning) |
-| `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value (in the invariant culture - see warning) |
-| `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Matches a valid `float` value (in the invariant culture - see warning) |
+| `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value in the invariant culture. See  preceding warning.|
+| `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value in the invariant culture. See  preceding warning.|
+| `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value in the invariant culture. See  preceding warning.|
+| `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Matches a valid `float` value in the invariant culture. See  preceding warning.|
 | `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Matches a valid `Guid` value |
 | `long` | `{ticks:long}` | `123456789`, `-123456789` | Matches a valid `long` value |
 | `minlength(value)` | `{username:minlength(4)}` | `Rick` | String must be at least 4 characters |

@@ -37,6 +37,22 @@ namespace RoutingSample
                     await context.Response.WriteAsync("Hello routing!");
                 });
             });
+            app.UseEndpoints(endpoints =>
+            {
+                // Approach 2: Using routing.
+                endpoints.MapGet("/{message:alpha}", async context =>
+                {
+                    await context.Response.WriteAsync("message:alpha");
+                });
+            });
+            app.UseEndpoints(endpoints =>
+            {
+                // Approach 2: Using routing.
+                endpoints.MapGet("/{message:int}", async context =>
+                {
+                    await context.Response.WriteAsync("message:int");
+                });
+            });
         }
         #endregion
     }
