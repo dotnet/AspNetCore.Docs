@@ -14,8 +14,8 @@ By [James Newton-King](https://twitter.com/jamesnk)
 This article provides guidance for gathering diagnostics from your gRPC app to help troubleshoot issues. Topics covered include:
 
 * **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). `ILogger` is also often used by apps to write logs.
-* **Events** - Events with rich data payloads written using `DiaganosticSource`. Use to collect telemetry about an app.
-* **Metrics** - Representation of data measures over intervals of time, e.g. requests per second. Metrics are emitted using `EventCounter`.
+* **Events** - Events with rich data payloads written using `DiaganosticSource`. Telemetry libraries subscribe to events from diagnostic sources to collect app telemetry.
+* **Metrics** - Representation of data measures over intervals of time, e.g. requests per second. Metrics are emitted using `EventCounter` and can be observed using `dotnet-counters` command line tool.
 
 ## Logging
 
@@ -131,7 +131,7 @@ The .NET gRPC client uses `HttpClient` to make gRPC calls. Although `HttpClient`
 
 ### Capturing diagnostics
 
-The easist way to use `DiagnosticSource` is to configure a telemetry library such as [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) or [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) in your app. A telemetry library will collection information about gRPC calls in your app.
+The easist way to use `DiagnosticSource` is to configure a telemetry library such as [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) or [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) in your app. A telemetry library will collect information about gRPC calls along-side other app telemetry.
 
 You can also listen to `DiagnosticSource` events in code using `DiagnosticListener`. For information about listening to a diagnostic source with code, visit the [DiagnosticSource user's guide](https://github.com/dotnet/corefx/blob/d3942d4671919edb0cca6ddc1840190f524a809d/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md#consuming-data-with-diagnosticlistener).
 
