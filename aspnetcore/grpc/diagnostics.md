@@ -11,9 +11,17 @@ uid: grpc/diagnostics
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-This article provides guidance for gathering diagnostics from your gRPC app to help troubleshoot issues.
+This article provides guidance for gathering diagnostics from your gRPC app to help troubleshoot issues. Topics covered include:
 
-## gRPC services logging
+* **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). `ILogger` is also often used by apps to write logs.
+* **Diagnostics and instrumentation** - Events with rich data payloads written using `DiaganosticSource`.
+* **Metrics** - Metrics is a representation of data measures over intervals of time, e.g. requests per second. Metrics are emitted using `EventCounter`.
+
+## Logging
+
+gRPC services and the gRPC client write logs using [.NET Core logging](xref:fundamentals/logging/index). Logs are a good place to start when you need to debug unexpected behavior in your apps.
+
+### gRPC services logging
 
 > [!WARNING]
 > Server-side logs may contain sensitive information from your app. **Never** post raw logs from production apps to public forums like GitHub.
@@ -36,7 +44,7 @@ Check the documentation for your configuration system to determine how to specif
 
 We recommend using the `Debug` level when gathering more detailed diagnostics for your app. The `Trace` level produces very low-level diagnostics and is rarely needed to diagnose issues in your app.
 
-### Sample logging output
+#### Sample logging output
 
 Here is an example of console output at the `Debug` level of a gRPC service:
 
@@ -57,19 +65,19 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
       Request finished in 1.4113ms 200 application/grpc
 ```
 
-## Access server-side logs
+### Access server-side logs
 
 How you access server-side logs depends on the environment in which you're running.
 
-### As a console app
+#### As a console app
 
 If you're running in a console app, the [Console logger](xref:fundamentals/logging/index#console-provider) should be enabled by default. gRPC logs will appear in the console.
 
-### Other environments
+#### Other environments
 
 If the app is deployed to another environment (for example, Docker, Kubernetes, or Windows Service), see <xref:fundamentals/logging/index> for more information on how to configure logging providers suitable for the environment.
 
-## gRPC client logging
+### gRPC client logging
 
 > [!WARNING]
 > Client-side logs may contain sensitive information from your app. **Never** post raw logs from production apps to public forums like GitHub.
@@ -84,7 +92,7 @@ If your app isn't using DI then you can create a new `ILoggerFactory` instance w
 
 [!code-csharp[](diagnostics/sample/net-client-loggerfactory-create.cs?highlight=1,8)]
 
-### Sample logging output
+#### Sample logging output
 
 Here is an example of console output at the `Debug` level of a gRPC client:
 
@@ -98,6 +106,65 @@ dbug: Grpc.Net.Client.Internal.GrpcCall[1]
 dbug: Grpc.Net.Client.Internal.GrpcCall[4]
       Finished gRPC call.
 ```
+
+## Diagnostics and instrumentation
+
+gRPC services and the gRPC client provide information about gRPC calls using `DiagnosticSource` and `Activity`. These diagnostic APIs are typically used by a telemetry library you have configured your app to use to report gRPC events about your app. [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) are good examples of users of diagnostic events.
+
+### gRPC service diagnostics
+
+gRPC services are hosted on ASP.NET Core which reports events about incoming HTTP requests. gRPC specific metadata is added to the existing HTTP request diagnostics that ASP.NET Core provides.
+
+* Diagnostic source name is `Microsoft.AspNetCore`
+* Activity name is `Microsoft.AspNetCore.Hosting.HttpRequestIn`
+  * Name of the gRPC method invoked by the gRPC call is added as a tag with the name `grpc.method`
+  * Status code of the gRPC call when it is complete is added as a tag with the name `grpc.status_code`
+
+### gRPC client diagnostics
+
+The .NET gRPC client uses `HttpClient` to make gRPC calls. Although `HttpClient` writes diagnostic events, the .NET gRPC client provides a custom diagnostic source, activity and events so that complete information about a gRPC call is reported.
+
+* Diagnostic source name is `Grpc.Net.Client`
+* Activity name is `Grpc.Net.Client.GrpcOut`
+  * Name of the gRPC method invoked by the gRPC call is added as a tag with the name `grpc.method`
+  * Status code of the gRPC call when it is complete is added as a tag with the name `grpc.status_code`
+
+### Capturing diagnostics
+
+The easist way to use `DiagnosticSource` is to configure a telemetry library like [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) or [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet). Once configured they will collection information about gRPC calls in your app.
+
+You can also listen to `DiagnosticSource` events in code using `DiagnosticListener`. For information about listening to a diagnostic source with code, visit the [DiagnosticSource user's guide](https://github.com/dotnet/corefx/blob/d3942d4671919edb0cca6ddc1840190f524a809d/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md#consuming-data-with-diagnosticlistener).
+
+## Metrics
+
+Metrics is a representation of data measures over intervals of time, e.g. requests per second. Metrics data allows you to observe the state of your app at a high-level. .NET gRPC metrics are emitted using `EventCounter`.
+
+### gRPC service metrics
+
+gRPC server metrics are reported on a event source called `Grpc.AspNetCore.Server`.
+
+| Name                      | Description                   |
+| --------------------------|-------------------------------|
+| `total-calls`             | Total Calls                   |
+| `current-calls`           | Current Calls                 |
+| `calls-failed`            | Total Calls Failed            |
+| `calls-deadline-exceeded` | Total Calls Deadline Exceeded |
+| `messages-sent`           | Total Messages Sent           |
+| `messages-received`       | Total Messages Received       |
+| `calls-unimplemented`     | Total Calls Unimplemented     |
+
+### gRPC client metrics
+
+gRPC client metrics are reported on a event source called `Grpc.Net.Client`.
+
+| Name                      | Description                   |
+| --------------------------|-------------------------------|
+| `total-calls`             | Total Calls                   |
+| `current-calls`           | Current Calls                 |
+| `calls-failed`            | Total Calls Failed            |
+| `calls-deadline-exceeded` | Total Calls Deadline Exceeded |
+| `messages-sent`           | Total Messages Sent           |
+| `messages-received`       | Total Messages Received       |
 
 ## Additional resources
 
