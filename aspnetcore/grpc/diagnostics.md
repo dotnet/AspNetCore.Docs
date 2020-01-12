@@ -14,8 +14,8 @@ By [James Newton-King](https://twitter.com/jamesnk)
 This article provides guidance for gathering diagnostics from your gRPC app to help troubleshoot issues. Topics covered include:
 
 * **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). `ILogger` is also often used by apps to write logs.
-* **Diagnostics and instrumentation** - Events with rich data payloads written using `DiaganosticSource`.
-* **Metrics** - Metrics is a representation of data measures over intervals of time, e.g. requests per second. Metrics are emitted using `EventCounter`.
+* **Events** - Events with rich data payloads written using `DiaganosticSource`. Use to collect telemetry about an app.
+* **Metrics** - Representation of data measures over intervals of time, e.g. requests per second. Metrics are emitted using `EventCounter`.
 
 ## Logging
 
@@ -107,7 +107,7 @@ dbug: Grpc.Net.Client.Internal.GrpcCall[4]
       Finished gRPC call.
 ```
 
-## Diagnostics and instrumentation
+## Events
 
 gRPC services and the gRPC client provide information about gRPC calls using `DiagnosticSource` and `Activity`. These diagnostic APIs are typically used by a telemetry library you have configured your app to use to report gRPC events about your app. [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) are good examples of users of diagnostic events.
 
@@ -115,23 +115,23 @@ gRPC services and the gRPC client provide information about gRPC calls using `Di
 
 gRPC services are hosted on ASP.NET Core which reports events about incoming HTTP requests. gRPC specific metadata is added to the existing HTTP request diagnostics that ASP.NET Core provides.
 
-* Diagnostic source name is `Microsoft.AspNetCore`
-* Activity name is `Microsoft.AspNetCore.Hosting.HttpRequestIn`
-  * Name of the gRPC method invoked by the gRPC call is added as a tag with the name `grpc.method`
-  * Status code of the gRPC call when it is complete is added as a tag with the name `grpc.status_code`
+* Diagnostic source name is `Microsoft.AspNetCore`.
+* Activity name is `Microsoft.AspNetCore.Hosting.HttpRequestIn`.
+  * Name of the gRPC method invoked by the gRPC call is added as a tag with the name `grpc.method`.
+  * Status code of the gRPC call when it is complete is added as a tag with the name `grpc.status_code`.
 
 ### gRPC client diagnostics
 
 The .NET gRPC client uses `HttpClient` to make gRPC calls. Although `HttpClient` writes diagnostic events, the .NET gRPC client provides a custom diagnostic source, activity and events so that complete information about a gRPC call is reported.
 
-* Diagnostic source name is `Grpc.Net.Client`
-* Activity name is `Grpc.Net.Client.GrpcOut`
-  * Name of the gRPC method invoked by the gRPC call is added as a tag with the name `grpc.method`
-  * Status code of the gRPC call when it is complete is added as a tag with the name `grpc.status_code`
+* Diagnostic source name is `Grpc.Net.Client`.
+* Activity name is `Grpc.Net.Client.GrpcOut`.
+  * Name of the gRPC method invoked by the gRPC call is added as a tag with the name `grpc.method`.
+  * Status code of the gRPC call when it is complete is added as a tag with the name `grpc.status_code`.
 
 ### Capturing diagnostics
 
-The easist way to use `DiagnosticSource` is to configure a telemetry library like [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) or [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet). Once configured they will collection information about gRPC calls in your app.
+The easist way to use `DiagnosticSource` is to configure a telemetry library such as [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) or [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) in your app. A telemetry library will collection information about gRPC calls in your app.
 
 You can also listen to `DiagnosticSource` events in code using `DiagnosticListener`. For information about listening to a diagnostic source with code, visit the [DiagnosticSource user's guide](https://github.com/dotnet/corefx/blob/d3942d4671919edb0cca6ddc1840190f524a809d/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md#consuming-data-with-diagnosticlistener).
 
@@ -141,7 +141,7 @@ Metrics is a representation of data measures over intervals of time, e.g. reques
 
 ### gRPC service metrics
 
-gRPC server metrics are reported on a event source called `Grpc.AspNetCore.Server`.
+gRPC server metrics are reported on `Grpc.AspNetCore.Server` event source.
 
 | Name                      | Description                   |
 | --------------------------|-------------------------------|
@@ -155,7 +155,7 @@ gRPC server metrics are reported on a event source called `Grpc.AspNetCore.Serve
 
 ### gRPC client metrics
 
-gRPC client metrics are reported on a event source called `Grpc.Net.Client`.
+gRPC client metrics are reported on `Grpc.Net.Client` event source.
 
 | Name                      | Description                   |
 | --------------------------|-------------------------------|
@@ -165,6 +165,25 @@ gRPC client metrics are reported on a event source called `Grpc.Net.Client`.
 | `calls-deadline-exceeded` | Total Calls Deadline Exceeded |
 | `messages-sent`           | Total Messages Sent           |
 | `messages-received`       | Total Messages Received       |
+
+### Observe metrics
+
+[dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation. Monitor your .NET app with either `Grpc.AspNetCore.Server` or `Grpc.Net.Client` as the provider name.
+
+```console
+> dotnet-counters monitor --process-id 1902 Grpc.AspNetCore.Server
+
+Press p to pause, r to resume, q to quit.
+    Status: Running
+[Grpc.AspNetCore.Server]
+    Total Calls                                 300
+    Current Calls                               5
+    Total Calls Failed                          0
+    Total Calls Deadline Exceeded               0
+    Total Messages Sent                         295
+    Total Messages Received                     300
+    Total Calls Unimplemented                   0
+```
 
 ## Additional resources
 
