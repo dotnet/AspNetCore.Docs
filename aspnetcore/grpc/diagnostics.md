@@ -109,7 +109,7 @@ dbug: Grpc.Net.Client.Internal.GrpcCall[4]
 
 ## Events
 
-gRPC services and the gRPC client provide information about gRPC calls using [DiagnosticSource](https://docs.microsoft.com/dotnet/api/system.diagnostics.diagnosticsource) and [Activity](https://docs.microsoft.com/dotnet/api/system.diagnostics.activity). A start and stop event for the activity is written to the diagnostic source. These diagnostic APIs are typically used by a telemetry library you have configured your app to use to report gRPC events about your app.
+gRPC services and the gRPC client provide information about gRPC calls using [DiagnosticSource](https://docs.microsoft.com/dotnet/api/system.diagnostics.diagnosticsource) and [Activity](https://docs.microsoft.com/dotnet/api/system.diagnostics.activity). For gRPC an activity is used to represent a gRPC call. Events are written to the diagnostic source at the start and stop of the gRPC call activity.
 
 ### gRPC service events
 
