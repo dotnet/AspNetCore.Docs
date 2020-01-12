@@ -14,7 +14,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 This article provides guidance for gathering diagnostics from your gRPC app to help troubleshoot issues. Topics covered include:
 
 * **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). `ILogger` is also often used by apps to write logs.
-* **Events** - Events with rich data payloads written using `DiaganosticSource`. Events from diagnostic source are commonly used to collect app telemetry by libraries like [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
+* **Events** - Events with rich data payloads written using `DiaganosticSource` and `Activity`. Events from diagnostic source are commonly used to collect app telemetry by libraries like [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
 * **Metrics** - Representation of data measures over intervals of time, e.g. requests per second. Metrics are emitted using `EventCounter` and can be observed using [dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) command line tool.
 
 ## Logging
