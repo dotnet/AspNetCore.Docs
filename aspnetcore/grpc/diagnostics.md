@@ -14,8 +14,8 @@ By [James Newton-King](https://twitter.com/jamesnk)
 This article provides guidance for gathering diagnostics from your gRPC app to help troubleshoot issues. Topics covered include:
 
 * **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). `ILogger` is also often used by apps to write logs.
-* **Events** - Events with rich data payloads written using `DiaganosticSource`. Telemetry libraries subscribe to events from diagnostic sources to collect app telemetry.
-* **Metrics** - Representation of data measures over intervals of time, e.g. requests per second. Metrics are emitted using `EventCounter` and can be observed using `dotnet-counters` command line tool.
+* **Events** - Events with rich data payloads written using `DiaganosticSource`. Events from diagnostic source are commonly used to collect app telemetry by telemetry libraries like [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
+* **Metrics** - Representation of data measures over intervals of time, e.g. requests per second. Metrics are emitted using `EventCounter` and can be observed using [dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) command line tool.
 
 ## Logging
 
@@ -109,7 +109,7 @@ dbug: Grpc.Net.Client.Internal.GrpcCall[4]
 
 ## Events
 
-gRPC services and the gRPC client provide information about gRPC calls using `DiagnosticSource` and `Activity`. These diagnostic APIs are typically used by a telemetry library you have configured your app to use to report gRPC events about your app. [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) are good examples of users of diagnostic events.
+gRPC services and the gRPC client provide information about gRPC calls using `DiagnosticSource` and `Activity`. These diagnostic APIs are typically used by a telemetry library you have configured your app to use to report gRPC events about your app.
 
 ### gRPC service diagnostics
 
