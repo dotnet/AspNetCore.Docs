@@ -109,7 +109,7 @@ dbug: Grpc.Net.Client.Internal.GrpcCall[4]
 
 ## Events
 
-gRPC services and the gRPC client provide information about gRPC calls using [DiagnosticSource](https://docs.microsoft.com/dotnet/api/system.diagnostics.diagnosticsource) and [Activity](https://docs.microsoft.com/dotnet/api/system.diagnostics.activity). For gRPC an activity is used to represent a gRPC call. Events are written to the diagnostic source at the start and stop of the gRPC call activity.
+gRPC services and the gRPC client provide information about gRPC calls using [DiagnosticSource](https://docs.microsoft.com/dotnet/api/system.diagnostics.diagnosticsource) and [Activity](https://docs.microsoft.com/dotnet/api/system.diagnostics.activity). .NET gRPC uses an activity to represent a gRPC call. Events are written to the diagnostic source at the start and stop of the gRPC call activity.
 
 ### gRPC service events
 
@@ -122,7 +122,7 @@ gRPC services are hosted on ASP.NET Core which reports events about incoming HTT
 
 ### gRPC client events
 
-The .NET gRPC client uses `HttpClient` to make gRPC calls. Although `HttpClient` writes diagnostic events, the .NET gRPC client provides a custom diagnostic source, activity and events so that complete information about a gRPC call is reported.
+The .NET gRPC client uses `HttpClient` to make gRPC calls. Although `HttpClient` writes diagnostic events, the .NET gRPC client provides a custom diagnostic source, activity and events so that complete information about a gRPC call can be collected.
 
 * Diagnostic source name is `Grpc.Net.Client`.
 * Activity name is `Grpc.Net.Client.GrpcOut`.
@@ -152,6 +152,8 @@ gRPC server metrics are reported on `Grpc.AspNetCore.Server` event source.
 | `messages-sent`           | Total Messages Sent           |
 | `messages-received`       | Total Messages Received       |
 | `calls-unimplemented`     | Total Calls Unimplemented     |
+
+ASP.NET Core also provides its own metrics on `Microsoft.AspNetCore.Hosting` event source.
 
 ### gRPC client metrics
 
