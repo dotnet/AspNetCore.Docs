@@ -14,7 +14,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 This article provides guidance for gathering diagnostics from your gRPC app to help troubleshoot issues. Topics covered include:
 
 * **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). `ILogger` is also often used by apps to write logs.
-* **Events** - Events with rich data payloads written using `DiaganosticSource`. Events from diagnostic source are commonly used to collect app telemetry by telemetry libraries like [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
+* **Events** - Events with rich data payloads written using `DiaganosticSource`. Events from diagnostic source are commonly used to collect app telemetry by libraries like [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
 * **Metrics** - Representation of data measures over intervals of time, e.g. requests per second. Metrics are emitted using `EventCounter` and can be observed using [dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) command line tool.
 
 ## Logging
@@ -109,9 +109,9 @@ dbug: Grpc.Net.Client.Internal.GrpcCall[4]
 
 ## Events
 
-gRPC services and the gRPC client provide information about gRPC calls using `DiagnosticSource` and `Activity`. These diagnostic APIs are typically used by a telemetry library you have configured your app to use to report gRPC events about your app.
+gRPC services and the gRPC client provide information about gRPC calls using [DiagnosticSource](https://docs.microsoft.com/dotnet/api/system.diagnostics.diagnosticsource) and [Activity](https://docs.microsoft.com/dotnet/api/system.diagnostics.activity). A start and stop event for the activity is written to the diagnostic source. These diagnostic APIs are typically used by a telemetry library you have configured your app to use to report gRPC events about your app.
 
-### gRPC service diagnostics
+### gRPC service events
 
 gRPC services are hosted on ASP.NET Core which reports events about incoming HTTP requests. gRPC specific metadata is added to the existing HTTP request diagnostics that ASP.NET Core provides.
 
@@ -120,7 +120,7 @@ gRPC services are hosted on ASP.NET Core which reports events about incoming HTT
   * Name of the gRPC method invoked by the gRPC call is added as a tag with the name `grpc.method`.
   * Status code of the gRPC call when it is complete is added as a tag with the name `grpc.status_code`.
 
-### gRPC client diagnostics
+### gRPC client events
 
 The .NET gRPC client uses `HttpClient` to make gRPC calls. Although `HttpClient` writes diagnostic events, the .NET gRPC client provides a custom diagnostic source, activity and events so that complete information about a gRPC call is reported.
 
@@ -129,9 +129,9 @@ The .NET gRPC client uses `HttpClient` to make gRPC calls. Although `HttpClient`
   * Name of the gRPC method invoked by the gRPC call is added as a tag with the name `grpc.method`.
   * Status code of the gRPC call when it is complete is added as a tag with the name `grpc.status_code`.
 
-### Capturing diagnostics
+### Capturing events
 
-The easist way to use `DiagnosticSource` is to configure a telemetry library such as [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) or [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) in your app. A telemetry library will collect information about gRPC calls along-side other app telemetry.
+The easist way to use `DiagnosticSource` is to configure a telemetry library such as [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) or [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) in your app. The library will collect information about gRPC calls along-side other app telemetry.
 
 You can also listen to `DiagnosticSource` events in code using `DiagnosticListener`. For information about listening to a diagnostic source with code, visit the [DiagnosticSource user's guide](https://github.com/dotnet/corefx/blob/d3942d4671919edb0cca6ddc1840190f524a809d/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md#consuming-data-with-diagnosticlistener).
 
