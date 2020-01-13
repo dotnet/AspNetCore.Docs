@@ -66,10 +66,10 @@ Include a component in another component using an HTML syntax.
 
 Components can also have parameters. Component parameters are defined using public properties on the component class with the `[Parameter]` attribute. Use attributes to specify arguments for a component in markup.
 
-1. Update the component's `@code` C# code:
+1. Update the component's `@code` C# code as follows:
 
    * Add a public `IncrementAmount` property with the `[Parameter]` attribute.
-   * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
+   * Change the `IncrementCount` method to use the `IncrementAmount` property when increasing the value of `currentCount`.
 
    *Pages/Counter.razor*:
 
