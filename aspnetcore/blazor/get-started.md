@@ -78,7 +78,7 @@ Get started with Blazor:
 
    # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-   1\. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). Switch the [Update channel to Preview](/visualstudio/mac/install-preview).
+   1\. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
    2\. Select **File** > **New Solution** or create a **New Project**.
 
