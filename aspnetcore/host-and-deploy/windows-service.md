@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/30/2019
+ms.date: 01/13/2020
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -43,7 +43,7 @@ The app requires a package reference for [Microsoft.Extensions.Hosting.WindowsSe
 `IHostBuilder.UseWindowsService` is called when building the host. If the app is running as a Windows Service, the method:
 
 * Sets the host lifetime to `WindowsServiceLifetime`.
-* Sets the [content root](xref:fundamentals/index#content-root).
+* Sets the [content root](xref:fundamentals/index#content-root) to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory). For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
 * Enables logging to the event log with the application name as the default source name.
   * The log level can be configured using the `Logging:LogLevel:Default` key in the *appsettings.Production.json* file.
   * Only administrators can create new event sources. When an event source can't be created using the application name, a warning is logged to the *Application* source and event logs are disabled.
@@ -335,6 +335,16 @@ The current working directory returned by calling <xref:System.IO.Directory.GetC
 ### Use ContentRootPath or ContentRootFileProvider
 
 Use [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath) or <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootFileProvider> to locate an app's resources.
+
+When the app runs as a service, <xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService*> sets the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory).
+
+The app's default settings files, *appsettings.json* and *appsettings.{Environment}.json*, are loaded from the app's content root by calling [CreateDefaultBuilder during host construction](xref:fundamentals/host/generic-host#set-up-a-host).
+
+For other settings files loaded by developer code in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>, there's no need to call <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*>. In the following example, the *custom_settings.json* file exists in the app's content root and is loaded without explicitly setting a base path:
+
+[!code-csharp[](windows-service/samples_snapshot/CustomSettingsExample.cs?highlight=13)]
+
+Don't attempt to use <xref:System.IO.Directory.GetCurrentDirectory*> to obtain a resource path because a Windows Service app returns the *C:\\WINDOWS\\system32* folder as its current directory.
 
 ::: moniker-end
 
