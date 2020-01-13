@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 01/13/2020
 no-loc: [Blazor]
 uid: tutorials/first-blazor-app
 ---
@@ -75,10 +75,10 @@ Components can also have parameters. Component parameters are defined using publ
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Counter.razor?highlight=13,17)]
 
-<!-- Add back when supported.
-   > [!NOTE]
-   > From Visual Studio, you can quickly add a component parameter by using the `para` snippet. Type `para` and press the `Tab` key twice.
--->
+   <!-- Add back when supported.
+       > [!NOTE]
+       > From Visual Studio, you can quickly add a component parameter by using the `para` snippet. Type `para` and press the `Tab` key twice.
+   -->
 
 1. Specify an `IncrementAmount` parameter in the `Index` component's `<Counter>` element using an attribute. Set the value to increment the counter by ten.
 
