@@ -765,19 +765,19 @@ To prevent apps hosted [out-of-process](#out-of-process-hosting-model) from timi
 
 ## Deployment resources for IIS administrators
 
-* [Learn about IIS in-depth in the IIS documentation](/iis)
+* [IIS documentation](/iis)
 * [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
 * [.NET Core application deployment](/dotnet/core/deploying/)
 * <xref:host-and-deploy/aspnet-core-module>
-* [ASP.NET Core directory structure](xref:host-and-deploy/directory-structure)
-* [IIS modules](xref:host-and-deploy/iis/modules)
-* [Troubleshoot](xref:test/troubleshoot-azure-iis)
-* [Common errors reference for Azure App Service and IIS](xref:host-and-deploy/azure-iis-errors-reference)
+* <xref:host-and-deploy/directory-structure>
+* <xref:host-and-deploy/iis/modules>
+* <xref:test/troubleshoot-azure-iis>
+* <xref:host-and-deploy/azure-iis-errors-reference>
 
 ## Additional resources
 
 * <xref:test/troubleshoot>
-* [Introduction to ASP.NET Core](xref:index)
+* <xref:index>
 * [The Official Microsoft IIS Site](https://www.iis.net/)
 * [Windows Server technical content library](/windows-server/windows-server)
 * [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis)
