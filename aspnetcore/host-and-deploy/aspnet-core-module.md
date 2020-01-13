@@ -5,7 +5,7 @@ description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/07/2019
+ms.date: 01/13/2020
 uid: host-and-deploy/aspnet-core-module
 ---
 # ASP.NET Core Module
@@ -1040,5 +1040,6 @@ The files can be found by searching for *aspnetcore* in the *applicationHost.con
 ## Additional resources
 
 * <xref:host-and-deploy/iis/index>
-* [ASP.NET Core Module GitHub repository (reference source)](https://github.com/aspnet/AspNetCoreModule)
+* <xref:host-and-deploy/azure-apps/index>
+* [ASP.NET Core Module reference source (master branch)](https://github.com/dotnet/aspnetcore/tree/master/src/Servers/IIS/AspNetCoreModuleV2) &ndash; Use the **Branch** drop down list to select a specific release (for example, `release/3.1`).
 * <xref:host-and-deploy/iis/modules>
