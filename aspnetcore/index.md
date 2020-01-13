@@ -96,7 +96,7 @@ We recommend the following sequence of tutorials and articles for an introductio
 
 ## Migration from the .NET Framework
 
-For a reference guide to migrating ASP.NET apps to ASP.NET Core, see <migration/proper-to-2x/index>.
+For a reference guide to migrating ASP.NET apps to ASP.NET Core, see [Migrate from ASP.NET to ASP.NET Core](xref:migration/proper-to-2x/index).
 
 ## How to download a sample
 
