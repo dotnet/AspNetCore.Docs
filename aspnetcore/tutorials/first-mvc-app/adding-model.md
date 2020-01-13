@@ -3,7 +3,7 @@ title: Add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
 ms.author: riande
-ms.date: 8/15/2019
+ms.date: 01/13/2020
 uid: tutorials/first-mvc-app/adding-model
 ---
 
@@ -45,8 +45,8 @@ The `Movie` class contains an `Id` field, which is required by the database for 
 
 The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute on `ReleaseDate` specifies the type of the data (`Date`). With this attribute:
 
-  * The user is not required to enter time information in the date field.
-  * Only the date is displayed, not time information.
+* The user is not required to enter time information in the date field.
+* Only the date is displayed, not time information.
 
 [DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
 
@@ -72,7 +72,7 @@ The preceding command adds the EF Core SQL Server provider. The provider package
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-From the **Project** menu, select **Manage Nuget Packages**.
+From the **Project** menu, select **Manage NuGet Packages**.
 
 In the **Search** field in the upper right, enter `Microsoft.EntityFrameworkCore.SQLite` and press the **Return** key to search. Select the matching NuGet package and press the **Add Package** button.
 
@@ -83,9 +83,10 @@ The **Select Projects** dialog will be displayed, with the `MvcMovie` project se
 A **License Acceptance** dialog will be displayed. Review the licenses as desired, then click the **Accept** button.
 
 Repeat the above steps to install the following NuGet packages:
- * `Microsoft.VisualStudio.Web.CodeGeneration.Design`
- * `Microsoft.EntityFrameworkCore.SqlServer`
- * `Microsoft.EntityFrameworkCore.Design`
+
+* `Microsoft.VisualStudio.Web.CodeGeneration.Design`
+* `Microsoft.EntityFrameworkCore.SqlServer`
+* `Microsoft.EntityFrameworkCore.Design`
 
 ---
 
@@ -187,13 +188,13 @@ The automatic creation of these files is known as *scaffolding*.
 * On Linux, export the scaffold tool path:
 
   ```console
-    export PATH=$HOME/.dotnet/tools:$PATH
+  export PATH=$HOME/.dotnet/tools:$PATH
   ```
 
 * Run the following command:
 
   ```dotnetcli
-   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+  dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
   ```
 
   [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
@@ -205,7 +206,7 @@ The automatic creation of these files is known as *scaffolding*.
 * Run the following command:
 
   ```dotnetcli
-   dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+  dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
   ```
 
   [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
@@ -228,7 +229,7 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 
 In the PMC, enter the following commands:
 
-```PMC
+```powershell
 Add-Migration InitialCreate
 Update-Database
 ```
@@ -258,7 +259,7 @@ dotnet ef database update
 
 * `ef database update`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
-[!INCLUDE [ more information on the CLI tools for EF Core](~/includes/ef-cli.md)]
+[!INCLUDE [more information on the CLI tools for EF Core](~/includes/ef-cli.md)]
 
 ---
 
@@ -268,7 +269,7 @@ Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Migrations/20190805165915_InitialCreate.cs?name=snippet)]
 
- The `Up` method creates the Movie table and configures `Id` as the primary key. The `Down` method reverts the schema changes made by the `Up` migration.
+The `Up` method creates the Movie table and configures `Id` as the primary key. The `Down` method reverts the schema changes made by the `Up` migration.
 
 <a name="test"></a>
 
@@ -318,7 +319,11 @@ The constructor uses [Dependency Injection](xref:fundamentals/dependency-injecti
 
 The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
-[!INCLUDE [use SQL Server in production](~/includes/RP/sqlitedev.md)]
+### Use SQLite for development, SQL Server for production
+
+When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into Startup. `IWebHostEnvironment` is injected so `ConfigureServices` can use SQLite in development and SQL Server in production.
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippetStartupClass&highlight=5,10,16-28)]
 
 ---
 <!-- end of tabs --->
@@ -359,17 +364,17 @@ If a movie is found, an instance of the `Movie` model is passed to the `Details`
 
 ```csharp
 return View(movie);
-   ```
+```
 
 Examine the contents of the *Views/Movies/Details.cshtml* file:
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
 
 The `@model` statement at the top of the view file specifies the type of object that the view expects. When the movie controller was created, the following `@model` statement was included:
 
-```HTML
+```cshtml
 @model MvcMovie.Models.Movie
-   ```
+```
 
 This `@model` directive allows access to the movie that the controller passed to the view. The `Model` object is strongly typed. For example, in the *Details.cshtml* view, the code passes each movie field to the `DisplayNameFor` and `DisplayFor` HTML Helpers with the strongly typed `Model` object. The `Create` and `Edit` methods and views also pass a `Movie` model object.
 
@@ -381,11 +386,11 @@ When the movies controller was created, scaffolding included the following `@mod
 
 <!-- Copy Index.cshtml to IndexOriginal.cshtml -->
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?range=1)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?range=1)]
 
 The `@model` directive allows you to access the list of movies that the controller passed to the view by using a `Model` object that's strongly typed. For example, in the *Index.cshtml* view, the code loops through the movies with a `foreach` statement over the strongly typed `Model` object:
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
 Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object), each item in the loop is typed as `Movie`. Among other benefits, this means that you get compile time checking of the code.
 
