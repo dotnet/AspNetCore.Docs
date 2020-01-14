@@ -475,8 +475,6 @@ public User GetUserById(int id) { }
 > [!WARNING]
 > Route constraints that verify the URL and are converted to a CLR type always use the invariant culture. For example, conversion to the CLR type `int` or `DateTime`. These constraints assume that the URL is non-localizable. The framework-provided route constraints don't modify the values stored in route values. All route values parsed from the URL are stored as strings. For example, the `float` constraint attempts to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
 
-<!-- zz -->
-
 ### Regular expressions in constraints
 
 Regular expressions be specified as *inline constraints* using the `regex(...)` route constraint. Methods in the `MapControllerRoute` family also accept a object literal of constraints. If that form is used, then string values will be interpreted as regular expressions.
@@ -520,20 +518,15 @@ For more information on regular expression syntax, see [.NET Framework Regular E
 
 To constrain a parameter to a known set of possible values, use a regular expression. For example, `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string `^(list|get|create)$` is equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
 
-### Custom Route Constraints
+### Custom route constraints
 
-In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface contains a single method, `Match`, which returns `true` if the constraint is satisfied and `false` otherwise.
+In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains `Match`. `Match` returns `true` if the constraint is satisfied and `false` otherwise.
 
-To use a custom <xref:Microsoft.AspNetCore.Routing.IRouteConstraint>, the route constraint type must be registered with the app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in the app's service container. A <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> is a dictionary that maps route constraint keys to <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> implementations that validate those constraints. An app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> can be updated in `Startup.ConfigureServices` either as part of a [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) call or by configuring <xref:Microsoft.AspNetCore.Routing.RouteOptions> directly with `services.Configure<RouteOptions>`. For example:
+To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in the service container. A `ConstraintMap` is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `ConstraintMap` can be updated in `Startup.ConfigureServices` either as part of a [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) call or by configuring <xref:Microsoft.AspNetCore.Routing.RouteOptions> directly with `services.Configure<RouteOptions>`. For example:
 
-```csharp
-services.AddRouting(options =>
-{
-    options.ConstraintMap.Add("customName", typeof(MyCustomConstraint));
-});
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint.cs?name=snippet)]
 
-The constraint can then be applied to routes in the usual manner, using the name specified when registering the constraint type. For example:
+The preceding constraint applied to a route in the following code:
 
 ```csharp
 [HttpGet("{id:customName}")]
@@ -544,26 +537,21 @@ public ActionResult<string> Get(string id)
 
 Parameter transformers:
 
-* Execute when generating a link using `LinkGenerator`
-* Implement `Microsoft.AspNetCore.Routing.IOutboundParameterTransformer`.
+* Execute when generating a link using <xref:Microsoft.AspNetCore.Routing.LinkGenerator>.
+* Implement <xref:Microsoft.AspNetCore.Routing.IOutboundParameterTransformer?displayProperty=fullName>.
 * Are configured using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap>.
 * Take the parameter's route value and transform it to a new string value.
 * Result in using the transformed value in the generated link.
 
 For example, a custom `slugify` parameter transformer in route pattern `blog\{article:slugify}` with `Url.Action(new { article = "MyTestArticle" })` generates `blog\my-test-article`.
 
-To use a parameter transformer in a route pattern, configure it first using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in `Startup.ConfigureServices`:
+To use a parameter transformer in a route pattern, configure it using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in `Startup.ConfigureServices`:
 
-```csharp
-services.AddRouting(options =>
-{
-    // Replace the type and the name used to refer to it with your own
-    // IOutboundParameterTransformer implementation
-    options.ConstraintMap["slugify"] = typeof(SlugifyParameterTransformer);
-});
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint2.cs?name=snippet)]
 
-Parameter transformers are used by the framework to transform the URI where an endpoint resolves. For example, ASP.NET Core MVC uses parameter transformers to transform the route value used to match an `area`, `controller`, `action`, and `page`.
+In the preceding code,  replace the type and the name used to refer to the `ConstraintMap` with your `IOutboundParameterTransformer` implementation.
+
+Parameter transformers are used by the ASP.NET Core framework to transform the URI where an endpoint resolves. For example, ASP.NET Core MVC uses parameter transformers to transform the route value used to match an `area`, `controller`, `action`, and `page`.
 
 ```csharp
 routes.MapControllerRoute(
@@ -575,8 +563,8 @@ With the preceding route, the action `SubscriptionManagementController.GetAll` i
 
 ASP.NET Core provides API conventions for using a parameter transformers with generated routes:
 
-* ASP.NET Core MVC has the `Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention` API convention. This convention applies a specified parameter transformer to all attribute routes in the app. The parameter transformer transforms attribute route tokens as they are replaced. For more information, see [Use a parameter transformer to customize token replacement](/aspnet/core/mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement).
-* Razor Pages has the `Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention` API convention. This convention applies a specified parameter transformer to all automatically discovered Razor Pages. The parameter transformer transforms the folder and file name segments of Razor Pages routes. For more information, see [Use a parameter transformer to customize page routes](/aspnet/core/razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes).
+* ASP.NET Core MVC has the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention?displayProperty=fullName> API convention. This convention applies a specified parameter transformer to all attribute routes in the app. The parameter transformer transforms attribute route tokens as they are replaced. For more information, see [Use a parameter transformer to customize token replacement](xref:mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement).
+* Razor Pages has the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention> API convention. This convention applies a specified parameter transformer to all automatically discovered Razor Pages. The parameter transformer transforms the folder and file name segments of Razor Pages routes. For more information, see [Use a parameter transformer to customize page routes](xref:razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes).
 
 ## URL generation reference
 
@@ -646,7 +634,7 @@ This example shows ambient values and explicit values:
 
 ### URL generation process
 
-Once the set of candiate endpoints has been found the URL generation process will process them iteratively and return the first successful result.
+Once the set of candidate endpoints has been found the URL generation process will process them iteratively and return the first successful result.
 
 The first step in this process is called *route value invalidation* and is the process by which routing decides which route values from the ambient values should be used, and which should be ignored. Each ambient value is considered in turn, and either combined with the explicit values, or ignored.
 
@@ -1385,24 +1373,24 @@ The following table demonstrates example route constraints and their expected be
 
 | constraint | Example | Example Matches | Notes |
 | ---------- | ------- | --------------- | ----- |
-| `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer |
-| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false` (case-insensitive) |
+| `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer. |
+| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false. Case-insensitive. |
 | `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value in the invariant culture. See  preceding warning.|
 | `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value in the invariant culture. See  preceding warning.|
 | `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value in the invariant culture. See  preceding warning.|
 | `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Matches a valid `float` value in the invariant culture. See  preceding warning.|
-| `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Matches a valid `Guid` value |
-| `long` | `{ticks:long}` | `123456789`, `-123456789` | Matches a valid `long` value |
-| `minlength(value)` | `{username:minlength(4)}` | `Rick` | String must be at least 4 characters |
-| `maxlength(value)` | `{filename:maxlength(8)}` | `Richard` | String must be no more than 8 characters |
-| `length(length)` | `{filename:length(12)}` | `somefile.txt` | String must be exactly 12 characters long |
-| `length(min,max)` | `{filename:length(8,16)}` | `somefile.txt` | String must be at least 8 and no more than 16 characters long |
-| `min(value)` | `{age:min(18)}` | `19` | Integer value must be at least 18 |
-| `max(value)` | `{age:max(120)}` | `91` | Integer value must be no more than 120 |
-| `range(min,max)` | `{age:range(18,120)}` | `91` | Integer value must be at least 18 but no more than 120 |
-| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters (`a`-`z`, case-insensitive) |
-| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression (see tips about defining a regular expression) |
-| `required` | `{name:required}` | `Rick` | Used to enforce that a non-parameter value is present during URL generation |
+| `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Matches a valid `Guid` value. |
+| `long` | `{ticks:long}` | `123456789`, `-123456789` | Matches a valid `long` value. |
+| `minlength(value)` | `{username:minlength(4)}` | `Rick` | String must be at least 4 characters. |
+| `maxlength(value)` | `{filename:maxlength(8)}` | `MyFile` | String has maximum of 8 characters. |
+| `length(length)` | `{filename:length(12)}` | `somefile.txt` | String must be exactly 12 characters long. |
+| `length(min,max)` | `{filename:length(8,16)}` | `somefile.txt` | String must be at least 8 and has maximum of 16 characters. |
+| `min(value)` | `{age:min(18)}` | `19` | Integer value must be at least 18. |
+| `max(value)` | `{age:max(120)}` | `91` | Integer value maximum of 120. |
+| `range(min,max)` | `{age:range(18,120)}` | `91` | Integer value must be at least 18 and maximum of 120. |
+| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters `a`-`z`.  Case-insensitive. |
+| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression. See tips about defining a regular expression. |
+| `required` | `{name:required}` | `Rick` | Used to enforce that a non-parameter value is present during URL generation. |
 
 Multiple, colon-delimited constraints can be applied to a single parameter. For example, the following constraint restricts a parameter to an integer value of 1 or greater:
 
@@ -1418,14 +1406,20 @@ public User GetUserById(int id) { }
 
 The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See <xref:System.Text.RegularExpressions.RegexOptions> for a description of these members.
 
-Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. To use the regular expression `^\d{3}-\d{2}-\d{4}$` in routing, the expression must have the `\` (single backslash) characters provided in the string as `\\` (double backslash) characters in the C# source file in order to escape the `\` string escape character (unless using [verbatim string literals](/dotnet/csharp/language-reference/keywords/string)). To escape routing parameter delimiter characters (`{`, `}`, `[`, `]`), double the characters in the expression (`{{`, `}`, `[[`, `]]`). The following table shows a regular expression and the escaped version.
+Regular expressions use delimiters and tokens similar to those used by routing and the C# language. Regular expression tokens must be escaped. To use the regular expression `^\d{3}-\d{2}-\d{4}$` in routing:
+
+* The expression must have the single backslash `\` characters provided in the string as double backslash `\\` characters in the source code.
+* The regular expression must us `\\` in order to escape the `\` string escape character.
+* The regular expression does **not** require `\\` when using [verbatim string literals](/dotnet/csharp/language-reference/keywords/string).
+
+To escape routing parameter delimiter characters `{`, `}`, `[`, `]`, double the characters in the expression `{{`, `}`, `[[`, `]]`. The following table shows a regular expression and the escaped version:
 
 | Regular Expression    | Escaped Regular Expression     |
 | --------------------- | ------------------------------ |
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
 
-Regular expressions used in routing often start with the caret (`^`) character and match starting position of the string. The expressions often end with the dollar sign (`$`) character and match end of the string. The `^` and `$` characters ensure that the regular expression match the entire route parameter value. Without the `^` and `$` characters, the regular expression match any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match.
+Regular expressions used in routing often start with the caret `^` character and match starting position of the string. The expressions often end with the dollar sign `$` character and match end of the string. The `^` and `$` characters ensure that the regular expression match the entire route parameter value. Without the `^` and `$` characters, the regular expression match any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match.
 
 | Expression   | String    | Match | Comment               |
 | ------------ | --------- | :---: |  -------------------- |
@@ -1440,7 +1434,7 @@ For more information on regular expression syntax, see [.NET Framework Regular E
 
 To constrain a parameter to a known set of possible values, use a regular expression. For example, `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string `^(list|get|create)$` is equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
 
-## Custom Route Constraints
+## Custom route constraints
 
 In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface contains a single method, `Match`, which returns `true` if the constraint is satisfied and `false` otherwise.
 
@@ -1732,7 +1726,7 @@ Both URLs generated round-trip with the following route definition (`/Home/Index
 
 For more information on URL generation, see the [Url generation reference](#url-generation-reference) section.
 
-## Use Routing Middleware
+## Use routing middleware
 
 Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) in the app's project file.
 
