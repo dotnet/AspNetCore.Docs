@@ -285,7 +285,7 @@ The list of endpoints is prioritized according to:
 * The [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*), which is configurable.
 * The route template precedence, which is computed based on the route template.
 
-All matching endpoints are processed in each phase until the <xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector> is reached. The `EndpointSelector` is the final phase. The `EndpointSelector` will choose the highest priority endpoint from the matches as the *best match*. If there are other matches with the same priority as the *best match*, an ambiguous match exception is thrown.
+All matching endpoints are processed in each phase until the <xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector> is reached. The `EndpointSelector` is the final phase. The `EndpointSelector` chooses the highest priority endpoint from the matches as the *best match*. If there are other matches with the same priority as the *best match*, an ambiguous match exception is thrown.
 
 The route precedence is computed based on a *more specific* route template is higher priority. For example, consider the templates `/hello` and `/{message}`:
 
@@ -294,11 +294,11 @@ The route precedence is computed based on a *more specific* route template is hi
 
 In general route precedence does a good job of choosing the best match for the kinds of URL schemes used in practice. Use <xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order> only when necessary to avoid an ambiguity.
 
-Due to the kinds of extensibility provided by routing, it is **not** possible for the routing system to compute ahead of time the cases that will cause ambiguity. Consider an example such as the route templates `/{message:alpha}` and `/{message:int}`:
+Due to the kinds of extensibility provided by routing, it is **not** possible for the routing system to compute ahead of time the ambiguous routes. Consider an example such as the route templates `/{message:alpha}` and `/{message:int}`:
 
 * The `alpha` constraint matches only alphabetic characters.
 * The `int` constraint matches only numbers.
-* These templates have the same route precedence, but there's no single URL they will both match.
+* These templates have the same route precedence, but there's no single URL they both match.
 * If the routing system reported an ambiguity error at startup, it would block this valid use case.
 
 <!-- review I don't understand the preceding why you're talking about not possible to compute ahead of time the cases that will cause ambiguity. Your sample is never ambiguous. Can you provide two templates that are useful but do have potential ambiguities?  -->
@@ -477,7 +477,7 @@ public User GetUserById(int id) { }
 
 ### Regular expressions in constraints
 
-Regular expressions be specified as *inline constraints* using the `regex(...)` route constraint. Methods in the `MapControllerRoute` family also accept a object literal of constraints. If that form is used, then string values will be interpreted as regular expressions.
+Regular expressions be specified as *inline constraints* using the `regex(...)` route constraint. Methods in the `MapControllerRoute` family also accept a object literal of constraints. If that form is used, string values are interpreted as regular expressions.
 
 <!-- rick: move to snippet -->
 ```csharp
@@ -607,7 +607,7 @@ The role of the address scheme is to make the association between the address an
 
 ### Ambient values and explicit values
 
-From the current request, routing will access the route values of the current request `HttpContext.Request.RouteValues`. The values associated with the current request are referred to as the *ambient values*. For the purpose of clarity, the documentation refers to the route values passed in to method as *explicit values*.
+From the current request, routing accesses the route values of the current request `HttpContext.Request.RouteValues`. The values associated with the current request are referred to as the *ambient values*. For the purpose of clarity, the documentation refers to the route values passed in to method as *explicit values*.
 
 This following examples shows ambient values and explicit values:
 
@@ -667,7 +667,7 @@ The best way to think about the role of ambient values is that they attempt to s
 
 Problems with URL generation, where a call to `LinkGenerator` or `IUrlHelper` returns `null`, are usually caused by misunderstanding with *route value invalidation* . Troubleshoot this by explicitly specifying more of the route values to see if that solves the problem.
 
-Route value invalidation works on the assumption that the app's URL scheme is hierarchical, with a hierarchy formed from left-to-right. Consider the the basic controller route template `{controller}/{action}/{id?}` to get an intuitive sense of how this works in practice. A *change* to a value will *invalidate* all of the route values that appear to the right. This reflects the assumption about hierarchy. If the app:
+Route value invalidation works on the assumption that the app's URL scheme is hierarchical, with a hierarchy formed from left-to-right. Consider the the basic controller route template `{controller}/{action}/{id?}` to get an intuitive sense of how this works in practice. A **change** to a value **invalidates** all of the route values that appear to the right. This reflects the assumption about hierarchy. If the app:
 
 * Has an ambient value for `id`.
 * The operation specifies a different value for the `controller`.
@@ -680,25 +680,27 @@ Some examples demonstrating this principle:
 * If the explicit values contains a value for `action`, any ambient value for `action` is ignored. The ambient values for `controller` can be used. If the explicit value for `action` is different from the ambient value for `action`, the `id` value won't be used.  If the explicit value for `action` is the same as the ambient value for `action`, the `id` value can be used.
 * If the explicit values contains a value for `controller`, any ambient value for `controller` is ignored. If the explicit value for `controller` is different from the ambient value for `controller`, the `action` and `id` values won't be used. If the explicit value for `controller` is the same as the ambient value for `controller`, the `action` and `id` values can be used.
 
-This process is further complicated by the existence of attribute routes and dedicated conventional routes. Controller conventional routes such as `{controller}/{action}/{id?}` clearly specify a hierarchy using route parameters. For dedicated conventional routes, attribute routes to controllers and Razor Pages, there is still a hierarchy of route values, but they don't appear in the template. For these cases, URL generation defines the *required values* concept. Endpoints created by controllers and Razor Pages have *required values* specified that allow route value invalidation to work.
+This process is further complicated by the existence of attribute routes and dedicated conventional routes. Controller conventional routes such as `{controller}/{action}/{id?}` specify a hierarchy using route parameters. For dedicated conventional routes and attribute routes to controllers and Razor Pages, there is a hierarchy of route values, but they don't appear in the template. For these cases, URL generation defines the *required values* concept. Endpoints created by controllers and Razor Pages have *required values* specified that allow route value invalidation to work.
 
 The route value invalidation algorithm in detail:
-* The required value names are combined with the route parameters, and then processed from left-to-right.
-* For each parameter the *ambient value* and *explicit value* are compared.
-    * If the *ambient value* and *explict value* are the same, the the process continues.
-    * If the *ambient value* is present and the *explicit value* is not present, then the ambient is copied to be used when generating the URL.
-    * If the *ambient value* is not present and the *explicit value* is present, reject the ambient value, and all subsequent ambient values.
-    * If the *ambient value* is present and the *explitic value* is present, and the two values are different, reject the ambient value, and all subsequent ambient values.
 
-At this point, the URL generation operation is ready to evaluate route constraints. The set of accepted values is combined with the parameter default values which is provided to constraints. If the constraints all pass, the operation will continue.
+* The required value names are combined with the route parameters, then processed from left-to-right.
+* For each parameter the *ambient value* and *explicit value* are compared:
+    * If the *ambient value* and *explict value* are the same, the process continues.
+    * If the *ambient value* is present and the *explicit value* isn't, the ambient is used when generating the URL.
+    * If the *ambient value* isn't present and the *explicit value* is, reject the ambient value and all subsequent ambient values.
+    * If the *ambient value* and the *explitic value* are present, and the two values are different, reject the ambient value and all subsequent ambient values.
+
+At this point, the URL generation operation is ready to evaluate route constraints. The set of accepted values is combined with the parameter default values, which is provided to constraints. If the constraints all pass, the operation continues.
 
 Next the *accepted values* can be used to expand the route template. The route template is processed from left-to-right, and each parameter has its accepted value substituted, with the following special cases:
-* If the accepted values is missing a value and the parameter has a default value, the default value is used.
-* If the accepted values is missing a value and the parameter is optional, then processing continues.
-* If any route parameter to the right of a *missing optional parameter* has a value, then the operation fails.
-* Contiguous default-valued parameters optional parameters will be collapsed where possible. 
 
-Values explicitly provided but that don't match a segment of the route are added to the query string. The following table shows the result when using the route template `{controller}/{action}/{id?}`.
+* If the accepted values is missing a value and the parameter has a default value, the default value is used.
+* If the accepted values is missing a value and the parameter is optional, processing continues.
+* If any route parameter to the right of a *missing optional parameter* has a value, the operation fails.
+* <!-- review default-valued parameters optional parameters --> Contiguous default-valued parameters and optional parameters are collapsed where possible.
+
+Values explicitly provided that don't match a segment of the route are added to the query string. The following table shows the result when using the route template `{controller}/{action}/{id?}`. zz
 
 | Ambient Values                     | Explicit Values                        | Result                  |
 | ---------------------------------- | -------------------------------------- | ----------------------- |
@@ -747,7 +749,7 @@ The following links provide information on configuring endpoint metadata:
 * Port: `*:5000` (matches port 5000 with any host)
 * Host and port: `www.domain.com:5000`, `*.domain.com:5000` (matches host and port)
 
-Multiple parameters can be specified using `RequireHost` or `[Host]`. The constraint will match hosts valid for any of the parameters. For example, `[Host("domain.com", "*.domain.com")]` will match `domain.com`, `www.domain.com`, or `subdomain.domain.com`.
+Multiple parameters can be specified using `RequireHost` or `[Host]`. The constraint  matches hosts valid for any of the parameters. For example, `[Host("domain.com", "*.domain.com")]` matches `domain.com`, `www.domain.com`, or `subdomain.domain.com`.
 
 The following code uses `RequireHost` to require the specified host on the route:
 
@@ -801,11 +803,11 @@ When the `[Host]` attribute is applied to both the controller and action method:
 
 ## Performance guidance for routing
 
-The performance of routing is often raised as an area of concern - usually upon investigation the problem is elsewhere. The reason for this phenomenon is that frameworks like controllers and Razor Pages report the amount of time spent inside the framework in their logging messages. When there's a significant difference between the time reported by controllers and the total time of the request, developers have eliminated their application code as the source of the problme, it's an easy assumption to make that routing is the cause.
+The performance of routing is often raised as an area of concern - usually upon investigation the problem is elsewhere. The reason for this phenomenon is that frameworks like controllers and Razor Pages report the amount of time spent inside the framework in their logging messages. When there's a significant difference between the time reported by controllers and the total time of the request, developers have eliminated their application code as the source of the problem, it's an easy assumption to make that routing is the cause.
 
-Routing is performance tested using thousands of endpoints. It's unlikely that a normal application will encounter a performance problem just by being too large. The most common root cause of investigating *routing performance* is usually a badly-behaving custom middleware. 
+Routing is performance tested using thousands of endpoints. It's unlikely that a typical app will encounter a performance problem just by being too large. The most common root cause of investigating *routing performance* is usually a badly-behaving custom middleware.
 
-This code sample demonstrates a straightforward technique for narrowing down the source of delay. 
+This code sample demonstrates a straightforward technique for narrowing down the source of delay.
 
 ```csharp
 public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
@@ -865,11 +867,11 @@ The following list provides some insight into routing features that are relative
 
 ## Guidance for library authors
 
-This section contains guidance for library authors building on top of routing. These details are intended to ensure that application developers will have a good experience using libraries and frameworks that extend routing. 
+This section contains guidance for library authors building on top of routing. These details are intended to ensure that application developers have a good experience using libraries and frameworks that extend routing.
 
 ### Defining endpoints
 
-To create a framework that uses routing for URL matching, start by defining a user experience that builds on top of `UseEndpoints`. 
+To create a framework that uses routing for URL matching, start by defining a user experience that builds on top of `UseEndpoints`.
 
 **DO** build on top of `IEndpointRouteBuilder`. This allows users to compose your framework with other ASP.NET Core features without confusion. Every ASP.NET Core template includes routing, assume it's present and familiar for users.
 
