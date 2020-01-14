@@ -25,7 +25,7 @@ Apps can configure routing using:
 - Endpoint-enabled middleware (*routerware*) such as Health Checks.
 - Routing primitives directly.
 
-This document covers low-level details of ASP.NET Core routing. For information on configuring routing for Controllers, see <xref:mvc/controllers/routing>. For information on routing conventions in Razor Pages, see <xref:razor-pages/razor-pages-conventions>.
+This document covers low-level details of ASP.NET Core routing. For information on configuring routing for controllers, see <xref:mvc/controllers/routing>. For information on routing conventions in Razor Pages, see <xref:razor-pages/razor-pages-conventions>.
 
 The routing system described here (Endpoint Routing) applies to ASP.NET Core 3.0 and later. For information on the previous routing system based on `IRouter`, use one of the following approaches:
 
@@ -64,7 +64,7 @@ The `MapGet` method is used to define an *endpoint*, that is, something that can
 <!-- wire up doesn't MT - AS IN: can be used to wire up code -->
 The ASP.NET Core framework extends the builder provided by `UseEndpoints`:
 - [MapRazorPages (Razor Pages)](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
-- [MapControllers (Controllers)](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
+- [MapControllers (controllers)](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
 - [MapHub<THub> (SignalR)](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) <!-- Review required for URL change-->
 - MapGrpcService<TService> (gRPC)
 
@@ -179,7 +179,7 @@ The preceding sample code here is intended to demonstrate the basic concepts of 
 * Log to a file or database.
 * Include details such as the user, ip address, name of the sensitive endpoint, and more.
 
-The audit policy metadata `AuditPolicyAttribute` is defined as an `Attribute` for easier use with class-based frameworks such as Controllers and SignalR. When using *Route to Code*:
+The audit policy metadata `AuditPolicyAttribute` is defined as an `Attribute` for easier use with class-based frameworks such as controllers and SignalR. When using *Route to Code*:
 
 * Metadata is attached with a builder API.
 * Class-based frameworks include all attributes on the corresponding method and class when creating endpoints.
@@ -303,7 +303,7 @@ Due to the kinds of extensibility provided by routing, it is **not** possible fo
 
 <!-- review I don't understand the preceding why you're talking about not possible to compute ahead of time the cases that will cause ambiguity. Your sample is never ambiguous. Can you provide two templates that are useful but do have potential ambiguities?  -->
 
-The order of operations inside `UseEndpoints` **does not** influence the behavior of routing with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of Controllers without the routing system providing the same guarantees as older routing implementations.
+The order of operations inside `UseEndpoints` **does not** influence the behavior of routing with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
 
 It's possible in the legacy implementation of routing to implement routing extensbility that has a dependency on the order in which *routes* are processed. Endpoint routing in ASP.NET Core 3.0 and later:
 
@@ -323,9 +323,9 @@ URL generation:
 
 Endpoint routing includes the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> link generator API .`LinkGenerator` is a singleton service that can be retrieved from [DI](xref:fundamentals/dependency-injection). The API can be used outside of the context of an executing request. MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> and scenarios that rely on <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the `LinkGenerator` internally to provide link generating capabilities.
 
-The link generator is backed by the concept of an *address* and *address schemes*. An address scheme is a way of determining the endpoints that should be considered for link generation. For example, the route name and route values scenarios many users are familiar with from Controllers/Razor Pages are implemented as an address scheme.
+The link generator is backed by the concept of an *address* and *address schemes*. An address scheme is a way of determining the endpoints that should be considered for link generation. For example, the route name and route values scenarios many users are familiar with from controllers/Razor Pages are implemented as an address scheme.
 
-The link generator can link to Controllers/Razor Pages actions and pages via the following extension methods:
+The link generator can link to controllers/Razor Pages actions and pages via the following extension methods:
 
 * <xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetPathByAction*>
 * <xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetUriByAction*>
@@ -479,6 +479,7 @@ public User GetUserById(int id) { }
 
 Regular expressions be specified as *inline constraints* using the `regex(...)` route constraint. Methods in the `MapControllerRoute` family also accept a object literal of constraints. If that form is used, then string values will be interpreted as regular expressions.
 
+<!-- rick: move to snippet -->
 ```csharp
 app.UseEndpoints(endpoints =>
 {
@@ -568,7 +569,7 @@ ASP.NET Core provides API conventions for using a parameter transformers with ge
 
 ## URL generation reference
 
-This section contains a reference for the algorithm implemented by URL generation. Most complex examples of URL generation in practice use Controllers or Razor Pages. See  [routing in controllers](xref:mvc/controllers/routing) for additional information.
+This section contains a reference for the algorithm implemented by URL generation. Most complex examples of URL generation in practice use controllers or Razor Pages. See  [routing in controllers](xref:mvc/controllers/routing) for additional information.
 
 The URL generation process begins with a call to [LinkGenerator.GetPathByAddress](xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*) or a similar method. The method is provided with an address, a set of route values, and optionally information about the current request from `HttpContext`.
 
@@ -678,8 +679,8 @@ Some examples demonstrating this principle:
 * If the explicit values contains a value for `id`, the ambient value for `id` is ignored. The ambient values for `controller` and `action` can be used.
 * If the explicit values contains a value for `action`, any ambient value for `action` is ignored. The ambient values for `controller` can be used. If the explicit value for `action` is different from the ambient value for `action`, the `id` value won't be used.  If the explicit value for `action` is the same as the ambient value for `action`, the `id` value can be used.
 * If the explicit values contains a value for `controller`, any ambient value for `controller` is ignored. If the explicit value for `controller` is different from the ambient value for `controller`, the `action` and `id` values won't be used. If the explicit value for `controller` is the same as the ambient value for `controller`, the `action` and `id` values can be used.
-zz
-This process is further complicated by the existence of attribute routes and dedicated conventional routes. Controller conventional routes like `{controller}/{action}/{id?}` clearly specify a hierarchy using route parameters. For dedicated conventional routes, attribute routes to controllers, and Razor Pages, there is still a hierarchy of route values, but they don't appear in the template. For these cases, URL generation defines the *required values* concept. Endpoints created by Controllers and Razor Pages have *required values* specified that allow route value invalidation to work.
+
+This process is further complicated by the existence of attribute routes and dedicated conventional routes. Controller conventional routes such as `{controller}/{action}/{id?}` clearly specify a hierarchy using route parameters. For dedicated conventional routes, attribute routes to controllers and Razor Pages, there is still a hierarchy of route values, but they don't appear in the template. For these cases, URL generation defines the *required values* concept. Endpoints created by controllers and Razor Pages have *required values* specified that allow route value invalidation to work.
 
 The route value invalidation algorithm in detail:
 * The required value names are combined with the route parameters, and then processed from left-to-right.
@@ -800,7 +801,7 @@ When the `[Host]` attribute is applied to both the controller and action method:
 
 ## Performance guidance for routing
 
-The performance of routing is often raised as an area of concern - usually upon investigation the problem is elsewhere. The reason for this phenomenon is that frameworks like Controllers and Razor Pages report the amount of time spent inside the framework in their logging messages. When there's a significant difference between the time reported by Controllers and the total time of the request, developers have eliminated their application code as the source of the problme, it's an easy assumption to make that routing is the cause.
+The performance of routing is often raised as an area of concern - usually upon investigation the problem is elsewhere. The reason for this phenomenon is that frameworks like controllers and Razor Pages report the amount of time spent inside the framework in their logging messages. When there's a significant difference between the time reported by controllers and the total time of the request, developers have eliminated their application code as the source of the problme, it's an easy assumption to make that routing is the cause.
 
 Routing is performance tested using thousands of endpoints. It's unlikely that a normal application will encounter a performance problem just by being too large. The most common root cause of investigating *routing performance* is usually a badly-behaving custom middleware. 
 
@@ -894,7 +895,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-**CONSIDER** writing your own `EndpointDataSource`. `EndpointDataSource` is the low-level primitive for declaring and updating a collection of endpoints. This is the power tool used by Controllers and Razor Pages. 
+**CONSIDER** writing your own `EndpointDataSource`. `EndpointDataSource` is the low-level primitive for declaring and updating a collection of endpoints. This is the power tool used by controllers and Razor Pages. 
 
 The routing tests have a [simple example](https://github.com/aspnet/AspNetCore/blob/master/src/Http/Routing/test/testassets/RoutingSandbox/Framework/FrameworkEndpointDataSource.cs#L17) of a non-updating data source.
 
@@ -912,7 +913,7 @@ public interface ICoolMetadata { ...}
 public class CoolMetadataAttribute : Attribute, ICoolMetadata { ...}
 ```
 
-Frameworks like Controllers and Razor Pages support applying metadata attributes to types and methods. If you declare metadata types, make sure it's possible to use them as attributes, since that's the most idiomatic thing for many users. Declaring a metadata type as an interface adds another layer of flexibility, since interfaces are composable, developers can declare their own types that combine multiple policies.
+Frameworks like controllers and Razor Pages support applying metadata attributes to types and methods. If you declare metadata types, make sure it's possible to use them as attributes, since that's the most idiomatic thing for many users. Declaring a metadata type as an interface adds another layer of flexibility, since interfaces are composable, developers can declare their own types that combine multiple policies.
 
 **DO** make it possible to override metadata.
 
@@ -942,7 +943,7 @@ public class MyController : Controller
 }
 ```
 
-The best way to follow is guideline is to avoid defining *marker metadata* - don't just look for the presence of a metadata type, define a property on it and check that. The metadata collection is ordered and supports overriding by priority. In the case of Controllers, an metadata on the action method is *most specific*.
+The best way to follow is guideline is to avoid defining *marker metadata* - don't just look for the presence of a metadata type, define a property on it and check that. The metadata collection is ordered and supports overriding by priority. In the case of controllers, an metadata on the action method is *most specific*.
 
 **DO** make middleware useful with and without routing.
 
