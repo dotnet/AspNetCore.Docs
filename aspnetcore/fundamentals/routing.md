@@ -568,16 +568,17 @@ ASP.NET Core provides API conventions for using a parameter transformers with ge
 
 ## URL generation reference
 
-This section contains a reference for the algorithm implemented by URL generation. Most complex examples of URL generation in practice use Controllers or Razor Pages. See the documentation [routing in controllers](xref:mvc/controllers/routing) for additional information.
+This section contains a reference for the algorithm implemented by URL generation. Most complex examples of URL generation in practice use Controllers or Razor Pages. See  [routing in controllers](xref:mvc/controllers/routing) for additional information.
 
-> [!TIP]
-> The first step in troubleshooting URL generation should be to set the logging level of `Microsoft.AspNetCore.Routing` to `TRACE`. `LinkGenerator` logs many details about its processing which can be useful to troubleshoot problems.
+The URL generation process begins with a call to [LinkGenerator.GetPathByAddress](xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*) or a similar method. The method is provided with an address, a set of route values, and optionally information about the current request from `HttpContext`.
 
-The URL generation process begins with a call to [LinkGenerator.GetPathByAddress](xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*) or a similar method. The method is provided with an address, a set of route values, and optionally information about the current request (`HttpContext`).
-
-The first step is to use the address to resolve a set of candidate endpoints using an `IAddressScheme<TAddress>` that matches the address's type. 
+The first step is to use the address to resolve a set of candidate endpoints using an `IAddressScheme<TAddress>` that matches the address's type. <!-- What is `IAddressScheme<TAddress>` ? -->
 
 One of set of candidates is found by the address scheme, the endpoints are ordered and processed iteratively until a URL generation operation succeeds. URL generation does not check for ambiguities, the first result returned is the final result.
+
+### Troubleshooting URL generation with logging
+
+The first step in troubleshooting URL generation is setting the logging level of `Microsoft.AspNetCore.Routing` to `TRACE`. `LinkGenerator` logs many details about its processing which can be useful to troubleshoot problems.
 
 ### Addresses
 
@@ -1577,7 +1578,7 @@ The routing system has the following characteristics:
 * A response can use routing to generate URLs (for example, for redirection or links) based on route information and thus avoid hard-coded URLs, which helps maintainability.
 * URL generation is based on routes, which support arbitrary extensibility. <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> offers methods to build URLs.
 
-Routing is connected to the [middleware](xref:fundamentals/middleware/indexindex) pipeline by the <xref:Microsoft.AspNetCore.Builder.RouterMiddleware> class. [ASP.NET Core MVC](xref:mvc/overview) adds routing to the middleware pipeline as part of its configuration and handles routing in MVC and Razor Pages apps. To learn how to use routing as a standalone component, see the [Use Routing Middleware](#use-routing-middleware) section.
+Routing is connected to the [middleware](xref:fundamentals/middleware/index) pipeline by the <xref:Microsoft.AspNetCore.Builder.RouterMiddleware> class. [ASP.NET Core MVC](xref:mvc/overview) adds routing to the middleware pipeline as part of its configuration and handles routing in MVC and Razor Pages apps. To learn how to use routing as a standalone component, see the [Use Routing Middleware](#use-routing-middleware) section.
 
 ### URL matching
 
