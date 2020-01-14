@@ -251,7 +251,7 @@ URL matching:
 * Can be extended to consider any data in the request.
 
 <!-- review required [request feature] -->
-When a Routing Middleware executes, it sets an `Endpoint` and route values to a [request feature](xref:fundamentals/request-features) on the <xref:Microsoft.AspNetCore.Http.HttpContext>. For the current request:
+When a Routing Middleware executes, it sets an `Endpoint` and route values to a [request feature](xref:fundamentals/request-features) on the <xref:Microsoft.AspNetCore.Http.HttpContext>. from the current request:
 
 * Calling [HttpContext.GetEndpoint](<xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*>) gets the endpoint.
 * `HttpRequest.RouteValues` gets the collection of route values.
@@ -585,20 +585,22 @@ The first step in troubleshooting URL generation is setting the logging level of
 Addresses are the concept in URL generation used to bind a call into the link generator to a set of candidate endpoints.
 
 Addresses are extensible concept that come with two implementations by default:
-* Using *endpoint name* (`string`) as the address.
+
+* Using *endpoint name* (`string`) as the address:
     * Provides similar functionality to MVC's route name.
-    * Uses the `IEndpointNameMetadata` metadata type. 
+    * Uses the <xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata> metadata type.
     * Resolves the provided string against the metadata of all registered endpoints.
-    * Throw an exception on startup if multiple endpoints use the same name.
-    * Recommended for general-purpose use outside of Controllers and Razor Pages.
-* Using *route values* (`RouteValuesAddress`) as the address.
-    * Provides similar functionality to Controllers and Razor Pages legacy URL generation.
+    * Throws an exception on startup if multiple endpoints use the same name.
+    * Recommended for general-purpose use outside of controllers and Razor Pages.
+* Using *route values* (<xref:Microsoft.AspNetCore.Routing.RouteValuesAddress>) as the address:
+    * Provides similar functionality to controllers and Razor Pages legacy URL generation.
     * Very complex to extend and debug.
     * Provides the implementation used by `IUrlHelper`, Tag Helpers, HTML Helpers, Action Results, etc.
 
-The role of the address scheme is to make the assocation between the address and matching endpoints via arbitrary criteria.
-* The *endpoint name* scheme performs a simple dictionary lookup.
-* The *route values* scheme has a complex best-subset-of-set algorithm.
+The role of the address scheme is to make the association between the address and matching endpoints by arbitrary criteria:
+
+* The *endpoint name* scheme performs a basic dictionary lookup.
+* The *route values* scheme has a complex *best subset of set* algorithm.
 
 <a name="ambient"></a>
 
@@ -606,57 +608,78 @@ The role of the address scheme is to make the assocation between the address and
 
 From the current request, routing will access the route values of the current request `HttpContext.Request.RouteValues`. The values associated with the current request are referred to as the *ambient values*. For the purpose of clarity, the documentation refers to the route values passed in to method as *explicit values*.
 
-This example shows ambient values and explicit values:
+This following examples shows ambient values and explicit values:
+
+<!-- Review: Original Provides ambient values (current request)  - Per MT Style guide, avoid () 
+Code comments don't MT, so I'm moving them outside.
+-->
+
+Provides ambient values from the current request and explicit values: `{ id = 17, }`.
 
 ```csharp
-// Provides ambient values (current request) and explicit values: { id = 17, }
 ... = linkGenerator.GetPathByName(httpContext, "subscribe", new { id = 17, });
+```
 
-// Provides no ambient values, and explicit values: { id = 17, }
+Provides no ambient values and explicit values: `{ id = 17, }`
+
+```csharp
 ... = linkGenerator.GetPathByName("subscribe", new { id = 17, });
+```
 
-// Provides ambient values (current request) and explicit values: { action = "Edit, controller = "...", id = 17, }
+Provides ambient values from the current request and explicit values: `{ action = "Edit, controller = "...", id = 17, }`
+
+```csharp
 ... = urlHelper.Action("Edit", new { id = 17, });
+```
 
-// Provides ambient values (current request) and explicit values: { page = "./Edit, id = 17, }
+Provides ambient values from the current request and explicit values: { page = "./Edit, id = 17, }
+```csharp
 ... = urlHelper.Page("./Edit", new { id = 17, });
 ```
 
-> [!NOTE]
-> The behavior of MVC's `IUrlHelper` adds a layer of complexity in additon to the rules described here.
-> * `IUrlHelper` always provides the route values from the current request as ambient values.
-> * `IUrlHelper.Action` always copies the current `action` and `controller` route values as explicit values unless overridden by the user. 
-> * `IUrlHelper.Page` always copies the current `page` route value as an explicit values unless overridden by the user. 
-> * `IUrlHelper.Page` always overrides the current `handler` route value with `null` as an explicit values unless overridden by the user. 
->
-> Users are often surprised by the behavioral details of ambient values, because MVC doesn't seem to follow its own rules. For historical and compatibility reasons certain route values (`action`, `controller`, `page`, and `handler`) have their own special-case behavior.
->
-> The equivalent functionality provided by `LinkGenerator.GetPathByAction` and `LinkGenerator.GetPathByPage` duplicates these quirks of `IUrlHelper` for compatibility.
+The behavior of MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> adds a layer of complexity in addition to the rules described here:
+
+* `IUrlHelper` always provides the route values from the current request as ambient values.
+* `IUrlHelper.Action` always copies the current `action` and `controller` route values as explicit values unless overridden by the user. <!-- review - the client using the app? Example of overriding ?-->
+* `IUrlHelper.Page` always copies the current `page` route value as an explicit values unless overridden by the user.
+* `IUrlHelper.Page` always overrides the current `handler` route value with `null` as an explicit values unless overridden by the user.
+
+Users are often surprised by the behavioral details of ambient values, because MVC doesn't seem to follow its own rules. For historical and compatibility reasons certain route values  such as `action`, `controller`, `page`, and `handler` have their own special-case behavior.
+
+The equivalent functionality provided by `LinkGenerator.GetPathByAction` and `LinkGenerator.GetPathByPage` duplicates these anomalies of `IUrlHelper` for compatibility.
 
 ### URL generation process
 
-Once the set of candidate endpoints has been found the URL generation process will process them iteratively and return the first successful result.
+Once the set of candidate endpoints are found, the URL generation algorithm:
 
-The first step in this process is called *route value invalidation* and is the process by which routing decides which route values from the ambient values should be used, and which should be ignored. Each ambient value is considered in turn, and either combined with the explicit values, or ignored.
+* Processes the endpoints iteratively.
+* Returns the first successful result.
 
-> [!NOTE]
-> The best way to think about the role of ambient values is that they attempt to save application developers typing in some common cases. Traditionally, the scenarios where ambient values are helpful are related to MVC.
-> * When linking to another action in the same controller, you don't need to specify the controller name.
-> * When linking to another controller in the same area, you don't need to specify the area name.
-> * When linking to the same action method, you don't need to specify any route values.
-> * When linking to another part of the app, you don't want to carry over route values that have no meaning in that part of the app.
+The first step in this process is called *route value invalidation*.  *Route value invalidation* is the process by which routing decides which route values from the ambient values should be used and which should be ignored. Each ambient value is considered in turn, and either combined with the explicit values, or ignored.
 
-> [!TIP]
-> If you encounter trouble with URL generation, where a call to `LinkGenerator` or `IUrlHelper` returns `null`, the most likely cause is misunderstanding with *route value invalidation*. Troubleshoot this by explicitly specifying more of the route values and see if that changes the outcome.
+The best way to think about the role of ambient values is that they attempt to save application developers typing in some common cases. Traditionally, the scenarios where ambient values are helpful are related to MVC:
 
-Route value invalidation works on the base assumption that the application's URL scheme is hierarchical, with a hierarchy formed from left-to-right. Consider the the simple controller route template `{controller}/{action}/{id?}` to get an intuitive sense of how this works in practice. A *change* to a value will *invalidate* all of the route values that appear to the right. This reflects the assumption about hierarchy - if the app has an ambient value for `id`, but the operation specifies a different value for the `controller`, it's not clear that reusing the value for `id` is desirable, so it won't be reused.
+* When linking to another action in the same controller, you don't need to specify the controller name.
+* When linking to another controller in the same area, you don't need to specify the area name.
+* When linking to the same action method, you don't need to specify any route values.
+* When linking to another part of the app, you don't want to carry over route values that have no meaning in that part of the app.
+
+Problems with URL generation, where a call to `LinkGenerator` or `IUrlHelper` returns `null`, are usually caused by misunderstanding with *route value invalidation* . Troubleshoot this by explicitly specifying more of the route values to see if that solves the problem.
+
+Route value invalidation works on the assumption that the app's URL scheme is hierarchical, with a hierarchy formed from left-to-right. Consider the the basic controller route template `{controller}/{action}/{id?}` to get an intuitive sense of how this works in practice. A *change* to a value will *invalidate* all of the route values that appear to the right. This reflects the assumption about hierarchy. If the app:
+
+* Has an ambient value for `id`.
+* The operation specifies a different value for the `controller`.
+
+`id` won't be reused because `{controller}` is to the left of `{id?}`.
 
 Some examples demonstrating this principle:
-* If the explicit values contains a value for `id` then the ambient value for `id`w ill be ignored. The ambient values for `controller` and `action` can be used.
-* If the explicit values contains a value for `action` then the ambient value for `action` (if present) will be ignored. The ambient values for `controller` can be used. If the explicit value for `action` is different from the ambient value for `action`, then the `id` value will not be used, otherwise it can be.
-* If the explicit values contains a value for `controller` then the ambient value for `controller` (if present) will be ignored. If the explicit value for `controller` is different from the ambient value for `controller`, then the `action` and `id` values will not be used, otherwise they can be.
 
-This process is further complicated by the existance of attribute routes and dedicated conventional routes. Controller conventional routes like `{controller}/{action}/{id?}` clearly specify a hierarchy using route parameters. For dedicated conventional routes, attribute routes to controllers, and Razor Pages, there is still a hierarchy of route values, but they don't appear in the template. For these cases, URL generation defines the *required values* concept. Endpoints created by Controllers and Razor Pages have *required values* specified that allow route value invalidation to work.
+* If the explicit values contains a value for `id`, the ambient value for `id` is ignored. The ambient values for `controller` and `action` can be used.
+* If the explicit values contains a value for `action`, any ambient value for `action` is ignored. The ambient values for `controller` can be used. If the explicit value for `action` is different from the ambient value for `action`, the `id` value won't be used.  If the explicit value for `action` is the same as the ambient value for `action`, the `id` value can be used.
+* If the explicit values contains a value for `controller`, any ambient value for `controller` is ignored. If the explicit value for `controller` is different from the ambient value for `controller`, the `action` and `id` values won't be used. If the explicit value for `controller` is the same as the ambient value for `controller`, the `action` and `id` values can be used.
+zz
+This process is further complicated by the existence of attribute routes and dedicated conventional routes. Controller conventional routes like `{controller}/{action}/{id?}` clearly specify a hierarchy using route parameters. For dedicated conventional routes, attribute routes to controllers, and Razor Pages, there is still a hierarchy of route values, but they don't appear in the template. For these cases, URL generation defines the *required values* concept. Endpoints created by Controllers and Razor Pages have *required values* specified that allow route value invalidation to work.
 
 The route value invalidation algorithm in detail:
 * The required value names are combined with the route parameters, and then processed from left-to-right.
