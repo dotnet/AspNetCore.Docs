@@ -94,7 +94,7 @@ Get started with Blazor:
 
    7\. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Run the app with **Start Debugging** to run the app *with the debugger*.
 
-       If a prompt appears to trust the development certificate, trust the certificate and continue.
+   If a prompt appears to trust the development certificate, trust the certificate and continue.
 
    # [.NET Core CLI](#tab/netcore-cli/)
 
