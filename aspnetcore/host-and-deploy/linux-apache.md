@@ -5,7 +5,7 @@ description: Learn how to set up Apache as a reverse proxy server on CentOS to r
 monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
 ms.custom: mvc
-ms.date: 12/02/2019
+ms.date: 01/13/2020
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
@@ -192,7 +192,7 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 WantedBy=multi-user.target
 ```
 
-If the user *apache* isn't used by the configuration, the user must be created first and given proper ownership of files.
+In the preceding example, the user that manages the service is specified by the `User` option. The user (`apache`) must exist and have proper ownership of the app's files.
 
 Use `TimeoutStopSec` to configure the duration of time to wait for the app to shut down after it receives the initial interrupt signal. If the app doesn't shut down in this period, SIGKILL is issued to terminate the app. Provide the value as unitless seconds (for example, `150`), a time span value (for example, `2min 30s`), or `infinity` to disable the timeout. `TimeoutStopSec` defaults to the value of `DefaultTimeoutStopSec` in the manager configuration file (*systemd-system.conf*, *system.conf.d*, *systemd-user.conf*, *user.conf.d*). The default timeout for most distributions is 90 seconds.
 
