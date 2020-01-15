@@ -782,7 +782,7 @@ To time routing:
 
 This is a basic way to narrow down the delay when it's significant, for example, more than `10ms`.  Subtracting `Time 2` from `Time 1` reports the time spent inside the `UseRouting` middleware.
 
-The following code uses a more compact approach to the preceding code:
+The following code uses a more compact approach to the preceding timing code:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupSW.cs?name=snippetSW)]
 
@@ -805,7 +805,7 @@ The following list provides some insight into routing features that are relative
 
 This section contains guidance for library authors building on top of routing. These details are intended to ensure that app developers have a good experience using libraries and frameworks that extend routing.
 
-### Defining endpoints
+### Define endpoints
 
 To create a framework that uses routing for URL matching, start by defining a user experience that builds on top of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>.
 
@@ -856,37 +856,26 @@ public interface ICoolMetadata { ...}
 public class CoolMetadataAttribute : Attribute, ICoolMetadata { ...}
 ```
 
-Frameworks like controllers and Razor Pages support applying metadata attributes to types and methods. If you declare metadata types, make sure it's possible to use them as attributes, since that's the most idiomatic thing for many users. Declaring a metadata type as an interface adds another layer of flexibility, since interfaces are composable, developers can declare their own types that combine multiple policies.
+Frameworks like controllers and Razor Pages support applying metadata attributes to types and methods. If you declare metadata types:
+
+* Make the accessible as [attributes](/dotnet/csharp/programming-guide/concepts/attributes/).
+* Most users are familiar with applying attributes.
+
+Declaring a metadata type as an interface adds another layer of flexibility:
+
+* Interfaces are composable.
+* Developers can declare their own types that combine multiple policies.
 
 **DO** make it possible to override metadata.
 
-```csharp
-public interface ICoolMetadata
-{
-    bool IsCool { get; }
-}
+[!code-csharp[](routing/samples/3.x/RoutingSample/ICoolMetadata.cs?name=snippet)]
 
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-public class CoolMetadataAttribute : Attribute, ICoolMetadata 
-{ 
-    public bool IsCool => true;
-}
+The best way to follow these guidelines is to avoid defining *marker metadata*:
 
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-public class SuppressCoolMetadataAttribute : Attribute, ICoolMetadata 
-{ 
-    public bool IsCool => false;
-}
+* Don't just look for the presence of a metadata type.
+* Define a property on the metadata and check the property.
 
-[CoolMetadata]
-public class MyController : Controller
-{
-    [SuppressCoolMetadata]
-    public void Uncool() { }
-}
-```
-
-The best way to follow is guideline is to avoid defining *marker metadata* - don't just look for the presence of a metadata type, define a property on it and check that. The metadata collection is ordered and supports overriding by priority. In the case of controllers, an metadata on the action method is *most specific*.
+The metadata collection is ordered and supports overriding by priority. In the case of controllers, a metadata on the action method is *most specific*.
 
 **DO** make middleware useful with and without routing.
 
@@ -902,7 +891,12 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-As an examplar of this guideline, consider the `UseAuthorization` middleware. The authorization middleware allows you pass in a fallback policy (shown here). The fallback policy (if specified) applies to endpoints without a specified policy, *and* to requests that don't match an endpoint. This makes the authorization middleware outside of the context of routing, it can be used for traditional middleware programming.
+As an example of this guideline, consider the `UseAuthorization` middleware. The authorization middleware allows you pass in a fallback policy. <!-- shown where?  (shown here) --> The fallback policy, if specified, applies to both:
+
+* Endpoints without a specified policy.
+* Requests that don't match an endpoint.
+
+This makes the authorization middleware outside of the context of routing. The authorization middleware can be used for traditional middleware programming.
 
 ::: moniker-end
 
