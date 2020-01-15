@@ -413,7 +413,7 @@ Complex segments are processed by matching up literal delimiters from **right to
 <!-- review: need to define greedy or non-greedy -->
 Complex segments work in a particular way that must be understood to use them successfully. The example in this section demonstrates why complex segments only really work well when the *delimiter* text doesn't appear inside the parameter values. Using a [regex](/dotnet/standard/base-types/regular-expressions) and then manually extracting the values is needed for more complex cases.
 
-This is a summary of the steps that routing would perform with the template `/a{b}c{d}` and the URL path `/abcd`. The `|` is used to help visualize how the algorithm works.
+This is a summary of the steps that routing performs with the template `/a{b}c{d}` and the URL path `/abcd`. The `|` is used to help visualize how the algorithm works.
 
 * The first literal (right to left) is `c`, so `/abcd` is searched from right and found `/ab|c|d`.
 * Everything to the right (`d`) is now matched to the route parameter `{d}`.
@@ -711,20 +711,16 @@ Values explicitly provided that don't match a segment of the route are added to 
 
 ### Problems with route value invalidation
 
-As of ASP.NET Core 3.0 some URL generation schemes used in earlier ASP.NET Core versions don't work well with URL generation. The ASP.NET Core team plans to add features to address these needs in a future release. For now the best solution is to use legacy routing.
+As of ASP.NET Core 3.0, some URL generation schemes used in earlier ASP.NET Core versions don't work well with URL generation. The ASP.NET Core team plans to add features to address these needs in a future release. For now the best solution is to use legacy routing.
 
-This example demonstrates an example of a URL generation scheme that's not supported by routing.
+The following code shows an example of a URL generation scheme that's not supported by routing.
 
-```csharp
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute("default", "{culture}/{controller=Home}/{action=Index}/{id?}");
-    endpoints.MapControllerRoute("blog", "{culture}/{**slug}", new { controller = "Blog", action = "ReadPost", });
-});
-```
-In this example, the `culture` route parameter is used for localization. The desire is to have the `culture` parameter always accepted as an ambient value. However this doesn't work because of the way *required values* work.
-* In the first route template, the `culture` route parameter is *to the left* of `controller`, so changes to `controller` won't invalidate `culture`.
-* In the second route template, the `culture` route parameter is considered to be *to the right* of `controller`, which appears in the required values.
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupUnsupported.cs?name=snippet)]
+
+In the preceding code, the `culture` route parameter is used for localization. The desire is to have the `culture` parameter always accepted as an ambient value. However the `culture` parameter is **not** accepted as an ambient value because of the way *required values* work:
+
+* In the `"default"` route template, the `culture` route parameter is **to the left** of `controller`, so changes to `controller` won't invalidate `culture`.
+* In the `"blog"` route template, the `culture` route parameter is considered to be **to the right** of `controller`, which appears in the required values.
 
 ## Configuring endpoint metadata
 
@@ -742,59 +738,22 @@ The following links provide information on configuring endpoint metadata:
 
 ## Host matching in routes with RequireHost
 
-`RequireHost` applies a constraint to the route which requires the specified host. The `RequireHost` or `[Host]` parameter can be:
+<xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.RequireHost*> applies a constraint to the route which requires the specified host. The `RequireHost` or [[Host]](xref:Microsoft.AspNetCore.Routing.HostAttribute) parameter can be:
 
-* Host: `www.domain.com` (matches `www.domain.com` with any port)
-* Host with wildcard: `*.domain.com` (matches `www.domain.com`, `subdomain.domain.com`, or `www.subdomain.domain.com` on any port)
-* Port: `*:5000` (matches port 5000 with any host)
-* Host and port: `www.domain.com:5000`, `*.domain.com:5000` (matches host and port)
+* Host: `www.domain.com`, matches `www.domain.com` with any port.
+* Host with wildcard: `*.domain.com`, matches `www.domain.com`, `subdomain.domain.com`, or `www.subdomain.domain.com` on any port.
+* Port: `*:5000`, matches port 5000 with any host.
+* Host and port: `www.domain.com:5000` or `*.domain.com:5000`, matches host and port.
 
-Multiple parameters can be specified using `RequireHost` or `[Host]`. The constraint  matches hosts valid for any of the parameters. For example, `[Host("domain.com", "*.domain.com")]` matches `domain.com`, `www.domain.com`, or `subdomain.domain.com`.
+Multiple parameters can be specified using `RequireHost` or `[Host]`. The constraint  matches hosts valid for any of the parameters. For example, `[Host("domain.com", "*.domain.com")]` matches `domain.com`, `www.domain.com`, and `subdomain.domain.com`.
 
 The following code uses `RequireHost` to require the specified host on the route:
 
-```csharp
-public void Configure(IApplicationBuilder app)
-{
-    app.UseRouting();
-
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapGet("/", context => context.Response.WriteAsync("Hi Contoso!"))
-            .RequireHost("contoso.com");
-        endpoints.MapGet("/", context => context.Response.WriteAsync("Hi AdventureWorks!"))
-            .RequireHost("adventure-works.com");
-        endpoints.MapHealthChecks("/healthz").RequireHost("*:8080");
-    });
-}
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupRequireHost.cs?name=snippet)]
 
 The following code uses the `[Host]` attribute to require the specified host on the controller:
 
-```csharp
-[Host("contoso.com", "adventure-works.com")]
-public class HomeController : Controller
-{
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
-    public IActionResult Index()
-    {
-        return View();
-    }
-
-    [Host("example.com:8080")]
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-}
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/HomeController.cs?name=snippet)]
 
 When the `[Host]` attribute is applied to both the controller and action method:
 
@@ -803,71 +762,40 @@ When the `[Host]` attribute is applied to both the controller and action method:
 
 ## Performance guidance for routing
 
-The performance of routing is often raised as an area of concern - usually upon investigation the problem is elsewhere. The reason for this phenomenon is that frameworks like controllers and Razor Pages report the amount of time spent inside the framework in their logging messages. When there's a significant difference between the time reported by controllers and the total time of the request, developers have eliminated their application code as the source of the problem, it's an easy assumption to make that routing is the cause.
+Most of routing was updated in ASP.NET Core 3.0 to increase performance.
+
+When an app has performance problems, routing is often suspected as the problem. The reason routing is suspected is that frameworks like controllers and Razor Pages report the amount of time spent inside the framework in their logging messages. When there's a significant difference between the time reported by controllers and the total time of the request:
+
+* Developers eliminate their app code as the source of the problem.
+* It's common to assume routing is the cause.
 
 Routing is performance tested using thousands of endpoints. It's unlikely that a typical app will encounter a performance problem just by being too large. The most common root cause of investigating *routing performance* is usually a badly-behaving custom middleware.
 
-This code sample demonstrates a straightforward technique for narrowing down the source of delay.
+This following code sample demonstrates a straightforward technique for narrowing down the source of delay.
 
-```csharp
-public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
-{
-    app.Use(next => async context =>
-	{
-		var sw = new Stopwatch();
-		sw.Start();
-		await next(context);
-		sw.Stop();
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupDelay.cs?name=snippet)]
 
-        logger.LogInformation("Time in 1: {ElapsedMilliseconds}ms" sw.ElapsedMilliseconds);
-	});
- 
-    app.UseRouting();
+To time routing:
 
-    app.Use(next => async context =>
-	{
-		var sw = new Stopwatch();
-		sw.Start();
-		await next(context);
-		sw.Stop();
+* Interleave each middleware with a copy of the *timing* middleware shown in the preceding code.
+* Add a unique identifier to correlate the timing data with the code. 
 
-        logger.LogInformation("Time in 2: {ElapsedMilliseconds}ms" sw.ElapsedMilliseconds);
-	});
+This is a basic way to narrow down the delay when it's significant, for example, more than `10ms`.  Subtracting `Time 2` from `Time 1` reports the time spent inside the `UseRouting` middleware.
 
-    app.UseAuthorization();
+The following list provides some insight into routing features that are relatively expensive compared with basic route templates:
 
-    app.Use(next => async context =>
-	{
-		var sw = new Stopwatch();
-		sw.Start();
-		await next(context);
-		sw.Stop();
+* Regular expressions: It's possible to write regular expressions that are complex, or have long running time with a small amount of input.
 
-        logger.LogInformation("Time in 3: {ElapsedMilliseconds}ms" sw.ElapsedMilliseconds);
-	});
+* Complex segments (`{x}-{y}-{z}`): 
+  * Are significantly more expensive than parsing a regular URL path segment.
+  * Result in many more substrings being allocated.
+  * The complex segment logic was not updated in ASP.NET Core 3.0 routing performance update.
 
-    app.UseEndpoints(endpoints =>
-    {
-
-    });
-}
-```
-
-Interleave each middleware with a copy of the *timing* middleware shown here, with a unique number or identifier so you can correlateit with the code. This is a very low-tech way to narrow down the delay when it's significant (`> 10ms`). For example, taking the value reported by `1` and then subtracting the value reported by `2` would report the time spent inside the `UseRouting` middleware.
-
----
-
-The following list provides some insight into routing features that are relatively expensive compared with simpler route templates:
-
-* Regular expresssions: It's possible to write regular expressions that are very complex, or have very long running time with a small amount of input.
-
-* Complex segements (`{x}-{y}-{z}`): Complex segments are significantly more expensive than parsing a regular URL path segment and result in many more substrings being allocated. Most of routing has a performance-focused rewrite in ASP.NET Core 3.0, but the complex segment logic wasn't updated.
-
-* Synchronous data access: Many complex application have database access as part of their routing strategy. Routing in the past might not always have provided the right extensibility points to support this - for instance `IRouteConstraint`, and `IActionConstraint` are synchronous. Extensibility points such as `MatcherPolicy` and `EndpointSelector` are async.
+* Synchronous data access: Many complex apps have database access as part of their routing. ASP.NET Core 2.2 and earlier routing might not provide the right extensibility points to support database access routing. For example, <xref:Microsoft.AspNetCore.Routing.IRouteConstraint>, and <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint> are synchronous. Extensibility points such as <xref:Microsoft.AspNetCore.Routing.MatcherPolicy> and <xref:Microsoft.AspNetCore.Routing.EndpointSelectorContext> are asynchronous.
 
 ## Guidance for library authors
 
-This section contains guidance for library authors building on top of routing. These details are intended to ensure that application developers have a good experience using libraries and frameworks that extend routing.
+This section contains guidance for library authors building on top of routing. These details are intended to ensure that app developers have a good experience using libraries and frameworks that extend routing.
 
 ### Defining endpoints
 

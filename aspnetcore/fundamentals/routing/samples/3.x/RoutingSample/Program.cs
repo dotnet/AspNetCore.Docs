@@ -20,7 +20,10 @@ namespace RoutingSample
                     // webBuilder.UseStartup<EndpointInspectorStartup>();
                     //  webBuilder.UseStartup<IntegratedMiddlewareStartup>();
                     //  webBuilder.UseStartup<MiddlewareFlowStartup>();
-                      webBuilder.UseStartup<TerminalMiddlewareStartup>();
+                   //   webBuilder.UseStartup<TerminalMiddlewareStartup>();
+                    webBuilder.UseStartup<StartupDelay>();
+
+                    
 
                 });
     }
