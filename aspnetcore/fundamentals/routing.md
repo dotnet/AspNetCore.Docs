@@ -782,6 +782,14 @@ To time routing:
 
 This is a basic way to narrow down the delay when it's significant, for example, more than `10ms`.  Subtracting `Time 2` from `Time 1` reports the time spent inside the `UseRouting` middleware.
 
+The following code uses a more compact approach to the preceding code:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupSW.cs?name=snippetSW)]
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupSW.cs?name=snippet)]
+
+### Potentially expensive routing features
+
 The following list provides some insight into routing features that are relatively expensive compared with basic route templates:
 
 * Regular expressions: It's possible to write regular expressions that are complex, or have long running time with a small amount of input.

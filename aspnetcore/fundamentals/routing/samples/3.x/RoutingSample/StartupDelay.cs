@@ -18,8 +18,7 @@ namespace RoutingSample
 		{
 			app.Use(next => async context =>
 			{
-				var sw = new Stopwatch();
-				sw.Start();
+				var sw = Stopwatch.StartNew();
 				await next(context);
 				sw.Stop();
 
@@ -30,8 +29,7 @@ namespace RoutingSample
 
 			app.Use(next => async context =>
 			{
-				var sw = new Stopwatch();
-				sw.Start();
+				var sw = Stopwatch.StartNew();
 				await next(context);
 				sw.Stop();
 
@@ -42,8 +40,7 @@ namespace RoutingSample
 
 			app.Use(next => async context =>
 			{
-				var sw = new Stopwatch();
-				sw.Start();
+				var sw = Stopwatch.StartNew();
 				await next(context);
 				sw.Stop();
 
