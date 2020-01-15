@@ -249,7 +249,7 @@ To test the sample, run the app and send HTTP requests with the following settin
 * [IETF RFC 6902 JSON Patch specification](https://tools.ietf.org/html/rfc6902)
 * [IETF RFC 6901 JSON Patch path format spec](https://tools.ietf.org/html/rfc6901)
 * [JSON Patch documentation](https://jsonpatch.com/). Includes links to resources for creating JSON Patch documents.
-* [ASP.NET Core JSON Patch source code](https://github.com/aspnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
+* [ASP.NET Core JSON Patch source code](https://github.com/dotnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
 
 ::: moniker-end
 
@@ -461,6 +461,6 @@ To test the sample, run the app and send HTTP requests with the following settin
 * [IETF RFC 6902 JSON Patch specification](https://tools.ietf.org/html/rfc6902)
 * [IETF RFC 6901 JSON Patch path format spec](https://tools.ietf.org/html/rfc6901)
 * [JSON Patch documentation](https://jsonpatch.com/). Includes links to resources for creating JSON Patch documents.
-* [ASP.NET Core JSON Patch source code](https://github.com/aspnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
+* [ASP.NET Core JSON Patch source code](https://github.com/dotnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
 
 ::: moniker-end

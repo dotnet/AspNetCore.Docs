@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Learn how to create filter methods for Razor Pages in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 12/22/2019
+ms.date: 12/28/2019
 uid: razor-pages/filter
 ---
 # Filter methods for Razor Pages in ASP.NET Core
@@ -22,11 +22,7 @@ Razor Page filters:
 * Run code after the handler method executes.
 * Can be implemented on a page or globally.
 * Cannot be applied to specific page handler methods.
-* Have access to the following services:
-  * <xref:Microsoft.Extensions.Configuration.IConfiguration>
-  * <xref:Microsoft.Extensions.Hosting.IHostEnvironment>
-  * <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment>
-* Can **not** access services other than the preceding by [Dependency Injection](xref:fundamentals/dependency-injection) (DI). The <xref:Microsoft.AspNetCore.Mvc.TypeFilterAttribute> and <xref:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute> can access the services registered in the DI container. For more information, see [ServiceFilterAttribute](/aspnet/core/mvc/controllers/filters#servicefilterattribute) and [TypeFilterAttribute](/aspnet/core/mvc/controllers/filters#typefilterattribute).
+* Can have constructor dependencies populated by [Dependency Injection](xref:fundamentals/dependency-injection) (DI). For more information, see [ServiceFilterAttribute](/aspnet/core/mvc/controllers/filters#servicefilterattribute) and [TypeFilterAttribute](/aspnet/core/mvc/controllers/filters#typefilterattribute).
 
 Code can be run before a handler method executes using the page constructor or middleware, but only Razor Page filters have access to <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext>. Filters have a <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> derived parameter, which provides access to `HttpContext`. For example, the [Implement a filter attribute](#ifa) sample adds a header to the response, something that can't be done with constructors or middleware.
 
@@ -75,7 +71,7 @@ The following code enables the `SamplePageFilter`:
 
 The following code overrides the asynchronous Razor Page filters:
 
-[!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Index.cshtml.cs)]
+[!code-csharp[Main](filter/3.1sample/PageFilter/Pages/Index.cshtml.cs?name=snippet)]
 
 <a name="ifa"></a>
 

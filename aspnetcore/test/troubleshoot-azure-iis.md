@@ -5,7 +5,7 @@ description: Learn how to diagnose problems with Azure App Service and Internet 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/20/2019
+ms.date: 01/10/2020
 uid: test/troubleshoot-azure-iis
 ---
 # Troubleshoot ASP.NET Core on Azure App Service and IIS
@@ -103,7 +103,7 @@ An unknown error occurred loading [ASP.NET Core Module](xref:host-and-deploy/asp
 
 * Contact [Microsoft Support](https://support.microsoft.com/oas/default.aspx?prid=15832) (select **Developer Tools** then **ASP.NET Core**).
 * Ask a question on Stack Overflow.
-* File an issue on our [GitHub repository](https://github.com/aspnet/AspNetCore).
+* File an issue on our [GitHub repository](https://github.com/dotnet/AspNetCore).
 
 ### 500.30 In-Process Startup Failure
 
@@ -427,7 +427,7 @@ For more information, see [Enable diagnostics logging for web apps in Azure App 
 
 Access the Application Event Log:
 
-1. Open the Start menu, search for **Event Viewer**, and then select the **Event Viewer** app.
+1. Open the Start menu, search for *Event Viewer*, and select the **Event Viewer** app.
 1. In **Event Viewer**, open the **Windows Logs** node.
 1. Select **Application** to open the Application Event Log.
 1. Search for errors associated with the failing app. Errors have a value of *IIS AspNetCore Module* or *IIS Express AspNetCore Module* in the *Source* column.
@@ -591,10 +591,10 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 ## Clear package caches
 
-Sometimes a functioning app fails immediately after upgrading either the .NET Core SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
+A functioning app may fail immediately after upgrading either the .NET Core SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
 
 1. Delete the *bin* and *obj* folders.
-1. Clear the package caches by executing `dotnet nuget locals all --clear` from a command shell.
+1. Clear the package caches by executing [dotnet nuget locals all --clear](/dotnet/core/tools/dotnet-nuget-locals) from a command shell.
 
    Clearing package caches can also be accomplished with the [nuget.exe](https://www.nuget.org/downloads) tool and executing the command `nuget locals all -clear`. *nuget.exe* isn't a bundled install with the Windows desktop operating system and must be obtained separately from the [NuGet website](https://www.nuget.org/downloads).
 

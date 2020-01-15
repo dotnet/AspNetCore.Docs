@@ -356,4 +356,4 @@ For more information on resource exhaustion, see <xref:security/blazor/server>.
 
 ## Additional resources
 
-* [InteropComponent.razor example (aspnet/AspNetCore GitHub repository, 3.0 release branch)](https://github.com/aspnet/AspNetCore/blob/release/3.0/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
+* [InteropComponent.razor example (dotnet/AspNetCore GitHub repository, 3.0 release branch)](https://github.com/dotnet/AspNetCore/blob/release/3.0/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)

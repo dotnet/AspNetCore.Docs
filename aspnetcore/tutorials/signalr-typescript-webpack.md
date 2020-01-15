@@ -264,6 +264,8 @@ Confirm that the app works with the following steps.
 
 ::: moniker range="< aspnetcore-3.0"
 
+## Prerequisites
+
 # [Visual Studio](#tab/visual-studio)
 
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
