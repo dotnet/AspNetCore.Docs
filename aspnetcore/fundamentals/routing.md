@@ -45,7 +45,7 @@ The following code shows a basic example of routing:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Startup.cs?name=snippet&highlight=8,10)]
 
-Routing uses a pair of middleware, registered by [UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) and [UseEndpoints](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*):
+Routing uses a pair of middleware, registered by <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>:
 
 * `UseRouting` adds route matching to the middleware pipeline. This middleware looks at the set of endpoints defined in the app, and selects the best match based on the request.
 * `UseEndpoints` adds endpoint execution to the middleware pipeline. It runs the delegate associated with the selected endpoint.
@@ -98,7 +98,7 @@ The <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions
 Calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> adds the authentication and authorization middleware. These middleware are placed between <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and `UseAuthorization` so that they can:
 
 * See which endpoint was selected by `UseRouting`.
-* Apply an authorization policy before `UseEndpoints` dispatches to the endpoint.
+* Apply an authorization policy before <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> dispatches to the endpoint.
 
 In the preceding example there are two endpoints, but only the health check endpoint has an authorization policy attached. If the request matches the health check `/healthz` endpoint, an authorization check is performed. This demonstrates a feature of endpoints called *metadata*. Endpoints can have extra data attached (metadata) that can be processed by routing-aware middleware.
 
@@ -111,7 +111,7 @@ An endpoint is:
 * Executable: Has a <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate>
 * Extensible: Has an [Metadata](xref:Microsoft.AspNetCore.Http.Endpoint.Metadata*) collection
 * Selectable: (optionally) Has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern*) 
-* Enumerable: the collection of endpoints can be listed by retrieving the [EndpointDataSource](xref:Microsoft.AspNetCore.Routing.EndpointDataSource) from [DI](xref:fundamentals/dependency-injection)
+* Enumerable: the collection of endpoints can be listed by retrieving the <xref:Microsoft.AspNetCore.Routing.EndpointDataSource> from [DI](xref:fundamentals/dependency-injection)
 
 The following code shows how to retrieve and inspect an endpoint:
 
@@ -151,7 +151,7 @@ Running this code with a URL **not** `/` displays:
 This output demonstrates that:
 
 * The endpoint is always null before `UseRouting` executes.
-* If a match is found, the endpoint is non-null between `UseRouting` and `UseEndpoints`.
+* If a match is found, the endpoint is non-null between `UseRouting` and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>.
 * The `UseEndpoints` middleware is terminal* when a match is found. [Terminal middleware](#tm) is defined later in this document.
 * The middleware after `UseEndpoints` execute **only** when **no** match is found.
 
@@ -167,7 +167,7 @@ The preceding example demonstrates two important concepts:
 
 * Middleware can run before `UseRouting` to modify the data that routing operates upon.
     * Typically middleware that appears before routing modifies some property of the request, such as <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>, <xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions.UseHttpMethodOverride*>, or <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*>.
-* Middleware can run between `UseRouting` and `UseEndpoints` to process the results of routing before the endpoint is executed.
+* Middleware can run between `UseRouting` and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> to process the results of routing before the endpoint is executed.
     * Usually middleware that run between `UseRouting` and `UseEndpoints` inspect metadata to understand the endpoints.
     * Middleware that run between `UseRouting` and `UseEndpoints` typically makes a security decision, such as `UseAuthorization`, or `UseCors`.
     * The combination of middleware and metadata allows configuring policies per-endpoint.
@@ -204,7 +204,7 @@ Comparing a terminal middleware and routing:
     * Middleware terminates the pipeline by returning rather than invoking `next`.
     * Endpoints are always terminal.
 * Terminal middleware allows positioning the middleware at an arbitrary place in the pipeline:
-    * Endpoints execute at the position of `UseEndpoints`.
+    * Endpoints execute at the position of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>.
 * Terminal middleware allows arbitrary code to determine when the route matches:
     * Custom route matching code can be verbose and difficult to get correct.
     * Routing provides straightforward solutions for typical apps. <!-- Review next--> Most apps do **not** require custom route matching code.
@@ -303,7 +303,7 @@ Due to the kinds of extensibility provided by routing, it is **not** possible fo
 
 <!-- review I don't understand the preceding why you're talking about not possible to compute ahead of time the cases that will cause ambiguity. Your sample is never ambiguous. Can you provide two templates that are useful but do have potential ambiguities?  -->
 
-The order of operations inside `UseEndpoints` **does not** influence the behavior of routing with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
+The order of operations inside <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> **does not** influence the behavior of routing with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
 
 It's possible in the legacy implementation of routing to implement routing extensbility that has a dependency on the order in which *routes* are processed. Endpoint routing in ASP.NET Core 3.0 and later:
 
@@ -700,7 +700,7 @@ Next the *accepted values* can be used to expand the route template. The route t
 * If any route parameter to the right of a *missing optional parameter* has a value, the operation fails.
 * <!-- review default-valued parameters optional parameters --> Contiguous default-valued parameters and optional parameters are collapsed where possible.
 
-Values explicitly provided that don't match a segment of the route are added to the query string. The following table shows the result when using the route template `{controller}/{action}/{id?}`. zz
+Values explicitly provided that don't match a segment of the route are added to the query string. The following table shows the result when using the route template `{controller}/{action}/{id?}`.
 
 | Ambient Values                     | Explicit Values                        | Result                  |
 | ---------------------------------- | -------------------------------------- | ----------------------- |
@@ -799,9 +799,9 @@ This section contains guidance for library authors building on top of routing. T
 
 ### Defining endpoints
 
-To create a framework that uses routing for URL matching, start by defining a user experience that builds on top of `UseEndpoints`.
+To create a framework that uses routing for URL matching, start by defining a user experience that builds on top of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>.
 
-**DO** build on top of `IEndpointRouteBuilder`. This allows users to compose your framework with other ASP.NET Core features without confusion. Every ASP.NET Core template includes routing, assume it's present and familiar for users.
+**DO** build on top of <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>. This allows users to compose your framework with other ASP.NET Core features without confusion. Every ASP.NET Core template includes routing. Assume routing is present and familiar for users.
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -813,7 +813,12 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-**DO** return a sealed concrete type from a call to `MapMyFramework(...)` that implements `IEndpointConventionBuilder`. The vast majority of framework `Map...` methods follow this pattern. The `IEndpointConventionBuilder` interface allows composability of metadata, and is targeted by a variety of extension methods. Declaring your own type allows you to add your own framework-specific functionality to the builder. It's ok to wrap a framework-declared builder and forward calls to it.
+**DO** return a sealed concrete type from a call to `MapMyFramework(...)` that implements <xref:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder>. Most of framework `Map...` methods follow this pattern. The `IEndpointConventionBuilder` interface:
+
+* Allows composability of metadata.
+* Is targeted by a variety of extension methods.
+
+Declaring your own type allows you to add your own framework-specific functionality to the builder. It's ok to wrap a framework-declared builder and forward calls to it.
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -825,11 +830,11 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-**CONSIDER** writing your own `EndpointDataSource`. `EndpointDataSource` is the low-level primitive for declaring and updating a collection of endpoints. This is the power tool used by controllers and Razor Pages. 
+**CONSIDER** writing your own <xref:Microsoft.AspNetCore.Routing.EndpointDataSource>. `EndpointDataSource` is the low-level primitive for declaring and updating a collection of endpoints. `EndpointDataSource` is a powerful API used by controllers and Razor Pages. <!-- power tool won't MT -->
 
-The routing tests have a [simple example](https://github.com/aspnet/AspNetCore/blob/master/src/Http/Routing/test/testassets/RoutingSandbox/Framework/FrameworkEndpointDataSource.cs#L17) of a non-updating data source.
+The routing tests have a [basic example](https://github.com/aspnet/AspNetCore/blob/master/src/Http/Routing/test/testassets/RoutingSandbox/Framework/FrameworkEndpointDataSource.cs#L17) of a non-updating data source.
 
-**DO NOT** attempt to register an `EndpointDataSource` by default. Require users to register your framework in `UseEndpoints`. The philosophy of routing is that nothing is included by default, and that `UseEndpoints` is the place to register endpoints.
+**DO NOT** attempt to register an `EndpointDataSource` by default. Require users to register your framework in <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>. The philosophy of routing is that nothing is included by default, and that `UseEndpoints` is the place to register endpoints.
 
 ### Creating routing-integrated middleware
 
