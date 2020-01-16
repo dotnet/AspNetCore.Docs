@@ -365,22 +365,25 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API to create link to an action method that lists store products. Using the link generator by injecting it into a class and calling `GenerateLink` is available to any class in an app.
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Middleware/ProductsLinkMiddleware.cs?name=snippet)]
-<!-- zz start here -->
+
 ## Route template reference
 
-Tokens within `{}` define *route parameters* that are bound if the route is matched. More than one route parameter can be defined in a route segment, but route parameters  must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`. `{controller=Home}/{action=Index}` is a valid route. Route parameters must have a name and may have additional attributes specified.
+Tokens within `{}` define route parameters that are bound if the route is matched. More than one route parameter can be defined in a route segment, but route parameters  must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`. ` <!-- review, add valid route separated by a literal , for example, {controller=Home}/{action=Index}` is a valid route. --> Route parameters must have a name and may have additional attributes specified.
 
-Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match a literal route parameter delimiter (`{` or `}`), escape the delimiter by repeating the character (`{{` or `}}`).
+Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match a literal route parameter delimiter `{` or `}`, escape the delimiter by repeating the character. For example `{{` or `}}`.
 
 URL patterns that attempt to capture a file name with an optional file extension have additional considerations. For example, consider the template `files/{filename}.{ext?}`. When values for both `filename` and `ext` exist, both values are populated. If only a value for `filename` exists in the URL, the route matches because the trailing period (`.`) is  optional. The following URLs match this route:
 
 * `/files/myFile.txt`
 * `/files/myFile`
 
-An asterisk (`*`) or double asterisk (`**`) can be used as a prefix to a route parameter to bind to the rest of the URI. These are called a *catch-all* parameters. For example, `blog/{**slug}`:
+`*` or `**`:
 
-* Matches any URI that starts with `/blog` and has any value following it.
-* The value following `/blog` is assigned to the `slug` route value.
+* Can be used as a prefix to a route parameter to bind to the rest of the URI.
+* Are called a catch-all parameters. For example, `blog/{**slug}`:
+
+  * Matches any URI that starts with `/blog` and has any value following it.
+  * The value following `/blog` is assigned to the `slug` route value.
 
 Catch-all parameters can also match the empty string.
 
