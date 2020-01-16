@@ -3,7 +3,7 @@ title: Azure Active Directory with ASP.NET Core
 author: rick-anderson
 description: Discover topics related to authentication with Azure Active Directory in ASP.NET Core.
 ms.author: riande
-ms.date: 12/18/2019
+ms.date: 01/14/2020
 ms.custom: "mvc, seodec18"
 uid: security/authentication/azure-active-directory/index
 ---
@@ -12,7 +12,7 @@ uid: security/authentication/azure-active-directory/index
 ## Azure AD V1 samples
 
 The following samples show how to integrate Azure AD V1, enabling users to sign-in with a work and school account:
-* [Integrating Azure AD Into an ASP.NET Core Web App](https://github.com/Azure-Samples/ms-identity-aspnetcore-webapp-tutorial)
+* [Integrating Azure AD Into an ASP.NET Core Web App](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect-aspnetcore/tree/master) (archived and unsupported)
 * [Calling a ASP.NET Core Web API From a WPF Application Using Azure AD](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore)
 * [Calling a Web API in an ASP.NET Core Web Application Using Azure AD](https://azure.microsoft.com/documentation/samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore/)
 

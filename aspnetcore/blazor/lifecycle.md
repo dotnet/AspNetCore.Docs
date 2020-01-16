@@ -2,11 +2,11 @@
 title: ASP.NET Core Blazor lifecycle
 author: guardrex
 description: Learn how to use Razor component lifecycle methods in ASP.NET Core Blazor apps.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
-no-loc: [Blazor]
+ms.date: 12/18/2019
+no-loc: [Blazor, SignalR]
 uid: blazor/lifecycle
 ---
 # ASP.NET Core Blazor lifecycle
@@ -19,26 +19,23 @@ The Blazor framework includes synchronous and asynchronous lifecycle methods. Ov
 
 ### Component initialization methods
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*> execute code that initializes a component. These methods are only called one time when the component is first instantiated.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*> are invoked when the component is initialized after having received its initial parameters from its parent component. Use `OnInitializedAsync` when the component performs an asynchronous operation and should refresh when the operation is completed. These methods are only called one time when the component is first instantiated.
 
-To perform an asynchronous operation, use `OnInitializedAsync` and the `await` keyword on the operation:
-
-```csharp
-protected override async Task OnInitializedAsync()
-{
-    await ...
-}
-```
-
-> [!NOTE]
-> Asynchronous work during component initialization must occur during the `OnInitializedAsync` lifecycle event.
-
-For a synchronous operation, use `OnInitialized`:
+For a synchronous operation, override `OnInitialized`:
 
 ```csharp
 protected override void OnInitialized()
 {
     ...
+}
+```
+
+To perform an asynchronous operation, override `OnInitializedAsync` and use the `await` keyword on the operation:
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    await ...
 }
 ```
 
@@ -63,7 +60,12 @@ If `base.SetParametersAync` isn't invoked, the custom code can interpret the inc
 
 ### After parameters are set
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet*> are called when a component has received parameters from its parent and the values are assigned to properties. These methods are executed after component initialization and each time new parameter values are specified:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet*> are called:
+
+* When the component is initialized and has received its first set of parameters from its parent component.
+* When the parent component re-renders and supplies:
+  * Only known primitive immutable types of which at least one parameter has changed.
+  * Any complex-typed parameters. The framework can't know whether the values of a complex-typed parameter have mutated internally, so it treats the parameter set as changed.
 
 ```csharp
 protected override async Task OnParametersSetAsync()
@@ -153,7 +155,7 @@ In the `FetchData` component of the Blazor templates, `OnInitializedAsync` is ov
 
 If a component implements <xref:System.IDisposable>, the [Dispose method](/dotnet/standard/garbage-collection/implementing-dispose) is called when the component is removed from the UI. The following component uses `@implements IDisposable` and the `Dispose` method:
 
-```csharp
+```razor
 @using System
 @implements IDisposable
 
