@@ -13,6 +13,7 @@ namespace RoutingSample
 {
     public class EndpointInspectorStartup
     {
+        #region snippet
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -20,7 +21,6 @@ namespace RoutingSample
                 app.UseDeveloperExceptionPage();
             }
 
-            #region snippet
             app.UseRouting();
 
             app.Use(next => context =>
@@ -35,7 +35,8 @@ namespace RoutingSample
 
                 if (endpoint is RouteEndpoint routeEndpoint)
                 {
-                    Console.WriteLine($"Endpoint has route pattern: {routeEndpoint.RoutePattern.RawText}");
+                    Console.WriteLine($"Endpoint has route pattern:" +
+                        $" {routeEndpoint.RoutePattern.RawText}");
                 }
 
                 foreach (var metadata in endpoint.Metadata)
@@ -53,7 +54,7 @@ namespace RoutingSample
                     await context.Response.WriteAsync("Hello World!");
                 });
             });
-            #endregion
         }
+        #endregion
     }
 }

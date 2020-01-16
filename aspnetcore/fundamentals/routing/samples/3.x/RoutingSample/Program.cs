@@ -15,7 +15,14 @@ namespace RoutingSample
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     // Modify which startup class is used to run the various samples.
-                    webBuilder.UseStartup<Startup>();
+                    // webBuilder.UseStartup<Startup>();
+                    //  webBuilder.UseStartup<AuthorizationStartup>();
+                    // webBuilder.UseStartup<EndpointInspectorStartup>();
+                    //  webBuilder.UseStartup<IntegratedMiddlewareStartup>();
+                    //  webBuilder.UseStartup<MiddlewareFlowStartup>();
+                    //   webBuilder.UseStartup<TerminalMiddlewareStartup>();
+                    // webBuilder.UseStartup<StartupDelay>();
+                    webBuilder.UseStartup<StartupSW>();
                 });
     }
 }
