@@ -50,7 +50,12 @@ A form is defined using the `EditForm` component. The following form demonstrate
 }
 ```
 
+In the preceding example:
+
 * The form validates user input in the `name` field using the validation defined in the `ExampleModel` type. The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to the `Model` attribute of the `<EditForm>` element.
+* The `InputText` component's `@bind-Value` binds:
+  * The model property (`exampleModel.Name`) to the `InputText` component's `Value` property.
+  * A change event delegate to the `InputText` component's `ValueChanged` property.
 * The `DataAnnotationsValidator` component attaches validation support using data annotations.
 * The `ValidationSummary` component summarizes validation messages.
 * `HandleValidSubmit` is triggered when the form successfully submits (passes validation).

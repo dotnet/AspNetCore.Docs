@@ -2,11 +2,11 @@
 title: ASP.NET Core Blazor routing
 author: guardrex
 description: Learn how to route requests in apps and about the NavLink component.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
-no-loc: [Blazor]
+ms.date: 12/18/2019
+no-loc: [Blazor, SignalR]
 uid: blazor/routing
 ---
 # ASP.NET Core Blazor routing
@@ -114,7 +114,7 @@ The router uses route parameters to populate the corresponding component paramet
 }
 ```
 
-Optional parameters aren't supported for Blazor apps in ASP.NET Core 3.0. Two `@page` directives are applied in the previous example. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
+Optional parameters aren't supported. Two `@page` directives are applied in the previous example. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
 
 ## Route constraints
 

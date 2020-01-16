@@ -5,7 +5,7 @@ description: Learn how to host multiple instances of an ASP.NET Core app with sh
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/07/2019
+ms.date: 01/13/2020
 uid: host-and-deploy/web-farm
 ---
 # Host ASP.NET Core in a web farm
@@ -86,3 +86,4 @@ If the web farm apps are capable of responding to requests, obtain request, conn
 ## Additional resources
 
 * [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows) &ndash; Downloads and executes scripts on Azure virtual machines, which is useful for post-deployment configuration and software installation.
+* <xref:host-and-deploy/proxy-load-balancer>
