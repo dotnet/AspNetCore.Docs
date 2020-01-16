@@ -1,2 +1,2 @@
 > [!WARNING]
-> Security - Exposing `ConnectionID` can lead to malicious impersonation if the SignalR server or the SignalR client is using a version previous to ASP.NET Core 3.0.
+> Security warning: Exposing `ConnectionID` can lead to malicious impersonation if the SignalR server or client version is ASP.NET Core 2.2 or earlier.
