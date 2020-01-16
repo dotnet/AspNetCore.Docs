@@ -2,10 +2,10 @@
 title: Secure ASP.NET Core Blazor Server apps
 author: guardrex
 description: Learn how to mitigate security threats to Blazor Server apps.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/18/2019
 no-loc: [Blazor, SignalR]
 uid: security/blazor/server
 ---
@@ -198,7 +198,7 @@ By adding the `if (count < 3) { ... }` check inside the handler, the decision to
 
 ### Guard against multiple dispatches
 
-If an event callback invokes a long running operation, such as fetching data from an external service or database, consider using a guard. The guard can prevent the user from queueing up multiple operations while the operation is in progress with visual feedback. The following component code sets `isLoading` to `true` while `GetForecastAsync` obtains data from the server. While `isLoading` is `true`, the button is disabled in the UI:
+If an event callback invokes a long running operation asynchronously, such as fetching data from an external service or database, consider using a guard. The guard can prevent the user from queueing up multiple operations while the operation is in progress with visual feedback. The following component code sets `isLoading` to `true` while `GetForecastAsync` obtains data from the server. While `isLoading` is `true`, the button is disabled in the UI:
 
 ```razor
 @page "/fetchdata"
@@ -222,6 +222,8 @@ If an event callback invokes a long running operation, such as fetching data fro
     }
 }
 ```
+
+The guard pattern demonstrated in the preceding example works if the background operation is executed asynchronously with the `async`-`await` pattern.
 
 ### Cancel early and avoid use-after-dispose
 

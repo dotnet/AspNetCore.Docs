@@ -5,7 +5,7 @@ description: Learn the foundational concepts for building ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/07/2019
+ms.date: 01/15/2020
 uid: fundamentals/index
 ---
 # ASP.NET Core fundamentals
@@ -304,6 +304,12 @@ Prevent publishing files in *wwwroot* with the [\<Content> project item](/visual
   <Content Update="wwwroot\local\**\*.*" CopyToPublishDirectory="Never" />
 </ItemGroup>
 ```
+
+::: moniker range=">= aspnetcore-3.0"
+
+To prevent publishing static Identity assets to the web root, see <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>.
+
+::: moniker-end
 
 In Razor (*.cshtml*) files, the tilde-slash (`~/`) points to the web root. A path beginning with `~/` is referred to as a *virtual path*.
 
