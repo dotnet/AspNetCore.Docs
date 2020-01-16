@@ -1145,44 +1145,6 @@ using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Components.Web;
 ```
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.1"
-
-## Specify a component base class
-
-The `@inherits` directive can be used to specify a base class for a component.
-
-The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) shows how a component can inherit a base class, `BlazorRocksBase`, to provide the component's properties and methods.
-
-*Pages/BlazorRocks.razor*:
-
-```razor
-@page "/BlazorRocks"
-@inherits BlazorRocksBase
-
-<h1>@BlazorRocksText</h1>
-```
-
-*BlazorRocksBase.cs*:
-
-```csharp
-using Microsoft.AspNetCore.Components;
-
-namespace BlazorSample
-{
-    public class BlazorRocksBase : ComponentBase
-    {
-        public string BlazorRocksText { get; set; } = 
-            "Blazor rocks the browser!";
-    }
-}
-```
-
-The base class should derive from `ComponentBase`.
-
-::: moniker-end
-
 ## Import components
 
 The namespace of a component authored with Razor is based on (in priority order):
