@@ -107,8 +107,7 @@ Blazor provides a debugging proxy that implements the [Chrome DevTools Protocol]
 
 ## Attach to process in Visual Studio
 
-> [!WARNING]
-> Attaching to the app's process in Visual Studio is a *temporary* debugging scenario for Blazor WebAssembly while **F5** debugging is in development.
+Attaching to the app's process in Visual Studio is a *temporary* debugging scenario for Blazor WebAssembly while **F5** debugging is in development.
 
 To attach the running app's process to Visual Studio:
 
