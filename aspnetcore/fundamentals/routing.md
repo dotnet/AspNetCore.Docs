@@ -22,7 +22,7 @@ Apps can configure routing using:
 - Razor Pages
 - SignalR
 - gRPC Services
-- Endpoint-enabled [middleware](fundamentals/middleware/index) such as Health Checks. Endpoint-enabled middleware is also called *routerware*.
+- Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as Health Checks. Endpoint-enabled middleware is also called *routerware*.
 - Routing primitives directly.
 
 This document covers low-level details of ASP.NET Core routing. For information on configuring routing for controllers, see <xref:mvc/controllers/routing>. For information on routing conventions in Razor Pages, see <xref:razor-pages/razor-pages-conventions>.
@@ -39,7 +39,7 @@ The download samples for this document are enabled by a specific `Startup` class
 
 ## Routing basics
 
-All ASP.NET Core templates include routing in the generated code. Routing is registered in the [middleware](fundamentals/middleware/index) pipeline in `Startup.Configure`.
+All ASP.NET Core templates include routing in the generated code. Routing is registered in the [middleware](xref:fundamentals/middleware/index) pipeline in `Startup.Configure`.
 
 The following code shows a basic example of routing:
 
