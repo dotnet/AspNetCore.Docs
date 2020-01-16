@@ -5,7 +5,7 @@ description: Learn about the supported platforms for ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/21/2019
+ms.date: 01/16/2020
 no-loc: [SignalR]
 uid: signalr/supported-platforms
 ---
@@ -43,6 +43,6 @@ The [Java client](xref:signalr/java-client) supports Java 8 and later versions.
 
 The following clients are available but are experimental or unofficial. They aren't currently supported and may never be.
 
-* [C++ client](https://github.com/aspnet/SignalR/tree/master/clients/cpp)
+* [C++ client](https://github.com/aspnet/SignalR-Client-Cpp)
 
 * [Swift client](https://github.com/moozzyk/SignalR-Client-Swift)
