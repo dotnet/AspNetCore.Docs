@@ -52,7 +52,6 @@ Typically, a component's namespace is derived from the app's root namespace and 
 
 * The `Counter` component's namespace is `BlazorApp.Pages`.
 * The fully qualified type name of the component is `BlazorApp.Pages.Counter`.
-* Public class members are referenced by the namespace and component class. If the `Counter` component has a component parameter named `MyParameter`, its member reference is `BlazorApp.Pages.Counter.MyParameter`.
 
 For more information, see the [Import components](#import-components) section.
 
@@ -64,7 +63,7 @@ To use a custom folder, add the custom folder's namespace to either the parent c
 
 ## Integrate components into Razor Pages and MVC apps
 
-Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components are prerendered at the same time.
+Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
 
 To prepare a Razor Pages or MVC app to host Razor components, follow the guidance in the *Integrate Razor components into Razor Pages and MVC apps* section of the <xref:blazor/hosting-models#integrate-razor-components-into-razor-pages-and-mvc-apps> article.
 

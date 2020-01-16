@@ -111,11 +111,13 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
 1. In the app's layout file (*_Layout.cshtml*):
 
-   * Add the following `<base>` tag to the `<head>` elements:
+   * Add the following `<base>` tag to the `<head>` element:
 
      ```html
      <base href="~/" />
      ```
+
+     The `href` value (the *app base path*) assumes that the app's components are routable at the app's root path. For more information on setting the app base path, see <xref:host-and-deploy/blazor/index#app-base-path>.
 
      The *_Layout.cshtml* file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.
 
