@@ -4,7 +4,7 @@ author: blowdart
 description: Learn how to configure certificate authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
-ms.date: 12/09/2019
+ms.date: 01/02/2020
 uid: security/authentication/certauth
 ---
 # Configure certificate authentication in ASP.NET Core
@@ -58,23 +58,33 @@ The `CertificateAuthenticationOptions` handler has some built-in validations tha
 
 ### AllowedCertificateTypes = Chained, SelfSigned, or All (Chained | SelfSigned)
 
-This check validates that only the appropriate certificate type is allowed.
+Default value: `CertificateTypes.Chained`
+
+This check validates that only the appropriate certificate type is allowed. If the app is using self-signed certificates, this option needs to be set to `CertificateTypes.All` or `CertificateTypes.SelfSigned`.
 
 ### ValidateCertificateUse
+
+Default value: `true`
 
 This check validates that the certificate presented by the client has the Client Authentication extended key use (EKU), or no EKUs at all. As the specifications say, if no EKU is specified, then all EKUs are deemed valid.
 
 ### ValidateValidityPeriod
 
+Default value: `true`
+
 This check validates that the certificate is within its validity period. On each request, the handler ensures that a certificate that was valid when it was presented hasn't expired during its current session.
 
 ### RevocationFlag
+
+Default value: `X509RevocationFlag.ExcludeRoot`
 
 A flag that specifies which certificates in the chain are checked for revocation.
 
 Revocation checks are only performed when the certificate is chained to a root certificate.
 
 ### RevocationMode
+
+Default value: `X509RevocationMode.Online`
 
 A flag that specifies how revocation checks are performed.
 
@@ -371,6 +381,9 @@ Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertif
 
 Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath root_ca_dev_damienbod.crt
 ```
+
+> [!NOTE]
+> The `-DnsName` parameter value must match the deployment target of the app. For example, "localhost" for development.
 
 #### Install in the trusted root
 

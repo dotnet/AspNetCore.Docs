@@ -17,29 +17,23 @@ namespace PageFilter
             _config = config;
         }
 
-        public void OnGet()
+        public override Task OnPageHandlerSelectionAsync(PageHandlerSelectedContext context)
         {
-
-        }
-
-        public async override Task OnPageHandlerSelectionAsync(PageHandlerSelectedContext context)
-        {
-            Debug.WriteLine("/IndexModel OnPageHandlerExecutionAsync");
-
-            await Task.CompletedTask;
+            Debug.WriteLine("/IndexModel OnPageHandlerSelectionAsync");
+            return Task.CompletedTask;
         }
 
         public async override Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context, 
                                                                PageHandlerExecutionDelegate next)
         {
-            var key = _config.GetValue(typeof(string), "UserAgentID");
+            var key = _config["UserAgentID"];
             context.HttpContext.Request.Headers.TryGetValue("user-agent", out StringValues value);
             ProcessUserAgent.Write(context.ActionDescriptor.DisplayName,
-                                   "/IndexModel-OnPageHandlerSelectionAsync",
+                                   "/IndexModel-OnPageHandlerExecutionAsync",
                                     value, key.ToString());
 
             await next.Invoke();
         }
-        #endregion
     }
+    #endregion
 }
