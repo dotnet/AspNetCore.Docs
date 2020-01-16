@@ -117,11 +117,9 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
      <base href="~/" />
      ```
 
-     The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). For more information on setting the app base path, see <xref:host-and-deploy/blazor/index#app-base-path>.
+     The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:host-and-deploy/blazor/index#app-base-path> article.
 
      The *_Layout.cshtml* file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.
-
-     If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:host-and-deploy/blazor/index#app-base-path> article.
 
    * Add a `<script>` tag for the *blazor.server.js* script inside of the closing `</body>` tag:
 
