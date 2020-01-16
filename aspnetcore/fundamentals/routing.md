@@ -22,7 +22,7 @@ Apps can configure routing using:
 - Razor Pages
 - SignalR
 - gRPC Services
-- Endpoint-enabled [middleware](fundamentals/middleware/index) such as Health Checks. Endpoint-enabled middleware is also called *routerware*.
+- Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as Health Checks. Endpoint-enabled middleware is also called *routerware*.
 - Routing primitives directly.
 
 This document covers low-level details of ASP.NET Core routing. For information on configuring routing for controllers, see <xref:mvc/controllers/routing>. For information on routing conventions in Razor Pages, see <xref:razor-pages/razor-pages-conventions>.
@@ -39,7 +39,7 @@ The download samples for this document are enabled by a specific `Startup` class
 
 ## Routing basics
 
-All ASP.NET Core templates include routing in the generated code. Routing is registered in the [middleware](fundamentals/middleware/index) pipeline in `Startup.Configure`.
+All ASP.NET Core templates include routing in the generated code. Routing is registered in the [middleware](xref:fundamentals/middleware/index) pipeline in `Startup.Configure`.
 
 The following code shows a basic example of routing:
 
@@ -387,7 +387,7 @@ URL patterns that attempt to capture a file name with an optional file extension
 
 Catch-all parameters can also match the empty string.
 
-The catch-all parameter escapes the appropriate characters when the route is used to generate a URL, including path separator (`/`) characters. For example, the route `foo/{*path}` with route values `{ path = "my/path" }` generates `foo/my%2Fpath`. Note the escaped forward slash. To round-trip path separator characters, use the `**` route parameter prefix. The route `foo/{**path}` with `{ path = "my/path" }` generates `foo/my/path`.
+The catch-all parameter escapes the appropriate characters when the route is used to generate a URL, including path separator `/` characters. For example, the route `foo/{*path}` with route values `{ path = "my/path" }` generates `foo/my%2Fpath`. Note the escaped forward slash. To round-trip path separator characters, use the `**` route parameter prefix. The route `foo/{**path}` with `{ path = "my/path" }` generates `foo/my/path`.
 
 Route parameters may have *default values* designated by specifying the default value after the parameter name separated by an equals sign (`=`). For example, `{controller=Home}` defines `Home` as the default value for `controller`. The default value is used if no value is present in the URL for the parameter. Route parameters are made optional by appending a question mark (`?`) to the end of the parameter name, as in `id?`. The difference between optional values and default route parameters is:
 
@@ -1546,8 +1546,8 @@ The routing system has the following characteristics:
 * App models, such as MVC/Razor Pages, register all of their routes, which have a predictable implementation of routing scenarios.
 * A response can use routing to generate URLs (for example, for redirection or links) based on route information and thus avoid hard-coded URLs, which helps maintainability.
 * URL generation is based on routes, which support arbitrary extensibility. <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> offers methods to build URLs.
-
-Routing is connected to the [middleware](xref:fundamentals/middleware/index) pipeline by the <xref:Microsoft.AspNetCore.Builder.RouterMiddleware> class. [ASP.NET Core MVC](xref:mvc/overview) adds routing to the middleware pipeline as part of its configuration and handles routing in MVC and Razor Pages apps. To learn how to use routing as a standalone component, see the [Use Routing Middleware](#use-routing-middleware) section.
+<!-- fix [middleware](xref:fundamentals/middleware/index) -->
+Routing is connected to the `[middleware](xref:fundamentals/middleware/index)` pipeline by the <xref:Microsoft.AspNetCore.Builder.RouterMiddleware> class. [ASP.NET Core MVC](xref:mvc/overview) adds routing to the middleware pipeline as part of its configuration and handles routing in MVC and Razor Pages apps. To learn how to use routing as a standalone component, see the [Use Routing Middleware](#use-routing-middleware) section.
 
 ### URL matching
 
