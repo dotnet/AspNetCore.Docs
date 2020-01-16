@@ -46,15 +46,37 @@ Component members can be used as part of the component's rendering logic using C
 
 After the component is initially rendered, the component regenerates its render tree in response to events. Blazor then compares the new render tree against the previous one and applies any modifications to the browser's Document Object Model (DOM).
 
-Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the *Pages* folder. Non-page components are frequently placed in the *Shared* folder or a custom folder added to the project. To use a custom folder, add the custom folder's namespace to either the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `WebApplication`:
+Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the *Pages* folder. Non-page components are frequently placed in the *Shared* folder or a custom folder added to the project.
+
+Typically, a component's namespace is derived from the app's root namespace and the component's location (folder) within the app. If the app's root namespace is `BlazorApp` and the `Counter` component resides in the *Pages* folder:
+
+* The `Counter` component's namespace is `BlazorApp.Pages`.
+* The fully qualified type name of the component is `BlazorApp.Pages.Counter`.
+
+For more information, see the [Import components](#import-components) section.
+
+To use a custom folder, add the custom folder's namespace to either the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `BlazorApp`:
 
 ```razor
-@using WebApplication.Components
+@using BlazorApp.Components
 ```
 
 ## Integrate components into Razor Pages and MVC apps
 
-Use components with existing Razor Pages and MVC apps. There's no need to rewrite existing pages or views to use Razor components. When the page or view is rendered, components are prerendered at the same time.
+Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
+
+To prepare a Razor Pages or MVC app to host Razor components, follow the guidance in the *Integrate Razor components into Razor Pages and MVC apps* section of the <xref:blazor/hosting-models#integrate-razor-components-into-razor-pages-and-mvc-apps> article.
+
+When using a custom folder to hold the app's components, add the namespace representing the folder to either the page/view or to the *_ViewImports.cshtml* file. In the following example:
+
+* Change `MyAppNamespace` to the app's namespace.
+* If a folder named *Components* isn't used to hold the components, change `Components` to the folder where the components reside.
+
+```csharp
+@using MyAppNamespace.Components
+```
+
+The *_ViewImports.cshtml* file is located in the *Pages* folder of a Razor Pages app or the *Views* folder of an MVC app.
 
 ::: moniker range=">= aspnetcore-3.1"
 
@@ -1145,6 +1167,17 @@ namespace BlazorApp.Pages
         }
     }
 }
+```
+
+Add any required namespaces to the partial class file as needed. Typical namespaces used by Razor components include:
+
+```csharp
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components.Routing;
+using Microsoft.AspNetCore.Components.Web;
 ```
 
 ::: moniker-end
