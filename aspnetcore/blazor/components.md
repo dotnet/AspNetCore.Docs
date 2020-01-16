@@ -51,7 +51,7 @@ Components are ordinary C# classes and can be placed anywhere within a project. 
 Typically, a component's namespace is derived from the app's root namespace and the component's location (folder) within the app. If the app's root namespace is `BlazorApp` and the `Counter` component resides in the *Pages* folder:
 
 * The `Counter` component's namespace is `BlazorApp.Pages`.
-* The fully qualified component reference is `BlazorApp.Pages.Counter`.
+* The the fully qualified type name of the component is `BlazorApp.Pages.Counter`.
 * Public class members are referenced by the namespace and component class. If the `Counter` component has a component parameter named `MyParameter`, its member reference is `BlazorApp.Pages.Counter.MyParameter`.
 
 For more information, see the [Import components](#import-components) section.
