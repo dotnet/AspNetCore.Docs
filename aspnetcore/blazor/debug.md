@@ -15,7 +15,7 @@ uid: blazor/debug
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-*Early* support exists for debugging Blazor WebAssembly apps running on WebAssembly in Chrome.
+*Early* support exists for debugging Blazor WebAssembly using the browser dev tools in Chromium-based browsers (Chrome/Edge), and work is in progress to enable debugging with Visual Studio and Visual Studio Code.
 
 Debugger capabilities are limited. Available scenarios include:
 
@@ -46,11 +46,15 @@ Debugging requires either of the following browsers:
 
 # [Visual Studio](#tab/visual-studio)
 
+> [!WARNING]
+> Debugging support in Visual Studio is at an early stage of development.
+
 1. Run a Blazor WebAssembly app in `Debug` configuration without debugging (**Ctrl**+**F5** instead of **F5**).
-1. Open the Debug properties (last entry in the **Debug** menu) of the app and copy the HTTP **App URL**. Browse to the HTTP address (not the HTTPS address) of the app using a Chromium based browser (Edge Beta or Chrome).
+1. Open the Debug properties of the app (last entry in the **Debug** menu) and copy the HTTP **App URL**. Browse to the HTTP address (not the HTTPS address) of the app using a Chromium-based browser (Edge Beta or Chrome).
 1. Place the keyboard focus on the app in the browser window, not the developer tools panel. It's best to keep the developer tools panel closed for this procedure. After debugging has started, you can re-open the developer tools panel.
 1. Select the following Blazor-specific keyboard shortcut:
-   * `Shift+Alt+D` on Windows/Linux
+
+   * `Shift+Alt+D` on Windows
    * `Shift+Cmd+D` on macOS
 
    If you receive the **Unable to find debuggable browser tab**, see [Enable remote debugging](#enable-remote-debugging).
@@ -60,15 +64,16 @@ Debugging requires either of the following browsers:
    1\. A new browser window opens. Close the prior window.
    2\. Place the keyboard focus on the app in the browser window.
    3\. Select the Blazor-specific keyboard shortcut in the new browser window:
-       * `Shift+Alt+D` on Windows/Linux
+       * `Shift+Alt+D` on Windows
        * `Shift+Cmd+D` on macOS
    4\. The **DevTools** tab opens in the browser. **Reselect the app's tab in the browser window.**
+
 1. In Visual Studio, select **Debug** > **Attach to Process**.
 1. For the **Connection type**, select **Chrome devtools protocol websocket (no authentication)**.
 1. For the **Connection target**, paste in the HTTP address (not the HTTPS address) of the app.
 1. Select **Refresh** to refresh the entries under **Available processes**.
-1. Select the browser process you want to debug and select **Attach**.
-1. In the **Select Code Type** dialog, select the code type for the specific browser you are attaching to (Edge or Chrome) and then select **OK**.
+1. Select the browser process to debug and select **Attach**.
+1. In the **Select Code Type** dialog, select the code type for the specific browser you're attaching to (Edge or Chrome) and then select **OK**.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -76,7 +81,8 @@ Debugging requires either of the following browsers:
 1. Navigate to the app at the HTTP URL shown in the shell's window.
 1. Place the keyboard focus on the app, not the developer tools panel. It's best to keep the developer tools panel closed for this procedure. After debugging has started, you can re-open the developer tools panel.
 1. Select the following Blazor-specific keyboard shortcut:
-   * `Shift+Alt+D` on Windows/Linux
+
+   * `Shift+Alt+D` on Windows
    * `Shift+Cmd+D` on macOS
 
    If you receive the **Unable to find debuggable browser tab**, see [Enable remote debugging](#enable-remote-debugging).
@@ -86,7 +92,7 @@ Debugging requires either of the following browsers:
    1\. A new browser window opens. Close the prior window.
    2\. Place the keyboard focus on the app in the browser window, not the developer tools panel.
    3\. Select the Blazor-specific keyboard shortcut in the new browser window:
-       * `Shift+Alt+D` on Windows/Linux
+       * `Shift+Alt+D` on Windows
        * `Shift+Cmd+D` on macOS
 
 ---
