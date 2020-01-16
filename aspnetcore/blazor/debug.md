@@ -15,7 +15,10 @@ uid: blazor/debug
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-*Early* support exists for debugging Blazor WebAssembly using the browser dev tools in Chromium-based browsers (Chrome/Edge), and work is in progress to enable debugging with Visual Studio and Visual Studio Code.
+*Early* support exists for debugging Blazor WebAssembly using the browser dev tools in Chromium-based browsers (Chrome/Edge). Work is in progress to:
+
+* Fully enable debugging in Visual Studio.
+* Enable debugging in Visual Studio Code.
 
 Debugger capabilities are limited. Available scenarios include:
 
@@ -47,7 +50,7 @@ Debugging requires either of the following browsers:
 # [Visual Studio](#tab/visual-studio)
 
 > [!WARNING]
-> Debugging support in Visual Studio is at an early stage of development.
+> Debugging support in Visual Studio is at an early stage of development. **F5** debugging isn't currently supported.
 
 1. Run a Blazor WebAssembly app in `Debug` configuration without debugging (**Ctrl**+**F5** instead of **F5**).
 1. Open the Debug properties of the app (last entry in the **Debug** menu) and copy the HTTP **App URL**. Browse to the HTTP address (not the HTTPS address) of the app using a Chromium-based browser (Edge Beta or Chrome).
@@ -68,12 +71,7 @@ Debugging requires either of the following browsers:
        * `Shift+Cmd+D` on macOS
    4\. The **DevTools** tab opens in the browser. **Reselect the app's tab in the browser window.**
 
-1. In Visual Studio, select **Debug** > **Attach to Process**.
-1. For the **Connection type**, select **Chrome devtools protocol websocket (no authentication)**.
-1. For the **Connection target**, paste in the HTTP address (not the HTTPS address) of the app.
-1. Select **Refresh** to refresh the entries under **Available processes**.
-1. Select the browser process to debug and select **Attach**.
-1. In the **Select Code Type** dialog, select the code type for the specific browser you're attaching to (Edge or Chrome) and then select **OK**.
+   To attach the app to Visual Studio, see the [Attach to process in Visual Studio](#attach-to-process-in-visual-studio) section.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -107,11 +105,25 @@ Once Chrome is running with remote debugging enabled, the debugging keyboard sho
 
 Blazor provides a debugging proxy that implements the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) and augments the protocol with .NET-specific information. When debugging keyboard shortcut is pressed, Blazor points the Chrome DevTools at the proxy. The proxy connects to the browser window you're seeking to debug (hence the need to enable remote debugging).
 
+## Attach to process in Visual Studio
+
+> [!WARNING]
+> Attaching to the app's process in Visual Studio is a *temporary* debugging scenario for Blazor WebAssembly while **F5** debugging is in development.
+
+To attach the running app's process to Visual Studio:
+
+1. In Visual Studio, select **Debug** > **Attach to Process**.
+1. For the **Connection type**, select **Chrome devtools protocol websocket (no authentication)**.
+1. For the **Connection target**, paste in the HTTP address (not the HTTPS address) of the app.
+1. Select **Refresh** to refresh the entries under **Available processes**.
+1. Select the browser process to debug and select **Attach**.
+1. In the **Select Code Type** dialog, select the code type for the specific browser you're attaching to (Edge or Chrome) and then select **OK**.
+
 ## Browser source maps
 
 Browser source maps allow the browser to map compiled files back to their original source files and are commonly used for client-side debugging. However, Blazor doesn't currently map C# directly to JavaScript/WASM. Instead, Blazor does IL interpretation within the browser, so source maps aren't relevant.
 
-## Troubleshooting tip
+## Troubleshoot
 
 If you're running into errors, the following tip may help:
 
