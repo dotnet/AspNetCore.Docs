@@ -80,7 +80,7 @@ For more information see the [Azure SignalR Service documentation](/azure/azure-
 
 ![Redis backplane, message sent from one server to all clients](scale/_static/redis-backplane.png)
 
-The Redis backplane is the recommended scale-out approach for apps hosted on your own infrastructure. Azure SignalR Service isn't a practical option for production use with on-premises apps due to connection latency between your data center and an Azure data center.
+The Redis backplane is the recommended scale-out approach for apps hosted on your own infrastructure. If there is significant connection latency between your data center and an Azure data center, Azure SignalR Service may not be a practical option for on-premises apps with low latency or high throughput requirements.
 
 The Azure SignalR Service advantages noted earlier are disadvantages for the Redis backplane:
 

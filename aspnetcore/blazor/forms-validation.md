@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 12/12/2019
 no-loc: [Blazor]
 uid: blazor/forms-validation
 ---
@@ -50,7 +50,12 @@ A form is defined using the `EditForm` component. The following form demonstrate
 }
 ```
 
+In the preceding example:
+
 * The form validates user input in the `name` field using the validation defined in the `ExampleModel` type. The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to the `Model` attribute of the `<EditForm>` element.
+* The `InputText` component's `@bind-Value` binds:
+  * The model property (`exampleModel.Name`) to the `InputText` component's `Value` property.
+  * A change event delegate to the `InputText` component's `ValueChanged` property.
 * The `DataAnnotationsValidator` component attaches validation support using data annotations.
 * The `ValidationSummary` component summarizes validation messages.
 * `HandleValidSubmit` is triggered when the form successfully submits (passes validation).
