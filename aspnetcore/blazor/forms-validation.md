@@ -245,9 +245,10 @@ Create a component with the following markup, and use the component just as `Inp
 
 ## Work with radio buttons
 
-When working with radio buttons in a form, data binding is handled differently than other elements because radio buttons are evaluated as a group. The value of each radio button is fixed, but the value of the radio button group is the value of the selected radio button. The following example shows how to handle data binding for a radio button group:
+When working with radio buttons in a form, data binding is handled differently than other elements because radio buttons are evaluated as a group. The value of each radio button is fixed, but the value of the radio button group is the value of the selected radio button. The following example shows how to:
 
-The framework doesn't currently provide an `InputRadio` component. The following example shows how to implement an `InputRadio` component:
+* Handle data binding for a radio button group.
+* Add support for validation using a custom `InputRadio` component.
 
 ```razor
 @using System.Globalization
