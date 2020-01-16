@@ -40,7 +40,7 @@ namespace RoutingSample
 
 			app.Use(next => async context =>
 			{
-				using (new MyStopwatch(logger, "Time 1"))
+				using (new MyStopwatch(logger, "Time 3"))
 				{
 					await next(context);
 				}

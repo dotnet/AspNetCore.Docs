@@ -29,7 +29,8 @@ namespace RoutingSample
             app.Use(next => context =>
             {
                 var endpoint = context.GetEndpoint();
-                if (endpoint?.Metadata.GetMetadata<AuditPolicyAttribute>()?.NeedsAudit == true)
+                if (endpoint?.Metadata.GetMetadata<AuditPolicyAttribute>()?.NeedsAudit
+                                                                                == true)
                 {
                     Console.WriteLine($"ACCESS TO SENSITIVE DATA AT: {DateTime.UtcNow}");
                 }
