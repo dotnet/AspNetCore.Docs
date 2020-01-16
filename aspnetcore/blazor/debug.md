@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/19/2019
+ms.date: 01/16/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/debug
 ---
@@ -55,10 +55,7 @@ Debugging requires either of the following browsers:
 1. Run a Blazor WebAssembly app in `Debug` configuration without debugging (**Ctrl**+**F5** instead of **F5**).
 1. Open the Debug properties of the app (last entry in the **Debug** menu) and copy the HTTP **App URL**. Browse to the HTTP address (not the HTTPS address) of the app using a Chromium-based browser (Edge Beta or Chrome).
 1. Place the keyboard focus on the app in the browser window, not the developer tools panel. It's best to keep the developer tools panel closed for this procedure. After debugging has started, you can re-open the developer tools panel.
-1. Select the following Blazor-specific keyboard shortcut:
-
-   * `Shift+Alt+D` on Windows
-   * `Shift+Cmd+D` on macOS
+1. Select the following Blazor-specific keyboard shortcut: `Shift+Alt+D` on Windows or `Shift+Cmd+D` on macOS.
 
    If you receive the **Unable to find debuggable browser tab**, see [Enable remote debugging](#enable-remote-debugging).
    
@@ -66,9 +63,7 @@ Debugging requires either of the following browsers:
    
    1\. A new browser window opens. Close the prior window.
    2\. Place the keyboard focus on the app in the browser window.
-   3\. Select the Blazor-specific keyboard shortcut in the new browser window:
-       * `Shift+Alt+D` on Windows
-       * `Shift+Cmd+D` on macOS
+   3\. Select the Blazor-specific keyboard shortcut in the new browser window: `Shift+Alt+D` on Windows or `Shift+Cmd+D` on macOS.
    4\. The **DevTools** tab opens in the browser. **Reselect the app's tab in the browser window.**
 
    To attach the app to Visual Studio, see the [Attach to process in Visual Studio](#attach-to-process-in-visual-studio) section.
@@ -78,10 +73,7 @@ Debugging requires either of the following browsers:
 1. Run a Blazor WebAssembly app in `Debug` configuration by passing the `--configuration Debug` option to the [dotnet run](/dotnet/core/tools/dotnet-run) command: `dotnet run --configuration Debug`.
 1. Navigate to the app at the HTTP URL shown in the shell's window.
 1. Place the keyboard focus on the app, not the developer tools panel. It's best to keep the developer tools panel closed for this procedure. After debugging has started, you can re-open the developer tools panel.
-1. Select the following Blazor-specific keyboard shortcut:
-
-   * `Shift+Alt+D` on Windows
-   * `Shift+Cmd+D` on macOS
+1. Select the following Blazor-specific keyboard shortcut: `Shift+Alt+D` on Windows or `Shift+Cmd+D` on macOS.
 
    If you receive the **Unable to find debuggable browser tab**, see [Enable remote debugging](#enable-remote-debugging).
    
@@ -89,9 +81,7 @@ Debugging requires either of the following browsers:
    
    1\. A new browser window opens. Close the prior window.
    2\. Place the keyboard focus on the app in the browser window, not the developer tools panel.
-   3\. Select the Blazor-specific keyboard shortcut in the new browser window:
-       * `Shift+Alt+D` on Windows
-       * `Shift+Cmd+D` on macOS
+   3\. Select the Blazor-specific keyboard shortcut in the new browser window: `Shift+Alt+D` on Windows or `Shift+Cmd+D` on macOS.
 
 ---
 
