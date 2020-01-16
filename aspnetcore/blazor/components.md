@@ -508,6 +508,10 @@ In general, a property can be bound to a corresponding event handler using `@bin
 <MyComponent @bind-MyProp="MyValue" @bind-MyProp:event="MyEventHandler" />
 ```
 
+**Radio buttons**
+
+For information on binding to radio buttons in a form, see <xref:blazor/forms-validation#work-with-radio-buttons>.
+
 ## Event handling
 
 Razor components provide event handling features. For an HTML element attribute named `on{EVENT}` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name is always formatted [`@on{EVENT}`](xref:mvc/views/razor#onevent).
