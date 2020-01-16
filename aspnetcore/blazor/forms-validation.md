@@ -31,7 +31,7 @@ public class ExampleModel
 A form is defined using the `EditForm` component. The following form demonstrates typical elements, components, and Razor code:
 
 ```razor
-<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="@exampleModel" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -111,7 +111,7 @@ The following form validates user input using the validation defined in the `Sta
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -245,30 +245,90 @@ Create a component with the following markup, and use the component just as `Inp
 
 ## Work with radio buttons
 
-Blazor doesn't provide a built-in scenario for handling radio button `<input>` elements. Radio button support is under consideration for a future Blazor release. The following workaround is recommended:
+When working with radio buttons in a form, data binding is handled differently than other elements because radio buttons are evaluated as a group. The value of each radio button is fixed, but the value of the radio button group is the value of the selected radio button. The following example shows how to handle data binding for a radio button group:
+
+The framework doesn't currently provide an `InputRadio` component. The following example shows how to implement an `InputRadio` component:
 
 ```razor
-@foreach (var choice in new[] { Choices.Red, Choices.Green, Choices.Blue })
-{
-   <label>
-       <input name="yourColor" type="radio"
-            value="@choice"
-            checked="@(currentChoice == choice)"
-            @onchange="@(() => { currentChoice = choice; })" />
-       @choice.ToString()
-   </label>
-}
+@using System.Globalization
+@typeparam TValue
+@inherits InputBase<TValue>
 
-<p>You chose: @currentChoice</p>
+<input @attributes="AdditionalAttributes" type="radio" value="@SelectedValue" 
+       checked="@(SelectedValue.Equals(Value))" @onchange="OnChange" />
 
 @code {
-    private enum Choices { Red, Green, Blue };
-    private Choices currentChoice = Choices.Red;
+    [Parameter]
+    public TValue SelectedValue { get; set; }
+
+    private void OnChange(ChangeEventArgs args)
+    {
+        CurrentValueAsString = args.Value.ToString();
+    }
+
+    protected override bool TryParseValueFromString(string value, 
+        out TValue result, out string errorMessage)
+    {
+        var success = BindConverter.TryConvertTo<TValue>(
+            value, CultureInfo.CurrentCulture, out var parsedValue);
+        if (success)
+        {
+            result = parsedValue;
+            errorMessage = null;
+
+            return true;
+        }
+        else
+        {
+            result = default;
+            errorMessage = $"{FieldIdentifier.FieldName} field isn't valid.";
+
+            return false;
+        }
+    }
 }
 ```
 
-> [!NOTE]
-> The workaround shown in this section doesn't fire the `OnFieldChanged` form event that built-in `Input` components support.
+The following `EditForm` uses the preceding `InputRadio` component to obtain and validate a rating from the user:
+
+```razor
+@page "/RadioButtonExample"
+@using System.ComponentModel.DataAnnotations
+
+<h1>Radio Button Group Test</h1>
+
+<EditForm Model="model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    @for (int i = 1; i <= 5; i++)
+    {
+        <label>
+            <InputRadio name="rate" SelectedValue="i" @bind-Value="model.Rating" />
+            @i
+        </label>
+    }
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+<p>You chose: @model.Rating</p>
+
+@code {
+    private Model model = new Model();
+
+    private void HandleValidSubmit()
+    {
+        Console.WriteLine("valid");
+    }
+
+    public class Model
+    {
+        [Range(1, 5)]
+        public int Rating { get; set; }
+    }
+}
+```
 
 ## Validation support
 
@@ -326,6 +386,10 @@ private class MyCustomValidator : ValidationAttribute
 
 The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) is a package that fills validation experience gaps using the `DataAnnotationsValidator` component. The package is currently *experimental*.
 
+### [CompareProperty] attribute
+
+The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the `DataAnnotationsValidator` component because it doesn't associate the validation result with a specific member. This can result in inconsistent behavior between field-level validation and when the entire model is validated on a submit. The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) *experimental* package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the `[Compare]` attribute.
+
 ### Nested models, collection types, and complex types
 
 Blazor provides support for validating form input using data annotations with the built-in `DataAnnotationsValidator`. However, the `DataAnnotationsValidator` only validates top-level properties of the model bound to the form that aren't collection- or complex-type properties.
@@ -333,7 +397,7 @@ Blazor provides support for validating form input using data annotations with th
 To validate the bound model's entire object graph, including collection- and complex-type properties, use the `ObjectGraphDataAnnotationsValidator` provided by the *experimental* [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) package:
 
 ```razor
-<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
     <ObjectGraphDataAnnotationsValidator />
     ...
 </EditForm>
@@ -402,7 +466,7 @@ To enable and disable the submit button based on form validation:
     {
         editContext = new EditContext(starship);
 
-        editContext.OnFieldChanged += (sender, e) =>
+        editContext.OnFieldChanged += (_, __) =>
         {
             formInvalid = !editContext.Validate();
             StateHasChanged();
@@ -422,7 +486,7 @@ A side effect of the preceding approach is that a `ValidationSummary` component 
 * Make the `ValidationSummary` component visible when the submit button is selected (for example, in a `HandleValidSubmit` method).
 
 ```razor
-<EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
+<EditForm EditContext="@editContext" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary style="@displaySummary" />
 
