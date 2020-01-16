@@ -29,7 +29,7 @@ To create a Blazor app using the client-side hosting model, use the **Blazor Web
 
 After selecting the **Blazor WebAssembly App** template, you have the option of configuring the app to use an ASP.NET Core backend by selecting the **ASP.NET Core hosted** check box ([dotnet new blazorwasm --hosted](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app serves the Blazor app to clients. The Blazor WebAssembly app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction).
 
-The templates include the *blazor.webassembly.js* script that handles:
+The templates include the `blazor.webassembly.js` script that handles:
 
 * Downloading the .NET runtime, the app, and the app's dependencies.
 * Initialization of the runtime to run the app.
@@ -61,7 +61,7 @@ The ASP.NET Core app references the app's `Startup` class to add:
 * Server-side services.
 * The app to the request handling pipeline.
 
-The *blazor.server.js* script&dagger; establishes the client connection. It's the app's responsibility to persist and restore app state as required (for example, in the event of a lost network connection).
+The `blazor.server.js` script&dagger; establishes the client connection. It's the app's responsibility to persist and restore app state as required (for example, in the event of a lost network connection).
 
 The Blazor Server hosting model offers several benefits:
 
@@ -78,7 +78,7 @@ There are downsides to Blazor Server hosting:
 * Scalability is challenging for apps with many users. The server must manage multiple client connections and handle client state.
 * An ASP.NET Core server is required to serve the app. Serverless deployment scenarios aren't possible (for example, serving the app from a CDN).
 
-&dagger;The *blazor.server.js* script is served from an embedded resource in the ASP.NET Core shared framework.
+&dagger;The `blazor.server.js` script is served from an embedded resource in the ASP.NET Core shared framework.
 
 ### Comparison to server-rendered UI
 
@@ -478,7 +478,7 @@ Sometimes, you need to configure the SignalR client used by Blazor Server apps. 
 
 To configure the SignalR client in the *Pages/_Host.cshtml* file:
 
-* Add an `autostart="false"` attribute to the `<script>` tag for the *blazor.server.js* script.
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
 * Call `Blazor.start` and pass in a configuration object that specifies the SignalR builder.
 
 ```html
