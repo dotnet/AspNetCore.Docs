@@ -68,10 +68,7 @@ Debugging requires either of the following browsers:
 
    2\. Place the keyboard focus on the app in the browser window.
 
-   3\. Select the Blazor-specific keyboard shortcut in the new browser window:
-
-       * `Shift+Alt+D` on Windows
-       * `Shift+Cmd+D` on macOS
+   3\. Select the Blazor-specific keyboard shortcut in the new browser window: `Shift+Alt+D` on Windows or `Shift+Cmd+D` on macOS.
 
    4\. The **DevTools** tab opens in the browser. **Reselect the app's tab in the browser window.**
 
@@ -95,10 +92,7 @@ Debugging requires either of the following browsers:
 
    2\. Place the keyboard focus on the app in the browser window, not the developer tools panel.
 
-   3\. Select the Blazor-specific keyboard shortcut in the new browser window:
-
-       * `Shift+Alt+D` on Windows
-       * `Shift+Cmd+D` on macOS
+   3\. Select the Blazor-specific keyboard shortcut in the new browser window: `Shift+Alt+D` on Windows or `Shift+Cmd+D` on macOS.
 
 ---
 
