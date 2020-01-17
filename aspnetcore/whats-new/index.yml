@@ -15,13 +15,13 @@ landingContent:
       - linkListType: whats-new
         links:
           - text: December 2019
-            url: 2019/2019-12.md
+            url: 2019-12.md
           - text: November 2019
-            url: 2019/2019-11.md
+            url: 2019-11.md
           - text: October 2019
-            url: 2019/2019-10.md
+            url: 2019-10.md
           - text: September 2019
-            url: 2019/2019-09.md
+            url: 2019-09.md
 
   - title: "Get involved - contribute to ASP.NET Core docs"
     linkLists:
