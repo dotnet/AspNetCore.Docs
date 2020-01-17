@@ -264,6 +264,8 @@ Confirm that the app works with the following steps.
 
 ::: moniker range="< aspnetcore-3.0"
 
+## Prerequisites
+
 # [Visual Studio](#tab/visual-studio)
 
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
@@ -426,7 +428,7 @@ The app currently displays a simple form to send messages. Nothing happens when 
 1. Execute the following command at the project root:
 
     ```console
-    npm install @microsoft/signalr
+    npm install @aspnet/signalr
     ```
 
     The preceding command installs the [SignalR TypeScript client](https://www.npmjs.com/package/@microsoft/signalr), which allows the client to send messages to the server.

@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how view components are used in ASP.NET Core and how to add them to apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2019
+ms.date: 12/18/2019
 uid: mvc/views/view-components
 ---
 # View components in ASP.NET Core
@@ -81,6 +81,14 @@ The search path applies to projects using controllers + views and Razor Pages.
 The default view name for a view component is *Default*, which means your view file will typically be named *Default.cshtml*. You can specify a different view name when creating the view component result or when calling the `View` method.
 
 We recommend you name the view file *Default.cshtml* and use the *Views/Shared/Components/{View Component Name}/{View Name}* path. The `PriorityList` view component used in this sample uses *Views/Shared/Components/PriorityList/Default.cshtml* for the view component view.
+
+### Customize the view search path
+
+To customize the view search path, modify Razor's <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats> collection. For example, to search for views within the path "/Components/{View Component Name}/{View Name}", add a new item to the collection:
+
+[!code-cs[](view-components/samples_snapshot/2.x/Startup.cs?name=snippet_ViewLocationFormats&highlight=4)]
+
+In the preceding code, the placeholder "{0}" represents the path "Components/{View Component Name}/{View Name}".
 
 ## Invoking a view component
 
@@ -323,7 +331,7 @@ The method signature of `PriorityList.Invoke` is synchronous, but Razor finds an
 
 ## All view component parameters are required
 
-Each parameter in a view component is a required attribute. See [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/5011). If any  parameter is omitted:
+Each parameter in a view component is a required attribute. See [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/5011). If any  parameter is omitted:
 
 * The `InvokeAsync` method signature won't match, therefore the method won't execute.
 * The ViewComponent won't render any markup.

@@ -2,11 +2,11 @@
 title: Create and use ASP.NET Core Razor components
 author: guardrex
 description: Learn how to create and use Razor components, including how to bind to data, handle events, and manage component life cycles.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
-no-loc: [Blazor]
+ms.date: 12/28/2019
+no-loc: [Blazor, SignalR]
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
@@ -27,9 +27,6 @@ The UI for a component is defined using HTML. Dynamic rendering logic (for examp
 
 Members of the component class are defined in an `@code` block. In the `@code` block, component state (properties, fields) is specified with methods for event handling or for defining other component logic. More than one `@code` block is permissible.
 
-> [!NOTE]
-> In prior previews of ASP.NET Core 3.0, `@functions` blocks were used for the same purpose as `@code` blocks in Razor components. `@functions` blocks continue to function in Razor components, but we recommend using the `@code` block in ASP.NET Core 3.0 Preview 6 or later.
-
 Component members can be used as part of the component's rendering logic using C# expressions that start with `@`. For example, a C# field is rendered by prefixing `@` to the field name. The following example evaluates and renders:
 
 * `_headingFontStyle` to the CSS property value for `font-style`.
@@ -46,17 +43,37 @@ Component members can be used as part of the component's rendering logic using C
 
 After the component is initially rendered, the component regenerates its render tree in response to events. Blazor then compares the new render tree against the previous one and applies any modifications to the browser's Document Object Model (DOM).
 
-Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the *Pages* folder. Non-page components are frequently placed in the *Shared* folder or a custom folder added to the project. To use a custom folder, add the custom folder's namespace to either the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `WebApplication`:
+Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the *Pages* folder. Non-page components are frequently placed in the *Shared* folder or a custom folder added to the project.
+
+Typically, a component's namespace is derived from the app's root namespace and the component's location (folder) within the app. If the app's root namespace is `BlazorApp` and the `Counter` component resides in the *Pages* folder:
+
+* The `Counter` component's namespace is `BlazorApp.Pages`.
+* The fully qualified type name of the component is `BlazorApp.Pages.Counter`.
+
+For more information, see the [Import components](#import-components) section.
+
+To use a custom folder, add the custom folder's namespace to either the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `BlazorApp`:
 
 ```razor
-@using WebApplication.Components
+@using BlazorApp.Components
 ```
 
 ## Integrate components into Razor Pages and MVC apps
 
-Use components with existing Razor Pages and MVC apps. There's no need to rewrite existing pages or views to use Razor components. When the page or view is rendered, components are prerendered at the same time.
+Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
 
-::: moniker range=">= aspnetcore-3.1"
+To prepare a Razor Pages or MVC app to host Razor components, follow the guidance in the *Integrate Razor components into Razor Pages and MVC apps* section of the <xref:blazor/hosting-models#integrate-razor-components-into-razor-pages-and-mvc-apps> article.
+
+When using a custom folder to hold the app's components, add the namespace representing the folder to either the page/view or to the *_ViewImports.cshtml* file. In the following example:
+
+* Change `MyAppNamespace` to the app's namespace.
+* If a folder named *Components* isn't used to hold the components, change `Components` to the folder where the components reside.
+
+```csharp
+@using MyAppNamespace.Components
+```
+
+The *_ViewImports.cshtml* file is located in the *Pages* folder of a Razor Pages app or the *Views* folder of an MVC app.
 
 To render a component from a page or view, use the `Component` Tag Helper:
 
@@ -83,35 +100,6 @@ While pages and views can use components, the converse isn't true. Components ca
 Rendering server components from a static HTML page isn't supported.
 
 For more information on how components are rendered, component state, and the `Component` Tag Helper, see <xref:blazor/hosting-models>.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.1"
-
-To render a component from a page or view, use the `RenderComponentAsync<TComponent>` HTML helper method:
-
-```cshtml
-@(await Html.RenderComponentAsync<MyComponent>(RenderMode.ServerPrerendered))
-```
-
-`RenderMode` configures whether the component:
-
-* Is prerendered into the page.
-* Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
-
-| `RenderMode`        | Description |
-| ------------------- | ----------- |
-| `ServerPrerendered` | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. Parameters aren't supported. |
-| `Server`            | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. Parameters aren't supported. |
-| `Static`            | Renders the component into static HTML. Parameters are supported. |
-
-While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
-
-Rendering server components from a static HTML page isn't supported.
-
-For more information on how components are rendered, component state, and the `RenderComponentAsync` HTML Helper, see <xref:blazor/hosting-models>.
-
-::: moniker-end
 
 ## Use components
 
@@ -346,6 +334,11 @@ In addition to handling `onchange` events with `@bind` syntax, a property or fie
 
 Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
+`@bind-value` in the preceding example binds:
+
+* The specified expression (`CurrentValue`) to the element's `value` attribute.
+* A change event delegate to the event specified by `@bind-value:event`.
+
 **Unparsable values**
 
 When a user provides an unparsable value to a databound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
@@ -515,6 +508,10 @@ In general, a property can be bound to a corresponding event handler using `@bin
 <MyComponent @bind-MyProp="MyValue" @bind-MyProp:event="MyEventHandler" />
 ```
 
+**Radio buttons**
+
+For information on binding to radio buttons in a form, see <xref:blazor/forms-validation#work-with-radio-buttons>.
+
 ## Event handling
 
 Razor components provide event handling features. For an HTML element attribute named `on{EVENT}` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name is always formatted [`@on{EVENT}`](xref:mvc/views/razor#onevent).
@@ -585,7 +582,7 @@ Supported `EventArgs` are shown in the following table.
 | Progress         | `ProgressEventArgs`  | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` |
 | Touch            | `TouchEventArgs`     | `ontouchstart`, `ontouchend`, `ontouchmove`, `ontouchenter`, `ontouchleave`, `ontouchcancel`<br><br>`TouchPoint` represents a single contact point on a touch-sensitive device. |
 
-For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source (aspnet/AspNetCore release/3.0 branch)](https://github.com/aspnet/AspNetCore/tree/release/3.0/src/Components/Web/src/Web).
+For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source (dotnet/aspnetcore release/3.1 branch)](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/Components/Web/src/Web).
 
 ### Lambda expressions
 
@@ -689,8 +686,6 @@ Use `EventCallback` and `EventCallback<T>` for event handling and binding compon
 
 Prefer the strongly typed `EventCallback<T>` over `EventCallback`. `EventCallback<T>` provides better error feedback to users of the component. Similar to other UI event handlers, specifying the event parameter is optional. Use `EventCallback` when there's no value passed to the callback.
 
-::: moniker range=">= aspnetcore-3.1"
-
 ### Prevent default actions
 
 Use the [`@on{EVENT}:preventDefault`](xref:mvc/views/razor#oneventpreventdefault) directive attribute to prevent the default action for an event.
@@ -756,8 +751,6 @@ In the following example, selecting the check box prevents click events from the
         Console.WriteLine($"A child div was selected. {DateTime.Now}");
 }
 ```
-
-::: moniker-end
 
 ## Chained bind
 
@@ -1084,8 +1077,6 @@ Optional parameters aren't supported, so two `@page` directives are applied in t
 
 *Catch-all* parameter syntax (`*`/`**`), which captures the path across multiple folder boundaries, is **not** supported in Razor components (*.razor*).
 
-::: moniker range=">= aspnetcore-3.1"
-
 ## Partial class support
 
 Razor components are generated as partial classes. Razor components are authored using either of the following approaches:
@@ -1147,43 +1138,16 @@ namespace BlazorApp.Pages
 }
 ```
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.1"
-
-## Specify a component base class
-
-The `@inherits` directive can be used to specify a base class for a component.
-
-The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) shows how a component can inherit a base class, `BlazorRocksBase`, to provide the component's properties and methods.
-
-*Pages/BlazorRocks.razor*:
-
-```razor
-@page "/BlazorRocks"
-@inherits BlazorRocksBase
-
-<h1>@BlazorRocksText</h1>
-```
-
-*BlazorRocksBase.cs*:
+Add any required namespaces to the partial class file as needed. Typical namespaces used by Razor components include:
 
 ```csharp
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
-
-namespace BlazorSample
-{
-    public class BlazorRocksBase : ComponentBase
-    {
-        public string BlazorRocksText { get; set; } = 
-            "Blazor rocks the browser!";
-    }
-}
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components.Routing;
+using Microsoft.AspNetCore.Components.Web;
 ```
-
-The base class should derive from `ComponentBase`.
-
-::: moniker-end
 
 ## Import components
 
@@ -1617,7 +1581,7 @@ In the following example, the loop in the `CreateComponent` method generates thr
 }
 ```
 
-> ![WARNING]
+> [!WARNING]
 > The types in `Microsoft.AspNetCore.Components.RenderTree` allow processing of the *results* of rendering operations. These are internal details of the Blazor framework implementation. These types should be considered *unstable* and subject to change in future releases.
 
 ### Sequence numbers relate to code line numbers and not execution order

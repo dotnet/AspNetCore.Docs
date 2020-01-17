@@ -232,4 +232,4 @@ public void ConfigureServices(IServiceCollection services)
 ## References
 
 * [Custom Storage Providers for ASP.NET 4.x Identity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
-* [ASP.NET Core Identity](https://github.com/aspnet/AspNetCore/tree/master/src/Identity) &ndash; This repository includes links to community maintained store providers.
+* [ASP.NET Core Identity](https://github.com/dotnet/AspNetCore/tree/master/src/Identity) &ndash; This repository includes links to community maintained store providers.

@@ -2,11 +2,11 @@
 title: ASP.NET Core Blazor JavaScript interop
 author: guardrex
 description: Learn how to invoke JavaScript functions from .NET and .NET methods from JavaScript in Blazor apps.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
-no-loc: [Blazor]
+ms.date: 12/18/2019
+no-loc: [Blazor, SignalR]
 uid: blazor/javascript-interop
 ---
 # ASP.NET Core Blazor JavaScript interop
@@ -23,13 +23,9 @@ A Blazor app can invoke JavaScript functions from .NET and .NET methods from Jav
 
 There are times when .NET code is required to call a JavaScript function. For example, a JavaScript call can expose browser capabilities or functionality from a JavaScript library to the app. This scenario is called *JavaScript interoperability* (*JS interop*).
 
-To call into JavaScript from .NET, use the `IJSRuntime` abstraction. The `InvokeAsync<T>` method takes an identifier for the JavaScript function that you wish to invoke along with any number of JSON-serializable arguments. The function identifier is relative to the global scope (`window`). If you wish to call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called. The return type `T` must also be JSON serializable. `T` should match the .NET type that best maps to the JSON type returned.
+To call into JavaScript from .NET, use the `IJSRuntime` abstraction. To issue JS interop calls, inject the `IJSRuntime` abstraction in your component. The `InvokeAsync<T>` method takes an identifier for the JavaScript function that you wish to invoke along with any number of JSON-serializable arguments. The function identifier is relative to the global scope (`window`). If you wish to call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called. The return type `T` must also be JSON serializable. `T` should match the .NET type that best maps to the JSON type returned.
 
-For Blazor Server apps:
-
-* Multiple user requests are processed by the Blazor Server app. Don't call `JSRuntime.Current` in a component to invoke JavaScript functions.
-* Inject the `IJSRuntime` abstraction and use the injected object to issue JS interop calls.
-* While a Blazor app is prerendering, calling into JavaScript isn't possible because a connection with the browser hasn't been established. For more information, see the [Detect when a Blazor app is prerendering](#detect-when-a-blazor-app-is-prerendering) section.
+For Blazor Server apps with prerendering enabled, calling into JavaScript isn't possible during the initial prerendering. JavaScript interop calls must be deferred until after the connection with the browser is established. For more information, see the [Detect when a Blazor app is prerendering](#detect-when-a-blazor-app-is-prerendering) section.
 
 The following example is based on [TextDecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder), an experimental JavaScript-based decoder. The example demonstrates how to invoke a JavaScript function from a C# method. The JavaScript function accepts a byte array from a C# method, decodes the array, and returns the text to the component for display.
 
@@ -360,4 +356,4 @@ For more information on resource exhaustion, see <xref:security/blazor/server>.
 
 ## Additional resources
 
-* [InteropComponent.razor example (aspnet/AspNetCore GitHub repository, 3.0 release branch)](https://github.com/aspnet/AspNetCore/blob/release/3.0/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
+* [InteropComponent.razor example (dotnet/AspNetCore GitHub repository, 3.1 release branch)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)

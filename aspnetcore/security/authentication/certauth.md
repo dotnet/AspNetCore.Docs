@@ -4,7 +4,7 @@ author: blowdart
 description: Learn how to configure certificate authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
-ms.date: 11/14/2019
+ms.date: 01/02/2020
 uid: security/authentication/certauth
 ---
 # Configure certificate authentication in ASP.NET Core
@@ -38,7 +38,7 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddAuthentication(
         CertificateAuthenticationDefaults.AuthenticationScheme)
-            .AddCertificate();
+        .AddCertificate();
     // All the other service configuration.
 }
 
@@ -58,23 +58,33 @@ The `CertificateAuthenticationOptions` handler has some built-in validations tha
 
 ### AllowedCertificateTypes = Chained, SelfSigned, or All (Chained | SelfSigned)
 
-This check validates that only the appropriate certificate type is allowed.
+Default value: `CertificateTypes.Chained`
+
+This check validates that only the appropriate certificate type is allowed. If the app is using self-signed certificates, this option needs to be set to `CertificateTypes.All` or `CertificateTypes.SelfSigned`.
 
 ### ValidateCertificateUse
+
+Default value: `true`
 
 This check validates that the certificate presented by the client has the Client Authentication extended key use (EKU), or no EKUs at all. As the specifications say, if no EKU is specified, then all EKUs are deemed valid.
 
 ### ValidateValidityPeriod
 
+Default value: `true`
+
 This check validates that the certificate is within its validity period. On each request, the handler ensures that a certificate that was valid when it was presented hasn't expired during its current session.
 
 ### RevocationFlag
+
+Default value: `X509RevocationFlag.ExcludeRoot`
 
 A flag that specifies which certificates in the chain are checked for revocation.
 
 Revocation checks are only performed when the certificate is chained to a root certificate.
 
 ### RevocationMode
+
+Default value: `X509RevocationMode.Online`
 
 A flag that specifies how revocation checks are performed.
 
@@ -189,14 +199,16 @@ public static void Main(string[] args)
 public static IHostBuilder CreateHostBuilder(string[] args)
 {
     return Host.CreateDefaultBuilder(args)
-               .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                    webBuilder.ConfigureKestrel(o =>
-                    {
-                        o.ConfigureHttpsDefaults(o => o.ClientCertificateMode = ClientCertificateMode.RequireCertificate);
-                    });
-                });
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.UseStartup<Startup>();
+            webBuilder.ConfigureKestrel(o =>
+            {
+                o.ConfigureHttpsDefaults(o => 
+		    o.ClientCertificateMode = 
+		        ClientCertificateMode.RequireCertificate);
+            });
+        });
 }
 ```
 
@@ -229,32 +241,35 @@ In Azure Web Apps, the certificate is passed as a custom request header named `X
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-	// ...
-	
-	services.AddCertificateForwarding(options =>
-	{
-		options.CertificateHeader = "X-ARR-ClientCert";
-		options.HeaderConverter = (headerValue) =>
-		{
-			X509Certificate2 clientCertificate = null;
-			if(!string.IsNullOrWhiteSpace(headerValue))
-			{
-				byte[] bytes = StringToByteArray(headerValue);
-				clientCertificate = new X509Certificate2(bytes);
-			}
+    services.AddCertificateForwarding(options =>
+    {
+        options.CertificateHeader = "X-ARR-ClientCert";
+        options.HeaderConverter = (headerValue) =>
+        {
+            X509Certificate2 clientCertificate = null;
+	    
+            if(!string.IsNullOrWhiteSpace(headerValue))
+            {
+                byte[] bytes = StringToByteArray(headerValue);
+                clientCertificate = new X509Certificate2(bytes);
+            }
 
-			return clientCertificate;
-		};
-	});
+            return clientCertificate;
+        };
+    });
 }
 
 private static byte[] StringToByteArray(string hex)
 {
-	int NumberChars = hex.Length;
-	byte[] bytes = new byte[NumberChars / 2];
-	for (int i = 0; i < NumberChars; i += 2)
-		bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
-	return bytes;
+    int NumberChars = hex.Length;
+    byte[] bytes = new byte[NumberChars / 2];
+
+    for (int i = 0; i < NumberChars; i += 2)
+    {
+        bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+    }
+
+    return bytes;
 }
 ```
 
@@ -263,18 +278,18 @@ The `Startup.Configure` method then adds the middleware. `UseCertificateForwardi
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
-	...
-	
-	app.UseRouting();
+    ...
 
-	app.UseCertificateForwarding();
-	app.UseAuthentication();
-	app.UseAuthorization();
+    app.UseRouting();
 
-	app.UseEndpoints(endpoints =>
-	{
-		endpoints.MapControllers();
-	});
+    app.UseCertificateForwarding();
+    app.UseAuthentication();
+    app.UseAuthorization();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllers();
+    });
 }
 ```
 
@@ -290,8 +305,11 @@ namespace AspNetCoreCertificateAuthApi
     {
         public bool ValidateCertificate(X509Certificate2 clientCertificate)
         {
-			// Do not hardcode passwords in production code, use thumbprint or key vault
-            var cert = new X509Certificate2(Path.Combine("sts_dev_cert.pfx"), "1234");
+            // Do not hardcode passwords in production code
+            // Use thumbprint or key vault
+            var cert = new X509Certificate2(
+                Path.Combine("sts_dev_cert.pfx"), "1234");
+
             if (clientCertificate.Thumbprint == cert.Thumbprint)
             {
                 return true;
@@ -310,36 +328,39 @@ The web API client uses an `HttpClient`, which was created using an `IHttpClient
 ```csharp
 private async Task<JsonDocument> GetApiDataAsync()
 {
-	try
-	{
-		// Do not hardcode passwords in production code, use thumbprint or key vault
-		var cert = new X509Certificate2(Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
+    try
+    {
+        // Do not hardcode passwords in production code
+        // Use thumbprint or key vault
+        var cert = new X509Certificate2(
+            Path.Combine(_environment.ContentRootPath, 
+                "sts_dev_cert.pfx"), "1234");
+        var client = _clientFactory.CreateClient();
+        var request = new HttpRequestMessage()
+        {
+            RequestUri = new Uri("https://localhost:44379/api/values"),
+            Method = HttpMethod.Get,
+        };
 
-		var client = _clientFactory.CreateClient();
+        request.Headers.Add("X-ARR-ClientCert", cert.GetRawCertDataString());
+        var response = await client.SendAsync(request);
 
-		var request = new HttpRequestMessage()
-		{
-			RequestUri = new Uri("https://localhost:44379/api/values"),
-			Method = HttpMethod.Get,
-		};
+        if (response.IsSuccessStatusCode)
+        {
+            var responseContent = await response.Content.ReadAsStringAsync();
+            var data = JsonDocument.Parse(responseContent);
 
-		request.Headers.Add("X-ARR-ClientCert", cert.GetRawCertDataString());
-		var response = await client.SendAsync(request);
+            return data;
+        }
 
-		if (response.IsSuccessStatusCode)
-		{
-			var responseContent = await response.Content.ReadAsStringAsync();
-			var data = JsonDocument.Parse(responseContent);
-
-			return data;
-		}
-
-		throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
-	}
-	catch (Exception e)
-	{
-		throw new ApplicationException($"Exception {e}");
-	}
+        throw new ApplicationException(
+            $"Status code: {response.StatusCode}, " +
+            $"Error: {response.ReasonPhrase}");
+    }
+    catch (Exception e)
+    {
+        throw new ApplicationException($"Exception {e}");
+    }
 }
 ```
 
@@ -360,6 +381,9 @@ Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertif
 
 Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath root_ca_dev_damienbod.crt
 ```
+
+> [!NOTE]
+> The `-DnsName` parameter value must match the deployment target of the app. For example, "localhost" for development.
 
 #### Install in the trusted root
 
