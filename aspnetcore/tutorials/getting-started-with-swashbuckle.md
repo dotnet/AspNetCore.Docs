@@ -4,7 +4,7 @@ author: zuckerthoben
 description: Learn how to add Swashbuckle to your ASP.NET Core web API project to integrate the Swagger UI.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 01/17/2020
 uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core
@@ -56,7 +56,7 @@ Swashbuckle can be added with the following approaches:
 Run the following command from the **Integrated Terminal**:
 
 ```dotnetcli
-dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.0.0-rc4
+dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.0.0
 ```
 
 ### [.NET Core CLI](#tab/netcore-cli)
@@ -64,7 +64,7 @@ dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.0.0-rc4
 Run the following command:
 
 ```dotnetcli
-dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.0.0-rc4
+dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.0.0
 ```
 
 ---
