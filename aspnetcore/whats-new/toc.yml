@@ -1,0 +1,9 @@
+- name: What's new
+  href: index.yml
+  expanded: true
+  items:
+    - name: 2019
+      expanded: true
+      items:
+      - name: December
+        uid: whats-new/2019-12
