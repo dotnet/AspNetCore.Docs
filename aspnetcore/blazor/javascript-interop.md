@@ -2,11 +2,11 @@
 title: ASP.NET Core Blazor JavaScript interop
 author: guardrex
 description: Learn how to invoke JavaScript functions from .NET and .NET methods from JavaScript in Blazor apps.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
-no-loc: [Blazor]
+ms.date: 12/18/2019
+no-loc: [Blazor, SignalR]
 uid: blazor/javascript-interop
 ---
 # ASP.NET Core Blazor JavaScript interop
@@ -356,4 +356,4 @@ For more information on resource exhaustion, see <xref:security/blazor/server>.
 
 ## Additional resources
 
-* [InteropComponent.razor example (dotnet/AspNetCore GitHub repository, 3.0 release branch)](https://github.com/dotnet/AspNetCore/blob/release/3.0/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
+* [InteropComponent.razor example (dotnet/AspNetCore GitHub repository, 3.1 release branch)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)

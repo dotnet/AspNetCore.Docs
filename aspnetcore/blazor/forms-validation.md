@@ -2,11 +2,11 @@
 title: ASP.NET Core Blazor forms and validation
 author: guardrex
 description: Learn how to use forms and field validation scenarios in Blazor.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
-no-loc: [Blazor]
+ms.date: 12/18/2019
+no-loc: [Blazor, SignalR]
 uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
@@ -30,8 +30,8 @@ public class ExampleModel
 
 A form is defined using the `EditForm` component. The following form demonstrates typical elements, components, and Razor code:
 
-```csharp
-<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
+```razor
+<EditForm Model="@exampleModel" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -50,7 +50,12 @@ A form is defined using the `EditForm` component. The following form demonstrate
 }
 ```
 
+In the preceding example:
+
 * The form validates user input in the `name` field using the validation defined in the `ExampleModel` type. The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to the `Model` attribute of the `<EditForm>` element.
+* The `InputText` component's `@bind-Value` binds:
+  * The model property (`exampleModel.Name`) to the `InputText` component's `Value` property.
+  * A change event delegate to the `InputText` component's `ValueChanged` property.
 * The `DataAnnotationsValidator` component attaches validation support using data annotations.
 * The `ValidationSummary` component summarizes validation messages.
 * `HandleValidSubmit` is triggered when the form successfully submits (passes validation).
@@ -111,39 +116,50 @@ The following form validates user input using the validation defined in the `Sta
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
     <p>
-        <label for="identifier">Identifier: </label>
-        <InputText id="identifier" @bind-Value="starship.Identifier" />
+        <label>
+            Identifier:
+            <InputText @bind-Value="starship.Identifier" />
+        </label>
     </p>
     <p>
-        <label for="description">Description (optional): </label>
-        <InputTextArea id="description" @bind-Value="starship.Description" />
+        <label>
+            Description (optional):
+            <InputTextArea @bind-Value="starship.Description" />
+        </label>
     </p>
     <p>
-        <label for="classification">Primary Classification: </label>
-        <InputSelect id="classification" @bind-Value="starship.Classification">
-            <option value="">Select classification ...</option>
-            <option value="Exploration">Exploration</option>
-            <option value="Diplomacy">Diplomacy</option>
-            <option value="Defense">Defense</option>
-        </InputSelect>
+        <label>
+            Primary Classification:
+            <InputSelect @bind-Value="starship.Classification">
+                <option value="">Select classification ...</option>
+                <option value="Exploration">Exploration</option>
+                <option value="Diplomacy">Diplomacy</option>
+                <option value="Defense">Defense</option>
+            </InputSelect>
+        </label>
     </p>
     <p>
-        <label for="accommodation">Maximum Accommodation: </label>
-        <InputNumber id="accommodation" 
-            @bind-Value="starship.MaximumAccommodation" />
+        <label>
+            Maximum Accommodation:
+            <InputNumber @bind-Value="starship.MaximumAccommodation" />
+        </label>
     </p>
     <p>
-        <label for="valid">Engineering Approval: </label>
-        <InputCheckbox id="valid" @bind-Value="starship.IsValidatedDesign" />
+        <label>
+            Engineering Approval:
+            <InputCheckbox @bind-Value="starship.IsValidatedDesign" />
+        </label>
     </p>
     <p>
-        <label for="productionDate">Production Date: </label>
-        <InputDate id="productionDate" @bind-Value="starship.ProductionDate" />
+        <label>
+            Production Date:
+            <InputDate @bind-Value="starship.ProductionDate" />
+        </label>
     </p>
 
     <button type="submit">Submit</button>
@@ -167,6 +183,54 @@ The following form validates user input using the validation defined in the `Sta
 
 The `EditForm` creates an `EditContext` as a [cascading value](xref:blazor/components#cascading-values-and-parameters) that tracks metadata about the edit process, including which fields have been modified and the current validation messages. The `EditForm` also provides convenient events for valid and invalid submits (`OnValidSubmit`, `OnInvalidSubmit`). Alternatively, use `OnSubmit` to trigger the validation and check field values with custom validation code.
 
+In the following example:
+
+* The `HandleSubmit` method runs when the **Submit** button is selected.
+* The form is validated using the form's `EditContext`.
+* The form is further validated by passing the `EditContext` to the `ServerValidate` method that calls a web API endpoint on the server (*not shown*).
+* Additional code is run depending on the result of the client- and server-side validation by checking `isValid`.
+
+```razor
+<EditForm EditContext="@editContext" OnSubmit="@HandleSubmit">
+
+    ...
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private Starship starship = new Starship();
+    private EditContext editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(starship);
+    }
+
+    private async Task HandleSubmit()
+    {
+        var isValid = editContext.Validate() && 
+            await ServerValidate(editContext);
+
+        if (isValid)
+        {
+            ...
+        }
+        else
+        {
+            ...
+        }
+    }
+
+    private async Task<bool> ServerValidate(EditContext editContext)
+    {
+        var serverChecksValid = ...
+
+        return serverChecksValid;
+    }
+}
+```
+
 ## InputText based on the input event
 
 Use the `InputText` component to create a custom component that uses the `input` event instead of the `change` event.
@@ -182,6 +246,94 @@ Create a component with the following markup, and use the component just as `Inp
     value="@CurrentValue" 
     @oninput="EventCallback.Factory.CreateBinder<string>(
         this, __value => CurrentValueAsString = __value, CurrentValueAsString)" />
+```
+
+## Work with radio buttons
+
+When working with radio buttons in a form, data binding is handled differently than other elements because radio buttons are evaluated as a group. The value of each radio button is fixed, but the value of the radio button group is the value of the selected radio button. The following example shows how to:
+
+* Handle data binding for a radio button group.
+* Support validation using a custom `InputRadio` component.
+
+```razor
+@using System.Globalization
+@typeparam TValue
+@inherits InputBase<TValue>
+
+<input @attributes="AdditionalAttributes" type="radio" value="@SelectedValue" 
+       checked="@(SelectedValue.Equals(Value))" @onchange="OnChange" />
+
+@code {
+    [Parameter]
+    public TValue SelectedValue { get; set; }
+
+    private void OnChange(ChangeEventArgs args)
+    {
+        CurrentValueAsString = args.Value.ToString();
+    }
+
+    protected override bool TryParseValueFromString(string value, 
+        out TValue result, out string errorMessage)
+    {
+        var success = BindConverter.TryConvertTo<TValue>(
+            value, CultureInfo.CurrentCulture, out var parsedValue);
+        if (success)
+        {
+            result = parsedValue;
+            errorMessage = null;
+
+            return true;
+        }
+        else
+        {
+            result = default;
+            errorMessage = $"{FieldIdentifier.FieldName} field isn't valid.";
+
+            return false;
+        }
+    }
+}
+```
+
+The following `EditForm` uses the preceding `InputRadio` component to obtain and validate a rating from the user:
+
+```razor
+@page "/RadioButtonExample"
+@using System.ComponentModel.DataAnnotations
+
+<h1>Radio Button Group Test</h1>
+
+<EditForm Model="model" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    @for (int i = 1; i <= 5; i++)
+    {
+        <label>
+            <InputRadio name="rate" SelectedValue="i" @bind-Value="model.Rating" />
+            @i
+        </label>
+    }
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+<p>You chose: @model.Rating</p>
+
+@code {
+    private Model model = new Model();
+
+    private void HandleValidSubmit()
+    {
+        Console.WriteLine("valid");
+    }
+
+    public class Model
+    {
+        [Range(1, 5)]
+        public int Rating { get; set; }
+    }
+}
 ```
 
 ## Validation support
@@ -236,15 +388,13 @@ private class MyCustomValidator : ValidationAttribute
 }
 ```
 
-::: moniker range=">= aspnetcore-3.1"
-
 ### Blazor data annotations validation package
 
 The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) is a package that fills validation experience gaps using the `DataAnnotationsValidator` component. The package is currently *experimental*.
 
 ### [CompareProperty] attribute
 
-The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the `DataAnnotationsValidator` component. The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) *experimental* package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the `[Compare]` attribute. For more information, see [CompareAttribute ignored with OnValidSubmit EditForm (dotnet/AspNetCore #10643)](https://github.com/dotnet/AspNetCore/issues/10643#issuecomment-543909748).
+The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the `DataAnnotationsValidator` component because it doesn't associate the validation result with a specific member. This can result in inconsistent behavior between field-level validation and when the entire model is validated on a submit. The [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) *experimental* package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the `[Compare]` attribute.
 
 ### Nested models, collection types, and complex types
 
@@ -253,7 +403,7 @@ Blazor provides support for validating form input using data annotations with th
 To validate the bound model's entire object graph, including collection- and complex-type properties, use the `ObjectGraphDataAnnotationsValidator` provided by the *experimental* [Microsoft.AspNetCore.Blazor.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.DataAnnotations.Validation) package:
 
 ```razor
-<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
     <ObjectGraphDataAnnotationsValidator />
     ...
 </EditForm>
@@ -296,12 +446,69 @@ public class ShipDescription
 }
 ```
 
-::: moniker-end
+### Enable the submit button based on form validation
 
-::: moniker range="< aspnetcore-3.1"
+To enable and disable the submit button based on form validation:
 
-### Validation of complex or collection type properties
+* Use the form's `EditContext` to assign the model when the component is initialized.
+* Validate the form in the context's `OnFieldChanged` callback to enable and disable the submit button.
 
-Validation attributes applied to the properties of a model validate when the form is submitted. However, the properties of collections or complex data types of a model aren't validated on form submission by the `DataAnnotationsValidator` component. To honor the nested validation attributes in this scenario, use a custom validation component. For an example, see the [Blazor Validation sample (aspnet/samples)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Validation).
+```razor
+<EditForm EditContext="@editContext">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-::: moniker-end
+    ...
+
+    <button type="submit" disabled="@formInvalid">Submit</button>
+</EditForm>
+
+@code {
+    private Starship starship = new Starship();
+    private bool formInvalid = true;
+    private EditContext editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(starship);
+
+        editContext.OnFieldChanged += (_, __) =>
+        {
+            formInvalid = !editContext.Validate();
+            StateHasChanged();
+        };
+    }
+}
+```
+
+In the preceding example, set `formInvalid` to `false` if:
+
+* The form is preloaded with valid default values.
+* You want the submit button enabled when the form loads.
+
+A side effect of the preceding approach is that a `ValidationSummary` component is populated with invalid fields after the user interacts with any one field. This scenario can be addressed in either of the following ways:
+
+* Don't use a `ValidationSummary` component on the form.
+* Make the `ValidationSummary` component visible when the submit button is selected (for example, in a `HandleValidSubmit` method).
+
+```razor
+<EditForm EditContext="@editContext" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary style="@displaySummary" />
+
+    ...
+
+    <button type="submit" disabled="@formInvalid">Submit</button>
+</EditForm>
+
+@code {
+    private string displaySummary = "display:none";
+
+    ...
+
+    private void HandleValidSubmit()
+    {
+        displaySummary = "display:block";
+    }
+}
+```
