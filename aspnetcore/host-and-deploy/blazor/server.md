@@ -106,6 +106,8 @@ proxy_set_header Upgrade $http_upgrade;
 proxy_set_header Connection $connection_upgrade;
 ```
 
+For more information, see [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/).
+
 ### Measure network latency
 
 [JS interop](xref:blazor/javascript-interop) can be used to measure network latency, as the following example demonstrates:

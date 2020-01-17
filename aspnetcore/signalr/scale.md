@@ -111,6 +111,8 @@ proxy_set_header Upgrade $http_upgrade;
 proxy_set_header Connection $connection_upgrade;
 ```
 
+For more information, see [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/).
+
 ## Next steps
 
 For more information, see the following resources:
