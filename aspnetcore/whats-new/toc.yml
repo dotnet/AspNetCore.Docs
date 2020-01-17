@@ -6,4 +6,10 @@
       expanded: true
       items:
       - name: December
-        uid: whats-new/2019-12
+        href: whats-new/2019/2019-12
+      - name: November
+        href: whats-new/2019/2019-11
+      - name: October
+        href: whats-new/2019/2019-10
+      - name: September
+        href: whats-new/2019/2019-09
