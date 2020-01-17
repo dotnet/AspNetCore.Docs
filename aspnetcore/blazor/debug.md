@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/19/2019
+ms.date: 01/16/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/debug
 ---
@@ -65,10 +65,11 @@ Debugging requires either of the following browsers:
    After enabling remote debugging:
    
    1\. A new browser window opens. Close the prior window.
+
    2\. Place the keyboard focus on the app in the browser window.
-   3\. Select the Blazor-specific keyboard shortcut in the new browser window:
-       * `Shift+Alt+D` on Windows
-       * `Shift+Cmd+D` on macOS
+
+   3\. Select the Blazor-specific keyboard shortcut in the new browser window: `Shift+Alt+D` on Windows or `Shift+Cmd+D` on macOS.
+
    4\. The **DevTools** tab opens in the browser. **Reselect the app's tab in the browser window.**
 
    To attach the app to Visual Studio, see the [Attach to process in Visual Studio](#attach-to-process-in-visual-studio) section.
@@ -88,10 +89,10 @@ Debugging requires either of the following browsers:
    After enabling remote debugging:
    
    1\. A new browser window opens. Close the prior window.
+
    2\. Place the keyboard focus on the app in the browser window, not the developer tools panel.
-   3\. Select the Blazor-specific keyboard shortcut in the new browser window:
-       * `Shift+Alt+D` on Windows
-       * `Shift+Cmd+D` on macOS
+
+   3\. Select the Blazor-specific keyboard shortcut in the new browser window: `Shift+Alt+D` on Windows or `Shift+Cmd+D` on macOS.
 
 ---
 
