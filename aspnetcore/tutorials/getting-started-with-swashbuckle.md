@@ -33,7 +33,7 @@ Swashbuckle can be added with the following approaches:
   * Execute the following command:
 
     ```powershell
-    Install-Package Swashbuckle.AspNetCore -Version 5.0.0-rc5
+    Install-Package Swashbuckle.AspNetCore -Version 5.0.0
     ```
 
 * From the **Manage NuGet Packages** dialog:
