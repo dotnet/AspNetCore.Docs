@@ -43,6 +43,9 @@
     ],
     "overwrite": [],
     "externalReference": [],
+    "xrefService": [	
+      "https://xref.docs.microsoft.com/query?uid={uid}"	
+    ],    
     "globalMetadata": {
       "_navPath": "/foo",
       "_navRel": "/foo",
@@ -57,6 +60,12 @@
       ]
     },
     "fileMetadata": {
+      "author": {
+        "whats-new/**/**.md": "scottaddie"
+      },
+      "ms.author": {
+        "whats-new/**/**.md": "scaddie"
+      },
       "ms.technology": {
         "azure/**/**.md": "aspnetcore-azure",
         "client-side/**/**.md": "aspnetcore-clientside",
