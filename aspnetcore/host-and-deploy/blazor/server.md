@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor Server app using ASP.NET Core
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 01/17/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/server
 ---
@@ -99,10 +99,11 @@ metadata:
 
 #### Linux with Nginx
 
-Set the proxy's `Connection` header to `$http_connection` for SignalR WebSockets:
+For SignalR WebSockets to function properly, set the proxy's `Upgrade` and `Connection` headers to the following:
 
 ```
-proxy_set_header Connection $http_connection;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection $connection_upgrade;
 ```
 
 ### Measure network latency

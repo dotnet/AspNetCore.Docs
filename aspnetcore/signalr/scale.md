@@ -5,11 +5,10 @@ description: Learn how to avoid performance and scaling problems in apps that us
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/28/2018
+ms.date: 01/17/2020
 no-loc: [SignalR]
 uid: signalr/scale
 ---
-
 # ASP.NET Core SignalR hosting and scaling
 
 By [Andrew Stanton-Nurse](https://twitter.com/anurse), [Brady Gaster](https://twitter.com/bradygaster), and [Tom Dykstra](https://github.com/tdykstra),
@@ -87,6 +86,15 @@ The Azure SignalR Service advantages noted earlier are disadvantages for the Red
 * Sticky sessions, also known as [client affinity](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), is required. Once a connection is initiated on a server, the connection has to stay on that server.
 * A SignalR app must scale out based on number of clients even if few messages are being sent.
 * A SignalR app uses significantly more connection resources than a web app without SignalR.
+
+## Linux with Nginx
+
+Set the proxy's `Connection` and `Upgrade` headers to the following for SignalR WebSockets:
+
+```
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection $connection_upgrade;
+```
 
 ## Next steps
 
