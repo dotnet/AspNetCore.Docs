@@ -77,7 +77,7 @@ To find out which parameters are passed to `String.Format` for a particular attr
 
 ## [Required] attribute
 
-Starting in .NET Core 3.0, the validation system treats non-nullable parameters or bound properties as if they had a `[Required]` attribute. [Value types](/dotnet/csharp/language-reference/keywords/value-types) such as `decimal` and `int` are non-nullable. This behavior can be disabled by configuring `<xref:MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes />` as part of Startup code:
+The validation system in .NET Core 3.0 and later treats non-nullable parameters or bound properties as if they had a `[Required]` attribute. [Value types](/dotnet/csharp/language-reference/keywords/value-types) such as `decimal` and `int` are non-nullable. This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices`:
 
 ``csharp
 services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
