@@ -105,9 +105,9 @@ In ASP.NET Core 2.1 and later, header validation can be achieved using a custom 
 
 ::: moniker-end
 
-## ConnectionID
+## ConnectionId
 
-Exposing `ConnectionID` can lead to malicious impersonation if the SignalR server or client version is ASP.NET Core 2.2 or earlier. If the SignalR server and client version are ASP.NET Core 3.0 or later, the `ConnectionToken` rather than the `ConnectionID` must be kept secret. The `ConnectionToken` is purposely not exposed in any API.  It can be difficult to ensure that older SignalR clients aren't connecting to the server, so even if your SignalR server version is ASP.NET Core 3.0 or later, the `ConnectionID` shouldn't be exposed.
+Exposing `ConnectionId` can lead to malicious impersonation if the SignalR server or client version is ASP.NET Core 2.2 or earlier. If the SignalR server and client version are ASP.NET Core 3.0 or later, the `ConnectionToken` rather than the `ConnectionId` must be kept secret. The `ConnectionToken` is purposely not exposed in any API.  It can be difficult to ensure that older SignalR clients aren't connecting to the server, so even if your SignalR server version is ASP.NET Core 3.0 or later, the `ConnectionId` shouldn't be exposed.
 
 ## Access token logging
 
