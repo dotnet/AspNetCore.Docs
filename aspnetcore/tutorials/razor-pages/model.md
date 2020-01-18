@@ -106,6 +106,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet tool install --global dotnet-aspnet-codegenerator
   ```
 
 [!INCLUDE [explains scaffold gen params](~/includes/RP/model4.md)]
