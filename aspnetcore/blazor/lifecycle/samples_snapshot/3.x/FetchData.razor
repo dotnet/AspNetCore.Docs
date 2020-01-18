@@ -6,7 +6,7 @@
 
 <p>This component demonstrates fetching data from a service.</p>
 
-@if (forecasts == null)
+@if (_forecasts == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -18,10 +18,10 @@ else
 }
 
 @code {
-    private WeatherForecast[] forecasts;
+    private WeatherForecast[] _forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        _forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
     }
 }
