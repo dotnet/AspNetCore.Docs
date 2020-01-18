@@ -14,7 +14,7 @@ By [Ryan Nowak](https://github.com/rynowak), and [Rick Anderson](https://twitter
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Routing is responsible for matching incoming HTTP requests and dispatching those requests to the apps executable endpoints. Endpoints are the apps' units of executable request-handling code. Endpoints are defined in the app and configured when the app starts. The matching process can extract values from the request's URL, and these values can be used for request processing. Using endpoint information from the app, routing is also able to generate URLs that map to endpoints.
+Routing is responsible for matching incoming HTTP requests and dispatching those requests to the apps executable endpoints. Endpoints are the apps' units of executable request-handling code. Endpoints are defined in the app and configured when the app starts. The matching process can extract values from the request's URL, and those values can be used for request processing. Using endpoint information from the app, routing is also able to generate URLs that map to endpoints.
 
 Apps can configure routing using:
 
@@ -22,7 +22,7 @@ Apps can configure routing using:
 - Razor Pages
 - SignalR
 - gRPC Services
-- Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as Health Checks. Endpoint-enabled middleware is also called *routerware*.
+- Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as Health Checks. Endpoint-enabled middleware is also called **routerware**.
 - Routing primitives directly.
 
 This document covers low-level details of ASP.NET Core routing. For information on configuring routing for controllers, see <xref:mvc/controllers/routing>. For information on routing conventions in Razor Pages, see <xref:razor-pages/razor-pages-conventions>.
@@ -50,12 +50,12 @@ Routing uses a pair of middleware, registered by <xref:Microsoft.AspNetCore.Buil
 * `UseRouting` adds route matching to the middleware pipeline. This middleware looks at the set of endpoints defined in the app, and selects the best match based on the request.
 * `UseEndpoints` adds endpoint execution to the middleware pipeline. It runs the delegate associated with the selected endpoint.
 
-The preceding example includes a single *Route to Code* endpoint using the [MapGet](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*) method:
+The preceding example includes a single route to code endpoint using the [MapGet](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*) method:
 
 * When an HTTP `GET` request is sent to the root URL `/`, the request delegate shown executes, and `Hello World!` is written to the HTTP response. By default, the root URL `/` is `http://localhost:5000/`.
 * If the request is not a `GET` or if the URL is anything else, no route matches and an HTTP 404 is returned.
 
-The `MapGet` method is used to define an *endpoint*, that is, something that can be:
+The `MapGet` method is used to define an **endpoint**, that is, something that can be:
 
 * Selected, by matching the URL and HTTP method.
 * Executed, by running the delegate.
@@ -63,16 +63,16 @@ The `MapGet` method is used to define an *endpoint*, that is, something that can
 `UseEndpoints` is where endpoints are configured that can be matched and executed by the app. For example, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>, and [similar methods](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) can be used to connect code to the routing system.
 <!-- wire up doesn't MT - AS IN: can be used to wire up code -->
 The ASP.NET Core framework extends the builder provided by `UseEndpoints`:
-- [MapRazorPages (Razor Pages)](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
-- [MapControllers (controllers)](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
-- [MapHub<THub> (SignalR)](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) <!-- Review required for URL change-->
-- MapGrpcService<TService> (gRPC)
+- [MapRazorPages for Razor Pages](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
+- [MapControllers for controllers](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
+- [MapHub<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) <!-- Review required for URL change-->
+- [MapGrpcService\<TService> for gRPC](xref:grpc/aspnetcore)
 
 The following code shows an example of routing with a more sophisticated route template:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/RouteTemplateStartup.cs?name=snippet)]
 
-The string `/hello/{name:alpha}` is a *route template*, and is used to configure how the endpoint is matched. In this case, the template matches with:
+The string `/hello/{name:alpha}` is a **route template**, and is used to configure how the endpoint is matched. In this case, the template matches with:
 
 * A URL like `/hello/Ryan`
 * Any URL path that begins with `/hello/` followed by a sequence of alphabetic characters.
@@ -88,6 +88,8 @@ The following code shows an example of routing with [health checks](xref:host-an
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/AuthorizationStartup.cs?name=snippet)]
 
+[!INCLUDE[](~/includes/MTcomments.md)]
+
 This preceding demonstrates how:
 
 * The authorization middleware can be used with routing.
@@ -100,14 +102,14 @@ Calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentic
 * See which endpoint was selected by `UseRouting`.
 * Apply an authorization policy before <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> dispatches to the endpoint.
 
-In the preceding example there are two endpoints, but only the health check endpoint has an authorization policy attached. If the request matches the health check `/healthz` endpoint, an authorization check is performed. This demonstrates a feature of endpoints called *metadata*. Endpoints can have extra data attached:
+In the preceding example there are two endpoints, but only the health check endpoint has an authorization policy attached. If the request matches the health check `/healthz` endpoint, an authorization check is performed. This demonstrates a feature of endpoints called **metadata**. Endpoints can have extra data attached:
 
 * The extra data attached is called metadata.
 * The metadata can be processed by routing-aware middleware.
 
 ## Routing concepts
 
-The routing system builds on top of the middleware pipeline by adding the powerful *endpoint* concept. Endpoints represent units of the app's functionality that are distinct from each other from the point of view of routing, or authorization, or any number of ASP.NET Core's systems.
+The routing system builds on top of the middleware pipeline by adding the powerful **endpoint** concept. Endpoints represent units of the app's functionality that are distinct from each other from the point of view of routing, or authorization, or any number of ASP.NET Core's systems.
 
 An endpoint is:
 
@@ -130,8 +132,6 @@ In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions
 The following code shows how the endpoint associated with the request changes:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/MiddlewareFlowStartup.cs?name=snippet)]
-
-[!INCLUDE[](~/includes/MTcomments.md)]
 
 This preceding sample adds `Console.WriteLine` statements that display whether or not an endpoint has been selected. For clarity, the sample assigns a display name to the provided `"hello world"` endpoint.
 

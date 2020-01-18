@@ -12,14 +12,14 @@ namespace RoutingSample
 {
     public class MiddlewareFlowStartup
     {
-        #region snippet
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            #region snippet
             // Location 1: before routing runs, endpoint is always null here
             app.Use(next => context =>
             {
@@ -52,8 +52,7 @@ namespace RoutingSample
                 Console.WriteLine($"4. Endpoint is: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
                 return next(context);
             });
-
+            #endregion
         }
-        #endregion
     }
 }
