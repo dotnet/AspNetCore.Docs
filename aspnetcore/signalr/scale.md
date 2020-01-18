@@ -5,11 +5,10 @@ description: Learn how to avoid performance and scaling problems in apps that us
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/28/2018
+ms.date: 01/17/2020
 no-loc: [SignalR]
 uid: signalr/scale
 ---
-
 # ASP.NET Core SignalR hosting and scaling
 
 By [Andrew Stanton-Nurse](https://twitter.com/anurse), [Brady Gaster](https://twitter.com/bradygaster), and [Tom Dykstra](https://github.com/tdykstra),
@@ -102,6 +101,17 @@ The preceding conditions make it likely to hit the 10 connection limit on a clie
 
 * Avoid IIS.
 * Use Kestrel or IIS Express as deployment targets.
+
+## Linux with Nginx
+
+Set the proxy's `Connection` and `Upgrade` headers to the following for SignalR WebSockets:
+
+```
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection $connection_upgrade;
+```
+
+For more information, see [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/).
 
 ## Next steps
 
