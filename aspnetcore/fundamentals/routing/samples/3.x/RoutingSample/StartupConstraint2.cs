@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text.RegularExpressions;
 
 namespace RoutingSample
 {
@@ -27,7 +29,6 @@ namespace RoutingSample
         }
         #endregion
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -48,7 +49,16 @@ namespace RoutingSample
         }
     }
 
-    internal class SlugifyParameterTransformer
+    #region snippet2
+    public class SlugifyParameterTransformer : IOutboundParameterTransformer
     {
+        public string TransformOutbound(object value)
+        {
+            if (value == null) { return null; }
+
+            return Regex.Replace(value.ToString(), 
+                                 "([a-z])([A-Z])", "$1-$2").ToLower();
+        }
     }
+    #endregion
 }

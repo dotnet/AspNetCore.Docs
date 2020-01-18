@@ -383,7 +383,7 @@ Asterisk `*` or double asterisk `**`:
 * Are called a catch-all parameters. For example, `blog/{**slug}`:
 
   * Matches any URI that starts with `/blog` and has any value following it.
-  * The value following `/blog` is assigned to the `slug` route value.
+  * The value following `/blog` is assigned to the [slug](https://developer.mozilla.org/docs/Glossary/Slug) route value.
 
 Catch-all parameters can also match the empty string.
 
@@ -547,6 +547,10 @@ Parameter transformers:
 
 For example, a custom `slugify` parameter transformer in route pattern `blog\{article:slugify}` with `Url.Action(new { article = "MyTestArticle" })` generates `blog\my-test-article`.
 
+Consider the following `IOutboundParameterTransformer` implementation:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint2.cs?name=snippet2)]
+
 To use a parameter transformer in a route pattern, configure it using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in `Startup.ConfigureServices`:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint2.cs?name=snippet)]
@@ -601,40 +605,38 @@ Addresses are extensible concept that come with two implementations by default:
 
 The role of the address scheme is to make the association between the address and matching endpoints by arbitrary criteria:
 
-* The *endpoint name* scheme performs a basic dictionary lookup.
-* The *route values* scheme has a complex *best subset of set* algorithm.
+* The endpoint name scheme performs a basic dictionary lookup.
+* The route values scheme has a complex best subset of set algorithm.
 
 <a name="ambient"></a>
 
 ### Ambient values and explicit values
 
-From the current request, routing accesses the route values of the current request `HttpContext.Request.RouteValues`. The values associated with the current request are referred to as the *ambient values*. For the purpose of clarity, the documentation refers to the route values passed in to method as *explicit values*.
+From the current request, routing accesses the route values of the current request `HttpContext.Request.RouteValues`. The values associated with the current request are referred to as the **ambient values**. For the purpose of clarity, the documentation refers to the route values passed in to method as **explicit values**.
 
-This following examples shows ambient values and explicit values:
 
 <!-- Review: Original Provides ambient values (current request)  - Per MT Style guide, avoid () 
 Code comments don't MT, so I'm moving them outside.
 -->
-
-Provides ambient values from the current request and explicit values: `{ id = 17, }`.
+This following examples shows ambient values and explicit values. The following code provides ambient values from the current request and explicit values: `{ id = 17, }`.
 
 ```csharp
 ... = linkGenerator.GetPathByName(httpContext, "subscribe", new { id = 17, });
 ```
 
-Provides no ambient values and explicit values: `{ id = 17, }`
+The following code provides no ambient values and explicit values: `{ id = 17, }`
 
 ```csharp
 ... = linkGenerator.GetPathByName("subscribe", new { id = 17, });
 ```
 
-Provides ambient values from the current request and explicit values: `{ action = "Edit, controller = "...", id = 17, }`
+The following code provides ambient values from the current request and explicit values: `{ action = "Edit, controller = "...", id = 17, }`
 
 ```csharp
 ... = urlHelper.Action("Edit", new { id = 17, });
 ```
 
-Provides ambient values from the current request and explicit values: { page = "./Edit, id = 17, }
+The following code provides ambient values from the current request and explicit values: { page = "./Edit, id = 17, }
 ```csharp
 ... = urlHelper.Page("./Edit", new { id = 17, });
 ```
@@ -657,16 +659,16 @@ Once the set of candidate endpoints are found, the URL generation algorithm:
 * Processes the endpoints iteratively.
 * Returns the first successful result.
 
-The first step in this process is called *route value invalidation*.  *Route value invalidation* is the process by which routing decides which route values from the ambient values should be used and which should be ignored. Each ambient value is considered in turn, and either combined with the explicit values, or ignored.
+The first step in this process is called **route value invalidation**.  Route value invalidation is the process by which routing decides which route values from the ambient values should be used and which should be ignored. Each ambient value is considered and either combined with the explicit values, or ignored.
 
 The best way to think about the role of ambient values is that they attempt to save application developers typing in some common cases. Traditionally, the scenarios where ambient values are helpful are related to MVC:
 
-* When linking to another action in the same controller, you don't need to specify the controller name.
-* When linking to another controller in the same area, you don't need to specify the area name.
-* When linking to the same action method, you don't need to specify any route values.
+* When linking to another action in the same controller, the controller name doesn't need to be specified.
+* When linking to another controller in the same area, the area name doesn't need to be specified.
+* When linking to the same action method, route values don't need to be specified.
 * When linking to another part of the app, you don't want to carry over route values that have no meaning in that part of the app.
 
-Problems with URL generation, where a call to `LinkGenerator` or `IUrlHelper` returns `null`, are usually caused by misunderstanding with *route value invalidation* . Troubleshoot this by explicitly specifying more of the route values to see if that solves the problem.
+Problems with URL generation, where a call to `LinkGenerator` or `IUrlHelper` returns `null`, are usually caused by misunderstanding with route value invalidation. Troubleshoot route value invalidation by explicitly specifying more of the route values to see if that solves the problem.
 
 Route value invalidation works on the assumption that the app's URL scheme is hierarchical, with a hierarchy formed from left-to-right. Consider the the basic controller route template `{controller}/{action}/{id?}` to get an intuitive sense of how this works in practice. A **change** to a value **invalidates** all of the route values that appear to the right. This reflects the assumption about hierarchy. If the app:
 
@@ -681,25 +683,28 @@ Some examples demonstrating this principle:
 * If the explicit values contains a value for `action`, any ambient value for `action` is ignored. The ambient values for `controller` can be used. If the explicit value for `action` is different from the ambient value for `action`, the `id` value won't be used.  If the explicit value for `action` is the same as the ambient value for `action`, the `id` value can be used.
 * If the explicit values contains a value for `controller`, any ambient value for `controller` is ignored. If the explicit value for `controller` is different from the ambient value for `controller`, the `action` and `id` values won't be used. If the explicit value for `controller` is the same as the ambient value for `controller`, the `action` and `id` values can be used.
 
-This process is further complicated by the existence of attribute routes and dedicated conventional routes. Controller conventional routes such as `{controller}/{action}/{id?}` specify a hierarchy using route parameters. For dedicated conventional routes and attribute routes to controllers and Razor Pages, there is a hierarchy of route values, but they don't appear in the template. For these cases, URL generation defines the *required values* concept. Endpoints created by controllers and Razor Pages have *required values* specified that allow route value invalidation to work.
+This process is further complicated by the existence of attribute routes and dedicated conventional routes. Controller conventional routes such as `{controller}/{action}/{id?}` specify a hierarchy using route parameters. For dedicated conventional routes and attribute routes to controllers and Razor Pages, there is a hierarchy of route values, but they don't appear in the template. For these cases, URL generation defines the **required values** concept. Endpoints created by controllers and Razor Pages have required values specified that allow route value invalidation to work.
 
 The route value invalidation algorithm in detail:
 
 * The required value names are combined with the route parameters, then processed from left-to-right.
-* For each parameter the *ambient value* and *explicit value* are compared:
-    * If the *ambient value* and *explicit value* are the same, the process continues.
-    * If the *ambient value* is present and the *explicit value* isn't, the ambient is used when generating the URL.
-    * If the *ambient value* isn't present and the *explicit value* is, reject the ambient value and all subsequent ambient values.
-    * If the *ambient value* and the *explicit value* are present, and the two values are different, reject the ambient value and all subsequent ambient values.
+* For each parameter the ambient value and explicit value are compared:
+    * If the ambient value and explicit value are the same, the process continues.
+    * If the ambient value is present and the explicit value isn't, the ambient is used when generating the URL.
+    * If the ambient value isn't present and the explicit value is, reject the ambient value and all subsequent ambient values.
+    * If the ambient value and the explicit value are present, and the two values are different, reject the ambient value and all subsequent ambient values.
 
 At this point, the URL generation operation is ready to evaluate route constraints. The set of accepted values is combined with the parameter default values, which is provided to constraints. If the constraints all pass, the operation continues.
 
-Next the *accepted values* can be used to expand the route template. The route template is processed from left-to-right, and each parameter has its accepted value substituted, with the following special cases:
+Next the **accepted values** can be used to expand the route template. The route template is processed:
 
-* If the accepted values is missing a value and the parameter has a default value, the default value is used.
-* If the accepted values is missing a value and the parameter is optional, processing continues.
-* If any route parameter to the right of a *missing optional parameter* has a value, the operation fails.
-* <!-- review default-valued parameters optional parameters --> Contiguous default-valued parameters and optional parameters are collapsed where possible.
+* From left-to-right.
+* Each parameter has its accepted value substituted.
+* With the following special cases:
+  * If the accepted values is missing a value and the parameter has a default value, the default value is used.
+  * If the accepted values is missing a value and the parameter is optional, processing continues.
+  * If any route parameter to the right of a missing optional parameter has a value, the operation fails.
+  * <!-- review default-valued parameters optional parameters --> Contiguous default-valued parameters and optional parameters are collapsed where possible.
 
 Values explicitly provided that don't match a segment of the route are added to the query string. The following table shows the result when using the route template `{controller}/{action}/{id?}`.
 
@@ -718,10 +723,10 @@ The following code shows an example of a URL generation scheme that's not suppor
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupUnsupported.cs?name=snippet)]
 
-In the preceding code, the `culture` route parameter is used for localization. The desire is to have the `culture` parameter always accepted as an ambient value. However the `culture` parameter is **not** accepted as an ambient value because of the way *required values* work:
+In the preceding code, the `culture` route parameter is used for localization. The desire is to have the `culture` parameter always accepted as an ambient value. However the `culture` parameter is not accepted as an ambient value because of the way required values work:
 
-* In the `"default"` route template, the `culture` route parameter is **to the left** of `controller`, so changes to `controller` won't invalidate `culture`.
-* In the `"blog"` route template, the `culture` route parameter is considered to be **to the right** of `controller`, which appears in the required values.
+* In the `"default"` route template, the `culture` route parameter is to the left of `controller`, so changes to `controller` won't invalidate `culture`.
+* In the `"blog"` route template, the `culture` route parameter is considered to be to the right of `controller`, which appears in the required values.
 
 ## Configuring endpoint metadata
 
@@ -770,16 +775,16 @@ When an app has performance problems, routing is often suspected as the problem.
 * Developers eliminate their app code as the source of the problem.
 * It's common to assume routing is the cause.
 
-Routing is performance tested using thousands of endpoints. It's unlikely that a typical app will encounter a performance problem just by being too large. The most common root cause of investigating *routing performance* is usually a badly-behaving custom middleware.
+Routing is performance tested using thousands of endpoints. It's unlikely that a typical app will encounter a performance problem just by being too large. The most common root cause of investigating routing performance is usually a badly-behaving custom middleware.
 
-This following code sample demonstrates a straightforward technique for narrowing down the source of delay.
+This following code sample demonstrates a basic technique for narrowing down the source of delay.
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupDelay.cs?name=snippet)]
 
 To time routing:
 
-* Interleave each middleware with a copy of the *timing* middleware shown in the preceding code.
-* Add a unique identifier to correlate the timing data with the code. 
+* Interleave each middleware with a copy of the timing middleware shown in the preceding code.
+* Add a unique identifier to correlate the timing data with the code.
 
 This is a basic way to narrow down the delay when it's significant, for example, more than `10ms`.  Subtracting `Time 2` from `Time 1` reports the time spent inside the `UseRouting` middleware.
 
@@ -833,7 +838,8 @@ Declaring your own type allows you to add your own framework-specific functional
 app.UseEndpoints(endpoints =>
 {
     // Your framework
-    endpoints.MapMyFramework(...).RequrireAuthorization().WithMyFrameworkFeature(awesome: true);
+    endpoints.MapMyFramework(...).RequrireAuthorization()
+                                 .WithMyFrameworkFeature(awesome: true);
 
     endpoints.MapHealthChecks("/healthz");
 });
@@ -859,7 +865,7 @@ public class CoolMetadataAttribute : Attribute, ICoolMetadata { ...}
 
 Frameworks like controllers and Razor Pages support applying metadata attributes to types and methods. If you declare metadata types:
 
-* Make the accessible as [attributes](/dotnet/csharp/programming-guide/concepts/attributes/).
+* Make them accessible as [attributes](/dotnet/csharp/programming-guide/concepts/attributes/).
 * Most users are familiar with applying attributes.
 
 Declaring a metadata type as an interface adds another layer of flexibility:
@@ -867,16 +873,16 @@ Declaring a metadata type as an interface adds another layer of flexibility:
 * Interfaces are composable.
 * Developers can declare their own types that combine multiple policies.
 
-**DO** make it possible to override metadata.
+**DO** make it possible to override metadata, as shown in the following example:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/ICoolMetadata.cs?name=snippet)]
 
-The best way to follow these guidelines is to avoid defining *marker metadata*:
+The best way to follow these guidelines is to avoid defining **marker metadata**:
 
 * Don't just look for the presence of a metadata type.
 * Define a property on the metadata and check the property.
 
-The metadata collection is ordered and supports overriding by priority. In the case of controllers, a metadata on the action method is *most specific*.
+The metadata collection is ordered and supports overriding by priority. In the case of controllers, a metadata on the action method is most specific.
 
 **DO** make middleware useful with and without routing.
 

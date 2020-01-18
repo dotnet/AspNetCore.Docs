@@ -14,7 +14,7 @@ namespace RoutingSample
             {
                 endpoints.MapGet("/", context => context.Response.WriteAsync("Hi Contoso!"))
                     .RequireHost("contoso.com");
-                endpoints.MapGet("/", context => context.Response.WriteAsync("Hi AdventureWorks!"))
+                endpoints.MapGet("/", context => context.Response.WriteAsync("AdventureWorks!"))
                     .RequireHost("adventure-works.com");
                 endpoints.MapHealthChecks("/healthz").RequireHost("*:8080");
             });
