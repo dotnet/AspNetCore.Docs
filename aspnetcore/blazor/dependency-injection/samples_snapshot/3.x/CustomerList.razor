@@ -2,10 +2,10 @@
 @using Services
 @inject IDataAccess DataRepository
 
-@if (Customers != null)
+@if (_customers != null)
 {
     <ul>
-        @foreach (var customer in Customers)
+        @foreach (var customer in _customers)
         {
             <li>@customer.FirstName @customer.LastName</li>
         }
@@ -13,13 +13,10 @@
 }
 
 @code {
-    private IReadOnlyList<Customer> Customers;
+    private IReadOnlyList<Customer> _customers;
 
     protected override async Task OnInitializedAsync()
     {
-        // The property DataRepository received an implementation
-        // of IDataAccess through dependency injection. Use 
-        // DataRepository to obtain data from the server.
-        Customers = await DataRepository.GetAllCustomersAsync();
+        _customers = await DataRepository.GetAllCustomersAsync();
     }
 }
