@@ -389,49 +389,6 @@ private async Task<JsonDocument> GetApiDataWithNamedClient()
 }
 ```
 
-#### Implement an HttpClient using a certificate and the X-ARR-ClientCert HTTP Header
-
-The web API client uses an `HttpClient`, which was created using an `IHttpClientFactory` instance. This doesn't provide a way to define a handler for the `HttpClient`, so use an `HttpRequestMessage` to add the certificate to the `X-ARR-ClientCert` request header. The certificate is added as a string using the `GetRawCertDataString` method. 
-
-```csharp
-private async Task<JsonDocument> GetApiDataAsync()
-{
-    try
-    {
-        // Do not hardcode passwords in production code
-        // Use thumbprint or key vault
-        var cert = new X509Certificate2(
-            Path.Combine(_environment.ContentRootPath, 
-                "sts_dev_cert.pfx"), "1234");
-        var client = _clientFactory.CreateClient();
-        var request = new HttpRequestMessage()
-        {
-            RequestUri = new Uri("https://localhost:44379/api/values"),
-            Method = HttpMethod.Get,
-        };
-
-        request.Headers.Add("X-ARR-ClientCert", cert.GetRawCertDataString());
-        var response = await client.SendAsync(request);
-
-        if (response.IsSuccessStatusCode)
-        {
-            var responseContent = await response.Content.ReadAsStringAsync();
-            var data = JsonDocument.Parse(responseContent);
-
-            return data;
-        }
-
-        throw new ApplicationException(
-            $"Status code: {response.StatusCode}, " +
-            $"Error: {response.ReasonPhrase}");
-    }
-    catch (Exception e)
-    {
-        throw new ApplicationException($"Exception {e}");
-    }
-}
-```
-
 If the correct certificate is sent to the server, the data is returned. If no certificate or the wrong certificate is sent, an HTTP 403 status code is returned.
 
 ### Create certificates in PowerShell
