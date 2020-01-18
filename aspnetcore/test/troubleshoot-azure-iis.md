@@ -111,9 +111,10 @@ The worker process fails. The app doesn't start.
 
 The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) attempts to start the .NET Core CLR in-process, but it fails to start. The cause of a process startup failure can usually be determined from entries in the Application Event Log and the ASP.NET Core Module stdout log.
 
-A common failure condition is the app is misconfigured due to targeting a version of the ASP.NET Core shared framework that isn't present. Check which versions of the ASP.NET Core shared framework are installed on the target machine.
+Common failure conditions:
 
-If using Azure Key Vault, another common failure condition is lack of permissions to the Key Vault. Check the access policies in the targeted Key Vault to ensure the website user has access to read secrets. 
+* The app is misconfigured due to targeting a version of the ASP.NET Core shared framework that isn't present. Check which versions of the ASP.NET Core shared framework are installed on the target machine.
+* Using Azure Key Vault, lack of permissions to the Key Vault. Check the access policies in the targeted Key Vault to ensure the website user has access to read secrets.
 
 ### 500.31 ANCM Failed to Find Native Dependencies
 
