@@ -377,7 +377,7 @@ URL patterns that attempt to capture a file name with an optional file extension
 * `/files/myFile.txt`
 * `/files/myFile`
 
-`*` or `**`:
+Asterisk `*` or double asterisk `**`:
 
 * Can be used as a prefix to a route parameter to bind to the rest of the URI.
 * Are called a catch-all parameters. For example, `blog/{**slug}`:
@@ -389,16 +389,16 @@ Catch-all parameters can also match the empty string.
 
 The catch-all parameter escapes the appropriate characters when the route is used to generate a URL, including path separator `/` characters. For example, the route `foo/{*path}` with route values `{ path = "my/path" }` generates `foo/my%2Fpath`. Note the escaped forward slash. To round-trip path separator characters, use the `**` route parameter prefix. The route `foo/{**path}` with `{ path = "my/path" }` generates `foo/my/path`.
 
-Route parameters may have *default values* designated by specifying the default value after the parameter name separated by an equals sign (`=`). For example, `{controller=Home}` defines `Home` as the default value for `controller`. The default value is used if no value is present in the URL for the parameter. Route parameters are made optional by appending a question mark (`?`) to the end of the parameter name, as in `id?`. The difference between optional values and default route parameters is:
+Route parameters may have default values designated by specifying the default value after the parameter name separated by an equals sign (`=`). For example, `{controller=Home}` defines `Home` as the default value for `controller`. The default value is used if no value is present in the URL for the parameter. Route parameters are made optional by appending a question mark (`?`) to the end of the parameter name. For example, `id?`. The difference between optional values and default route parameters is:
 
 * A route parameter with a default value always produces a value.
 * An optional parameter has a value only when a value is provided by the request URL.
 
-Route parameters may have constraints that must match the route value bound from the URL. Adding a colon (`:`) and constraint name after the route parameter name specifies an *inline constraint* on a route parameter. If the constraint requires arguments, they're enclosed in parentheses `(...)` after the constraint name. Multiple inline constraints can be specified by appending another colon (`:`) and constraint name.
+Route parameters may have constraints that must match the route value bound from the URL. Adding `:` and constraint name after the route parameter name specifies an inline constraint on a route parameter. If the constraint requires arguments, they're enclosed in parentheses `(...)` after the constraint name. Multiple inline constraints can be specified by appending another `:` and constraint name.
 
 The constraint name and arguments are passed to the <xref:Microsoft.AspNetCore.Routing.IInlineConstraintResolver> service to create an instance of <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> to use in URL processing. For example, the route template `blog/{article:minlength(10)}` specifies a `minlength` constraint with the argument `10`. For more information on route constraints and a list of the constraints provided by the framework, see the [Route constraint reference](#route-constraint-reference) section.
 
-Route parameters may also have parameter transformers. Parameter transformers transform a parameter's value when generating links and matching actions and pages to URLs. Like constraints, parameter transformers can be added inline to a route parameter by adding a colon (`:`) and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer. For more information on parameter transformers, see the [Parameter transformer reference](#parameter-transformer-reference) section.
+Route parameters may also have parameter transformers. Parameter transformers transform a parameter's value when generating links and matching actions and pages to URLs. Like constraints, parameter transformers can be added inline to a route parameter by adding a `:` and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer. For more information on parameter transformers, see the [Parameter transformer reference](#parameter-transformer-reference) section.
 
 The following table demonstrates example route templates and their behavior.
 
@@ -419,36 +419,36 @@ Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routin
 
 Complex segments are processed by matching up literal delimiters from **right to left** in a non-greedy way. For example, `[Route("/a{b}c{d}")]` is a complex segment.
 <!-- review: need to define greedy or non-greedy -->
-Complex segments work in a particular way that must be understood to use them successfully. The example in this section demonstrates why complex segments only really work well when the *delimiter* text doesn't appear inside the parameter values. Using a [regex](/dotnet/standard/base-types/regular-expressions) and then manually extracting the values is needed for more complex cases.
+Complex segments work in a particular way that must be understood to use them successfully. The example in this section demonstrates why complex segments only really work well when the delimiter text doesn't appear inside the parameter values. Using a [regex](/dotnet/standard/base-types/regular-expressions) and then manually extracting the values is needed for more complex cases.
 
 This is a summary of the steps that routing performs with the template `/a{b}c{d}` and the URL path `/abcd`. The `|` is used to help visualize how the algorithm works.
 
-* The first literal (right to left) is `c`, so `/abcd` is searched from right and found `/ab|c|d`.
+* The first literal, right to left, is `c`. So `/abcd` is searched from right and finds `/ab|c|d`.
 * Everything to the right (`d`) is now matched to the route parameter `{d}`.
-* The next literal (right to left) is `a`, so `/ab|c|d` is searched starting where we left off, then `a` is found `/|a|b|c|d`. 
+* The next literal, right to left, is `a`. So `/ab|c|d` is searched starting where we left off, then `a` is found `/|a|b|c|d`.
 * The value to the right (`b`) is now matched to the route parameter `{b}`.
 * There is no remaining text and no remaining route template so this is a match.
 
-Now here's an example of a negative case using the same template `/a{b}c{d}` and the URL path `/aabcd`. The `|` is used to help visualize how the algorithm works. This case *is not* a match, which is explained by the same algorithm.
-* The first literal (right to left) is `c`, so `/aabcd` is searched from right and found `/aab|c|d`.
+Now here's an example of a negative case using the same template `/a{b}c{d}` and the URL path `/aabcd`. The `|` is used to help visualize how the algorithm works. This case isn't a match, which is explained by the same algorithm.
+* The first literal, right to left, is `c`. So `/aabcd` is searched from right and finds `/aab|c|d`.
 * Everything to the right (`d`) is now matched to the route parameter `{d}`.
-* The next literal (right to left) is `a`, so `/aab|c|d` is searched starting where we left off, then `a` is found `/a|a|b|c|d`. 
+* The next literal, right to left, is `a`. So `/aab|c|d` is searched starting where we left off, then `a` is found `/a|a|b|c|d`.
 * The value to the right (`b`) is now matched to the route parameter `{b}`.
 * At this point there is remaining text `a`, but the algorithm has run out of route template to parse, so this is not a match.
 
-Since the matching algorithm is non-greedy:
+Since the matching algorithm is non-greedy:  <!-- review: again, need to define greedy and non-greedy -->
 
 * It matches the smallest amount of text possible in each step.
-* Any case where the *delimiter value* appear inside the parameter values results in not matching.
+* Any case where the delimiter value appear inside the parameter values results in not matching.
 
 Regular expressions provide much more control over their matching behavior.
 
 ## Route constraint reference
 
-Route constraints execute when a match has occurred to the incoming URL and the URL path is tokenized into route values. Route constraints generally inspect the route value associated via the route template and make a yes/no decision about whether or not the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> can accept or reject a request based on its HTTP verb. Constraints are used in routing requests and link generation.
+Route constraints execute when a match has occurred to the incoming URL and the URL path is tokenized into route values. Route constraints generally inspect the route value associated via the route template and make a true or false decision about whether the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> can accept or reject a request based on its HTTP verb. Constraints are used in routing requests and link generation.
 
 > [!WARNING]
-> Do **not** use constraints for input validation. If constraints are used for input validation, invalid input results in a *404 - Not Found* response. Invalid input should produced a *400 - Bad Request* with an appropriate error message. Route constraints are used to *disambiguate* similar routes, not to validate the inputs for a particular route.
+> Do **not** use constraints for input validation. If constraints are used for input validation, invalid input results in a `404` Not Found response. Invalid input should produced a `400` Bad Request with an appropriate error message. Route constraints are used to disambiguate similar routes, not to validate the inputs for a particular route.
 
 The following table demonstrates example route constraints and their expected behavior.
 
@@ -473,7 +473,7 @@ The following table demonstrates example route constraints and their expected be
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression (see tips about defining a regular expression) |
 | `required` | `{name:required}` | `Rick` | Used to enforce that a non-parameter value is present during URL generation |
 
-Multiple, colon-delimited constraints can be applied to a single parameter. For example, the following constraint restricts a parameter to an integer value of 1 or greater:
+Multiple, colon delimited constraints can be applied to a single parameter. For example, the following constraint restricts a parameter to an integer value of 1 or greater:
 
 ```csharp
 [Route("users/{id:int:min(1)}")]
@@ -481,38 +481,31 @@ public User GetUserById(int id) { }
 ```
 
 > [!WARNING]
-> Route constraints that verify the URL and are converted to a CLR type always use the invariant culture. For example, conversion to the CLR type `int` or `DateTime`. These constraints assume that the URL is non-localizable. The framework-provided route constraints don't modify the values stored in route values. All route values parsed from the URL are stored as strings. For example, the `float` constraint attempts to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
+> Route constraints that verify the URL and are converted to a CLR type always use the invariant culture. For example, conversion to the CLR type `int` or `DateTime`. These constraints assume that the URL is not localizable. The framework-provided route constraints don't modify the values stored in route values. All route values parsed from the URL are stored as strings. For example, the `float` constraint attempts to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
 
 ### Regular expressions in constraints
 
-Regular expressions be specified as *inline constraints* using the `regex(...)` route constraint. Methods in the `MapControllerRoute` family also accept a object literal of constraints. If that form is used, string values are interpreted as regular expressions.
+Regular expressions can be specified as inline constraints using the `regex(...)` route constraint. Methods in the <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> family also accept a object literal of constraints. If that form is used, string values are interpreted as regular expressions.
 
-<!-- rick: move to snippet -->
-```csharp
-app.UseEndpoints(endpoints =>
-{
-    // Using an inline-constraint to specify a regex constraint.
-    endpoints.MapGet("{message:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}", context => { ... });
+<!-- review: Can you check this code?  Can you finish it and make it compile?-->
 
-    // Using an object literal to specify a regex constraint.
-    endpoints.MapControllerRoute(
-        "people", 
-        "People/{ssn}", 
-        constraints: new { controller = "^\\d{3}-\\d{2}-\\d{4}$", },
-        defaults: new { controller = "People", action = "List", });
-})
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupRegex.cs?name=snippet)]
 
 The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See <xref:System.Text.RegularExpressions.RegexOptions> for a description of these members.
 
-Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. To use the regular expression `^\d{3}-\d{2}-\d{4}$` in an inline constraint, the expression must have the `\` (single backslash) characters provided in the string as `\\` (double backslash) characters in the C# source file in order to escape the `\` string escape character (unless using [verbatim string literals](/dotnet/csharp/language-reference/keywords/string)). To escape routing parameter delimiter characters (`{`, `}`, `[`, `]`), double the characters in the expression (`{{`, `}`, `[[`, `]]`). The following table shows a regular expression and the escaped version.
+Regular expressions use delimiters and tokens similar to those used by routing and the C# language. Regular expression tokens must be escaped. To use the regular expression `^\d{3}-\d{2}-\d{4}$` in an inline constraint, use one of the following:
 
-| Regular Expression    | Escaped Regular Expression     |
+* Replace `\` characters provided in the string as `\\` characters in the C# source file in order to escape the `\` string escape character.
+* [Verbatim string literals](/dotnet/csharp/language-reference/keywords/string).
+
+To escape routing parameter delimiter characters `{`, `}`, `[`, `]`, double the characters in the expression, for example, `{{`, `}}`, `[[`, `]]`. The following table shows a regular expression and the escaped version.
+
+| Regular expression    | Escaped regular expression     |
 | --------------------- | ------------------------------ |
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
 
-Regular expressions used in routing often start with the caret (`^`) character and match starting position of the string. The expressions often end with the dollar sign (`$`) character and match end of the string. The `^` and `$` characters ensure that the regular expression match the entire route parameter value. Without the `^` and `$` characters, the regular expression match any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match.
+Regular expressions used in routing often start with the `^` character and match starting position of the string. The expressions often end with the `$` character and match end of the string. The `^` and `$` characters ensure that the regular expression match the entire route parameter value. Without the `^` and `$` characters, the regular expression match any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match.
 
 | Expression   | String    | Match | Comment               |
 | ------------ | --------- | :---: |  -------------------- |
@@ -525,11 +518,11 @@ Regular expressions used in routing often start with the caret (`^`) character a
 
 For more information on regular expression syntax, see [.NET Framework Regular Expressions](/dotnet/standard/base-types/regular-expression-language-quick-reference).
 
-To constrain a parameter to a known set of possible values, use a regular expression. For example, `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string `^(list|get|create)$` is equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
+To constrain a parameter to a known set of possible values, use a regular expression. For example, `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string `^(list|get|create)$` is equivalent. Constraints that are passed in the constraints dictionary that don't match one of the known constraints are also treated as regular expressions. Constraints that are passed  within a template that don't match one of the known constraints are not treated as regular expressions.
 
 ### Custom route constraints
 
-In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains `Match`. `Match` returns `true` if the constraint is satisfied and `false` otherwise.
+In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains <xref:System.Web.Routing.IRouteConstraint.Match*>. `Match` returns `true` if the constraint is satisfied and `false` otherwise.
 
 To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in the service container. A `ConstraintMap` is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `ConstraintMap` can be updated in `Startup.ConfigureServices` either as part of a [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) call or by configuring <xref:Microsoft.AspNetCore.Routing.RouteOptions> directly with `services.Configure<RouteOptions>`. For example:
 
@@ -560,7 +553,7 @@ To use a parameter transformer in a route pattern, configure it using <xref:Micr
 
 In the preceding code,  replace the type and the name used to refer to the `ConstraintMap` with your `IOutboundParameterTransformer` implementation.
 
-Parameter transformers are used by the ASP.NET Core framework to transform the URI where an endpoint resolves. For example, ASP.NET Core MVC uses parameter transformers to transform the route value used to match an `area`, `controller`, `action`, and `page`.
+Parameter transformers are used by the ASP.NET Core framework to transform the URI where an endpoint resolves. For example, ASP.NET Core uses parameter transformers to transform the route value used to match an `area`, `controller`, `action`, and `page`.
 
 ```csharp
 routes.MapControllerRoute(
