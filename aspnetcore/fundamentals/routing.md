@@ -138,29 +138,29 @@ This preceding sample adds `Console.WriteLine` statements that display whether o
 Running this code with a URL of `/` displays:
 
 ```txt
-1. Endpoint is: (null)
-2. Endpoint is: Hello
-3. Endpoint is: Hello
+1. Endpoint: (null)
+2. Endpoint: Hello
+3. Endpoint: Hello
 ```
 
 Running this code with a URL **not** `/` displays:
 
 ```txt
-1. Endpoint is: (null)
-2. Endpoint is: (null)
-4. Endpoint is: (null)
+1. Endpoint: (null)
+2. Endpoint: (null)
+4. Endpoint: (null)
 ```
 
 This output demonstrates that:
 
-* The endpoint is always null before `UseRouting` executes.
+* The endpoint is always null before `UseRouting` is called.
 * If a match is found, the endpoint is non-null between `UseRouting` and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>.
-* The `UseEndpoints` middleware is *terminal* when a match is found. [Terminal middleware](#tm) is defined later in this document. <!-- review: recommend Move a short definition of terminal here and delete my link -->
-* The middleware after `UseEndpoints` execute **only** when **no** match is found.
+* The `UseEndpoints` middleware is **terminal** when a match is found. [Terminal middleware](#tm) is defined later in this document. <!-- review: recommend Move a short definition of terminal here and delete my link  -->
+* The middleware after `UseEndpoints` execute only when no match is found.
 
-The `UseRouting` middleware uses the [SetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.SetEndpoint*) method to attach the endpoint to the current context. It's possible to replace the `UseRouting` middleware with custom logic and still get the benefits of using endpoints. Endpoints are a low-level primitive like middleware, and not coupled to the routing implementation. <!-- REVIEW what I added - most apps ... --> Most apps do  **not** need to replace `UseRouting` with custom logic.
+The `UseRouting` middleware uses the [SetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.SetEndpoint*) method to attach the endpoint to the current context. It's possible to replace the `UseRouting` middleware with custom logic and still get the benefits of using endpoints. Endpoints are a low-level primitive like middleware, and not coupled to the routing implementation. <!-- REVIEW what I added - most apps ... --> Most apps don't need to replace `UseRouting` with custom logic.
 
-The `UseEndpoints` middleware is **designed** to be used in tandem with the `UseRouting` middleware. The core logic to *execute* an endpoint isn't complicated. Use <xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*> to retrieve the endpoint, and then invoke its <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate> property.
+The `UseEndpoints` middleware is designed to be used in tandem with the `UseRouting` middleware. The core logic to execute an endpoint isn't complicated. Use <xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*> to retrieve the endpoint, and then invoke its <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate> property.
 
 The following code demonstrates how middleware can influence or react to routing:
 

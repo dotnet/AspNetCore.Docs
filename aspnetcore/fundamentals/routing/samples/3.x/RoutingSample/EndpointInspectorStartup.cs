@@ -31,7 +31,7 @@ namespace RoutingSample
                     return Task.CompletedTask;
                 }
                 
-                Console.WriteLine($"Endpoint is: {endpoint.DisplayName}");
+                Console.WriteLine($"Endpoint: {endpoint.DisplayName}");
 
                 if (endpoint is RouteEndpoint routeEndpoint)
                 {
