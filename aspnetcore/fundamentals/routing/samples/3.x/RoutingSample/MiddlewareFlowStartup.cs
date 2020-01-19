@@ -41,7 +41,8 @@ namespace RoutingSample
                 // Location 3: runs when this endpoint matches
                 endpoints.MapGet("/", context =>
                 {
-                    Console.WriteLine($"3. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
+                    Console.WriteLine(
+                                  $"3. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
                     return Task.CompletedTask;
                 }).WithDisplayName("Hello");
             });

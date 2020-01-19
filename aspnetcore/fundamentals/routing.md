@@ -182,7 +182,7 @@ The preceding sample code is intended to demonstrate the basic concepts of endpo
 * Log to a file or database.
 * Include details such as the user, ip address, name of the sensitive endpoint, and more.
 
-The audit policy metadata `AuditPolicyAttribute` is defined as an `Attribute` for easier use with class-based frameworks such as controllers and SignalR. When using *Route to Code*:
+The audit policy metadata `AuditPolicyAttribute` is defined as an `Attribute` for easier use with class-based frameworks such as controllers and SignalR. When using route to code:
 
 * Metadata is attached with a builder API.
 * Class-based frameworks include all attributes on the corresponding method and class when creating endpoints.
@@ -197,22 +197,22 @@ The following code sample contrasts using middleware with using routing:
 
 <a name="tm"></a>
 
-The style of middleware shown with `Approach 1:` is *terminal middleware*. It's called *terminal middleware* because it does a matching operation:
+The style of middleware shown with `Approach 1:` is **terminal middleware**. It's called terminal middleware because it does a matching operation:
 
 * The matching operation in the preceding sample is `Path == "/"` for the middleware and `Path == "/Movie"` for routing.
 * When a match is successful, it executes some functionality and calls `return` rather than invoking the `next` middleware.
 
-It's called *terminal middleware* middleware because it terminates the search, executes some functionality and returns.
+It's called terminal middleware middleware because it terminates the search, executes some functionality and returns.
 
 Comparing a terminal middleware and routing:
-* Both approaches allow *terminating* the processing pipeline:
+* Both approaches allow terminating the processing pipeline:
     * Middleware terminates the pipeline by returning rather than invoking `next`.
     * Endpoints are always terminal.
 * Terminal middleware allows positioning the middleware at an arbitrary place in the pipeline:
     * Endpoints execute at the position of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>.
 * Terminal middleware allows arbitrary code to determine when the route matches:
     * Custom route matching code can be verbose and difficult to get correct.
-    * Routing provides straightforward solutions for typical apps. <!-- Review next--> Most apps do **not** require custom route matching code.
+    * Routing provides straightforward solutions for typical apps. <!-- Review next--> Most apps don't require custom route matching code.
 * Endpoints interface with middleware such as `UseAuthorization` or `UseCors`.
     * Using a terminal middleware with `UseAuthorization` or `UseCors` requires manual interfacing with the authorization system.
 
@@ -227,8 +227,8 @@ Terminal middleware can be an effective tool, but can require:
 * Manual integration with other systems to achieve the desired level of flexibility.
 
 Consider integrating with routing before writing a terminal middleware.
-<!-- router-ware won't MT - please suggest new wording -->
-Existing terminal middleware that integrate with [Map](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) or <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> can usually be turned into a *router-ware* endpoint. [MapHealthChecks](https://github.com/aspnet/AspNetCore/blob/master/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for *router-ware*:
+<!-- router-ware won't MT - please suggest new wording - how about routing aware? -->
+Existing terminal middleware that integrate with [Map](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) or <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> can usually be turned into a **router-ware** endpoint. [MapHealthChecks](https://github.com/aspnet/AspNetCore/blob/master/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for router-ware:
 * Write an extension method on <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>.
 * Create a nested middleware pipeline using <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder.CreateApplicationBuilder*>.
 * Attach your middleware to the new pipeline. In this case, <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*>. <!-- review: what is `Build` ? -->
@@ -308,7 +308,7 @@ Due to the kinds of extensibility provided by routing, it isn't possible for the
 
 <!-- review I don't understand the preceding why you're talking about not possible to compute ahead of time the cases that will cause ambiguity. Your sample is never ambiguous. Can you provide two templates that are useful but do have potential ambiguities?  -->
 
-The order of operations inside <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> **does not** influence the behavior of routing with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
+The order of operations inside <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> doesn't influence the behavior of routing with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
 
 It's possible in the legacy implementation of routing to implement routing extensbility that has a dependency on the order in which routes are processed. Endpoint routing in ASP.NET Core 3.0 and later:
 
@@ -328,7 +328,7 @@ URL generation:
 
 Endpoint routing includes the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> link generator API .`LinkGenerator` is a singleton service that can be retrieved from [DI](xref:fundamentals/dependency-injection). The `LinkGenerator` API can be used outside of the context of an executing request. [Mvc.IUrlHelper](xref:Microsoft.AspNetCore.Mvc.IUrlHelper) and scenarios that rely on <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the `LinkGenerator` internally to provide link generating capabilities.
 
-The link generator is backed by the concept of an *address* and *address schemes*. An address scheme is a way of determining the endpoints that should be considered for link generation. For example, the route name and route values scenarios many users are familiar with from controllers and Razor Pages are implemented as an address scheme.
+The link generator is backed by the concept of an **address*** and **address schemes**. An address scheme is a way of determining the endpoints that should be considered for link generation. For example, the route name and route values scenarios many users are familiar with from controllers and Razor Pages are implemented as an address scheme.
 
 The link generator can link to controllers and Razor Pages via the following extension methods:
 
@@ -356,7 +356,7 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 > [!WARNING]
 > Pay attention to the following implications of calling <xref:Microsoft.AspNetCore.Routing.LinkGenerator> methods:
 >
-> * Use `GetUri*` extension methods with caution in an app configuration that doesn't validate the `Host` header of incoming requests. If the `Host` header of incoming requests isn't validated, untrusted request input can be sent back to the client in URIs in a view ir page. We recommend that all production apps configure their server to validate the `Host` header against known valid values.
+> * Use `GetUri*` extension methods with caution in an app configuration that doesn't validate the `Host` header of incoming requests. If the `Host` header of incoming requests isn't validated, untrusted request input can be sent back to the client in URIs in a view or page. We recommend that all production apps configure their server to validate the `Host` header against known valid values.
 >
 > * Use <xref:Microsoft.AspNetCore.Routing.LinkGenerator> with caution in middleware in combination with `Map` or `MapWhen`. `Map*` changes the base path of the executing request, which affects the output of link generation. All of the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> APIs allow specifying a base path. Always specify an empty base path to undo `Map*`'s affect on link generation.
 
@@ -368,11 +368,11 @@ In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routi
 
 ## Route template reference
 
-Tokens within `{}` define route parameters that are bound if the route is matched. More than one route parameter can be defined in a route segment, but route parameters  must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`. ` <!-- review, add valid route separated by a literal , for example, {controller=Home}/{action=Index}` is a valid route. --> Route parameters must have a name and may have additional attributes specified.
+Tokens within `{}` define route parameters that are bound if the route is matched. More than one route parameter can be defined in a route segment, but route parameters  must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`.  <!-- review, add valid route separated by a literal  --> Route parameters must have a name and may have additional attributes specified.
 
 Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match a literal route parameter delimiter `{` or `}`, escape the delimiter by repeating the character. For example `{{` or `}}`.
 
-URL patterns that attempt to capture a file name with an optional file extension have additional considerations. For example, consider the template `files/{filename}.{ext?}`. When values for both `filename` and `ext` exist, both values are populated. If only a value for `filename` exists in the URL, the route matches because the trailing period (`.`) is  optional. The following URLs match this route:
+URL patterns that attempt to capture a file name with an optional file extension have additional considerations. For example, consider the template `files/{filename}.{ext?}`. When values for both `filename` and `ext` exist, both values are populated. If only a value for `filename` exists in the URL, the route matches because the trailing `.` is  optional. The following URLs match this route:
 
 * `/files/myFile.txt`
 * `/files/myFile`
@@ -408,7 +408,7 @@ The following table demonstrates example route templates and their behavior.
 | `{Page=Home}`                            | `/`                     | Matches and sets `Page` to `Home`.                                         |
 | `{Page=Home}`                            | `/Contact`              | Matches and sets `Page` to `Contact`.                                      |
 | `{controller}/{action}/{id?}`            | `/Products/List`        | Maps to the `Products` controller and `List` action.                       |
-| `{controller}/{action}/{id?}`            | `/Products/Details/123` | Maps to the `Products` controller and  `Details` action (`id` set to 123). |
+| `{controller}/{action}/{id?}`            | `/Products/Details/123` | Maps to the `Products` controller and  `Details` action with`id` set to 123. |
 | `{controller=Home}/{action=Index}/{id?}` | `/`                     | Maps to the `Home` controller and `Index` method. `id` is ignored.        |
 
 Using a template is generally the simplest approach to routing. Constraints and defaults can also be specified outside the route template.
@@ -417,7 +417,7 @@ Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routin
 
 ### Complex segments
 
-Complex segments are processed by matching up literal delimiters from **right to left** in a non-greedy way. For example, `[Route("/a{b}c{d}")]` is a complex segment.
+Complex segments are processed by matching up literal delimiters from right to left in a non-greedy way. For example, `[Route("/a{b}c{d}")]` is a complex segment.
 <!-- review: need to define greedy or non-greedy -->
 Complex segments work in a particular way that must be understood to use them successfully. The example in this section demonstrates why complex segments only really work well when the delimiter text doesn't appear inside the parameter values. Using a [regex](/dotnet/standard/base-types/regular-expressions) and then manually extracting the values is needed for more complex cases.
 
@@ -448,7 +448,7 @@ Regular expressions provide much more control over their matching behavior.
 Route constraints execute when a match has occurred to the incoming URL and the URL path is tokenized into route values. Route constraints generally inspect the route value associated via the route template and make a true or false decision about whether the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> can accept or reject a request based on its HTTP verb. Constraints are used in routing requests and link generation.
 
 > [!WARNING]
-> Do **not** use constraints for input validation. If constraints are used for input validation, invalid input results in a `404` Not Found response. Invalid input should produced a `400` Bad Request with an appropriate error message. Route constraints are used to disambiguate similar routes, not to validate the inputs for a particular route.
+> Don't use constraints for input validation. If constraints are used for input validation, invalid input results in a `404` Not Found response. Invalid input should produced a `400` Bad Request with an appropriate error message. Route constraints are used to disambiguate similar routes, not to validate the inputs for a particular route.
 
 The following table demonstrates example route constraints and their expected behavior.
 
@@ -463,14 +463,14 @@ The following table demonstrates example route constraints and their expected be
 | `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Matches a valid `Guid` value |
 | `long` | `{ticks:long}` | `123456789`, `-123456789` | Matches a valid `long` value |
 | `minlength(value)` | `{username:minlength(4)}` | `Rick` | String must be at least 4 characters |
-| `maxlength(value)` | `{filename:maxlength(8)}` | `Richard` | String must be no more than 8 characters |
+| `maxlength(value)` | `{filename:maxlength(8)}` | `MyFile` | String must be no more than 8 characters |
 | `length(length)` | `{filename:length(12)}` | `somefile.txt` | String must be exactly 12 characters long |
 | `length(min,max)` | `{filename:length(8,16)}` | `somefile.txt` | String must be at least 8 and no more than 16 characters long |
 | `min(value)` | `{age:min(18)}` | `19` | Integer value must be at least 18 |
 | `max(value)` | `{age:max(120)}` | `91` | Integer value must be no more than 120 |
 | `range(min,max)` | `{age:range(18,120)}` | `91` | Integer value must be at least 18 but no more than 120 |
-| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters (`a`-`z`, case-insensitive) |
-| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression (see tips about defining a regular expression) |
+| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters, `a`-`z` and case-insensitive. |
+| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression. See tips about defining a regular expression. |
 | `required` | `{name:required}` | `Rick` | Used to enforce that a non-parameter value is present during URL generation |
 
 Multiple, colon delimited constraints can be applied to a single parameter. For example, the following constraint restricts a parameter to an integer value of 1 or greater:
@@ -487,9 +487,13 @@ public User GetUserById(int id) { }
 
 Regular expressions can be specified as inline constraints using the `regex(...)` route constraint. Methods in the <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> family also accept a object literal of constraints. If that form is used, string values are interpreted as regular expressions.
 
-<!-- review: Can you check this code?  Can you finish it and make it compile?-->
+The following code uses an inline-constraint to specify a regex constraint:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupRegex.cs?name=snippet)]
+
+The following code uses an object literal to specify a regex constraint:
+<!-- review: Can you check this code?  Can you finish it and make it compile?-->
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupRegex2.cs?name=snippet)]
 
 The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See <xref:System.Text.RegularExpressions.RegexOptions> for a description of these members.
 
