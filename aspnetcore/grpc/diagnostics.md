@@ -92,6 +92,13 @@ If your app isn't using DI then you can create a new `ILoggerFactory` instance w
 
 [!code-csharp[](diagnostics/sample/net-client-loggerfactory-create.cs?highlight=1,8)]
 
+#### gRPC client log scopes
+
+The gRPC client adds a [logging scope](https://docs.microsoft.com/aspnet/core/fundamentals/logginglog-scopes) to logs made during a gRPC call. The scope has metadata related to the gRPC call:
+
+* **GrpcMethodType** - The gRPC method type. Possible values are names from `Grpc.Core.MethodType` enum, e.g. Unary
+* **GrpcUri** - The relative URI of the gRPC method, e.g. /greet.Greeter/SayHellos
+
 #### Sample logging output
 
 Here is an example of console output at the `Debug` level of a gRPC client:
@@ -196,7 +203,9 @@ Press p to pause, r to resume, q to quit.
     Total Calls Unimplemented                   0
 ```
 
-Another way to observe gRPC metrics is to capture counter data using Application Insights's [Microsoft.ApplicationInsights.EventCounterCollector package](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters). Once setup in your app, Application Insights will collect common .NET counters at runtime. gRPC's counters are not collected by default, but App Insights can be [customized to include additional counters](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected) in your application. Specify the gRPC counters you want to collect in *Startup.cs*:
+Another way to observe gRPC metrics is to capture counter data using Application Insights's [Microsoft.ApplicationInsights.EventCounterCollector package](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters). Once setup in your app, Application Insights will collect common .NET counters at runtime. gRPC's counters are not collected by default, but App Insights can be [customized to include additional counters](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected).
+
+Specify the gRPC counters you want Application Insight to collect in *Startup.cs*:
 
 ```csharp
     using Microsoft.ApplicationInsights.Extensibility.EventCounterCollector;
@@ -208,7 +217,7 @@ Another way to observe gRPC metrics is to capture counter data using Application
         services.ConfigureTelemetryModule<EventCounterCollectionModule>(
             (module, o) =>
             {
-                // This configures App Insights to collect gRPC counters for a gRPC services app
+                // Configure App Insights to collect gRPC counters gRPC services hosted in an ASP.NET Core app
                 module.Counters.Add(new EventCounterCollectionRequest("Grpc.AspNetCore.Server", "current-calls"));
                 module.Counters.Add(new EventCounterCollectionRequest("Grpc.AspNetCore.Server", "total-calls"));
                 module.Counters.Add(new EventCounterCollectionRequest("Grpc.AspNetCore.Server", "calls-failed"));
