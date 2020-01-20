@@ -196,7 +196,7 @@ Press p to pause, r to resume, q to quit.
     Total Calls Unimplemented                   0
 ```
 
-Another way to observe gRPC metrics is to capture counter data using Application Insights. Application Insights can be [configured to collect common .NET counters](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters). gRPC's counters are not collected by default, but App Insights can be [customized to include additional counters](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected) in your application.
+Another way to observe gRPC metrics is to capture counter data using Application Insights's [Microsoft.ApplicationInsights.EventCounterCollector package](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters). Once setup in your app, Application Insights will collect common .NET counters at runtime. gRPC's counters are not collected by default, but App Insights can be [customized to include additional counters](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected) in your application. Specify the gRPC counters you want to collect in *Startup.cs*:
 
 ```csharp
     using Microsoft.ApplicationInsights.Extensibility.EventCounterCollector;
@@ -208,7 +208,7 @@ Another way to observe gRPC metrics is to capture counter data using Application
         services.ConfigureTelemetryModule<EventCounterCollectionModule>(
             (module, o) =>
             {
-                // This configures App Insights to collect gRPC counters from a gRPC services app
+                // This configures App Insights to collect gRPC counters for a gRPC services app
                 module.Counters.Add(new EventCounterCollectionRequest("Grpc.AspNetCore.Server", "current-calls"));
                 module.Counters.Add(new EventCounterCollectionRequest("Grpc.AspNetCore.Server", "total-calls"));
                 module.Counters.Add(new EventCounterCollectionRequest("Grpc.AspNetCore.Server", "calls-failed"));
