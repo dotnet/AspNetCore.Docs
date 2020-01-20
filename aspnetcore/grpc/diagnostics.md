@@ -15,7 +15,7 @@ This article provides guidance for gathering diagnostics from your gRPC app to h
 
 * **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). `ILogger` is also often used by apps to write logs.
 * **Tracing** - Events related to an operation written using `DiaganosticSource` and `Activity`. Traces from diagnostic source are commonly used to collect app telemetry by libraries like [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
-* **Metrics** - Representation of data measures over intervals of time, e.g. requests per second. Metrics are emitted using `EventCounter` and can be observed using [dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) command line tool.
+* **Metrics** - Representation of data measures over intervals of time, e.g. requests per second. Metrics are emitted using `EventCounter` and can be observed using [dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) command line tool or with [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters).
 
 ## Logging
 
@@ -109,7 +109,11 @@ dbug: Grpc.Net.Client.Internal.GrpcCall[4]
 
 ## Tracing
 
-gRPC services and the gRPC client provide information about gRPC calls using [DiagnosticSource](https://docs.microsoft.com/dotnet/api/system.diagnostics.diagnosticsource) and [Activity](https://docs.microsoft.com/dotnet/api/system.diagnostics.activity). .NET gRPC uses an activity to represent a gRPC call. Tracing events are written to the diagnostic source at the start and stop of the gRPC call activity.
+gRPC services and the gRPC client provide information about gRPC calls using [DiagnosticSource](https://docs.microsoft.com/dotnet/api/system.diagnostics.diagnosticsource) and [Activity](https://docs.microsoft.com/dotnet/api/system.diagnostics.activity).
+
+* .NET gRPC uses an activity to represent a gRPC call.
+* Tracing events are written to the diagnostic source at the start and stop of the gRPC call activity.
+* Tracing doesn't capture information about when messages are sent over the lifetime of gRPC streaming calls.
 
 ### gRPC service tracing
 
@@ -136,6 +140,9 @@ The easist way to use `DiagnosticSource` is to configure a telemetry library suc
 Tracing can be view in a managed service like Application Insights, or you can choose to run your own distributed tracing system. OpenTelemetry supports exporting tracing data to [Jaeger](https://www.jaegertracing.io/) and [Zipkin](https://zipkin.io/).
 
 You can also listen to `DiagnosticSource` tracing events in code using `DiagnosticListener`. For information about listening to a diagnostic source with code, visit the [DiagnosticSource user's guide](https://github.com/dotnet/corefx/blob/d3942d4671919edb0cca6ddc1840190f524a809d/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md#consuming-data-with-diagnosticlistener).
+
+> [!NOTE]
+> Telemetry libraries do not capture gRPC specific `Grpc.Net.Client.GrpcOut` telemetry currently. Work to improve telemetry libraries capture this tracing is ongoing.
 
 ## Metrics
 
@@ -187,6 +194,27 @@ Press p to pause, r to resume, q to quit.
     Total Messages Sent                         295
     Total Messages Received                     300
     Total Calls Unimplemented                   0
+```
+
+Another way to observe gRPC metrics is to capture counter data using Application Insights. Application Insights can be [configured to collect common .NET counters](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters). gRPC's counters are not collected by default, but App Insights can be [customized to include additional counters](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected) in your application.
+
+```csharp
+    using Microsoft.ApplicationInsights.Extensibility.EventCounterCollector;
+
+    public void ConfigureServices(IServiceCollection services)
+    {
+        //... other code...
+
+        services.ConfigureTelemetryModule<EventCounterCollectionModule>(
+            (module, o) =>
+            {
+                // This configures App Insights to collect gRPC counters from a gRPC services app
+                module.Counters.Add(new EventCounterCollectionRequest("Grpc.AspNetCore.Server", "current-calls"));
+                module.Counters.Add(new EventCounterCollectionRequest("Grpc.AspNetCore.Server", "total-calls"));
+                module.Counters.Add(new EventCounterCollectionRequest("Grpc.AspNetCore.Server", "calls-failed"));
+            }
+        );
+    }
 ```
 
 ## Additional resources
