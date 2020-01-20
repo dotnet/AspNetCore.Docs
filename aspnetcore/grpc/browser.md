@@ -12,7 +12,7 @@ uid: grpc/browser
 By [James Newton-King](https://twitter.com/jamesnk)
 
 > [!IMPORTANT]
-> **gRPC-Web is experimental**
+> **gRPC-Web support in .NET is experimental**
 >
 > gRPC-Web for .NET is an experimental project, not a commited product. We want to test that our approach to implementing it works, and get feedback on if this approach is useful to .NET developers compared to the traditional way of setting up gRPC-Web via a proxy. Please add your feedback at [https://github.com/grpc/grpc-dotnet](https://github.com/grpc/grpc-dotnet) to ensure we build something that developers love and are productive with.
 
@@ -20,7 +20,9 @@ It is not possible to call a HTTP/2 gRPC service from a browser-based app. [gRPC
 
 ## Configure gRPC-Web in ASP.NET Core
 
-gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web in addition to HTTP/2 gRPC. gRPC-Web does not require any changes to your services, the only modification is startup configuration. To enable gRPC-Web with an ASP.NET Core gRPC service:
+gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web alongside HTTP/2 gRPC. gRPC-Web does not require any changes to services, the only modification is startup configuration.
+
+To enable gRPC-Web with an ASP.NET Core gRPC service:
 
 1. Add a reference to the [Grpc.AspNetCore.Web](https://www.nuget.org/packages/Grpc.AspNetCore.Web) package.
 2. Configure the app to use gRPC-Web by adding `AddGrpcWeb(...)` and `UseGrpcWeb()` to *Startup.cs*:
@@ -45,25 +47,25 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-Some additional configuration may be required to call gRPC-Web from the browser, such as configuring the app to support CORS.
+Some additional configuration may be required to call gRPC-Web from the browser, such as [configuring ASP.NET Core to support CORS](xref:security/cors).
 
 ## Call gRPC-Web from the browser
 
 Browser apps can use gRPC-Web to call gRPC services. There are some requirements and limitations when calling gRPC services with gRPC-Web from the browser:
 
 * The server must have been configured to support gRPC-Web.
-* Client streaming and bidirectional streaming methods aren't supported.
+* Client streaming and bidirectional streaming calls aren't supported. Server streaming is supported.
 * Calling gRPC services on a different domain requires [CORS](xref:security/cors) to be configured on the server.
 
 ### JavaScript gRPC-Web client
 
-The JavaScript gRPC-Web client has [instructions](https://github.com/grpc/grpc-web/tree/master/net/grpc/gateway/examples/helloworld#write-client-code) for setting up a gRPC-Web client to use in browser JavaScript SPAs.
+There is a JavaScript gRPC-Web client. For instructions on how to use gRPC-Web from JavaScript, see [write JavaScript client code with gRPC-Web](https://github.com/grpc/grpc-web/tree/master/net/grpc/gateway/examples/helloworld#write-client-code).
 
-### .NET gRPC-Web client
+### Configure gRPC-Web with the .NET gRPC client
 
-The .NET gRPC client can be configured to make gRPC-Web calls. This is useful for [Blazor WebAssembly](xref:core/blazor#blazor-webassembly) apps that are hosted in the browser and have the same HTTP limitations of JavaScript apps. gRPC-Web allows a Blazor WebAssembly app to call gRPC services.
+The .NET gRPC client can be configured to make gRPC-Web calls. This is useful for [Blazor WebAssembly](xref:blazor/index#blazor-webassembly) apps, which are hosted in the browser and have the same HTTP limitations of JavaScript code. Calling gRPC-Web with a .NET client is [the same as HTTP/2 gRPC](xref:grpc/client), the only modification is how the channel is created.
 
-Calling gRPC-Web with a .NET client is the same as HTTP/2 gRPC, the only modification is how the channel is created. To enable gRPC-Web:
+To use gRPC-Web:
 
 1. Add a reference to the [Grpc.Net.Client.Web](https://www.nuget.org/packages/Grpc.Net.Client.Web) package.
 2. Configure the channel to use the `GrpcWebHandler`:
