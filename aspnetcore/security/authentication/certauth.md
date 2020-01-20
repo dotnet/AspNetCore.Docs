@@ -234,18 +234,6 @@ public void ConfigureServices(IServiceCollection services)
     services.AddCertificateForwarding(options =>
     {
         options.CertificateHeader = "X-ARR-ClientCert";
-        options.HeaderConverter = (headerValue) =>
-        {
-            X509Certificate2 clientCertificate = null;
-	    
-            if(!string.IsNullOrWhiteSpace(headerValue))
-            {
-                byte[] bytes = Convert.FromBase64String(headerValue); 
-                clientCertificate = new X509Certificate2(bytes);
-            }
-
-            return clientCertificate;
-        };
     });
 }
 ```
