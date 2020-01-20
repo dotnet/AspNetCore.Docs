@@ -572,6 +572,7 @@ To issue an HTTP PUT request:
         "data": "Strawberry"
       }
     ]
+    ```
 
 1. Run the `put` command on an endpoint that supports it:
 
