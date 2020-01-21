@@ -223,6 +223,9 @@ See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer
 
 No forwarding configuration is required for Azure. This is already setup in the certificate forwarding middleware.
 
+> [!NOTE]
+> This requires that the CertificateForwardingMiddleware is present.
+
 ### Use certificate authentication in custom web proxies
 
 The `AddCertificateForwarding` method is used to specify:
