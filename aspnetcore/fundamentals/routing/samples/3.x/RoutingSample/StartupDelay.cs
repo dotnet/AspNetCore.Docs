@@ -7,7 +7,7 @@ using System.Diagnostics;
 namespace RoutingSample
 {
 	public class StartupDelay
-    {
+	{
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddAuthorization();

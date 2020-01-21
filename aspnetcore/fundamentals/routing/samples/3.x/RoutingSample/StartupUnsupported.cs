@@ -6,47 +6,47 @@ using Microsoft.Extensions.Hosting;
 
 namespace WebApplication72
 {
-    public class StartupUnsupported
-    {
-        public StartupUnsupported(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+	public class StartupUnsupported
+	{
+		public StartupUnsupported(IConfiguration configuration)
+		{
+			Configuration = configuration;
+		}
 
-        public IConfiguration Configuration { get; }
+		public IConfiguration Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllersWithViews();
-        }
+		public void ConfigureServices(IServiceCollection services)
+		{
+			services.AddControllersWithViews();
+		}
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
-            }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+			}
+			else
+			{
+				app.UseExceptionHandler("/Home/Error");
+				app.UseHsts();
+			}
+			app.UseHttpsRedirection();
+			app.UseStaticFiles();
 
-            app.UseRouting();
+			app.UseRouting();
 
-            app.UseAuthorization();
+			app.UseAuthorization();
 
-            #region snippet
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute("default", 
-                                                 "{culture}/{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute("blog", "{culture}/{**slug}", 
-                                                  new { controller = "Blog", action = "ReadPost", });
-            });
-            #endregion
-        }
-    }
+			#region snippet
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapControllerRoute("default", 
+												 "{culture}/{controller=Home}/{action=Index}/{id?}");
+				endpoints.MapControllerRoute("blog", "{culture}/{**slug}", 
+												  new { controller = "Blog", action = "ReadPost", });
+			});
+			#endregion
+		}
+	}
 }

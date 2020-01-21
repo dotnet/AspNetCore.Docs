@@ -80,7 +80,7 @@ namespace RoutingSample
 				if (disposing)
 				{
 					_logger.LogInformation("{Message }: {ElapsedMilliseconds}ms",
-					                    	_message, _sw.ElapsedMilliseconds);
+											_message, _sw.ElapsedMilliseconds);
 				}
 
 				disposedValue = true;
@@ -92,5 +92,5 @@ namespace RoutingSample
 			Dispose(true);
 		}
 	}
-    #endregion
+	#endregion
 }

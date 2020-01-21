@@ -11,50 +11,50 @@ using Microsoft.Extensions.Hosting;
 
 namespace RoutingSample
 {
-    public class EndpointInspectorStartup
-    {
-        #region snippet
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+	public class EndpointInspectorStartup
+	{
+		#region snippet
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+			}
 
-            app.UseRouting();
+			app.UseRouting();
 
-            app.Use(next => context =>
-            {
-                var endpoint = context.GetEndpoint();
-                if (endpoint is null)
-                {
-                    return Task.CompletedTask;
-                }
-                
-                Console.WriteLine($"Endpoint: {endpoint.DisplayName}");
+			app.Use(next => context =>
+			{
+				var endpoint = context.GetEndpoint();
+				if (endpoint is null)
+				{
+					return Task.CompletedTask;
+				}
+				
+				Console.WriteLine($"Endpoint: {endpoint.DisplayName}");
 
-                if (endpoint is RouteEndpoint routeEndpoint)
-                {
-                    Console.WriteLine($"Endpoint has route pattern:" +
-                        $" {routeEndpoint.RoutePattern.RawText}");
-                }
+				if (endpoint is RouteEndpoint routeEndpoint)
+				{
+					Console.WriteLine($"Endpoint has route pattern:" +
+						$" {routeEndpoint.RoutePattern.RawText}");
+				}
 
-                foreach (var metadata in endpoint.Metadata)
-                {
-                    Console.WriteLine($"Endpoint has metadata: {metadata}");
-                }
+				foreach (var metadata in endpoint.Metadata)
+				{
+					Console.WriteLine($"Endpoint has metadata: {metadata}");
+				}
 
-                return Task.CompletedTask;
-            });
+				return Task.CompletedTask;
+			});
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
-            });
-        }
-        #endregion
-    }
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapGet("/", async context =>
+				{
+					await context.Response.WriteAsync("Hello World!");
+				});
+			});
+		}
+		#endregion
+	}
 }

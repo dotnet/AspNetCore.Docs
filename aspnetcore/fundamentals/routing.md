@@ -532,6 +532,7 @@ To use a custom `IRouteConstraint`, the route constraint type must be registered
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint.cs?name=snippet)]
 
+<!-- review: Provide an implementation of MyCustomConstraint -->
 The preceding constraint applied to a route in the following code:
 
 ```csharp
