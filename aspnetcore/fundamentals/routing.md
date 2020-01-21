@@ -540,6 +540,15 @@ The preceding constraint applied to a route in the following code:
 public ActionResult<string> Get(string id)
 ```
 
+The following code implements `MyCustomConstraint`:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint.cs?name=snippet2)]
+
+The preceding code:
+
+* Shows how to implement a constraint similar to the the `:int` constraint.
+* Shouldn't be used in a real app. Use [HttpGet("{id:int}")] to constrain the `id` to integers only.
+
 ## Parameter transformer reference
 
 Parameter transformers:

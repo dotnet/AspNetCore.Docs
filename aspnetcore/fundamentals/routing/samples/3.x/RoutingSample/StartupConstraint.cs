@@ -53,7 +53,8 @@ namespace RoutingSample
 		}
 	}
 
-	class MyCustomConstraint : IRouteConstraint
+    #region snippet2
+    class MyCustomConstraint : IRouteConstraint
 	{
 		public bool Match(HttpContext httpContext, IRouter route, string routeKey, 
 						  RouteValueDictionary values, RouteDirection routeDirection)
@@ -76,8 +77,9 @@ namespace RoutingSample
 			return false;
 		}
 	}
+    #endregion
 
-	/* API Controller
+    /* API Controller
 		[HttpGet("{id:customName}")]
 		public ActionResult<string> Get(string id)
 		{
