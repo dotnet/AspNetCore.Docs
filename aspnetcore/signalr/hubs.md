@@ -5,7 +5,7 @@ description: Learn how to use hubs in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 01/16/2020
 no-loc: [SignalR]
 uid: signalr/hubs
 ---
@@ -167,6 +167,8 @@ The SignalR Hubs API provides the `OnConnectedAsync` and `OnDisconnectedAsync` v
 Override the `OnDisconnectedAsync` virtual method to perform actions when a client disconnects. If the client disconnects intentionally (by calling `connection.stop()`, for example), the `exception` parameter will be `null`. However, if the client is disconnected due to an error (such as a network failure), the `exception` parameter will contain an exception describing the failure.
 
 [!code-csharp[Handle disconnection](hubs/sample/hubs/chathub.cs?name=OnDisconnectedAsync)]
+
+[!INCLUDE[](~/includes/connectionid-signalr.md)]
 
 ## Handle errors
 
