@@ -221,20 +221,49 @@ See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer
 
 ### Use certificate authentication in Azure Web Apps
 
+No forwarding configuration is required for Azure. This is already setup in the certificate forwarding middleware.
+
+### Use certificate authentication in custom web proxies
+
 The `AddCertificateForwarding` method is used to specify:
 
 * The client header name.
 * How the certificate is to be loaded (using the `HeaderConverter` property).
 
-In Azure Web Apps, the certificate is passed as a custom request header named `X-ARR-ClientCert`. To use it, configure certificate forwarding in `Startup.ConfigureServices`:
+In custom web proxies, the certificate is passed as a custom request header for example `X-SSL-CERT`. To use it, configure certificate forwarding in `Startup.ConfigureServices`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddCertificateForwarding(options =>
     {
-        options.CertificateHeader = "X-ARR-ClientCert";
+        options.CertificateHeader = "X-SSL-CERT";
+        options.HeaderConverter = (headerValue) =>
+        {
+            X509Certificate2 clientCertificate = null;
+	    
+            if(!string.IsNullOrWhiteSpace(headerValue))
+            {
+                byte[] bytes = StringToByteArray(headerValue);
+                clientCertificate = new X509Certificate2(bytes);
+            }
+
+            return clientCertificate;
+        };
     });
+}
+
+private static byte[] StringToByteArray(string hex)
+{
+    int NumberChars = hex.Length;
+    byte[] bytes = new byte[NumberChars / 2];
+
+    for (int i = 0; i < NumberChars; i += 2)
+    {
+        bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+    }
+
+    return bytes;
 }
 ```
 
