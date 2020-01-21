@@ -230,7 +230,7 @@ The `AddCertificateForwarding` method is used to specify:
 * The client header name.
 * How the certificate is to be loaded (using the `HeaderConverter` property).
 
-In custom web proxies, the certificate is passed as a custom request header for example `X-SSL-CERT`. To use it, configure certificate forwarding in `Startup.ConfigureServices`:
+In custom web proxies, the certificate is passed as a custom request header, for example `X-SSL-CERT`. To use it, configure certificate forwarding in `Startup.ConfigureServices`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
