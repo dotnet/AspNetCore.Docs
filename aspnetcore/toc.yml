@@ -1,5 +1,7 @@
 - name: ASP.NET Core documentation
   href: /aspnet/#pivot=core
+- name: What's new in ASP.NET Core docs
+  href: whats-new/index.yml
 - name: Overview
   items:
     - name: About ASP.NET Core
@@ -10,7 +12,7 @@
       href: /dotnet/standard/choosing-core-framework-server?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
 - name: Get started
   uid: getting-started
-- name: What's new
+- name: Release notes
   items:
     - name: What's new in 3.1
       uid: aspnetcore-3.1
