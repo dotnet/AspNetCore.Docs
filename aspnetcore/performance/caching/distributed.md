@@ -34,6 +34,8 @@ To use a SQL Server distributed cache, add a package reference to the [Microsoft
 
 To use a Redis distributed cache, add a package reference to the [Microsoft.Extensions.Caching.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis) package.
 
+To use NCache distributed cache, add a package reference to the [NCache.Microsoft.Extensions.Caching.OpenSource](https://www.nuget.org/packages/NCache.Microsoft.Extensions.Caching.OpenSource) package.
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.2"
@@ -42,6 +44,8 @@ To use a SQL Server distributed cache, reference the [Microsoft.AspNetCore.App m
 
 To use a Redis distributed cache, reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) and add a package reference to the [Microsoft.Extensions.Caching.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis) package. The Redis package isn't included in the `Microsoft.AspNetCore.App` package, so you must reference the Redis package separately in your project file.
 
+To use NCache distributed cache, reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) and add a package reference to the [NCache.Microsoft.Extensions.Caching.OpenSource](https://www.nuget.org/packages/NCache.Microsoft.Extensions.Caching.OpenSource) package. The NCache package isn't included in the `Microsoft.AspNetCore.App` package, so you must reference the NCache package separately in your project file.
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-2.2"
@@ -49,6 +53,8 @@ To use a Redis distributed cache, reference the [Microsoft.AspNetCore.App metapa
 To use a SQL Server distributed cache, reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) or add a package reference to the [Microsoft.Extensions.Caching.SqlServer](https://www.nuget.org/packages/Microsoft.Extensions.Caching.SqlServer) package.
 
 To use a Redis distributed cache, reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) and add a package reference to the [Microsoft.Extensions.Caching.Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Redis) package. The Redis package isn't included in the `Microsoft.AspNetCore.App` package, so you must reference the Redis package separately in your project file.
+
+To use NCache distributed cache, reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) and add a package reference to the [NCache.Microsoft.Extensions.Caching.OpenSource](https://www.nuget.org/packages/NCache.Microsoft.Extensions.Caching.OpenSource) package. The NCache package isn't included in the `Microsoft.AspNetCore.App` package, so you must reference the NCache package separately in your project file.
 
 ::: moniker-end
 
@@ -68,6 +74,7 @@ Register an implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDi
 * [Distributed Memory Cache](#distributed-memory-cache)
 * [Distributed SQL Server cache](#distributed-sql-server-cache)
 * [Distributed Redis cache](#distributed-redis-cache)
+* [Distributed NCache cache](#distributed-ncache-cache)
 
 ### Distributed Memory Cache
 
@@ -170,6 +177,54 @@ To install Redis on your local machine:
 
 * Install the [Chocolatey Redis package](https://chocolatey.org/packages/redis-64/).
 * Run `redis-server` from a command prompt.
+
+### Distributed NCache Cache
+
+[NCache](https://github.com/Alachisoft/NCache) is an open source in-memory distributed cache developed natively in .NET and .NET Core. You can use NCache locally, and you can also configure NCache as a distributed cache cluster for your ASP.NET Core app running either in Azure or elsewhere.
+
+To install and configure NCache on your local machine you may follow [NCache Getting Started Guide for Windows](https://www.alachisoft.com/resources/docs/ncache-oss/getting-started-guide-windows/).
+
+To configure NCache within your application:
+
+- Install [NCache open source NuGet](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/).
+- Cache cluster information can be changed from [client.ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html) present with the application.
+- To use NCache from your application, add this in Startup.ConfigureServices:
+
+::: moniker range=">= aspnetcore-3.0"
+
+```csharp
+  services.AddNCacheDistributedCache(configuration =>    
+{        
+    configuration.CacheName = "demoClusteredCache";
+    configuration.EnableLogs = true;
+    configuration.ExceptionsEnabled = true;
+});
+```
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.2"
+
+```csharp
+  services.AddNCacheDistributedCache(configuration =>    
+{        
+    configuration.CacheName = "demoClusteredCache";
+    configuration.EnableLogs = true;
+    configuration.ExceptionsEnabled = true;
+});
+```
+::: moniker-end
+
+::: moniker range="< aspnetcore-2.2"
+
+```csharp
+  services.AddNCacheDistributedCache(configuration =>    
+{        
+    configuration.CacheName = "demoClusteredCache";
+    configuration.EnableLogs = true;
+    configuration.ExceptionsEnabled = true;
+});
+```
+::: moniker-end
 
 ## Use the distributed cache
 
