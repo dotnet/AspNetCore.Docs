@@ -175,8 +175,8 @@ services.AddDistributedRedisCache(options =>
 
 To install Redis on your local machine:
 
-* Install the [Chocolatey Redis package](https://chocolatey.org/packages/redis-64/).
-* Run `redis-server` from a command prompt.
+1. Install the [Chocolatey Redis package](https://chocolatey.org/packages/redis-64/).
+1. Run `redis-server` from a command prompt.
 
 ### Distributed NCache Cache
 
