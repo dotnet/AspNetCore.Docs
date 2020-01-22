@@ -17,7 +17,7 @@ You use these classes with [Entity Framework Core](/ef/core) (EF Core) to work w
 
 The model classes you create are known as POCO classes (from **P**lain **O**ld **C**LR **O**bjects) because they don't have any dependency on EF Core. They just define the properties of the data that will be stored in the database.
 
-In this tutorial, you write the model classes first, and EF Core creates the database. An alternate approach not covered here is to generate model classes from an existing database. For information about that approach, see [ASP.NET Core - Existing Database](/ef/core/get-started/aspnetcore/existing-db).
+In this tutorial, you write the model classes first, and EF Core creates the database.
 
 ::: moniker range=">= aspnetcore-3.0"
 
