@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core routing is responsible for matching HTTP 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/9/2020
+ms.date: 1/25/2020
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -630,6 +630,8 @@ From the current request, routing accesses the route values of the current reque
 
 <!-- Review: Original Provides ambient values (current request)  - Per MT Style guide, avoid () 
 Code comments don't MT, so I'm moving them outside.
+
+It would be really great to have a complete example for these.
 -->
 This following examples shows ambient values and explicit values. The following code provides ambient values from the current request and explicit values: `{ id = 17, }`:
 

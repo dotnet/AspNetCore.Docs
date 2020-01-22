@@ -3,7 +3,7 @@ title: Routing to controller actions in ASP.NET Core
 author: rick-anderson
 description: Learn how ASP.NET Core MVC uses Routing Middleware to match URLs of incoming requests and map them to actions.
 ms.author: riande
-ms.date: 12/05/2019
+ms.date: 1/25/2020
 uid: mvc/controllers/routing
 ---
 # Routing to controller actions in ASP.NET Core
@@ -12,18 +12,17 @@ By [Ryan Nowak](https://github.com/rynowak) and [Rick Anderson](https://twitter.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core Controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to actions. Routes templates are defined in startup code or attributes. Route templates describe how URL paths should be matched to actions. Route templates are also used to generate URLs (for links) sent out in responses.
+ASP.NET Core Controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to actions. Routes templates are defined in startup code or attributes. Route templates describe how URL paths should be matched to actions. Route templates are also used to generate URLs for links, returned in responses.
 
 Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. See [Mixed routing](#routing-mixed-ref-label) for more information.
 
-This document will explain the interactions between MVC and routing, and how typical MVC apps make use of routing features. See [Routing](xref:fundamentals/routing) for details on advanced routing.
+This document explains the interactions between MVC and routing, and how typical MVC apps make use of routing features. See [Routing](xref:fundamentals/routing) for details on advanced routing.
 
-> [!NOTE]
-> This documentation refers to the default routing system added in ASP.NET Core 3.0 called Endpoint Routing. It is still possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions. Refer to the 2.2 version of this document for reference material on the legacy routing system.
+This document refers to the default routing system added in ASP.NET Core 3.0 called Endpoint Routing. It is still possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions. Refer to the [2.2 version of this document](https://docs.microsoft.com/aspnet/core/mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
 
-## Setting up Routing Middleware
+## Set up routing middleware
 
-In your *Configure* method you may see code similar to:
+`Startup.Configure` typically has code similar to the following:
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -32,9 +31,9 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-Inside the call to `UseEndpoints`, `MapControllerRoute` is used to create a single route, which we'll refer to as the `default` route. Most apps with controllers will use a route with a template similar to the `default` route.
+Inside the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> is used to create a single route. The single route is named `default` route. Most apps with controllers use a route with a template similar to the `default` route.
 
-The route template `"{controller=Home}/{action=Index}/{id?}"` can match a URL path like `/Products/Details/5` and will extract the route values `{ controller = Products, action = Details, id = 5 }` by tokenizing the path. This result in a match if the app has a controller named `ProductsController` and an action `Details`:
+The route template `"{controller=Home}/{action=Index}/{id?}"` matches a URL path like `/Products/Details/5` and will extract the route values `{ controller = Products, action = Details, id = 5 }` by tokenizing the path. This results in a match if the app has a controller named `ProductsController` and a `Details` action :
 
 ```csharp
 public class ProductsController : Controller
@@ -43,7 +42,7 @@ public class ProductsController : Controller
 }
 ```
 
-Note that in this example, model binding would use the value of `id = 5` to set the `id` parameter to `5` when invoking this action. See the [Model Binding](xref:mvc/models/model-binding) for more details.
+In the preceding example,  `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. See the [Model Binding](xref:mvc/models/model-binding) for more details.
 
 Using the `default` route:
 
@@ -54,14 +53,12 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 The route template:
 
 * `{controller=Home}` defines `Home` as the default `controller`
-
 * `{action=Index}` defines `Index` as the default `action`
-
 * `{id?}` defines `id` as optional
 
 Default and optional route parameters don't need to be present in the URL path for a match. See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 
-`"{controller=Home}/{action=Index}/{id?}"` can match the URL path `/` and will produce the route values `{ controller = Home, action = Index }`. The values for `controller` and `action` make use of the default values, `id` doesn't produce a value since there's no corresponding segment in the URL path. This will only match if there exists a `HomeController` and `Index` action:
+`"{controller=Home}/{action=Index}/{id?}"` matches the URL path `/` and produces the route values `{ controller = Home, action = Index }`. The values for `controller` and `action` make use of the default values. `id` doesn't produce a value since there's no corresponding segment in the URL path. `/` will only match if there exists a `HomeController` and `Index` action:
 
 ```csharp
 public class HomeController : Controller
@@ -70,14 +67,11 @@ public class HomeController : Controller
 }
 ```
 
-Using this controller definition and route template, the `HomeController.Index` action would be executed for any of the following URL paths:
+Using the preceding controller definition and route template, the `HomeController.Index` action would be executed for the following URL paths:
 
 * `/Home/Index/17`
-
 * `/Home/Index`
-
 * `/Home`
-
 * `/`
 
 The convenience method `UseMvcWithDefaultRoute`:
@@ -86,20 +80,21 @@ The convenience method `UseMvcWithDefaultRoute`:
 endpoints.MapDefaultControllerRoute();
 ```
 
-Can be used to replace:
+Replaces:
 
 ```csharp
 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 ```
 
 Routing is configured using the `UseRouting()` and `UseEndpoints()` middleware. To use controllers:
-* Call `MapControllers()` inside `UseEndpoints()` to map attribute-routed controllers.
-* Call `MapControllerRoute()` (or similar) to map conventionally-routed controllers.
 
-Using `MapControllerRoute()` (or similar) will also map attribute-routed controllers.
+* Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> inside `UseEndpoints` to map attribute-routed controllers.
+* Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> or similar, to map conventionally-routed controllers.
+
+Using `MapControllerRoute` or similar also maps attribute-routed controllers.
 
 <a name="routing-conventional-ref-label"></a>
-
+<!-- zz-->
 ## Conventional routing
 
 The `default` route:
@@ -400,7 +395,7 @@ Information on route order in the Razor Pages topics is available at [Razor Page
 
 ## Token replacement in route templates ([controller], [action], [area])
 
-For convenience, attribute routes support *token replacement* for reserved route parameters by enclosing a token in square-braces (`[`, `]`) or curly-braces (`{`, `}`). The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined. In the following example, the actions match URL paths as described in the comments:
+For convenience, attribute routes support *token replacement* for reserved route parameters by enclosing a token in square-braces (`[`, `]`) or curly braces (`{`, `}`). The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined. In the following example, the actions match URL paths as described in the comments:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?range=7-11,13-17,20-22)]
 
@@ -1086,7 +1081,7 @@ public class HomeController : Controller
 
 ### Ordering attribute routes
 
-In contrast to conventional routes which execute in a defined order, attribute routing builds a tree and matches all routes simultaneously. This behaves as-if the route entries were placed in an ideal ordering; the most specific routes have a chance to execute before the more general routes.
+In contrast to conventional routes, which execute in a defined order, attribute routing builds a tree and matches all routes simultaneously. This behaves as-if the route entries were placed in an ideal ordering; the most specific routes have a chance to execute before the more general routes.
 
 For example, a route like `blog/search/{topic}` is more specific than a route like `blog/{*article}`. Logically speaking the `blog/search/{topic}` route 'runs' first, by default, because that's the only sensible ordering. Using conventional routing, the developer is  responsible for placing routes in the desired order.
 
@@ -1470,7 +1465,7 @@ Conceptually, `IActionConstraint` is a form of *overloading*, but instead of ove
 
 The simplest way to implement an `IActionConstraint` is to create a class derived from `System.Attribute` and place it on your actions and controllers. MVC will automatically discover any `IActionConstraint` that are applied as attributes. You can use the application model to apply constraints, and this is probably the most flexible approach as it allows you to metaprogram how they're applied.
 
-In the following example a constraint chooses an action based on a *country code* from the route data. The [full sample on GitHub](https://github.com/aspnet/Entropy/blob/master/samples/Mvc.ActionConstraintSample.Web/CountrySpecificAttribute.cs).
+In the following example, a constraint chooses an action based on a *country code* from the route data. The [full sample on GitHub](https://github.com/aspnet/Entropy/blob/master/samples/Mvc.ActionConstraintSample.Web/CountrySpecificAttribute.cs).
 
 ```csharp
 public class CountrySpecificAttribute : Attribute, IActionConstraint
