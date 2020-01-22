@@ -17,7 +17,8 @@ These tutorials and samples demonstrate authentication in ASP.NET Core using Mic
 * [Web app that signs in users](/azure/active-directory/develop/scenario-web-app-sign-user-overview?tabs=aspnetcore)
 * [Web app that calls web APIs](/azure/active-directory/develop/scenario-web-app-call-api-overview)
 * [Protected web API](/azure/active-directory/develop/scenario-protected-web-api-overview)
-* [A web API that calls other web APIs](/azure/active-directory/develop/scenario-web-api-call-api-overview)
+* [Web API that calls other web APIs](/azure/active-directory/develop/scenario-web-api-call-api-overview)
+* [Web app that signs in users with Azure AD B2C](xref:security/authentication/azure-ad-b2c)
 
 ## Samples
 

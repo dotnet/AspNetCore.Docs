@@ -898,6 +898,8 @@
                   href: /azure/active-directory/develop/scenario-protected-web-api-overview
                 - name: Web API that calls other web APIs
                   href: /azure/active-directory/develop/scenario-web-api-call-api-overview)
+                - name: Integrate Azure AD B2C into a web app
+                  uid: security/authentication/azure-ad-b2c
             - name: Samples
               items:
                 - name: Sign-in users and call web APIs using Azure AD V2
