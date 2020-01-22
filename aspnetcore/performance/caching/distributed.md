@@ -186,8 +186,6 @@ To install and configure NCache on your local machine, see [NCache Getting Start
 
 To configure NCache within your app:
 
-::: moniker range=">= aspnetcore-3.0"
-
 1. Install [NCache open source NuGet](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/).
 1. Configure the cache cluster in [client.ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html) (present with the app).
 1. Add the following code to `Startup.ConfigureServices`:
@@ -200,42 +198,6 @@ To configure NCache within your app:
        configuration.ExceptionsEnabled = true;
    });
    ```
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.2"
-
-1. Install [NCache open source NuGet](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/).
-1. Configure the cache cluster in [client.ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html) (present with the app).
-1. Add the following code to `Startup.ConfigureServices`:
-
-   ```csharp
-   services.AddNCacheDistributedCache(configuration =>    
-   {        
-       configuration.CacheName = "demoClusteredCache";
-       configuration.EnableLogs = true;
-       configuration.ExceptionsEnabled = true;
-   });
-   ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.2"
-
-1. Install [NCache open source NuGet](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/).
-1. Configure the cache cluster in [client.ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html) (present with the app).
-1. Add the following code to `Startup.ConfigureServices`:
-
-   ```csharp
-   services.AddNCacheDistributedCache(configuration =>    
-   {        
-       configuration.CacheName = "demoClusteredCache";
-       configuration.EnableLogs = true;
-       configuration.ExceptionsEnabled = true;
-   });
-   ```
-
-::: moniker-end
 
 ## Use the distributed cache
 
