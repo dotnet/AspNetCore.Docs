@@ -532,7 +532,6 @@ To use a custom `IRouteConstraint`, the route constraint type must be registered
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint.cs?name=snippet)]
 
-<!-- review: Provide an implementation of MyCustomConstraint -->
 The preceding constraint applied to a route in the following code:
 
 ```csharp
@@ -541,13 +540,14 @@ public ActionResult<string> Get(string id)
 ```
 
 The following code implements `MyCustomConstraint`:
+<!-- review: Review my implementation of MyCustomConstraint -->
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint.cs?name=snippet2)]
 
 The preceding code:
 
 * Shows how to implement a constraint similar to the the `:int` constraint.
-* Shouldn't be used in a real app. Use [HttpGet("{id:int}")] to constrain the `id` to integers only.
+* Shouldn't be used in a real app. Use `[HttpGet("{id:int}")]` to constrain the `id` to integers only.
 
 ## Parameter transformer reference
 
@@ -583,7 +583,7 @@ With the preceding route, the action `SubscriptionManagementController.GetAll` i
 
 ASP.NET Core provides API conventions for using a parameter transformers with generated routes:
 
-* ASP.NET Core MVC has the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention?displayProperty=fullName> API convention. This convention applies a specified parameter transformer to all attribute routes in the app. The parameter transformer transforms attribute route tokens as they are replaced. For more information, see [Use a parameter transformer to customize token replacement](xref:mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement).
+* The MVC <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention?displayProperty=fullName> convention applies a specified parameter transformer to all attribute routes in the app. The parameter transformer transforms attribute route tokens as they are replaced. For more information, see [Use a parameter transformer to customize token replacement](xref:mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement).
 * Razor Pages has the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention> API convention. This convention applies a specified parameter transformer to all automatically discovered Razor Pages. The parameter transformer transforms the folder and file name segments of Razor Pages routes. For more information, see [Use a parameter transformer to customize page routes](xref:razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes).
 
 ## URL generation reference
@@ -628,31 +628,31 @@ The role of the address scheme is to make the association between the address an
 
 From the current request, routing accesses the route values of the current request `HttpContext.Request.RouteValues`. The values associated with the current request are referred to as the **ambient values**. For the purpose of clarity, the documentation refers to the route values passed in to method as **explicit values**.
 
-
 <!-- Review: Original Provides ambient values (current request)  - Per MT Style guide, avoid () 
 Code comments don't MT, so I'm moving them outside.
 -->
-This following examples shows ambient values and explicit values. The following code provides ambient values from the current request and explicit values: `{ id = 17, }`.
+This following examples shows ambient values and explicit values. The following code provides ambient values from the current request and explicit values: `{ id = 17, }`:
 
 ```csharp
-... = linkGenerator.GetPathByName(httpContext, "subscribe", new { id = 17, });
+var url = _linkGenerator.GetPathByAction(httpContext, "subscribe", new { id = 17, });
 ```
 
-The following code provides no ambient values and explicit values: `{ id = 17, }`
+The following code provides no ambient values and explicit values: `{ id = 17, }`:
 
 ```csharp
-... = linkGenerator.GetPathByName("subscribe", new { id = 17, });
+var url = _linkGenerator.GetPathByAction("subscribe", new { id = 17, });
 ```
 
-The following code provides ambient values from the current request and explicit values: `{ action = "Edit, controller = "...", id = 17, }`
+The following code provides ambient values from the current request and explicit values: `{ action = "Edit, controller = "...", id = 17, }`:
 
 ```csharp
-... = urlHelper.Action("Edit", new { id = 17, });
+var url  = urlHelper.Action("Edit", new { id = 17, });
 ```
 
-The following code provides ambient values from the current request and explicit values: { page = "./Edit, id = 17, }
+The following code provides ambient values from the current request and explicit values: `{ page = "./Edit, id = 17, }`:
+
 ```csharp
-... = urlHelper.Page("./Edit", new { id = 17, });
+var url  = urlHelper.Page("./Edit", new { id = 17, });
 ```
 
 The behavior of MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> adds a layer of complexity in addition to the rules described here:
@@ -682,7 +682,7 @@ The best way to think about the role of ambient values is that they attempt to s
 * When linking to the same action method, route values don't need to be specified.
 * When linking to another part of the app, you don't want to carry over route values that have no meaning in that part of the app.
 
-Problems with URL generation, where a call to `LinkGenerator` or `IUrlHelper` returns `null`, are usually caused by misunderstanding with route value invalidation. Troubleshoot route value invalidation by explicitly specifying more of the route values to see if that solves the problem.
+Calls to `LinkGenerator` or `IUrlHelper` that return `null` are usually caused by not understanding route value invalidation. Troubleshoot route value invalidation by explicitly specifying more of the route values to see if that solves the problem.
 
 Route value invalidation works on the assumption that the app's URL scheme is hierarchical, with a hierarchy formed from left-to-right. Consider the the basic controller route template `{controller}/{action}/{id?}` to get an intuitive sense of how this works in practice. A **change** to a value **invalidates** all of the route values that appear to the right. This reflects the assumption about hierarchy. If the app:
 
@@ -697,7 +697,12 @@ Some examples demonstrating this principle:
 * If the explicit values contains a value for `action`, any ambient value for `action` is ignored. The ambient values for `controller` can be used. If the explicit value for `action` is different from the ambient value for `action`, the `id` value won't be used.  If the explicit value for `action` is the same as the ambient value for `action`, the `id` value can be used.
 * If the explicit values contains a value for `controller`, any ambient value for `controller` is ignored. If the explicit value for `controller` is different from the ambient value for `controller`, the `action` and `id` values won't be used. If the explicit value for `controller` is the same as the ambient value for `controller`, the `action` and `id` values can be used.
 
-This process is further complicated by the existence of attribute routes and dedicated conventional routes. Controller conventional routes such as `{controller}/{action}/{id?}` specify a hierarchy using route parameters. For dedicated conventional routes and attribute routes to controllers and Razor Pages, there is a hierarchy of route values, but they don't appear in the template. For these cases, URL generation defines the **required values** concept. Endpoints created by controllers and Razor Pages have required values specified that allow route value invalidation to work.
+This process is further complicated by the existence of attribute routes and dedicated conventional routes. Controller conventional routes such as `{controller}/{action}/{id?}` specify a hierarchy using route parameters. For dedicated conventional routes and attribute routes to controllers and Razor Pages:
+
+* There is a hierarchy of route values.
+* They don't appear in the template.
+
+For these cases, URL generation defines the **required values** concept. Endpoints created by controllers and Razor Pages have required values specified that allow route value invalidation to work.
 
 The route value invalidation algorithm in detail:
 

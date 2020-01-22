@@ -68,7 +68,8 @@ namespace RoutingSample
 
 			if (values.TryGetValue(routeKey, out object value))
 			{
-				var parameterValueString = Convert.ToString(value, CultureInfo.InvariantCulture);
+				var parameterValueString = Convert.ToString(value, 
+					                                        CultureInfo.InvariantCulture);
 				return new Regex(@"^[a-z]*$",
 								RegexOptions.CultureInvariant
 								| RegexOptions.IgnoreCase).IsMatch(parameterValueString);
