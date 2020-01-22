@@ -20,8 +20,19 @@ For a tutorial experience on publishing an ASP.NET Core app to an IIS server, se
 
 The following operating systems are supported:
 
+::: moniker range=">= aspnetcore-3.0"
+
+* Windows 7 or later
+* Windows Server 2012 R2 or later
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 * Windows 7 or later
 * Windows Server 2008 R2 or later
+
+::: moniker-end
 
 [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called WebListener) doesn't work in a reverse proxy configuration with IIS. Use the [Kestrel server](xref:fundamentals/servers/kestrel).
 
