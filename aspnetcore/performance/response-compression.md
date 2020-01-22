@@ -133,7 +133,7 @@ public class Startup
 
 Notes:
 
-* `app.UseResponseCompression` must be called before any middleware that should compress responses.
+* `app.UseResponseCompression` must be called before any middleware that should compress responses. For more information, see <xref:fundamentals/middleware/index#middleware-order>.
 * Use a tool such as [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/), or [Postman](https://www.getpostman.com/) to set the `Accept-Encoding` request header and study the response headers, size, and body.
 
 Submit a request to the sample app without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` and `Vary` headers aren't present on the response.
