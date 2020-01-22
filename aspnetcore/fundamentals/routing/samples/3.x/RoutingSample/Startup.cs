@@ -10,26 +10,26 @@ using Microsoft.Extensions.Hosting;
 
 namespace RoutingSample
 {
-	public class Startup
-	{
-		#region snippet
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-		{
-			if (env.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-			}
+    public class Startup
+    {
+        #region snippet
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
-			app.UseRouting();
+            app.UseRouting();
 
-			app.UseEndpoints(endpoints =>
-			{
-				endpoints.MapGet("/", async context =>
-				{
-					await context.Response.WriteAsync("Hello World!");
-				});
-			});
-		}
-		#endregion
-	}
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapGet("/", async context =>
+                {
+                    await context.Response.WriteAsync("Hello World!");
+                });
+            });
+        }
+        #endregion
+    }
 }

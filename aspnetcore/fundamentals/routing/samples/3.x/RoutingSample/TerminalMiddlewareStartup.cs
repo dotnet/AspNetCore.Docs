@@ -7,7 +7,7 @@ namespace RoutingSample
 {
     public class TerminalMiddlewareStartup
     {
-		#region snippet
+        #region snippet
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

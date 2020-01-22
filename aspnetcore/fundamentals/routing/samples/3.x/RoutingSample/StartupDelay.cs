@@ -6,55 +6,55 @@ using System.Diagnostics;
 
 namespace RoutingSample
 {
-	public class StartupDelay
-	{
-		public void ConfigureServices(IServiceCollection services)
-		{
-			services.AddAuthorization();
-		}
+    public class StartupDelay
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddAuthorization();
+        }
 
-		#region snippet
-		public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
-		{
-			app.Use(next => async context =>
-			{
-				var sw = Stopwatch.StartNew();
-				await next(context);
-				sw.Stop();
+        #region snippet
+        public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
+        {
+            app.Use(next => async context =>
+            {
+                var sw = Stopwatch.StartNew();
+                await next(context);
+                sw.Stop();
 
-				logger.LogInformation("Time 1: {ElapsedMilliseconds}ms", sw.ElapsedMilliseconds);
-			});
+                logger.LogInformation("Time 1: {ElapsedMilliseconds}ms", sw.ElapsedMilliseconds);
+            });
 
-			app.UseRouting();
+            app.UseRouting();
 
-			app.Use(next => async context =>
-			{
-				var sw = Stopwatch.StartNew();
-				await next(context);
-				sw.Stop();
+            app.Use(next => async context =>
+            {
+                var sw = Stopwatch.StartNew();
+                await next(context);
+                sw.Stop();
 
-				logger.LogInformation("Time 2: {ElapsedMilliseconds}ms", sw.ElapsedMilliseconds);
-			});
+                logger.LogInformation("Time 2: {ElapsedMilliseconds}ms", sw.ElapsedMilliseconds);
+            });
 
-			app.UseAuthorization();
+            app.UseAuthorization();
 
-			app.Use(next => async context =>
-			{
-				var sw = Stopwatch.StartNew();
-				await next(context);
-				sw.Stop();
+            app.Use(next => async context =>
+            {
+                var sw = Stopwatch.StartNew();
+                await next(context);
+                sw.Stop();
 
-				logger.LogInformation("Time 3: {ElapsedMilliseconds}ms", sw.ElapsedMilliseconds);
-			});
+                logger.LogInformation("Time 3: {ElapsedMilliseconds}ms", sw.ElapsedMilliseconds);
+            });
 
-			app.UseEndpoints(endpoints =>
-			{
-				endpoints.MapGet("/", async context =>
-				{
-					await context.Response.WriteAsync("Timing test.");
-				});
-			});
-		}
-		#endregion
-	}
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapGet("/", async context =>
+                {
+                    await context.Response.WriteAsync("Timing test.");
+                });
+            });
+        }
+        #endregion
+    }
 }
