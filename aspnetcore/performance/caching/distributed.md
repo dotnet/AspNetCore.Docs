@@ -10,7 +10,7 @@ uid: performance/caching/distributed
 ---
 # Distributed caching in ASP.NET Core
 
-By [Luke Latham](https://github.com/guardrex), [](https://github.com/mohsinnasir), and [Steve Smith](https://ardalis.com/)
+By [Luke Latham](https://github.com/guardrex), [Mohsin Nasir](https://github.com/mohsinnasir), and [Steve Smith](https://ardalis.com/)
 
 A distributed cache is a cache shared by multiple app servers, typically maintained as an external service to the app servers that access it. A distributed cache can improve the performance and scalability of an ASP.NET Core app, especially when the app is hosted by a cloud service or a server farm.
 
