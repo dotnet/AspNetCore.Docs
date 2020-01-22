@@ -20,6 +20,7 @@ namespace MvcMovie
 
 #if NotSQLite
         #region snippet_ConfigureServices
+        // 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
