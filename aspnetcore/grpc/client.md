@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to call gRPC services with the .NET gRPC client.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 08/21/2019
+ms.date: 01/22/2020
 uid: grpc/client
 ---
 # Call gRPC services with the .NET client
@@ -93,7 +93,7 @@ using (var call = client.SayHellos(new HelloRequest { Name = "World" }))
 }
 ```
 
-If you are using C# 8 or later, the `await foreach` syntax can be used to read messages. The `IAsyncStreamReader<T>.ReadAllAsync()` extension method reads all messages from the response stream:
+If you're using C# 8 or later, the `await foreach` syntax can be used to read messages. The `IAsyncStreamReader<T>.ReadAllAsync()` extension method reads all messages from the response stream:
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
@@ -109,7 +109,7 @@ using (var call = client.SayHellos(new HelloRequest { Name = "World" }))
 
 ### Client streaming call
 
-A client streaming call starts *without* the client sending a message. The client can choose to send messages with `RequestStream.WriteAsync`. When the client has finished sending messages `RequestStream.CompleteAsync` should be called to notify the service. The call is finished when the service returns a response message.
+A client streaming call starts *without* the client sending a message. The client can choose to send messages with `RequestStream.WriteAsync`. When the client has finished sending messages, `RequestStream.CompleteAsync` should be called to notify the service. The call is finished when the service returns a response message.
 
 ```csharp
 var client = new Counter.CounterClient(channel);
