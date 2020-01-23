@@ -504,3 +504,4 @@ needs to be installed and configured for the application.
 ## Additional resources
 
 * [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS)
+* [Getting started with the IIS CORS module](https://blogs.iis.net/iisteam/getting-started-with-the-iis-cors-module)
