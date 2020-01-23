@@ -4,7 +4,7 @@ author: rick-anderson
 description: This tutorial demonstrates how to build an ASP.NET Core app using OAuth 2.0 with external authentication providers.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/21/2019
+ms.date: 01/23/2020
 uid: security/authentication/social/index
 ---
 # Facebook, Google, and external provider authentication in ASP.NET Core
@@ -29,7 +29,7 @@ For examples of how social logins can drive traffic and customer conversions, se
 * Create a new project.
 * Select **ASP.NET Core Web Application** and **Next**.
 * Provide a **Project name** and confirm or change the **Location**. Select **Create**.
-* Select **ASP.NET Core 3.1** in the drop-down, and then select **Web Application**.
+* Select the latest version of ASP.NET Core in the drop-down (**ASP.NET Core {X.Y}**), and then select **Web Application**.
 * Under **Authentication**, select **Change** and set the authentication to **Individual User Accounts**. Select **OK**.
 * In the **Create a new ASP.NET Core Web Application** window, select **Create**.
 
