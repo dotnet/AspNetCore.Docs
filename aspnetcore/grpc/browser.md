@@ -86,7 +86,7 @@ var client = Greeter.GreeterClient(channel);
 var response = await client.SayHelloAsync(new GreeterRequest { Name = ".NET" });
 ```
 
-The `GrpcWebHandler` has some configuration options when it is created:
+`GrpcWebHandler` has the following configuration options when created:
 
 * **InnerHandler** - The underlying <xref:System.Net.Http.HttpMessageHandler> that will make the HTTP call, for example, `HttpClientHandler`.
 * **Mode** - `GrpcWebMode` enum. `GrpcWebMode.GrpcWebText` configures content to be base64 encoded, which is required to support server streaming calls.
