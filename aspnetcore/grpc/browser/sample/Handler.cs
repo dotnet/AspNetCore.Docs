@@ -1,4 +1,4 @@
-#region snippet
+#region snippet_1
 var handler = new GrpcWebHandler(GrpcWebMode.GrpcWebText, new HttpClientHandler());
 var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions
     {
