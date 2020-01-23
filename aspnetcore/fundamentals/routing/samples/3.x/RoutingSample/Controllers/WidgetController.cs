@@ -20,12 +20,12 @@ namespace RoutingSample.Controllers
                                                      new { id = 17, });
             return Content(url);
         }
+        #endregion
 
         public IActionResult Subscribe(int id)
         {
             return Content("WidgetController:" + id.ToString());
         }
-        #endregion
 
         #region snippet2
         public IActionResult Index2()

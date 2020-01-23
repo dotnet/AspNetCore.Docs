@@ -643,7 +643,7 @@ The following code provides no ambient values and explicit values: `{ id = 17, }
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs?name=snippet2)]
 
-The preceding code returns `/Home/Subscribe/17`
+The preceding `Index` method returns `/Home/Subscribe/17`
 
 The following code in the `WidgetController` returns `/Widget/Subscribe/17`:
 
@@ -653,22 +653,29 @@ The following code provides the controller from ambient values in the current re
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/GadgetController.cs?name=snippet)]
 
+In the preceding code:
+
+* `/Gadget/Edit/17` is returned.
+* <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Url> gets the <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>.
+* <xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action*>  Object)	
+generates a URL with an absolute path for an action method. The URL contains the specified `action` name and `route` values.
+
 The following code provides ambient values from the current request and explicit values: `{ page = "./Edit, id = 17, }`:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Pages/Index.cshtml.cs?name=snippet)]
 
-The preceding code set `url` to  `/Edit/17` when the Edit Razor Page contains the following page directive:
+The preceding code sets `url` to  `/Edit/17` when the Edit Razor Page contains the following page directive:
 
  `@page "{id:int}"`
 
-If the Edit page don't contain the "{id:int}" route template, `url` is `/Edit?id=17`.
+If the Edit page don't contain the `"{id:int}"` route template, `url` is `/Edit?id=17`.
 
 The behavior of MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> adds a layer of complexity in addition to the rules described here:
 
 * `IUrlHelper` always provides the route values from the current request as ambient values.
-* `IUrlHelper.Action` always copies the current `action` and `controller` route values as explicit values unless overridden by the user. <!-- review - the client using the app? Example of overriding ?-->
-* `IUrlHelper.Page` always copies the current `page` route value as an explicit values unless overridden by the user.
-* `IUrlHelper.Page` always overrides the current `handler` route value with `null` as an explicit values unless overridden by the user.
+* [IUrlHelper.Action](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action*) always copies the current `action` and `controller` route values as explicit values unless overridden by the user. <!-- review next bullet- unless overridden by the user? Who's the user? The developer? I think you mean developer, explicitly. the client using the app? User is ambiguous. The end user on the web page? ?-->
+* [IUrlHelper.Page](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Page*) always copies the current `page` route value as an explicit values unless overridden. <!--by the user-->.
+* `IUrlHelper.Page` always overrides the current `handler` route value with `null` as an explicit values unless overridden. <!-- by the user. -->
 
 Users are often surprised by the behavioral details of ambient values, because MVC doesn't seem to follow its own rules. For historical and compatibility reasons certain route values  such as `action`, `controller`, `page`, and `handler` have their own special-case behavior.
 
@@ -967,9 +974,9 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 * Supports a basic and descriptive routing scheme.
 * Is a useful starting point for UI-based apps.
 
-Developers commonly add additional terse routes to high-traffic areas of an app in specialized situations (for example, blog and ecommerce endpoints) using [attribute routing](xref:mvc/controllers/routing#attribute-routing) or dedicated conventional routes.
+Developers commonly add additional terse routes to high-traffic areas of an app in specialized situations using [attribute routing](xref:mvc/controllers/routing#attribute-routing) or dedicated conventional routes. Specialized situations examples include, blog and ecommerce endpoints.
 
-Web APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations (for example, GET, POST) on the same logical resource will use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
+Web APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations, for example, GET, and POST, on the same logical resource use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
 
 Razor Pages apps use default conventional routing to serve named resources in the *Pages* folder of an app. Additional conventions are available that allow you to customize Razor Pages routing behavior. For more information, see <xref:razor-pages/index> and <xref:razor-pages/razor-pages-conventions>.
 
