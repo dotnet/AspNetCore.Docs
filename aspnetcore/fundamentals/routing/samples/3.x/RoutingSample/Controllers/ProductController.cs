@@ -5,11 +5,12 @@ using Microsoft.Extensions.Logging;
 namespace RoutingSample.Controllers
 {
     #region snippet
-    public class HomeController : Controller
+    [Host("contoso.com", "adventure-works.com")]
+    public class ProductController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public ProductController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
@@ -19,15 +20,11 @@ namespace RoutingSample.Controllers
             return View();
         }
 
+        [Host("example.com:8080")]
         public IActionResult Privacy()
         {
             return View();
         }
-        #endregion
-
-        public IActionResult Subscribe(int id)
-        {
-            return Content("Home:" + id.ToString());
-        }
     }
+    #endregion
 }

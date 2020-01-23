@@ -635,27 +635,33 @@ It would be really great to have a complete example for these.
 -->
 This following examples shows ambient values and explicit values. The following code provides ambient values from the current request and explicit values: `{ id = 17, }`:
 
-```csharp
-var url = _linkGenerator.GetPathByAction(httpContext, "subscribe", new { id = 17, });
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs?name=snippet)]
+
+The preceding code returns `/Widget/Index/17`
 
 The following code provides no ambient values and explicit values: `{ id = 17, }`:
 
-```csharp
-var url = _linkGenerator.GetPathByAction("subscribe", new { id = 17, });
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs?name=snippet2)]
 
-The following code provides ambient values from the current request and explicit values: `{ action = "Edit, controller = "...", id = 17, }`:
+The preceding code returns `/Home/Subscribe/17`
 
-```csharp
-var url  = urlHelper.Action("Edit", new { id = 17, });
-```
+The following code in the `WidgetController` returns `/Widget/Subscribe/17`:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs?name=snippet3)]
+
+The following code provides the controller from ambient values in the current request and explicit values: `{ action = "Edit, id = 17, }`:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/GadgetController.cs?name=snippet)]
 
 The following code provides ambient values from the current request and explicit values: `{ page = "./Edit, id = 17, }`:
 
-```csharp
-var url  = urlHelper.Page("./Edit", new { id = 17, });
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/Pages/Index.cshtml.cs?name=snippet)]
+
+The preceding code set `url` to  `/Edit/17` when the Edit Razor Page contains the following page directive:
+
+ `@page "{id:int}"`
+
+If the Edit page don't contain the "{id:int}" route template, `url` is `/Edit?id=17`.
 
 The behavior of MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> adds a layer of complexity in addition to the rules described here:
 
@@ -780,7 +786,7 @@ The following code uses `RequireHost` to require the specified host on the route
 
 The following code uses the `[Host]` attribute to require the specified host on the controller:
 
-[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/HomeController.cs?name=snippet)]
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/ProductController.cs?name=snippet)]
 
 When the `[Host]` attribute is applied to both the controller and action method:
 

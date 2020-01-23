@@ -22,9 +22,10 @@ namespace RoutingSample
                     // webBuilder.UseStartup<MiddlewareFlowStartup>();
                     // webBuilder.UseStartup<TerminalMiddlewareStartup>();
                     // webBuilder.UseStartup<StartupDelay>();
-                    webBuilder.UseStartup<StartupSW>();
+                    //webBuilder.UseStartup<StartupSW>();
                     // webBuilder.UseStartup<StartupCustomConstraint>();
-
+                    //webBuilder.UseStartup<StartupUnsupported>();
+                    webBuilder.UseStartup<StartupMVC>();
                 });
     }
 }
