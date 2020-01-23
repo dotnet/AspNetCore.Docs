@@ -29,7 +29,7 @@ For examples of how social logins can drive traffic and customer conversions, se
 * Create a new project.
 * Select **ASP.NET Core Web Application** and **Next**.
 * Provide a **Project name** and confirm or change the **Location**. Select **Create**.
-* Select **ASP.NET Core 3.0** in the drop-down, and then select **Web Application**.
+* Select **ASP.NET Core 3.1** in the drop-down, and then select **Web Application**.
 * Under **Authentication**, select **Change** and set the authentication to **Individual User Accounts**. Select **OK**.
 * In the **Create a new ASP.NET Core Web Application** window, select **Create**.
 
