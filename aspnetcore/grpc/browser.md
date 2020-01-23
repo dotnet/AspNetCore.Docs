@@ -64,11 +64,7 @@ The preceding code:
 * Configures a channel to use gRPC-Web.
 * Creates a client and makes a call using the channel.
 
-<<<<<<< HEAD
 The `GrpcWebHandler` has the following configuration options when created:
-=======
-`GrpcWebHandler` has the following configuration options when created:
->>>>>>> aecbe72b22e038a3e9bdc4de6cc3e732285c3f04
 
 * **InnerHandler** - The underlying <xref:System.Net.Http.HttpMessageHandler> that will make the HTTP call, for example, `HttpClientHandler`.
 * **Mode** - `GrpcWebMode` enum. `GrpcWebMode.GrpcWebText` configures content to be base64 encoded, which is required to support server streaming calls.
