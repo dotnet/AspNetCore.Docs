@@ -5,7 +5,7 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 01/23/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/class-libraries
 ---
@@ -39,6 +39,17 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
    1. Right-click the app project. Select **Add** > **Reference**.
    1. Select the RCL project. Select **OK**.
 
+> [!NOTE]
+> If the **Support pages and views** check box is selected when generating the RCL from the template, the generated project doesn't include the *_Imports.razor* file with the following contents:
+>
+> ```razor
+> @using Microsoft.AspNetCore.Components.Web
+> ```
+>
+> Manually add the file the root of the generated project.
+>
+> This issue will be addressed in a future release of ASP.NET Core. For more information, see [RCL template either supports MVC OR supports Components (dotnet/aspnetcore #17870)](https://github.com/dotnet/aspnetcore/issues/17870).
+
 # [.NET Core CLI](#tab/netcore-cli)
 
 1. Use the **Razor Class Library** template (`razorclasslib`) with the [dotnet new](/dotnet/core/tools/dotnet-new) command in a command shell. In the following example, an RCL is created named `MyComponentLib1`. The folder that holds `MyComponentLib1` is created automatically when the command is executed:
@@ -46,6 +57,18 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
    ```dotnetcli
    dotnet new razorclasslib -o MyComponentLib1
    ```
+
+   > [!NOTE]
+   > If the `-s|--support-pages-and-views` switch is used when generating the RCL from the template, the generated project doesn't include the *_Imports.razor* file with the following contents:
+   >
+   > ```razor
+   > @using Microsoft.AspNetCore.Components.Web
+   > ```
+   >
+   > Manually add the file the root of the generated project.
+   >
+   > This issue will be addressed in a future release of ASP.NET Core. For more information, see [RCL template either supports MVC OR supports Components (dotnet/aspnetcore #17870)](https://github.com/dotnet/aspnetcore/issues/17870).
+   
 
 1. To add the library to an existing project, use the [dotnet add reference](/dotnet/core/tools/dotnet-add-reference) command in a command shell. In the following example, the RCL is added to the app. Execute the following command from the app's project folder with the path to the library:
 
