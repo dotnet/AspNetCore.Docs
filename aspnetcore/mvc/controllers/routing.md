@@ -12,13 +12,17 @@ By [Ryan Nowak](https://github.com/rynowak) and [Rick Anderson](https://twitter.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core Controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to actions. Routes templates are defined in startup code or attributes. Route templates describe how URL paths should be matched to actions. Route templates are also used to generate URLs for links, returned in responses.
+ASP.NET Core Controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to actions. Routes templates:
+
+* Are defined in startup code or attributes.
+* Describe how URL paths are matched to actions.
+* Are used to generate URLs for links. The generated links are returned in responses.
 
 Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. See [Mixed routing](#routing-mixed-ref-label) for more information.
 
-This document explains the interactions between MVC and routing, and how typical MVC apps make use of routing features. See [Routing](xref:fundamentals/routing) for details on advanced routing.
+This document explains the interactions between MVC and routing, and how typical MVC apps make use of routing features. See [Routing](xref:fundamentals/routing) for advanced routing details.
 
-This document refers to the default routing system added in ASP.NET Core 3.0 called Endpoint Routing. It is still possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions. Refer to the [2.2 version of this document](https://docs.microsoft.com/aspnet/core/mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
+This document refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions. Refer to the [2.2 version of this document](https://docs.microsoft.com/aspnet/core/mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
 
 ## Set up routing middleware
 
@@ -33,32 +37,30 @@ app.UseEndpoints(endpoints =>
 
 Inside the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> is used to create a single route. The single route is named `default` route. Most apps with controllers use a route with a template similar to the `default` route.
 
-The route template `"{controller=Home}/{action=Index}/{id?}"` matches a URL path like `/Products/Details/5` and will extract the route values `{ controller = Products, action = Details, id = 5 }` by tokenizing the path. This results in a match if the app has a controller named `ProductsController` and a `Details` action :
+The route template `"{controller=Home}/{action=Index}/{id?}"`:
 
-```csharp
-public class ProductsController : Controller
-{
-   public IActionResult Details(int id) { ... }
-}
-```
+* Matches a URL path like `/Products/Details/5`
+* Extracts the route values `{ controller = Products, action = Details, id = 5 }` by tokenizing the path. The extraction of route values results in a match if the app has a controller named `ProductsController` and a `Details` action :
 
-In the preceding example,  `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. See the [Model Binding](xref:mvc/models/model-binding) for more details.
+  ```csharp
+  public class ProductsController : Controller
+  {
+     public IActionResult Details(int id)
+     {
+  ```
 
-Using the `default` route:
+  * `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. See the [Model Binding](xref:mvc/models/model-binding) for more details.
 
-```csharp
-endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-```
+* `{controller=Home}` defines `Home` as the default `controller`.
+* `{action=Index}` defines `Index` as the default `action`.
+* `{id?}` defines `id` as optional.
 
-The route template:
+  * Default and optional route parameters don't need to be present in the URL path for a match. See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 
-* `{controller=Home}` defines `Home` as the default `controller`
-* `{action=Index}` defines `Index` as the default `action`
-* `{id?}` defines `id` as optional
+* Matches the URL path `/`.
+* Produces the route values `{ controller = Home, action = Index }`.
 
-Default and optional route parameters don't need to be present in the URL path for a match. See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
-
-`"{controller=Home}/{action=Index}/{id?}"` matches the URL path `/` and produces the route values `{ controller = Home, action = Index }`. The values for `controller` and `action` make use of the default values. `id` doesn't produce a value since there's no corresponding segment in the URL path. `/` will only match if there exists a `HomeController` and `Index` action:
+The values for `controller` and `action` make use of the default values. `id` doesn't produce a value since there's no corresponding segment in the URL path. `/` only matches if there exists a `HomeController` and `Index` action:
 
 ```csharp
 public class HomeController : Controller
@@ -67,7 +69,7 @@ public class HomeController : Controller
 }
 ```
 
-Using the preceding controller definition and route template, the `HomeController.Index` action would be executed for the following URL paths:
+Using the preceding controller definition and route template, the `HomeController.Index` action would is run for the following URL paths:
 
 * `/Home/Index/17`
 * `/Home/Index`
@@ -86,7 +88,7 @@ Replaces:
 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 ```
 
-Routing is configured using the `UseRouting()` and `UseEndpoints()` middleware. To use controllers:
+Routing is configured using the `UseRouting` and `UseEndpoints` middleware. To use controllers:
 
 * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> inside `UseEndpoints` to map attribute-routed controllers.
 * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> or similar, to map conventionally-routed controllers.
@@ -847,13 +849,12 @@ The `default` route:
 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
 ```
 
-is an example of a *conventional routing*. We call this style *conventional routing* because it establishes a *convention* for URL paths:
+The preceding code is an example of a conventional routing. This style is called conventional routing because it establishes a *convention* for URL paths:
 
-* the first path segment maps to the controller name
+* The first path segment maps to the controller name.
+* The second maps to the action name.
+* The third segment is used for an optional `id`. `id` maps to a model entity.
 
-* the second maps to the action name.
-
-* the third segment is used for an optional `id` used to map to a model entity
 
 Using this `default` route, the URL path `/Products/List` maps to the `ProductsController.List` action, and `/Blog/Article/17` maps to `BlogController.Article`. This mapping is based on the controller and action names **only** and isn't based on namespaces, source file locations, or method parameters.
 
