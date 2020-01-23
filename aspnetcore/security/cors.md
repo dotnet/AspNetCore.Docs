@@ -496,6 +496,11 @@ CORS-enabled endpoints can be tested with a tool, such as [Fiddler](https://www.
 * There's no need for CORS Middleware to process the request.
 * CORS headers aren't returned in the response.
 
+## IIS CORS
+
+When deploying to IIS, CORS has to run before Windows Auth if the server is not configured to allow anonymous access. In order to support this scenario, the [IIS CORS module](https://www.iis.net/downloads/microsoft/iis-cors-module)
+needs to be installed and configured for the application.
+
 ## Additional resources
 
 * [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS)
