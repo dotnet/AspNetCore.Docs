@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/13/2020
+ms.date: 01/23/2020
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -917,7 +917,7 @@ Given the example data, `sectionExists` is `false` because there isn't a `sectio
 
 Configuration can be bound to classes that represent groups of related settings using the *options pattern*. For more information, see <xref:fundamentals/configuration/options>.
 
-Configuration values are returned as strings, but calling <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> enables the construction of [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) objects.
+Configuration values are returned as strings, but calling <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> enables the construction of [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) objects. The binder binds values to all of the public read/write properties of the type provided. Fields are **not** bound.
 
 The sample app contains a `Starship` model (*Models/Starship.cs*):
 
@@ -974,7 +974,7 @@ The sample app calls `GetSection` with the `starship` key. The `starship` key-va
 
 ## Bind to an object graph
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> is capable of binding an entire POCO object graph.
+<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> is capable of binding an entire POCO object graph. As with binding a simple object, only public read/write properties are bound.
 
 The sample contains a `TvShow` model whose object graph includes `Metadata` and `Actors` classes (*Models/TvShow.cs*):
 
