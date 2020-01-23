@@ -88,7 +88,7 @@ var response = await client.SayHelloAsync(new GreeterRequest { Name = ".NET" });
 
 The `GrpcWebHandler` has some configuration options when it is created:
 
-* **InnerHandler** - The underlying <xref:System.Net.Http.HttpMessageHandler> that will make the HTTP call, e.g. `HttpClientHandler`.
+* **InnerHandler** - The underlying <xref:System.Net.Http.HttpMessageHandler> that will make the HTTP call, for example, `HttpClientHandler`.
 * **Mode** - `GrpcWebMode` enum. `GrpcWebMode.GrpcWebText` configures content to be base64 encoded, which is required to support server streaming calls.
 * **HttpVersion** - HTTP protocol `Version`. gRPC-Web doesn't require a specific protocol and won't specify one when making a request unless configured.
 
