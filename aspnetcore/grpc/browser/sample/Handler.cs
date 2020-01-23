@@ -8,3 +8,4 @@ var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOp
 var client = Greeter.GreeterClient(channel);
 var response = await client.SayHelloAsync(new GreeterRequest { Name = ".NET" });
 #endregion
+

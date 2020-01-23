@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to configure gRPC services on ASP.NET Core to be callable from browser apps using gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 01/23/2020
+ms.date: 01/20/2020
 uid: grpc/browser
 ---
 # gRPC in browser apps
@@ -16,7 +16,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 >
 > gRPC-Web for .NET is an experimental project, not a commited product. We want to test that our approach to implementing gRPC-Web works, and get feedback on if this approach is useful to .NET developers compared to the traditional way of setting up gRPC-Web via a proxy. Please add your feedback at [https://github.com/grpc/grpc-dotnet](https://github.com/grpc/grpc-dotnet) to ensure we build something that developers love and are productive with.
 
-It's not possible to call a HTTP/2 gRPC service from a browser-based app. [gRPC-Web](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) is a protocol that allows browser JavaScript and Blazor apps to call gRPC services. This article explains how to use gRPC-Web in .NET Core.
+It is not possible to call a HTTP/2 gRPC service from a browser-based app. [gRPC-Web](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) is a protocol that allows browser JavaScript and Blazor apps to call gRPC services. This article explains how to use gRPC-Web in .NET Core.
 
 ## Configure gRPC-Web in ASP.NET Core
 
@@ -64,7 +64,11 @@ The preceding code:
 * Configures a channel to use gRPC-Web.
 * Creates a client and makes a call using the channel.
 
+<<<<<<< HEAD
 The `GrpcWebHandler` has the following configuration options when created:
+=======
+`GrpcWebHandler` has the following configuration options when created:
+>>>>>>> aecbe72b22e038a3e9bdc4de6cc3e732285c3f04
 
 * **InnerHandler** - The underlying <xref:System.Net.Http.HttpMessageHandler> that will make the HTTP call, for example, `HttpClientHandler`.
 * **Mode** - `GrpcWebMode` enum. `GrpcWebMode.GrpcWebText` configures content to be base64 encoded, which is required to support server streaming calls.
