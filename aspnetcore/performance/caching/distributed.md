@@ -184,10 +184,10 @@ To install Redis on your local machine:
 
 To install and configure NCache on your local machine, see [NCache Getting Started Guide for Windows](https://www.alachisoft.com/resources/docs/ncache-oss/getting-started-guide-windows/).
 
-To configure NCache within your app:
+To configure NCache:
 
 1. Install [NCache open source NuGet](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/).
-1. Configure the cache cluster in [client.ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html) (present with the app).
+1. Configure the cache cluster in [client.ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html).
 1. Add the following code to `Startup.ConfigureServices`:
 
    ```csharp
