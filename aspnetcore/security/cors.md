@@ -498,7 +498,7 @@ CORS-enabled endpoints can be tested with a tool, such as [Fiddler](https://www.
 
 ## CORS in IIS
 
-When deploying to IIS, CORS has to run before Windows Auth if the server isn't configured to allow anonymous access. To support this scenario, the [IIS CORS module](https://www.iis.net/downloads/microsoft/iis-cors-module)
+When deploying to IIS, CORS has to run before Windows Authentication if the server isn't configured to allow anonymous access. To support this scenario, the [IIS CORS module](https://www.iis.net/downloads/microsoft/iis-cors-module)
 needs to be installed and configured for the app.
 
 ## Additional resources
