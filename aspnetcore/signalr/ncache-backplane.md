@@ -7,7 +7,7 @@ ms.author: Brad Rehman
 ms.custom: mvc
 ms.date: 01/24/2020
 no-loc: [SignalR]
-uid: signalr/redis-backplane
+uid: signalr/ncache-backplane
 ---
 
 # Set up an NCache backplane for ASP.NET Core SignalR scale-out
