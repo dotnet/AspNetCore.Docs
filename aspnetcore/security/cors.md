@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/13/2019
+ms.date: 01/23/2020
 uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
@@ -496,10 +496,10 @@ CORS-enabled endpoints can be tested with a tool, such as [Fiddler](https://www.
 * There's no need for CORS Middleware to process the request.
 * CORS headers aren't returned in the response.
 
-## IIS CORS
+## CORS in IIS
 
-When deploying to IIS, CORS has to run before Windows Auth if the server is not configured to allow anonymous access. In order to support this scenario, the [IIS CORS module](https://www.iis.net/downloads/microsoft/iis-cors-module)
-needs to be installed and configured for the application.
+When deploying to IIS, CORS has to run before Windows Auth if the server isn't configured to allow anonymous access. To support this scenario, the [IIS CORS module](https://www.iis.net/downloads/microsoft/iis-cors-module)
+needs to be installed and configured for the app.
 
 ## Additional resources
 
