@@ -123,7 +123,7 @@ The properties and items in the following table are used to configure inputs and
 | `GenerateMvcApplicationPartsAssemblyAttributes` | When `true`, the SDK generates additional attributes used by MVC at runtime to perform application part discovery. |
 | `DefaultWebContentItemExcludes` | A globbing pattern for item elements that are to be excluded from the `Content` item group in projects targeting the Web or Razor SDK |
 | `ExcludeConfigFilesFromBuildOutput` | When `true`, *.config* and *.json* files do not get copied to the build output directory. |
-| `AddRazorSupportForMvc` | When `true`, configure the Razor SDK to add support for the MVC configuration that is required when building applications containing MVC views or Razor Pages. This property is implicitly set for .NET Core 3.0 or later projects targeting the Web SDK |
+| `AddRazorSupportForMvc` | When `true`, configures the Razor SDK to add support for the MVC configuration that is required when building applications containing MVC views or Razor Pages. This property is implicitly set for .NET Core 3.0 or later projects targeting the Web SDK |
 | `RazorLangVersion` | The version of the Razor Language to target. |
 
 For more information on properties, see [MSBuild properties](/visualstudio/msbuild/msbuild-properties).
