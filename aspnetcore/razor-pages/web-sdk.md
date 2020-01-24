@@ -4,6 +4,7 @@ author: Rick-Anderson
 description: Overview of Microsoft.NET.Sdk.Web.
 ms.author: riande
 ms.date: 2/27/2020
+no-loc: [Blazor]
 uid: razor-pages/web-sdk
 ---
 
