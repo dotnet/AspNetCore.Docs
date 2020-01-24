@@ -1,6 +1,6 @@
 ---
 title: NCache backplane for ASP.NET Core SignalR scale-out
-author: Brad Rehman
+author: Obaid-Rehman
 description: Learn how to set up an NCache backplane to enable scale-out for an ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: Brad Rehman
@@ -46,7 +46,7 @@ NCache extends the [ISignalRServerBuilder](https://docs.microsoft.com/en-us/dotn
 
 ::: moniker-end
 
-Following are the steps to introduce NCache as a backplane in the SignalR app:
+You can introduce NCache as a backplane in the SignalR app by taking the following steps:
 
 * In the SignalR app, install the `AspNetCore.SignalR.NCache` NuGet package.
 * To utilize the extension, include the following namespaces in your application in Startup.cs:
@@ -79,7 +79,7 @@ Following are the steps to introduce NCache as a backplane in the SignalR app:
   
 * Configure options as needed:
  
-  The parameters for configuring the NCache handle the SignalR app uses to connect with the NCache backplane are done via the [client.ncconf](https://www.alachisoft.com/resources/docs/ncache-pro/admin-guide/client-config.html) file that should be included in the final build. The relevant access parameters to include are the IP addresses and ports of the server(s) making up the distributed NCache backplane as well as configuration information such as connection retry interval, maximum number of connection attemps to make in case of disconnection etc. 
+  The parameters for configuring the NCache handle that the SignalR app uses to connect with the NCache backplane are done via the [*client.ncconf*](https://www.alachisoft.com/resources/docs/ncache-pro/admin-guide/client-config.html) file that should be included in the final build. The relevant access parameters to include are the IP addresses and ports of the server(s) making up the distributed NCache backplane as well as configuration information such as connection retry interval, maximum number of connection attemps to make in case of disconnection etc. 
 
 * If you're using one NCache distributed cache for multiple SignalR apps, use a different `ApplicationID` value of `NCacheConfiguration`for each SignalR app. Setting an `ApplicationID` isolates one SignalR app from others that use different values for `ApplicationID`. If you don't assign different values, a message sent from one app to all of its own clients will go to all clients of all apps that use the same NCache distributed cache as a backplane.
 
