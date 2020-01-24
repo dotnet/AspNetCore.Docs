@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 01/22/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/handle-errors
 ---
@@ -184,35 +184,39 @@ For more information, see <xref:blazor/javascript-interop>.
 
 ### Circuit handlers
 
-Blazor allows code to define a *circuit handler*, which allows running code on changes to the state of a user's circuit. A circuit handler is implemented by deriving from <xref:Microsoft.AspNetCore.Components.Servers.Circuits.CircuitHandler /> type and registering it in DI. Here's a sample of a circuit handler that tracks open SignalR connections:
+Blazor Server allows code to define a *circuit handler*, which allows running code on changes to the state of a user's circuit. A circuit handler is implemented by deriving from <xref:Microsoft.AspNetCore.Components.Servers.Circuits.CircuitHandler /> and registering it in DI. The following example of a circuit handler tracks open SignalR connections:
 
-```C#
+```csharp
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.Server.Circuits;
 
 public class TrackingCircuitHandler : CircuitHandler
 {
-    HashSet<Circuit> circuits = new HashSet<Circuit>();
+    private HashSet<Circuit> _circuits = new HashSet<Circuit>();
 
-    public override Task OnConnectionUpAsync(Circuit circuit, CancellationToken cancellationToken)
+    public override Task OnConnectionUpAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
     {
-        circuits.Add(circuit);
+        _circuits.Add(circuit);
+
         return Task.CompletedTask;
     }
 
-    public override Task OnConnectionDownAsync(Circuit circuit, CancellationToken cancellationToken)
+    public override Task OnConnectionDownAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
     {
-        circuits.Remove(circuit);
+        _circuits.Remove(circuit);
+
         return Task.CompletedTask;
     }
 
-    public int ConnectedCircuits => circuits.Count;
+    public int ConnectedCircuits => _circuits.Count;
 }
 ```
 
-CircuitHandlers are registered using DI. Scoped instances are created per instance of a circuit. In the sample above, we'll use a singleton since we need to track the state of all circuits:
+CircuitHandlers are registered using DI. Scoped instances are created per instance of a circuit. In the preceding example, a singleton is used since the state of all circuits must be tracked:
 
-```C#
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     ...
@@ -220,7 +224,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-If a custom circuit handler's methods throw an unhandled exception, the exception is fatal to the circuit. To tolerate exceptions in a handler's code or called methods, wrap the code in one or more [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging.
+If a custom circuit handler's methods throw an unhandled exception, the exception is fatal to the Blazor Server circuit. To tolerate exceptions in a handler's code or called methods, wrap the code in one or more [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging.
 
 ### Circuit disposal
 
