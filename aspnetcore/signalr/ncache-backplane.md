@@ -5,7 +5,7 @@ description: Learn how to set up an NCache backplane to enable scale-out for an 
 monikerRange: '>= aspnetcore-2.2'
 ms.author: Brad Rehman
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 01/24/2020
 no-loc: [SignalR]
 uid: signalr/redis-backplane
 ---
