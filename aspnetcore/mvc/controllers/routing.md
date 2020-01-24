@@ -105,7 +105,7 @@ The `default` route:
 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 ```
 
-is an example of a *conventional* routing. We call this style conventional routing because it establishes a *convention* for URL paths:
+is an example of a *conventional* routing. It's called conventional routing because it establishes a *convention* for URL paths:
 
 * The first path segment maps to the controller name.
 * The second segment maps to the action name.
@@ -114,16 +114,20 @@ is an example of a *conventional* routing. We call this style conventional routi
 Using this `default` route, the URL path:
 
 * `/Products/List` maps to the `ProductsController.List` action.
-* `/Blog/Article/17` maps to `BlogController.Article`.
+* `/Blog/Article/17` maps to `BlogController.Article` and typically model binds the `id` parameter to 17.
 
 This mapping:
 
 * Is based on the controller and action names **only**.
 * Isn't based on namespaces, source file locations, or method parameters.
 
-Using conventional routing with the default route allows creating the app without having to come up with a new URL pattern for each action. For an app with [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) style actions, having consistency for the URLs across controllers can help simplify the code and make the UI more predictable.
+Using conventional routing with the default route allows creating the app without having to come up with a new URL pattern for each action. For an app with [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) style actions, having consistency for the URLs across controllers:
+
+* Helps simplify the code.
+* Makes the UI more predictable.
 
 Most apps should choose a basic and descriptive routing scheme so that URLs are readable and meaningful. The default conventional route `{controller=Home}/{action=Index}/{id?}`:
+
 * Supports a basic and descriptive routing scheme.
 * Is a useful starting point for UI-based apps.
 
@@ -136,7 +140,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 > Attribute routing provides fine-grained control to make the ID required for some actions and not for others. By convention the documentation includes optional parameters like `id` when they're likely to appear in correct usage.
 
 Routing only matches a combination of action and controller that are defined by the app. This is intended to simplify cases where conventional routes overlap.
-
+<!-- zz -->
 ## Multiple routes
 
 Multiple routes can be added inside `UseEndpoints` by adding more calls to <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>. Doing so allows you to define multiple conventions, or to add conventional routes that are dedicated to a specific action, such as:
