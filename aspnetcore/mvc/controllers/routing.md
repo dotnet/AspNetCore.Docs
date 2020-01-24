@@ -128,7 +128,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 * Is a useful starting point for UI-based apps.
 
 > [!WARNING]
-> The `id` is defined as optional by the route template, meaning that actions can execute without the ID provided as part of the URL. Generally when`id` is omitted from the URL:
+> The `id` is defined as optional by the route template. Actions can execute without the optional ID provided as part of the URL. Generally when`id` is omitted from the URL:
 >
 > * `id` is set to `0` by model binding.
 > * No entity is found in the database matching `id == 0`.
@@ -261,8 +261,7 @@ public class MyDemoController : Controller
 }
 ```
 
-> [!NOTE]
-> The route templates above don't define route parameters for `action`, `area`, and `controller`. If these route parameters are used in the route template, the value associated with where the attribute is applied will be substituted.
+The route templates above don't define route parameters for `action`, `area`, and `controller`. If these route parameters are used in the route template, the value associated with where the attribute is applied will be substituted.
 
 ## Reserved routing names
 
@@ -409,11 +408,12 @@ Information on route order in the Razor Pages topics is available at [Razor Page
 
 For convenience, attribute routes support *token replacement* for reserved route parameters by enclosing a token in square-braces (`[`, `]`) or curly braces (`{`, `}`). The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined. In the following example, the actions match URL paths as described in the comments:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?range=7-11,13-17,20-22)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet)]
+
 
 Token replacement occurs as the last step of building the attribute routes. The above example will behave the same as the following code:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController2.cs?range=7-11,13-17,20-22)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController2.cs?name=snippet)]
 
 Attribute routes can also be combined with inheritance. This is particularly powerful combined with token replacement.
 
