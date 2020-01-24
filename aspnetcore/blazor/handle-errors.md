@@ -214,7 +214,7 @@ public class TrackingCircuitHandler : CircuitHandler
 }
 ```
 
-CircuitHandlers are registered using DI. Scoped instances are created per instance of a circuit. In the preceding example, a singleton is used since the state of all circuits must be tracked:
+Circuit handlers are registered using DI. Scoped instances are created per instance of a circuit. Using the `TrackingCircuitHandler` in the preceding example, a singleton service is created because the state of all circuits must be tracked:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
