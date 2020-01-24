@@ -40,7 +40,7 @@ NCache extends the [ISignalRServerBuilder](https://docs.microsoft.com/en-us/dotn
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-3.0"
+::: moniker range="= aspnetcore-3.1"
 
 NCache extends the [ISignalRServerBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.isignalrserverbuilder?view=aspnetcore-3.1) interface with its `AddNCache` method which requires just the cache name, event key and user credentials for the item added. This acts as the registration point for the clients against the ASP.NET Core SignalR implementation. 
 
