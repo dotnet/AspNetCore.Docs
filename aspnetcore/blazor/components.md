@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/28/2019
+ms.date: 01/24/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/components
 ---
@@ -1139,6 +1139,43 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Components.Web;
+```
+
+## Specify a base class
+
+The [`@inherits`](xref:mvc/views/razor#inherits) directive can be used to specify a base class for a component. The following example shows how a component can inherit a base class, `BlazorRocksBase`, to provide the component's properties and methods. The base class should derive from `ComponentBase`.
+
+*Pages/BlazorRocks.razor*:
+
+```razor
+@page "/BlazorRocks"
+@inherits BlazorRocksBase
+
+<h1>@BlazorRocksText</h1>
+```
+
+*BlazorRocksBase.cs*:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+
+namespace BlazorSample
+{
+    public class BlazorRocksBase : ComponentBase
+    {
+        public string BlazorRocksText { get; set; } = 
+            "Blazor rocks the browser!";
+    }
+}
+```
+
+## Specify an attribute
+
+Attributes can be specified in Razor components with the [`@attribute`](xref:mvc/views/razor#attribute) directive. The following example applies the `[Authorize]` attribute to the component class:
+
+```razor
+@page "/"
+@attribute [Authorize]
 ```
 
 ## Import components
