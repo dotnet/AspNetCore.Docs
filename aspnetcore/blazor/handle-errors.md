@@ -184,7 +184,7 @@ For more information, see <xref:blazor/javascript-interop>.
 
 ### Circuit handlers
 
-Blazor Server allows code to define a *circuit handler*, which allows running code on changes to the state of a user's circuit. A circuit handler is implemented by deriving from <xref:Microsoft.AspNetCore.Components.Servers.Circuits.CircuitHandler /> and registering it in DI. The following example of a circuit handler tracks open SignalR connections:
+Blazor Server allows code to define a *circuit handler*, which allows running code on changes to the state of a user's circuit. A circuit handler is implemented by deriving from <xref:Microsoft.AspNetCore.Components.Servers.Circuits.CircuitHandler /> and registering the class in the app's service container. The following example of a circuit handler tracks open SignalR connections:
 
 ```csharp
 using System.Threading.Tasks;
