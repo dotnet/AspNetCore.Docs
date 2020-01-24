@@ -81,9 +81,7 @@ Following are the steps to introduce NCache as a backplane in the SignalR app:
  
   The parameters for configuring the NCache handle the SignalR app uses to connect with the NCache backplane are done via the [client.ncconf](https://www.alachisoft.com/resources/docs/ncache-pro/admin-guide/client-config.html) file that should be included in the final build. The relevant access parameters to include are the IP addresses and ports of the server(s) making up the distributed NCache backplane as well as configuration information such as connection retry interval, maximum number of connection attemps to make in case of disconnection etc. 
 
-* If you're using one NCache distributed cache for multiple SignalR apps, use a different `ApplicationID` value of `NCacheConfiguration`for each SignalR app.
-
-  Setting an `ApplicationID` isolates one SignalR app from others that use different values for `ApplicationID`. If you don't assign different values, a message sent from one app to all of its own clients will go to all clients of all apps that use the same NCache distributed cache as a backplane.
+* If you're using one NCache distributed cache for multiple SignalR apps, use a different `ApplicationID` value of `NCacheConfiguration`for each SignalR app. Setting an `ApplicationID` isolates one SignalR app from others that use different values for `ApplicationID`. If you don't assign different values, a message sent from one app to all of its own clients will go to all clients of all apps that use the same NCache distributed cache as a backplane.
 
 * Configure your server farm load balancing software for sticky sessions. Here are some examples of documentation on how to do that:
 
