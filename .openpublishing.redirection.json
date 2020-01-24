@@ -536,6 +536,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/security/authentication/azure-ad-b2c-webapi.md",
+            "redirect_url": "/aspnet/core/security/authentication/azure-active-directory",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/security/authentication/facebook-logins.md",
             "redirect_url": "/aspnet/core/security/authentication/social/facebook-logins",
             "redirect_document_id": false

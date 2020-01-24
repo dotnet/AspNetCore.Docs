@@ -887,15 +887,27 @@
             - name: Overview
               uid: security/authentication/azure-active-directory/index
             - name: Integrate Azure AD into a web app
-              href: https://github.com/Azure-Samples/ms-identity-aspnetcore-webapp-tutorial
-            - name: Integrate Azure AD B2C into a web app
-              uid: security/authentication/azure-ad-b2c
-            - name: Integrate Azure AD B2C into a web API
-              uid: security/authentication/azure-ad-b2c-webapi
-            - name: Call a web API from WPF
-              href: https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore
-            - name: Call a web API in a web app using Azure AD
-              href: https://github.com/Azure-Samples/active-directory-dotnet-webapp-webapi-openidconnect-aspnetcore
+              href: /azure/active-directory/develop/quickstart-v2-aspnet-core-webapp
+            - name: Scenarios
+              items:
+                - name: Web app that signs in users
+                  href: /azure/active-directory/develop/scenario-web-app-sign-user-overview?tabs=aspnetcore
+                - name: Web app that calls web APIs
+                  href: /azure/active-directory/develop/scenario-web-app-call-api-overview
+                - name: Protected web API
+                  href: /azure/active-directory/develop/scenario-protected-web-api-overview
+                - name: Web API that calls other web APIs
+                  href: /azure/active-directory/develop/scenario-web-api-call-api-overview
+                - name: Integrate Azure AD B2C into a web app
+                  uid: security/authentication/azure-ad-b2c
+            - name: Samples
+              items:
+                - name: Sign-in users and call web APIs using Azure AD V2
+                  href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/enable-webapp-signin/
+                - name: Calling an ASP.NET Core 2.0 Web API from a WPF application using Azure AD V2
+                  href: /samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/calling-an-aspnet-core-web-api-from-a-wpf-application-using-azure-ad-v2/
+                - name: Web API with Azure AD B2C
+                  href: https://azure.microsoft.com/resources/samples/active-directory-b2c-dotnetcore-webapi/
         - name: Secure ASP.NET Core apps with IdentityServer4
           href: https://identityserver4.readthedocs.io/
         - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)
