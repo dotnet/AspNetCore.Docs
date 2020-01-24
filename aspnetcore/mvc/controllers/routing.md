@@ -139,8 +139,8 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 >
 > Attribute routing provides fine-grained control to make the ID required for some actions and not for others. By convention the documentation includes optional parameters like `id` when they're likely to appear in correct usage.
 
-Routing only matches a combination of action and controller that are defined by the app. This is intended to simplify cases where conventional routes overlap.
-<!-- zz -->
+Routing only matches a combination of action and controller that are defined by the app. This is intended to simplify cases where conventional routes overlap.## Multiple routes
+
 ## Multiple routes
 
 Multiple routes can be added inside `UseEndpoints` by adding more calls to <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>. Doing so allows you to define multiple conventions, or to add conventional routes that are dedicated to a specific action, such as:
@@ -154,19 +154,43 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-The `blog` route here is a *dedicated conventional route*, meaning that it uses the conventional routing system, but is dedicated to a specific action. Since `controller` and `action` don't appear in the route template as parameters, they can only have the default values, and thus this route will always map to the action `BlogController.Article`.
+<!-- review: Why would you ever use a dedicated conventional route like this? -->
+The `blog` route in the preceding code is a dedicated conventional route. It's called a dedicated conventional route because:
 
-Adding routes using `MapControllerRoute` defines a priority order for the routing system to respect. Matches from a route that appears earlier will have a higher priority. So in this example, the `blog` route will have a higher priority for matches than the `default` route.
+* It uses the conventional routing system.
+* It's dedicated to a specific action.
 
-> [!NOTE]
-> *Dedicated conventional routes* often use catch-all route parameters like `{*article}` to capture the remaining portion of the URL path. This can make a route 'too greedy' meaning that it matches URLs that you intended to be matched by other routes. Put the 'greedy' routes later in the route table to solve this.
+Because `controller` and `action` don't appear in the route template as parameters:
+
+* They can only have the default values `{ controller = "Blog", action = "Article" }`.
+* This route will always map to the action `BlogController.Article`.
+
+Using the preceding code, the following URL paths match the default route:
+
+* `/` invokes `HomeController.Index`.
+* `Blog/Index`
+
+`/Blog`, `/Blog/Article`, and `/Blog/{any-string}` are the only URL paths that match the blog route. The only impact the blog route has is that `/Blog` matches the blog route and invokes `BlogController.Article`. Without the blog route, `/Blog` invokes `BlogController.Index`.
+
+Adding routes using `MapControllerRoute` defines a priority order for the routing system to respect. Matches from a route that appears earlier will have a higher priority. In the preceding example, the `blog` route will have a higher priority for matches than the `default` route.
+
+Dedicated conventional routes often use catch-all route parameters like `{*article}` to capture the remaining portion of the URL path. This can make a route 'too greedy' meaning that it matches URLs that you intended to be matched by other routes. Put the 'greedy' routes later in the route table to solve this.
 
 > [!WARNING]
-> As of ASP.NET Core 3.0 the routing system does not define a concept called a *route*, nor does it provide guarantees about the execution order of extensbility like `IRouteContraint` or `IActionConstraint`. See the [routing](xref:fundamentals/routing) for reference material on routing.
+> In ASP.NET Core 3.0 and later, the routing system doesn't:
+> * Define a concept called a *route*.
+> * Provide guarantees about the execution order of extensibility like <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> or <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint>.
+>
+>See [Routing](xref:fundamentals/routing) for reference material on routing.
 
-### Disambiguating actions
+### Resolving ambiguous actions
 
-When two endpoints match through routing, routing must disambiguate to choose the 'best' candidate or else throw an exception. For example:
+When two endpoints match through routing, routing must do one of the following:
+
+* Disambiguate to choose the best candidate.
+* Throw an exception.
+
+For example:
 
 ```csharp
 public class ProductsController : Controller
@@ -177,8 +201,13 @@ public class ProductsController : Controller
    public IActionResult Edit(int id, Product product) { ... }
 }
 ```
+<!-- zz -->
+The preceding controller defines two actions that match:
 
-This controller defines two actions that would match the URL path `/Products/Edit/17` and route data `{ controller = Products, action = Edit, id = 17 }`. This is a typical pattern for MVC controllers where `Edit(int)` shows a form to edit a product, and `Edit(int, Product)` processes  the posted form. To make this possible MVC would need to choose `Edit(int, Product)` when the request is an HTTP `POST` and `Edit(int)` when the HTTP verb is anything else.
+* The URL path `/Products/Edit/17`
+* Route data `{ controller = Products, action = Edit, id = 17 }`.
+
+This is a typical pattern for MVC controllers where `Edit(int)` shows a form to edit a product, and `Edit(int, Product)` processes  the posted form. To make this possible MVC would need to choose `Edit(int, Product)` when the request is an HTTP `POST` and `Edit(int)` when the HTTP verb is anything else.
 
 The `HttpPostAttribute` ( `[HttpPost]` ) is provided to the routing system so that it can choose based on the HTTP method of the request. The presence of an `HttpPostAttribute` makes the `Edit(int, Product)` a 'better' match than `Edit(int)`, so `Edit(int, Product)` will be prioritized.
 
