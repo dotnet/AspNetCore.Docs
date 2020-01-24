@@ -28,9 +28,25 @@ This article explains SignalR-specific aspects of setting up an [NCache](https:/
   * <xref:signalr/scale>
   * [NCache documentation](https://www.alachisoft.com/resources/docs/)
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range="= aspnetcore-2.2"
 
-NCache extends the [ISignalRServerBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.isignalrserverbuilder?view=aspnetcore-2.2) interface with its `AddNCache` method which requires just the cache name, event key and user credentials for the item added. This acts as the registration point for the clients against the ASP.NET Core SignalR implementation. Following are the steps to introduce NCache as a backplane in the SignalR app:
+NCache extends the [ISignalRServerBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.isignalrserverbuilder?view=aspnetcore-2.2) interface with its `AddNCache` method which requires just the cache name, event key and user credentials for the item added. This acts as the registration point for the clients against the ASP.NET Core SignalR implementation. 
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-3.0"
+
+NCache extends the [ISignalRServerBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.isignalrserverbuilder?view=aspnetcore-3.0) interface with its `AddNCache` method which requires just the cache name, event key and user credentials for the item added. This acts as the registration point for the clients against the ASP.NET Core SignalR implementation. 
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-3.0"
+
+NCache extends the [ISignalRServerBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.signalr.isignalrserverbuilder?view=aspnetcore-3.1) interface with its `AddNCache` method which requires just the cache name, event key and user credentials for the item added. This acts as the registration point for the clients against the ASP.NET Core SignalR implementation. 
+
+::: moniker-end
+
+Following are the steps to introduce NCache as a backplane in the SignalR app:
 
 * In the SignalR app, install the `AspNetCore.SignalR.NCache` NuGet package.
 * To utilize the extension, include the following namespaces in your application in Startup.cs:
@@ -46,7 +62,7 @@ NCache extends the [ISignalRServerBuilder](https://docs.microsoft.com/en-us/dotn
        "Password": "your-password"
    }
    ```
-
+   
 * In the `Startup.ConfigureServices` method, call `AddNCache` after `AddSignalR`:
 
   ```csharp
@@ -60,12 +76,10 @@ NCache extends the [ISignalRServerBuilder](https://docs.microsoft.com/en-us/dotn
         ncacheOptions.Password = Configuration["NCacheConfiguration:Password"];
   }
   ```
-
+  
 * Configure options as needed:
  
   The parameters for configuring the NCache handle the SignalR app uses to connect with the NCache backplane are done via the [client.ncconf](https://www.alachisoft.com/resources/docs/ncache-pro/admin-guide/client-config.html) file that should be included in the final build. The relevant access parameters to include are the IP addresses and ports of the server(s) making up the distributed NCache backplane as well as configuration information such as connection retry interval, maximum number of connection attemps to make in case of disconnection etc. 
-
-::: moniker-end
 
 * If you're using one NCache distributed cache for multiple SignalR apps, use a different `ApplicationID` value of `NCacheConfiguration`for each SignalR app.
 
