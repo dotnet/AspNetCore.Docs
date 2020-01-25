@@ -27,7 +27,7 @@ To enable gRPC-Web with an ASP.NET Core gRPC service:
 * Add a reference to the [Grpc.AspNetCore.Web](https://www.nuget.org/packages/Grpc.AspNetCore.Web) package.
 * Configure the app to use gRPC-Web by adding `AddGrpcWeb` and `UseGrpcWeb` to *Startup.cs*:
 
-[!code-csharp[](~/grpc/browser/sample/Startup.cs?name=snippet_1&highlight=6,13,17)]
+[!code-csharp[](~/grpc/browser/sample/Startup.cs?name=snippet_1&highlight=3,10,14)]
 
 The preceding code:
 
@@ -36,7 +36,7 @@ The preceding code:
 
 Alternatively, configure all services to support gRPC-Web by adding `services.AddGrpcWeb(o => o.GrpcWebEnabled = true);` to ConfigureServices.
 
-[!code-csharp[](~/grpc/browser/sample/AllServicesExample_Startup.cs?name=snippet_1&highlight=6,13,17)]
+[!code-csharp[](~/grpc/browser/sample/AllServicesExample_Startup.cs?name=snippet_1&highlight=3,10,14)]
 
 Some additional configuration may be required to call gRPC-Web from the browser, such as configuring ASP.NET Core to support CORS. For more information, see [support CORS](xref:security/cors).
 
