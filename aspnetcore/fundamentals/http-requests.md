@@ -347,6 +347,23 @@ In the following example:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
 
+## Header propagation middleware
+
+Header propagation is an ASP.NET Core middleware to propagate HTTP headers from the incoming request to the outgoing HTTP Client requests. To use it, 
+
+* Reference the [`Microsoft.AspNetCore.HeaderPropagation`](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package. For projects targeting .NET Core 2.1, consider using the community supported port of the package [`HeaderPropagation`](https://www.nuget.org/packages/HeaderPropagation).
+
+* Configure the middleware and HttpClient in your Startup:
+
+[!code-csharp[](http-requests/samples/3.x/Startup.cs?highlight=5-9,21)]
+
+* The client includes the configured headers on outbound requests:
+
+```C#
+var client = clientFactory.CreateClient("MyForwardingClient");
+var response = client.GetAsync(...);
+```
+
 ## Additional resources
 
 * [Use HttpClientFactory to implement resilient HTTP requests](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)
@@ -956,43 +973,6 @@ In the following example:
 * `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
-
-## Header propogation middleware
-
-Header propogation is an ASP.NET Core middleware to propagate HTTP headers from the incoming request to the outgoing HTTP Client requests. To use it, 
-
-* Reference the [`Microsoft.AspNetCore.HeaderPropagation`](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package. For projects targeting .NET Core 2.1, consider using the community supported port of the package - [`HeaderPropogation`](https://www.nuget.org/packages/HeaderPropagation).
-
-* Configure the middleware and HttpClient in your Startup:
-
-```C#
-// Startup.cs
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddHeaderPropagation(options =>
-    {
-        options.Headers.Add("Trace-Id");
-    }
-    
-    services.AddHttpClient("MyForwardingClient")
-       .AddHeaderPropogation();
-}
-
-public void Configure(IApplicationBuilder app)
-{
-    app.UseHeaderPropogation();
-    app.UseRouting();
-    ...
-}
-```
-
-* The client will include the configured headers on outbound requests:
-
-```C#
-var client = clientFactory.CreateClient("MyForwardingClient");
-var response = client.GetAsync(...);
-```
-
 
 ## Additional resources
 
