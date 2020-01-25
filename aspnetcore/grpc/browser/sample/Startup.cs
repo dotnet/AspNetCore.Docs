@@ -1,4 +1,4 @@
-﻿#region snippet_1
+#region snippet_1
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddGrpc();
