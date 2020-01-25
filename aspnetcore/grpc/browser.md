@@ -14,7 +14,12 @@ By [James Newton-King](https://twitter.com/jamesnk)
 > [!IMPORTANT]
 > **gRPC-Web support in .NET is experimental**
 >
-> gRPC-Web for .NET is an experimental project, not a commited product. We want to test that our approach to implementing gRPC-Web works, and get feedback on if this approach is useful to .NET developers compared to the traditional way of setting up gRPC-Web via a proxy. Please add your feedback at [https://github.com/grpc/grpc-dotnet](https://github.com/grpc/grpc-dotnet) to ensure we build something that developers love and are productive with.
+> gRPC-Web for .NET is an experimental project, not a committed product. We want to:
+>
+> * Test that our approach to implementing gRPC-Web works.
+> * Get feedback on if this approach is useful to .NET developers compared to the traditional way of setting up gRPC-Web via a proxy.
+>
+> Please leave feedback at [https://github.com/grpc/grpc-dotnet](https://github.com/grpc/grpc-dotnet) to ensure we build something that developers like and are productive with.
 
 It is not possible to call a HTTP/2 gRPC service from a browser-based app. [gRPC-Web](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) is a protocol that allows browser JavaScript and Blazor apps to call gRPC services. This article explains how to use gRPC-Web in .NET Core.
 
