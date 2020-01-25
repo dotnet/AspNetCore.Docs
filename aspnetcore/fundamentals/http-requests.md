@@ -351,11 +351,11 @@ In the following example:
 
 Header propagation is an ASP.NET Core middleware to propagate HTTP headers from the incoming request to the outgoing HTTP Client requests. To use it, 
 
-* Reference the [`Microsoft.AspNetCore.HeaderPropagation`](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package. For projects targeting .NET Core 2.1, consider using the community supported port of the package [`HeaderPropagation`](https://www.nuget.org/packages/HeaderPropagation).
+* Reference the [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package. For projects targeting .NET Core 2.1, consider using the community supported port of the package [HeaderPropagation](https://www.nuget.org/packages/HeaderPropagation).
 
 * Configure the middleware and HttpClient in your Startup:
 
-[!code-csharp[](http-requests/samples/3.x/Startup.cs?highlight=5-9,21)]
+[!code-csharp[](http-requests/samples/3.x/Startup.cs?highlight=5-9,21&name=snippet)]
 
 * The client includes the configured headers on outbound requests:
 
