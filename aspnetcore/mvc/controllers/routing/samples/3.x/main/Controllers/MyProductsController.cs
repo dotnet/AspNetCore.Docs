@@ -6,7 +6,7 @@ namespace WebMvcRouting.Controllers
 {
 #if PROD1
     // [Route("api/[controller]")] // Not needed because each method has a route template.
-    #region snippet
+    #region snippet1
     [ApiController]
     public class MyProductsController : ControllerBase
     {

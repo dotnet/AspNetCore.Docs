@@ -284,12 +284,15 @@ The special parameter names are used by the URL generation system to determine i
 
 Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>,<xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>, etc. All of these attributes accept a route template. The following example shows two actions that match the same route template:
 
+<!-- review: My snippets use :ControllerBase, you used : Controller
+I'm using what the templates generate. Ditto for me using ActionResult and you used IActionResult -->
+
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyProductsController.cs?name=snippet1)]
 
 Using the URL path `/products`:
 
-* The `ProductsApi.ListProducts` action runs when the HTTP verb is `GET`.
-* The `ProductsApi.CreateProduct` action runs when the HTTP verb is `POST`.
+* The `MyProductsController.ListProducts` action runs when the HTTP verb is `GET`.
+* The `MyProductsController.CreateProduct` action runs when the HTTP verb is `POST`.
 
 When building a REST API, it's rare that you'll need to use `[Route(...)]` on an action method because the action accepts all HTTP methods. It's better to use the more specific Http-Verb-Attributes to be precise about what your API supports. Clients of REST APIs are expected to know what paths and HTTP verbs map to specific logical operations.
 
@@ -299,7 +302,7 @@ Since an attribute route applies to a specific action, it's easy to make paramet
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyProductsController.cs?name=snippet2)]
 
-The `ProductsApi.GetProduct(int)` action:
+The `ProductsApiController.GetProduct(int)` action:
 
 * Is run with URL path  `/products/3`
 * Returns an HTTP 404 error with a URL path `/products`
