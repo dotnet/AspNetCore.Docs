@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to configure gRPC services on ASP.NET Core to be callable from browser apps using gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 01/23/2020
+ms.date: 01/24/2020
 uid: grpc/browser
 ---
 # gRPC in browser apps
@@ -36,7 +36,7 @@ The preceding code:
 
 Alternatively, configure all services to support gRPC-Web by adding `services.AddGrpcWeb(o => o.GrpcWebEnabled = true);` to ConfigureServices.
 
-[!code-csharp[](~/grpc/browser/sample/AllServicesExample_Startup.cs?name=snippet_1&highlight=3,10,14)]
+[!code-csharp[](~/grpc/browser/sample/AllServicesSupportExample_Startup.cs?name=snippet_1&highlight=3,10,14)]
 
 Some additional configuration may be required to call gRPC-Web from the browser, such as configuring ASP.NET Core to support CORS. For more information, see [support CORS](xref:security/cors).
 
