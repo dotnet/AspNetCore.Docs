@@ -377,6 +377,10 @@ The automatic creation of a `ProblemDetails` instance is disabled when the <xref
 
 ::: moniker-end
 
+## Define supported request content types
+
+[!code-csharp[](index/samples/3.x/Controllers/ConsumesController.cs?name=snippet_Class)]
+
 ## Additional resources
 
 * <xref:web-api/action-return-types>
