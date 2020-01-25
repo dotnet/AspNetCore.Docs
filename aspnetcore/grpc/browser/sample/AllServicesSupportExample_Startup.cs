@@ -20,7 +20,6 @@ using Server.Services;
 namespace Server
 {
     #region snippet_1
-
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)
@@ -40,7 +39,6 @@ namespace Server
             });
         }
     }
-    
     #endregion
 }
 
