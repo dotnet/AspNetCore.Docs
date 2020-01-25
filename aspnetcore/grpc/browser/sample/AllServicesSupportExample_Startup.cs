@@ -1,21 +1,3 @@
-﻿
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddGrpc();
-}
-
-public void Configure(IApplicationBuilder app)
-{
-    app.UseRouting();
-
-    app.UseGrpcWeb();
-
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapGrpcService<GreeterService>().EnableGrpcWeb();
-    });
-}
-#endregion
 // Copyright notice and license
 
 // Copyright 2019 The gRPC Authors
