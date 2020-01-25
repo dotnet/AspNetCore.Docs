@@ -30,7 +30,7 @@ Features enabled by using the Web SDK:
 * Projects targeting .NET Core 3.0 or later implicitly reference:
 
   * The [ASP.NET Core shared framework](xref:fundamentals/metapackage-app).
-  * [Analyzers](/visualstudio/extensibility/getting-started-with-roslyn-analyzerss) designed for building ASP.NET Core apps.
+  * [Analyzers](/visualstudio/extensibility/getting-started-with-roslyn-analyzers) designed for building ASP.NET Core apps.
 * The WebSDK enables MSBuild targets that enables the use of publish profiles, and publishing using WebDeploy.
 
 ### Properties
