@@ -24,15 +24,19 @@ gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web along
 
 To enable gRPC-Web with an ASP.NET Core gRPC service:
 
-1. Add a reference to the [Grpc.AspNetCore.Web](https://www.nuget.org/packages/Grpc.AspNetCore.Web) package.
-2. Configure the app to use gRPC-Web by adding `AddGrpcWeb(...)` and `UseGrpcWeb()` to *Startup.cs*:
+* Add a reference to the [Grpc.AspNetCore.Web](https://www.nuget.org/packages/Grpc.AspNetCore.Web) package.
+* Configure the app to use gRPC-Web by adding `AddGrpcWeb` and `UseGrpcWeb` to *Startup.cs*:
 
-[!code-csharp[](~/grpc//browser/sample/Startup.cs?name=snippet_1&highlight=3,10,14)]
+[!code-csharp[](~/grpc/browser/sample/Startup.cs?name=snippet_1&highlight=6,13,17)]
 
 The preceding code:
 
 * Adds the gRPC-Web middleware, `UseGrpcWeb`, after routing and before endpoints.
-* Specifies the `endpoints.MapGrpcService<GreeterService>()` method supports gRPC-Web with `EnableGrpcWeb()`. Alternatively, configure all services to support gRPC-Web by adding `services.AddGrpcWeb(o => o.GrpcWebEnabled = true);` to ConfigureServices.
+* Specifies the `endpoints.MapGrpcService<GreeterService>()` method supports gRPC-Web with `EnableGrpcWeb`. 
+
+Alternatively, configure all services to support gRPC-Web by adding `services.AddGrpcWeb(o => o.GrpcWebEnabled = true);` to ConfigureServices.
+
+[!code-csharp[](~/grpc/browser/sample/AllServicesExample_Startup.cs?name=snippet_1&highlight=6,13,17)]
 
 Some additional configuration may be required to call gRPC-Web from the browser, such as configuring ASP.NET Core to support CORS. For more information, see [support CORS](xref:security/cors).
 
@@ -54,8 +58,8 @@ The .NET gRPC client can be configured to make gRPC-Web calls. This is useful fo
 
 To use gRPC-Web:
 
-1. Add a reference to the [Grpc.Net.Client.Web](https://www.nuget.org/packages/Grpc.Net.Client.Web) package.
-2. Configure the channel to use the `GrpcWebHandler`:
+* Add a reference to the [Grpc.Net.Client.Web](https://www.nuget.org/packages/Grpc.Net.Client.Web) package.
+* Configure the channel to use the `GrpcWebHandler`:
 
 [!code-csharp[](~/grpc/browser/sample/Handler.cs?name=snippet_1)]
 
@@ -66,9 +70,9 @@ The preceding code:
 
 The `GrpcWebHandler` has the following configuration options when created:
 
-* **InnerHandler** - The underlying <xref:System.Net.Http.HttpMessageHandler> that will make the HTTP call, for example, `HttpClientHandler`.
-* **Mode** :  `GrpcWebMode` enum. `GrpcWebMode.GrpcWebText` configures content to be base64 encoded. Base64 encoding is required to support server streaming calls.
-* **HttpVersion** - HTTP protocol `Version`. gRPC-Web doesn't require a specific protocol and won't specify one when making a request unless configured.
+* **InnerHandler**: The underlying <xref:System.Net.Http.HttpMessageHandler> that makes the HTTP call, for example, `HttpClientHandler`.
+* **Mode**: `GrpcWebMode` enum. `GrpcWebMode.GrpcWebText` configures content to be base64 encoded, which is required to support server streaming calls.
+* **HttpVersion**: HTTP protocol `Version`. gRPC-Web doesn't require a specific protocol and won't specify one when making a request unless configured.
 
 ## Additional resources
 
