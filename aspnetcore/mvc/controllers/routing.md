@@ -145,14 +145,7 @@ Routing only matches a combination of action and controller that are defined by 
 
 Multiple routes can be added inside `UseEndpoints` by adding more calls to <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>. Doing so allows you to define multiple conventions, or to add conventional routes that are dedicated to a specific action, such as:
 
-```csharp
-app.UseEndpoints(endpoints =>
-{
-   endpoints.MapControllerRoute("blog", "blog/{*article}",
-            defaults: new { controller = "Blog", action = "Article" });
-   endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-});
-```
+[!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
 <!-- review: Why would you ever use a dedicated conventional route like this? -->
 The `blog` route in the preceding code is a dedicated conventional route. It's called a dedicated conventional route because:
@@ -187,7 +180,7 @@ Dedicated conventional routes often use catch-all route parameters like `{*artic
 
 When two endpoints match through routing, routing must do one of the following:
 
-* Disambiguate to choose the best candidate.
+* Choose the best candidate.
 * Throw an exception.
 
 For example:
@@ -201,17 +194,22 @@ public class ProductsController : Controller
    public IActionResult Edit(int id, Product product) { ... }
 }
 ```
-<!-- zz -->
+
 The preceding controller defines two actions that match:
 
 * The URL path `/Products/Edit/17`
 * Route data `{ controller = Products, action = Edit, id = 17 }`.
 
-This is a typical pattern for MVC controllers where `Edit(int)` shows a form to edit a product, and `Edit(int, Product)` processes  the posted form. To make this possible MVC would need to choose `Edit(int, Product)` when the request is an HTTP `POST` and `Edit(int)` when the HTTP verb is anything else.
+This is a typical pattern for MVC controllers:
 
-The `HttpPostAttribute` ( `[HttpPost]` ) is provided to the routing system so that it can choose based on the HTTP method of the request. The presence of an `HttpPostAttribute` makes the `Edit(int, Product)` a 'better' match than `Edit(int)`, so `Edit(int, Product)` will be prioritized.
+* `Edit(int)` displays a form to edit a product.
+* `Edit(int, Product)` processes  the posted form.
 
-It's important to understand the role of attributes like `HttpPostAttribute` - similar attributes are defined for other HTTP verbs. In conventional routing it's common for actions to use the same action name when they're part of a `show form -> submit form` workflow.
+To make this possible MVC needs to select `Edit(int, Product)` when the request is an HTTP `POST` and `Edit(int)` when the HTTP verb is anything else. `Edit(int)` is generally called via `GET`.
+
+The <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, `[HttpPost]`, is provided to the routing system so that it can choose based on the HTTP method of the request. The `HttpPostAttribute` makes `Edit(int, Product)` a 'better' match than `Edit(int)`.
+
+It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other HTTP verbs. In conventional routing it's common for actions to use the same action name when they're part of a show form, then submit form workflow.
 
 <a name="routing-route-name-ref-label"></a>
 
@@ -219,86 +217,50 @@ It's important to understand the role of attributes like `HttpPostAttribute` - s
 
 The strings  `"blog"` and `"default"` in the following examples are route names:
 
-```csharp
-app.UseEndpoints(endpoints =>
-{
-   endpoints.MapControllerRoute("blog", "blog/{*article}",
-               defaults: new { controller = "Blog", action = "Article" });
-   endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-});
-```
+[!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
-The route names give the route a logical name so that the named route can be used for URL generation. This greatly simplifies URL creation when the ordering of routes could make URL generation complicated. Route names must be unique application-wide.
+The route names give the route a logical name. The named route can be used for URL generation. Using a named route simplifies URL creation when the ordering of routes could make URL generation complicated. Route names must be unique application wide.
 
-Route names have no impact on URL matching or handling of requests; they're used only for URL generation.
+Route names:
 
-> [!NOTE]
-> The route name concept is represented in the routing system as [IEndpointNameMetadata](xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata). The terms `route name` and `endpoint name` are interchangable, which one will appear in documentation and code depends on the API being described.
+* Have no impact on URL matching or handling of requests.
+* Are used only for URL generation.
+
+The route name concept is represented in the routing system as [IEndpointNameMetadata](xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata). The terms **route name** and **endpoint name**:
+
+* Are interchangeable.
+* Which one is used in documentation and code depends on the API being described.
 
 <a name="attribute-routing-ref-label"></a>
 
 ## Attribute routing
 
-Attribute routing uses a set of attributes to map actions directly to route templates. In the following example, `app.UsedEndpoints();` is used in the `Configure` method and `MapControllers()` is called. The `HomeController` will match a set of URLs similar to what the default route `{controller=Home}/{action=Index}/{id?}` would match:
+Attribute routing uses a set of attributes to map actions directly to route templates. The following code is used in the next sample:
+
+[!code-csharp[](routing/samples/3.x/main/StartupMap.cs?name=snippet)]
+
+The following example:
+
+* Uses the preceding `Configure` method.
+* `HomeController` matches a set of URLs similar to what the default route `{controller=Home}/{action=Index}/{id?}` matches.
 
 ```csharp
-public class HomeController : Controller
-{
-   [Route("")]
-   [Route("Home")]
-   [Route("Home/Index")]
-   public IActionResult Index()
-   {
-      return View();
-   }
-   [Route("Home/About")]
-   public IActionResult About()
-   {
-      return View();
-   }
-   [Route("Home/Contact")]
-   public IActionResult Contact()
-   {
-      return View();
-   }
-}
+[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet2)]
 ```
 
-The `HomeController.Index()` action will be executed for any of the URL paths `/`, `/Home`, or `/Home/Index`.
+The `HomeController.Index` action is run for any of the URL paths `/`, `/Home`, or `/Home/Index`.
 
-> [!NOTE]
-> This example highlights a key programming difference between attribute routing and conventional routing. Attribute routing requires more input to specify a route; the conventional default route handles routes more succinctly. However, attribute routing allows (and requires) precise control of which route templates apply to each action.
+This example highlights a key programming difference between attribute routing and conventional routing. Attribute routing requires more input to specify a route. The conventional default route handles routes more succinctly. However, attribute routing allows and requires precise control of which route templates apply to each action.
 
-With attribute routing the controller name and action names play **no** role in which action is matched. This example will match the same URLs as the previous example.
+With attribute routing, the controller name and action names play **no** role in which action is matched. The following example matches the same URLs as the previous example:
 
-```csharp
-public class MyDemoController : Controller
-{
-   [Route("")]
-   [Route("Home")]
-   [Route("Home/Index")]
-   public IActionResult MyIndex()
-   {
-      return View("Index");
-   }
-   [Route("Home/About")]
-   public IActionResult MyAbout()
-   {
-      return View("About");
-   }
-   [Route("Home/Contact")]
-   public IActionResult MyContact()
-   {
-      return View("Contact");
-   }
-}
-```
+[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet)]
 
-The route templates above don't define route parameters for `action`, `area`, and `controller`. If these route parameters are used in the route template, the value associated with where the attribute is applied will be substituted.
+The route templates in the preceding code don't define route parameters for `action`, `area`, and `controller`. <!-- review: what route params and what route template. Need a For example, ... --> If these route parameters are used in the route template, the value associated with where the attribute is applied is substituted.
 
 ## Reserved routing names
 
-The following keywords are reserved route parameter names when using Controllers or Razor Pages in the application.
+The following keywords are reserved route parameter names when using Controllers or Razor Pages:
 
 * `action`
 * `area`
@@ -306,69 +268,49 @@ The following keywords are reserved route parameter names when using Controllers
 * `handler`
 * `page`
 
+Using `page` as a route parameter with attribute routing is a common error. Doing that results in inconsistent and confusing behavior with URL generation.
 
-It's a common mistake to use `page` as a route parameter with attribute routing. This will result in inconsistent and confusing behavior with URL generation.
+<!-- review notes: Your template was missing terminating `"` [Route("/articles/{page})] that's why we use snippets :) -->
 
-```csharp
-public class MyDemoController : Controller
-{
-    [Route("/articles/{page})]
-    public IActionResult ListArticles(int page)
-    {
-        return View("Index");
-    }
-}
-```
+[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo2Controller.cs?name=snippet)]
 
-These special parameter names are used by the URL generation system to determine if a URL generation operation refers to a Razor Page or to a Controller.
+The preceding controller returns an HTTP 500 error with the URL path `/articles/3`. The following controller returns `MyDemo3Controller.ListArticles 3` with the URL path `/articles/3`.
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo2Controller.cs?name=snippet2)]
+
+The special parameter names are used by the URL generation system to determine if a URL generation operation refers to a Razor Page or to a Controller.
 
 ## Attribute routing with Http[Verb] attributes
 
-Attribute routing can also make use of the `Http[Verb]` attributes such as `HttpPostAttribute`. All of these attributes can accept a route template. This example shows two actions that match the same route template:
+Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>,<xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>, etc. All of these attributes accept a route template. The following example shows two actions that match the same route template:
 
-```csharp
-[HttpGet("/products")]
-public IActionResult ListProducts()
-{
-   // ...
-}
+[!code-csharp[](routing/samples/3.x/main/Controllers/MyProductsController.cs?name=snippet1)]
 
-[HttpPost("/products")]
-public IActionResult CreateProduct(...)
-{
-   // ...
-}
-```
+Using the URL path `/products`:
 
-For a URL path like `/products` the `ProductsApi.ListProducts` action will be executed when the HTTP verb is `GET` and `ProductsApi.CreateProduct` will be executed when the HTTP verb is `POST`. 
+* The `ProductsApi.ListProducts` action runs when the HTTP verb is `GET`.
+* The `ProductsApi.CreateProduct` action runs when the HTTP verb is `POST`.
 
-> [!TIP]
-> When building a REST API, it's rare that you will want to use `[Route(...)]` on an action method as the action will accept all HTTP methods. It's better to use the more specific `Http*Verb*Attributes` to be precise about what your API supports. Clients of REST APIs are expected to know what paths and HTTP verbs map to specific logical operations.
-> REST APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations (for example, GET, POST) on the same logical resource will use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
+When building a REST API, it's rare that you'll need to use `[Route(...)]` on an action method because the action accepts all HTTP methods. It's better to use the more specific Http-Verb-Attributes to be precise about what your API supports. Clients of REST APIs are expected to know what paths and HTTP verbs map to specific logical operations.
+
+REST APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations, for example, GET and POST on the same logical resource will use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
 
 Since an attribute route applies to a specific action, it's easy to make parameters required as part of the route template definition. In this example, `id` is required as part of the URL path.
 
-```csharp
-public class ProductsApiController : Controller
-{
-   [HttpGet("/products/{id}", Name = "Products_List")]
-   public IActionResult GetProduct(int id) { ... }
-}
-```
+[!code-csharp[](routing/samples/3.x/main/Controllers/MyProductsController.cs?name=snippet2)]
 
-The `ProductsApi.GetProduct(int)` action will be executed for a URL path like `/products/3` but not for a URL path like `/products`. See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
+The `ProductsApi.GetProduct(int)` action:
+
+* Is run with URL path  `/products/3`
+* Returns an HTTP 404 error with a URL path `/products`
+
+ See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
 
 ## Route Name
 
 The following code  defines a *route name* of `Products_List`:
 
-```csharp
-public class ProductsApiController : Controller
-{
-   [HttpGet("/products/{id}", Name = "Products_List")]
-   public IActionResult GetProduct(int id) { ... }
-}
-```
+[!code-csharp[](routing/samples/3.x/main/Controllers/MyProductsController.cs?name=snippet2)]
 
 Route names can be used to generate a URL based on a specific route. Route names have no impact on the URL matching behavior of routing and are only used for URL generation. Route names must be unique application-wide.
 
@@ -442,7 +384,6 @@ Information on route order in the Razor Pages topics is available at [Razor Page
 For convenience, attribute routes support *token replacement* for reserved route parameters by enclosing a token in square-braces (`[`, `]`) or curly braces (`{`, `}`). The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined. In the following example, the actions match URL paths as described in the comments:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet)]
-
 
 Token replacement occurs as the last step of building the attribute routes. The above example will behave the same as the following code:
 
@@ -714,14 +655,7 @@ The action results factory methods follow a similar pattern to the methods on `I
 
 Conventional routing can use a special kind of route definition called a *dedicated conventional route*. In the example below, the route named `blog` is a dedicated conventional route.
 
-```csharp
-app.Endpoints(endpoints =>
-{
-    endpoints.MapControllerRoute("blog", "blog/{*article}",
-        defaults: new { controller = "Blog", action = "Article" });
-    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-});
-```
+[!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
 Using these route definitions, `Url.Action("Index", "Home")` will generate the URL path `/` with the `default` route, but why? You might guess the route values `{ controller = Home, action = Index }` would be enough to generate a URL using `blog`, and the result would be `/blog?action=Index&controller=Home`.
 

@@ -1,6 +1,4 @@
-﻿#define A3
-#if A3
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebMvcRouting3.Controllers
 {
@@ -18,5 +16,3 @@ namespace WebMvcRouting3.Controllers
  }
 
 }
-
-#endif
