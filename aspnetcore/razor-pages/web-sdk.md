@@ -3,7 +3,7 @@ title: ASP.NET Core Web SDK
 author: Rick-Anderson
 description: Overview of Microsoft.NET.Sdk.Web.
 ms.author: riande
-ms.date: 2/27/2020
+ms.date: 01/25/2020
 no-loc: [Blazor]
 uid: razor-pages/web-sdk
 ---
@@ -30,7 +30,7 @@ Features enabled by using the Web SDK:
 * Projects targeting .NET Core 3.0 or later implicitly reference:
 
   * The [ASP.NET Core shared framework](xref:fundamentals/metapackage-app).
-  * [Analyzers](xref:https://docs.microsoft.com/visualstudio/extensibility/getting-started-with-roslyn-analyzers) designed for building ASP.NET Core apps.
+  * [Analyzers](/visualstudio/extensibility/getting-started-with-roslyn-analyzers) designed for building ASP.NET Core apps.
 * The WebSDK enables MSBuild targets that enables the use of publish profiles, and publishing using WebDeploy.
 
 ### Properties

@@ -580,6 +580,8 @@
       uid: grpc/client
     - name: gRPC client factory integration
       uid: grpc/clientfactory
+    - name: Use gRPC in browser apps
+      uid: grpc/browser
     - name: Configuration
       uid: grpc/configuration
     - name: Authentication and authorization
