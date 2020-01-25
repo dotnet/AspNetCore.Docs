@@ -3,7 +3,7 @@ title: Reusable Razor UI in class libraries with ASP.NET Core
 author: Rick-Anderson
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
 ms.author: riande
-ms.date: 10/26/2019
+ms.date: 01/25/2020
 ms.custom: "mvc, seodec18"
 uid: razor-pages/ui-class
 ---
@@ -80,7 +80,7 @@ Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *_Header.csht
 
 ## Create an RCL with static assets
 
-An RCL may require companion static assets that can be referenced by the consuming app of the RCL. ASP.NET Core allows creating RCLs that include static assets that are available to a consuming app.
+An RCL may require companion static assets that can be referenced by either the RCL or the consuming app of the RCL. ASP.NET Core allows creating RCLs that include static assets that are available to a consuming app.
 
 To include companion assets as part of an RCL, create a *wwwroot* folder in the class library and include any required files in that folder.
 
@@ -121,7 +121,7 @@ To include TypeScript files in an RCL:
 
 ### Consume content from a referenced RCL
 
-The files included in the *wwwroot* folder of the RCL are exposed to the consuming app under the prefix `_content/{LIBRARY NAME}/`. For example, a library named *Razor.Class.Lib* results in a path to static content at `_content/Razor.Class.Lib/`. When producing a NuGet package and the assembly name isn't the same as the package ID, use the the package ID for `{LIBRARY NAME}`.
+The files included in the *wwwroot* folder of the RCL are exposed to either the RCL or the consuming app under the prefix `_content/{LIBRARY NAME}/`. For example, a library named *Razor.Class.Lib* results in a path to static content at `_content/Razor.Class.Lib/`. When producing a NuGet package and the assembly name isn't the same as the package ID, use the the package ID for `{LIBRARY NAME}`.
 
 The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](xref:fundamentals/static-files) enabled in `Startup.Configure`:
 
