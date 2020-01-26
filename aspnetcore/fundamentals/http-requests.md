@@ -351,8 +351,7 @@ In the following example:
 
 Header propagation is an ASP.NET Core middleware to propagate HTTP headers from the incoming request to the outgoing HTTP Client requests. To use header propagation:
 
-* Reference the [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package. For projects targeting .NET Core 2.1, consider using the community supported port of the package [HeaderPropagation](https://www.nuget.org/packages/HeaderPropagation).
-
+* Reference the [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package.
 * Configure the middleware and `HttpClient` in `Startup`:
 
   [!code-csharp[](http-requests/samples/3.x/Startup.cs?highlight=5-9,21&name=snippet)]
@@ -973,6 +972,23 @@ In the following example:
 * `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
+
+## Header propagation middleware
+
+Header propagation is an ASP.NET Core middleware to propagate HTTP headers from the incoming request to the outgoing HTTP Client requests. To use header propagation:
+
+* Reference the community supported port of the package [HeaderPropagation](https://www.nuget.org/packages/HeaderPropagation). ASP.NET Core 3.1 and later supports [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation).
+
+* Configure the middleware and `HttpClient` in `Startup`:
+
+  [!code-csharp[](http-requests/samples/2.x/Startup21.cs?highlight=5-9,25&name=snippet)]
+
+* The client includes the configured headers on outbound requests:
+
+  ```C#
+  var client = clientFactory.CreateClient("MyForwardingClient");
+  var response = client.GetAsync(...);
+  ```
 
 ## Additional resources
 
