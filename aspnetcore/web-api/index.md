@@ -381,6 +381,12 @@ The automatic creation of a `ProblemDetails` instance is disabled when the <xref
 
 [!code-csharp[](index/samples/3.x/Controllers/ConsumesController.cs?name=snippet_Class)]
 
+In the preceding code, `ConsumesController` is configured to handle requests sent to the `https://localhost:5001/api/Consumes` URL. Both of the controller's actions, `PostJson` and `PostForm`, are configured to handle POST requests sent to the same URL. Without the `[Consumes]` attribute, this configuration results in an *ambiguous match* exception.
+
+The `[Consumes]` attribute is applied to both actions. For the `PostJson` action, the `[Consumes]` attribute specifies a single supported content type of `application/json`. For the `PostForm` action, the `[Consumes]` attribute specifies a single supported content type of `application/x-www-form-urlencoded`.
+
+The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`. Requests sent with any other `Content-Type` result in a *415 - Unsupported Media Type* response.
+
 ## Additional resources
 
 * <xref:web-api/action-return-types>
