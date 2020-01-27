@@ -240,7 +240,7 @@ An `ElementReference` is only guaranteed valid in a component's `OnAfterRender` 
 For a parent component to make an element reference available to other components, the parent component can:
 
 * Allow child components to register callbacks.
-* Invoke the registered callbacks during the `OnAfterRender` event with the passed element references. Indirectly, this approach allows child components to interact with the parent's element reference.
+* Invoke the registered callbacks during the `OnAfterRender` event with the passed element reference. Indirectly, this approach allows child components to interact with the parent's element reference.
 
 The following Blazor WebAssembly example illustrates the approach.
 
