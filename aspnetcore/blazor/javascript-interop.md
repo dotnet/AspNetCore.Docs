@@ -334,7 +334,9 @@ namespace BlazorSample.Pages
             {
                 throw new InvalidOperationException("Parent being disposed");
             }
+
             _subscriptions.Add(observer);
+
             return new Subscription(observer, this);
         }
 
