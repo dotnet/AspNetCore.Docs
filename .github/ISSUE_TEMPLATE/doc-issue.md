@@ -13,7 +13,7 @@ If the issue is related to an ASP.NET Core document, open the issue with the **T
 If the issue is:
 
 * A simple typo or similar correction, you can submit a pull request (PR). See [the contributor guide](https://docs.microsoft.com/contribute/#quick-edits-to-existing-documents) for instructions.
-* A general support or coding question, ask on a support channel, such as [Stack Overflow](https://stackoverflow.com/questions, [ASP.NET Core Slack](http://tattoocoder.com/aspnet-slack-sign-up/), or [ASP.NET Gitter](https://gitter.im/aspnet/Home). Our workload on the documentation usually prevents us from answering general requests for assistance.
+* A general support or coding question, ask on a support channel, such as [Stack Overflow](https://stackoverflow.com/questions), [ASP.NET Core Slack](http://tattoocoder.com/aspnet-slack-sign-up/), or [ASP.NET Gitter](https://gitter.im/aspnet/Home). Our workload on the documentation usually prevents us from answering general requests for assistance.
 * A site design concern, create an issue at [MicrosoftDocs/Feedback](https://github.com/MicrosoftDocs/Feedback/issues/new/choose).
 * A problem completing a tutorial, compare your code with the completed sample.
 * A duplicate of an open issue, leave a comment on that issue.
