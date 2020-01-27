@@ -104,6 +104,15 @@ Rendering server components from a static HTML page isn't supported.
 
 For more information on how components are rendered, component state, and the `Component` Tag Helper, see <xref:blazor/hosting-models>.
 
+## Tag Helpers aren't used in components
+
+[Tag Helpers](xref:mvc/views/tag-helpers/intro) generate HTML strings for webpages, which isn't a valid approach for rendering content in an SPA framework, such as Blazor. In Blazor apps:
+
+* There's a live Document Object Model (DOM) that's updated via DOM APIs.
+* The abstraction for UI reuse is *components*. Components provide a richer editor experience than Tag Helpers and are designed for performance in an SPA app.
+
+To provide Tag Helper-like functionality in Blazor, create a component with the same functionality as the Tag Helper and use the component instead.
+
 ## Use components
 
 Components can include other components by declaring them using HTML element syntax. The markup for using a component looks like an HTML tag where the name of the tag is the component type.
