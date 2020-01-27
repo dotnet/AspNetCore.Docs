@@ -21,11 +21,11 @@ If the issue is:
 
 *Please don't comment on closed issues and PRs. Cross-link the closed issue/PR on a new issue.*
 
-# Issue description
+## Issue description
 
 { description here }
 
-# Software versions
+## Software versions
 
 Check the .NET target framework(s) being used, and include the version number(s):
 
