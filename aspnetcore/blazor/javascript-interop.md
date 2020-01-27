@@ -255,7 +255,7 @@ In the `<head>` of *wwwroot/index.html*:
 In the `<body>` of *wwwroot/index.html*:
 
 ```html
-<script type="text/javascript">
+<script>
     function setElementClass(element, className) {
         /** @type {HTMLElement} **/
         var myElement = element;
