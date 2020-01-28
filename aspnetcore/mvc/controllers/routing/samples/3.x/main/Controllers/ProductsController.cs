@@ -1,4 +1,4 @@
-﻿ // #define First
+﻿// #define First
 //#define Second
 //#define Third
 //#define Fourth
@@ -90,39 +90,29 @@ namespace WebMvcRouting.Controllers
     #endregion
 #elif Five
     // Test with StartupDefaultMVC
-    // TODO - routename is NULL - for /products/edit/4
-    // Add routename
     #region snippet5
-[Route("[controller]/[action]", Name = "[controller]_[action]")]
-public class ProductsController : Controller
-{
-    [HttpGet]
-    public IActionResult List()
+    [ApiController]
+    [Route("api/[controller]/[action]", Name = "[controller]_[action]")]
+    public abstract class MyBaseController : Controller
     {
-        var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
-        ViewData["Message"] = $"Route name: {routeName}";
-        return View("Generic");
     }
 
-    [HttpGet("{id}")]
-    public IActionResult Edit(int id)
+    public class ProductsController : MyBaseController
     {
-        var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
-        ViewData["Message"] = $"Route name: {routeName}, ID = {id.ToString()}";
-        return View("Generic");
+        [HttpGet]
+        public IActionResult List()
+        {
+            var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
+            return Content($"List- route name:{routeName}");
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Edit(int id)
+        {
+            var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
+            return Content($"Edit - Route name: {routeName}, ID = {id.ToString()}");
+        }
     }
-}
     #endregion
-
-/* The following works
-    [HttpGet]
-public IActionResult Edit2()
-{
-    var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
-    ViewData["Message"] = $"Route name: {routeName}";
-    return View("Generic");
-}
-*/
 #endif
 }
- 

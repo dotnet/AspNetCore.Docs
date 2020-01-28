@@ -402,18 +402,20 @@ In the preceding code:
 
 Token replacement occurs as the last step of building the attribute routes. The above example will behave the same as the following code:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet2)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet20)]
 
 [!INCLUDE[](~/includes/MTcomments.md)]
 
-Attribute routes can also be combined with inheritance. This is particularly powerful combined with token replacement.
+Attribute routes can also be combined with inheritance. This is particularly powerful combined with token replacement. Token replacement also applies to route names defined by attribute routes.
+`[Route("[controller]/[action]", Name="[controller]_[action]")]`
+generates a unique route name for each action:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet5)]
 
-Token replacement also applies to route names defined by attribute routes.
-`[Route("[controller]/[action]", Name="[controller]_[action]")]`
-generates a unique route name for each action.
+In the preceding code:
 
+* The `List` action returns the route name `products_list`.
+* The `Edit` action returns a `null` route name. The route name is null because the `Edit` route is `/Products/Edit/id`, which doesn't match
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
 
 <a name="routing-token-replacement-transformers-ref-label"></a>
