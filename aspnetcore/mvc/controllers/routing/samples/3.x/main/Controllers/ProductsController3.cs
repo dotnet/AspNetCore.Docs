@@ -3,16 +3,7 @@
 namespace WebMvcRouting3.Controllers
 {
 
-    [Route("[controller]")]
-    public class ProductsController : Controller
-    {
-        [Route("")] // Matches 'Products'
-        [Route("Index")] // Matches 'Products/Index'
-        public IActionResult Index()
-        {
-            // ...
-            return View("Generic");
-        }
- }
+    // Moved to ProductsController.cs
+
 
 }

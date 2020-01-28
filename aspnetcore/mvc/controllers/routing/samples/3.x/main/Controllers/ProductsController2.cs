@@ -5,19 +5,7 @@
 namespace WebMvcRouting2.Controllers
 {
     #region snippet
-    public class ProductsController : Controller
-    {
-        [HttpGet("[controller]/[action]")] // Matches '/Products/List'
-        public IActionResult List() {
-            return View("Generic");
-        }
-
-        [HttpGet("[controller]/[action]/{id}")] // Matches '/Products/Edit/{id}'
-        public IActionResult Edit(int id) {
-            ViewData["Message"] = id.ToString();
-            return View("Generic");
-        }
-    }
+    // Moved to ProductsController.cs
     #endregion
 
 }

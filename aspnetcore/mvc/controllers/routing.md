@@ -364,28 +364,45 @@ The following table explains the `[Route]` attributes in the preceding code:
 
 ### Ordering attribute routes
 
-Routing builds a tree and matches all routes simultaneously. This behaves as-if the route entries were placed in an ideal ordering; the most specific routes have a chance to execute before the more general routes.
+Routing builds a tree and matches all routes simultaneously:
 
-For example, a route like `blog/search/{topic}` is more specific than a route like `blog/{*article}`. The `blog/search/{topic}` route has higher priority, by default, because that's the only sensible ordering. Using conventional routing, the developer is responsible for placing routes in the desired order.
+* The route entries behave as if placed in an ideal ordering.
+* The most specific routes have a chance to execute before the more general routes.
+
+For example, a route like `blog/search/{topic}` is more specific than a route like `blog/{*article}`. The `blog/search/{topic}` route has higher priority, by default, because that's the only sensible ordering. Using [conventional routing](#cr), the developer is responsible for placing routes in the desired order.
 
 Attribute routes can configure an order, using the `Order` property of all of the framework provided route attributes. Routes are processed according to an ascending sort of the `Order` property. The default order is `0`. Setting a route using `Order = -1` will run before routes that don't set an order. Setting a route using `Order = 1` will run after default route ordering.
 
-> [!TIP]
-> Avoid depending on `Order`. If your URL-space requires explicit order values to route correctly, then it's likely confusing to clients as well. In general attribute routing will select the correct route with URL matching. If the default order used for URL generation isn't working, using route name as an override is usually simpler than applying the `Order` property.
+**Avoid** depending on `Order`. If your URL-space requires explicit order values to route correctly, then it's likely confusing to clients as well. In general attribute routing will select the correct route with URL matching. If the default order used for URL generation isn't working, using a route name as an override is usually simpler than applying the `Order` property.
 
-Information on route order in the Razor Pages topics is available at [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order).
+See [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order) for information on route order with Razor Pages.
 
 <a name="routing-token-replacement-templates-ref-label"></a>
 
 ## Token replacement in route templates ([controller], [action], [area])
 
-For convenience, attribute routes support *token replacement* for reserved route parameters by enclosing a token in square-braces (`[`, `]`) or curly braces (`{`, `}`). The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined. In the following example, the actions match URL paths as described in the comments:
+For convenience, attribute routes support token replacement for reserved route parameters by enclosing a token in one of the following:
+
+* Square braces: `[]`
+* Curly braces: `{}`
+
+The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet)]
 
+In the preceding code:
+
+  [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet10)]
+
+  * Matches `/Products/List`
+
+  [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet11)]
+
+  * Matches `/Products/Edit/{id}`
+
 Token replacement occurs as the last step of building the attribute routes. The above example will behave the same as the following code:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController2.cs?name=snippet)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet2)]
 
 Attribute routes can also be combined with inheritance. This is particularly powerful combined with token replacement.
 
@@ -805,6 +822,7 @@ app.UseRouter(routes.Build());
 `UseMvc` doesn't directly define any routes, it adds a placeholder to the route collection for the `attribute` route. The overload `UseMvc(Action<IRouteBuilder>)` lets you add your own routes and also supports attribute routing.  `UseMvc` and all of its variations add a placeholder for the attribute route - attribute routing is always available regardless of how you configure `UseMvc`. `UseMvcWithDefaultRoute` defines a default route and supports attribute routing. The [Attribute Routing](#attribute-routing-ref-label) section includes more details on attribute routing.
 
 <a name="routing-conventional-ref-label"></a>
+<a name="cr"></a>
 
 ## Conventional routing
 
