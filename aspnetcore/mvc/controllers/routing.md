@@ -407,59 +407,35 @@ Token replacement occurs as the last step of building the attribute routes. The 
 [!INCLUDE[](~/includes/MTcomments.md)]
 
 Attribute routes can also be combined with inheritance. This is particularly powerful combined with token replacement. Token replacement also applies to route names defined by attribute routes.
-`[Route("[controller]/[action]", Name="[controller]_[action]")]`
-generates a unique route name for each action:
+`[Route("[controller]/[action]", Name="[controller]_[action]")]`generates a unique route name for each action:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet5)]
 
 In the preceding code:
 
 * The `List` action returns the route name `products_list`.
-* The `Edit` action returns a `null` route name. The route name is null because the `Edit` route is `/Products/Edit/id`, which doesn't match
+* The `Edit` action returns a `null` route name. The `Edit` route name is null because the route is `api/Products/Edit/id`, which doesn't match `api/[controller]/[action]`.
+
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
 
 <a name="routing-token-replacement-transformers-ref-label"></a>
 
 ### Use a parameter transformer to customize token replacement
-zz
-Token replacement can be customized using a parameter transformer. A parameter transformer implements <xref:Microsoft.AspNetCore.Routing.IOutboundParameterTransformer> and transforms the value of parameters. For example, a custom `SlugifyParameterTransformer` parameter transformer changes the `SubscriptionManagement` route value to `subscription-management`.
+
+Token replacement can be customized using a parameter transformer. A parameter transformer implements <xref:Microsoft.AspNetCore.Routing.IOutboundParameterTransformer> and transforms the value of parameters. For example, a custom `SlugifyParameterTransformer` parameter transformer changes the `SubscriptionManagement` route value to `subscription-management`:
+
+[!code-csharp[](routing/samples/3.x/main/StartupSlugifyParamTransformer.cs?name=snippet2)]
 
 The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention> is an application model convention that:
 
 * Applies a parameter transformer to all attribute routes in an application.
 * Customizes the attribute route token values as they are replaced.
 
-```csharp
-public class SubscriptionManagementController : Controller
-{
-    [HttpGet("[controller]/[action]")] // Matches '/subscription-management/list-all'
-    public IActionResult ListAll() { ... }
-}
-```
+[!code-csharp[](routing/samples/3.x/main/Controllers/SubscriptionManagementController.cs?name=snippet)]
 
 The `RouteTokenTransformerConvention` is registered as an option in `ConfigureServices`.
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddControllers(options =>
-    {
-        options.Conventions.Add(new RouteTokenTransformerConvention(
-                                     new SlugifyParameterTransformer()));
-    });
-}
-
-public class SlugifyParameterTransformer : IOutboundParameterTransformer
-{
-    public string TransformOutbound(object value)
-    {
-        if (value == null) { return null; }
-
-        // Slugify value
-        return Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1-$2").ToLower();
-    }
-}
-```
+[!code-csharp[](routing/samples/3.x/main/StartupSlugifyParamTransformer.cs?name=snippet)]
 
 <a name="routing-multiple-routes-ref-label"></a>
 
