@@ -439,7 +439,7 @@ namespace BlazorSample.Shared
 
 ### Static .NET method call
 
-To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support Blazor Server scenarios. To invoke a .NET method from JavaScript, the .NET method must be public, static, and have the `[JSInvokable]` attribute. By default, the method identifier is the method name, but you can specify a different identifier using the `JSInvokableAttribute` constructor. Calling open generic methods isn't currently supported.
+To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support Blazor Server scenarios. The .NET method must be public, static, and have the `[JSInvokable]` attribute. Calling open generic methods isn't currently supported.
 
 The sample app includes a C# method to return an array of `int`s. The `JSInvokable` attribute is applied to the method.
 
@@ -475,6 +475,30 @@ Array(4) [ 1, 2, 3, 4 ]
 ```
 
 The fourth array value is pushed to the array (`data.push(4);`) returned by `ReturnArrayAsync`.
+
+By default, the method identifier is the method name, but you can specify a different identifier using the `JSInvokableAttribute` constructor:
+
+```csharp
+@code {
+    [JSInvokable("DifferentMethodName")]
+    public static Task<int[]> ReturnArrayAsync()
+    {
+        return Task.FromResult(new int[] { 1, 2, 3 });
+    }
+}
+```
+
+In the client-side JavaScript file:
+
+```javascript
+returnArrayAsyncJs: function () {
+  DotNet.invokeMethodAsync('BlazorSample', 'DifferentMethodName')
+    .then(data => {
+      data.push(4);
+      console.log(data);
+    });
+}
+```
 
 ### Instance method call
 
