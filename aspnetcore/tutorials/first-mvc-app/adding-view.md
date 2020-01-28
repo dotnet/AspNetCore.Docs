@@ -56,9 +56,9 @@ Add an `Index` view for the `HelloWorldController`.
 * Right click on the *Views/HelloWorld* folder, and then **Add > New File**.
 * In the **New File** dialog:
 
-  * Select **Web** in the left pane.
-  * Select **Empty HTML file** in the center pane.
-  * Type *Index.cshtml* in the **Name** box.
+  * Select **ASP .NET Core** in the left pane.
+  * Select **MVC View Page** in the center pane.
+  * Type *Index* in the **Name** box.
   * Select **New**.
 
 ![Add New Item dialog](adding-view/_static/add_view_mac.png)

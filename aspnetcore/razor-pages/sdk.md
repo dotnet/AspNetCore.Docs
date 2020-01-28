@@ -63,16 +63,16 @@ To use the Razor SDK to build class libraries containing Razor views or Razor Pa
 
 * Typically, a package reference to `Microsoft.AspNetCore.Mvc` is required to receive additional dependencies that are required to build and compile Razor Pages and Razor views. At a minimum, your project should add package references to:
 
-  * `Microsoft.AspNetCore.Razor.Design` 
+  * `Microsoft.AspNetCore.Razor.Design`
   * `Microsoft.AspNetCore.Mvc.Razor.Extensions`
   * `Microsoft.AspNetCore.Mvc.Razor`
-    
+
   The `Microsoft.AspNetCore.Razor.Design` package provides the Razor compilation tasks and targets for the project.
 
   The preceding packages are included in `Microsoft.AspNetCore.Mvc`. The following markup shows a project file that uses the Razor SDK to build Razor files for an ASP.NET Core Razor Pages app:
-    
+
   [!code-xml[](sdk/sample/RazorSDK.csproj)]
-  
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.1"
@@ -108,7 +108,7 @@ The properties and items in the following table are used to configure inputs and
 
 | Property | Description |
 | -------- | ----------- |
-| `RazorTargetName` | File name (without extension) of the assembly produced by Razor. | 
+| `RazorTargetName` | File name (without extension) of the assembly produced by Razor. |
 | `RazorOutputPath` | The Razor output directory. |
 | `RazorCompileToolset` | Used to determine the toolset used to build the Razor assembly. Valid values are `Implicit`, `RazorSDK`, and `PrecompilationTool`. |
 | [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | Default is `true`. When `true`, includes *web.config*, *.json*, and *.cshtml* files as content in the project. When referenced via `Microsoft.NET.Sdk.Web`, files under *wwwroot* and config files are also included. |
@@ -121,6 +121,10 @@ The properties and items in the following table are used to configure inputs and
 | `EmbedRazorGenerateSources` | When `true`, adds RazorGenerate (*.cshtml*) items as embedded files to the generated Razor assembly. Defaults to `false`. |
 | `UseRazorBuildServer` | When `true`, uses a persistent build server process to offload code generation work. Defaults to the value of `UseSharedCompilation`. |
 | `GenerateMvcApplicationPartsAssemblyAttributes` | When `true`, the SDK generates additional attributes used by MVC at runtime to perform application part discovery. |
+| `DefaultWebContentItemExcludes` | A globbing pattern for item elements that are to be excluded from the `Content` item group in projects targeting the Web or Razor SDK |
+| `ExcludeConfigFilesFromBuildOutput` | When `true`, *.config* and *.json* files do not get copied to the build output directory. |
+| `AddRazorSupportForMvc` | When `true`, configures the Razor SDK to add support for the MVC configuration that is required when building applications containing MVC views or Razor Pages. This property is implicitly set for .NET Core 3.0 or later projects targeting the Web SDK |
+| `RazorLangVersion` | The version of the Razor Language to target. |
 
 For more information on properties, see [MSBuild properties](/visualstudio/msbuild/msbuild-properties).
 
