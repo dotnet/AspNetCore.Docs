@@ -404,33 +404,25 @@ Token replacement occurs as the last step of building the attribute routes. The 
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet2)]
 
+[!INCLUDE[](~/includes/MTcomments.md)]
+
 Attribute routes can also be combined with inheritance. This is particularly powerful combined with token replacement.
 
-```csharp
-[Route("api/[controller]")]
-public abstract class MyBaseController : Controller { ... }
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet5)]
 
-public class ProductsController : MyBaseController
-{
-   [HttpGet] // Matches '/api/Products'
-   public IActionResult List() { ... }
-
-   [HttpPut("{id}")] // Matches '/api/Products/{id}'
-   public IActionResult Edit(int id) { ... }
-}
-```
-
-Token replacement also applies to route names defined by attribute routes. `[Route("[controller]/[action]", Name="[controller]_[action]")]` generates a unique route name for each action.
+Token replacement also applies to route names defined by attribute routes.
+`[Route("[controller]/[action]", Name="[controller]_[action]")]`
+generates a unique route name for each action.
 
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
 
 <a name="routing-token-replacement-transformers-ref-label"></a>
 
 ### Use a parameter transformer to customize token replacement
+zz
+Token replacement can be customized using a parameter transformer. A parameter transformer implements <xref:Microsoft.AspNetCore.Routing.IOutboundParameterTransformer> and transforms the value of parameters. For example, a custom `SlugifyParameterTransformer` parameter transformer changes the `SubscriptionManagement` route value to `subscription-management`.
 
-Token replacement can be customized using a parameter transformer. A parameter transformer implements `IOutboundParameterTransformer` and transforms the value of parameters. For example, a custom `SlugifyParameterTransformer` parameter transformer changes the `SubscriptionManagement` route value to `subscription-management`.
-
-The `RouteTokenTransformerConvention` is an application model convention that:
+The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention> is an application model convention that:
 
 * Applies a parameter transformer to all attribute routes in an application.
 * Customizes the attribute route token values as they are replaced.

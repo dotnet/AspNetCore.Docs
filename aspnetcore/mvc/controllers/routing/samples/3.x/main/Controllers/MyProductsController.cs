@@ -1,5 +1,5 @@
 ﻿//#define PROD1    // Both use the same route so only one can be used.
-
+//#define PROD2
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebMvcRouting.Controllers
@@ -28,7 +28,8 @@ namespace WebMvcRouting.Controllers
     {
         public string Name { get; set; }
     }
-#else
+#endif
+#if PROD2
     // [Route("api/[controller]")] // Not needed because each method has a route template.
     #region snippet2
     [ApiController]

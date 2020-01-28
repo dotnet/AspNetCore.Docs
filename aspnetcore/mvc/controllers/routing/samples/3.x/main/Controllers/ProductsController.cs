@@ -1,6 +1,8 @@
-﻿#define First
+﻿ // #define First
 //#define Second
 //#define Third
+//#define Fourth
+#define Five
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,17 +15,17 @@ namespace WebMvcRouting.Controllers
     [Route("[controller]/[action]")]
     public class ProductsController : Controller
     {
-        #region snippet10
-        [HttpGet]               // Matches '/Products/List'
+    #region snippet10
+        [HttpGet]
         public IActionResult List() {
-            #endregion
+    #endregion
             return View("Generic");
         }
 
-        #region snippet11
-        [HttpGet("{id}")]       // Matches '/Products/Edit/{id}'
+    #region snippet11
+        [HttpGet("{id}")]
         public IActionResult Edit(int id) {
-            #endregion
+    #endregion
             ViewData["Message"] = id.ToString();
             return View("Generic");
         }
@@ -34,15 +36,15 @@ namespace WebMvcRouting.Controllers
     #region snippet20
     public class ProductsController : Controller
     {
-        #region snippet21
-        [HttpGet("[controller]/[action]")] // Matches '/Products/List'
+    #region snippet21
+        [HttpGet("[controller]/[action]")]  // Matches '/Products/List'
         public IActionResult List()
         {
-            #endregion
+    #endregion
             return View("Generic");
         }
 
-        [HttpGet("[controller]/[action]/{id}")] // Matches '/Products/Edit/{id}'
+        [HttpGet("[controller]/[action]/{id}")]   // Matches '/Products/Edit/{id}'
         public IActionResult Edit(int id)
         {
             ViewData["Message"] = id.ToString();
@@ -62,6 +64,65 @@ namespace WebMvcRouting.Controllers
             return View("Generic");
         }
     }
-#endif
+#elif Fourth
+    // Test with StartupAPI
+    #region snippet4
+    [ApiController]
+    [Route("api/[controller]")]
+    public abstract class MyBaseController : Controller
+    {
+    }
 
+    public class ProductsController : MyBaseController
+    {
+        [HttpGet] // Matches '/api/Products'
+        public IActionResult List()
+        {
+            return Content("Using BaseController List");
+        }
+
+        [HttpPut("{id}")] // Matches '/api/Products/{id}'
+        public IActionResult Edit(int id)
+        {
+            return Content($"Using BaseController Edit/{id}");
+        }
+    }
+    #endregion
+#elif Five
+    // Test with StartupDefaultMVC
+    // TODO - routename is NULL - for /products/edit/4
+    // Add routename
+    #region snippet5
+[Route("[controller]/[action]", Name = "[controller]_[action]")]
+public class ProductsController : Controller
+{
+    [HttpGet]
+    public IActionResult List()
+    {
+        var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
+        ViewData["Message"] = $"Route name: {routeName}";
+        return View("Generic");
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult Edit(int id)
+    {
+        var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
+        ViewData["Message"] = $"Route name: {routeName}, ID = {id.ToString()}";
+        return View("Generic");
+    }
 }
+    #endregion
+
+/* The following works
+    [HttpGet]
+public IActionResult Edit2()
+{
+    var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
+    ViewData["Message"] = $"Route name: {routeName}";
+    return View("Generic");
+}
+*/
+#endif
+}
+ 
