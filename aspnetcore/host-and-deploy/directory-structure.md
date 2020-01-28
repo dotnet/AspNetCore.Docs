@@ -5,7 +5,7 @@ description: Learn about the directory structure of published ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/17/2019
+ms.date: 01/28/2020
 uid: host-and-deploy/directory-structure
 ---
 # ASP.NET Core directory structure
@@ -22,8 +22,8 @@ The *publish* directory contains the app's deployable assets produced by the [do
 
 | App Type | Directory Structure |
 | -------- | ------------------- |
-| [Framework-dependent Deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd) | <ul><li>publish&dagger;<ul><li>Views&dagger; (MVC apps; if views aren't precompiled)</li><li>Pages&dagger; (MVC or Razor Pages apps; if pages aren't precompiled)</li><li>wwwroot&dagger;</li><li>*\.dll files</li><li>{ASSEMBLY NAME}.deps.json</li><li>{ASSEMBLY NAME}.dll</li><li>{ASSEMBLY NAME}.pdb</li><li>{ASSEMBLY NAME}.Views.dll</li><li>{ASSEMBLY NAME}.Views.pdb</li><li>{ASSEMBLY NAME}.runtimeconfig.json</li><li>web.config (IIS deployments)</li></ul></li></ul> |
-| [Self-contained Deployment](/dotnet/core/deploying/#self-contained-deployments-scd) | <ul><li>publish&dagger;<ul><li>Views&dagger; (MVC apps; if views aren't precompiled)</li><li>Pages&dagger; (MVC or Razor Pages apps; if pages aren't precompiled)</li><li>wwwroot&dagger;</li><li>\*.dll files</li><li>{ASSEMBLY NAME}.deps.json</li><li>{ASSEMBLY NAME}.dll</li><li>{ASSEMBLY NAME}.exe</li><li>{ASSEMBLY NAME}.pdb</li><li>{ASSEMBLY NAME}.Views.dll</li><li>{ASSEMBLY NAME}.Views.pdb</li><li>{ASSEMBLY NAME}.runtimeconfig.json</li><li>web.config (IIS deployments)</li></ul></li></ul> |
+| [Framework-dependent Executable (FDE)](/dotnet/core/deploying/#framework-dependent-executables-fde) | <ul><li>publish&dagger;<ul><li>Views&dagger; (MVC apps; if views aren't precompiled)</li><li>Pages&dagger; (MVC or Razor Pages apps; if pages aren't precompiled)</li><li>wwwroot&dagger;</li><li>*.dll files</li><li>{ASSEMBLY NAME}.deps.json</li><li>{ASSEMBLY NAME}.dll</li><li>{ASSEMBLY NAME}{.EXTENSION} (*.exe* extension on Windows, no extension on macOS or Linux)</li><li>{ASSEMBLY NAME}.pdb</li><li>{ASSEMBLY NAME}.Views.dll</li><li>{ASSEMBLY NAME}.Views.pdb</li><li>{ASSEMBLY NAME}.runtimeconfig.json</li><li>web.config (IIS deployments)</li><li>createdump ([Linux createdump utility](https://github.com/dotnet/coreclr/blob/master/Documentation/botr/xplat-minidump-generation.md#configurationpolicy))</li><li>*.so (Linux shared object library)</li><li>*.a (macOS archive)</li><li>*.dylib (macOS dynamic library)</li></ul></li></ul> |
+| [Self-contained Deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) | <ul><li>publish&dagger;<ul><li>Views&dagger; (MVC apps; if views aren't precompiled)</li><li>Pages&dagger; (MVC or Razor Pages apps; if pages aren't precompiled)</li><li>wwwroot&dagger;</li><li>\*.dll files</li><li>{ASSEMBLY NAME}.deps.json</li><li>{ASSEMBLY NAME}.dll</li><li>{ASSEMBLY NAME}.exe</li><li>{ASSEMBLY NAME}.pdb</li><li>{ASSEMBLY NAME}.Views.dll</li><li>{ASSEMBLY NAME}.Views.pdb</li><li>{ASSEMBLY NAME}.runtimeconfig.json</li><li>web.config (IIS deployments)</li></ul></li></ul> |
 
 &dagger;Indicates a directory
 
