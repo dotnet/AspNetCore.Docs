@@ -21,7 +21,9 @@ namespace WebMvcRouting
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     //webBuilder.UseStartup<Startup>();
-                    webBuilder.UseStartup<StartupMap>();
+                  //  webBuilder.UseStartup<StartupMap>();
+                    webBuilder.UseStartup<StartupDefaultMVC>();
+
 
                 });
     }

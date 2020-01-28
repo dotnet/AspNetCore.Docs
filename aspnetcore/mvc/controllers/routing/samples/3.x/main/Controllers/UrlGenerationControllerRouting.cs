@@ -1,4 +1,4 @@
-﻿#define Never
+﻿//#define Never
 #if Never
 #region snippet_1
 using Microsoft.AspNetCore.Mvc;

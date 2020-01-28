@@ -21,7 +21,7 @@ namespace RoutingSample.Controllers
         [Route("/articles/{id}")]
         public IActionResult ListArticles(int id)
         {
-            return Content($"MyDemo2Controller.ListArticles {id}");
+            return Content($"MyDemo3Controller.ListArticles {id}");
         }
     }
     #endregion

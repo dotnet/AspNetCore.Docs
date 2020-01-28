@@ -1,5 +1,8 @@
-﻿// This controller must be commented out to test MyDemo controller
-///#define First
+﻿// This uses same routes as MyDemoController, so only one can be defined
+// Test with StartupDefaultMVC
+
+#define First
+//#define Second
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,21 +12,21 @@ namespace WebMvcRouting.Controllers
 #if First
 
     #region snippet
-    [Route("Home")]
+     [Route("Home")]
     public class HomeController : Controller
     {
-        [Route("")]      // Combines to define the route template "Home"
-        [Route("Index")] // Combines to define the route template "Home/Index"
-        [Route("/")]     // Does not combine, defines the route template ""
+        [Route("")]
+        [Route("Index")]
+        [Route("/")]
         public IActionResult Index()
         {
-            ViewData["Message"] = "Home index";
             var url = Url.Action("Index", "Home");
-            ViewData["Message"] = "Home index" + "var url = Url.Action; =  " + url;
+            ViewData["Message"] = $"Home index:  Url.Action =  {url}";
+
             return View();
         }
 
-        [Route("About")] // Combines to define the route template "Home/About"
+        [Route("About")]
         public IActionResult About()
         {
             return View();
@@ -31,8 +34,6 @@ namespace WebMvcRouting.Controllers
     }
     #endregion
 #elif Second
-    // Test with webBuilder.UseStartup<StartupMap>();
-
     #region snippet2
     public class HomeController : Controller
     {
@@ -55,6 +56,8 @@ namespace WebMvcRouting.Controllers
         }
     }
     #endregion
+#elif Third
+   
 #endif
 }
 

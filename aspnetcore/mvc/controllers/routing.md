@@ -7,7 +7,7 @@ ms.date: 1/25/2020
 uid: mvc/controllers/routing
 ---
 # Routing to controller actions in ASP.NET Core
-
+<!-- TO do , future tense search will, etc-->
 By [Ryan Nowak](https://github.com/rynowak) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
@@ -244,9 +244,7 @@ The following example:
 * Uses the preceding `Configure` method.
 * `HomeController` matches a set of URLs similar to what the default route `{controller=Home}/{action=Index}/{id?}` matches.
 
-```csharp
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet2)]
-```
 
 The `HomeController.Index` action is run for any of the URL paths `/`, `/Home`, or `/Home/Index`.
 
@@ -280,7 +278,7 @@ The preceding controller returns an HTTP 500 error with the URL path `/articles/
 
 The special parameter names are used by the URL generation system to determine if a URL generation operation refers to a Razor Page or to a Controller.
 
-## Attribute routing with Http[Verb] attributes
+## Attribute routing with Http-Verb attributes
 
 Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>,<xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>, etc. All of these attributes accept a route template. The following example shows two actions that match the same route template:
 
@@ -294,31 +292,35 @@ Using the URL path `/products`:
 * The `MyProductsController.ListProducts` action runs when the HTTP verb is `GET`.
 * The `MyProductsController.CreateProduct` action runs when the HTTP verb is `POST`.
 
-When building a REST API, it's rare that you'll need to use `[Route(...)]` on an action method because the action accepts all HTTP methods. It's better to use the more specific Http-Verb-Attributes to be precise about what your API supports. Clients of REST APIs are expected to know what paths and HTTP verbs map to specific logical operations.
+When building a REST API, it's rare that you'll need to use `[Route(...)]` on an action method because the action accepts all HTTP methods. It's better to use the more specific Http-Verb attributes to be precise about what your API supports. Clients of REST APIs are expected to know what paths and HTTP verbs map to specific logical operations.
 
-REST APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations, for example, GET and POST on the same logical resource will use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
+REST APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations, for example, GET and POST on the same logical resource use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
 
-Since an attribute route applies to a specific action, it's easy to make parameters required as part of the route template definition. In this example, `id` is required as part of the URL path.
+Since an attribute route applies to a specific action, it's easy to make parameters required as part of the route template definition. In the following example, `id` is required as part of the URL path:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyProductsController.cs?name=snippet2)]
 
 The `ProductsApiController.GetProduct(int)` action:
 
-* Is run with URL path  `/products/3`
-* Returns an HTTP 404 error with a URL path `/products`
+* Is run with URL path like `/products/3`
+* Isn't run with the URL path `/products`.
 
  See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
 
 ## Route Name
 
-The following code  defines a *route name* of `Products_List`:
+The following code  defines a route name of `Products_List`:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyProductsController.cs?name=snippet2)]
 
-Route names can be used to generate a URL based on a specific route. Route names have no impact on the URL matching behavior of routing and are only used for URL generation. Route names must be unique application-wide.
+Route names can be used to generate a URL based on a specific route. Route names:
 
-> [!NOTE]
-> Contrast this with the conventional *default route*, which defines the `id` parameter as optional (`{id?}`). This ability to precisely specify APIs has advantages, such as  allowing `/products` and `/products/5` to be dispatched to different actions.
+* Have no impact on the URL matching behavior of routing.
+* Are only used for URL generation.
+
+Route names must be unique application-wide.
+
+Contrast the preceding code with the conventional default route which defines the `id` parameter as optional (`{id?}`). The ability to precisely specify APIs has advantages, such as  allowing `/products` and `/products/5` to be dispatched to different actions.
 
 <a name="routing-combining-ref-label"></a>
 
@@ -338,32 +340,25 @@ public class ProductsApiController : Controller
 }
 ```
 
-In this example the URL path `/products` can match `ProductsApi.ListProducts`, and the URL path `/products/5` can match `ProductsApi.GetProduct(int)`. Both of these actions only match HTTP `GET` because they're marked with the `HttpGetAttribute`.
+In the preceding example:
 
-Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller. This example matches a set of URL paths similar to the *default route*.
+* The URL path `/products` can match `ProductsApi.ListProducts`
+* The URL path `/products/5` can match `ProductsApi.GetProduct(int)`.
 
-```csharp
-[Route("Home")]
-public class HomeController : Controller
-{
-    [Route("")]      // Combines to define the route template "Home"
-    [Route("Index")] // Combines to define the route template "Home/Index"
-    [Route("/")]     // Doesn't combine, defines the route template ""
-    public IActionResult Index()
-    {
-        ViewData["Message"] = "Home index";
-        var url = Url.Action("Index", "Home");
-        ViewData["Message"] = "Home index" + "var url = Url.Action; =  " + url;
-        return View();
-    }
+Both of these actions only match HTTP `GET` because they're marked with the `[HttpGet]` attribute.
 
-    [Route("About")] // Combines to define the route template "Home/About"
-    public IActionResult About()
-    {
-        return View();
-    }   
-}
-```
+Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller. The following example matches a set of URL paths similar to the default route.
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet)]
+
+The following table explains the `[Route]` attributes in the preceding code:
+
+| Attribute               | Combines with `[Route("Home")]` | Defines route template |
+| ----------------- | ------------ | --------- |
+| `[Route("")]` | Yes | `"Home"` |
+| `[Route("Index")]` | Yes | `"Home/Index"` |
+| `[Route("/")]` | No | `""` |
+| `[Route("About")]` | Yes | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
 
