@@ -90,17 +90,11 @@ You can introduce NCache as a backplane in the SignalR app by taking the followi
   * [Nginx](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#sticky)
   * [pfSense](https://www.netgate.com/docs/pfsense/loadbalancing/inbound-load-balancing.html#sticky-connections)
 
-## NCache server errors
+## NCache backplane reliability
 
-When a Redis server goes down, SignalR throws exceptions that indicate messages won't be delivered. Some typical exception messages:
+All NCache cluster [topologies](https://www.alachisoft.com/resources/docs/ncache/admin-guide/cache-topologies.html), except for the *Partitioned* topology, ensure messages are safe in the event of node failure, provided that the cluster is made up of 2 or more node servers that serve to furnish the backed-up messages. 
 
-* *Failed writing message*
-* *Failed to invoke hub method 'MethodName'*
-* *Connection to Redis failed*
 
-SignalR doesn't buffer messages to send them when the server comes back up. Any messages sent while the Redis server is down are lost.
-
-SignalR automatically reconnects when the Redis server is available again.
 
 ## Next steps
 
