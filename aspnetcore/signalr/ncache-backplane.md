@@ -94,7 +94,9 @@ You can introduce NCache as a backplane in the SignalR app by taking the followi
 
 All NCache cluster [topologies](https://www.alachisoft.com/resources/docs/ncache/admin-guide/cache-topologies.html), except for the *Partitioned* topology, ensure messages are safe in the event of node failure, provided that the cluster is made up of 2 or more node servers that serve to furnish the backed-up messages. 
 
+## NCache backplane logging
 
+NCache as a SignalR backplane provides extensive logging capabilities that incorporates the built-in ASP.NET Core logging functionality. As such, custom logging providers such as [Serilog](https://github.com/serilog/serilog-aspnetcore) can be injected into the ASP.NET Core SignalR app and NCache will log messages related to the operations being performed using those providers. Some of the more frequent logs of interest include the sequence of messages between publishers and recepients, as well as message delivery failures.
 
 ## Next steps
 
