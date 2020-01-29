@@ -86,11 +86,11 @@ Place the `<script>` tag that references the JavaScript file in the *wwwroot/ind
 
 *wwwroot/index.html* (Blazor WebAssembly):
 
-[!code-html[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=15)]
+[!code-html[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=22)]
 
 *Pages/_Host.cshtml* (Blazor Server):
 
-[!code-cshtml[](./common/samples/3.x/BlazorServerSample/Pages/_Host.cshtml?highlight=21)]
+[!code-cshtml[](./common/samples/3.x/BlazorServerSample/Pages/_Host.cshtml?highlight=35)]
 
 Don't place a `<script>` tag in a component file because the `<script>` tag can't be updated dynamically.
 
