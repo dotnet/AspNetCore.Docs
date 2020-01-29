@@ -41,7 +41,7 @@ public class NamespaceRoutingConvention : IControllerModelConvention
         template.Append(namespc, _baseNamespace.Length + 1,
                         namespc.Length - _baseNamespace.Length - 1);
         template.Replace('.', '/');
-        template.Append("/[controller]");
+        template.Append("/[controller]/[action]/{id?}");
 
         foreach (var selector in controller.Selectors)
         {
