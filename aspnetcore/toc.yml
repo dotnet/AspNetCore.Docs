@@ -230,8 +230,6 @@
           uid: razor-pages/filter
         - name: Route and app conventions
           uid: razor-pages/razor-pages-conventions
-        - name: Razor SDK
-          uid: razor-pages/sdk
     - name: MVC
       items:
         - name: Overview
@@ -409,21 +407,25 @@
               href: mvc/views/working-with-forms.md#the-validation-summary-tag-helper
     - name: Advanced
       items:
+        - name: Application parts
+          uid: mvc/extensibility/app-parts
+        - name: Application model
+          uid: mvc/controllers/application-model
+        - name: Areas
+          uid: mvc/controllers/areas
+        - name: Filters
+          uid: mvc/controllers/filters
+        - name: Razor SDK
+          uid: razor-pages/sdk
         - name: View components
           uid: mvc/views/view-components
         - name: View compilation
           uid: mvc/views/view-compilation
-        - name: App model
-          uid: mvc/controllers/application-model
-        - name: Filters
-          uid: mvc/controllers/filters
-        - name: Areas
-          uid: mvc/controllers/areas
         - name: Upload files
           uid: mvc/models/file-uploads
-        - name: App parts
-          uid: mvc/extensibility/app-parts
-        - name: aspnet-codegenerator
+        - name: Web SDK
+          uid: razor-pages/web-sdk
+        - name: aspnet-codegenerator (Scaffolding)
           uid: fundamentals/tools/dotnet-aspnet-codegenerator
 - name: Web API apps
   items:
@@ -561,7 +563,7 @@
         - name: Hub protocol
           href: https://github.com/aspnet/AspNetCore/blob/master/src/SignalR/docs/specs/HubProtocol.md
         - name: Transport protocols
-          href: https://github.com/aspnet/AspNetCore/blob/master/src/SignalR/docs/specs/TransportProtocols.md      
+          href: https://github.com/aspnet/AspNetCore/blob/master/src/SignalR/docs/specs/TransportProtocols.md
 - name: Remote Procedure Call apps
   items:
     - name: Introduction to gRPC services
@@ -578,6 +580,8 @@
       uid: grpc/client
     - name: gRPC client factory integration
       uid: grpc/clientfactory
+    - name: Use gRPC in browser apps
+      uid: grpc/browser
     - name: Configuration
       uid: grpc/configuration
     - name: Authentication and authorization
@@ -1036,7 +1040,7 @@
     - name: Enable Cross-Origin Requests (CORS)
       uid: security/cors
     - name: Share cookies among apps
-      uid: security/cookie-sharing      
+      uid: security/cookie-sharing
     - name: SameSite cookies
       uid: security/samesite
     - name: IP safelist

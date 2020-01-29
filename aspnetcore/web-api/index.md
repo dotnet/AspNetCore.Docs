@@ -5,7 +5,7 @@ description: Learn the basics of creating a web API in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 11/22/2019
+ms.date: 01/27/2020
 uid: web-api/index
 ---
 # Create web APIs with ASP.NET Core
@@ -72,13 +72,28 @@ For a list that includes the available attributes, see the <xref:Microsoft.AspNe
 
 The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute can be applied to a controller class to enable the following opinionated, API-specific behaviors:
 
+::: moniker range=">= aspnetcore-2.2"
+
 * [Attribute routing requirement](#attribute-routing-requirement)
 * [Automatic HTTP 400 responses](#automatic-http-400-responses)
 * [Binding source parameter inference](#binding-source-parameter-inference)
 * [Multipart/form-data request inference](#multipartform-data-request-inference)
 * [Problem details for error status codes](#problem-details-for-error-status-codes)
 
+The *Problem details for error status codes* feature requires a [compatibility version](xref:mvc/compatibility-version) of 2.2 or later. The other features require a compatibility version of 2.1 or later.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.1"
+
+* [Attribute routing requirement](#attribute-routing-requirement)
+* [Automatic HTTP 400 responses](#automatic-http-400-responses)
+* [Binding source parameter inference](#binding-source-parameter-inference)
+* [Multipart/form-data request inference](#multipartform-data-request-inference)
+
 These features require a [compatibility version](xref:mvc/compatibility-version) of 2.1 or later.
+
+::: moniker-end
 
 ### Attribute on specific controllers
 

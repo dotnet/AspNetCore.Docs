@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core Blazor app templates and Blazor project st
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 01/29/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/templates
 ---
@@ -28,16 +28,20 @@ For step-by-step instructions on creating a Blazor app from a template, see <xre
 
 The following files and folders make up a Blazor app generated from a Blazor template:
 
-* *Program.cs* &ndash; The app's entry point that sets up the ASP.NET Core [host](xref:fundamentals/host/generic-host). The code in this file is common to all ASP.NET Core apps generated from ASP.NET Core templates.
+* *Program.cs* &ndash; The app's entry point that sets up the:
 
-* *Startup.cs* &ndash; Contains the app's startup logic. The `Startup` class defines two methods:
+  * ASP.NET Core [host](xref:fundamentals/host/generic-host) (Blazor Server)
+  * WebAssembly host (Blazor WebAssembly) &ndash; The code in this file is unique to apps created from the Blazor WebAssembly template (`blazorwasm`).
+    * The `App` component, which is the root component of the app, is specified as the `app` DOM element to the `Add` method.
+    * Services can be configured with the `ConfigureServices` method on the host builder (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>();`).
+    * Configuration can be supplied via the host builder (`builder.Configuration`).
+
+* *Startup.cs* (Blazor Server) &ndash; Contains the app's startup logic. The `Startup` class defines two methods:
 
   * `ConfigureServices` &ndash; Configures the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. In Blazor Server apps, services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
   * `Configure` &ndash; Configures the app's request handling pipeline:
-    * Blazor WebAssembly &ndash; Adds the `App` component (specified as the `app` DOM element to the `AddComponent` method), which is the root component of the app.
-    * Blazor Server
-      * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> is called to set up an endpoint for the real-time connection with the browser. The connection is created with [SignalR](xref:signalr/introduction), which is a framework for adding real-time web functionality to apps.
-      * [MapFallbackToPage("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) is called to set up the root page of the app (*Pages/_Host.cshtml*) and enable navigation.
+    * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> is called to set up an endpoint for the real-time connection with the browser. The connection is created with [SignalR](xref:signalr/introduction), which is a framework for adding real-time web functionality to apps.
+    * [MapFallbackToPage("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) is called to set up the root page of the app (*Pages/_Host.cshtml*) and enable navigation.
 
 * *wwwroot/index.html* (Blazor WebAssembly) &ndash; The root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.

@@ -5,8 +5,8 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/22/2020
-no-loc: [Blazor, SignalR, blazor.webassembly.js]
+ms.date: 01/29/2020
+no-loc: [Blazor, SignalR]
 uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models

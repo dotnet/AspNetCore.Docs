@@ -4,7 +4,7 @@ author: pkellner
 description: Learn how to use the Distributed Cache Tag Helper.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/10/2018
+ms.date: 01/24/2020
 uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
 ---
 # Distributed Cache Tag Helper in ASP.NET Core
@@ -54,7 +54,7 @@ Example:
 
 ## Distributed Cache Tag Helper IDistributedCache implementations
 
-There are two implementations of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> built in to ASP.NET Core. One is based on SQL Server, and the other is based on Redis. Details of these implementations can be found at <xref:performance/caching/distributed>. Both implementations involve setting an instance of `IDistributedCache` in `Startup`.
+There are two implementations of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> built in to ASP.NET Core. One is based on SQL Server, and the other is based on Redis. Third-party implementations are also available, such as [NCache](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html). Details of these implementations can be found at <xref:performance/caching/distributed>. Both implementations involve setting an instance of `IDistributedCache` in `Startup`.
 
 There are no tag attributes specifically associated with using any specific implementation of `IDistributedCache`.
 

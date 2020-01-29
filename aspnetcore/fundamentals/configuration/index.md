@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/13/2020
+ms.date: 01/29/2020
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -48,6 +48,19 @@ The *options pattern* is an extension of the configuration concepts described in
 ## Host versus app configuration
 
 Before the app is configured and started, a *host* is configured and launched. The host is responsible for app startup and lifetime management. Both the app and the host are configured using the configuration providers described in this topic. Host configuration key-value pairs are also included in the app's configuration. For more information on how the configuration providers are used when the host is built and how configuration sources affect host configuration, see <xref:fundamentals/index#host>.
+
+## Other configuration
+
+This topic only pertains to *app configuration*. Other aspects of running and hosting ASP.NET Core apps are configured using configuration files not covered in this topic:
+
+* *launch.json*/*launchSettings.json* are tooling configuration files for the Development environment, described:
+  * In <xref:fundamentals/environments#development>.
+  * Across the documentation set where the files are used to configure ASP.NET Core apps for Development scenarios.
+* *web.config* is a server configuration file, described in the following topics:
+  * <xref:host-and-deploy/iis/index>
+  * <xref:host-and-deploy/aspnet-core-module>
+
+For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/proper-to-2x/index#store-configurations>.
 
 ## Default configuration
 
@@ -917,7 +930,7 @@ Given the example data, `sectionExists` is `false` because there isn't a `sectio
 
 Configuration can be bound to classes that represent groups of related settings using the *options pattern*. For more information, see <xref:fundamentals/configuration/options>.
 
-Configuration values are returned as strings, but calling <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> enables the construction of [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) objects.
+Configuration values are returned as strings, but calling <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> enables the construction of [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) objects. The binder binds values to all of the public read/write properties of the type provided. Fields are **not** bound.
 
 The sample app contains a `Starship` model (*Models/Starship.cs*):
 
@@ -974,7 +987,7 @@ The sample app calls `GetSection` with the `starship` key. The `starship` key-va
 
 ## Bind to an object graph
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> is capable of binding an entire POCO object graph.
+<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> is capable of binding an entire POCO object graph. As with binding a simple object, only public read/write properties are bound.
 
 The sample contains a `TvShow` model whose object graph includes `Metadata` and `Actors` classes (*Models/TvShow.cs*):
 
