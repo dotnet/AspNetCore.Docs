@@ -362,6 +362,22 @@ To determine the version of the installed ASP.NET Core Module:
 
 The Hosting Bundle installer logs for the module are found at *C:\\Users\\%UserName%\\AppData\\Local\\Temp*. The file is named *dd_DotNetCoreWinSvrHosting__\<timestamp>_000_AspNetCoreModule_x64.log*.
 
+## Hosting Bundle installer flags
+
+Usage:
+
+```console
+dotnet-hosting-{VERSION}.exe OPT_NO_{OPTION}=1
+```
+
+| Option                    | Values | Description                                                                                                                                                                                                                                 |
+|----------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `OPT_NO_ANCM`                | 0/1    | Whether the ASP.NET Core Module is installed or not with the Hosting Bundle. Setting OPT_NO_ANCM to 1 causes the ASP.NET Core Module not to be installed.                                                                                   |
+| `OPT_NO_SHARED_CONFIG_CHECK` | 0/1    | Whether to check if the ASP.NET Core Module is modifying a shared configuration file (in the `redirection.config`). Setting OPT_NO_SHARED_CONFIG_CHECK to 1 causes the Hosting Bundle to not check if a shared configuration is being used. |
+| `OPT_NO_SHAREDFX`            | 0/1    | Whether to install the ASP.NET Core Shared Framework. Setting OPT_NO_SHAREDFX will cause the Hosting Bundle not to install the ASP.NET Core Shared Framework.                                                                               |
+| `OPT_NO_RUNTIME`            | 0/1    | Whether to install the .NET Core Runtime. Setting OPT_NO_RUNTIME will cause the Hosting Bundle not to install the .NET Core Runtime.                                                                               |
+| `OPT_NO_X86`           | 0/1    | Whether to install the x86 .NET Core Runtime and the ASP.NET Core Shared Framework. Setting OPT_NO_X86 will cause the Hosting Bundle not to install the x86 version of the .NET Core Runtime and ASP.NET Core Shared Frameowrk.                                                                               |
+
 ## Module, schema, and configuration file locations
 
 ### Module
