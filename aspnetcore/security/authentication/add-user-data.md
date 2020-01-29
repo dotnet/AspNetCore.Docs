@@ -3,7 +3,7 @@ title: Add, download, and delete user data to Identity in an ASP.NET Core projec
 author: rick-anderson
 description: Learn how to add custom user data to Identity in an ASP.NET Core project. Delete data per GDPR.
 ms.author: riande
-ms.date: 12/05/2019
+ms.date: 01/28/2020
 ms.custom: "mvc, seodec18"
 uid: security/authentication/add-user-data
 ---
@@ -72,15 +72,15 @@ dotnet new webapp -o WebApp1
 # [Visual Studio](#tab/visual-studio)
 
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
-* From the left pane of the **Add Scaffold** dialog, select **Identity** > **ADD**.
-* In the **ADD Identity** dialog, the following options:
+* From the left pane of the **Add Scaffold** dialog, select **Identity** > **Add**.
+* In the **Add Identity** dialog, the following options:
   * Select the existing layout  file  *~/Pages/Shared/_Layout.cshtml*
   * Select the following files to override:
     * **Account/Register**
     * **Account/Manage/Index**
   * Select the **+** button to create a new **Data context class**. Accept the type (**WebApp1.Models.WebApp1Context** if the project is named **WebApp1**).
   * Select the **+** button to create a new **User class**. Accept the type (**WebApp1User** if the project is named **WebApp1**) > **Add**.
-* Select **ADD**.
+* Select **Add**.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
