@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using System.Linq;
 using System.Text;
+
 public class NamespaceRoutingConvention : IControllerModelConvention
 {
     private readonly string _baseNamespace;
@@ -30,7 +31,8 @@ public class NamespaceRoutingConvention : IControllerModelConvention
         //
         //  template =>                         "Admin/[controller]"
         //
-        // This makes your routes roughly line up with the folder structure of your project.
+        // This makes your routes roughly line up with the folder structure of your
+        // project.
         //
         var namespc = controller.ControllerType.Namespace;
         if (namespc == null)

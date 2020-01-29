@@ -515,18 +515,25 @@ The preceding `Get` method returns `Order = 2, Template = api/MyTestApi`.
 
 <a name="routing-app-model-ref-label"></a>
 
-### Using Application Model to customize attribute routes
+### Use application model to customize attribute routes
 
 The application model:
 
 * Is an object model created at startup.
 * Contains all of the metadata used by MVC to route and execute the actions in an app.
 
-The *application model* includes all of the data gathered from route attributes (through `IRouteTemplateProvider`). You can write *conventions* to modify the application model at startup time to customize how routing behaves. This section shows a simple example of customizing routing using application model.
+The application model includes all of the data gathered from route attributes. The data from route attributes is provided by the `IRouteTemplateProvider` implementation. Conventions:
+
+* Can be written to modify the application model to customize how routing behaves.
+* Are read at app startup.
+
+This section shows a basic example of customizing routing using application model.
 
 [!code-csharp[](routing/samples/3.x/main/NamespaceRoutingConvention.cs)]
 
-<a name="routing-mixed-ref-label"></a>
+[!INCLUDE[](~/includes/MTcomments.md)]
+
+<a name="routing-mixed-ref-label"></a>  zz
 
 ## Mixed routing: Attribute routing vs conventional routing
 
