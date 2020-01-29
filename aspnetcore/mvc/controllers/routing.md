@@ -7,15 +7,16 @@ ms.date: 1/25/2020
 uid: mvc/controllers/routing
 ---
 # Routing to controller actions in ASP.NET Core
+
 <!-- TO do , future tense search will, etc-->
 By [Ryan Nowak](https://github.com/rynowak) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core Controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to actions. Routes templates:
+ASP.NET Core controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to [actions](#action).  Routes templates:
 
 * Are defined in startup code or attributes.
-* Describe how URL paths are matched to actions.
+* Describe how URL paths are matched to [actions](#action).
 * Are used to generate URLs for links. The generated links are returned in responses.
 
 Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. See [Mixed routing](#routing-mixed-ref-label) for more information.
@@ -69,7 +70,7 @@ public class HomeController : Controller
 }
 ```
 
-Using the preceding controller definition and route template, the `HomeController.Index` action would is run for the following URL paths:
+Using the preceding controller definition and route template, the `HomeController.Index` action is run for the following URL paths:
 
 * `/Home/Index/17`
 * `/Home/Index`
@@ -108,7 +109,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 is an example of a *conventional* routing. It's called conventional routing because it establishes a *convention* for URL paths:
 
 * The first path segment maps to the controller name.
-* The second segment maps to the action name.
+* The second segment maps to the [action](#action) name.
 * The third segment is used for an optional `id`.  `id` is used to map to a model entity.
 
 Using this `default` route, the URL path:
@@ -143,7 +144,7 @@ Routing only matches a combination of action and controller that are defined by 
 
 ## Multiple routes
 
-Multiple routes can be added inside `UseEndpoints` by adding more calls to <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>. Doing so allows you to define multiple conventions, or to add conventional routes that are dedicated to a specific action, such as:
+Multiple routes can be added inside `UseEndpoints` by adding more calls to <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>. Doing so allows you to define multiple conventions, or to add conventional routes that are dedicated to a specific [action](#action), such as:
 
 [!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
@@ -205,11 +206,11 @@ This is a typical pattern for MVC controllers:
 * `Edit(int)` displays a form to edit a product.
 * `Edit(int, Product)` processes  the posted form.
 
-To make this possible MVC needs to select `Edit(int, Product)` when the request is an HTTP `POST` and `Edit(int)` when the HTTP verb is anything else. `Edit(int)` is generally called via `GET`.
+To make this possible MVC needs to select `Edit(int, Product)` when the request is an HTTP `POST` and `Edit(int)` when the [HTTP verb](#verb) is anything else. `Edit(int)` is generally called via `GET`.
 
 The <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, `[HttpPost]`, is provided to the routing system so that it can choose based on the HTTP method of the request. The `HttpPostAttribute` makes `Edit(int, Product)` a 'better' match than `Edit(int)`.
 
-It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other HTTP verbs. In conventional routing it's common for actions to use the same action name when they're part of a show form, then submit form workflow.
+It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other [HTTP verbs](#verb). In conventional routing it's common for actions to use the same action name when they're part of a show form, then submit form workflow.
 
 <a name="routing-route-name-ref-label"></a>
 
@@ -248,7 +249,7 @@ The following example:
 
 The `HomeController.Index` action is run for any of the URL paths `/`, `/Home`, or `/Home/Index`.
 
-This example highlights a key programming difference between attribute routing and conventional routing. Attribute routing requires more input to specify a route. The conventional default route handles routes more succinctly. However, attribute routing allows and requires precise control of which route templates apply to each action.
+This example highlights a key programming difference between attribute routing and conventional routing. Attribute routing requires more input to specify a route. The conventional default route handles routes more succinctly. However, attribute routing allows and requires precise control of which route templates apply to each [action](#action).
 
 With attribute routing, the controller name and action names play **no** role in which action is matched. The following example matches the same URLs as the previous example:
 
@@ -278,9 +279,9 @@ The preceding controller returns an HTTP 500 error with the URL path `/articles/
 
 The special parameter names are used by the URL generation system to determine if a URL generation operation refers to a Razor Page or to a Controller.
 
-## Attribute routing with Http-Verb attributes
+## Attribute routing with Http Verb attributes
 
-Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>,<xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>, etc. All of these attributes accept a route template. The following example shows two actions that match the same route template:
+Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>,<xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>. All of these [HTTP verb](#verb) attributes accept a route template. The following example shows two actions that match the same route template:
 
 <!-- review: My snippets use :ControllerBase, you used : Controller
 I'm using what the templates generate. Ditto for me using ActionResult and you used IActionResult -->
@@ -289,10 +290,10 @@ I'm using what the templates generate. Ditto for me using ActionResult and you u
 
 Using the URL path `/products`:
 
-* The `MyProductsController.ListProducts` action runs when the HTTP verb is `GET`.
-* The `MyProductsController.CreateProduct` action runs when the HTTP verb is `POST`.
+* The `MyProductsController.ListProducts` action runs when the [HTTP verb](#verb) is `GET`.
+* The `MyProductsController.CreateProduct` action runs when the [HTTP verb](#verb) is `POST`.
 
-When building a REST API, it's rare that you'll need to use `[Route(...)]` on an action method because the action accepts all HTTP methods. It's better to use the more specific Http-Verb attributes to be precise about what your API supports. Clients of REST APIs are expected to know what paths and HTTP verbs map to specific logical operations.
+When building a REST API, it's rare that you'll need to use `[Route(...)]` on an action method because the action accepts all HTTP methods. It's better to use the more specific [HTTP verb attribute](#verb) to be precise about what your API supports. Clients of REST APIs are expected to know what paths and HTTP verbs map to specific logical operations.
 
 REST APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations, for example, GET and POST on the same logical resource use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
 
@@ -321,6 +322,28 @@ Route names can be used to generate a URL based on a specific route. Route names
 Route names must be unique application-wide.
 
 Contrast the preceding code with the conventional default route which defines the `id` parameter as optional (`{id?}`). The ability to precisely specify APIs has advantages, such as  allowing `/products` and `/products/5` to be dispatched to different actions.
+
+<a name="verb"></a>
+
+## HTTP verb templates
+
+ASP.NET Core has the following HTTP verb templates:
+
+* [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute)
+* [[HttpPost]](xref:Microsoft.AspNetCore.Mvc.HttPostAttribute)
+* [[HttpPut]](xref:Microsoft.AspNetCore.Mvc.HttPutAttribute)
+* [[HttpDelete]](xref:Microsoft.AspNetCore.Mvc.HttDeleteAttribute)
+* [[HttpHead]](xref:Microsoft.AspNetCore.Mvc.HttHeadAttribute)
+* [[HttpPatch]](xref:Microsoft.AspNetCore.Mvc.HttPatchAttribute)
+
+<a name="rt"></a>
+
+### Route templates
+
+ASP.NET Core has the following route templates:
+
+* All the [HTTP verb templates](#verb) are route templates.
+* [[Route]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute)
 
 <a name="routing-combining-ref-label"></a>
 
@@ -433,6 +456,8 @@ The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConven
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/SubscriptionManagementController.cs?name=snippet)]
 
+The preceding `ListAll` method matches `/subscription-management/list-all`.
+
 The `RouteTokenTransformerConvention` is registered as an option in `ConfigureServices`.
 
 [!code-csharp[](routing/samples/3.x/main/StartupSlugifyParamTransformer.cs?name=snippet)]
@@ -441,7 +466,7 @@ The `RouteTokenTransformerConvention` is registered as an option in `ConfigureSe
 
 ### Multiple Routes
 
-Attribute routing supports defining multiple routes that reach the same action. The most common usage of this is to mimic the behavior of the *default conventional route* as shown in the following example:
+Attribute routing supports defining multiple routes that reach the same action. The most common usage of this is to mimic the behavior of the default conventional route as shown in the following example:
 
 ```csharp
 [Route("[controller]")]
@@ -453,33 +478,15 @@ public class ProductsController : Controller
 }
 ```
 
-Putting multiple route attributes on the controller means that each one will combine with each of the route attributes on the action methods.
+Putting multiple route attributes on the controller means that each one will combine with each of the route attributes on the action methods:
 
-```csharp
-[Route("Store")]
-[Route("[controller]")]
-public class ProductsController : Controller
-{
-   [HttpPost("Buy")]     // Matches 'Products/Buy' and 'Store/Buy'
-   [HttpPost("Checkout")] // Matches 'Products/Checkout' and 'Store/Checkout'
-   public IActionResult Buy()
-}
-```
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet6)]
 
-When multiple route attributes (that implement `IActionConstraint`) are placed on an action, then each action constraint combines with the route template from the attribute that defined it.
+When multiple route attributes that implement <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint> are placed on an action, each action constraint combines with the route template from the attribute that defined it. <!-- What is it?? Sentence is really too long to MT -->  All the [HTTP verb](#verb) route constraints implement `IActionConstraint`. <!-- Review/edit and remove comment marks. For example, in the preceding code, the post constraint `[HttpPost("Buy")]` combines with -->
 
-```csharp
-[Route("api/[controller]")]
-public class ProductsController : Controller
-{
-   [HttpPut("Buy")]      // Matches PUT 'api/Products/Buy'
-   [HttpPost("Checkout")] // Matches POST 'api/Products/Checkout'
-   public IActionResult Buy()
-}
-```
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet7)]
 
-> [!TIP]
-> While using multiple routes on actions can seem powerful, it's better to keep your application's URL space simple and well-defined. Use multiple routes on actions only where needed, for example to support existing clients.
+While using multiple routes on actions seems powerful, it's better to keep your app's URL space basic and well defined. Use multiple routes on actions only where needed, for example to support existing clients.
 
 <a name="routing-attr-options"></a>
 
@@ -487,42 +494,35 @@ public class ProductsController : Controller
 
 Attribute routes support the same inline syntax as conventional routes to specify optional parameters, default values, and constraints.
 
-```csharp
-[HttpPost("product/{id:int}")]
-public IActionResult ShowProduct(int id)
-{
-   // ...
-}
-```
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet8)]
 
 See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 
 <a name="routing-cust-rt-attr-irt-ref-label"></a>
 
-### Custom route attributes using `IRouteTemplateProvider`
+### Custom route attributes using IRouteTemplateProvider
 
-All of the route attributes provided in the framework ( `[Route(...)]`, `[HttpGet(...)]` , etc.) implement the `IRouteTemplateProvider` interface. MVC looks for attributes on controller classes and action methods when the app starts and uses the ones that implement `IRouteTemplateProvider` to build the initial set of routes.
+All of the [route attributes](#rt) implement <xref:Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider>. MVC:
 
-You can implement `IRouteTemplateProvider` to define your own route attributes. Each `IRouteTemplateProvider` allows you to define a single route with a custom route template, order, and name:
+* Looks for attributes on controller classes and action methods when the app starts.
+* Uses the attributes that implement `IRouteTemplateProvider` to build the initial set of routes.
 
-```csharp
-public class MyApiControllerAttribute : Attribute, IRouteTemplateProvider
-{
-   public string Template => "api/[controller]";
+Implement `IRouteTemplateProvider` to define custom route attributes. Each `IRouteTemplateProvider` allows you to define a single route with a custom route template, order, and name:
 
-   public int? Order { get; set; }
+[!code-csharp[](routing/samples/3.x/main/Controllers/MyTestApiController.cs?name=snippet&highlight=1-10)]
 
-   public string Name { get; set; }
-}
-```
-
-The attribute from the above example automatically sets the `Template` to `"api/[controller]"` when `[MyApiController]` is applied.
+The preceding `Get` method returns `Order = 2, Template = api/MyTestApi`.
 
 <a name="routing-app-model-ref-label"></a>
 
 ### Using Application Model to customize attribute routes
 
-The *application model* is an object model created at startup with all of the metadata used by MVC to route and execute your actions. The *application model* includes all of the data gathered from route attributes (through `IRouteTemplateProvider`). You can write *conventions* to modify the application model at startup time to customize how routing behaves. This section shows a simple example of customizing routing using application model.
+The application model:
+
+* Is an object model created at startup.
+* Contains all of the metadata used by MVC to route and execute the actions in an app.
+
+The *application model* includes all of the data gathered from route attributes (through `IRouteTemplateProvider`). You can write *conventions* to modify the application model at startup time to customize how routing behaves. This section shows a simple example of customizing routing using application model.
 
 [!code-csharp[](routing/samples/3.x/main/NamespaceRoutingConvention.cs)]
 
@@ -689,6 +689,12 @@ When executing an action inside an area, the route value for `area` will be avai
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet3)]
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Duck/Controllers/UsersController.cs)]
+
+<a name="action"></a>
+
+## Action definition
+
+Public methods on a controller, except those with the [NonAction](xref:Microsoft.AspNetCore.Mvc.NonActionAttribute) attribute, are actions.
 
 ::: moniker-end
 

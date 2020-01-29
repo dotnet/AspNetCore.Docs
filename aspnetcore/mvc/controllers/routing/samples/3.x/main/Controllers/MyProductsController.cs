@@ -38,7 +38,8 @@ namespace WebMvcRouting.Controllers
         [HttpGet("/products/{id}", Name = "Products_List")]
         public ActionResult<string> GetProduct(int id)
         {
-            return $"GetProduct {id.ToString()}";
+            var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
+            return $"GetProduct id: {id.ToString()} routeName: {routeName}";
         }
     }
     #endregion

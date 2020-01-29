@@ -23,8 +23,8 @@ namespace WebMvcRouting
                     //webBuilder.UseStartup<Startup>();
                   //  webBuilder.UseStartup<StartupMap>();
                    // webBuilder.UseStartup<StartupDefaultMVC>();
-                    //  webBuilder.UseStartup<StartupAPI>();
-                    webBuilder.UseStartup<StartupSlugifyParamTransformer>();
+                      webBuilder.UseStartup<StartupAPI>();
+                    //webBuilder.UseStartup<StartupSlugifyParamTransformer>();
 
 
 

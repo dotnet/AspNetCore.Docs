@@ -2,7 +2,11 @@
 //#define Second
 //#define Third
 //#define Fourth
-#define Five
+//#define Five
+//#define Six
+//#define Seven
+#define Eight
+
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -111,6 +115,47 @@ namespace WebMvcRouting.Controllers
         {
             var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
             return Content($"Edit - Route name: {routeName}, ID = {id.ToString()}");
+        }
+    }
+    #endregion
+#elif Six
+    #region snippet6
+    [Route("Store")]
+    [Route("[controller]")]
+    public class ProductsController : Controller
+    {
+        [HttpPost("Buy")]       // Matches 'Products/Buy' and 'Store/Buy'
+        [HttpPost("Checkout")]  // Matches 'Products/Checkout' and 'Store/Checkout'
+        public IActionResult Buy()
+        {
+            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+            return Content($"Buy- template:{template}");
+        }
+    }
+    #endregion
+#elif Seven
+    #region snippet7
+    [Route("api/[controller]")]
+    public class ProductsController : Controller
+    {
+        [HttpPut("Buy")]        // Matches PUT 'api/Products/Buy'
+        [HttpPost("Checkout")]  // Matches POST 'api/Products/Checkout'
+        public IActionResult Buy()
+        {
+            var path = Request.Path.Value;
+            return Content($"Buy- Path:{path}");
+        }
+    }
+    #endregion
+#elif Eight
+    // test with POST /product/3
+    #region snippet8
+    public class ProductsController : Controller
+    {
+        [HttpPost("product/{id:int}")]
+        public IActionResult ShowProduct(int id)
+        {
+            return Content($"ShowProduct- id:{id}");
         }
     }
     #endregion

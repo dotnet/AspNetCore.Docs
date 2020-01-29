@@ -6,7 +6,7 @@ namespace WebMvcRouting.Controllers
     public class SubscriptionManagementController : Controller
     {
 
-        [HttpGet("[controller]/[action]")] // Matches '/subscription-management/list-all'
+        [HttpGet("[controller]/[action]")]
         public IActionResult ListAll()
         {
             return Content("SubscriptionManagementController");
