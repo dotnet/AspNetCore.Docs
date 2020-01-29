@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/23/2020
+ms.date: 01/29/2020
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -48,6 +48,19 @@ The *options pattern* is an extension of the configuration concepts described in
 ## Host versus app configuration
 
 Before the app is configured and started, a *host* is configured and launched. The host is responsible for app startup and lifetime management. Both the app and the host are configured using the configuration providers described in this topic. Host configuration key-value pairs are also included in the app's configuration. For more information on how the configuration providers are used when the host is built and how configuration sources affect host configuration, see <xref:fundamentals/index#host>.
+
+## Other configuration
+
+This topic only pertains to *app configuration*. Other aspects of running and hosting ASP.NET Core apps are configured using configuration files not covered in this topic:
+
+* *launch.json*/*launchSettings.json* are tooling configuration files for the Development environment, described:
+  * In <xref:fundamentals/environments#development>.
+  * Across the documentation set where the files are used to configure ASP.NET Core apps for Development scenarios.
+* *web.config* is a server configuration file, described in the following topics:
+  * <xref:host-and-deploy/iis/index>
+  * <xref:host-and-deploy/aspnet-core-module>
+
+For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/proper-to-2x/index#store-configurations>.
 
 ## Default configuration
 
