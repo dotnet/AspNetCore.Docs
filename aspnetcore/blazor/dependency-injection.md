@@ -89,7 +89,8 @@ public class Program
         var host = builder.Build();
 
         var weatherService = host.Services.GetRequiredService<WeatherService>();
-        await weatherService.InitializeWeatherAsync(host.Configuration["WeatherServiceUrl"]);
+        await weatherService.InitializeWeatherAsync(
+            host.Configuration["WeatherServiceUrl"]);
 
         await host.RunAsync();
     }
