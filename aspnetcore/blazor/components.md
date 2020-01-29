@@ -82,10 +82,7 @@ To render a component from a page or view, use the `Component` Tag Helper:
     param-IncrementAmount="10" />
 ```
 
-Passing parameters (for example, `IncrementAmount` in the preceding example) is supported:
-
-* The component must have a parameterless constructor.
-* The parameter must be a settable property with the `[Parameter]` attribute applied.
+The parameter type must be JSON serializable, which typically means that the type must have a default constructor and settable properties. For example, you can specify a value for `IncrementAmount` because the type of `IncrementAmount` is an `int`, which is a primitive type supported by the JSON serializer.
 
 `RenderMode` configures whether the component:
 
@@ -106,12 +103,7 @@ For more information on how components are rendered, component state, and the `C
 
 ## Tag Helpers aren't used in components
 
-[Tag Helpers](xref:mvc/views/tag-helpers/intro) generate HTML strings for webpages, which isn't a valid approach for rendering content in an SPA framework, such as Blazor. In Blazor apps:
-
-* There's a live Document Object Model (DOM) that's updated via DOM APIs.
-* The abstraction for UI reuse is *components*. Components provide a richer editor experience than Tag Helpers and are designed for performance in an SPA app.
-
-To provide Tag Helper-like functionality in Blazor, create a component with the same functionality as the Tag Helper and use the component instead.
+[Tag Helpers](xref:mvc/views/tag-helpers/intro) aren't supported in Razor components (*.razor* files). To provide Tag Helper-like functionality in Blazor, create a component with the same functionality as the Tag Helper and use the component instead.
 
 ## Use components
 
