@@ -51,7 +51,7 @@ Before the app is configured and started, a *host* is configured and launched. T
 
 ## Other configuration
 
-This topic only pertains to *app configuration*. Other aspects of hosting ASP.NET Core apps are configured using configuration files not covered in this topic:
+This topic only pertains to *app configuration*. Other aspects of running and hosting ASP.NET Core apps are configured using configuration files not covered in this topic:
 
 * *launch.json*/*launchSettings.json* are tooling configuration files for the Development environment, described:
   * In <xref:fundamentals/environments#development>.
