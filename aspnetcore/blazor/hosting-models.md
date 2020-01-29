@@ -5,8 +5,8 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
-no-loc: [Blazor, SignalR, blazor.webassembly.js]
+ms.date: 01/29/2020
+no-loc: [Blazor, SignalR]
 uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
@@ -47,6 +47,121 @@ There are downsides to Blazor WebAssembly hosting:
 * Capable client hardware and software (for example, WebAssembly support) is required.
 * Download size is larger, and apps take longer to load.
 * .NET runtime and tooling support is less mature. For example, limitations exist in [.NET Standard](/dotnet/standard/net-standard) support and debugging.
+
+Blazor WebAssembly supports the [.NET SignalR client](xref:signalr/dotnet-client). To use SignalR in a Blazor WebAssembly app:
+
+1. Create an ASP.NET Core hosted Blazor WebAssembly app:
+
+   ```dotnetcli
+   dotnet new blazorwasm --hosted --output BlazorSignalRApp
+   ```
+
+1. Add the ASP.NET Core SignalR Client package to the Client project:
+
+   ```dotnetcli
+   cd BlazorSignalRApp
+   dotnet add Client package Microsoft.AspNetCore.SignalR.Client
+   ```
+
+1. In the Server project, add the following `ChatHub` class (*Hub/ChatHub.cs*):
+
+   ```csharp
+   using System.Threading.Tasks;
+   using Microsoft.AspNetCore.SignalR;
+
+   namespace BlazorSignalRApp.Server.Hubs
+   {
+       public class ChatHub : Hub
+       {
+           public async Task SendMessage(string user, string message)
+           {
+               await Clients.All.SendAsync("ReceiveMessage", user, message);
+           }
+       }
+   }
+   ```
+
+1. In the Server project, add the SignalR services in the `Startup.ConfigureServices` method:
+
+   ```csharp
+   services.AddSignalR();
+   ```
+
+1. In the Server project, add an endpoint for the `ChatHub` in `Startup.Configure`:
+
+   ```csharp
+   .UseEndpoints(endpoints =>
+   {
+       endpoints.MapDefaultControllerRoute();
+       endpoints.MapHub<ChatHub>("/chatHub");
+       endpoints.MapFallbackToClientSideBlazor<Client.Program>("index.html");
+   });
+   ```
+
+1. Update *Pages/Index.razor* in the Client project with the following markup:
+
+   ```razor
+   @page "/"
+   @using Microsoft.AspNetCore.SignalR.Client
+   @inject NavigationManager NavigationManager
+
+   <div>
+       <label for="userInput">User:</label>
+       <input id="userInput" @bind="_userInput" />
+   </div>
+   <div class="form-group">
+       <label for="messageInput">Message:</label>
+       <input id="messageInput" @bind="_messageInput" />
+   </div>
+   <button @onclick="Send" disabled="@(!IsConnected)">Send Message</button>
+
+   <hr>
+
+   <ul id="messagesList">
+       @foreach (var message in _messages)
+       {
+           <li>@message</li>
+       }
+   </ul>
+
+   @code {
+       private HubConnection _hubConnection;
+       private List<string> _messages = new List<string>();
+       private string _userInput;
+       private string _messageInput;
+
+       protected override async Task OnInitializedAsync()
+       {
+           _hubConnection = new HubConnectionBuilder()
+               .WithUrl(NavigationManager.ToAbsoluteUri("/chatHub"))
+               .Build();
+
+           _hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+           {
+               var encodedMsg = user + " says " + message;
+               _messages.Add(encodedMsg);
+               StateHasChanged();
+           });
+
+           await _hubConnection.StartAsync();
+       }
+
+       Task Send() => 
+           _hubConnection.SendAsync("SendMessage", _userInput, _messageInput);
+
+       public bool IsConnected => 
+           _hubConnection.State == HubConnectionState.Connected;
+   }
+   ```
+
+1. Build and run the Server project:
+
+   ```dotnetcli
+   cd Server
+   dotnet run
+   ```
+
+1. Open the app in two separate browser tabs to chat in real time over SignalR.
 
 ## Blazor Server
 
