@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/23/2020
+ms.date: 01/29/2020
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -51,11 +51,11 @@ Before the app is configured and started, a *host* is configured and launched. T
 
 ## Other configuration
 
-This topic only pertains to *app configuration*. Other aspects of hosting ASP.NET Core apps are configured using other configuration files not covered in this topic:
+This topic only pertains to *app configuration*. Other aspects of hosting ASP.NET Core apps are configured using configuration files not covered in this topic:
 
 * *launch.json*/*launchSettings.json* are tooling configuration files for the Development environment, described:
   * In <xref:fundamentals/environments#development>.
-  * Across the documentation set where the file is used to configure ASP.NET Core apps for Development scenarios.
+  * Across the documentation set where the files are used to configure ASP.NET Core apps for Development scenarios.
 * *web.config* is a server configuration file, described in the following topics:
   * <xref:host-and-deploy/iis/index>
   * <xref:host-and-deploy/aspnet-core-module>
