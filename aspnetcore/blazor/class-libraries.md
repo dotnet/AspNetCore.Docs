@@ -64,9 +64,6 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
    > ```
    >
    > Manually add the file the root of the generated project.
-   >
-   > This issue will be addressed in a future release of ASP.NET Core. For more information, see [RCL template either supports MVC OR supports Components (dotnet/aspnetcore #17870)](https://github.com/dotnet/aspnetcore/issues/17870).
-   
 
 1. To add the library to an existing project, use the [dotnet add reference](/dotnet/core/tools/dotnet-add-reference) command in a command shell. In the following example, the RCL is added to the app. Execute the following command from the app's project folder with the path to the library:
 
