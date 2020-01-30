@@ -40,7 +40,7 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
    1. Select the RCL project. Select **OK**.
 
 > [!NOTE]
-> If the **Support pages and views** check box is selected when generating the RCL from the template, then also add a *_Imports.razor* file to root of the generated project with the following contents to enable Razor component authoring:
+> If the **Support pages and views** check box is selected when generating the RCL from the template, then also add an *_Imports.razor* file to root of the generated project with the following contents to enable Razor component authoring:
 >
 > ```razor
 > @using Microsoft.AspNetCore.Components.Web
@@ -57,7 +57,7 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
    ```
 
    > [!NOTE]
-   > If the `-s|--support-pages-and-views` switch is used when generating the RCL from the template, then also add a *_Imports.razor* file to root of the generated project with the following contents to enable Razor component authoring:
+   > If the `-s|--support-pages-and-views` switch is used when generating the RCL from the template, then also add an *_Imports.razor* file to root of the generated project with the following contents to enable Razor component authoring:
    >
    > ```razor
    > @using Microsoft.AspNetCore.Components.Web
