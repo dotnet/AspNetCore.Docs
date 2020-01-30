@@ -330,11 +330,11 @@ Contrast the preceding code with the conventional default route which defines th
 ASP.NET Core has the following HTTP verb templates:
 
 * [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute)
-* [[HttpPost]](xref:Microsoft.AspNetCore.Mvc.HttPostAttribute)
-* [[HttpPut]](xref:Microsoft.AspNetCore.Mvc.HttPutAttribute)
-* [[HttpDelete]](xref:Microsoft.AspNetCore.Mvc.HttDeleteAttribute)
-* [[HttpHead]](xref:Microsoft.AspNetCore.Mvc.HttHeadAttribute)
-* [[HttpPatch]](xref:Microsoft.AspNetCore.Mvc.HttPatchAttribute)
+* [[HttpPost]](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute)
+* [[HttpPut]](xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute)
+* [[HttpDelete]](xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute)
+* [[HttpHead]](xref:Microsoft.AspNetCore.Mvc.HttpHeadAttribute)
+* [[HttpPatch]](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute)
 
 <a name="rt"></a>
 
@@ -557,6 +557,10 @@ In the preceding code:
 * The base `namespace` is `My.Application`.
 * The full name of the type is `My.Application.Admin.Controllers.UsersController`.
 * The `NamespaceRoutingConvention` sets the controllers template to `Admin/Controllers/Users/[action]/{id?`.
+
+The `NamespaceRoutingConvention` can also be applied as an attribute on a controller:
+
+[!code-csharp[](routing/samples/3.x/nsrc/Controllers/TestController.cs?name=snippet&highlight=1)]
 
 <a name="routing-mixed-ref-label"></a>  zz
 
