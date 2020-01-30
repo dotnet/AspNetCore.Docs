@@ -1,21 +1,27 @@
-﻿//#define Never
-#if Never
-#region snippet_1
+﻿#define First
+#if First
+
+// TODO Add name in content output
 using Microsoft.AspNetCore.Mvc;
-
-public class UrlGenerationController : Controller
+namespace WebMvcRouting.Controllers
 {
-    [HttpGet("")]
-    public IActionResult Source()
+    #region snippet_1
+    public class UrlGeneration2Controller : Controller
     {
-        var url = Url.RouteUrl("Destination_Route"); // Generates /custom/url/to/destination
-        return Content($"See {url}, it's really great.");
-    }
+        [HttpGet("")]
+        public IActionResult Source()
+        {
+            // Generates /custom/url/to/destination
+            var url = Url.RouteUrl("Destination_Route");
+            return Content($"See {url}, it's really great.");
+        }
 
-    [HttpGet("custom/url/to/destination", Name = "Destination_Route")]
-    public IActionResult Destination() {
-        return View();
+        [HttpGet("custom/url/to/destination", Name = "Destination_Route")]
+        public IActionResult Destination()
+        {
+            return View();
+        }
     }
-}
-#endregion
+    #endregion
 #endif
+}

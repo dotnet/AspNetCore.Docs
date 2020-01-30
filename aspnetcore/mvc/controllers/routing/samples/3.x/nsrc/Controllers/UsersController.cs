@@ -9,7 +9,8 @@ namespace My.Application.Admin.Controllers
         {
             //controller.ControllerTypeInfo
             var fullname = typeof(UsersController).FullName;
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo?.Template;
+            var template = 
+                ControllerContext.ActionDescriptor.AttributeRouteInfo?.Template;
             return Content($"Index- fullname: {fullname}  template:{template}");
         }
 

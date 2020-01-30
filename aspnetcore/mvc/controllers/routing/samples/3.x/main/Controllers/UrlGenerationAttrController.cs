@@ -1,9 +1,9 @@
-﻿//#define 
-#if Never
+﻿//#define First
+#if First
 #region snippet_1
 using Microsoft.AspNetCore.Mvc;
 
-public class UrlGenerationController : Controller
+public class UrlGenerationAttrController : Controller
 {
     [HttpGet("")]
     public IActionResult Source()
@@ -14,7 +14,10 @@ public class UrlGenerationController : Controller
 
     [HttpGet("custom/url/to/destination")]
     public IActionResult Destination() {
-        return View();
+        var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+        var actionName = ControllerContext.ActionDescriptor.ActionName;
+        var path = Request.Path.Value;
+        return Content($"{controllerName} - {actionName} Path:{path}");
     }
 }
 #endregion

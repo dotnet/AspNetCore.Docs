@@ -8,7 +8,7 @@ uid: mvc/controllers/routing
 ---
 # Routing to controller actions in ASP.NET Core
 
-<!-- TO do , future tense search will, etc-->
+<!-- TO do , future tense search will,would  etc-->
 By [Ryan Nowak](https://github.com/rynowak) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
@@ -570,24 +570,27 @@ MVC applications can mix the use of conventional routing and attribute routing. 
 
 Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. Actions that define attribute routes cannot be reached through the conventional routes and vice-versa. **Any** route attribute on the controller makes all actions in the controller attribute routed.
 
-> [!NOTE]
-> Attribute routing and conventional routing actually use the same routing engine. They differ in details of how URL generation works based on the historical use cases for each system. This different is expressed by how MVC interfaces with and provides data to the routing system.
+Attribute routing and conventional routing use the same routing engine. They differ in details of how URL generation works based on the historical use cases for each system. This different is expressed by how MVC interfaces with and provides data to the routing system.
 
 <a name="routing-url-gen-ref-label"></a>
+<a name="ambient"></a>
 
 ## URL Generation
 
-Applications can use routing's URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making your code more robust and maintainable. This section focuses on the URL generation features provided by MVC and will only cover basics of how URL generation works. See [Routing](xref:fundamentals/routing) for a detailed description of URL generation.
+Apps can use routing URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making code more robust and maintainable. This section focuses on the URL generation features provided by MVC and only cover basics of how URL generation works. See [Routing](xref:fundamentals/routing) for a detailed description of URL generation.
 
-The `IUrlHelper` interface is the underlying piece of infrastructure between MVC and routing for URL generation. You'll find an instance of `IUrlHelper` available through the `Url` property in controllers, views, and view components.
+The <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> interface is the underlying element of infrastructure between MVC and routing for URL generation. an instance of `IUrlHelper` is available through the `Url` property in controllers, views, and view components.
 
-In this example, the `IUrlHelper` interface is used through the `Controller.Url` property to generate a URL to another action.
+In the following example, the `IUrlHelper` interface is used through the `Controller.Url` property to generate a URL to another action.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/UrlGenerationController.cs?name=snippet_1)]
 
-If the application is using the default conventional route, the value of the `url` variable will be the URL path string `/UrlGeneration/Destination`. This URL path is created by routing by combining the route values from the current request (ambient values), with the values passed to `Url.Action` and substituting those values into the route template:
+If the app is using the default conventional route, the value of the `url` variable will be the URL path string `/UrlGeneration/Destination`. This URL path is created by routing by combining:
 
-```
+* The route values from the current request, which are called ambient values.
+* The values passed to `Url.Action` and substituting those values into the route template:
+
+``` text
 ambient values: { controller = "UrlGeneration", action = "Source" }
 values passed to Url.Action: { controller = "UrlGeneration", action = "Destination" }
 route template: {controller}/{action}/{id?}
@@ -595,46 +598,74 @@ route template: {controller}/{action}/{id?}
 result: /UrlGeneration/Destination
 ```
 
-Each route parameter in the route template has its value substituted by matching names with the values and ambient values. A route parameter that doesn't have a value can use a default value if it has one, or be skipped if it's optional (as in the case of `id` in this example). URL generation will fail if any required route parameter doesn't have a corresponding value. If URL generation fails for a route, the next route is tried until all routes have been tried or a match is found.
+Each route parameter in the route template has its value substituted by matching names with the values and ambient values. A route parameter that doesn't have a value can:
 
-The example of `Url.Action` above assumes conventional routing, but URL generation works similarly with attribute routing, though the concepts are different. With conventional routing, the route values are used to expand a template, and the route values for `controller` and `action` usually appear in that template - this works because the URLs matched by routing adhere to a *convention*.
+* Use a default value if it has one.
+* Be skipped if it's optional. For example, the `id` in the preceding example.
 
-This example uses attribute routing:
-<!-- review required -->
-[!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
+URL generation fails if any required route parameter doesn't have a corresponding value. If URL generation fails for a route, the next route is tried until all routes have been tried or a match is found.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/UrlGenerationControllerAttr.cs?name=snippet_1)]
+The preceding example of `Url.Action` assumes conventional routing. URL generation works similarly with attribute routing, though the concepts are different. With conventional routing:
+
+* The route values are used to expand a template.
+* The route values for `controller` and `action` usually appear in that template. This works because the URLs matched by routing adhere to a convention.
+
+The following example uses attribute routing:
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/UrlGenerationAttrController.cs?name=snippet_1)]
 
 In the sample above, `custom/url/to/destination` is generated.
 
-The `LinkGenerator` API was added in ASP.NET Core 3.0 as an alternative to `IUrlHelper`. `LinkGenerator` offers similar but more flexible functionality. Each other the methods on `IUrlHelper` has a corresponding family of methods on `LinkGenerator` as well.
+<xref:Microsoft.AspNetCore.Routing.LinkGenerator> was added in ASP.NET Core 3.0 as an alternative to `IUrlHelper`. `LinkGenerator` offers similar but more flexible functionality. Each other the methods on `IUrlHelper` has a corresponding family of methods on `LinkGenerator` as well.
 
 ### Generating URLs by action name
 
-`Url.Action` (`IUrlHelper` . `Action` or `LinkGenerator` . `GetPathByAction`) and all related overloads all are based on that idea that you want to specify what you're linking to by specifying a controller name and action name.
+[Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) or [LinkGenerator.GetPathByAction](xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetPathByAction*) and all related overloads all are based on that idea that you want to specify what you're linking to by specifying a controller name and action name.
 
-> [!NOTE]
-> When using `Url.Action`, the current route values for `controller` and `action` are specified for you - the value of `controller` and `action` are part of both *ambient values* **and** *values*. The method `Url.Action`, always uses the current values of `action` and `controller` and will generate a URL path that routes to the current action.
+When using `Url.Action`, the current route values for `controller` and `action` are specified for you:
 
-Routing attempts to use the values in ambient values to fill in information that you didn't provide when generating a URL. Using a route like `{a}/{b}/{c}/{d}` and ambient values `{ a = Alice, b = Bob, c = Carol, d = David }`, routing has enough information to generate a URL without any additional values - since all route parameters have a value. If you added the value `{ d = Donovan }`, the value `{ d = David }` would be ignored, and the generated URL path would be `Alice/Bob/Carol/Donovan`.
+* The value of `controller` and `action` are part of both [ambient values](#ambient) and values. The method `Url.Action`, always uses the current values of `action` and `controller` and generates a URL path that routes to the current action.
 
-> [!WARNING]
-> URL paths are hierarchical. In the example above, if you added the value `{ c = Cheryl }`, both of the values `{ c = Carol, d = David }` would be ignored. In this case we no longer have a value for `d` and URL generation will fail. You would need to specify the desired value of `c` and `d`.  You might expect to hit this problem with the default route (`{controller}/{action}/{id?}`) - but you will rarely encounter this behavior in practice as `Url.Action` will always explicitly specify a `controller` and `action` value.
+Routing attempts to use the values in ambient values to fill in information that you didn't provide when generating a URL. Consider a route like `{a}/{b}/{c}/{d}` with ambient values `{ a = Alice, b = Bob, c = Carol, d = David }`:
 
-Longer overloads of `Url.Action` also take an additional *route values* object to provide values for route parameters other than `controller` and `action`. You will most commonly see this used with `id` like `Url.Action("Buy", "Products", new { id = 17 })`. By convention the *route values* object is usually an object of anonymous type, but it can also be an `IDictionary<>` or a *plain old .NET object*. Any additional route values that don't match route parameters are put in the query string.
+* Routing has enough information to generate a URL without any additional values.
+* Routing has enough information because all route parameters have a value.
+
+If the value `{ d = Donovan }` is added:
+
+* The value `{ d = David }` is ignored.
+* The generated URL path is `Alice/Bob/Carol/Donovan`.
+
+**Warning**: URL paths are hierarchical. In the preceding example, if the value `{ c = Cheryl }` is added:
+
+* Both of the values `{ c = Carol, d = David }` are ignored.
+* There is no longer a value for `d` and URL generation fails.
+* The desired values of `c` and `d` must be specified to generate a URL.  
+
+You might expect to hit this problem with the default route `{controller}/{action}/{id?}`. This problem is rare in practice because `Url.Action` always explicitly specifies a `controller` and `action` value.
+
+Several overloads of [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) take a route values object to provide values for route parameters other than `controller` and `action`. The route values object is frequently used with `id`. For example `Url.Action("Buy", "Products", new { id = 17 })`. The route values object:
+
+* By convention is usually an object of anonymous type.
+* Can be an `IDictionary<>` or a [Plain old CLR object](https://wikipedia.org/wiki/Plain_old_CLR_object).
+
+Any additional route values that don't match route parameters are put in the query string.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/TestController.cs)]
 
-> [!TIP]
-> To create an absolute URL, use an overload that accepts a `protocol`: `Url.Action("Buy", "Products", new { id = 17 }, protocol: Request.Scheme)`
->
-> Alternatively use `LinkGenerator.GetUriByAction(...)`, which generates absolute URIs by default.
+To create an absolute URL, use one of the following:
+
+* An overload that accepts a `protocol`. For example, `Url.Action("Buy", "Products", new { id = 17 }, protocol: Request.Scheme)`
+* [LinkGenerator.GetUriByAction]git s(xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetUriByAction*), which generates absolute URIs by default.
 
 <a name="routing-gen-urls-route-ref-label"></a>
 
-### Generating URLs by route
+### Generate URLs by route
 
-The code above demonstrated generating a URL by passing in the controller and action name. `IUrlHelper` also provides the `Url.RouteUrl` family of methods. These methods are similar to `Url.Action`, but they don't copy the current values of `action` and `controller` to the route values. The most common usage is to specify a route name to use a specific route to generate the URL, generally *without* specifying a controller or action name.
+The preceding code demonstrated generating a URL by passing in the controller and action name. `IUrlHelper` also provides the [Url.RouteUrl](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.RouteUrl*) family of methods. These methods are similar to [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*), but they don't copy the current values of `action` and `controller` to the route values. The most common usage of `Url.RouteUrl`:
+
+* Specifies a route name to use a specific route to generate the URL.
+* Generally without specifying a controller or action name.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/UrlGenerationControllerRouting.cs?name=snippet_1)]
 

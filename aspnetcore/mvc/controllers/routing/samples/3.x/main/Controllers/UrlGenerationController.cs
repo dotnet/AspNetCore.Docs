@@ -1,21 +1,25 @@
-﻿//#define 
+﻿#define Never
 #if Never
-#region snippet_1
+
 using Microsoft.AspNetCore.Mvc;
-
-public class UrlGenerationController : Controller
+namespace WebMvcRouting.Controllers
 {
-    public IActionResult Source()
-    {
-        // Generates /UrlGeneration/Destination
-        var url = Url.Action("Destination");
-        return Content($"Go check out {url}, it's really great.");
-    }
+    #region snippet_1
 
-    public IActionResult Destination()
+    public class UrlGenerationController : Controller
     {
-        return View();
+        public IActionResult Source()
+        {
+            // Generates /UrlGeneration/Destination
+            var url = Url.Action("Destination");
+            return Content($"Go check out {url}, it's really great.");
+        }
+
+        public IActionResult Destination()
+        {
+            return View();
+        }
     }
-}
-#endregion
+    #endregion
 #endif
+}
