@@ -531,7 +531,7 @@ This section shows a basic example of customizing routing using application mode
 
 [!code-csharp[](routing/samples/3.x/nsrc/NamespaceRoutingConvention.cs?name=snippet)]
 
-The following code does not apply the namespace convention for controllers that have are  attribute routed:
+The following code prevents the `namespace` convention from being applied to controllers that are attribute routed:
 
 [!code-csharp[](routing/samples/3.x/nsrc/NamespaceRoutingConvention.cs?name=snippet2)]
 
@@ -550,7 +550,7 @@ The `NamespaceRoutingConvention` can be applied in `Startup.ConfigureServices`:
 
 For example, consider the following controller:
 
-[!code-csharp[](routing/samples/3.x/nsrc/Controllers/UsersController.cs?name=snippet)]
+[!code-csharp[](routing/samples/3.x/nsrc/Controllers/UsersController.cs)]
 
 In the preceding code:
 
@@ -562,7 +562,7 @@ The `NamespaceRoutingConvention` can also be applied as an attribute on a contro
 
 [!code-csharp[](routing/samples/3.x/nsrc/Controllers/TestController.cs?name=snippet&highlight=1)]
 
-<a name="routing-mixed-ref-label"></a>  zz
+<a name="routing-mixed-ref-label"></a>
 
 ## Mixed routing: Attribute routing vs conventional routing
 
