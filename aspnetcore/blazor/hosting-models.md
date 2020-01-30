@@ -5,7 +5,7 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2020
+ms.date: 12/18/2019
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-models
 ---
@@ -490,26 +490,6 @@ To configure the SignalR client in the *Pages/_Host.cshtml* file:
     }
   });
 </script>
-```
-
-## Conditionally execute code based on location
-
-To determine where code is running, evaluate [RuntimeInformation.IsOSPlatform(OSPlatform.Create("WEBASSEMBLY"))](xref:System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform*):
-
-* If `true`, the code is running client-side (Blazor WebAssembly).
-* If `false`, the code is running server-side (Blazor Server).
-
-```csharp
-// using System.Runtime.InteropServices
-
-if (RuntimeInformation.IsOSPlatform(OSPlatform.Create("WEBASSEMBLY")))
-{
-    // Blazor WebAssembly code
-}
-else
-{
-    // Blazor Server code
-}
 ```
 
 ## Additional resources
