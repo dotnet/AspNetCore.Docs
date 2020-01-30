@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace WebMvcRouting
+namespace My.Application
 {
     public class Program
     {
@@ -20,13 +20,7 @@ namespace WebMvcRouting
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    //webBuilder.UseStartup<Startup>();
-                    //  webBuilder.UseStartup<StartupMap>();
-                     webBuilder.UseStartup<StartupDefaultMVC>();
-                    //    webBuilder.UseStartup<StartupAPI>();
-                    //webBuilder.UseStartup<StartupSlugifyParamTransformer>();
-
-
+                    webBuilder.UseStartup<Startup>();
                 });
     }
 }

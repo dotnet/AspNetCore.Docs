@@ -529,9 +529,34 @@ The application model includes all of the data gathered from route attributes. T
 
 This section shows a basic example of customizing routing using application model.
 
-[!code-csharp[](routing/samples/3.x/main/NamespaceRoutingConvention.cs)]
+[!code-csharp[](routing/samples/3.x/nsrc/NamespaceRoutingConvention.cs?name=snippet)]
 
-[!INCLUDE[](~/includes/MTcomments.md)]
+The following code does not apply the namespace convention for controllers that have are  attribute routed:
+
+[!code-csharp[](routing/samples/3.x/nsrc/NamespaceRoutingConvention.cs?name=snippet2)]
+
+For example, the following controller doesn't use `NamespaceRoutingConvention`:
+
+[!code-csharp[](routing/samples/3.x/nsrc/Controllers/ManagersController.cs?name=snippet&highlight=1)]
+
+The `NamespaceRoutingConvention.Apply` method:
+
+* Does nothing if the controller is attribute routed.
+* Sets the controllers template based on the `namespace`, with the base `namespace` removed.
+
+The `NamespaceRoutingConvention` can be applied in `Startup.ConfigureServices`:
+
+[!code-csharp[](routing/samples/3.x/nsrc/Startup.cs?name=snippet&highlight=1,14-18)]
+
+For example, consider the following controller:
+
+[!code-csharp[](routing/samples/3.x/nsrc/Controllers/UsersController.cs?name=snippet)]
+
+In the preceding code:
+
+* The base `namespace` is `My.Application`.
+* The full name of the type is `My.Application.Admin.Controllers.UsersController`.
+* The `NamespaceRoutingConvention` sets the controllers template to `Admin/Controllers/Users/[action]/{id?`.
 
 <a name="routing-mixed-ref-label"></a>  zz
 
