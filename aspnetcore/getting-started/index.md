@@ -9,7 +9,7 @@ uid: getting-started
 ---
 # Tutorial: Get started with ASP.NET Core
 
-This tutorial shows how to use the .NET Core command-line interface to create and run an ASP.NET Core web app.
+This tutorial shows how to use the .NET Core CLI to create and run an ASP.NET Core web app.
 
 You'll learn how to:
 
