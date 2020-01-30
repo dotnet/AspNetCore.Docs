@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using System;
 using System.Linq;
 using System.Text;
 
 #region snippet
-public class NamespaceRoutingConvention : IControllerModelConvention
+public class NamespaceRoutingConvention : Attribute, IControllerModelConvention
 {
     private readonly string _baseNamespace;
 

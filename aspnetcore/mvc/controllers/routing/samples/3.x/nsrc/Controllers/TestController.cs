@@ -2,15 +2,16 @@
 
 namespace My.Application.Admin.Controllers
 {
-    public class UsersController : Controller
+    #region snippet
+    [NamespaceRoutingConvention("My.Application")]
+    public class TestController : Controller
     {
-        // /admin/controllers/users/index
+        // /admin/controllers/test/index
         public IActionResult Index()
         {
-            //controller.ControllerTypeInfo
-            var fullname = typeof(UsersController).FullName;
             var template = ControllerContext.ActionDescriptor.AttributeRouteInfo?.Template;
-            return Content($"Index- fullname: {fullname}  template:{template}");
+            var actionname = ControllerContext.ActionDescriptor.ActionName;
+            return Content($"Action- {actionname} template:{template}");
         }
 
         public IActionResult List(int? id)
@@ -19,4 +20,5 @@ namespace My.Application.Admin.Controllers
             return Content($"List- Path:{path}");
         }
     }
+    #endregion
 }
