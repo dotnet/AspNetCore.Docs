@@ -37,7 +37,7 @@ Drop-Database
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Run the following command at a command prompt to install the EF CLI tools:
+* Run the following command at a command prompt to install the EF CLI:
 
   ```dotnetcli
   dotnet tool install --global dotnet-ef

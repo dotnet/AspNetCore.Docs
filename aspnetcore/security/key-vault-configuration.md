@@ -71,7 +71,7 @@ The instructions provided by the [Quickstart: Set and retrieve a secret from Azu
    * Open Cloud Shell in your browser with the **Launch Cloud Shell** button.
    * Select the **Cloud Shell** button on the menu in the upper-right corner of the Azure portal.
 
-   For more information, see [Azure Command-Line Interface (CLI)](/cli/azure/) and [Overview of Azure Cloud Shell](/azure/cloud-shell/overview).
+   For more information, see [Azure CLI](/cli/azure/) and [Overview of Azure Cloud Shell](/azure/cloud-shell/overview).
 
 1. If you aren't already authenticated, sign in with the `az login` command.
 
