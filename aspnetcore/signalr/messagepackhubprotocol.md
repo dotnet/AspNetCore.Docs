@@ -50,11 +50,8 @@ services.AddSignalR()
 ```csharp
 public static void Main(string[] args)
 {
-  // Add the following lines:
-  // Enable additional security in MessagePack to handle untrusted data.
   MessagePackSecurity.Active = MessagePackSecurity.UntrustedData;
 
-  // Continue with program initialization...
   CreateHostBuilder(args).Build().Run();
 }
 ```
