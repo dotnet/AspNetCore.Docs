@@ -702,7 +702,7 @@
         - name: Publish with Visual Studio for Mac
           displayName: azure, deploy, publish
           href: /visualstudio/mac/publish-app-svc?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-        - name: Publish with CLI tools
+        - name: Publish with the CLI
           displayName: azure, deploy, publish
           href: /azure/app-service/app-service-web-tutorial-dotnetcore-sqldb?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Publish with Visual Studio and Git
