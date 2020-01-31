@@ -92,13 +92,11 @@ Whatever value the hacker specified for the `Secret` form field is updated in th
 
 The value "OverPost" is successfully added to the `Secret` property of the inserted row. That happens even though the app designer never intended the `Secret` property to be set with the Create page.
 
-### View model
+### Input model and view model
 
-View models provide an alternative way to prevent overposting.
+An input model or view models provides an alternative way to prevent overposting.
 
-The application model is often called the domain model. The domain model typically contains all the properties required by the corresponding entity in the database. The view model contains only the properties needed for the UI that it is used for (for example, the Create page).
-
-In addition to the view model, some apps use a binding model or input model to pass data between the Razor Pages page model class and the browser. 
+The application model is often called the domain model. The domain model typically contains all the properties required by the corresponding entity in the database. The view model contains only the properties needed for the UI page where it's used, for example, the Create page. Some apps use an input model to pass data between the Razor Pages page model class and the browser. 
 
 Consider the following `Student` view model:
 
