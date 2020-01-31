@@ -44,6 +44,21 @@ services.AddSignalR()
     });
 ```
 
+> [!NOTE]
+> In response to [CVE-2020-5234](https://github.com/neuecc/MessagePack-CSharp/security/advisories/GHSA-7q36-4xx7-xcxf), we strongly recommend setting the `MessagePackSecurity.Active` static property to `MessagePackSecurity.UntrustedData`. You can do this in your `Program.Main` function, as shown below. If you do not set this value, it may be possible for a malicious client to caused a denial of service in your application.
+
+```csharp
+public static void Main(string[] args)
+{
+  // Add the following lines:
+  // Enable additional security in MessagePack to handle untrusted data.
+  MessagePackSecurity.Active = MessagePackSecurity.UntrustedData;
+
+  // Continue with program initialization...
+  CreateHostBuilder(args).Build().Run();
+}
+```
+
 ## Configure MessagePack on the client
 
 > [!NOTE]
