@@ -5,7 +5,7 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 01/31/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-models
 ---
@@ -27,7 +27,7 @@ The principal hosting model for Blazor is running client-side in the browser on 
 
 To create a Blazor app using the client-side hosting model, use the **Blazor WebAssembly App** template ([dotnet new blazorwasm](/dotnet/core/tools/dotnet-new)).
 
-After selecting the **Blazor WebAssembly App** template, you have the option of configuring the app to use an ASP.NET Core backend by selecting the **ASP.NET Core hosted** check box ([dotnet new blazorwasm --hosted](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app serves the Blazor app to clients. The Blazor WebAssembly app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction).
+After selecting the **Blazor WebAssembly App** template, you have the option of configuring the app to use an ASP.NET Core backend by selecting the **ASP.NET Core hosted** check box ([dotnet new blazorwasm --hosted](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app serves the Blazor app to clients. The Blazor WebAssembly app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>).
 
 The templates include the `blazor.webassembly.js` script that handles:
 
@@ -496,3 +496,4 @@ To configure the SignalR client in the *Pages/_Host.cshtml* file:
 
 * <xref:blazor/get-started>
 * <xref:signalr/introduction>
+* <xref:tutorials/signalr-blazor-webassembly>
