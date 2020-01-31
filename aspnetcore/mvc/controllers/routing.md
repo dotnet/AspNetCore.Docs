@@ -614,19 +614,19 @@ The following example uses attribute routing:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/UrlGenerationAttrController.cs?name=snippet_1)]
 
-In the sample above, `custom/url/to/destination` is generated.
+The `Source` action in the preceding code generates `custom/url/to/destination`.
 
 <xref:Microsoft.AspNetCore.Routing.LinkGenerator> was added in ASP.NET Core 3.0 as an alternative to `IUrlHelper`. `LinkGenerator` offers similar but more flexible functionality. Each other the methods on `IUrlHelper` has a corresponding family of methods on `LinkGenerator` as well.
 
 ### Generating URLs by action name
 
-[Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) or [LinkGenerator.GetPathByAction](xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetPathByAction*) and all related overloads all are based on that idea that you want to specify what you're linking to by specifying a controller name and action name.
+[Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*),[LinkGenerator.GetPathByAction](xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetPathByAction*), and all related overloads all are designed to generate the target endpoint by specifying a controller name and action name.
 
-When using `Url.Action`, the current route values for `controller` and `action` are specified for you:
+When using `Url.Action`, the current route values for `controller` and `action` are provided by the runtime:
 
-* The value of `controller` and `action` are part of both [ambient values](#ambient) and values. The method `Url.Action`, always uses the current values of `action` and `controller` and generates a URL path that routes to the current action.
+* The value of `controller` and `action` are part of both [ambient values](#ambient) and values. The method `Url.Action` always uses the current values of `action` and `controller` and generates a URL path that routes to the current action.
 
-Routing attempts to use the values in ambient values to fill in information that you didn't provide when generating a URL. Consider a route like `{a}/{b}/{c}/{d}` with ambient values `{ a = Alice, b = Bob, c = Carol, d = David }`:
+Routing attempts to use the values in ambient values to fill in information that wasn't provided when generating a URL. Consider a route like `{a}/{b}/{c}/{d}` with ambient values `{ a = Alice, b = Bob, c = Carol, d = David }`:
 
 * Routing has enough information to generate a URL without any additional values.
 * Routing has enough information because all route parameters have a value.
@@ -651,12 +651,18 @@ Several overloads of [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Actio
 
 Any additional route values that don't match route parameters are put in the query string.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/TestController.cs)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/TestController.cs?name=snippet)]
+
+The preceding code generates `/Products/Buy/17?color=red`.
+
+The following code generates an absolute URL:
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/TestController.cs?name=snippet2)]
 
 To create an absolute URL, use one of the following:
 
-* An overload that accepts a `protocol`. For example, `Url.Action("Buy", "Products", new { id = 17 }, protocol: Request.Scheme)`
-* [LinkGenerator.GetUriByAction]git s(xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetUriByAction*), which generates absolute URIs by default.
+* An overload that accepts a `protocol`. For example, the preceding code.
+* [LinkGenerator.GetUriByAction](xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetUriByAction*), which generates absolute URIs by default.
 
 <a name="routing-gen-urls-route-ref-label"></a>
 
@@ -665,51 +671,46 @@ To create an absolute URL, use one of the following:
 The preceding code demonstrated generating a URL by passing in the controller and action name. `IUrlHelper` also provides the [Url.RouteUrl](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.RouteUrl*) family of methods. These methods are similar to [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*), but they don't copy the current values of `action` and `controller` to the route values. The most common usage of `Url.RouteUrl`:
 
 * Specifies a route name to use a specific route to generate the URL.
-* Generally without specifying a controller or action name.
+* Generally doesn't specify a controller or action name.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/UrlGenerationControllerRouting.cs?name=snippet_1)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/UrlGeneration2Controller.cs?name=snippet_1)]
+
+The following Razor file generates an HTML link to the `Destination_Route`:
+
+[!code-cshtml[](routing/samples/3.x/main/Views/Shared/MyLink.cshtml)]
 
 <a name="routing-gen-urls-html-ref-label"></a>
 
-### Generating URLs in HTML
+### Generate URLs in HTML and Razor
 
-`IHtmlHelper` provides the `HtmlHelper` methods `Html.BeginForm` and `Html.ActionLink` to generate `<form>` and `<a>` elements respectively. These methods use the `Url.Action` method to generate a URL and they accept similar arguments. The `Url.RouteUrl` companions for `HtmlHelper` are `Html.BeginRouteForm` and `Html.RouteLink` which have similar functionality.
+<xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper> provides the <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> methods [Html.BeginForm](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) and [Html.ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) to generate `<form>` and `<a>` elements respectively. These methods use the [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) method to generate a URL and they accept similar arguments. The `Url.RouteUrl` companions for `HtmlHelper` are `Html.BeginRouteForm` and `Html.RouteLink` which have similar functionality.
 
-TagHelpers generate URLs through the `form` TagHelper and the `<a>` TagHelper. Both of these use `IUrlHelper` for their implementation. See [Working with Forms](../views/working-with-forms.md) for more information.
+TagHelpers generate URLs through the `form` TagHelper and the `<a>` TagHelper. Both of these use `IUrlHelper` for their implementation. See [Tag Helpers in forms](xref:mvc/views/working-with-forms) for more information.
 
 Inside views, the `IUrlHelper` is available through the `Url` property for any ad-hoc URL generation not covered by the above.
 
 <a name="routing-gen-urls-action-ref-label"></a>
 
-### Generating URLS in Action Results
+### URL generation in Action Results
 
-The examples above have shown using `IUrlHelper` in a controller, while the most common usage in a controller is to generate a URL as part of an action result.
+The preceding examples showed using `IUrlHelper` in a controller. The most common usage in a controller is to generate a URL as part of an action result.
 
-The `ControllerBase` and `Controller` base classes provide convenience methods for action results that reference another action. One typical usage is to redirect after accepting user input.
+The <xref:Microsoft.AspNetCore.Mvc.ControllerBase> and <xref:Microsoft.AspNetCore.Mvc.Controller> base classes provide convenience methods for action results that reference another action. One typical usage is to redirect after accepting user input:
 
-```csharp
-public IActionResult Edit(int id, Customer customer)
-{
-    if (ModelState.IsValid)
-    {
-        // Update DB with new details.
-        return RedirectToAction("Index");
-    }
-    return View(customer);
-}
-```
+[!code-csharp[](routing/samples/3.x/main/Controllers/CustomerController.cs?name=snippet)]
 
+<!-- review: What are the action results factory methods? -->
 The action results factory methods follow a similar pattern to the methods on `IUrlHelper`.
 
 <a name="routing-dedicated-ref-label"></a>
 
 ### Special case for dedicated conventional routes
 
-Conventional routing can use a special kind of route definition called a *dedicated conventional route*. In the example below, the route named `blog` is a dedicated conventional route.
+Conventional routing can use a special kind of route definition called a dedicated conventional route. In the following example, the route named `blog` is a dedicated conventional route:
 
 [!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
-Using these route definitions, `Url.Action("Index", "Home")` will generate the URL path `/` with the `default` route, but why? You might guess the route values `{ controller = Home, action = Index }` would be enough to generate a URL using `blog`, and the result would be `/blog?action=Index&controller=Home`.
+Using the preceding route definitions, `Url.Action("Index", "Home")` generates the URL path `/` using the `default` route, but why? You might guess the route values `{ controller = Home, action = Index }` would be enough to generate a URL using `blog`, and the result would be `/blog?action=Index&controller=Home`.
 
 Dedicated conventional routes rely on a special behavior of default values that don't have a corresponding route parameter that prevents the route from being "too greedy" with URL generation. In this case the default values are `{ controller = Blog, action = Article }`, and neither `controller` nor `action` appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using `blog` will fail because the values `{ controller = Home, action = Index }` don't match `{ controller = Blog, action = Article }`. Routing then falls back to try `default`, which succeeds.
 
@@ -717,14 +718,19 @@ Dedicated conventional routes rely on a special behavior of default values that 
 
 ## Areas
 
-[Areas](areas.md) are an MVC feature used to organize related functionality into a group as a separate routing-namespace (for controller actions) and folder structure (for views). Using areas allows an application to have multiple controllers with the same name - as long as they have different *areas*. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area` to `controller` and `action`. This section will discuss how routing interacts with areas - see [Areas](areas.md) for details about how areas are used with views.
+[Areas](xref:mvc/controllers/areas) are an MVC feature used to organize related functionality into a group as a separate:
 
-The following example configures MVC to use the default conventional route and an *area route* for an area named `Blog`:
+* Routing namespace for controller actions.
+* Folder structure for views.
+
+Using areas allows an app to have multiple controllers with the same name, as long as they have different areas. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area` to `controller` and `action`. This section discusses how routing interacts with areas. See [Areas](xref:mvc/controllers/areas) for details about how areas are used with views.
+
+The following example configures MVC to use the default conventional route and an `area` route for an `area` named `Blog`:
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet1)]
-When matching a URL path like `/Manage/Users/AddUser`, the first route will produce the route values `{ area = Blog, controller = Users, action = AddUser }`. The `area` route value is produced by a default value for `area`, in fact the route created by `MapAreaControllerRoute` is equivalent to the following:
+When matching a URL path like `/Manage/Users/AddUser`, the first route will produce the route values `{ area = Blog, controller = Users, action = AddUser }`. The `area` route value is produced by a default value for `area`. The route created by `MapAreaControllerRoute` is equivalent to the following:
 
-[!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet2)]
+[!code-csharp[](routing/samples/3.x/AreasRouting/Startup2.cs?name=snippet2)]
 
 `MapAreaControllerRoute` creates a route using both a default value and constraint for `area` using the provided area name, in this case `Blog`. The default value ensures that the route always produces `{ area = Blog, ... }`, the constraint requires the value `{ area = Blog, ... }` for URL generation.
 
@@ -753,7 +759,7 @@ The first two controllers are members of areas, and only match when their respec
 
 When executing an action inside an area, the route value for `area` will be available as an *ambient value* for routing to use for URL generation. This means that by default areas act *sticky* for URL generation as demonstrated by the following sample.
 
-[!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet3)]
+[!code-csharp[](routing/samples/3.x/AreasRouting/Startup3.cs?name=snippet3)]
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Duck/Controllers/UsersController.cs)]
 

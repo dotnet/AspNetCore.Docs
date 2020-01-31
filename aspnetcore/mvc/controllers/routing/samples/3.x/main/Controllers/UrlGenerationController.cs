@@ -1,7 +1,4 @@
-﻿#define Never
-#if Never
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 namespace WebMvcRouting.Controllers
 {
     #region snippet_1
@@ -21,5 +18,4 @@ namespace WebMvcRouting.Controllers
         }
     }
     #endregion
-#endif
 }

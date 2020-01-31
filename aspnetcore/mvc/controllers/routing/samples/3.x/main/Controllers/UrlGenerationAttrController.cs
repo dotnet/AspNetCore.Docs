@@ -1,19 +1,18 @@
-﻿//#define First
-#if First
-#region snippet_1
+﻿#region snippet_1
 using Microsoft.AspNetCore.Mvc;
 
 public class UrlGenerationAttrController : Controller
 {
-    [HttpGet("")]
+    [HttpGet("custom")]
     public IActionResult Source()
     {
-        var url = Url.Action("Destination"); // Generates /custom/url/to/destination
-        return Content($"Go check out {url}, it's really great.");
+        var url = Url.Action("Destination");
+        return Content($"Url.Action link to Destination: {url}");
     }
 
     [HttpGet("custom/url/to/destination")]
-    public IActionResult Destination() {
+    public IActionResult Destination()
+    {
         var controllerName = ControllerContext.ActionDescriptor.ControllerName;
         var actionName = ControllerContext.ActionDescriptor.ActionName;
         var path = Request.Path.Value;
@@ -21,4 +20,3 @@ public class UrlGenerationAttrController : Controller
     }
 }
 #endregion
-#endif
