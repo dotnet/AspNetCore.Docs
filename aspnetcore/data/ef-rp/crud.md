@@ -94,9 +94,9 @@ The value "OverPost" is successfully added to the `Secret` property of the inser
 
 ### Input model and view model
 
-An input model or view models provides an alternative way to prevent overposting.
+An input model or view model provides an alternative way to prevent overposting.
 
-The application model is often called the domain model. The domain model typically contains all the properties required by the corresponding entity in the database. The view model contains only the properties needed for the UI page where it's used, for example, the Create page. Some apps use an input model to pass data between the Razor Pages page model class and the browser. 
+The application model is often called the domain model. The domain model typically contains all the properties required by the corresponding entity in the database. The view model contains only the properties needed for the UI page where it's used, for example, the Create page. Some apps use an input model to pass data between the browser and the Razor Pages page model class. 
 
 Consider the following `Student` view model:
 
