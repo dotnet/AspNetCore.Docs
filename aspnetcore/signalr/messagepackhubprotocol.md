@@ -44,8 +44,8 @@ services.AddSignalR()
     });
 ```
 
-> [!NOTE]
-> In response to [CVE-2020-5234](https://github.com/neuecc/MessagePack-CSharp/security/advisories/GHSA-7q36-4xx7-xcxf), we strongly recommend setting the `MessagePackSecurity.Active` static property to `MessagePackSecurity.UntrustedData`. To do this, you must manually install [a 1.9.x version of `MessagePack`](https://www.nuget.org/packages/MessagePack/1.9.3) in your application, which will upgrade the version SignalR uses. You can set this property in your `Program.Main` function, as shown below. If you do not set this value, it may be possible for a malicious client to caused a denial of service in your application.
+> [!WARNING]
+> In response to [CVE-2020-5234](https://github.com/neuecc/MessagePack-CSharp/security/advisories/GHSA-7q36-4xx7-xcxf), we strongly recommend setting the `MessagePackSecurity.Active` static property to `MessagePackSecurity.UntrustedData`. To do this, manually install a [1.9.x version of MessagePack](https://www.nuget.org/packages/MessagePack/1.9.3). Installing `MessagePack` 1.9.x upgrades the version SignalR uses. When `MessagePackSecurity.Active` is not set to  `MessagePackSecurity.UntrustedData`, a malicious client could cause a denial of service. Set `MessagePackSecurity.Active` in `Program.Main`, as shown in the following code:
 
 ```csharp
 public static void Main(string[] args)
