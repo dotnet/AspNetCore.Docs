@@ -26,12 +26,13 @@ This tutorial teaches the basics of building a real-time app using SignalR with 
 
 At the end of this tutorial, you'll have a working chat app.
 
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-blazor-webassembly/samples/) ([how to download](xref:index#how-to-download-a-sample))
+
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2019 Preview version 16.5](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload
-* [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+[!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -110,11 +111,9 @@ dotnet new blazorwasm --hosted --output BlazorSignalRApp
 
 # [Visual Studio](#tab/visual-studio/)
 
-1. In **Solution Explorer**, right-click the **BlazorSignalRApp.Server** project and select **Manage NuGet Packages**.
+1. In **Solution Explorer**, right-click the **BlazorSignalRApp.Client** project and select **Manage NuGet Packages**.
 
 1. In the **Manage NuGet Packages** dialog, confirm that the **Package source** is set to *nuget.org*.
-
-1. Enable the **Include prerelease** option.
 
 1. With **Browse** selected, type "Microsoft.AspNetCore.SignalR.Client" in the search box.
 
@@ -124,24 +123,19 @@ dotnet new blazorwasm --hosted --output BlazorSignalRApp
 
 1. If the **License Acceptance** dialog appears, select **I Accept** if you agree with the license terms.
 
-1. **Repeat these steps** for the **BlazorSignalRApp.Client** project.
-
 # [Visual Studio Code](#tab/visual-studio-code/)
 
 In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following commands:
 
 ```console
-dotnet add Server package Microsoft.AspNetCore.SignalR.Client
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. In the **Solution** sidebar, right-click the **BlazorSignalRApp.Server** project and select **Manage NuGet Packages**.
+1. In the **Solution** sidebar, right-click the **BlazorSignalRApp.Client** project and select **Manage NuGet Packages**.
 
 1. In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to *nuget.org*.
-
-1. Enable the **Show pre-release packages** option at the bottom of the dialog.
 
 1. With **Browse** selected, type "Microsoft.AspNetCore.SignalR.Client" in the search box.
 
@@ -149,15 +143,12 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. If the **License Acceptance** dialog appears, select **Accept** if you agree with the license terms.
 
-1. **Repeat these steps** for the **BlazorSignalRApp.Client** project.
-
 # [.NET Core CLI](#tab/netcore-cli/)
 
 In a command shell, execute the following commands:
 
 ```dotnetcli
 cd BlazorSignalRApp
-dotnet add Server package Microsoft.AspNetCore.SignalR.Client
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 ```
 
@@ -167,24 +158,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and add the following `ChatHub` class (*Hubs/ChatHub.cs*):
 
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.SignalR;
-
-namespace BlazorSignalRApp.Server.Hubs
-{
-    public class ChatHub : Hub
-    {
-        public async Task SendMessage(string user, string message)
-        {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
-        }
-    }
-}
-```
+[!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Hubs/ChatHub.cs)]
 
 ## Add SignalR services and an endpoint for the SignalR hub
 
@@ -204,69 +178,13 @@ namespace BlazorSignalRApp.Server.Hubs
 
 1. In `Startup.Configure` between the endpoints for the default controller route and the client-side fallback, add an endpoint for the hub:
 
-   [!code-csharp[](signalr-blazor-webassembly/samples_snapshot/3.x/startup-configure.cs?highlight=4)]
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet&highlight=4)]
 
 ## Add Razor component code for chat
 
 In the **BlazorSignalRApp.Client** project, replace the markup of the *Pages/Index.razor* with the following code:
 
-```razor
-@page "/"
-@using Microsoft.AspNetCore.SignalR.Client
-@inject NavigationManager NavigationManager
-
-<div class="form-group">
-    <label>
-        User:
-        <input @bind="_userInput" />
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Message:
-        <input @bind="_messageInput" size="50" />
-    </label>
-</div>
-<button @onclick="Send" disabled="@(!IsConnected)">Send</button>
-
-<hr>
-
-<ul id="messagesList">
-    @foreach (var message in _messages)
-    {
-        <li>@message</li>
-    }
-</ul>
-
-@code {
-    private HubConnection _hubConnection;
-    private List<string> _messages = new List<string>();
-    private string _userInput;
-    private string _messageInput;
-
-    protected override async Task OnInitializedAsync()
-    {
-        _hubConnection = new HubConnectionBuilder()
-            .WithUrl(NavigationManager.ToAbsoluteUri("/chatHub"))
-            .Build();
-
-        _hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
-        {
-            var encodedMsg = $"{user}: {message}";
-            _messages.Add(encodedMsg);
-            StateHasChanged();
-        });
-
-        await _hubConnection.StartAsync();
-    }
-
-    Task Send() => 
-        _hubConnection.SendAsync("SendMessage", _userInput, _messageInput);
-
-    public bool IsConnected => 
-        _hubConnection.State == HubConnectionState.Connected;
-}
-```
+[!code-razor[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Client/Pages/Index.razor)]
 
 ## Run the app
 
@@ -326,15 +244,6 @@ In the **BlazorSignalRApp.Client** project, replace the markup of the *Pages/Ind
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
 ---
-
-## Troubleshoot
-
-If an *ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY* error appears, execute the following commands in a command shell to update the development certificate:
-
-```dotnetcli
-dotnet dev-certs https --clean
-dotnet dev-certs https --trust
-```
 
 ## Next steps
 
