@@ -1,5 +1,4 @@
-﻿//#define PROD1    // Both use the same route so only one can be used.
-//#define PROD2
+﻿//#define PROD1    // ProductsApiController use the same route so only one can be used.
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebMvcRouting.Controllers
@@ -28,20 +27,5 @@ namespace WebMvcRouting.Controllers
     {
         public string Name { get; set; }
     }
-#endif
-#if PROD2
-    // [Route("api/[controller]")] // Not needed because each method has a route template.
-    #region snippet2
-    [ApiController]
-    public class ProductsApiController : ControllerBase
-    {
-        [HttpGet("/products/{id}", Name = "Products_List")]
-        public ActionResult<string> GetProduct(int id)
-        {
-            var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
-            return $"GetProduct id: {id.ToString()} routeName: {routeName}";
-        }
-    }
-    #endregion
 #endif
 }

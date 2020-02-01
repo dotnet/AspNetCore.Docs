@@ -340,7 +340,7 @@ REST APIs should use attribute routing to model the app's functionality as a set
 
 Since an attribute route applies to a specific action, it's easy to make parameters required as part of the route template definition. In the following example, `id` is required as part of the URL path:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/MyProductsController.cs?name=snippet2)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet2)]
 
 The `ProductsApiController.GetProduct(int)` action:
 
@@ -388,21 +388,12 @@ ASP.NET Core has the following route templates:
 
 <a name="routing-combining-ref-label"></a>
 
-### Combining routes
+### Combining routes 
 
 To make attribute routing less repetitive, route attributes on the controller are combined with route attributes on the individual actions. Any route templates defined on the controller are prepended to route templates on the actions. Placing a route attribute on the controller makes **all** actions in the controller use attribute routing.
 
-```csharp
-[Route("products")]
-public class ProductsApiController : Controller
-{
-   [HttpGet]
-   public IActionResult ListProducts() { ... }
+[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet)]
 
-   [HttpGet("{id}")]
-   public ActionResult GetProduct(int id) { ... }
-}
-```
 
 In the preceding example:
 
@@ -413,7 +404,7 @@ Both of these actions only match HTTP `GET` because they're marked with the `[Ht
 
 Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller. The following example matches a set of URL paths similar to the default route.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet)]
 
 The following table explains the `[Route]` attributes in the preceding code:
 
@@ -450,7 +441,7 @@ Consider the following two controllers which both define the route matching `/ho
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet2)]
 
-Running the app throws an exception similar to the following:
+Running the app requesting `/home` throws an exception similar to the following:
 
 ```text
 AmbiguousMatchException: The request matched multiple endpoints. Matches:`
@@ -463,11 +454,13 @@ Adding `Order` to one of the route attributes resolves the ambiguity:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet3, highlight=5)]
 
+With the preceding code, `/home` runs the `HomeController.Index` endpoint. To get to the `MyDemoController.MyIndex`, request `/home/MyIndex`. **Note**: The preceding code is an example or poor routing design. It was used to illustrate the `Order` property.
+
 See [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order) for information on route order with Razor Pages.
 
 <a name="routing-token-replacement-templates-ref-label"></a>
 
-## Token replacement in route templates ([controller], [action], [area])
+## Token replacement in route templates [controller], [action], [area]
 
 For convenience, attribute routes support token replacement for reserved route parameters by enclosing a token in one of the following:
 
