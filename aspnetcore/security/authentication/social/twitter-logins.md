@@ -22,6 +22,10 @@ This sample shows how to enable users to [sign in with their Twitter account](ht
 
 * Select **Create an app**. Fill out the **App name**, **Application description** and public **Website** URI (this can be temporary until you register the domain name):
 
+* Check the box next to **Enable Sign in with Twitter**
+
+* Microsoft.AspNetCore.Identity requires users to have an email address by default. Go to the **Permissions** tab, click the **Edit** button and check the box next to **Request email address from users**.
+
 * Enter your development URI with `/signin-twitter` appended into the **Callback URLs** field (for example: `https://webapp128.azurewebsites.net/signin-twitter`). The Twitter authentication scheme configured later in this sample will automatically handle requests at `/signin-twitter` route to implement the OAuth flow.
 
   > [!NOTE]

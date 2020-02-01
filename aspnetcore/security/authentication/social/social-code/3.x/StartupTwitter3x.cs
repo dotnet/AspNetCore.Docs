@@ -13,6 +13,9 @@ public void ConfigureServices(IServiceCollection services)
     {
         twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerAPIKey"];
         twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+		
+		// Request the email address from users
+		twitterOptions.RetrieveUserDetails = true;
     });
 
 }
