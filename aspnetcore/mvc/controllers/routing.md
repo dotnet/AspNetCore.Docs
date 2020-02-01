@@ -97,6 +97,7 @@ Routing is configured using the `UseRouting` and `UseEndpoints` middleware. To u
 Using `MapControllerRoute` or similar also maps attribute-routed controllers.
 
 <a name="routing-conventional-ref-label"></a>
+<a name="cr"></a>
 
 ## Conventional routing
 
@@ -106,7 +107,7 @@ The `default` route:
 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 ```
 
-is an example of a *conventional* routing. It's called conventional routing because it establishes a *convention* for URL paths:
+is an example of a conventional routing. It's called conventional routing because it establishes a *convention* for URL paths:
 
 * The first path segment maps to the controller name.
 * The second segment maps to the [action](#action) name.
@@ -138,9 +139,15 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 > * `id` is set to `0` by model binding.
 > * No entity is found in the database matching `id == 0`.
 >
-> Attribute routing provides fine-grained control to make the ID required for some actions and not for others. By convention the documentation includes optional parameters like `id` when they're likely to appear in correct usage.
+> [Attribute routing](#ar) provides fine-grained control to make the ID required for some actions and not for others. By convention the documentation includes optional parameters like `id` when they're likely to appear in correct usage.
 
-Routing only matches a combination of action and controller that are defined by the app. This is intended to simplify cases where conventional routes overlap.## Multiple routes
+Routing only matches a combination of action and controller that are defined by the app. This is intended to simplify cases where conventional routes overlap.
+
+[Attribute routing](#ar) is explained later in this document.
+
+## Multiple routes
+
+<a name="mr"></a>
 
 ## Multiple routes
 
@@ -149,9 +156,11 @@ Multiple routes can be added inside `UseEndpoints` by adding more calls to <xref
 [!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
 <!-- review: Why would you ever use a dedicated conventional route like this? -->
-The `blog` route in the preceding code is a dedicated conventional route. It's called a dedicated conventional route because:
+<a name="dcr"></a>
 
-* It uses the conventional routing system.
+The `blog` route in the preceding code is a **dedicated conventional route**. It's called a dedicated conventional route because:
+
+* It uses the [conventional routing](#cr) system.
 * It's dedicated to a specific action.
 
 Because `controller` and `action` don't appear in the route template as parameters:
@@ -168,7 +177,36 @@ Using the preceding code, the following URL paths match the default route:
 
 Adding routes using `MapControllerRoute` defines a priority order for the routing system to respect. Matches from a route that appears earlier will have a higher priority. In the preceding example, the `blog` route will have a higher priority for matches than the `default` route.
 
-Dedicated conventional routes often use catch-all route parameters like `{*article}` to capture the remaining portion of the URL path. This can make a route 'too greedy' meaning that it matches URLs that you intended to be matched by other routes. Put the 'greedy' routes later in the route table to solve this.
+<a name="greedy"></a>
+
+[Dedicated conventional routes](#dcr) often use catch all route parameters like `{*article}` to capture the remaining portion of the URL path. This can make a route too **greedy**, meaning that it matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to solve this.
+
+<!-- Review: Why doesn't it `Define a concept called a *route*` ? Need to expand/explain that.
+The doc refers to routes. For example
+* The `blog` route in the preceding code
+** Actions are either conventionally routed or attribute routed. Placing a route on the controller
+is used to create a single route. The single route is named `default` route. Most apps with controllers use a route with a template similar to the `default` route.
+* Using conventional routing with the default route allows
+* The default conventional route `{controller=Home}/{action=Index}/{id?}`:
+
+and in the other routing article
+* `UseRouting` adds route matching to the middleware pipeline. This middleware looks at the set of endpoints defined in the app, and selects the best match based on the request.
+
+----- Next review question
+
+> * Provide guarantees about the execution order of extensibility like IRouteConstraint or IActionConstraint.
+
+Some thing like
+
+Provide guarantees about the execution order of extensibility. For example, IRouteConstraint and IActionConstraint provide guaranteed constraints, but routing doesn't have an extensibility mechanism to guarantee execution order.
+
+Could you simplify by dropping *of extensibility* ?
+
+Provide guarantees about execution order.
+
+I don't understand the *of extensibility* portion of *Provide guarantees about the execution order of extensibility*
+
+ -->
 
 > [!WARNING]
 > In ASP.NET Core 3.0 and later, the routing system doesn't:
@@ -176,6 +214,8 @@ Dedicated conventional routes often use catch-all route parameters like `{*artic
 > * Provide guarantees about the execution order of extensibility like <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> or <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint>.
 >
 >See [Routing](xref:fundamentals/routing) for reference material on routing.
+
+<a name="best"></a>
 
 ### Resolving ambiguous actions
 
@@ -208,9 +248,9 @@ This is a typical pattern for MVC controllers:
 
 To make this possible MVC needs to select `Edit(int, Product)` when the request is an HTTP `POST` and `Edit(int)` when the [HTTP verb](#verb) is anything else. `Edit(int)` is generally called via `GET`.
 
-The <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, `[HttpPost]`, is provided to the routing system so that it can choose based on the HTTP method of the request. The `HttpPostAttribute` makes `Edit(int, Product)` a 'better' match than `Edit(int)`.
+The <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, `[HttpPost]`, is provided to the routing system so that it can choose based on the HTTP method of the request. The `HttpPostAttribute` makes `Edit(int, Product)` a better match than `Edit(int)`.
 
-It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other [HTTP verbs](#verb). In conventional routing it's common for actions to use the same action name when they're part of a show form, then submit form workflow.
+It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other [HTTP verbs](#verb). In [conventional routing](#cr) it's common for actions to use the same action name when they're part of a show form, then submit form workflow. For example, see [Examine the two Edit action methods](xref:tutorials/first-mvc-app/controller-methods-views#get-post).
 
 <a name="routing-route-name-ref-label"></a>
 
@@ -233,6 +273,7 @@ The route name concept is represented in the routing system as [IEndpointNameMet
 * Which one is used in documentation and code depends on the API being described.
 
 <a name="attribute-routing-ref-label"></a>
+<a name="ar"></a>
 
 ## Attribute routing
 
@@ -249,7 +290,7 @@ The following example:
 
 The `HomeController.Index` action is run for any of the URL paths `/`, `/Home`, or `/Home/Index`.
 
-This example highlights a key programming difference between attribute routing and conventional routing. Attribute routing requires more input to specify a route. The conventional default route handles routes more succinctly. However, attribute routing allows and requires precise control of which route templates apply to each [action](#action).
+This example highlights a key programming difference between attribute routing and [conventional routing](#cr). Attribute routing requires more input to specify a route. The conventional default route handles routes more succinctly. However, attribute routing allows and requires precise control of which route templates apply to each [action](#action).
 
 With attribute routing, the controller name and action names play **no** role in which action is matched. The following example matches the same URLs as the previous example:
 
@@ -384,19 +425,43 @@ The following table explains the `[Route]` attributes in the preceding code:
 | `[Route("About")]` | Yes | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
+<a name="oar"></a>
 
 ### Ordering attribute routes
 
-Routing builds a tree and matches all routes simultaneously:
+<!-- I reverted to the original, which was more clear to me
+YOu removed "In contrast to conventional routes which execute in a defined order"
+Need to explain defined order in [conventional routes](#cr)
+  -->
+In contrast to [conventional routes](#cr) which execute in a defined order, attribute routing builds a tree and matches all routes simultaneously:
 
 * The route entries behave as if placed in an ideal ordering.
 * The most specific routes have a chance to execute before the more general routes.
 
-For example, a route like `blog/search/{topic}` is more specific than a route like `blog/{*article}`. The `blog/search/{topic}` route has higher priority, by default, because that's the only sensible ordering. Using [conventional routing](#cr), the developer is responsible for placing routes in the desired order.
+For example, an attribute route like `blog/search/{topic}` is more specific than an attribute route like `blog/{*article}`. The `blog/search/{topic}` route has higher priority, by default, because it's more specific. Using [conventional routing](#cr), the developer is responsible for placing routes in the desired order.
 
-Attribute routes can configure an order, using the `Order` property of all of the framework provided route attributes. Routes are processed according to an ascending sort of the `Order` property. The default order is `0`. Setting a route using `Order = -1` will run before routes that don't set an order. Setting a route using `Order = 1` will run after default route ordering.
+Attribute routes can configure an order using the <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Order> property. All of the framework provided [route attributes]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) include `Order` . Routes are processed according to an ascending sort of the `Order` property. The default order is `0`. Setting a route using `Order = -1` will run before routes that don't set an order. Setting a route using `Order = 1` will run after default route ordering.
 
 **Avoid** depending on `Order`. If your URL-space requires explicit order values to route correctly, then it's likely confusing to clients as well. In general attribute routing will select the correct route with URL matching. If the default order used for URL generation isn't working, using a route name as an override is usually simpler than applying the `Order` property.
+
+Consider the following two controllers which both define the route matching `/home`:
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet2)]
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet2)]
+
+Running the app throws an exception similar to the following:
+
+```text
+AmbiguousMatchException: The request matched multiple endpoints. Matches:`
+
+ WebMvcRouting.Controllers.HomeController.Index
+ WebMvcRouting.Controllers.MyDemoController.MyIndex
+```
+
+Adding `Order` to one of the route attributes resolves the ambiguity:
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet3, highlight=5)]
 
 See [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order) for information on route order with Razor Pages.
 
@@ -706,13 +771,13 @@ The action results factory methods follow a similar pattern to the methods on `I
 
 ### Special case for dedicated conventional routes
 
-Conventional routing can use a special kind of route definition called a dedicated conventional route. In the following example, the route named `blog` is a dedicated conventional route:
+Conventional routing can use a special kind of route definition called a [dedicated conventional route](#dcr). In the following example, the route named `blog` is a dedicated conventional route:
 
 [!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
 Using the preceding route definitions, `Url.Action("Index", "Home")` generates the URL path `/` using the `default` route, but why? You might guess the route values `{ controller = Home, action = Index }` would be enough to generate a URL using `blog`, and the result would be `/blog?action=Index&controller=Home`.
 
-Dedicated conventional routes rely on a special behavior of default values that don't have a corresponding route parameter that prevents the route from being "too greedy" with URL generation. In this case the default values are `{ controller = Blog, action = Article }`, and neither `controller` nor `action` appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using `blog` will fail because the values `{ controller = Home, action = Index }` don't match `{ controller = Blog, action = Article }`. Routing then falls back to try `default`, which succeeds.
+[Dedicated conventional routes](#dcr) rely on a special behavior of default values that don't have a corresponding route parameter that prevents the route from being too [greedy](#greedy) with URL generation. In this case the default values are `{ controller = Blog, action = Article }`, and neither `controller` nor `action` appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using `blog` will fail because the values `{ controller = Home, action = Index }` don't match `{ controller = Blog, action = Article }`. Routing then falls back to try `default`, which succeeds.
 
 <a name="routing-areas-ref-label"></a>
 
@@ -728,14 +793,16 @@ Using areas allows an app to have multiple controllers with the same name, as lo
 The following example configures MVC to use the default conventional route and an `area` route for an `area` named `Blog`:
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet1)]
-When matching a URL path like `/Manage/Users/AddUser`, the first route will produce the route values `{ area = Blog, controller = Users, action = AddUser }`. The `area` route value is produced by a default value for `area`. The route created by `MapAreaControllerRoute` is equivalent to the following:
+
+In the preceding code, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> is called to create the `"blog_route"`. The second parameter, `"Blog"`, is the area name.
+
+When matching a URL path like `/Manage/Users/AddUser`, the `"blog_route"` route generates the route values `{ area = Blog, controller = Users, action = AddUser }`. The `area` route value is produced by a default value for `area`. The route created by `MapAreaControllerRoute` is equivalent to the following:
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup2.cs?name=snippet2)]
 
-`MapAreaControllerRoute` creates a route using both a default value and constraint for `area` using the provided area name, in this case `Blog`. The default value ensures that the route always produces `{ area = Blog, ... }`, the constraint requires the value `{ area = Blog, ... }` for URL generation.
+`MapAreaControllerRoute` creates a route using both a default value and constraint for `area` using the provided area name, in this case `Blog`. The default value ensures that the route always produces `{ area = Blog, ... }`, the constraint requires the value `{ area = Blog, ... }` for URL generation. zz
 
-> [!TIP]
-> Conventional routing is order-dependent. In general, routes with areas should be placed earlieras they're more specific than routes without an area.
+Conventional routing is order dependent. In general, routes with areas should be placed earlier as they're more specific than routes without an area.
 
 Using the above example, the route values would match the following action:
 

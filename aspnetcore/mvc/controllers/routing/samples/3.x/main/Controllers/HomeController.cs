@@ -1,4 +1,4 @@
-﻿// This uses same routes as MyDemoController, so only one can be defined
+﻿// This uses same routes as MyDemoController, so only one can be defined unless order is set
 // Test with 
 
 #define First
@@ -12,7 +12,8 @@ namespace WebMvcRouting.Controllers
 #if First
 
     #region snippet
-     [Route("Home")]
+    #region snippet3
+    [Route("Home")]
     public class HomeController : Controller
     {
         [Route("")]
@@ -25,6 +26,7 @@ namespace WebMvcRouting.Controllers
 
             return View();
         }
+        #endregion
 
         [Route("About")]
         public IActionResult About()
