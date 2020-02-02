@@ -5,7 +5,7 @@ description: Learn how ASP.NET Core implements dependency injection and how to u
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/05/2019
+ms.date: 01/30/2020
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -607,6 +607,7 @@ The built-in service container is designed to serve the needs of the framework a
 * Child containers
 * Custom lifetime management
 * `Func<T>` support for lazy initialization
+* Convention-based registration
 
 The following 3rd party containers can be used with ASP.NET Core apps:
 

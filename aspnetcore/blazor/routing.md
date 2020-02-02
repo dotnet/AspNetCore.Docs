@@ -40,7 +40,7 @@ The `Router` component enables routing to each component with a specified route.
 </Router>
 ```
 
-When a *.razor* file with an `@page` directive is compiled, the generated class is provided a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template.
+When a *.razor* file with an `@page` directive is compiled, the generated class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the route template.
 
 At runtime, the `RouteView` component:
 
