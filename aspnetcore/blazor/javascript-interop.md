@@ -279,7 +279,7 @@ The fourth array value is pushed to the array (`data.push(4);`) returned by `Ret
 You can also call .NET instance methods from JavaScript. To invoke a .NET instance method from JavaScript:
 
 * Pass the .NET instance by reference to JavaScript:
-  * With a static call to `DotNetObjectReference.Create`.
+  * Make a static call to `DotNetObjectReference.Create`.
   * Wrap the instance in a `DotNetObjectReference` instance and call `Create` on the `DotNetObjectReference` instance. Dispose of `DotNetObjectReference` objects (an example appears later in this section).
 * Invoke .NET instance methods on the instance using the `invokeMethod` or `invokeMethodAsync` functions. The .NET instance can also be passed as an argument when invoking other .NET methods from JavaScript.
 
