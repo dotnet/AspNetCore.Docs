@@ -387,7 +387,7 @@ To troubleshoot a Windows Service app, see <xref:test/troubleshoot>.
 * The user doesn't have *Log on as a service* rights.
 * The user's password is expired or incorrectly passed when executing the `New-Service` PowerShell command.
 * The app requires ASP.NET Core authentication but isn't configured for secure connections (HTTPS).
-* The the request URL port is incorrect or not configured correctly in the app.
+* The request URL port is incorrect or not configured correctly in the app.
 
 ### System and Application Event Logs
 
