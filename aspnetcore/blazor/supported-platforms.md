@@ -21,9 +21,9 @@ By [Luke Latham](https://github.com/guardrex)
 
 | Browser                          | Version               |
 | -------------------------------- | :-------------------: |
-| Microsoft Edge                   | Current               |
-| Mozilla Firefox                  | Current               |
-| Google Chrome, including Android | Current               |
+| Microsoft Edge                   |  >= 80.0.361.45               |
+| Mozilla Firefox                  | >= 72.0.2               |
+| Google Chrome, including Android | >= 79.0.3945               |
 | Safari, including iOS            | Current               |
 | Microsoft Internet Explorer      | Not Supported&dagger; |
 
@@ -33,9 +33,9 @@ By [Luke Latham](https://github.com/guardrex)
 
 | Browser                          | Version    |
 | -------------------------------- | :--------: |
-| Microsoft Edge                   | Current    |
-| Mozilla Firefox                  | Current    |
-| Google Chrome, including Android | Current    |
+| Microsoft Edge                   | >=  80.0.361.45    |
+| Mozilla Firefox                  | >= 72.0.2    |
+| Google Chrome, including Android | >= 79.0.3945    |
 | Safari, including iOS            | Current    |
 | Microsoft Internet Explorer      | 11&dagger; |
 
