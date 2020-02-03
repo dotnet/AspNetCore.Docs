@@ -283,8 +283,6 @@ You can also call .NET instance methods from JavaScript. To invoke a .NET instan
   * Wrap the instance in a `DotNetObjectReference` instance and call `Create` on the `DotNetObjectReference` instance. Dispose of `DotNetObjectReference` objects (an example appears later in this section).
 * Invoke .NET instance methods on the instance using the `invokeMethod` or `invokeMethodAsync` functions. The .NET instance can also be passed as an argument when invoking other .NET methods from JavaScript.
 
-
-
 > [!NOTE]
 > The sample app logs messages to the client-side console. For the following examples demonstrated by the sample app, examine the browser's console output in the browser's developer tools.
 
@@ -354,6 +352,39 @@ To avoid a memory leak and allow garbage collection on a component that creates 
 
       public void Dispose()
       {
+          _objRef?.Dispose();
+      }
+  }
+  ```
+  
+  The preceding pattern (use of a `ExampleJsInterop` class similar to the sample app) can also be implemented in a component:
+  
+  ```razor
+  @page "/JSInteropComponent"
+  @using BlazorSample.JsInteropClasses
+  @implements IDisposable
+  @inject IJSRuntime JSRuntime
+
+  <h1>JavaScript Interop</h1>
+
+  <button type="button" class="btn btn-primary" @onclick="TriggerNetInstanceMethod">
+      Trigger .NET instance method HelloHelper.SayHello
+  </button>
+
+  @code {
+      private DotNetObjectReference<HelloHelper> _objRef;
+
+      public async Task TriggerNetInstanceMethod()
+      {
+          _objRef = DotNetObjectReference.Create(new HelloHelper("Blazor"));
+
+          await JSRuntime.InvokeAsync<string>(
+              "exampleJsFunctions.sayHello",
+              _objRef);
+      }
+
+      public void Dispose()
+     {
           _objRef?.Dispose();
       }
   }
