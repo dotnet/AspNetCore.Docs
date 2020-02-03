@@ -5,7 +5,7 @@ description: Learn about the supported platforms for ASP.NET Core Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 02/03/2019
 no-loc: [Blazor, SignalR]
 uid: blazor/supported-platforms
 ---
@@ -19,25 +19,25 @@ By [Luke Latham](https://github.com/guardrex)
 
 ### Blazor WebAssembly
 
-| Browser                          | Version               |
+| Browser                          | Minimum Version       |
 | -------------------------------- | :-------------------: |
-| Microsoft Edge                   |  >= 80.0.361.45               |
-| Mozilla Firefox                  | >= 72.0.2               |
-| Google Chrome, including Android | >= 79.0.3945               |
-| Safari, including iOS            | >= 13.0.4               |
+| Microsoft Edge                   | 80.0.361.45           |
+| Mozilla Firefox                  | 72.0.2                |
+| Google Chrome, including Android | 79.0.3945             |
+| Safari, including iOS            | 13.0.4                |
 | Microsoft Internet Explorer      | Not Supported&dagger; |
 
 &dagger;Microsoft Internet Explorer doesn't support [WebAssembly](https://webassembly.org).
 
 ### Blazor Server
 
-| Browser                          | Version    |
-| -------------------------------- | :--------: |
-| Microsoft Edge                   | >=  80.0.361.45    |
-| Mozilla Firefox                  | >= 72.0.2    |
-| Google Chrome, including Android | >= 79.0.3945    |
-| Safari, including iOS            | >= 13.0.4    |
-| Microsoft Internet Explorer      | 11&dagger; |
+| Browser                          | Minimum Version |
+| -------------------------------- | :-------------: |
+| Microsoft Edge                   | 80.0.361.45     |
+| Mozilla Firefox                  | 72.0.2          |
+| Google Chrome, including Android | 79.0.3945       |
+| Safari, including iOS            | 13.0.4          |
+| Microsoft Internet Explorer      | 11&dagger;      |
 
 &dagger;Additional polyfills are required (for example, promises can be added via a [Polyfill.io](https://polyfill.io/v3/) bundle).
 
