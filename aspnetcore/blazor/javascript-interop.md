@@ -328,7 +328,7 @@ Hello, Blazor!
 
 To avoid a memory leak and allow garbage collection on a component that creates a `DotNetObjectReference`, dispose of the object either:
 
-* In the component in that created the `DotNetObjectReference` instance:
+* In the class that created the `DotNetObjectReference` instance:
 
   ```csharp
   public class ExampleJsInterop : IDisposable
@@ -357,7 +357,7 @@ To avoid a memory leak and allow garbage collection on a component that creates 
   }
   ```
   
-  The preceding pattern (use of a `ExampleJsInterop` class similar to the sample app) can also be implemented in a component:
+  The preceding pattern in a `ExampleJsInterop` class can also be implemented in a component:
   
   ```razor
   @page "/JSInteropComponent"
