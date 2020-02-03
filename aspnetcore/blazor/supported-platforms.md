@@ -24,7 +24,7 @@ By [Luke Latham](https://github.com/guardrex)
 | Microsoft Edge                   |  >= 80.0.361.45               |
 | Mozilla Firefox                  | >= 72.0.2               |
 | Google Chrome, including Android | >= 79.0.3945               |
-| Safari, including iOS            | Current               |
+| Safari, including iOS            | >= 13.0.4               |
 | Microsoft Internet Explorer      | Not Supported&dagger; |
 
 &dagger;Microsoft Internet Explorer doesn't support [WebAssembly](https://webassembly.org).
@@ -36,7 +36,7 @@ By [Luke Latham](https://github.com/guardrex)
 | Microsoft Edge                   | >=  80.0.361.45    |
 | Mozilla Firefox                  | >= 72.0.2    |
 | Google Chrome, including Android | >= 79.0.3945    |
-| Safari, including iOS            | Current    |
+| Safari, including iOS            | >= 13.0.4    |
 | Microsoft Internet Explorer      | 11&dagger; |
 
 &dagger;Additional polyfills are required (for example, promises can be added via a [Polyfill.io](https://polyfill.io/v3/) bundle).
