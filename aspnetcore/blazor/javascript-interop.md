@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET and .NET methods
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 02/03/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/javascript-interop
 ---
@@ -278,8 +278,12 @@ The fourth array value is pushed to the array (`data.push(4);`) returned by `Ret
 
 You can also call .NET instance methods from JavaScript. To invoke a .NET instance method from JavaScript:
 
-* Pass the .NET instance to JavaScript by wrapping it in a `DotNetObjectReference` instance. The .NET instance is passed by reference to JavaScript.
+* Pass the .NET instance by reference to JavaScript:
+  * With a static call to `DotNetObjectReference.Create`.
+  * Wrap the instance in a `DotNetObjectReference` instance and call `Create` on the `DotNetObjectReference` instance. Dispose of `DotNetObjectReference` objects (an example appears later in this section).
 * Invoke .NET instance methods on the instance using the `invokeMethod` or `invokeMethodAsync` functions. The .NET instance can also be passed as an argument when invoking other .NET methods from JavaScript.
+
+
 
 > [!NOTE]
 > The sample app logs messages to the client-side console. For the following examples demonstrated by the sample app, examine the browser's console output in the browser's developer tools.
@@ -323,6 +327,42 @@ Console output in the browser's web developer tools:
 ```console
 Hello, Blazor!
 ```
+
+To avoid a memory leak and allow garbage collection on a component that creates a `DotNetObjectReference`, dispose of the object either:
+
+* In the component in that created the `DotNetObjectReference` instance:
+
+  ```csharp
+  public class ExampleJsInterop : IDisposable
+  {
+      private readonly IJSRuntime _jsRuntime;
+      private DotNetObjectReference<HelloHelper> _objRef;
+
+      public ExampleJsInterop(IJSRuntime jsRuntime)
+      {
+          _jsRuntime = jsRuntime;
+      }
+
+      public ValueTask<string> CallHelloHelperSayHello(string name)
+      {
+          _objRef = DotNetObjectReference.Create(new HelloHelper(name));
+
+          return _jsRuntime.InvokeAsync<string>(
+              "exampleJsFunctions.sayHello",
+              _objRef);
+      }
+
+      public void Dispose()
+      {
+          _objRef?.Dispose();
+      }
+  }
+  ```
+
+* In Javascript code:
+
+  ```javascript
+  ```
 
 ## Share interop code in a class library
 
