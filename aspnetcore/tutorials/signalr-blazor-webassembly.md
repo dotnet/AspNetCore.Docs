@@ -164,7 +164,7 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
 
 1. In the **BlazorSignalRApp.Server** project, open the *Startup.cs* file.
 
-1. Add the namespace for the `ChatHub` class to the top of the *Startup.cs* file:
+1. Add the namespace for the `ChatHub` class to the top of the file:
 
    ```csharp
    using BlazorSignalRApp.Server.Hubs;
@@ -182,7 +182,9 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
 
 ## Add Razor component code for chat
 
-In the **BlazorSignalRApp.Client** project, replace the markup of the *Pages/Index.razor* with the following code:
+1. In the **BlazorSignalRApp.Client** project, open the *Pages/Index.razor* file.
+
+1. Replace the markup with the following code:
 
 [!code-razor[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Client/Pages/Index.razor)]
 
