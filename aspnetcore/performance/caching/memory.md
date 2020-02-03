@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to cache data in memory in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/2/2019
+ms.date: 02/02/2020
 uid: performance/caching/memory
 ---
 # Cache in-memory in ASP.NET Core
@@ -109,7 +109,7 @@ For example:
 * If the web app was primarily caching strings, each cache entry size could be the string length.
 * The app could specify the size of all entries as 1, and the size limit is the count of entries.
 
-If <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit> is not set, the cache grows without bound. The ASP.NET Core runtime does not trim the cache when system memory is low. Apps must be architected to:
+If <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit> isn't set, the cache grows without bound. The ASP.NET Core runtime doesn't trim the cache when system memory is low. Apps must be architected to:
 
 * Limit cache growth.
 * Call <xref:Microsoft.Extensions.Caching.Memory.MemoryCache.Compact*> or <xref:Microsoft.Extensions.Caching.Memory.MemoryCache.Remove*> when available memory is limited:
