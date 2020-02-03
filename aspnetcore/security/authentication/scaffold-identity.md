@@ -24,7 +24,7 @@ We recommend using a source control system that shows file differences and allow
 
 Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).
 
-This document contains more complete instructions than the *ScaffoldingReadme.txt* file which is generated when running the the scaffolder.
+This document contains more complete instructions than the *ScaffoldingReadme.txt* file which is generated when running the scaffolder.
 
 ## Scaffold identity into an empty project
 
