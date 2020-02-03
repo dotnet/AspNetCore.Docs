@@ -920,7 +920,21 @@ public class NotifierService
 }
 ```
 
-Usage of the `NotifierService` to update a component:
+Register the `NotifierService` as a singletion:
+
+* In Blazor WebAssembly, register in `Program.Main`:
+
+  ```csharp
+  builder.Services.AddSingleton<NotifierService>();
+  ```
+
+* In Blazor Server, register in `Startup.ConfigureServices`:
+
+  ```csharp
+  services.AddSingleton<NotifierService>();
+  ```
+
+Use the `NotifierService` to update a component:
 
 ```razor
 @page "/"
