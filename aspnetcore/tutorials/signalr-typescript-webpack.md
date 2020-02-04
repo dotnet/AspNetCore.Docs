@@ -4,7 +4,7 @@ author: ssougnez
 description: In this tutorial, you configure Webpack to bundle and build an ASP.NET Core SignalR web app whose client is written in TypeScript.
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/21/2019
+ms.date: 02/03/2020
 no-loc: [SignalR]
 uid: tutorials/signalr-typescript-webpack
 ---
@@ -50,16 +50,23 @@ In this tutorial, you learn how to:
 
 Configure Visual Studio to look for npm in the *PATH* environment variable. By default, Visual Studio uses the version of npm found in its installation directory. Follow these instructions in Visual Studio:
 
+1. Launch Visual Studio 2019. A the start window, select **Continue without code**.
 1. Navigate to **Tools** > **Options** > **Projects and Solutions** > **Web Package Management** > **External Web Tools**.
-1. Select the *$(PATH)* entry from the list. Click the up arrow to move the entry to the second position in the list.
+1. Select the *$(PATH)* entry from the list. Click the up arrow to move the entry to the second position in the list, and select **OK**.
 
     ![Visual Studio Configuration](signalr-typescript-webpack/_static/signalr-configure-path-visual-studio.png)
 
 Visual Studio configuration is completed. It's time to create the project.
 
-1. Use the **File** > **New** > **Project** menu option and choose the **ASP.NET Core Web Application** template.
+1. Use the **File** > **New** > **Project** menu option and choose the **ASP.NET Core Web Application** template. Select **Next**.
 1. Name the project *SignalRWebPack*, and select **Create**.
 1. Select *.NET Core* from the target framework drop-down, and select *ASP.NET Core 3.0* from the framework selector drop-down. Select the **Empty** template, and select **Create**.
+
+Add the **Microsoft.TypeScript.MSBuild** package to your project:
+
+1. In Solution Explorer (right pane). right-click the project node and choose **Manage NuGet Packages**. In the **Browse** tab, search for **Microsoft.TypeScript.MSBuild**, and then click **Install** on the right to install the package.
+
+Visual Studio adds the NuGet package under the **Dependencies** node in Solution Explorer, enabling TypeScript compilation in your project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -70,6 +77,13 @@ dotnet new web -o SignalRWebPack
 ```
 
 An empty ASP.NET Core web app, targeting .NET Core, is created in a *SignalRWebPack* directory.
+
+Run the following .NET Core CLI command:
+```dotnetcli
+dotnet add package Microsoft.TypeScript.MSBuild
+```
+
+The preceding command adds the (Microsoft.TypeScript.MSBuild)[https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild/] package, enabling TypeScript compilation in your project.
 
 ---
 
@@ -83,7 +97,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
     npm init -y
     ```
 
-1. Add the highlighted property to the *package.json* file:
+1. Add the highlighted property to the *package.json* file and save the file changes:
 
     [!code-json[package.json](signalr-typescript-webpack/sample/3.x/snippets/package1.json?highlight=4)]
 
@@ -92,13 +106,13 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 1. Install the required npm packages. Execute the following command from the project root:
 
     ```console
-    npm install -D -E clean-webpack-plugin@1.0.1 css-loader@2.1.0 html-webpack-plugin@4.0.0-beta.5 mini-css-extract-plugin@0.5.0 ts-loader@5.3.3 typescript@3.3.3 webpack@4.29.3 webpack-cli@3.2.3
+    npm install -D -E clean-webpack-plugin@3.0.0 css-loader@3.4.2 html-webpack-plugin@3.2.0 mini-css-extract-plugin@0.9.0 ts-loader@6.2.1 typescript@3.7.5 webpack@4.41.5 webpack-cli@3.3.10
     ```
 
     Some command details to note:
 
     * A version number follows the `@` sign for each package name. npm installs those specific package versions.
-    * The `-E` option disables npm's default behavior of writing [semantic versioning](https://semver.org/) range operators to *package.json*. For example, `"webpack": "4.29.3"` is used instead of `"webpack": "^4.29.3"`. This option prevents unintended upgrades to newer package versions.
+    * The `-E` option disables npm's default behavior of writing [semantic versioning](https://semver.org/) range operators to *package.json*. For example, `"webpack": "4.41.5"` is used instead of `"webpack": "^4.41.5"`. This option prevents unintended upgrades to newer package versions.
 
     See the official [npm-install](https://docs.npmjs.com/cli/install) docs for more detail.
 
@@ -191,7 +205,7 @@ The app currently displays a simple form to send messages. Nothing happens when 
 1. Execute the following command at the project root:
 
     ```console
-    npm install @microsoft/signalr
+    npm i @microsoft/signalr @types/node
     ```
 
     The preceding command installs the [SignalR TypeScript client](https://www.npmjs.com/package/@microsoft/signalr), which allows the client to send messages to the server.

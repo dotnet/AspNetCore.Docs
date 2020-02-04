@@ -1,5 +1,5 @@
 import "./css/main.css";
-import * as signalR from "@aspnet/signalr";
+import * as signalR from "@microsoft/signalr";
 
 const divMessages: HTMLDivElement = document.querySelector("#divMessages");
 const tbMessage: HTMLInputElement = document.querySelector("#tbMessage");
