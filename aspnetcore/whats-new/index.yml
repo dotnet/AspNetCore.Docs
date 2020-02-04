@@ -14,6 +14,8 @@ landingContent:
     linkLists:
       - linkListType: whats-new
         links:
+          - text: January 2020
+            url: 2020-01.md
           - text: December 2019
             url: 2019-12.md
           - text: November 2019
