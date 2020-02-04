@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/24/2020
+ms.date: 02/04/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/components
 ---
@@ -922,13 +922,13 @@ public class NotifierService
 
 Register the `NotifierService` as a singletion:
 
-* In Blazor WebAssembly, register in `Program.Main`:
+* In Blazor WebAssembly, register the service in `Program.Main`:
 
   ```csharp
   builder.Services.AddSingleton<NotifierService>();
   ```
 
-* In Blazor Server, register in `Startup.ConfigureServices`:
+* In Blazor Server, register the service in `Startup.ConfigureServices`:
 
   ```csharp
   services.AddSingleton<NotifierService>();
