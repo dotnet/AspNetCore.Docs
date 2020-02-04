@@ -50,7 +50,7 @@ In this tutorial, you learn how to:
 
 Configure Visual Studio to look for npm in the *PATH* environment variable. By default, Visual Studio uses the version of npm found in its installation directory. Follow these instructions in Visual Studio:
 
-1. Launch Visual Studio 2019. A the start window, select **Continue without code**.
+1. Launch Visual Studio 2019. At the start window, select **Continue without code**.
 1. Navigate to **Tools** > **Options** > **Projects and Solutions** > **Web Package Management** > **External Web Tools**.
 1. Select the *$(PATH)* entry from the list. Click the up arrow to move the entry to the second position in the list, and select **OK**.
 
