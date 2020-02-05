@@ -46,7 +46,8 @@ The app requires a package reference for [Microsoft.Extensions.Hosting.WindowsSe
 * Sets the [content root](xref:fundamentals/index#content-root) to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory). For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
 * Enables logging to the event log:
   * The application name is used as the default source name.
-  * The log level is set by the `Logging:LogLevel:Default` key in *appsettings.json*/*appsettings.{Environment}.json*. The default log level is *Information* or higher for an app based on an ASP.NET Core template.
+  * The default log level is *Warning* or higher for an app based on an ASP.NET Core template that calls `CreateDefaultBuilder` to build the host.
+  * Override the default log level with the `Logging:LogLevel:Default` key in *appsettings.json*/*appsettings.{Environment}.json*.
   * Only administrators can create new event sources. When an event source can't be created using the application name, a warning is logged to the *Application* source and event logs are disabled.
 
 In `CreateHostBuilder` of *Program.cs*:
