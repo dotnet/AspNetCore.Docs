@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace AreasRouting.Controllers
 {
@@ -13,12 +9,13 @@ namespace AreasRouting.Controllers
             return View();
         }
 
+        #region snippet
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
+            var url = Url.Action( "Users", "AddUser", new { Area = "Zebra" });
+            return Content($"URL: {url}");
         }
+        #endregion
 
         public IActionResult Contact()
         {

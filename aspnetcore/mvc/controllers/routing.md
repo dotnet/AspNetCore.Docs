@@ -143,6 +143,8 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 > [Attribute routing](#ar) provides fine-grained control to make the ID required for some actions and not for others. By convention the documentation includes optional parameters like `id` when they're likely to appear in correct usage.
 
 Routing only matches a combination of action and controller that are defined by the app. This is intended to simplify cases where conventional routes overlap.
+<!-- review. Below is copy/paste from Areas section. Need  to complete list of routes that should be placed earlier -->
+Conventional routing is order dependent. In general, routes with areas should be placed earlier as they're more specific than routes without an area.
 
 [Attribute routing](#ar) is explained later in this document.
 
@@ -581,7 +583,7 @@ The application model includes all of the data gathered from route attributes. T
 * Can be written to modify the application model to customize how routing behaves.
 * Are read at app startup.
 
-This section shows a basic example of customizing routing using application model.
+This section shows a basic example of customizing routing using application model. The following code makes routes roughly line up with the folder structure of the project.
 
 [!code-csharp[](routing/samples/3.x/nsrc/NamespaceRoutingConvention.cs?name=snippet)]
 
@@ -624,16 +626,19 @@ MVC applications can mix the use of conventional routing and attribute routing. 
 
 Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. Actions that define attribute routes cannot be reached through the conventional routes and vice-versa. **Any** route attribute on the controller makes all actions in the controller attribute routed.
 
+<!-- review: Can we delete based on the historical use cases for each system. 
+Dan.Roth does'nt really care about history. It's what we have today.
+-->
 Attribute routing and conventional routing use the same routing engine. They differ in details of how URL generation works based on the historical use cases for each system. This different is expressed by how MVC interfaces with and provides data to the routing system.
 
 <a name="routing-url-gen-ref-label"></a>
 <a name="ambient"></a>
 
-## URL Generation
+## URL Generation and ambient values
 
 Apps can use routing URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making code more robust and maintainable. This section focuses on the URL generation features provided by MVC and only cover basics of how URL generation works. See [Routing](xref:fundamentals/routing) for a detailed description of URL generation.
 
-The <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> interface is the underlying element of infrastructure between MVC and routing for URL generation. an instance of `IUrlHelper` is available through the `Url` property in controllers, views, and view components.
+The <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> interface is the underlying element of infrastructure between MVC and routing for URL generation. An instance of `IUrlHelper` is available through the `Url` property in controllers, views, and view components.
 
 In the following example, the `IUrlHelper` interface is used through the `Controller.Url` property to generate a URL to another action.
 
@@ -641,7 +646,7 @@ In the following example, the `IUrlHelper` interface is used through the `Contro
 
 If the app is using the default conventional route, the value of the `url` variable will be the URL path string `/UrlGeneration/Destination`. This URL path is created by routing by combining:
 
-* The route values from the current request, which are called ambient values.
+* The route values from the current request, which are called **ambient values**.
 * The values passed to `Url.Action` and substituting those values into the route template:
 
 ``` text
@@ -655,11 +660,11 @@ result: /UrlGeneration/Destination
 Each route parameter in the route template has its value substituted by matching names with the values and ambient values. A route parameter that doesn't have a value can:
 
 * Use a default value if it has one.
-* Be skipped if it's optional. For example, the `id` in the preceding example.
+* Be skipped if it's optional. For example, the `id` from the  route template `{controller}/{action}/{id?}`.
 
 URL generation fails if any required route parameter doesn't have a corresponding value. If URL generation fails for a route, the next route is tried until all routes have been tried or a match is found.
 
-The preceding example of `Url.Action` assumes conventional routing. URL generation works similarly with attribute routing, though the concepts are different. With conventional routing:
+The preceding example of `Url.Action` assumes [conventional routing](#cr). URL generation works similarly with [attribute routing](#ar), though the concepts are different. With conventional routing:
 
 * The route values are used to expand a template.
 * The route values for `controller` and `action` usually appear in that template. This works because the URLs matched by routing adhere to a convention.
@@ -674,7 +679,7 @@ The `Source` action in the preceding code generates `custom/url/to/destination`.
 
 ### Generating URLs by action name
 
-[Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*),[LinkGenerator.GetPathByAction](xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetPathByAction*), and all related overloads all are designed to generate the target endpoint by specifying a controller name and action name.
+[Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*), [LinkGenerator.GetPathByAction](xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetPathByAction*), and all related overloads all are designed to generate the target endpoint by specifying a controller name and action name.
 
 When using `Url.Action`, the current route values for `controller` and `action` are provided by the runtime:
 
@@ -701,7 +706,7 @@ You might expect to hit this problem with the default route `{controller}/{actio
 Several overloads of [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) take a route values object to provide values for route parameters other than `controller` and `action`. The route values object is frequently used with `id`. For example `Url.Action("Buy", "Products", new { id = 17 })`. The route values object:
 
 * By convention is usually an object of anonymous type.
-* Can be an `IDictionary<>` or a [Plain old CLR object](https://wikipedia.org/wiki/Plain_old_CLR_object).
+* Can be an `IDictionary<>` or a [POCO](https://wikipedia.org/wiki/Plain_old_CLR_object)).
 
 Any additional route values that don't match route parameters are put in the query string.
 
@@ -724,7 +729,7 @@ To create an absolute URL, use one of the following:
 
 The preceding code demonstrated generating a URL by passing in the controller and action name. `IUrlHelper` also provides the [Url.RouteUrl](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.RouteUrl*) family of methods. These methods are similar to [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*), but they don't copy the current values of `action` and `controller` to the route values. The most common usage of `Url.RouteUrl`:
 
-* Specifies a route name to use a specific route to generate the URL.
+* Specifies a route name to generate the URL.
 * Generally doesn't specify a controller or action name.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/UrlGeneration2Controller.cs?name=snippet_1)]
@@ -760,7 +765,7 @@ The action results factory methods follow a similar pattern to the methods on `I
 
 ### Special case for dedicated conventional routes
 
-Conventional routing can use a special kind of route definition called a [dedicated conventional route](#dcr). In the following example, the route named `blog` is a dedicated conventional route:
+[Conventional routing](#cr) can use a special kind of route definition called a [dedicated conventional route](#dcr). In the following example, the route named `blog` is a dedicated conventional route:
 
 [!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
@@ -789,15 +794,15 @@ When matching a URL path like `/Manage/Users/AddUser`, the `"blog_route"` route 
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup2.cs?name=snippet2)]
 
-`MapAreaControllerRoute` creates a route using both a default value and constraint for `area` using the provided area name, in this case `Blog`. The default value ensures that the route always produces `{ area = Blog, ... }`, the constraint requires the value `{ area = Blog, ... }` for URL generation. zz
+`MapAreaControllerRoute` creates a route using both a default value and constraint for `area` using the provided area name, in this case `Blog`. The default value ensures that the route always produces `{ area = Blog, ... }`, the constraint requires the value `{ area = Blog, ... }` for URL generation.
 
 Conventional routing is order dependent. In general, routes with areas should be placed earlier as they're more specific than routes without an area.
 
-Using the above example, the route values would match the following action:
+Using the preceding example, the route values `{ area = Blog, controller = Users, action = AddUser }` match the following action:
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Blog/Controllers/UsersController.cs)]
 
-The `AreaAttribute` is what denotes a controller as part of an area, we say that this controller is in the `Blog` area. Controllers without an `[Area]` attribute are not members of any area, and will **not** match when the `area` route value is provided by routing. In the following example, only the first controller listed can match the route values `{ area = Blog, controller = Users, action = AddUser }`.
+The [[Area]](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) attribute is what denotes a controller as part of an area. This controller is in the `Blog` area. Controllers without an `[Area]` attribute are not members of any area, and will **not** match when the `area` route value is provided by routing. In the following example, only the first controller listed can match the route values `{ area = Blog, controller = Users, action = AddUser }`.
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Blog/Controllers/UsersController.cs)]
 
@@ -805,19 +810,24 @@ The `AreaAttribute` is what denotes a controller as part of an area, we say that
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Controllers/UsersController.cs)]
 
-> [!NOTE]
-> The namespace of each controller is shown here for completeness - otherwise the controllers would have a naming conflict and generate a compiler error. Class namespaces have no effect on MVC's routing.
+The namespace of each controller is shown here for completeness. If the preceding controllers uses the same namespace, a compiler error would be generated. Class namespaces have no effect on MVC's routing.
 
 The first two controllers are members of areas, and only match when their respective area name is provided by the `area` route value. The third controller isn't a member of any area, and can only match when no value for `area` is provided by routing.
 
-> [!NOTE]
-> In terms of matching *no value*, the absence of the `area` value is the same as if the value for `area` were null or the empty string.
+In terms of matching *no value*, the absence of the `area` value is the same as if the value for `area` were null or the empty string.
 
-When executing an action inside an area, the route value for `area` will be available as an *ambient value* for routing to use for URL generation. This means that by default areas act *sticky* for URL generation as demonstrated by the following sample.
+<!-- sticky won't MT. Can we define it? -->
+When executing an action inside an area, the route value for `area` is available as an [ambient value](#ambient) for routing to use for URL generation. This means that by default areas act *sticky* for URL generation as demonstrated by the following sample.
+
+<!--Doesn't return what you said. I tested code and returned actual. -->
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup3.cs?name=snippet3)]
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Duck/Controllers/UsersController.cs)]
+
+The following code generates a URL to `UsersController.AddUser` in the "Zebra" area:
+
+[!code-csharp[](routing/samples/3.x/AreasRouting/Controllers/HomeController.cs?name=snippet)]
 
 <a name="action"></a>
 
@@ -1222,8 +1232,8 @@ Token replacement also applies to route names defined by attribute routes. `[Rou
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
 
 ::: moniker-end
-
-::: moniker range=">= aspnetcore-2.2"
+<!-- Need to figure out intention of this moniker -->
+::: moniker range="= aspnetcore-2.2"
 
 <a name="routing-token-replacement-transformers-ref-label"></a>
 
@@ -1526,7 +1536,6 @@ The first two controllers are members of areas, and only match when their respec
 > In terms of matching *no value*, the absence of the `area` value is the same as if the value for `area` were null or the empty string.
 
 When executing an action inside an area, the route value for `area` will be available as an *ambient value* for routing to use for URL generation. This means that by default areas act *sticky* for URL generation as demonstrated by the following sample.
-
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet3)]
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Duck/Controllers/UsersController.cs)]

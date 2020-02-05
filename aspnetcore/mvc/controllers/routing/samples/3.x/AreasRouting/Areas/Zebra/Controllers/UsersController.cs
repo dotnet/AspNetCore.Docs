@@ -6,9 +6,15 @@ namespace MyApp.Namespace2
     [Area("Zebra")]
     public class UsersController : Controller
     {
+        // GET /zebra/users/adduser
         public IActionResult AddUser()
         {
-            return View();
+            var area = ControllerContext.ActionDescriptor.RouteValues["area"];
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"area name:{area}" +
+                $" controller:{controllerName}  action name: {actionName}");
         }        
     }
 }

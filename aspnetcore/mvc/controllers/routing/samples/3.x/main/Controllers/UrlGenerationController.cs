@@ -9,12 +9,15 @@ namespace WebMvcRouting.Controllers
         {
             // Generates /UrlGeneration/Destination
             var url = Url.Action("Destination");
-            return Content($"Go check out {url}, it's really great.");
+            return Content($"Url.RouteUrl('Destination_Route') = {url}");
         }
 
         public IActionResult Destination()
         {
-            return View();
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"Controller:{controllerName}  action name: {actionName}");
         }
     }
     #endregion
