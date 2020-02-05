@@ -48,7 +48,7 @@ At the end of this tutorial, you'll have a working chat app.
 
 ---
 
-## Create a Blazor WebAssembly Hosted app project
+## Create a hosted Blazor WebAssembly app project
 
 Install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template. The [Microsoft.AspNetCore.Blazor.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.Templates/) package has a preview version while Blazor WebAssembly is in preview. In a command shell, execute the following command:
 
@@ -127,7 +127,7 @@ dotnet new blazorwasm --hosted --output BlazorSignalRApp
 
 In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following commands:
 
-```console
+```dotnetcli
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 ```
 
