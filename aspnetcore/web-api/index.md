@@ -392,11 +392,11 @@ The automatic creation of a `ProblemDetails` instance is disabled when the <xref
 
 ::: moniker-end
 
-## Define supported request content types
+## Define supported request content types with the [Consumes] attribute
 
-Without further configuration, an action supports all available request content types. For example, if an app is configured to support both JSON and XML [input formatters](xref:mvc/models/model-binding#input-formatters), an action supports multiple content types, including `application/json` and `application/xml`. 
+By default, an action supports all available request content types. For example, if an app is configured to support both JSON and XML [input formatters](xref:mvc/models/model-binding#input-formatters), an action supports multiple content types, including `application/json` and `application/xml`.
 
-The [`[Consumes]`](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) attribute allows an action to limit its supported request content types. Apply the `[Consumes]` attribute to an action or controller, specifying one or more content types:
+The [`[Consumes]`](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) attribute allows an action to limit the supported request content types. Apply the `[Consumes]` attribute to an action or controller, specifying one or more content types:
 
 ```csharp
 [HttpPost]
@@ -404,17 +404,15 @@ The [`[Consumes]`](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) attribute 
 public IActionResult CreateProduct(Product product)
 ```
 
-In the preceding code, the `CreateProduct` action specifies a single supported content type of `application/xml`. Requests routed to this action must specify a `Content-Type` header of `application/xml`. Requests that do not specify a `Content-Type` header of `application/xml` result in a *415 - Unsupported Media Type* response.
+In the preceding code, the `CreateProduct` action specifies the content type  `application/xml`. Requests routed to this action must specify a `Content-Type` header of `application/xml`. Requests that do not specify a `Content-Type` header of `application/xml` result in a [415 Unsupported Media Type](https://developer.mozilla.org/docs/Web/HTTP/Status/415) response.
 
-The `[Consumes]` attribute also allows an action to influence its selection based on an incoming request's content type. Consider the following example:
+The `[Consumes]` attribute also allows an action to influence its selection based on an incoming request's content type by applying a type constraint. Consider the following example:
 
 [!code-csharp[](index/samples/3.x/Controllers/ConsumesController.cs?name=snippet_Class)]
 
-In the preceding code, `ConsumesController` is configured to handle requests sent to the `https://localhost:5001/api/Consumes` URL. Both of the controller's actions, `PostJson` and `PostForm`, handle POST requests sent to the same URL. Without the `[Consumes]` attribute, this results in an *ambiguous match* exception.
+In the preceding code, `ConsumesController` is configured to handle requests sent to the `https://localhost:5001/api/Consumes` URL. Both of the controller's actions, `PostJson` and `PostForm`, handle POST requests with the same URL. Without the `[Consumes]` attribute applying a type constraint, an ambiguous match exception is thrown.
 
-The `[Consumes]` attribute is applied to both actions. For the `PostJson` action, the `[Consumes]` attribute specifies a single supported content type of `application/json`. For the `PostForm` action, the `[Consumes]` attribute specifies a single supported content type of `application/x-www-form-urlencoded`.
-
-The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`. Requests sent with any other `Content-Type` result in a *415 - Unsupported Media Type* response.
+The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json` The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`. [415 Unsupported Media Type](https://developer.mozilla.org/docs/Web/HTTP/Status/415) response.
 
 ## Additional resources
 
