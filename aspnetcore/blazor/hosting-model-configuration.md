@@ -221,13 +221,13 @@ To customize the UI, define an element with an `id` of `components-reconnect-mod
 The following table describes the CSS classes applied to the `components-reconnect-modal` element.
 
 | CSS class                       | Indicates&hellip; |
-| ------------------------------- | ------------------------- |
+| ------------------------------- | ----------------- |
 | `components-reconnect-show`     | A lost connection. The client is attempting to reconnect. Show the modal. |
 | `components-reconnect-hide`     | An active connection is re-established to the server. Hide the modal. |
 | `components-reconnect-failed`   | Reconnection failed, probably due to a network failure. To attempt reconnection, call `window.Blazor.reconnect()`. |
 | `components-reconnect-rejected` | Reconnection rejected. The server was reached but refused the connection, and the user's state on the server is lost. To reload the app, call `location.reload()`. This connection state may result when:<ul><li>A crash in the server-side circuit occurs.</li><li>The client is disconnected long enough for the server to drop the user's state. Instances of the components that the user is interacting with are disposed.</li><li>The server is restarted, or the app's worker process is recycled.</li></ul> |
 
-### Stateful reconnection after prerendering
+### Render mode
 
 Blazor Server apps are set up by default to prerender the UI on the server before the client connection to the server is established. This is set up in the *_Host.cshtml* Razor page:
 
@@ -253,62 +253,6 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 | `Static`            | Renders the component into static HTML. |
 
 Rendering server components from a static HTML page isn't supported.
-
-When `RenderMode` is `ServerPrerendered`, the component is initially rendered statically as part of the page. Once the browser establishes a connection back to the server, the component is rendered *again*, and the component is now interactive. If the [OnInitialized{Async}](xref:blazor/lifecycle#component-initialization-methods) lifecycle method for initializing the component is present, the method is executed *twice*:
-
-* When the component is prerendered statically.
-* After the server connection has been established.
-
-This can result in a noticeable change in the data displayed in the UI when the component is finally rendered.
-
-To avoid the double-rendering scenario in a Blazor Server app:
-
-* Pass in an identifier that can be used to cache the state during prerendering and to retrieve the state after the app restarts.
-* Use the identifier during prerendering to save component state.
-* Use the identifier after prerendering to retrieve the cached state.
-
-The following code demonstrates an updated `WeatherForecastService` in a template-based Blazor Server app that avoids the double rendering:
-
-```csharp
-public class WeatherForecastService
-{
-    private static readonly string[] _summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild",
-        "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-    
-    public WeatherForecastService(IMemoryCache memoryCache)
-    {
-        MemoryCache = memoryCache;
-    }
-    
-    public IMemoryCache MemoryCache { get; }
-
-    public Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
-    {
-        return MemoryCache.GetOrCreateAsync(startDate, async e =>
-        {
-            e.SetOptions(new MemoryCacheEntryOptions
-            {
-                AbsoluteExpirationRelativeToNow = 
-                    TimeSpan.FromSeconds(30)
-            });
-
-            var rng = new Random();
-
-            await Task.Delay(TimeSpan.FromSeconds(10));
-
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = startDate.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = _summaries[rng.Next(_summaries.Length)]
-            }).ToArray();
-        });
-    }
-}
-```
 
 ### Render stateful interactive components from Razor pages and views
 
@@ -356,10 +300,6 @@ In the following Razor page, the `Counter` component is statically rendered with
 ```
 
 Since `MyComponent` is statically rendered, the component can't be interactive.
-
-### Detect when the app is prerendering
-
-[!INCLUDE[](~/includes/blazor-prerendering.md)]
 
 ### Configure the SignalR client for Blazor Server apps
 
