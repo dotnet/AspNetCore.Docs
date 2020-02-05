@@ -11,11 +11,11 @@ uid: grpc/diagnostics
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-This article provides guidance for gathering diagnostics from your gRPC app to help troubleshoot issues. Topics covered include:
+This article provides guidance for gathering diagnostics from a gRPC app to help troubleshoot issues. Topics covered include:
 
-* **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). `ILogger` is also often used by apps to write logs.
-* **Tracing** - Events related to an operation written using `DiaganosticSource` and `Activity`. Traces from diagnostic source are commonly used to collect app telemetry by libraries like [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
-* **Metrics** - Representation of data measures over intervals of time, e.g. requests per second. Metrics are emitted using `EventCounter` and can be observed using [dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) command line tool or with [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters).
+* **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). <xref:Microsoft.Extensions.Logging.ILogger> is also used for logging. See [Create logs](xref:fundamentals/logging#create-logs) for more information on logging with `ILogger`.
+* **Tracing** - Events related to an operation written using `DiaganosticSource` and `Activity`. Traces from diagnostic source are commonly used to collect app telemetry by libraries such as [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
+* **Metrics** - Representation of data measures over intervals of time, for example, requests per second. Metrics are emitted using `EventCounter` and can be observed using [dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) command line tool or with [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters).
 
 ## Logging
 
@@ -142,18 +142,18 @@ The .NET gRPC client uses `HttpClient` to make gRPC calls. Although `HttpClient`
 
 ### Collecting tracing
 
-The easist way to use `DiagnosticSource` is to configure a telemetry library such as [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) or [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) in your app. The library will process information about gRPC calls along-side other app telemetry.
+The easiest way to use `DiagnosticSource` is to configure a telemetry library such as [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) or [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) in your app. The library will process information about gRPC calls along-side other app telemetry.
 
-Tracing can be view in a managed service like Application Insights, or you can choose to run your own distributed tracing system. OpenTelemetry supports exporting tracing data to [Jaeger](https://www.jaegertracing.io/) and [Zipkin](https://zipkin.io/).
+Tracing can be viewed in a managed service like Application Insights, or you can choose to run your own distributed tracing system. OpenTelemetry supports exporting tracing data to [Jaeger](https://www.jaegertracing.io/) and [Zipkin](https://zipkin.io/).
 
-You can also listen to `DiagnosticSource` tracing events in code using `DiagnosticListener`. For information about listening to a diagnostic source with code, visit the [DiagnosticSource user's guide](https://github.com/dotnet/corefx/blob/d3942d4671919edb0cca6ddc1840190f524a809d/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md#consuming-data-with-diagnosticlistener).
+`DiagnosticSource` can consume tracing events in code using `DiagnosticListener`. For information about listening to a diagnostic source with code, see the [DiagnosticSource user's guide](https://github.com/dotnet/corefx/blob/d3942d4671919edb0cca6ddc1840190f524a809d/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md#consuming-data-with-diagnosticlistener).
 
 > [!NOTE]
-> Telemetry libraries do not capture gRPC specific `Grpc.Net.Client.GrpcOut` telemetry currently. Work to improve telemetry libraries capture this tracing is ongoing.
+> Telemetry libraries do not capture gRPC specific `Grpc.Net.Client.GrpcOut` telemetry currently. Work to improve telemetry libraries capturing this tracing is ongoing.
 
 ## Metrics
 
-Metrics is a representation of data measures over intervals of time, e.g. requests per second. Metrics data allows you to observe the state of your app at a high-level. .NET gRPC metrics are emitted using `EventCounter`.
+Metrics is a representation of data measures over intervals of time, for example, requests per second. Metrics data allows observation of the state an app at a high-level. .NET gRPC metrics are emitted using `EventCounter`.
 
 ### gRPC service metrics
 
@@ -186,7 +186,7 @@ gRPC client metrics are reported on `Grpc.Net.Client` event source.
 
 ### Observe metrics
 
-[dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation. Monitor your .NET app with either `Grpc.AspNetCore.Server` or `Grpc.Net.Client` as the provider name.
+[dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation. Monitor a .NET app with either `Grpc.AspNetCore.Server` or `Grpc.Net.Client` as the provider name.
 
 ```console
 > dotnet-counters monitor --process-id 1902 Grpc.AspNetCore.Server
@@ -203,9 +203,9 @@ Press p to pause, r to resume, q to quit.
     Total Calls Unimplemented                   0
 ```
 
-Another way to observe gRPC metrics is to capture counter data using Application Insights's [Microsoft.ApplicationInsights.EventCounterCollector package](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters). Once setup in your app, Application Insights will collect common .NET counters at runtime. gRPC's counters are not collected by default, but App Insights can be [customized to include additional counters](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected).
+Another way to observe gRPC metrics is to capture counter data using Application Insights's [Microsoft.ApplicationInsights.EventCounterCollector package](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters). Once setup, Application Insights collects common .NET counters at runtime. gRPC's counters are not collected by default, but App Insights can be [customized to include additional counters](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected).
 
-Specify the gRPC counters you want Application Insight to collect in *Startup.cs*:
+Specify the gRPC counters for Application Insight to collect in *Startup.cs*:
 
 ```csharp
     using Microsoft.ApplicationInsights.Extensibility.EventCounterCollector;
