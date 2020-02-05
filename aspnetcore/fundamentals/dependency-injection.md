@@ -421,7 +421,7 @@ In the following example, the services are created by the service container and 
 public class Service1 : IDisposable {}
 public class Service2 : IDisposable {}
 
-public interface ISomeService {}
+public interface IService3 {}
 public class Service3 : IService3, IDisposable {}
 
 public void ConfigureServices(IServiceCollection services)
@@ -954,7 +954,7 @@ In the following example, the services are created by the service container and 
 public class Service1 : IDisposable {}
 public class Service2 : IDisposable {}
 
-public interface ISomeService {}
+public interface IService3 {}
 public class Service3 : IService3, IDisposable {}
 
 public void ConfigureServices(IServiceCollection services)
