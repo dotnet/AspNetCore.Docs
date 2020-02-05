@@ -540,7 +540,7 @@ When multiple route attributes that implement <xref:Microsoft.AspNetCore.Mvc.Act
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet7)]
 
-While using multiple routes on actions seems powerful, it's better to keep your app's URL space basic and well defined. Use multiple routes on actions only where needed, for example to support existing clients.
+Using multiple routes on actions might seem useful and powerful, it's better to keep your app's URL space basic and well defined. Use multiple routes on actions only where needed, for example, to support existing clients.
 
 <a name="routing-attr-options"></a>
 

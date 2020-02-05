@@ -88,10 +88,10 @@ The following code shows an example of routing with a more sophisticated route t
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/RouteTemplateStartup.cs?name=snippet)]
 
-The string `/hello/{name:alpha}` is a [route template](#rt), and is used to configure how the endpoint is matched. In this case, the template matches with:
+The string `/hello/{name:alpha}` is a [route template](xref:mvc/controllers/routing#rt), and is used to configure how the endpoint is matched. In this case, the template matches with:
 
 * A URL like `/hello/Ryan`
-* Any URL path that begins with `/hello/` followed by a sequence of alphabetic characters.  `:alpha` applies a route constraint that matches only alphabetic characters. [Rout constraints](##route-constraint-reference) and explained later in this document.
+* Any URL path that begins with `/hello/` followed by a sequence of alphabetic characters.  `:alpha` applies a route constraint that matches only alphabetic characters. [Rout constraints](#route-constraint-reference) and explained later in this document.
 
 The second segment of the URL path:
 
