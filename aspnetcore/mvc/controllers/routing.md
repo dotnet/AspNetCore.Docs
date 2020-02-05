@@ -100,6 +100,7 @@ Using `MapControllerRoute` or similar also maps attribute-routed controllers.
 <a name="cr"></a>
 
 ## Conventional routing
+<!-- need to define how Conventional routing orders the routes.  -->
 
 The `default` route:
 
@@ -206,6 +207,7 @@ Provide guarantees about execution order.
 
 I don't understand the *of extensibility* portion of *Provide guarantees about the execution order of extensibility*
 
+Doesn't Order prop guarantee order?
  -->
 
 > [!WARNING]
@@ -349,6 +351,8 @@ The `ProductsApiController.GetProduct(int)` action:
 
  See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
 
+For more information on `[ApiController]`, see [ApiController attribute](xref:web-api/index##apicontroller-attribute).
+
 ## Route Name
 
 The following code  defines a route name of `Products_List`:
@@ -388,12 +392,11 @@ ASP.NET Core has the following route templates:
 
 <a name="routing-combining-ref-label"></a>
 
-### Combining routes 
+### Combining routes
 
 To make attribute routing less repetitive, route attributes on the controller are combined with route attributes on the individual actions. Any route templates defined on the controller are prepended to route templates on the actions. Placing a route attribute on the controller makes **all** actions in the controller use attribute routing.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet)]
-
 
 In the preceding example:
 
@@ -420,9 +423,8 @@ The following table explains the `[Route]` attributes in the preceding code:
 
 ### Ordering attribute routes
 
-<!-- I reverted to the original, which was more clear to me
-YOu removed "In contrast to conventional routes which execute in a defined order"
-Need to explain defined order in [conventional routes](#cr)
+<!-- In the  original, you had "In contrast to conventional routes which execute in a defined order"
+Is that no longer true? If that's still true need to keep that and add that to the #cr section.
   -->
 In contrast to [conventional routes](#cr) which execute in a defined order, attribute routing builds a tree and matches all routes simultaneously:
 
@@ -439,7 +441,7 @@ Consider the following two controllers which both define the route matching `/ho
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet2)]
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet2)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet)]
 
 Running the app requesting `/home` throws an exception similar to the following:
 
@@ -452,7 +454,7 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:`
 
 Adding `Order` to one of the route attributes resolves the ambiguity:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet3, highlight=5)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo3Controller.cs?name=snippet3, highlight=5)]
 
 With the preceding code, `/home` runs the `HomeController.Index` endpoint. To get to the `MyDemoController.MyIndex`, request `/home/MyIndex`. **Note**: The preceding code is an example or poor routing design. It was used to illustrate the `Order` property.
 
@@ -520,21 +522,15 @@ The `RouteTokenTransformerConvention` is registered as an option in `ConfigureSe
 
 [!code-csharp[](routing/samples/3.x/main/StartupSlugifyParamTransformer.cs?name=snippet)]
 
+See [MDN web docs on Slug](https://developer.mozilla.org/docs/Glossary/Slug) for the definition of Slug.
+
 <a name="routing-multiple-routes-ref-label"></a>
 
 ### Multiple Routes
 
 Attribute routing supports defining multiple routes that reach the same action. The most common usage of this is to mimic the behavior of the default conventional route as shown in the following example:
 
-```csharp
-[Route("[controller]")]
-public class ProductsController : Controller
-{
-   [Route("")]     // Matches 'Products'
-   [Route("Index")] // Matches 'Products/Index'
-   public IActionResult Index()
-}
-```
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet6x)]
 
 Putting multiple route attributes on the controller means that each one will combine with each of the route attributes on the action methods:
 
@@ -931,7 +927,6 @@ app.UseRouter(routes.Build());
 `UseMvc` doesn't directly define any routes, it adds a placeholder to the route collection for the `attribute` route. The overload `UseMvc(Action<IRouteBuilder>)` lets you add your own routes and also supports attribute routing.  `UseMvc` and all of its variations add a placeholder for the attribute route - attribute routing is always available regardless of how you configure `UseMvc`. `UseMvcWithDefaultRoute` defines a default route and supports attribute routing. The [Attribute Routing](#attribute-routing-ref-label) section includes more details on attribute routing.
 
 <a name="routing-conventional-ref-label"></a>
-<a name="cr"></a>
 
 ## Conventional routing
 
@@ -946,7 +941,6 @@ The preceding code is an example of a conventional routing. This style is called
 * The first path segment maps to the controller name.
 * The second maps to the action name.
 * The third segment is used for an optional `id`. `id` maps to a model entity.
-
 
 Using this `default` route, the URL path `/Products/List` maps to the `ProductsController.List` action, and `/Blog/Article/17` maps to `BlogController.Article`. This mapping is based on the controller and action names **only** and isn't based on namespaces, source file locations, or method parameters.
 

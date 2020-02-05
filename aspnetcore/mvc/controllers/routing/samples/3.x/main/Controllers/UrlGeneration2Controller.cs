@@ -8,7 +8,7 @@ namespace WebMvcRouting.Controllers
         public IActionResult Source()
         {
             var url = Url.RouteUrl("Destination_Route");
-            return Content($"Url.RouteUrl(\"Destination_Route\"){url}");
+            return Content($"Url.RouteUrl('Destination_Route') = {url}");
         }
 
         [HttpGet("custom/url/to/destination2", Name = "Destination_Route")]

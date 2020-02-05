@@ -22,16 +22,25 @@ namespace WebMvcRouting.Controllers
         public IActionResult Index()
         {
             var url = Url.Action("Index", "Home");
-            ViewData["Message"] = $"Home index:  Url.Action =  {url}";
 
-            return View();
+            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"Url: {url} template:{template} " +
+                $" controller:{controllerName}  action name: {actionName}");
         }
         #endregion
 
         [Route("About")]
         public IActionResult About()
         {
-            return View();
+            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"template:{template} " +
+                $" controller:{controllerName}  action name: {actionName}");
         }
     }
     #endregion

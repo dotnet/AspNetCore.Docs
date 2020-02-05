@@ -1,11 +1,12 @@
-﻿// #define First
+﻿//#define First
 //#define Second
 //#define Third
 //#define Fourth
 //#define Five
 //#define Six
+#define SixX
 //#define Seven
-#define Eight
+//#define Eight
 
 
 using Microsoft.AspNetCore.Mvc;
@@ -23,15 +24,24 @@ namespace WebMvcRouting.Controllers
         [HttpGet]
         public IActionResult List() {
     #endregion
-            return View("Generic");
+            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"template:{template} " +
+                $" controller:{controllerName}  action name: {actionName}");
         }
 
     #region snippet11
         [HttpGet("{id}")]
         public IActionResult Edit(int id) {
     #endregion
-            ViewData["Message"] = id.ToString();
-            return View("Generic");
+            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"ID: {id} template:{template} " +
+                $" controller:{controllerName}  action name: {actionName}");
         }
     }
     #endregion
@@ -40,19 +50,26 @@ namespace WebMvcRouting.Controllers
     #region snippet20
     public class ProductsController : Controller
     {
-    #region snippet21
         [HttpGet("[controller]/[action]")]  // Matches '/Products/List'
         public IActionResult List()
         {
-    #endregion
-            return View("Generic");
+            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"template:{template} " +
+                $" controller:{controllerName}  action name: {actionName}");
         }
 
         [HttpGet("[controller]/[action]/{id}")]   // Matches '/Products/Edit/{id}'
         public IActionResult Edit(int id)
         {
-            ViewData["Message"] = id.ToString();
-            return View("Generic");
+            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"ID: {id} template:{template} " +
+                $" controller:{controllerName}  action name: {actionName}");
         }
     }
     #endregion
@@ -118,6 +135,24 @@ namespace WebMvcRouting.Controllers
         }
     }
     #endregion
+#elif SixX
+    #region snippet6x
+    [Route("[controller]")]
+    public class ProductsController : Controller
+    {
+        [Route("")]     // Matches 'Products'
+        [Route("Index")] // Matches 'Products/Index'
+        public IActionResult Index()
+        {
+            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"template:{template} " +
+                $" controller:{controllerName}  action name: {actionName}");
+        }
+    }
+    #endregion
 #elif Six
     #region snippet6
     [Route("Store")]
@@ -129,7 +164,11 @@ namespace WebMvcRouting.Controllers
         public IActionResult Buy()
         {
             var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-            return Content($"Buy- template:{template}");
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"template:{template} " +
+                $" controller:{controllerName}  action name: {actionName}");
         }
     }
     #endregion
@@ -143,7 +182,12 @@ namespace WebMvcRouting.Controllers
         public IActionResult Buy()
         {
             var path = Request.Path.Value;
-            return Content($"Buy- Path:{path}");
+            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"Path: {path} template:{template} " +
+                $" controller:{controllerName}  action name: {actionName}");
         }
     }
     #endregion
@@ -155,7 +199,12 @@ namespace WebMvcRouting.Controllers
         [HttpPost("product/{id:int}")]
         public IActionResult ShowProduct(int id)
         {
-            return Content($"ShowProduct- id:{id}");
+            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"ID: {id} template:{template} " +
+                $" controller:{controllerName}  action name: {actionName}");
         }
     }
     #endregion

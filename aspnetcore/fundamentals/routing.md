@@ -10,11 +10,25 @@ uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
 
+<!-- Review. The overloaded term endpoint is used in both docs.
+Traditional defn
+ endpoint:
+    Selected, by matching the URL and HTTP method.
+    Executed, by running the delegate.
+
+Endpoint with metadata, etc.
+
+<a name="endpoint"></a>
+### ASP.NET Core endpoint definition
+* metadata, etc.
+
+It's not always clear to me which endpoint you're talking about
+-->
 By [Ryan Nowak](https://github.com/rynowak), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Routing is responsible for matching incoming HTTP requests and dispatching those requests to the apps executable endpoints. Endpoints are the apps' units of executable request-handling code. Endpoints are defined in the app and configured when the app starts. The matching process can extract values from the request's URL, and those values can be used for request processing. Using endpoint information from the app, routing is also able to generate URLs that map to endpoints.
+Routing is responsible for matching incoming HTTP requests and dispatching those requests to the apps executable endpoints. [Endpoints](#endpoint) are the apps' units of executable request-handling code. Endpoints are defined in the app and configured when the app starts. The endpoint matching process can extract values from the request's URL, and those values can be used for request processing. Using endpoint information from the app, routing is also able to generate URLs that map to endpoints.
 
 Apps can configure routing using:
 
@@ -55,6 +69,8 @@ The preceding example includes a single route to code endpoint using the [MapGet
 * When an HTTP `GET` request is sent to the root URL `/`, the request delegate shown executes, and `Hello World!` is written to the HTTP response. By default, the root URL `/` is `http://localhost:5000/`.
 * If the request is not a `GET` or if the URL is anything else, no route matches and an HTTP 404 is returned.
 
+<a name="endpoint"></a>
+
 The `MapGet` method is used to define an **endpoint**, that is, something that can be:
 
 * Selected, by matching the URL and HTTP method.
@@ -72,10 +88,10 @@ The following code shows an example of routing with a more sophisticated route t
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/RouteTemplateStartup.cs?name=snippet)]
 
-The string `/hello/{name:alpha}` is a **route template**, and is used to configure how the endpoint is matched. In this case, the template matches with:
+The string `/hello/{name:alpha}` is a [route template](#rt), and is used to configure how the endpoint is matched. In this case, the template matches with:
 
 * A URL like `/hello/Ryan`
-* Any URL path that begins with `/hello/` followed by a sequence of alphabetic characters.
+* Any URL path that begins with `/hello/` followed by a sequence of alphabetic characters.  `:alpha` applies a route constraint that matches only alphabetic characters. [Rout constraints](##route-constraint-reference) and explained later in this document.
 
 The second segment of the URL path:
 
@@ -102,6 +118,10 @@ Calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentic
 * See which endpoint was selected by `UseRouting`.
 * Apply an authorization policy before <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> dispatches to the endpoint.
 
+<a name="metadata"></a>
+
+### Endpoint metadata
+
 In the preceding example there are two endpoints, but only the health check endpoint has an authorization policy attached. If the request matches the health check `/healthz` endpoint, an authorization check is performed. This demonstrates a feature of endpoints called **metadata**. Endpoints can have extra data attached:
 
 * The extra data attached is called metadata.
@@ -111,11 +131,15 @@ In the preceding example there are two endpoints, but only the health check endp
 
 The routing system builds on top of the middleware pipeline by adding the powerful **endpoint** concept. Endpoints represent units of the app's functionality that are distinct from each other from the point of view of routing, or authorization, or any number of ASP.NET Core's systems.
 
-An endpoint is:
+<a name="endpoint"></a>
+
+### ASP.NET Core endpoint definition
+
+An ASP.NET Core endpoint is:
 
 * Executable: Has a <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate>.
 * Extensible: Has an [Metadata](xref:Microsoft.AspNetCore.Http.Endpoint.Metadata*) collection.
-* Selectable: Otionally, has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern*).
+* Selectable: Optionally, has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern*).
 * Enumerable: The collection of endpoints can be listed by retrieving the <xref:Microsoft.AspNetCore.Routing.EndpointDataSource> from [DI](xref:fundamentals/dependency-injection).
 
 The following code shows how to retrieve and inspect an endpoint:
@@ -171,7 +195,7 @@ The preceding example demonstrates two important concepts:
 * Middleware can run before `UseRouting` to modify the data that routing operates upon.
     * Usually middleware that appears before routing modifies some property of the request, such as <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>, <xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions.UseHttpMethodOverride*>, or <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*>.
 * Middleware can run between `UseRouting` and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> to process the results of routing before the endpoint is executed.
-    * Usually middleware that run between `UseRouting` and `UseEndpoints` inspect metadata to understand the endpoints.
+    * Usually middleware that run between `UseRouting` and `UseEndpoints` inspect metadata to understand the endpoints. zz
     * Middleware that run between `UseRouting` and `UseEndpoints` typically makes a security decision, such as `UseAuthorization`, or `UseCors`.
     * The combination of middleware and metadata allows configuring policies per-endpoint.
 
@@ -246,6 +270,10 @@ The preceding sample shows why returning the builder object is important. Return
 * Is layered on top with metadata.  <!-- review: layered on top with metadata won't MT. Can you rewrite that? -->
 
 The metadata system was created in response to the problems encountered by extensibility authors using terminal middleware. It's problematic for each middleware to implement its own integration with the authorization system.
+<!-- review needed. Recommend we change title to ### URL matching and route order
+We need SEO for those searching on route selection. Need to better flesh out route order
+It's not clear if this section applies to conventional only or include attribute routing
+ -->
 
 ### URL matching
 
@@ -270,14 +298,22 @@ Because the middleware applies policies based on the selected endpoint, it's imp
 The routing system in endpoint routing is responsible for all dispatching decisions. Because the middleware applies policies based on the selected endpoint, it's important that:
 
 * Any decision that can affect dispatching or the application of security policies is made inside the routing system.
-
+<!-- Review: Right in the middle of "## URL matching" is a big ugly backwards-compatibility WARNING BOX. Can we move this to the end? -->
 > [!WARNING]
-> For backwards-compatibility, when an Controller or Razor Pages endpoint delegate is executed, the properties of [RouteContext.RouteData](xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData) are set to appropriate values based on the request processing performed thus far.
+> For backwards-compatibility, when a Controller or Razor Pages endpoint delegate is executed, the properties of [RouteContext.RouteData](xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData) are set to appropriate values based on the request processing performed thus far.
 >
-> The `RouteContext` type will be marked obsolete in a future release.
-> * Migrate usage of `RouteData.Values` to `HttpRequest.RouteValues`.
-> * Migrate usage of `RouteData.DataTokens` to retrieve [IDataTokensMetadata](xref:Microsoft.AspNetCore.Routing.IDataTokensMetadata) from the endpoint metadata.
+> The `RouteContext` type will be marked obsolete in a future release:
+>
+> * Migrate `RouteData.Values` to `HttpRequest.RouteValues`.
+> * Migrate `RouteData.DataTokens` to retrieve [IDataTokensMetadata](xref:Microsoft.AspNetCore.Routing.IDataTokensMetadata) from the endpoint metadata.
 
+<!-- Need to define configurable set of phases
+The routing implementation does not guarantee a processing order for matching endpoints,
+
+What does that mean? Does it really matter it doesn't guarantee a processing order - Doesn't that mean it looks at all the matching endpoints - isn't that what processing order is? If not explain.
+
+It's confusing because customers are looking for information on route selection order. And the order property does guarantee that.
+-->
 URL matching operates in a configurable set of phases. In each phase the output is a set of matches, which can be narrowed down further by the next phase. The routing implementation does not guarantee a processing order for matching endpoints, all possible matches are processed at once. The URL matching phases occur in the following order:
 
 1. The URL path is processed according to the set of endpoints and their route templates.
@@ -287,10 +323,10 @@ URL matching operates in a configurable set of phases. In each phase the output 
 
 The list of endpoints is prioritized according to:
 
-* The [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*), which is configurable.
-* The route template precedence, which is computed based on the route template.
+* The [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*), which is configurable. <!-- Doesn't order only apply to attribute routing? If not, it's never defined for conventional routes.  -->
+* The route template precedence, which is computed based on the route template.<!-- This doesn't tell me anything about precedence.   What is route template precedence? How is it computed.-->
 
-All matching endpoints are processed in each phase until the <xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector> is reached. The `EndpointSelector` is the final phase. The `EndpointSelector` chooses the highest priority endpoint from the matches as the best match. If there are other matches with the same priority as the best match, an ambiguous match exception is thrown.
+All matching endpoints are processed in each phase until the <xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector> is reached. The `EndpointSelector` is the final phase. The `EndpointSelector` chooses the highest priority endpoint from the matches as the best match. If there are other matches with the <!--what is priority? conventional routing doesn't have an order --> same priority as the best match, an ambiguous match exception is thrown.
 
 The route precedence is computed based on a more specific route template is higher priority. For example, consider the templates `/hello` and `/{message}`:
 
@@ -365,6 +401,8 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API to create link to an action method that lists store products. Using the link generator by injecting it into a class and calling `GenerateLink` is available to any class in an app.
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Middleware/ProductsLinkMiddleware.cs?name=snippet)]
+
+<a name="rtr"></a>
 
 ## Route template reference
 
