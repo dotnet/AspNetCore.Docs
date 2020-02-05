@@ -47,7 +47,7 @@ The app requires a package reference for [Microsoft.Extensions.Hosting.WindowsSe
 * Enables logging to the event log:
   * The application name is used as the default source name.
   * The default log level is *Warning* or higher for an app based on an ASP.NET Core template that calls `CreateDefaultBuilder` to build the host.
-  * Override the default log level with the `Logging:LogLevel:Default` key in *appsettings.json*/*appsettings.{Environment}.json*.
+  * Override the default log level with the `Logging:LogLevel:Default` key in *appsettings.json*/*appsettings.{Environment}.json* or other configuration provider.
   * Only administrators can create new event sources. When an event source can't be created using the application name, a warning is logged to the *Application* source and event logs are disabled.
 
 In `CreateHostBuilder` of *Program.cs*:
