@@ -5,7 +5,7 @@ description: Learn how ASP.NET Core implements dependency injection and how to u
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/30/2020
+ms.date: 02/05/2020
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -538,7 +538,17 @@ public class Program
 
 ## Scope validation
 
-When the app is running in the Development environment, the default service provider performs checks to verify that:
+::: moniker range=">= aspnetcore-3.0"
+
+When the app is running in the Development environment and calls [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) to build the host, the default service provider performs checks to verify that:
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+When the app is running in the Development environment and calls [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host) to build the host, the default service provider performs checks to verify that:
+
+::: moniker-end
 
 * Scoped services aren't directly or indirectly resolved from the root service provider.
 * Scoped services aren't directly or indirectly injected into singletons.
