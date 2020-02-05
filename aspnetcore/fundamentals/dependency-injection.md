@@ -428,7 +428,7 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddScoped<Service1>();
     services.AddSingleton<Service2>();
-    services.AddSingleton<Service3>(sp => new Service3());
+    services.AddSingleton<IService3>(sp => new Service3());
 }
 ```
 
@@ -961,7 +961,7 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddScoped<Service1>();
     services.AddSingleton<Service2>();
-    services.AddSingleton<Service3>(sp => new Service3());
+    services.AddSingleton<IService3>(sp => new Service3());
 }
 ```
 
