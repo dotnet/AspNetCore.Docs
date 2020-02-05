@@ -18,7 +18,7 @@ namespace MyApp.Namespace4
         {
             // Uses the empty value for area.
             var url = Url.Action("Index", "Home", new { area = "" }); 
-            // Returns /Home/Index
+            // Returns /
             return Content(url);
         }
     }

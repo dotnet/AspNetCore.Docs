@@ -21,7 +21,9 @@ namespace AreasRouting
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     //webBuilder.UseStartup<Startup>();
-                    webBuilder.UseStartup<Startup4>();
+                   // webBuilder.UseStartup<Startup4>();
+                    webBuilder.UseStartup<Startup5>();
+
 
                 });
     }

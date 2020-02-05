@@ -17,9 +17,9 @@ ASP.NET Core controllers use the Routing [middleware](xref:fundamentals/middlewa
 
 * Are defined in startup code or attributes.
 * Describe how URL paths are matched to [actions](#action).
-* Are used to generate URLs for links. The generated links are returned in responses.
+* Are used to generate URLs for links. The generated links are typically returned in responses.
 
-Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. See [Mixed routing](#routing-mixed-ref-label) for more information.
+Actions are either [conventionally routed](#cr) or [attribute routed](#ar). Placing a route on the controller or the action makes it attribute routed. See [Mixed routing](#routing-mixed-ref-label) for more information.
 
 This document explains the interactions between MVC and routing, and how typical MVC apps make use of routing features. See [Routing](xref:fundamentals/routing) for advanced routing details.
 
@@ -1232,7 +1232,7 @@ Token replacement also applies to route names defined by attribute routes. `[Rou
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
 
 ::: moniker-end
-<!-- Need to figure out intention of this moniker -->
+
 ::: moniker range="= aspnetcore-2.2"
 
 <a name="routing-token-replacement-transformers-ref-label"></a>
