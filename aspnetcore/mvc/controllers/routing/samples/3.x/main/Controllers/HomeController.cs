@@ -1,17 +1,48 @@
 ﻿// This uses same routes as MyDemoController, so only one can be defined unless order is set
 // Test with 
 
-//#define First
+#define First
 //#define Second
-#define Third
+//#define Third
 //#define Forth
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 
 namespace WebMvcRouting.Controllers
 {
-#if Second
-    #region snippet2
+    #if First
+
+#region snippet
+     [Route("Home")]
+    public class HomeController : Controller
+    {
+        [Route("")]
+        [Route("Index")]
+        [Route("/")]
+        public IActionResult Index()
+        {
+            return GetRteData(ControllerContext.ActionDescriptor);
+        }
+
+        [Route("About")]
+        public IActionResult About()
+        {
+            return GetRteData(ControllerContext.ActionDescriptor);
+        }
+
+        private ContentResult GetRteData(ControllerActionDescriptor actionDesc)
+        {
+            var template = actionDesc.AttributeRouteInfo.Template;
+            var actionName = actionDesc.ActionName;
+            var controllerName = actionDesc.ControllerName;
+
+            return Content($" template:{template} " +
+                $" controller:{controllerName}  action name: {actionName}");
+        }
+    }
+#endregion
+#elif Second
+#region snippet2
     public class HomeController : Controller
     {
         [Route("")]
@@ -42,9 +73,9 @@ namespace WebMvcRouting.Controllers
                 $" controller:{controllerName}  action name: {actionName}");
         }
     }
-    #endregion
+#endregion
 #elif Third
-    #region snippet22
+#region snippet22
     public class HomeController : Controller
     {
         [Route("")]
@@ -66,7 +97,7 @@ namespace WebMvcRouting.Controllers
         {
             return GetRteData(ControllerContext.ActionDescriptor);
         }
-    #endregion
+#endregion
 
         private ContentResult GetRteData(ControllerActionDescriptor actionDesc)
         {
@@ -79,13 +110,13 @@ namespace WebMvcRouting.Controllers
         }
     }
 #elif Forth
-    // This doesn't work for / and /Home
-    #region snippet24
+#region snippet24
     [Route("[controller]/[action]")]
     public class HomeController : Controller
     {
-        [Route("")]
-        [Route("Home")]
+        [Route("~/")]
+        [Route("/Home")]
+        [Route("~/Home/Index")]
         public IActionResult Index()
         {
             return GetRteData(ControllerContext.ActionDescriptor);
@@ -100,7 +131,7 @@ namespace WebMvcRouting.Controllers
         {
             return GetRteData(ControllerContext.ActionDescriptor);
         }
-    #endregion
+#endregion
 
         private ContentResult GetRteData(ControllerActionDescriptor actionDesc)
         {

@@ -1,4 +1,4 @@
-﻿//#define PROD1    // ProductsApiController use the same route so only one can be used.
+﻿#define PROD1    // ProductsApiController use the same route so only one can be used.
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebMvcRouting.Controllers

@@ -304,6 +304,12 @@ The following code uses route parameters for `action` and `controller`:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet22)]
 
+The following code applies `[Route("[controller]/[action]")]` to the controller:
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet24)]
+
+In the preceding code, the `Index` method must prepend `/` or `~/` to the route templates. Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller.
+
 ## Reserved routing names
 
 The following keywords are reserved route parameter names when using Controllers or Razor Pages:
@@ -409,9 +415,9 @@ In the preceding example:
 
 Both of these actions only match HTTP `GET` because they're marked with the `[HttpGet]` attribute.
 
-Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller. The following example matches a set of URL paths similar to the default route.
+Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller. The following example matches a set of URL paths similar to the default route. zz
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet)]
 
 The following table explains the `[Route]` attributes in the preceding code:
 
