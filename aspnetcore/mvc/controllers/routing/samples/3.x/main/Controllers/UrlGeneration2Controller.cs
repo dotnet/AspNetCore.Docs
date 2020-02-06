@@ -1,7 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿#define First
+#if First
+
+// This is the ultimate greedy route
+using Microsoft.AspNetCore.Mvc;
 namespace WebMvcRouting.Controllers
 {
-#region snippet_1
+    #region snippet_1
+    #region snippet_2
     public class UrlGeneration2Controller : Controller
     {
         [HttpGet("")]
@@ -10,6 +15,7 @@ namespace WebMvcRouting.Controllers
             var url = Url.RouteUrl("Destination_Route");
             return Content($"Url.RouteUrl('Destination_Route') = {url}");
         }
+        #endregion
 
         [HttpGet("custom/url/to/destination2", Name = "Destination_Route")]
         public IActionResult Destination()
@@ -23,5 +29,6 @@ namespace WebMvcRouting.Controllers
                 $" controller:{controllerName}  action name: {actionName}");
         }
     }
-#endregion
+    #endregion
 }
+#endif

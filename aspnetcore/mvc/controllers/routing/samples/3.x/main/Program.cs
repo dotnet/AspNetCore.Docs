@@ -20,8 +20,8 @@ namespace WebMvcRouting
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                    //  webBuilder.UseStartup<StartupMap>();
+                    //webBuilder.UseStartup<Startup>();
+                      webBuilder.UseStartup<StartupMap>();
                     // webBuilder.UseStartup<StartupDefaultMVC>();
                     //    webBuilder.UseStartup<StartupAPI>();
                     //webBuilder.UseStartup<StartupSlugifyParamTransformer>();

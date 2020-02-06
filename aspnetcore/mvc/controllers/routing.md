@@ -146,7 +146,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 
 <a name="mr"></a>
 
-## Multiple routes
+### Multiple routes
 
 Multiple routes can be added inside `UseEndpoints` by adding more calls to <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>. Doing so allows you to define multiple conventions, or to add conventional routes that are dedicated to a specific [action](#action), such as:
 
@@ -211,7 +211,7 @@ Doesn't Order prop guarantee order?
 <!-- review.  -->
 <a name="cro"></a>
 
-## Conventional routing order
+### Conventional routing order
 
 Routing only matches a combination of action and controller that are defined by the app. This is intended to simplify cases where conventional routes overlap.
 Adding routes using <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>, and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> defines a priority order for the routing system to respect. Matches from a route that appears earlier have a higher priority. Conventional routing is order-dependent. In general, routes with areas should be placed earlier as they're more specific than routes without an area. [Dedicated conventional routes](#dcr) with catch all route parameters like `{*article}` can make a route too [greedy](#greedy), meaning that it matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to prevent greedy matches.
@@ -247,11 +247,14 @@ This is a typical pattern for MVC controllers:
 * `Edit(int)` displays a form to edit a product.
 * `Edit(int, Product)` processes  the posted form.
 
-To make this possible MVC needs to select `Edit(int, Product)` when the request is an HTTP `POST` and `Edit(int)` when the [HTTP verb](#verb) is anything else. `Edit(int)` is generally called via `GET`.
+To resolve the correct route:
+
+* `Edit(int, Product)` is selected when the request is an HTTP `POST`.
+* `Edit(int)` is selected when the [HTTP verb](#verb) is anything else. `Edit(int)` is generally called via `GET`.
 
 The <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, `[HttpPost]`, is provided to the routing system so that it can choose based on the HTTP method of the request. The `HttpPostAttribute` makes `Edit(int, Product)` a better match than `Edit(int)`.
 
-It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other [HTTP verbs](#verb). In [conventional routing](#cr) it's common for actions to use the same action name when they're part of a show form, then submit form workflow. For example, see [Examine the two Edit action methods](xref:tutorials/first-mvc-app/controller-methods-views#get-post).
+It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other [HTTP verbs](#verb). In [conventional routing](#cr), it's common for actions to use the same action name when they're part of a show form, submit form workflow. For example, see [Examine the two Edit action methods](xref:tutorials/first-mvc-app/controller-methods-views#get-post).
 
 <a name="routing-route-name-ref-label"></a>
 
@@ -453,11 +456,13 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:`
 
 Adding `Order` to one of the route attributes resolves the ambiguity:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo3Controller.cs?name=snippet3, highlight=5)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo3Controller.cs?name=snippet3& highlight=5)]
 
 With the preceding code, `/home` runs the `HomeController.Index` endpoint. To get to the `MyDemoController.MyIndex`, request `/home/MyIndex`. **Note**: The preceding code is an example or poor routing design. It was used to illustrate the `Order` property.
 
 See [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order) for information on route order with Razor Pages.
+
+In some cases, an HTTP 500 error is returned with ambiguous routes. Use logging to see which endpoints caused the the `AmbiguousMatchException`.
 
 <a name="routing-token-replacement-templates-ref-label"></a>
 
@@ -1118,6 +1123,14 @@ public class ProductsApiController : Controller
 ```
 
 The `ProductsApi.GetProduct(int)` action will be executed for a URL path like `/products/3` but not for a URL path like `/products`. See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
+
+Consider the following two controllers, each of which defines the `""` route:
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/UrlGeneration2Controller.cs?name=snippet_2&highlight=3)]
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo3Controller.cs?name=snippet3& highlight=3)]
+
+Because `[HttpGet("")]` is more specific than `[Route("")]`, `UrlGeneration2Controller.Source` is selected for the route `""`.
 
 ## Route Name
 

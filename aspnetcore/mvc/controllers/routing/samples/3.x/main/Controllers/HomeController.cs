@@ -1,11 +1,11 @@
 ﻿// This uses same routes as MyDemoController, so only one can be defined unless order is set
 // Test with 
 
-#define First
-//#define Second
+//#define First
+#define Second
 
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Mvc.Controllers;
 
 namespace WebMvcRouting.Controllers
 {
@@ -53,17 +53,27 @@ namespace WebMvcRouting.Controllers
         [Route("Home/Index")]
         public IActionResult Index()
         {
-            return Content("Index");
+            return GetRteData(ControllerContext.ActionDescriptor);
         }
         [Route("Home/About")]
         public IActionResult About()
         {
-            return Content("About");
+            return GetRteData(ControllerContext.ActionDescriptor);
         }
         [Route("Home/Contact")]
         public IActionResult Contact()
         {
-            return Content("Contact");
+            return GetRteData(ControllerContext.ActionDescriptor);
+        }
+
+        private ContentResult GetRteData(ControllerActionDescriptor actionDesc)
+        {
+            var template = actionDesc.AttributeRouteInfo.Template;
+            var actionName = actionDesc.ActionName;
+            var controllerName = actionDesc.ControllerName;
+
+            return Content($" template:{template} " +
+                $" controller:{controllerName}  action name: {actionName}");
         }
     }
     #endregion

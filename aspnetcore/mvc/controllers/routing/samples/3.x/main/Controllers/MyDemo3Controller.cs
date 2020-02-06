@@ -1,4 +1,4 @@
-﻿//#define MYDEMO3
+﻿#define MYDEMO3
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +20,9 @@ namespace WebMvcRouting.Controllers
         }   
     }
     #endregion
-#else
+#endif
+
+#if MYDEMO4
     #region snippet3
     public class MyDemo3Controller : Controller
     {

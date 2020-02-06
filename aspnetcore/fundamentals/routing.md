@@ -23,6 +23,7 @@ Endpoint with metadata, etc.
 * metadata, etc.
 
 It's not always clear to me which endpoint you're talking about
+The terms route name and endpoint name Are interchangeable.
 -->
 By [Ryan Nowak](https://github.com/rynowak), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
