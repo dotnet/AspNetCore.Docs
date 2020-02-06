@@ -153,7 +153,7 @@ Tracing can be viewed in a managed service like Application Insights, or you can
 
 ## Metrics
 
-Metrics is a representation of data measures over intervals of time, for example, requests per second. Metrics data allows observation of the state an app at a high-level. .NET gRPC metrics are emitted using `EventCounter`.
+Metrics is a representation of data measures over intervals of time, for example, requests per second. Metrics data allows observation of the state of an app at a high-level. .NET gRPC metrics are emitted using `EventCounter`.
 
 ### gRPC service metrics
 
