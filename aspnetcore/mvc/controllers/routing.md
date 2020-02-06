@@ -396,11 +396,11 @@ Contrast the preceding code with the conventional default route which defines th
 
 <a name="routing-combining-ref-label"></a>
 
-### Combining routes
+## Combining routes
 
 To make attribute routing less repetitive, route attributes on the controller are combined with route attributes on the individual actions. Any route templates defined on the controller are prepended to route templates on the actions. Placing a route attribute on the controller makes **all** actions in the controller use attribute routing.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet)]
 
 In the preceding example:
 
