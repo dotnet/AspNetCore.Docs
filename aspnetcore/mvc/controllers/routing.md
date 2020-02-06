@@ -339,6 +339,15 @@ ASP.NET Core has the following HTTP verb templates:
 * [[HttpHead]](xref:Microsoft.AspNetCore.Mvc.HttpHeadAttribute)
 * [[HttpPatch]](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute)
 
+<a name="rt"></a>
+
+### Route templates
+
+ASP.NET Core has the following route templates:
+
+* All the [HTTP verb templates](#verb) are route templates.
+* [[Route]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute)
+
 ## Attribute routing with Http verb attributes
 
 Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>, and <xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>. All of the [HTTP verb](#verb) attributes accept a route template. The following example shows two actions that match the same route template:
@@ -384,15 +393,6 @@ Route names can be used to generate a URL based on a specific route. Route names
 Route names must be unique application-wide.
 
 Contrast the preceding code with the conventional default route which defines the `id` parameter as optional (`{id?}`). The ability to precisely specify APIs has advantages, such as  allowing `/products` and `/products/5` to be dispatched to different actions.
-
-<a name="rt"></a>
-
-### Route templates
-
-ASP.NET Core has the following route templates:
-
-* All the [HTTP verb templates](#verb) are route templates.
-* [[Route]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute)
 
 <a name="routing-combining-ref-label"></a>
 
