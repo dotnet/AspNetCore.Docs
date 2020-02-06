@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/04/2020
+ms.date: 02/06/2020
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -47,7 +47,7 @@ The app requires a package reference for [Microsoft.Extensions.Hosting.WindowsSe
 * Enables logging to the event log:
   * The application name is used as the default source name.
   * The default log level is *Warning* or higher for an app based on an ASP.NET Core template that calls `CreateDefaultBuilder` to build the host.
-  * Override the default log level with the `Logging:LogLevel:Default` key in *appsettings.json*/*appsettings.{Environment}.json* or other configuration provider.
+  * Override the default log level with the `Logging:EventLog:LogLevel:Default` key in *appsettings.json*/*appsettings.{Environment}.json* or other configuration provider.
   * Only administrators can create new event sources. When an event source can't be created using the application name, a warning is logged to the *Application* source and event logs are disabled.
 
 In `CreateHostBuilder` of *Program.cs*:
