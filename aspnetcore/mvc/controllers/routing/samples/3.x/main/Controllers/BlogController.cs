@@ -6,17 +6,32 @@ namespace WebMvcRouting.Controllers
     {
         public IActionResult Article()
         {
-            return Content("Article");
+            var path = Request.Path.Value;
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"Path: {path}" +
+                $" controller:{controllerName}  action name: {actionName}");
         }
 
         public IActionResult Index()
         {
-            return Content("Index");
+            var path = Request.Path.Value;
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"Path: {path}" +
+                $" controller:{controllerName}  action name: {actionName}");
         }
 
         public IActionResult Xyz()
         {
-            return Content("Xyz");
+            var path = Request.Path.Value;
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"Path: {path}" +
+                $" controller:{controllerName}  action name: {actionName}");
         }
     }
 }

@@ -19,7 +19,7 @@ ASP.NET Core controllers use the Routing [middleware](xref:fundamentals/middlewa
 * Describe how URL paths are matched to [actions](#action).
 * Are used to generate URLs for links. The generated links are typically returned in responses.
 
-Actions are either [conventionally routed](#cr) or [attribute routed](#ar). Placing a route on the controller or the action makes it attribute routed. See [Mixed routing](#routing-mixed-ref-label) for more information.
+Actions are either [conventionally-routed](#cr) or [attribute-routed](#ar). Placing a route on the controller or the action makes it attribute-routed. See [Mixed routing](#routing-mixed-ref-label) for more information.
 
 This document explains the interactions between MVC and routing, and how typical MVC apps make use of routing features. See [Routing](xref:fundamentals/routing) for advanced routing details.
 
@@ -50,7 +50,7 @@ The route template `"{controller=Home}/{action=Index}/{id?}"`:
      {
   ```
 
-  * `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. See the [Model Binding](xref:mvc/models/model-binding) for more details.
+  * `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. See [Model Binding](xref:mvc/models/model-binding) for more details.
 
 * `{controller=Home}` defines `Home` as the default `controller`.
 * `{action=Index}` defines `Index` as the default `action`.
@@ -77,7 +77,7 @@ Using the preceding controller definition and route template, the `HomeControlle
 * `/Home`
 * `/`
 
-The convenience method `UseMvcWithDefaultRoute`:
+The convenience method UseMvcWithDefaultRoute:
 
 ```csharp
 endpoints.MapDefaultControllerRoute();
@@ -89,10 +89,10 @@ Replaces:
 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 ```
 
-Routing is configured using the `UseRouting` and `UseEndpoints` middleware. To use controllers:
+Routing is configured using the <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> middleware. To use controllers:
 
-* Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> inside `UseEndpoints` to map attribute-routed controllers.
-* Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> or similar, to map conventionally-routed controllers.
+* Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> inside `UseEndpoints` to map attribute routed controllers.
+* Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> or similar, to map conventionally routed controllers.
 
 Using `MapControllerRoute` or similar also maps attribute-routed controllers.
 
@@ -142,13 +142,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 >
 > [Attribute routing](#ar) provides fine-grained control to make the ID required for some actions and not for others. By convention the documentation includes optional parameters like `id` when they're likely to appear in correct usage.
 
-Routing only matches a combination of action and controller that are defined by the app. This is intended to simplify cases where conventional routes overlap.
-<!-- review. Below is copy/paste from Areas section. Need  to complete list of routes that should be placed earlier -->
-Conventional routing is order dependent. In general, routes with areas should be placed earlier as they're more specific than routes without an area.
-
 [Attribute routing](#ar) is explained later in this document.
-
-## Multiple routes
 
 <a name="mr"></a>
 
@@ -171,14 +165,9 @@ Because `controller` and `action` don't appear in the route template as paramete
 * They can only have the default values `{ controller = "Blog", action = "Article" }`.
 * This route will always map to the action `BlogController.Article`.
 
-Using the preceding code, the following URL paths match the default route:
+`/Blog`, `/Blog/Article`, and `/Blog/{any-string}` are the only URL paths that match the blog route. The only impact the blog route has, is that `/Blog` matches the blog route and invokes `BlogController.Article`. Without the blog route, `/Blog` invokes `BlogController.Index`.
 
-* `/` invokes `HomeController.Index`.
-* `Blog/Index`
-
-`/Blog`, `/Blog/Article`, and `/Blog/{any-string}` are the only URL paths that match the blog route. The only impact the blog route has is that `/Blog` matches the blog route and invokes `BlogController.Article`. Without the blog route, `/Blog` invokes `BlogController.Index`.
-
-Adding routes using `MapControllerRoute` defines a priority order for the routing system to respect. Matches from a route that appears earlier will have a higher priority. In the preceding example, the `blog` route will have a higher priority for matches than the `default` route.
+In the preceding example, the `blog` route has a higher priority for matches than the `default` route.
 
 <a name="greedy"></a>
 
@@ -218,6 +207,14 @@ Doesn't Order prop guarantee order?
 > * Provide guarantees about the execution order of extensibility like <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> or <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint>.
 >
 >See [Routing](xref:fundamentals/routing) for reference material on routing.
+
+<!-- review.  -->
+<a name="cro"></a>
+
+## Conventional routing order
+
+Routing only matches a combination of action and controller that are defined by the app. This is intended to simplify cases where conventional routes overlap.
+Adding routes using <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>, and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> defines a priority order for the routing system to respect. Matches from a route that appears earlier have a higher priority. Conventional routing is order-dependent. In general, routes with areas should be placed earlier as they're more specific than routes without an area. [Dedicated conventional routes](#dcr) with catch all route parameters like `{*article}` can make a route too [greedy](#greedy), meaning that it matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to prevent greedy matches.
 
 <a name="best"></a>
 
@@ -437,7 +434,7 @@ For example, an attribute route like `blog/search/{topic}` is more specific than
 
 Attribute routes can configure an order using the <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Order> property. All of the framework provided [route attributes]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) include `Order` . Routes are processed according to an ascending sort of the `Order` property. The default order is `0`. Setting a route using `Order = -1` will run before routes that don't set an order. Setting a route using `Order = 1` will run after default route ordering.
 
-**Avoid** depending on `Order`. If your URL-space requires explicit order values to route correctly, then it's likely confusing to clients as well. In general attribute routing will select the correct route with URL matching. If the default order used for URL generation isn't working, using a route name as an override is usually simpler than applying the `Order` property.
+**Avoid** depending on `Order`. If your URL-space requires explicit order values to route correctly, then it's likely confusing to clients as well. In general, attribute routing will select the correct route with URL matching. If the default order used for URL generation isn't working, using a route name as an override is usually simpler than applying the `Order` property.
 
 Consider the following two controllers which both define the route matching `/home`:
 
@@ -491,7 +488,7 @@ Token replacement occurs as the last step of building the attribute routes. The 
 
 [!INCLUDE[](~/includes/MTcomments.md)]
 
-Attribute routes can also be combined with inheritance. This is particularly powerful combined with token replacement. Token replacement also applies to route names defined by attribute routes.
+Attribute routes can also be combined with inheritance. This is powerful combined with token replacement. Token replacement also applies to route names defined by attribute routes.
 `[Route("[controller]/[action]", Name="[controller]_[action]")]`generates a unique route name for each action:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet5)]
@@ -703,7 +700,7 @@ If the value `{ d = Donovan }` is added:
 
 You might expect to hit this problem with the default route `{controller}/{action}/{id?}`. This problem is rare in practice because `Url.Action` always explicitly specifies a `controller` and `action` value.
 
-Several overloads of [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) take a route values object to provide values for route parameters other than `controller` and `action`. The route values object is frequently used with `id`. For example `Url.Action("Buy", "Products", new { id = 17 })`. The route values object:
+Several overloads of [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) take a route values object to provide values for route parameters other than `controller` and `action`. The route values object is frequently used with `id`. For example, `Url.Action("Buy", "Products", new { id = 17 })`. The route values object:
 
 * By convention is usually an object of anonymous type.
 * Can be an `IDictionary<>` or a [POCO](https://wikipedia.org/wiki/Plain_old_CLR_object)).
@@ -796,7 +793,7 @@ When matching a URL path like `/Manage/Users/AddUser`, the `"blog_route"` route 
 
 `MapAreaControllerRoute` creates a route using both a default value and constraint for `area` using the provided area name, in this case `Blog`. The default value ensures that the route always produces `{ area = Blog, ... }`, the constraint requires the value `{ area = Blog, ... }` for URL generation.
 
-Conventional routing is order dependent. In general, routes with areas should be placed earlier as they're more specific than routes without an area.
+Conventional routing is order-dependent. In general, routes with areas should be placed earlier as they're more specific than routes without an area.
 
 Using the preceding example, the route values `{ area = Blog, controller = Users, action = AddUser }` match the following action:
 
