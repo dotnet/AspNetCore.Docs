@@ -108,7 +108,7 @@ The `default` route:
 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 ```
 
-is an example of a conventional routing. It's called conventional routing because it establishes a *convention* for URL paths:
+is an example of a *conventional routing*. It's called *conventional routing* because it establishes a *convention* for URL paths:
 
 * The first path segment maps to the controller name.
 * The second segment maps to the [action](#action) name.
@@ -146,9 +146,9 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 
 <a name="mr"></a>
 
-### Multiple routes
+### Multiple conventional routes
 
-Multiple routes can be added inside `UseEndpoints` by adding more calls to <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>. Doing so allows you to define multiple conventions, or to add conventional routes that are dedicated to a specific [action](#action), such as:
+Multiple [conventional routes](#cr) can be added inside `UseEndpoints` by adding more calls to <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*>. Doing so allows defining multiple conventions, or to adding conventional routes that are dedicated to a specific [action](#action), such as:
 
 [!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
@@ -381,6 +381,8 @@ The `ProductsApiController.GetProduct(int)` action:
 * Is run with URL path like `/products/3`
 * Isn't run with the URL path `/products`.
 
+The [[Consumes]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) attribute allows an action to limit the supported request content types. For more information, see [Define supported request content types with the Consumes attribute](xref:web-api/index#consumes).
+
  See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
 
 For more information on `[ApiController]`, see [ApiController attribute](xref:web-api/index##apicontroller-attribute).
@@ -402,7 +404,7 @@ Contrast the preceding code with the conventional default route which defines th
 
 <a name="routing-combining-ref-label"></a>
 
-## Combining routes
+## Combining attribute routes
 
 To make attribute routing less repetitive, route attributes on the controller are combined with route attributes on the individual actions. Any route templates defined on the controller are prepended to route templates on the actions. Placing a route attribute on the controller makes **all** actions in the controller use attribute routing.
 
@@ -415,7 +417,7 @@ In the preceding example:
 
 Both of these actions only match HTTP `GET` because they're marked with the `[HttpGet]` attribute.
 
-Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller. The following example matches a set of URL paths similar to the default route. zz
+Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller. The following example matches a set of URL paths similar to the default route.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet)]
 
@@ -425,7 +427,7 @@ The following table explains the `[Route]` attributes in the preceding code:
 | ----------------- | ------------ | --------- |
 | `[Route("")]` | Yes | `"Home"` |
 | `[Route("Index")]` | Yes | `"Home/Index"` |
-| `[Route("/")]` | No | `""` |
+| `[Route("/")]` | **No** | `""` |
 | `[Route("About")]` | Yes | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
@@ -443,7 +445,7 @@ In contrast to [conventional routes](#cr) which execute in a defined order, attr
 
 For example, an attribute route like `blog/search/{topic}` is more specific than an attribute route like `blog/{*article}`. The `blog/search/{topic}` route has higher priority, by default, because it's more specific. Using [conventional routing](#cr), the developer is responsible for placing routes in the desired order.
 
-Attribute routes can configure an order using the <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Order> property. All of the framework provided [route attributes]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) include `Order` . Routes are processed according to an ascending sort of the `Order` property. The default order is `0`. Setting a route using `Order = -1` will run before routes that don't set an order. Setting a route using `Order = 1` will run after default route ordering.
+Attribute routes can configure an order using the <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Order> property. All of the framework provided [route attributes](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) include `Order` . Routes are processed according to an ascending sort of the `Order` property. The default order is `0`. Setting a route using `Order = -1` will run before routes that don't set an order. Setting a route using `Order = 1` will run after default route ordering.
 
 **Avoid** depending on `Order`. If your URL-space requires explicit order values to route correctly, then it's likely confusing to clients as well. In general, attribute routing will select the correct route with URL matching. If the default order used for URL generation isn't working, using a route name as an override is usually simpler than applying the `Order` property.
 
@@ -453,10 +455,10 @@ Consider the following two controllers which both define the route matching `/ho
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet)]
 
-Running the app requesting `/home` throws an exception similar to the following:
+Requesting `/home` with the previous code throws an exception similar to the following:
 
 ```text
-AmbiguousMatchException: The request matched multiple endpoints. Matches:`
+AmbiguousMatchException: The request matched multiple endpoints. Matches:
 
  WebMvcRouting.Controllers.HomeController.Index
  WebMvcRouting.Controllers.MyDemoController.MyIndex
@@ -495,7 +497,7 @@ In the preceding code:
 
   * Matches `/Products/Edit/{id}`
 
-Token replacement occurs as the last step of building the attribute routes. The above example will behave the same as the following code:
+Token replacement occurs as the last step of building the attribute routes. The preceding example will behave the same as the following code:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet20)]
 
@@ -519,6 +521,7 @@ To match the literal token replacement delimiter `[` or  `]`, escape it by repea
 
 Token replacement can be customized using a parameter transformer. A parameter transformer implements <xref:Microsoft.AspNetCore.Routing.IOutboundParameterTransformer> and transforms the value of parameters. For example, a custom `SlugifyParameterTransformer` parameter transformer changes the `SubscriptionManagement` route value to `subscription-management`:
 
+<!-- review: Changed  ToLower to ToLowerInvariant per https://github.com/dotnet/aspnetcore/issues/18774 -->
 [!code-csharp[](routing/samples/3.x/main/StartupSlugifyParamTransformer.cs?name=snippet2)]
 
 The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention> is an application model convention that:
@@ -538,7 +541,7 @@ See [MDN web docs on Slug](https://developer.mozilla.org/docs/Glossary/Slug) for
 
 <a name="routing-multiple-routes-ref-label"></a>
 
-### Multiple Routes
+### Multiple attribute routes zz
 
 Attribute routing supports defining multiple routes that reach the same action. The most common usage of this is to mimic the behavior of the default conventional route as shown in the following example:
 
@@ -552,7 +555,7 @@ When multiple route attributes that implement <xref:Microsoft.AspNetCore.Mvc.Act
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet7)]
 
-Using multiple routes on actions might seem useful and powerful, it's better to keep your app's URL space basic and well defined. Use multiple routes on actions only where needed, for example, to support existing clients.
+Using multiple routes on actions might seem useful and powerful, it's better to keep your app's URL space basic and well defined. Use multiple routes on actions **only** where needed, for example, to support existing clients.
 
 <a name="routing-attr-options"></a>
 
@@ -561,6 +564,8 @@ Using multiple routes on actions might seem useful and powerful, it's better to 
 Attribute routes support the same inline syntax as conventional routes to specify optional parameters, default values, and constraints.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet8)]
+
+zz
 
 See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 

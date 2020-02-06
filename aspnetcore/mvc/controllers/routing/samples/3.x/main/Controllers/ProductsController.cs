@@ -2,7 +2,7 @@
 //#define Second
 //#define Third
 //#define Fourth
-//#define Five
+#define Five
 //#define Six
 //#define SixX
 //#define Seven
@@ -110,7 +110,8 @@ namespace WebMvcRouting.Controllers
     }
     #endregion
 #elif Five
-    // Test with StartupDefaultMVC
+    // /api/products/edit/3
+    // /api/products/list
     #region snippet5
     [ApiController]
     [Route("api/[controller]/[action]", Name = "[controller]_[action]")]
@@ -124,14 +125,18 @@ namespace WebMvcRouting.Controllers
         public IActionResult List()
         {
             var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
-            return Content($"List- route name:{routeName}");
+            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+
+            return Content($"Template: {template} route name:{routeName}");
         }
 
         [HttpGet("{id}")]
         public IActionResult Edit(int id)
         {
             var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
-            return Content($"Edit - Route name: {routeName}, ID = {id.ToString()}");
+            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+
+            return Content($"Template: {template}  Route name: {routeName}, ID = {id.ToString()}");
         }
     }
     #endregion
