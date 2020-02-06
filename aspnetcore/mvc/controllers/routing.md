@@ -300,7 +300,9 @@ With attribute routing, the controller name and action names play **no** role in
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet)]
 
-The route templates in the preceding code don't define route parameters for `action`, `area`, and `controller`. <!-- review: what route params and what route template. Need a For example, ... --> If these route parameters are used in the route template, the value associated with where the attribute is applied is substituted.
+The following code uses route parameters for `action` and `controller`:
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet22)]
 
 ## Reserved routing names
 
@@ -324,9 +326,22 @@ The preceding controller returns an HTTP 500 error with the URL path `/articles/
 
 The special parameter names are used by the URL generation system to determine if a URL generation operation refers to a Razor Page or to a Controller.
 
-## Attribute routing with Http Verb attributes
+<a name="verb"></a>
 
-Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>,<xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>. All of these [HTTP verb](#verb) attributes accept a route template. The following example shows two actions that match the same route template:
+## HTTP verb templates
+
+ASP.NET Core has the following HTTP verb templates:
+
+* [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute)
+* [[HttpPost]](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute)
+* [[HttpPut]](xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute)
+* [[HttpDelete]](xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute)
+* [[HttpHead]](xref:Microsoft.AspNetCore.Mvc.HttpHeadAttribute)
+* [[HttpPatch]](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute)
+
+## Attribute routing with Http verb attributes
+
+Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>, and <xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>. All of the [HTTP verb](#verb) attributes accept a route template. The following example shows two actions that match the same route template:
 
 <!-- review: My snippets use :ControllerBase, you used : Controller
 I'm using what the templates generate. Ditto for me using ActionResult and you used IActionResult -->
@@ -359,7 +374,7 @@ For more information on `[ApiController]`, see [ApiController attribute](xref:we
 
 The following code  defines a route name of `Products_List`:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/MyProductsController.cs?name=snippet2)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet2)]
 
 Route names can be used to generate a URL based on a specific route. Route names:
 
@@ -369,19 +384,6 @@ Route names can be used to generate a URL based on a specific route. Route names
 Route names must be unique application-wide.
 
 Contrast the preceding code with the conventional default route which defines the `id` parameter as optional (`{id?}`). The ability to precisely specify APIs has advantages, such as  allowing `/products` and `/products/5` to be dispatched to different actions.
-
-<a name="verb"></a>
-
-## HTTP verb templates
-
-ASP.NET Core has the following HTTP verb templates:
-
-* [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute)
-* [[HttpPost]](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute)
-* [[HttpPut]](xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute)
-* [[HttpDelete]](xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute)
-* [[HttpHead]](xref:Microsoft.AspNetCore.Mvc.HttpHeadAttribute)
-* [[HttpPatch]](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute)
 
 <a name="rt"></a>
 
@@ -1123,14 +1125,6 @@ public class ProductsApiController : Controller
 ```
 
 The `ProductsApi.GetProduct(int)` action will be executed for a URL path like `/products/3` but not for a URL path like `/products`. See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
-
-Consider the following two controllers, each of which defines the `""` route:
-
-[!code-csharp[](routing/samples/3.x/main/Controllers/UrlGeneration2Controller.cs?name=snippet_2&highlight=3)]
-
-[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo3Controller.cs?name=snippet3& highlight=3)]
-
-Because `[HttpGet("")]` is more specific than `[Route("")]`, `UrlGeneration2Controller.Source` is selected for the route `""`.
 
 ## Route Name
 
