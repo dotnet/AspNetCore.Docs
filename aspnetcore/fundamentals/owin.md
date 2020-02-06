@@ -78,6 +78,7 @@ app.UseOwin(pipeline =>
         // do something before
         await OwinHello(new OwinEnvironment(HttpContext));
         // do something after
+        return Task.CompletedTask;
     });
 });
 ```
