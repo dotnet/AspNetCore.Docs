@@ -73,12 +73,14 @@ You can configure other actions to take place within the OWIN pipeline.
 ```csharp
 app.UseOwin(pipeline =>
 {
-    pipeline(async (next) =>
+    pipeline(next =>
     {
-        // do something before
-        await OwinHello(new OwinEnvironment(HttpContext));
-        // do something after
-        return Task.CompletedTask;
+        return async environment =>
+        {
+            // do something before
+            await OwinHello(new OwinEnvironment(HttpContext));
+            // do something after
+        }
     });
 });
 ```
