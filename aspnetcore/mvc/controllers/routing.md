@@ -541,7 +541,7 @@ See [MDN web docs on Slug](https://developer.mozilla.org/docs/Glossary/Slug) for
 
 <a name="routing-multiple-routes-ref-label"></a>
 
-### Multiple attribute routes zz
+### Multiple attribute routes
 
 Attribute routing supports defining multiple routes that reach the same action. The most common usage of this is to mimic the behavior of the default conventional route as shown in the following example:
 
@@ -565,7 +565,7 @@ Attribute routes support the same inline syntax as conventional routes to specif
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet8)]
 
-zz
+[!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet24)]
 
 See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 
@@ -573,7 +573,7 @@ See [Route Template Reference](xref:fundamentals/routing#route-template-referenc
 
 ### Custom route attributes using IRouteTemplateProvider
 
-All of the [route attributes](#rt) implement <xref:Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider>. MVC:
+All of the [route attributes](#rt) implement <xref:Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider>. The ASP.NET Core runtime:
 
 * Looks for attributes on controller classes and action methods when the app starts.
 * Uses the attributes that implement `IRouteTemplateProvider` to build the initial set of routes.
@@ -591,7 +591,7 @@ The preceding `Get` method returns `Order = 2, Template = api/MyTestApi`.
 The application model:
 
 * Is an object model created at startup.
-* Contains all of the metadata used by MVC to route and execute the actions in an app.
+* Contains all of the metadata used by ASP.NET Core to route and execute the actions in an app.
 
 The application model includes all of the data gathered from route attributes. The data from route attributes is provided by the `IRouteTemplateProvider` implementation. Conventions:
 
@@ -626,7 +626,7 @@ For example, consider the following controller:
 In the preceding code:
 
 * The base `namespace` is `My.Application`.
-* The full name of the type is `My.Application.Admin.Controllers.UsersController`.
+* The full name of the preceding controller is `My.Application.Admin.Controllers.UsersController`.
 * The `NamespaceRoutingConvention` sets the controllers template to `Admin/Controllers/Users/[action]/{id?`.
 
 The `NamespaceRoutingConvention` can also be applied as an attribute on a controller:
@@ -637,9 +637,9 @@ The `NamespaceRoutingConvention` can also be applied as an attribute on a contro
 
 ## Mixed routing: Attribute routing vs conventional routing
 
-MVC applications can mix the use of conventional routing and attribute routing. It's typical to use conventional routes for controllers serving HTML pages for browsers, and attribute routing for controllers serving REST APIs.
+ASP.NET Core apps can mix the use of conventional routing and attribute routing. It's typical to use conventional routes for controllers serving HTML pages for browsers, and attribute routing for controllers serving REST APIs.
 
-Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. Actions that define attribute routes cannot be reached through the conventional routes and vice-versa. **Any** route attribute on the controller makes all actions in the controller attribute routed.
+Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. Actions that define attribute routes cannot be reached through the conventional routes and vice-versa. **Any** route attribute on the controller makes **all** actions in the controller attribute routed.
 
 <!-- review: Can we delete based on the historical use cases for each system. 
 Dan.Roth does'nt really care about history. It's what we have today.

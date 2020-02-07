@@ -4,20 +4,21 @@ namespace My.Application.Admin.Controllers
 {
     public class UsersController : Controller
     {
-        // /admin/controllers/users/index
+        // GET /admin/controllers/users/index
         public IActionResult Index()
         {
-            //controller.ControllerTypeInfo
             var fullname = typeof(UsersController).FullName;
             var template = 
                 ControllerContext.ActionDescriptor.AttributeRouteInfo?.Template;
-            return Content($"Index- fullname: {fullname}  template:{template}");
+            var path = Request.Path.Value;
+
+            return Content($"Path: {path} fullname: {fullname}  template:{template}");
         }
 
         public IActionResult List(int? id)
         {
             var path = Request.Path.Value;
-            return Content($"List- Path:{path}");
+            return Content($"Path: {path} ID:{id}");
         }
     }
 }

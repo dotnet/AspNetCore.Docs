@@ -41,9 +41,9 @@ namespace AreasRouting
             #region snippet3
             app.UseEndpoints(endpoints =>
             {
-               endpoints.MapAreaControllerRoute("duck_route", "Duck",
-                                                "Manage/{controller}/{action}/{id?}");
-                endpoints.MapControllerRoute("default", 
+                endpoints.MapAreaControllerRoute("duck_route", "Duck",
+                                                 "Manage/{controller}/{action}/{id?}");
+                endpoints.MapControllerRoute("default",
                                              "Manage/{controller=Home}/{action=Index}/{id?}");
             });
             #endregion
