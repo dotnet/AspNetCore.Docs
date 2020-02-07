@@ -1,4 +1,4 @@
-import "./css/main.css";
+﻿import "./css/main.css";
 import * as signalR from "@microsoft/signalr";
 
 const divMessages: HTMLDivElement = document.querySelector("#divMessages");
@@ -11,12 +11,12 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 
 connection.on("messageReceived", (username: string, message: string) => {
-    let messageContainer = document.createElement("div");
+    let m = document.createElement("div");
 
-    messageContainer.innerHTML =
+    m.innerHTML =
         `<div class="message-author">${username}</div><div>${message}</div>`;
 
-    divMessages.appendChild(messageContainer);
+    divMessages.appendChild(m);
     divMessages.scrollTop = divMessages.scrollHeight;
 });
 
@@ -32,5 +32,5 @@ btnSend.addEventListener("click", send);
 
 function send() {
     connection.send("newMessage", username, tbMessage.value)
-              .then(() => tbMessage.value = "");
+        .then(() => tbMessage.value = "");
 }
