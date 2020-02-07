@@ -84,8 +84,8 @@ namespace WebSameSite
         {
             public static bool DisallowsSameSiteNone(string userAgent)
             {
-              // Check if a null or empty string has been passed in, since this
-              // will cause further interrogation of the useragent to fail.
+             // Check if a null or empty string has been passed in, since this
+             // will cause further interrogation of the useragent to fail.
              if (String.IsNullOrWhiteSpace(userAgent))
                 return false;
             
