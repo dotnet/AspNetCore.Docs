@@ -4,7 +4,7 @@ author: ssougnez
 description: In this tutorial, you configure Webpack to bundle and build an ASP.NET Core SignalR web app whose client is written in TypeScript.
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 02/03/2020
+ms.date: 02/07/2020
 no-loc: [SignalR]
 uid: tutorials/signalr-typescript-webpack
 ---
@@ -74,11 +74,13 @@ Run the following command in the **Integrated Terminal**:
 
 ```dotnetcli
 dotnet new web -o SignalRWebPack
+code -r SignalRWebPack
 ```
 
-An empty ASP.NET Core web app, targeting .NET Core, is created in a *SignalRWebPack* directory.
+* The `dotnet new` command creates an empty ASP.NET Core web app in a *SignalRWebPack* directory.
+* The `code` command opens the *SignalRWebPack* folder in the current instance of Visual Studio Code.
 
-Run the following .NET Core CLI command:
+Run the following .NET Core CLI command in the **Integrated Terminal**:
 ```dotnetcli
 dotnet add package Microsoft.TypeScript.MSBuild
 ```
