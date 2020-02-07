@@ -1295,6 +1295,8 @@ public class SlugifyParameterTransformer : IOutboundParameterTransformer
 
 ::: moniker-end
 
+
+::: moniker range="< aspnetcore-3.0"
 <a name="routing-multiple-routes-ref-label"></a>
 
 ### Multiple Routes
@@ -1622,3 +1624,5 @@ The `Order` property decides which *stage* the constraint is part of. Action con
 
 > [!TIP]
 > To decide on a value for `Order` think about whether or not your constraint should be applied before HTTP methods. Lower numbers run first.
+
+::: moniker-end
