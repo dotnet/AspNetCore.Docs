@@ -13,7 +13,7 @@ namespace WebMvcRouting.Controllers
     #if First
 
 #region snippet
-     [Route("Home")]
+    [Route("Home")]
     public class HomeController : Controller
     {
         [Route("")]
@@ -21,23 +21,22 @@ namespace WebMvcRouting.Controllers
         [Route("/")]
         public IActionResult Index()
         {
-            return GetRteData(ControllerContext.ActionDescriptor);
+            return GetADinfo(ControllerContext.ActionDescriptor);
         }
 
         [Route("About")]
         public IActionResult About()
         {
-            return GetRteData(ControllerContext.ActionDescriptor);
+            return GetADinfo(ControllerContext.ActionDescriptor);
         }
 
-        private ContentResult GetRteData(ControllerActionDescriptor actionDesc)
+        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc)
         {
             var template = actionDesc.AttributeRouteInfo.Template;
             var actionName = actionDesc.ActionName;
             var controllerName = actionDesc.ControllerName;
 
-            return Content($" template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+            return Content($" template:{template} {controllerName}.{actionName}");
         }
     }
 #endregion

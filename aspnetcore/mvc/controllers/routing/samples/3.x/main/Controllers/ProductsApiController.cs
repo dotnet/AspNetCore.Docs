@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
 
 namespace WebMvcRouting.Controllers
 {
@@ -10,22 +11,20 @@ namespace WebMvcRouting.Controllers
         [HttpGet]
         public IActionResult ListProducts()
         {
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
-
-            return Content($"template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+            return GetADinfo(ControllerContext.ActionDescriptor);
         }
 
         [HttpGet("{id}")]
         public ActionResult GetProduct(int id) {
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+            return GetADinfo(ControllerContext.ActionDescriptor);
+        }
+        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc)
+        {
+            var template = actionDesc.AttributeRouteInfo.Template;
+            var actionName = actionDesc.ActionName;
+            var controllerName = actionDesc.ControllerName;
 
-            return Content($"ID: {id} template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+            return Content($" template:{template} {controllerName}.{actionName}");
         }
     }
     #endregion

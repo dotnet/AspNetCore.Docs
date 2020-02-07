@@ -274,16 +274,16 @@ The route name concept is represented in the routing system as [IEndpointNameMet
 
 REST APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs.
 
-Attribute routing uses a set of attributes to map actions directly to route templates. The following code is typical for a REST API is used in the next sample:
+Attribute routing uses a set of attributes to map actions directly to route templates. The following code is typical for a REST API and is used in the next sample:
 
 [!code-csharp[](routing/samples/3.x/main/StartupMap.cs?name=snippet)]
 
 In the preceding code, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> is called inside `UseEndpoints` to map attribute routed controllers.
 
-The following example:
+In the following example:
 
-* Uses the preceding `Configure` method.
-* `HomeController` matches a set of URLs similar to what the default route `{controller=Home}/{action=Index}/{id?}` matches.
+* The preceding `Configure` method is used.
+* `HomeController` matches a set of URLs similar to what the default conventional route `{controller=Home}/{action=Index}/{id?}` matches.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet2)]
 
@@ -303,7 +303,7 @@ The following code applies `[Route("[controller]/[action]")]` to the controller:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet24)]
 
-In the preceding code, the `Index` method must prepend `/` or `~/` to the route templates. Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller.
+In the preceding code, the `Index` method templates must prepend `/` or `~/` to the route templates. Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller.
 
 ## Reserved routing names
 
@@ -382,7 +382,7 @@ The [[Consumes]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) attribute al
 
 For more information on `[ApiController]`, see [ApiController attribute](xref:web-api/index##apicontroller-attribute).
 
-## Route Name
+## Route name
 
 The following code  defines a route name of `Products_List`:
 
@@ -428,7 +428,7 @@ The following table explains the `[Route]` attributes in the preceding code:
 <a name="routing-ordering-ref-label"></a>
 <a name="oar"></a>
 
-### Ordering attribute routes
+### Attribute route order
 
 <!-- In the  original, you had "In contrast to conventional routes which execute in a defined order"
 Is that no longer true? If that's still true need to keep that and add that to the #cr section.
@@ -442,7 +442,7 @@ For example, an attribute route like `blog/search/{topic}` is more specific than
 
 Attribute routes can configure an order using the <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Order> property. All of the framework provided [route attributes](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) include `Order` . Routes are processed according to an ascending sort of the `Order` property. The default order is `0`. Setting a route using `Order = -1` will run before routes that don't set an order. Setting a route using `Order = 1` will run after default route ordering.
 
-**Avoid** depending on `Order`. If your URL-space requires explicit order values to route correctly, then it's likely confusing to clients as well. In general, attribute routing will select the correct route with URL matching. If the default order used for URL generation isn't working, using a route name as an override is usually simpler than applying the `Order` property.
+**Avoid** depending on `Order`. If an app's URL-space requires explicit order values to route correctly, then it's likely confusing to clients as well. In general, attribute routing will select the correct route with URL matching. If the default order used for URL generation isn't working, using a route name as an override is usually simpler than applying the `Order` property.
 
 Consider the following two controllers which both define the route matching `/home`:
 
@@ -461,9 +461,12 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:
 
 Adding `Order` to one of the route attributes resolves the ambiguity:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo3Controller.cs?name=snippet3& highlight=5)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo3Controller.cs?name=snippet3& highlight=2)]
 
-With the preceding code, `/home` runs the `HomeController.Index` endpoint. To get to the `MyDemoController.MyIndex`, request `/home/MyIndex`. **Note**: The preceding code is an example or poor routing design. It was used to illustrate the `Order` property.
+With the preceding code, `/home` runs the `HomeController.Index` endpoint. To get to the `MyDemoController.MyIndex`, request `/home/MyIndex`. **Note**:
+
+* The preceding code is an example or poor routing design. It was used to illustrate the `Order` property.
+* The `Order` property only resolves the ambiguity, that template cannot be matched. It would be better to remove the `[Route("Home")]` template.
 
 See [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order) for information on route order with Razor Pages.
 

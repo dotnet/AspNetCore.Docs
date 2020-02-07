@@ -15,6 +15,7 @@ Traditional defn
  endpoint:
     Selected, by matching the URL and HTTP method.
     Executed, by running the delegate.
+Attribute routing provides a level of control that's needed to carefully design an API's public **endpoint** layout.
 
 Endpoint with metadata, etc.
 
