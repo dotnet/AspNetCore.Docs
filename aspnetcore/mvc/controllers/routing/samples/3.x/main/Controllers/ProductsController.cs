@@ -2,11 +2,12 @@
 //#define Second
 //#define Third
 //#define Fourth
-#define Five
+//#define Five
 //#define Six
 //#define SixX
 //#define Seven
 //#define Eight
+// #define Nine
 
 
 using Microsoft.AspNetCore.Mvc;
@@ -213,5 +214,37 @@ namespace WebMvcRouting.Controllers
         }
     }
     #endregion
+#elif Nine
+    #region snippet9
+    public class ProductsController : Controller
+    {
+        public IActionResult Edit(int id)
+        {
+            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"ID: {id} template:{template} " +
+                $" controller:{controllerName}  action name: {actionName}");
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, Product product) {
+
+            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+            var actionName = ControllerContext.ActionDescriptor.ActionName;
+            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+
+            return Content($"ID: {id} template:{template} " +
+                $" {controllerName}.{actionName}");
+        }        
+    }
+
+    #endregion
+
+    public class Product
+    {
+        public string name { get; set; }
+    }
 #endif
 }

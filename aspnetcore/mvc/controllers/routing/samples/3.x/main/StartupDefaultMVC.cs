@@ -38,12 +38,16 @@ namespace WebMvcRouting
 
             app.UseAuthorization();
 
+            #region snippet
             app.UseEndpoints(endpoints =>
             {
+                #region snippet2
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                #endregion
             });
+            #endregion
         }
     }
 }

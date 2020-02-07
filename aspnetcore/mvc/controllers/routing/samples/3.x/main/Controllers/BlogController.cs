@@ -1,37 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
 
 namespace WebMvcRouting.Controllers
 {
+    // requires   webBuilder.UseStartup<Startup>();
+    #region snippet
     public class BlogController : Controller
     {
         public IActionResult Article()
         {
-            var path = Request.Path.Value;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
-
-            return Content($"Path: {path}" +
-                $" controller:{controllerName}  action name: {actionName}");
+            return GetData(Request, ControllerContext.ActionDescriptor);
         }
 
         public IActionResult Index()
         {
-            var path = Request.Path.Value;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
-
-            return Content($"Path: {path}" +
-                $" controller:{controllerName}  action name: {actionName}");
+            return GetData(Request, ControllerContext.ActionDescriptor);
         }
 
-        public IActionResult Xyz()
+        private ContentResult GetData(HttpRequest request, ControllerActionDescriptor actionDesc)
         {
-            var path = Request.Path.Value;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+            var path = request.Path.Value;
+            var actionName = actionDesc.ActionName;
+            var controllerName = actionDesc.ControllerName;
 
-            return Content($"Path: {path}" +
-                $" controller:{controllerName}  action name: {actionName}");
+            return Content($"Path: {path} - {controllerName}.{actionName}");
         }
     }
+    #endregion
 }
