@@ -415,7 +415,7 @@ See [HTTPS Error using IIS Express (dotnet/AspNetCore #16892)](https://github.co
 
 ### IIS Express SSL certificate used with Visual Studio
 
-To fix problems with the IIS Express certificate, select **Repair** from the Visual Studio installer.
+To fix problems with the IIS Express certificate, select **Repair** from the Visual Studio installer. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/16892).
 
 ## Additional information
 
