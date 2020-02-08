@@ -28,32 +28,27 @@ This document:
 
 ## Set up conventional endpoint routing middleware
 
-`Startup.Configure` typically has code similar to the following for [conventional routing](#cr):
+`Startup.Configure` typically has code similar to the following when using [conventional routing](#cr):
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet)]
 
-Inside the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> is used to create a single route. The single route is named `default` route. Most apps with controllers and views use a route with a template similar to the `default` route. REST APIs should use [attribute routing](#ar).
+Inside the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> is used to create a single route. The single route is named `default` route. Most apps with controllers and views use a route template similar to the `default` route. REST APIs should use [attribute routing](#ar).
 
 The route template `"{controller=Home}/{action=Index}/{id?}"`:
 
 * Matches a URL path like `/Products/Details/5`
 * Extracts the route values `{ controller = Products, action = Details, id = 5 }` by tokenizing the path. The extraction of route values results in a match if the app has a controller named `ProductsController` and a `Details` action :
-
   ```csharp
   public class ProductsController : Controller
   {
      public IActionResult Details(int id)
      {
   ```
-
   * `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. See [Model Binding](xref:mvc/models/model-binding) for more details.
-
 * `{controller=Home}` defines `Home` as the default `controller`.
 * `{action=Index}` defines `Index` as the default `action`.
 * `{id?}` defines `id` as optional.
-
   * Default and optional route parameters don't need to be present in the URL path for a match. See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
-
 * Matches the URL path `/`.
 * Produces the route values `{ controller = Home, action = Index }`.
 
@@ -189,15 +184,17 @@ Provide guarantees about execution order.
 
 I don't understand the *of extensibility* portion of *Provide guarantees about the execution order of extensibility*
 
---- Next question ---
+--- Next question ---zx
 
 You write:
 the routing system doesn't:
 > * Define a concept called a *route*.
 
-We probably need to flesh that out more. It seems to contradict other statments, like:
+We probably need to flesh that out more. It seems to contradict other statements, like:
 
-Inside the call to UseEndpoints, MapControllerRoute is used to create a single route. The single route is named default route. Most apps with controllers and views use a route with a template similar to the default route. 
+Inside the call to UseEndpoints, MapControllerRoute is used to create a single route. The single route is named default route. Most apps with controllers and views use a route with a template similar to the default route.
+
+These statements are also in the other doc.
 
  -->
 
@@ -364,7 +361,7 @@ ASP.NET Core has the following route templates:
 
 ## Attribute routing with Http verb attributes
 
-<!-- I had to add this sample code/explanation, even though you can get it elsewhere in the doc. But the doc doesn't put it all together in one place. I need an H2 to link to this information because we get so many issues on https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api where they don't understand the constraints. I may move this section to an include and add it in the Web API tutorial - Or I could move it there and not include it here] 
+<!-- I had to add this sample code/explanation, even though you can get it elsewhere in the doc. But the doc doesn't put it all together in one place. I need an H2 to link to this information because we get so many issues on https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api where they don't understand constraints and how the route is determined. I may move this section to an include and add it in the Web API tutorial - Or I could move it there and not include it here.
 For example, https://github.com/aspnet/AspNetCore.Docs/issues/16901
 -->
 Unlike routes created for controllers with views that generally include `[action]` in the route template, API controllers typically don't include `[action]` in the route template. Because `[action]` isn't in the route template, the [action](#action) name is not in the route. That is, the method name isn't used in the matching route.
@@ -376,13 +373,13 @@ Consider the following controller:
 In the preceding code:
 
 * Each action contains the `[HttpGet]` attribute, which constrains matching to HTTP GET requests only.
-* The `GetProduct` action includes the `"{id}"` template, therefore `id` is appended to the `"api/[controller]"` template on the controller. The methods template is `"api/[controller]/"{id}""`. Therefore this action will only match GET requests of for the form `/api/test2/xyz` or `/api/test2/123`.
+* The `GetProduct` action includes the `"{id}"` template, therefore `id` is appended to the `"api/[controller]"` template on the controller. The methods template is `"api/[controller]/"{id}""`. Therefore this action will only match GET requests of for the form `/api/test2/xyz`,`/api/test2/123`,`/api/test2/{any string}`, etc.
   [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet2)]
-* The `GetIntProduct` action contains the `"int/{id:int}")`. The `:int` portion of the template constrains the `id` route values to strings that can be converted to integers. A GET request to `/api/test2/int/abc`:
+* The `GetIntProduct` action contains the `"int/{id:int}")` template. The `:int` portion of the template constrains the `id` route values to strings that can be converted to an integer. A GET request to `/api/test2/int/abc`:
   * Doesn't match this action.
   * Returns a [404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404) error.
     [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet3)]
-* The `GetInt2Product` action contains `{id}` in the template, but doesn't constrain `id` to values that can be converted to an int. A GET request to `/api/test2/int2/abc`:
+* The `GetInt2Product` action contains `{id}` in the template, but doesn't constrain `id` to values that can be converted to an integer. A GET request to `/api/test2/int2/abc`:
   * Matches this route.
   * Model binding fails to convert `abc` to an integer. The `id` parameter of the method is integer.
   * Returns a [400 Bad Request](https://developer.mozilla.org/docs/Web/HTTP/Status/400) because model binding failed to convert`abc` to an integer.
