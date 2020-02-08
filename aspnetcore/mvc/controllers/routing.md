@@ -371,7 +371,7 @@ Unlike routes created for controllers with views that generally include `[action
 
 Consider the following controller:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet1)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet)]
 
 In the preceding code:
 

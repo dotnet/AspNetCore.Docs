@@ -15,23 +15,29 @@ namespace WebMvcRouting.Controllers
             return GetADinfo(ControllerContext.ActionDescriptor);
         }
 
+        #region snippet2
         [HttpGet("{id}")]   // GET /api/test2/xyz
         public ActionResult GetProduct(string id)
         {
             return GetADinfo(ControllerContext.ActionDescriptor, id);
         }
+        #endregion
 
+        #region snippet3
         [HttpGet("int/{id:int}")] // GET /api/test2/int/3
         public ActionResult GetIntProduct(int id)
         {
             return GetADinfo(ControllerContext.ActionDescriptor, id.ToString());
         }
+        #endregion
 
+        #region snippet4
         [HttpGet("int2/{id}")]  // GET /api/test2/int2/3
         public ActionResult GetInt2Product(int id)
         {
             return GetADinfo(ControllerContext.ActionDescriptor, id.ToString());
         }
+        #endregion
 
         private ContentResult GetADinfo(ControllerActionDescriptor actionDesc, string id = null)
         {
