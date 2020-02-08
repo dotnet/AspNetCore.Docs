@@ -23,9 +23,9 @@ namespace WebMvcRouting.Controllers
 #endif
 
 #if MYDEMO4
-    #region snippet3
     public class MyDemo3Controller : Controller
     {
+    #region snippet3
         [Route("")]
         [Route("Home",Order = 2)]
         [Route("Home/MyIndex")]
@@ -33,8 +33,8 @@ namespace WebMvcRouting.Controllers
         {
             return Content("MyIndex");
         }
-    }
     #endregion
+    }
 #endif
 }
 

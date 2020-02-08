@@ -19,13 +19,14 @@ ASP.NET Core controllers use the Routing [middleware](xref:fundamentals/middlewa
 * Describe how URL paths are matched to [actions](#action).
 * Are used to generate URLs for links. The generated links are typically returned in responses.
 
-Actions are either [conventionally-routed](#cr) or [attribute-routed](#ar). Placing a route on the controller or the action makes it attribute-routed. See [Mixed routing](#routing-mixed-ref-label) for more information.
+Actions are either [conventionally-routed](#cr) or [attribute-routed](#ar). Placing a route on the controller or [action](#action) makes it attribute-routed. See [Mixed routing](#routing-mixed-ref-label) for more information.
 
-This document explains the interactions between MVC and routing, and how typical MVC apps make use of routing features. See [Routing](xref:fundamentals/routing) for advanced routing details.
+This document:
 
-This document refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions. Refer to the [2.2 version of this document](https://docs.microsoft.com/aspnet/core/mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
+* Explains the interactions between MVC and routing, and how typical MVC apps make use of routing features. See [Routing](xref:fundamentals/routing) for advanced routing details.
+* Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions. Refer to the [2.2 version of this document](https://docs.microsoft.com/aspnet/core/mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
 
-## Set up conventional routing middleware
+## Set up conventional endpoint routing middleware
 
 `Startup.Configure` typically has code similar to the following for [conventional routing](#cr):
 
@@ -94,9 +95,9 @@ Routing is configured using the <xref:Microsoft.AspNetCore.Builder.EndpointRouti
 <a name="routing-conventional-ref-label"></a>
 <a name="cr"></a>
 
-## Conventional routing
+## Conventional endpoint routing
 
-Conventional routing is used with controllers and views. The `default` route:
+Conventional endpoint routing is used with controllers and views. The `default` route:
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet2)]
 
@@ -188,6 +189,16 @@ Provide guarantees about execution order.
 
 I don't understand the *of extensibility* portion of *Provide guarantees about the execution order of extensibility*
 
+--- Next question ---
+
+You write:
+the routing system doesn't:
+> * Define a concept called a *route*.
+
+We probably need to flesh that out more. It seems to contradict other statments, like:
+
+Inside the call to UseEndpoints, MapControllerRoute is used to create a single route. The single route is named default route. Most apps with controllers and views use a route with a template similar to the default route. 
+
  -->
 
 > [!WARNING]
@@ -272,7 +283,7 @@ The route name concept is represented in the routing system as [IEndpointNameMet
 
 ## Attribute routing
 
-REST APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs.
+REST APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by [HTTP verbs](#verb).
 
 Attribute routing uses a set of attributes to map actions directly to route templates. The following code is typical for a REST API and is used in the next sample:
 
@@ -350,6 +361,27 @@ ASP.NET Core has the following route templates:
 * [[Route]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute)
 
 ## Attribute routing with Http verb attributes
+
+Unlike routes created for controllers with views that generally include `[action]` in the route template, API controllers typically don't include `[action]` in the route template. Because `[action]` isn't in the route template, the [action](#action) name is not in the route. That is, the method name isn't used in the matching route.
+
+Consider the following controller:
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet1)]
+
+In the preceding code:
+
+* Each action contains the `[HttpGet]` attribute, which constrains matching to HTTP GET requests only.
+* The `GetProduct` action includes the `"{id}"` template, therefore `id` is appended to the `"api/[controller]"` template on the controller. The methods template is `"api/[controller]/"{id}""`. Therefore this action will only match GET requests of for the form `/api/test2/xyz` or `/api/test2/123`.
+  [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet2)]
+* The `GetIntProduct` action contains the `"int/{id:int}")`. The `:int` portion of the template constrains the `id` route values to strings that can be converted to integers. A GET request to `/api/test2/int/abc`:
+  * Doesn't match this action.
+  * Returns a [404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404) error.
+    [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet3)]
+* The `GetInt2Product` action contains `{id}` in the template, but doesn't constrain `id` to values that can be converted to an int. A GET request to `/api/test2/int2/abc`:
+  * Matches this route.
+  * Model binding fails to convert `abc` to an integer. The `id` parameter of the method is integer.
+  * Returns a [400 Bad Request](https://developer.mozilla.org/docs/Web/HTTP/Status/400) because model binding failed to convert`abc` to an integer.
+      [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet4)]
 
 Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>, and <xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>. All of the [HTTP verb](#verb) attributes accept a route template. The following example shows two actions that match the same route template:
 
@@ -561,7 +593,9 @@ Using multiple routes on actions might seem useful and powerful, it's better to 
 
 Attribute routes support the same inline syntax as conventional routes to specify optional parameters, default values, and constraints.
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet8)]
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet8&highlight=3)]
+
+In the preceding code, `[HttpPost("product/{id:int}")]` applies a route constraint. The `ProductsController.ShowProduct` action is matched only by URL paths like `/product/3`. The route template portion `{id:int}` constains that segment to only integers.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet24)]
 
