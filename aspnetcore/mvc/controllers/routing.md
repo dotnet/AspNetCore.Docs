@@ -47,7 +47,7 @@ The route template `"{controller=Home}/{action=Index}/{id?}"`:
   * `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. See [Model Binding](xref:mvc/models/model-binding) for more details.
 * `{controller=Home}` defines `Home` as the default `controller`.
 * `{action=Index}` defines `Index` as the default `action`.
-* `{id?}` defines `id` as optional.
+*  The `?` character in `{id?}` defines `id` as optional.
   * Default and optional route parameters don't need to be present in the URL path for a match. See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 * Matches the URL path `/`.
 * Produces the route values `{ controller = Home, action = Index }`.
@@ -109,8 +109,9 @@ Using this `default` route, the URL path:
 
 This mapping:
 
-* Is based on the controller and action names **only**.
+* Is based on the controller and [action](#action) names **only**.
 * Isn't based on namespaces, source file locations, or method parameters.
+* Is different than typical [attribute routing] which doesn't include the action name in the route.
 
 Using conventional routing with the default route allows creating the app without having to come up with a new URL pattern for each action. For an app with [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) style actions, having consistency for the URLs across controllers:
 
@@ -124,12 +125,12 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 * Is the only route template needed for many web UI apps. For larger web UI apps, another route using [Areas](#areas) if frequently all that's needed.
 
 > [!WARNING]
-> The `id` is defined as optional by the preceding route template. Actions can execute without the optional ID provided as part of the URL. Generally when`id` is omitted from the URL:
+> The `id` is defined as optional by the preceding route template. Actions can execute without the optional ID provided as part of the URL. Generally, when`id` is omitted from the URL:
 >
 > * `id` is set to `0` by model binding.
 > * No entity is found in the database matching `id == 0`.
 >
-> [Attribute routing](#ar) provides fine-grained control to make the ID required for some actions and not for others. By convention the documentation includes optional parameters like `id` when they're likely to appear in correct usage.
+> [Attribute routing](#ar) provides fine-grained control to make the ID required for some actions and not for others. By convention, the documentation includes optional parameters like `id` when they're likely to appear in correct usage.
 
 [Attribute routing](#ar) is explained later in this document.
 
