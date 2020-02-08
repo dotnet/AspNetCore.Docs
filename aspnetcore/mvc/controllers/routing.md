@@ -360,8 +360,13 @@ ASP.NET Core has the following route templates:
 * All the [HTTP verb templates](#verb) are route templates.
 * [[Route]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute)
 
+<a name="arx"></a>
+
 ## Attribute routing with Http verb attributes
 
+<!-- I had to add this sample code/explanation, even though you can get it elsewhere in the doc. But the doc doesn't put it all together in one place. I need an H2 to link to this information because we get so many issues on https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api where they don't understand the constraints. I may move this section to an include and add it in the Web API tutorial - Or I could move it there and not include it here] 
+For example, https://github.com/aspnet/AspNetCore.Docs/issues/16901
+-->
 Unlike routes created for controllers with views that generally include `[action]` in the route template, API controllers typically don't include `[action]` in the route template. Because `[action]` isn't in the route template, the [action](#action) name is not in the route. That is, the method name isn't used in the matching route.
 
 Consider the following controller:
