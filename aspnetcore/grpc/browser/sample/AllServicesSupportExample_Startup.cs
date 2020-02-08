@@ -23,6 +23,7 @@ namespace Server
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddGrpc();
             services.AddGrpcWeb(o => o.GrpcWebEnabled = true);
         }
 
@@ -30,7 +31,7 @@ namespace Server
         {
             app.UseRouting();
 
-            app.UseGrpcWeb();
+            app.UseGrpcWeb(); // Must be added between UseRouting and UseEndpoints
 
             app.UseEndpoints(endpoints =>
             {
