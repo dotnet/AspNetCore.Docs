@@ -1,4 +1,4 @@
-﻿import "./css/main.css";
+import "./css/main.css";
 import * as signalR from "@microsoft/signalr";
 
 const divMessages: HTMLDivElement = document.querySelector("#divMessages");
@@ -11,19 +11,19 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 
 connection.on("messageReceived", (username: string, message: string) => {
-    let m = document.createElement("div");
+    let messages = document.createElement("div");
 
-    m.innerHTML =
+    messages.innerHTML =
         `<div class="message-author">${username}</div><div>${message}</div>`;
 
-    divMessages.appendChild(m);
+    divMessages.appendChild(messages);
     divMessages.scrollTop = divMessages.scrollHeight;
 });
 
 connection.start().catch(err => document.write(err));
 
 tbMessage.addEventListener("keyup", (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
         send();
     }
 });
