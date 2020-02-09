@@ -50,7 +50,7 @@ In this tutorial, you learn how to:
 
 Configure Visual Studio to look for npm in the *PATH* environment variable. By default, Visual Studio uses the version of npm found in its installation directory. Follow these instructions in Visual Studio:
 
-1. Launch Visual Studio 2019. At the start window, select **Continue without code**.
+1. Launch Visual Studio. At the start window, select **Continue without code**.
 1. Navigate to **Tools** > **Options** > **Projects and Solutions** > **Web Package Management** > **External Web Tools**.
 1. Select the *$(PATH)* entry from the list. Click the up arrow to move the entry to the second position in the list, and select **OK**.
 
@@ -62,11 +62,11 @@ Visual Studio configuration is completed. It's time to create the project.
 1. Name the project *SignalRWebPack*, and select **Create**.
 1. Select *.NET Core* from the target framework drop-down, and select *ASP.NET Core 3.0* from the framework selector drop-down. Select the **Empty** template, and select **Create**.
 
-Add the **Microsoft.TypeScript.MSBuild** package to your project:
+Add the `Microsoft.TypeScript.MSBuild` package to your project:
 
-1. In Solution Explorer (right pane). right-click the project node and choose **Manage NuGet Packages**. In the **Browse** tab, search for **Microsoft.TypeScript.MSBuild**, and then click **Install** on the right to install the package.
+1. In **Solution Explorer** (right pane), right-click the project node and select **Manage NuGet Packages**. In the **Browse** tab, search for `Microsoft.TypeScript.MSBuild`, and then click **Install** on the right to install the package.
 
-Visual Studio adds the NuGet package under the **Dependencies** node in Solution Explorer, enabling TypeScript compilation in your project.
+Visual Studio adds the NuGet package under the **Dependencies** node in **Solution Explorer**, enabling TypeScript compilation in your project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -81,6 +81,7 @@ code -r SignalRWebPack
 * The `code` command opens the *SignalRWebPack* folder in the current instance of Visual Studio Code.
 
 Run the following .NET Core CLI command in the **Integrated Terminal**:
+
 ```dotnetcli
 dotnet add package Microsoft.TypeScript.MSBuild
 ```
@@ -108,7 +109,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 1. Install the required npm packages. Execute the following command from the project root:
 
     ```console
-    npm install -D -E clean-webpack-plugin@3.0.0 css-loader@3.4.2 html-webpack-plugin@3.2.0 mini-css-extract-plugin@0.9.0 ts-loader@6.2.1 typescript@3.7.5 webpack@4.41.5 webpack-cli@3.3.10
+    npm i -D -E clean-webpack-plugin@3.0.0 css-loader@3.4.2 html-webpack-plugin@3.2.0 mini-css-extract-plugin@0.9.0 ts-loader@6.2.1 typescript@3.7.5 webpack@4.41.5 webpack-cli@3.3.10
     ```
 
     Some command details to note:
@@ -190,7 +191,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_AddSignalR)]
 
-1. Create a new directory, called *Hubs*, in the project root *SignalRWebPack/*. Its purpose is to store the SignalR hub, which is created in the next step.
+1. Create a new directory, named *Hubs*, in the project root *SignalRWebPack/*. Its purpose is to store the SignalR hub class, which is created in the next step.
 
 1. Create hub *Hubs/ChatHub.cs* with the following code:
 
@@ -210,7 +211,10 @@ The app currently displays a simple form to send messages. Nothing happens when 
     npm i @microsoft/signalr @types/node
     ```
 
-    The preceding command installs the [SignalR TypeScript client](https://www.npmjs.com/package/@microsoft/signalr), which allows the client to send messages to the server.
+    The preceding command installs:
+    
+     * The [SignalR TypeScript client](https://www.npmjs.com/package/@microsoft/signalr), which allows the client to send messages to the server.
+     * The TypeScript type definitions for Node.js, which enables compile-time checking of Node.js types.
 
 1. Add the highlighted code to the *src/index.ts* file:
 
