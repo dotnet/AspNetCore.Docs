@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/07/2020
+ms.date: 02/10/2020
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -451,10 +451,23 @@ When an environment variable is discovered and loaded into configuration with an
 
 | Environment variable key | Converted configuration key | Provider configuration entry                                                    |
 | ------------------------ | --------------------------- | ------------------------------------------------------------------------------- |
-| `CUSTOMCONNSTR_<KEY>`    | `ConnectionStrings:<KEY>`   | Configuration entry not created.                                                |
-| `MYSQLCONNSTR_<KEY>`     | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `MySql.Data.MySqlClient` |
-| `SQLAZURECONNSTR_<KEY>`  | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `System.Data.SqlClient`  |
-| `SQLCONNSTR_<KEY>`       | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `System.Data.SqlClient`  |
+| `CUSTOMCONNSTR_{KEY} `   | `ConnectionStrings:{KEY}`   | Configuration entry not created.                                                |
+| `MYSQLCONNSTR_{KEY}`     | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `MySql.Data.MySqlClient` |
+| `SQLAZURECONNSTR_{KEY}`  | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`  |
+| `SQLCONNSTR_{KEY}`       | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`  |
+
+**Example**
+
+A custom connection string environment variable is created on the server:
+
+* Name &ndash; `CUSTOMCONNSTR_ReleaseDB`
+* Value &ndash; `Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True`
+
+If `IConfiguration` is injected and assigned to a field named `_config`, read the value:
+
+```csharp
+_config["ConnectionStrings:ReleaseDB"]
+```
 
 ## File Configuration Provider
 
@@ -1547,10 +1560,23 @@ When an environment variable is discovered and loaded into configuration with an
 
 | Environment variable key | Converted configuration key | Provider configuration entry                                                    |
 | ------------------------ | --------------------------- | ------------------------------------------------------------------------------- |
-| `CUSTOMCONNSTR_<KEY>`    | `ConnectionStrings:<KEY>`   | Configuration entry not created.                                                |
-| `MYSQLCONNSTR_<KEY>`     | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `MySql.Data.MySqlClient` |
-| `SQLAZURECONNSTR_<KEY>`  | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `System.Data.SqlClient`  |
-| `SQLCONNSTR_<KEY>`       | `ConnectionStrings:<KEY>`   | Key: `ConnectionStrings:<KEY>_ProviderName`:<br>Value: `System.Data.SqlClient`  |
+| `CUSTOMCONNSTR_{KEY} `   | `ConnectionStrings:{KEY}`   | Configuration entry not created.                                                |
+| `MYSQLCONNSTR_{KEY}`     | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `MySql.Data.MySqlClient` |
+| `SQLAZURECONNSTR_{KEY}`  | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`  |
+| `SQLCONNSTR_{KEY}`       | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`  |
+
+**Example**
+
+A custom connection string environment variable is created on the server:
+
+* Name &ndash; `CUSTOMCONNSTR_ReleaseDB`
+* Value &ndash; `Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True`
+
+If `IConfiguration` is injected and assigned to a field named `_config`, read the value:
+
+```csharp
+_config["ConnectionStrings:ReleaseDB"]
+```
 
 ## File Configuration Provider
 
