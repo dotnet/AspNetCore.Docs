@@ -247,8 +247,6 @@ The services are registered in `Startup.ConfigureServices`. The `IHostedService`
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Startup.cs?name=snippet3)]
 
-In the sample app, `MonitorLoop` is used to demonstrate the queuing of background tasks by receiving keyboard input. For more information, see the 2.x sample app linked at the top of this article.
-
 In the Index page model class:
 
 * The `IBackgroundTaskQueue` is injected into the constructor and assigned to `Queue`.
