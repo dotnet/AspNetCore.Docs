@@ -141,7 +141,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
     The preceding file configures the Webpack compilation. Some configuration details to note:
 
-    * The `output` property overrides the default value of `dist`. The bundle is instead emitted in the *wwwroot* directory.
+    * The `output` property overrides the default value of *dist*. The bundle is instead emitted in the *wwwroot* directory.
     * The `resolve.extensions` array includes *.js* to import the SignalR client JavaScript.
 
 1. Create a new *src* directory in the project root to store the project's client-side assets.
