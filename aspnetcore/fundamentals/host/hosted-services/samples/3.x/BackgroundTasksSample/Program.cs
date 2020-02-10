@@ -33,8 +33,10 @@ namespace BackgroundTasksSample
                 await host.StartAsync();
 
                 // Monitor for new background queue work items
+                #region snippet4
                 var monitorLoop = host.Services.GetRequiredService<MonitorLoop>();
                 monitorLoop.StartMonitorLoop();
+                #endregion
 
                 // Wait for the host to shutdown
                 await host.WaitForShutdownAsync();
