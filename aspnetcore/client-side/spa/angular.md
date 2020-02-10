@@ -49,7 +49,7 @@ Navigate to this URL in a browser.
 
 > [!WARNING]
 > The app starts up an instance of the Angular CLI server in the background. A message similar to the following is logged:
-> *NG Live Development Server is listening on localhost:&lt;otherport&gt;, open your browser on http://localhost:&lt;otherport&gt;/*. Ignore this message&mdash;it's **not** the URL for the combined ASP.NET Core and Angular CLI app.
+> *NG Live Development Server is listening on localhost:&lt;otherport&gt;, open a browser to http://localhost:&lt;otherport&gt;/*. Ignore this message&mdash;it's **not** the URL for the combined ASP.NET Core and Angular CLI app.
 
 ---
 
