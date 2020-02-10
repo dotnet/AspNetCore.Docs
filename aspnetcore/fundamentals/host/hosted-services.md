@@ -5,7 +5,7 @@ description: Learn how to implement background tasks with hosted services in ASP
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/05/2020
+ms.date: 02/10/2020
 uid: fundamentals/host/hosted-services
 ---
 # Background tasks with hosted services in ASP.NET Core
@@ -160,6 +160,10 @@ A `MonitorLoop` service handles enqueuing tasks for the hosted service whenever 
 The services are registered in `IHostBuilder.ConfigureServices` (*Program.cs*). The hosted service is registered with the `AddHostedService` extension method:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet3)]
+
+`MontiorLoop` is started in `Program.Main`:
+
+[!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet4)]
 
 ::: moniker-end
 
