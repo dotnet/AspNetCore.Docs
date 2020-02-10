@@ -8,7 +8,7 @@ const btnSend: HTMLButtonElement = document.querySelector("#btnSend");
 const username = new Date().getTime();
 
 tbMessage.addEventListener("keyup", (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
         send();
     }
 });
