@@ -679,7 +679,7 @@ Actions are either conventionally routed or attribute routed. Placing a route on
 <!-- review: Can we delete based on the historical use cases for each system. 
 Dan.Roth does'nt really care about history. It's what we have today.
 -->
-Attribute routing and conventional routing use the same routing engine. They differ in details of how URL generation works based on the historical use cases for each system. This different is expressed by how MVC interfaces with and provides data to the routing system.
+Attribute routing and conventional routing use the same routing engine.
 
 <a name="routing-url-gen-ref-label"></a>
 <a name="ambient"></a>
