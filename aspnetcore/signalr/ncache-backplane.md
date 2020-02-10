@@ -10,18 +10,18 @@ no-loc: [SignalR]
 uid: signalr/ncache-backplane
 ---
 
-# Set up an NCache backplane for ASP.NET Core SignalR scale-out
+# Set up an NCache Backplane for ASP.NET Core SignalR Scale-out
 
-By [Brad Rehman](https://twitter.com/anurse),
+By [Brad Rehman](https://github.com/Obaid-Rehman),
 
-This article explains SignalR-specific aspects of setting up an [NCache](https://redis.io/) clustered cache as a backplane to use for scaling out an ASP.NET Core SignalR app.
+This article explains how you can set up an [NCache](https://www.alachisoft.com/ncache/) clustered cache made up of multiple servers, also referred to as *nodes*, as a backplane for scaling out ASP.NET Core SignalR in your app.
 
 ## Set up an NCache backplane
 
 * Setup an NCach distributed cache.
 
   > [!IMPORTANT] 
-  > For production use, an NCache backplane is recommended only when it runs in the same data center as the SignalR app. Otherwise, network latency degrades performance. If your SignalR app is running in the Azure cloud, we recommend Azure SignalR Service instead of a Redis backplane. You can use NCache for development and test environments.
+  > For production use, an NCache backplane is recommended only when it runs in the same data center as the SignalR app. 
 
   For more information, see the following resources:
 
@@ -49,56 +49,50 @@ NCache extends the [ISignalRServerBuilder](https://docs.microsoft.com/en-us/dotn
 You can introduce NCache as a backplane in the SignalR app by taking the following steps:
 
 * In the SignalR app, install the `AspNetCore.SignalR.NCache` NuGet package.
-* To utilize the extension, include the following namespaces in your application in Startup.cs:
+* To utilize the extension, include the following namespaces in your app in `Startup.cs`:
   * `Alachisoft.NCache.AspNetCore.SignalR`
-  * version 1.1.0 of `Microsoft.AspNetCore.SignalR`
-* Add the following configurations in your `appsettings.json` file. You have to specify the cache name and the application ID along with the user credentials in `NCacheConfiguration`:
-
-   ```csharp
-   "NCacheConfiguration": {
-       "CacheName": "demoClusteredCache",
-       "ApplicationID": "chatApplication",
-       "UserID": "your-username",
-       "Password": "your-password"
-   }
-   ```
+  * `Microsoft.AspNetCore.SignalR` (version 1.1.0)
    
 * In the `Startup.ConfigureServices` method, call `AddNCache` after `AddSignalR`:
 
   ```csharp
   services.AddSignalR().AddNCache(ncacheOptions => 
   {
-        ncacheOptions.CacheName = Configuration["NCacheConfiguration:CacheName"];
-        ncacheOptions.ApplicationID = Configuration["NCacheConfiguration:ApplicationID"];
+	ncacheOptions.CacheName = "your-cache-id";
+    ncacheOptions.ApplicationID = "your-application-id";
 
-        // In case of enabled cache security specify the security credentials
-        ncacheOptions.UserID = Configuration["NCacheConfiguration:UserID"];
-        ncacheOptions.Password = Configuration["NCacheConfiguration:Password"];
+   // In case of enabled cache security specify the security credentials
+	ncacheOptions.UserID = "your-user-id";
+	ncacheOptions.Password = "your-user-password";
+
   }
   ```
   
-* Configure options as needed:
+* Configure Options:
  
-  The parameters for configuring the NCache handle that the SignalR app uses to connect with the NCache backplane are done via the [*client.ncconf*](https://www.alachisoft.com/resources/docs/ncache-pro/admin-guide/client-config.html) file that should be included in the final build. The relevant access parameters to include are the IP addresses and ports of the server(s) making up the distributed NCache backplane as well as configuration information such as connection retry interval, maximum number of connection attemps to make in case of disconnection etc. 
+  The parameters for configuring the NCache handle that the SignalR app uses to connect with the NCache backplane are done via the NCache client configuration file [**client.ncconf**](https://www.alachisoft.com/resources/docs/ncache-pro/admin-guide/client-config.html) that **must** be included in the final build. 
+  
+  The file contains parameters such as the id of the cache that will be used as the backplane, the IP addresses and ports of the server(s) constituting the backplane as well as client connection parameters that determine how the NCache client communicates with the cache servers.
 
-* If you're using one NCache distributed cache for multiple SignalR apps, use a different `ApplicationID` value of `NCacheConfiguration`for each SignalR app. Setting an `ApplicationID` isolates one SignalR app from others that use different values for `ApplicationID`. If you don't assign different values, a message sent from one app to all of its own clients will go to all clients of all apps that use the same NCache distributed cache as a backplane.
+* If you're using one NCache distributed cache for multiple SignalR apps, use a different `ApplicationID` value of the `NCacheConfiguration` class for each SignalR app. 
 
-* Configure your server farm load balancing software for sticky sessions. Here are some examples of documentation on how to do that:
+  Setting an `ApplicationID` secures one SignalR app from other SignalR apps that use different values for `ApplicationID` while sharing the same NCache backplane. If you don't assign different values, a message sent from one SignalR app to all of its own clients will go to all the clients of all the apps that use the same NCache distributed cache as a backplane.
 
-  * [IIS](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing)
-  * [HAProxy](https://www.haproxy.com/blog/load-balancing-affinity-persistence-sticky-sessions-what-you-need-to-know/)
-  * [Nginx](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/#sticky)
-  * [pfSense](https://www.netgate.com/docs/pfsense/loadbalancing/inbound-load-balancing.html#sticky-connections)
+* It is necessary to configure your web server farm load balancer to use sticky sessions as per the persistant connection needs of ASP.NET Core SignalR. Consult your load balancer documentation on how to achieve that.
 
-## NCache backplane reliability
+## NCache Backplane Reliability
 
-All NCache cluster [topologies](https://www.alachisoft.com/resources/docs/ncache/admin-guide/cache-topologies.html), except for the *Partitioned* topology, ensure messages are safe in the event of node failure, provided that the cluster is made up of 2 or more node servers that serve to furnish the backed-up messages. 
+All NCache cluster [topologies](https://www.alachisoft.com/resources/docs/ncache/admin-guide/cache-topologies.html), except for the *Partitioned Cache* topology, ensure that messages are safe through replication in the event of a node failure. However, this is possible only if the cluster is made up of 2 or more servers.
 
-## NCache backplane logging
+## NCache Backplane Logging
 
-NCache as a SignalR backplane provides extensive logging capabilities that incorporates the built-in ASP.NET Core logging functionality. As such, custom logging providers such as [Serilog](https://github.com/serilog/serilog-aspnetcore) can be injected into the ASP.NET Core SignalR app and NCache will log messages related to the operations being performed using those providers. Some of the more frequent logs of interest include the sequence of messages between publishers and recepients, as well as message delivery failures.
+Logging is an important aspect of any enterprise application. For that reason, NCache Backplane for SignalR utilizes the ASP.NET Core logging capabilities and provides the logging infrastructure packaged and ready for use. 
 
-## Next steps
+As such, you are free to use pre-shipped as well as 3rd-party logging providers such as [Serilog](https://github.com/serilog/serilog-aspnetcore) in your ASP.NET Core SignalR app to log the SignalR backplane operations at whatever log level e.g. debug, error, trace, and output the logs to multiple sinks including the console screen, file systems, databases etc. 
+
+Some of the more frequent logs of interest include the connection and disconnection states, as well as message delivery failures.
+
+## Next Steps
 
 For more information, see the following resources:
 
