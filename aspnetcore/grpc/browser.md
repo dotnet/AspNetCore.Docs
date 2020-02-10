@@ -75,11 +75,11 @@ The preceding code:
 
 The `GrpcWebHandler` has the following configuration options when created:
 
-* **InnerHandler**: The underlying <xref:System.Net.Http.HttpMessageHandler> that makes the HTTP call, for example, `HttpClientHandler`.
-* **Mode**: An enumeration type that specifies whether the gRPC-Web request `Content-Type` is `application/grpc-web` or `application/grpc-web-text`.
+* **InnerHandler**: The underlying <xref:System.Net.Http.HttpMessageHandler> that makes the gRPC HTTP request, for example, `HttpClientHandler`.
+* **Mode**: An enumeration type that specifies whether the gRPC HTTP request request `Content-Type` is `application/grpc-web` or `application/grpc-web-text`.
     * `GrpcWebMode.GrpcWeb` configures content to be sent without encoding. Default value.
     * `GrpcWebMode.GrpcWebText` configures content to be base64 encoded. Required for server streaming calls in browsers.
-* **HttpVersion**: HTTP protocol `Version`. gRPC-Web doesn't require a specific protocol and won't specify one when making a request unless configured.
+* **HttpVersion**: HTTP protocol `Version`. gRPC-Web doesn't require a specific protocol and won't set a value on  <xref:System.Net.Http.HttpRequestMessage.Version> unless configured.
 
 ## Additional resources
 
