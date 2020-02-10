@@ -5,7 +5,7 @@ description: Learn how to implement background tasks with hosted services in ASP
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/05/2020
+ms.date: 02/10/2020
 uid: fundamentals/host/hosted-services
 ---
 # Background tasks with hosted services in ASP.NET Core
@@ -161,6 +161,10 @@ The services are registered in `IHostBuilder.ConfigureServices` (*Program.cs*). 
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet3)]
 
+`MontiorLoop` is started in `Program.Main`. For more information see the sample app linked at the top of this article:
+
+[!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet4)]
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -242,6 +246,8 @@ In `QueueHostedService`, background tasks in the queue are dequeued and executed
 The services are registered in `Startup.ConfigureServices`. The `IHostedService` implementation is registered with the `AddHostedService` extension method:
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Startup.cs?name=snippet3)]
+
+In the sample app, `MonitorLoop` is used to demonstrate the queuing of background tasks by receiving keyboard input. For more information, see the 2.x sample app linked at the top of this article.
 
 In the Index page model class:
 
