@@ -81,6 +81,9 @@ The `GrpcWebHandler` has the following configuration options when created:
     * `GrpcWebMode.GrpcWebText` configures content to be base64 encoded. Required for server streaming calls in browsers.
 * **HttpVersion**: HTTP protocol `Version` used to set [HttpRequestMessage.Version](xref:System.Net.Http.HttpRequestMessage.Version) on the underlying gRPC HTTP request. gRPC-Web doesn't require a specific version and doesn't override the default unless specified.
 
+> [!IMPORTANT]
+> Generated gRPC clients have sync and async methods for calling unary methods. For example, `SayHello` is sync and `SayHelloAsync` is async. Calling a sync method in a Blazor WebAssembly app will cause the app to hang. Async methods must always be used in Blazor WebAssembly.
+
 ## Additional resources
 
 * [gRPC for Web Clients GitHub project](https://github.com/grpc/grpc-web)
