@@ -64,6 +64,7 @@ The .NET gRPC client can be configured to make gRPC-Web calls. This is useful fo
 To use gRPC-Web:
 
 * Add a reference to the [Grpc.Net.Client.Web](https://www.nuget.org/packages/Grpc.Net.Client.Web) package.
+* Ensure the reference to [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) package is 2.27.0 or greater.
 * Configure the channel to use the `GrpcWebHandler`:
 
 [!code-csharp[](~/grpc/browser/sample/Handler.cs?name=snippet_1)]
