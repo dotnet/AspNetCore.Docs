@@ -50,7 +50,7 @@ These tokens can be found on the **Keys and Access Tokens** tab after creating a
 
 Add the Twitter service in the `ConfigureServices` method in *Startup.cs* file:
 
-[!code-csharp[](~/security/authentication/social/social-code/3.x/StartupTwitter3x.cs?name=snippet&highlight=10-14)]
+[!code-csharp[](~/security/authentication/social/social-code/3.x/StartupTwitter3x.cs?name=snippet&highlight=10-15)]
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
