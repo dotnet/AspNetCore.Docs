@@ -558,7 +558,7 @@ To constrain a parameter to a known set of possible values, use a regular expres
 
 ### Custom route constraints
 
-In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains <xref:System.Web.Routing.IRouteConstraint.Match*>. `Match` returns `true` if the constraint is satisfied and `false` otherwise.
+Custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains <xref:System.Web.Routing.IRouteConstraint.Match*>, which returns `true` if the constraint is satisfied and `false` otherwise.
 
 Custom route constraints are rarely needed. Before implementing a custom route constraint, consider alternatives, such as model binding.
 
@@ -566,21 +566,25 @@ To use a custom `IRouteConstraint`, the route constraint type must be registered
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint.cs?name=snippet)]
 
-The preceding constraint applied to a route in the following code:
+The preceding constraint applied in the following code:
 
-```csharp
-[HttpGet("{id:customName}")]
-public ActionResult<string> Get(string id)
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/TestController.cs?name=snippet&highlight=6,13)]
 
-The following code implements `MyCustomConstraint`:
+The following code implements `MyCustomConstraint`, which prevents `0` where applied to a route:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint.cs?name=snippet2)]
 
-The preceding code shows how to implement a constraint that only allows the digits 1-9.
-
 > [!WARNING]
 > When using <xref:System.Text.RegularExpressions> to process untrusted input, pass a timeout. A malicious user can provide input to `RegularExpressions` causing a [Denial-of-Service attack](https://www.us-cert.gov/ncas/tips/ST04-015).
+
+Although the preceding code prevents `0` in the `{id}` segment of the route, the following code is a better approach:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/TestController.cs?name=snippet2)]
+
+The preceding code has the following advantages over the `MyCustomConstraint` approach:
+
+* Doesn't require a custom constraint.
+* Returns a more descriptive error when a route segment includes `0`.
 
 ## Parameter transformer reference
 
@@ -625,7 +629,7 @@ This section contains a reference for the algorithm implemented by URL generatio
 
 The URL generation process begins with a call to [LinkGenerator.GetPathByAddress](xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*) or a similar method. The method is provided with an address, a set of route values, and optionally information about the current request from `HttpContext`.
 
-The first step is to use the address to resolve a set of candidate endpoints using an `IAddressScheme<TAddress>` that matches the address's type. <!-- What is `IAddressScheme<TAddress>` ? -->
+The first step is to use the address to resolve a set of candidate endpoints using an [`IEndpointAddressScheme<TAddress>`](xref:Microsoft.AspNetCore.Routing.IEndpointAddressScheme`1) that matches the address's type.
 
 One of set of candidates is found by the address scheme, the endpoints are ordered and processed iteratively until a URL generation operation succeeds. URL generation does not check for ambiguities, the first result returned is the final result.
 
@@ -661,11 +665,6 @@ The role of the address scheme is to make the association between the address an
 
 From the current request, routing accesses the route values of the current request `HttpContext.Request.RouteValues`. The values associated with the current request are referred to as the **ambient values**. For the purpose of clarity, the documentation refers to the route values passed in to method as **explicit values**.
 
-<!-- Review: Original Provides ambient values (current request)  - Per MT Style guide, avoid () 
-Code comments don't MT, so I'm moving them outside.
-
-It would be really great to have a complete example for these.
--->
 This following examples shows ambient values and explicit values. The following code provides ambient values from the current request and explicit values: `{ id = 17, }`:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs?name=snippet)]
@@ -706,9 +705,9 @@ If the Edit page don't contain the `"{id:int}"` route template, `url` is `/Edit?
 The behavior of MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> adds a layer of complexity in addition to the rules described here:
 
 * `IUrlHelper` always provides the route values from the current request as ambient values.
-* [IUrlHelper.Action](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action*) always copies the current `action` and `controller` route values as explicit values unless overridden by the user. <!-- review next bullet- unless overridden by the user? Who's the user? The developer? I think you mean developer, explicitly. the client using the app? User is ambiguous. The end user on the web page? ?-->
+* [IUrlHelper.Action](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action*) always copies the current `action` and `controller` route values as explicit values unless overridden by the developer.
 * [IUrlHelper.Page](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Page*) always copies the current `page` route value as an explicit values unless overridden. <!--by the user-->.
-* `IUrlHelper.Page` always overrides the current `handler` route value with `null` as an explicit values unless overridden. <!-- by the user. -->
+* `IUrlHelper.Page` always overrides the current `handler` route value with `null` as an explicit values unless overridden.
 
 Users are often surprised by the behavioral details of ambient values, because MVC doesn't seem to follow its own rules. For historical and compatibility reasons certain route values  such as `action`, `controller`, `page`, and `handler` have their own special-case behavior.
 
@@ -912,7 +911,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-**CONSIDER** writing your own <xref:Microsoft.AspNetCore.Routing.EndpointDataSource>. `EndpointDataSource` is the low-level primitive for declaring and updating a collection of endpoints. `EndpointDataSource` is a powerful API used by controllers and Razor Pages. <!-- power tool won't MT -->
+**CONSIDER** writing your own <xref:Microsoft.AspNetCore.Routing.EndpointDataSource>. `EndpointDataSource` is the low-level primitive for declaring and updating a collection of endpoints. `EndpointDataSource` is a powerful API used by controllers and Razor Pages.
 
 The routing tests have a [basic example](https://github.com/aspnet/AspNetCore/blob/master/src/Http/Routing/test/testassets/RoutingSandbox/Framework/FrameworkEndpointDataSource.cs#L17) of a non-updating data source.
 

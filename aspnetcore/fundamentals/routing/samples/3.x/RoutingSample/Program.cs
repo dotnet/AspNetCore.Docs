@@ -23,9 +23,9 @@ namespace RoutingSample
                     // webBuilder.UseStartup<TerminalMiddlewareStartup>();
                     // webBuilder.UseStartup<StartupDelay>();
                     //webBuilder.UseStartup<StartupSW>();
-                    // webBuilder.UseStartup<StartupCustomConstraint>();
+                     webBuilder.UseStartup<StartupConstraint>();
                     //webBuilder.UseStartup<StartupUnsupported>();
-                    webBuilder.UseStartup<StartupMVC>();
+                    //webBuilder.UseStartup<StartupMVC>();
                 });
     }
 }
