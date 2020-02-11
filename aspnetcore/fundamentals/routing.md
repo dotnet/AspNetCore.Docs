@@ -524,7 +524,7 @@ The following code uses an inline-constraint to specify a regex constraint:
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupRegex.cs?name=snippet)]
 
 The following code uses an object literal to specify a regex constraint:
-<!-- review: Can you check this code?  Can you finish it and make it compile?-->
+
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupRegex2.cs?name=snippet)]
 
 The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See <xref:System.Text.RegularExpressions.RegexOptions> for a description of these members.
@@ -560,6 +560,8 @@ To constrain a parameter to a known set of possible values, use a regular expres
 
 In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains <xref:System.Web.Routing.IRouteConstraint.Match*>. `Match` returns `true` if the constraint is satisfied and `false` otherwise.
 
+Custom route constraints are rarely needed. Before implementing a custom route constraint, consider alternatives, such as model binding.
+
 To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in the service container. A `ConstraintMap` is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `ConstraintMap` can be updated in `Startup.ConfigureServices` either as part of a [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) call or by configuring <xref:Microsoft.AspNetCore.Routing.RouteOptions> directly with `services.Configure<RouteOptions>`. For example:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint.cs?name=snippet)]
@@ -572,14 +574,13 @@ public ActionResult<string> Get(string id)
 ```
 
 The following code implements `MyCustomConstraint`:
-<!-- review: Review my implementation of MyCustomConstraint -->
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint.cs?name=snippet2)]
 
-The preceding code:
+The preceding code shows how to implement a constraint that only allows the digits 1-9.
 
-* Shows how to implement a constraint similar to the the `:int` constraint.
-* Shouldn't be used in a real app. Use `[HttpGet("{id:int}")]` to constrain the `id` to integers only.
+> [!WARNING]
+> When using <xref:System.Text.RegularExpressions> to process untrusted input, pass a timeout. A malicious user can provide input to `RegularExpressions` causing a [Denial-of-Service attack](https://www.us-cert.gov/ncas/tips/ST04-015).
 
 ## Parameter transformer reference
 

@@ -21,8 +21,8 @@ namespace RoutingSample
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    "people",
-                    "People/{ssn}",
+                    name: "people",
+                    pattern: "People/{ssn}",
                     constraints: new { controller = "^\\d{3}-\\d{2}-\\d{4}$", },
                     defaults: new { controller = "People", action = "List", });
             });

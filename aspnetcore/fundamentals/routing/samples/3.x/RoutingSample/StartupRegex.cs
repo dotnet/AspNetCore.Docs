@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 
 namespace RoutingSample
@@ -15,18 +16,20 @@ namespace RoutingSample
             }
 
             app.UseRouting();
-            /* 
+            
            // Using an inline-constraint to specify a regex constraint.
 
             #region snippet
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("{message:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}",
-                    context => { ... });
-
+                    context => 
+                    {
+                        return context.Response.WriteAsync("inline-constraint match");
+                    });
              });
             #endregion
-         */
+         
 
         }
     }

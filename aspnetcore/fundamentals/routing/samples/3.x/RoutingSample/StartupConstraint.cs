@@ -70,9 +70,9 @@ namespace RoutingSample
             {
                 var parameterValueString = Convert.ToString(value, 
                                                             CultureInfo.InvariantCulture);
-                return new Regex(@"^[a-z]*$",
-                                RegexOptions.CultureInvariant
-                                | RegexOptions.IgnoreCase).IsMatch(parameterValueString);
+                return new Regex(@"^[1-9]*$",
+                                RegexOptions.CultureInvariant | RegexOptions.IgnoreCase,
+                                TimeSpan.FromMilliseconds(100)).IsMatch(parameterValueString);
             }
 
             return false;
