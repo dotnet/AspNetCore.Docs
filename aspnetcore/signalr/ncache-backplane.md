@@ -5,7 +5,7 @@ description: Learn how to set up an NCache backplane to enable scale-out for an 
 monikerRange: '>= aspnetcore-2.2'
 ms.author: Brad Rehman
 ms.custom: mvc
-ms.date: 01/24/2020
+ms.date: 02/11/2020
 no-loc: [SignalR]
 uid: signalr/ncache-backplane
 ---
@@ -59,9 +59,9 @@ You can introduce NCache as a backplane in the SignalR app by taking the followi
   services.AddSignalR().AddNCache(ncacheOptions => 
   {
 	ncacheOptions.CacheName = "your-cache-id";
-    ncacheOptions.ApplicationID = "your-application-id";
+        ncacheOptions.ApplicationID = "your-application-id";
 
-   // In case of enabled cache security specify the security credentials
+     // In case of enabled cache security specify the security credentials
 	ncacheOptions.UserID = "your-user-id";
 	ncacheOptions.Password = "your-user-password";
 
