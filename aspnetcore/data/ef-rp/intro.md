@@ -372,7 +372,7 @@ Create *Data/DbInitializer.cs* with the following code:
   ```csharp
   // context.Database.EnsureCreated();
   DbInitializer.Initialize(context);
-  ````
+  ```
 
 # [Visual Studio](#tab/visual-studio)
 
