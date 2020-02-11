@@ -1,10 +1,10 @@
 ---
-title: gRPC in browser apps
+title: Use gRPC in browser apps
 author: jamesnk
 description: Learn how to configure gRPC services on ASP.NET Core to be callable from browser apps using gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 02/07/2020
+ms.date: 02/10/2020
 uid: grpc/browser
 ---
 # Use gRPC in browser apps
@@ -64,6 +64,7 @@ The .NET gRPC client can be configured to make gRPC-Web calls. This is useful fo
 To use gRPC-Web:
 
 * Add a reference to the [Grpc.Net.Client.Web](https://www.nuget.org/packages/Grpc.Net.Client.Web) package.
+* Ensure the reference to [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) package is 2.27.0 or greater.
 * Configure the channel to use the `GrpcWebHandler`:
 
 [!code-csharp[](~/grpc/browser/sample/Handler.cs?name=snippet_1)]
@@ -75,11 +76,14 @@ The preceding code:
 
 The `GrpcWebHandler` has the following configuration options when created:
 
-* **InnerHandler**: The underlying <xref:System.Net.Http.HttpMessageHandler> that makes the HTTP call, for example, `HttpClientHandler`.
-* **Mode**: An enumeration type that specifies whether the gRPC-Web request `Content-Type` is `application/grpc-web` or `application/grpc-web-text`.
+* **InnerHandler**: The underlying <xref:System.Net.Http.HttpMessageHandler> that makes the gRPC HTTP request, for example, `HttpClientHandler`.
+* **Mode**: An enumeration type that specifies whether the gRPC HTTP request request `Content-Type` is `application/grpc-web` or `application/grpc-web-text`.
     * `GrpcWebMode.GrpcWeb` configures content to be sent without encoding. Default value.
     * `GrpcWebMode.GrpcWebText` configures content to be base64 encoded. Required for server streaming calls in browsers.
-* **HttpVersion**: HTTP protocol `Version`. gRPC-Web doesn't require a specific protocol and won't specify one when making a request unless configured.
+* **HttpVersion**: HTTP protocol `Version` used to set [HttpRequestMessage.Version](xref:System.Net.Http.HttpRequestMessage.Version) on the underlying gRPC HTTP request. gRPC-Web doesn't require a specific version and doesn't override the default unless specified.
+
+> [!IMPORTANT]
+> Generated gRPC clients have sync and async methods for calling unary methods. For example, `SayHello` is sync and `SayHelloAsync` is async. Calling a sync method in a Blazor WebAssembly app will cause the app to become unresponsive. Async methods must always be used in Blazor WebAssembly.
 
 ## Additional resources
 
