@@ -175,7 +175,7 @@ Use **SQL Server Object Explorer** (SSOX) or the `database drop` command:
 
 In the **Package Manager Console** (PMC), run the following command:
 
-```PMC
+```powershell
 Drop-Database
 ```
 
@@ -199,7 +199,7 @@ Build the project and create the first migration.
 
 # [Visual Studio](#tab/visual-studio)
 
-```PMC
+```powershell
 Add-Migration InitialCreate
 Update-Database
 ```

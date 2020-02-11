@@ -215,7 +215,7 @@ The *Index.cshtml* file contains markup to create a delete button for each custo
 
 The rendered HTML:
 
-```HTML
+```html
 <button type="submit" formaction="/Customers?id=1&amp;handler=delete">delete</button>
 ```
 
@@ -518,7 +518,7 @@ The following markup in the *Pages/Customers/Index.cshtml* file displays the val
 
 The *Pages/Customers/Index.cshtml.cs* page model applies the `[TempData]` attribute to the `Message` property.
 
-```cs
+```csharp
 [TempData]
 public string Message { get; set; }
 ```
@@ -1023,7 +1023,7 @@ The following markup in the *Pages/Customers/Index.cshtml* file displays the val
 
 The *Pages/Customers/Index.cshtml.cs* page model applies the `[TempData]` attribute to the `Message` property.
 
-```cs
+```csharp
 [TempData]
 public string Message { get; set; }
 ```

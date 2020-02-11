@@ -103,10 +103,10 @@ This will produce the following HTML
 
 Which, when it runs, will render the following:
 
-```none
+```
 <"123">
    <"123">
-   ```
+```
 
 You can also call the JavaScript encoder directly:
 
@@ -121,15 +121,15 @@ You can also call the JavaScript encoder directly:
    <script>
        document.write("@encoder.Encode(untrustedInput)");
    </script>
-   ```
+```
 
 This will render in the browser as follows:
 
 ```html
 <script>
-       document.write("\u003C\u0022123\u0022\u003E");
-   </script>
-   ```
+    document.write("\u003C\u0022123\u0022\u003E");
+</script>
+```
 
 >[!WARNING]
 > Don't concatenate untrusted input in JavaScript to create DOM elements. You should use `createElement()` and assign property values appropriately such as `node.TextContent=`, or use `element.SetAttribute()`/`element[attribute]=` otherwise you expose yourself to DOM-based XSS.
