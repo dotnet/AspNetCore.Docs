@@ -8,7 +8,12 @@ uid: mvc/controllers/routing
 ---
 # Routing to controller actions in ASP.NET Core
 
-<!-- TO do , future tense search will,would  etc-->
+<!-- Rick TO do , future tense search will,would  etc
+ MVC will set the order property to an appropriate value when you use MapControllerRoute - this should be discussed in the MVC documentation,
+
+add
+Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routing implementations, such as <xref:Microsoft.AspNetCore.Routing.Route>, match requests.
+-->
 By [Ryan Nowak](https://github.com/rynowak) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
@@ -159,9 +164,6 @@ Because `controller` and `action` don't appear in the route template `"blog/{*ar
 
 In the preceding example, the `blog` route has a higher priority for matches than the `default` route.
 
-<a name="greedy"></a>
-
-[Dedicated conventional routes](#dcr) often use catch all route parameters like `{*article}` to capture the remaining portion of the URL path. This can make a route too **greedy**, meaning that it matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to solve this.
 
 <!-- Review: 
 
@@ -212,7 +214,7 @@ These statements are also in the other doc.
 ### Conventional routing order
 
 Conventional routing only matches a combination of action and controller that are defined by the app. This is intended to simplify cases where conventional routes overlap.
-Adding routes using <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>, and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> defines a priority order for the routing system to respect. Matches from a route that appears earlier have a higher priority. Conventional routing is order-dependent. In general, routes with areas should be placed earlier as they're more specific than routes without an area. [Dedicated conventional routes](#dcr) with catch all route parameters like `{*article}` can make a route too [greedy](#greedy), meaning that it matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to prevent greedy matches.
+Adding routes using <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>, and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> defines a priority order for the routing system to respect. Matches from a route that appears earlier have a higher priority. Conventional routing is order-dependent. In general, routes with areas should be placed earlier as they're more specific than routes without an area. [Dedicated conventional routes](#dcr) with catch all route parameters like `{*article}` can make a route too [greedy](xref:fundamentals/routing#greedy), meaning that it matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to prevent greedy matches.
 
 <a name="best"></a>
 
@@ -505,7 +507,7 @@ With the preceding code, `/home` runs the `HomeController.Index` endpoint. To ge
 
 See [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order) for information on route order with Razor Pages.
 
-In some cases, an HTTP 500 error is returned with ambiguous routes. Use logging to see which endpoints caused the the `AmbiguousMatchException`.
+In some cases, an HTTP 500 error is returned with ambiguous routes. Use [logging](xref:fundamentals/logging/index) to see which endpoints caused the the `AmbiguousMatchException`.
 
 <a name="routing-token-replacement-templates-ref-label"></a>
 
@@ -821,7 +823,7 @@ The action results factory methods follow a similar pattern to the methods on `I
 
 Using the preceding route definitions, `Url.Action("Index", "Home")` generates the URL path `/` using the `default` route, but why? You might guess the route values `{ controller = Home, action = Index }` would be enough to generate a URL using `blog`, and the result would be `/blog?action=Index&controller=Home`.
 
-[Dedicated conventional routes](#dcr) rely on a special behavior of default values that don't have a corresponding route parameter that prevents the route from being too [greedy](#greedy) with URL generation. In this case the default values are `{ controller = Blog, action = Article }`, and neither `controller` nor `action` appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using `blog` will fail because the values `{ controller = Home, action = Index }` don't match `{ controller = Blog, action = Article }`. Routing then falls back to try `default`, which succeeds.
+[Dedicated conventional routes](#dcr) rely on a special behavior of default values that don't have a corresponding route parameter that prevents the route from being too [greedy](xref:fundamentals/routing#greedy) with URL generation. In this case the default values are `{ controller = Blog, action = Article }`, and neither `controller` nor `action` appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using `blog` will fail because the values `{ controller = Home, action = Index }` don't match `{ controller = Blog, action = Article }`. Routing then falls back to try `default`, which succeeds.
 
 <a name="routing-areas-ref-label"></a>
 
