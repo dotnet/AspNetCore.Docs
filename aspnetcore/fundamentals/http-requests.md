@@ -363,7 +363,7 @@ Header propagation is an ASP.NET Core middleware to propagate HTTP headers from 
 
 * The client includes the configured headers on outbound requests:
 
-  ```C#
+  ```csharp
   var client = clientFactory.CreateClient("MyForwardingClient");
   var response = client.GetAsync(...);
   ```
@@ -990,7 +990,7 @@ Header propagation is a community supported middleware to propagate HTTP headers
 
 * The client includes the configured headers on outbound requests:
 
-  ```C#
+  ```csharp
   var client = clientFactory.CreateClient("MyForwardingClient");
   var response = client.GetAsync(...);
   ```

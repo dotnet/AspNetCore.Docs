@@ -106,7 +106,7 @@ The preceding conditions make it likely to hit the 10 connection limit on a clie
 
 Set the proxy's `Connection` and `Upgrade` headers to the following for SignalR WebSockets:
 
-```
+```nginx
 proxy_set_header Upgrade $http_upgrade;
 proxy_set_header Connection $connection_upgrade;
 ```

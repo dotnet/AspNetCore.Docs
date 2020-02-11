@@ -115,7 +115,7 @@ To create a user account for a service, use the [New-LocalUser](/powershell/modu
 
 On Windows 10 October 2018 Update (version 1809/build 10.0.17763) or later:
 
-```PowerShell
+```powershell
 New-LocalUser -Name {SERVICE NAME}
 ```
 
@@ -427,7 +427,7 @@ To create a user account for a service, use the [New-LocalUser](/powershell/modu
 
 On Windows 10 October 2018 Update (version 1809/build 10.0.17763) or later:
 
-```PowerShell
+```powershell
 New-LocalUser -Name {SERVICE NAME}
 ```
 
@@ -764,7 +764,7 @@ To create a user account for a service, use the [New-LocalUser](/powershell/modu
 
 On Windows 10 October 2018 Update (version 1809/build 10.0.17763) or later:
 
-```PowerShell
+```powershell
 New-LocalUser -Name {SERVICE NAME}
 ```
 

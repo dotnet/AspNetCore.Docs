@@ -354,7 +354,7 @@ Files in the deployment folder are locked when the app is running. Locked files 
 * Manually stop the app pool in the IIS Manager on the server.
 * Use PowerShell to drop *app_offline.htm* (requires PowerShell 5 or later):
 
-  ```PowerShell
+  ```powershell
   $pathToApp = 'PATH_TO_APP'
 
   # Stop the AppPool
@@ -958,7 +958,7 @@ Files in the deployment folder are locked when the app is running. Locked files 
 * Manually stop the app pool in the IIS Manager on the server.
 * Use PowerShell to drop *app_offline.htm* (requires PowerShell 5 or later):
 
-  ```PowerShell
+  ```powershell
   $pathToApp = 'PATH_TO_APP'
 
   # Stop the AppPool
@@ -1534,7 +1534,7 @@ Files in the deployment folder are locked when the app is running. Locked files 
 * Manually stop the app pool in the IIS Manager on the server.
 * Use PowerShell to drop *app_offline.htm* (requires PowerShell 5 or later):
 
-  ```PowerShell
+  ```powershell
   $pathToApp = 'PATH_TO_APP'
 
   # Stop the AppPool
