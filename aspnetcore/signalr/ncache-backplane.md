@@ -10,11 +10,11 @@ no-loc: [SignalR]
 uid: signalr/ncache-backplane
 ---
 
-# Set up an NCache Backplane for ASP.NET Core SignalR Scale-out
+# Set up an NCache backplane for ASP.NET Core SignalR scaleout
 
 By [Brad Rehman](https://github.com/Obaid-Rehman),
 
-This article explains how you can set up an [NCache](https://www.alachisoft.com/ncache/) clustered cache made up of multiple servers, also referred to as *nodes*, as a backplane for scaling out ASP.NET Core SignalR in your app.
+This article explains how you can set up an [NCache](https://www.alachisoft.com/ncache/) clustered cache made up of multiple servers, also referred to as nodes, as a backplane for scaling out ASP.NET Core SignalR in your app.
 
 ## Set up an NCache backplane
 
@@ -68,9 +68,9 @@ You can introduce NCache as a backplane in the SignalR app by taking the followi
   }
   ```
   
-* Configure Options:
+* Configure options:
  
-  The parameters for configuring the NCache handle that the SignalR app uses to connect with the NCache backplane are done via the NCache client configuration file [**client.ncconf**](https://www.alachisoft.com/resources/docs/ncache-pro/admin-guide/client-config.html) that **must** be included in the final build. 
+  The parameters for configuring the NCache client handle that the SignalR app uses to connect with the NCache backplane are done via the NCache client configuration file [**client.ncconf**](https://www.alachisoft.com/resources/docs/ncache-pro/admin-guide/client-config.html) that **must** be included in the final build. 
   
   The file contains parameters such as the id of the cache that will be used as the backplane, the IP addresses and ports of the server(s) constituting the backplane as well as client connection parameters that determine how the NCache client communicates with the cache servers.
 
@@ -80,11 +80,11 @@ You can introduce NCache as a backplane in the SignalR app by taking the followi
 
 * It is necessary to configure your web server farm load balancer to use sticky sessions as per the persistant connection needs of ASP.NET Core SignalR. Consult your load balancer documentation on how to achieve that.
 
-## NCache Backplane Reliability
+## NCache backplane reliability
 
 All NCache cluster [topologies](https://www.alachisoft.com/resources/docs/ncache/admin-guide/cache-topologies.html), except for the *Partitioned Cache* topology, ensure that messages are safe through replication in the event of a node failure. However, this is possible only if the cluster is made up of 2 or more servers.
 
-## NCache Backplane Logging
+## NCache backplane logging
 
 Logging is an important aspect of any enterprise application. For that reason, NCache Backplane for SignalR utilizes the ASP.NET Core logging capabilities and provides the logging infrastructure packaged and ready for use. 
 
@@ -92,7 +92,7 @@ As such, you are free to use pre-shipped as well as 3rd-party logging providers 
 
 Some of the more frequent logs of interest include the connection and disconnection states, as well as message delivery failures.
 
-## Next Steps
+## Next steps
 
 For more information, see the following resources:
 
