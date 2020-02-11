@@ -1,7 +1,7 @@
 ---
-title: NCache backplane for ASP.NET Core SignalR scale-out
+title: NCache backplane for ASP.NET Core SignalR scaleout
 author: Obaid-Rehman
-description: Learn how to set up an NCache backplane to enable scale-out for an ASP.NET Core SignalR app.
+description: Learn how to set up an NCache backplane to enable scaleout for an ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: Brad Rehman
 ms.custom: mvc
@@ -76,7 +76,7 @@ You can introduce NCache as a backplane in the SignalR app by taking the followi
 
 * If you're using one NCache distributed cache for multiple SignalR apps, use a different `ApplicationID` value of the `NCacheConfiguration` class for each SignalR app. 
 
-  Setting an `ApplicationID` secures one SignalR app from other SignalR apps that use different values for `ApplicationID` while sharing the same NCache backplane. If you don't assign different values, a message sent from one SignalR app to all of its own clients will go to all the clients of all the apps that use the same NCache distributed cache as a backplane.
+  Setting an `ApplicationID` secures one SignalR app from other SignalR apps that use different values for `ApplicationID` when sharing the same NCache backplane. If you don't assign different values, a message sent from one SignalR app to all of its own clients will go to all the clients of all the apps that use the same NCache distributed cache as a backplane.
 
 * It is necessary to configure your web server farm load balancer to use sticky sessions as per the persistant connection needs of ASP.NET Core SignalR. Consult your load balancer documentation on how to achieve that.
 
