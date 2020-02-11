@@ -1018,46 +1018,48 @@ The factory method of single service, such as the second argument to [AddSinglet
 
 * Avoid static access to services (for example, statically-typing [IApplicationBuilder.ApplicationServices](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices) for use elsewhere).
 
-* Avoid using the *service locator pattern*. For example, don't invoke <xref:System.IServiceProvider.GetService*> to obtain a service instance when you can use DI instead:
+* Avoid using the *service locator pattern*, which mixes [Inversion of Control](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) strategies.
 
-  **Incorrect:**
+  * Don't invoke <xref:System.IServiceProvider.GetService*> to obtain a service instance when you can use DI instead:
 
-  ```csharp
-  public class MyClass()
-  {
-      public void MyMethod()
-      {
-          var optionsMonitor = 
-              _services.GetService<IOptionsMonitor<MyOptions>>();
-          var option = optionsMonitor.CurrentValue.Option;
+    **Incorrect:**
 
-          ...
-      }
-  }
-  ```
+    ```csharp
+    public class MyClass()
+    {
+        public void MyMethod()
+        {
+            var optionsMonitor = 
+                _services.GetService<IOptionsMonitor<MyOptions>>();
+            var option = optionsMonitor.CurrentValue.Option;
 
-  **Correct**:
+            ...
+        }
+    }
+    ```
 
-  ```csharp
-  public class MyClass
-  {
-      private readonly IOptionsMonitor<MyOptions> _optionsMonitor;
+    **Correct**:
 
-      public MyClass(IOptionsMonitor<MyOptions> optionsMonitor)
-      {
-          _optionsMonitor = optionsMonitor;
-      }
+    ```csharp
+    public class MyClass
+    {
+        private readonly IOptionsMonitor<MyOptions> _optionsMonitor;
 
-      public void MyMethod()
-      {
-          var option = _optionsMonitor.CurrentValue.Option;
+        public MyClass(IOptionsMonitor<MyOptions> optionsMonitor)
+        {
+            _optionsMonitor = optionsMonitor;
+        }
 
-          ...
-      }
-  }
-  ```
+        public void MyMethod()
+        {
+            var option = _optionsMonitor.CurrentValue.Option;
 
-* Another service locator variation to avoid is injecting a factory that resolves dependencies at runtime. Both of these practices mix [Inversion of Control](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) strategies.
+            ...
+        }
+    }
+    ```
+
+  * Avoid injecting a factory that resolves dependencies at runtime using <xref:System.IServiceProvider.GetService*>.
 
 * Avoid static access to `HttpContext` (for example, [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext)).
 
