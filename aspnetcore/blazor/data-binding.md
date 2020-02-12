@@ -134,12 +134,12 @@ The following child component (`ChildComponent`) has a `Year` component paramete
 }
 ```
 
-`EventCallback<T>` is explained in <xref:blazor/events#eventcallback>.
+`EventCallback<T>` is explained in <xref:blazor/event-handling#eventcallback>.
 
 The following parent component uses:
 
 * `ChildComponent` and binds the `ParentYear` parameter from the parent to the `Year` parameter on the child component.
-* The `onclick` event is used to trigger the `ChangeTheYear` method. For more information, see <xref:blazor/events>.
+* The `onclick` event is used to trigger the `ChangeTheYear` method. For more information, see <xref:blazor/event-handling>.
 
 ```razor
 @page "/ParentComponent"
@@ -212,8 +212,8 @@ A chained bind can't be implemented with `@bind` syntax in the page's element. T
 The following `PasswordField` component (*PasswordField.razor*):
 
 * Sets an `<input>` element's value to a `Password` property.
-* Exposes changes of the `Password` property to a parent component with an [EventCallback](xref:blazor/events#eventcallback).
-* Uses the `onclick` event is used to trigger the `ToggleShowPassword` method. For more information, see <xref:blazor/events>.
+* Exposes changes of the `Password` property to a parent component with an [EventCallback](xref:blazor/event-handling#eventcallback).
+* Uses the `onclick` event is used to trigger the `ToggleShowPassword` method. For more information, see <xref:blazor/event-handling>.
 
 ```razor
 <h1>Child Component</h2>
