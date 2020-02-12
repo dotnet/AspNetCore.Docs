@@ -48,7 +48,7 @@ namespace WebApiSample.DataAccess.Repositories
             }
         }
 
-        public List<Product> GetProducts() =>
+        public IList<Product> GetProducts() =>
             _context.Products.OrderBy(p => p.Name).ToList();
 
         public IAsyncEnumerable<Product> GetProductsAsync() =>

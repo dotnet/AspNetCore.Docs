@@ -31,7 +31,7 @@ namespace WebApiSample.Controllers
 
         #region snippet_Get
         [HttpGet]
-        public List<Product> Get() =>
+        public IList<Product> Get() =>
             _repository.GetProducts();
         #endregion
 

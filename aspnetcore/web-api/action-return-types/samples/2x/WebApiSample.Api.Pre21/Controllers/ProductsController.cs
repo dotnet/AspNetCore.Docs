@@ -20,7 +20,7 @@ namespace WebApiSample.Api.Pre21.Controllers
 
         #region snippet_Get
         [HttpGet]
-        public List<Product> Get() =>
+        public IList<Product> Get() =>
             _repository.GetProducts();
         #endregion
 
