@@ -2,7 +2,7 @@
 @using JsInteropClasses
 
 <input @ref="_username" />
-<button @onclick="OnClick">Do something generic</button>
+<button @onclick="OnClickMethod">Do something generic</button>
 
 <p>
     _returnValue: @_returnValue
@@ -12,7 +12,7 @@
     private ElementReference _username;
     private string _returnValue;
 
-    private async Task OnClick()
+    private async Task OnClickMethod()
     {
         _returnValue = await _username.GenericMethod<string>(JSRuntime);
     }
