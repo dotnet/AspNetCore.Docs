@@ -77,9 +77,9 @@ app.UseOwin(pipeline =>
     {
         return async environment =>
         {
-            // do something before
+            // Do something before.
             await next(environment);
-            // do something after
+            // Do something after.
         };
     });
 });
