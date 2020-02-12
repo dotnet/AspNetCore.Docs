@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/22/2020
+ms.date: 02/12/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/handle-errors
 ---
@@ -277,7 +277,7 @@ To avoid infinite recursion patterns, ensure that recursive rendering code conta
 
 ### Custom render tree logic
 
-Most Blazor components are implemented as *.razor* files and are compiled to produce logic that operates on a `RenderTreeBuilder` to render their output. A developer may manually implement `RenderTreeBuilder` logic using procedural C# code. For more information, see <xref:blazor/components#manual-rendertreebuilder-logic>.
+Most Blazor components are implemented as *.razor* files and are compiled to produce logic that operates on a `RenderTreeBuilder` to render their output. A developer may manually implement `RenderTreeBuilder` logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
 > [!WARNING]
 > Use of manual render tree builder logic is considered an advanced and unsafe scenario, not recommended for general component development.
