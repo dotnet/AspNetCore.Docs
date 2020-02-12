@@ -93,7 +93,7 @@ When a Razor Page or view is rendered, every line of Razor code emits HTML in te
 
 A Blazor app is composed of reusable elements of UI called *components*. A component contains C# code, markup, and other components. When a component is rendered, Blazor produces a graph of the included components similar to an HTML or XML Document Object Model (DOM). This graph includes component state held in properties and fields. Blazor evaluates the component graph to produce a binary representation of the markup. The binary format can be:
 
-* Turned into HTML text (during prerendering&dagger;). 
+* Turned into HTML text (during prerendering&dagger;).
 * Used to efficiently update the markup during regular rendering.
 
 &dagger;*Prerendering* &ndash; The requested Razor component is compiled on the server into static HTML and sent to the client, where it's rendered to the user. After the connection is made between the client and the server, the component's static prerendered elements are replaced with interactive components.
