@@ -1,0 +1,280 @@
+### YamlMime:Hub
+
+title: ASP.NET documentation
+summary: Learn to use ASP.NET Core to create cross-platform, cloud-based, Internet-connected applications. Browse API reference, sample code, tutorials, and more.
+brand: aspnet
+
+metadata:
+  title: ASP.NET documentation
+  description: Learn to use ASP.NET Core to create cross-platform, cloud-based, Internet-connected applications. Browse API reference, sample code, tutorials, and more.
+  ms.product: aspnet
+  ms.topic: hub-page
+  ms.collection: collection
+  author: WadePickett
+  ms.author: wpickett
+  ms.date: 02/11/2020
+
+# highlightedContent section (optional)
+# Maximum of 8 items
+highlightedContent:
+# itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
+  items:
+    # Card
+    - title: "Create an ASP.NET Core app on any platform in 5 minutes."
+      itemType: get-started
+      url: aspnetcore/getting-started/index
+    # Card
+    - title: "Introduction to ASP.NET Core."
+      itemType: overview
+      url: aspnetcore/introduction-to-aspnet-core
+    # Card
+    - title: "Create your first web app."
+      itemType: learn
+      url: https://dotnet.microsoft.com/learn/aspnet/hello-world-tutorial/intro
+    # Card
+    - title: "What's new in ASP.NET Core docs"
+      itemType: whats-new
+      url: whats-new/index.yml
+
+# conceptualContent section (optional)
+conceptualContent:
+# itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
+  title: "ASP.NET Core: Free. Cross-platform. Open source." # < 60 chars (optional)
+  summary: "A developer platform for building all your apps: web, mobile, desktop, gaming, IoT, and more. Supported on Windows, Linux, and macOS."
+  items:
+    # Card
+    - title: Open-source .NET
+      summary: Learn about .NET Core
+      links:
+        - url: core/index.md
+          itemType: overview
+          text: .NET Core overview
+        - url: core/whats-new/dotnet-core-3-1.md
+          itemType: whats-new
+          text: What's new in .NET Core 3.1
+        - url: standard/tour.md
+          itemType: overview
+          text: Tour of .NET
+        - url: core/deploying/index.md
+          itemType: deploy
+          text: Deploy .NET Core apps
+        - url: core/docker/build-container.md
+          itemType: tutorial
+          text: Containerize .NET Core apps with Docker
+        - url: core/tutorials/index.md
+          itemType: tutorial
+          text: Tutorials
+    # Card
+    - title: .NET concepts
+      summary: Learn the fundamental concepts of .NET
+      links:
+        - url: https://channel9.msdn.com/Series/NET-Core-101/What-is-NET
+          itemType: video
+          text: What is .NET?
+        - url: standard/index.md
+          itemType: overview
+          text: Overview of .NET
+        - url: standard/net-standard.md
+          itemType: overview
+          text: .NET Standard
+        - url: /aspnet/core/
+          itemType: overview
+          text: ASP.NET Core
+        - url: /ef/core/
+          itemType: overview
+          text: Entity Framework Core
+        - url: standard/get-started.md
+          itemType: get-started
+          text: Get started
+        - url: standard/components.md
+          itemType: concept
+          text: .NET architectural components
+        - url: framework/index.md
+          itemType: overview
+          text: .NET Framework (Windows) apps
+    # Card
+    - title: Develop .NET apps
+      summary: Start developing with .NET
+      links:
+        - url: core/sdk.md
+          itemType: download
+          text: Download the .NET Core SDK
+        - url: core/tools/index.md
+          itemType: overview
+          text: .NET Core CLI overview
+        - url: core/porting/index.md
+          itemType: how-to-guide
+          text: Port from .NET Framework to .NET Core
+        - url: core/compatibility/index.md
+          itemType: concept
+          text: .NET Core breaking changes
+        - url: desktop-wpf/overview/index.md
+          itemType: overview
+          text: Create .NET Core desktop apps for Windows
+        - url: standard/library-guidance/index.md
+          itemType: concept
+          text: Open source library guidance
+    # Card
+    - title: .NET architectural guides
+      summary: Read foundational development and architectural guidance for .NET
+      links:
+        - url: architecture/microservices/index.md
+          itemType: architecture
+          text: ".NET Microservices: Architecture for containerized .NET apps"
+        - url: architecture/modern-web-apps-azure/index.md
+          itemType: architecture
+          text: Architect modern web applications with ASP.NET Core and Azure
+        - url: architecture/containerized-lifecycle/index.md
+          itemType: architecture
+          text: "Containerized Docker application lifecycle with Microsoft platform and tools"
+        - url: architecture/modernize-with-azure-containers/index.md
+          itemType: architecture
+          text: "Modernize existing .NET applications with Azure cloud and Windows containers"
+      # footerLink (optional)
+      footerLink:
+        url: architecture/index.yml
+        text: All architecture guides
+
+# tools section (optional)
+## Languages: C#, VB, F#, 
+tools:
+  title: Programming languages # < 60 chars (optional)
+  summary: "You can write .NET apps in C#, F#, or Visual Basic."
+  items:
+    # Card
+    - title: "A modern, object-oriented, type-safe member of the C family"
+      imageSrc: https://docs.microsoft.com/media/logos/logo_Csharp.svg
+      url: csharp/index.yml
+    # Card
+    - title: "A functional programming language for .NET"
+      imageSrc: https://docs.microsoft.com/media/logos/logo_Fsharp.svg
+      url: fsharp/index.yml
+    # Card
+    - title: "An approachable language with readable syntax"
+      imageSrc: https://docs.microsoft.com/media/logos/logo_VB.svg
+      url: visual-basic/index.yml
+
+# Card with summary style
+additionalContent:
+  # Supports up to 3 sections
+  sections: 
+    - title: Create your application # < 60 chars (optional)
+      summary: "You can choose web, mobile, desktop, gaming, IoT, and more." # < 160 chars (optional)
+      items:
+      # Card
+      - title: Web
+        links:
+          - url: /aspnet/core/getting-started
+            text: Create your first web app
+          - url: /aspnet/core/tutorials
+            text: ASP.NET Core tutorials
+          - url: /aspnet/core
+            text: What is ASP.NET Core?
+          - url: /aspnet/core/tutorials/first-mvc-app/start-mvc
+            text: ASP.NET Core in Visual Studio
+          - url: /aspnet/mvc/overview/deployment/docker-aspnetmvc
+            text: ASP.NET MVC apps in Windows containers
+          - url: /aspnet/core/blazor/
+            text: "Blazor: Interactive client-side web UI with .NET"
+      # Card
+      - title: Cloud native and microservices
+        links:
+          - url: /dotnet/azure/
+            text: Azure for .NET documentation
+          - url: /azure/storage
+            text: Storage
+          - url: /dotnet/fsharp/using-fsharp-on-azure/
+            text: Using F# on Azure
+          - url: architecture/serverless/index.md
+            text: "Serverless apps: Architecture, patterns, and Azure implementation"
+          - url: architecture/microservices/index.md
+            text: ".NET Microservices: Architecture for Containerized .NET Applications"
+      # Card
+      - title: Mobile
+        links:
+          - url: /xamarin/ios/
+            text: Xamarin.iOS
+          - url: /xamarin/android
+            text: Xamarin.Android
+          - url: /xamarin/xamarin-forms
+            text: Xamarin.Forms
+      # Card
+      - title: Desktop
+        links:
+          - url: /uwp
+            text: Universal Windows apps
+          - url: desktop-wpf/index.md
+            text: Windows Presentation Foundation (.NET Core)
+          - url: framework/wpf/index.md
+            text: Windows Presentation Foundation (.NET Framework)
+          - url: framework/winforms/index.md
+            text: Windows Forms
+          - url: /xamarin/mac
+            text: Xamarin for macOS
+      # Card
+      - title: Gaming
+        links:
+          - url: https://visualstudio.microsoft.com/vs/features/game-development/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link
+            text: Game development with Visual Studio
+          - url: https://docs.cryengine.com/display/CEPROG/C%23+Programming
+            text: Learn how to use CRYENGINE to build games with C#
+          - url: http://www.monogame.net/documentation/?page=main
+            text: Build games with C# using the MonoGame library
+          - url: https://docs.unity3d.com/Manual/index.html
+            text: Learn how to use Unity to build 2D and 3D games with C#
+      # Card
+      - title: Machine learning and AI
+        links:
+          - url: machine-learning/index.yml
+            text: Build custom AI solutions with ML.NET
+          - url: /azure/cognitive-services/
+            text: Azure Cognitive Services
+          - url: /azure/machine-learning
+            text: Azure machine learning
+          - url: spark/index.yml
+            text: .NET for Apache Spark
+      # Card
+      - title: Internet of things (IoT)
+        links:
+          - url: https://channel9.msdn.com/Shows/On-NET/IoT-support-for-NET-Core
+            text: "On .NET: Learn about IoT support in .NET Core"
+          - url: https://docs.microsoft.com/archive/msdn-magazine/2019/august/net-core-cross-platform-iot-programming-with-net-core-3-0
+            text: Cross-Platform IoT Programming with .NET Core 3.0
+          - url: https://github.com/dotnet/iot
+            text: .NET Core IoT libraries
+          - url: https://www.nuget.org/packages/System.Device.Gpio
+            text: System.Device.Gpio NuGet package
+
+    - title: API reference sections # < 60 chars (optional)
+      summary: Search the .NET API reference documentation, scoped to your interest. # < 160 chars (optional)
+      items:
+        # Card
+      - title: ".NET Core API reference"
+        summary: API reference documentation for .NET Core
+        url: https://docs.microsoft.com/dotnet/api/?view=netcore-3.1
+      # Card
+      - title: ".NET Framework API reference"
+        summary: API reference documentation for .NET Framework
+        url: https://docs.microsoft.com/dotnet/api/?view=netframework-4.8
+      # Card
+      - title: "ML.NET API reference"
+        summary: API reference documentation for ML.NET
+        url: https://docs.microsoft.com/dotnet/api/?view=ml-dotnet
+      # Card
+      - title: ".NET for Apache Spark API reference"
+        summary: API reference documentation for .NET for Apache Spark
+        url: https://docs.microsoft.com/dotnet/api/?view=spark-dotnet
+      # Card
+      - title: "C# language reference"
+        summary: C# language reference and specification
+        url: csharp/language-reference/index.md
+      # Card
+      - title: "F# language reference"
+        summary: F# language reference
+        url: fsharp/language-reference/index.md
+      # Card
+      - title: "Visual Basic language reference"
+        summary: Visual Basic language reference and specification
+        url: visual-basic/language-reference/index.md
+  # footer (optional)
+  footer: "Contribute to .NET docs. Read our [contributor guide](https://github.com/dotnet/Docs/blob/master/CONTRIBUTING.md)."
