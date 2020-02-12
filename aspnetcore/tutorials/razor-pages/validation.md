@@ -156,7 +156,7 @@ The DataAnnotations applied to the class change the schema. For example, the Dat
 
 The `Movie` table currently has the following schema:
 
-``` sql
+```sql
 CREATE TABLE [dbo].[Movie] (
     [ID]          INT             IDENTITY (1, 1) NOT NULL,
     [Title]       NVARCHAR (MAX)  NULL,
@@ -184,7 +184,7 @@ Update-Database
 
 The updated `Movie` table has the following schema:
 
-``` sql
+```sql
 CREATE TABLE [dbo].[Movie] (
     [ID]          INT             IDENTITY (1, 1) NOT NULL,
     [Title]       NVARCHAR (60)   NOT NULL,

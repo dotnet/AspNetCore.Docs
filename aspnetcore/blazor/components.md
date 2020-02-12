@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/24/2020
+ms.date: 02/04/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/components
 ---
@@ -62,7 +62,7 @@ To use a custom folder, add the custom folder's namespace to either the parent c
 
 Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
 
-To prepare a Razor Pages or MVC app to host Razor components, follow the guidance in the *Integrate Razor components into Razor Pages and MVC apps* section of the <xref:blazor/hosting-models#integrate-razor-components-into-razor-pages-and-mvc-apps> article.
+To prepare a Razor Pages or MVC app to host Razor components, follow the guidance in the *Integrate Razor components into Razor Pages and MVC apps* section of the <xref:blazor/hosting-model-configuration#integrate-razor-components-into-razor-pages-and-mvc-apps> article.
 
 When using a custom folder to hold the app's components, add the namespace representing the folder to either the page/view or to the *_ViewImports.cshtml* file. In the following example:
 
@@ -99,7 +99,10 @@ While pages and views can use components, the converse isn't true. Components ca
 
 Rendering server components from a static HTML page isn't supported.
 
-For more information on how components are rendered, component state, and the `Component` Tag Helper, see <xref:blazor/hosting-models>.
+For more information on how components are rendered, component state, and the `Component` Tag Helper, see the following articles:
+
+* <xref:blazor/hosting-models>
+* <xref:blazor/hosting-model-configuration>
 
 ## Tag Helpers aren't used in components
 
@@ -141,7 +144,7 @@ In the following example from the sample app, the `ParentComponent` sets the val
 <h1>Parent-child example</h1>
 
 <ChildComponent Title="Panel Title from Parent"
-                OnClick="@ShowMessage">
+                OnClickCallback="@ShowMessage">
     Content of the child component is supplied
     by the parent component.
 </ChildComponent>
@@ -172,7 +175,7 @@ The `ParentComponent` in the sample app can provide content for rendering the `C
 <h1>Parent-child example</h1>
 
 <ChildComponent Title="Panel Title from Parent"
-                OnClick="@ShowMessage">
+                OnClickCallback="@ShowMessage">
     Content of the child component is supplied
     by the parent component.
 </ChildComponent>
@@ -343,7 +346,7 @@ Unlike `onchange`, which fires when the element loses focus, `oninput` fires whe
 * The specified expression (`CurrentValue`) to the element's `value` attribute.
 * A change event delegate to the event specified by `@bind-value:event`.
 
-**Unparsable values**
+### Unparsable values
 
 When a user provides an unparsable value to a databound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
 
@@ -371,7 +374,7 @@ By default, binding applies to the element's `onchange` event (`@bind="{PROPERTY
   * Permit the user to provide invalid input and receive validation errors on the associated `EditContext`.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
-**Globalization**
+### Globalization
 
 `@bind` values are formatted for display and parsed using the current culture's rules.
 
@@ -398,7 +401,7 @@ The following field types have specific formatting requirements and aren't curre
 
 For information on how to set the user's culture, see the [Localization](#localization) section.
 
-**Format strings**
+### Format strings
 
 Data binding works with <xref:System.DateTime> format strings using [`@bind:format`](xref:mvc/views/razor#bind). Other format expressions, such as currency or number formats, aren't available at this time.
 
@@ -426,9 +429,9 @@ Specifying a format for the `date` field type isn't recommended because Blazor h
 <input type="date" @bind="StartDate" @bind:format="yyyy-MM-dd">
 ```
 
-**Component parameters**
+### Parent-to-child binding with component parameters
 
-Binding recognizes component parameters, where `@bind-{property}` can bind a property value across components.
+Binding recognizes component parameters, where `@bind-{property}` can bind a property value from a parent component down to a child component. Binding from a child to a parent is covered in the [Child-to-parent binding with chained bind](#child-to-parent-binding-with-chained-bind) section.
 
 The following child component (`ChildComponent`) has a `Year` component parameter and `YearChanged` callback:
 
@@ -448,7 +451,10 @@ The following child component (`ChildComponent`) has a `Year` component paramete
 
 `EventCallback<T>` is explained in the [EventCallback](#eventcallback) section.
 
-The following parent component uses `ChildComponent` and binds the `ParentYear` parameter from the parent to the `Year` parameter on the child component:
+The following parent component uses:
+
+* `ChildComponent` and binds the `ParentYear` parameter from the parent to the `Year` parameter on the child component.
+* The `onclick` event is used to trigger the `ChangeTheYear` method. For more information, see the [Event handling](#event-handling) section.
 
 ```razor
 @page "/ParentComponent"
@@ -512,7 +518,138 @@ In general, a property can be bound to a corresponding event handler using `@bin
 <MyComponent @bind-MyProp="MyValue" @bind-MyProp:event="MyEventHandler" />
 ```
 
-**Radio buttons**
+### Child-to-parent binding with chained bind
+
+A common scenario is chaining a data-bound parameter to a page element in the component's output. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
+
+A chained bind can't be implemented with `@bind` syntax in the page's element. The event handler and value must be specified separately. A parent component, however, can use `@bind` syntax with the component's parameter.
+
+The following `PasswordField` component (*PasswordField.razor*):
+
+* Sets an `<input>` element's value to a `Password` property.
+* Exposes changes of the `Password` property to a parent component with an [EventCallback](#eventcallback).
+* Uses the `onclick` event is used to trigger the `ToggleShowPassword` method. For more information, see the [Event handling](#event-handling) section.
+
+```razor
+<h1>Child Component</h2>
+
+Password: 
+
+<input @oninput="OnPasswordChanged" 
+       required 
+       type="@(_showPassword ? "text" : "password")" 
+       value="@Password" />
+
+<button class="btn btn-primary" @onclick="ToggleShowPassword">
+    Show password
+</button>
+
+@code {
+    private bool _showPassword;
+
+    [Parameter]
+    public string Password { get; set; }
+
+    [Parameter]
+    public EventCallback<string> PasswordChanged { get; set; }
+
+    private Task OnPasswordChanged(ChangeEventArgs e)
+    {
+        Password = e.Value.ToString();
+
+        return PasswordChanged.InvokeAsync(Password);
+    }
+
+    private void ToggleShowPassword()
+    {
+        _showPassword = !_showPassword;
+    }
+}
+```
+
+The `PasswordField` component is used in another component:
+
+```razor
+@page "/ParentComponent"
+
+<h1>Parent Component</h1>
+
+<PasswordField @bind-Password="_password" />
+
+@code {
+    private string _password;
+}
+```
+
+To perform checks or trap errors on the password in the preceding example:
+
+* Create a backing field for `Password` (`_password` in the following example code).
+* Perform the checks or trap errors in the `Password` setter.
+
+The following example provides immediate feedback to the user if a space is used in the password's value:
+
+```razor
+@page "/ParentComponent"
+
+<h1>Parent Component</h1>
+
+Password: 
+
+<input @oninput="OnPasswordChanged" 
+       required 
+       type="@(_showPassword ? "text" : "password")" 
+       value="@Password" />
+
+<button class="btn btn-primary" @onclick="ToggleShowPassword">
+    Show password
+</button>
+
+<span class="text-danger">@_validationMessage</span>
+
+@code {
+    private bool _showPassword;
+    private string _password;
+    private string _validationMessage;
+
+    [Parameter]
+    public string Password
+    {
+        get { return _password ?? string.Empty; }
+        set
+        {
+            if (_password != value)
+            {
+                if (value.Contains(' '))
+                {
+                    _validationMessage = "Spaces not allowed!";
+                }
+                else
+                {
+                    _password = value;
+                    _validationMessage = string.Empty;
+                }
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string> PasswordChanged { get; set; }
+
+    private Task OnPasswordChanged(ChangeEventArgs e)
+    {
+        Password = e.Value.ToString();
+
+        return PasswordChanged.InvokeAsync(Password);
+    }
+
+    private void ToggleShowPassword()
+    {
+        _showPassword = !_showPassword;
+    }
+}
+```
+
+### Radio buttons
 
 For information on binding to radio buttons in a form, see <xref:blazor/forms-validation#work-with-radio-buttons>.
 
@@ -586,7 +723,10 @@ Supported `EventArgs` are shown in the following table.
 | Progress         | `ProgressEventArgs`  | `onabort`, `onload`, `onloadend`, `onloadstart`, `onprogress`, `ontimeout` |
 | Touch            | `TouchEventArgs`     | `ontouchstart`, `ontouchend`, `ontouchmove`, `ontouchenter`, `ontouchleave`, `ontouchcancel`<br><br>`TouchPoint` represents a single contact point on a touch-sensitive device. |
 
-For information on the properties and event handling behavior of the events in the preceding table, see [EventArgs classes in the reference source (dotnet/aspnetcore release/3.1 branch)](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/Components/Web/src/Web).
+For more information, see the following resources:
+
+* [EventArgs classes in the ASP.NET Core reference source (dotnet/aspnetcore release/3.1 branch)](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/Components/Web/src/Web).
+* [MDN web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers) &ndash; Includes information on which HTML elements support each DOM event.
 
 ### Lambda expressions
 
@@ -633,7 +773,7 @@ The `ChildComponent` in the sample app (*Components/ChildComponent.razor*) demon
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=5-7,17-18)]
 
-The `ParentComponent` sets the child's `EventCallback<T>` (`OnClick`) to its `ShowMessage` method.
+The `ParentComponent` sets the child's `EventCallback<T>` (`OnClickCallback`) to its `ShowMessage` method.
 
 *Pages/ParentComponent.razor*:
 
@@ -643,7 +783,7 @@ The `ParentComponent` sets the child's `EventCallback<T>` (`OnClick`) to its `Sh
 <h1>Parent-child example</h1>
 
 <ChildComponent Title="Panel Title from Parent"
-                OnClick="@ShowMessage">
+                OnClickCallback="@ShowMessage">
     Content of the child component is supplied
     by the parent component.
 </ChildComponent>
@@ -669,7 +809,7 @@ When the button is selected in the `ChildComponent`:
 
 ```razor
 <ChildComponent 
-    OnClick="@(async () => { await Task.Yield(); _messageText = "Blaze It!"; })" />
+    OnClickCallback="@(async () => { await Task.Yield(); _messageText = "Blaze It!"; })" />
 ```
 
 Invoke an `EventCallback` or `EventCallback<T>` with `InvokeAsync` and await the <xref:System.Threading.Tasks.Task>:
@@ -748,126 +888,6 @@ In the following example, selecting the check box prevents click events from the
 }
 ```
 
-## Chained bind
-
-A common scenario is chaining a data-bound parameter to a page element in the component's output. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
-
-A chained bind can't be implemented with `@bind` syntax in the page's element. The event handler and value must be specified separately. A parent component, however, can use `@bind` syntax with the component's parameter.
-
-The following `PasswordField` component (*PasswordField.razor*):
-
-* Sets an `<input>` element's value to a `Password` property.
-* Exposes changes of the `Password` property to a parent component with an [EventCallback](#eventcallback).
-
-```razor
-Password: 
-
-<input @oninput="OnPasswordChanged" 
-       required 
-       type="@(_showPassword ? "text" : "password")" 
-       value="@Password" />
-
-<button class="btn btn-primary" @onclick="ToggleShowPassword">
-    Show password
-</button>
-
-@code {
-    private bool _showPassword;
-
-    [Parameter]
-    public string Password { get; set; }
-
-    [Parameter]
-    public EventCallback<string> PasswordChanged { get; set; }
-
-    private Task OnPasswordChanged(ChangeEventArgs e)
-    {
-        Password = e.Value.ToString();
-
-        return PasswordChanged.InvokeAsync(Password);
-    }
-
-    private void ToggleShowPassword()
-    {
-        _showPassword = !_showPassword;
-    }
-}
-```
-
-The `PasswordField` component is used in another component:
-
-```razor
-<PasswordField @bind-Password="_password" />
-
-@code {
-    private string _password;
-}
-```
-
-To perform checks or trap errors on the password in the preceding example:
-
-* Create a backing field for `Password` (`_password` in the following example code).
-* Perform the checks or trap errors in the `Password` setter.
-
-The following example provides immediate feedback to the user if a space is used in the password's value:
-
-```razor
-Password: 
-
-<input @oninput="OnPasswordChanged" 
-       required 
-       type="@(_showPassword ? "text" : "password")" 
-       value="@Password" />
-
-<button class="btn btn-primary" @onclick="ToggleShowPassword">
-    Show password
-</button>
-
-<span class="text-danger">@_validationMessage</span>
-
-@code {
-    private bool _showPassword;
-    private string _password;
-    private string _validationMessage;
-
-    [Parameter]
-    public string Password
-    {
-        get { return _password ?? string.Empty; }
-        set
-        {
-            if (_password != value)
-            {
-                if (value.Contains(' '))
-                {
-                    _validationMessage = "Spaces not allowed!";
-                }
-                else
-                {
-                    _password = value;
-                    _validationMessage = string.Empty;
-                }
-            }
-        }
-    }
-
-    [Parameter]
-    public EventCallback<string> PasswordChanged { get; set; }
-
-    private Task OnPasswordChanged(ChangeEventArgs e)
-    {
-        Password = e.Value.ToString();
-
-        return PasswordChanged.InvokeAsync(Password);
-    }
-
-    private void ToggleShowPassword()
-    {
-        _showPassword = !_showPassword;
-    }
-}
-```
-
 ## Capture references to components
 
 Component references provide a way to reference a component instance so that you can issue commands to that instance, such as `Show` or `Reset`. To capture a component reference:
@@ -920,7 +940,21 @@ public class NotifierService
 }
 ```
 
-Usage of the `NotifierService` to update a component:
+Register the `NotifierService` as a singletion:
+
+* In Blazor WebAssembly, register the service in `Program.Main`:
+
+  ```csharp
+  builder.Services.AddSingleton<NotifierService>();
+  ```
+
+* In Blazor Server, register the service in `Startup.ConfigureServices`:
+
+  ```csharp
+  services.AddSingleton<NotifierService>();
+  ```
+
+Use the `NotifierService` to update a component:
 
 ```razor
 @page "/"

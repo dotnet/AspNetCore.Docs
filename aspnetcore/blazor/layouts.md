@@ -86,7 +86,7 @@ Finally, `MasterLayout` in *MasterLayout.razor* contains the top-level layout el
 
 ## Share a Razor Pages layout with integrated components
 
-When routable components are integrated into a Razor Pages app, the app's shared layout can be used with the components. For more information, see <xref:blazor/hosting-models#integrate-razor-components-into-razor-pages-and-mvc-apps>.
+When routable components are integrated into a Razor Pages app, the app's shared layout can be used with the components. For more information, see <xref:blazor/hosting-model-configuration#integrate-razor-components-into-razor-pages-and-mvc-apps>.
 
 ## Additional resources
 

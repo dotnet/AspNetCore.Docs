@@ -122,7 +122,7 @@ The code renders the following HTML:
 
 The HTML is shown in the browser as:
 
-```
+```html
 <span>Hello World</span>
 ```
 

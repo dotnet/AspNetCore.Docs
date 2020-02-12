@@ -295,7 +295,9 @@ Apply the migrations to initialize the database.
 
 Run the following command in the Package Manager Console (PMC):
 
-```PM> Update-Database```
+```powershell
+Update-Database
+```
 
 # [.NET Core CLI](#tab/netcore-cli)
 

@@ -215,7 +215,7 @@ The *Index.cshtml* file contains markup to create a delete button for each custo
 
 The rendered HTML:
 
-```HTML
+```html
 <button type="submit" formaction="/Customers?id=1&amp;handler=delete">delete</button>
 ```
 
@@ -518,7 +518,7 @@ The following markup in the *Pages/Customers/Index.cshtml* file displays the val
 
 The *Pages/Customers/Index.cshtml.cs* page model applies the `[TempData]` attribute to the `Message` property.
 
-```cs
+```csharp
 [TempData]
 public string Message { get; set; }
 ```
@@ -599,7 +599,7 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 * <xref:razor-pages/razor-pages-conventions>
 * <xref:test/razor-pages-tests>
 * <xref:mvc/views/partial>
-* [Integrate Razor components into Razor Pages and MVC apps](xref:blazor/hosting-models#integrate-razor-components-into-razor-pages-and-mvc-apps)
+* [Integrate Razor components into Razor Pages and MVC apps](xref:blazor/hosting-model-configuration#integrate-razor-components-into-razor-pages-and-mvc-apps)
 
 ::: moniker-end
 
@@ -1023,7 +1023,7 @@ The following markup in the *Pages/Customers/Index.cshtml* file displays the val
 
 The *Pages/Customers/Index.cshtml.cs* page model applies the `[TempData]` attribute to the `Message` property.
 
-```cs
+```csharp
 [TempData]
 public string Message { get; set; }
 ```

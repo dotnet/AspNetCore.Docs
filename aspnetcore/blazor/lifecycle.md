@@ -19,7 +19,7 @@ The Blazor framework includes synchronous and asynchronous lifecycle methods. Ov
 
 ### Component initialization methods
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*> are invoked when the component is initialized after having received its initial parameters from its parent component. Use `OnInitializedAsync` when the component performs an asynchronous operation and should refresh when the operation is completed. These methods are only called one time when the component is first instantiated.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*> are invoked when the component is initialized after having received its initial parameters from its parent component. Use `OnInitializedAsync` when the component performs an asynchronous operation and should refresh when the operation is completed.
 
 For a synchronous operation, override `OnInitialized`:
 
@@ -38,6 +38,15 @@ protected override async Task OnInitializedAsync()
     await ...
 }
 ```
+
+Blazor Server apps that [prerender their content](xref:blazor/hosting-model-configuration#render-mode) call `OnInitializedAsync` **_twice_**:
+
+* Once when the component is initially rendered statically as part of the page.
+* A second time when the browser establishes a connection back to the server.
+
+To prevent developer code in `OnInitializedAsync` from running twice, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section.
+
+While a Blazor Server app is prerendering, certain actions, such as calling into JavaScript, aren't possible because a connection with the browser hasn't been established. Components may need to render differently when prerendered. For more information, see the [Detect when the app is prerendering](#detect-when-the-app-is-prerendering) section.
 
 ### Before parameters are set
 
@@ -175,3 +184,67 @@ If a component implements <xref:System.IDisposable>, the [Dispose method](/dotne
 ## Handle errors
 
 For information on handling errors during lifecycle method execution, see <xref:blazor/handle-errors#lifecycle-methods>.
+
+## Stateful reconnection after prerendering
+
+In a Blazor Server app when `RenderMode` is `ServerPrerendered`, the component is initially rendered statically as part of the page. Once the browser establishes a connection back to the server, the component is rendered *again*, and the component is now interactive. If the [OnInitialized{Async}](xref:blazor/lifecycle#component-initialization-methods) lifecycle method for initializing the component is present, the method is executed *twice*:
+
+* When the component is prerendered statically.
+* After the server connection has been established.
+
+This can result in a noticeable change in the data displayed in the UI when the component is finally rendered.
+
+To avoid the double-rendering scenario in a Blazor Server app:
+
+* Pass in an identifier that can be used to cache the state during prerendering and to retrieve the state after the app restarts.
+* Use the identifier during prerendering to save component state.
+* Use the identifier after prerendering to retrieve the cached state.
+
+The following code demonstrates an updated `WeatherForecastService` in a template-based Blazor Server app that avoids the double rendering:
+
+```csharp
+public class WeatherForecastService
+{
+    private static readonly string[] _summaries = new[]
+    {
+        "Freezing", "Bracing", "Chilly", "Cool", "Mild",
+        "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+    };
+    
+    public WeatherForecastService(IMemoryCache memoryCache)
+    {
+        MemoryCache = memoryCache;
+    }
+    
+    public IMemoryCache MemoryCache { get; }
+
+    public Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
+    {
+        return MemoryCache.GetOrCreateAsync(startDate, async e =>
+        {
+            e.SetOptions(new MemoryCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = 
+                    TimeSpan.FromSeconds(30)
+            });
+
+            var rng = new Random();
+
+            await Task.Delay(TimeSpan.FromSeconds(10));
+
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = startDate.AddDays(index),
+                TemperatureC = rng.Next(-20, 55),
+                Summary = _summaries[rng.Next(_summaries.Length)]
+            }).ToArray();
+        });
+    }
+}
+```
+
+For more information on the `RenderMode`, see <xref:blazor/hosting-model-configuration#render-mode>.
+
+## Detect when the app is prerendering
+
+[!INCLUDE[](~/includes/blazor-prerendering.md)]
