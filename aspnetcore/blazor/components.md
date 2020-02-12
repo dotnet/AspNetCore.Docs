@@ -62,7 +62,7 @@ To use a custom folder, add the custom folder's namespace to either the parent c
 
 Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
 
-To prepare a Razor Pages or MVC app to host Razor components, follow the guidance in the *Integrate Razor components into Razor Pages and MVC apps* section of the <xref:blazor/hosting-models#integrate-razor-components-into-razor-pages-and-mvc-apps> article.
+To prepare a Razor Pages or MVC app to host Razor components, follow the guidance in the *Integrate Razor components into Razor Pages and MVC apps* section of the <xref:blazor/hosting-model-configuration#integrate-razor-components-into-razor-pages-and-mvc-apps> article.
 
 When using a custom folder to hold the app's components, add the namespace representing the folder to either the page/view or to the *_ViewImports.cshtml* file. In the following example:
 
@@ -99,7 +99,10 @@ While pages and views can use components, the converse isn't true. Components ca
 
 Rendering server components from a static HTML page isn't supported.
 
-For more information on how components are rendered, component state, and the `Component` Tag Helper, see <xref:blazor/hosting-models>.
+For more information on how components are rendered, component state, and the `Component` Tag Helper, see the following articles:
+
+* <xref:blazor/hosting-models>
+* <xref:blazor/hosting-model-configuration>
 
 ## Tag Helpers aren't used in components
 
