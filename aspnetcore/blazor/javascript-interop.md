@@ -583,7 +583,7 @@ To avoid a memory leak and allow garbage collection on a component that creates 
   }
   ```
   
-  The preceding pattern in a `ExampleJsInterop` class can also be implemented in a component:
+  The preceding pattern shown in the `ExampleJsInterop` class can also be implemented in a component:
   
   ```razor
   @page "/JSInteropComponent"
