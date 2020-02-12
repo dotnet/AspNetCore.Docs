@@ -826,11 +826,11 @@ The namespace of each controller is shown here for completeness. If the precedin
 
 The first two controllers are members of areas, and only match when their respective area name is provided by the `area` route value. The third controller isn't a member of any area, and can only match when no value for `area` is provided by routing.
 
+<a name="aa"></a>
+
 In terms of matching *no value*, the absence of the `area` value is the same as if the value for `area` were null or the empty string.
 
 When executing an action inside an area, the route value for `area` is available as an [ambient value](#ambient) for routing to use for URL generation. This means that by default areas act *sticky* for URL generation as demonstrated by the following sample.
-
-<!--Doesn't return what you said. I tested code and returned actual. -->
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup3.cs?name=snippet3)]
 
