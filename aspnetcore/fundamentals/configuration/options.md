@@ -323,7 +323,7 @@ The preceding example sets the named options instance to `optionalOptionsName`. 
 Validation runs when the options instance is created. An options instance is guaranteed to pass validation the first time it's accessed.
 
 > [!IMPORTANT]
-> Options validation doesn't guard against options modifications after the options instance is created. For example, `IOptionsSnapshot` options are created and validated once per request when the options are first accessed. The `IOptionsSnapshot` options aren't validated again on subsequent access attempts *on the same request*.
+> Options validation doesn't guard against options modifications after the options instance is created. For example, `IOptionsSnapshot` options are created and validated once per request when the options are first accessed. The `IOptionsSnapshot` options aren't validated again on subsequent access attempts *for the same request*.
 
 The `Validate` method accepts a `Func<TOptions, bool>`. To fully customize validation, implement `IValidateOptions<TOptions>`, which allows:
 
@@ -747,7 +747,7 @@ The preceding example sets the named options instance to `optionalOptionsName`. 
 Validation runs when the options instance is created. An options instance is guaranteed to pass validation the first time it's accessed.
 
 > [!IMPORTANT]
-> Options validation doesn't guard against options modifications after the options instance is created. For example, `IOptionsSnapshot` options are created and validated once per request when the options are first accessed. The `IOptionsSnapshot` options aren't validated again on subsequent access attempts *on the same request*.
+> Options validation doesn't guard against options modifications after the options instance is created. For example, `IOptionsSnapshot` options are created and validated once per request when the options are first accessed. The `IOptionsSnapshot` options aren't validated again on subsequent access attempts *for the same request*.
 
 The `Validate` method accepts a `Func<TOptions, bool>`. To fully customize validation, implement `IValidateOptions<TOptions>`, which allows:
 
