@@ -64,32 +64,25 @@ namespace RoutingSample
         string _message;
         Stopwatch _sw;
 
-        public  MyStopwatch(ILogger<Startup> logger, string message)
+        public MyStopwatch(ILogger<Startup> logger, string message)
         {
             _logger = logger;
             _message = message;
             _sw = Stopwatch.StartNew();
         }
 
-        private bool disposedValue = false; 
+        private bool disposedValue = false;
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    _logger.LogInformation("{Message }: {ElapsedMilliseconds}ms",
-                                            _message, _sw.ElapsedMilliseconds);
-                }
-
-                disposedValue = true;
-            }
-        }
 
         public void Dispose()
         {
-            Dispose(true);
+            if (!disposedValue)
+            {
+                _logger.LogInformation("{Message }: {ElapsedMilliseconds}ms",
+                                        _message, _sw.ElapsedMilliseconds);
+
+                disposedValue = true;
+            }
         }
     }
     #endregion

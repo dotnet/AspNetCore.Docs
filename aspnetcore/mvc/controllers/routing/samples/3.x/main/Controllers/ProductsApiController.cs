@@ -6,7 +6,7 @@ namespace WebMvcRouting.Controllers
     #region snippet
     [ApiController]
     [Route("products")]
-    public class ProductsApiController : Controller
+    public class ProductsApiController : ControllerBase
     {
         [HttpGet]
         public IActionResult ListProducts()

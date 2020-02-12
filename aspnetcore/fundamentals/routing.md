@@ -577,7 +577,12 @@ The following code implements `MyCustomConstraint`, which prevents `0` where app
 > [!WARNING]
 > When using <xref:System.Text.RegularExpressions> to process untrusted input, pass a timeout. A malicious user can provide input to `RegularExpressions` causing a [Denial-of-Service attack](https://www.us-cert.gov/ncas/tips/ST04-015).
 
-Although the preceding code prevents `0` in the `{id}` segment of the route, the following code is a better approach:
+The preceding code:
+
+* Prevents `0` in the `{id}` segment of the route.
+* Is shown to provide a basic example of implementing a custom contraint. It should not be used in a production app.
+
+The following code is a better approach to preventing an `id` containing a `0` from being processed:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/TestController.cs?name=snippet2)]
 
@@ -920,14 +925,10 @@ The routing tests have a [basic example](https://github.com/aspnet/AspNetCore/bl
 ### Creating routing-integrated middleware
 
 **CONSIDER** defining metadata types as an interface.
-**DO** make it possible to used metadata types as an attribute on classes and methods.
 
-```csharp
-public interface ICoolMetadata { ...}
+**DO** make it possible to use metadata types as an attribute on classes and methods.
 
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-public class CoolMetadataAttribute : Attribute, ICoolMetadata { ...}
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/ICoolMetadata.cs?name=snippet2)]
 
 Frameworks like controllers and Razor Pages support applying metadata attributes to types and methods. If you declare metadata types:
 

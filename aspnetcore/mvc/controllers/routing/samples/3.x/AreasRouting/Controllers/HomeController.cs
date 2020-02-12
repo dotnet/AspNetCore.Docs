@@ -2,21 +2,21 @@
 
 namespace AreasRouting.Controllers
 {
+    // Use  webBuilder.UseStartup<Startup6>();
+    #region snippet
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        #region snippet
         public IActionResult About()
         {
-            var url = Url.Action( "Users", "AddUser", new { Area = "Zebra" });
+            var url = Url.Action("AddUser", "Users", new { Area = "Zebra" });
             return Content($"URL: {url}");
         }
         #endregion
 
+        public IActionResult Index()
+        {
+            return View();
+        }
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";

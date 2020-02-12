@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 
 namespace RoutingSample.Middleware
 {
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Routing;
-
     #region snippet
     public class ProductsLinkMiddleware
     {

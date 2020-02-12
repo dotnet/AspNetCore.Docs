@@ -147,7 +147,6 @@ Multiple [conventional routes](#cr) can be added inside `UseEndpoints` by adding
 
 [!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
-<!-- review: Why would you ever use a dedicated conventional route like this? -->
 <a name="dcr"></a>
 
 The `blog` route in the preceding code is a **dedicated conventional route**. It's called a dedicated conventional route because:
@@ -162,44 +161,10 @@ Because `controller` and `action` don't appear in the route template `"blog/{*ar
 
 `/Blog`, `/Blog/Article`, and `/Blog/{any-string}` are the only URL paths that match the blog route.
 
-In the preceding example, the `blog` route has a higher priority for matches than the `default` route.
+The preceding example:
 
-
-<!-- Review: 
-
-Should I change:  In ASP.NET Core 3.0 and later, the routing system doesn't:
-
-to
-In ASP.NET Core 3.0 and later, **FOR CONVENTIONAL ROUTING**, the routing system doesn't:
-
-Does't attribute routing define routes and guarantee order?
-
-Next question:
-> * Provide guarantees about the execution order of extensibility like IRouteConstraint or IActionConstraint.
-
-Some thing like
-
-Provide guarantees about the execution order of extensibility. For example, IRouteConstraint and IActionConstraint provide guaranteed constraints, but routing doesn't have an extensibility mechanism to guarantee execution order.
-
-Could you simplify by dropping *of extensibility* ?
-
-Provide guarantees about execution order.
-
-I don't understand the *of extensibility* portion of *Provide guarantees about the execution order of extensibility*
-
---- Next question ---zx
-
-You write:
-the routing system doesn't:
-> * Define a concept called a *route*.
-
-We probably need to flesh that out more. It seems to contradict other statements, like:
-
-Inside the call to UseEndpoints, MapControllerRoute is used to create a single route. The single route is named default route. Most apps with controllers and views use a route with a template similar to the default route.
-
-These statements are also in the other doc.
-
- -->
+* `blog` route has a higher priority for matches than the `default` route.
+* Is and example of [Slug](https://developer.mozilla.org/docs/Glossary/Slug) style routing where it's typical to have an article name as part of the URL.
 
 > [!WARNING]
 > In ASP.NET Core 3.0 and later, the routing system doesn't:
@@ -328,8 +293,6 @@ The following keywords are reserved route parameter names when using Controllers
 
 Using `page` as a route parameter with attribute routing is a common error. Doing that results in inconsistent and confusing behavior with URL generation.
 
-<!-- review notes: Your template was missing terminating `"` [Route("/articles/{page})] that's why we use snippets :) -->
-
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo2Controller.cs?name=snippet)]
 
 The preceding controller returns an HTTP 500 error with the URL path `/articles/3`. The following controller returns `MyDemo3Controller.ListArticles 3` with the URL path `/articles/3`.
@@ -362,11 +325,8 @@ ASP.NET Core has the following route templates:
 
 <a name="arx"></a>
 
-## Attribute routing with Http verb attributes
+### Attribute routing with Http verb attributes
 
-<!-- I had to add this sample code/explanation, even though you can get it elsewhere in the doc. But the doc doesn't put it all together in one place. I need an H2 to link to this information because we get so many issues on https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api where they don't understand constraints and how the route is determined. I may move this section to an include and add it in the Web API tutorial - Or I could move it there and not include it here.
-For example, https://github.com/aspnet/AspNetCore.Docs/issues/16901
--->
 Unlike routes created for controllers with views that generally include `[action]` in the route template, API controllers typically don't include `[action]` in the route template. Because `[action]` isn't in the route template, the [action](#action) name is not in the route. That is, the method name isn't used in the matching route.
 
 Consider the following controller:
@@ -389,9 +349,6 @@ In the preceding code:
       [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet4)]
 
 Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttribute> attributes such as <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, <xref:Microsoft.AspNetCore.Mvc.HttpPutAttribute>, and <xref:Microsoft.AspNetCore.Mvc.HttpDeleteAttribute>. All of the [HTTP verb](#verb) attributes accept a route template. The following example shows two actions that match the same route template:
-
-<!-- review: My snippets use :ControllerBase, you used : Controller
-I'm using what the templates generate. Ditto for me using ActionResult and you used IActionResult -->
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyProductsController.cs?name=snippet1)]
 
@@ -467,10 +424,7 @@ The following table explains the `[Route]` attributes in the preceding code:
 
 ### Attribute route order
 
-<!-- In the  original, you had "In contrast to conventional routes which execute in a defined order"
-Is that no longer true? If that's still true need to keep that and add that to the #cr section.
-  -->
-In contrast to [conventional routes](#cr) which execute in a defined order, attribute routing builds a tree and matches all routes simultaneously:
+Attribute routing builds a tree and matches all routes simultaneously:
 
 * The route entries behave as if placed in an ideal ordering.
 * The most specific routes have a chance to execute before the more general routes.
@@ -586,7 +540,17 @@ Putting multiple route attributes on the controller means that each one will com
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet6)]
 
-When multiple route attributes that implement <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint> are placed on an action, each action constraint combines with the route template from the attribute that defined it. <!-- What is it?? Sentence is really too long to MT -->  All the [HTTP verb](#verb) route constraints implement `IActionConstraint`. <!-- Review/edit and remove comment marks. For example, in the preceding code, the post constraint `[HttpPost("Buy")]` combines with -->
+All the [HTTP verb](#verb) route constraints implement `IActionConstraint`.
+
+When multiple route attributes that implement <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint> are placed on an action:
+
+* Each action constraint combines with the route template from the attribute that defined it.
+
+<!-- Review : What is it? as in ....the attribute that defined it. 
+
+NEED TO ADD ANOTHER CONCRETE SENTENCE, SUCH AS THE FOLLOWING:
+For example, in the following code, the post constraint `[HttpPost("Checkout")]` combines with [Route("api/[controller]")] to define the POST 'api/Products/Checkout' endpoint.
+-->
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet7)]
 
@@ -678,9 +642,6 @@ ASP.NET Core apps can mix the use of conventional routing and attribute routing.
 
 Actions are either conventionally routed or attribute routed. Placing a route on the controller or the action makes it attribute routed. Actions that define attribute routes cannot be reached through the conventional routes and vice-versa. **Any** route attribute on the controller makes **all** actions in the controller attribute routed.
 
-<!-- review: Can we delete based on the historical use cases for each system. 
-Dan.Roth does'nt really care about history. It's what we have today.
--->
 Attribute routing and conventional routing use the same routing engine.
 
 <a name="routing-url-gen-ref-label"></a>
@@ -810,8 +771,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase> and <xref:Microsoft.AspNetCor
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/CustomerController.cs?name=snippet)]
 
-<!-- review: What are the action results factory methods? -->
-The action results factory methods follow a similar pattern to the methods on `IUrlHelper`.
+The action results factory methods such as <xref:Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction*> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> follow a similar pattern to the methods on `IUrlHelper`.
 
 <a name="routing-dedicated-ref-label"></a>
 
@@ -868,7 +828,6 @@ The first two controllers are members of areas, and only match when their respec
 
 In terms of matching *no value*, the absence of the `area` value is the same as if the value for `area` were null or the empty string.
 
-<!-- sticky won't MT. Can we define it? -->
 When executing an action inside an area, the route value for `area` is available as an [ambient value](#ambient) for routing to use for URL generation. This means that by default areas act *sticky* for URL generation as demonstrated by the following sample.
 
 <!--Doesn't return what you said. I tested code and returned actual. -->
@@ -877,7 +836,7 @@ When executing an action inside an area, the route value for `area` is available
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Duck/Controllers/UsersController.cs)]
 
-The following code generates a URL to `UsersController.AddUser` in the "Zebra" area:
+The following code generates a URL to `/Zebra/Users/AddUser`:
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Controllers/HomeController.cs?name=snippet)]
 

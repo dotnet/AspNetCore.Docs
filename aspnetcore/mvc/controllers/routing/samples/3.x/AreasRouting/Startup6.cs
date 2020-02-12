@@ -6,9 +6,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace AreasRouting
 {
-    public class Startup3
+    public class Startup6
     {
-        public Startup3(IConfiguration configuration)
+        public Startup6(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -43,9 +43,10 @@ namespace AreasRouting
             {
                 endpoints.MapAreaControllerRoute(name: "duck_route", 
                                                  areaName: "Duck",
-                                                 pattern: "Manage/{controller}/{action}/{id?}");
+                                                 pattern: "{area}/{controller}/{action}/{id?}");
                 endpoints.MapControllerRoute(name: "default",
-                                             pattern: "Manage/{controller=Home}/{action=Index}/{id?}");
+                                             pattern: "{area=Duck}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default_route", "{controller}/{action}/{id?}");
             });
             #endregion
         }

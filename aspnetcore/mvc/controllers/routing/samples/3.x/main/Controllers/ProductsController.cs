@@ -91,7 +91,7 @@ namespace WebMvcRouting.Controllers
     #region snippet4
     [ApiController]
     [Route("api/[controller]")]
-    public abstract class MyBaseController : Controller
+    public abstract class MyBaseController : ControllerBase
     {
     }
 
@@ -116,7 +116,7 @@ namespace WebMvcRouting.Controllers
     #region snippet5
     [ApiController]
     [Route("api/[controller]/[action]", Name = "[controller]_[action]")]
-    public abstract class MyBaseController : Controller
+    public abstract class MyBaseController : ControllerBase
     {
     }
 
@@ -181,7 +181,7 @@ namespace WebMvcRouting.Controllers
 #elif Seven
     #region snippet7
     [Route("api/[controller]")]
-    public class ProductsController : Controller
+    public class ProductsController : ControllerBase
     {
         [HttpPut("Buy")]        // Matches PUT 'api/Products/Buy'
         [HttpPost("Checkout")]  // Matches POST 'api/Products/Checkout'
