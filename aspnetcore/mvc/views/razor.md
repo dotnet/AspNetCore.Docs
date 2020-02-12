@@ -719,7 +719,7 @@ Data binding in components is accomplished with the `@bind` attribute. For more 
 
 *This scenario only applies to Razor components (.razor).*
 
-Razor provides event handling features for components. For more information, see <xref:blazor/event-handling>.
+Razor provides event handling features for components. For more information, see <xref:blazor/events>.
 
 ::: moniker-end
 

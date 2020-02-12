@@ -55,7 +55,7 @@ Use the `@on{EVENT}:preventDefault` directive attribute to prevent the default a
 <input value="@_count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
 ```
 
-For more information, see [Prevent default actions](xref:blazor/event-handling#prevent-default-actions).
+For more information, see [Prevent default actions](xref:blazor/events#prevent-default-actions).
 
 ## Stop event propagation in Blazor apps
 
@@ -75,7 +75,7 @@ Use the `@on{EVENT}:stopPropagation` directive attribute to stop event propagati
 }
 ```
 
-For more information, see [Stop event propagation](xref:blazor/event-handling#stop-event-propagation).
+For more information, see [Stop event propagation](xref:blazor/events#stop-event-propagation).
 
 ## Detailed errors during Blazor app development
 

@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core Blazor event handling
+title: ASP.NET Core Blazor events
 author: guardrex
 description: Learn about Blazor's event handling scenarios, including event argument types, event callbacks, and managing default browser events.
 monikerRange: '>= aspnetcore-3.1'
@@ -7,11 +7,13 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/12/2020
 no-loc: [Blazor, SignalR]
-uid: blazor/event-handling
+uid: blazor/events
 ---
-# ASP.NET Core Blazor event handling
+# ASP.NET Core Blazor events
 
 By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
+
+
 
 Razor components provide event handling features. For an HTML element attribute named `on{EVENT}` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name is always formatted [`@on{EVENT}`](xref:mvc/views/razor#onevent).
 

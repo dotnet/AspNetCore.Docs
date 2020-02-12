@@ -297,8 +297,8 @@
           uid: blazor/components
         - name: Data binding
           uid: blazor/data-binding
-        - name: Event handling
-          uid: blazor/event-handling
+        - name: Events
+          uid: blazor/events
         - name: Templated components
           uid: blazor/templated-components
         - name: Integrate components
