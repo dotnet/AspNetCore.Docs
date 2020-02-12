@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2020
+ms.date: 02/02/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/index
 ---
@@ -522,3 +522,4 @@ The `CascadingAuthenticationState` supplies the `Task<AuthenticationState>` casc
 * <xref:security/index>
 * <xref:security/blazor/server>
 * <xref:security/authentication/windowsauth>
+* [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links

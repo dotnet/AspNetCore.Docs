@@ -5,7 +5,7 @@ description: Learn how to implement background tasks with hosted services in ASP
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/08/2020
+ms.date: 02/10/2020
 uid: fundamentals/host/hosted-services
 ---
 # Background tasks with hosted services in ASP.NET Core
@@ -161,6 +161,10 @@ The services are registered in `IHostBuilder.ConfigureServices` (*Program.cs*). 
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet3)]
 
+`MontiorLoop` is started in `Program.Main`:
+
+[!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet4)]
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -259,4 +263,5 @@ When the **Add Task** button is selected on the Index page, the `OnPostAddTask` 
 ## Additional resources
 
 * [Implement background tasks in microservices with IHostedService and the BackgroundService class](/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/background-tasks-with-ihostedservice)
+* [Run background tasks with WebJobs in Azure App Service](/azure/app-service/webjobs-create)
 * <xref:System.Threading.Timer>

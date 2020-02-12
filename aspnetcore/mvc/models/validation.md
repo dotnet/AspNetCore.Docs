@@ -79,9 +79,9 @@ To find out which parameters are passed to `String.Format` for a particular attr
 
 The validation system in .NET Core 3.0 and later treats non-nullable parameters or bound properties as if they had a `[Required]` attribute. [Value types](/dotnet/csharp/language-reference/keywords/value-types) such as `decimal` and `int` are non-nullable. This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices`:
 
-``csharp
+```csharp
 services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
-...
+```
 
 ### [Required] validation on the server
 
@@ -141,7 +141,7 @@ When the user enters a first or last name, JavaScript makes a remote call to see
 
 To validate two or more additional fields, provide them as a comma-delimited list. For example, to add a `MiddleName` property to the model, set the `[Remote]` attribute as shown in the following example:
 
-```cs
+```csharp
 [Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(FirstName) + "," + nameof(LastName))]
 public string MiddleName { get; set; }
 ```
@@ -266,7 +266,7 @@ For information on unobtrusive validation, see [this GitHub issue](https://githu
 
 jQuery Unobtrusive Validation passes validation logic and parameters to jQuery Validate when the page first loads. Therefore, validation doesn't work automatically on dynamically generated forms. To enable validation, tell jQuery Unobtrusive Validation to parse the dynamic form immediately after you create it. For example, the following code sets up client-side validation on a form added via AJAX.
 
-```js
+```javascript
 $.get({
     url: "https://url/that/returns/a/form",
     dataType: "html",
@@ -289,7 +289,7 @@ The `$.validator.unobtrusive.parse()` method accepts a jQuery selector for its o
 
 The `$.validator.unobtrusive.parse()` method works on an entire form, not on individual dynamically generated controls, such as `<input>` and `<select/>`. To reparse the form, remove the validation data that was added when the form was parsed earlier, as shown in the following example:
 
-```js
+```javascript
 $.get({
     url: "https://url/that/returns/a/control",
     dataType: "html",
@@ -507,7 +507,7 @@ When the user enters a first or last name, JavaScript makes a remote call to see
 
 To validate two or more additional fields, provide them as a comma-delimited list. For example, to add a `MiddleName` property to the model, set the `[Remote]` attribute as shown in the following example:
 
-```cs
+```csharp
 [Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(FirstName) + "," + nameof(LastName))]
 public string MiddleName { get; set; }
 ```
@@ -637,7 +637,7 @@ Data type validation is based on the .NET type of a property, unless that is ove
 
 jQuery Unobtrusive Validation passes validation logic and parameters to jQuery Validate when the page first loads. Therefore, validation doesn't work automatically on dynamically generated forms. To enable validation, tell jQuery Unobtrusive Validation to parse the dynamic form immediately after you create it. For example, the following code sets up client-side validation on a form added via AJAX.
 
-```js
+```javascript
 $.get({
     url: "https://url/that/returns/a/form",
     dataType: "html",
@@ -660,7 +660,7 @@ The `$.validator.unobtrusive.parse()` method accepts a jQuery selector for its o
 
 The `$.validator.unobtrusive.parse()` method works on an entire form, not on individual dynamically generated controls, such as `<input>` and `<select/>`. To reparse the form, remove the validation data that was added when the form was parsed earlier, as shown in the following example:
 
-```js
+```javascript
 $.get({
     url: "https://url/that/returns/a/control",
     dataType: "html",

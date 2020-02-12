@@ -5,7 +5,7 @@ description: How to use model binding and streaming to upload files in ASP.NET C
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/04/2019
+ms.date: 02/11/2020
 uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
@@ -77,7 +77,7 @@ Common storage options for files include:
   * Services usually offer improved scalability and resiliency over on-premises solutions that are usually subject to single points of failure.
   * Services are potentially lower cost in large storage infrastructure scenarios.
 
-  For more information, see [Quickstart: Use .NET to create a blob in object storage](/azure/storage/blobs/storage-quickstart-blobs-dotnet). The topic demonstrates <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromFileAsync*>, but <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromStreamAsync*> can be used to save a <xref:System.IO.FileStream> to blob storage when working with a <xref:System.IO.Stream>.
+  For more information, see [Quickstart: Use .NET to create a blob in object storage](/azure/storage/blobs/storage-quickstart-blobs-dotnet).
 
 ## File upload scenarios
 

@@ -13,7 +13,7 @@ namespace SampleApp.Pages
 
         public string RouteDataTextTemplateValue { get; private set; }
 
-        public void Get()
+        public void OnGet()
         {
             Message = "Your contact page.";
 

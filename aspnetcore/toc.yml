@@ -101,6 +101,9 @@
         - name: SignalR with TypeScript
           displayName: tutorial
           uid: tutorials/signalr-typescript-webpack
+        - name: SignalR with Blazor WebAssembly
+          displayName: tutorial
+          uid: tutorials/signalr-blazor-webassembly
     - name: Remote Procedure Call apps
       items:
         - name: Get started with a gRPC service
@@ -282,26 +285,32 @@
           uid: blazor/get-started
         - name: Hosting models
           uid: blazor/hosting-models
-        - name: Build your first app
-          uid: tutorials/first-blazor-app
+        - name: Tutorials
+          items:
+            - name: Build your first app
+              uid: tutorials/first-blazor-app
+            - name: SignalR with Blazor WebAssembly
+              uid: tutorials/signalr-blazor-webassembly
         - name: Templates
           uid: blazor/templates
         - name: Components
           uid: blazor/components
         - name: Lifecycle
           uid: blazor/lifecycle
-        - name: Forms and validation
-          uid: blazor/forms-validation
-        - name: Component libraries
-          uid: blazor/class-libraries
         - name: Layouts
           uid: blazor/layouts
+        - name: Forms and validation
+          uid: blazor/forms-validation
         - name: Dependency injection
           uid: blazor/dependency-injection
         - name: Routing
           uid: blazor/routing
         - name: JavaScript interop
           uid: blazor/javascript-interop
+        - name: Hosting model configuration
+          uid: blazor/hosting-model-configuration
+        - name: Component libraries
+          uid: blazor/class-libraries
         - name: Security and Identity
           items:
             - name: Overview
@@ -477,6 +486,8 @@
           uid: tutorials/signalr
         - name: SignalR with TypeScript
           uid: tutorials/signalr-typescript-webpack
+        - name: SignalR with Blazor WebAssembly
+          uid: tutorials/signalr-blazor-webassembly
     - name: Samples
       href: https://github.com/aspnet/SignalR-samples
       displayName: signalr
