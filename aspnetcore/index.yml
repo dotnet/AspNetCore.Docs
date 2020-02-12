@@ -135,25 +135,6 @@ conceptualContent:
         url: architecture/index.yml
         text: All architecture guides
 
-# tools section (optional)
-## Languages: C#, VB, F#, 
-tools:
-  title: Programming languages # < 60 chars (optional)
-  summary: "You can write .NET apps in C#, F#, or Visual Basic."
-  items:
-    # Card
-    - title: "A modern, object-oriented, type-safe member of the C family"
-      imageSrc: https://docs.microsoft.com/media/logos/logo_Csharp.svg
-      url: csharp/index.yml
-    # Card
-    - title: "A functional programming language for .NET"
-      imageSrc: https://docs.microsoft.com/media/logos/logo_Fsharp.svg
-      url: fsharp/index.yml
-    # Card
-    - title: "An approachable language with readable syntax"
-      imageSrc: https://docs.microsoft.com/media/logos/logo_VB.svg
-      url: visual-basic/index.yml
-
 # Card with summary style
 additionalContent:
   # Supports up to 3 sections
