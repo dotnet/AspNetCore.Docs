@@ -43,7 +43,7 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
      The *_Layout.cshtml* file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.
 
-   * Add a `<script>` tag for the *blazor.server.js* script inside of the closing `</body>` tag:
+   * Add a `<script>` tag for the *blazor.server.js* script right before of the closing `</body>` tag:
 
      ```html
      <script src="_framework/blazor.server.js"></script>
