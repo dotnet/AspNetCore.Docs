@@ -90,14 +90,6 @@ The Azure SignalR Service advantages noted earlier are disadvantages for the Red
 * A SignalR app must scale out based on number of clients even if few messages are being sent.
 * A SignalR app uses significantly more connection resources than a web app without SignalR.
 
-## NCache backplane
-
-[NCache](https://github.com/Alachisoft/NCache) is an open source in-memory distributed cache developed natively in .NET, and .NET Core, available for both [Windows](https://www.alachisoft.com/resources/docs/ncache/getting-started-guide-windows/) and [Linux](https://www.alachisoft.com/resources/docs/ncache/getting-started-guide-linux/). NCache as an [ASP.NET Core SignalR backplane](https://www.alachisoft.com/ncache/asp-net-core-signalr.html) uses the pub/sub model to distribute messages. When a client connects to an ASP.NET Core Server, this server sends the client connection information to the NCache SignalR Backplane that remembers which clients are connected to which servers. Then, if a server wants to send a message to all or some of the clients, it publishes it to the NCache backplane. The NCache backplane then sends the message to all the relevant clients via their respective servers as given in the following diagram.
-
-![NCache backplane, message sent from one server to all clients](scale/_static/ncache-backplane.png)
-
-NCache provides high availability to ASP.NET Core SignalR by using multiple cache servers in a cluster. This way, if any cache server goes down, no messages are lost since other cache servers are able to handle it. You can also scale ASP.NET Core SignalR applications by adding more servers to your application tier and also to the caching tier respectively.
-
 ## IIS limitations on Windows client OS
 
 Windows 10 and Windows 8.x are client operating systems. IIS on client operating systems has a limit of 10 concurrent connections. SignalR's connections are:
@@ -120,6 +112,11 @@ proxy_set_header Connection $connection_upgrade;
 ```
 
 For more information, see [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/).
+
+## Third-party SignalR backplane providers
+
+* [NCache](https://www.alachisoft.com/ncache/asp-net-core-signalr.html)
+* [Orleans](https://github.com/OrleansContrib/SignalR.Orleans)
 
 ## Next steps
 
