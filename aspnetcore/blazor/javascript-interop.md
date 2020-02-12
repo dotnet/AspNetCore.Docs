@@ -390,7 +390,7 @@ To avoid a memory leak and allow garbage collection on a component that creates 
   }
   ```
 
-* In Javascript code:
+* In JavaScript code:
 
   ```javascript
   ```
