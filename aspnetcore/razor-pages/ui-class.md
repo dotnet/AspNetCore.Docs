@@ -381,3 +381,7 @@ Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *_Header.csht
 ```
 
 ::: moniker-end
+
+## Additional resources
+
+* <xref:blazor/class-libraries>
