@@ -64,7 +64,7 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
    @using MyAppNamespace
    ```
 
-1. In `Startup.ConfigureServices`, add the Blazor Server service:
+1. In `Startup.ConfigureServices`, register the Blazor Server service:
 
    ```csharp
    services.AddServerSideBlazor();
