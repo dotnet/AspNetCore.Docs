@@ -1,12 +1,12 @@
 ### YamlMime:Hub
 
 title: ASP.NET documentation
-summary: Learn to use ASP.NET Core to create cross-platform, cloud-based, Internet-connected applications. Browse API reference, sample code, tutorials, and more.
+summary: Learn to use ASP.NET Core to create web apps and services that are fast, secure, cross-platform, and cloud-based. Browse API reference, sample code, tutorials, and more.
 brand: aspnet
 
 metadata:
   title: ASP.NET documentation
-  description: Learn to use ASP.NET Core to create cross-platform, cloud-based, Internet-connected applications. Browse API reference, sample code, tutorials, and more.
+  description: Learn to use ASP.NET Core to create web apps and services that are fast, secure, cross-platform, and cloud-based. Browse API reference, sample code, tutorials, and more.
   ms.product: aspnet
   ms.topic: hub-page
   ms.collection: collection
@@ -22,11 +22,11 @@ highlightedContent:
     # Card
     - title: "Create an ASP.NET Core app on any platform in 5 minutes."
       itemType: get-started
-      url: aspnetcore/getting-started/index
+      url: aspnetcore/getting-started/index.md
     # Card
-    - title: "Introduction to ASP.NET Core."
+    - title: "ASP.NET Core Overview"
       itemType: overview
-      url: aspnetcore/introduction-to-aspnet-core
+      url: aspnetcore/introduction-to-aspnet-core.md
     # Card
     - title: "Create your first web app."
       itemType: learn
@@ -34,7 +34,7 @@ highlightedContent:
     # Card
     - title: "What's new in ASP.NET Core docs"
       itemType: whats-new
-      url: whats-new/index.yml
+      url: aspnetcore/whats-new/index.yml
 
 # conceptualContent section (optional)
 conceptualContent:
@@ -43,15 +43,15 @@ conceptualContent:
   summary: "A developer platform for building all your apps: web, mobile, desktop, gaming, IoT, and more. Supported on Windows, Linux, and macOS."
   items:
     # Card
-    - title: Open-source .NET
-      summary: Learn about .NET Core
+    - title: Open-source ASP.NET Core
+      summary: Learn about ASP.NET Core
       links:
-        - url: core/index.md
+        - url: aspnetcore/whats-new/index.yml
           itemType: overview
-          text: .NET Core overview
-        - url: core/whats-new/dotnet-core-3-1.md
+          text: ASP.NET Core overview
+        - url: aspnetcore/
           itemType: whats-new
-          text: What's new in .NET Core 3.1
+          text: What's new in ASP.NET Core 3.1
         - url: standard/tour.md
           itemType: overview
           text: Tour of .NET
@@ -93,8 +93,8 @@ conceptualContent:
           itemType: overview
           text: .NET Framework (Windows) apps
     # Card
-    - title: Develop .NET apps
-      summary: Start developing with .NET
+    - title: Develop ASP.NET Core apps
+      summary: Start developing with ASP.NET Core
       links:
         - url: core/sdk.md
           itemType: download
@@ -115,8 +115,8 @@ conceptualContent:
           itemType: concept
           text: Open source library guidance
     # Card
-    - title: .NET architectural guides
-      summary: Read foundational development and architectural guidance for .NET
+    - title: ASP.NET architectural guides
+      summary: Read foundational development and architectural guidance for ASP.NET Core
       links:
         - url: architecture/microservices/index.md
           itemType: architecture
