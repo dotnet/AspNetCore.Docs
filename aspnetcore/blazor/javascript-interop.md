@@ -552,74 +552,67 @@ Console output in the browser's web developer tools:
 Hello, Blazor!
 ```
 
-To avoid a memory leak and allow garbage collection on a component that creates a `DotNetObjectReference`, dispose of the object either:
+To avoid a memory leak and allow garbage collection on a component that creates a `DotNetObjectReference`, dispose of the object in the class that created the `DotNetObjectReference` instance:
 
-* In the class that created the `DotNetObjectReference` instance:
+```csharp
+public class ExampleJsInterop : IDisposable
+{
+    private readonly IJSRuntime _jsRuntime;
+    private DotNetObjectReference<HelloHelper> _objRef;
 
-  ```csharp
-  public class ExampleJsInterop : IDisposable
-  {
-      private readonly IJSRuntime _jsRuntime;
-      private DotNetObjectReference<HelloHelper> _objRef;
+    public ExampleJsInterop(IJSRuntime jsRuntime)
+    {
+        _jsRuntime = jsRuntime;
+    }
 
-      public ExampleJsInterop(IJSRuntime jsRuntime)
-      {
-          _jsRuntime = jsRuntime;
-      }
+    public ValueTask<string> CallHelloHelperSayHello(string name)
+    {
+        _objRef = DotNetObjectReference.Create(new HelloHelper(name));
 
-      public ValueTask<string> CallHelloHelperSayHello(string name)
-      {
-          _objRef = DotNetObjectReference.Create(new HelloHelper(name));
+        return _jsRuntime.InvokeAsync<string>(
+            "exampleJsFunctions.sayHello",
+            _objRef);
+    }
 
-          return _jsRuntime.InvokeAsync<string>(
-              "exampleJsFunctions.sayHello",
-              _objRef);
-      }
-
-      public void Dispose()
-      {
-          _objRef?.Dispose();
-      }
-  }
-  ```
+    public void Dispose()
+    {
+        _objRef?.Dispose();
+    }
+}
+```
   
-  The preceding pattern shown in the `ExampleJsInterop` class can also be implemented in a component:
+The preceding pattern shown in the `ExampleJsInterop` class can also be implemented in a component:
   
-  ```razor
-  @page "/JSInteropComponent"
-  @using BlazorSample.JsInteropClasses
-  @implements IDisposable
-  @inject IJSRuntime JSRuntime
+```razor
+@page "/JSInteropComponent"
+@using BlazorSample.JsInteropClasses
+@implements IDisposable
+@inject IJSRuntime JSRuntime
 
-  <h1>JavaScript Interop</h1>
+<h1>JavaScript Interop</h1>
 
-  <button type="button" class="btn btn-primary" @onclick="TriggerNetInstanceMethod">
-      Trigger .NET instance method HelloHelper.SayHello
-  </button>
+<button type="button" class="btn btn-primary" @onclick="TriggerNetInstanceMethod">
+    Trigger .NET instance method HelloHelper.SayHello
+</button>
 
-  @code {
-      private DotNetObjectReference<HelloHelper> _objRef;
+@code {
+    private DotNetObjectReference<HelloHelper> _objRef;
 
-      public async Task TriggerNetInstanceMethod()
-      {
-          _objRef = DotNetObjectReference.Create(new HelloHelper("Blazor"));
+    public async Task TriggerNetInstanceMethod()
+    {
+        _objRef = DotNetObjectReference.Create(new HelloHelper("Blazor"));
 
-          await JSRuntime.InvokeAsync<string>(
-              "exampleJsFunctions.sayHello",
-              _objRef);
-      }
+        await JSRuntime.InvokeAsync<string>(
+            "exampleJsFunctions.sayHello",
+            _objRef);
+    }
 
-      public void Dispose()
-     {
-          _objRef?.Dispose();
-      }
-  }
-  ```
-
-* In JavaScript code:
-
-  ```javascript
-  ```
+    public void Dispose()
+    {
+        _objRef?.Dispose();
+    }
+}
+```
 
 ## Share interop code in a class library
 
