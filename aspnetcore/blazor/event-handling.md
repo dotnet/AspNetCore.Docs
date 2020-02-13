@@ -88,7 +88,7 @@ For more information, see the following resources:
 
 ## Lambda expressions
 
-Lambda expressions can also be used:
+[Lambda expressions](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions) can also be used:
 
 ```razor
 <button @onclick="@(e => Console.WriteLine("Hello, world!"))">Say hello</button>

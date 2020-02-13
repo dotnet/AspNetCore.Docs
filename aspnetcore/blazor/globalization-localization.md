@@ -90,7 +90,7 @@ public class HostModel : PageModel
 }
 ```
 
-Localization is handled in the app:
+Localization is handled by the app in the following sequence of events:
 
 1. The browser sends an initial HTTP request to the app.
 1. The culture is assigned by the Localization Middleware.

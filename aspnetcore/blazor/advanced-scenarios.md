@@ -74,9 +74,9 @@ In the following example, the loop in the `CreateComponent` method generates thr
 
 ### Sequence numbers relate to code line numbers and not execution order
 
-Blazor `.razor` files are always compiled. This is potentially a great advantage for `.razor` because the compile step can be used to inject information that improve app performance at runtime.
+Razor component files (*.razor*) are always compiled. Compilation is potentially a great advantage for Razor components because the compile step can be used to inject information that improves app performance at runtime.
 
-A key example of these improvements involve *sequence numbers*. Sequence numbers indicate to the runtime which outputs came from which distinct and ordered lines of code. The runtime uses this information to generate efficient tree diffs in linear time, which is far faster than is normally possible for a general tree diff algorithm.
+A key example of these improvements involves *sequence numbers*. Sequence numbers indicate to the runtime which outputs came from which distinct and ordered lines of code. The runtime uses this information to generate efficient tree diffs in linear time, which is far faster than is normally possible for a general tree diff algorithm.
 
 Consider the following Razor component (*.razor*) file:
 
@@ -117,7 +117,7 @@ When the runtime performs a diff, it sees that the item at sequence `0` was remo
 
 * Remove the first text node.
 
-### What goes wrong if you generate sequence numbers programmatically
+### The problem with generating sequence numbers programmatically
 
 Imagine instead that you wrote the following render tree builder logic:
 
@@ -152,12 +152,12 @@ This time, the diff algorithm sees that *two* changes have occurred, and the alg
 
 Generating the sequence numbers has lost all the useful information about where the `if/else` branches and loops were present in the original code. This results in a diff **twice as long** as before.
 
-This is a trivial example. In more realistic cases with complex and deeply nested structures, and especially with loops, the performance cost is more severe. Instead of immediately identifying which loop blocks or branches have been inserted or removed, the diff algorithm has to recurse deeply into the render trees and usually build far longer edit scripts because it is misinformed about how the old and new structures relate to each other.
+This is a trivial example. In more realistic cases with complex and deeply nested structures, and especially with loops, the performance cost is usually higher. Instead of immediately identifying which loop blocks or branches have been inserted or removed, the diff algorithm has to recurse deeply into the render trees. This usually results in having to build longer edit scripts because the diff algorithm is misinformed about how the old and new structures relate to each other.
 
 ### Guidance and conclusions
 
 * App performance suffers if sequence numbers are generated dynamically.
 * The framework can't create its own sequence numbers automatically at runtime because the necessary information doesn't exist unless it's captured at compile time.
-* Don't write long blocks of manually-implemented `RenderTreeBuilder` logic. Prefer `.razor` files and allow the compiler to deal with the sequence numbers. If you're unable to avoid manual `RenderTreeBuilder` logic, split long blocks of code into smaller pieces wrapped in `OpenRegion`/`CloseRegion` calls. Each region has its own separate space of sequence numbers, so you can restart from zero (or any other arbitrary number) inside each region.
+* Don't write long blocks of manually-implemented `RenderTreeBuilder` logic. Prefer *.razor* files and allow the compiler to deal with the sequence numbers. If you're unable to avoid manual `RenderTreeBuilder` logic, split long blocks of code into smaller pieces wrapped in `OpenRegion`/`CloseRegion` calls. Each region has its own separate space of sequence numbers, so you can restart from zero (or any other arbitrary number) inside each region.
 * If sequence numbers are hardcoded, the diff algorithm only requires that sequence numbers increase in value. The initial value and gaps are irrelevant. One legitimate option is to use the code line number as the sequence number, or start from zero and increase by ones or hundreds (or any preferred interval). 
 * Blazor uses sequence numbers, while other tree-diffing UI frameworks don't use them. Diffing is far faster when sequence numbers are used, and Blazor has the advantage of a compile step that deals with sequence numbers automatically for developers authoring *.razor* files.
