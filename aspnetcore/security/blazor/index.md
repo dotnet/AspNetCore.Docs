@@ -196,6 +196,8 @@ public class Program
     public static async Task Main(string[] args)
     {
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        builder.Services.AddOptions();
+        builder.Services.AddAuthorizationCore();
         builder.Services.AddScoped<AuthenticationStateProvider, 
             CustomAuthStateProvider>();
         builder.RootComponents.Add<App>("app");
