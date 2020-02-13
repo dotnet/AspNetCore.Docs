@@ -155,3 +155,7 @@ The following component shows an example of how to perform the initial redirecti
     }
 }
 ```
+
+## Additional resources
+
+* <xref:fundamentals/localization>
