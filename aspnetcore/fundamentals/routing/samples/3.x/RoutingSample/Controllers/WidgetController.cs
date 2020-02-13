@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace RoutingSample.Controllers
 {
+    // webBuilder.UseStartup<StartupMVC>();
     #region snippet
     public class WidgetController : Controller
     {

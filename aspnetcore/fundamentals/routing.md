@@ -10,13 +10,6 @@ uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
 
-<!--  Add
-There's one routing system, and it has multiple ways you can configure it.
-
-notes for Rick:
-I specifically avoid using the term `route` in lots of places, because `IRouter` (and thus `route`) were concepts that exist as extensibility points in older routing systems. There is no direct equivalent/replacement in endpoint routing.
--->
-
 By [Ryan Nowak](https://github.com/rynowak), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
@@ -29,14 +22,17 @@ Apps can configure routing using:
 - Razor Pages
 - SignalR
 - gRPC Services
-- Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as Health Checks.
-- Delegates/Lambdas registered with routing.
+- Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as [Health Checks](xref:host-and-deploy/health-checks).
+- Delegates and Lambdas registered with routing.
 
-This document covers low-level details of ASP.NET Core routing. For information on configuring routing for controllers, see <xref:mvc/controllers/routing>. For information on routing conventions in Razor Pages, see <xref:razor-pages/razor-pages-conventions>.
+This document covers low-level details of ASP.NET Core routing. For information on configuring routing:
 
-The endpoint routing system described in this document applies to ASP.NET Core 3.0 and later. For information on the previous routing system based on `IRouter`, use one of the following approaches:
+* For controllers, see <xref:mvc/controllers/routing>.
+* For Razor Pages conventions, see <xref:razor-pages/razor-pages-conventions>.
 
-* Use the version selector for a previous version.
+The endpoint routing system described in this document applies to ASP.NET Core 3.0 and later. For information on the previous routing system based on <xref:Microsoft.AspNetCore.Routing.IRouter>, use one of the following approaches:
+
+* The version selector for a previous version.
 * Select [ASP.NET Core 2.2 routing](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-2.2)
 * Select [ASP.NET Core 2.1 routing](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-2.1)
 
@@ -57,7 +53,7 @@ Routing uses a pair of middleware, registered by <xref:Microsoft.AspNetCore.Buil
 * `UseRouting` adds route matching to the middleware pipeline. This middleware looks at the set of endpoints defined in the app, and selects the best match based on the request.
 * `UseEndpoints` adds endpoint execution to the middleware pipeline. It runs the delegate associated with the selected endpoint.
 
-The preceding example includes a single route to code endpoint using the [MapGet](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*) method:
+The preceding example includes a single *route to code* endpoint using the [MapGet](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*) method:
 
 * When an HTTP `GET` request is sent to the root URL `/`, the request delegate shown executes, and `Hello World!` is written to the HTTP response. By default, the root URL `/` is `http://localhost:5000/`.
 * If the request is not a `GET` or if the URL is anything else, no route matches and an HTTP 404 is returned.
@@ -80,7 +76,7 @@ The following code shows an example of routing with a more sophisticated route t
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/RouteTemplateStartup.cs?name=snippet)]
 
-The string `/hello/{name:alpha}` is a [route template](xref:mvc/controllers/routing#rt), and is used to configure how the endpoint is matched. In this case, the template matches with:
+The string `/hello/{name:alpha}` is a **route template**, and is used to configure how the endpoint is matched. In this case, the template matches with:
 
 * A URL like `/hello/Ryan`
 * Any URL path that begins with `/hello/` followed by a sequence of alphabetic characters.  `:alpha` applies a route constraint that matches only alphabetic characters. [Route constraints](#route-constraint-reference) are explained later in this document.
@@ -145,7 +141,7 @@ In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions
 
 <a name="mt"></a>
 
-The following code shows that depending on where `app.Use` ic called in the pipeline there may not be an endpoint.
+The following code shows that depending on where `app.Use` is called in the pipeline there may not be an endpoint.
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/MiddlewareFlowStartup.cs?name=snippet)]
 
@@ -198,7 +194,7 @@ The preceding sample code is intended to demonstrate the basic concepts of endpo
 * Log to a file or database.
 * Include details such as the user, ip address, name of the sensitive endpoint, and more.
 
-The audit policy metadata `AuditPolicyAttribute` is defined as an `Attribute` for easier use with class-based frameworks such as controllers and SignalR. When using route to code:
+The audit policy metadata `AuditPolicyAttribute` is defined as an `Attribute` for easier use with class-based frameworks such as controllers and SignalR. When using *route to code*:
 
 * Metadata is attached with a builder API.
 * Class-based frameworks include all attributes on the corresponding method and class when creating endpoints.
@@ -262,13 +258,11 @@ The metadata system was created in response to the problems encountered by exten
 
 ### URL matching
 
-URL matching:
-
-* Is the process by which routing matches an incoming request to an *endpoint*.
+* Is the process by which routing matches an incoming request to an [endpoint](#endpoint).
 * Is based on data in the URL path and headers.
 * Can be extended to consider any data in the request.
 
-When a Routing Middleware executes, it sets an `Endpoint` and route values to a [request feature](xref:fundamentals/request-features) on the <xref:Microsoft.AspNetCore.Http.HttpContext> from the current request:
+When a routing middleware executes, it sets an `Endpoint` and route values to a [request feature](xref:fundamentals/request-features) on the <xref:Microsoft.AspNetCore.Http.HttpContext> from the current request:
 
 * Calling [HttpContext.GetEndpoint](<xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*>) gets the endpoint.
 * `HttpRequest.RouteValues` gets the collection of route values.
@@ -301,7 +295,7 @@ The list of endpoints is prioritized according to:
 
 All matching endpoints are processed in each phase until the <xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector> is reached. The `EndpointSelector` is the final phase. The `EndpointSelector` chooses the highest priority endpoint from the matches as the best match. If there are other matches with the same priority as the best match, an ambiguous match exception is thrown.
 
-The route precedence is computed based on a more specific route template is higher priority. For example, consider the templates `/hello` and `/{message}`:
+The route precedence is computed based on a **more specific** route template is higher priority. For example, consider the templates `/hello` and `/{message}`:
 
 * Both match the URL path `/hello`.
 * `/hello`  is more specific and therefore higher priority.
@@ -326,7 +320,7 @@ If you are stuck using the legacy routing system for this reason, [open a GitHub
 
 <a name="rtp"></a>
 
-### Route template precedence
+### Route template precedence and endpoint selection order
 
 [Route template precedence](https://github.com/dotnet/aspnetcore/blob/master/src/Http/Routing/src/Template/RoutePrecedence.cs#L16) is a system that assigns each route template a value based on how specific it is. Route template precedence:
 
@@ -386,7 +380,7 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 >
 > * Use `GetUri*` extension methods with caution in an app configuration that doesn't validate the `Host` header of incoming requests. If the `Host` header of incoming requests isn't validated, untrusted request input can be sent back to the client in URIs in a view or page. We recommend that all production apps configure their server to validate the `Host` header against known valid values.
 >
-> * Use <xref:Microsoft.AspNetCore.Routing.LinkGenerator> with caution in middleware in combination with `Map` or `MapWhen`. `Map*` changes the base path of the executing request, which affects the output of link generation. All of the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> APIs allow specifying a base path. Specify an empty base path to undo `Map*`'s affect on link generation.
+> * Use <xref:Microsoft.AspNetCore.Routing.LinkGenerator> with caution in middleware in combination with `Map` or `MapWhen`. `Map*` changes the base path of the executing request, which affects the output of link generation. All of the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> APIs allow specifying a base path. Specify an empty base path to undo the `Map*` affect on link generation.
 
 ### Middleware example
 
@@ -405,7 +399,7 @@ Literal text other than route parameters (for example, `{id}`) and the path sepa
 Asterisk `*` or double asterisk `**`:
 
 * Can be used as a prefix to a route parameter to bind to the rest of the URI.
-* Are called a catch-all parameters. For example, `blog/{**slug}`:
+* Are called a **catch-all** parameters. For example, `blog/{**slug}`:
   * Matches any URI that starts with `/blog` and has any value following it.
   * The value following `/blog` is assigned to the [slug](https://developer.mozilla.org/docs/Glossary/Slug) route value.
 
@@ -418,12 +412,12 @@ URL patterns that attempt to capture a file name with an optional file extension
 * `/files/myFile.txt`
 * `/files/myFile`
 
-Route parameters may have default values designated by specifying the default value after the parameter name separated by an equals sign (`=`). For example, `{controller=Home}` defines `Home` as the default value for `controller`. The default value is used if no value is present in the URL for the parameter. Route parameters are made optional by appending a question mark (`?`) to the end of the parameter name. For example, `id?`. The difference between optional values and default route parameters is:
+Route parameters may have **default values** designated by specifying the default value after the parameter name separated by an equals sign (`=`). For example, `{controller=Home}` defines `Home` as the default value for `controller`. The default value is used if no value is present in the URL for the parameter. Route parameters are made optional by appending a question mark (`?`) to the end of the parameter name. For example, `id?`. The difference between optional values and default route parameters is:
 
 * A route parameter with a default value always produces a value.
 * An optional parameter has a value only when a value is provided by the request URL.
 
-Route parameters may have constraints that must match the route value bound from the URL. Adding `:` and constraint name after the route parameter name specifies an inline constraint on a route parameter. If the constraint requires arguments, they're enclosed in parentheses `(...)` after the constraint name. Multiple inline constraints can be specified by appending another `:` and constraint name.
+Route parameters may have constraints that must match the route value bound from the URL. Adding `:` and constraint name after the route parameter name specifies an inline constraint on a route parameter. If the constraint requires arguments, they're enclosed in parentheses `(...)` after the constraint name. Multiple *inline constraints* can be specified by appending another `:` and constraint name.
 
 The constraint name and arguments are passed to the <xref:Microsoft.AspNetCore.Routing.IInlineConstraintResolver> service to create an instance of <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> to use in URL processing. For example, the route template `blog/{article:minlength(10)}` specifies a `minlength` constraint with the argument `10`. For more information on route constraints and a list of the constraints provided by the framework, see the [Route constraint reference](#route-constraint-reference) section.
 
@@ -439,6 +433,7 @@ The following table demonstrates example route templates and their behavior.
 | `{controller}/{action}/{id?}`            | `/Products/List`        | Maps to the `Products` controller and `List` action.                       |
 | `{controller}/{action}/{id?}`            | `/Products/Details/123` | Maps to the `Products` controller and  `Details` action with`id` set to 123. |
 | `{controller=Home}/{action=Index}/{id?}` | `/`                     | Maps to the `Home` controller and `Index` method. `id` is ignored.        |
+| `{controller=Home}/{action=Index}/{id?}` | `/Products`                     | Maps to the `Products` controller and `Index` method. `id` is ignored.        |
 
 Using a template is generally the simplest approach to routing. Constraints and defaults can also be specified outside the route template.
 
@@ -505,6 +500,8 @@ The following table demonstrates example route constraints and their expected be
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression. See tips about defining a regular expression. |
 | `required` | `{name:required}` | `Rick` | Used to enforce that a non-parameter value is present during URL generation |
 
+[!INCLUDE[](~/includes/regex.md)]
+
 Multiple, colon delimited constraints can be applied to a single parameter. For example, the following constraint restricts a parameter to an integer value of 1 or greater:
 
 ```csharp
@@ -516,6 +513,8 @@ public User GetUserById(int id) { }
 > Route constraints that verify the URL and are converted to a CLR type always use the invariant culture. For example, conversion to the CLR type `int` or `DateTime`. These constraints assume that the URL is not localizable. The framework-provided route constraints don't modify the values stored in route values. All route values parsed from the URL are stored as strings. For example, the `float` constraint attempts to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
 
 ### Regular expressions in constraints
+
+[!INCLUDE[](~/includes/regex.md)]
 
 Regular expressions can be specified as inline constraints using the `regex(...)` route constraint. Methods in the <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> family also accept a object literal of constraints. If that form is used, string values are interpreted as regular expressions.
 
@@ -574,14 +573,15 @@ The following code implements `MyCustomConstraint`, which prevents `0` where app
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint.cs?name=snippet2)]
 
-> [!WARNING]
-> When using <xref:System.Text.RegularExpressions> to process untrusted input, pass a timeout. A malicious user can provide input to `RegularExpressions` causing a [Denial-of-Service attack](https://www.us-cert.gov/ncas/tips/ST04-015).
+[!INCLUDE[](~/includes/regex.md)]
 
 The preceding code:
 
 * Prevents `0` in the `{id}` segment of the route.
 * Is shown to provide a basic example of implementing a custom contraint. It should not be used in a production app.
 
+<!-- review: I probably don't need this sample. Using an attribute may be better than my approach.
+-->
 The following code is a better approach to preventing an `id` containing a `0` from being processed:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/TestController.cs?name=snippet2)]
@@ -628,6 +628,8 @@ ASP.NET Core provides API conventions for using a parameter transformers with ge
 * The MVC <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention?displayProperty=fullName> convention applies a specified parameter transformer to all attribute routes in the app. The parameter transformer transforms attribute route tokens as they are replaced. For more information, see [Use a parameter transformer to customize token replacement](xref:mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement).
 * Razor Pages has the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention> API convention. This convention applies a specified parameter transformer to all automatically discovered Razor Pages. The parameter transformer transforms the folder and file name segments of Razor Pages routes. For more information, see [Use a parameter transformer to customize page routes](xref:razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes).
 
+<a name="ugr"></a>
+
 ## URL generation reference
 
 This section contains a reference for the algorithm implemented by URL generation. Most complex examples of URL generation in practice use controllers or Razor Pages. See  [routing in controllers](xref:mvc/controllers/routing) for additional information.
@@ -636,11 +638,13 @@ The URL generation process begins with a call to [LinkGenerator.GetPathByAddress
 
 The first step is to use the address to resolve a set of candidate endpoints using an [`IEndpointAddressScheme<TAddress>`](xref:Microsoft.AspNetCore.Routing.IEndpointAddressScheme`1) that matches the address's type.
 
-One of set of candidates is found by the address scheme, the endpoints are ordered and processed iteratively until a URL generation operation succeeds. URL generation does not check for ambiguities, the first result returned is the final result.
+Once of set of candidates is found by the address scheme, the endpoints are ordered and processed iteratively until a URL generation operation succeeds. URL generation does **not** check for ambiguities, the first result returned is the final result.
 
 ### Troubleshooting URL generation with logging
 
 The first step in troubleshooting URL generation is setting the logging level of `Microsoft.AspNetCore.Routing` to `TRACE`. `LinkGenerator` logs many details about its processing which can be useful to troubleshoot problems.
+
+See [URL generation reference](#ugr) for details on URL generation.
 
 ### Addresses
 
@@ -674,19 +678,22 @@ This following examples shows ambient values and explicit values. The following 
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs?name=snippet)]
 
-The preceding code returns `/Widget/Index/17`
+The preceding code:
 
-The following code provides no ambient values and explicit values: `{ id = 17, }`:
+* Returns `/Widget/Index/17`
+* Gets <xref:Microsoft.AspNetCore.Routing.LinkGenerator> via [DI](xref:fundamentals/dependency-injection).
+
+The following code provides no ambient values and explicit values: `{ controller = "Home", action = "Subscribe", id = 17, }`:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs?name=snippet2)]
 
-The preceding `Index` method returns `/Home/Subscribe/17`
+The preceding  method returns `/Home/Subscribe/17`
 
 The following code in the `WidgetController` returns `/Widget/Subscribe/17`:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs?name=snippet3)]
 
-The following code provides the controller from ambient values in the current request and explicit values: `{ action = "Edit, id = 17, }`:
+The following code provides the controller from ambient values in the current request and explicit values: `{ action = "Edit", id = 17, }`:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/GadgetController.cs?name=snippet)]
 
@@ -694,7 +701,7 @@ In the preceding code:
 
 * `/Gadget/Edit/17` is returned.
 * <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Url> gets the <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>.
-* <xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action*>  Object)	
+* <xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action*> 	
 generates a URL with an absolute path for an action method. The URL contains the specified `action` name and `route` values.
 
 The following code provides ambient values from the current request and explicit values: `{ page = "./Edit, id = 17, }`:
@@ -705,7 +712,7 @@ The preceding code sets `url` to  `/Edit/17` when the Edit Razor Page contains t
 
  `@page "{id:int}"`
 
-If the Edit page don't contain the `"{id:int}"` route template, `url` is `/Edit?id=17`.
+If the Edit page doesn't contain the `"{id:int}"` route template, `url` is `/Edit?id=17`.
 
 The behavior of MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> adds a layer of complexity in addition to the rules described here:
 
@@ -736,12 +743,9 @@ The best way to think about the role of ambient values is that they attempt to s
 
 Calls to `LinkGenerator` or `IUrlHelper` that return `null` are usually caused by not understanding route value invalidation. Troubleshoot route value invalidation by explicitly specifying more of the route values to see if that solves the problem.
 
-Route value invalidation works on the assumption that the app's URL scheme is hierarchical, with a hierarchy formed from left-to-right. Consider the the basic controller route template `{controller}/{action}/{id?}` to get an intuitive sense of how this works in practice. A **change** to a value **invalidates** all of the route values that appear to the right. This reflects the assumption about hierarchy. If the app:
+Route value invalidation works on the assumption that the app's URL scheme is hierarchical, with a hierarchy formed from left-to-right. Consider the the basic controller route template `{controller}/{action}/{id?}` to get an intuitive sense of how this works in practice. A **change** to a value **invalidates** all of the route values that appear to the right. This reflects the assumption about hierarchy. If the app has an ambient value for `id`, and the operation specifies a different value for the `controller`:
 
-* Has an ambient value for `id`.
-* The operation specifies a different value for the `controller`.
-
-`id` won't be reused because `{controller}` is to the left of `{id?}`.
+* `id` won't be reused because `{controller}` is to the left of `{id?}`.
 
 Some examples demonstrating this principle:
 
@@ -749,7 +753,7 @@ Some examples demonstrating this principle:
 * If the explicit values contains a value for `action`, any ambient value for `action` is ignored. The ambient values for `controller` can be used. If the explicit value for `action` is different from the ambient value for `action`, the `id` value won't be used.  If the explicit value for `action` is the same as the ambient value for `action`, the `id` value can be used.
 * If the explicit values contains a value for `controller`, any ambient value for `controller` is ignored. If the explicit value for `controller` is different from the ambient value for `controller`, the `action` and `id` values won't be used. If the explicit value for `controller` is the same as the ambient value for `controller`, the `action` and `id` values can be used.
 
-This process is further complicated by the existence of attribute routes and dedicated conventional routes. Controller conventional routes such as `{controller}/{action}/{id?}` specify a hierarchy using route parameters. For dedicated conventional routes and attribute routes to controllers and Razor Pages:
+This process is further complicated by the existence of attribute routes and dedicated conventional routes. Controller conventional routes such as `{controller}/{action}/{id?}` specify a hierarchy using route parameters. For [dedicated conventional routes](xref:mvc/controllers/routing#dcr) and [attribute routes](xref:mvc/controllers/routing#ar) to controllers and Razor Pages:
 
 * There is a hierarchy of route values.
 * They don't appear in the template.

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.Logging;
 
 namespace RoutingSample.Controllers
 {
@@ -8,22 +7,18 @@ namespace RoutingSample.Controllers
     [Host("contoso.com", "adventure-works.com")]
     public class ProductController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public ProductController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
-            return View();
+
+            return Content(ControllerContext.ActionDescriptor.ControllerName + "." +
+                ControllerContext.ActionDescriptor.ActionName);
         }
 
         [Host("example.com:8080")]
         public IActionResult Privacy()
         {
-            return View();
+            return Content(ControllerContext.ActionDescriptor.ControllerName + "." +
+                ControllerContext.ActionDescriptor.ActionName);
         }
     }
     #endregion

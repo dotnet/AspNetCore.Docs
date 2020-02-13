@@ -17,9 +17,10 @@ namespace RoutingSample
         #region snippet
         public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
         {
+            int count = 0;
             app.Use(next => async context =>
             {
-                using (new MyStopwatch(logger, "Time 1"))
+                using (new MyStopwatch(logger, $"Time {++count}"))
                 {
                     await next(context);
                 }
@@ -30,7 +31,7 @@ namespace RoutingSample
 
             app.Use(next => async context =>
             {
-                using (new MyStopwatch(logger, "Time 2"))
+                using (new MyStopwatch(logger, $"Time {++count}"))
                 {
                     await next(context);
                 }
@@ -40,7 +41,7 @@ namespace RoutingSample
 
             app.Use(next => async context =>
             {
-                using (new MyStopwatch(logger, "Time 3"))
+                using (new MyStopwatch(logger, $"Time {++count}"))
                 {
                     await next(context);
                 }
@@ -58,7 +59,7 @@ namespace RoutingSample
     }
 
     #region snippetSW
-    public class MyStopwatch : IDisposable
+    public sealed class MyStopwatch : IDisposable
     {
         ILogger<Startup> _logger;
         string _message;
@@ -71,17 +72,17 @@ namespace RoutingSample
             _sw = Stopwatch.StartNew();
         }
 
-        private bool disposedValue = false;
+        private bool disposed = false;
 
 
         public void Dispose()
         {
-            if (!disposedValue)
+            if (!disposed)
             {
                 _logger.LogInformation("{Message }: {ElapsedMilliseconds}ms",
                                         _message, _sw.ElapsedMilliseconds);
 
-                disposedValue = true;
+                disposed = true;
             }
         }
     }

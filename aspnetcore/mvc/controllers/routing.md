@@ -8,11 +8,10 @@ uid: mvc/controllers/routing
 ---
 # Routing to controller actions in ASP.NET Core
 
-<!-- Rick TO do , future tense search will,would  etc
- MVC will set the order property to an appropriate value when you use MapControllerRoute - this should be discussed in the MVC documentation,
+<!-- Review: Need to add the following and flesh it out. WHat's appropriate? Can you set the Order property in conventional routing? If so how?
 
-add
-Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routing implementations, such as <xref:Microsoft.AspNetCore.Routing.Route>, match requests.
+ MVC sets the order property to an appropriate value when using MapControllerRoute - this should be discussed in the MVC documentation,
+
 -->
 By [Ryan Nowak](https://github.com/rynowak) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -129,6 +128,13 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 * Is a useful starting point for UI-based apps.
 * Is the only route template needed for many web UI apps. For larger web UI apps, another route using [Areas](#areas) if frequently all that's needed.
 
+<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an **order** value to their endpoints based on the order they are invoked.
+
+Endpoint routing in ASP.NET Core 3.0 and later:
+
+* Doesn't have a concept of routes.
+* Doesn't provide ordering guarantees, all endpoints are processed at once.
+
 > [!WARNING]
 > The `id` is defined as optional by the preceding route template. Actions can execute without the optional ID provided as part of the URL. Generally, when`id` is omitted from the URL:
 >
@@ -136,6 +142,8 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 > * No entity is found in the database matching `id == 0`.
 >
 > [Attribute routing](#ar) provides fine-grained control to make the ID required for some actions and not for others. By convention, the documentation includes optional parameters like `id` when they're likely to appear in correct usage.
+
+Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routing implementations, such as <xref:Microsoft.AspNetCore.Routing.Route>, match requests.
 
 [Attribute routing](#ar) is explained later in this document.
 
@@ -157,7 +165,7 @@ The `blog` route in the preceding code is a **dedicated conventional route**. It
 Because `controller` and `action` don't appear in the route template `"blog/{*article}"` as parameters:
 
 * They can only have the default values `{ controller = "Blog", action = "Article" }`.
-* This route will always map to the action `BlogController.Article`.
+* This route always maps to the action `BlogController.Article`.
 
 `/Blog`, `/Blog/Article`, and `/Blog/{any-string}` are the only URL paths that match the blog route.
 
@@ -179,7 +187,7 @@ The preceding example:
 ### Conventional routing order
 
 Conventional routing only matches a combination of action and controller that are defined by the app. This is intended to simplify cases where conventional routes overlap.
-Adding routes using <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>, and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> defines a priority order for the routing system to respect. Matches from a route that appears earlier have a higher priority. Conventional routing is order-dependent. In general, routes with areas should be placed earlier as they're more specific than routes without an area. [Dedicated conventional routes](#dcr) with catch all route parameters like `{*article}` can make a route too [greedy](xref:fundamentals/routing#greedy), meaning that it matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to prevent greedy matches.
+Adding routes using <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>, and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> automatically assign an order value to their endpoints based on the order they are invoked. Matches from a route that appears earlier have a higher priority. Conventional routing is order-dependent. In general, routes with areas should be placed earlier as they're more specific than routes without an area. [Dedicated conventional routes](#dcr) with catch all route parameters like `{*article}` can make a route too [greedy](xref:fundamentals/routing#greedy), meaning that it matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to prevent greedy matches.
 
 <a name="best"></a>
 
@@ -281,6 +289,8 @@ The following code applies `[Route("[controller]/[action]")]` to the controller:
 
 In the preceding code, the `Index` method templates must prepend `/` or `~/` to the route templates. Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller.
 
+See [Route template precedence](xref:fundamentals/routing#rtp) for information on route template selection.
+
 ## Reserved routing names
 
 The following keywords are reserved route parameter names when using Controllers or Razor Pages:
@@ -336,7 +346,7 @@ Consider the following controller:
 In the preceding code:
 
 * Each action contains the `[HttpGet]` attribute, which constrains matching to HTTP GET requests only.
-* The `GetProduct` action includes the `"{id}"` template, therefore `id` is appended to the `"api/[controller]"` template on the controller. The methods template is `"api/[controller]/"{id}""`. Therefore this action will only match GET requests of for the form `/api/test2/xyz`,`/api/test2/123`,`/api/test2/{any string}`, etc.
+* The `GetProduct` action includes the `"{id}"` template, therefore `id` is appended to the `"api/[controller]"` template on the controller. The methods template is `"api/[controller]/"{id}""`. Therefore this action only matches GET requests of for the form `/api/test2/xyz`,`/api/test2/123`,`/api/test2/{any string}`, etc.
   [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet2)]
 * The `GetIntProduct` action contains the `"int/{id:int}")` template. The `:int` portion of the template constrains the `id` route values to strings that can be converted to an integer. A GET request to `/api/test2/int/abc`:
   * Doesn't match this action.
@@ -431,9 +441,9 @@ Attribute routing builds a tree and matches all routes simultaneously:
 
 For example, an attribute route like `blog/search/{topic}` is more specific than an attribute route like `blog/{*article}`. The `blog/search/{topic}` route has higher priority, by default, because it's more specific. Using [conventional routing](#cr), the developer is responsible for placing routes in the desired order.
 
-Attribute routes can configure an order using the <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Order> property. All of the framework provided [route attributes](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) include `Order` . Routes are processed according to an ascending sort of the `Order` property. The default order is `0`. Setting a route using `Order = -1` will run before routes that don't set an order. Setting a route using `Order = 1` will run after default route ordering.
+Attribute routes can configure an order using the <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Order> property. All of the framework provided [route attributes](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) include `Order` . Routes are processed according to an ascending sort of the `Order` property. The default order is `0`. Setting a route using `Order = -1` runs before routes that don't set an order. Setting a route using `Order = 1` runs after default route ordering.
 
-**Avoid** depending on `Order`. If an app's URL-space requires explicit order values to route correctly, then it's likely confusing to clients as well. In general, attribute routing will select the correct route with URL matching. If the default order used for URL generation isn't working, using a route name as an override is usually simpler than applying the `Order` property.
+**Avoid** depending on `Order`. If an app's URL-space requires explicit order values to route correctly, then it's likely confusing to clients as well. In general, attribute routing selects the correct route with URL matching. If the default order used for URL generation isn't working, using a route name as an override is usually simpler than applying the `Order` property.
 
 Consider the following two controllers which both define the route matching `/home`:
 
@@ -486,7 +496,7 @@ In the preceding code:
 
   * Matches `/Products/Edit/{id}`
 
-Token replacement occurs as the last step of building the attribute routes. The preceding example will behave the same as the following code:
+Token replacement occurs as the last step of building the attribute routes. The preceding example behaves the same as the following code:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet20)]
 
@@ -536,7 +546,7 @@ Attribute routing supports defining multiple routes that reach the same action. 
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet6x)]
 
-Putting multiple route attributes on the controller means that each one will combine with each of the route attributes on the action methods:
+Putting multiple route attributes on the controller means that each one combines with each of the route attributes on the action methods:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet6)]
 
@@ -657,7 +667,7 @@ In the following example, the `IUrlHelper` interface is used through the `Contro
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/UrlGenerationController.cs?name=snippet_1)]
 
-If the app is using the default conventional route, the value of the `url` variable will be the URL path string `/UrlGeneration/Destination`. This URL path is created by routing by combining:
+If the app is using the default conventional route, the value of the `url` variable is the URL path string `/UrlGeneration/Destination`. This URL path is created by routing by combining:
 
 * The route values from the current request, which are called **ambient values**.
 * The values passed to `Url.Action` and substituting those values into the route template:
@@ -783,7 +793,7 @@ The action results factory methods such as <xref:Microsoft.AspNetCore.Mvc.Contro
 
 Using the preceding route definitions, `Url.Action("Index", "Home")` generates the URL path `/` using the `default` route, but why? You might guess the route values `{ controller = Home, action = Index }` would be enough to generate a URL using `blog`, and the result would be `/blog?action=Index&controller=Home`.
 
-[Dedicated conventional routes](#dcr) rely on a special behavior of default values that don't have a corresponding route parameter that prevents the route from being too [greedy](xref:fundamentals/routing#greedy) with URL generation. In this case the default values are `{ controller = Blog, action = Article }`, and neither `controller` nor `action` appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using `blog` will fail because the values `{ controller = Home, action = Index }` don't match `{ controller = Blog, action = Article }`. Routing then falls back to try `default`, which succeeds.
+[Dedicated conventional routes](#dcr) rely on a special behavior of default values that don't have a corresponding route parameter that prevents the route from being too [greedy](xref:fundamentals/routing#greedy) with URL generation. In this case the default values are `{ controller = Blog, action = Article }`, and neither `controller` nor `action` appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using `blog` fails because the values `{ controller = Home, action = Index }` don't match `{ controller = Blog, action = Article }`. Routing then falls back to try `default`, which succeeds.
 
 <a name="routing-areas-ref-label"></a>
 
@@ -814,7 +824,7 @@ Using the preceding example, the route values `{ area = Blog, controller = Users
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Blog/Controllers/UsersController.cs)]
 
-The [[Area]](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) attribute is what denotes a controller as part of an area. This controller is in the `Blog` area. Controllers without an `[Area]` attribute are not members of any area, and will **not** match when the `area` route value is provided by routing. In the following example, only the first controller listed can match the route values `{ area = Blog, controller = Users, action = AddUser }`.
+The [[Area]](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) attribute is what denotes a controller as part of an area. This controller is in the `Blog` area. Controllers without an `[Area]` attribute are not members of any area, and do **not** match when the `area` route value is provided by routing. In the following example, only the first controller listed can match the route values `{ area = Blog, controller = Users, action = AddUser }`.
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Areas/Blog/Controllers/UsersController.cs)]
 
@@ -989,7 +999,7 @@ The `blog` route here is a *dedicated conventional route*, meaning that it uses 
 Routes in the route collection are ordered, and will be processed in the order they're added. So in this example, the `blog` route will be tried before the `default` route.
 
 > [!NOTE]
-> *Dedicated conventional routes* often use catch-all route parameters like `{*article}` to capture the remaining portion of the URL path. This can make a route 'too greedy' meaning that it matches URLs that you intended to be matched by other routes. Put the 'greedy' routes later in the route table to solve this.
+> *Dedicated conventional routes* often use **catch-all** route parameters like `{*article}` to capture the remaining portion of the URL path. This can make a route 'too greedy' meaning that it matches URLs that you intended to be matched by other routes. Put the 'greedy' routes later in the route table to solve this.
 
 ### Fallback
 
