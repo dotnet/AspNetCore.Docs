@@ -18,12 +18,11 @@ namespace WebMvcRouting.Controllers
     [ApiController]
     public class MyTestApiController : ControllerBase
     {
+        // GET /api/MyTestApi
         [HttpGet]
         public IActionResult Get()
         {
-            var order = ControllerContext.ActionDescriptor.AttributeRouteInfo.Order;
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-            return Content($"Order = {order}, Template = {template}");
+            return new CCAD().GetADinfo(ControllerContext);
         }
     }
     #endregion

@@ -13,24 +13,14 @@ namespace RoutingSample.Controllers
         [HttpGet("{id:customName}")]
         public ActionResult<string> Get(string id)
         {
-            return GetADinfo(ControllerContext.ActionDescriptor, id);
+            return new CCAD().GetADinfo(ControllerContext, id);
         }
 
         // GET /api/test/my/3
         [HttpGet("my/{id:customName}")]
         public ActionResult<string> Get(int id)
         {
-            return GetADinfo(ControllerContext.ActionDescriptor, id.ToString());
-        }
-
-        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc, string id=null)
-        {
-            var template = actionDesc.AttributeRouteInfo.Template;
-            var actionName = actionDesc.ActionName;
-            var controllerName = actionDesc.ControllerName;
-            var ids = (id == null) ? "" : $"id = {id}";
-
-            return Content($"{ids} template:{template} {controllerName}.{actionName}");
+            return new CCAD().GetADinfo(ControllerContext, id);
         }
     }
     #endregion
@@ -49,18 +39,8 @@ namespace RoutingSample.Controllers
                 return StatusCode(StatusCodes.Status406NotAcceptable);
             }
 
-            return GetADinfo(ControllerContext.ActionDescriptor, id);
+            return new CCAD().GetADinfo(ControllerContext, id);
         }
         #endregion
-
-        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc, string id = null)
-        {
-            var template = actionDesc.AttributeRouteInfo.Template;
-            var actionName = actionDesc.ActionName;
-            var controllerName = actionDesc.ControllerName;
-            var ids = (id == null) ? "" : $"id = {id}";
-
-            return Content($"{ids} template:{template} {controllerName}.{actionName}");
-        }
     }
 }

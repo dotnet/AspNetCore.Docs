@@ -25,7 +25,7 @@ namespace RoutingSample.Controllers
 
         public IActionResult Subscribe(int id)
         {
-            return Content("WidgetController:" + id.ToString());
+            return new CCAD().GetADinfo(ControllerContext, id);
         }
 
         #region snippet2

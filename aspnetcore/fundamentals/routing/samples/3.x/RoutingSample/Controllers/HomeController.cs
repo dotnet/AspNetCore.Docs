@@ -7,16 +7,9 @@ namespace RoutingSample.Controllers
     #region snippet
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
-            return View();
+            return new CCAD().GetADinfo(ControllerContext);
         }
 
         public IActionResult Privacy()
@@ -27,7 +20,7 @@ namespace RoutingSample.Controllers
 
         public IActionResult Subscribe(int id)
         {
-            return Content("Home:" + id.ToString());
+            return new CCAD().GetADinfo(ControllerContext);
         }
     }
 }

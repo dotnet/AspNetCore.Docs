@@ -9,16 +9,13 @@ namespace RoutingSample.Controllers
     {
         public IActionResult Index()
         {
-
-            return Content(ControllerContext.ActionDescriptor.ControllerName + "." +
-                ControllerContext.ActionDescriptor.ActionName);
+            return new CCAD().GetADinfo(ControllerContext);
         }
 
         [Host("example.com:8080")]
         public IActionResult Privacy()
         {
-            return Content(ControllerContext.ActionDescriptor.ControllerName + "." +
-                ControllerContext.ActionDescriptor.ActionName);
+            return new CCAD().GetADinfo(ControllerContext);
         }
     }
     #endregion

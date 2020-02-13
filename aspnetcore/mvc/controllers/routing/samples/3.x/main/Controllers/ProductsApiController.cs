@@ -1,6 +1,7 @@
 ﻿//#define PROD1
-//#define PROD2
+#define PROD2
 
+// TODO can we make these products4 and 5?
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -17,21 +18,12 @@ namespace WebMvcRouting.Controllers
         [HttpGet]
         public IActionResult ListProducts()
         {
-            return GetADinfo(ControllerContext.ActionDescriptor);
+            return new CCAD().GetADinfo(ControllerContext);
         }
 
         [HttpGet("{id}")]
         public ActionResult GetProduct(int id) {
-            return GetADinfo(ControllerContext.ActionDescriptor);
-        }
-
-        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc)
-        {
-            var template = actionDesc.AttributeRouteInfo.Template;
-            var actionName = actionDesc.ActionName;
-            var controllerName = actionDesc.ControllerName;
-
-            return Content($" template:{template} {controllerName}.{actionName}");
+            return new CCAD().GetADinfo(ControllerContext, id);
         }
     }
     #endregion
@@ -46,19 +38,9 @@ namespace WebMvcRouting.Controllers
         [HttpGet("/products/{id}", Name = "Products_List")]
         public ActionResult<string> GetProduct(int id)
         {
-            return GetADinfo(ControllerContext.ActionDescriptor, id.ToString());
-        }
-        #endregion
-
-        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc, string id = null)
-        {
-            var template = actionDesc.AttributeRouteInfo.Template;
-            var actionName = actionDesc.ActionName;
-            var controllerName = actionDesc.ControllerName;
-            var ids = (id == null) ? "" : $"id = {id}";
-
-            return Content($"{ids} template:{template} {controllerName}.{actionName}");
-        }
+            return new CCAD().GetADinfo(ControllerContext, id);
+        }       
     }
+    #endregion
 #endif
 }

@@ -4,7 +4,8 @@
 //#define First
 //#define Second
 //#define Third
-//#define Forth
+#define Forth
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 
@@ -21,22 +22,13 @@ namespace WebMvcRouting.Controllers
         [Route("/")]
         public IActionResult Index()
         {
-            return GetADinfo(ControllerContext.ActionDescriptor);
+            return new CCAD().GetADinfo(ControllerContext);
         }
 
         [Route("About")]
         public IActionResult About()
         {
-            return GetADinfo(ControllerContext.ActionDescriptor);
-        }
-
-        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc)
-        {
-            var template = actionDesc.AttributeRouteInfo.Template;
-            var actionName = actionDesc.ActionName;
-            var controllerName = actionDesc.ControllerName;
-
-            return Content($" template:{template} {controllerName}.{actionName}");
+            return new CCAD().GetADinfo(ControllerContext);
         }
     }
 #endregion
@@ -49,27 +41,19 @@ namespace WebMvcRouting.Controllers
         [Route("Home/Index")]
         public IActionResult Index()
         {
-            return GetRteData(ControllerContext.ActionDescriptor);
+            return new CCAD().GetADinfo(ControllerContext);
         }
+
         [Route("Home/About")]
         public IActionResult About()
         {
-            return GetRteData(ControllerContext.ActionDescriptor);
+            return new CCAD().GetADinfo(ControllerContext);
         }
+
         [Route("Home/Contact")]
         public IActionResult Contact()
         {
-            return GetRteData(ControllerContext.ActionDescriptor);
-        }
-
-        private ContentResult GetRteData(ControllerActionDescriptor actionDesc)
-        {
-            var template = actionDesc.AttributeRouteInfo.Template;
-            var actionName = actionDesc.ActionName;
-            var controllerName = actionDesc.ControllerName;
-
-            return Content($" template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+            return new CCAD().GetADinfo(ControllerContext);
         }
     }
 #endregion
@@ -82,34 +66,25 @@ namespace WebMvcRouting.Controllers
         [Route("[controller]/[action]")]
         public IActionResult Index()
         {
-            return GetRteData(ControllerContext.ActionDescriptor);
+            return new CCAD().GetADinfo(ControllerContext);
         }
 
         [Route("[controller]/[action]")]
         public IActionResult About()
         {
-            return GetRteData(ControllerContext.ActionDescriptor);
+            return new CCAD().GetADinfo(ControllerContext);
         }
 
         [Route("[controller]/[action]")]
         public IActionResult Contact()
         {
-            return GetRteData(ControllerContext.ActionDescriptor);
-        }
-#endregion
-
-        private ContentResult GetRteData(ControllerActionDescriptor actionDesc)
-        {
-            var template = actionDesc.AttributeRouteInfo.Template;
-            var actionName = actionDesc.ActionName;
-            var controllerName = actionDesc.ControllerName;
-
-            return Content($" template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+            return new CCAD().GetADinfo(ControllerContext);
         }
     }
+    #endregion
+
 #elif Forth
-#region snippet24
+    #region snippet24
     [Route("[controller]/[action]")]
     public class HomeController : Controller
     {
@@ -118,30 +93,20 @@ namespace WebMvcRouting.Controllers
         [Route("~/Home/Index")]
         public IActionResult Index()
         {
-            return GetRteData(ControllerContext.ActionDescriptor);
+            return new CCAD().GetADinfo(ControllerContext);
         }
 
         public IActionResult About()
         {
-            return GetRteData(ControllerContext.ActionDescriptor);
+            return new CCAD().GetADinfo(ControllerContext);
         }
 
         public IActionResult Contact()
         {
-            return GetRteData(ControllerContext.ActionDescriptor);
-        }
-#endregion
-
-        private ContentResult GetRteData(ControllerActionDescriptor actionDesc)
-        {
-            var template = actionDesc.AttributeRouteInfo.Template;
-            var actionName = actionDesc.ActionName;
-            var controllerName = actionDesc.ControllerName;
-
-            return Content($" template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+            return new CCAD().GetADinfo(ControllerContext);
         }
     }
+    #endregion
 #endif
 }
 

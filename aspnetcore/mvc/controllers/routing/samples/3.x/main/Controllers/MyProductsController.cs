@@ -1,4 +1,4 @@
-﻿//#define PROD1    // ProductsApiController use the same route so only one can be used.
+﻿#define PROD1    // ProductsApiController use the same route so only one can be used.
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebMvcRouting.Controllers
@@ -9,16 +9,16 @@ namespace WebMvcRouting.Controllers
     [ApiController]
     public class MyProductsController : ControllerBase
     {
-        [HttpGet("/products")]
+        [HttpGet("/products3")]
         public ActionResult<string> ListProducts()
         {
-            return "GET MyProductsController.ListProducts";
+            return new CCAD().GetADinfo(ControllerContext);
         }
 
-        [HttpPost("/products")]
+        [HttpPost("/products3")]
         public ActionResult<string> CreateProduct(MyProduct myProduct)
         {
-            return $"POST CreateProduct {myProduct.Name}";
+            return new CCAD().GetADinfo(ControllerContext);
         }
     }
     #endregion

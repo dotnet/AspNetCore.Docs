@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebMvcRouting.Controllers
 {
@@ -10,21 +8,12 @@ namespace WebMvcRouting.Controllers
     {
         public IActionResult Article()
         {
-            return GetData(Request, ControllerContext.ActionDescriptor);
+            return new CCAD().GetADinfo(ControllerContext);
         }
 
         public IActionResult Index()
         {
-            return GetData(Request, ControllerContext.ActionDescriptor);
-        }
-
-        private ContentResult GetData(HttpRequest request, ControllerActionDescriptor actionDesc)
-        {
-            var path = request.Path.Value;
-            var actionName = actionDesc.ActionName;
-            var controllerName = actionDesc.ControllerName;
-
-            return Content($"Path: {path} - {controllerName}.{actionName}");
+            return new CCAD().GetADinfo(ControllerContext);
         }
     }
     #endregion
