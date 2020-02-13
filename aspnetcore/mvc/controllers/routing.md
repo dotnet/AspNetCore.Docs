@@ -115,7 +115,7 @@ This mapping:
 
 * Is based on the controller and [action](#action) names **only**.
 * Isn't based on namespaces, source file locations, or method parameters.
-* Is different than typical [attribute routing] which doesn't include the action name in the route.
+* Is different than typical [attribute routing](#ar) which doesn't include the action name in the route.
 
 Using conventional routing with the default route allows creating the app without having to come up with a new URL pattern for each action. For an app with [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) style actions, having consistency for the URLs across controllers:
 

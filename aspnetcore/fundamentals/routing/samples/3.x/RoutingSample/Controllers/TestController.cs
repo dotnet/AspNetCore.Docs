@@ -23,7 +23,7 @@ namespace RoutingSample.Controllers
             return GetADinfo(ControllerContext.ActionDescriptor, id.ToString());
         }
 
-        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc, string id = null)
+        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc, string id=null)
         {
             var template = actionDesc.AttributeRouteInfo.Template;
             var actionName = actionDesc.ActionName;

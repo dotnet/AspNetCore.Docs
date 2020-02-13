@@ -1,8 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿//#define PROD1
+//#define PROD2
+
+
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 
 namespace WebMvcRouting.Controllers
 {
+#if PROD1
+
     #region snippet
     [ApiController]
     [Route("products")]
@@ -18,6 +24,7 @@ namespace WebMvcRouting.Controllers
         public ActionResult GetProduct(int id) {
             return GetADinfo(ControllerContext.ActionDescriptor);
         }
+
         private ContentResult GetADinfo(ControllerActionDescriptor actionDesc)
         {
             var template = actionDesc.AttributeRouteInfo.Template;
@@ -28,6 +35,7 @@ namespace WebMvcRouting.Controllers
         }
     }
     #endregion
+#endif
 
 #if PROD2
     // [Route("api/[controller]")] // Not needed because each method has a route template.
@@ -38,10 +46,19 @@ namespace WebMvcRouting.Controllers
         [HttpGet("/products/{id}", Name = "Products_List")]
         public ActionResult<string> GetProduct(int id)
         {
-            var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
-            return $"GetProduct id: {id.ToString()} routeName: {routeName}";
+            return GetADinfo(ControllerContext.ActionDescriptor, id.ToString());
+        }
+        #endregion
+
+        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc, string id = null)
+        {
+            var template = actionDesc.AttributeRouteInfo.Template;
+            var actionName = actionDesc.ActionName;
+            var controllerName = actionDesc.ControllerName;
+            var ids = (id == null) ? "" : $"id = {id}";
+
+            return Content($"{ids} template:{template} {controllerName}.{actionName}");
         }
     }
-    #endregion
 #endif
 }

@@ -26,7 +26,7 @@ namespace WebMvcRouting.Controllers
             var controllerName = ControllerContext.ActionDescriptor.ControllerName;
 
             return Content($"route name:{routeName}  template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+                $" {controllerName}.{actionName}");
         }
     }
     #endregion

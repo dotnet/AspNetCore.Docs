@@ -7,12 +7,12 @@
 //#define SixX
 //#define Seven
 //#define Eight
-// #define Nine
+//#define Nine
 
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebMvcRouting.Controllers
 {
@@ -24,25 +24,24 @@ namespace WebMvcRouting.Controllers
     #region snippet10
         [HttpGet]
         public IActionResult List() {
-    #endregion
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
-
-            return Content($"template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+            #endregion
+            return GetADinfo(ControllerContext.ActionDescriptor);
         }
 
-    #region snippet11
+        #region snippet11
         [HttpGet("{id}")]
         public IActionResult Edit(int id) {
-    #endregion
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+            #endregion
+            return GetADinfo(ControllerContext.ActionDescriptor);
+        }
 
-            return Content($"ID: {id} template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc)
+        {
+            var template = actionDesc.AttributeRouteInfo.Template;
+            var actionName = actionDesc.ActionName;
+            var controllerName = actionDesc.ControllerName;
+
+            return Content($" template:{template} {controllerName}.{actionName}");
         }
     }
     #endregion
@@ -54,26 +53,24 @@ namespace WebMvcRouting.Controllers
         [HttpGet("[controller]/[action]")]  // Matches '/Products/List'
         public IActionResult List()
         {
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
-
-            return Content($"template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+            return GetADinfo(ControllerContext.ActionDescriptor);
         }
 
         [HttpGet("[controller]/[action]/{id}")]   // Matches '/Products/Edit/{id}'
         public IActionResult Edit(int id)
         {
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
+            return GetADinfo(ControllerContext.ActionDescriptor);
+        }
+        #endregion
+        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc)
+        {
+            var template = actionDesc.AttributeRouteInfo.Template;
+            var actionName = actionDesc.ActionName;
+            var controllerName = actionDesc.ControllerName;
 
-            return Content($"ID: {id} template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+            return Content($" template:{template} {controllerName}.{actionName}");
         }
     }
-    #endregion
 #elif Third
      [Route("[controller]")]
     public class ProductsController : Controller
@@ -125,22 +122,26 @@ namespace WebMvcRouting.Controllers
         [HttpGet]
         public IActionResult List()
         {
-            var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-
-            return Content($"Template: {template} route name:{routeName}");
+            return GetADinfo(ControllerContext.ActionDescriptor);
         }
 
         [HttpGet("{id}")]
         public IActionResult Edit(int id)
         {
-            var routeName = ControllerContext.ActionDescriptor.AttributeRouteInfo.Name;
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
+            return GetADinfo(ControllerContext.ActionDescriptor, id.ToString());
+        }
+        #endregion
 
-            return Content($"Template: {template}  Route name: {routeName}, ID = {id.ToString()}");
+        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc, string id = null)
+        {
+            var template = actionDesc.AttributeRouteInfo.Template;
+            var actionName = actionDesc.ActionName;
+            var controllerName = actionDesc.ControllerName;
+            var ids = (id == null) ? "" : $"id = {id}";
+
+            return Content($"{ids} template:{template} {controllerName}.{actionName}");
         }
     }
-    #endregion
 #elif SixX
     #region snippet6x
     [Route("[controller]")]
@@ -155,7 +156,7 @@ namespace WebMvcRouting.Controllers
             var controllerName = ControllerContext.ActionDescriptor.ControllerName;
 
             return Content($"template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+                $" {controllerName}.{actionName}");
         }
     }
     #endregion
@@ -174,7 +175,7 @@ namespace WebMvcRouting.Controllers
             var controllerName = ControllerContext.ActionDescriptor.ControllerName;
 
             return Content($"template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+                $" {controllerName}.{actionName}");
         }
     }
     #endregion
@@ -193,7 +194,7 @@ namespace WebMvcRouting.Controllers
             var controllerName = ControllerContext.ActionDescriptor.ControllerName;
 
             return Content($"Path: {path} template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+                $" {controllerName}.{actionName}");
         }
     }
     #endregion
@@ -210,7 +211,7 @@ namespace WebMvcRouting.Controllers
             var controllerName = ControllerContext.ActionDescriptor.ControllerName;
 
             return Content($"ID: {id} template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+                $" {controllerName}.{actionName}");
         }
     }
     #endregion
@@ -225,7 +226,7 @@ namespace WebMvcRouting.Controllers
             var controllerName = ControllerContext.ActionDescriptor.ControllerName;
 
             return Content($"ID: {id} template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
+                $" {controllerName}.{actionName}");
         }
 
         [HttpPost]
