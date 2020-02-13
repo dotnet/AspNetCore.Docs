@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/02/2020
+ms.date: 02/13/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/index
 ---
@@ -131,7 +131,7 @@ The `AuthenticationStateProvider` service can provide the current user's <xref:S
 @using Microsoft.AspNetCore.Components.Authorization
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-<button @onclick="@LogUsername">Write user info to console</button>
+<button @onclick="LogUsername">Write user info to console</button>
 
 @code {
     private async Task LogUsername()
@@ -214,7 +214,7 @@ If authentication state data is required for procedural logic, such as when perf
 ```razor
 @page "/"
 
-<button @onclick="@LogUsername">Log username</button>
+<button @onclick="LogUsername">Log username</button>
 
 @code {
     [CascadingParameter]
@@ -245,6 +245,8 @@ If `user.Identity.IsAuthenticated` is `true`, claims can be enumerated and membe
 Set up the `Task<AuthenticationState>` cascading parameter using the `AuthorizeRouteView` and `CascadingAuthenticationState` components in the *App.razor* file:
 
 ```razor
+@using Microsoft.AspNetCore.Components.Authorization
+
 <Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
         <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
@@ -257,6 +259,13 @@ Set up the `Task<AuthenticationState>` cascading parameter using the `AuthorizeR
         </CascadingAuthenticationState>
     </NotFound>
 </Router>
+```
+
+Add services for options and authorization to `Program.Main`:
+
+```csharp
+builder.Services.AddOptions();
+builder.Services.AddAuthorizationCore();
 ```
 
 ## Authorization
