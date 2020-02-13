@@ -31,7 +31,7 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
      The *_Layout.cshtml* file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.
 
-   * Add a `<script>` tag for the *blazor.server.js* script right before of the closing `</body>` tag:
+   * Add a `<script>` tag for the *blazor.server.js* script immediately before of the closing `</body>` tag:
 
      ```html
      <script src="_framework/blazor.server.js"></script>
@@ -41,7 +41,7 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
 1. Add an *_Imports.razor* file to the root folder of the project with the following content (change the last namespace, `MyAppNamespace`, to the namespace of the app):
 
-   ```csharp
+   ```razor
    @using System.Net.Http
    @using Microsoft.AspNetCore.Authorization
    @using Microsoft.AspNetCore.Components.Authorization
@@ -74,7 +74,7 @@ To support routable Razor components in Razor Pages apps:
 
 1. Follow the guidance in the [Prepare the app to use components in pages and views](#prepare-the-app-to-use-components-in-pages-and-views) section.
 
-1. Add an *App.razor* file to the root of the project with the following content:
+1. Add an *App.razor* file to the project root with the following content:
 
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
@@ -205,7 +205,7 @@ When using a custom folder to hold the app's components, add the namespace repre
 * Change `MyAppNamespace` to the app's namespace.
 * If a folder named *Components* isn't used to hold the components, change `Components` to the folder where the components reside.
 
-```csharp
+```cshtml
 @using MyAppNamespace.Components
 ```
 
