@@ -113,6 +113,11 @@ proxy_set_header Connection $connection_upgrade;
 
 For more information, see [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/).
 
+## Third-party SignalR backplane providers
+
+* [NCache](https://www.alachisoft.com/ncache/asp-net-core-signalr.html)
+* [Orleans](https://github.com/OrleansContrib/SignalR.Orleans)
+
 ## Next steps
 
 For more information, see the following resources:

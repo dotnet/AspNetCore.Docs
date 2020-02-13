@@ -5,7 +5,7 @@ description: Learn how to create reusable layout components for Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 02/12/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/layouts
 ---
@@ -15,7 +15,7 @@ By [Rainer Stropek](https://www.timecockpit.com) and [Luke Latham](https://githu
 
 Some app elements, such as menus, copyright messages, and company logos, are usually part of app's overall layout and used by every component in the app. Copying the code of these elements into all of the components of an app isn't an efficient approach&mdash;every time one of the elements requires an update, every component must be updated. Such duplication is difficult to maintain and can lead to inconsistent content over time. *Layouts* solve this problem.
 
-Technically, a layout is just another component. A layout is defined in a Razor template or in C# code and can use [data binding](xref:blazor/components#data-binding), [dependency injection](xref:blazor/dependency-injection), and other component scenarios.
+Technically, a layout is just another component. A layout is defined in a Razor template or in C# code and can use [data binding](xref:blazor/data-binding), [dependency injection](xref:blazor/dependency-injection), and other component scenarios.
 
 To turn a *component* into a *layout*, the component:
 
@@ -86,7 +86,7 @@ Finally, `MasterLayout` in *MasterLayout.razor* contains the top-level layout el
 
 ## Share a Razor Pages layout with integrated components
 
-When routable components are integrated into a Razor Pages app, the app's shared layout can be used with the components. For more information, see <xref:blazor/hosting-model-configuration#integrate-razor-components-into-razor-pages-and-mvc-apps>.
+When routable components are integrated into a Razor Pages app, the app's shared layout can be used with the components. For more information, see <xref:blazor/integrate-components>.
 
 ## Additional resources
 
