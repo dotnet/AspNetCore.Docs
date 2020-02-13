@@ -62,7 +62,7 @@ In the following example, `UpdateHeading` is called asynchronously when the butt
 
 ## Event argument types
 
-For some events, event argument types are permitted. If access to one of these event types isn't necessary, it isn't required in the method call.
+For some events, event argument types are permitted. Specifying an event type in the method call is only necessary if the event type is used in the method.
 
 Supported `EventArgs` are shown in the following table.
 

@@ -74,7 +74,7 @@ In the following example, the loop in the `CreateComponent` method generates thr
 
 ### Sequence numbers relate to code line numbers and not execution order
 
-Razor component files (*.razor*) are always compiled. Compilation is potentially a great advantage over interpreting code because the compile step can be used to inject information that improves app performance at runtime.
+Razor component files (*.razor*) are always compiled. Compilation is a potential advantage over interpreting code because the compile step can be used to inject information that improves app performance at runtime.
 
 A key example of these improvements involves *sequence numbers*. Sequence numbers indicate to the runtime which outputs came from which distinct and ordered lines of code. The runtime uses this information to generate efficient tree diffs in linear time, which is far faster than is normally possible for a general tree diff algorithm.
 
