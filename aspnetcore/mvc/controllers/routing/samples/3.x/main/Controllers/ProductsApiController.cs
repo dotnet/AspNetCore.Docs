@@ -1,10 +1,7 @@
-﻿//#define PROD1
+﻿#define PROD1
 #define PROD2
 
-// TODO can we make these products4 and 5?
-
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Controllers;
 
 namespace WebMvcRouting.Controllers
 {
@@ -16,30 +13,24 @@ namespace WebMvcRouting.Controllers
     public class ProductsApiController : ControllerBase
     {
         [HttpGet]
-        public IActionResult ListProducts()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult ListProducts() =>
+            ControllerContext.ToActionResult();
 
         [HttpGet("{id}")]
-        public ActionResult GetProduct(int id) {
-            return new CCAD().GetADinfo(ControllerContext, id);
-        }
+        public IActionResult GetProduct(int id) =>
+            ControllerContext.ToActionResult(id);
     }
     #endregion
 #endif
 
 #if PROD2
-    // [Route("api/[controller]")] // Not needed because each method has a route template.
     #region snippet2
     [ApiController]
-    public class ProductsApiController : ControllerBase
+    public class Products2ApiController : ControllerBase
     {
-        [HttpGet("/products/{id}", Name = "Products_List")]
-        public ActionResult<string> GetProduct(int id)
-        {
-            return new CCAD().GetADinfo(ControllerContext, id);
-        }       
+        [HttpGet("/products2/{id}", Name = "Products_List")]
+        public IActionResult GetProduct(int id) =>
+            ControllerContext.ToActionResult(id);
     }
     #endregion
 #endif

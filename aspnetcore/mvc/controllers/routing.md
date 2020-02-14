@@ -375,10 +375,10 @@ Since an attribute route applies to a specific action, it's easy to make paramet
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet2)]
 
-The `ProductsApiController.GetProduct(int)` action:
+The `Products2ApiController.GetProduct(int)` action:
 
-* Is run with URL path like `/products/3`
-* Isn't run with the URL path `/products`.
+* Is run with URL path like `/products2/3`
+* Isn't run with the URL path `/products2`.
 
 The [[Consumes]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) attribute allows an action to limit the supported request content types. For more information, see [Define supported request content types with the Consumes attribute](xref:web-api/index#consumes).
 
@@ -490,11 +490,11 @@ In the preceding code:
 
   [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet10)]
 
-  * Matches `/Products/List`
+  * Matches `/Products0/List`
 
   [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet11)]
 
-  * Matches `/Products/Edit/{id}`
+  * Matches `/Products0/Edit/{id}`
 
 Token replacement occurs as the last step of building the attribute routes. The preceding example behaves the same as the following code:
 
@@ -554,13 +554,7 @@ All the [HTTP verb](#verb) route constraints implement `IActionConstraint`.
 
 When multiple route attributes that implement <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint> are placed on an action:
 
-* Each action constraint combines with the route template from the attribute that defined it.
-
-<!-- Review : What is it? as in ....the attribute that defined it. 
-
-NEED TO ADD ANOTHER CONCRETE SENTENCE, SUCH AS THE FOLLOWING:
-For example, in the following code, the post constraint `[HttpPost("Checkout")]` combines with [Route("api/[controller]")] to define the POST 'api/Products/Checkout' endpoint.
--->
+* Each action constraint combines with the route template applied to the controller.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet7)]
 
@@ -574,7 +568,7 @@ Attribute routes support the same inline syntax as conventional routes to specif
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet8&highlight=3)]
 
-In the preceding code, `[HttpPost("product/{id:int}")]` applies a route constraint. The `ProductsController.ShowProduct` action is matched only by URL paths like `/product/3`. The route template portion `{id:int}` constains that segment to only integers.
+In the preceding code, `[HttpPost("product/{id:int}")]` applies a route constraint. The `ProductsController.ShowProduct` action is matched only by URL paths like `/product/3`. The route template portion `{id:int}` constrains that segment to only integers.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet24)]
 

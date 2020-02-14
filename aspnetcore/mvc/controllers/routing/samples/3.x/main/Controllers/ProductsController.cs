@@ -1,4 +1,4 @@
-﻿//#define First
+﻿#define First
 //#define Second
 //#define Third
 //#define Fourth
@@ -16,74 +16,50 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 
 namespace WebMvcRouting.Controllers
 {
-#if First
     #region snippet
     [Route("[controller]/[action]")]
-    public class ProductsController : Controller
+    public class Products0Controller : Controller
     {
-    #region snippet10
+        #region snippet10
         [HttpGet]
-        public IActionResult List() {
-            #endregion
-            return GetADinfo(ControllerContext.ActionDescriptor);
-        }
+        public IActionResult List() =>
+            ControllerContext.ToActionResult();
+        #endregion
+
 
         #region snippet11
         [HttpGet("{id}")]
-        public IActionResult Edit(int id) {
-            #endregion
-            return GetADinfo(ControllerContext.ActionDescriptor);
-        }
-
-        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc)
-        {
-            var template = actionDesc.AttributeRouteInfo.Template;
-            var actionName = actionDesc.ActionName;
-            var controllerName = actionDesc.ControllerName;
-
-            return Content($" template:{template} {controllerName}.{actionName}");
-        }
+        public IActionResult Edit(int id) =>
+            ControllerContext.ToActionResult(id);
+        #endregion
     }
     #endregion
     // Was products2 controller
-#elif Second
+
     #region snippet20
-    public class ProductsController : Controller
+    public class Products20Controller : Controller
     {
-        [HttpGet("[controller]/[action]")]  // Matches '/Products/List'
-        public IActionResult List()
-        {
-            return GetADinfo(ControllerContext.ActionDescriptor);
-        }
+        [HttpGet("[controller]/[action]")]  // Matches '/Products20/List'
+        public IActionResult List() =>
+            ControllerContext.ToActionResult();
 
-        [HttpGet("[controller]/[action]/{id}")]   // Matches '/Products/Edit/{id}'
-        public IActionResult Edit(int id)
-        {
-            return GetADinfo(ControllerContext.ActionDescriptor);
-        }
-        #endregion
-        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc)
-        {
-            var template = actionDesc.AttributeRouteInfo.Template;
-            var actionName = actionDesc.ActionName;
-            var controllerName = actionDesc.ControllerName;
-
-            return Content($" template:{template} {controllerName}.{actionName}");
-        }
+        [HttpGet("[controller]/[action]/{id}")]   // Matches '/Products20/Edit/{id}'
+        public IActionResult Edit(int id) =>
+            ControllerContext.ToActionResult(id);
     }
-#elif Third
-     [Route("[controller]")]
-    public class ProductsController : Controller
+    #endregion
+
+    // TODO remove, apparently no snippet
+
+    [Route("[controller]")]
+    public class Products21Controller : Controller
     {
-        [Route("")] // Matches 'Products'
-        [Route("Index")] // Matches 'Products/Index'
-        public IActionResult Index()
-        {
-            // ...
-            return View("Generic");
-        }
+        [Route("")] // Matches 'Products21'
+        [Route("Index")] // Matches 'Products21/Index'
+        public IActionResult Index() =>
+            ControllerContext.ToActionResult();
     }
-#elif Fourth
+
     // Test with StartupAPI
     #region snippet4
     [ApiController]
@@ -92,130 +68,61 @@ namespace WebMvcRouting.Controllers
     {
     }
 
-    public class ProductsController : MyBaseController
+    public class Products22Controller : MyBaseController
     {
-        [HttpGet] // Matches '/api/Products'
-        public IActionResult List()
-        {
-            return Content("Using BaseController List");
-        }
+        [HttpGet] //         GET /api/Products22
+        public IActionResult List()=>
+            ControllerContext.ToActionResult();
 
-        [HttpPut("{id}")] // Matches '/api/Products/{id}'
-        public IActionResult Edit(int id)
-        {
-            return Content($"Using BaseController Edit/{id}");
-        }
+        [HttpPut("{id}")] //  PUT /api/Products22/3
+        public IActionResult Edit(int id) =>
+            ControllerContext.ToActionResult(id);
     }
     #endregion
-#elif Five
-    // /api/products/edit/3
-    // /api/products/list
+
     #region snippet5
     [ApiController]
     [Route("api/[controller]/[action]", Name = "[controller]_[action]")]
-    public abstract class MyBaseController : ControllerBase
+    public abstract class MyBase2Controller : ControllerBase
     {
     }
 
-    public class ProductsController : MyBaseController
+    public class Products11Controller : MyBase2Controller
     {
-        [HttpGet]
-        public IActionResult List()
-        {
-            return GetADinfo(ControllerContext.ActionDescriptor);
-        }
+        [HttpGet]                      // /api/products11/edit/3
+        public IActionResult List() =>
+            ControllerContext.ToActionResult();
 
-        [HttpGet("{id}")]
-        public IActionResult Edit(int id)
-        {
-            return GetADinfo(ControllerContext.ActionDescriptor, id.ToString());
-        }
-        #endregion
-
-        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc, string id = null)
-        {
-            var template = actionDesc.AttributeRouteInfo.Template;
-            var actionName = actionDesc.ActionName;
-            var controllerName = actionDesc.ControllerName;
-            var ids = (id == null) ? "" : $"id = {id}";
-
-            return Content($"{ids} template:{template} {controllerName}.{actionName}");
-        }
+        [HttpGet("{id}")]             //    /api/products11/edit/3
+        public IActionResult Edit(int id) =>
+            ControllerContext.ToActionResult(id);
     }
-#elif SixX
+    #endregion
+
     #region snippet6x
     [Route("[controller]")]
-    public class ProductsController : Controller
+    public class Products13Controller : Controller
     {
-        [Route("")]     // Matches 'Products'
-        [Route("Index")] // Matches 'Products/Index'
-        public IActionResult Index()
-        {
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
-
-            return Content($"template:{template} " +
-                $" {controllerName}.{actionName}");
-        }
+        [Route("")]     // Matches 'Products13'
+        [Route("Index")] // Matches 'Products13/Index'
+        public IActionResult Index() =>
+            ControllerContext.ToActionResult();
     }
     #endregion
-#elif Six
-    #region snippet6
-    [Route("Store")]
-    [Route("[controller]")]
-    public class ProductsController : Controller
-    {
-        [HttpPost("Buy")]       // Matches 'Products/Buy' and 'Store/Buy'
-        [HttpPost("Checkout")]  // Matches 'Products/Checkout' and 'Store/Checkout'
-        public IActionResult Buy()
-        {
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
 
-            return Content($"template:{template} " +
-                $" {controllerName}.{actionName}");
-        }
-    }
-    #endregion
-#elif Seven
-    #region snippet7
-    [Route("api/[controller]")]
-    public class ProductsController : ControllerBase
-    {
-        [HttpPut("Buy")]        // Matches PUT 'api/Products/Buy'
-        [HttpPost("Checkout")]  // Matches POST 'api/Products/Checkout'
-        public IActionResult Buy()
-        {
-            var path = Request.Path.Value;
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
-
-            return Content($"Path: {path} template:{template} " +
-                $" {controllerName}.{actionName}");
-        }
-    }
-    #endregion
-#elif Eight
     // test with POST /product/3
-    #region snippet8
-    public class ProductsController : Controller
+#region snippet8
+    public class Products14Controller : Controller
     {
-        [HttpPost("product/{id:int}")]
-        public IActionResult ShowProduct(int id)
-        {
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
-
-            return Content($"ID: {id} template:{template} " +
-                $" {controllerName}.{actionName}");
-        }
+        [HttpPost("product14/{id:int}")]
+        public IActionResult ShowProduct(int id) =>
+            ControllerContext.ToActionResult(id);
     }
     #endregion
-#elif Nine
+
+#if Second
+
+
     #region snippet9
     public class ProductsController : Controller
     {
@@ -248,4 +155,29 @@ namespace WebMvcRouting.Controllers
         public string name { get; set; }
     }
 #endif
+
+
+    #region snippet7
+    [Route("api/[controller]")]
+    public class Products7Controller : ControllerBase
+    {
+        [HttpPut("Buy")]        // Matches PUT 'api/Products7/Buy'
+        [HttpPost("Checkout")]  // Matches POST 'api/Products7/Checkout'
+        public IActionResult Buy() =>
+            ControllerContext.ToActionResult();
+    }
+#endregion
+
+
+#region snippet6
+    [Route("Store")]
+    [Route("[controller]")]
+    public class Products6Controller : Controller
+    {
+        [HttpPost("Buy")]       // Matches 'Products6/Buy' and 'Store/Buy'
+        [HttpPost("Checkout")]  // Matches 'Products6/Checkout' and 'Store/Checkout'
+        public IActionResult Buy() =>
+            ControllerContext.ToActionResult();
+    }
+#endregion
 }

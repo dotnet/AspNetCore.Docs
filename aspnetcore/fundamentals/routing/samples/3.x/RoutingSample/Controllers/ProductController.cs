@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using RoutingSample.Extensions;
 
 namespace RoutingSample.Controllers
 {
@@ -7,16 +8,12 @@ namespace RoutingSample.Controllers
     [Host("contoso.com", "adventure-works.com")]
     public class ProductController : Controller
     {
-        public IActionResult Index()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult Index() =>
+            ControllerContext.ToActionResult();
 
         [Host("example.com:8080")]
-        public IActionResult Privacy()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult Privacy() =>
+            ControllerContext.ToActionResult();
     }
     #endregion
 }

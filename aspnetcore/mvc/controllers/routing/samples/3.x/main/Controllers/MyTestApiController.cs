@@ -20,10 +20,8 @@ namespace WebMvcRouting.Controllers
     {
         // GET /api/MyTestApi
         [HttpGet]
-        public IActionResult Get()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult Get() =>
+            ControllerContext.ToActionResult();
     }
     #endregion
 }

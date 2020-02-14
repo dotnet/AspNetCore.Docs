@@ -4,10 +4,9 @@
 //#define First
 //#define Second
 //#define Third
-#define Forth
+//#define Forth
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Controllers;
 
 namespace WebMvcRouting.Controllers
 {
@@ -20,66 +19,50 @@ namespace WebMvcRouting.Controllers
         [Route("")]
         [Route("Index")]
         [Route("/")]
-        public IActionResult Index()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult Index() =>
+            ControllerContext.ToActionResult();
 
         [Route("About")]
-        public IActionResult About()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult About() =>
+            ControllerContext.ToActionResult();
     }
-#endregion
+    #endregion
 #elif Second
-#region snippet2
+    #region snippet2
     public class HomeController : Controller
     {
         [Route("")]
         [Route("Home")]
         [Route("Home/Index")]
-        public IActionResult Index()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult Index() =>
+            ControllerContext.ToActionResult();
 
         [Route("Home/About")]
-        public IActionResult About()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult About()=>
+            ControllerContext.ToActionResult();
 
         [Route("Home/Contact")]
-        public IActionResult Contact()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult Contact()=>
+            ControllerContext.ToActionResult();
     }
-#endregion
+    #endregion
 #elif Third
-#region snippet22
+    #region snippet22
     public class HomeController : Controller
     {
         [Route("")]
         [Route("Home")]
         [Route("[controller]/[action]")]
-        public IActionResult Index()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult Index() =>
+            ControllerContext.ToActionResult();
 
         [Route("[controller]/[action]")]
-        public IActionResult About()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult About() =>
+            ControllerContext.ToActionResult();
 
         [Route("[controller]/[action]")]
-        public IActionResult Contact()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult Contact() =>
+            ControllerContext.ToActionResult();
     }
     #endregion
 
@@ -91,20 +74,14 @@ namespace WebMvcRouting.Controllers
         [Route("~/")]
         [Route("/Home")]
         [Route("~/Home/Index")]
-        public IActionResult Index()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult Index() =>
+            ControllerContext.ToActionResult();
 
-        public IActionResult About()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult About() =>
+            ControllerContext.ToActionResult();
 
-        public IActionResult Contact()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult Contact() =>
+            ControllerContext.ToActionResult();
     }
     #endregion
 #endif

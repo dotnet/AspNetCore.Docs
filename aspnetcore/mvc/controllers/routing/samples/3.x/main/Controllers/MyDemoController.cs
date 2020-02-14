@@ -1,9 +1,8 @@
-﻿//#define MYDEMO
+﻿#define MYDEMO
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Controllers;
 
-// This uses same routes as HomeController, so only one can be defined
+// This uses same routes as HomeController, and MyDemo3Controller so only one can be defined
 // Test with                     webBuilder.UseStartup<StartupDefaultMVC>();
 // or with StartupMap
 namespace RoutingSample.Controllers
@@ -15,33 +14,18 @@ namespace RoutingSample.Controllers
         [Route("")]
         [Route("Home")]
         [Route("Home/Index")]
-        public IActionResult MyIndex()
-        {
-            return GetRteData(ControllerContext.ActionDescriptor);
-        }
+        public IActionResult MyIndex() =>
+            ControllerContext.ToActionResult();
+
         [Route("Home/About")]
-        public IActionResult MyAbout()
-        {
-            return GetRteData(ControllerContext.ActionDescriptor);
-        }
+        public IActionResult MyAbout() =>
+            ControllerContext.ToActionResult();
+
         [Route("Home/Contact")]
-        public IActionResult MyContact()
-        {
-            return GetRteData(ControllerContext.ActionDescriptor);
-        }
-        #endregion
-
-        private ContentResult GetRteData(ControllerActionDescriptor actionDesc)
-        {
-            var template = actionDesc.AttributeRouteInfo.Template;
-            var actionName = actionDesc.ActionName;
-            var controllerName = actionDesc.ControllerName;
-
-            return Content($" template:{template} " +
-                $" controller:{controllerName}  action name: {actionName}");
-        }
+        public IActionResult MyContact() =>
+            ControllerContext.ToActionResult();
     }
-
+    #endregion
 #endif
 }
 

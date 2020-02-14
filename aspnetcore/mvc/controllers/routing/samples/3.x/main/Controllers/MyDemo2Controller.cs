@@ -19,10 +19,8 @@ namespace RoutingSample.Controllers
     public class MyDemo3Controller : Controller
     {
         [Route("/articles/{id}")]
-        public IActionResult ListArticles(int id)
-        {
-            return Content($"MyDemo3Controller.ListArticles {id}");
-        }
+        public IActionResult ListArticles(int id) =>
+            ControllerContext.ToActionResult(id);
     }
     #endregion
 }

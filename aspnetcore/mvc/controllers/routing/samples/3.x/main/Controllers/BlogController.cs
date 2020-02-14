@@ -6,15 +6,11 @@ namespace WebMvcRouting.Controllers
     #region snippet
     public class BlogController : Controller
     {
-        public IActionResult Article()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult Article() =>
+            ControllerContext.ToActionResult();
 
-        public IActionResult Index()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult Index() =>
+            ControllerContext.ToActionResult();
     }
     #endregion
 }

@@ -1,26 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.Logging;
+using RoutingSample.Extensions;
 
 namespace RoutingSample.Controllers
 {
     #region snippet
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult Index() =>
+            ControllerContext.ToActionResult();
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        public IActionResult Privacy() =>
+            ControllerContext.ToActionResult();
+
         #endregion
 
-        public IActionResult Subscribe(int id)
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult Subscribe(int id) =>
+            ControllerContext.ToActionResult(id);
     }
 }

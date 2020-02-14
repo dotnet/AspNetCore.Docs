@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RoutingSample.Extensions;
 
 namespace RoutingSample.Controllers
 {
@@ -12,10 +13,7 @@ namespace RoutingSample.Controllers
         }
         #endregion
 
-        public IActionResult Edit(int id)
-        {
-            return Content("GadgetController:" + id.ToString());
-        }
-
+        public IActionResult Edit(int id) =>
+            ControllerContext.ToActionResult(id);
     }
 }

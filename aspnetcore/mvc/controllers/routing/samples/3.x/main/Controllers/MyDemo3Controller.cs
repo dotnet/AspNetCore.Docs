@@ -1,4 +1,5 @@
-﻿//#define MYDEMO3
+﻿//#define MYDEMO4
+//#define MYDEMO3
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,10 +15,8 @@ namespace WebMvcRouting.Controllers
         [Route("")]
         [Route("Home")]
         [Route("Home/MyIndex")]
-        public IActionResult MyIndex()
-        {
-            return Content("MyIndex");
-        }   
+        public IActionResult MyIndex() =>
+            ControllerContext.ToActionResult();
     }
     #endregion
 #endif
@@ -29,10 +28,8 @@ namespace WebMvcRouting.Controllers
         [Route("")]
         [Route("Home",Order = 2)]
         [Route("Home/MyIndex")]
-        public IActionResult MyIndex()
-        {
-            return Content("MyIndex");
-        }
+        public IActionResult MyIndex()=>
+            ControllerContext.ToActionResult();
     #endregion
     }
 #endif

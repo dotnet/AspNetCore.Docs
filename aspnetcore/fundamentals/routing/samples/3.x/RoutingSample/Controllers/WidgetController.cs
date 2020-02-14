@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using RoutingSample.Extensions;
 
 namespace RoutingSample.Controllers
 {
@@ -23,10 +24,8 @@ namespace RoutingSample.Controllers
         }
         #endregion
 
-        public IActionResult Subscribe(int id)
-        {
-            return new CCAD().GetADinfo(ControllerContext, id);
-        }
+        public IActionResult Subscribe(int id) =>
+            ControllerContext.ToActionResult(id);
 
         #region snippet2
         public IActionResult Index2()

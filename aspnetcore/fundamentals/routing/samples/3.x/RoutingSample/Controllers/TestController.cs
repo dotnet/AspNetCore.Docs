@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Controllers;
+using RoutingSample.Extensions;
 
 namespace RoutingSample.Controllers
 {
@@ -11,17 +11,13 @@ namespace RoutingSample.Controllers
     {
         // GET /api/test/3
         [HttpGet("{id:customName}")]
-        public ActionResult<string> Get(string id)
-        {
-            return new CCAD().GetADinfo(ControllerContext, id);
-        }
+        public IActionResult Get(string id) =>
+            ControllerContext.ToActionResult(id); 
 
         // GET /api/test/my/3
         [HttpGet("my/{id:customName}")]
-        public ActionResult<string> Get(int id)
-        {
-            return new CCAD().GetADinfo(ControllerContext, id);
-        }
+        public IActionResult Get(int id) =>
+            ControllerContext.ToActionResult(id);
     }
     #endregion
 
@@ -32,14 +28,14 @@ namespace RoutingSample.Controllers
         // GET /api/test2/3
         #region snippet2
         [HttpGet("{id}")]
-        public ActionResult<string> Get(string id)
+        public IActionResult Get(string id)
         {
             if (id.Contains('0'))
             {
                 return StatusCode(StatusCodes.Status406NotAcceptable);
             }
 
-            return new CCAD().GetADinfo(ControllerContext, id);
+            return ControllerContext.ToActionResult(id);
         }
         #endregion
     }

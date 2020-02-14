@@ -4,22 +4,17 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebMvcRouting.Controllers
 {
 #if PROD1
-    // [Route("api/[controller]")] // Not needed because each method has a route template.
     #region snippet1
     [ApiController]
     public class MyProductsController : ControllerBase
     {
         [HttpGet("/products3")]
-        public ActionResult<string> ListProducts()
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult ListProducts() =>
+            ControllerContext.ToActionResult();
 
         [HttpPost("/products3")]
-        public ActionResult<string> CreateProduct(MyProduct myProduct)
-        {
-            return new CCAD().GetADinfo(ControllerContext);
-        }
+        public IActionResult CreateProduct(MyProduct myProduct) =>
+            ControllerContext.ToActionResult("", myProduct.Name);
     }
     #endregion
 
