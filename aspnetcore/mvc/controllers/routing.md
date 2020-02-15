@@ -200,20 +200,12 @@ When two endpoints match through routing, routing must do one of the following:
 
 For example:
 
-```csharp
-public class ProductsController : Controller
-{
-   public IActionResult Edit(int id) { ... }
-
-   [HttpPost]
-   public IActionResult Edit(int id, Product product) { ... }
-}
-```
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
 The preceding controller defines two actions that match:
 
-* The URL path `/Products/Edit/17`
-* Route data `{ controller = Products, action = Edit, id = 17 }`.
+* The URL path `/Products33/Edit/17`
+* Route data `{ controller = Products33, action = Edit, id = 17 }`.
 
 This is a typical pattern for MVC controllers:
 
