@@ -5,12 +5,9 @@ namespace WebMvcRouting.Controllers
     #region snippet
     public class SubscriptionManagementController : Controller
     {
-
         [HttpGet("[controller]/[action]")]
-        public IActionResult ListAll()
-        {
-            return Content("SubscriptionManagementController");
-        }
+        public IActionResult ListAll() =>
+            ControllerContext.ToActionResult();
     }
     #endregion
 }

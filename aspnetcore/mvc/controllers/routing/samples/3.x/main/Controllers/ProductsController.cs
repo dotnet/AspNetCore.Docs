@@ -1,18 +1,4 @@
-﻿#define First
-//#define Second
-//#define Third
-//#define Fourth
-//#define Five
-//#define Six
-//#define SixX
-//#define Seven
-//#define Eight
-//#define Nine
-
-
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Controllers;
-
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebMvcRouting.Controllers
 {
@@ -34,7 +20,6 @@ namespace WebMvcRouting.Controllers
         #endregion
     }
     #endregion
-    // Was products2 controller
 
     #region snippet20
     public class Products20Controller : Controller
@@ -120,32 +105,17 @@ namespace WebMvcRouting.Controllers
     }
     #endregion
 
-#if Second
 
 
     #region snippet9
-    public class ProductsController : Controller
+    public class Products33Controller : Controller
     {
-        public IActionResult Edit(int id)
-        {
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
-
-            return Content($"ID: {id} template:{template} " +
-                $" {controllerName}.{actionName}");
-        }
+        public IActionResult Edit(int id) =>
+            ControllerContext.ToActionResult(id);
 
         [HttpPost]
-        public IActionResult Edit(int id, Product product) {
-
-            var template = ControllerContext.ActionDescriptor.AttributeRouteInfo.Template;
-            var actionName = ControllerContext.ActionDescriptor.ActionName;
-            var controllerName = ControllerContext.ActionDescriptor.ControllerName;
-
-            return Content($"ID: {id} template:{template} " +
-                $" {controllerName}.{actionName}");
-        }        
+        public IActionResult Edit(int id, Product product) =>
+            ControllerContext.ToActionResult(id, product.name);
     }
 
     #endregion
@@ -154,7 +124,6 @@ namespace WebMvcRouting.Controllers
     {
         public string name { get; set; }
     }
-#endif
 
 
     #region snippet7

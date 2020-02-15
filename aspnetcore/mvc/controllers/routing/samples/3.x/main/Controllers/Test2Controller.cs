@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Controllers;
 
 
 namespace WebMvcRouting.Controllers
@@ -10,44 +9,27 @@ namespace WebMvcRouting.Controllers
     public class Test2Controller : ControllerBase
     {
         [HttpGet]   // GET /api/test2
-        public IActionResult ListProducts()
-        {
-            return GetADinfo(ControllerContext.ActionDescriptor);
-        }
+        public IActionResult ListProducts() =>
+            ControllerContext.ToActionResult();
 
         #region snippet2
         [HttpGet("{id}")]   // GET /api/test2/xyz
-        public ActionResult GetProduct(string id)
-        {
-            return GetADinfo(ControllerContext.ActionDescriptor, id);
-        }
+        public IActionResult GetProduct(string id) =>
+            ControllerContext.ToActionResult(id);
         #endregion
 
         #region snippet3
         [HttpGet("int/{id:int}")] // GET /api/test2/int/3
-        public ActionResult GetIntProduct(int id)
-        {
-            return GetADinfo(ControllerContext.ActionDescriptor, id.ToString());
-        }
+        public IActionResult GetIntProduct(int id) =>
+            ControllerContext.ToActionResult(id);
         #endregion
 
         #region snippet4
         [HttpGet("int2/{id}")]  // GET /api/test2/int2/3
-        public ActionResult GetInt2Product(int id)
-        {
-            return GetADinfo(ControllerContext.ActionDescriptor, id.ToString());
-        }
+        public IActionResult GetInt2Product(int id) =>
+            ControllerContext.ToActionResult(id);
         #endregion
 
-        private ContentResult GetADinfo(ControllerActionDescriptor actionDesc, string id = null)
-        {
-            var template = actionDesc.AttributeRouteInfo.Template;
-            var actionName = actionDesc.ActionName;
-            var controllerName = actionDesc.ControllerName;
-            var ids = (id == null) ? "" : $"id = {id}";
-
-            return Content($"{ids} template:{template} {controllerName}.{actionName}");
-        }
     }
     #endregion
 }
