@@ -97,7 +97,7 @@ In *Program.cs*, modify the `Main` method to do the following:
 * Call the seed method, passing to it the context.
 * Dispose the context when the seed method completes.
 
-The following code shows the updated *Program.cs* file.
+The following code shows the updated *Program.cs* file. Note: You may need to add `using Microsoft.Extensions.DependencyInjection;` if you are typing our changes out as you follow along. You can put your cursor over the red squiggly line and press ctrl+. and it'll import the DependencyInjection extension for you.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Program.cs)]
 
