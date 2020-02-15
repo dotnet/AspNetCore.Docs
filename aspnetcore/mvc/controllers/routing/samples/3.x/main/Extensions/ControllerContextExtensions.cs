@@ -11,6 +11,7 @@ internal static class ControllerContextExtensions
     {
         var actionDescriptor = ctx.ActionDescriptor;
         var routeTemplate = actionDescriptor?.AttributeRouteInfo?.Template;
+        var routeName = actionDescriptor.AttributeRouteInfo?.Name;
         var actionName = actionDescriptor.ActionName;
         var controllerName = actionDescriptor.ControllerName;
         var routeOrder = actionDescriptor.AttributeRouteInfo?.Order;
@@ -22,7 +23,7 @@ internal static class ControllerContextExtensions
         var methods = (method == "GET") ? "" : $"{method}";
 
         return new ContentResult { 
-            Content = $"{methods} {ids} {ors} {tms} {controllerName}.{actionName} {msg}" };
+            Content = $"{methods} {ids} {ors} {tms} {controllerName}.{actionName} {routeName} {msg}" };
     }
 }
 #endregion

@@ -503,10 +503,9 @@ Attribute routes can also be combined with inheritance. This is powerful combine
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet5)]
 
-In the preceding code:
-
-* The `List` action returns the route name `products_list`.
-* The `Edit` action returns a `null` route name. The `Edit` route name is null because the route is `api/Products/Edit/id`, which doesn't match `api/[controller]/[action]`.
+Token replacement also applies to route names defined by attribute routes.
+`[Route("[controller]/[action]", Name="[controller]_[action]")]`
+generates a unique route name for each action.
 
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
 

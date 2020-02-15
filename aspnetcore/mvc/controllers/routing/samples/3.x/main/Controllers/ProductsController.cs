@@ -74,7 +74,7 @@ namespace WebMvcRouting.Controllers
 
     public class Products11Controller : MyBase2Controller
     {
-        [HttpGet]                      // /api/products11/edit/3
+        [HttpGet]                      // /api/products11/
         public IActionResult List() =>
             ControllerContext.ToActionResult();
 
