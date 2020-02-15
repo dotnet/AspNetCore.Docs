@@ -68,6 +68,8 @@ Use a base-relative path (`/`) to refer to the project root for a static asset:
 
 Tilde-slash notation (`~/`) used in web apps is **not** supported in Razor components.
 
+For information on setting an app's base path, see <xref:host-and-deploy/blazor/index#app-base-path>.
+
 ## Tag Helpers aren't supported in components
 
 [Tag Helpers](xref:mvc/views/tag-helpers/intro) aren't supported in Razor components (*.razor* files). To provide Tag Helper-like functionality in Blazor, create a component with the same functionality as the Tag Helper and use the component instead.
