@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor Server app using ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 02/15/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/server
 ---
@@ -79,7 +79,10 @@ We recommend using the [Azure SignalR Service](/azure/azure-signalr) for Blazor 
 
 #### IIS
 
-When using IIS, sticky sessions are enabled with Application Request Routing. For more information, see [HTTP Load Balancing using Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
+When using IIS:
+
+* [Enable WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis)
+* Sticky sessions are enabled with Application Request Routing. For more information, see [HTTP Load Balancing using Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
 
 #### Kubernetes
 
