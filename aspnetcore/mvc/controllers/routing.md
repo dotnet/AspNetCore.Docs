@@ -358,7 +358,7 @@ Attribute routing can use <xref:Microsoft.AspNetCore.Mvc.Routing.HttpMethodAttri
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyProductsController.cs?name=snippet1)]
 
-Using the URL path `/products`:
+Using the URL path `/products3`:
 
 * The `MyProductsController.ListProducts` action runs when the [HTTP verb](#verb) is `GET`.
 * The `MyProductsController.CreateProduct` action runs when the [HTTP verb](#verb) is `POST`.

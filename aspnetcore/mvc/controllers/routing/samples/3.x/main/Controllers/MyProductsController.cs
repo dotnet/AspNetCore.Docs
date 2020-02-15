@@ -1,4 +1,4 @@
-﻿#define PROD1    // ProductsApiController use the same route so only one can be used.
+﻿#define PROD1  
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebMvcRouting.Controllers
@@ -14,7 +14,7 @@ namespace WebMvcRouting.Controllers
 
         [HttpPost("/products3")]
         public IActionResult CreateProduct(MyProduct myProduct) =>
-            ControllerContext.ToActionResult("", myProduct.Name);
+            ControllerContext.ToActionResult(myProduct.Name);
     }
     #endregion
 

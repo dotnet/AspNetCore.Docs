@@ -29,7 +29,6 @@ namespace WebMvcRouting.Controllers
         public IActionResult GetInt2Product(int id) =>
             ControllerContext.ToActionResult(id);
         #endregion
-
     }
     #endregion
 }
