@@ -14,7 +14,7 @@ namespace WebMvcRouting
         }
 
         public IConfiguration Configuration { get; }
-
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -38,5 +38,6 @@ namespace WebMvcRouting
                 endpoints.MapControllers();
             });
         }
+        #endregion
     }
 }

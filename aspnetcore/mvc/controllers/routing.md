@@ -189,6 +189,14 @@ The preceding example:
 Conventional routing only matches a combination of action and controller that are defined by the app. This is intended to simplify cases where conventional routes overlap.
 Adding routes using <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>, and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> automatically assign an order value to their endpoints based on the order they are invoked. Matches from a route that appears earlier have a higher priority. Conventional routing is order-dependent. In general, routes with areas should be placed earlier as they're more specific than routes without an area. [Dedicated conventional routes](#dcr) with catch all route parameters like `{*article}` can make a route too [greedy](xref:fundamentals/routing#greedy), meaning that it matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to prevent greedy matches.
 
+<a name="cctar"></a>
+
+### ControllerContext.ToActionResult
+
+Many of the samples in this document use the following `ControllerContextExtensions`class to display <xref:Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor> information:
+
+[!code-csharp[](routing/samples/3.x/main/Extensions/ControllerContextExtensions.cs?name=snippet)]
+
 <a name="best"></a>
 
 ### Resolving ambiguous actions
@@ -250,9 +258,9 @@ The route name concept is represented in the routing system as [IEndpointNameMet
 
 REST APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by [HTTP verbs](#verb).
 
-Attribute routing uses a set of attributes to map actions directly to route templates. The following code is typical for a REST API and is used in the next sample:
+Attribute routing uses a set of attributes to map actions directly to route templates. The following `StartUp.Configure` code is typical for a REST API and is used in the next sample:
 
-[!code-csharp[](routing/samples/3.x/main/StartupMap.cs?name=snippet)]
+[!code-csharp[](routing/samples/3.x/main/StartupApi.cs?name=snippet)]
 
 In the preceding code, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> is called inside `UseEndpoints` to map attribute routed controllers.
 
@@ -263,7 +271,7 @@ In the following example:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet2)]
 
-The `HomeController.Index` action is run for any of the URL paths `/`, `/Home`, or `/Home/Index`.
+The `HomeController.Index` action is run for any of the URL paths `/`, `/Home`, `/Home/Index`, or `/Home/Index/3`.
 
 This example highlights a key programming difference between attribute routing and [conventional routing](#cr). Attribute routing requires more input to specify a route. The conventional default route handles routes more succinctly. However, attribute routing allows and requires precise control of which route templates apply to each [action](#action).
 
@@ -296,10 +304,6 @@ The following keywords are reserved route parameter names when using Controllers
 Using `page` as a route parameter with attribute routing is a common error. Doing that results in inconsistent and confusing behavior with URL generation.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo2Controller.cs?name=snippet)]
-
-The preceding controller returns an HTTP 500 error with the URL path `/articles/3`. The following controller returns `MyDemo3Controller.ListArticles 3` with the URL path `/articles/3`.
-
-[!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo2Controller.cs?name=snippet2)]
 
 The special parameter names are used by the URL generation system to determine if a URL generation operation refers to a Razor Page or to a Controller.
 

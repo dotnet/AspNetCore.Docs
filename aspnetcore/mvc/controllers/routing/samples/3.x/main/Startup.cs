@@ -41,9 +41,11 @@ namespace WebMvcRouting
             #region snippet_1
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("blog", "blog/{*article}",
+                endpoints.MapControllerRoute(name: "blog",
+                            pattern: "blog/{*article}",
                             defaults: new { controller = "Blog", action = "Article" });
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(name: "default",
+                            pattern: "{controller=Home}/{action=Index}/{id?}");
             });
             #endregion
         }

@@ -3,8 +3,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 // This uses same routes as HomeController, and MyDemo3Controller so only one can be defined
-// Test with                     webBuilder.UseStartup<StartupDefaultMVC>();
-// or with StartupMap
+// Test with                     webBuilder.UseStartup<StartupAPI>();
 namespace RoutingSample.Controllers
 {
 #if MYDEMO
@@ -14,16 +13,14 @@ namespace RoutingSample.Controllers
         [Route("")]
         [Route("Home")]
         [Route("Home/Index")]
-        public IActionResult MyIndex() =>
-            ControllerContext.ToActionResult();
+        [Route("Home/Index/{id?}")]
+        public IActionResult MyIndex(int ?id) =>
+            ControllerContext.ToActionResult(id);
 
         [Route("Home/About")]
-        public IActionResult MyAbout() =>
-            ControllerContext.ToActionResult();
-
-        [Route("Home/Contact")]
-        public IActionResult MyContact() =>
-            ControllerContext.ToActionResult();
+        [Route("Home/About/{id?}")]
+        public IActionResult MyAbout(int? id) =>
+            ControllerContext.ToActionResult(id);
     }
     #endregion
 #endif

@@ -34,16 +34,14 @@ namespace WebMvcRouting.Controllers
         [Route("")]
         [Route("Home")]
         [Route("Home/Index")]
-        public IActionResult Index() =>
-            ControllerContext.ToActionResult();
+        [Route("Home/Index/{id?}")]
+        public IActionResult Index(int ?id) =>
+            ControllerContext.ToActionResult(id);
 
         [Route("Home/About")]
-        public IActionResult About()=>
-            ControllerContext.ToActionResult();
-
-        [Route("Home/Contact")]
-        public IActionResult Contact()=>
-            ControllerContext.ToActionResult();
+        [Route("Home/About/{id?}")]
+        public IActionResult About(int? id) =>
+            ControllerContext.ToActionResult(id);
     }
     #endregion
 #elif Third
@@ -58,10 +56,6 @@ namespace WebMvcRouting.Controllers
 
         [Route("[controller]/[action]")]
         public IActionResult About() =>
-            ControllerContext.ToActionResult();
-
-        [Route("[controller]/[action]")]
-        public IActionResult Contact() =>
             ControllerContext.ToActionResult();
     }
     #endregion
@@ -78,9 +72,6 @@ namespace WebMvcRouting.Controllers
             ControllerContext.ToActionResult();
 
         public IActionResult About() =>
-            ControllerContext.ToActionResult();
-
-        public IActionResult Contact() =>
             ControllerContext.ToActionResult();
     }
     #endregion
