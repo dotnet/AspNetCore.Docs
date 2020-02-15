@@ -79,10 +79,10 @@ We recommend using the [Azure SignalR Service](/azure/azure-signalr) for Blazor 
 
 #### IIS
 
-When using IIS:
+When using IIS, enable:
 
-* [Enable WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis).
-* Sticky sessions are enabled with Application Request Routing. For more information, see [HTTP Load Balancing using Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
+* [WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis).
+* [Sticky sessions with Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
 
 #### Kubernetes
 
