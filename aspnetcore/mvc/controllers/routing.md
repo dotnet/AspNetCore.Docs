@@ -27,7 +27,12 @@ Actions are either [conventionally-routed](#cr) or [attribute-routed](#ar). Plac
 
 This document:
 
-* Explains the interactions between MVC and routing, and how typical MVC apps make use of routing features. See [Routing](xref:fundamentals/routing) for advanced routing details.
+* Explains the interactions between MVC and routing:
+  * How typical MVC apps make use of routing features.
+  * Covers both:
+    * [Conventionally routing](#cr) typically used with controllers and views.
+    * *Attribute routing* used with REST APIs. If you're primarily interested in routing for REST APIs, jump to the [Attribute routing for REST APIs](#ar) section.
+  * See [Routing](xref:fundamentals/routing) for advanced routing details.
 * Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions. Refer to the [2.2 version of this document](https://docs.microsoft.com/aspnet/core/mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
 
 ## Set up conventional endpoint routing middleware
@@ -42,12 +47,9 @@ The route template `"{controller=Home}/{action=Index}/{id?}"`:
 
 * Matches a URL path like `/Products/Details/5`
 * Extracts the route values `{ controller = Products, action = Details, id = 5 }` by tokenizing the path. The extraction of route values results in a match if the app has a controller named `ProductsController` and a `Details` action :
-  ```csharp
-  public class ProductsController : Controller
-  {
-     public IActionResult Details(int id)
-     {
-  ```
+
+[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippetA)]
+
   * `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. See [Model Binding](xref:mvc/models/model-binding) for more details.
 * `{controller=Home}` defines `Home` as the default `controller`.
 * `{action=Index}` defines `Index` as the default `action`.
@@ -55,6 +57,9 @@ The route template `"{controller=Home}/{action=Index}/{id?}"`:
   * Default and optional route parameters don't need to be present in the URL path for a match. See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 * Matches the URL path `/`.
 * Produces the route values `{ controller = Home, action = Index }`.
+* `ControllerContext.ToActionResult` is:
+  * Used in the samples to display routing information.
+  * Explained [later in this document](#cctar).
 
 The values for `controller` and `action` make use of the default values. `id` doesn't produce a value since there's no corresponding segment in the URL path. `/` only matches if there exists a `HomeController` and `Index` action:
 
@@ -254,7 +259,7 @@ The route name concept is represented in the routing system as [IEndpointNameMet
 <a name="attribute-routing-ref-label"></a>
 <a name="ar"></a>
 
-## Attribute routing
+## Attribute routing for REST APIs
 
 REST APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by [HTTP verbs](#verb).
 

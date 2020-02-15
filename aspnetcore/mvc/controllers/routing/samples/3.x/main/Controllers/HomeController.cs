@@ -5,14 +5,15 @@
 //#define Second
 //#define Third
 //#define Forth
+#define Five
 
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebMvcRouting.Controllers
 {
-    #if First
+#if First
 
-#region snippet
+    #region snippet
     [Route("Home")]
     public class HomeController : Controller
     {
@@ -73,6 +74,14 @@ namespace WebMvcRouting.Controllers
 
         public IActionResult About() =>
             ControllerContext.ToActionResult();
+    }
+    #endregion
+#elif Five
+    #region snippet24
+    public class HomeController : Controller
+    {
+        public IActionResult Index() =>
+                  ControllerContext.ToActionResult();
     }
     #endregion
 #endif

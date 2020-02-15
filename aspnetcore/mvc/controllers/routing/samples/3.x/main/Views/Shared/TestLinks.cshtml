@@ -1,28 +1,57 @@
-﻿<h1>Test Links</h1>
+﻿@addTagHelper *, WebMvcRouting
+
+<h1>Test Links</h1>
 
 <ul>
     <ul class="nav navbar-nav">
 
+        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
         <li>
-            <a href=@ViewData["url1"]>@ViewData["url1"]></a> &nbsp;
-            <a href=@ViewData["url2"]>@ViewData["url2"]></a>
+            <a href-key="Products"></a>
         </li>
         <li>
-            <a href=@ViewData["url3"]>@ViewData["url3"]></a> &nbsp;
-            <a href=@ViewData["url4"]>@ViewData["url4"]></a>
+            <a href-key="Products0"></a> &nbsp;
+            <a href-key="Products0 Edit"></a>
         </li>
         <li>
-            <a href=@ViewData["p22"]>@ViewData["p22"]></a> &nbsp;
+            <a href-key="Products20"></a> &nbsp;
+            <a href-key="Products20 Edit"></a>
         </li>
-
         <li>
-            <a href=@ViewData["p11"]> @ViewData["p11"] </a> &nbsp;
-            <a href=@ViewData["p11a"]> @ViewData["p11a"] </a> &nbsp;
+            <a href-key="Products22"></a>
         </li>
-
         <li>
-            <a href=@ViewData["p13"]> @ViewData["p13"] </a> &nbsp;
-            <a href=@ViewData["p13a"]> @ViewData["p13a"] </a> &nbsp;
+            <a href-key="Products11"></a> &nbsp;
+            <a href-key="Products11 Edit"></a>
+        </li>
+        <li>
+            <a href-key="Products13"></a> &nbsp;
+            <a href-key="Products13 Index"></a>
+        </li>
+        <li>
+            <a href-key="Product33"></a>
         </li>
     </ul>
-</ul
+
+    <ul class="nav navbar-nav">
+        <li>
+            <form  method="post" action="api/Products7/Checkout" enctype="application/x-www-form-urlencoded">
+                    <input type="submit" value="Products7 Checkout" />               
+            </form>
+        </li>
+
+        <li>
+            <form method="post" action="Products6/Buy" enctype="application/x-www-form-urlencoded">
+
+                <div>
+                    <input type="submit" value="Products6 Buy" />
+                </div>
+            </form>
+            <form method="post" action="Store/Checkout" enctype="application/x-www-form-urlencoded">
+
+                <div>
+                    <input type="submit" value="Store Checkout" />
+                </div>
+            </form>
+        </li>
+    </ul>

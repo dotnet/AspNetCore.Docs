@@ -2,6 +2,14 @@
 
 namespace WebMvcRouting.Controllers
 {
+    #region snippetA
+    public class ProductsController : Controller
+    {
+        public IActionResult Details(int id) =>
+            ControllerContext.ToActionResult(id);
+    }
+    #endregion
+
     #region snippet
     [Route("[controller]/[action]")]
     public class Products0Controller : Controller
@@ -56,7 +64,7 @@ namespace WebMvcRouting.Controllers
     public class Products22Controller : MyBaseController
     {
         [HttpGet] //         GET /api/Products22
-        public IActionResult List()=>
+        public IActionResult List() =>
             ControllerContext.ToActionResult();
 
         [HttpPut("{id}")] //  PUT /api/Products22/3
@@ -96,7 +104,7 @@ namespace WebMvcRouting.Controllers
     #endregion
 
     // test with POST /product/3
-#region snippet8
+    #region snippet8
     public class Products14Controller : Controller
     {
         [HttpPost("product14/{id:int}")]
@@ -135,10 +143,10 @@ namespace WebMvcRouting.Controllers
         public IActionResult Buy() =>
             ControllerContext.ToActionResult();
     }
-#endregion
+    #endregion
 
 
-#region snippet6
+    #region snippet6
     [Route("Store")]
     [Route("[controller]")]
     public class Products6Controller : Controller
@@ -148,5 +156,5 @@ namespace WebMvcRouting.Controllers
         public IActionResult Buy() =>
             ControllerContext.ToActionResult();
     }
-#endregion
+    #endregion
 }
