@@ -43,13 +43,13 @@ conceptualContent:
   summary: "A developer platform for building all your apps: web, mobile, desktop, gaming, IoT, and more. Supported on Windows, Linux, and macOS."
   items:
     # Card
-    - title: Open-source ASP.NET Core
-      summary: Learn about ASP.NET Core
+    - title: Get Started
+      summary: Create your first ASP.NET Core Apps
       links:
-        - url: aspnetcore/whats-new/index.yml
+        - url: aspnetcore/introduction-to-aspnet-core.md
           itemType: overview
           text: ASP.NET Core overview
-        - url: aspnetcore/
+        - url: aspnetcore/whats-new/index.yml
           itemType: whats-new
           text: What's new in ASP.NET Core 3.1
         - url: standard/tour.md
@@ -65,15 +65,15 @@ conceptualContent:
           itemType: tutorial
           text: Tutorials
     # Card
-    - title: .NET concepts
-      summary: Learn the fundamental concepts of .NET
+    - title: Fundamental Concepts
+      summary: Understand common components and tasks
       links:
-        - url: https://channel9.msdn.com/Series/NET-Core-101/What-is-NET
+        - url: https://channel9.msdn.com/Series/ASPNET-Core-101/What-is-ASPNET-1-of-13
           itemType: video
-          text: What is .NET?
+          text: What is ASP.NET?
         - url: standard/index.md
           itemType: overview
-          text: Overview of .NET
+          text: Overview of ASP.NET Core
         - url: standard/net-standard.md
           itemType: overview
           text: .NET Standard
@@ -116,7 +116,7 @@ conceptualContent:
           text: Open source library guidance
     # Card
     - title: ASP.NET architectural guides
-      summary: Read foundational development and architectural guidance for ASP.NET Core
+      summary: Advanced architectural guidance & development concepts
       links:
         - url: architecture/microservices/index.md
           itemType: architecture
@@ -139,11 +139,11 @@ conceptualContent:
 additionalContent:
   # Supports up to 3 sections
   sections: 
-    - title: Create your application # < 60 chars (optional)
-      summary: "You can choose web, mobile, desktop, gaming, IoT, and more." # < 160 chars (optional)
+    - title: Create your app # < 60 chars (optional)
+      summary: "Choose interactive web apps, web API, data-focused apps, Real-time apps, and more." # < 160 chars (optional)
       items:
       # Card
-      - title: Web
+      - title: Rich interactive web apps
         links:
           - url: /aspnet/core/getting-started
             text: Create your first web app
@@ -158,7 +158,7 @@ additionalContent:
           - url: /aspnet/core/blazor/
             text: "Blazor: Interactive client-side web UI with .NET"
       # Card
-      - title: Cloud native and microservices
+      - title: web API
         links:
           - url: /dotnet/azure/
             text: Azure for .NET documentation
@@ -171,7 +171,7 @@ additionalContent:
           - url: architecture/microservices/index.md
             text: ".NET Microservices: Architecture for Containerized .NET Applications"
       # Card
-      - title: Mobile
+      - title: Data-focused apps
         links:
           - url: /xamarin/ios/
             text: Xamarin.iOS
@@ -180,7 +180,7 @@ additionalContent:
           - url: /xamarin/xamarin-forms
             text: Xamarin.Forms
       # Card
-      - title: Desktop
+      - title: Real-time apps
         links:
           - url: /uwp
             text: Universal Windows apps
@@ -192,42 +192,63 @@ additionalContent:
             text: Windows Forms
           - url: /xamarin/mac
             text: Xamarin for macOS
+    - title: Advanced Concepts and Features # < 60 chars (optional)
+      summary: "TODO" # < 160 chars (optional)
+      items:
       # Card
-      - title: Gaming
+      - title: Host and deploy
         links:
-          - url: https://visualstudio.microsoft.com/vs/features/game-development/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link
-            text: Game development with Visual Studio
-          - url: https://docs.cryengine.com/display/CEPROG/C%23+Programming
-            text: Learn how to use CRYENGINE to build games with C#
-          - url: http://www.monogame.net/documentation/?page=main
-            text: Build games with C# using the MonoGame library
-          - url: https://docs.unity3d.com/Manual/index.html
-            text: Learn how to use Unity to build 2D and 3D games with C#
+          - url: /aspnet/core/getting-started
+            text: Create your first web app
+          - url: /aspnet/core/tutorials
+            text: ASP.NET Core tutorials
+          - url: /aspnet/core
+            text: What is ASP.NET Core?
+          - url: /aspnet/core/tutorials/first-mvc-app/start-mvc
+            text: ASP.NET Core in Visual Studio
+          - url: /aspnet/mvc/overview/deployment/docker-aspnetmvc
+            text: ASP.NET MVC apps in Windows containers
+          - url: /aspnet/core/blazor/
+            text: "Blazor: Interactive client-side web UI with .NET"
       # Card
-      - title: Machine learning and AI
+      - title: Security and Identity
         links:
-          - url: machine-learning/index.yml
-            text: Build custom AI solutions with ML.NET
-          - url: /azure/cognitive-services/
-            text: Azure Cognitive Services
-          - url: /azure/machine-learning
-            text: Azure machine learning
-          - url: spark/index.yml
-            text: .NET for Apache Spark
+          - url: /dotnet/azure/
+            text: Azure for .NET documentation
+          - url: /azure/storage
+            text: Storage
+          - url: /dotnet/fsharp/using-fsharp-on-azure/
+            text: Using F# on Azure
+          - url: architecture/serverless/index.md
+            text: "Serverless apps: Architecture, patterns, and Azure implementation"
+          - url: architecture/microservices/index.md
+            text: ".NET Microservices: Architecture for Containerized .NET Applications"
       # Card
-      - title: Internet of things (IoT)
+      - title: Globalization and localization
         links:
-          - url: https://channel9.msdn.com/Shows/On-NET/IoT-support-for-NET-Core
-            text: "On .NET: Learn about IoT support in .NET Core"
-          - url: https://docs.microsoft.com/archive/msdn-magazine/2019/august/net-core-cross-platform-iot-programming-with-net-core-3-0
-            text: Cross-Platform IoT Programming with .NET Core 3.0
-          - url: https://github.com/dotnet/iot
-            text: .NET Core IoT libraries
-          - url: https://www.nuget.org/packages/System.Device.Gpio
-            text: System.Device.Gpio NuGet package
+          - url: /xamarin/ios/
+            text: Xamarin.iOS
+          - url: /xamarin/android
+            text: Xamarin.Android
+          - url: /xamarin/xamarin-forms
+            text: Xamarin.Forms
+      # Card
+      - title: Migration
+        links:
+          - url: /uwp
+            text: Universal Windows apps
+          - url: desktop-wpf/index.md
+            text: Windows Presentation Foundation (.NET Core)
+          - url: framework/wpf/index.md
+            text: Windows Presentation Foundation (.NET Framework)
+          - url: framework/winforms/index.md
+            text: Windows Forms
+          - url: /xamarin/mac
+            text: Xamarin for macOS
+
 
     - title: API reference sections # < 60 chars (optional)
-      summary: Search the .NET API reference documentation, scoped to your interest. # < 160 chars (optional)
+      summary: Search the ASP.NET API reference documentation, scoped to your interest. # < 160 chars (optional)
       items:
         # Card
       - title: ".NET Core API reference"
@@ -250,12 +271,8 @@ additionalContent:
         summary: C# language reference and specification
         url: csharp/language-reference/index.md
       # Card
-      - title: "F# language reference"
-        summary: F# language reference
-        url: fsharp/language-reference/index.md
-      # Card
       - title: "Visual Basic language reference"
         summary: Visual Basic language reference and specification
         url: visual-basic/language-reference/index.md
   # footer (optional)
-  footer: "Contribute to .NET docs. Read our [contributor guide](https://github.com/dotnet/Docs/blob/master/CONTRIBUTING.md)."
+  footer: "Contribute to ASP.NET docs. Read our [contributor guide](https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md)."
