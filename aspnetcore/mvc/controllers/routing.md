@@ -131,7 +131,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> :
 
 * Automatically assign an **order** value to their endpoints based on the order they are invoked.
-* Don't expose the [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*). `RouteEndpoint.Order` is only exposed for [attribute routing](#ar). <!-- review required. -->
+* Don't expose the [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*). `RouteEndpoint.Order` is only exposed for [attribute routing](#ar). <!-- review required for preceding two bullets. Are they OK? -->
 
 Endpoint routing in ASP.NET Core 3.0 and later:
 
@@ -184,7 +184,7 @@ The preceding example:
 >
 >See [Routing](xref:fundamentals/routing) for reference material on routing.
 
-<!-- review.  -->
+<!-- review this section I added  -->
 <a name="cro"></a>
 
 ### Conventional routing order
@@ -518,7 +518,6 @@ To match the literal token replacement delimiter `[` or  `]`, escape it by repea
 
 Token replacement can be customized using a parameter transformer. A parameter transformer implements <xref:Microsoft.AspNetCore.Routing.IOutboundParameterTransformer> and transforms the value of parameters. For example, a custom `SlugifyParameterTransformer` parameter transformer changes the `SubscriptionManagement` route value to `subscription-management`:
 
-<!-- review: Changed  ToLower to ToLowerInvariant per https://github.com/dotnet/aspnetcore/issues/18774 -->
 [!code-csharp[](routing/samples/3.x/main/StartupSlugifyParamTransformer.cs?name=snippet2)]
 
 The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention> is an application model convention that:

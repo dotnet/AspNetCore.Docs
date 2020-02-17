@@ -224,7 +224,7 @@ Comparing a terminal middleware and routing:
     * Endpoints execute at the position of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>.
 * Terminal middleware allows arbitrary code to determine when the route matches:
     * Custom route matching code can be verbose and difficult to get correct.
-    * Routing provides straightforward solutions for typical apps. <!-- Review next--> Most apps don't require custom route matching code.
+    * Routing provides straightforward solutions for typical apps. Most apps don't require custom route matching code.
 * Endpoints interface with middleware such as `UseAuthorization` or `UseCors`.
     * Using a terminal middleware with `UseAuthorization` or `UseCors` requires manual interfacing with the authorization system.
 
@@ -239,8 +239,11 @@ Terminal middleware can be an effective tool, but can require:
 * Manual integration with other systems to achieve the desired level of flexibility.
 
 Consider integrating with routing before writing a terminal middleware.
-<!-- Review: router-ware won't MT - please suggest new wording - how about routing aware? -->
-Existing terminal middleware that integrate with [Map](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) or <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> can usually be turned into a **router-ware** endpoint. [MapHealthChecks](https://github.com/aspnet/AspNetCore/blob/master/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for router-ware:
+<!-- Review: router-ware won't MT (Machine Translate) - Check my rewrite. Original
+
+... can usually be turned into a router-ware endpoint.
+ -->
+Existing terminal middleware that integrate with [Map](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) or <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> can usually be turned into a routing aware endpoint. [MapHealthChecks](https://github.com/aspnet/AspNetCore/blob/master/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for router-ware:
 * Write an extension method on <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>.
 * Create a nested middleware pipeline using <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder.CreateApplicationBuilder*>.
 * Attach your middleware to the new pipeline. In this case, <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*>.
