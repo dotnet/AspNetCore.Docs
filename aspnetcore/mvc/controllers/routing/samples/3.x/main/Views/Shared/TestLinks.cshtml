@@ -2,10 +2,17 @@
 
 <h1>Test Links</h1>
 
+
 <ul>
     <ul class="nav navbar-nav">
 
         <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+        <li>
+            <a asp-area="" asp-controller="blog" asp-action="Article">Blog Article</a> &nbsp;
+            <a asp-area="" asp-controller="blog" asp-action="Index">Home</a>
+        </li>
+        <li><a asp-area="" asp-controller="MyDemo2" asp-action="Index">Home</a></li>
+
         <li>
             <a href-key="Products"></a>
         </li>
@@ -29,29 +36,31 @@
             <a href-key="Products13 Index"></a>
         </li>
         <li>
-            <a href-key="Product33"></a>
+            <a href-key="MyTestApi"></a> &nbsp; ZZ
+            <a href-key="MyTestApiController"></a>
+        </li>
+        <li>
+            <a href-key="ProductsApi"></a> &nbsp;
+            <a href-key="ProductsApi ID"></a>
+        </li>
+        <li>
+            <a href-key="Products2Api"></a> &nbsp;
         </li>
     </ul>
 
     <ul class="nav navbar-nav">
         <li>
-            <form  method="post" action="api/Products7/Checkout" enctype="application/x-www-form-urlencoded">
-                    <input type="submit" value="Products7 Checkout" />               
+            <form method="post" action="api/Products7/Checkout" enctype="application/x-www-form-urlencoded">
+                <input type="submit" value="Products7 Checkout" />
             </form>
         </li>
 
         <li>
             <form method="post" action="Products6/Buy" enctype="application/x-www-form-urlencoded">
-
-                <div>
-                    <input type="submit" value="Products6 Buy" />
-                </div>
+                <input type="submit" value="Products6 Buy" />
             </form>
             <form method="post" action="Store/Checkout" enctype="application/x-www-form-urlencoded">
-
-                <div>
-                    <input type="submit" value="Store Checkout" />
-                </div>
+                <input type="submit" value="Store Checkout" />
             </form>
         </li>
     </ul>

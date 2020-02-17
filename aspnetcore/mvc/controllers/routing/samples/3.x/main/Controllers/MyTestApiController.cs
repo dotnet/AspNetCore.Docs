@@ -8,9 +8,7 @@ namespace WebMvcRouting.Controllers
     public class MyApiControllerAttribute : Attribute, IRouteTemplateProvider
     {
         public string Template => "api/[controller]";
-
         public int? Order => 2;
-
         public string Name { get; set; }
     }
 

@@ -10,7 +10,7 @@ uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
 
-By [Ryan Nowak](https://github.com/rynowak), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/serpent5), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -290,8 +290,8 @@ URL matching operates in a configurable set of phases. In each phase the output 
 
 The list of endpoints is prioritized according to:
 
-* The [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*), which is configurable.
-* The [route template precedence](#rtp), which is computed based on the route template.
+* The [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*), which is configurable in [attribute routes](xref:mvc/controllers/routing#ar).
+* The [route template precedence](#rtp), which is computed based on the route template in [conventional routes](xref:mvc/controllers/routing#cr).
 
 All matching endpoints are processed in each phase until the <xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector> is reached. The `EndpointSelector` is the final phase. The `EndpointSelector` chooses the highest priority endpoint from the matches as the best match. If there are other matches with the same priority as the best match, an ambiguous match exception is thrown.
 

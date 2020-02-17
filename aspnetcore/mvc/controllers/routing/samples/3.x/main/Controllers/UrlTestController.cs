@@ -17,6 +17,16 @@ namespace WebMvcRouting.Controllers
             ViewData["Products13"] = Url.Action("", "Products13", null, protocol: Request.Scheme);
             ViewData["Products13 Index"] = Url.Action("Index", "Products13", null, protocol: Request.Scheme);
             ViewData["Products33"] = Url.Action("Edit", "Products33", new { id = 17 }, protocol: Request.Scheme);
+            ViewData["MyProducts"] = Url.Action("ListProducts", "MyProducts", null, protocol: Request.Scheme);
+            // <!--  review how does this even work? -->
+            ViewData["MyTestApi"] = Url.Action("MyTestApi", "api", null, protocol: Request.Scheme);
+            // <!--  review why doesn't this work? -->
+
+            ViewData["MyTestApiController"] = Url.Action("Get", "MyTestApi", null, protocol: Request.Scheme);
+
+            ViewData["ProductsApi"] = Url.Action("ListProducts", "ProductsApi", null, protocol: Request.Scheme);
+            ViewData["ProductsApi ID"] = Url.Action("GetProduct", "ProductsApi", new { id = 17 }, protocol: Request.Scheme);
+            ViewData["Products2Api"] = Url.Action("GetProduct", "Products2Api", new { id = 17 }, protocol: Request.Scheme);
 
             return View("TestLinks");
         }

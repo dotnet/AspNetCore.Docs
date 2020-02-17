@@ -8,12 +8,7 @@ uid: mvc/controllers/routing
 ---
 # Routing to controller actions in ASP.NET Core
 
-<!-- Review: Need to add the following and flesh it out. WHat's appropriate? Can you set the Order property in conventional routing? If so how?
-
- MVC sets the order property to an appropriate value when using MapControllerRoute - this should be discussed in the MVC documentation,
-
--->
-By [Ryan Nowak](https://github.com/rynowak) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/serpent5), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -133,7 +128,10 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 * Is a useful starting point for UI-based apps.
 * Is the only route template needed for many web UI apps. For larger web UI apps, another route using [Areas](#areas) if frequently all that's needed.
 
-<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an **order** value to their endpoints based on the order they are invoked.
+<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> :
+
+* Automatically assign an **order** value to their endpoints based on the order they are invoked.
+* Don't expose the [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*). `RouteEndpoint.Order` is only exposed for [attribute routing](#ar). <!-- review required. -->
 
 Endpoint routing in ASP.NET Core 3.0 and later:
 
