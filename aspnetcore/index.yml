@@ -22,11 +22,11 @@ highlightedContent:
     # Card
     - title: "Create an ASP.NET Core app on any platform in 5 minutes."
       itemType: get-started
-      url: aspnet/core/getting-started/index.md
+      url: getting-started/index.md
     # Card
     - title: "ASP.NET Core Overview"
       itemType: overview
-      url: aspnet/core/introduction-to-aspnet-core.md
+      url: introduction-to-aspnet-core.md
     # Card
     - title: "Create your first web app."
       itemType: learn
@@ -34,7 +34,7 @@ highlightedContent:
     # Card
     - title: "What's new in ASP.NET Core docs"
       itemType: whats-new
-      url: aspnet/core/whats-new/index.yml
+      url: whats-new/index.yml
 
 # conceptualContent section (optional)
 conceptualContent:
@@ -132,7 +132,7 @@ conceptualContent:
           text: "Modernize existing .NET applications with Azure cloud and Windows containers"
       # footerLink (optional)
       footerLink:
-        url: https://docs.microsoft.com/en-us/dotnet/architecture/index.yml
+        url: https://docs.microsoft.com/en-us/dotnet/architecture/
         text: All architecture guides
 
 # Card with summary style
