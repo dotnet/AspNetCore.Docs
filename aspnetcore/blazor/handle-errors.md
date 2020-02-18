@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 02/19/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/handle-errors
 ---
@@ -175,14 +175,17 @@ The following conditions apply to error handling with `InvokeAsync<T>`:
 * If a call to `InvokeAsync<T>` fails asynchronously, the .NET <xref:System.Threading.Tasks.Task> fails. A call to `InvokeAsync<T>` may fail, for example, because the JavaScript-side code throws an exception or returns a `Promise` that completed as `rejected`. Developer code must catch the exception. If using the [await](/dotnet/csharp/language-reference/keywords/await) operator, consider wrapping the method call in a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging. Otherwise, the failing code results in an unhandled exception that's fatal to a Blazor Server circuit.
 * By default, calls to `InvokeAsync<T>` must complete within a certain period or else the call times out. The default timeout period is one minute. The timeout protects the code against a loss in network connectivity or JavaScript code that never sends back a completion message. If the call times out, the resulting `Task` fails with an <xref:System.OperationCanceledException>. Trap and process the exception with logging.
 
-Similarly, JavaScript code may initiate calls to .NET methods indicated by the [`[JSInvokable]`](xref:blazor/javascript-interop#invoke-net-methods-from-javascript-functions) attribute. If these .NET methods throw an unhandled exception:
+Similarly, JavaScript code may initiate calls to .NET methods indicated by the [`[JSInvokable]`](xref:blazor/call-dotnet-from-javascript) attribute. If these .NET methods throw an unhandled exception:
 
 * The exception isn't treated as fatal to a Blazor Server circuit.
 * The JavaScript-side `Promise` is rejected.
 
 You have the option of using error handling code on either the .NET side or the JavaScript side of the method call.
 
-For more information, see <xref:blazor/javascript-interop>.
+For more information, see the following articles:
+
+* <xref:blazor/call-javascript-from-dotnet>
+* <xref:blazor/call-dotnet-from-javascript>
 
 ### Blazor Server circuit handlers
 

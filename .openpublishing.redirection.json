@@ -914,6 +914,11 @@
             "source_path": "aspnetcore/razor-pages/upload-files.md",
             "redirect_url": "/aspnet/core/mvc/models/file-uploads",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/javascript-interop.md",
+            "redirect_url": "/aspnet/core/blazor/call-javascript-from-dotnet",
+            "redirect_document_id": false
         }
     ]
 }

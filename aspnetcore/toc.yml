@@ -315,8 +315,10 @@
           uid: blazor/dependency-injection
         - name: Routing
           uid: blazor/routing
-        - name: JavaScript interop
-          uid: blazor/javascript-interop
+        - name: Call JavaScript from .NET
+          uid: blazor/call-javascript-from-dotnet
+        - name: Call .NET from JavaScript
+          uid: blazor/call-dotnet-from-javascript
         - name: Hosting model configuration
           uid: blazor/hosting-model-configuration
         - name: Component libraries
