@@ -95,8 +95,6 @@ Framework and app code may trigger unhandled exceptions in any of the following 
 * [Event handlers](#event-handlers)
 * [Component disposal](#component-disposal)
 * [JavaScript interop](#javascript-interop)
-* [Blazor Server circuit handlers](#blazor-server-circuit-handlers)
-* [Blazor Server circuit disposal](#blazor-server-circuit-disposal)
 * [Blazor Server rerendering](#blazor-server-prerendering)
 
 The preceding unhandled exceptions are described in the following sections of this article.
