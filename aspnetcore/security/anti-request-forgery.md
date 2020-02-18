@@ -329,7 +329,7 @@ public class ManageController : Controller
 Global example:
 
 ```csharp
-services.AddMvc(options => 
+services.AddControllersWithViews(options => 
     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 ```
 
