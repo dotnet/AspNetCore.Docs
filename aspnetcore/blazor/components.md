@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 02/15/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/components
 ---
@@ -58,7 +58,19 @@ To use a custom folder, add the custom folder's namespace to either the parent c
 @using BlazorApp.Components
 ```
 
-## Tag Helpers aren't used in components
+## Static asset paths
+
+Use a base-relative path (`/`) to refer to the project root for a static asset:
+
+```razor
+<img alt="Company logo" src="/images/logo.png" />
+```
+
+Tilde-slash notation (`~/`) used in web apps is **not** supported in Razor components.
+
+For information on setting an app's base path, see <xref:host-and-deploy/blazor/index#app-base-path>.
+
+## Tag Helpers aren't supported in components
 
 [Tag Helpers](xref:mvc/views/tag-helpers/intro) aren't supported in Razor components (*.razor* files). To provide Tag Helper-like functionality in Blazor, create a component with the same functionality as the Tag Helper and use the component instead.
 
