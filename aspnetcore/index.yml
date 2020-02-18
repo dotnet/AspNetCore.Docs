@@ -22,11 +22,11 @@ highlightedContent:
     # Card
     - title: "Create an ASP.NET Core app on any platform in 5 minutes."
       itemType: get-started
-      url: aspnetcore/getting-started/index.md
+      url: aspnet/core/getting-started/index.md
     # Card
     - title: "ASP.NET Core Overview"
       itemType: overview
-      url: aspnetcore/introduction-to-aspnet-core.md
+      url: aspnet/core/introduction-to-aspnet-core.md
     # Card
     - title: "Create your first web app."
       itemType: learn
@@ -34,22 +34,22 @@ highlightedContent:
     # Card
     - title: "What's new in ASP.NET Core docs"
       itemType: whats-new
-      url: aspnetcore/whats-new/index.yml
+      url: aspnet/core/whats-new/index.yml
 
 # conceptualContent section (optional)
 conceptualContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
   title: "ASP.NET Core: Free. Cross-platform. Open source." # < 60 chars (optional)
-  summary: "A developer platform for building all your apps: web, mobile, desktop, gaming, IoT, and more. Supported on Windows, Linux, and macOS."
+  summary: "A framework for building modern cloud-based web apps and services with .NET and C#. Supported on Windows, Linux, and macOS."
   items:
     # Card
     - title: Get Started
       summary: Create your first ASP.NET Core Apps
       links:
-        - url: aspnetcore/introduction-to-aspnet-core.md
+        - url: aspnet/core/introduction-to-aspnet-core.md
           itemType: overview
           text: ASP.NET Core overview
-        - url: aspnetcore/whats-new/index.yml
+        - url: aspnet/core/whats-new/index.yml
           itemType: whats-new
           text: What's new in ASP.NET Core 3.1
         - url: standard/tour.md
