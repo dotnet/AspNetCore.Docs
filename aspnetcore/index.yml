@@ -132,7 +132,7 @@ conceptualContent:
           text: "Modernize existing .NET applications with Azure cloud and Windows containers"
       # footerLink (optional)
       footerLink:
-        url: architecture/index.yml
+        url: https://docs.microsoft.com/en-us/dotnet/architecture/index.yml
         text: All architecture guides
 
 # Card with summary style
