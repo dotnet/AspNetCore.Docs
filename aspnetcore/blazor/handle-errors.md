@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 02/18/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/handle-errors
 ---
@@ -183,56 +183,6 @@ Similarly, JavaScript code may initiate calls to .NET methods indicated by the [
 You have the option of using error handling code on either the .NET side or the JavaScript side of the method call.
 
 For more information, see <xref:blazor/javascript-interop>.
-
-### Blazor Server circuit handlers
-
-Blazor Server allows code to define a *circuit handler*, which allows running code on changes to the state of a user's circuit. A circuit handler is implemented by deriving from `CircuitHandler` and registering the class in the app's service container. The following example of a circuit handler tracks open SignalR connections:
-
-```csharp
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.Server.Circuits;
-
-public class TrackingCircuitHandler : CircuitHandler
-{
-    private HashSet<Circuit> _circuits = new HashSet<Circuit>();
-
-    public override Task OnConnectionUpAsync(Circuit circuit, 
-        CancellationToken cancellationToken)
-    {
-        _circuits.Add(circuit);
-
-        return Task.CompletedTask;
-    }
-
-    public override Task OnConnectionDownAsync(Circuit circuit, 
-        CancellationToken cancellationToken)
-    {
-        _circuits.Remove(circuit);
-
-        return Task.CompletedTask;
-    }
-
-    public int ConnectedCircuits => _circuits.Count;
-}
-```
-
-Circuit handlers are registered using DI. Scoped instances are created per instance of a circuit. Using the `TrackingCircuitHandler` in the preceding example, a singleton service is created because the state of all circuits must be tracked:
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    ...
-    services.AddSingleton<CircuitHandler, TrackingCircuitHandler>();
-}
-```
-
-If a custom circuit handler's methods throw an unhandled exception, the exception is fatal to the Blazor Server circuit. To tolerate exceptions in a handler's code or called methods, wrap the code in one or more [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging.
-
-### Blazor Server circuit disposal
-
-When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception.
 
 ### Blazor Server prerendering
 
