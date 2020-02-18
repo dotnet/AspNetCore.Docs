@@ -40,6 +40,10 @@ The endpoint routing system described in this document applies to ASP.NET Core 3
 
 The download samples for this document are enabled by a specific `Startup` class. To run a specific sample, modify *Program.cs* to call the desired `Startup` class.
 
+Many of the samples in this document use the following `ControllerContextExtensions`class to display <xref:Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor> information:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/Extensions/ControllerContextExtensions.cs?name=snippet)]
+
 ## Routing basics
 
 All ASP.NET Core templates include routing in the generated code. Routing is registered in the [middleware](xref:fundamentals/middleware/index) pipeline in `Startup.Configure`.
@@ -50,13 +54,17 @@ The following code shows a basic example of routing:
 
 Routing uses a pair of middleware, registered by <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>:
 
-* `UseRouting` adds route matching to the middleware pipeline. This middleware looks at the set of endpoints defined in the app, and selects the best match based on the request.
+* `UseRouting` adds route matching to the middleware pipeline. This middleware looks at the set of endpoints defined in the app, and selects the [best match](#urlm) based on the request.
 * `UseEndpoints` adds endpoint execution to the middleware pipeline. It runs the delegate associated with the selected endpoint.
 
 The preceding example includes a single *route to code* endpoint using the [MapGet](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*) method:
 
-* When an HTTP `GET` request is sent to the root URL `/`, the request delegate shown executes, and `Hello World!` is written to the HTTP response. By default, the root URL `/` is `http://localhost:5000/`.
+* When an HTTP `GET` request is sent to the root URL `/`:
+  * The request delegate shown executes.
+  * `Hello World!` is written to the HTTP response. By default, the root URL `/` is `http://localhost:5000/`.
 * If the request is not a `GET` or if the URL is anything else, no route matches and an HTTP 404 is returned.
+
+### Endpoint
 
 <a name="endpoint"></a>
 
@@ -81,7 +89,7 @@ The string `/hello/{name:alpha}` is a **route template**, and is used to configu
 * A URL like `/hello/Ryan`
 * Any URL path that begins with `/hello/` followed by a sequence of alphabetic characters.  `:alpha` applies a route constraint that matches only alphabetic characters. [Route constraints](#route-constraint-reference) are explained later in this document.
 
-The second segment of the URL path:
+The second segment of the URL path, `{name:alpha}`:
 
 * Is bound to the `name` parameter.
 * The captured value is stored in [HttpRequest.RouteValues](xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues*).
@@ -183,8 +191,9 @@ The preceding example demonstrates two important concepts:
 * Middleware can run before `UseRouting` to modify the data that routing operates upon.
     * Usually middleware that appears before routing modifies some property of the request, such as <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>, <xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions.UseHttpMethodOverride*>, or <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*>.
 * Middleware can run between `UseRouting` and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> to process the results of routing before the endpoint is executed.
-    * Usually middleware that run between `UseRouting` and `UseEndpoints` inspect metadata to understand the endpoints.
-    * Middleware that run between `UseRouting` and `UseEndpoints` typically makes a security decision, such as `UseAuthorization`, or `UseCors`.
+    * Middleware that run between `UseRouting` and `UseEndpoints`:
+      * Usually inspect metadata to understand the endpoints.
+      * Often make a security decision, such as `UseAuthorization`, or `UseCors`.
     * The combination of middleware and metadata allows configuring policies per-endpoint.
 
 The preceding example shows an example of a custom middleware that supports per-endpoint policies. The middleware writes an *audit log* of access to sensitive data to the console. The middleware can be configured to *audit* an endpoint with the `AuditPolicyAttribute` metadata. This sample demonstrates an *opt-in* pattern, only endpoints that are marked as sensitive are audited. It is possible to define this logic in the reverse, auditing everything that isn't marked as safe for example. The endpoint metadata system is flexible, this logic could be designed in whatever way suits the use case.
@@ -203,11 +212,13 @@ The best practices for metadata types are to define them either as interfaces or
 
 The fact that routing uses two separate middleware can be confusing. The two separate middleware design supports the kind of flexibility shown in the next example.
 
+<a name="tm"></a>
+
+### Comparing a terminal middleware and routing
+
 The following code sample contrasts using middleware with using routing:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/TerminalMiddlewareStartup.cs?name=snippet)]
-
-<a name="tm"></a>
 
 The style of middleware shown with `Approach 1:` is **terminal middleware**. It's called terminal middleware because it does a matching operation:
 
@@ -228,7 +239,7 @@ Comparing a terminal middleware and routing:
 * Endpoints interface with middleware such as `UseAuthorization` or `UseCors`.
     * Using a terminal middleware with `UseAuthorization` or `UseCors` requires manual interfacing with the authorization system.
 
-An endpoint defines both:
+An [endpoint](#endpoint) defines both:
 
 * A delegate to process requests.
 * A collection of arbitrary metadata. The metadata is used to implement cross-cutting concerns based on policies and configuration attached to each endpoint.
@@ -258,6 +269,8 @@ The following code shows use of [MapHealthChecks](xref:host-and-deploy/health-ch
 The preceding sample shows why returning the builder object is important. Returning the builder object allows the app developer to configure policies such as authorization for the endpoint. In this example the health checks middleware has no direct integration with the authorization system.
 
 The metadata system was created in response to the problems encountered by extensibility authors using terminal middleware. It's problematic for each middleware to implement its own integration with the authorization system.
+
+<a name="urlm"></a>
 
 ### URL matching
 
@@ -312,14 +325,16 @@ Due to the kinds of extensibility provided by routing, it isn't possible for the
 * These templates have the same route precedence, but there's no single URL they both match.
 * If the routing system reported an ambiguity error at startup, it would block this valid use case.
 
-The order of operations inside <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> doesn't influence the behavior of routing with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
-
-It's possible in the legacy implementation of routing to implement routing extensbility that has a dependency on the order in which routes are processed. Endpoint routing in ASP.NET Core 3.0 and later:
-
-* Doesn't have a concept of routes.
-* Doesn't provide ordering guarantees, all endpoints are processed at once.
-
-If you are stuck using the legacy routing system for this reason, [open a GitHub issue for assistance](https://github.com/dotnet/aspnetcore/issues).
+> [!WARNING]
+>
+> The order of operations inside <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> doesn't influence the behavior of routing with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
+>
+> It's possible in the legacy implementation of routing to implement routing extensbility that has a dependency on the order in which routes are processed. Endpoint routing in ASP.NET Core 3.0 and later:
+> 
+> * Doesn't have a concept of routes.
+> * Doesn't provide ordering guarantees, all endpoints are processed at once.
+>
+> If you are stuck using the legacy routing system for this reason, [open a GitHub issue for assistance](https://github.com/dotnet/aspnetcore/issues).
 
 <a name="rtp"></a>
 
