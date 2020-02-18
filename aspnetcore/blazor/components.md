@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 02/15/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/components
 ---
@@ -58,7 +58,19 @@ To use a custom folder, add the custom folder's namespace to either the parent c
 @using BlazorApp.Components
 ```
 
-## Tag Helpers aren't used in components
+## Static asset paths
+
+Use a base-relative path (`/`) to refer to the project root for a static asset:
+
+```razor
+<img alt="Company logo" src="/images/logo.png" />
+```
+
+Tilde-slash notation (`~/`) used in web apps is **not** supported in Razor components.
+
+For information on setting an app's base path, see <xref:host-and-deploy/blazor/index#app-base-path>.
+
+## Tag Helpers aren't supported in components
 
 [Tag Helpers](xref:mvc/views/tag-helpers/intro) aren't supported in Razor components (*.razor* files). To provide Tag Helper-like functionality in Blazor, create a component with the same functionality as the Tag Helper and use the component instead.
 
@@ -282,7 +294,7 @@ When the component is rendered, the `_loginDialog` field is populated with the `
 > [!IMPORTANT]
 > The `_loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the [OnAfterRenderAsync or OnAfterRender methods](xref:blazor/lifecycle#after-component-render).
 
-While capturing component references use a similar syntax to [capturing element references](xref:blazor/javascript-interop#capture-references-to-elements), it isn't a [JavaScript interop](xref:blazor/javascript-interop) feature. Component references aren't passed to JavaScript code&mdash;they're only used in .NET code.
+While capturing component references use a similar syntax to [capturing element references](xref:blazor/call-javascript-from-dotnet#capture-references-to-elements), it isn't a JavaScript interop feature. Component references aren't passed to JavaScript code&mdash;they're only used in .NET code.
 
 > [!NOTE]
 > Do **not** use component references to mutate the state of child components. Instead, use normal declarative parameters to pass data to child components. Use of normal declarative parameters result in child components that rerender at the correct times automatically.
