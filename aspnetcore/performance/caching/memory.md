@@ -94,7 +94,7 @@ The preceding code guarantees the data will not be cached longer than the absolu
 
 The following sample:
 
-* Sets a sliding expiration time. Requests that access this cached item will reset the sliding expiration clock.
+* Sets a sliding expiration time. Requests that accessing this cached item will reset the sliding expiration clock.
 * Sets the cache priority to [CacheItemPriority.NeverRemove](xref:Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove).
 * Sets a [PostEvictionDelegate](/dotnet/api/microsoft.extensions.caching.memory.postevictiondelegate) that will be called after the entry is evicted from the cache. The callback is run on a different thread from the code that removes the item from the cache.
 
