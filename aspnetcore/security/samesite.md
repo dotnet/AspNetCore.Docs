@@ -25,9 +25,9 @@ Each ASP.NET Core component that emits cookies needs to decide if SameSite is ap
 
 ## SameSite test sample code
 
-The following samples can be downloaded and tested:
-
  ::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+
+The following samples can be downloaded and tested:
 
 | Sample               | Document |
 | ----------------- | ------------ |
@@ -37,6 +37,9 @@ The following samples can be downloaded and tested:
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0"
+
+The following sample can be downloaded and tested:
+
 
 | Sample               | Document |
 | ----------------- | ------------ |
