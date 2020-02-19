@@ -1068,8 +1068,8 @@
       uid: security/samesite
     - name: SameSite samples
       items:
-     - name: Razor Pages 2.1 SameSite cookie sample
-        uid: security/samesite/rp21
+      - name: Razor Pages 2.1 SameSite cookie sample
+       uid: security/samesite/rp21
       - name: Razor Pages 3.1 SameSite cookie sample
         uid: security/samesite/rp31
       - name: MVC SameSite cookie sample
