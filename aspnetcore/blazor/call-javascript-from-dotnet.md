@@ -15,9 +15,9 @@ By [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-A Blazor app can invoke JavaScript functions from .NET and .NET methods from JavaScript code. These scenarios are called *JavaScript interoperability* (*JS interop*).
+A Blazor app can invoke JavaScript functions from .NET methods and .NET methods from JavaScript functions. These scenarios are called *JavaScript interoperability* (*JS interop*).
 
-This article covers invoking JavaScript functions from .NET code. A JavaScript call can expose browser capabilities or functionality from a JavaScript library to the app.
+This article covers invoking JavaScript functions from .NET. For information on how to call .NET methods from JavaScript, see <xref:blazor/call-dotnet-from-javascript>.
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
