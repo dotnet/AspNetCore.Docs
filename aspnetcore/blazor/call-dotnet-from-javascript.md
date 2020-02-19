@@ -48,7 +48,7 @@ JavaScript served to the client invokes the C# .NET method.
 
 *wwwroot/exampleJsInterop.js*:
 
-[!code-javascript[](../common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=8-14)]
+[!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=8-14)]
 
 When the **Trigger .NET static method ReturnArrayAsync** button is selected, examine the console output in the browser's web developer tools.
 
@@ -118,17 +118,17 @@ When the **Trigger .NET instance method HelloHelper.SayHello** button is selecte
 
 *JsInteropClasses/ExampleJsInterop.cs*:
 
-[!code-csharp[](../common/samples/3.x/BlazorWebAssemblySample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=10-16)]
+[!code-csharp[](./common/samples/3.x/BlazorWebAssemblySample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=10-16)]
 
 *wwwroot/exampleJsInterop.js*:
 
-[!code-javascript[](../common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=15-18)]
+[!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=15-18)]
 
 The name is passed to `HelloHelper`'s constructor, which sets the `HelloHelper.Name` property. When the JavaScript function `sayHello` is executed, `HelloHelper.SayHello` returns the `Hello, {Name}!` message, which is written to the console by the JavaScript function.
 
 *JsInteropClasses/HelloHelper.cs*:
 
-[!code-csharp[](../common/samples/3.x/BlazorWebAssemblySample/JsInteropClasses/HelloHelper.cs?name=snippet1&highlight=5,10-11)]
+[!code-csharp[](./common/samples/3.x/BlazorWebAssemblySample/JsInteropClasses/HelloHelper.cs?name=snippet1&highlight=5,10-11)]
 
 Console output in the browser's web developer tools:
 
