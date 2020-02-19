@@ -28,17 +28,17 @@ The following samples can be downloaded and tested:
  ::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
 
 | Sample               | Document |
-| ----------------- | ------------ | 
+| ----------------- | ------------ |
 | [.NET Core MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
-| .NET Core Razor Pages(https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> | 
+| [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
 
 ::: moniker-end
 
  ::: moniker range=">= aspnetcore-3.0"
 
 | Sample               | Document |
-| ----------------- | ------------ | 
-| .NET Core Razor Pages(https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> | 
+| ----------------- | ------------ |
+| [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
 
 ::: moniker-end
 
@@ -59,10 +59,7 @@ This new value indicates no sameSite should be sent with the cookie.
 
 ## December patch behavior changes
 
-The specific behavior change for .NET Framework and .NET Core 2.1 is how the `SameSite` property interprets the `None` value. 
-Before the patch a value of `None` meant "Do not emit the attribute at all", after
-the patch it means "Emit the attribute with a value of `None`". 
-After the patch a `SameSite` value of `(SameSiteMode)(-1)` causes the attribute not to be emitted.
+The specific behavior change for .NET Framework and .NET Core 2.1 is how the `SameSite` property interprets the `None` value. Before the patch a value of `None` meant "Do not emit the attribute at all", after the patch it means "Emit the attribute with a value of `None`". After the patch a `SameSite` value of `(SameSiteMode)(-1)` causes the attribute not to be emitted.
 
 The default SameSite value for forms authentication and session state cookies was changed from `None` to `Lax`.
 
