@@ -1066,6 +1066,10 @@
       uid: security/cookie-sharing
     - name: SameSite cookies
       uid: security/samesite
+    - name: SameSite samples
+      items:
+      - name: MVC SameSite cookie sample
+        uid: security/samesite/mvc21
     - name: IP safelist
       uid: security/ip-safelist
     - name: Application security - OWASP
