@@ -23,6 +23,23 @@ The `SameSite=Lax` setting works for most application cookies. Some forms of aut
 
 Each ASP.NET Core component that emits cookies needs to decide if SameSite is appropriate.
 
+The following samples can be downloaded and tested:
+
+ ::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+
+| Sample               | Document |
+| [.NET Core MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
+| .NET Core Razor Pages(https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> | 
+
+::: moniker-end
+
+ ::: moniker range=">= aspnetcore-3.0"
+
+| Sample               | Document |
+| .NET Core Razor Pages(https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> | 
+
+::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.2"
 
 ## .NET Core support for the sameSite attribute
