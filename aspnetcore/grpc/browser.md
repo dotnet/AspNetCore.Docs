@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to configure gRPC services on ASP.NET Core to be callable from browser apps using gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 02/10/2020
+ms.date: 02/16/2020
 uid: grpc/browser
 ---
 # Use gRPC in browser apps
@@ -43,7 +43,19 @@ Alternatively, configure all services to support gRPC-Web by adding `services.Ad
 
 [!code-csharp[](~/grpc/browser/sample/AllServicesSupportExample_Startup.cs?name=snippet_1&highlight=6,13)]
 
-Some additional configuration may be required to call gRPC-Web from the browser, such as configuring ASP.NET Core to support CORS. For more information, see [support CORS](xref:security/cors).
+### gRPC-Web and CORS
+
+Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction applies to making gRPC-Web calls with browser apps. For example, a browser app served by `https://www.contoso.com` is blocked from calling gRPC-Web services hosted on `https://services.contoso.com`. Cross Origin Resource Sharing (CORS) can be used to relax this restriction.
+
+To allow your browser app to make cross-origin gRPC-Web calls, set up [CORS in ASP.NET Core](xref:security/cors). Use the built-in CORS support, and expose gRPC-specific headers with <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*>.
+
+[!code-csharp[](~/grpc/browser/sample/CORS_Startup.cs?name=snippet_1&highlight=5-11,19,24)]
+
+The preceding code:
+
+* Calls `AddCors` to add CORS services and configures a CORS policy that exposes gRPC-specific headers.
+* Calls `UseCors` to add the CORS middleware after routing and before endpoints.
+* Specifies the `endpoints.MapGrpcService<GreeterService>()` method supports CORS with `RequiresCors`.
 
 ## Call gRPC-Web from the browser
 
