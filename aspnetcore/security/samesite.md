@@ -23,6 +23,8 @@ The `SameSite=Lax` setting works for most application cookies. Some forms of aut
 
 Each ASP.NET Core component that emits cookies needs to decide if SameSite is appropriate.
 
+## SameSite test sample code
+
 The following samples can be downloaded and tested:
 
  ::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
@@ -34,7 +36,7 @@ The following samples can be downloaded and tested:
 
 ::: moniker-end
 
- ::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.0"
 
 | Sample               | Document |
 | ----------------- | ------------ |
@@ -206,3 +208,22 @@ Versions of Electron include older versions of Chromium. For example, the versio
 * [Chromium Blog:Developers: Get Ready for New SameSite=None; Secure Cookie Settings](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html)
 * [SameSite cookies explained](https://web.dev/samesite-cookies-explained/)
 * [November 2019 Patches](https://devblogs.microsoft.com/dotnet/net-core-November-2019/)
+
+ ::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+
+| Sample               | Document |
+| ----------------- | ------------ |
+| [.NET Core MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
+| [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
+
+::: moniker-end
+
+ ::: moniker range=">= aspnetcore-3.0"
+
+| Sample               | Document |
+| ----------------- | ------------ |
+| [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
