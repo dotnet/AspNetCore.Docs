@@ -38,7 +38,7 @@ Response.Cookies.Append(CookieName, "cookieValue", cookieOptions);
 
 ## Setting Cookie Authentication and Session State cookies
 
-Cookie authentication, session state and [various other components](https://docs.microsoft.com/en-us/aspnet/core/security/samesite?view=aspnetcore-2.1) set their sameSite options via Cookie options, for example
+Cookie authentication, session state and [various other components](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) set their sameSite options via Cookie options, for example
 
 ```c#
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -61,7 +61,7 @@ In the preceding code, both cookie authentication and session state set their sa
 
 ### Run the sample
 
-If you run the sample project, load your browser debugger on the initial page and use it to view the cookie collection for the site. To do so in Edge and Chrome press `F12` then select the `Application` tab and click the site URL under the `Cookies` option in the `Storage` section.
+If you run the [sample project](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC), load your browser debugger on the initial page and use it to view the cookie collection for the site. To do so in Edge and Chrome press `F12` then select the `Application` tab and click the site URL under the `Cookies` option in the `Storage` section.
 
 ![Browser Debugger Cookie List](BrowserDebugger.png)
 
@@ -71,7 +71,7 @@ You can see from the image above that the cookie created by the sample when you 
 
 In order to intercept cookies, to adjust the none value according to its support in the user's browser agent you must use the `CookiePolicy` middleware. This must be placed into the http request pipeline **before** any components that write cookies and configured within `ConfigureServices()`.
 
-To insert it into the pipeline use `app.UseCookiePolicy()` in the `Configure(IApplicationBuilder, IHostingEnvironment)` method in your [startup.cs](Startup.cs). For example:
+To insert it into the pipeline use `app.UseCookiePolicy()` in the `Configure(IApplicationBuilder, IHostingEnvironment)` method in [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs). For example:
 
 ```c#
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
