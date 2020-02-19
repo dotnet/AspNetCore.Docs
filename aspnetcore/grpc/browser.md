@@ -45,20 +45,16 @@ Alternatively, configure all services to support gRPC-Web by adding `services.Ad
 
 ### gRPC-Web and CORS
 
-Browser security:
+Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction applies to making gRPC-Web calls with browser apps. For example, a browser app served by `https://www.contoso.com` is blocked from calling gRPC-Web services hosted on `https://services.contoso.com`. Cross Origin Resource Sharing (CORS) can be used to relax this restriction.
 
-* Prevents a web page from making requests to a different domain than the one that served the web page.
-* This restriction applies to making gRPC-Web calls with browser apps. For example, a browser app served by `https://www.contoso.com` is blocked from calling gRPC-Web services hosted on `https://services.contoso.com`.
-* Cross Origin Resource Sharing (CORS) can be used to relax this restriction.
+To allow your browser app to make cross-origin gRPC-Web calls, set up [CORS in ASP.NET Core](xref:security/cors). Use the built-in CORS support, and expose gRPC-specific headers with <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*>.
 
-To allow your browser app to make cross-origin gRPC-Web calls you must setup [CORS in ASP.NET Core](xref:security/cors). Use the built-in CORS support, and expose gRPC specific headers with <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*>.
-
-[!code-csharp[](~/grpc/browser/sample/CORS_Startup.cs?name=snippet_1&highlight=5,19,24)]
+[!code-csharp[](~/grpc/browser/sample/CORS_Startup.cs?name=snippet_1&highlight=5-11,19,24)]
 
 The preceding code:
 
-* Adds CORS services, `AddCors`, and configures a CORS policy that exposes gRPC specific headers.
-* Adds the CORS middleware, `UseCors`, after routing and before endpoints.
+* Calls `AddCors` to add CORS services and configures a CORS policy that exposes gRPC-specific headers.
+* Calls `UseCors` to add the CORS middleware after routing and before endpoints.
 * Specifies the `endpoints.MapGrpcService<GreeterService>()` method supports CORS with `RequiresCors`.
 
 ## Call gRPC-Web from the browser
