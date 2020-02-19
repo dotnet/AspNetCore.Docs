@@ -328,10 +328,21 @@ public class ManageController : Controller
 
 Global example:
 
+::: moniker range="< aspnetcore-3.0"
+
+services.AddMvc(options =>
+    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
 ```csharp
-services.AddMvc(options => 
+services.AddControllersWithViews(options =>
     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
 ```
+
+::: moniker-end
 
 ### Override global or controller antiforgery attributes
 
