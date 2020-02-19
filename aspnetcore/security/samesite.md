@@ -28,6 +28,7 @@ The following samples can be downloaded and tested:
  ::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
 
 | Sample               | Document |
+| ----------------- | ------------ | 
 | [.NET Core MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
 | .NET Core Razor Pages(https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> | 
 
@@ -36,6 +37,7 @@ The following samples can be downloaded and tested:
  ::: moniker range=">= aspnetcore-3.0"
 
 | Sample               | Document |
+| ----------------- | ------------ | 
 | .NET Core Razor Pages(https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> | 
 
 ::: moniker-end
