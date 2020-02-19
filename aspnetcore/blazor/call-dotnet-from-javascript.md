@@ -1,7 +1,7 @@
 ---
 title: Call .NET methods from JavaScript functions in ASP.NET Core Blazor
 author: guardrex
-description: Learn how to invoke JavaScript functions from .NET and .NET methods from JavaScript in Blazor apps.
+description: Learn how to invoke .NET methods from JavaScript functions in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
