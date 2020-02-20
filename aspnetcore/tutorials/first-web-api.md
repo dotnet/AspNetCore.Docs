@@ -464,7 +464,7 @@ A DTO may be used to:
 * Prevent over-posting.
 * Hide properties that clients are not supposed to view.
 * Omit some properties in order to reduce payload size.
-* Flatten object graphs that contain nested objects. Flattened object graphs can be  more convenient for clients.
+* Flatten object graphs that contain nested objects. Flattened object graphs can be more convenient for clients.
 
 Update the `TodoItem` class to include a secret field:
 
