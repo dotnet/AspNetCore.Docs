@@ -344,7 +344,7 @@ dotnet dev-certs https --help
 
 ## How to set up a developer certificate for Docker
 
-See [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/6199).
+See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 
 <a name="wsl"></a>
 

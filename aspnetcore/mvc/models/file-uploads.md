@@ -16,7 +16,7 @@ By [Luke Latham](https://github.com/guardrex), [Steve Smith](https://ardalis.com
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Security considerations
 
@@ -220,7 +220,7 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 > string untrustedFileName = Path.GetFileName(pathName);
 > ```
 >
-> The examples provided thus far don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
+> The examples provided thus far don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
 > * [Security considerations](#security-considerations)
 > * [Validation](#validation)
@@ -391,7 +391,7 @@ The preceding example is similar to a scenario demonstrated in the sample app:
 >
 > Don't rely on or trust the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> without validation. The `FileName` property should only be used for display purposes and only after HTML encoding.
 >
-> The examples provided don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
+> The examples provided don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
 > * [Security considerations](#security-considerations)
 > * [Validation](#validation)
@@ -745,7 +745,7 @@ The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the u
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Security considerations
 
@@ -949,7 +949,7 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 > string untrustedFileName = Path.GetFileName(pathName);
 > ```
 >
-> The examples provided thus far don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
+> The examples provided thus far don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
 > * [Security considerations](#security-considerations)
 > * [Validation](#validation)
@@ -1120,7 +1120,7 @@ The preceding example is similar to a scenario demonstrated in the sample app:
 >
 > Don't rely on or trust the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> without validation. The `FileName` property should only be used for display purposes and only after HTML encoding.
 >
-> The examples provided don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
+> The examples provided don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
 > * [Security considerations](#security-considerations)
 > * [Validation](#validation)
