@@ -453,6 +453,8 @@ Use Postman to delete a to-do item:
 * Set the URI of the object to delete (for example `https://localhost:5001/api/TodoItems/1`).
 * Select **Send**.
 
+<a name="over-post"></a>
+
 ## Prevent over-posting
 
 Currently the app exposes the entire `TodoItem`. Productions apps typically limit the data that's input and returned using subset of the model. The subset model is called a Data Transfer Object (DTO), input model, or view model.
