@@ -74,7 +74,7 @@ namespace TodoApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItemDTO todoItemDTO)
+        public async Task<ActionResult<TodoItem>> CreateTodoItem(TodoItemDTO todoItemDTO)
         {
             var todoItem = new TodoItem
             {
