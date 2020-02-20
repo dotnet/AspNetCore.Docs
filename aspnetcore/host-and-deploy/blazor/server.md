@@ -113,7 +113,7 @@ For more information, see [NGINX as a WebSocket Proxy](https://www.nginx.com/blo
 
 ### Measure network latency
 
-[JS interop](xref:blazor/javascript-interop) can be used to measure network latency, as the following example demonstrates:
+[JS interop](xref:blazor/call-javascript-from-dotnet) can be used to measure network latency, as the following example demonstrates:
 
 ```razor
 @inject IJSRuntime JS
