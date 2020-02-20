@@ -228,5 +228,3 @@ Versions of Electron include older versions of Chromium. For example, the versio
 | [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
 
 ::: moniker-end
-
-::: moniker range=">= aspnetcore-2.2"
