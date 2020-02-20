@@ -199,11 +199,12 @@ There are two versions of the `OwningComponentBase` type:
 
     ```razor
     @page "/preferences"
+    @using Microsoft.Extensions.DependencyInjection
     @inherits OwningComponentBase
 
     <h1>User (@UserService.Name)</h1>
     <ul>
-        @foreach (var setting in SettingService)
+        @foreach (var setting in SettingService.GetSettings())
         {
             <li>@setting.SettingName: @setting.SettingValue</li>
         }
@@ -211,9 +212,8 @@ There are two versions of the `OwningComponentBase` type:
 
     @code {
         private IUserService UserService { get; set; }
-
-        private IPlayerService SettingService { get; set; }
-
+        private ISettingService SettingService { get; set; }
+        
         protected override void OnInitialized()
         {
             UserService = ScopedServices.GetRequiredService<IUserService>();
