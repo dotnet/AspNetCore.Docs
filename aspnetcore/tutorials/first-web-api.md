@@ -480,6 +480,8 @@ Update the `TodoItemsController` to use `TodoItemDTO`:
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet)]
 
+Verify you can't post and get the secret field.
+
 ## Call the web API with JavaScript
 
 See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-api-javascript).
