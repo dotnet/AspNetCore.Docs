@@ -474,7 +474,7 @@ Verify you can post and get the secret field.
 
 Create an DTO model:
 
-[!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Models/TodoItemInput.cs?name=snippet)]
+[!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Models/TodoItemDTO.cs?name=snippet)]
 
 Update the `TodoItemsController` to use `TodoItemDTO`:
 
