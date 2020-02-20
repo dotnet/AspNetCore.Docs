@@ -457,7 +457,7 @@ Use Postman to delete a to-do item:
 
 ## Prevent over-posting
 
-Currently the sample app exposes the entire `TodoItem` object. Productions apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this and security aspect is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
+Currently the sample app exposes the entire `TodoItem` object. Productions apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
 
 A DTO may be used to:
 
@@ -470,11 +470,11 @@ To demonstrate the DTO approach, update the `TodoItem` class to include a secret
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Models/TodoItem.cs?name=snippet&highlight=6)]
 
-The secret field needs to be hidden from this app, an administrative app could expose it.
+The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
 
 Verify you can post and get the secret field.
 
-Create an DTO model:
+Create a DTO model:
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Models/TodoItemDTO.cs?name=snippet)]
 
@@ -482,7 +482,7 @@ Update the `TodoItemsController` to use `TodoItemDTO`:
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet)]
 
-Verify you can't post and get the secret field.
+Verify you can't post or get the secret field.
 
 ## Call the web API with JavaScript
 
