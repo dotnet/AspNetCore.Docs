@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 02/19/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/webassembly
 ---
@@ -195,7 +195,7 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
        DocumentRoot "/var/www/blazorapp"
        ErrorDocument 404 /index.html
 
-       AddType aplication/wasm .wasm
+       AddType application/wasm .wasm
        AddType application/octet-stream .dll
    
        <Directory "/var/www/blazorapp">
