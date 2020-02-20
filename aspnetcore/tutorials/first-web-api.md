@@ -457,7 +457,7 @@ Use Postman to delete a to-do item:
 
 ## Prevent over-posting
 
-Currently the app exposes the entire `TodoItem`. Productions apps typically limit the data that's input and returned using subset of the model. The subset model is called a Data Transfer Object (DTO), input model, or view model.
+Currently our sample app exposes the entire `TodoItem` object. Productions apps typically limit the data that's input and returned using subset of the model. There are multiple reasons behind this and security aspect is a major one. That subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. We will use the `DTO` naming in this article.
 
 A DTO may be used to:
 
@@ -466,7 +466,7 @@ A DTO may be used to:
 * Omit some properties in order to reduce payload size.
 * Flatten object graphs that contain nested objects. Flattened object graphs can be more convenient for clients.
 
-Update the `TodoItem` class to include a secret field:
+To demonstrate this here, let's update the `TodoItem` class to include a secret field:
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Models/TodoItem.cs?name=snippet&highlight=6)]
 
