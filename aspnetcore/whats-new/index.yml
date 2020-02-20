@@ -40,7 +40,7 @@ landingContent:
           - text: "ASP.NET Core docs contributor guide"
             url: https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md
           - text: "ASP.NET Core API reference docs contributor guide"
-            url: https://github.com/aspnet/ApiDocs/blob/master/CONTRIBUTING.md
+            url: https://github.com/dotnet/AspNetApiDocs/blob/master/CONTRIBUTING.md
           # - text: "ASP.NET Core samples contributor guide"
           #   url: https://github.com/aspnet/samples/blob/master/CONTRIBUTING.md
 
