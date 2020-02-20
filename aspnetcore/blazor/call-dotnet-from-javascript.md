@@ -215,7 +215,7 @@ To avoid a memory leak and allow garbage collection on a component that creates 
 To invoke a component's .NET methods:
 
 * Use the `invokeMethod` or `invokeMethodAsync` function to make a static method call to the component.
-* The component's static method wraps the call to its instance method in an `Action`.
+* The component's static method wraps the call to its instance method as an invoked `Action`.
 
 In the client-side JavaScript:
 
