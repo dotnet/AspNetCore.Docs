@@ -5,13 +5,13 @@ description: See how Blazor apps can inject services into components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2020
+ms.date: 02/20/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/dependency-injection
 ---
 # ASP.NET Core Blazor dependency injection
 
-By [Rainer Stropek](https://www.timecockpit.com)
+By [Rainer Stropek](https://www.timecockpit.com) and [Mike Rousos](https://github.com/mjrousos)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
@@ -189,62 +189,77 @@ Prerequisites for constructor injection:
 
 ## Utility base component classes to manage a DI scope
 
-In ASP.NET Core apps, scoped services are typically scoped to the current request. After the request completes, any scoped or transient services are disposed by the DI system. In Blazor Server apps, the request scope lasts for the duration of the client connection, which can result in transient and scoped services living much longer than expected. Similarly, in Blazor WebAssembly apps, scoped services are treated as singletons, so they will live longer than scoped services would in most ASP.NET Core apps.
+In ASP.NET Core apps, scoped services are typically scoped to the current request. After the request completes, any scoped or transient services are disposed by the DI system. In Blazor Server apps, the request scope lasts for the duration of the client connection, which can result in transient and scoped services living much longer than expected. In Blazor WebAssembly apps, services registered with a scoped lifetime are treated as singletons, so they live longer than scoped services in typical ASP.NET Core apps.
 
-An option for limiting service lifetime in Blazor apps is the `OwningComponentBase` type. `OwningComponentBase` is an abstract type derived from `ComponentBase` that creates a DI scope corresponding to the lifetime of the component. Using this scope, it's possible to use DI services with a scoped lifetime and have them live as long as the component. When the component is destroyed, services from the component's scoped service provider will be disposed, as well. This can be useful for services that should be reused within a component (so the transient lifetime isn't appropriate), but should not be shared across components (making the singleton lifetime inappropriate).
+An approach that limits a service lifetime in Blazor apps is use of the `OwningComponentBase` type. `OwningComponentBase` is an abstract type derived from `ComponentBase` that creates a DI scope corresponding to the lifetime of the component. Using this scope, it's possible to use DI services with a scoped lifetime and have them live as long as the component. When the component is destroyed, services from the component's scoped service provider are disposed as well. This can be useful for services that:
 
-There are two versions of the `OwningComponentBase` type:
+* Should be reused within a component, as the transient lifetime is inappropriate.
+* Shouldn't be shared across components, as the singleton lifetime is inappropriate.
 
-* `OwningComponentBase` is an abstract disposable child of the `ComponentBase` type with a protected `ScopedServices` property of type `IServiceProvider`. This provider can be used to resolve services that are scoped to the lifetime of the component. Note that DI services injected into the component using `@inject` or the `InjectAttribute` aren't created in the component's scope. To use the component's scope, services must be resolved using `ScopedServices.GetRequiredService` or `ScopedServices.GetService`. Any services resolved using the `ScopedServices` provider will have their dependencies provided from that same scope.
+Two versions of the `OwningComponentBase` type are available:
 
-    ```razor
-    @page "/preferences"
-    @using Microsoft.Extensions.DependencyInjection
-    @inherits OwningComponentBase
+* `OwningComponentBase` is an abstract, disposable child of the `ComponentBase` type with a protected `ScopedServices` property of type `IServiceProvider`. This provider can be used to resolve services that are scoped to the lifetime of the component.
 
-    <h1>User (@UserService.Name)</h1>
-    <ul>
-        @foreach (var setting in SettingService.GetSettings())
-        {
-            <li>@setting.SettingName: @setting.SettingValue</li>
-        }
-    </ul>
+  DI services injected into the component using `@inject` or the `InjectAttribute` (`[Inject]`) aren't created in the component's scope. To use the component's scope, services must be resolved using `ScopedServices.GetRequiredService` or `ScopedServices.GetService`. Any services resolved using the `ScopedServices` provider have their dependencies provided from that same scope.
 
-    @code {
-        private IUserService UserService { get; set; }
-        private ISettingService SettingService { get; set; }
+  ```razor
+  @page "/preferences"
+  @using Microsoft.Extensions.DependencyInjection
+  @inherits OwningComponentBase
+
+  <h1>User (@UserService.Name)</h1>
+
+  <ul>
+      @foreach (var setting in SettingService.GetSettings())
+      {
+          <li>@setting.SettingName: @setting.SettingValue</li>
+      }
+  </ul>
+
+  @code {
+      private IUserService UserService { get; set; }
+      private ISettingService SettingService { get; set; }
         
-        protected override void OnInitialized()
-        {
-            UserService = ScopedServices.GetRequiredService<IUserService>();
-            SettingService = ScopedServices.GetRequiredService<ISettingService>();
-        }
-    }
-    ```
+      protected override void OnInitialized()
+      {
+          UserService = ScopedServices.GetRequiredService<IUserService>();
+          SettingService = ScopedServices.GetRequiredService<ISettingService>();
+      }
+  }
+  ```
 
-* `OwningComponentBase<T>` derives from `OwningComponentBase` and adds a property `Service` that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of `IServiceProvider` when there's one primary service you will need from the DI container using the component's scope. Note that the `ScopedServices` property is still available, so you can get services of other types from there, if necessary.
+* `OwningComponentBase<T>` derives from `OwningComponentBase` and adds a property `Service` that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of `IServiceProvider` when there's one primary service the app requires from the DI container using the component's scope. The `ScopedServices` property is available, so the app can get services of other types, if necessary.
 
-    ```razor
-    @page "/users"
-    @attribute [Authorize]
-    @inherits OwningComponentBase<Data.ApplicationDbContext>
+  ```razor
+  @page "/users"
+  @attribute [Authorize]
+  @inherits OwningComponentBase<Data.ApplicationDbContext>
 
-    <h1>Users (@Service.Users.Count())</h1>
-    <ul>
-        @foreach (var user in Service.Users)
-        {
-            <li>@user.UserName</li>
-        }
-    </ul>
-    ```
+  <h1>Users (@Service.Users.Count())</h1>
 
-### Using Entity Framework DbContexts from DI in Blazor apps
+  <ul>
+      @foreach (var user in Service.Users)
+      {
+          <li>@user.UserName</li>
+      }
+  </ul>
+  ```
 
-One common type of service to retrieve from DI in ASP.NET Core web apps is Entity Framework `DbContext` objects. Registering EF services using `IServiceCollection.AddDbContext` will add the `DbContext` as a scoped service, by default. This can easily lead to problems in Blazor apps since this will cause `DbContext` instances to be long-lived and shared across the app. `DbContext` is not thread-safe and must not be used concurrently.
+## Use of Entity Framework DbContext from DI
 
-Depending on the app, using `OwningComponentBase` to limit the scope of a `DbContext` to a single component may solve the issue. Keep in mind, though, that if a single component might use a `DbContext` concurrently (every time a user clicks a button, for example) then even using `OwningComponentBase` won't avoid issues with concurrent EF operations. In that case, you should use a different `DbContext` for each logical EF operation, either by creating the `DbContext` directly (using `DbContextOptions<TContext>` as an argument, which can be retrieved from DI and is thread safe) or by registering the `DbContext` in DI with a transient lifetime (by passing `ServiceLifetime.Transient` when registering the context with DI) and requesting a new instance for each logical EF operation.
+One common service type to retrieve from DI in web apps is Entity Framework (EF) `DbContext` objects. Registering EF services using `IServiceCollection.AddDbContext` adds the `DbContext` as a scoped service by default. Registering as a scoped service can lead to problems in Blazor apps because it causes `DbContext` instances to be long-lived and shared across the app. `DbContext` isn't thread-safe and must not be used concurrently.
 
-If a component will not use a `DbContext` in parallel, however, deriving the component from `OwningComponentBase` and retrieving the `DbContext` from `ScopedServices` will be sufficient because it will ensure that separate components do not share a `DbContext` and that the `DbContext` lives only as long as the component depending on it.
+Depending on the app, using `OwningComponentBase` to limit the scope of a `DbContext` to a single component *may* solve the issue. If a single component might use a `DbContext` concurrently (for example, every time a user selects a button), even using `OwningComponentBase` doesn't avoid issues with concurrent EF operations. In that case, use a different `DbContext` for each logical EF operation. Use either of the following approaches:
+
+* Create the `DbContext` directly using `DbContextOptions<TContext>` as an argument, which can be retrieved from DI and is thread safe. 
+* Register the `DbContext` in the service container with a transient lifetime:
+  * When registering the context, use `ServiceLifetime.Transient`.
+  * Request a new instance for each logical EF operation.
+
+If a component doesn't use a `DbContext` in parallel, deriving the component from `OwningComponentBase` and retrieving the `DbContext` from `ScopedServices` is sufficient because it ensures that:
+
+* Separate components don't share a `DbContext`.
+* The `DbContext` lives only as long as the component depending on it.
 
 ## Additional resources
 
