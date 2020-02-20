@@ -25,7 +25,7 @@ This article covers invoking .NET methods from JavaScript. For information on ho
 
 To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support Blazor Server scenarios. The .NET method must be public, static, and have the `[JSInvokable]` attribute. Calling open generic methods isn't currently supported.
 
-The sample app includes a C# method to return an array of `int`s. The `JSInvokable` attribute is applied to the method.
+The sample app includes a C# method to return an `int` array. The `JSInvokable` attribute is applied to the method.
 
 *Pages/JsInterop.razor*:
 

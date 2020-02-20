@@ -325,7 +325,7 @@ public class FileUploader : IDisposable
 In the preceding example:
 
 * The `_maxBase64SegmentSize` is set to `8192`, which is calculated from `_maxBase64SegmentSize = _segmentSize * 4 / 3`.
-* Low level .NET Core memory management APIs are used to store the memory segments on the server in `_uploadedSegments`.
+* Low-level .NET Core memory management APIs are used to store the memory segments on the server in `_uploadedSegments`.
 * A `ReceiveFile` method is used to handle the upload through JS interop:
   * The file size is determined in bytes through JS interop with `_jsRuntime.InvokeAsync<FileInfo>('getFileSize', selector)`.
   * The number of segments to receive are calculated and stored in `numberOfSegments`.
