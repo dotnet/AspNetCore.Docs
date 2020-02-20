@@ -4,13 +4,13 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 2/25/2020
 uid: tutorials/first-web-api
 ---
 
 # Tutorial: Create a web API with ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5),  and [Mike Wasson](https://github.com/mikewasson)
 
 This tutorial teaches the basics of building a web API with ASP.NET Core.
 
@@ -207,7 +207,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 ---
 
-  [!code-csharp[](first-web-api/samples/3.0/TodoApi/Models/TodoItem.cs)]
+  [!code-csharp[](first-web-api/samples/3.0/TodoApi/Models/TodoItem.cs?name=snippet)]
 
 The `Id` property functions as the unique key in a relational database.
 
@@ -452,6 +452,37 @@ Use Postman to delete a to-do item:
 * Set the method to `DELETE`.
 * Set the URI of the object to delete (for example `https://localhost:5001/api/TodoItems/1`).
 * Select **Send**.
+
+<a name="over-post"></a>
+
+## Prevent over-posting
+
+Currently the sample app exposes the entire `TodoItem` object. Productions apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
+
+A DTO may be used to:
+
+* Prevent over-posting.
+* Hide properties that clients are not supposed to view.
+* Omit some properties in order to reduce payload size.
+* Flatten object graphs that contain nested objects. Flattened object graphs can be more convenient for clients.
+
+To demonstrate the DTO approach, update the `TodoItem` class to include a secret field:
+
+[!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Models/TodoItem.cs?name=snippet&highlight=6)]
+
+The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
+
+Verify you can post and get the secret field.
+
+Create a DTO model:
+
+[!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Models/TodoItemDTO.cs?name=snippet)]
+
+Update the `TodoItemsController` to use `TodoItemDTO`:
+
+[!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet)]
+
+Verify you can't post or get the secret field.
 
 ## Call the web API with JavaScript
 
