@@ -82,6 +82,9 @@ var channel = GrpcChannel.ForAddress("http://localhost:5000");
 var client = new Greet.GreeterClient(channel);
 ```
 
+> [!NOTE]
+> This configuration currently doesn't work with Xamarin apps.
+
 ## Unable to start ASP.NET Core gRPC app on macOS
 
 Kestrel doesn't support HTTP/2 with TLS on macOS and older Windows versions such as Windows 7. The ASP.NET Core gRPC template and samples use TLS by default. You'll see the following error message when you attempt to start the gRPC server:
