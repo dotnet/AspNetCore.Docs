@@ -19,7 +19,7 @@ A Blazor app can invoke JavaScript functions from .NET methods and .NET methods 
 
 This article covers invoking .NET methods from JavaScript. For information on how to call JavaScript functions from .NET, see <xref:blazor/call-javascript-from-dotnet>.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Static .NET method call
 

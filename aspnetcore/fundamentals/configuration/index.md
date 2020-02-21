@@ -35,7 +35,7 @@ using Microsoft.Extensions.Configuration;
 
 The *options pattern* is an extension of the configuration concepts described in this topic. Options use classes to represent groups of related settings. For more information, see <xref:fundamentals/configuration/options>.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Host versus app configuration
 
@@ -1149,7 +1149,7 @@ using Microsoft.Extensions.Configuration;
 
 The *options pattern* is an extension of the configuration concepts described in this topic. Options use classes to represent groups of related settings. For more information, see <xref:fundamentals/configuration/options>.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Host versus app configuration
 

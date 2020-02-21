@@ -30,7 +30,7 @@ landingContent:
       - linkListType: overview
         links:
           - text: "ASP.NET Core docs repository"
-            url: https://github.com/aspnet/AspNetCore.Docs/blob/master/README.md
+            url: https://github.com/dotnet/AspNetCore.Docs/blob/master/README.md
           - text: Project structure and labels for issues and pull requests
             url: https://github.com/dotnet/docs/blob/master/styleguide/labels-projects.md
       - linkListType: concept
@@ -38,9 +38,9 @@ landingContent:
           - text: Microsoft docs contributor guide
             url: https://docs.microsoft.com/contribute
           - text: "ASP.NET Core docs contributor guide"
-            url: https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md
+            url: https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md
           - text: "ASP.NET Core API reference docs contributor guide"
-            url: https://github.com/aspnet/ApiDocs/blob/master/CONTRIBUTING.md
+            url: https://github.com/dotnet/AspNetApiDocs/blob/master/CONTRIBUTING.md
           # - text: "ASP.NET Core samples contributor guide"
           #   url: https://github.com/aspnet/samples/blob/master/CONTRIBUTING.md
 
