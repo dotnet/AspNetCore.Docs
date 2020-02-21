@@ -74,6 +74,32 @@ By default, the new middleware:
 
 ![Azure Active Directory: App registration properties](ws-federation/_static/AadAppIdUri.png)
 
+### Log in with WS-Federation
+
+Browse to the app and click the **Log in** link in the nav header. There's an option to log in with WsFederation:
+![Log in page](ws-federation/_static/WsFederationButton.png)
+
+With ADFS as the provider, the button redirects to an ADFS sign-in page:
+![ADFS sign-in page](ws-federation/_static/AdfsLoginPage.png)
+
+With Azure Active Directory as the provider, the button redirects to an AAD sign-in page:
+![AAD sign-in page](ws-federation/_static/AadSignIn.png)
+
+A successful sign-in for a new user redirects to the app's user registration page:
+![Register page](ws-federation/_static/Register.png)
+
+## Use WS-Federation without ASP.NET Core Identity
+
+The WS-Federation middleware can be used without Identity. For example:
+::: moniker range=">= aspnetcore-3.0"
+[!code-csharp[](ws-federation/samples/StartupNon31.cs)]
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+[!code-csharp[](ws-federation/samples/StartupNon21.cs)]
+::: moniker-end
+
+
 ## Add WS-Federation as an external login provider for ASP.NET Core Identity
 
 * Add a dependency on [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) to the project.
@@ -103,45 +129,3 @@ By default, the new middleware:
     ```
 
 [!INCLUDE [default settings configuration](social/includes/default-settings.md)]
-
-### Log in with WS-Federation
-
-Browse to the app and click the **Log in** link in the nav header. There's an option to log in with WsFederation:
-![Log in page](ws-federation/_static/WsFederationButton.png)
-
-With ADFS as the provider, the button redirects to an ADFS sign-in page:
-![ADFS sign-in page](ws-federation/_static/AdfsLoginPage.png)
-
-With Azure Active Directory as the provider, the button redirects to an AAD sign-in page:
-![AAD sign-in page](ws-federation/_static/AadSignIn.png)
-
-A successful sign-in for a new user redirects to the app's user registration page:
-![Register page](ws-federation/_static/Register.png)
-
-## Use WS-Federation without ASP.NET Core Identity
-
-The WS-Federation middleware can be used without Identity. For example:
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddAuthentication(sharedOptions =>
-    {
-        sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        sharedOptions.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        sharedOptions.DefaultChallengeScheme = WsFederationDefaults.AuthenticationScheme;
-    })
-    .AddWsFederation(options =>
-    {
-        options.Wtrealm = Configuration["wsfed:realm"];
-        options.MetadataAddress = Configuration["wsfed:metadata"];
-    })
-    .AddCookie();
-}
-
-public void Configure(IApplicationBuilder app)
-{
-    app.UseAuthentication();
-        // …
-}
-```
