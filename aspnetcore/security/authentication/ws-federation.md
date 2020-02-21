@@ -92,13 +92,12 @@ A successful sign-in for a new user redirects to the app's user registration pag
 
 The WS-Federation middleware can be used without Identity. For example:
 ::: moniker range=">= aspnetcore-3.0"
-[!code-csharp[](ws-federation/samples/StartupNon31.cs)]
+[!code-csharp[](ws-federation/samples/StartupNon31.cs?name=snippet)]
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
-[!code-csharp[](ws-federation/samples/StartupNon21.cs)]
+[!code-csharp[](ws-federation/samples/StartupNon21.cs?name=snippet)]
 ::: moniker-end
-
 
 ## Add WS-Federation as an external login provider for ASP.NET Core Identity
 
