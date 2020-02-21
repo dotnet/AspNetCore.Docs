@@ -23,7 +23,6 @@ namespace WebApplication88
             services.AddAuthentication(sharedOptions =>
             {
                 sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                sharedOptions.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 sharedOptions.DefaultChallengeScheme = WsFederationDefaults.AuthenticationScheme;
             })
              .AddWsFederation(options =>
