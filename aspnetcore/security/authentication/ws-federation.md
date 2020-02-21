@@ -74,6 +74,8 @@ By default, the new middleware:
 
 ![Azure Active Directory: App registration properties](ws-federation/_static/AadAppIdUri.png)
 
+[!INCLUDE [default settings configuration](social/includes/default-settings.md)]
+
 ### Log in with WS-Federation
 
 Browse to the app and click the **Log in** link in the nav header. There's an option to log in with WsFederation:
@@ -112,4 +114,3 @@ The WS-Federation middleware can be used without Identity. For example:
 [!code-csharp[](ws-federation/samples/Startup21.cs?name=snippet)]
 ::: moniker-end
 
-[!INCLUDE [default settings configuration](social/includes/default-settings.md)]
