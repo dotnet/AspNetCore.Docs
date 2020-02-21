@@ -74,6 +74,19 @@ By default, the new middleware:
 
 ![Azure Active Directory: App registration properties](ws-federation/_static/AadAppIdUri.png)
 
+## Use WS-Federation without ASP.NET Core Identity
+
+The WS-Federation middleware can be used without Identity. For example:
+
+The WS-Federation middleware can be used without Identity. For example:
+::: moniker range=">= aspnetcore-3.0"
+[!code-csharp[](ws-federation/samples/StartupNon31.cs?name=snippet)]
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+[!code-csharp[](ws-federation/samples/StartupNon21.cs?name=snippet)]
+::: moniker-end
+
 ## Add WS-Federation as an external login provider for ASP.NET Core Identity
 
 * Add a dependency on [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) to the project.
@@ -102,16 +115,3 @@ With Azure Active Directory as the provider, the button redirects to an AAD sign
 
 A successful sign-in for a new user redirects to the app's user registration page:
 ![Register page](ws-federation/_static/Register.png)
-
-## Use WS-Federation without ASP.NET Core Identity
-
-The WS-Federation middleware can be used without Identity. For example:
-
-The WS-Federation middleware can be used without Identity. For example:
-::: moniker range=">= aspnetcore-3.0"
-[!code-csharp[](ws-federation/samples/StartupNon31.cs?name=snippet)]
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
-[!code-csharp[](ws-federation/samples/StartupNon21.cs?name=snippet)]
-::: moniker-end
