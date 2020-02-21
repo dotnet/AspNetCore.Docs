@@ -200,13 +200,12 @@ To avoid a memory leak and allow garbage collection on a component that creates 
   }
   ```
 
-* Dispose of the object on the client by calling `.dispose()`:
+* When the component or class doesn't dispose of the `DotNetObjectReference`, dispose of the object on the client by calling `.dispose()`:
 
   ```javascript
   window.myFunction = (dotnetHelper) => {
-    ...
+    dotnetHelper.invokeMethod('BlazorSample', 'MyMethod');
     dotnetHelper.dispose();
-    ...
   }
   ```
 
@@ -297,6 +296,7 @@ In the client-side JavaScript:
 ```javascript
 window.updateMessageCallerJS = (dotnetHelper) => {
     dotnetHelper.invokeMethod('BlazorSample', 'UpdateMessageCaller');
+    dotnetHelper.dispose();
 }
 ```
 
