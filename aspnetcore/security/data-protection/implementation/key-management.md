@@ -53,6 +53,8 @@ services.AddDataProtection()
        .SetDefaultKeyLifetime(TimeSpan.FromDays(14));
 ```
 
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
+
 An administrator can also change the default system-wide, though an explicit call to `SetDefaultKeyLifetime` will override any system-wide policy. The default key lifetime cannot be shorter than 7 days.
 
 ## Automatic key ring refresh
