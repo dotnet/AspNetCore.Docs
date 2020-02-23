@@ -36,7 +36,7 @@ namespace RoutingSample
                 if (endpoint is RouteEndpoint routeEndpoint)
                 {
                     Console.WriteLine($"Endpoint has route pattern:" +
-                        $" {routeEndpoint.RoutePattern.RawText}");
+                        routeEndpoint.RoutePattern.RawText);
                 }
 
                 foreach (var metadata in endpoint.Metadata)

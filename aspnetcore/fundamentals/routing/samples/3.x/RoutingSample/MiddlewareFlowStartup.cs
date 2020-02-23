@@ -42,7 +42,7 @@ namespace RoutingSample
                 endpoints.MapGet("/", context =>
                 {
                     Console.WriteLine(
-                                  $"3. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
+                        $"3. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
                     return Task.CompletedTask;
                 }).WithDisplayName("Hello");
             });
