@@ -35,7 +35,7 @@ namespace RoutingSample
 
                 if (endpoint is RouteEndpoint routeEndpoint)
                 {
-                    Console.WriteLine($"Endpoint has route pattern:" +
+                    Console.WriteLine("Endpoint has route pattern: " +
                         routeEndpoint.RoutePattern.RawText);
                 }
 
