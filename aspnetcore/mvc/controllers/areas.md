@@ -41,7 +41,7 @@ A typical ASP.NET Core web app using areas, controllers, and views contains the 
 
 * The [area route added to startup](#add-area-route):
 
-  [!code-csharp[](areas/31samples/MVCareas/Startup.cs?name=snippet2&highlight=3-7)]
+  [!code-csharp[](areas/31samples/MVCareas/Startup.cs?name=snippet2&highlight=3-6)]
 
 ### Area folder structure
 
@@ -89,21 +89,19 @@ Area routes typically use conventional routing rather than attribute routing. Co
 
 `{area:...}` can be used as a token in route templates if url space is uniform across all areas:
 
-[!code-csharp[](areas/31samples/MVCareas/Startup.cs?name=snippet&highlight=18-21)]
+[!code-csharp[](areas/31samples/MVCareas/Startup.cs?name=snippet&highlight=21-23)]
 
 In the preceding code, `exists` applies a constraint that the route must match an area. Using `{area:...}` is the least complicated mechanism to adding routing to areas.
 
-The following code uses <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> to create two named area routes:
+The following code uses <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> to create two named area routes:
 
-[!code-csharp[](areas/31samples/MVCareas/StartupMapAreaRoute.cs?name=snippet&highlight=18-27)]
-
-When using `MapAreaRoute` with ASP.NET Core 2.2, see [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/7772).
+[!code-csharp[](areas/31samples/MVCareas/StartupMapAreaRoute.cs?name=snippet&highlight=21-29)]
 
 For more information, see [Area routing](xref:mvc/controllers/routing#areas).
 
 ### Link generation with MVC areas
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) shows link generation with the area specified:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/31samples) shows link generation with the area specified:
 
 [!code-cshtml[](areas/31samples/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
 
