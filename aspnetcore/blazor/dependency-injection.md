@@ -219,7 +219,7 @@ Two versions of the `OwningComponentBase` type are available:
   @code {
       private IUserService UserService { get; set; }
       private ISettingService SettingService { get; set; }
-        
+
       protected override void OnInitialized()
       {
           UserService = ScopedServices.GetRequiredService<IUserService>();
@@ -233,7 +233,7 @@ Two versions of the `OwningComponentBase` type are available:
   ```razor
   @page "/users"
   @attribute [Authorize]
-  @inherits OwningComponentBase<Data.ApplicationDbContext>
+  @inherits OwningComponentBase<AppDbContext>
 
   <h1>Users (@Service.Users.Count())</h1>
 
@@ -249,17 +249,90 @@ Two versions of the `OwningComponentBase` type are available:
 
 One common service type to retrieve from DI in web apps is Entity Framework (EF) `DbContext` objects. Registering EF services using `IServiceCollection.AddDbContext` adds the `DbContext` as a scoped service by default. Registering as a scoped service can lead to problems in Blazor apps because it causes `DbContext` instances to be long-lived and shared across the app. `DbContext` isn't thread-safe and must not be used concurrently.
 
-Depending on the app, using `OwningComponentBase` to limit the scope of a `DbContext` to a single component *may* solve the issue. If a single component might use a `DbContext` concurrently (for example, every time a user selects a button), even using `OwningComponentBase` doesn't avoid issues with concurrent EF operations. In that case, use a different `DbContext` for each logical EF operation. Use either of the following approaches:
-
-* Create the `DbContext` directly using `DbContextOptions<TContext>` as an argument, which can be retrieved from DI and is thread safe. 
-* Register the `DbContext` in the service container with a transient lifetime:
-  * When registering the context, use `ServiceLifetime.Transient`.
-  * Request a new instance for each logical EF operation.
-
-If a component doesn't use a `DbContext` in parallel, deriving the component from `OwningComponentBase` and retrieving the `DbContext` from `ScopedServices` is sufficient because it ensures that:
+Depending on the app, using `OwningComponentBase` to limit the scope of a `DbContext` to a single component *may* solve the issue. If a component doesn't use a `DbContext` in parallel, deriving the component from `OwningComponentBase` and retrieving the `DbContext` from `ScopedServices` is sufficient because it ensures that:
 
 * Separate components don't share a `DbContext`.
 * The `DbContext` lives only as long as the component depending on it.
+
+If a single component might use a `DbContext` concurrently (for example, every time a user selects a button), even using `OwningComponentBase` doesn't avoid issues with concurrent EF operations. In that case, use a different `DbContext` for each logical EF operation. Use either of the following approaches:
+
+* Create the `DbContext` directly using `DbContextOptions<TContext>` as an argument, which can be retrieved from DI and is thread safe.
+
+    ```razor
+    @page "/example"
+    @inject DbContextOptions<AppDbContext> DbContextOptions
+
+    <ul>
+        @foreach (var item in _data)
+        {
+            <li>@item</li>
+        }
+    </ul>
+
+    <button @onclick="LoadData">Load Data</button>
+
+    @code {
+        private List<string> _data = new List<string>();
+
+        private async Task LoadData()
+        {
+            _data = await GetAsync();
+            StateHasChanged();
+        }
+
+        public async Task<List<string>> GetAsync()
+        {
+            using (var context = new AppDbContext(DbContextOptions))
+            {
+                return await context.Products.Select(p => p.Name).ToListAsync();
+            }
+        }
+    }
+    ```
+
+* Register the `DbContext` in the service container with a transient lifetime:
+  * When registering the context, use `ServiceLifetime.Transient`. The `AddDbContext` extension method takes two optional parameters of type `ServiceLifetime`. To use this approach, only the `contextLifetime` parameter needs to be `ServiceLifetime.Transient`. `optionsLifetime` can keep its default value of `ServiceLifetime.Scoped`.
+
+    ```csharp
+    services.AddDbContext<AppDbContext>(options =>
+         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")),
+         ServiceLifetime.Transient);
+    ```  
+
+  * The transient `DbContext` can be injected as normal (using `@inject`) into components that will not execute multiple EF operations in parallel. Those that may perform multiple EF operations simultaneously can request separate `DbContext` objects for each parallel operation using `IServiceProvider.GetRequiredService`.
+
+    ```razor
+    @page "/example"
+    @using Microsoft.Extensions.DependencyInjection
+    @inject IServiceProvider ServiceProvider
+
+    <ul>
+        @foreach (var item in _data)
+        {
+            <li>@item</li>
+        }
+    </ul>
+
+    <button @onclick="LoadData">Load Data</button>
+
+    @code {
+        private List<string> _data = new List<string>();
+
+        private async Task LoadData()
+        {
+            _data = await GetAsync();
+            StateHasChanged();
+        }
+
+        public async Task<List<string>> GetAsync()
+        {
+            using (var context = ServiceProvider.GetRequiredService<AppDbContext>())
+            {
+                return await context.Products.Select(p => p.Name).ToListAsync();
+            }
+        }
+    }
+    ```
 
 ## Additional resources
 
