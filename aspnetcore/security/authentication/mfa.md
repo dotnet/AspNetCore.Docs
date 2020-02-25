@@ -242,6 +242,143 @@ And when the user clicks the admin link, then the user is redirected to the MFA 
 
 ## Send MFA signin requirement to OpenID Connect server 
 
+This post adds the custom ASP.NET Core Identity, IdentityServer4 logic to check for the "acr_values" and react if a client application requests MFA for authentication. The "acr_values" parameter is used to pass the mfa value from the client to the server in the authentication request.
+
+### OpenID Connect ASP.NET Core client
+
+The Razor Page ASP.NET Core Open ID Connnect Client application uses the AddOpenIdConnect method to login to the Open ID Connect server. The "acr_values" parameter is set with the "mfa" value and sent with the authentication request. The OpenIdConnectEvents is used to add this.
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+	//...
+	
+	services.AddAuthentication(options =>
+	{
+		options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+		options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+	})
+	.AddCookie()
+	.AddOpenIdConnect(options =>
+	{
+		options.SignInScheme = "Cookies";
+		options.Authority = "https://localhost:44352";
+		options.RequireHttpsMetadata = true;
+		options.ClientId = "AspNetCoreRequireMfaOidc";
+		options.ClientSecret = "AspNetCoreRequireMfaOidcSecret";
+		options.ResponseType = "code id_token";
+		options.Scope.Add("profile");
+		options.Scope.Add("offline_access");
+		options.SaveTokens = true;
+		options.Events = new OpenIdConnectEvents
+		{
+			OnRedirectToIdentityProvider = context =>
+			{
+				context.ProtocolMessage.SetParameter("acr_values", Amr.Mfa);
+
+				return Task.FromResult(0);
+			}
+		};
+	});
+
+	//...
+}
+```
+
+## OpenID Connect IdentityServer 4 server with ASP.NET Core Identity
+
+On the OpenID Connect server, which is implemented using ASP.NET Core Identity with MVC views, a new view ErrorEnable2FA.cshtml is created, and added.
+
+This view will be displayed if the Identity comes from an application which requires MFA but the user has not activated this in Identity. The view informs the user, and adds a link to activate this.
+
+```razor
+@{
+    ViewData["Title"] = "ErrorEnable2FA";
+}
+
+<h1>The client application requires you to have MFA enabled. Enable this, try login again.</h1>
+
+<br />
+
+You can enable MFA to login here:
+
+
+<br />
+
+<a asp-controller="Manage" asp-action="TwoFactorAuthentication">Enable MFA</a>
+```
+
+In the Login method, the IIdentityServerInteractionService interface implementation _interaction is used to access the Open ID Connnect request parameters. The "acr_values" is accessed using the AcrValues. As the client sent this as mfa, this can then be checked.
+
+If MFA is required, and the user in ASP.NET Core Identity has 2FA enabled, then the login continues. If the user has no 2FA enabled, the user is redirected to the custom view ErrorEnable2FA.cshtml. Then ASP.NET Core Identity signs the user in. 
+
+```csharp
+//
+// POST: /Account/Login
+[HttpPost]
+[AllowAnonymous]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Login(LoginInputModel model)
+{
+	var returnUrl = model.ReturnUrl;
+	var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
+	var requires2Fa = context?.AcrValues.Count(t => t.Contains("mfa")) >= 1;
+
+	var user = await _userManager.FindByNameAsync(model.Email);
+	if(user != null && !user.TwoFactorEnabled && requires2Fa)
+	{
+		return RedirectToAction(nameof(ErrorEnable2FA));
+	}
+```
+
+The ExternalLoginCallback works like the local Identity login. The AcrValues property is checked for the "mfa" value and if it is sent, the 2FA is forced before the login completes, ie redirected to the ErrorEnable2FA view.
+
+```csharp
+//
+// GET: /Account/ExternalLoginCallback
+[HttpGet]
+[AllowAnonymous]
+public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
+{
+	var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
+	var requires2Fa = context?.AcrValues.Count(t => t.Contains("mfa")) >= 1;
+
+	if (remoteError != null)
+	{
+		ModelState.AddModelError(string.Empty, _sharedLocalizer["EXTERNAL_PROVIDER_ERROR", remoteError]);
+		return View(nameof(Login));
+	}
+	var info = await _signInManager.GetExternalLoginInfoAsync();
+
+	if (info == null)
+	{
+		return RedirectToAction(nameof(Login));
+	}
+
+	var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+
+	if (!string.IsNullOrEmpty(email))
+	{
+		var user = await _userManager.FindByNameAsync(email);
+		if (user != null && !user.TwoFactorEnabled && requires2Fa)
+		{
+			return RedirectToAction(nameof(ErrorEnable2FA));
+		}
+	}
+
+	// Sign in the user with this external login provider if the user already has a login.
+	var result = await _signInManager
+		.ExternalLoginSignInAsync(
+			info.LoginProvider, 
+			info.ProviderKey, 
+			isPersistent: 
+			false);
+```
+
+If the user is already logged in, the client application still validates the "amr" claim, and can setup the MFA then with a link to the ASP.NET Core Identity view.
+
+![acr_values-1](mfa/_static/acr_values-1.png)
+
 ## Force ASP.NET Core OpenID Connect client to require MFA
 
 ## Additional resources
