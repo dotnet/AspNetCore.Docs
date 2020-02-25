@@ -242,11 +242,14 @@ And when the user clicks the admin link, then the user is redirected to the MFA 
 
 ## Send MFA signin requirement to OpenID Connect server 
 
-This post adds the custom ASP.NET Core Identity, IdentityServer4 logic to check for the "acr_values" and react if a client application requests MFA for authentication. The "acr_values" parameter is used to pass the mfa value from the client to the server in the authentication request.
+The **acr_values** parameter can used to pass the mfa required value from the client to the server in the authentication request. 
+
+> [!NOTE]
+> The **acr_values** parameter needs to be handled on the Open ID Connect server for this to work.
 
 ### OpenID Connect ASP.NET Core client
 
-The Razor Page ASP.NET Core Open ID Connnect Client application uses the AddOpenIdConnect method to login to the Open ID Connect server. The "acr_values" parameter is set with the "mfa" value and sent with the authentication request. The OpenIdConnectEvents is used to add this.
+The Razor Page ASP.NET Core Open ID Connnect client application uses the AddOpenIdConnect method to login to the Open ID Connect server. The "acr_values" parameter is set with the "mfa" value and sent with the authentication request. The OpenIdConnectEvents is used to add this.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -262,11 +265,11 @@ public void ConfigureServices(IServiceCollection services)
 	.AddOpenIdConnect(options =>
 	{
 		options.SignInScheme = "Cookies";
-		options.Authority = "https://localhost:44352";
+		options.Authority = "<OpenID Connect server URL>";
 		options.RequireHttpsMetadata = true;
-		options.ClientId = "AspNetCoreRequireMfaOidc";
-		options.ClientSecret = "AspNetCoreRequireMfaOidcSecret";
-		options.ResponseType = "code id_token";
+		options.ClientId = "<OpenID Connect client ID>";
+		options.ClientSecret = "<>";
+		options.ResponseType = "code id_token"; // Code with PKCE can also be used here
 		options.Scope.Add("profile");
 		options.Scope.Add("offline_access");
 		options.SaveTokens = true;
@@ -281,11 +284,9 @@ public void ConfigureServices(IServiceCollection services)
 		};
 	});
 
-	//...
-}
 ```
 
-## OpenID Connect IdentityServer 4 server with ASP.NET Core Identity
+### Example OpenID Connect IdentityServer 4 server with ASP.NET Core Identity
 
 On the OpenID Connect server, which is implemented using ASP.NET Core Identity with MVC views, a new view ErrorEnable2FA.cshtml is created, and added.
 
