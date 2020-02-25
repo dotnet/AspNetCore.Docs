@@ -68,7 +68,7 @@ Use a base-relative path (`/`) to refer to the web root for a static asset. In t
 <img alt="Company logo" src="/images/logo.png" />
 ```
 
-Unlike ASP.NET Core apps, tilde-slash notation (`~/`) is **not** supported in Razor components.
+Unlike ASP.NET Core apps, Razor components do **not** support tilde-slash notation (`~/`).
 
 For information on setting an app's base path, see <xref:host-and-deploy/blazor/index#app-base-path>.
 
