@@ -18,7 +18,7 @@ Multi-factor authentication (MFA) is a process where a user is prompted during a
 This article covers the following:
 
 * What MFA is and what MFA flows are recommended
-* Configure MFA for Admin Pages in an ASP.NET Core Identity application
+* Configure MFA for administration pages using ASP.NET Core Identity
 * Send MFA signin requirement to OpenID Connect server 
 * Force ASP.NET Core OpenID Connect client to require MFA
 
@@ -51,7 +51,7 @@ You can implement ASP.NET Core with FIDO2 by using the following OSS FIDO2 imple
 
 Although MFA with SMS increases security massively compared with just a password authentication, it is no longer recommended to use SMS as a second factor as too many known attack vectors exist for this type of implementation.
 
-## Configure MFA for administration pages in an ASP.NET Core Identity application
+## Configure MFA for administration pages using ASP.NET Core Identity
 
 MFA could be forced on users to access sensitive pages within an ASP.NET Core Identity application. This could be useful for applications where different levels of access exist for the different identities. For example, users might be able to view the profile data using a password login, but an administrator would be required to use MFA to access the admin pages.
 
