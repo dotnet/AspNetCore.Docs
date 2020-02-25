@@ -13,7 +13,7 @@ uid: security/authentication/mfa
 
 By [Damien Bowden](https://github.com/damienbod)
 
-Multi-factor authentication (MFA) is a process where a user is prompted during a sign-in event for additional forms of identification. This prompt could be to enter a code on their cellphone, use a FIDO2 key or to provide a fingerprint scan. When you require a second form of authentication, security is increased as this additional factor isn't something that's easy for an attacker to obtain or duplicate.
+Multi-factor authentication (MFA) is a process where a user is requested during a sign-in event for additional forms of identification. This prompt could be to enter a code on their cellphone, use a FIDO2 key or to provide a fingerprint scan. When you require a second form of authentication, security is increased as this additional factor isn't something that's easy for an attacker to obtain or duplicate.
 
 This article covers the following:
 
@@ -24,9 +24,9 @@ This article covers the following:
 
 ## MFA, 2FA
 
-MFA is the provides a second type of proof for the authentification like something you know, something you possess, or something you inherit. MFA requires that you require at least 2 different types of proof.
+MFA requires at least two or more types of proof for an identity like something you know, something you possess, or something you inherit for the user to authenticate.
 
-2FA is like a subset of MFA, with the difference that MFA can require 2 or more factors to prove the identity.
+2FA is like a subset of MFA,but the difference being that MFA can require 2 or more factors to prove the identity.
 
 ### MFA TOTP (Time-based One-time Password Algorithm)
 
