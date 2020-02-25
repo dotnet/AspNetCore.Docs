@@ -3,7 +3,7 @@ title: Multi-factor authentication
 author: damienbod
 description: Multi-factor authentication
 monikerRange: '>= aspnetcore-3.1'
-ms.author: todo
+ms.author: rick-anderson
 ms.custom: mvc
 ms.date: 02/25/2020
 no-loc: [Identity]
@@ -17,12 +17,16 @@ Multi-factor authentication (MFA) is a process where a user is prompted during a
 
 This article covers the following:
 
-* What MFA is and what MFA flows are recommended
+* What is MFA and what MFA flows are recommended
 * Configure MFA for administration pages using ASP.NET Core Identity
 * Send MFA signin requirement to OpenID Connect server 
 * Force ASP.NET Core OpenID Connect client to require MFA
 
 ## MFA, 2FA
+
+MFA is the provides a second type of proof for the authentification like something you know, something you possess, or something you inherit. MFA requires that you require at least 2 different types of proof.
+
+2FA is like a subset of MFA, with the difference that MFA can require 2 or more factors to prove the identity.
 
 ### MFA TOTP (Time-based One-time Password Algorithm)
 
@@ -49,7 +53,7 @@ You can implement ASP.NET Core with FIDO2 by using the following OSS FIDO2 imple
 
 ### MFA SMS
 
-Although MFA with SMS increases security massively compared with password authentication, it is no longer recommended to use SMS as a second factor as too many known attack vectors exist for this type of implementation.
+Although MFA with SMS increases security massively compared with password authentication (Single factor), it is no longer recommended to use SMS as a second factor as too many known attack vectors exist for this type of implementation.
 
 ## Configure MFA for administration pages using ASP.NET Core Identity
 
