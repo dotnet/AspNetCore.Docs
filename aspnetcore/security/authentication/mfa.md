@@ -29,7 +29,7 @@ Multi-factor authentication using TOTP is a supported implementation using ASP.N
 - Microsoft Authenticator App
 - Google Authenticator App
 
-See the following link for details:
+See the following link for implementation details:
 
 [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
 
@@ -49,13 +49,13 @@ You can implement ASP.NET Core with FIDO2 by using the following OSS FIDO2 imple
 
 Although MFA with SMS increases security massively compared with just a password authentication, it is no longer recommended to use SMS as a second factor as too many known attack vectors exist for this type of implementation.
 
-## Configure MFA for Admin Pages in an ASP.NET Core Identity application
+## Configure MFA for administration pages in an ASP.NET Core Identity application
 
 MFA could be forced on users to access sensitive pages within an ASP.NET Core Identity application. This could be useful for applications where different levels of access exist for the different identities. For example, users might be able to view the profile data using a password login, but an administrator would be required to use MFA to access the admin pages.
 
 ### Extending the Login with a MFA claim
 
-The application is setup using ASP.NET Core with Identity and Razor Pages. In this demo, the SQL Server was replaced with SQLite, and the nuget packages were updated. The AddIdentity method is used instead of AddDefaultIdentity one, so we can add an IUserClaimsPrincipalFactory implementation to add claims to the identity after a successful login.
+The demo code is setup using ASP.NET Core with Identity and Razor Pages. The AddIdentity method is used instead of AddDefaultIdentity one, so an IUserClaimsPrincipalFactory implementation can be used to add claims to the identity after a successful login.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -70,7 +70,8 @@ public void ConfigureServices(IServiceCollection services)
 	 .AddDefaultTokenProviders();
 
 	services.AddSingleton<IEmailSender, EmailSender>();
-	services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, AdditionalUserClaimsPrincipalFactory>();
+	services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, 
+		AdditionalUserClaimsPrincipalFactory>();
 
 	services.AddAuthorization(options =>
 	{
@@ -83,7 +84,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The AdditionalUserClaimsPrincipalFactory adds the **TwoFactorEnabled** claim to the user claims after a successful login. This is only added after a login. The value is read from the database. This is added here because the user should only access the higher protected view, if the identity has logged in with MFA. If the database view was read from the database directly instead of using the claim, it would be possible to access the view without MFA directly after activating the MFA. 
+The AdditionalUserClaimsPrincipalFactory adds the **TwoFactorEnabled** claim to the user claims after a successful login. This is only added after a login. The value is read from the database. This is added here because the user should only access the higher protected view, if the identity has logged in with MFA. If the database view was read from the database directly instead of using the claim, it would be possible to access the view without MFA directly after activating the MFA.
 
 ```csharp
 using Microsoft.AspNetCore.Identity;
@@ -145,7 +146,7 @@ Also add the _layout for all the manage pages from the Identity Pages.
 
 ### Validation the MFA requirement in the Admin Page
 
-The admin Razor Page validates that the user has logged in using MFA. In the OnGet method, the Identity is used to access the user claims. The <em>TwoFactorEnabled</em> claim is checked for the value true. If the user has not this claim, the page will redirect to the Enable MFA page. This is possible because the user has logged in already, but without MFA.
+The admin Razor Page validates that the user has logged in using MFA. In the OnGet method, the identity is used to access the user claims. The **TwoFactorEnabled** claim is checked for the value true. If the identity is missing this claim, or it is false, the page will redirect to the Enable MFA page. This is possible because the user has logged in already, but without MFA.
 
 ```csharp
 using System;
@@ -177,7 +178,6 @@ namespace IdentityStandaloneMfa
     }
 }
 ```
-
 
 ### UI logic to show hide information about the user login
 
