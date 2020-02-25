@@ -37,7 +37,7 @@ See the following link for implementation details:
 
 ### MFA FIDO2 or Passwordless
 
-FIDO2 is the most secure way of doing Multi-factor authentication and is the only MFA flow which protects against phishing attacks. At present ASP.NET Core does not support FIDO2 support. FIDO2 can be used for MFA or passwordless flows.
+FIDO2 is the most secure way of doing Multi-factor authentication and is the only MFA flow which protects against phishing attacks. At present ASP.NET Core does not support FIDO2 directly. FIDO2 can be used for MFA or passwordless flows.
 
 Azure Active Directory provides support for FIDO2 and passwordless flows.
 
@@ -49,7 +49,7 @@ You can implement ASP.NET Core with FIDO2 by using the following OSS FIDO2 imple
 
 ### MFA SMS
 
-Although MFA with SMS increases security massively compared with just a password authentication, it is no longer recommended to use SMS as a second factor as too many known attack vectors exist for this type of implementation.
+Although MFA with SMS increases security massively compared with password authentication, it is no longer recommended to use SMS as a second factor as too many known attack vectors exist for this type of implementation.
 
 ## Configure MFA for administration pages using ASP.NET Core Identity
 
