@@ -256,8 +256,6 @@ See [Authentication Method Reference Values](https://tools.ietf.org/html/draft-i
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-	//...
-	
 	services.AddAuthentication(options =>
 	{
 		options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
