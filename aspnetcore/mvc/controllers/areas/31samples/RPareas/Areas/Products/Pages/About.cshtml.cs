@@ -6,6 +6,7 @@ namespace RPareas.Areas.Products.Pages
     {       
         public void OnGet()
         {
+            ViewData["routeInfo"] = PageContext.ToCtxStringP();
         }
     }
 }

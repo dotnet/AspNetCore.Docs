@@ -8,11 +8,13 @@ namespace MVCareas.Areas.Services.Controllers
     {
         public IActionResult Index()
         {
+            ViewData["routeInfo"] = ControllerContext.ToCtxString();
             return View();
         }
 
         public IActionResult About()
         {
+            ViewData["routeInfo"] = ControllerContext.ToCtxString();
             return View();
         }
     }

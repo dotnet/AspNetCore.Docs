@@ -105,21 +105,33 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 [!code-cshtml[](areas/31samples/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
 
-The links generated with the preceding code are valid anywhere in the app.
-
 The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
 
-When the area or controller is not specified, routing depends on the *ambient* values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links.
+When the area or controller is not specified, routing depends on the [ambient(xref:mvc/controllers/routing#ambient) values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links.
 
 For more information, see [Routing to controller actions](xref:mvc/controllers/routing).
 
 ### Shared layout for Areas using the _ViewStart.cshtml file
+<!-- review required  original:
+move the *_ViewStart.cshtml* to the application root folder.
+Changed move to keep
+-->
+To share a common layout for the entire app, keep the *_ViewStart.cshtml* in the [application root folder](#arf). For more information, see <xref:mvc/views/layout>
 
-To share a common layout for the entire app, move the *_ViewStart.cshtml* to the application root folder.
+<a name="arf"></a>
+
+### Application root folder
+
+The Application root folder is the folder containing *Startup.cs*.
 
 ### _ViewImports.cshtml
 
-In its standard location, */Views/_ViewImports.cshtml* doesn't apply to areas. To use common [Tag Helpers](xref:mvc/views/tag-helpers/intro), `@using`, or `@inject` in your area, ensure a proper *_ViewImports.cshtml* file [applies to your area views](xref:mvc/views/layout#importing-shared-directives). If you want the same behavior in all your views, move */Views/_ViewImports.cshtml* to the application root.
+ */Views/_ViewImports.cshtml*, for MVC, and */Pages/_ViewImports.cshtml* for Razor Pages, is not imported to views in areas. Use one of the following approaches to provide view imports to all views:
+
+* Add *_ViewImports.cshtml* to the [application root folder](#arf). A *_ViewImports.cshtml* in the application root folder will apply to all views in the app.
+* Copy the *_ViewImports.cshtml* file to the appropriate view folder under areas.
+
+The *_ViewImports.cshtml* file typically contains [Tag Helpers](xref:mvc/views/tag-helpers/intro) imports, `@using`, and `@inject` statements. For more information, see [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives).
 
 <a name="rename"></a>
 
@@ -153,8 +165,6 @@ Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root o
 The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) shows link generation with the area specified (for example, `asp-area="Products"`):
 
 [!code-cshtml[](areas/31samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
-
-The links generated with the preceding code are valid anywhere in the app.
 
 The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area.
 

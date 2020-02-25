@@ -8,14 +8,21 @@ namespace MVCareas.Controllers
     {
         public IActionResult Index()
         {
+            ViewData["routeInfo"] = ControllerContext.ToCtxString();
             return View();
         }
 
-        public IActionResult Privacy() =>
-            ControllerContext.ToActionResult();
+        public IActionResult Privacy()
+        {
+            ViewData["routeInfo"] = ControllerContext.ToCtxString();
+            return View();
+        }
 
-        public IActionResult About() =>
-            ControllerContext.ToActionResult();
+        public IActionResult About()
+        {
+            ViewData["routeInfo"] = ControllerContext.ToCtxString();
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

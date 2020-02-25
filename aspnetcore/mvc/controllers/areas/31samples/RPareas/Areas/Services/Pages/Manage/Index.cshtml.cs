@@ -11,6 +11,7 @@ namespace RPareas.Areas.Services.Pages.Manage
     {
         public void OnGet()
         {
+            ViewData["routeInfo"] = PageContext.ToCtxStringP();
         }
     }
 }

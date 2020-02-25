@@ -1,4 +1,6 @@
-﻿
+﻿<div>
+    @ViewData["routeInfo"]
+</div>
 <div>
     <h3>Links generated using area </h3>
 
@@ -25,7 +27,7 @@
         <li>Html.ActionLink generated links</li>
         <ul>
             <li>
-                @Html.ActionLink("Product/Manage/About", "About", "Manage", 
+                @Html.ActionLink("Product/Manage/About", "About", "Manage",
                                                         new { area = "Products" })
             </li>
         </ul>
