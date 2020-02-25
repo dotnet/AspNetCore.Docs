@@ -242,7 +242,7 @@ And when the user clicks the admin link, then the user is redirected to the MFA 
 
 ## Send MFA signin requirement to OpenID Connect server 
 
-The **acr_values** parameter can used to pass the mfa required value from the client to the server in the authentication request. 
+The **acr_values** parameter can used to pass the mfa required value from the client to the server in an authentication request. 
 
 > [!NOTE]
 > The **acr_values** parameter needs to be handled on the Open ID Connect server for this to work.
@@ -308,9 +308,9 @@ You can enable MFA to login here:
 <a asp-controller="Manage" asp-action="TwoFactorAuthentication">Enable MFA</a>
 ```
 
-In the Login method, the IIdentityServerInteractionService interface implementation _interaction is used to access the Open ID Connnect request parameters. The "acr_values" is accessed using the AcrValues. As the client sent this as mfa, this can then be checked.
+In the Login method, the IIdentityServerInteractionService interface implementation _interaction is used to access the Open ID Connnect request parameters. The "acr_values" is accessed using the AcrValues. As the client sent this with **mfa** set, this can then be checked.
 
-If MFA is required, and the user in ASP.NET Core Identity has 2FA enabled, then the login continues. If the user has no 2FA enabled, the user is redirected to the custom view ErrorEnable2FA.cshtml. Then ASP.NET Core Identity signs the user in. 
+If MFA is required, and the user in ASP.NET Core Identity has MFA enabled, then the login continues. If the user has no MFA enabled, the user is redirected to the custom view ErrorEnable2FA.cshtml. Then ASP.NET Core Identity signs the user in.
 
 ```csharp
 //
@@ -331,7 +331,7 @@ public async Task<IActionResult> Login(LoginInputModel model)
 	}
 ```
 
-The ExternalLoginCallback works like the local Identity login. The AcrValues property is checked for the "mfa" value and if it is sent, the 2FA is forced before the login completes, ie redirected to the ErrorEnable2FA view.
+The ExternalLoginCallback works like the local Identity login. The AcrValues property is checked for the "mfa" value and if it is sent, the MFA is forced before the login completes, ie redirected to the ErrorEnable2FA view.
 
 ```csharp
 //
