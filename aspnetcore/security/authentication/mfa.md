@@ -536,7 +536,7 @@ If we login without MFA, ie just using a password, the amr has the pwd value:
 
 And access is denied:
 
-![require_mfa_oidc_03.png](mfa/_static/require_mfa_oidc_023.png)
+![require_mfa_oidc_03.png](mfa/_static/require_mfa_oidc_03.png)
 
 Or if we login using OTP with Identity:
 
