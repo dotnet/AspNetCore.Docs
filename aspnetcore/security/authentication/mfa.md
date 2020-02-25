@@ -381,6 +381,167 @@ If the user is already logged in, the client application still validates the "am
 
 ## Force ASP.NET Core OpenID Connect client to require MFA
 
+In this example it is shown how an ASP.NET Core Razor Page application which uses OpenID Connect to sign in, can require that users have authenticated using Multi-factor authentication. 
+
+To validate the MFA requirement, an IAuthorizationRequirement requirement is created. This will be added to the pages using a policy which require MFA.
+
+```csharp
+using Microsoft.AspNetCore.Authorization;
+ 
+namespace AspNetCoreRequireMfaOidc
+{
+    public class RequireMfa : IAuthorizationRequirement{}
+}
+```
+
+An AuthorizationHandler is implemented which will use the **amr** claim and check that it has the value **mfa** The amr is returned in the id_token of a successful authentication and can have many different values as defined in the following specification:
+
+[Authentication Method Reference Values](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08) 
+
+The returned value depends on how the identity authenticated, and also on the Open ID Connect server implementation.
+
+The AuthorizationHandler then uses the RequireMfa requirement and validates the amr claim. The OpenID Connect server is implemented using IdentityServer4 with ASP.NET Core Identity in this example. When the user logs in using OTP, ie one time passwords, the amr claim is returned with a mfa value. If using a different OpenID Connect server implementation, or a different MFA type, then the amr claim will, or can have a different value, and the code would need to be extended to accept this as well.
+
+```csharp
+using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace AspNetCoreRequireMfaOidc
+{
+    public class RequireMfaHandler : AuthorizationHandler<RequireMfa>
+    {
+
+        protected override Task HandleRequirementAsync(
+            AuthorizationHandlerContext context, 
+            RequireMfa requirement
+        ){
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
+            if (requirement == null)
+                throw new ArgumentNullException(nameof(requirement));
+
+            var amrClaim = context.User.Claims.FirstOrDefault(t => t.Type == "amr");
+
+            if (amrClaim != null && amrClaim.Value == Amr.Mfa)
+            {
+                context.Succeed(requirement);
+            }
+
+            return Task.CompletedTask;
+        }
+    }
+}
+```
+
+In the ConfigureServices method in the Startup class, the AddOpenIdConnect method is used as the default challenge scheme. The authorization handler which is used to check the amr claim is added as to the IoC. A policy is created then which adds the RequireMfa requirement. 
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+	services.ConfigureApplicationCookie(options =>
+	{
+		options.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.Always;
+	});
+
+	services.AddSingleton<IAuthorizationHandler, RequireMfaHandler>();
+
+	services.AddAuthentication(options =>
+	{
+		options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+		options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+	})
+	.AddCookie()
+	.AddOpenIdConnect(options =>
+	{
+		options.SignInScheme = "Cookies";
+		options.Authority = "https://localhost:44352";
+		options.RequireHttpsMetadata = true;
+		options.ClientId = "AspNetCoreRequireMfaOidc";
+		options.ClientSecret = "AspNetCoreRequireMfaOidcSecret";
+		options.ResponseType = "code id_token";
+		options.Scope.Add("profile");
+		options.Scope.Add("offline_access");
+		options.SaveTokens = true;
+	});
+
+	services.AddAuthorization(options =>
+	{
+		options.AddPolicy("RequireMfa", policyIsAdminRequirement =>
+		{
+			policyIsAdminRequirement.Requirements.Add(new RequireMfa());
+		});
+	});
+
+	services.AddRazorPages();
+}
+```
+
+This policy is then used in the Razor pages as required. This could be added globally for the whole application as well.
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
+
+namespace AspNetCoreRequireMfaOidc.Pages
+{
+    [Authorize(Policy= "RequireMfa")]
+    public class IndexModel : PageModel
+    {
+        private readonly ILogger<IndexModel> _logger;
+
+        public IndexModel(ILogger<IndexModel> logger)
+        {
+            _logger = logger;
+        }
+
+        public void OnGet()
+        {
+
+        }
+    }
+}
+```
+
+If the user authenticates without MFA, then the amr claim will probably have a <strong>pwd</strong> value, and the request will not be authorized to access the page. Using the default values, the user will be redirected to the account/AccessDenied page. This can be changed, or you can implement your own custom logic here. In this example, a link is added, so that the valid user can setup MFA for his or her account.
+
+```razor
+@page
+@model AspNetCoreRequireMfaOidc.AccessDeniedModel
+@{
+    ViewData["Title"] = "AccessDenied";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>AccessDenied</h1>
+
+You require MFA to login here
+
+<a href="https://localhost:44352/Manage/TwoFactorAuthentication">Enable MFA</a>
+
+```
+
+Now only users that do MFA authenticatation can access the page, or website. If different MFA types are used, or 2FA is ok, then the amr claim will have different values, and need to be processed correctly. Different Open ID Connect servers will also return different values for this claim, and might not follow the specification <a href="https://tools.ietf.org/html/draft-ietf-oauth-amr-values-04">Authentication Method Reference Values</a>. 
+
+If we login without MFA, ie just using a password, the amr has the pwd value:
+
+![require_mfa_oidc_02.png](mfa/_static/require_mfa_oidc_02.png)
+
+And access is denied:
+
+![require_mfa_oidc_03.png](mfa/_static/require_mfa_oidc_023.png)
+
+Or if we login using OTP with Identity:
+
+![require_mfa_oidc_01.png](mfa/_static/require_mfa_oidc_01.png)
+
 ## Additional resources
 
 * [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
