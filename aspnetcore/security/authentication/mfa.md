@@ -22,7 +22,9 @@ This article covers the following:
 * Send MFA signin requirement to OpenID Connect server 
 * Force ASP.NET Core OpenID Connect client to require MFA
 
-## MFA TOTP (Time-based One-time Password Algorithm)
+## MFA, 2FA
+
+### MFA TOTP (Time-based One-time Password Algorithm)
 
 Multi-factor authentication using TOTP is a supported implementation using ASP.NET Core Identity. This can be used together with the following Apps:
 
@@ -33,7 +35,7 @@ See the following link for implementation details:
 
 [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
 
-## MFA FIDO2 or Passwordless
+### MFA FIDO2 or Passwordless
 
 FIDO2 is the most secure way of doing Multi-factor authentication and is the only MFA flow which protects against phishing attacks. At present ASP.NET Core does not support FIDO2 support. FIDO2 can be used for MFA or passwordless flows.
 
@@ -45,7 +47,7 @@ You can implement ASP.NET Core with FIDO2 by using the following OSS FIDO2 imple
 
 [FIDO2 .NET library for FIDO2 / WebAuthn Attestation and Assertion using .NET](https://github.com/abergs/fido2-net-lib)
 
-## MFA SMS
+### MFA SMS
 
 Although MFA with SMS increases security massively compared with just a password authentication, it is no longer recommended to use SMS as a second factor as too many known attack vectors exist for this type of implementation.
 
