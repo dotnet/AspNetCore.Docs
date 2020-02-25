@@ -122,7 +122,7 @@ To share a common layout for the entire app, keep the *_ViewStart.cshtml* in the
 
 ### Application root folder
 
-The Application root folder is the folder containing *Startup.cs*.
+The application root folder is the folder containing *Startup.cs* in web app created with the ASP.NET Core templates.
 
 ### _ViewImports.cshtml
 
