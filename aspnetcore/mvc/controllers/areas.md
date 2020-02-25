@@ -85,13 +85,16 @@ Area controllers are designated with the [&lbrack;Area&rbrack;](xref:Microsoft.A
 
 ### Add Area route
 
-Area routes typically use conventional routing rather than attribute routing. Conventional routing is order-dependent. In general, routes with areas should be placed earlier in the route table as they're more specific than routes without an area.
+Area routes typically use  [conventional routing](xref:mvc/controllers/routing#cr) rather than [attribute routing](xref:mvc/controllers/routing#ar). Conventional routing is order-dependent. In general, routes with areas should be placed earlier in the route table as they're more specific than routes without an area.
 
 `{area:...}` can be used as a token in route templates if url space is uniform across all areas:
 
 [!code-csharp[](areas/31samples/MVCareas/Startup.cs?name=snippet&highlight=21-23)]
 
-In the preceding code, `exists` applies a constraint that the route must match an area. Using `{area:...}` is the least complicated mechanism to adding routing to areas.
+In the preceding code, `exists` applies a constraint that the route must match an area. Using `{area:...}` with `MapControllerRoute`:
+
+* Is the least complicated mechanism to adding routing to areas.
+* Matches all controllers with the `[Area("Area name")]` attribute.
 
 The following code uses <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> to create two named area routes:
 
@@ -105,17 +108,19 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 [!code-cshtml[](areas/31samples/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
 
-The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
+The sample download includes a [partial view](xref:mvc/views/partial) that contains:
 
-When the area or controller is not specified, routing depends on the [ambient(xref:mvc/controllers/routing#ambient) values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links.
+* The preceding links.
+* Links similar to the preceding except `area` is not specified.
+
+The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
+
+When the area or controller is not specified, routing depends on the [ambient](xref:mvc/controllers/routing#ambient) values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links with the markup that doesn't specify the area.
 
 For more information, see [Routing to controller actions](xref:mvc/controllers/routing).
 
 ### Shared layout for Areas using the _ViewStart.cshtml file
-<!-- review required  original:
-move the *_ViewStart.cshtml* to the application root folder.
-Changed move to keep
--->
+
 To share a common layout for the entire app, keep the *_ViewStart.cshtml* in the [application root folder](#arf). For more information, see <xref:mvc/views/layout>
 
 <a name="arf"></a>
@@ -145,7 +150,7 @@ The following code changes the default area folder from `"Areas"` to `"MyAreas"`
 
 ## Areas with Razor Pages
 
-Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root of the app. The following folder structure is used with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples):
+Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root of the app. The following folder structure is used with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/31samples):
 
 * Project name
   * Areas
@@ -176,7 +181,7 @@ For the preceding code:
 
 * The link generated from `<a asp-page="/Manage/About">` is correct only when the last request was for a page in `Services` area. For example, `/Services/Manage/`, `/Services/Manage/Index`, or `/Services/Manage/About`.
 * The link generated from `<a asp-page="/About">` is correct only when the last request was for a page in `/Home`.
-* The code is from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas).
+* The code is from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/31samples/RPareas).
 
 ### Import namespace and Tag Helpers with _ViewImports file
 
