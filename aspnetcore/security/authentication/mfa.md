@@ -251,6 +251,8 @@ The **acr_values** parameter can used to pass the mfa required value from the cl
 
 The Razor Page ASP.NET Core Open ID Connnect client application uses the AddOpenIdConnect method to login to the Open ID Connect server. The "acr_values" parameter is set with the "mfa" value and sent with the authentication request. The OpenIdConnectEvents is used to add this.
 
+See [Authentication Method Reference Values](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08) for recommended acr_values values.
+
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -277,7 +279,7 @@ public void ConfigureServices(IServiceCollection services)
 		{
 			OnRedirectToIdentityProvider = context =>
 			{
-				context.ProtocolMessage.SetParameter("acr_values", Amr.Mfa);
+				context.ProtocolMessage.SetParameter("acr_values", "mfa");
 
 				return Task.FromResult(0);
 			}
@@ -302,7 +304,6 @@ This view will be displayed if the Identity comes from an application which requ
 <br />
 
 You can enable MFA to login here:
-
 
 <br />
 
