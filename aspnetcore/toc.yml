@@ -945,6 +945,8 @@
           uid: security/authentication/individual
         - name: Configure certificate authentication
           uid: security/authentication/certauth
+        - name: Multi-factor authentication
+          uid: security/authentication/mfa
     - name: Authorization
       items:
         - name: Overview
