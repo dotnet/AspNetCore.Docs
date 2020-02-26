@@ -1,0 +1,64 @@
+﻿@page
+@using Microsoft.AspNetCore.Http
+@model IndexModel
+@{
+    ViewData["Title"] = "Session Sample";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h2>State management</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <form method="post">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <button type="submit" asp-page-handler="ChangeAge" class="pull-right btn btn-danger">Change Age</button>
+                    <h3 class="panel-title" style="line-height:2.1">Name and Age</h3>
+                </div>
+                <div class="panel-body">
+                    <p>The name and age are stored in session. Select the <span style="font-weight:bold">Change Age</span> button to update the session to a new random age value.</p>
+                    <p>Session values can be passed to the view or page by the model with <code>@@Model.&lt;PropertyName&gt;</code>:</p>
+                    <p><b>Name:</b> @Model.SessionInfo_Name <b>Age:</b> @Model.SessionInfo_Age</p>
+                    <hr>
+                    <p>Session can be accessed directly with <code>@@HttpContext.Session.GetString(&lt;key&gt;)</code>. The view or page sets <code>@@using Microsoft.AspNetCore.Http</code> to gain access to the <code>GetString</code> and <code>GetInt32</code> extension methods, which are provided by the <code>Microsoft.AspNetCore.Http.Extensions</code> package. The following values are rendered directly from session:</p>
+                    <p><b>Name:</b> @HttpContext.Session.GetString(IndexModel.SessionKeyName) <b>Age:</b> @HttpContext.Session.GetInt32(IndexModel.SessionKeyAge).ToString()</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">HttpContext.Items Middleware Value</h3>
+            </div>
+            <div class="panel-body">
+                <p>The middleware value is set into the <code>HttpContext.Items</code> collection by the <code>HttpContextItemsMiddleware</code> before Razor Pages processes the request. The value is retreived by the page and displayed.</p>
+                <p>Value: @Model.SessionInfo_MiddlewareValue</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <form method="post">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <button type="submit" asp-page-handler="UpdateSessionDate" class="pull-right btn btn-danger">Update Session Time</button>
+                    <a href="/" class="pull-right btn btn-danger" style="margin-right:5px">Reload Page (No Update)</a>
+                    <h3 class="panel-title" style="line-height:2.1">Session Time</h3>
+                </div>
+                <div class="panel-body">
+                    <p>The session time is stored in session. Select the <span style="font-weight:bold">Reload Page (No Update)</span> button to display the current time and the time stored in session. Select the <span style="font-weight:bold">Update Session Time</span> button to store the current time in session.</p>
+                    <p>Current Time: @Model.SessionInfo_CurrentTime</p>
+                    <p>Session Time: @Model.SessionInfo_SessionTime</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
