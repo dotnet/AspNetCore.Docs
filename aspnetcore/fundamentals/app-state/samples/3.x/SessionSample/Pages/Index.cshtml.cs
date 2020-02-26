@@ -38,7 +38,7 @@ namespace SessionSample.Pages
             var currentTime = DateTime.Now;
 
             #region snippet2
-            // Requires you add the Set and Get extension method mentioned in the topic.
+            // Requires SessionExtensions from sample download.
             if (HttpContext.Session.Get<DateTime>(SessionKeyTime) == default(DateTime))
             {
                 HttpContext.Session.Set<DateTime>(SessionKeyTime, currentTime);
