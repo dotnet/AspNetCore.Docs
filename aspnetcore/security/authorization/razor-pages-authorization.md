@@ -101,7 +101,7 @@ The specified path is the View Engine path, which is the Razor Pages root relati
 
 ## Note on combining authorized and anonymous access
 
-It's valid to specify that a folder of pages that require authorization and than specify that a page within that folder allows anonymous access:
+It's valid to specify that a folder of pages requires authorization and then specify that a page within that folder allows anonymous access:
 
 ```csharp
 // This works.

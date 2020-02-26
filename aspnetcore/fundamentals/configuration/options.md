@@ -318,6 +318,8 @@ catch (OptionsValidationException e)
 }
 ```
 
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
+
 The preceding example sets the named options instance to `optionalOptionsName`. The default options instance is `Options.DefaultName`.
 
 Validation runs when the options instance is created. An options instance is guaranteed to pass validation the first time it's accessed.

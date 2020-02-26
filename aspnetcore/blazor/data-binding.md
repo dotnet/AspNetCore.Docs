@@ -5,7 +5,7 @@ description: Learn about data binding scenarios for components and DOM elements 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 02/24/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/data-binding
 ---
@@ -41,10 +41,10 @@ Using `@bind` with the `CurrentValue` property (`<input @bind="CurrentValue" />`
 
 When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box and changes element focus, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is more complex because `@bind` handles cases where type conversions are performed. In principle, `@bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-In addition to handling `onchange` events with `@bind` syntax, a property or field can be bound using other events by specifying an [`@bind-value`](xref:mvc/views/razor#bind) attribute with an `event` parameter ([`@bind-value:event`](xref:mvc/views/razor#bind)). The following example binds the `CurrentValue` property for the `oninput` event:
+Bind a property or field on other events by also including an `@bind:event` attribute with an `event` parameter. The following example binds the `CurrentValue` property on the `oninput` event:
 
 ```razor
-<input @bind-value="CurrentValue" @bind-value:event="oninput" />
+<input @bind="CurrentValue" @bind:event="oninput" />
 
 @code {
     private string CurrentValue { get; set; }
@@ -53,10 +53,23 @@ In addition to handling `onchange` events with `@bind` syntax, a property or fie
 
 Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
-`@bind-value` in the preceding example binds:
+Use `@bind-{ATTRIBUTE}` with `@bind-{ATTRIBUTE}:event` syntax to bind element attributes other than `value`. In the following example, the paragraph's style is updated when the `_paragraphStyle` value changes:
 
-* The specified expression (`CurrentValue`) to the element's `value` attribute.
-* A change event delegate to the event specified by `@bind-value:event`.
+```razor
+@page "/binding-example"
+
+<p>
+    <input type="text" @bind="_paragraphStyle" />
+</p>
+
+<p @bind-style="_paragraphStyle" @bind-style:event="onchange">
+    Blazorify the app!
+</p>
+
+@code {
+    private string _paragraphStyle = "color:red";
+}
+```
 
 ### Unparsable values
 
@@ -78,9 +91,9 @@ Consider the following scenario:
 
 In the preceding scenario, the element's value is reverted to `123`. When the value `123.45` is rejected in favor of the original value of `123`, the user understands that their value wasn't accepted.
 
-By default, binding applies to the element's `onchange` event (`@bind="{PROPERTY OR FIELD}"`). Use `@bind-value="{PROPERTY OR FIELD}" @bind-value:event={EVENT}` to set a different event. For the `oninput` event (`@bind-value:event="oninput"`), the reversion occurs after any keystroke that introduces an unparsable value. When targeting the `oninput` event with an `int`-bound type, a user is prevented from typing a `.` character. A `.` character is immediately removed, so the user receives immediate feedback that only whole numbers are permitted. There are scenarios where reverting the value on the `oninput` event isn't ideal, such as when the user should be allowed to clear an unparsable `<input>` value. Alternatives include:
+By default, binding applies to the element's `onchange` event (`@bind="{PROPERTY OR FIELD}"`). Use `@bind="{PROPERTY OR FIELD}" @bind:event={EVENT}` to trigger binding on a different event. For the `oninput` event (`@bind:event="oninput"`), the reversion occurs after any keystroke that introduces an unparsable value. When targeting the `oninput` event with an `int`-bound type, a user is prevented from typing a `.` character. A `.` character is immediately removed, so the user receives immediate feedback that only whole numbers are permitted. There are scenarios where reverting the value on the `oninput` event isn't ideal, such as when the user should be allowed to clear an unparsable `<input>` value. Alternatives include:
 
-* Don't use the `oninput` event. Use the default `onchange` event (`@bind="{PROPERTY OR FIELD}"`), where an invalid value isn't reverted until the element loses focus.
+* Don't use the `oninput` event. Use the default `onchange` event (only specify `@bind="{PROPERTY OR FIELD}"`), where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string`, and provide custom logic to handle invalid entries.
 * Use a [form validation component](xref:blazor/forms-validation), such as `InputNumber` or `InputDate`. Form validation components have built-in support to manage invalid inputs. Form validation components:
   * Permit the user to provide invalid input and receive validation errors on the associated `EditContext`.
@@ -116,7 +129,7 @@ Specifying a format for the `date` field type isn't recommended because Blazor h
 
 ### Parent-to-child binding with component parameters
 
-Binding recognizes component parameters, where `@bind-{property}` can bind a property value from a parent component down to a child component. Binding from a child to a parent is covered in the [Child-to-parent binding with chained bind](#child-to-parent-binding-with-chained-bind) section.
+Binding recognizes component parameters, where `@bind-{PROPERTY}` can bind a property value from a parent component down to a child component. Binding from a child to a parent is covered in the [Child-to-parent binding with chained bind](#child-to-parent-binding-with-chained-bind) section.
 
 The following child component (`ChildComponent`) has a `Year` component parameter and `YearChanged` callback:
 
@@ -197,7 +210,7 @@ By convention, `<ChildComponent @bind-Year="ParentYear" />` is essentially equiv
 <ChildComponent @bind-Year="ParentYear" @bind-Year:event="YearChanged" />
 ```
 
-In general, a property can be bound to a corresponding event handler using `@bind-property:event` attribute. For example, the property `MyProp` can be bound to `MyEventHandler` using the following two attributes:
+In general, a property can be bound to a corresponding event handler by including an `@bind-{PROPRETY}:event` attribute. For example, the property `MyProp` can be bound to `MyEventHandler` using the following two attributes:
 
 ```razor
 <MyComponent @bind-MyProp="MyValue" @bind-MyProp:event="MyEventHandler" />

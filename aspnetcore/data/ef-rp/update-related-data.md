@@ -44,6 +44,8 @@ Update *Pages/Courses/Create.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Create.cshtml.cs?highlight=7,18,27-41)]
 
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
+
 The preceding code:
 
 * Derives from `DepartmentNamePageModel`.

@@ -30,6 +30,7 @@ Streams aren't being removed from the framework. Streams continue to be used thr
 Suppose the goal is to create a middleware that reads the entire request body as a list of strings, splitting on new lines. A simple stream implementation might look like the following example:
 
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringsFromStream)]
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 This code works, but there are some issues:
 

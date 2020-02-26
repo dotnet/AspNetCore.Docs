@@ -74,33 +74,29 @@ By default, the new middleware:
 
 ![Azure Active Directory: App registration properties](ws-federation/_static/AadAppIdUri.png)
 
+## Use WS-Federation without ASP.NET Core Identity
+
+The WS-Federation middleware can be used without Identity. For example:
+::: moniker range=">= aspnetcore-3.0"
+[!code-csharp[](ws-federation/samples/StartupNon31.cs?name=snippet)]
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+[!code-csharp[](ws-federation/samples/StartupNon21.cs?name=snippet)]
+::: moniker-end
+
 ## Add WS-Federation as an external login provider for ASP.NET Core Identity
 
 * Add a dependency on [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) to the project.
 * Add WS-Federation to `Startup.ConfigureServices`:
 
-    ```csharp
-    services.AddIdentity<IdentityUser, IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
+::: moniker range=">= aspnetcore-3.0"
+[!code-csharp[](ws-federation/samples/Startup31.cs?name=snippet)]
+::: moniker-end
 
-    services.AddAuthentication()
-        .AddWsFederation(options =>
-        {
-            // MetadataAddress represents the Active Directory instance used to authenticate users.
-            options.MetadataAddress = "https://<ADFS FQDN or AAD tenant>/FederationMetadata/2007-06/FederationMetadata.xml";
-
-            // Wtrealm is the app's identifier in the Active Directory instance.
-            // For ADFS, use the relying party's identifier, its WS-Federation Passive protocol URL:
-            options.Wtrealm = "https://localhost:44307/";
-
-            // For AAD, use the App ID URI from the app registration's Properties blade:
-            options.Wtrealm = "https://wsfedsample.onmicrosoft.com/bf0e7e6d-056e-4e37-b9a6-2c36797b9f01";
-        });
-
-    services.AddMvc()
-     // ...
-    ```
+::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+[!code-csharp[](ws-federation/samples/Startup21.cs?name=snippet)]
+::: moniker-end
 
 [!INCLUDE [default settings configuration](social/includes/default-settings.md)]
 
@@ -117,31 +113,3 @@ With Azure Active Directory as the provider, the button redirects to an AAD sign
 
 A successful sign-in for a new user redirects to the app's user registration page:
 ![Register page](ws-federation/_static/Register.png)
-
-## Use WS-Federation without ASP.NET Core Identity
-
-The WS-Federation middleware can be used without Identity. For example:
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddAuthentication(sharedOptions =>
-    {
-        sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        sharedOptions.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        sharedOptions.DefaultChallengeScheme = WsFederationDefaults.AuthenticationScheme;
-    })
-    .AddWsFederation(options =>
-    {
-        options.Wtrealm = Configuration["wsfed:realm"];
-        options.MetadataAddress = Configuration["wsfed:metadata"];
-    })
-    .AddCookie();
-}
-
-public void Configure(IApplicationBuilder app)
-{
-    app.UseAuthentication();
-        // …
-}
-```
