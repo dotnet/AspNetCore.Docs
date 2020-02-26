@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/15/2020
+ms.date: 02/25/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/components
 ---
@@ -58,15 +58,17 @@ To use a custom folder, add the custom folder's namespace to either the parent c
 @using BlazorApp.Components
 ```
 
-## Static asset paths
+## Static assets
 
-Use a base-relative path (`/`) to refer to the project root for a static asset:
+Blazor follows the convention of ASP.NET Core apps placing static assets under the project's [web root (wwwroot) folder](xref:fundamentals/index#web-root).
+
+Use a base-relative path (`/`) to refer to the web root for a static asset. In the following example, *logo.png* is physically located in the *{PROJECT ROOT}/wwwroot/images* folder:
 
 ```razor
 <img alt="Company logo" src="/images/logo.png" />
 ```
 
-Tilde-slash notation (`~/`) used in web apps is **not** supported in Razor components.
+Razor components do **not** support tilde-slash notation (`~/`).
 
 For information on setting an app's base path, see <xref:host-and-deploy/blazor/index#app-base-path>.
 
