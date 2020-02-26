@@ -30,11 +30,10 @@ This document covers low-level details of ASP.NET Core routing. For information 
 * For controllers, see <xref:mvc/controllers/routing>.
 * For Razor Pages conventions, see <xref:razor-pages/razor-pages-conventions>.
 
-The endpoint routing system described in this document applies to ASP.NET Core 3.0 and later. For information on the previous routing system based on <xref:Microsoft.AspNetCore.Routing.IRouter>, use one of the following approaches:
+The endpoint routing system described in this document applies to ASP.NET Core 3.0 and later. For information on the previous routing system based on <xref:Microsoft.AspNetCore.Routing.IRouter>, select the ASP.NET Core 2.1 version using one of the following approaches:
 
 * The version selector for a previous version.
-* Select [ASP.NET Core 2.2 routing](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-2.2)
-* Select [ASP.NET Core 2.1 routing](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-2.1)
+* Select [ASP.NET Core 2.1 routing](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-2.1).
 
 [View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -192,10 +191,10 @@ The preceding example demonstrates two important concepts:
 * Middleware can run between `UseRouting` and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> to process the results of routing before the endpoint is executed.
     * Middleware that runs between `UseRouting` and `UseEndpoints`:
       * Usually inspects metadata to understand the endpoints.
-      * Can make security decisions, as done by `UseAuthorization` and `UseCors`.
+      * Often makes security decisions, as done by `UseAuthorization` and `UseCors`.
     * The combination of middleware and metadata allows configuring policies per-endpoint.
 
-The preceding example shows an example of a custom middleware that supports per-endpoint policies. The middleware writes an *audit log* of access to sensitive data to the console. The middleware can be configured to *audit* an endpoint with the `AuditPolicyAttribute` metadata. This sample demonstrates an *opt-in* pattern where only endpoints that are marked as sensitive are audited. It's possible to define this logic in reverse, auditing everything that isn't marked as safe, for example. The endpoint metadata system is flexible. This logic could be designed in whatever way suits the use case.
+The preceding code shows an example of a custom middleware that supports per-endpoint policies. The middleware writes an *audit log* of access to sensitive data to the console. The middleware can be configured to *audit* an endpoint with the `AuditPolicyAttribute` metadata. This sample demonstrates an *opt-in* pattern where only endpoints that are marked as sensitive are audited. It's possible to define this logic in reverse, auditing everything that isn't marked as safe, for example. The endpoint metadata system is flexible. This logic could be designed in whatever way suits the use case.
 
 The preceding sample code is intended to demonstrate the basic concepts of endpoints. **The sample is not intended for production use**. A more complete version of an *audit log* middleware would:
 
