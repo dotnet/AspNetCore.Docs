@@ -234,7 +234,7 @@ In the following example, [middleware](xref:fundamentals/middleware/index) adds 
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Startup4.cs?name=snippet1)]
 
--For middleware that's only used by a single app, fixed `string` keys are acceptable. Middleware shared between app instances should use unique object keys to avoid key collisions. The following example shows how to use a unique object key defined in a middleware class:
+For middleware that's only used in a single app, fixed `string` keys are acceptable. Middleware shared between apps should use unique object keys to avoid key collisions. The following example shows how to use a unique object key defined in a middleware class:
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Middleware/HttpContextItemsMiddleware.cs?name=snippet1&highlight=4,13)]
 
