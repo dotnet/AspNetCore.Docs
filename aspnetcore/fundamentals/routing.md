@@ -449,7 +449,7 @@ The following table demonstrates example route templates and their behavior:
 | `{controller}/{action}/{id?}`            | `/Products/List`        | Maps to the `Products` controller and `List` action.                       |
 | `{controller}/{action}/{id?}`            | `/Products/Details/123` | Maps to the `Products` controller and  `Details` action with`id` set to 123. |
 | `{controller=Home}/{action=Index}/{id?}` | `/`                     | Maps to the `Home` controller and `Index` method. `id` is ignored.        |
-| `{controller=Home}/{action=Index}/{id?}` | `/Products`                     | Maps to the `Products` controller and `Index` method. `id` is ignored.        |
+| `{controller=Home}/{action=Index}/{id?}` | `/Products`         | Maps to the `Products` controller and `Index` method. `id` is ignored.        |
 
 Using a template is generally the simplest approach to routing. Constraints and defaults can also be specified outside the route template.
 
