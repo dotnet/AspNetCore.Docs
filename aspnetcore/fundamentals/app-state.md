@@ -1,20 +1,20 @@
 ---
-title: Session and app state in ASP.NET Core
+title: Session in ASP.NET Core
 author: rick-anderson
-description: Discover approaches to preserve session and app state between requests.
+description: Discover approaches to preserve session between requests.
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc: [SignalR]
 uid: fundamentals/app-state
 ---
-# Session and app state in ASP.NET Core
+# Session in ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](https://ardalis.com/), [Diana LaRose](https://github.com/DianaLaRose), and [Luke Latham](https://github.com/guardrex)
 
-HTTP is a stateless protocol. Without taking additional steps, HTTP requests are independent messages that don't retain user values or application state. This article describes several approaches to preserve user data and application state between requests.
+HTTP is a stateless protocol. Without taking additional steps, HTTP requests are independent messages that don't retain user values. This article describes several approaches to preserve user data between requests.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -220,7 +220,7 @@ The order of middleware is important. Call `UseSession` after `UseStaticFiles` a
 
 A limited amount of data can be passed from one request to another by adding it to the new request's query string. This is useful for capturing state in a persistent manner that allows links with embedded state to be shared through email or social networks. Because URL query strings are public, never use query strings for sensitive data.
 
-In addition to unintended sharing, including data in query strings can expose te app to [Cross-Site Request Forgery (CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) attacks.  Any preserved application state or session state must protect against CSRF attacks. For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery).
+In addition to unintended sharing, including data in query strings can expose te app to [Cross-Site Request Forgery (CSRF)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) attacks.  Any preserved session state must protect against CSRF attacks. For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery).
 
 ## Hidden fields
 
@@ -246,16 +246,18 @@ This approach also has the advantage of eliminating the use of key strings in th
 
 ## Cache
 
-Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items.
+Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items. For more information, see <xref:performance/caching/response>.
 
 Cached data isn't associated with a specific request, user, or session. **Do not cache user-specific data that may be retrieved by other user requests.**
 
-For more information, see <xref:performance/caching/response>.
+To cache application wide data, see <xref:performance/caching/memory>.
+
 <!-- review required
 I recommend we remove the H2 Dependency Injection
 
-Isn't directly related to app state and session state.
+Isn't directly related to  session state.
 Sample is incomplete.
+Preceding links to caching cover this.
 
 THIS SECTION DELETED
 
