@@ -248,15 +248,22 @@ This approach also has the advantage of eliminating the use of key strings in th
 
 Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items.
 
-Cached data isn't associated with a specific request, user, or session. **Be careful not to cache user-specific data that may be retrieved by other users' requests.**
+Cached data isn't associated with a specific request, user, or session. **Do not cache user-specific data that may be retrieved by other user requests.**
 
 For more information, see <xref:performance/caching/response>.
+<!-- review required
+I recommend we remove the H2 Dependency Injection
+
+Isn't directly related to app state and session state.
+Sample is incomplete.
+
+THIS SECTION DELETED
 
 ## Dependency Injection
 
 Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data available to all users:
 
-1. Define a service containing the data. For example, a class named `MyAppData` is defined:
+* Define a service containing the data. For example, a class named `MyAppData` is defined:
 
     ```csharp
     public class MyAppData
@@ -265,7 +272,7 @@ Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data 
     }
     ```
 
-2. Add the service class to `Startup.ConfigureServices`:
+* Add the service class to `Startup.ConfigureServices`:
 
     ```csharp
     public void ConfigureServices(IServiceCollection services)
@@ -274,7 +281,7 @@ Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data 
     }
     ```
 
-3. Consume the data service class:
+* Consume the data service class:
 
     ```csharp
     public class IndexModel : PageModel
@@ -286,6 +293,7 @@ Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data 
         }
     }
     ```
+-->
 
 ## Common errors
 
@@ -293,11 +301,14 @@ Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data 
 
   This is usually caused by failing to configure at least one `IDistributedCache` implementation. For more information, see <xref:performance/caching/distributed> and <xref:performance/caching/memory>.
 
-* In the event that the session middleware fails to persist a session (for example, if the backing store isn't available), the middleware logs the exception and the request continues normally. This leads to unpredictable behavior.
+If the session middleware fails to persist a session:
 
-  For example, a user stores a shopping cart in session. The user adds an item to the cart but the commit fails. The app doesn't know about the failure so it reports to the user that the item was added to their cart, which isn't true.
+* The middleware logs the exception and the request continues normally.
+* This leads to unpredictable behavior.
 
-  The recommended approach to check for errors is to call `await feature.Session.CommitAsync();` from app code when the app is done writing to the session. `CommitAsync` throws an exception if the backing store is unavailable. If `CommitAsync` fails, the app can process the exception. `LoadAsync` throws under the same conditions where the data store is unavailable.
+  The session middleware can fail to persist a session if the backing store isn't available. For example, a user stores a shopping cart in session. The user adds an item to the cart but the commit fails. The app doesn't know about the failure so it reports to the user that the item was added to their cart, which isn't true.
+
+  The recommended approach to check for errors is to call `await feature.Session.CommitAsync` when the app is done writing to the session. <xref:Microsoft.AspNetCore.Http.ISession.CommitAsync*> throws an exception if the backing store is unavailable. If `CommitAsync` fails, the app can process the exception. <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync*> throws under the same conditions when the data store is unavailable.
   
 ## SignalR and session state
 
