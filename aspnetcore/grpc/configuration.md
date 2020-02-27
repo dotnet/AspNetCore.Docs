@@ -14,7 +14,7 @@ uid: grpc/configuration
 
 gRPC services are configured with `AddGrpc` in *Startup.cs*. The following table describes options for configuring gRPC services:
 
-| Option | Default Value | Description |
+| `Option            ` | `Default Value   ` | Description |
 | ------ | ------------- | ----------- |
 | `MaxSendMessageSize` | `null` | The maximum message size in bytes that can be sent from the server. Attempting to send a message that exceeds the configured maximum message size results in an exception. |
 | `MaxReceiveMessageSize` | 4 MB | The maximum message size in bytes that can be received by the server. If the server receives a message that exceeds this limit, it throws an exception. Increasing this value allows the server to receive larger messages, but can negatively impact memory consumption. |
