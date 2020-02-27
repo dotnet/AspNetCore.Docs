@@ -39,7 +39,7 @@ namespace SessionSample.Pages
 
             #region snippet2
             // Requires SessionExtensions from sample download.
-            if (HttpContext.Session.Get<DateTime>(SessionKeyTime) == default(DateTime))
+            if (HttpContext.Session.Get<DateTime>(SessionKeyTime) == default)
             {
                 HttpContext.Session.Set<DateTime>(SessionKeyTime, currentTime);
             }
