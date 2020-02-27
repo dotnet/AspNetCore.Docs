@@ -329,6 +329,8 @@
               uid: security/blazor/index
             - name: Blazor Server
               uid: security/blazor/server
+            - name: Content Security Policy
+              uid: security/blazor/content-security-policy
         - name: State management
           uid: blazor/state-management
         - name: Handle errors
@@ -1086,6 +1088,8 @@
           uid: security/blazor/index
         - name: Blazor Server
           uid: security/blazor/server
+        - name: Content Security Policy
+          uid: security/blazor/content-security-policy
 - name: Performance
   items:
     - name: Overview
