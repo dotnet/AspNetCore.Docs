@@ -91,7 +91,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The `AdditionalUserClaimsPrincipalFactory` class adds the `TwoFactorEnabled` claim to the user claims after a successful login. This is only added after a login. The value is read from the database. This is added here because the user should only access the higher protected view, if the identity has logged in with MFA. If the database view was read from the database directly instead of using the claim, it would be possible to access the view without MFA directly after activating the MFA.
+The `AdditionalUserClaimsPrincipalFactory` class adds the `TwoFactorEnabled` claim to the user claims only after a successful login. The claim's value is read from the database. The claim is added here because the user should only access the higher protected view if the identity has logged in with MFA. If the database view is read from the database directly instead of using the claim, it's possible to access the view without MFA directly after activating the MFA.
 
 ```csharp
 using Microsoft.AspNetCore.Identity;
