@@ -94,7 +94,7 @@ The following code shows how to set up the in-memory session provider with a def
 
 The preceding code sets a short timeout to simplify testing.
 
-The order of middleware is important. <!-- review required: middleware order --> Call `UseSession` after `UseStaticFiles` and before `UseRouting`. See [Middleware Ordering](xref:fundamentals/middleware/index#order).
+The order of middleware is important.  Call `UseSession` after `UseRouting` and before `UseEndpoints`. See [Middleware Ordering](xref:fundamentals/middleware/index#order).
 
 [HttpContext.Session](xref:Microsoft.AspNetCore.Http.HttpContext.Session) is available after session state is configured.
 
@@ -221,8 +221,6 @@ To enable the session-based TempData provider, use the [AddSessionStateTempDataP
 
 <!-- requires review: -->
 [!code-csharp[](app-state/samples/3.x/SessionSample/Startup3.cs?name=snippet1&highlight=4,6,25)]
-
-The order of middleware is important. Call `UseSession` after `UseStaticFiles` and before `UseRouting`. See [Middleware Ordering](xref:fundamentals/middleware/index#order).
 
 ## Query strings
 
