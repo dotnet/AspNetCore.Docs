@@ -314,7 +314,7 @@ You can enable MFA to login here:
 
 In the `Login` method, the `IIdentityServerInteractionService` interface implementation _interaction is used to access the Open ID Connnect request parameters. The `acr_values` is accessed using the AcrValues. As the client sent this with **mfa** set, this can then be checked.
 
-If MFA is required, and the user in ASP.NET Core Identity has MFA enabled, then the login continues. If the user has no MFA enabled, the user is redirected to the custom view ErrorEnable2FA.cshtml. Then ASP.NET Core Identity signs the user in.
+If MFA is required, and the user in ASP.NET Core Identity has MFA enabled, then the login continues. If the user has no MFA enabled, the user is redirected to the custom view *ErrorEnable2FA.cshtml*. Then ASP.NET Core Identity signs the user in.
 
 ```csharp
 //
