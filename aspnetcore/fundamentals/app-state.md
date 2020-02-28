@@ -77,7 +77,12 @@ The in-memory cache provider stores session data in the memory of the server whe
 
 ### Configure session state
 
-The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session/) package, which is included the [netcoreapp3.x TFM](xref:migration/22-to-30#update-the-project-file), provides middleware for managing session state. To enable the session middleware, `Startup` must contain:
+The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session/) package:
+
+* Is included implicitly by the framework.
+* Provides middleware for managing session state.
+
+To enable the session middleware, `Startup` must contain:
 
 * Any of the [IDistributedCache](/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache) memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see <xref:performance/caching/distributed>.
 * A call to [AddSession](/dotnet/api/microsoft.extensions.dependencyinjection.sessionservicecollectionextensions.addsession) in `ConfigureServices`.
@@ -168,7 +173,7 @@ The following example shows how to set and get a serializable object with the `S
 ASP.NET Core exposes the Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) or Controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>. This property stores data until it's read in another request. The [Keep(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) and [Peek(string)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) methods can be used to examine the data without deletion at the end of the request. [Keep](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) marks all items in the dictionary for retention. `TempData` is:
 
 * Useful for redirection when data is required for more than a single request.
-* I mplemented by `TempData` providers using either cookies or session state.
+* Implemented by `TempData` providers using either cookies or session state.
 
 ## TempData samples
 
