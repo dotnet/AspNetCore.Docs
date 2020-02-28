@@ -57,11 +57,11 @@ Although MFA with SMS increases security massively compared with password authen
 
 ## Configure MFA for administration pages using ASP.NET Core Identity
 
-MFA could be forced on users to access sensitive pages within an ASP.NET Core Identity application. This could be useful for applications where different levels of access exist for the different identities. For example, users might be able to view the profile data using a password login, but an administrator would be required to use MFA to access the admin pages.
+MFA could be forced on users to access sensitive pages within an ASP.NET Core Identity app. This could be useful for apps where different levels of access exist for the different identities. For example, users might be able to view the profile data using a password login, but an administrator would be required to use MFA to access the administrative pages.
 
-### Extending the Login with a MFA claim
+### Extend the login with a MFA claim
 
-The demo code is setup using ASP.NET Core with Identity and Razor Pages. The AddIdentity method is used instead of AddDefaultIdentity one, so an IUserClaimsPrincipalFactory implementation can be used to add claims to the identity after a successful login.
+The demo code is setup using ASP.NET Core with Identity and Razor Pages. The `AddIdentity` method is used instead of `AddDefaultIdentity` one, so an `IUserClaimsPrincipalFactory` implementation can be used to add claims to the identity after a successful login.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -136,7 +136,7 @@ namespace IdentityStandaloneMfa
 
 Because we changed the Identity service setup in the Startup class, the layouts of the Identity need to be updated. Scaffold the Identity pages into the application. Define the layout in the Identity/Account/Manage/_Layout.cshtml file.
 
-```razor
+```cshtml
 @{
     Layout = "/Pages/Shared/_Layout.cshtml";
 }
@@ -144,13 +144,13 @@ Because we changed the Identity service setup in the Startup class, the layouts 
 
 Also add the _layout for all the manage pages from the Identity Pages.
 
-```razor
+```cshtml
 @{
     Layout = "_Layout.cshtml";
 }
 ```
 
-### Validation the MFA requirement in the Admin Page
+### Validate the MFA requirement in the admin page
 
 The admin Razor Page validates that the user has logged in using MFA. In the OnGet method, the identity is used to access the user claims. The **TwoFactorEnabled** claim is checked for the value true. If the identity is missing this claim, or it is false, the page will redirect to the Enable MFA page. This is possible because the user has logged in already, but without MFA.
 
@@ -200,7 +200,7 @@ services.AddAuthorization(options =>
 
 This policy can then be used in the _Layout view to show or hide the Admin menu with the warning.
 
-```razor
+```cshtml
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
@@ -210,7 +210,7 @@ This policy can then be used in the _Layout view to show or hide the Admin menu 
 
 If the identity has logged using MFA, then the Admin menu will be displayed without the warning. If the user has logged without the MFA, the font awesome icon will be displayed, and the tooltip which informs the user, explaining the warning.
 
-```razor
+```cshtml
 @if (SignInManager.IsSignedIn(User))
 {
 	@if ((AuthorizationService.AuthorizeAsync(User, "TwoFactorEnabled")).Result.Succeeded)
@@ -296,7 +296,7 @@ On the OpenID Connect server, which is implemented using ASP.NET Core Identity w
 
 This view will be displayed if the Identity comes from an application which requires MFA but the user has not activated this in Identity. The view informs the user, and adds a link to activate this.
 
-```razor
+```cshtml
 @{
     ViewData["Title"] = "ErrorEnable2FA";
 }
@@ -385,7 +385,7 @@ If the user is already logged in, the client application still validates the "am
 
 ## Force ASP.NET Core OpenID Connect client to require MFA
 
-In this example it is shown how an ASP.NET Core Razor Page application which uses OpenID Connect to sign in, can require that users have authenticated using Multi-factor authentication. 
+This example shows how an ASP.NET Core Razor Page app, which uses OpenID Connect to sign in, can require that users have authenticated using MFA.
 
 To validate the MFA requirement, an IAuthorizationRequirement requirement is created. This will be added to the pages using a policy which require MFA.
 
@@ -404,7 +404,7 @@ An AuthorizationHandler is implemented which will use the **amr** claim and chec
 
 The returned value depends on how the identity authenticated and on the Open ID Connect server implementation.
 
-The AuthorizationHandler uses the RequireMfa requirement and validates the **amr** claim. The OpenID Connect server can be implemented using IdentityServer4 with ASP.NET Core Identity. When a user logs in using TOTP, the amr claim is returned with a mfa value. If using a different OpenID Connect server implementation, or a different MFA type, then the amr claim will, or can have a different value, and the code would need to be extended to accept this as well.
+The `AuthorizationHandler` uses the `RequireMfa` requirement and validates the `amr` claim. The OpenID Connect server can be implemented using IdentityServer4 with ASP.NET Core Identity. When a user logs in using TOTP, the `amr` claim is returned with a MFA value. If using a different OpenID Connect server implementation or a different MFA type, the `amr` claim will, or can, have a different value. The code would need to be extended to accept this as well.
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
@@ -439,7 +439,7 @@ namespace AspNetCoreRequireMfaOidc
 }
 ```
 
-In the ConfigureServices method in the Startup class, the AddOpenIdConnect method is used as the default challenge scheme. The authorization handler which is used to check the amr claim is added as to the IoC. A policy is created then which adds the RequireMfa requirement. 
+In the `Startup.ConfigureServices` method, the `AddOpenIdConnect` method is used as the default challenge scheme. The authorization handler which is used to check the amr claim is added as to the IoC. A policy is created then which adds the `RequireMfa` requirement.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -516,7 +516,7 @@ namespace AspNetCoreRequireMfaOidc.Pages
 
 If the user authenticates without MFA, then the amr claim will probably have a <strong>pwd</strong> value, and the request will not be authorized to access the page. Using the default values, the user will be redirected to the account/AccessDenied page. This can be changed, or you can implement your own custom logic here. In this example, a link is added, so that the valid user can setup MFA for his or her account.
 
-```razor
+```cshtml
 @page
 @model AspNetCoreRequireMfaOidc.AccessDeniedModel
 @{
