@@ -54,11 +54,11 @@ Azure Active Directory provides support for FIDO2 and passwordless flows. For mo
 
 MFA with SMS increases security massively compared with password authentication (Single factor). However, using SMS as a second factor is no longer recommended. Too many known attack vectors exist for this type of implementation.
 
+[NIST guidelines](https://pages.nist.gov/800-63-3/sp800-63b.html)
+
 ## Configure MFA for administration pages using ASP.NET Core Identity
 
 MFA could be forced on users to access sensitive pages within an ASP.NET Core Identity app. This could be useful for apps where different levels of access exist for the different identities. For example, users might be able to view the profile data using a password login, but an administrator would be required to use MFA to access the administrative pages.
-
-[NIST guidelines](https://pages.nist.gov/800-63-3/sp800-63b.html)
 
 ### Extend the login with an MFA claim
 
