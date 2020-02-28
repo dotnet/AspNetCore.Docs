@@ -217,9 +217,8 @@ Most web clients such as web browsers enforce limits on the maximum size of each
 
 The cookie-based TempData provider is enabled by default.
 
-To enable the session-based TempData provider, use the [AddSessionStateTempDataProvider](/dotnet/api/microsoft.extensions.dependencyinjection.mvcviewfeaturesmvcbuilderextensions.addsessionstatetempdataprovider) extension method:
+To enable the session-based TempData provider, use the [AddSessionStateTempDataProvider](/dotnet/api/microsoft.extensions.dependencyinjection.mvcviewfeaturesmvcbuilderextensions.addsessionstatetempdataprovider) extension method. Only one call to `AddSessionStateTempDataProvider` is required:
 
-<!-- requires review: -->
 [!code-csharp[](app-state/samples/3.x/SessionSample/Startup3.cs?name=snippet1&highlight=4,6,25)]
 
 ## Query strings
