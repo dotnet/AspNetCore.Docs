@@ -24,13 +24,13 @@ This article covers the following:
 
 ## MFA, 2FA
 
-MFA requires at least two or more types of proof for an identity like something you know, something you possess, or something you inherit for the user to authenticate.
+MFA requires at least two or more types of proof for an identity like something you know, possess, or inherit for the user to authenticate.
 
-2FA is like a subset of MFA,but the difference being that MFA can require 2 or more factors to prove the identity.
+Two-factor authentication (2FA) is like a subset of MFA, but the difference being that MFA can require 2 or more factors to prove the identity.
 
 ### MFA TOTP (Time-based One-time Password Algorithm)
 
-Multi-factor authentication using TOTP is a supported implementation using ASP.NET Core Identity. This can be used together with the following Apps:
+MFA using TOTP is a supported implementation using ASP.NET Core Identity. This can be used together with the following apps:
 
 - Microsoft Authenticator App
 - Google Authenticator App
@@ -41,11 +41,11 @@ See the following link for implementation details:
 
 ### MFA FIDO2 or Passwordless
 
-FIDO2 is the most secure way of doing Multi-factor authentication and is the only MFA flow which protects against phishing attacks. At present ASP.NET Core does not support FIDO2 directly. FIDO2 can be used for MFA or passwordless flows.
+FIDO2 is the most secure way of achieving MFA and is the only MFA flow which protects against phishing attacks. At present, ASP.NET Core doesn't support FIDO2 directly. FIDO2 can be used for MFA or passwordless flows.
 
 Azure Active Directory provides support for FIDO2 and passwordless flows.
 
-[Passwordless authentication options for Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/authentication/concept-authentication-passwordless)
+[Passwordless authentication options for Azure Active Directory](https://docs.microsoft.com/azure/active-directory/authentication/concept-authentication-passwordless)
 
 You can implement ASP.NET Core with FIDO2 by using the following OSS FIDO2 implementation:
 
@@ -240,20 +240,20 @@ If the user logins without MFA , then the warning is displayed.
 
 ![Admin MFA authentication](mfa/_static/identitystandalonemfa_01.png)
 
-And when the user clicks the admin link, then the user is redirected to the MFA enable view.
+When the user clicks the admin link, the user is redirected to the MFA enable view.
 
 ![Admin activate MFA authentication](mfa/_static/identitystandalonemfa_02.png)
 
 ## Send MFA signin requirement to OpenID Connect server 
 
-The **acr_values** parameter can used to pass the mfa required value from the client to the server in an authentication request. 
+The `acr_values` parameter can used to pass the mfa required value from the client to the server in an authentication request. 
 
 > [!NOTE]
 > The **acr_values** parameter needs to be handled on the Open ID Connect server for this to work.
 
 ### OpenID Connect ASP.NET Core client
 
-The Razor Page ASP.NET Core Open ID Connnect client application uses the AddOpenIdConnect method to login to the Open ID Connect server. The "acr_values" parameter is set with the "mfa" value and sent with the authentication request. The OpenIdConnectEvents is used to add this.
+The ASP.NET Core Razor Pages Open ID Connnect client app uses the `AddOpenIdConnect` method to login to the Open ID Connect server. The `acr_values` parameter is set with the `mfa` value and sent with the authentication request. The `OpenIdConnectEvents` is used to add this.
 
 See [Authentication Method Reference Values](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08) for recommended acr_values values.
 
@@ -292,7 +292,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### Example OpenID Connect IdentityServer 4 server with ASP.NET Core Identity
 
-On the OpenID Connect server, which is implemented using ASP.NET Core Identity with MVC views, a new view ErrorEnable2FA.cshtml is created, and added.
+On the OpenID Connect server, which is implemented using ASP.NET Core Identity with MVC views, a new view *ErrorEnable2FA.cshtml* is created and added.
 
 This view will be displayed if the Identity comes from an application which requires MFA but the user has not activated this in Identity. The view informs the user, and adds a link to activate this.
 
@@ -312,7 +312,7 @@ You can enable MFA to login here:
 <a asp-controller="Manage" asp-action="TwoFactorAuthentication">Enable MFA</a>
 ```
 
-In the Login method, the IIdentityServerInteractionService interface implementation _interaction is used to access the Open ID Connnect request parameters. The "acr_values" is accessed using the AcrValues. As the client sent this with **mfa** set, this can then be checked.
+In the `Login` method, the `IIdentityServerInteractionService` interface implementation _interaction is used to access the Open ID Connnect request parameters. The `acr_values` is accessed using the AcrValues. As the client sent this with **mfa** set, this can then be checked.
 
 If MFA is required, and the user in ASP.NET Core Identity has MFA enabled, then the login continues. If the user has no MFA enabled, the user is redirected to the custom view ErrorEnable2FA.cshtml. Then ASP.NET Core Identity signs the user in.
 
