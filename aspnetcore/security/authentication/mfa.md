@@ -53,7 +53,7 @@ You can implement ASP.NET Core with FIDO2 by using the following OSS FIDO2 imple
 
 ### MFA SMS
 
-Although MFA with SMS increases security massively compared with password authentication (Single factor), it is no longer recommended to use SMS as a second factor as too many known attack vectors exist for this type of implementation.
+MFA with SMS increases security massively compared with password authentication (Single factor). However, using SMS as a second factor is no longer recommended. Too many known attack vectors exist for this type of implementation.
 
 ## Configure MFA for administration pages using ASP.NET Core Identity
 
