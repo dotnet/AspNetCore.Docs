@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/10/2020
+ms.date: 02/29/2020
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -14,26 +14,26 @@ By [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-App configuration in ASP.NET Core is based on key-value pairs established by *configuration providers*. Configuration providers read configuration data into key-value pairs from a variety of configuration sources:
+App configuration in ASP.NET Core is based on key-value pairs established by [configuration providers](#cp). Configuration providers read configuration data into key-value pairs from a variety of configuration sources:
 
 * Azure Key Vault
 * Azure App Configuration
 * Command-line arguments
-* Custom providers (installed or created)
+* Custom providers, installed or created
 * Directory files
 * Environment variables
 * In-memory .NET objects
 * Settings files
 
-Configuration packages for common configuration provider scenarios ([Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/)) are included implicitly by the framework.
+Configuration packages for common configuration provider scenarios are included implicitly by the framework. For example, [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) for in-memory collections.
 
-Code examples that follow and in the sample app use the <xref:Microsoft.Extensions.Configuration> namespace:
+Code examples that follow use the <xref:Microsoft.Extensions.Configuration> namespace:
 
 ```csharp
 using Microsoft.Extensions.Configuration;
 ```
 
-The *options pattern* is an extension of the configuration concepts described in this topic. Options use classes to represent groups of related settings. For more information, see <xref:fundamentals/configuration/options>.
+The *options pattern* is used in this topic. Options use classes to represent groups of related settings. For more information, see <xref:fundamentals/configuration/options>.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -175,7 +175,9 @@ Configuration values adopt the following conventions:
 * Values are strings.
 * Null values can't be stored in configuration or bound to objects.
 
-## Providers
+<a name="cp"></a>
+
+## Configuration Providers
 
 The following table shows the configuration providers available to ASP.NET Core apps.
 
