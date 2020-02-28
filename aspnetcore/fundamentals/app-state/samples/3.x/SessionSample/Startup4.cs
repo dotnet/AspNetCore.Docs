@@ -27,7 +27,6 @@ namespace SessionSample
             {
                 logger.LogInformation($"Next: Verified: {context.Items["isVerified"]}");
                 await next.Invoke();
-
             });
 
             app.UseEndpoints(endpoints =>
