@@ -1,66 +1,42 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using SessionSample.Middleware;
-using System;
+using Microsoft.Extensions.Logging;
 
 namespace SessionSample
 {
-    #region snippet1
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDistributedMemoryCache();
-
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
-            });
-
-            services.AddControllersWithViews();
-            services.AddRazorPages();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        #region snippet1
+        public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
-            }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseSession();
-            app.UseHttpContextItemsMiddleware();
-
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.Use(async (context, next) =>
+            {
+                logger.LogInformation($"Before setting: Verified: {context.Items["isVerified"]}");
+                context.Items["isVerified"] = true;
+                await next.Invoke();
+            });
+
+            app.Use(async (context, next) =>
+            {
+                logger.LogInformation($"Next: Verified: {context.Items["isVerified"]}");
+                await next.Invoke();
+            });
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
-                endpoints.MapRazorPages();
+                endpoints.MapGet("/", async context =>
+                {
+                    await context.Response.WriteAsync($"Verified: {context.Items["isVerified"]}");
+                });
             });
         }
+        #endregion
     }
-    #endregion
 }

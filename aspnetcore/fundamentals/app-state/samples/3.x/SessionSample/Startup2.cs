@@ -48,13 +48,14 @@ namespace SessionSample
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseSession();
             app.UseHttpContextItemsMiddleware();
 
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

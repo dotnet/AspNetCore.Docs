@@ -237,7 +237,7 @@ The [HttpContext.Items](/dotnet/api/microsoft.aspnetcore.http.httpcontext.items)
 
 In the following example, [middleware](xref:fundamentals/middleware/index) adds `isVerified` to the `Items` collection:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Startup4.cs?name=snippet1)]
+[!code-csharp[](app-state/samples/3.x/SessionSample/Startup.cs?name=snippet1)]
 
 For middleware that's only used in a single app, fixed `string` keys are acceptable. Middleware shared between apps should use unique object keys to avoid key collisions. The following example shows how to use a unique object key defined in a middleware class:
 
