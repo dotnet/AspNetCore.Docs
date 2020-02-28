@@ -13,7 +13,7 @@ uid: security/authentication/mfa
 
 By [Damien Bowden](https://github.com/damienbod)
 
-Multi-factor authentication (MFA) is a process where a user is requested during a sign-in event for additional forms of identification. This prompt could be to enter a code on their cellphone, use a FIDO2 key or to provide a fingerprint scan. When you require a second form of authentication, security is increased as this additional factor isn't something that's easy for an attacker to obtain or duplicate.
+Multi-factor authentication (MFA) is a process where a user is requested during a sign-in event for additional forms of identification. This prompt could be to enter a code from a cellphone, use a FIDO2 key or to provide a fingerprint scan. When you require a second form of authentication, security is increased. The additional factor isn't easily obtained or duplicated by an attacker.
 
 This article covers the following:
 
@@ -145,7 +145,7 @@ Because the Identity service setup changed in the `Startup` class, the layouts o
 }
 ```
 
-Also add the _layout for all the manage pages from the Identity Pages.
+Also assign the layout for all the manage pages from the Identity pages:
 
 ```cshtml
 @{
@@ -188,7 +188,7 @@ namespace IdentityStandaloneMfa
 }
 ```
 
-### UI logic to show hide information about the user login
+### UI logic to toggle user login information
 
 An authorization policy was added at startup. The policy requires the `TwoFactorEnabled` claim with the value `true`.
 
@@ -201,7 +201,7 @@ services.AddAuthorization(options =>
 });
 ```
 
-This policy can then be used in the _Layout view to show or hide the Admin menu with the warning.
+This policy can then be used in the `_Layout` view to show or hide the **Admin** menu with the warning:
 
 ```cshtml
 @using Microsoft.AspNetCore.Authorization
