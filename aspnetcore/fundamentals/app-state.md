@@ -14,7 +14,7 @@ uid: fundamentals/app-state
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](https://ardalis.com/), [Diana LaRose](https://github.com/DianaLaRose), and [Luke Latham](https://github.com/guardrex)
 
-HTTP is a stateless protocol. Without taking additional steps, HTTP requests are independent messages that don't retain user values. This article describes several approaches to preserve user data between requests.
+HTTP is a stateless protocol. By default, HTTP requests are independent messages that don't retain user values. This article describes several approaches to preserve user data between requests.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -77,7 +77,7 @@ The in-memory cache provider stores session data in the memory of the server whe
 
 ### Configure session state
 
-The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session/) package, which is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), provides middleware for managing session state. To enable the session middleware, `Startup` must contain:
+The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspNetCore.Session/) package, which is included the [netcoreapp3.x TFM](xref:migration/22-to-30#update-the-project-file), provides middleware for managing session state. To enable the session middleware, `Startup` must contain:
 
 * Any of the [IDistributedCache](/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache) memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see <xref:performance/caching/distributed>.
 * A call to [AddSession](/dotnet/api/microsoft.extensions.dependencyinjection.sessionservicecollectionextensions.addsession) in `ConfigureServices`.
@@ -155,7 +155,7 @@ The following example shows how to set and get an integer and a string:
 
 All session data must be serialized to enable a distributed cache scenario, even when using the in-memory cache. String and integer serializers are provided by the extension methods of [ISession](/dotnet/api/microsoft.aspnetcore.http.isession)). Complex types must be serialized by the user using another mechanism, such as JSON.
 
-Use the following sample code to on serializable objects:
+Use the following sample code to serialize objects:
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Extensions/SessionExtensions.cs?name=snippet1)]
 
@@ -163,9 +163,14 @@ The following example shows how to set and get a serializable object with the `S
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index.cshtml.cs?name=snippet2)]
 
+[!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
+
 ## TempData
 
-ASP.NET Core exposes the Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) or Controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>. This property stores data until it's read in another request. [Keep(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) and [Peek(string)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) methods can be used to examine the data without deletion at the end of the request. [Keep](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) marks all items in the dictionary for retention. `TempData` is particularly useful for redirection when data is required for more than a single request. `TempData` is implemented by `TempData` providers using either cookies or session state.
+ASP.NET Core exposes the Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) or Controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>. This property stores data until it's read in another request. The [Keep(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) and [Peek(string)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) methods can be used to examine the data without deletion at the end of the request. [Keep](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) marks all items in the dictionary for retention. `TempData` is:
+
+* Useful for redirection when data is required for more than a single request.
+* I mplemented by `TempData` providers using either cookies or session state.
 
 ## TempData samples
 
@@ -252,56 +257,11 @@ Cached data isn't associated with a specific request, user, or session. **Do not
 
 To cache application wide data, see <xref:performance/caching/memory>.
 
-<!-- review required
-I recommend we remove the H2 Dependency Injection
-
-Isn't directly related to  session state.
-Sample is incomplete.
-Preceding links to caching cover this.
-
-THIS SECTION DELETED
-
-## Dependency Injection
-
-Use [Dependency Injection](xref:fundamentals/dependency-injection) to make data available to all users:
-
-* Define a service containing the data. For example, a class named `MyAppData` is defined:
-
-    ```csharp
-    public class MyAppData
-    {
-        // Declare properties and methods
-    }
-    ```
-
-* Add the service class to `Startup.ConfigureServices`:
-
-    ```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddSingleton<MyAppData>();
-    }
-    ```
-
-* Consume the data service class:
-
-    ```csharp
-    public class IndexModel : PageModel
-    {
-        public IndexModel(MyAppData myService)
-        {
-            // Do something with the service
-            //    Examples: Read data, store in a field or property
-        }
-    }
-    ```
--->
-
 ## Common errors
 
 * "Unable to resolve service for type 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'."
 
-  This is usually caused by failing to configure at least one `IDistributedCache` implementation. For more information, see <xref:performance/caching/distributed> and <xref:performance/caching/memory>.
+  This is typically caused by failing to configure at least one `IDistributedCache` implementation. For more information, see <xref:performance/caching/distributed> and <xref:performance/caching/memory>.
 
 If the session middleware fails to persist a session:
 
