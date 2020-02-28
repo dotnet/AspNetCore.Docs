@@ -218,7 +218,7 @@ This operation is functionally the same as a `move` operation without the final 
 The following sample patch document:
 
 * Copies the value of `Orders[0].OrderName` to `CustomerName`.
-* Inserts a copy of `Orders[0]` before `Orders[1]`.
+* Inserts a copy of `Orders[1]` before `Orders[0]`.
 
 [!code-json[](jsonpatch/samples/2.2/JSON/copy.json)]
 
