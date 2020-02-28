@@ -30,7 +30,7 @@ Two-factor authentication (2FA) is like a subset of MFA, but the difference bein
 
 ### MFA TOTP (Time-based One-time Password Algorithm)
 
-MFA using TOTP is a supported implementation using ASP.NET Core Identity. This can be used together with the following apps:
+MFA using TOTP is a supported implementation using ASP.NET Core Identity. This can be used together with any compliant authenticator application, including:
 
 * Microsoft Authenticator App
 * Google Authenticator App
