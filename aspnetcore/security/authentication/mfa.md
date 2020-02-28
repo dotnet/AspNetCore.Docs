@@ -58,6 +58,8 @@ MFA with SMS increases security massively compared with password authentication 
 
 MFA could be forced on users to access sensitive pages within an ASP.NET Core Identity app. This could be useful for apps where different levels of access exist for the different identities. For example, users might be able to view the profile data using a password login, but an administrator would be required to use MFA to access the administrative pages.
 
+[NIST guidelines](https://pages.nist.gov/800-63-3/sp800-63b.html)
+
 ### Extend the login with an MFA claim
 
 The demo code is setup using ASP.NET Core with Identity and Razor Pages. The `AddIdentity` method is used instead of `AddDefaultIdentity` one, so an `IUserClaimsPrincipalFactory` implementation can be used to add claims to the identity after a successful login.
