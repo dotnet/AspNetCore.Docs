@@ -50,10 +50,6 @@ At present, ASP.NET Core doesn't support FIDO2 directly. FIDO2 can be used for M
 
 Azure Active Directory provides support for FIDO2 and passwordless flows. For more information, see [Passwordless authentication options for Azure Active Directory](/azure/active-directory/authentication/concept-authentication-passwordless).
 
-You can implement ASP.NET Core with FIDO2 by using the following OSS FIDO2 implementation:
-
-[FIDO2 .NET library for FIDO2 / WebAuthn Attestation and Assertion using .NET](https://github.com/abergs/fido2-net-lib)
-
 ### MFA SMS
 
 MFA with SMS increases security massively compared with password authentication (Single factor). However, using SMS as a second factor is no longer recommended. Too many known attack vectors exist for this type of implementation.
