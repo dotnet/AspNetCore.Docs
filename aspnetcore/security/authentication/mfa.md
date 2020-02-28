@@ -24,7 +24,7 @@ This article covers the following:
 
 ## MFA, 2FA
 
-MFA requires at least two or more types of proof for an identity like something you know, possess, or inherit for the user to authenticate.
+MFA requires at least two or more types of proof for an identity like something you know, something you possess, or biometric validation for the user to authenticate.
 
 Two-factor authentication (2FA) is like a subset of MFA, but the difference being that MFA can require two or more factors to prove the identity.
 
