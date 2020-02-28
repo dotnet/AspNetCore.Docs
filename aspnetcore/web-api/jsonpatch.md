@@ -207,7 +207,7 @@ The following sample patch document:
 
 * Copies the value of `Orders[0].OrderName` to `CustomerName`.
 * Sets `Orders[0].OrderName` to null.
-* Moves `Orders[1]` to before `Orders[0]`.
+* Moves `Orders[0]` to before `Orders[1]`.
 
 [!code-json[](jsonpatch/samples/2.2/JSON/move.json)]
 
