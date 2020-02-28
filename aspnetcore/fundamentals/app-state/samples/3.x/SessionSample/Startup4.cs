@@ -21,7 +21,6 @@ namespace SessionSample
                 logger.LogInformation($"Before setting: Verified: {context.Items["isVerified"]}");
                 context.Items["isVerified"] = true;
                 await next.Invoke();
-
             });
 
             app.Use(async (context, next) =>

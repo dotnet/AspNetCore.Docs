@@ -27,9 +27,9 @@ namespace SessionSample.Middleware
     public static class HttpContextItemsMiddlewareExtensions
     {
         public static IApplicationBuilder 
-            UseHttpContextItemsMiddleware(this IApplicationBuilder builder)
+            UseHttpContextItemsMiddleware(this IApplicationBuilder app)
         {
-            return builder.UseMiddleware<HttpContextItemsMiddleware>();
+            return app.UseMiddleware<HttpContextItemsMiddleware>();
         }
     }
     #endregion
