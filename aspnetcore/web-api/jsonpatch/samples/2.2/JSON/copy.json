@@ -6,7 +6,7 @@
   },
   {
     "op": "copy",
-    "from": "/orders/0",
-    "path": "/orders/1"
+    "from": "/orders/1",
+    "path": "/orders/0"
   }
 ]
