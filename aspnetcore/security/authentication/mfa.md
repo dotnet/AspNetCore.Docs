@@ -41,7 +41,7 @@ See the following link for implementation details:
 
 ### MFA FIDO2 or passwordless
 
-FIDO2 is:
+FIDO2 is currently:
 
 * The most secure way of achieving MFA.
 * The only MFA flow that protects against phishing attacks.
@@ -403,7 +403,7 @@ namespace AspNetCoreRequireMfaOidc
 }
 ```
 
-An `AuthorizationHandler` is implemented that will use the `amr` claim and check for the value `mfa`. The `amr` is returned in the id_token of a successful authentication and can have many different values as defined in the following specification:
+An `AuthorizationHandler` is implemented that will use the `amr` claim and check for the value `mfa`. The `amr` is returned in the `id_token` of a successful authentication and can have many different values as defined in the following specification:
 
 [Authentication Method Reference Values](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08) 
 
@@ -519,7 +519,7 @@ namespace AspNetCoreRequireMfaOidc.Pages
 }
 ```
 
-If the user authenticates without MFA, the `amr` claim will probably have a `pwd` value. The request won't be authorized to access the page. Using the default values, the user will be redirected to the account/AccessDenied page. This can be changed or you can implement your own custom logic here. In this example, a link is added so that the valid user can set up MFA for his or her account.
+If the user authenticates without MFA, the `amr` claim will probably have a `pwd` value. The request won't be authorized to access the page. Using the default values, the user will be redirected to the *account/AccessDenied* page. This can be changed or you can implement your own custom logic here. In this example, a link is added so that the valid user can set up MFA for his or her account.
 
 ```cshtml
 @page
