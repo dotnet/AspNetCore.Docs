@@ -16,31 +16,36 @@ By [Luke Latham](https://github.com/guardrex)
 
 App configuration in ASP.NET Core is based on key-value pairs established by [configuration providers](#cp). Configuration providers read configuration data into key-value pairs from a variety of configuration sources:
 
+* Settings files such as *application.json*.
+* Environment variables
 * Azure Key Vault
 * Azure App Configuration
 * Command-line arguments
 * Custom providers, installed or created
 * Directory files
-* Environment variables
 * In-memory .NET objects
-* Settings files
 
-Configuration packages for common configuration provider scenarios are included implicitly by the framework. For example, [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) for in-memory collections.
+<!-- 
+Common configuration providers are included implicitly by the framework. For example, [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) for in-memory collections.
+
 
 Code examples that follow use the <xref:Microsoft.Extensions.Configuration> namespace:
 
 ```csharp
 using Microsoft.Extensions.Configuration;
 ```
-
-The *options pattern* is used in this topic. Options use classes to represent groups of related settings. For more information, see <xref:fundamentals/configuration/options>.
+-->
+<!-- introduce later -->
+The [options pattern](xref:fundamentals/configuration/options) is used in this topic. Options use classes to represent groups of related settings.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
+<!-- introduce later -->
 ## Host versus app configuration
 
 Before the app is configured and started, a *host* is configured and launched. The host is responsible for app startup and lifetime management. Both the app and the host are configured using the configuration providers described in this topic. Host configuration key-value pairs are also included in the app's configuration. For more information on how the configuration providers are used when the host is built and how configuration sources affect host configuration, see <xref:fundamentals/index#host>.
 
+<!-- introduce later -->
 ## Other configuration
 
 This topic only pertains to *app configuration*. Other aspects of running and hosting ASP.NET Core apps are configured using configuration files not covered in this topic:

@@ -18,11 +18,13 @@ namespace ConfigSample
             var myKeyValue = Configuration["MyKey"];
             var title = Configuration["Position:Title"];
             var name = Configuration["Position:Name"];
+            var defaultLogLevel = Configuration["Logging:LogLevel:Default"];
 
 
-            return Content($"MyKey value: {myKeyValue}" +
-                           $" Title: {title}" +
-                           $" Name: {name}");
+            return Content($"MyKey value: {myKeyValue} \n" +
+                           $"Title: {title} \n" +
+                           $"Name: {name} \n" +
+                           $"Default Log Level: {defaultLogLevel}");
         }
     }
 }
