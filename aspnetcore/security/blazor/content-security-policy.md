@@ -41,7 +41,7 @@ Minimally, specify the following directives and sources for Blazor apps. Add add
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap scripts.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * In a Blazor WebAssembly app:
-    * Specify the following hashes to permit inline scripts to load:
+    * Specify the following hashes to permit the required Blazor WebAssembly inline scripts to load:
       * `sha256-v8ZC9OgMhcnEQ/Me77/R9TlJfzOBqrMTW8e1KuqLaqc=`
       * `sha256-If//FtbPc03afjLezvWHnC3Nbu4fDM04IIzkPaf3pH0=`
       * `sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=`
