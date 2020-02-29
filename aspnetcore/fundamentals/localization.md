@@ -272,7 +272,7 @@ The [Accept-Language header](https://www.w3.org/International/questions/qa-accep
 
 6. Tap the language, then tap **Move Up**.
 
-::: moniker range=">= aspnetcore-3.1"
+::: moniker range="> aspnetcore-3.1"
 ### The Content-Language HTTP header
 
 The [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) entity header:
