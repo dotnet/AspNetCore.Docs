@@ -15,6 +15,9 @@
           "(?i).*master\/aspnetcore\/blazor.*": {
             "labels-add": "Blazor"
           },
+          "(?i).*master\/aspnetcore\/mvc\/views\/tag-helpers\/built-in\/component.md": {
+            "labels-add": "Blazor"
+          },
           "(?i).*master\/aspnetcore\/host-and-deploy\/blazor.*": {
             "labels-add": "Blazor"
           },
