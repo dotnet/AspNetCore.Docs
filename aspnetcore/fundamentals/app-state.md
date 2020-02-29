@@ -8,7 +8,7 @@ ms.date: 11/12/2019
 no-loc: [SignalR]
 uid: fundamentals/app-state
 ---
-# Session in ASP.NET Core
+# Session and state management in ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -31,7 +31,6 @@ State can be stored using several approaches. Each approach is described later i
 | [Hidden fields](#hidden-fields) | HTTP form fields |
 | [HttpContext.Items](#httpcontextitems) | Server-side app code |
 | [Cache](#cache) | Server-side app code |
-| [Dependency Injection](#dependency-injection) | Server-side app code |
 
 ## Cookies
 
