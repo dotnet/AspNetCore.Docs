@@ -25,6 +25,14 @@ App configuration in ASP.NET Core is based on key-value pairs established by [co
 * Directory files
 * In-memory .NET objects
 
+## Default configuration
+
+Web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or the Visual Studio templates include <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>. `CreateDefaultBuilder` reads app configuration in the following order:
+
+* *appsettings.json* and *appsettings.{Environment}.json* using the [File Configuration Provider](#file-configuration-provider).
+* [Secret Manager](xref:security/app-secrets) when the app runs in the `Development` environment.
+* Environment variables using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
+* Command-line arguments using the [Command-line Configuration Provider](#command-line-configuration-provider).
 <!-- 
 Common configuration providers are included implicitly by the framework. For example, [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) for in-memory collections.
 
@@ -35,10 +43,68 @@ Code examples that follow use the <xref:Microsoft.Extensions.Configuration> name
 using Microsoft.Extensions.Configuration;
 ```
 -->
-<!-- introduce later -->
+<!-- introduce later 
 The [options pattern](xref:fundamentals/configuration/options) is used in this topic. Options use classes to represent groups of related settings.
+-->
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
+
+### appsettings.json and the JSON Configuration Provider
+
+The <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration from JSON file key-value pairs during runtime.
+
+To activate JSON file configuration, call the <xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
+
+Overloads permit specifying:
+
+* Whether the file is optional.
+* Whether the configuration is reloaded if the file changes.
+* The <xref:Microsoft.Extensions.FileProviders.IFileProvider> used to access the file.
+
+`AddJsonFile` is automatically called twice when a new host builder is initialized with `CreateDefaultBuilder`. The method is called to load configuration from:
+
+* *appsettings.json* &ndash; This file is read first. The environment version of the file can override the values provided by the *appsettings.json* file.
+* *appsettings.{Environment}.json* &ndash; The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
+
+For more information, see the [Default configuration](#default-configuration) section.
+
+`CreateDefaultBuilder` also loads:
+
+* Environment variables.
+* [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
+* Command-line arguments.
+
+The JSON Configuration Provider is established first. Therefore, user secrets, environment variables, and command-line arguments override configuration set by the *appsettings* files.
+
+Call `ConfigureAppConfiguration` when building the host to specify the app's configuration for files other than *appsettings.json* and *appsettings.{Environment}.json*:
+
+```csharp
+.ConfigureAppConfiguration((hostingContext, config) =>
+{
+    config.AddJsonFile(
+        "config.json", optional: true, reloadOnChange: true);
+})
+```
+
+**Example**
+
+The sample app takes advantage of the static convenience method `CreateDefaultBuilder` to build the host, which includes two calls to `AddJsonFile`:
+
+* The first call to `AddJsonFile` loads configuration from *appsettings.json*:
+
+  [!code-json[](index/samples/3.x/ConfigurationSample/appsettings.json)]
+
+* The second call to `AddJsonFile` loads configuration from *appsettings.{Environment}.json*. For *appsettings.Development.json* in the sample app, the following file is loaded:
+
+  [!code-json[](index/samples/3.x/ConfigurationSample/appsettings.Development.json)]
+
+1. Run the sample app. Open a browser to the app at `http://localhost:5000`.
+1. The output contains key-value pairs for the configuration based on the app's environment. The log level for the key `Logging:LogLevel:Default` is `Debug` when running the app in the Development environment.
+1. Run the sample app again in the Production environment:
+   1. Open the *Properties/launchSettings.json* file.
+   1. In the `ConfigurationSample` profile, change the value of the `ASPNETCORE_ENVIRONMENT` environment variable to `Production`.
+   1. Save the file and run the app with `dotnet run` in a command shell.
+1. The settings in the *appsettings.Development.json* no longer override the settings in *appsettings.json*. The log level for the key `Logging:LogLevel:Default` is `Information`.
 
 <!-- introduce later -->
 ## Host versus app configuration
@@ -91,7 +157,7 @@ Adopt the following practices to secure sensitive configuration data:
 For more information, see the following topics:
 
 * <xref:fundamentals/environments>
-* <xref:security/app-secrets> &ndash; Includes advice on using environment variables to store sensitive data. The Secret Manager uses the File Configuration Provider to store user secrets in a JSON file on the local system. The File Configuration Provider is described later in this topic.
+* <xref:security/app-secrets>:  Includes advice on using environment variables to store sensitive data. The Secret Manager uses the File Configuration Provider to store user secrets in a JSON file on the local system. The File Configuration Provider is described later in this topic.
 
 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) safely stores app secrets for ASP.NET Core apps. For more information, see <xref:security/key-vault-configuration>.
 
@@ -532,63 +598,6 @@ The previous configuration file loads the following keys with `value`:
 * section1:subsection:key
 * section2:subsection0:key
 * section2:subsection1:key
-
-### JSON Configuration Provider
-
-The <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration from JSON file key-value pairs during runtime.
-
-To activate JSON file configuration, call the <xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
-
-Overloads permit specifying:
-
-* Whether the file is optional.
-* Whether the configuration is reloaded if the file changes.
-* The <xref:Microsoft.Extensions.FileProviders.IFileProvider> used to access the file.
-
-`AddJsonFile` is automatically called twice when a new host builder is initialized with `CreateDefaultBuilder`. The method is called to load configuration from:
-
-* *appsettings.json* &ndash; This file is read first. The environment version of the file can override the values provided by the *appsettings.json* file.
-* *appsettings.{Environment}.json* &ndash; The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
-
-For more information, see the [Default configuration](#default-configuration) section.
-
-`CreateDefaultBuilder` also loads:
-
-* Environment variables.
-* [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
-* Command-line arguments.
-
-The JSON Configuration Provider is established first. Therefore, user secrets, environment variables, and command-line arguments override configuration set by the *appsettings* files.
-
-Call `ConfigureAppConfiguration` when building the host to specify the app's configuration for files other than *appsettings.json* and *appsettings.{Environment}.json*:
-
-```csharp
-.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.AddJsonFile(
-        "config.json", optional: true, reloadOnChange: true);
-})
-```
-
-**Example**
-
-The sample app takes advantage of the static convenience method `CreateDefaultBuilder` to build the host, which includes two calls to `AddJsonFile`:
-
-* The first call to `AddJsonFile` loads configuration from *appsettings.json*:
-
-  [!code-json[](index/samples/3.x/ConfigurationSample/appsettings.json)]
-
-* The second call to `AddJsonFile` loads configuration from *appsettings.{Environment}.json*. For *appsettings.Development.json* in the sample app, the following file is loaded:
-
-  [!code-json[](index/samples/3.x/ConfigurationSample/appsettings.Development.json)]
-
-1. Run the sample app. Open a browser to the app at `http://localhost:5000`.
-1. The output contains key-value pairs for the configuration based on the app's environment. The log level for the key `Logging:LogLevel:Default` is `Debug` when running the app in the Development environment.
-1. Run the sample app again in the Production environment:
-   1. Open the *Properties/launchSettings.json* file.
-   1. In the `ConfigurationSample` profile, change the value of the `ASPNETCORE_ENVIRONMENT` environment variable to `Production`.
-   1. Save the file and run the app with `dotnet run` in a command shell.
-1. The settings in the *appsettings.Development.json* no longer override the settings in *appsettings.json*. The log level for the key `Logging:LogLevel:Default` is `Information`.
 
 ### XML Configuration Provider
 
