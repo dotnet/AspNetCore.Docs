@@ -36,7 +36,6 @@
           "(?i).*master\/aspnetcore\/tutorials\/grpc*.*": {
             "labels-add": "gRPC"
           },
-          
           "(?i).*master\/aspnetcore\/tutorials\/signalr*.*": {
             "labels-add": "SignalR"
           }
