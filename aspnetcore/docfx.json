@@ -84,7 +84,8 @@
         "signalr/**/**.md": "aspnetcore-signalr",
         "test/**/**.md": "aspnetcore-test",
         "tutorials/**/**.md": "aspnetcore-tutorials",
-        "web-api/**/**.md": "aspnetcore-webapi"
+        "web-api/**/**.md": "aspnetcore-webapi",
+        "whats-new/**/**.md": "aspnetcore-whatsnew"
       },
       "ms.topic": {
         "getting-started/**/**.md": "tutorial",
