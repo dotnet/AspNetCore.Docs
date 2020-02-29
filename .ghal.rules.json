@@ -24,7 +24,7 @@
           "(?i).*master\/aspnetcore\/mvc\/views\/tag-helpers\/built-in\/component.md": {
             "labels-add": "Blazor"
           },
-          "(?i).*master\/aspnetcore\/security\/*blazor*.*": {
+          "(?i).*master\/aspnetcore\/security\/blazor.*": {
             "labels-add": "Blazor"
           },
           "(?i).*master\/aspnetcore\/signalr.*": {
