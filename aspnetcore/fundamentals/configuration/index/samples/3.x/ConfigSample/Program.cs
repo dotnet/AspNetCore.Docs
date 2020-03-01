@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 #if MAIN
 namespace ConfigSample
 {
+    #region snippet
     public class Program
     {
         public static void Main(string[] args)
@@ -19,5 +20,6 @@ namespace ConfigSample
                     webBuilder.UseStartup<Startup>();
                 });
     }
+    #endregion
 }
 #endif

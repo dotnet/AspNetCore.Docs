@@ -25,17 +25,26 @@ App configuration in ASP.NET Core is based on key-value pairs established by [co
 * Directory files
 * In-memory .NET objects
 
+<a name="default"></a>
+
 ## Default configuration
 
-Web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or the Visual Studio templates include <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>. `CreateDefaultBuilder` reads app configuration in the following order:
+Web apps based created with [dotnet new](/dotnet/core/tools/dotnet-new) or the Visual Studio templates create the following code in *Program.cs*:
 
-* *appsettings.json* and *appsettings.{Environment}.json* using the [File Configuration Provider](#file-configuration-provider).
+[!code-csharp[](index/samples/3.x/ConfigSample/Program.cs?name=snippet&highlight=9)]
+
+ <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> provides default configuration for the app in the following order:
+
+* *appsettings.json* using the [File Configuration Provider](#file-configuration-provider).
+* *appsettings.{Environment}.json* using the [File Configuration Provider](#file-configuration-provider).
 * [Secret Manager](xref:security/app-secrets) when the app runs in the `Development` environment.
 * Environment variables using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
 * Command-line arguments using the [Command-line Configuration Provider](#command-line-configuration-provider).
+
+Configuration providers that run later override previous key settings. For example, if `MyKey` is set in *appsettings.json* and in the environment, the key and value set in the environment is used. Using the default configuration providers, the  [Command-line Configuration Provider](#command-line-configuration-provider) overrides all the other providers.
+
 <!-- 
 Common configuration providers are included implicitly by the framework. For example, [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) for in-memory collections.
-
 
 Code examples that follow use the <xref:Microsoft.Extensions.Configuration> namespace:
 
@@ -49,7 +58,17 @@ The [options pattern](xref:fundamentals/configuration/options) is used in this t
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
-### appsettings.json and the JSON Configuration Provider
+### appsettings.json
+
+Consider the following *appsettings.json* file:
+
+[!code-json[](index/samples/3.x/ConfigSample/appsettings.json)]
+
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the configurations settings:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs)]
+
+
 
 The <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration from JSON file key-value pairs during runtime.
 
