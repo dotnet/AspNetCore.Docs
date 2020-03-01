@@ -31,17 +31,14 @@ namespace TodoApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItemDTO>> GetTodoItem(long id)
         {
-            var todoItemDTO = await _context.TodoItems
-                .Where(x => x.Id == id)
-                .Select(x => ItemToDTO(x))
-                .SingleAsync();
+            var todoItem = await _context.TodoItems.FindAsync(id);
 
-            if (todoItemDTO == null)
+            if (todoItem == null)
             {
                 return NotFound();
             }
 
-            return todoItemDTO;
+            return ItemToDTO(todoItem);
         }
 
         [HttpPut("{id}")]
