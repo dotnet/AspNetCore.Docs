@@ -209,7 +209,7 @@ This policy can then be used in the `_Layout` view to show or hide the **Admin**
 @inject IAuthorizationService AuthorizationService
 ```
 
-If the identity has logged in using MFA, the **Admin** menu is displayed without the warning. If the user has logged in without MFA, an icon is displayed along with the tooltip that informs the user (explaining the warning).
+If the identity has logged in using MFA, the **Admin** menu is displayed without the tooltip warning. If the user has logged in without MFA, an icon is displayed along with the tooltip that informs the user (explaining the warning).
 
 ```cshtml
 @if (SignInManager.IsSignedIn(User))
@@ -228,8 +228,7 @@ If the identity has logged in using MFA, the **Admin** menu is displayed without
 			   data-toggle="tooltip" 
 			   data-placement="bottom" 
 			   title="MFA is NOT enabled. This is required for the Admin Page. If you have activated MFA, then logout, login again.">
-				<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-				Admin
+				Admin (Not Enabled)
 			</a>
 		</li>
 	}
