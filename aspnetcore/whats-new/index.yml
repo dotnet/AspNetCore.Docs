@@ -7,13 +7,15 @@ metadata:
   title: ASP.NET Core documentation - What's new?
   description: "Learn about new and updated content in ASP.NET Core docs."
   ms.topic: landing-page
-  ms.date: 01/17/2020
+  ms.date: 03/02/2020
 
 landingContent:
   - title: "Find ASP.NET Core docs updates"
     linkLists:
       - linkListType: whats-new
         links:
+          - text: February 2020
+            url: 2020-02.md
           - text: January 2020
             url: 2020-01.md
           - text: December 2019
