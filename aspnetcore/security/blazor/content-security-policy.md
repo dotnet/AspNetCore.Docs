@@ -1,11 +1,11 @@
 ---
 title: Enforce a Content Security Policy for ASP.NET Core Blazor
 author: guardrex
-description: Learn how to use a Content Security Policy (CSP) in ASP.NET Core Blazor apps to help protect against Cross-Site Scripting (XSS) attacks.
+description: Learn how to use a Content Security Policy (CSP) with ASP.NET Core Blazor apps to help protect against Cross-Site Scripting (XSS) attacks.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/28/2020
+ms.date: 03/02/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/content-security-policy
 ---
@@ -15,24 +15,25 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-[Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) is a security vulnerability where an attacker places malicious client-side scripts into rendered content. A Content Security Policy (CSP) helps protect against XSS attacks by informing the browser of valid:
+[Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) is a security vulnerability where an attacker places one or more malicious client-side scripts into an app's rendered content. A Content Security Policy (CSP) helps protect against XSS attacks by informing the browser of valid:
 
 * Sources for loaded content, including scripts, stylesheets, and images.
-* Actions taken by a page, including URL targets for form submissions.
+* Actions taken by a page, specifying permitted URL targets of forms.
+* Plugins that can be loaded.
 
-To use CSP, the developer specifies several CSP *directives* to browsers in one or more `Content-Security-Policy` headers or `<meta>` tags.
+To apply a CSP to an app, the developer specifies several CSP content security *directives* in one or more `Content-Security-Policy` headers or `<meta>` tags.
 
-Policies are evaluated while a document is loading. The browser inspects candidate sources and determines if the sources meet the requirements of the document's policies. When policy directives aren't met for a source, the browser blocks loading the resource. For example, consider a document with a policy that doesn't allow third-party scripts. When a document contains a script with a third-party origin in the `src` attribute of a `<script>` tag, the browser prevents the script from loading.
+Policies are evaluated by the browser while a page is loading. The browser inspects the page's sources and determines if they meet the requirements of the content security directives. When policy directives aren't met for a resource, the browser doesn't load the resource. For example, consider a policy that doesn't allow third-party scripts. When a page contains a `<script>` tag with a third-party origin in the `src` attribute, the browser prevents the script from loading.
 
-CSP is supported in most modern desktop and mobile browsers, including Chrome, Edge, Firefox, Opera, and Safari. CSP is recommended for Blazor apps to help protect apps from XSS and leaking circuit IDs in Blazor Server apps. [Subresource Integrity (SRI)](https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity) works in conjunction with CSPs.
+CSP is supported in most modern desktop and mobile browsers, including Chrome, Edge, Firefox, Opera, and Safari. CSP is recommended for Blazor apps.
 
 ## Policy directives
 
 Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the [Apply the policy](#apply-the-policy) section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
 
-* [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri) &ndash; Restricts the URLs for a document's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
+* [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri) &ndash; Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
 * [block-all-mixed-content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content) &ndash; Prevents loading mixed HTTP and HTTPS content.
-* [default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src) &ndash; Indicates a fallback for CSP directives. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
+* [default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src) &ndash; Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
 * [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src) &ndash; Indicates valid sources for images.
   * Specify `data:` to permit loading images from `data:` URLs.
   * Specify `https:` to permit loading images from HTTPS endpoints.
@@ -55,6 +56,12 @@ Minimally, specify the following directives and sources for Blazor apps. Add add
 
 The preceding directives are supported by all browsers except Microsoft Internet Explorer.
 
+To obtain SHA hashes for additional inline scripts:
+
+* Apply the CSP shown in the [Apply the policy](#apply-the-policy) section.
+* Access the browser's developer tools console while running the app locally. The browser calculates and displays hashes for blocked scripts when a CSP header or `meta` tag is present.
+* Copy the hashes provided by the browser to the `script-src` sources. Use single quotes around each hash.
+
 For a Content Security Policy Level 2 browser support matrix, see [Can I use: Content Security Policy Level 2](https://www.caniuse.com/#feat=contentsecuritypolicy2).
 
 ## Apply the policy
@@ -65,18 +72,7 @@ Use a `<meta>` tag to apply the policy:
 * Place the directives in the `content` attribute value. Separate directives with a semicolon (`;`).
 * Always place the `meta` tag in the `<head>` content.
 
-To test a policy over a period of a few days or weeks without enforcing the policy directives, set the `http-equiv` attribute (or header name) to `Content-Security-Policy-Report-Only`. Failure reports are sent as JSON documents to a specified URL. Testing helps confirm that third-party scripts aren't inadvertently blocked when building an initial policy. For more information, see [MDN web docs: Content-Security-Policy-Report-Only](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only).
-
-For reporting on violations while a policy is active, see the following articles:
-
-* [report-to](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/report-to)
-* [report-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/report-uri)
-
-Although `report-uri` is no longer recommended for use, both directives should be used until `report-to` is supported by all of the major browsers. Don't exclusively use `report-uri` because support for the directive in any given browser version could be dropped *at any time*. Remove support for `report-uri` in your apps when `report-to` is fully supported. To track adoption of `report-to`, see [Can I use: report-to](https://caniuse.com/#feat=mdn-http_headers_csp_content-security-policy_report-to).
-
-For information on integrating [Subresource Integrity (SRI)](https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity) with CSPs, see [MDN web docs: require-sri-for](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/require-sri-for).
-
-Test and update an app's policy every release. The following sections show example policies for Blazor WebAssembly and Blazor Server. These examples are versioned with this article for each release of Blazor. To use a version appropriate for your release, select the document version with the **Version** drop down selector on this webpage.
+The following sections show example policies for Blazor WebAssembly and Blazor Server. These examples are versioned with this article for each release of Blazor. To use a version appropriate for your release, select the document version with the **Version** drop down selector on this webpage.
 
 ### Blazor WebAssembly
 
@@ -105,7 +101,7 @@ In the `<head>` content of the *wwwroot/index.html* host page, apply the directi
 
 In the `<head>` content of the *Pages/_Host.cshtml* host page, apply the directives described in the [Policy directives](#policy-directives) section:
 
-```html
+```cshtml
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
                block-all-mixed-content;
@@ -131,6 +127,21 @@ A `<meta>` tag policy doesn't support the following directives:
 * [sandbox](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/sandbox)
 
 To support the preceding directives, use a header named `Content-Security-Policy`. The directive string is the header's value.
+
+## Test a policy and violation reports
+
+Testing helps confirm that third-party scripts aren't inadvertently blocked when building an initial policy.
+
+To test a policy over a period of time without enforcing the policy directives, set the `<meta>` tag's `http-equiv` attribute or header name of a header-based policy to `Content-Security-Policy-Report-Only`. Failure reports are sent as JSON documents to a specified URL. For more information, see [MDN web docs: Content-Security-Policy-Report-Only](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only).
+
+For reporting on violations while a policy is active, see the following articles:
+
+* [report-to](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/report-to)
+* [report-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/report-uri)
+
+Although `report-uri` is no longer recommended for use, both directives should be used until `report-to` is supported by all of the major browsers. Don't exclusively use `report-uri` because support for `report-uri` is subject to being dropped *at any time* from browsers. Remove support for `report-uri` in your policies when `report-to` is fully supported. To track adoption of `report-to`, see [Can I use: report-to](https://caniuse.com/#feat=mdn-http_headers_csp_content-security-policy_report-to).
+
+Test and update an app's policy every release.
 
 ## Troubleshoot
 
