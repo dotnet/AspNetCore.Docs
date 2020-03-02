@@ -15,9 +15,6 @@
           "(?i).*master\/aspnetcore\/blazor.*": {
             "labels-add": "Blazor"
           },
-          "(?i).*master\/aspnetcore\/grpc.*": {
-            "labels-add": "gRPC"
-          },
           "(?i).*master\/aspnetcore\/host-and-deploy\/blazor.*": {
             "labels-add": "Blazor"
           },
@@ -27,14 +24,17 @@
           "(?i).*master\/aspnetcore\/security\/blazor.*": {
             "labels-add": "Blazor"
           },
-          "(?i).*master\/aspnetcore\/signalr.*": {
-            "labels-add": "SignalR"
-          },
           "(?i).*master\/aspnetcore\/tutorials\/*blazor*.*": {
             "labels-add": "Blazor"
           },
+          "(?i).*master\/aspnetcore\/grpc.*": {
+            "labels-add": "gRPC"
+          },
           "(?i).*master\/aspnetcore\/tutorials\/grpc*.*": {
             "labels-add": "gRPC"
+          },
+          "(?i).*master\/aspnetcore\/signalr.*": {
+            "labels-add": "SignalR"
           },
           "(?i).*master\/aspnetcore\/tutorials\/signalr*.*": {
             "labels-add": "SignalR"
