@@ -128,7 +128,7 @@ A `<meta>` tag policy doesn't support the following directives:
 
 To support the preceding directives, use a header named `Content-Security-Policy`. The directive string is the header's value.
 
-## Test a policy and violation reports
+## Test a policy and receive violation reports
 
 Testing helps confirm that third-party scripts aren't inadvertently blocked when building an initial policy.
 
@@ -145,7 +145,7 @@ Test and update an app's policy every release.
 
 ## Troubleshoot
 
-* Errors appear in the browser's developer tools console. Chrome and Firefox provide information about:
+* Errors appear in the browser's developer tools console. Browsers provide information about:
   * Elements that don't comply with the policy.
   * How to modify the policy to allow for a blocked item.
 * A policy is only completely effective when the client's browser supports all of the included directives. For a current browser support matrix, see [Can I use: Content-Security-Policy](https://caniuse.com/#search=Content-Security-Policy).
