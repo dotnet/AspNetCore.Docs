@@ -106,7 +106,7 @@ For SignalR WebSockets to function properly, set the proxy's `Upgrade` and `Conn
 
 ```
 proxy_set_header Upgrade $http_upgrade;
-proxy_set_header Connection $connection_upgrade;
+proxy_set_header Connection "Upgrade";
 ```
 
 For more information, see [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/).
