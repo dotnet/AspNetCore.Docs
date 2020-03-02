@@ -16,11 +16,13 @@ namespace ConfigSample
 
         public IConfiguration Configuration { get; }
 
+        #region
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<PositionOptions>(Configuration.GetSection("Position"));
             services.AddRazorPages();
         }
+        #endregion
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

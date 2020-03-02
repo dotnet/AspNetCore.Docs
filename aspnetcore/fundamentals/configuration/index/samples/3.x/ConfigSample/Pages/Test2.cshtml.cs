@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 
 namespace ConfigSample.Pages
 {
+    #region snippet
     public class Test2Model : PageModel
     {
         private readonly PositionOptions _options;
@@ -20,4 +21,5 @@ namespace ConfigSample.Pages
                            $"Name: {_options.Name}");
         }
     }
+    #endregion
 }

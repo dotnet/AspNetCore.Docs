@@ -4,8 +4,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace ConfigSample
 {
+    #region snippet
     public class TestModel : PageModel
     {
+        // requires using Microsoft.Extensions.Configuration;
         private readonly IConfiguration Configuration;
 
         public TestModel(IConfiguration configuration)
@@ -27,4 +29,5 @@ namespace ConfigSample
                            $"Default Log Level: {defaultLogLevel}");
         }
     }
+    #endregion
 }
