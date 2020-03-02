@@ -209,7 +209,7 @@ This policy can then be used in the `_Layout` view to show or hide the **Admin**
 @inject IAuthorizationService AuthorizationService
 ```
 
-If the identity has logged in using MFA, the **Admin** menu is displayed without the tooltip warning. If the user has logged in without MFA, an icon is displayed along with the tooltip that informs the user (explaining the warning).
+If the identity has logged in using MFA, the **Admin** menu is displayed without the tooltip warning. If the user has logged in without MFA, the **Admin (Not Enabled)** menu is displayed along with the tooltip that informs the user (explaining the warning).
 
 ```cshtml
 @if (SignInManager.IsSignedIn(User))
