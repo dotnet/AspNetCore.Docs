@@ -71,7 +71,7 @@ Use `@bind-{ATTRIBUTE}` with `@bind-{ATTRIBUTE}:event` syntax to bind element at
 }
 ```
 
-### Unparsable values
+## Unparsable values
 
 When a user provides an unparsable value to a databound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
 
@@ -99,7 +99,7 @@ By default, binding applies to the element's `onchange` event (`@bind="{PROPERTY
   * Permit the user to provide invalid input and receive validation errors on the associated `EditContext`.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
-### Format strings
+## Format strings
 
 Data binding works with <xref:System.DateTime> format strings using [`@bind:format`](xref:mvc/views/razor#bind). Other format expressions, such as currency or number formats, aren't available at this time.
 
@@ -127,7 +127,7 @@ Specifying a format for the `date` field type isn't recommended because Blazor h
 <input type="date" @bind="StartDate" @bind:format="yyyy-MM-dd">
 ```
 
-### Parent-to-child binding with component parameters
+## Parent-to-child binding with component parameters
 
 Binding recognizes component parameters, where `@bind-{PROPERTY}` can bind a property value from a parent component down to a child component. Binding from a child to a parent is covered in the [Child-to-parent binding with chained bind](#child-to-parent-binding-with-chained-bind) section.
 
@@ -216,7 +216,7 @@ In general, a property can be bound to a corresponding event handler by includin
 <MyComponent @bind-MyProp="MyValue" @bind-MyProp:event="MyEventHandler" />
 ```
 
-### Child-to-parent binding with chained bind
+## Child-to-parent binding with chained bind
 
 A common scenario is chaining a data-bound parameter to a page element in the component's output. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
 
@@ -347,6 +347,6 @@ Password:
 }
 ```
 
-### Radio buttons
+## Radio buttons
 
 For information on binding to radio buttons in a form, see <xref:blazor/forms-validation#work-with-radio-buttons>.
