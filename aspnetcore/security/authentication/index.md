@@ -90,7 +90,7 @@ A challenge action should let the user know what authentication mechanism to use
 
 ### Forbid
 
-An authentication scheme's forbid action is called by Authorization when an authenticated user attempts to access a resource they are not permitted to access. See [HttpContext.ForbidAsync](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ForbidAsync*). Authentication forbid examples include:
+An authentication scheme's forbid action is called by Authorization when an authenticated user attempts to access a resource they are not permitted to access. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ForbidAsync%2A>. Authentication forbid examples include:
 * A cookie authentication scheme redirecting the user to a page indicating access was forbidden.
 * A JWT bearer scheme returning a 403 result.
 * A custom authentication scheme redirecting to a page where the user can request access to the resource.
