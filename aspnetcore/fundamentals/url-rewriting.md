@@ -1,6 +1,6 @@
 ---
 title: URL Rewriting Middleware in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Learn about URL rewriting and redirecting with URL Rewriting Middleware in ASP.NET Core applications.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -10,7 +10,7 @@ uid: fundamentals/url-rewriting
 ---
 # URL Rewriting Middleware in ASP.NET Core
 
-By [Luke Latham](https://github.com/guardrex) and [Mikael Mengistu](https://github.com/mikaelm12)
+By [Mikael Mengistu](https://github.com/mikaelm12)
 
 ::: moniker range=">= aspnetcore-3.0"
 

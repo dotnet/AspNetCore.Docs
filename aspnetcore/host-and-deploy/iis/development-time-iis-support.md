@@ -1,6 +1,6 @@
 ---
 title: Development-time IIS support in Visual Studio for ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Discover support for debugging ASP.NET Core apps when running with IIS on Windows Server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -10,7 +10,7 @@ uid: host-and-deploy/iis/development-time-iis-support
 ---
 # Development-time IIS support in Visual Studio for ASP.NET Core
 
-By [Sourabh Shirhatti](https://twitter.com/sshirhatti) and [Luke Latham](https://github.com/guardrex)
+By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 ::: moniker range=">= aspnetcore-3.0"
 

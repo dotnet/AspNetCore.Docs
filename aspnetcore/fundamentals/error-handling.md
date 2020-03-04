@@ -10,7 +10,7 @@ uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
 
-By [Tom Dykstra](https://github.com/tdykstra/), [Luke Latham](https://github.com/guardrex), and [Steve Smith](https://ardalis.com/)
+By [Tom Dykstra](https://github.com/tdykstra/) and [Steve Smith](https://ardalis.com/)
 
 This article covers common approaches to handling errors in ASP.NET Core web apps. See <xref:web-api/handle-errors> for web APIs.
 

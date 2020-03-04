@@ -1,6 +1,6 @@
 ---
 title: Upload files in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: How to use model binding and streaming to upload files in ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -10,7 +10,7 @@ uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
 
-By [Luke Latham](https://github.com/guardrex), [Steve Smith](https://ardalis.com/), and [Rutger Storm](https://github.com/rutix)
+By [Steve Smith](https://ardalis.com/) and [Rutger Storm](https://github.com/rutix)
 
 ::: moniker range=">= aspnetcore-3.0"
 

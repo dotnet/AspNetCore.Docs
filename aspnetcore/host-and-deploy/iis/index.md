@@ -1,6 +1,6 @@
 ---
 title: Host ASP.NET Core on Windows with IIS
-author: guardrex
+author: rick-anderson
 description: Learn how to host ASP.NET Core apps on Windows Server Internet Information Services (IIS).
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -9,8 +9,6 @@ ms.date: 02/07/2020
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
-
-By [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 
