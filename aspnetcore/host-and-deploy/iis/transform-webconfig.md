@@ -1,6 +1,6 @@
 ---
 title: Transform web.config
-author: guardrex
+author: rick-anderson
 description: Learn how to transform the web.config file when publishing an ASP.NET Core app.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
@@ -10,7 +10,7 @@ uid: host-and-deploy/iis/transform-webconfig
 ---
 # Transform web.config
 
-By [Vijay Ramakrishnan](https://github.com/vijayrkn) and [Luke Latham](https://github.com/guardrex)
+By [Vijay Ramakrishnan](https://github.com/vijayrkn)
 
 Transformations to the *web.config* file can be applied automatically when an app is published based on:
 

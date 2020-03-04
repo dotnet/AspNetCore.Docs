@@ -1,6 +1,6 @@
 ---
 title: Configure ASP.NET Core to work with proxy servers and load balancers
-author: guardrex
+author: rick-anderson
 description: Learn about configuration for apps hosted behind proxy servers and load balancers, which often obscure important request information.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -10,7 +10,7 @@ uid: host-and-deploy/proxy-load-balancer
 ---
 # Configure ASP.NET Core to work with proxy servers and load balancers
 
-By [Luke Latham](https://github.com/guardrex) and [Chris Ross](https://github.com/Tratcher)
+By [Chris Ross](https://github.com/Tratcher)
 
 ::: moniker range=">= aspnetcore-3.0"
 

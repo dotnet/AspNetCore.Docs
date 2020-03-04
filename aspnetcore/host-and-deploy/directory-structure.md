@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core directory structure
-author: guardrex
+author: rick-anderson
 description: Learn about the directory structure of published ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
@@ -9,8 +9,6 @@ ms.date: 02/07/2020
 uid: host-and-deploy/directory-structure
 ---
 # ASP.NET Core directory structure
-
-By [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 

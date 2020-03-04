@@ -1,6 +1,6 @@
 ---
 title: Razor Pages route and app conventions in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Discover how route and app model provider conventions help you control page routing, discovery, and processing.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -9,8 +9,6 @@ ms.date: 02/07/2020
 uid: razor-pages/razor-pages-conventions
 ---
 # Razor Pages route and app conventions in ASP.NET Core
-
-By [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 

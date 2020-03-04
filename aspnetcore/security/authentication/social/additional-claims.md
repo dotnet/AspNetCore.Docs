@@ -1,6 +1,6 @@
 ---
 title: Persist additional claims and tokens from external providers in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Learn how to establish additional claims and tokens from external providers.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -9,8 +9,6 @@ ms.date: 10/15/2019
 uid: security/authentication/social/additional-claims
 ---
 # Persist additional claims and tokens from external providers in ASP.NET Core
-
-By [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 

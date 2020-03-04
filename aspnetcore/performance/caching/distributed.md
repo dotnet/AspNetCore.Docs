@@ -1,6 +1,6 @@
 ---
 title: Distributed caching in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Learn how to use an ASP.NET Core distributed cache to improve app performance and scalability, especially in a cloud or server farm environment.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -10,7 +10,7 @@ uid: performance/caching/distributed
 ---
 # Distributed caching in ASP.NET Core
 
-By [Luke Latham](https://github.com/guardrex), [Mohsin Nasir](https://github.com/mohsinnasir), and [Steve Smith](https://ardalis.com/)
+By [Mohsin Nasir](https://github.com/mohsinnasir) and [Steve Smith](https://ardalis.com/)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -527,3 +527,4 @@ When SQL Server is used as a distributed cache backing store, use of the same da
 * <xref:host-and-deploy/web-farm>
 
 ::: moniker-end
+ 

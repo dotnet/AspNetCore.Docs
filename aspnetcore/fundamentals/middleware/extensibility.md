@@ -1,6 +1,6 @@
 ---
 title: Factory-based middleware activation in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Learn how to use strongly-typed middleware with a factory-based activation implementation in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -9,8 +9,6 @@ ms.date: 09/22/2019
 uid: fundamentals/middleware/extensibility
 ---
 # Factory-based middleware activation in ASP.NET Core
-
-By [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 
