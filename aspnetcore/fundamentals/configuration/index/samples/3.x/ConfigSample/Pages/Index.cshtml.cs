@@ -1,25 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 
 namespace ConfigSample.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private IConfigurationRoot ConfigRoot;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(IConfiguration configRoot)
         {
-            _logger = logger;
+            ConfigRoot = (IConfigurationRoot)configRoot;
         }
 
         public void OnGet()
         {
+            var x = ConfigRoot.Providers.Select(x => x.GetType().Name);
 
+            string cp = "";
+            foreach (var y in x)
+            {
+                cp += y.ToString() + " ";
+            }
+
+            ViewData["configProviders"] = cp;
         }
     }
 }

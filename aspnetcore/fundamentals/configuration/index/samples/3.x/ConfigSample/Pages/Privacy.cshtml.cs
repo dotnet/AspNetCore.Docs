@@ -1,23 +1,25 @@
 ﻿using ConfigSample.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
 namespace ConfigSample.Pages
 {
     public class PrivacyModel : PageModel
     {
-        private readonly PositionOptions _options;
+        private readonly IConfiguration Config;
 
-        public PrivacyModel(IOptions<PositionOptions> options)
+        public PrivacyModel(IConfiguration configuration)
         {
-            _options = options.Value;
+            Config = configuration;
         }
 
-        public ContentResult OnGet()
+        public void OnGet()
         {
-            return Content($"Title: {_options.Title}" +
-                           $" Name: {_options.Name}");
+            var configProviders = Config.ToString();
+            var x = Config.GetChildren();
+            var z = x;
         }
     }
 }

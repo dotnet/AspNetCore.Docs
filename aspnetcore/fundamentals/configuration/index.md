@@ -99,7 +99,131 @@ In the following code, `PositionOptions` is added to the service container with 
 The following code reads the position options:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test2.cshtml.cs?name=snippet)]
- git s
+
+<a name="security"></a>
+
+## Security and secret manager
+
+To secure sensitive configuration data:
+
+* Never store passwords or other sensitive data in configuration provider code or in plain text configuration files. The [Secret manager](xref:security/app-secrets) can be used to store secrets in development.
+* Don't use production secrets in development or test environments.
+* Specify secrets outside of the project so that they can't be accidentally committed to a source code repository.
+
+For more information, see the following topics:
+
+* <xref:fundamentals/environments>
+* <xref:security/app-secrets>:  Includes advice on using environment variables to store sensitive data. The Secret Manager uses the File Configuration Provider to store user secrets in a JSON file on the local system.
+
+[Azure Key Vault](https://azure.microsoft.com/services/key-vault/) safely stores app secrets for ASP.NET Core apps. For more information, see <xref:security/key-vault-configuration>.
+
+## Environment variables
+
+By default, the <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs after reading *appsettings.json* and [Secret manager](xref:security/app-secrets). Therefore, keys read from the environment override values read from *appsettings.json* and Secret manager.
+
+[!INCLUDE[](~/includes/environmentVarableColon.md)]
+
+The following commands can be used to set the environment keys and values of the [preceding example](#appsettings-json) on Windows:
+
+```cmd
+setx MyKey "My key from Environment"
+setx Position__Title Environment_Editor
+setx Position__Name Environment_Rick
+``
+
+To test that the environment configuration overrides *apsettings*json* values:
+
+* With Visual Studio: Exit and restart Visual Studio.
+* With the CLI. Start a new command window and enter `dotnet run`.
+
+On [Azure App Service](https://azure.microsoft.com/services/app-service/), select **New application setting** on the **Settings > Configuration** page. Azure App Service application settings are:
+
+* Encrypted at rest and transmitted over an encrypted channel.
+* Exposed as environment variables.
+
+## Command-line
+
+By default, the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
+
+* Optional configuration from *appsettings.json* and *appsettings.{Environment}.json* files.
+* [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
+* Environment variables.
+
+Therefore, configuration values set on the command-line override configuration values set with the preceding configuration sources.
+
+### Command-line arguments
+
+The following command sets keys and values using `=`:
+
+```cli
+dotnet run MyKey="My key from command line" Position:Title=Cmd Position:Name=Cmd_Rick
+```
+
+The following command sets keys and values using `/`:
+
+```cli
+dotnet run /MyKey "Using /" /Position:Title=Cmd_ /Position:Name=Cmd_Rick
+```
+
+The following command sets keys and values using `--`:
+
+```cli
+dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
+```
+
+The value must follow an equals sign (`=`), or the key must have a prefix (`--` or `/`) when the value follows a space. The value isn't required if an equals sign is used (for example, `CommandLineKey=`).
+
+Within the same command, don't mix command-line argument key-value pairs that use an equals sign with key-value pairs that use a space.
+
+### Switch mappings
+
+Switch mappings allow **key** name replacement logic. Provide a dictionary of switch replacements to the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> method. (the key replacement) 
+
+When the switch mappings dictionary is used, the dictionary is checked for a key that matches the key provided by a command-line argument. If the command-line key is found in the dictionary, the dictionary value is passed back to set the key-value pair into the app's configuration. A switch mapping is required for any command-line key prefixed with a single dash (`-`).
+
+Switch mappings dictionary key rules:
+
+* Switches must start with a dash (`-`) or double-dash (`--`).
+* The switch mappings dictionary must not contain duplicate keys.
+
+Create a switch mappings dictionary. Call `AddCommandLine` with the switch mappings dictionary:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/Program3.cs?name=snippet&highlight=10-18,23)]
+
+The following code shows the key values for the replaced keys:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test3.cshtml.cs?name=snippet)]
+
+Run the following command to test the key replacement:
+
+```cli
+dotnet run -k1=value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 value6
+```
+
+Note: Currently, `=` cannot be used to set key values. See [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/19537).
+
+For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't pass arguments. The `CreateDefaultBuilder` method's `AddCommandLine` call doesn't include mapped switches, and there's no way to pass the switch mapping dictionary to `CreateDefaultBuilder`. The solution isn't to pass the arguments to `CreateDefaultBuilder` but instead to allow the `ConfigurationBuilder` method's `AddCommandLine` method to process both the arguments and the switch mapping dictionary.
+
+After the switch mappings dictionary is created, it contains the data shown in the following table.
+
+| Key       | Value             |
+| --------- | ----------------- |
+| `-CLKey1` | `CommandLineKey1` |
+| `-CLKey2` | `CommandLineKey2` |
+
+If the switch-mapped keys are used when starting the app, configuration receives the configuration value on the key supplied by the dictionary:
+
+```dotnetcli
+dotnet run -CLKey1=value1 -CLKey2=value2
+```
+
+After running the preceding command, configuration contains the values shown in the following table.
+
+| Key               | Value    |
+| ----------------- | -------- |
+| `CommandLineKey1` | `value1` |
+| `CommandLineKey2` | `value2` |
+
 <!-- introduce later -->
 ## Host versus app configuration
 
@@ -140,20 +264,6 @@ The following applies to apps using the [Generic Host](xref:fundamentals/host/ge
   * Environment variables using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
   * Command-line arguments using the [Command-line Configuration Provider](#command-line-configuration-provider).
 
-## Security
-
-Adopt the following practices to secure sensitive configuration data:
-
-* Never store passwords or other sensitive data in configuration provider code or in plain text configuration files.
-* Don't use production secrets in development or test environments.
-* Specify secrets outside of the project so that they can't be accidentally committed to a source code repository.
-
-For more information, see the following topics:
-
-* <xref:fundamentals/environments>
-* <xref:security/app-secrets>:  Includes advice on using environment variables to store sensitive data. The Secret Manager uses the File Configuration Provider to store user secrets in a JSON file on the local system. The File Configuration Provider is described later in this topic.
-
-[Azure Key Vault](https://azure.microsoft.com/services/key-vault/) safely stores app secrets for ASP.NET Core apps. For more information, see <xref:security/key-vault-configuration>.
 
 ## Hierarchical configuration data
 
@@ -386,60 +496,9 @@ dotnet run --CommandLineKey1 value1 /CommandLineKey2 value2
 dotnet run CommandLineKey1= CommandLineKey2=value2
 ```
 
-### Switch mappings
 
-Switch mappings allow key name replacement logic. When manually building configuration with a <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>, provide a dictionary of switch replacements to the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> method.
 
-When the switch mappings dictionary is used, the dictionary is checked for a key that matches the key provided by a command-line argument. If the command-line key is found in the dictionary, the dictionary value (the key replacement) is passed back to set the key-value pair into the app's configuration. A switch mapping is required for any command-line key prefixed with a single dash (`-`).
-
-Switch mappings dictionary key rules:
-
-* Switches must start with a dash (`-`) or double-dash (`--`).
-* The switch mappings dictionary must not contain duplicate keys.
-
-Create a switch mappings dictionary. In the following example, two switch mappings are created:
-
-```csharp
-public static readonly Dictionary<string, string> _switchMappings = 
-    new Dictionary<string, string>
-    {
-        { "-CLKey1", "CommandLineKey1" },
-        { "-CLKey2", "CommandLineKey2" }
-    };
-```
-
-When the host is built, call `AddCommandLine` with the switch mappings dictionary:
-
-```csharp
-.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.AddCommandLine(args, _switchMappings);
-})
-```
-
-For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't pass arguments. The `CreateDefaultBuilder` method's `AddCommandLine` call doesn't include mapped switches, and there's no way to pass the switch mapping dictionary to `CreateDefaultBuilder`. The solution isn't to pass the arguments to `CreateDefaultBuilder` but instead to allow the `ConfigurationBuilder` method's `AddCommandLine` method to process both the arguments and the switch mapping dictionary.
-
-After the switch mappings dictionary is created, it contains the data shown in the following table.
-
-| Key       | Value             |
-| --------- | ----------------- |
-| `-CLKey1` | `CommandLineKey1` |
-| `-CLKey2` | `CommandLineKey2` |
-
-If the switch-mapped keys are used when starting the app, configuration receives the configuration value on the key supplied by the dictionary:
-
-```dotnetcli
-dotnet run -CLKey1=value1 -CLKey2=value2
-```
-
-After running the preceding command, configuration contains the values shown in the following table.
-
-| Key               | Value    |
-| ----------------- | -------- |
-| `CommandLineKey1` | `value1` |
-| `CommandLineKey2` | `value2` |
-
-## Environment Variables Configuration Provider
+## Environment variables configuration provider
 
 The <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs at runtime.
 
@@ -1190,6 +1249,7 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 
 ## Additional resources
 
+* [Configuration source code](https://github.com/dotnet/extensions/tree/master/src/Configuration)
 * <xref:fundamentals/configuration/options>
 
 ::: moniker-end

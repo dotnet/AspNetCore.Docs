@@ -1,5 +1,5 @@
-//#define MAIN2
-using System;
+#define MAIN2
+using System;  // This isn't used, delete it
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,10 +20,10 @@ namespace ConfigSample
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                //.ConfigureAppConfiguration((hostingContext, config) =>
-                //{
-                //    config.AddEnvironmentVariables();
-                //})
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.AddEnvironmentVariables();
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
@@ -31,3 +31,18 @@ namespace ConfigSample
     }
 }
 #endif
+
+/*https://itnesweb.com/article/from-sandbox-how-configuration-in-net-core-works
+   public IConfiguration Configuration {get;  set;  }
+ public IHostingEnvironment Environment {get;  set;  }
+
+ public Startup (IConfiguration configuration, IHostingEnvironment environment)
+ {
+  Environment = environment;
+  Configuration = new ConfigurationBuilder ()
+  .AddJsonFile ("appsettings.json")
+  .AddJsonFile ($ "appsettings. {Environment.EnvironmentName} .json")
+  .Build ();
+ } 
+
+    */
