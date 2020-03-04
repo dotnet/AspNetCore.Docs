@@ -4,7 +4,7 @@ author: mjrousos
 description: Learn about authentication in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/04/2019
+ms.date: 03/03/2020
 uid: security/authentication/index
 ---
 # Overview of ASP.NET Core authentication
@@ -74,14 +74,14 @@ Based on the authentication scheme's configuration and the incoming request cont
 
 ### Authenticate
 
-An authentication scheme's authenticate action is responsible for constructing the user's identity based on request context. It returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> indicating whether authentication was successful and, if so, the user's identity in an authentication ticket. See `HttpContext.AuthenticateAsync`. Authenticate examples include:
+An authentication scheme's authenticate action is responsible for constructing the user's identity based on request context. It returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult> indicating whether authentication was successful and, if so, the user's identity in an authentication ticket. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A>. Authenticate examples include:
 
 * A cookie authentication scheme constructing the user's identity from cookies.
 * A JWT bearer scheme deserializing and validating a JWT bearer token to construct the user's identity.
 
 ### Challenge
 
-An authentication challenge is invoked by Authorization when an unauthenticated user requests an endpoint that requires authentication. An authentication challenge is issued, for example, when an anonymous user requests a restricted resource or clicks on a login link. Authorization invokes a challenge using the specified authentication scheme(s), or the default if none is specified. See `HttpContext.ChallengeAsync`. Authentication challenge examples include:
+An authentication challenge is invoked by Authorization when an unauthenticated user requests an endpoint that requires authentication. An authentication challenge is issued, for example, when an anonymous user requests a restricted resource or clicks on a login link. Authorization invokes a challenge using the specified authentication scheme(s), or the default if none is specified. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ChallengeAsync%2A>. Authentication challenge examples include:
 
 * A cookie authentication scheme redirecting the user to a login page.
 * A JWT bearer scheme returning a 401 result with a `www-authenticate: bearer` header.
@@ -90,7 +90,7 @@ A challenge action should let the user know what authentication mechanism to use
 
 ### Forbid
 
-An authentication scheme's forbid action is called by Authorization when an authenticated user attempts to access a resource they are not permitted to access. See `HttpContext.ForbidAsync`. Authentication forbid examples include:
+An authentication scheme's forbid action is called by Authorization when an authenticated user attempts to access a resource they are not permitted to access. See <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.ForbidAsync%2A>. Authentication forbid examples include:
 * A cookie authentication scheme redirecting the user to a page indicating access was forbidden.
 * A JWT bearer scheme returning a 403 result.
 * A custom authentication scheme redirecting to a page where the user can request access to the resource.
