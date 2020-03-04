@@ -9,7 +9,7 @@ uid: security/authentication/cookie
 ---
 # Use cookie authentication without ASP.NET Core Identity
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Luke Latham](https://github.com/guardrex)
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 

@@ -8,7 +8,7 @@ uid: mvc/views/overview
 ---
 # Views in ASP.NET Core MVC
 
-By [Steve Smith](https://ardalis.com/) and [Luke Latham](https://github.com/guardrex)
+By [Steve Smith](https://ardalis.com/)
 
 This document explains views used in ASP.NET Core MVC applications. For information on Razor Pages, see [Introduction to Razor Pages](xref:razor-pages/index).
 

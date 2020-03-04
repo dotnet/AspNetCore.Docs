@@ -1,6 +1,6 @@
 ---
 title: Host ASP.NET Core in a web farm
-author: guardrex
+author: rick-anderson
 description: Learn how to host multiple instances of an ASP.NET Core app with shared resources in a web farm environment.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -10,7 +10,7 @@ uid: host-and-deploy/web-farm
 ---
 # Host ASP.NET Core in a web farm
 
-By [Luke Latham](https://github.com/guardrex) and [Chris Ross](https://github.com/Tratcher)
+By [Chris Ross](https://github.com/Tratcher)
 
 A *web farm* is a group of two or more web servers (or *nodes*) that host multiple instances of an app. When requests from users arrive to a web farm, a *load balancer* distributes the requests to the web farm's nodes. Web farms improve:
 
@@ -87,3 +87,4 @@ If the web farm apps are capable of responding to requests, obtain request, conn
 
 * [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows) &ndash; Downloads and executes scripts on Azure virtual machines, which is useful for post-deployment configuration and software installation.
 * <xref:host-and-deploy/proxy-load-balancer>
+ 

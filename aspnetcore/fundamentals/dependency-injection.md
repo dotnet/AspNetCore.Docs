@@ -1,6 +1,6 @@
 ---
 title: Dependency injection in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -10,7 +10,7 @@ uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
 
-By [Steve Smith](https://ardalis.com/), [Scott Addie](https://scottaddie.com), and [Luke Latham](https://github.com/guardrex)
+By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://scottaddie.com)
 
 ASP.NET Core supports the dependency injection (DI) software design pattern, which is a technique for achieving [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) between classes and their dependencies.
 

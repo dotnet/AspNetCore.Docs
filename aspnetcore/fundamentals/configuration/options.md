@@ -1,6 +1,6 @@
 ---
 title: Options pattern in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Discover how to use the options pattern to represent groups of related settings in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -9,8 +9,6 @@ ms.date: 02/12/2020
 uid: fundamentals/configuration/options
 ---
 # Options pattern in ASP.NET Core
-
-By [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 

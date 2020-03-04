@@ -1,6 +1,6 @@
 ---
 title: Health checks in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Learn how to set up health checks for ASP.NET Core infrastructure, such as apps and databases.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
@@ -10,7 +10,7 @@ uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
 
-By [Luke Latham](https://github.com/guardrex) and [Glenn Condron](https://github.com/glennc)
+By [Glenn Condron](https://github.com/glennc)
 
 ::: moniker range=">= aspnetcore-3.0"
 

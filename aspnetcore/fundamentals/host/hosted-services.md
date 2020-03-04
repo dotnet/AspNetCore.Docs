@@ -1,6 +1,6 @@
 ---
 title: Background tasks with hosted services in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Learn how to implement background tasks with hosted services in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -10,7 +10,7 @@ uid: fundamentals/host/hosted-services
 ---
 # Background tasks with hosted services in ASP.NET Core
 
-By [Luke Latham](https://github.com/guardrex) and [Jeow Li Huan](https://github.com/huan086)
+By [Jeow Li Huan](https://github.com/huan086)
 
 ::: moniker range=">= aspnetcore-3.0"
 
