@@ -1,3 +1,39 @@
+- name: Docs
+  tocHref: /
+  topicHref: /
+  items:
+  - name: ASP.NET
+    tocHref: /aspnet/
+    topicHref: /aspnet/index
+    items:
+    - name: ASP.NET Core
+      tocHref: /aspnet/core/
+      topicHref: /aspnet/core/index
+      items:
+      - name: Fundamentals
+        tocHref: /aspnet/core/fundamentals/
+        topicHref: /aspnet/core/fundamentals/index
+      - name: Web API apps
+        tocHref: /aspnet/core/web-api/
+        topicHref: /aspnet/core/web-api/index
+      - name: Real-time apps
+        tocHref: /aspnet/core/signalr/
+        topicHref: /aspnet/core/signalr/introduction
+      - name: Remote procedure call apps
+        tocHref: /aspnet/core/grpc/
+        topicHref: /aspnet/core/grpc/index
+      - name: Host and deploy
+        tocHref: /aspnet/core/host-and-deploy/
+        topicHref: /aspnet/core/host-and-deploy/index
+      - name: Security and Identity
+        tocHref: /aspnet/core/security/
+        topicHref: /aspnet/core/security/index
+      - name: Performance
+        tocHref: /aspnet/core/performance/
+        topicHref: /aspnet/core/performance/performance-best-practices
+
+# Contextual ToC < START
+# .NET
 - name: ASP.NET
   tocHref: /dotnet/
   topicHref: /aspnet/index#pivot=core
@@ -8,6 +44,8 @@
     - name: ASP.NET Core
       tocHref: /dotnet/standard/
       topicHref: /aspnet/core/index
+
+# Entity Framework
 - name: ASP.NET
   tocHref: /ef/
   topicHref: /aspnet/index#pivot=core
@@ -15,6 +53,8 @@
     - name: ASP.NET Core
       tocHref: /ef/core/
       topicHref: /aspnet/core/index
+
+# Visual Studio
 - name: ASP.NET
   tocHref: /visualstudio/
   topicHref: /aspnet/index#pivot=core
@@ -28,6 +68,8 @@
     - name: ASP.NET Core
       tocHref: /visualstudio/containers/
       topicHref: /aspnet/core/index
+
+# Azure
 - name: ASP.NET
   tocHref: /azure/
   topicHref: /aspnet/index#pivot=core
@@ -53,3 +95,4 @@
     - name: ASP.NET Core
       tocHref: /azure/azure-monitor/app/
       topicHref: /aspnet/core/index
+# Contextual ToC < END
