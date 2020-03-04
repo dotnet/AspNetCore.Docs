@@ -1,28 +1,29 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RazorPagesContacts.Data;
 
-namespace RazorPagesContacts
+namespace SessionSample
 {
-    public class Startup
+    public class Startup3
     {
-        public Startup(IConfiguration configuration)
+        public Startup3(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
+        #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddControllersWithViews()
+                .AddSessionStateTempDataProvider();
+            services.AddRazorPages()
+                .AddSessionStateTempDataProvider();
 
-            services.AddDbContext<RazorPagesContactsContext>(options =>
-                  options.UseInMemoryDatabase("name"));
+            services.AddSession();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -33,21 +34,25 @@ namespace RazorPagesContacts
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseSession();
+
             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
+    {
+        endpoints.MapDefaultControllerRoute();
+        endpoints.MapRazorPages();
+    });
         }
+        #endregion
     }
 }

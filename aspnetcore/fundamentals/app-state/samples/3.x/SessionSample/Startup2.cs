@@ -1,29 +1,38 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RazorPagesContacts.Data;
+using SessionSample.Middleware;
+using System;
 
-namespace RazorPagesContacts
+namespace SessionSample
 {
-    public class Startup
+    public class Startup2
     {
-        public Startup(IConfiguration configuration)
+        public Startup2(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
+        #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddDistributedMemoryCache();
 
-            services.AddDbContext<RazorPagesContactsContext>(options =>
-                  options.UseInMemoryDatabase("name"));
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".AdventureWorks.Session";
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.IsEssential = true;
+            });
+
+            services.AddControllersWithViews();
+            services.AddRazorPages();
         }
+        #endregion
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -33,19 +42,24 @@ namespace RazorPagesContacts
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseHttpContextItemsMiddleware();
+
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });
         }
