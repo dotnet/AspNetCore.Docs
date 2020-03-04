@@ -2709,6 +2709,7 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 
 ## Additional resources
 
+* When targeting linux, app shut down and restart may fail to restart UNIX socket. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
 * <xref:test/troubleshoot>
 * <xref:security/enforcing-ssl>
 * <xref:host-and-deploy/proxy-load-balancer>
