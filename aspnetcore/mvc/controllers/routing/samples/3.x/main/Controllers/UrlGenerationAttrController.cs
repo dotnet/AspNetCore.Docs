@@ -6,11 +6,11 @@ public class UrlGenerationAttrController : Controller
     public IActionResult Source()
     {
         var url = Url.Action("Destination");
-        return ControllerContext.ToActionResult("", $" URL = {url}");
+        return ControllerContext.MyDisplayRouteInfo("", $" URL = {url}");
     }
 
     [HttpGet("custom/url/to/destination")]
     public IActionResult Destination() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
 }
 #endregion

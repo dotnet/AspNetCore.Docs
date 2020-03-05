@@ -14,11 +14,11 @@ namespace WebMvcRouting.Controllers
     {
         [HttpGet]
         public IActionResult ListProducts() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
 
         [HttpGet("{id}")]
         public IActionResult GetProduct(int id) =>
-            ControllerContext.ToActionResult(id);
+            ControllerContext.MyDisplayRouteInfo(id);
     }
     #endregion
 #endif
@@ -30,7 +30,7 @@ namespace WebMvcRouting.Controllers
     {
         [HttpGet("/products2/{id}", Name = "Products_List")]
         public IActionResult GetProduct(int id) =>
-            ControllerContext.ToActionResult(id);
+            ControllerContext.MyDisplayRouteInfo(id);
     }
     #endregion
 #endif

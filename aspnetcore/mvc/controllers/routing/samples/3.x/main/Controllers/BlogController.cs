@@ -7,10 +7,10 @@ namespace WebMvcRouting.Controllers
     public class BlogController : Controller
     {
         public IActionResult Article() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
 
         public IActionResult Index() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
     }
     #endregion
 }

@@ -13,13 +13,13 @@ namespace WebMvcRouting.Controllers
         public IActionResult Source()
         {
             var url = Url.RouteUrl("Destination_Route");
-            return ControllerContext.ToActionResult("", $" URL = {url}");
+            return ControllerContext.MyDisplayRouteInfo("", $" URL = {url}");
         }
         #endregion
 
         [HttpGet("custom/url/to/destination2", Name = "Destination_Route")]
         public IActionResult Destination() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
     }
     #endregion
 }

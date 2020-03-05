@@ -6,7 +6,7 @@ namespace WebMvcRouting.Controllers
     public class ProductsController : Controller
     {
         public IActionResult Details(int id) =>
-            ControllerContext.ToActionResult(id);
+            ControllerContext.MyDisplayRouteInfo(id);
     }
     #endregion
 
@@ -17,14 +17,14 @@ namespace WebMvcRouting.Controllers
         #region snippet10
         [HttpGet]
         public IActionResult List() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
         #endregion
 
 
         #region snippet11
         [HttpGet("{id}")]
         public IActionResult Edit(int id) =>
-            ControllerContext.ToActionResult(id);
+            ControllerContext.MyDisplayRouteInfo(id);
         #endregion
     }
     #endregion
@@ -34,11 +34,11 @@ namespace WebMvcRouting.Controllers
     {
         [HttpGet("[controller]/[action]")]  // Matches '/Products20/List'
         public IActionResult List() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
 
         [HttpGet("[controller]/[action]/{id}")]   // Matches '/Products20/Edit/{id}'
         public IActionResult Edit(int id) =>
-            ControllerContext.ToActionResult(id);
+            ControllerContext.MyDisplayRouteInfo(id);
     }
     #endregion
 
@@ -50,7 +50,7 @@ namespace WebMvcRouting.Controllers
         [Route("")] // Matches 'Products21'
         [Route("Index")] // Matches 'Products21/Index'
         public IActionResult Index() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
     }
 
     // Test with StartupAPI
@@ -65,11 +65,11 @@ namespace WebMvcRouting.Controllers
     {
         [HttpGet] //         GET /api/Products22
         public IActionResult List() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
 
         [HttpPut("{id}")] //  PUT /api/Products22/3
         public IActionResult Edit(int id) =>
-            ControllerContext.ToActionResult(id);
+            ControllerContext.MyDisplayRouteInfo(id);
     }
     #endregion
 
@@ -84,11 +84,11 @@ namespace WebMvcRouting.Controllers
     {
         [HttpGet]                      // /api/products11/
         public IActionResult List() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
 
         [HttpGet("{id}")]             //    /api/products11/edit/3
         public IActionResult Edit(int id) =>
-            ControllerContext.ToActionResult(id);
+            ControllerContext.MyDisplayRouteInfo(id);
     }
     #endregion
 
@@ -99,7 +99,7 @@ namespace WebMvcRouting.Controllers
         [Route("")]     // Matches 'Products13'
         [Route("Index")] // Matches 'Products13/Index'
         public IActionResult Index() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
     }
     #endregion
 
@@ -109,7 +109,7 @@ namespace WebMvcRouting.Controllers
     {
         [HttpPost("product14/{id:int}")]
         public IActionResult ShowProduct(int id) =>
-            ControllerContext.ToActionResult(id);
+            ControllerContext.MyDisplayRouteInfo(id);
     }
     #endregion
 
@@ -119,11 +119,11 @@ namespace WebMvcRouting.Controllers
     public class Products33Controller : Controller
     {
         public IActionResult Edit(int id) =>
-            ControllerContext.ToActionResult(id);
+            ControllerContext.MyDisplayRouteInfo(id);
 
         [HttpPost]
         public IActionResult Edit(int id, Product product) =>
-            ControllerContext.ToActionResult(id, product.name);
+            ControllerContext.MyDisplayRouteInfo(id, product.name);
     }
 
     #endregion
@@ -141,7 +141,7 @@ namespace WebMvcRouting.Controllers
         [HttpPut("Buy")]        // Matches PUT 'api/Products7/Buy'
         [HttpPost("Checkout")]  // Matches POST 'api/Products7/Checkout'
         public IActionResult Buy() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
     }
     #endregion
 
@@ -154,7 +154,7 @@ namespace WebMvcRouting.Controllers
         [HttpPost("Buy")]       // Matches 'Products6/Buy' and 'Store/Buy'
         [HttpPost("Checkout")]  // Matches 'Products6/Checkout' and 'Store/Checkout'
         public IActionResult Buy() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
     }
     #endregion
 }

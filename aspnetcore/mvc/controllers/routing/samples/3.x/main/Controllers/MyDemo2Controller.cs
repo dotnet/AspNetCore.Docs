@@ -10,7 +10,7 @@ namespace RoutingSample.Controllers
         {
         [Route("/articles/{page}")]
         public IActionResult ListArticles(int page) =>
-            ControllerContext.ToActionResult(page);
+            ControllerContext.MyDisplayRouteInfo(page);
     }
     #endregion
 #endif

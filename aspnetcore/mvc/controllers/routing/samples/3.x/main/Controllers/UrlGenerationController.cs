@@ -8,11 +8,11 @@ namespace WebMvcRouting.Controllers
         {
             // Generates /UrlGeneration/Destination
             var url = Url.Action("Destination");
-            return ControllerContext.ToActionResult("", $" URL = {url}");
+            return ControllerContext.MyDisplayRouteInfo("", $" URL = {url}");
         }
 
         public IActionResult Destination() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
     }
     #endregion
 }

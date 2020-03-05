@@ -45,6 +45,8 @@ The route template `"{controller=Home}/{action=Index}/{id?}"`:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippetA)]
 
+ The [MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x/main/Extensions/ControllerContextExtensions.cs)/) method is included in the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x)) and is used to display routing information.
+
   * `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. See [Model Binding](xref:mvc/models/model-binding) for more details.
 * `{controller=Home}` defines `Home` as the default `controller`.
 * `{action=Index}` defines `Index` as the default `action`.
@@ -192,14 +194,6 @@ The preceding example:
 Conventional routing only matches a combination of action and controller that are defined by the app. This is intended to simplify cases where conventional routes overlap.
 Adding routes using <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>, and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> automatically assign an order value to their endpoints based on the order they are invoked. Matches from a route that appears earlier have a higher priority. Conventional routing is order-dependent. In general, routes with areas should be placed earlier as they're more specific than routes without an area. [Dedicated conventional routes](#dcr) with catch all route parameters like `{*article}` can make a route too [greedy](xref:fundamentals/routing#greedy), meaning that it matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to prevent greedy matches.
 
-<a name="cctar"></a>
-
-### ControllerContext.ToActionResult
-
-Many of the samples in this document use the following `ControllerContextExtensions`class to display <xref:Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor> information:
-
-[!code-csharp[](routing/samples/3.x/main/Extensions/ControllerContextExtensions.cs?name=snippet)]
-
 <a name="best"></a>
 
 ### Resolving ambiguous actions
@@ -335,8 +329,6 @@ ASP.NET Core has the following route templates:
 <a name="arx"></a>
 
 ### Attribute routing with Http verb attributes
-
-Unlike routes created for controllers with views that generally include `[action]` in the route template, API controllers typically don't include `[action]` in the route template. Because `[action]` isn't in the route template, the [action](#action) name is not in the route. That is, the method name isn't used in the matching route.
 
 Consider the following controller:
 
@@ -846,6 +838,11 @@ The following code generates a URL to `/Zebra/Users/AddUser`:
 ## Action definition
 
 Public methods on a controller, except those with the [NonAction](xref:Microsoft.AspNetCore.Mvc.NonActionAttribute) attribute, are actions.
+
+## Sample code
+
+ * The [MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x/main/Extensions/ControllerContextExtensions.cs)/) method is included in the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x)) and is used to display routing information.
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
 ::: moniker-end
 

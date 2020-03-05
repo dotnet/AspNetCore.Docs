@@ -10,11 +10,11 @@ namespace WebMvcRouting.Controllers
     {
         [HttpGet("/products3")]
         public IActionResult ListProducts() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
 
         [HttpPost("/products3")]
         public IActionResult CreateProduct(MyProduct myProduct) =>
-            ControllerContext.ToActionResult(myProduct.Name);
+            ControllerContext.MyDisplayRouteInfo(myProduct.Name);
     }
     #endregion
 

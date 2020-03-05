@@ -16,7 +16,7 @@ namespace WebMvcRouting.Controllers
         [Route("Home")]
         [Route("Home/MyIndex")]
         public IActionResult MyIndex() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
     }
     #endregion
 #endif
@@ -29,7 +29,7 @@ namespace WebMvcRouting.Controllers
         [Route("Home",Order = 2)]
         [Route("Home/MyIndex")]
         public IActionResult MyIndex()=>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
     #endregion
     }
 #endif

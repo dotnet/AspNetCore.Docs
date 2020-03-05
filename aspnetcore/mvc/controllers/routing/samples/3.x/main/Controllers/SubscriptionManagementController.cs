@@ -7,7 +7,7 @@ namespace WebMvcRouting.Controllers
     {
         [HttpGet("[controller]/[action]")]
         public IActionResult ListAll() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
     }
     #endregion
 }

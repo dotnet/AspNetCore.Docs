@@ -21,11 +21,11 @@ namespace WebMvcRouting.Controllers
         [Route("Index")]
         [Route("/")]
         public IActionResult Index() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
 
         [Route("About")]
         public IActionResult About() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
     }
     #endregion
 #elif Second
@@ -37,12 +37,12 @@ namespace WebMvcRouting.Controllers
         [Route("Home/Index")]
         [Route("Home/Index/{id?}")]
         public IActionResult Index(int ?id) =>
-            ControllerContext.ToActionResult(id);
+            ControllerContext.MyDisplayRouteInfo(id);
 
         [Route("Home/About")]
         [Route("Home/About/{id?}")]
         public IActionResult About(int? id) =>
-            ControllerContext.ToActionResult(id);
+            ControllerContext.MyDisplayRouteInfo(id);
     }
     #endregion
 #elif Third
@@ -53,11 +53,11 @@ namespace WebMvcRouting.Controllers
         [Route("Home")]
         [Route("[controller]/[action]")]
         public IActionResult Index() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
 
         [Route("[controller]/[action]")]
         public IActionResult About() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
     }
     #endregion
 
@@ -70,10 +70,10 @@ namespace WebMvcRouting.Controllers
         [Route("/Home")]
         [Route("~/Home/Index")]
         public IActionResult Index() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
 
         public IActionResult About() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
     }
     #endregion
 #elif Five
@@ -81,7 +81,7 @@ namespace WebMvcRouting.Controllers
     public class HomeController : Controller
     {
         public IActionResult Index() =>
-                  ControllerContext.ToActionResult();
+                  ControllerContext.MyDisplayRouteInfo();
     }
     #endregion
 #endif

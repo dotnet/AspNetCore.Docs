@@ -6,9 +6,9 @@ namespace My.Application.Admin.Controllers
     public class UsersController : Controller
     {
         public IActionResult Index() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
 
         public IActionResult List(int? id) =>
-             ControllerContext.ToActionResult(id);
+             ControllerContext.MyDisplayRouteInfo(id);
     }
 }
