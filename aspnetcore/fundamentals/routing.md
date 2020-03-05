@@ -231,7 +231,7 @@ Comparing a terminal middleware and routing:
     * Endpoints are always terminal.
 * Terminal middleware allows positioning the middleware at an arbitrary place in the pipeline:
     * Endpoints execute at the position of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>.
-* Terminal middleware allows arbitrary code to determine when the route matches:
+* Terminal middleware allows arbitrary code to determine when the middleware matches:
     * Custom route matching code can be verbose and difficult to write correctly.
     * Routing provides straightforward solutions for typical apps. Most apps don't require custom route matching code.
 * Endpoints interface with middleware such as `UseAuthorization` and `UseCors`.
