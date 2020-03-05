@@ -9,25 +9,3 @@
     - name: ASP.NET Core
       tocHref: /aspnet/core/
       topicHref: /aspnet/core/index
-      items:
-      - name: Fundamentals
-        tocHref: /aspnet/core/fundamentals/
-        topicHref: /aspnet/core/fundamentals/index
-      - name: Web API apps
-        tocHref: /aspnet/core/web-api/
-        topicHref: /aspnet/core/web-api/index
-      - name: Real-time apps
-        tocHref: /aspnet/core/signalr/
-        topicHref: /aspnet/core/signalr/introduction
-      - name: Remote procedure call apps
-        tocHref: /aspnet/core/grpc/
-        topicHref: /aspnet/core/grpc/index
-      - name: Host and deploy
-        tocHref: /aspnet/core/host-and-deploy/
-        topicHref: /aspnet/core/host-and-deploy/index
-      - name: Security and Identity
-        tocHref: /aspnet/core/security/
-        topicHref: /aspnet/core/security/index
-      - name: Performance
-        tocHref: /aspnet/core/performance/
-        topicHref: /aspnet/core/performance/performance-best-practices
