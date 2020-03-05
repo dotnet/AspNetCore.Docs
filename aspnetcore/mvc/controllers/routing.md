@@ -282,7 +282,7 @@ With attribute routing, the controller name and action names play **no** role in
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet)]
 
-The following code uses route parameters for `action` and `controller`:
+The following code uses token replacement for `action` and `controller`:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet22)]
 
