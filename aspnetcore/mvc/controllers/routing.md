@@ -433,7 +433,7 @@ The following table explains the `[Route]` attributes in the preceding code:
 
 ### Attribute route order
 
-Attribute routing builds a tree and matches all routes simultaneously:
+Routing builds a tree and matches all endpoints simultaneously:
 
 * The route entries behave as if placed in an ideal ordering.
 * The most specific routes have a chance to execute before the more general routes.
