@@ -138,7 +138,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 Endpoint routing in ASP.NET Core 3.0 and later:
 
 * Doesn't have a concept of routes.
-* Doesn't provide ordering guarantees, all endpoints are processed at once.
+* Doesn't provide ordering guarantees for the execution of extensibility,  all endpoints are processed at once.
 
 > [!WARNING]
 > The `id` is defined as optional by the preceding route template. Actions can execute without the optional ID provided as part of the URL. Generally, when`id` is omitted from the URL:
@@ -176,7 +176,7 @@ Because `controller` and `action` don't appear in the route template `"blog/{*ar
 
 The preceding example:
 
-* `blog` route has a higher priority for matches than the `default` route.
+* `blog` route has a higher priority for matches than the `default` route because it is added first.
 * Is and example of [Slug](https://developer.mozilla.org/docs/Glossary/Slug) style routing where it's typical to have an article name as part of the URL.
 
 > [!WARNING]
