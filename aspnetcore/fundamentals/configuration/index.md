@@ -10,7 +10,7 @@ uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Luke Latham](https://github.com/guardrex)
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -35,26 +35,13 @@ Web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or the Visual 
 
  <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> provides default configuration for the app in the following order:
 
-* [appsettings.json](#appsettings-json) using the [File Configuration Provider](#file-configuration-provider).
+* [appsettings.json](#appsettingsjson) using the [File Configuration Provider](#file-configuration-provider).
 * *appsettings.{Environment}.json* using the [File Configuration Provider](#file-configuration-provider).
 * [Secret Manager](xref:security/app-secrets) when the app runs in the `Development` environment.
 * Environment variables using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
 * Command-line arguments using the [Command-line Configuration Provider](#command-line-configuration-provider).
 
-Configuration providers that run later override previous key settings. For example, if `MyKey` is set in *appsettings.json* and in the environment, the key and value set in the environment is used. Using the default configuration providers, the  [Command-line Configuration Provider](#command-line-configuration-provider) overrides all the other providers.
-
-<!-- 
-Common configuration providers are included implicitly by the framework. For example, [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration/) for in-memory collections.
-
-Code examples that follow use the <xref:Microsoft.Extensions.Configuration> namespace:
-
-```csharp
-using Microsoft.Extensions.Configuration;
-```
--->
-<!-- introduce later 
-The [options pattern](xref:fundamentals/configuration/options) is used in this topic. Options use classes to represent groups of related settings.
--->
+Configuration providers that run later override previous key settings. For example, if `MyKey` is set in *appsettings.json* and in the environment, the value set in the environment is used. Using the default configuration providers, the  [Command-line Configuration Provider](#command-line-configuration-provider) overrides all the other providers.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -73,8 +60,7 @@ The <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loa
 1. *appsettings.json*
 1. *appsettings.{Environment}.json*: The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
 
-*appsettings.{Environment}.json* values override keys found in both *appsettings.json*
-and *appsettings.{Environment}.json*. For example, by default:
+*appsettings.{Environment}.json* values override keys in *appsettings.json*. For example, by default:
 
 * In development, *appsettings.Development.json* configuration overwrites values found in *appsettings.json*.
 * In production, *appsettings.Production.json* configuration overwrites values found in *appsettings.json*. For example, when deploying the app to Azure.
@@ -129,7 +115,7 @@ The following commands can be used to set the environment keys and values of the
 setx MyKey "My key from Environment"
 setx Position__Title Environment_Editor
 setx Position__Name Environment_Rick
-``
+```
 
 To test that the environment configuration overrides *apsettings*json* values:
 
@@ -155,19 +141,19 @@ Therefore, configuration values set on the command-line override configuration v
 
 The following command sets keys and values using `=`:
 
-```cli
+```dotnetcli
 dotnet run MyKey="My key from command line" Position:Title=Cmd Position:Name=Cmd_Rick
 ```
 
 The following command sets keys and values using `/`:
 
-```cli
+```dotnetcli
 dotnet run /MyKey "Using /" /Position:Title=Cmd_ /Position:Name=Cmd_Rick
 ```
 
 The following command sets keys and values using `--`:
 
-```cli
+```dotnetcli
 dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
 ```
 
@@ -196,76 +182,21 @@ The following code shows the key values for the replaced keys:
 
 Run the following command to test the key replacement:
 
-```cli
+```dotnetcli
 dotnet run -k1=value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 value6
 ```
 
-Note: Currently, `=` cannot be used to set key values. See [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/19537).
+Note: Currently, `=` cannot be used to set key-replacement values with a single dash `-`. See [this GitHub issue](https://github.com/dotnet/extensions/issues/3059).
+
+The following command works to test key replacement:
+
+```dotnetcli
+dotnet run -k1 value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 value6
+```
 
 For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't pass arguments. The `CreateDefaultBuilder` method's `AddCommandLine` call doesn't include mapped switches, and there's no way to pass the switch mapping dictionary to `CreateDefaultBuilder`. The solution isn't to pass the arguments to `CreateDefaultBuilder` but instead to allow the `ConfigurationBuilder` method's `AddCommandLine` method to process both the arguments and the switch mapping dictionary.
 
-After the switch mappings dictionary is created, it contains the data shown in the following table.
-
-| Key       | Value             |
-| --------- | ----------------- |
-| `-CLKey1` | `CommandLineKey1` |
-| `-CLKey2` | `CommandLineKey2` |
-
-If the switch-mapped keys are used when starting the app, configuration receives the configuration value on the key supplied by the dictionary:
-
-```dotnetcli
-dotnet run -CLKey1=value1 -CLKey2=value2
-```
-
-After running the preceding command, configuration contains the values shown in the following table.
-
-| Key               | Value    |
-| ----------------- | -------- |
-| `CommandLineKey1` | `value1` |
-| `CommandLineKey2` | `value2` |
-
-<!-- introduce later -->
-## Host versus app configuration
-
-Before the app is configured and started, a *host* is configured and launched. The host is responsible for app startup and lifetime management. Both the app and the host are configured using the configuration providers described in this topic. Host configuration key-value pairs are also included in the app's configuration. For more information on how the configuration providers are used when the host is built and how configuration sources affect host configuration, see <xref:fundamentals/index#host>.
-
-<!-- introduce later -->
-## Other configuration
-
-This topic only pertains to *app configuration*. Other aspects of running and hosting ASP.NET Core apps are configured using configuration files not covered in this topic:
-
-* *launch.json*/*launchSettings.json* are tooling configuration files for the Development environment, described:
-  * In <xref:fundamentals/environments#development>.
-  * Across the documentation set where the files are used to configure ASP.NET Core apps for Development scenarios.
-* *web.config* is a server configuration file, described in the following topics:
-  * <xref:host-and-deploy/iis/index>
-  * <xref:host-and-deploy/aspnet-core-module>
-
-For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/proper-to-2x/index#store-configurations>.
-
-## Default configuration
-
-Web apps based on the ASP.NET Core [dotnet new](/dotnet/core/tools/dotnet-new) templates call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> when building a host. `CreateDefaultBuilder` provides default configuration for the app in the following order:
-
-The following applies to apps using the [Generic Host](xref:fundamentals/host/generic-host). For details on the default configuration when using the [Web Host](xref:fundamentals/host/web-host), see the [ASP.NET Core 2.2 version of this topic](/aspnet/core/fundamentals/configuration/?view=aspnetcore-2.2).
-
-* Host configuration is provided from:
-  * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
-  * Command-line arguments using the [Command-line Configuration Provider](#command-line-configuration-provider).
-* Web Host default configuration is established (`ConfigureWebHostDefaults`):
-  * Kestrel is used as the web server and configured using the app's configuration providers.
-  * Add Host Filtering Middleware.
-  * Add Forwarded Headers Middleware if the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`.
-  * Enable IIS integration.
-* App configuration is provided from:
-  * *appsettings.json* using the [File Configuration Provider](#file-configuration-provider).
-  * *appsettings.{Environment}.json* using the [File Configuration Provider](#file-configuration-provider).
-  * [Secret Manager](xref:security/app-secrets) when the app runs in the `Development` environment using the entry assembly.
-  * Environment variables using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
-  * Command-line arguments using the [Command-line Configuration Provider](#command-line-configuration-provider).
-
-
-## Hierarchical configuration data
+## Hierarchical configuration data zzz
 
 The Configuration API is capable of maintaining hierarchical configuration data by flattening the hierarchical data with the use of a delimiter in the configuration keys.
 
@@ -496,8 +427,6 @@ dotnet run --CommandLineKey1 value1 /CommandLineKey2 value2
 dotnet run CommandLineKey1= CommandLineKey2=value2
 ```
 
-
-
 ## Environment variables configuration provider
 
 The <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs at runtime.
@@ -594,6 +523,8 @@ If `IConfiguration` is injected and assigned to a field named `_config`, read th
 ```csharp
 _config["ConnectionStrings:ReleaseDB"]
 ```
+
+<a name="jcp"></a>
 
 ### JSON Configuration Provider
 
@@ -1242,6 +1173,36 @@ In an MVC view:
 </body>
 </html>
 ```
+
+## Host versus app configuration
+
+Before the app is configured and started, a *host* is configured and launched. The host is responsible for app startup and lifetime management. Both the app and the host are configured using the configuration providers described in this topic. Host configuration key-value pairs are also included in the app's configuration. For more information on how the configuration providers are used when the host is built and how configuration sources affect host configuration, see <xref:fundamentals/index#host>.
+
+## Default host configuration
+
+For details on the default configuration when using the [Web Host](xref:fundamentals/host/web-host), see the [ASP.NET Core 2.2 version of this topic](/aspnet/core/fundamentals/configuration/?view=aspnetcore-2.2).
+
+* Host configuration is provided from:
+  * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
+  * Command-line arguments using the [Command-line Configuration Provider](#command-line-configuration-provider).
+* Web Host default configuration is established (`ConfigureWebHostDefaults`):
+  * Kestrel is used as the web server and configured using the app's configuration providers.
+  * Add Host Filtering Middleware.
+  * Add Forwarded Headers Middleware if the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`.
+  * Enable IIS integration.
+
+## Other configuration
+
+This topic only pertains to *app configuration*. Other aspects of running and hosting ASP.NET Core apps are configured using configuration files not covered in this topic:
+
+* *launch.json*/*launchSettings.json* are tooling configuration files for the Development environment, described:
+  * In <xref:fundamentals/environments#development>.
+  * Across the documentation set where the files are used to configure ASP.NET Core apps for Development scenarios.
+* *web.config* is a server configuration file, described in the following topics:
+  * <xref:host-and-deploy/iis/index>
+  * <xref:host-and-deploy/aspnet-core-module>
+
+For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/proper-to-2x/index#store-configurations>.
 
 ## Add configuration from an external assembly
 

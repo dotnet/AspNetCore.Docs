@@ -1,0 +1,12 @@
+{
+  "Position": {
+    "Title": "Debug writer",
+    "Name": "Debug Smith"
+  },
+  "MyKey": "Dev appsettings.Development Value",
+  "LogLevel": {
+    "Default": "Information",
+    "Microsoft": "Warning",
+    "Microsoft.Hosting.Lifetime": "Information"
+  }
+}
