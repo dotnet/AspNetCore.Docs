@@ -15,20 +15,24 @@ By [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Blazor performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a build to remove unnecessary IL from the app's output assemblies.
+Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a build to trim unnecessary IL from the app's output assemblies. The linker is disabled when building in `Debug` configuration. Applications must build in `Release` configuration to enable the linker. We recommend building in `Release` when deploying your Blazor WebAssembly applications. 
 
-Control assembly linking using either of the following approaches:
+Linking an application optimizes for size, but may have detrimental effects. Applications that use reflection or related dynamic features may break when trimmed, because the linker does not know about this dynamic behavior, and can not determine in general which types will be required for reflection at runtime. To trim such apps, you will need to tell the linker about any types needed by reflection in your code, and in packages or frameworks that you depend on. 
 
-* Disable linking globally with a [MSBuild property](#disable-linking-with-a-msbuild-property).
+To ensure your trimmd application work correctly once deployed, it's important to test Release builds of your application frequently while developing.
+
+Linking for your Blazor applications can be configured using these MSBuild features:
+
+* Configure linking globally with a [MSBuild property](#disable-linking-with-a-msbuild-property).
 * Control linking on a per-assembly basis with a [configuration file](#control-linking-with-a-configuration-file).
 
-## Disable linking with a MSBuild property
+## Configure when the linker is run using a MSBuild property
 
-Linking is enabled by default when an app is built, which includes publishing. To disable linking for all assemblies, set the `BlazorLinkOnBuild` MSBuild property to `false` in the project file:
+Linking is enabled when an app is built in `Release` configuation. To change this, configure the `BlazorWebAssemblyEnableLinking` MSBuild property in the project file:
 
 ```xml
 <PropertyGroup>
-  <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
+  <BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
 </PropertyGroup>
 ```
 
