@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 #region snippet
 internal static class ControllerContextExtensions
 {
-    public static IActionResult ToActionResult(this ControllerContext ctx, int? id, string msg = null) =>
-        ctx.ToActionResult(id?.ToString(), msg);
+    public static IActionResult MyDisplayRouteInfo(this ControllerContext ctx, int? id, string msg = null) =>
+        ctx.MyDisplayRouteInfo(id?.ToString(), msg);
 
-    public static IActionResult ToActionResult(this ControllerContext ctx,
+    public static IActionResult MyDisplayRouteInfo(this ControllerContext ctx,
                                                string id = null, string msg = null)
     {
         var actionDescriptor = ctx.ActionDescriptor;

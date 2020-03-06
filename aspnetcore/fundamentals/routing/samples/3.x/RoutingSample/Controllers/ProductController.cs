@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using RoutingSample.Extensions;
+
 
 namespace RoutingSample.Controllers
 {
@@ -9,11 +9,11 @@ namespace RoutingSample.Controllers
     public class ProductController : Controller
     {
         public IActionResult Index() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
 
         [Host("example.com:8080")]
         public IActionResult Privacy() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
     }
     #endregion
 }

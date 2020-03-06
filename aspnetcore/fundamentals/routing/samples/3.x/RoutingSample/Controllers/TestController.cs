@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RoutingSample.Extensions;
+
 
 namespace RoutingSample.Controllers
 {
@@ -12,12 +12,12 @@ namespace RoutingSample.Controllers
         // GET /api/test/3
         [HttpGet("{id:customName}")]
         public IActionResult Get(string id) =>
-            ControllerContext.ToActionResult(id); 
+            ControllerContext.MyDisplayRouteInfo(id); 
 
         // GET /api/test/my/3
         [HttpGet("my/{id:customName}")]
         public IActionResult Get(int id) =>
-            ControllerContext.ToActionResult(id);
+            ControllerContext.MyDisplayRouteInfo(id);
     }
     #endregion
 
@@ -35,7 +35,7 @@ namespace RoutingSample.Controllers
                 return StatusCode(StatusCodes.Status406NotAcceptable);
             }
 
-            return ControllerContext.ToActionResult(id);
+            return ControllerContext.MyDisplayRouteInfo(id);
         }
         #endregion
     }

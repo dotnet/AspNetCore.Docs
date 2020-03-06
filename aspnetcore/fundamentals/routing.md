@@ -39,10 +39,6 @@ The endpoint routing system described in this document applies to ASP.NET Core 3
 
 The download samples for this document are enabled by a specific `Startup` class. To run a specific sample, modify *Program.cs* to call the desired `Startup` class.
 
-Many of the samples in this document use the following `ControllerContextExtensions` class to display <xref:Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor> information:
-
-[!code-csharp[](routing/samples/3.x/RoutingSample/Extensions/ControllerContextExtensions.cs?name=snippet)]
-
 ## Routing basics
 
 All ASP.NET Core templates include routing in the generated code. Routing is registered in the [middleware](xref:fundamentals/middleware/index) pipeline in `Startup.Configure`.
@@ -208,8 +204,6 @@ The audit policy metadata `AuditPolicyAttribute` is defined as an `Attribute` fo
 
 The best practices for metadata types are to define them either as interfaces or attributes. Interfaces and attributes allow code reuse. The metadata system is flexible and doesn't impose any limitations.
 
-The fact that routing uses two separate middleware can be confusing. The two separate middleware design supports the kind of flexibility shown in the next example.
-
 <a name="tm"></a>
 
 ### Comparing a terminal middleware and routing
@@ -304,8 +298,8 @@ URL matching operates in a configurable set of phases. In each phase, the output
 
 The list of endpoints is prioritized according to:
 
-* The [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*), which is configurable in [attribute routes](xref:mvc/controllers/routing#ar).
-* The [route template precedence](#rtp), which is computed based on the route template in [conventional routes](xref:mvc/controllers/routing#cr).
+* The [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*)
+* The [route template precedence](#rtp)
 
 All matching endpoints are processed in each phase until the <xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector> is reached. The `EndpointSelector` is the final phase. It chooses the highest priority endpoint from the matches as the best match. If there are other matches with the same priority as the best match, an ambiguous match exception is thrown.
 
@@ -481,8 +475,6 @@ Since the matching algorithm is [non-greedy](#greedy):
 Regular expressions provide much more control over their matching behavior.
 
 <a name="greedy"></a>
-
-#### Greedy route matching
 
 Greedy matching, also know as [lazy matching](https://wikipedia.org/wiki/Regular_expression#Lazy_matching), matches the largest possible string. Non-greedy matches the smallest possible string.
 

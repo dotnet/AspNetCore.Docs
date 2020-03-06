@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RoutingSample.Extensions;
+
 
 namespace RoutingSample.Controllers
 {
@@ -7,14 +7,14 @@ namespace RoutingSample.Controllers
     public class HomeController : Controller
     {
         public IActionResult Index() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
 
         public IActionResult Privacy() =>
-            ControllerContext.ToActionResult();
+            ControllerContext.MyDisplayRouteInfo();
 
         #endregion
 
         public IActionResult Subscribe(int id) =>
-            ControllerContext.ToActionResult(id);
+            ControllerContext.MyDisplayRouteInfo(id);
     }
 }
