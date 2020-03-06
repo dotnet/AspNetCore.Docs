@@ -41,7 +41,7 @@ Inside the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplication
 The route template `"{controller=Home}/{action=Index}/{id?}"`:
 
 * Matches a URL path like `/Products/Details/5`
-* Extracts the route values `{ controller = Products, action = Details, id = 5 }` by tokenizing the path. The extraction of route values results in a match if the app has a controller named `ProductsController` and a `Details` action :
+* Extracts the route values `{ controller = Products, action = Details, id = 5 }` by tokenizing the path. The extraction of route values results in a match if the app has a controller named `ProductsController` and a `Details` action:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippetA)]
 
@@ -388,7 +388,7 @@ Route names can be used to generate a URL based on a specific route. Route names
 
 Route names must be unique application-wide.
 
-Contrast the preceding code with the conventional default route which defines the `id` parameter as optional (`{id?}`). The ability to precisely specify APIs has advantages, such as  allowing `/products` and `/products/5` to be dispatched to different actions.
+Contrast the preceding code with the conventional default route, which defines the `id` parameter as optional (`{id?}`). The ability to precisely specify APIs has advantages, such as  allowing `/products` and `/products/5` to be dispatched to different actions.
 
 <a name="routing-combining-ref-label"></a>
 
@@ -460,7 +460,7 @@ With the preceding code, `/home` runs the `HomeController.Index` endpoint. To ge
 
 See [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order) for information on route order with Razor Pages.
 
-In some cases, an HTTP 500 error is returned with ambiguous routes. Use [logging](xref:fundamentals/logging/index) to see which endpoints caused the the `AmbiguousMatchException`.
+In some cases, an HTTP 500 error is returned with ambiguous routes. Use [logging](xref:fundamentals/logging/index) to see which endpoints caused the `AmbiguousMatchException`.
 
 <a name="routing-token-replacement-templates-ref-label"></a>
 
