@@ -48,10 +48,10 @@ namespace SessionSample
             app.UseSession();
 
             app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapDefaultControllerRoute();
-        endpoints.MapRazorPages();
-    });
+            {
+                endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
+            });
         }
         #endregion
     }

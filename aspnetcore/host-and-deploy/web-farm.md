@@ -56,8 +56,8 @@ The following scenarios don't require additional configuration, but they depend 
 | -------- | ------------------- |
 | Authentication | Data Protection (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/authentication/cookie> and <xref:security/cookie-sharing>. |
 | Identity | Authentication and database configuration.<br><br>For more information, see <xref:security/authentication/identity>. |
-| Session | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) and Caching (see <xref:performance/caching/distributed>).<br><br>For more information, see [Session and app state: Session state](xref:fundamentals/app-state#session-state). |
-| TempData | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) or Session (see [Session and app state: Session state](xref:fundamentals/app-state#session-state)).<br><br>For more information, see [Session and app state: TempData](xref:fundamentals/app-state#tempdata). |
+| Session | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) and Caching (see <xref:performance/caching/distributed>).<br><br>For more information, see [Session and state management: Session state](xref:fundamentals/app-state#session-state). |
+| TempData | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) or Session (see [Session and state management: Session state](xref:fundamentals/app-state#session-state)).<br><br>For more information, see [Session and state management: TempData](xref:fundamentals/app-state#tempdata). |
 | Anti-forgery | Data Protection (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/anti-request-forgery>. |
 
 ## Troubleshoot
