@@ -586,7 +586,7 @@ The implementation of `MyCustomConstraint` prevents `0` being applied to a route
 The preceding code:
 
 * Prevents `0` in the `{id}` segment of the route.
-* Is shown to provide a basic example of implementing a custom contraint. It should not be used in a production app.
+* Is shown to provide a basic example of implementing a custom constraint. It should not be used in a production app.
 
 <!-- review: I probably don't need this sample. Using an attribute may be better than my approach.
 -->

@@ -30,7 +30,7 @@ This document:
   * See [Routing](xref:fundamentals/routing) for advanced routing details.
 * Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions. Refer to the [2.2 version of this document](https://docs.microsoft.com/aspnet/core/mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
 
-## Set up conventional endpoint routing middleware
+## Set up conventional route
 
 `Startup.Configure` typically has code similar to the following when using [conventional routing](#cr):
 
@@ -96,9 +96,9 @@ Routing is configured using the <xref:Microsoft.AspNetCore.Builder.EndpointRouti
 <a name="routing-conventional-ref-label"></a>
 <a name="cr"></a>
 
-## Conventional endpoint routing
+## Conventional routing
 
-Conventional endpoint routing is used with controllers and views. The `default` route:
+Conventional routing is used with controllers and views. The `default` route:
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet2)]
 
@@ -117,12 +117,19 @@ This mapping:
 
 * Is based on the controller and [action](#action) names **only**.
 * Isn't based on namespaces, source file locations, or method parameters.
-* Is different than typical [attribute routing](#ar) which doesn't include the action name in the route.
 
 Using conventional routing with the default route allows creating the app without having to come up with a new URL pattern for each action. For an app with [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) style actions, having consistency for the URLs across controllers:
 
 * Helps simplify the code.
 * Makes the UI more predictable.
+
+> [!WARNING]
+> The `id` in the preceding code is defined as optional by the route template. Actions can execute without the optional ID provided as part of the URL. Generally, when`id` is omitted from the URL:
+>
+> * `id` is set to `0` by model binding.
+> * No entity is found in the database matching `id == 0`.
+>
+> [Attribute routing](#ar) provides fine-grained control to make the ID required for some actions and not for others. By convention, the documentation includes optional parameters like `id` when they're likely to appear in correct usage.
 
 Most apps should choose a basic and descriptive routing scheme so that URLs are readable and meaningful. The default conventional route `{controller=Home}/{action=Index}/{id?}`:
 
@@ -133,20 +140,11 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> :
 
 * Automatically assign an **order** value to their endpoints based on the order they are invoked.
-* Don't expose the [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*). `RouteEndpoint.Order` is only exposed for [attribute routing](#ar). <!-- review required for preceding two bullets. Are they OK? -->
 
 Endpoint routing in ASP.NET Core 3.0 and later:
 
 * Doesn't have a concept of routes.
 * Doesn't provide ordering guarantees for the execution of extensibility,  all endpoints are processed at once.
-
-> [!WARNING]
-> The `id` is defined as optional by the preceding route template. Actions can execute without the optional ID provided as part of the URL. Generally, when`id` is omitted from the URL:
->
-> * `id` is set to `0` by model binding.
-> * No entity is found in the database matching `id == 0`.
->
-> [Attribute routing](#ar) provides fine-grained control to make the ID required for some actions and not for others. By convention, the documentation includes optional parameters like `id` when they're likely to appear in correct usage.
 
 Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routing implementations, such as <xref:Microsoft.AspNetCore.Routing.Route>, match requests.
 
@@ -164,7 +162,7 @@ Multiple [conventional routes](#cr) can be added inside `UseEndpoints` by adding
 
 The `blog` route in the preceding code is a **dedicated conventional route**. It's called a dedicated conventional route because:
 
-* It uses the [conventional routing](#cr) system.
+* It uses [conventional routing](#cr).
 * It's dedicated to a specific [action](#action).
 
 Because `controller` and `action` don't appear in the route template `"blog/{*article}"` as parameters:
@@ -180,7 +178,7 @@ The preceding example:
 * Is and example of [Slug](https://developer.mozilla.org/docs/Glossary/Slug) style routing where it's typical to have an article name as part of the URL.
 
 > [!WARNING]
-> In ASP.NET Core 3.0 and later, the routing system doesn't:
+> In ASP.NET Core 3.0 and later, routing doesn't:
 > * Define a concept called a *route*. `UseRouting` adds route matching to the middleware pipeline. The `UseRouting` middleware looks at the set of endpoints defined in the app, and selects the best endpoint match based on the request.
 > * Provide guarantees about the execution order of extensibility like <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> or <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint>.
 >
@@ -222,7 +220,7 @@ To resolve the correct route:
 * `Edit(int, Product)` is selected when the request is an HTTP `POST`.
 * `Edit(int)` is selected when the [HTTP verb](#verb) is anything else. `Edit(int)` is generally called via `GET`.
 
-The <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, `[HttpPost]`, is provided to the routing system so that it can choose based on the HTTP method of the request. The `HttpPostAttribute` makes `Edit(int, Product)` a better match than `Edit(int)`.
+The <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, `[HttpPost]`, is provided to routing so that it can choose based on the HTTP method of the request. The `HttpPostAttribute` makes `Edit(int, Product)` a better match than `Edit(int)`.
 
 It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other [HTTP verbs](#verb). In [conventional routing](#cr), it's common for actions to use the same action name when they're part of a show form, submit form workflow. For example, see [Examine the two Edit action methods](xref:tutorials/first-mvc-app/controller-methods-views#get-post).
 
@@ -243,7 +241,7 @@ Route names:
 * Have no impact on URL matching or handling of requests.
 * Are used only for URL generation.
 
-The route name concept is represented in the routing system as [IEndpointNameMetadata](xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata). The terms **route name** and **endpoint name**:
+The route name concept is represented in routing as [IEndpointNameMetadata](xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata). The terms **route name** and **endpoint name**:
 
 * Are interchangeable.
 * Which one is used in documentation and code depends on the API being described.
@@ -302,7 +300,7 @@ Using `page` as a route parameter with attribute routing is a common error. Doin
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo2Controller.cs?name=snippet)]
 
-The special parameter names are used by the URL generation system to determine if a URL generation operation refers to a Razor Page or to a Controller.
+The special parameter names are used by the URL generation to determine if a URL generation operation refers to a Razor Page or to a Controller.
 
 <a name="verb"></a>
 
