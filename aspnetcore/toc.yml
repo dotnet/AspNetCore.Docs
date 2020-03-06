@@ -375,7 +375,7 @@
           uid: client-side/bundling-and-minification
         - name: Browser Link
           uid: client-side/using-browserlink
-    - name: Session and app state
+    - name: Session and state management
       uid: fundamentals/app-state
     - name: Layout
       uid: mvc/views/layout
