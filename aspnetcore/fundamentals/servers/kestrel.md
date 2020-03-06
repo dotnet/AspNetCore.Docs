@@ -2709,6 +2709,7 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 
 ## Additional resources
 
+* When using UNIX sockets on Linux, the socket is not automatically deleted on app shut down. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
 * <xref:test/troubleshoot>
 * <xref:security/enforcing-ssl>
 * <xref:host-and-deploy/proxy-load-balancer>

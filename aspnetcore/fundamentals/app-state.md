@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover approaches to preserve session between requests.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 03/06/2020
 no-loc: [SignalR]
 uid: fundamentals/app-state
 ---
