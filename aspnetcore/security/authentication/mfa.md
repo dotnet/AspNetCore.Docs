@@ -83,7 +83,7 @@ public void ConfigureServices(IServiceCollection services)
 	services.AddAuthorization(options =>
 	{
 		options.AddPolicy("TwoFactorEnabled",
-			x => x.RequireClaim("TwoFactorEnabled", "true")
+			x => x.RequireClaim("amr", "mfa")
 		);
 	});
 
@@ -91,7 +91,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The `AdditionalUserClaimsPrincipalFactory` class adds the `TwoFactorEnabled` claim to the user claims only after a successful login. The claim's value is read from the database. The claim is added here because the user should only access the higher protected view if the identity has logged in with MFA. If the database view is read from the database directly instead of using the claim, it's possible to access the view without MFA directly after activating the MFA.
+The `AdditionalUserClaimsPrincipalFactory` class adds the `amr` claim to the user claims only after a successful login. The claim's value is read from the database. The claim is added here because the user should only access the higher protected view if the identity has logged in with MFA. If the database view is read from the database directly instead of using the claim, it's possible to access the view without MFA directly after activating the MFA.
 
 ```csharp
 using Microsoft.AspNetCore.Identity;
@@ -121,11 +121,11 @@ namespace IdentityStandaloneMfa
 
             if (user.TwoFactorEnabled)
             {
-                claims.Add(new Claim("TwoFactorEnabled", "true"));
+                claims.Add(new Claim("amr", "mfa"));
             }
             else
             {
-                claims.Add(new Claim("TwoFactorEnabled", "false"));
+                claims.Add(new Claim("amr", "pwd")); ;
             }
 
             identity.AddClaims(claims);
@@ -153,7 +153,7 @@ Also assign the layout for all the manage pages from the Identity pages:
 
 ### Validate the MFA requirement in the administration page
 
-The administration Razor Page validates that the user has logged in using MFA. In the `OnGet` method, the identity is used to access the user claims. The `TwoFactorEnabled` claim is checked for the value `true`. If the identity is missing this claim or is false, the page redirects to the Enable MFA page. This is possible because the user has logged in already, but without MFA.
+The administration Razor Page validates that the user has logged in using MFA. In the `OnGet` method, the identity is used to access the user claims. The `amr` claim is checked for the value `mfa`. If the identity is missing this claim or is false, the page redirects to the Enable MFA page. This is possible because the user has logged in already, but without MFA.
 
 ```csharp
 using System;
@@ -169,9 +169,9 @@ namespace IdentityStandaloneMfa
     {
         public IActionResult OnGet()
         {
-            var claimTwoFactorEnabled = User.Claims.FirstOrDefault(t => t.Type == "TwoFactorEnabled");
+            var claimTwoFactorEnabled = User.Claims.FirstOrDefault(t => t.Type == "amr");
 
-            if (claimTwoFactorEnabled != null && "true".Equals(claimTwoFactorEnabled.Value))
+            if (claimTwoFactorEnabled != null && "mfa".Equals(claimTwoFactorEnabled.Value))
             {
                 // You logged in with MFA, do the admin stuff
             }
@@ -188,13 +188,13 @@ namespace IdentityStandaloneMfa
 
 ### UI logic to toggle user login information
 
-An authorization policy was added at startup. The policy requires the `TwoFactorEnabled` claim with the value `true`.
+An authorization policy was added at startup. The policy requires the `amr` claim with the value `mfa`.
 
 ```csharp
 services.AddAuthorization(options =>
 {
 	options.AddPolicy("TwoFactorEnabled",
-		x => x.RequireClaim("TwoFactorEnabled", "true")
+		x => x.RequireClaim("amr", "mfa")
 	);
 });
 ```
