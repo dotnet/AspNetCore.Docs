@@ -209,7 +209,7 @@ The following table shows the requests and responses from `http://localhost:1234
 | localhost:1234                | Hello from non-Map delegate. |
 | localhost:1234/?branch=master | Branch used = master         |
 
-<xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen*> also branches the request pipeline based on the result of the given predicate. Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it does short-circuit or contain a terminal middleware:
+<xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen*> also branches the request pipeline based on the result of the given predicate. Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it does not short-circuit or contain a terminal middleware:
 
 [!code-csharp[](index/snapshot/Chain/StartupUseWhen.cs?highlight=23-24)]
 
