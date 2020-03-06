@@ -30,9 +30,11 @@ This document:
   * See [Routing](xref:fundamentals/routing) for advanced routing details.
 * Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions. Refer to the [2.2 version of this document](https://docs.microsoft.com/aspnet/core/mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
 
+<a name="cr"></a>
+
 ## Set up conventional route
 
-`Startup.Configure` typically has code similar to the following when using [conventional routing](#cr):
+`Startup.Configure` typically has code similar to the following when using [conventional routing](#crd):
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet)]
 
@@ -94,7 +96,7 @@ Routing is configured using the <xref:Microsoft.AspNetCore.Builder.EndpointRouti
 * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> or <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*>, to map [conventionally routed](#cr) controllers.
 
 <a name="routing-conventional-ref-label"></a>
-<a name="cr"></a>
+<a name="crd"></a>
 
 ## Conventional routing
 
