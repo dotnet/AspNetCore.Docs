@@ -125,7 +125,7 @@ namespace IdentityStandaloneMfa
             }
             else
             {
-                claims.Add(new Claim("amr", "pwd")); ;
+                claims.Add(new Claim("amr", "pwd"));
             }
 
             identity.AddClaims(claims);
