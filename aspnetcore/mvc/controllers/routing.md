@@ -56,9 +56,7 @@ The route template `"{controller=Home}/{action=Index}/{id?}"`:
   * Default and optional route parameters don't need to be present in the URL path for a match. See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 * Matches the URL path `/`.
 * Produces the route values `{ controller = Home, action = Index }`.
-* `ControllerContext.ToActionResult` is:
-  * Used in the samples to display routing information.
-  * Explained [later in this document](#cctar).
+* The [MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x/main/Extensions/ControllerContextExtensions.cs)/) method is included in the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x)) and is used to display routing information.
 
 The values for `controller` and `action` make use of the default values. `id` doesn't produce a value since there's no corresponding segment in the URL path. `/` only matches if there exists a `HomeController` and `Index` action:
 
