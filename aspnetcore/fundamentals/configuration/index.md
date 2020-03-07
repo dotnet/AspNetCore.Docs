@@ -562,34 +562,28 @@ The <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loa
 To activate JSON file configuration, call the <xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
 -->
 
-Overloads permit specifying:
+Overloads can specify:
 
 * Whether the file is optional.
 * Whether the configuration is reloaded if the file changes.
-* The <xref:Microsoft.Extensions.FileProviders.IFileProvider> used to access the file.
 
+Consider the following code:
 
+[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON.cs?name=snippet&highlight=12-14)]
 
-**Example**
+The preceding code:
 
-The sample app takes advantage of the static convenience method `CreateDefaultBuilder` to build the host, which includes two calls to `AddJsonFile`:
+* Configures the JSON configuration provider to load the "MyConfig.json" with the following options:
+  * `optional: true`: The file is optional.
+  * `reloadOnChange: true` : The file is reloaded when changes are saved.
+* Reads the [default configuration providers](#default). Settings in the "MyConfig.json" override setting in the default configuration providers, including the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
-* The first call to `AddJsonFile` loads configuration from *appsettings.json*:
+You typically ***don't*** want a custom JSON file overriding values set in the the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
-  [!code-json[](index/samples/2.x/ConfigurationSample/appsettings.json)]
+The following code clears all the configuration providers and adds several configuration providers:
 
-* The second call to `AddJsonFile` loads configuration from *appsettings.{Environment}.json*. For *appsettings.Development.json* in the sample app, the following file is loaded:
+[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON2.cs?name=snippet&highlight=12-29)]
 
-  [!code-json[](index/samples/2.x/ConfigurationSample/appsettings.Development.json)]
-
-1. Run the sample app. Open a browser to the app at `http://localhost:5000`.
-1. The output contains key-value pairs for the configuration based on the app's environment. The log level for the key `Logging:LogLevel:Default` is `Debug` when running the app in the Development environment.
-1. Run the sample app again in the Production environment:
-   1. Open the *Properties/launchSettings.json* file.
-   1. In the `ConfigurationSample` profile, change the value of the `ASPNETCORE_ENVIRONMENT` environment variable to `Production`.
-   1. Save the file and run the app with `dotnet run` in a command shell.
-1. The settings in the *appsettings.Development.json* no longer override the settings in *appsettings.json*. The log level for the key `Logging:LogLevel:Default` is `Warning`.
-zz 
 <a name="fcp"></a>
 
 ## File configuration provider
