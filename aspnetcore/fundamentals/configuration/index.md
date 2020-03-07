@@ -29,16 +29,16 @@ App configuration in ASP.NET Core is based on key-value pairs established by [co
 
 ## Default configuration
 
-Web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or the Visual Studio templates create the following code in *Program.cs*:
+Web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or the Visual Studio templates create the following code:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Program.cs?name=snippet&highlight=9)]
 
  <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> provides default configuration for the app in the following order:
 
 * [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
-* *appsettings.*`Environment`*.json* using the [JSON configuration provider](#file-configuration-provider). For example, the *appsettings.Production.json* and *appsettings.Development.json* files.
+* *appsettings.*`Environment`*.json* using the [JSON configuration provider](#file-configuration-provider). For example, the *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json* files. For more information, see <xref:fundamentals/environments>.
 * [Secret Manager](xref:security/app-secrets) when the app runs in the `Development` environment.
-* Environment variables using the [Environment Variables configuration provider](#environment-variables-configuration-provider).
+* Environment variables using the [Environment Variables configuration provider](#evcp).
 * Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
 
 Configuration providers that run later override previous key settings. For example, if `MyKey` is set in *appsettings.json* and in the environment, the value set in the environment is used. Using the default configuration providers, the  [Command-line configuration provider](#command-line-configuration-provider) overrides all the other providers.
@@ -55,7 +55,7 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
-The <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration in the following order:
+The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration in the following order:
 
 1. *appsettings.json*
 1. *appsettings.*`Environment`*.json* : For example, the *appsettings.Production.json* and *appsettings.Development.json* files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
@@ -86,6 +86,28 @@ The following code reads the position options:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test2.cshtml.cs?name=snippet)]
 
+By [default](#default), the *appsettings.json* and *appsettings.*`Environment`*.json* files are enable with [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75). Changes made to the *appsettings.json* and *appsettings.*`Environment`*.json* file ***after*** the app starts are read by the [JSON configuration provider](#jcp).
+
+See [JSON configuration provider](#jcp) in this document for information on adding additional JSON configuration files.
+
+## Display configuration providers
+
+The following code displays the enabled configuration providers in the order they were added:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Index.cshtml.cs?name=snippet)]
+
+[!code-cshtml[](index/samples/3.x/ConfigSample/Pages/Index.cshtml.cs)]
+
+The preceding code uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/built-in/environment-tag-helper) to display the environment.
+
+With the [default configuration](#default), the following configuration providers are displayed:
+
+* [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) : : <!-- REVIEW, what is this? -->
+* [JsonConfigurationProvider](#jcp) : For *appsettings.json*
+* JsonConfigurationProvider : *appsettings.*`Environment`*.json*
+* [EnvironmentVariablesConfigurationProvider](#evcp)
+* [CommandLineConfigurationProvider](#clcp)
+
 <a name="security"></a>
 
 ## Security and secret manager
@@ -101,7 +123,7 @@ The [Secret manager](xref:security/app-secrets) reads configuration settings aft
 For more information on storing passwords or other sensitive data:
 
 * <xref:fundamentals/environments>
-* <xref:security/app-secrets>:  Includes advice on using environment variables to store sensitive data. The Secret Manager uses the File configuration provider to store user secrets in a JSON file on the local system.
+* <xref:security/app-secrets>:  Includes advice on using environment variables to store sensitive data. The Secret Manager uses the [File configuration provider](#fcp) to store user secrets in a JSON file on the local system.
 
 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) safely stores app secrets for ASP.NET Core apps. For more information, see <xref:security/key-vault-configuration>.
 
@@ -232,7 +254,7 @@ When the file is read into configuration, unique keys are created to maintain th
 
 At app startup, configuration sources are read in the order that their configuration providers are specified.
 
-Configuration providers that implement change detection have the ability to reload configuration when an underlying setting is changed. For example, the File configuration provider (described later in this topic) and the [Azure Key Vault configuration provider](xref:security/key-vault-configuration) implement change detection.
+Configuration providers that implement change detection have the ability to reload configuration when an underlying setting is changed. For example, the [File configuration provider](#fcp) (described later in this topic) and the [Azure Key Vault configuration provider](xref:security/key-vault-configuration) implement change detection.
 
 <xref:Microsoft.Extensions.Configuration.IConfiguration> is available in the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) container. <xref:Microsoft.Extensions.Configuration.IConfiguration> can be injected into a Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> or MVC <xref:Microsoft.AspNetCore.Mvc.Controller> to obtain configuration for the class.
 
@@ -372,6 +394,8 @@ To remove the providers added by `CreateDefaultBuilder`, call [Clear](/dotnet/ap
 
 Configuration supplied to the app in `ConfigureAppConfiguration` is available during the app's startup, including `Startup.ConfigureServices`. For more information, see the [Access configuration during startup](#access-configuration-during-startup) section.
 
+<a name="clcp"></a>
+
 ## Command-line configuration provider
 
 The <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs at runtime.
@@ -428,6 +452,8 @@ dotnet run CommandLineKey1=value1 --CommandLineKey2=value2 /CommandLineKey3=valu
 dotnet run --CommandLineKey1 value1 /CommandLineKey2 value2
 dotnet run CommandLineKey1= CommandLineKey2=value2
 ```
+
+<a name="evcp"></a>
 
 ## Environment variables configuration provider
 
@@ -530,9 +556,11 @@ _config["ConnectionStrings:ReleaseDB"]
 
 ### JSON configuration provider
 
-The <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration from JSON file key-value pairs during runtime.
+The <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration from JSON file key-value pairs.
 
+<!-- 
 To activate JSON file configuration, call the <xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
+-->
 
 Overloads permit specifying:
 
@@ -540,30 +568,7 @@ Overloads permit specifying:
 * Whether the configuration is reloaded if the file changes.
 * The <xref:Microsoft.Extensions.FileProviders.IFileProvider> used to access the file.
 
-`AddJsonFile` is automatically called twice when a new host builder is initialized with `CreateDefaultBuilder`. The method is called to load configuration from:
 
-* *appsettings.json* &ndash; This file is read first. The environment version of the file can override the values provided by the *appsettings.json* file.
-* *appsettings.{Environment}.json* &ndash; The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
-
-For more information, see the [Default configuration](#default-configuration) section.
-
-`CreateDefaultBuilder` also loads:
-
-* Environment variables.
-* [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
-* Command-line arguments.
-
-The JSON configuration provider is established first. Therefore, user secrets, environment variables, and command-line arguments override configuration set by the *appsettings* files.
-
-Call `ConfigureAppConfiguration` when building the host to specify the app's configuration for files other than *appsettings.json* and *appsettings.{Environment}.json*:
-
-```csharp
-.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.AddJsonFile(
-        "config.json", optional: true, reloadOnChange: true);
-})
-```
 
 **Example**
 
@@ -585,6 +590,7 @@ The sample app takes advantage of the static convenience method `CreateDefaultBu
    1. Save the file and run the app with `dotnet run` in a command shell.
 1. The settings in the *appsettings.Development.json* no longer override the settings in *appsettings.json*. The log level for the key `Logging:LogLevel:Default` is `Warning`.
 zz 
+<a name="fcp"></a>
 
 ## File configuration provider
 

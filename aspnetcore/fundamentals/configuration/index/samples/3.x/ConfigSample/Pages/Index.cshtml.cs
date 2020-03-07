@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace ConfigSample.Pages
 {
+    #region snippet
     public class IndexModel : PageModel
     {
         private IConfigurationRoot ConfigRoot;
@@ -16,10 +17,9 @@ namespace ConfigSample.Pages
         public void OnGet()
         {
             var x = ConfigRoot.Providers.Select(x => x.GetType().Name);
-             var z = ConfigRoot.Providers.Select(x => x.GetType());
 
             string cp = "";
-            foreach (var y in z)
+            foreach (var y in x)
             {
                 cp += y.ToString() + " ";
             }
@@ -27,4 +27,5 @@ namespace ConfigSample.Pages
             ViewData["configProviders"] = cp;
         }
     }
+    #endregion
 }

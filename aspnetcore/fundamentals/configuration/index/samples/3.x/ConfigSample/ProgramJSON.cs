@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 #if MAIN2
 namespace ConfigSample
 {
-    public class Program2
+    public class ProgramJSON
     {
         public static void Main(string[] args)
         {

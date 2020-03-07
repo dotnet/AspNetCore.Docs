@@ -4,13 +4,16 @@
     ViewData["Title"] = "Home page";
 }
 
-@ViewData["configProviders"]
+    <p>
+        @ViewData["configProviders"]
+    </p>
 
-<p> </p>
-Environment:
-<environment include="Development">
-    Development
-</environment>
-<environment include="Production ">
-    Production
-</environment>
+    <div>
+        Environment:
+        <environment include="Development">
+            Development
+        </environment>
+        <environment include="Production ">
+            Production
+        </environment>
+    </div>
