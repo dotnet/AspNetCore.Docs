@@ -18,6 +18,7 @@ namespace BooksApi.Models
         public string BookName { get; set; }
         #endregion
 
+        [BsonRepresentation(BsonType.Double)]
         public decimal Price { get; set; }
 
         public string Category { get; set; }
