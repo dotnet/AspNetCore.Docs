@@ -16,9 +16,10 @@ namespace ConfigSample.Pages
         public void OnGet()
         {
             var x = ConfigRoot.Providers.Select(x => x.GetType().Name);
+             var z = ConfigRoot.Providers.Select(x => x.GetType());
 
             string cp = "";
-            foreach (var y in x)
+            foreach (var y in z)
             {
                 cp += y.ToString() + " ";
             }

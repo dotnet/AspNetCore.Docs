@@ -16,7 +16,7 @@ namespace ConfigSample
 
         public IConfiguration Configuration { get; }
 
-        #region
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<PositionOptions>(Configuration.GetSection("Position"));

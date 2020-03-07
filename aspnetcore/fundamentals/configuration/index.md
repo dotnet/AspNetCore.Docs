@@ -35,13 +35,13 @@ Web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or the Visual 
 
  <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> provides default configuration for the app in the following order:
 
-* [appsettings.json](#appsettingsjson) using the [File Configuration Provider](#file-configuration-provider).
-* *appsettings.{Environment}.json* using the [File Configuration Provider](#file-configuration-provider).
+* [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
+* *appsettings.*`Environment`*.json* using the [JSON configuration provider](#file-configuration-provider). For example, the *appsettings.Production.json* and *appsettings.Development.json* files.
 * [Secret Manager](xref:security/app-secrets) when the app runs in the `Development` environment.
-* Environment variables using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
-* Command-line arguments using the [Command-line Configuration Provider](#command-line-configuration-provider).
+* Environment variables using the [Environment Variables configuration provider](#environment-variables-configuration-provider).
+* Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
 
-Configuration providers that run later override previous key settings. For example, if `MyKey` is set in *appsettings.json* and in the environment, the value set in the environment is used. Using the default configuration providers, the  [Command-line Configuration Provider](#command-line-configuration-provider) overrides all the other providers.
+Configuration providers that run later override previous key settings. For example, if `MyKey` is set in *appsettings.json* and in the environment, the value set in the environment is used. Using the default configuration providers, the  [Command-line configuration provider](#command-line-configuration-provider) overrides all the other providers.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -58,7 +58,7 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 The <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration in the following order:
 
 1. *appsettings.json*
-1. *appsettings.{Environment}.json*: The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
+1. *appsettings.*`Environment`*.json* : For example, the *appsettings.Production.json* and *appsettings.Development.json* files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
 
 *appsettings.{Environment}.json* values override keys in *appsettings.json*. For example, by default:
 
@@ -90,16 +90,18 @@ The following code reads the position options:
 
 ## Security and secret manager
 
-To secure sensitive configuration data:
+Configuration data guidelines:
 
 * Never store passwords or other sensitive data in configuration provider code or in plain text configuration files. The [Secret manager](xref:security/app-secrets) can be used to store secrets in development.
 * Don't use production secrets in development or test environments.
 * Specify secrets outside of the project so that they can't be accidentally committed to a source code repository.
 
-For more information, see the following topics:
+The [Secret manager](xref:security/app-secrets) reads configuration settings after *appsettings.json* and *appsettings.*`Environment`*.json*.
+
+For more information on storing passwords or other sensitive data:
 
 * <xref:fundamentals/environments>
-* <xref:security/app-secrets>:  Includes advice on using environment variables to store sensitive data. The Secret Manager uses the File Configuration Provider to store user secrets in a JSON file on the local system.
+* <xref:security/app-secrets>:  Includes advice on using environment variables to store sensitive data. The Secret Manager uses the File configuration provider to store user secrets in a JSON file on the local system.
 
 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) safely stores app secrets for ASP.NET Core apps. For more information, see <xref:security/key-vault-configuration>.
 
@@ -109,7 +111,7 @@ By default, the <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.En
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
-The following commands can be used to set the environment keys and values of the [preceding example](#appsettings-json) on Windows:
+The following commands can be used to set the environment keys and values of the [preceding example](#appsettingsjson) on Windows:
 
 ```cmd
 setx MyKey "My key from Environment"
@@ -230,7 +232,7 @@ When the file is read into configuration, unique keys are created to maintain th
 
 At app startup, configuration sources are read in the order that their configuration providers are specified.
 
-Configuration providers that implement change detection have the ability to reload configuration when an underlying setting is changed. For example, the File Configuration Provider (described later in this topic) and the [Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) implement change detection.
+Configuration providers that implement change detection have the ability to reload configuration when an underlying setting is changed. For example, the File configuration provider (described later in this topic) and the [Azure Key Vault configuration provider](xref:security/key-vault-configuration) implement change detection.
 
 <xref:Microsoft.Extensions.Configuration.IConfiguration> is available in the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) container. <xref:Microsoft.Extensions.Configuration.IConfiguration> can be injected into a Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> or MVC <xref:Microsoft.AspNetCore.Mvc.Controller> to obtain configuration for the class.
 
@@ -283,20 +285,20 @@ Configuration values adopt the following conventions:
 
 <a name="cp"></a>
 
-## Configuration Providers
+## Configuration providers
 
 The following table shows the configuration providers available to ASP.NET Core apps.
 
 | Provider | Provides configuration from&hellip; |
 | -------- | ----------------------------------- |
-| [Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) (*Security* topics) | Azure Key Vault |
-| [Azure App Configuration Provider](/azure/azure-app-configuration/quickstart-aspnet-core-app) (Azure documentation) | Azure App Configuration |
-| [Command-line Configuration Provider](#command-line-configuration-provider) | Command-line parameters |
+| [Azure Key Vault configuration provider](xref:security/key-vault-configuration) (*Security* topics) | Azure Key Vault |
+| [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app) (Azure documentation) | Azure App Configuration |
+| [Command-line configuration provider](#command-line-configuration-provider) | Command-line parameters |
 | [Custom configuration provider](#custom-configuration-provider) | Custom source |
-| [Environment Variables Configuration Provider](#environment-variables-configuration-provider) | Environment variables |
-| [File Configuration Provider](#file-configuration-provider) | Files (INI, JSON, XML) |
-| [Key-per-file Configuration Provider](#key-per-file-configuration-provider) | Directory files |
-| [Memory Configuration Provider](#memory-configuration-provider) | In-memory collections |
+| [Environment Variables configuration provider](#environment-variables-configuration-provider) | Environment variables |
+| [File configuration provider](#file-configuration-provider) | Files (INI, JSON, XML) |
+| [Key-per-file configuration provider](#key-per-file-configuration-provider) | Directory files |
+| [Memory configuration provider](#memory-configuration-provider) | In-memory collections |
 | [User secrets (Secret Manager)](xref:security/app-secrets) (*Security* topics) | File in the user profile directory |
 
 Configuration sources are read in the order that their configuration providers are specified at startup. The configuration providers described in this topic are described in alphabetical order, not in the order that the code arranges them. Order configuration providers in code to suit the priorities for the underlying configuration sources that the app requires.
@@ -370,7 +372,7 @@ To remove the providers added by `CreateDefaultBuilder`, call [Clear](/dotnet/ap
 
 Configuration supplied to the app in `ConfigureAppConfiguration` is available during the app's startup, including `Startup.ConfigureServices`. For more information, see the [Access configuration during startup](#access-configuration-during-startup) section.
 
-## Command-line Configuration Provider
+## Command-line configuration provider
 
 The <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs at runtime.
 
@@ -384,7 +386,7 @@ To activate command-line configuration, the <xref:Microsoft.Extensions.Configura
 * [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
 * Environment variables.
 
-`CreateDefaultBuilder` adds the Command-line Configuration Provider last. Command-line arguments passed at runtime override configuration set by the other providers.
+`CreateDefaultBuilder` adds the Command-line configuration provider last. Command-line arguments passed at runtime override configuration set by the other providers.
 
 `CreateDefaultBuilder` acts when the host is constructed. Therefore, command-line configuration activated by `CreateDefaultBuilder` can affect how the host is configured.
 
@@ -435,7 +437,7 @@ To activate environment variables configuration, call the <xref:Microsoft.Extens
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
-[Azure App Service](https://azure.microsoft.com/services/app-service/) permits setting environment variables in the Azure Portal that can override app configuration using the Environment Variables Configuration Provider. For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
+[Azure App Service](https://azure.microsoft.com/services/app-service/) permits setting environment variables in the Azure Portal that can override app configuration using the Environment Variables configuration provider. For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
 
 `AddEnvironmentVariables` is used to load environment variables prefixed with `DOTNET_` for [host configuration](#host-versus-app-configuration) when a new host builder is initialized with the [Generic Host](xref:fundamentals/host/generic-host) and `CreateDefaultBuilder` is called. For more information, see the [Default configuration](#default-configuration) section.
 
@@ -446,7 +448,7 @@ To activate environment variables configuration, call the <xref:Microsoft.Extens
 * [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
 * Command-line arguments.
 
-The Environment Variables Configuration Provider is called after configuration is established from user secrets and *appsettings* files. Calling the provider in this position allows the environment variables read at runtime to override configuration set by user secrets and *appsettings* files.
+The Environment Variables configuration provider is called after configuration is established from user secrets and *appsettings* files. Calling the provider in this position allows the environment variables read at runtime to override configuration set by user secrets and *appsettings* files.
 
 To provide app configuration from additional environment variables, call the app's additional providers in `ConfigureAppConfiguration` and call `AddEnvironmentVariables` with the prefix:
 
@@ -526,7 +528,7 @@ _config["ConnectionStrings:ReleaseDB"]
 
 <a name="jcp"></a>
 
-### JSON Configuration Provider
+### JSON configuration provider
 
 The <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration from JSON file key-value pairs during runtime.
 
@@ -551,7 +553,7 @@ For more information, see the [Default configuration](#default-configuration) se
 * [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
 * Command-line arguments.
 
-The JSON Configuration Provider is established first. Therefore, user secrets, environment variables, and command-line arguments override configuration set by the *appsettings* files.
+The JSON configuration provider is established first. Therefore, user secrets, environment variables, and command-line arguments override configuration set by the *appsettings* files.
 
 Call `ConfigureAppConfiguration` when building the host to specify the app's configuration for files other than *appsettings.json* and *appsettings.{Environment}.json*:
 
@@ -584,15 +586,15 @@ The sample app takes advantage of the static convenience method `CreateDefaultBu
 1. The settings in the *appsettings.Development.json* no longer override the settings in *appsettings.json*. The log level for the key `Logging:LogLevel:Default` is `Warning`.
 zz 
 
-## File Configuration Provider
+## File configuration provider
 
 <xref:Microsoft.Extensions.Configuration.FileConfigurationProvider> is the base class for loading configuration from the file system. The following configuration providers are dedicated to specific file types:
 
-* [INI Configuration Provider](#ini-configuration-provider)
-* [JSON Configuration Provider](#json-configuration-provider)
-* [XML Configuration Provider](#xml-configuration-provider)
+* [INI configuration provider](#ini-configuration-provider)
+* [JSON configuration provider](#json-configuration-provider)
+* [XML configuration provider](#xml-configuration-provider)
 
-### INI Configuration Provider
+### INI configuration provider
 
 The <xref:Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider> loads configuration from INI file key-value pairs at runtime.
 
@@ -641,7 +643,7 @@ The previous configuration file loads the following keys with `value`:
 * section2:subsection0:key
 * section2:subsection1:key
 
-### XML Configuration Provider
+### XML configuration provider
 
 The <xref:Microsoft.Extensions.Configuration.Xml.XmlConfigurationProvider> loads configuration from XML file key-value pairs at runtime.
 
@@ -728,9 +730,9 @@ The previous configuration file loads the following keys with `value`:
 * key:attribute
 * section:key:attribute
 
-## Key-per-file Configuration Provider
+## Key-per-file configuration provider
 
-The <xref:Microsoft.Extensions.Configuration.KeyPerFile.KeyPerFileConfigurationProvider> uses a directory's files as configuration key-value pairs. The key is the file name. The value contains the file's contents. The Key-per-file Configuration Provider is used in Docker hosting scenarios.
+The <xref:Microsoft.Extensions.Configuration.KeyPerFile.KeyPerFileConfigurationProvider> uses a directory's files as configuration key-value pairs. The key is the file name. The value contains the file's contents. The Key-per-file configuration provider is used in Docker hosting scenarios.
 
 To activate key-per-file configuration, call the <xref:Microsoft.Extensions.Configuration.KeyPerFileConfigurationBuilderExtensions.AddKeyPerFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>. The `directoryPath` to the files must be an absolute path.
 
@@ -752,7 +754,7 @@ Call `ConfigureAppConfiguration` when building the host to specify the app's con
 })
 ```
 
-## Memory Configuration Provider
+## Memory configuration provider
 
 The <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider> uses an in-memory collection as configuration key-value pairs.
 
@@ -902,7 +904,7 @@ The sample app contains a `Starship` model (*Models/Starship.cs*):
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/Models/Starship.cs?name=snippet1)]
 
-The `starship` section of the *starship.json* file creates the configuration when the sample app uses the JSON Configuration Provider to load the configuration:
+The `starship` section of the *starship.json* file creates the configuration when the sample app uses the JSON configuration provider to load the configuration:
 
 [!code-json[](index/samples/3.x/ConfigurationSample/starship.json)]
 
@@ -966,7 +968,7 @@ Consider the configuration keys and values shown in the following table.
 | array:entries:4 | value4 |
 | array:entries:5 | value5 |
 
-These keys and values are loaded in the sample app using the Memory Configuration Provider:
+These keys and values are loaded in the sample app using the Memory configuration provider:
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=5-12,22)]
 
@@ -999,7 +1001,7 @@ The bound object, an instance of `ArrayExample`, receives the array data from co
 
 Index &num;3 in the bound object holds the configuration data for the `array:4` configuration key and its value of `value4`. When configuration data containing an array is bound, the array indices in the configuration keys are merely used to iterate the configuration data when creating the object. A null value can't be retained in configuration data, and a null-valued entry isn't created in a bound object when an array in configuration keys skip one or more indices.
 
-The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that produces the correct key-value pair in configuration. If the sample included an additional JSON Configuration Provider with the missing key-value pair, the `ArrayExample.Entries` matches the complete configuration array:
+The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that produces the correct key-value pair in configuration. If the sample included an additional JSON configuration provider with the missing key-value pair, the `ArrayExample.Entries` matches the complete configuration array:
 
 *missing_value.json*:
 
@@ -1022,7 +1024,7 @@ The key-value pair shown in the table is loaded into configuration.
 | :-------------: | :----: |
 | array:entries:3 | value3 |
 
-If the `ArrayExample` class instance is bound after the JSON Configuration Provider includes the entry for index &num;3, the `ArrayExample.Entries` array includes the value.
+If the `ArrayExample` class instance is bound after the JSON configuration provider includes the entry for index &num;3, the `ArrayExample.Entries` array includes the value.
 
 | `ArrayExample.Entries` Index | `ArrayExample.Entries` Value |
 | :--------------------------: | :--------------------------: |
@@ -1039,7 +1041,7 @@ If a JSON file contains an array, configuration keys are created for the array e
 
 [!code-json[](index/samples/3.x/ConfigurationSample/json_array.json)]
 
-The JSON Configuration Provider reads the configuration data into the following key-value pairs:
+The JSON configuration provider reads the configuration data into the following key-value pairs:
 
 | Key                     | Value  |
 | ----------------------- | :----: |
@@ -1183,8 +1185,8 @@ Before the app is configured and started, a *host* is configured and launched. T
 For details on the default configuration when using the [Web Host](xref:fundamentals/host/web-host), see the [ASP.NET Core 2.2 version of this topic](/aspnet/core/fundamentals/configuration/?view=aspnetcore-2.2).
 
 * Host configuration is provided from:
-  * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
-  * Command-line arguments using the [Command-line Configuration Provider](#command-line-configuration-provider).
+  * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables configuration provider](#environment-variables-configuration-provider). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
+  * Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
 * Web Host default configuration is established (`ConfigureWebHostDefaults`):
   * Kestrel is used as the web server and configured using the app's configuration providers.
   * Add Host Filtering Middleware.
