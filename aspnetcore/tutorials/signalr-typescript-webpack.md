@@ -86,7 +86,7 @@ Run the following .NET Core CLI command in the **Integrated Terminal**:
 dotnet add package Microsoft.TypeScript.MSBuild
 ```
 
-The preceding command adds the (Microsoft.TypeScript.MSBuild)[https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild/] package, enabling TypeScript compilation in the project.
+The preceding command adds the [Microsoft.TypeScript.MSBuild](https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild/) package, enabling TypeScript compilation in the project.
 
 ---
 
