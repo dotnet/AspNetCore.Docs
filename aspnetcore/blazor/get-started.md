@@ -50,7 +50,7 @@ Get started with Blazor:
 
    1\. Install [Visual Studio Code](https://code.visualstudio.com/).
 
-   2\. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp).
+   2\. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
    3\. For a Blazor WebAssembly experience, execute the following command in a command shell:
 

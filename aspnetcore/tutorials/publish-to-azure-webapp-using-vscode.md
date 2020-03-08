@@ -26,7 +26,7 @@ and deploy it within Visual Studio Code.
 - Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.
 - Install [.NET Core SDK](https://dotnet.microsoft.com/download)
 - Install [Visual Studio Code](https://code.visualstudio.com/Download)
-  - Install the [C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) to Visual Studio Code
+  - Install the [C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) to Visual Studio Code
   - Install the [Azure App Service Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice)
   to Visual Studio Code and configure it before proceeding
 
