@@ -400,9 +400,7 @@ namespace AspNetCoreRequireMfaOidc
 }
 ```
 
-An `AuthorizationHandler` is implemented that will use the `amr` claim and check for the value `mfa`. The `amr` is returned in the `id_token` of a successful authentication and can have many different values as defined in the following specification:
-
-[Authentication Method Reference Values](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08) 
+An `AuthorizationHandler` is implemented that will use the `amr` claim and check for the value `mfa`. The `amr` is returned in the `id_token` of a successful authentication and can have many different values as defined in the [Authentication Method Reference Values](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08) specification.
 
 The returned value depends on how the identity authenticated and on the Open ID Connect server implementation.
 
@@ -516,7 +514,7 @@ namespace AspNetCoreRequireMfaOidc.Pages
 }
 ```
 
-If the user authenticates without MFA, the `amr` claim will probably have a `pwd` value. The request won't be authorized to access the page. Using the default values, the user will be redirected to the *account/AccessDenied* page. This can be changed or you can implement your own custom logic here. In this example, a link is added so that the valid user can set up MFA for his or her account.
+If the user authenticates without MFA, the `amr` claim will probably have a `pwd` value. The request won't be authorized to access the page. Using the default values, the user will be redirected to the *Account/AccessDenied* page. This can be changed or you can implement your own custom logic here. In this example, a link is added so that the valid user can set up MFA for his or her account.
 
 ```cshtml
 @page
@@ -533,7 +531,7 @@ You require MFA to login here
 <a href="https://localhost:44352/Manage/TwoFactorAuthentication">Enable MFA</a>
 ```
 
-Now only users that authenticate with MFA can access the page or website. If different MFA types are used or if 2FA is okay, the `amr` claim will have different values and needs to be processed correctly. Different Open ID Connect servers also return different values for this claim and might not follow the Authentication Method Reference Values specification. 
+Now only users that authenticate with MFA can access the page or website. If different MFA types are used or if 2FA is okay, the `amr` claim will have different values and needs to be processed correctly. Different Open ID Connect servers also return different values for this claim and might not follow the [Authentication Method Reference Values](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08) specification.
 
 When logging in without MFA (for example, using just a password):
 
