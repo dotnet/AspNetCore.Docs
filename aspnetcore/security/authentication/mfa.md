@@ -536,7 +536,8 @@ You require MFA to login here
 Now only users that authenticate with MFA can access the page or website. If different MFA types are used or if 2FA is okay, the `amr` claim will have different values and needs to be processed correctly. Different Open ID Connect servers also return different values for this claim and might not follow the Authentication Method Reference Values specification. 
 
 When logging in without MFA (for example, using just a password):
-* The amr has the pwd value:
+
+* The `amr` has the `pwd` value:
 
 	![require_mfa_oidc_02.png](mfa/_static/require_mfa_oidc_02.png)
 	
