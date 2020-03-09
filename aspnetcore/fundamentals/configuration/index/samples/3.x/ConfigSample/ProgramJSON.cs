@@ -30,18 +30,3 @@ namespace ConfigSample
     #endregion
 }
 #endif
-
-/*https://itnesweb.com/article/from-sandbox-how-configuration-in-net-core-works
-   public IConfiguration Configuration {get;  set;  }
- public IHostingEnvironment Environment {get;  set;  }
-
- public Startup (IConfiguration configuration, IHostingEnvironment environment)
- {
-  Environment = environment;
-  Configuration = new ConfigurationBuilder ()
-  .AddJsonFile ("appsettings.json")
-  .AddJsonFile ($ "appsettings. {Environment.EnvironmentName} .json")
-  .Build ();
- } 
-
-    */

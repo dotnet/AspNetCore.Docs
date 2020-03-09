@@ -60,7 +60,7 @@ The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvi
 1. *appsettings.json*
 1. *appsettings.*`Environment`*.json* : For example, the *appsettings.Production.json* and *appsettings.Development.json* files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
 
-*appsettings.{Environment}.json* values override keys in *appsettings.json*. For example, by default:
+*appsettings*.`Environment`.*json* values override keys in *appsettings.json*. For example, by default:
 
 * In development, *appsettings.Development.json* configuration overwrites values found in *appsettings.json*.
 * In production, *appsettings.Production.json* configuration overwrites values found in *appsettings.json*. For example, when deploying the app to Azure.
@@ -133,12 +133,12 @@ By default, the <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.En
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
-The following commands can be used to set the environment keys and values of the [preceding example](#appsettingsjson) on Windows:
+The following [setx](/windows-server/administration/windows-commands/setx) commands can be used to set the environment keys and values of the [preceding example](#appsettingsjson) on Windows:
 
 ```cmd
-setx MyKey "My key from Environment"
-setx Position__Title Environment_Editor
-setx Position__Name Environment_Rick
+setx MyKey "My key from Environment" /M
+setx Position__Title Environment_Editor /M
+setx Position__Name Environment_Rick /M
 ```
 
 To test that the environment configuration overrides *apsettings*json* values:
@@ -155,7 +155,7 @@ On [Azure App Service](https://azure.microsoft.com/services/app-service/), selec
 
 By default, the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
 
-* Optional configuration from *appsettings.json* and *appsettings.{Environment}.json* files.
+* Optional configuration from *appsettings.json* and *appsettings*.`Environment`.*json* files.
 * [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
 * Environment variables.
 
@@ -327,7 +327,7 @@ Configuration sources are read in the order that their configuration providers a
 
 A typical sequence of configuration providers is:
 
-1. Files (*appsettings.json*, *appsettings.{Environment}.json*, where `{Environment}` is the app's current hosting environment)
+1. Files (*appsettings.json*, *appsettings*.`Environment`.*json*, where `{Environment}` is the app's current hosting environment)
 1. [Azure Key Vault](xref:security/key-vault-configuration)
 1. [User secrets (Secret Manager)](xref:security/app-secrets) (Development environment only)
 1. Environment variables
@@ -406,7 +406,7 @@ To activate command-line configuration, the <xref:Microsoft.Extensions.Configura
 
 `CreateDefaultBuilder` also loads:
 
-* Optional configuration from *appsettings.json* and *appsettings.{Environment}.json* files.
+* Optional configuration from *appsettings.json* and *appsettings*.`Environment`.*json* files.
 * [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
 * Environment variables.
 
@@ -470,7 +470,7 @@ To activate environment variables configuration, call the <xref:Microsoft.Extens
 `CreateDefaultBuilder` also loads:
 
 * App configuration from unprefixed environment variables by calling `AddEnvironmentVariables` without a prefix.
-* Optional configuration from *appsettings.json* and *appsettings.{Environment}.json* files.
+* Optional configuration from *appsettings.json* and *appsettings*.`Environment`.*json* files.
 * [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
 * Command-line arguments.
 
@@ -558,10 +558,6 @@ _config["ConnectionStrings:ReleaseDB"]
 
 The <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration from JSON file key-value pairs.
 
-<!-- 
-To activate JSON file configuration, call the <xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
--->
-
 Overloads can specify:
 
 * Whether the file is optional.
@@ -573,145 +569,79 @@ Consider the following code:
 
 The preceding code:
 
-* Configures the JSON configuration provider to load the "MyConfig.json" with the following options:
+* Configures the JSON configuration provider to load the *MyConfig.json* file with the following options:
   * `optional: true`: The file is optional.
   * `reloadOnChange: true` : The file is reloaded when changes are saved.
-* Reads the [default configuration providers](#default). Settings in the "MyConfig.json" override setting in the default configuration providers, including the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
+* Reads the [default configuration providers](#default) before the "MyConfig.json" file. Settings in the *MyConfig.json* file override setting in the default configuration providers, including the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
-You typically ***don't*** want a custom JSON file overriding values set in the the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
+You typically ***don't*** want a custom JSON file overriding values set in the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
 The following code clears all the configuration providers and adds several configuration providers:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON2.cs?name=snippet&highlight=12-29)]
+[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON2.cs?name=snippet&highlight=10-30)]
+
+In the preceding code, settings in the *MyConfig.json* and  *MyConfig*.`Environment`.*json* files:
+
+* Override settings in the *appsettings.json* and *appsettings*.`Environment`.*json* files.
+* Are overridden by settings in the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
+
+See the [appsettings.json](#appsettingsjson) section for sample code that reads the *MyConfig.json* file.
 
 <a name="fcp"></a>
 
 ## File configuration provider
 
-<xref:Microsoft.Extensions.Configuration.FileConfigurationProvider> is the base class for loading configuration from the file system. The following configuration providers are dedicated to specific file types:
+<xref:Microsoft.Extensions.Configuration.FileConfigurationProvider> is the base class for loading configuration from the file system. The following configuration providers derive from `FileConfigurationProvider`:
 
 * [INI configuration provider](#ini-configuration-provider)
-* [JSON configuration provider](#json-configuration-provider)
+* [JSON configuration provider](#jcp)
 * [XML configuration provider](#xml-configuration-provider)
 
 ### INI configuration provider
 
 The <xref:Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider> loads configuration from INI file key-value pairs at runtime.
 
-To activate INI file configuration, call the <xref:Microsoft.Extensions.Configuration.IniConfigurationExtensions.AddIniFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
+The following code clears all the configuration providers and adds several configuration providers:
 
-The colon can be used to as a section delimiter in INI file configuration.
+[!code-csharp[](index/samples/3.x/ConfigSample/ProgramINI.cs?name=snippet&highlight=10-30)]
 
-Overloads permit specifying:
+In the preceding code, settings in the *MyIniConfig.ini* and  *MyIniConfig*.`Environment`.*ini* files are overridden by settings in the:
 
-* Whether the file is optional.
-* Whether the configuration is reloaded if the file changes.
-* The <xref:Microsoft.Extensions.FileProviders.IFileProvider> used to access the file.
+* [Environment variables configuration provider](#evcp)
+* [Command-line configuration provider](#clcp).
 
-Call `ConfigureAppConfiguration` when building the host to specify the app's configuration:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following *MyIniConfig.ini* file:
 
-```csharp
-.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.AddIniFile(
-        "config.ini", optional: true, reloadOnChange: true);
-})
-```
+[!code-ini[](index/samples/3.x/ConfigSample/MyIniConfig.ini)]
 
-A generic example of an INI configuration file:
-
-```ini
-[section0]
-key0=value
-key1=value
-
-[section1]
-subsection:key=value
-
-[section2:subsection0]
-key=value
-
-[section2:subsection1]
-key=value
-```
-
-The previous configuration file loads the following keys with `value`:
-
-* section0:key0
-* section0:key1
-* section1:subsection:key
-* section2:subsection0:key
-* section2:subsection1:key
+See the [appsettings.json](#appsettingsjson) section for sample code that reads the *MyIniConfig.ini* and *MyIniConfig*.`Environment`.*ini* files.
 
 ### XML configuration provider
 
 The <xref:Microsoft.Extensions.Configuration.Xml.XmlConfigurationProvider> loads configuration from XML file key-value pairs at runtime.
 
-To activate XML file configuration, call the <xref:Microsoft.Extensions.Configuration.XmlConfigurationExtensions.AddXmlFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
+The following code clears all the configuration providers and adds several configuration providers:
 
-Overloads permit specifying:
+[!code-csharp[](index/samples/3.x/ConfigSample/ProgramXML.cs?name=snippet)]
 
-* Whether the file is optional.
-* Whether the configuration is reloaded if the file changes.
-* The <xref:Microsoft.Extensions.FileProviders.IFileProvider> used to access the file.
+In the preceding code, settings in the *MyXMLFile.xml* and  *MyXMLFile*.`Environment`.*xml* files are overridden by settings in the:
 
-The root node of the configuration file is ignored when the configuration key-value pairs are created. Don't specify a Document Type Definition (DTD) or namespace in the file.
+* [Environment variables configuration provider](#evcp)
+* [Command-line configuration provider](#clcp).
 
-Call `ConfigureAppConfiguration` when building the host to specify the app's configuration:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following *MyXMLFile.xml* file:
 
-```csharp
-.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.AddXmlFile(
-        "config.xml", optional: true, reloadOnChange: true);
-})
-```
+[!code-xml[](index/samples/3.x/ConfigSample/MyXMLFile.xml)]
 
-XML configuration files can use distinct element names for repeating sections:
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-  <section0>
-    <key0>value</key0>
-    <key1>value</key1>
-  </section0>
-  <section1>
-    <key0>value</key0>
-    <key1>value</key1>
-  </section1>
-</configuration>
-```
-
-The previous configuration file loads the following keys with `value`:
-
-* section0:key0
-* section0:key1
-* section1:key0
-* section1:key1
+See the [appsettings.json](#appsettingsjson) section for sample code that reads the *MyXMLFile.xml* and *MyXMLFile*.`Environment`.*xml* files.
 
 Repeating elements that use the same element name work if the `name` attribute is used to distinguish the elements:
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-  <section name="section0">
-    <key name="key0">value</key>
-    <key name="key1">value</key>
-  </section>
-  <section name="section1">
-    <key name="key0">value</key>
-    <key name="key1">value</key>
-  </section>
-</configuration>
-```
+[!code-xml[](index/samples/3.x/ConfigSample/MyXMLFile3.xml)]
 
-The previous configuration file loads the following keys with `value`:
+The following code reads the previous configuration file and displays the keys and values:
 
-* section:section0:key:key0
-* section:section0:key:key1
-* section:section1:key:key0
-* section:section1:key:key1
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/XML/Index.cshtml.cs?name=snippet)]
 
 Attributes can be used to supply values:
 

@@ -22,12 +22,8 @@ namespace ConfigSample
 
                     var env = hostingContext.HostingEnvironment;
 
-                    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                          .AddJsonFile($"appsettings.{env.EnvironmentName}.json", 
-                                         optional: true, reloadOnChange: true);
-
-                    config.AddJsonFile("MyConfig.json", optional: true, reloadOnChange: true)
-                          .AddJsonFile($"MyConfig.{env.EnvironmentName}.json",
+                    config.AddIniFile("MyIniConfig.ini", optional: true, reloadOnChange: true)
+                          .AddIniFile($"MyIniConfig.{env.EnvironmentName}.ini",
                                          optional: true, reloadOnChange: true);
 
                     config.AddEnvironmentVariables();

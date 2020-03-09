@@ -1,12 +1,15 @@
 {
   "Position": {
-    "Title": "Debug writer",
-    "Name": "Debug Smith"
+    "Title": "Dev My Config title",
+    "Name": "Dev My Config Smith"
   },
-  "MyKey": "Dev appsettings.Development Value",
-  "LogLevel": {
-    "Default": "Information",
-    "Microsoft": "Warning",
-    "Microsoft.Hosting.Lifetime": "Information"
-  }
+  "MyKey": "MyConfig.Development.json Value",
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*"
 }
