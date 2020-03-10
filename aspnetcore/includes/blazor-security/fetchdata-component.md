@@ -46,4 +46,4 @@ If the request failed because the token couldn't be provisioned without user int
 }
 ```
 
-For more information, see [Save app state before an authentication operation](xref:security/blazor/webassembly/additional-scnearios#save-app-state-before-an-authentication-operation).
+For more information, see [Save app state before an authentication operation](xref:security/blazor/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation).

@@ -346,7 +346,7 @@
                 - name: Hosted with AAD B2C
                   uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
                 - name: Additional scenarios
-                  uid: security/blazor/webassembly/additional-scnearios
+                  uid: security/blazor/webassembly/additional-scenarios
             - name: Blazor Server
               uid: security/blazor/server
             - name: Content Security Policy
@@ -1125,7 +1125,7 @@
             - name: Hosted with AAD B2C
               uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
             - name: Additional scenarios
-              uid: security/blazor/webassembly/additional-scnearios
+              uid: security/blazor/webassembly/additional-scenarios
         - name: Blazor Server
           uid: security/blazor/server
         - name: Content Security Policy
