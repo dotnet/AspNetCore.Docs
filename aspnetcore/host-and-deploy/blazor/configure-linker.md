@@ -19,7 +19,7 @@ Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/manage
 
 Linking an application optimizes for size, but may have detrimental effects. Applications that use reflection or related dynamic features may break when trimmed, because the linker does not know about this dynamic behavior, and can not determine in general which types will be required for reflection at runtime. To trim such apps, you will need to tell the linker about any types needed by reflection in your code, and in packages or frameworks that you depend on. 
 
-To ensure your trimmd application work correctly once deployed, it's important to test Release builds of your application frequently while developing.
+To ensure your trimmed application work correctly once deployed, it's important to test Release builds of your application frequently while developing.
 
 Linking for your Blazor applications can be configured using these MSBuild features:
 
