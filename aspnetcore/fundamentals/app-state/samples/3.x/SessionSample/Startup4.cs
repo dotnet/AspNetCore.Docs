@@ -9,7 +9,6 @@ using System;
 namespace SessionSample2
 {
     #region snippet1
-
     public class Startup
     {
         public Startup(IConfiguration configuration)
