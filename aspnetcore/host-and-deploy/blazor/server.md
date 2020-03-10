@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor Server app using ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/15/2020
+ms.date: 03/03/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/server
 ---
@@ -102,14 +102,40 @@ metadata:
 
 #### Linux with Nginx
 
-For SignalR WebSockets to function properly, set the proxy's `Upgrade` and `Connection` headers to the following:
+For SignalR WebSockets to function properly, confirm that the proxy's `Upgrade` and `Connection` headers are set to the following values and that `$connection_upgrade` is mapped to either:
+
+* The Upgrade header value by default.
+* `close` when the Upgrade header is missing or empty.
 
 ```
-proxy_set_header Upgrade $http_upgrade;
-proxy_set_header Connection $connection_upgrade;
+http {
+    map $http_upgrade $connection_upgrade {
+        default Upgrade;
+        ''      close;
+    }
+
+    server {
+        listen      80;
+        server_name example.com *.example.com
+        location / {
+            proxy_pass         http://localhost:5000;
+            proxy_http_version 1.1;
+            proxy_set_header   Upgrade $http_upgrade;
+            proxy_set_header   Connection $connection_upgrade;
+            proxy_set_header   Host $host;
+            proxy_cache_bypass $http_upgrade;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Proto $scheme;
+        }
+    }
+}
 ```
 
-For more information, see [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/).
+For more information, see the following articles:
+
+* [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/)
+* [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
+* <xref:host-and-deploy/linux-nginx>
 
 ### Measure network latency
 
