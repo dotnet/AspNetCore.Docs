@@ -105,6 +105,10 @@ See the following links for differences between challenge and forbid:
 * [Challenge and forbid with an operational resource handler](xref:security/authorization/resourcebased#challenge-and-forbid-with-an-operational-resource-handler).
 * [Differences between challenge and forbid](xref:security/authorization/secure-data#challenge).
 
+## Authentication providers per tenant
+
+Orchard Core is an open-source modular and multi-tenant app framework built with ASP.NET Core, and a content management system (CMS) built on top of that app framework. See the[Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an example of authentication providers per tenant.
+
 ## Additional resources
 
 * <xref:security/authorization/limitingidentitybyscheme>
