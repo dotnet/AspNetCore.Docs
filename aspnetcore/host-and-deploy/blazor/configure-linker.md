@@ -5,7 +5,7 @@ description: Learn how to control the Intermediate Language (IL) Linker when bui
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 03/10/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/configure-linker
 ---
@@ -15,13 +15,13 @@ By [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a build to trim unnecessary IL from the app's output assemblies. The linker is disabled when building in `Debug` configuration. Applications must build in `Release` configuration to enable the linker. We recommend building in `Release` when deploying your Blazor WebAssembly applications. 
+Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a build to trim unnecessary IL from the app's output assemblies. The linker is disabled when building in Debug configuration. Apps must build in Release configuration to enable the linker. We recommend building in Release when deploying your Blazor WebAssembly apps. 
 
-Linking an application optimizes for size, but may have detrimental effects. Applications that use reflection or related dynamic features may break when trimmed, because the linker does not know about this dynamic behavior, and can not determine in general which types will be required for reflection at runtime. To trim such apps, you will need to tell the linker about any types needed by reflection in your code, and in packages or frameworks that you depend on. 
+Linking an app optimizes for size but may have detrimental effects. Apps that use reflection or related dynamic features may break when trimmed because the linker doesn't know about this dynamic behavior and can't determine in general which types are required for reflection at runtime. To trim such apps, the linker must be informed about any types required by reflection in the code and in packages or frameworks that the app depends on. 
 
-To ensure your trimmed application work correctly once deployed, it's important to test Release builds of your application frequently while developing.
+To ensure the trimmed app works correctly once deployed, it's important to test Release builds of the app frequently while developing.
 
-Linking for your Blazor applications can be configured using these MSBuild features:
+Linking for Blazor apps can be configured using these MSBuild features:
 
 * Configure linking globally with a [MSBuild property](#disable-linking-with-a-msbuild-property).
 * Control linking on a per-assembly basis with a [configuration file](#control-linking-with-a-configuration-file).
