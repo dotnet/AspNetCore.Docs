@@ -327,6 +327,8 @@ The Generic Host allows other types of apps to use cross-cutting framework exten
 
 An ASP.NET Core app uses an HTTP server implementation to listen for HTTP requests. The server surfaces requests to the app as a set of [request features](xref:fundamentals/request-features) composed into an `HttpContext`.
 
+::: moniker-end
+
 ::: moniker range="= aspnetcore-2.2"
 
 # [Windows](#tab/windows)
