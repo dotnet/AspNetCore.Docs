@@ -89,7 +89,7 @@ To enable the session middleware, `Startup` must contain:
 
 The following code shows how to set up the in-memory session provider with a default in-memory implementation of `IDistributedCache`:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Startup.cs?name=snippet1&highlight=12-19,39)]
+[!code-csharp[](app-state/samples/3.x/SessionSample/Startup4.cs?name=snippet1&highlight=12-19,39)]
 
 The preceding code sets a short timeout to simplify testing.
 

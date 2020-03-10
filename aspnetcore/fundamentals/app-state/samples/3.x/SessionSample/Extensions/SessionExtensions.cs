@@ -17,11 +17,14 @@ namespace Web.Extensions
             return value == null ? default : JsonSerializer.Deserialize<T>(value);
         }
     }
-    #endregion
+    #endregion      
+}
 
+namespace Web.Extensions2
+{
     // Alternate approach
 
-    public static class SessionExtensions2
+    public static class SessionExtensions
     {
         public static void Set<T>(this ISession session, string key, T value)
         {
