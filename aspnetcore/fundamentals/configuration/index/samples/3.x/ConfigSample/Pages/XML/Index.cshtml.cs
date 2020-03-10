@@ -21,15 +21,15 @@ namespace ConfigSample.Pages.JSON
             var key10 = "section:section1:key:key0";
             var key11 = "section:section1:key:key1";
 
-            var ss0kk0 = Configuration[key00];
-            var ss0kk1 = Configuration[key01];
-            var ss1kk0 = Configuration[key10];
-            var ss1kk1 = Configuration[key11];
+            var val00 = Configuration[key00];
+            var val01 = Configuration[key01];
+            var val10 = Configuration[key10];
+            var val11 = Configuration[key11];
 
-            return Content($"{key00} value: {ss0kk0} \n" +
-                           $"{key01} value: {ss0kk1} \n" +
-                           $"{key10} value: {ss1kk0} \n" +
-                           $"{key10} value: {ss1kk1} \n"
+            return Content($"{key00} value: {val00} \n" +
+                           $"{key01} value: {val01} \n" +
+                           $"{key10} value: {val10} \n" +
+                           $"{key10} value: {val11} \n"
                            );
         }
     }

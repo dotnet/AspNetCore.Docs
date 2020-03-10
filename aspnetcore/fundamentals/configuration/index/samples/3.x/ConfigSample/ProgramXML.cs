@@ -1,4 +1,4 @@
-#define MAIN2
+//#define MAIN2
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;

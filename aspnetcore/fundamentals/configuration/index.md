@@ -65,6 +65,10 @@ The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvi
 * In development, *appsettings.Development.json* configuration overwrites values found in *appsettings.json*.
 * In production, *appsettings.Production.json* configuration overwrites values found in *appsettings.json*. For example, when deploying the app to Azure.
 
+<a name="optpat"></a>
+
+####  Read hierarchical configuration data using the options pattern
+
 The preferred way to read configuration values is using the [options pattern](xref:fundamentals/configuration/options). For example, to read the following configuration values:
 
 ```xml
@@ -96,15 +100,15 @@ The following code displays the enabled configuration providers in the order the
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Index.cshtml.cs?name=snippet)]
 
-[!code-cshtml[](index/samples/3.x/ConfigSample/Pages/Index.cshtml.cs)]
+[!code-cshtml[](index/samples/3.x/ConfigSample/Pages/Index.cshtml)]
 
 The preceding code uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/built-in/environment-tag-helper) to display the environment.
 
 With the [default configuration](#default), the following configuration providers are displayed:
 
-* [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) : : <!-- REVIEW, what is this? -->
+* [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) : <!-- REVIEW, what is this? -->
 * [JsonConfigurationProvider](#jcp) : For *appsettings.json*
-* JsonConfigurationProvider : *appsettings.*`Environment`*.json*
+* JsonConfigurationProvider : For *appsettings.*`Environment`*.json*
 * [EnvironmentVariablesConfigurationProvider](#evcp)
 * [CommandLineConfigurationProvider](#clcp)
 
@@ -129,7 +133,7 @@ For more information on storing passwords or other sensitive data:
 
 ## Environment variables
 
-By default, the <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs after reading *appsettings.json* and [Secret manager](xref:security/app-secrets). Therefore, keys read from the environment override values read from *appsettings.json* and Secret manager.
+By [default](#default), the <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs after reading *appsettings.json*, *appsettings.*`Environment`*.json*, and [Secret manager](xref:security/app-secrets). Therefore, keys read from the environment override values read from *appsettings.json*, *appsettings.*`Environment`*.json*, and Secret manager.
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
@@ -141,7 +145,7 @@ setx Position__Title Environment_Editor /M
 setx Position__Name Environment_Rick /M
 ```
 
-To test that the environment configuration overrides *apsettings*json* values:
+To test that the environment configuration overrides *apsettings.json* values:
 
 * With Visual Studio: Exit and restart Visual Studio.
 * With the CLI. Start a new command window and enter `dotnet run`.
@@ -153,7 +157,7 @@ On [Azure App Service](https://azure.microsoft.com/services/app-service/), selec
 
 ## Command-line
 
-By default, the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
+By [default](#default), the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
 
 * Optional configuration from *appsettings.json* and *appsettings*.`Environment`.*json* files.
 * [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
@@ -187,18 +191,18 @@ Within the same command, don't mix command-line argument key-value pairs that us
 
 ### Switch mappings
 
-Switch mappings allow **key** name replacement logic. Provide a dictionary of switch replacements to the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> method. (the key replacement) 
+Switch mappings allow **key** name replacement logic. Provide a dictionary of switch replacements to the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> method.
 
 When the switch mappings dictionary is used, the dictionary is checked for a key that matches the key provided by a command-line argument. If the command-line key is found in the dictionary, the dictionary value is passed back to set the key-value pair into the app's configuration. A switch mapping is required for any command-line key prefixed with a single dash (`-`).
 
 Switch mappings dictionary key rules:
 
-* Switches must start with a dash (`-`) or double-dash (`--`).
+* Switches must start with `-` or `--` characters.
 * The switch mappings dictionary must not contain duplicate keys.
 
 Create a switch mappings dictionary. Call `AddCommandLine` with the switch mappings dictionary:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Program3.cs?name=snippet&highlight=10-18,23)]
+[!code-csharp[](index/samples/3.x/ConfigSample/ProgramSwitch.cs?name=snippet&highlight=10-18,23)]
 
 The following code shows the key values for the replaced keys:
 
@@ -220,73 +224,27 @@ dotnet run -k1 value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 
 
 For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't pass arguments. The `CreateDefaultBuilder` method's `AddCommandLine` call doesn't include mapped switches, and there's no way to pass the switch mapping dictionary to `CreateDefaultBuilder`. The solution isn't to pass the arguments to `CreateDefaultBuilder` but instead to allow the `ConfigurationBuilder` method's `AddCommandLine` method to process both the arguments and the switch mapping dictionary.
 
-## Hierarchical configuration data zzz
+## Hierarchical configuration data
 
-The Configuration API is capable of maintaining hierarchical configuration data by flattening the hierarchical data with the use of a delimiter in the configuration keys.
+The Configuration API is reads hierarchical configuration data by flattening the hierarchical data with the use of a delimiter in the configuration keys.
 
-In the following JSON file, four keys exist in a structured hierarchy of two sections:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  *appsettings.json* file:
 
-```json
-{
-  "section0": {
-    "key0": "value",
-    "key1": "value"
-  },
-  "section1": {
-    "key0": "value",
-    "key1": "value"
-  }
-}
-```
+[!code-json[](index/samples/3.x/ConfigSample/appsettings.json)]
 
-When the file is read into configuration, unique keys are created to maintain the original hierarchical data structure of the configuration source. The sections and keys are flattened with the use of a colon (`:`) to maintain the original structure:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the configurations settings:
 
-* section0:key0
-* section0:key1
-* section1:key0
-* section1:key1
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
+
+The preferred way to read hierarchical configuration data is using the options pattern. For more information, see [Read hierarchical configuration data](#optpat) in this document.
 
 <xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection*> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*> methods are available to isolate sections and children of a section in the configuration data. These methods are described later in [GetSection, GetChildren, and Exists](#getsection-getchildren-and-exists).
 
-## Conventions
+<!--
+[Azure Key Vault configuration provider](xref:security/key-vault-configuration) implement change detection.
+-->
 
-### Sources and providers
-
-At app startup, configuration sources are read in the order that their configuration providers are specified.
-
-Configuration providers that implement change detection have the ability to reload configuration when an underlying setting is changed. For example, the [File configuration provider](#fcp) (described later in this topic) and the [Azure Key Vault configuration provider](xref:security/key-vault-configuration) implement change detection.
-
-<xref:Microsoft.Extensions.Configuration.IConfiguration> is available in the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) container. <xref:Microsoft.Extensions.Configuration.IConfiguration> can be injected into a Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> or MVC <xref:Microsoft.AspNetCore.Mvc.Controller> to obtain configuration for the class.
-
-In the following examples, the `_config` field is used to access configuration values:
-
-```csharp
-public class IndexModel : PageModel
-{
-    private readonly IConfiguration _config;
-
-    public IndexModel(IConfiguration config)
-    {
-        _config = config;
-    }
-}
-```
-
-```csharp
-public class HomeController : Controller
-{
-    private readonly IConfiguration _config;
-
-    public HomeController(IConfiguration config)
-    {
-        _config = config;
-    }
-}
-```
-
-Configuration providers can't utilize DI, as it's not available when they're set up by the host.
-
-### Keys
+## Configuration keys
 
 Configuration keys adopt the following conventions:
 
@@ -294,15 +252,13 @@ Configuration keys adopt the following conventions:
 * If a value for the same key is set by the same or different configuration providers, the last value set on the key is the value used.
 * Hierarchical keys
   * Within the Configuration API, a colon separator (`:`) works on all platforms.
-  * In environment variables, a colon separator may not work on all platforms. A double underscore (`__`) is supported by all platforms and is automatically converted into a colon.
-  * In Azure Key Vault, hierarchical keys use `--` (two dashes) as a separator. Write code to replace the dashes with a colon when the secrets are loaded into the app's configuration.
+  * In environment variables, a colon separator may not work on all platforms. A double underscore, `__`, is supported by all platforms and is automatically converted into a colon `:`.
+  * In Azure Key Vault, hierarchical keys use `--` as a separator. Write code to replace the `--` with a `:` when the secrets are loaded into the app's configuration.
 * The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder> supports binding arrays to objects using array indices in configuration keys. Array binding is described in the [Bind an array to a class](#bind-an-array-to-a-class) section.
 
-### Values
+Configuration values:
 
-Configuration values adopt the following conventions:
-
-* Values are strings.
+* Are strings.
 * Null values can't be stored in configuration or bound to objects.
 
 <a name="cp"></a>
@@ -311,84 +267,31 @@ Configuration values adopt the following conventions:
 
 The following table shows the configuration providers available to ASP.NET Core apps.
 
-| Provider | Provides configuration from&hellip; |
+| Provider | Provides configuration from |
 | -------- | ----------------------------------- |
-| [Azure Key Vault configuration provider](xref:security/key-vault-configuration) (*Security* topics) | Azure Key Vault |
-| [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app) (Azure documentation) | Azure App Configuration |
+| [Azure Key Vault configuration provider](xref:security/key-vault-configuration) | Azure Key Vault |
+| [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app) | Azure App Configuration |
 | [Command-line configuration provider](#command-line-configuration-provider) | Command-line parameters |
 | [Custom configuration provider](#custom-configuration-provider) | Custom source |
 | [Environment Variables configuration provider](#environment-variables-configuration-provider) | Environment variables |
-| [File configuration provider](#file-configuration-provider) | Files (INI, JSON, XML) |
+| [File configuration provider](#file-configuration-provider) | INI, JSON, and XML files |
 | [Key-per-file configuration provider](#key-per-file-configuration-provider) | Directory files |
 | [Memory configuration provider](#memory-configuration-provider) | In-memory collections |
-| [User secrets (Secret Manager)](xref:security/app-secrets) (*Security* topics) | File in the user profile directory |
+| [Secret Manager](xref:security/app-secrets)  | File in the user profile directory |
 
-Configuration sources are read in the order that their configuration providers are specified at startup. The configuration providers described in this topic are described in alphabetical order, not in the order that the code arranges them. Order configuration providers in code to suit the priorities for the underlying configuration sources that the app requires.
+Configuration sources are read in the order that their configuration providers are specified at startup. Order configuration providers in code to suit the priorities for the underlying configuration sources that the app requires.
 
 A typical sequence of configuration providers is:
 
-1. Files (*appsettings.json*, *appsettings*.`Environment`.*json*, where `{Environment}` is the app's current hosting environment)
-1. [Azure Key Vault](xref:security/key-vault-configuration)
-1. [User secrets (Secret Manager)](xref:security/app-secrets) (Development environment only)
-1. Environment variables
-1. Command-line arguments
+1. *appsettings.json*
+1. *appsettings*.`Environment`.*json*
+1. [Secret Manager](xref:security/app-secrets)
+1. Environment variables using the [Environment Variables configuration provider](#evcp).
+1.  Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
 
-A common practice is to position the Command-line Configuration Provider last in a series of providers to allow command-line arguments to override configuration set by the other providers.
+A common practice is to add the Command-line configuration provider last in a series of providers to allow command-line arguments to override configuration set by the other providers.
 
-The preceding sequence of providers is used when a new host builder is initialized with `CreateDefaultBuilder`. For more information, see the [Default configuration](#default-configuration) section.
-
-## Configure the host builder with ConfigureHostConfiguration
-
-To configure the host builder, call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> and supply the configuration. `ConfigureHostConfiguration` is used to initialize the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> for use later in the build process. `ConfigureHostConfiguration` can be called multiple times with additive results.
-
-```csharp
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureHostConfiguration(config =>
-        {
-            var dict = new Dictionary<string, string>
-            {
-                {"MemoryCollectionKey1", "value1"},
-                {"MemoryCollectionKey2", "value2"}
-            };
-
-            config.AddInMemoryCollection(dict);
-        })
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-        });
-```
-
-## ConfigureAppConfiguration
-
-Call `ConfigureAppConfiguration` when building the host to specify the app's configuration providers in addition to those added automatically by `CreateDefaultBuilder`:
-
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=20)]
-
-### Override previous configuration with command-line arguments
-
-To provide app configuration that can be overridden with command-line arguments, call `AddCommandLine` last:
-
-```csharp
-.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    // Call other providers here
-    config.AddCommandLine(args);
-})
-```
-
-### Remove providers added by CreateDefaultBuilder
-
-To remove the providers added by `CreateDefaultBuilder`, call [Clear](/dotnet/api/system.collections.generic.icollection-1.clear) on the [IConfigurationBuilder.Sources](xref:Microsoft.Extensions.Configuration.IConfigurationBuilder.Sources) first:
-
-```csharp
-.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.Sources.Clear();
-    // Add providers here
-})
-```
+The preceding sequence of providers is used the [default configuration](#default).
 
 ### Consume configuration during app startup
 
@@ -578,14 +481,18 @@ You typically ***don't*** want a custom JSON file overriding values set in the [
 
 The following code clears all the configuration providers and adds several configuration providers:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON2.cs?name=snippet&highlight=10-30)]
+[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON2.cs?name=snippet)]
 
 In the preceding code, settings in the *MyConfig.json* and  *MyConfig*.`Environment`.*json* files:
 
 * Override settings in the *appsettings.json* and *appsettings*.`Environment`.*json* files.
 * Are overridden by settings in the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
-See the [appsettings.json](#appsettingsjson) section for sample code that reads the *MyConfig.json* file.
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  *MyConfig.json* file:
+
+[!code-json[](index/samples/3.x/ConfigSample/MyConfig.json)]
+
+The `TestModel.OnGet` method in the [appsettings.json](#appsettingsjson) section of this document reads the *MyConfig.json* file.
 
 <a name="fcp"></a>
 
