@@ -1,7 +1,7 @@
 ---
 title: Secure an ASP.NET Core Blazor WebAssembly hosted app with Identity Server
 author: guardrex
-description: 
+description: To create a new Blazor hosted app with authentication from within Visual Studio that uses an [IdentityServer](https://identityserver.io/) backend
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -17,15 +17,15 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
-To create a new Blazor hosted application with authentication from within Visual Studio:
+To create a new Blazor hosted app in Visual Studio that uses [IdentityServer](https://identityserver.io/) to authenticate users and API calls:
 
-1. Use Visual Studio to create a new **Blazor WebAssembly** app.
+1. Use Visual Studio to create a new **Blazor WebAssembly** app. For more information, see <xref:blazor/get-started>.
 1. In the **Create a new Blazor app** dialog, select **Change** in the **Authentication** section.
 1. Select **Individual User Accounts** followed by **OK**.
 1. Select the **ASP.NET Core hosted** checkbox in the **Advanced** section.
 1. Select the **Create** button.
 
-To create this project from a command shell, execute the following command:
+To create the app in a command shell, execute the following command:
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual -ho
@@ -41,7 +41,7 @@ The following sections describe additions to the project when authentication sup
 
 The `Startup` class has the following additions:
 
-* Inside the `Startup.ConfigureServices` method:
+* In `Startup.ConfigureServices`:
 
   * Identity with the default UI:
 
@@ -54,21 +54,21 @@ The `Startup` class has the following additions:
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
-  * IdentityServer with an additional `AddApiAuthorization` helper method that sets up some default ASP.NET Core conventions on top of IdentityServer:
+  * IdentityServer with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up some default ASP.NET Core conventions on top of IdentityServer:
 
     ```csharp
     services.AddIdentityServer()
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
     ```
 
-  * Authentication with an additional `AddIdentityServerJwt` helper method that configures the app to validate JWT tokens produced by IdentityServer:
+  * Authentication with an additional <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method that configures the app to validate JWT tokens produced by IdentityServer:
 
     ```csharp
     services.AddAuthentication()
         .AddIdentityServerJwt();
     ```
 
-* Inside the `Startup.Configure` method:
+* In `Startup.Configure`:
 
   * The authentication middleware that is responsible for validating the request credentials and setting the user on the request context:
 
@@ -76,7 +76,7 @@ The `Startup` class has the following additions:
     app.UseAuthentication();
     ```
 
-  * The IdentityServer middleware that exposes the Open ID Connect endpoints:
+  * The IdentityServer middleware that exposes the Open ID Connect (OIDC) endpoints:
 
     ```csharp
     app.UseIdentityServer();
@@ -84,25 +84,28 @@ The `Startup` class has the following additions:
 
 ### AddApiAuthorization
 
-This helper method configures IdentityServer to use our supported configuration. IdentityServer is a powerful and extensible framework for handling app security concerns. At the same time, that exposes unnecessary complexity for the most common scenarios. Consequently, a set of conventions and configuration options is provided to you that are considered a good starting point. Once your authentication needs change, the full power of IdentityServer is still available to customize authentication to suit your needs.
+The <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method configures [IdentityServer](https://identityserver.io/) for ASP.NET Core scenarios. IdentityServer is a powerful and extensible framework for handling app security concerns. IdentityServer exposes unnecessary complexity for the most common scenarios. Consequently, a set of conventions and configuration options is provided that we consider a good starting point. Once your authentication needs change, the full power of IdentityServer is still available to customize authentication to suit an app's requirements.
 
 ### AddIdentityServerJwt
 
-This helper method configures a policy scheme for the app as the default authentication handler. The policy is configured to let Identity handle all requests routed to any subpath in the Identity URL space "/Identity". The `JwtBearerHandler` handles all other requests. Additionally, this method registers an `{APPLICATION NAME}API` API resource with IdentityServer with a default scope of `{APPLICATION NAME}API` and configures the JWT Bearer token middleware to validate tokens issued by IdentityServer for the app.
+The <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method configures a policy scheme for the app as the default authentication handler. The policy is configured to allow Identity to handle all requests routed to any subpath in the Identity URL space `/Identity`. The <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> handles all other requests. Additionally, this method:
+
+* Registers an `{APPLICATION NAME}API` API resource with IdentityServer with a default scope of `{APPLICATION NAME}API`.
+* Configures the JWT Bearer Token Middleware to validate tokens issued by IdentityServer for the app.
 
 ### WeatherForecastController
 
-In the *Controllers\WeatherForecastController.cs* file, notice the `[Authorize]` attribute applied to the class that indicates that the user needs to be authorized based on the default policy to access the resource. The default authorization policy happens to be configured to use the default authentication scheme, which is set up by `AddIdentityServerJwt` to the policy scheme that was mentioned above, making the `JwtBearerHandler` configured by such helper method the default handler for requests to the app.
+In the *Controllers/WeatherForecastController.cs* file, the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute is applied to the class. The attribute indicates that the user must be authorized based on the default policy to access the resource. The default authorization policy is configured to use the default authentication scheme, which is set up by <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> to the policy scheme that was mentioned earlier. <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> is configured as the default handler for requests to the app by the helper method.
 
 ### ApplicationDbContext
 
-In the *Data\ApplicationDbContext.cs* file, notice the same `DbContext` is used in Identity with the exception that it extends `ApiAuthorizationDbContext` (a more derived class from `IdentityDbContext`) to include the schema for IdentityServer.
+In the *Data/ApplicationDbContext.cs* file, the same <xref:Microsoft.EntityFrameworkCore.DbContext> is used in Identity with the exception that it extends <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> to include the schema for IdentityServer. <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> is a more derived class from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
 
-To gain full control of the database schema, inherit from one of the available Identity `DbContext` classes and configure the context to include the Identity schema by calling `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` on the `OnModelCreating` method.
+To gain full control of the database schema, inherit from one of the available Identity <xref:Microsoft.EntityFrameworkCore.DbContext> classes and configure the context to include the Identity schema by calling `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` on the `OnModelCreating` method.
 
 ### OidcConfigurationController
 
-In the *Controllers\OidcConfigurationController.cs* file, notice the endpoint that's provisioned to serve the OIDC parameters that the client needs to use.
+In the *Controllers/OidcConfigurationController.cs* file, notice the endpoint that's provisioned to serve the OIDC parameters that the client needs to use.
 
 ### appsettings.json
 
@@ -134,7 +137,7 @@ In the *appsettings.Development.json* file of the project root, there's an `Iden
 
 ### Authentication package
 
-When an app is created to use Individual User Accounts, the app automatically receives a package reference for the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` package in the app's project file. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
+When an app is created to use Individual User Accounts (`Individual`), the app automatically receives a package reference for the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` package in the app's project file. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
 
 If adding authentication to an app, manually add the package to the app's project file:
 
@@ -148,13 +151,13 @@ Replace `{VERSION}` in the preceding package reference with the version of the `
 
 ### API authorization support
 
-The support for authenticating users is plugged into the service container by the extension method provided inside the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` package. This method sets up all the services needed for the application to interact with the existing authorization system.
+The support for authenticating users is plugged into the service container by the extension method provided inside the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` package. This method sets up all the services needed for the app to interact with the existing authorization system.
 
 ```csharp
 builder.Services.AddApiAuthorization();
 ```
 
-By default, it loads the configuration for the application by convention from `_configuration/{client-id}`. The client ID used by convention is the application assembly name. This url can be changed to point to a separate endpoint by calling the overload with options.
+By default, it loads the configuration for the app by convention from `_configuration/{client-id}`. By convention, the client ID is set to the app's assembly name. This URL can be changed to point to a separate endpoint by calling the overload with options.
 
 ### Index page
 
@@ -175,7 +178,7 @@ The `LoginDisplay` component (*Shared/LoginDisplay.razor*) is rendered in the `M
 * For authenticated users:
   * Displays the current user name.
   * Offers a link to the user profile page in ASP.NET Core Identity.
-  * Offers a button to log out of the application.
+  * Offers a button to log out of the app.
 * For anonymous users:
   * Offers the option to register.
   * Offers the option to log in.
@@ -199,7 +202,7 @@ The `LoginDisplay` component (*Shared/LoginDisplay.razor*) is rendered in the `M
     </NotAuthorized>
 </AuthorizeView>
 
-@code{
+@code {
     private async Task BeginSignOut(MouseEventArgs args)
     {
         await SignOutManager.SetSignOutState();
