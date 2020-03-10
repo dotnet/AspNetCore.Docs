@@ -8,6 +8,8 @@ uid: security/authentication/social/social-without-identity
 ---
 # Use social sign-in provider authentication without ASP.NET Core Identity
 
+By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 ::: moniker range=">= aspnetcore-3.0"
 
 <xref:security/authentication/social/index> describes how to enable users to sign in using OAuth 2.0 with credentials from external authentication providers. The approach described in that topic includes ASP.NET Core Identity as an authentication provider.
