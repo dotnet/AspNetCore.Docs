@@ -340,7 +340,7 @@
         - name: Call a web API
           uid: blazor/call-web-api
         - name: Progressive Web Applications
-          uid: blazor/progressive-web-apps
+          uid: blazor/progressive-web-app
         - name: Host and deploy
           items:
             - name: Overview

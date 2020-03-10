@@ -7,7 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/09/2020
 no-loc: [Blazor, SignalR]
-uid: blazor/progressive-web-apps
+uid: blazor/progressive-web-app
 ---
 # Build Progressive Web Applications with ASP.NET Core Blazor WebAssembly
 
