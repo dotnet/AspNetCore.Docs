@@ -327,6 +327,26 @@
           items:
             - name: Overview
               uid: security/blazor/index
+            - name: Blazor WebAssembly
+              items:
+                - name: Overview
+                  uid: security/blazor/webassembly/index
+                - name: Standalone with Authentication library
+                  uid: security/blazor/webassembly/standalone-with-authentication-library
+                - name: Standalone with Microsoft Accounts
+                  uid: security/blazor/webassembly/standalone-with-microsoft-accounts
+                - name: Standalone with AAD
+                  uid: security/blazor/webassembly/standalone-with-azure-active-directory
+                - name: Standalone with AAD B2C
+                  uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
+                - name: Hosted with Identity Server
+                  uid: security/blazor/webassembly/hosted-with-identity-server
+                - name: Hosted with AAD
+                  uid: security/blazor/webassembly/hosted-with-azure-active-directory
+                - name: Hosted with AAD B2C
+                  uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+                - name: Additional scenarios
+                  uid: security/blazor/webassembly/additional-scenarios
             - name: Blazor Server
               uid: security/blazor/server
             - name: Content Security Policy
@@ -339,6 +359,8 @@
           uid: blazor/debug
         - name: Call a web API
           uid: blazor/call-web-api
+        - name: Progressive Web Applications
+          uid: blazor/progressive-web-app
         - name: Host and deploy
           items:
             - name: Overview
@@ -1086,6 +1108,26 @@
       items:
         - name: Overview
           uid: security/blazor/index
+        - name: Blazor WebAssembly
+          items:
+            - name: Overview
+              uid: security/blazor/webassembly/index
+            - name: Standalone with Authentication library
+              uid: security/blazor/webassembly/standalone-with-authentication-library
+            - name: Standalone with Microsoft Accounts
+              uid: security/blazor/webassembly/standalone-with-microsoft-accounts
+            - name: Standalone with AAD
+              uid: security/blazor/webassembly/standalone-with-azure-active-directory
+            - name: Standalone with AAD B2C
+              uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
+            - name: Hosted with Identity Server
+              uid: security/blazor/webassembly/hosted-with-identity-server
+            - name: Hosted with AAD
+              uid: security/blazor/webassembly/hosted-with-azure-active-directory
+            - name: Hosted with AAD B2C
+              uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+            - name: Additional scenarios
+              uid: security/blazor/webassembly/additional-scenarios
         - name: Blazor Server
           uid: security/blazor/server
         - name: Content Security Policy
