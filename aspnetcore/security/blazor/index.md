@@ -506,6 +506,8 @@ In Blazor WebAssembly apps, authorization checks can be bypassed because all cli
 
 **Always perform authorization checks on the server within any API endpoints accessed by your client-side app.**
 
+For more information, see the articles under <xref:security/blazor/webassembly/index>.
+
 ## Troubleshoot errors
 
 Common errors:
