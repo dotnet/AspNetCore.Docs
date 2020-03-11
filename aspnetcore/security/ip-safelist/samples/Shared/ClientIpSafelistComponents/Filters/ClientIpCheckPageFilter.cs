@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -20,7 +21,7 @@ namespace ClientIpSafelistComponents.Filters
         public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
             var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
-            Logger.LogInformation(
+            Logger.LogDebug(
                 "Remote IpAddress: {RemoteIp}", remoteIp);
 
             string[] ip = _safelist.Split(';');
@@ -42,9 +43,9 @@ namespace ClientIpSafelistComponents.Filters
 
             if (badIp)
             {
-                Logger.LogInformation(
+                Logger.LogWarning(
                     "Forbidden Request from Remote IP address: {RemoteIp}", remoteIp);
-                context.Result = new StatusCodeResult(401);
+                context.Result = new StatusCodeResult(StatusCodes.Status403Forbidden);
                 return;
             }
         }

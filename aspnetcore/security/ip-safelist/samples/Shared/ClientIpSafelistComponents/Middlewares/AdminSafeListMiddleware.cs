@@ -47,9 +47,9 @@ namespace ClientIpSafelistComponents.Middlewares
 
                 if (badIp)
                 {
-                    _logger.LogInformation(
+                    _logger.LogWarning(
                         "Forbidden Request from Remote IP address: {RemoteIp}", remoteIp);
-                    context.Response.StatusCode = 401;
+                    context.Response.StatusCode = StatusCodes.Status403Forbidden;
                     return;
                 }
             }

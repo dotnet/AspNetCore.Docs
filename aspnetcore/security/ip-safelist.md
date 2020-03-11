@@ -17,13 +17,21 @@ This article shows three ways to implement an IP safelist (also known as an allo
 * MVC action filters to check the remote IP address of requests for specific controllers or action methods.
 * Razor Pages filters to check the remote IP address of requests for Razor pages.
 
-In each case, a string containing approved client IP addresses is stored in an app setting. The middleware or filter parses the string into a list and checks if the remote IP is in the list. If not, an HTTP 403 Forbidden status code is returned.
+In each case, a string containing approved client IP addresses is stored in an app setting. The middleware or filter:
+
+* Parses the string into an array. 
+* Checks if the remote IP exists in the array.
+
+Access is allowed if the array contains the IP address. Otherwise, an HTTP 403 Forbidden status code is returned.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/ip-safelist/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## The safelist
 
-The list is configured in the *appsettings.json* file. It's a semicolon-delimited list and can contain IPv4 and IPv6 addresses.
+The IP safelist is:
+
+* Defined by the `AdminSafeList` property in the *appsettings.json* file.
+* A semicolon-delimited string that may contain both IPv4 and IPv6 addresses.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -37,9 +45,11 @@ The list is configured in the *appsettings.json* file. It's a semicolon-delimite
 
 ::: moniker-end
 
+In the preceding example, the IPV4 addresses of `127.0.0.1` and `192.168.1.5` and the IPV6 loopback address of `::1` (compressed format for `0:0:0:0:0:0:0:1`) are allowed.
+
 ## Middleware
 
-The `Startup.Configure` method adds the middleware and passes the safelist string to it in a constructor parameter:
+The `Startup.Configure` method adds the custom `AdminSafeListMiddleware` middleware type to the app's request pipeline. The safelist string defined in *appsettings.json* is passed to the middleware as a constructor parameter:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -53,7 +63,7 @@ The `Startup.Configure` method adds the middleware and passes the safelist strin
 
 ::: moniker-end
 
-The middleware parses the string into an array and looks for the remote IP address in the array. If the remote IP address isn't found, the middleware returns HTTP 401 Forbidden. This validation process is bypassed for HTTP GET requests.
+The middleware parses the string into an array and looks for the remote IP address in the array. If the remote IP address isn't found, the middleware returns HTTP 403 Forbidden. This validation process is bypassed for HTTP GET requests.
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Middlewares/AdminSafeListMiddleware.cs?name=snippet_ClassOnly)]
 
