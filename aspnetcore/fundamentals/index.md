@@ -370,6 +370,8 @@ ASP.NET Core provides the *Kestrel* cross-platform server implementation. Kestre
 
 ::: moniker-end
 
+::: moniker range="< aspnetcore-3.0"
+
 For more information, see <xref:fundamentals/servers/index>.
 
 ## Configuration
