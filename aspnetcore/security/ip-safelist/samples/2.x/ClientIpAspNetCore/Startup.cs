@@ -22,7 +22,6 @@ namespace ClientIpAspNetCore
 
         public IConfiguration Configuration { get; }
 
-        #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
             #region snippet_ConfigureServicesActionFilter
@@ -43,7 +42,6 @@ namespace ClientIpAspNetCore
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             #endregion snippet_ConfigureServicesPageFilter
         }
-        #endregion
 
         public void Configure(IApplicationBuilder app)
         {
