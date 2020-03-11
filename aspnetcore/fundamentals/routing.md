@@ -242,10 +242,7 @@ Terminal middleware can be an effective tool, but can require:
 * Manual integration with other systems to achieve the desired level of flexibility.
 
 Consider integrating with routing before writing a terminal middleware.
-<!-- Review: router-ware won't MT (Machine Translate) - Check my rewrite. Original
 
-... can usually be turned into a router-ware endpoint.
- -->
 Existing terminal middleware that integrates with [Map](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) or <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> can usually be turned into a routing aware endpoint. [MapHealthChecks](https://github.com/aspnet/AspNetCore/blob/master/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for router-ware:
 * Write an extension method on <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>.
 * Create a nested middleware pipeline using <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder.CreateApplicationBuilder*>.
@@ -590,8 +587,6 @@ The preceding code:
 * Prevents `0` in the `{id}` segment of the route.
 * Is shown to provide a basic example of implementing a custom constraint. It should not be used in a production app.
 
-<!-- review: I probably don't need this sample. Using an attribute may be better than my approach.
--->
 The following code is a better approach to preventing an `id` containing a `0` from being processed:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/TestController.cs?name=snippet2)]

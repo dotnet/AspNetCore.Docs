@@ -184,7 +184,6 @@ The preceding example:
 >
 >See [Routing](xref:fundamentals/routing) for reference material on routing.
 
-<!-- review this section I added  -->
 <a name="cro"></a>
 
 ### Conventional routing order
