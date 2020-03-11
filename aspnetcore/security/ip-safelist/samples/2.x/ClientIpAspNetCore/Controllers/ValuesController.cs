@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using ClientIpAspNetCore.Filters;
+﻿using ClientIpSafelistComponents.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace ClientIpAspNetCore.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        private ILogger<ValuesController> _logger;
+        private readonly ILogger<ValuesController> _logger;
 
         public ValuesController(ILogger<ValuesController> logger)
         {
@@ -16,13 +16,14 @@ namespace ClientIpAspNetCore.Controllers
         }
 
         // GET api/values
-        #region snippet_Filter
-        [ServiceFilter(typeof(ClientIpCheckFilter))]
+        #region snippet_ActionFilter
+        [ServiceFilter(typeof(ClientIpCheckActionFilter))]
         [HttpGet]
         public IEnumerable<string> Get()
-        #endregion
+        #endregion snippet_ActionFilter
         {
-            _logger.LogDebug("successful get.");
+            _logger.LogDebug("successful HTTP GET");
+
             return new string[] { "value1", "value2" };
         }
 

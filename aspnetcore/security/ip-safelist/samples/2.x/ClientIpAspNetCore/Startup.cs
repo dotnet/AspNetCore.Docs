@@ -1,63 +1,57 @@
-﻿using System.IO;
-using System.Linq;
-using ClientIpAspNetCore.Filters;
+﻿using ClientIpSafelistComponents.Filters;
+using ClientIpSafelistComponents.Middlewares;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NLog;
-using NLog.Extensions.Logging;
-using NLog.Targets;
 
 namespace ClientIpAspNetCore
 {
     public class Startup
     {
-        ILoggerFactory _loggerFactory;
+        private readonly ILoggerFactory _loggerFactory;
       
-        public Startup(ILoggerFactory loggerFactory, IHostingEnvironment env)
+        public Startup(
+            ILoggerFactory loggerFactory,
+            IConfiguration configuration)
         {
             _loggerFactory = loggerFactory;
-
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; }
-        
+        public IConfiguration Configuration { get; }
+
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<ClientIpCheckFilter>();
+            #region snippet_ConfigureServicesActionFilter
+            services.AddScoped<ClientIpCheckActionFilter>(_ =>
+                new ClientIpCheckActionFilter(Configuration)
+                {
+                    Logger = _loggerFactory.CreateLogger<ClientIpCheckActionFilter>()
+                });
+            #endregion snippet_ConfigureServicesActionFilter
 
-            services.AddMvc(options =>
-            {
-                options.Filters.Add
-                    (new ClientIpCheckPageFilter
-                        (_loggerFactory, Configuration));
+            #region snippet_ConfigureServicesPageFilter
+            services.AddMvc(options => {
+                var clientIpCheckPageFilter = new ClientIpCheckPageFilter(Configuration)
+                {
+                    Logger = _loggerFactory.CreateLogger<ClientIpCheckPageFilter>()
+                };
+                options.Filters.Add(clientIpCheckPageFilter);
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            #endregion snippet_ConfigureServicesPageFilter
         }
         #endregion
-        
-        #region snippet_Configure
-        public void Configure(
-            IApplicationBuilder app, 
-            IHostingEnvironment env, 
-            ILoggerFactory loggerFactory)
+
+        public void Configure(IApplicationBuilder app)
         {
-            loggerFactory.AddNLog();
-
             app.UseStaticFiles();
-
+            #region snippet_ConfigureAddMiddleware
             app.UseMiddleware<AdminSafeListMiddleware>(Configuration["AdminSafeList"]);
+            #endregion snippet_ConfigureAddMiddleware
             app.UseMvc();
         }
-        #endregion
     }
 }

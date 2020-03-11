@@ -1,31 +1,26 @@
-﻿using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Authorization;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Net;
 
-namespace ClientIpAspNetCore.Filters
+namespace ClientIpSafelistComponents.Filters
 {
-    public class ClientIpCheckFilter : ActionFilterAttribute
+    public class ClientIpCheckActionFilter : ActionFilterAttribute
     {
-        private readonly ILogger _logger;
         private readonly string _safelist;
 
-        public ClientIpCheckFilter
-            (ILoggerFactory loggerFactory, IConfiguration configuration)
+        public ILogger Logger { get; set; }
+
+        public ClientIpCheckActionFilter(IConfiguration configuration)
         {
-            _logger = loggerFactory.CreateLogger("ClientIdCheckFilter");
             _safelist = configuration["AdminSafeList"];
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
-            _logger.LogInformation(
+            Logger.LogInformation(
                 "Remote IpAddress: {RemoteIp}", remoteIp);
 
             string[] ip = _safelist.Split(';');
@@ -47,7 +42,7 @@ namespace ClientIpAspNetCore.Filters
 
             if (badIp)
             {
-                _logger.LogInformation(
+                Logger.LogInformation(
                     "Forbidden Request from Remote IP address: {RemoteIp}", remoteIp);
                 context.Result = new StatusCodeResult(401);
                 return;

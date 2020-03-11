@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 
-namespace ClientIpAspNetCore
+namespace ClientIpSafelistComponents.Middlewares
 {
     #region snippet_ClassOnly
     public class AdminSafeListMiddleware
@@ -15,8 +15,8 @@ namespace ClientIpAspNetCore
         private readonly string _adminSafeList;
 
         public AdminSafeListMiddleware(
-            RequestDelegate next, 
-            ILogger<AdminSafeListMiddleware> logger, 
+            RequestDelegate next,
+            ILogger<AdminSafeListMiddleware> logger,
             string adminSafeList)
         {
             _adminSafeList = adminSafeList;
@@ -26,7 +26,7 @@ namespace ClientIpAspNetCore
 
         public async Task Invoke(HttpContext context)
         {
-            if (context.Request.Method != "GET")
+            if (context.Request.Method != HttpMethod.Get.Method)
             {
                 var remoteIp = context.Connection.RemoteIpAddress;
                 _logger.LogDebug("Request from Remote IP address: {RemoteIp}", remoteIp);
@@ -38,14 +38,14 @@ namespace ClientIpAspNetCore
                 foreach (var address in ip)
                 {
                     var testIp = IPAddress.Parse(address);
-                    if(testIp.GetAddressBytes().SequenceEqual(bytes))
+                    if (testIp.GetAddressBytes().SequenceEqual(bytes))
                     {
                         badIp = false;
                         break;
                     }
                 }
 
-                if(badIp)
+                if (badIp)
                 {
                     _logger.LogInformation(
                         "Forbidden Request from Remote IP address: {RemoteIp}", remoteIp);
