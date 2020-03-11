@@ -71,7 +71,7 @@ The middleware parses the string into an array and looks for the remote IP addre
 
 If you want a safelist only for specific MVC controllers or action methods, use an action filter. For example: 
 
-[!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckActionFilter.cs)]
+[!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckActionFilter.cs?name=snippet_ClassOnly)]
 
 In `Startup.ConfigureServices`, the action filter is added to the services container:
 
@@ -110,7 +110,7 @@ In the sample app, the action filter is applied to the `Get` method. When you te
 
 If you want a safelist for a Razor Pages app, use a Razor Pages filter. For example:
 
-[!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckPageFilter.cs)]
+[!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckPageFilter.cs?name=snippet_ClassOnly)]
 
 In `Startup.ConfigureServices`, the Razor Pages filter is enabled by adding it to the MVC filters collection:
 

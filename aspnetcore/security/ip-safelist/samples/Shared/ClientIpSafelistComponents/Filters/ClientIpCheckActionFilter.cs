@@ -7,6 +7,7 @@ using System.Net;
 
 namespace ClientIpSafelistComponents.Filters
 {
+    #region snippet_ClassOnly
     public class ClientIpCheckActionFilter : ActionFilterAttribute
     {
         private readonly string _safelist;
@@ -52,4 +53,5 @@ namespace ClientIpSafelistComponents.Filters
             base.OnActionExecuting(context);
         }
     }
+    #endregion snippet_ClassOnly
 }

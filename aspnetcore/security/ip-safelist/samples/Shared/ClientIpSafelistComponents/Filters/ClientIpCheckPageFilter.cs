@@ -7,6 +7,7 @@ using System.Net;
 
 namespace ClientIpSafelistComponents.Filters
 {
+    #region snippet_ClassOnly
     public class ClientIpCheckPageFilter : IPageFilter
     {
         private readonly string _safelist;
@@ -58,4 +59,5 @@ namespace ClientIpSafelistComponents.Filters
         {
         }
     }
+    #endregion snippet_ClassOnly
 }

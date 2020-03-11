@@ -57,5 +57,5 @@ namespace ClientIpSafelistComponents.Middlewares
             await _next.Invoke(context);
         }
     }
-    #endregion
+    #endregion snippet_ClassOnly
 }
