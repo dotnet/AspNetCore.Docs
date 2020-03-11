@@ -23,10 +23,10 @@ To ensure the trimmed app works correctly once deployed, it's important to test 
 
 Linking for Blazor apps can be configured using these MSBuild features:
 
-* Configure linking globally with a [MSBuild property](#disable-linking-with-a-msbuild-property).
+* Configure linking globally with a [MSBuild property](#control-linking-with-an-msbuild-property).
 * Control linking on a per-assembly basis with a [configuration file](#control-linking-with-a-configuration-file).
 
-## Configure when the linker is run using a MSBuild property
+## Control linking with an MSBuild property
 
 Linking is enabled when an app is built in `Release` configuation. To change this, configure the `BlazorWebAssemblyEnableLinking` MSBuild property in the project file:
 
