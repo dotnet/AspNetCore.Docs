@@ -35,13 +35,13 @@ Web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or the Visual 
 
  <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> provides default configuration for the app in the following order:
 
-* [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
-* *appsettings.*`Environment`*.json* using the [JSON configuration provider](#file-configuration-provider). For example, the *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json* files. For more information, see <xref:fundamentals/environments>.
-* [Secret Manager](xref:security/app-secrets) when the app runs in the `Development` environment.
-* Environment variables using the [Environment Variables configuration provider](#evcp).
-* Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
+1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
+1. *appsettings.*`Environment`*.json* using the [JSON configuration provider](#file-configuration-provider). For example, the *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json* files. For more information, see <xref:fundamentals/environments>.
+1. [Secret Manager](xref:security/app-secrets) when the app runs on a local machine in the `Development` environment.
+1. Environment variables using the [Environment Variables configuration provider](#evcp).
+1. Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
 
-Configuration providers that run later override previous key settings. For example, if `MyKey` is set in *appsettings.json* and in the environment, the value set in the environment is used. Using the default configuration providers, the  [Command-line configuration provider](#command-line-configuration-provider) overrides all the other providers.
+Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in *appsettings.json* and in the environment, the value set in the environment is used. Using the default configuration providers, the  [Command-line configuration provider](#command-line-configuration-provider) overrides all the other providers.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -58,18 +58,18 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration in the following order:
 
 1. *appsettings.json*
-1. *appsettings.*`Environment`*.json* : For example, the *appsettings.Production.json* and *appsettings.Development.json* files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
+1. *appsettings.*`Environment`*.json* : For example, the *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json* files. The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*). For more information, see <xref:fundamentals/environments>.
 
 *appsettings*.`Environment`.*json* values override keys in *appsettings.json*. For example, by default:
 
-* In development, *appsettings.Development.json* configuration overwrites values found in *appsettings.json*.
-* In production, *appsettings.Production.json* configuration overwrites values found in *appsettings.json*. For example, when deploying the app to Azure.
+* In development, *appsettings*.***Development***.*json* configuration overwrites values found in *appsettings.json*.
+* In production, *appsettings*.***Production***.*json* configuration overwrites values found in *appsettings.json*. For example, when deploying the app to Azure.
 
 <a name="optpat"></a>
 
 ####  Read hierarchical configuration data using the options pattern
 
-The preferred way to read configuration values is using the [options pattern](xref:fundamentals/configuration/options). For example, to read the following configuration values:
+The preferred way to read related configuration values is using the [options pattern](xref:fundamentals/configuration/options). For example, to read the following configuration values:
 
 ```xml
   "Position": {
@@ -84,13 +84,13 @@ Create the following `PositionOptions` class:
 
 In the following code, `PositionOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Startup.cs?name=snippet)]
+[!code-csharp[](index/samples/3.x/ConfigSample/StartupPO.cs?name=snippet)]
 
 The following code reads the position options:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test2.cshtml.cs?name=snippet)]
 
-By [default](#default), the *appsettings.json* and *appsettings.*`Environment`*.json* files are enable with [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75). Changes made to the *appsettings.json* and *appsettings.*`Environment`*.json* file ***after*** the app starts are read by the [JSON configuration provider](#jcp).
+By [default](#default), the *appsettings.json* and *appsettings.*`Environment`*.json* files are enabled with [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75). Changes made to the *appsettings.json* and *appsettings.*`Environment`*.json* file ***after*** the app starts are read by the [JSON configuration provider](#jcp).
 
 See [JSON configuration provider](#jcp) in this document for information on adding additional JSON configuration files.
 
@@ -148,12 +148,14 @@ setx Position__Name Environment_Rick /M
 To test that the environment configuration overrides *apsettings.json* values:
 
 * With Visual Studio: Exit and restart Visual Studio.
-* With the CLI. Start a new command window and enter `dotnet run`.
+* With the CLI: Start a new command window and enter `dotnet run`.
 
 On [Azure App Service](https://azure.microsoft.com/services/app-service/), select **New application setting** on the **Settings > Configuration** page. Azure App Service application settings are:
 
 * Encrypted at rest and transmitted over an encrypted channel.
 * Exposed as environment variables.
+
+<a name="clcp"></a>
 
 ## Command-line
 
@@ -244,12 +246,12 @@ The preferred way to read hierarchical configuration data is using the options p
 [Azure Key Vault configuration provider](xref:security/key-vault-configuration) implement change detection.
 -->
 
-## Configuration keys
+## Configuration keys and values
 
-Configuration keys adopt the following conventions:
+Configuration keys:
 
-* Keys are case-insensitive. For example, `ConnectionString` and `connectionstring` are treated as equivalent keys.
-* If a value for the same key is set by the same or different configuration providers, the last value set on the key is the value used.
+* Are case-insensitive. For example, `ConnectionString` and `connectionstring` are treated as equivalent keys.
+* If a key and value is set in more than one configuration providers, the value from the last provider added is used. For more information, see [Default configuration](#default).
 * Hierarchical keys
   * Within the Configuration API, a colon separator (`:`) works on all platforms.
   * In environment variables, a colon separator may not work on all platforms. A double underscore, `__`, is supported by all platforms and is automatically converted into a colon `:`.
@@ -271,7 +273,7 @@ The following table shows the configuration providers available to ASP.NET Core 
 | -------- | ----------------------------------- |
 | [Azure Key Vault configuration provider](xref:security/key-vault-configuration) | Azure Key Vault |
 | [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app) | Azure App Configuration |
-| [Command-line configuration provider](#command-line-configuration-provider) | Command-line parameters |
+| [Command-line configuration provider](#clcp) | Command-line parameters |
 | [Custom configuration provider](#custom-configuration-provider) | Custom source |
 | [Environment Variables configuration provider](#environment-variables-configuration-provider) | Environment variables |
 | [File configuration provider](#file-configuration-provider) | INI, JSON, and XML files |
@@ -279,7 +281,7 @@ The following table shows the configuration providers available to ASP.NET Core 
 | [Memory configuration provider](#memory-configuration-provider) | In-memory collections |
 | [Secret Manager](xref:security/app-secrets)  | File in the user profile directory |
 
-Configuration sources are read in the order that their configuration providers are specified at startup. Order configuration providers in code to suit the priorities for the underlying configuration sources that the app requires.
+Configuration sources are read in the order that their configuration providers are specified. Order configuration providers in code to suit the priorities for the underlying configuration sources that the app requires.
 
 A typical sequence of configuration providers is:
 
@@ -287,74 +289,18 @@ A typical sequence of configuration providers is:
 1. *appsettings*.`Environment`.*json*
 1. [Secret Manager](xref:security/app-secrets)
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
-1.  Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
+1. Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
 
 A common practice is to add the Command-line configuration provider last in a series of providers to allow command-line arguments to override configuration set by the other providers.
 
-The preceding sequence of providers is used the [default configuration](#default).
+The preceding sequence of providers is used in the [default configuration](#default).
 
 ### Consume configuration during app startup
 
 Configuration supplied to the app in `ConfigureAppConfiguration` is available during the app's startup, including `Startup.ConfigureServices`. For more information, see the [Access configuration during startup](#access-configuration-during-startup) section.
 
-<a name="clcp"></a>
+zzz
 
-## Command-line configuration provider
-
-The <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs at runtime.
-
-To activate command-line configuration, the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> extension method is called on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
-
-`AddCommandLine` is automatically called when `CreateDefaultBuilder(string [])` is called. For more information, see the [Default configuration](#default-configuration) section.
-
-`CreateDefaultBuilder` also loads:
-
-* Optional configuration from *appsettings.json* and *appsettings*.`Environment`.*json* files.
-* [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
-* Environment variables.
-
-`CreateDefaultBuilder` adds the Command-line configuration provider last. Command-line arguments passed at runtime override configuration set by the other providers.
-
-`CreateDefaultBuilder` acts when the host is constructed. Therefore, command-line configuration activated by `CreateDefaultBuilder` can affect how the host is configured.
-
-For apps based on the ASP.NET Core templates, `AddCommandLine` has already been called by `CreateDefaultBuilder`. To add additional configuration providers and maintain the ability to override configuration from those providers with command-line arguments, call the app's additional providers in `ConfigureAppConfiguration` and call `AddCommandLine` last.
-
-```csharp
-.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    // Call other providers here
-    config.AddCommandLine(args);
-})
-```
-
-**Example**
-
-The sample app takes advantage of the static convenience method `CreateDefaultBuilder` to build the host, which includes a call to <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*>.
-
-1. Open a command prompt in the project's directory.
-1. Supply a command-line argument to the `dotnet run` command, `dotnet run CommandLineKey=CommandLineValue`.
-1. After the app is running, open a browser to the app at `http://localhost:5000`.
-1. Observe that the output contains the key-value pair for the configuration command-line argument provided to `dotnet run`.
-
-### Arguments
-
-The value must follow an equals sign (`=`), or the key must have a prefix (`--` or `/`) when the value follows a space. The value isn't required if an equals sign is used (for example, `CommandLineKey=`).
-
-| Key prefix               | Example                                                |
-| ------------------------ | ------------------------------------------------------ |
-| No prefix                | `CommandLineKey1=value1`                               |
-| Two dashes (`--`)        | `--CommandLineKey2=value2`, `--CommandLineKey2 value2` |
-| Forward slash (`/`)      | `/CommandLineKey3=value3`, `/CommandLineKey3 value3`   |
-
-Within the same command, don't mix command-line argument key-value pairs that use an equals sign with key-value pairs that use a space.
-
-Example commands:
-
-```dotnetcli
-dotnet run CommandLineKey1=value1 --CommandLineKey2=value2 /CommandLineKey3=value3
-dotnet run --CommandLineKey1 value1 /CommandLineKey2 value2
-dotnet run CommandLineKey1= CommandLineKey2=value2
-```
 
 <a name="evcp"></a>
 
