@@ -51,7 +51,7 @@ Consider the following *appsettings.json* file:
 
 [!code-json[](index/samples/3.x/ConfigSample/appsettings.json)]
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the configurations settings:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
@@ -84,7 +84,7 @@ Create the following `PositionOptions` class:
 
 In the following code, `PositionOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/StartupPO.cs?name=snippet)]
+[!code-csharp[](index/samples/3.x/ConfigSample/Startup.cs?name=snippet)]
 
 The following code reads the position options:
 
@@ -104,7 +104,7 @@ The following code displays the enabled configuration providers in the order the
 
 The preceding code uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/built-in/environment-tag-helper) to display the environment.
 
-With the [default configuration](#default), the following configuration providers are displayed:
+When using the [default configuration](#default), the following configuration providers are displayed:
 
 * [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) : <!-- REVIEW, what is this? -->
 * [JsonConfigurationProvider](#jcp) : For *appsettings.json*
@@ -133,7 +133,7 @@ For more information on storing passwords or other sensitive data:
 
 ## Environment variables
 
-By [default](#default), the <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs after reading *appsettings.json*, *appsettings.*`Environment`*.json*, and [Secret manager](xref:security/app-secrets). Therefore, keys read from the environment override values read from *appsettings.json*, *appsettings.*`Environment`*.json*, and Secret manager.
+By [default](#default), the <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs after reading *appsettings.json*, *appsettings.*`Environment`*.json*, and [Secret manager](xref:security/app-secrets). Therefore, key values read from the environment override values read from *appsettings.json*, *appsettings.*`Environment`*.json*, and Secret manager.
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
@@ -145,10 +145,10 @@ setx Position__Title Environment_Editor /M
 setx Position__Name Environment_Rick /M
 ```
 
-To test that the environment configuration overrides *apsettings.json* values:
+After setting the preceding keys, to test that the environment configuration overrides *apsettings.json* amd *appsettings.*`Environment`*.json* values using:
 
-* With Visual Studio: Exit and restart Visual Studio.
-* With the CLI: Start a new command window and enter `dotnet run`.
+* Visual Studio: Exit and restart Visual Studio.
+* The CLI: Start a new command window and enter `dotnet run`.
 
 On [Azure App Service](https://azure.microsoft.com/services/app-service/), select **New application setting** on the **Settings > Configuration** page. Azure App Service application settings are:
 
@@ -161,7 +161,7 @@ On [Azure App Service](https://azure.microsoft.com/services/app-service/), selec
 
 By [default](#default), the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
 
-* Optional configuration from *appsettings.json* and *appsettings*.`Environment`.*json* files.
+* *appsettings.json* and *appsettings*.`Environment`.*json* files.
 * [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
 * Environment variables.
 
@@ -187,9 +187,9 @@ The following command sets keys and values using `--`:
 dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
 ```
 
-The value must follow an equals sign (`=`), or the key must have a prefix (`--` or `/`) when the value follows a space. The value isn't required if an equals sign is used (for example, `CommandLineKey=`).
+The value must follow `=`, or the key must have a prefix (`--` or `/`) when the value follows a space. The value isn't required if an equals sign is used. For example, `MySetting=`.
 
-Within the same command, don't mix command-line argument key-value pairs that use an equals sign with key-value pairs that use a space.
+Within the same command, don't mix command-line argument key-value pairs that use `=` with key-value pairs that use a space.
 
 ### Switch mappings
 
@@ -569,7 +569,7 @@ The dictionary is used with a call to `AddInMemoryCollection` to provide the con
 
 ## GetValue
 
-[ConfigurationBinder.GetValue\<T>](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified noncollection type. An overload accepts a default value.
+[`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified noncollection type. An overload accepts a default value.
 
 The following example:
 
@@ -596,32 +596,11 @@ public class IndexModel : PageModel
 
 ## GetSection, GetChildren, and Exists
 
-For the examples that follow, consider the following JSON file. Four keys are found across two sections, one of which includes a pair of subsections:
+For the examples that follow, consider the following *MySubsection.json* file:
 
-```json
-{
-  "section0": {
-    "key0": "value",
-    "key1": "value"
-  },
-  "section1": {
-    "key0": "value",
-    "key1": "value"
-  },
-  "section2": {
-    "subsection0" : {
-      "key0": "value",
-      "key1": "value"
-    },
-    "subsection1" : {
-      "key0": "value",
-      "key1": "value"
-    }
-  }
-}
-```
+[!code-json[](index/samples/3.x/ConfigSample/MySubsection.json)]
 
-When the file is read into configuration, the following unique hierarchical keys are created to hold the configuration values:
+The following hierarchical keys are created to hold the configuration values:
 
 * section0:key0
 * section0:key1
@@ -634,21 +613,15 @@ When the file is read into configuration, the following unique hierarchical keys
 
 ### GetSection
 
-[IConfiguration.GetSection](xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*) extracts a configuration subsection with the specified subsection key.
+[IConfiguration.GetSection](xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*) returns a configuration subsection with the specified subsection key.
 
-To return an <xref:Microsoft.Extensions.Configuration.IConfigurationSection> containing only the key-value pairs in `section1`, call `GetSection` and supply the section name:
+The following code returns values for `section1`:
 
-```csharp
-var configSection = _config.GetSection("section1");
-```
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection.cshtml.cs?name=snippet)]
 
-The `configSection` doesn't have a value, only a key and a path.
+The following code returns values for `section2:subsection0`:
 
-Similarly, to obtain the values for keys in `section2:subsection0`, call `GetSection` and supply the section path:
-
-```csharp
-var configSection = _config.GetSection("section2:subsection0");
-```
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection2.cshtml.cs?name=snippet)]
 
 `GetSection` never returns `null`. If a matching section isn't found, an empty `IConfigurationSection` is returned.
 
@@ -656,16 +629,11 @@ When `GetSection` returns a matching section, <xref:Microsoft.Extensions.Configu
 
 ### GetChildren
 
-A call to [IConfiguration.GetChildren](xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*) on `section2` obtains an `IEnumerable<IConfigurationSection>` that includes:
+A call to [IConfiguration.GetChildren](xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*)
 
-* `subsection0`
-* `subsection1`
+The following code calls [IConfiguration.GetChildren](xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*) and returns values for `section2:subsection0`:
 
-```csharp
-var configSection = _config.GetSection("section2");
-
-var children = configSection.GetChildren();
-```
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection2.cshtml.cs?name=snippet)]
 
 ### Exists
 
@@ -726,7 +694,7 @@ _config.GetSection("tvshow").Bind(tvShow);
 TvShow = tvShow;
 ```
 
-[ConfigurationBinder.Get\<T>](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) binds and returns the specified type. `Get<T>` is more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding example, which allows the bound instance to be directly assigned to the property used for rendering:
+[`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) binds and returns the specified type. `Get<T>` is more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding example, which allows the bound instance to be directly assigned to the property used for rendering:
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/Pages/Index.cshtml.cs?name=snippet_tvshow)]
 
@@ -768,7 +736,7 @@ var arrayExample = new ArrayExample();
 _config.GetSection("array").Bind(arrayExample);
 ```
 
-[ConfigurationBinder.Get\<T>](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) syntax can also be used, which results in more compact code:
+[`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) syntax can also be used, which results in more compact code:
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/Pages/Index.cshtml.cs?name=snippet_array)]
 
@@ -1659,7 +1627,7 @@ The dictionary is used with a call to `AddInMemoryCollection` to provide the con
 
 ## GetValue
 
-[ConfigurationBinder.GetValue\<T>](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified noncollection type. An overload accepts a default value.
+[`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified noncollection type. An overload accepts a default value.
 
 The following example:
 
@@ -1816,7 +1784,7 @@ _config.GetSection("tvshow").Bind(tvShow);
 TvShow = tvShow;
 ```
 
-[ConfigurationBinder.Get\<T>](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) binds and returns the specified type. `Get<T>` is more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding example, which allows the bound instance to be directly assigned to the property used for rendering:
+[`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) binds and returns the specified type. `Get<T>` is more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding example, which allows the bound instance to be directly assigned to the property used for rendering:
 
 [!code-csharp[](index/samples/2.x/ConfigurationSample/Pages/Index.cshtml.cs?name=snippet_tvshow)]
 
@@ -1858,7 +1826,7 @@ var arrayExample = new ArrayExample();
 _config.GetSection("array").Bind(arrayExample);
 ```
 
-[ConfigurationBinder.Get\<T>](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) syntax can also be used, which results in more compact code:
+[`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) syntax can also be used, which results in more compact code:
 
 [!code-csharp[](index/samples/2.x/ConfigurationSample/Pages/Index.cshtml.cs?name=snippet_array)]
 

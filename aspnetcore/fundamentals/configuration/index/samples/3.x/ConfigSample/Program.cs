@@ -1,5 +1,5 @@
 //#define MAIN
-#define MAIN2
+//#define MAIN2
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
