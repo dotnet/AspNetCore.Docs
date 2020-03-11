@@ -1,16 +1,15 @@
+using ConfigSample.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 
-namespace ConfigSampleKey
+namespace ConfigSample
 {
-    #region snippet
-    public class Startup
+    public class StartupMVC
     {
-        public Startup(IConfiguration configuration)
+        public StartupMVC(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -19,14 +18,13 @@ namespace ConfigSampleKey
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<PositionOptions>(Configuration.GetSection("Position"));
             services.AddRazorPages();
-            Console.WriteLine($"MyKey : {Configuration["MyKey"]}");
+            services.AddControllersWithViews();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            Console.WriteLine($"Position:Title : {Configuration["Position:Title"]}");
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -47,9 +45,11 @@ namespace ConfigSampleKey
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+
+                endpoints.MapControllerRoute(
+                     name: "default",
+                     pattern: "{controller=Home2}/{action=Index}/{id?}");
             });
         }
     }
-    #endregion
-
 }

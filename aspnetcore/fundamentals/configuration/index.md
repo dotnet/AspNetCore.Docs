@@ -889,75 +889,25 @@ The following code shows how to use the custom `EFConfigurationProvider` in *Pro
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=29-30)]
 
-## Access configuration during startup
+## Access configuration in Startup
 
-Inject `IConfiguration` into the `Startup` constructor to access configuration values in `Startup.ConfigureServices`. To access configuration in `Startup.Configure`, either inject `IConfiguration` directly into the method or use the instance from the constructor:
+The following code displays configuration data in `Startup` methods:
 
-```csharp
-public class Startup
-{
-    private readonly IConfiguration _config;
-
-    public Startup(IConfiguration config)
-    {
-        _config = config;
-    }
-
-    public void ConfigureServices(IServiceCollection services)
-    {
-        var value = _config["key"];
-    }
-
-    public void Configure(IApplicationBuilder app, IConfiguration config)
-    {
-        var value = config["key"];
-    }
-}
-```
+[!code-csharp[](index/samples/3.x/ConfigSample/StartupKey.cs?name=snippet&highlight=9)]
 
 For an example of accessing configuration using startup convenience methods, see [App startup: Convenience methods](xref:fundamentals/startup#convenience-methods).
 
-## Access configuration in a Razor Pages page or MVC view
+## Access configuration in Razor Pages
 
-To access configuration settings in a Razor Pages page or an MVC view, add a [using directive](xref:mvc/views/razor#using) ([C# reference: using directive](/dotnet/csharp/language-reference/keywords/using-directive)) for the [Microsoft.Extensions.Configuration namespace](xref:Microsoft.Extensions.Configuration) and inject <xref:Microsoft.Extensions.Configuration.IConfiguration> into the page or view.
+The following code displays configuration data in a Razor Page:
 
-In a Razor Pages page:
+[!code-cshtml[](index/samples/3.x/ConfigSample/Pages/Test4.cshtml)]
 
-```cshtml
-@page
-@model IndexModel
-@using Microsoft.Extensions.Configuration
-@inject IConfiguration Configuration
+## Access configuration in a MVC view file
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Index Page</title>
-</head>
-<body>
-    <h1>Access configuration in a Razor Pages page</h1>
-    <p>Configuration value for 'key': @Configuration["key"]</p>
-</body>
-</html>
-```
+The following code displays configuration data in a MVC view:
 
-In an MVC view:
-
-```cshtml
-@using Microsoft.Extensions.Configuration
-@inject IConfiguration Configuration
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Index View</title>
-</head>
-<body>
-    <h1>Access configuration in an MVC view</h1>
-    <p>Configuration value for 'key': @Configuration["key"]</p>
-</body>
-</html>
-```
+[!code-cshtml[](index/samples/3.x/ConfigSample/Views/Home2/Index.cshtml)]
 
 ## Host versus app configuration
 

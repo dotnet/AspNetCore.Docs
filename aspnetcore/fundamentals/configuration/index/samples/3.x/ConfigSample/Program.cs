@@ -26,6 +26,7 @@ namespace ConfigSample
 #endif
 
 // Use this to test reading config keys in Startup
+// remove comments from  webBuilder.UseStartup<ConfigSampleKey.Startup>();
 #if MAIN2
 namespace ConfigSample
 {
@@ -40,7 +41,9 @@ namespace ConfigSample
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<ConfigSampleKey.Startup>();
+                 //   webBuilder.UseStartup<ConfigSampleKey.Startup>();
+                    webBuilder.UseStartup<StartupMVC>();
+
                 });
     }
 }
