@@ -610,17 +610,6 @@ For the examples that follow, consider the following *MySubsection.json* file:
 
 [!code-json[](index/samples/3.x/ConfigSample/MySubsection.json)]
 
-The following hierarchical keys are created to hold the configuration values:
-
-* section0:key0
-* section0:key1
-* section1:key0
-* section1:key1
-* section2:subsection0:key0
-* section2:subsection0:key1
-* section2:subsection1:key0
-* section2:subsection1:key1
-
 ### GetSection
 
 [IConfiguration.GetSection](xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*) returns a configuration subsection with the specified subsection key.
@@ -641,40 +630,11 @@ When `GetSection` returns a matching section, <xref:Microsoft.Extensions.Configu
 
 The following code calls [IConfiguration.GetChildren](xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*) and returns values for `section2:subsection0`:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection2.cshtml.cs?name=snippet)]
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection4.cshtml.cs?name=snippet)]
 
 The preceding code calls [ConfigurationExtensions.Exists](xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists*) to verify the  section exists:
 
-## Bind to a class
-
-Configuration can be bound to classes that represent groups of related settings using the *options pattern*. For more information, see <xref:fundamentals/configuration/options>.
-
-Configuration values are returned as strings, but calling <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> enables the construction of [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) objects. The binder binds values to all of the public read/write properties of the type provided. Fields are **not** bound.
-
-The sample app contains a `Starship` model (*Models/Starship.cs*):
-
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Models/Starship.cs?name=snippet1)]
-
-The `starship` section of the *starship.json* file creates the configuration when the sample app uses the JSON configuration provider to load the configuration:
-
-[!code-json[](index/samples/3.x/ConfigurationSample/starship.json)]
-
-The following configuration key-value pairs are created:
-
-| Key                   | Value                                             |
-| --------------------- | ------------------------------------------------- |
-| starship:name         | USS Enterprise                                    |
-| starship:registry     | NCC-1701                                          |
-| starship:class        | Constitution                                      |
-| starship:length       | 304.8                                             |
-| starship:commissioned | False                                             |
-| trademark             | Paramount Pictures Corp. https://www.paramount.com |
-
-The sample app calls `GetSection` with the `starship` key. The `starship` key-value pairs are isolated. The `Bind` method is called on the subsection passing in an instance of the `Starship` class. After binding the instance values, the instance is assigned to a property for rendering:
-
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Pages/Index.cshtml.cs?name=snippet_starship)]
-
-<a name="boa"></a>
+ <a name="boa"></a>
 
 ## Bind an array
 
