@@ -28,7 +28,7 @@ Access is allowed if the array contains the IP address. Otherwise, an HTTP 403 F
 
 ## The safelist
 
-The IP safelist is:
+In the sample app, the IP address safelist is:
 
 * Defined by the `AdminSafeList` property in the *appsettings.json* file.
 * A semicolon-delimited string that may contain both [Internet Protocol version 4 (IPv4)](https://wikipedia.org/wiki/IPv4) and [Internet Protocol version 6 (IPv6)](https://wikipedia.org/wiki/IPv6) addresses.
