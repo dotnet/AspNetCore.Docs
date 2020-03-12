@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace ConfigSample
 {
     #region snippet
-    public class ProgramSwitch
+    public class Program
     {
         public static void Main(string[] args)
         {

@@ -18,7 +18,7 @@ namespace ConfigSample
             Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    config.AddJsonFile("MySubsection.json", 
+                    config.AddJsonFile("MyArray.json", 
                         optional: true, 
                         reloadOnChange: true);
                 })

@@ -67,7 +67,7 @@ The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvi
 
 <a name="optpat"></a>
 
-####  Read hierarchical configuration data using the options pattern
+#### Bind hierarchical configuration data using the options pattern
 
 The preferred way to read related configuration values is using the [options pattern](xref:fundamentals/configuration/options). For example, to read the following configuration values:
 
@@ -82,7 +82,13 @@ Create the following `PositionOptions` class:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Options/PositionOptions.cs?name=snippet)]
 
-In the following code, `PositionOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
+All the public read-write properties of the type are bound. Fields are ***not*** bound.
+
+The following code binds the `PositionOptions` class binds to the `Position` section and displays the `Position` configuration data:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test22.cshtml.cs?name=snippet)]
+
+An alternative approach to use the ***options pattern*** is to bind the `Position` section and add it to the service container. In the following code, `PositionOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Startup.cs?name=snippet)]
 
@@ -238,9 +244,9 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
-The preferred way to read hierarchical configuration data is using the options pattern. For more information, see [Read hierarchical configuration data](#optpat) in this document.
+The preferred way to read hierarchical configuration data is using the options pattern. For more information, see [Bind hierarchical configuration data](#optpat) in this document.
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection*> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*> methods are available to isolate sections and children of a section in the configuration data. These methods are described later in [GetSection, GetChildren, and Exists](#getsection-getchildren-and-exists).
+<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection*> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*> methods are available to isolate sections and children of a section in the configuration data. These methods are described later in [GetSection, GetChildren, and Exists](#getsection).
 
 <!--
 [Azure Key Vault configuration provider](xref:security/key-vault-configuration) implement change detection.
@@ -627,23 +633,13 @@ The following code returns values for `section2:subsection0`:
 
 When `GetSection` returns a matching section, <xref:Microsoft.Extensions.Configuration.IConfigurationSection.Value> isn't populated. A <xref:Microsoft.Extensions.Configuration.IConfigurationSection.Key> and <xref:Microsoft.Extensions.Configuration.IConfigurationSection.Path> are returned when the section exists.
 
-### GetChildren
-
-A call to [IConfiguration.GetChildren](xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*)
+### GetChildren and Exists
 
 The following code calls [IConfiguration.GetChildren](xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*) and returns values for `section2:subsection0`:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection2.cshtml.cs?name=snippet)]
 
-### Exists
-
-Use [ConfigurationExtensions.Exists](xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists*) to determine if a configuration section exists:
-
-```csharp
-var sectionExists = _config.GetSection("section2:subsection2").Exists();
-```
-
-Given the example data, `sectionExists` is `false` because there isn't a `section2:subsection2` section in the configuration data.
+The preceding code calls [ConfigurationExtensions.Exists](xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists*) to verify the  section exists:
 
 ## Bind to a class
 
@@ -674,117 +670,80 @@ The sample app calls `GetSection` with the `starship` key. The `starship` key-va
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/Pages/Index.cshtml.cs?name=snippet_starship)]
 
-## Bind to an object graph
-
-<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> is capable of binding an entire POCO object graph. As with binding a simple object, only public read/write properties are bound.
-
-The sample contains a `TvShow` model whose object graph includes `Metadata` and `Actors` classes (*Models/TvShow.cs*):
-
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Models/TvShow.cs?name=snippet1)]
-
-The sample app has a *tvshow.xml* file containing the configuration data:
-
-[!code-xml[](index/samples/3.x/ConfigurationSample/tvshow.xml)]
-
-Configuration is bound to the entire `TvShow` object graph with the `Bind` method. The bound instance is assigned to a property for rendering:
-
-```csharp
-var tvShow = new TvShow();
-_config.GetSection("tvshow").Bind(tvShow);
-TvShow = tvShow;
-```
-
-[`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) binds and returns the specified type. `Get<T>` is more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding example, which allows the bound instance to be directly assigned to the property used for rendering:
-
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Pages/Index.cshtml.cs?name=snippet_tvshow)]
+<a name="boa"></a>
 
 ## Bind an array to a class
 
-*The sample app demonstrates the concepts explained in this section.*
+The [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment is capable of array binding to a POCO class array.
 
-The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment (`:0:`, `:1:`, &hellip; `:{n}:`) is capable of array binding to a POCO class array.
+Consider *MyArray.json* from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample):
 
-> [!NOTE]
-> Binding is provided by convention. Custom configuration providers aren't required to implement array binding.
+[!code-json[](index/samples/3.x/ConfigSample/MyArray.json)]
 
-**In-memory array processing**
+The following code adds *MyArray.json*:
 
-Consider the configuration keys and values shown in the following table.
+[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSONarray.cs?name=snippet)]
 
-| Key             | Value  |
-| :-------------: | :----: |
-| array:entries:0 | value0 |
-| array:entries:1 | value1 |
-| array:entries:2 | value2 |
-| array:entries:4 | value4 |
-| array:entries:5 | value5 |
+The following code reads the configuration in *MyArray.json* and displays the values:
 
-These keys and values are loaded in the sample app using the Memory configuration provider:
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=5-12,22)]
+The preceding code returns the following output:
 
-The array skips a value for index &num;3. The configuration binder isn't capable of binding null values or creating null entries in bound objects, which becomes clear in a moment when the result of binding this array to an object is demonstrated.
-
-In the sample app, a POCO class is available to hold the bound configuration data:
-
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Models/ArrayExample.cs?name=snippet1)]
-
-The configuration data is bound to the object:
-
-```csharp
-var arrayExample = new ArrayExample();
-_config.GetSection("array").Bind(arrayExample);
+```text
+Index: 0  Value: value00
+Index: 1  Value: value10
+Index: 2  Value: value20
+Index: 3  Value: value40
+Index: 4  Value: value50
 ```
 
-[`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) syntax can also be used, which results in more compact code:
+In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in *MyArray.json*. The bound array indices are continuous and not related to the configuration key index. The configuration binder isn't capable of binding null values or creating null entries in bound objects
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Pages/Index.cshtml.cs?name=snippet_array)]
+The  following code loads the `array:entries` configuration with the the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*> extension method:
 
-The bound object, an instance of `ArrayExample`, receives the array data from configuration.
+[!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet)]
 
-| `ArrayExample.Entries` Index | `ArrayExample.Entries` Value |
-| :--------------------------: | :--------------------------: |
-| 0                            | value0                       |
-| 1                            | value1                       |
-| 2                            | value2                       |
-| 3                            | value4                       |
-| 4                            | value5                       |
+The following code reads the configuration in the `arrayDict` `Dictionary` and displays the values:
 
-Index &num;3 in the bound object holds the configuration data for the `array:4` configuration key and its value of `value4`. When configuration data containing an array is bound, the array indices in the configuration keys are merely used to iterate the configuration data when creating the object. A null value can't be retained in configuration data, and a null-valued entry isn't created in a bound object when an array in configuration keys skip one or more indices.
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
 
-The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that produces the correct key-value pair in configuration. If the sample included an additional JSON configuration provider with the missing key-value pair, the `ArrayExample.Entries` matches the complete configuration array:
+The preceding code returns the following output:
 
-*missing_value.json*:
-
-```json
-{
-  "array:entries:3": "value3"
-}
+```text
+Index: 0  Value: value0
+Index: 1  Value: value1
+Index: 2  Value: value2
+Index: 3  Value: value4
+Index: 4  Value: value5
 ```
 
-In `ConfigureAppConfiguration`:
+Index &num;3 in the bound object holds the configuration data for the `array:4` configuration key and its value of `value4`. When configuration data containing an array is bound, the array indices in the configuration keys are used to iterate the configuration data when creating the object. A null value can't be retained in configuration data, and a null-valued entry isn't created in a bound object when an array in configuration keys skip one or more indices.
 
-```csharp
-config.AddJsonFile(
-    "missing_value.json", optional: false, reloadOnChange: false);
+The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that produces the correct key-value pair in configuration. Consider the following *Value3.json* file from the sample download:
+
+[!code-json[](index/samples/3.x/ConfigSample/Value3.json)]
+
+The following code includes configuration for *Value3.json* and the `arrayDict` `Dictionary`:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet2)]
+
+The following code reads the preceding configuration and displays the values:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
+
+The preceding code returns the following output:
+
+```text
+Index: 0  Value: value0
+Index: 1  Value: value1
+Index: 2  Value: value2
+Index: 3  Value: value3
+Index: 4  Value: value4
+Index: 5  Value: value5
 ```
 
-The key-value pair shown in the table is loaded into configuration.
-
-| Key             | Value  |
-| :-------------: | :----: |
-| array:entries:3 | value3 |
-
-If the `ArrayExample` class instance is bound after the JSON configuration provider includes the entry for index &num;3, the `ArrayExample.Entries` array includes the value.
-
-| `ArrayExample.Entries` Index | `ArrayExample.Entries` Value |
-| :--------------------------: | :--------------------------: |
-| 0                            | value0                       |
-| 1                            | value1                       |
-| 2                            | value2                       |
-| 3                            | value3                       |
-| 4                            | value4                       |
-| 5                            | value5                       |
+Custom configuration providers aren't required to implement array binding.
 
 **JSON array processing**
 
