@@ -11,7 +11,6 @@ namespace ConfigSample
         private readonly IConfiguration Config;
         public ArrayExample _array { get; private set; }
 
-
         public ArrayModel(IConfiguration config)
         {
             Config = config;

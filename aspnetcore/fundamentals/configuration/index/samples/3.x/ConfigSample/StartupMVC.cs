@@ -18,7 +18,6 @@ namespace ConfigSample
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<PositionOptions>(Configuration.GetSection("Position"));
             services.AddRazorPages();
             services.AddControllersWithViews();
         }

@@ -1,5 +1,5 @@
 //#define MAIN
-//#define MAIN2
+#define MAIN2
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
@@ -26,6 +26,9 @@ namespace ConfigSample
 #endif
 
 // Use this to test reading config keys in Startup
+// And anything else that doesn't add 
+// services.Configure<PositionOptions>(Configuration.GetSection("Position"));
+// to startup
 // remove comments from  webBuilder.UseStartup<ConfigSampleKey.Startup>();
 #if MAIN2
 namespace ConfigSample

@@ -88,7 +88,11 @@ The following code binds the `PositionOptions` class binds to the `Position` sec
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test22.cshtml.cs?name=snippet)]
 
-An alternative approach to use the ***options pattern*** is to bind the `Position` section and add it to the service container. In the following code, `PositionOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
+[`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) binds and returns the specified type. `Get<T>` is more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding example, which allows the bound instance to be directly assigned to the property used for rendering:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test21.cshtml.cs?name=snippet)]
+
+An alternative approach when using the ***options pattern*** is to bind the `Position` section and add it to the service container. In the following code, `PositionOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Startup.cs?name=snippet)]
 
@@ -793,7 +797,7 @@ The following code shows how to use the custom `EFConfigurationProvider` in *Pro
 
 The following code displays configuration data in `Startup` methods:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/StartupKey.cs?name=snippet&highlight=9)]
+[!code-csharp[](index/samples/3.x/ConfigSample/StartupKey.cs?name=snippet&highlight=13,18)]
 
 For an example of accessing configuration using startup convenience methods, see [App startup: Convenience methods](xref:fundamentals/startup#convenience-methods).
 
