@@ -112,7 +112,7 @@ If you want a safelist for a Razor Pages app, use a Razor Pages filter. For exam
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckPageFilter.cs?name=snippet_ClassOnly)]
 
-In `Startup.ConfigureServices`, the Razor Pages filter is enabled by adding it to the MVC filters collection:
+In `Startup.ConfigureServices`, enable the Razor Pages filter by adding it to the MVC filters collection. In the following example, a `ClientIpCheckPageFilter` Razor Pages filter is added. A console logger is created for the Razor Pages filter and is assigned to its `Logger` property.
 
 ::: moniker range=">= aspnetcore-3.0"
 
