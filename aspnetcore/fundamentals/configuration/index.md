@@ -262,7 +262,7 @@ Configuration keys:
   * Within the Configuration API, a colon separator (`:`) works on all platforms.
   * In environment variables, a colon separator may not work on all platforms. A double underscore, `__`, is supported by all platforms and is automatically converted into a colon `:`.
   * In Azure Key Vault, hierarchical keys use `--` as a separator. Write code to replace the `--` with a `:` when the secrets are loaded into the app's configuration.
-* The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder> supports binding arrays to objects using array indices in configuration keys. Array binding is described in the [Bind an array to a class](#bind-an-array-to-a-class) section.
+* The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder> supports binding arrays to objects using array indices in configuration keys. Array binding is described in the [Bind an array to a class](#boa) section.
 
 Configuration values:
 
@@ -672,9 +672,9 @@ The sample app calls `GetSection` with the `starship` key. The `starship` key-va
 
 <a name="boa"></a>
 
-## Bind an array to a class
+## Bind an array
 
-The [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment is capable of array binding to a POCO class array.
+The [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment is capable of array binding to a [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) class array.
 
 Consider *MyArray.json* from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample):
 
@@ -684,7 +684,7 @@ The following code adds *MyArray.json*:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSONarray.cs?name=snippet)]
 
-The following code reads the configuration in *MyArray.json* and displays the values:
+The following code reads the configuration and displays the values:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
 
@@ -698,7 +698,7 @@ Index: 3  Value: value40
 Index: 4  Value: value50
 ```
 
-In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in *MyArray.json*. The bound array indices are continuous and not related to the configuration key index. The configuration binder isn't capable of binding null values or creating null entries in bound objects
+In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in *MyArray.json*. The bound array indices are continuous and not bound to the configuration key index. The configuration binder isn't capable of binding null values or creating null entries in bound objects
 
 The  following code loads the `array:entries` configuration with the the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*> extension method:
 
@@ -1666,35 +1666,6 @@ var sectionExists = _config.GetSection("section2:subsection2").Exists();
 ```
 
 Given the example data, `sectionExists` is `false` because there isn't a `section2:subsection2` section in the configuration data.
-
-## Bind to a class
-
-Configuration can be bound to classes that represent groups of related settings using the *options pattern*. For more information, see <xref:fundamentals/configuration/options>.
-
-Configuration values are returned as strings, but calling <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> enables the construction of [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) objects. The binder binds values to all of the public read/write properties of the type provided. Fields are **not** bound.
-
-The sample app contains a `Starship` model (*Models/Starship.cs*):
-
-[!code-csharp[](index/samples/2.x/ConfigurationSample/Models/Starship.cs?name=snippet1)]
-
-The `starship` section of the *starship.json* file creates the configuration when the sample app uses the JSON Configuration Provider to load the configuration:
-
-[!code-json[](index/samples/2.x/ConfigurationSample/starship.json)]
-
-The following configuration key-value pairs are created:
-
-| Key                   | Value                                             |
-| --------------------- | ------------------------------------------------- |
-| starship:name         | USS Enterprise                                    |
-| starship:registry     | NCC-1701                                          |
-| starship:class        | Constitution                                      |
-| starship:length       | 304.8                                             |
-| starship:commissioned | False                                             |
-| trademark             | Paramount Pictures Corp. https://www.paramount.com |
-
-The sample app calls `GetSection` with the `starship` key. The `starship` key-value pairs are isolated. The `Bind` method is called on the subsection passing in an instance of the `Starship` class. After binding the instance values, the instance is assigned to a property for rendering:
-
-[!code-csharp[](index/samples/2.x/ConfigurationSample/Pages/Index.cshtml.cs?name=snippet_starship)]
 
 ## Bind to an object graph
 

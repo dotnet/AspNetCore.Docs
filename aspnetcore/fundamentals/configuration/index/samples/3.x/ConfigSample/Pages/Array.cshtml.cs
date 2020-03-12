@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace ConfigSample
 {
+    #region snippet
     public class ArrayModel : PageModel
     {
         private readonly IConfiguration Config;
@@ -23,10 +24,11 @@ namespace ConfigSample
 
             for (int j = 0; j < _array.Entries.Length; j++)
             {
-                s += "Index: " + j.ToString() + "  Value: " + _array.Entries[j] + "\n";
+                s += $"Index: {j}  Value:  {_array.Entries[j]} \n";
             }
 
             return Content(s);
         }
     }
+    #endregion
 }
