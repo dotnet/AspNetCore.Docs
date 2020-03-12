@@ -11,7 +11,7 @@ uid: security/ip-safelist
 
 By [Damien Bowden](https://twitter.com/damien_bod) and [Tom Dykstra](https://github.com/tdykstra)
  
-This article shows three ways to implement an IP safelist (also known as an allow list) in an ASP.NET Core app. You can use:
+This article shows three ways to implement an IP address safelist (also known as an allow list) in an ASP.NET Core app. An accompanying sample app demonstrates all three approaches. You can use:
 
 * Middleware to check the remote IP address of every request.
 * MVC action filters to check the remote IP address of requests for specific controllers or action methods.
