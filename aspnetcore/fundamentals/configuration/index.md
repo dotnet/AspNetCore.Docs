@@ -108,7 +108,7 @@ The following code displays the enabled configuration providers in the order the
 
 [!code-cshtml[](index/samples/3.x/ConfigSample/Pages/Index.cshtml)]
 
-The preceding code uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/built-in/environment-tag-helper) to display the environment.
+The preceding code uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to display the environment.
 
 When using the [default configuration](#default), the following configuration providers are displayed:
 
@@ -745,33 +745,6 @@ Index: 5  Value: value5
 
 Custom configuration providers aren't required to implement array binding.
 
-**JSON array processing**
-
-If a JSON file contains an array, configuration keys are created for the array elements with a zero-based section index. In the following configuration file, `subsection` is an array:
-
-[!code-json[](index/samples/3.x/ConfigurationSample/json_array.json)]
-
-The JSON configuration provider reads the configuration data into the following key-value pairs:
-
-| Key                     | Value  |
-| ----------------------- | :----: |
-| json_array:key          | valueA |
-| json_array:subsection:0 | valueB |
-| json_array:subsection:1 | valueC |
-| json_array:subsection:2 | valueD |
-
-In the sample app, the following POCO class is available to bind the configuration key-value pairs:
-
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Models/JsonArrayExample.cs?name=snippet1)]
-
-After binding, `JsonArrayExample.Key` holds the value `valueA`. The subsection values are stored in the POCO array property, `Subsection`.
-
-| `JsonArrayExample.Subsection` Index | `JsonArrayExample.Subsection` Value |
-| :---------------------------------: | :---------------------------------: |
-| 0                                   | valueB                              |
-| 1                                   | valueC                              |
-| 2                                   | valueD                              |
-
 ## Custom configuration provider
 
 The sample app demonstrates how to create a basic configuration provider that reads configuration key-value pairs from a database using [Entity Framework (EF)](/ef/core/).
@@ -828,7 +801,7 @@ For an example of accessing configuration using startup convenience methods, see
 
 The following code displays configuration data in a Razor Page:
 
-[!code-cshtml[](index/samples/3.x/ConfigSample/Pages/Test4.cshtml)]
+[!code-cshtml[](index/samples/3.x/ConfigSample/Pages/Test5.cshtml)]
 
 ## Access configuration in a MVC view file
 
