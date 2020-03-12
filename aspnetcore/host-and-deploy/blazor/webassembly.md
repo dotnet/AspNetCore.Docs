@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/19/2020
+ms.date: 03/11/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/webassembly
 ---
@@ -51,7 +51,7 @@ When deploying to an IIS server, you can use the URL Rewrite Module with the app
 
 A *hosted deployment* serves the Blazor WebAssembly app to browsers from an [ASP.NET Core app](xref:index) that runs on a web server.
 
-The Blazor app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor WebAssembly App** project template (`blazorwasm` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command) with the **Hosted** option selected.
+The client Blazor WebAssembly app is published into the */bin/Release/{TARGET FRAMEWORK}/publish/wwwroot* folder of the server app, along with any other static web assets of the server app. The two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor WebAssembly App** project template (`blazorwasm` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command) with the **Hosted** option selected (`-ho|--hosted` when using the `dotnet new` command).
 
 For more information on ASP.NET Core app hosting and deployment, see <xref:host-and-deploy/index>.
 
@@ -61,7 +61,7 @@ For information on deploying to Azure App Service, see <xref:tutorials/publish-t
 
 A *standalone deployment* serves the Blazor WebAssembly app as a set of static files that are requested directly by clients. Any static file server is able to serve the Blazor app.
 
-Standalone deployment assets are published to the *bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist* folder.
+Standalone deployment assets are published into the */bin/Release/{TARGET FRAMEWORK}/publish/wwwroot* folder.
 
 ### IIS
 
@@ -310,4 +310,4 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
 
 ## Configure the Linker
 
-Blazor performs Intermediate Language (IL) linking on each build to remove unnecessary IL from the output assemblies. Assembly linking can be controlled on build. For more information, see <xref:host-and-deploy/blazor/configure-linker>.
+Blazor performs Intermediate Language (IL) linking on each Release build to remove unnecessary IL from the output assemblies. For more information, see <xref:host-and-deploy/blazor/configure-linker>.
