@@ -98,7 +98,7 @@ An alternative approach when using the ***options pattern*** is to bind the `Pos
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Startup.cs?name=snippet)]
 
-The following code reads the position options:
+Using the preceding code, the following code reads the position options:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test2.cshtml.cs?name=snippet)]
 
@@ -151,10 +151,10 @@ By [default](#default), the <xref:Microsoft.Extensions.Configuration.Environment
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
-The following [setx](/windows-server/administration/windows-commands/setx) commands:
+The following `set` commands:
 
 * Set the environment keys and values of the [preceding example](#appsettingsjson) on Windows.
-* Test the settings when using the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample). The command must be run in the project directory.
+* Tests the settings when using the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample). The `dotnet run` command must be run in the project directory.
 
 ```cmd
 set MyKey="My key from Environment"
@@ -163,7 +163,10 @@ set Position__Name=Environment_Rick
 dotnet run
 ```
 
-The preceding commands are only set for processes launched from the command window they were set on. The preceding command won't be read by browser launched with Visual Studio.
+The preceding commands:
+
+* Are only set for processes launched from the command window they were set on.
+* Won't be read by browser launched with Visual Studio.
 
 The following [setx](/windows-server/administration/windows-commands/setx) commands can be used to set the environment keys and values on Windows. Unlike `set`, `setx` settings are persisted. `/M` sets the variable in the system environment. If the `/M` switch isn't used, a user environment variable is set.
 
@@ -173,10 +176,10 @@ setx Position__Title Setx_Environment_Editor /M
 setx Position__Name Environment_Rick /M
 ```
 
-After setting the preceding keys, to test that the environment configuration overrides *apsettings.json* amd *appsettings.*`Environment`*.json* values using:
+To test that the preceding commands override *apsettings.json* amd *appsettings.*`Environment`*.json*:
 
-* Visual Studio: Exit and restart Visual Studio.
-* The CLI: Start a new command window and enter `dotnet run`.
+* With Visual Studio: Exit and restart Visual Studio.
+* With the CLI: Start a new command window and enter `dotnet run`.
 
 Call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> with a string to specify a prefix for environment variables:
 
@@ -185,7 +188,7 @@ Call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.Add
 In the preceding code:
 
 * `config.AddEnvironmentVariables(prefix: "MyCustomPrefix_")` is added after the [default configuration providers](#default)
-* Environment variable set with `MyCustomPrefix_` override the default configuration providers, including the environment variable without the prefix.
+* Environment variable set with `MyCustomPrefix_` override the [default configuration providers](#default), including environment variables without the prefix.
 
 The prefix is stripped off when the configuration key-value pairs are read.
 
@@ -241,7 +244,10 @@ The following command sets keys and values using `--`:
 dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
 ```
 
-The value must follow `=`, or the key must have a prefix (`--` or `/`) when the value follows a space. The value isn't required if an equals sign is used. For example, `MySetting=`.
+The key value:
+
+* Must follow `=`, or the key must have a prefix (`--` or `/`) when the value follows a space.
+* Isn't required if an equals sign is used. For example, `MySetting=`.
 
 Within the same command, don't mix command-line argument key-value pairs that use `=` with key-value pairs that use a space.
 
@@ -348,10 +354,6 @@ A typical sequence of configuration providers is:
 A common practice is to add the Command-line configuration provider last in a series of providers to allow command-line arguments to override configuration set by the other providers.
 
 The preceding sequence of providers is used in the [default configuration](#default).
-
-### Consume configuration during app startup
-
-Configuration supplied to the app in `ConfigureAppConfiguration` is available during the app's startup, including `Startup.ConfigureServices`. For more information, see the [Access configuration during startup](#access-configuration-during-startup) section.
 
 <a name="constr"></a>
 
@@ -719,6 +721,8 @@ An `AddEFConfiguration` extension method permits adding the configuration source
 The following code shows how to use the custom `EFConfigurationProvider` in *Program.cs*:
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=29-30)]
+
+<a name="acs"></a>
 
 ## Access configuration in Startup
 
@@ -1618,7 +1622,7 @@ _config.GetSection("tvshow").Bind(tvShow);
 TvShow = tvShow;
 ```
 
-[`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) binds and returns the specified type. `Get<T>` is more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding example, which allows the bound instance to be directly assigned to the property used for rendering:
+[`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) binds and returns the specified type. `Get<T>` is more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding example:
 
 [!code-csharp[](index/samples/2.x/ConfigurationSample/Pages/Index.cshtml.cs?name=snippet_tvshow)]
 
