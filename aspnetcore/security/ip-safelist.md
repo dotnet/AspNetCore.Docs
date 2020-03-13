@@ -103,18 +103,20 @@ The action filter can then be applied to a controller or action method with the 
 
 In the sample app, the action filter is applied to the controller's `Get` action method. When you test the app by sending:
 
-* An HTTP GET request, the `[ServiceFilter]` attribute validates the client IP address. If access is allowed to the `Get` action method, a variation of the following console output is produced by the action filter:
+* An HTTP GET request, the `[ServiceFilter]` attribute validates the client IP address. If access is allowed to the `Get` action method, a variation of the following console output is produced by the action filter and action method:
 
     ```
+    dbug: ClientIpSafelistComponents.Filters.ClientIpCheckActionFilter[0]
+          Remote IpAddress: ::1
     dbug: ClientIpAspNetCore.Controllers.ValuesController[0]
-          successful HTTP GET
+          successful HTTP GET    
     ```
 
 * An HTTP request verb other than GET, the `AdminSafeListMiddleware` middleware validates the client IP address.
 
 ## Razor Pages filter
 
-If you want a safelist for a Razor Pages app, use a Razor Pages filter. For example:
+If you want safelist-driven access control for a Razor Pages app, use a Razor Pages filter. For example:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckPageFilter.cs?name=snippet_ClassOnly)]
 
