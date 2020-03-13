@@ -24,10 +24,10 @@ namespace ClientIpAspNetCore
             services.AddScoped<ClientIpCheckActionFilter>(container =>
             {
                 var loggerFactory = container.GetRequiredService<ILoggerFactory>();
-                return new ClientIpCheckActionFilter(Configuration)
-                {
-                    Logger = loggerFactory.CreateLogger<ClientIpCheckActionFilter>()
-                };
+                var logger = loggerFactory.CreateLogger<ClientIpCheckActionFilter>();
+
+                return new ClientIpCheckActionFilter(
+                    Configuration["AdminSafeList"], logger);
             });
             #endregion snippet_ConfigureServicesActionFilter
 
@@ -37,12 +37,12 @@ namespace ClientIpAspNetCore
             services.AddRazorPages()
                 .AddMvcOptions(options =>
                 {
-                    var clientIpCheckPageFilter = new ClientIpCheckPageFilter(Configuration)
-                    {
-                        Logger = LoggerFactory.Create(builder => builder.AddConsole())
-                                    .CreateLogger<ClientIpCheckPageFilter>()
-                    };
-                    options.Filters.Add(clientIpCheckPageFilter);
+                    var logger = LoggerFactory.Create(builder => builder.AddConsole())
+                                    .CreateLogger<ClientIpCheckPageFilter>();
+                    var filter = new ClientIpCheckPageFilter(
+                        Configuration["AdminSafeList"], logger);
+                    
+                    options.Filters.Add(filter);
                 });
             #endregion snippet_ConfigureServicesPageFilter
         }

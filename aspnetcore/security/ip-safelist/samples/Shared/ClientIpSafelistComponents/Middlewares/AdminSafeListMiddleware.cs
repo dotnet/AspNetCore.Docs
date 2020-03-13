@@ -12,14 +12,14 @@ namespace ClientIpSafelistComponents.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<AdminSafeListMiddleware> _logger;
-        private readonly string _adminSafeList;
+        private readonly string _safelist;
 
         public AdminSafeListMiddleware(
             RequestDelegate next,
             ILogger<AdminSafeListMiddleware> logger,
-            string adminSafeList)
+            string safelist)
         {
-            _adminSafeList = adminSafeList;
+            _safelist = safelist;
             _next = next;
             _logger = logger;
         }
@@ -31,7 +31,7 @@ namespace ClientIpSafelistComponents.Middlewares
                 var remoteIp = context.Connection.RemoteIpAddress;
                 _logger.LogDebug("Request from Remote IP address: {RemoteIp}", remoteIp);
 
-                string[] ip = _adminSafeList.Split(';');
+                string[] ip = _safelist.Split(';');
 
                 var bytes = remoteIp.GetAddressBytes();
                 var badIp = true;

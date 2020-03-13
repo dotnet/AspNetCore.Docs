@@ -1,6 +1,6 @@
 using System;
 
-namespace ClientIpAspNetCore
+namespace ClientIpAspNetCore.Models
 {
     public class WeatherForecast
     {

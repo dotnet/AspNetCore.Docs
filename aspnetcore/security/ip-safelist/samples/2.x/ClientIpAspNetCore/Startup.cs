@@ -26,18 +26,21 @@ namespace ClientIpAspNetCore
         {
             #region snippet_ConfigureServicesActionFilter
             services.AddScoped<ClientIpCheckActionFilter>(_ =>
-                new ClientIpCheckActionFilter(Configuration)
-                {
-                    Logger = _loggerFactory.CreateLogger<ClientIpCheckActionFilter>()
-                });
+            {
+                var logger = _loggerFactory.CreateLogger<ClientIpCheckActionFilter>();
+                
+                return new ClientIpCheckActionFilter(
+                    Configuration["AdminSafeList"], logger);
+            });
             #endregion snippet_ConfigureServicesActionFilter
 
             #region snippet_ConfigureServicesPageFilter
-            services.AddMvc(options => {
-                var clientIpCheckPageFilter = new ClientIpCheckPageFilter(Configuration)
-                {
-                    Logger = _loggerFactory.CreateLogger<ClientIpCheckPageFilter>()
-                };
+            services.AddMvc(options =>
+            {
+                var logger = _loggerFactory.CreateLogger<ClientIpCheckPageFilter>();
+                var clientIpCheckPageFilter = new ClientIpCheckPageFilter(
+                    Configuration["AdminSafeList"], logger);
+                
                 options.Filters.Add(clientIpCheckPageFilter);
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             #endregion snippet_ConfigureServicesPageFilter

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Net;
 
@@ -10,19 +9,21 @@ namespace ClientIpSafelistComponents.Filters
     #region snippet_ClassOnly
     public class ClientIpCheckPageFilter : IPageFilter
     {
+        private readonly ILogger _logger;
         private readonly string _safelist;
 
-        public ILogger Logger { get; set; }
-
-        public ClientIpCheckPageFilter(IConfiguration configuration)
+        public ClientIpCheckPageFilter(
+            string safelist,
+            ILogger logger)
         {
-            _safelist = configuration["AdminSafeList"];
+            _safelist = safelist;
+            _logger = logger;
         }
 
         public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
             var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
-            Logger.LogDebug(
+            _logger.LogDebug(
                 "Remote IpAddress: {RemoteIp}", remoteIp);
 
             string[] ip = _safelist.Split(';');
@@ -44,7 +45,7 @@ namespace ClientIpSafelistComponents.Filters
 
             if (badIp)
             {
-                Logger.LogWarning(
+                _logger.LogWarning(
                     "Forbidden Request from Remote IP address: {RemoteIp}", remoteIp);
                 context.Result = new StatusCodeResult(StatusCodes.Status403Forbidden);
                 return;

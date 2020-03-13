@@ -1,7 +1,7 @@
 ---
 title: Client IP safelist for ASP.NET Core
 author: damienbod
-description: Learn how to write Middleware or action filters to validate remote IP addresses against a list of approved IP addresses.
+description: Learn how to write middleware or action filters to validate remote IP addresses against a list of approved IP addresses.
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/12/2020
@@ -26,7 +26,7 @@ Access is allowed if the array contains the IP address. Otherwise, an HTTP 403 F
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/ip-safelist/samples) ([how to download](xref:index#how-to-download-a-sample))
 
-## The safelist
+## IP address safelist
 
 In the sample app, the IP address safelist is:
 
@@ -49,7 +49,7 @@ In the preceding example, the IPv4 addresses of `127.0.0.1` and `192.168.1.5` an
 
 ## Middleware
 
-The `Startup.Configure` method adds the custom `AdminSafeListMiddleware` middleware type to the app's request pipeline. The safelist string defined in *appsettings.json* is passed to the middleware as a constructor parameter:
+The `Startup.Configure` method adds the custom `AdminSafeListMiddleware` middleware type to the app's request pipeline. The safelist is retrieved with the .NET Core configuration provider and is passed as a constructor parameter.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -63,17 +63,17 @@ The `Startup.Configure` method adds the custom `AdminSafeListMiddleware` middlew
 
 ::: moniker-end
 
-The middleware parses the string into an array and looks for the remote IP address in the array. If the remote IP address isn't found, the middleware returns HTTP 403 Forbidden. This validation process is bypassed for HTTP GET requests.
+The middleware parses the string into an array and searches for the remote IP address in the array. If the remote IP address isn't found, the middleware returns HTTP 403 Forbidden. This validation process is bypassed for HTTP GET requests.
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Middlewares/AdminSafeListMiddleware.cs?name=snippet_ClassOnly)]
 
 ## Action filter
 
-If you want a safelist only for specific MVC controllers or action methods, use an action filter. For example:
+If you want safelist-driven access control for specific MVC controllers or action methods, use an action filter. For example:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckActionFilter.cs?name=snippet_ClassOnly)]
 
-In `Startup.ConfigureServices`, add the action filter to the MVC filters collection. In the following example, a `ClientIpCheckActionFilter` action filter is added. A console logger is created for the action filter and is assigned to its `Logger` property.
+In `Startup.ConfigureServices`, add the action filter to the MVC filters collection. In the following example, a `ClientIpCheckActionFilter` action filter is added. A safelist and a console logger instance are passed as constructor parameters.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -103,7 +103,13 @@ The action filter can then be applied to a controller or action method with the 
 
 In the sample app, the action filter is applied to the controller's `Get` action method. When you test the app by sending:
 
-* An HTTP GET request, the `[ServiceFilter]` attribute validates the client IP address.
+* An HTTP GET request, the `[ServiceFilter]` attribute validates the client IP address. If access is allowed to the `Get` action method, the following console output is produced by the action filter:
+
+    ```
+    dbug: ClientIpAspNetCore.Controllers.ValuesController[0]
+          successful HTTP GET
+    ```
+
 * An HTTP request verb other than GET, the `AdminSafeListMiddleware` middleware validates the client IP address.
 
 ## Razor Pages filter
@@ -112,7 +118,7 @@ If you want a safelist for a Razor Pages app, use a Razor Pages filter. For exam
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckPageFilter.cs?name=snippet_ClassOnly)]
 
-In `Startup.ConfigureServices`, enable the Razor Pages filter by adding it to the MVC filters collection. In the following example, a `ClientIpCheckPageFilter` Razor Pages filter is added. A console logger is created for the Razor Pages filter and is assigned to its `Logger` property.
+In `Startup.ConfigureServices`, enable the Razor Pages filter by adding it to the MVC filters collection. In the following example, a `ClientIpCheckPageFilter` Razor Pages filter is added. A safelist and a console logger instance are passed as constructor parameters.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -126,7 +132,12 @@ In `Startup.ConfigureServices`, enable the Razor Pages filter by adding it to th
 
 ::: moniker-end
 
-When you run the sample app and request the *Index* Razor page, the Razor Pages filter validates the client IP address.
+When the sample app's *Index* Razor page is requested, the Razor Pages filter validates the client IP address. The following console output is produced by the Razor Pages filter:
+
+```
+dbug: ClientIpSafelistComponents.Filters.ClientIpCheckPageFilter[0]
+      Remote IpAddress: ::1
+```
 
 ## Additional resources
 
