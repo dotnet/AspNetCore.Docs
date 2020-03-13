@@ -91,7 +91,7 @@ The action filter can then be applied to a controller or action method with the 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](ip-safelist/samples/3.x/ClientIpAspNetCore/Controllers/WeatherForecastController.cs?name=snippet_ActionFilter&highlight=1)]
+[!code-csharp[](ip-safelist/samples/3.x/ClientIpAspNetCore/Controllers/ValuesController.cs?name=snippet_ActionFilter&highlight=1)]
 
 ::: moniker-end
 
