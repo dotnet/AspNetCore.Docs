@@ -43,7 +43,7 @@ Update the *Movie.cs* file with the following code:
 
 The `Movie` class contains an `Id` field, which is required by the database for the primary key.
 
-The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute on `ReleaseDate` specifies the type of the data (`Date`). With this attribute:
+The <xref:System.ComponentModel.DataAnnotations.DataType> attribute on `ReleaseDate` specifies the type of the data (`Date`). With this attribute:
 
 * The user is not required to enter time information in the date field.
 * Only the date is displayed, not time information.
