@@ -43,6 +43,8 @@ Web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or the Visual 
 
 Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in *appsettings.json* and in the environment, the value set in the environment is used. Using the default configuration providers, the  [Command-line configuration provider](#command-line-configuration-provider) overrides all the other providers.
 
+For more information on `CreateDefaultBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host).
+
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ### appsettings.json
@@ -141,17 +143,33 @@ For more information on storing passwords or other sensitive data:
 
 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) safely stores app secrets for ASP.NET Core apps. For more information, see <xref:security/key-vault-configuration>.
 
+<a name="evcp"></a>
+
 ## Environment variables
 
 By [default](#default), the <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs after reading *appsettings.json*, *appsettings.*`Environment`*.json*, and [Secret manager](xref:security/app-secrets). Therefore, key values read from the environment override values read from *appsettings.json*, *appsettings.*`Environment`*.json*, and Secret manager.
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
-The following [setx](/windows-server/administration/windows-commands/setx) commands can be used to set the environment keys and values of the [preceding example](#appsettingsjson) on Windows:
+The following [setx](/windows-server/administration/windows-commands/setx) commands:
+
+* Set the environment keys and values of the [preceding example](#appsettingsjson) on Windows.
+* Test the settings when using the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample). The command must be run in the project directory.
 
 ```cmd
-setx MyKey "My key from Environment" /M
-setx Position__Title Environment_Editor /M
+set MyKey="My key from Environment"
+set Position__Title=Environment_Editor
+set Position__Name=Environment_Rick
+dotnet run
+```
+
+The preceding commands are only set for processes launched from the command window they were set on. The preceding command won't be read by browser launched with Visual Studio.
+
+The following [setx](/windows-server/administration/windows-commands/setx) commands can be used to set the environment keys and values on Windows. Unlike `set`, `setx` settings are persisted. `/M` sets the variable in the system environment. If the `/M` switch isn't used, a user environment variable is set.
+
+```cmd
+setx MyKey "My key from setx Environment" /M
+setx Position__Title Setx_Environment_Editor /M
 setx Position__Name Environment_Rick /M
 ```
 
@@ -160,10 +178,36 @@ After setting the preceding keys, to test that the environment configuration ove
 * Visual Studio: Exit and restart Visual Studio.
 * The CLI: Start a new command window and enter `dotnet run`.
 
+Call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> with a string to specify a prefix for environment variables:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/Program.cs?name=snippet4&highlight=12)]
+
+In the preceding code:
+
+* `config.AddEnvironmentVariables(prefix: "MyCustomPrefix_")` is added after the [default configuration providers](#default)
+* Environment variable set with `MyCustomPrefix_` override the default configuration providers, including the environment variable without the prefix.
+
+The prefix is stripped off when the configuration key-value pairs are read.
+
+The following commands test the custom prefix:
+
+```cmd
+set MyCustomPrefix_MyKey="My key with MyCustomPrefix_ Environment"
+set MyCustomPrefix_Position__Title=Editor_with_customPrefix
+set MyCustomPrefix_Position__Name=Environment_Rick_cp
+dotnet run
+```
+
+The [default configuration](#default) loads environment variables and command line arguments prefixed with `DOTNET_` and `ASPNETCORE_`. The `DOTNET_` and `ASPNETCORE_` are used by ASP.NET Core for [host and app configuration](xref:fundamentals/host/generic-host#host-configuration), not for user configuration. For more information on host and app configuration, see [.NET Generic Host](xref:fundamentals/host/generic-host).
+
 On [Azure App Service](https://azure.microsoft.com/services/app-service/), select **New application setting** on the **Settings > Configuration** page. Azure App Service application settings are:
 
 * Encrypted at rest and transmitted over an encrypted channel.
 * Exposed as environment variables.
+
+For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
+
+See [Connection string prefixes](#constr) for information on Azure database connection strings.
 
 <a name="clcp"></a>
 
@@ -309,75 +353,11 @@ The preceding sequence of providers is used in the [default configuration](#defa
 
 Configuration supplied to the app in `ConfigureAppConfiguration` is available during the app's startup, including `Startup.ConfigureServices`. For more information, see the [Access configuration during startup](#access-configuration-during-startup) section.
 
-zzz
+<a name="constr"></a>
 
+### Connection string prefixes
 
-<a name="evcp"></a>
-
-## Environment variables configuration provider
-
-The <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs at runtime.
-
-To activate environment variables configuration, call the <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
-
-[!INCLUDE[](~/includes/environmentVarableColon.md)]
-
-[Azure App Service](https://azure.microsoft.com/services/app-service/) permits setting environment variables in the Azure Portal that can override app configuration using the Environment Variables configuration provider. For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
-
-`AddEnvironmentVariables` is used to load environment variables prefixed with `DOTNET_` for [host configuration](#host-versus-app-configuration) when a new host builder is initialized with the [Generic Host](xref:fundamentals/host/generic-host) and `CreateDefaultBuilder` is called. For more information, see the [Default configuration](#default-configuration) section.
-
-`CreateDefaultBuilder` also loads:
-
-* App configuration from unprefixed environment variables by calling `AddEnvironmentVariables` without a prefix.
-* Optional configuration from *appsettings.json* and *appsettings*.`Environment`.*json* files.
-* [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
-* Command-line arguments.
-
-The Environment Variables configuration provider is called after configuration is established from user secrets and *appsettings* files. Calling the provider in this position allows the environment variables read at runtime to override configuration set by user secrets and *appsettings* files.
-
-To provide app configuration from additional environment variables, call the app's additional providers in `ConfigureAppConfiguration` and call `AddEnvironmentVariables` with the prefix:
-
-```csharp
-.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.AddEnvironmentVariables(prefix: "PREFIX_");
-})
-```
-
-Call `AddEnvironmentVariables` last to allow environment variables with the given prefix to override values from other providers.
-
-**Example**
-
-The sample app takes advantage of the static convenience method `CreateDefaultBuilder` to build the host, which includes a call to `AddEnvironmentVariables`.
-
-1. Run the sample app. Open a browser to the app at `http://localhost:5000`.
-1. Observe that the output contains the key-value pair for the environment variable `ENVIRONMENT`. The value reflects the environment in which the app is running, typically `Development` when running locally.
-
-To keep the list of environment variables rendered by the app short, the app filters environment variables. See the sample app's *Pages/Index.cshtml.cs* file.
-
-To expose all of the environment variables available to the app, change the `FilteredConfiguration` in *Pages/Index.cshtml.cs* to the following:
-
-```csharp
-FilteredConfiguration = _config.AsEnumerable();
-```
-
-### Prefixes
-
-Environment variables loaded into the app's configuration are filtered when supplying a prefix to the `AddEnvironmentVariables` method. For example, to filter environment variables on the prefix `CUSTOM_`, supply the prefix to the configuration provider:
-
-```csharp
-var config = new ConfigurationBuilder()
-    .AddEnvironmentVariables("CUSTOM_")
-    .Build();
-```
-
-The prefix is stripped off when the configuration key-value pairs are created.
-
-When the host builder is created, host configuration is provided by environment variables. For more information on the prefix used for these environment variables, see the [Default configuration](#default-configuration) section.
-
-**Connection string prefixes**
-
-The Configuration API has special processing rules for four connection string environment variables involved in configuring Azure connection strings for the app environment. Environment variables with the prefixes shown in the table are loaded into the app if no prefix is supplied to `AddEnvironmentVariables`.
+The Configuration API has special processing rules for four connection string environment variables. These connection strings are involved in configuring Azure connection strings for the app environment. Environment variables with the prefixes shown in the table are loaded into the app with the [default configuration](#default) or when no prefix is supplied to `AddEnvironmentVariables`.
 
 | Connection string prefix | Provider |
 | ------------------------ | -------- |
@@ -397,19 +377,6 @@ When an environment variable is discovered and loaded into configuration with an
 | `MYSQLCONNSTR_{KEY}`     | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `MySql.Data.MySqlClient` |
 | `SQLAZURECONNSTR_{KEY}`  | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`  |
 | `SQLCONNSTR_{KEY}`       | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`  |
-
-**Example**
-
-A custom connection string environment variable is created on the server:
-
-* Name &ndash; `CUSTOMCONNSTR_ReleaseDB`
-* Value &ndash; `Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True`
-
-If `IConfiguration` is injected and assigned to a field named `_config`, read the value:
-
-```csharp
-_config["ConnectionStrings:ReleaseDB"]
-```
 
 <a name="jcp"></a>
 

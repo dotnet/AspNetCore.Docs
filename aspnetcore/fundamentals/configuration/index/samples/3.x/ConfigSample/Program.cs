@@ -1,6 +1,9 @@
 //#define MAIN
-#define MAIN2
+//#define MAIN2
+#define MyCustomPrefix_
+
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 #if MAIN
@@ -49,5 +52,32 @@ namespace ConfigSample
 
                 });
     }
+}
+#endif
+
+#if MyCustomPrefix_
+
+namespace ConfigSample
+{
+    #region snippet4
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.AddEnvironmentVariables(prefix: "MyCustomPrefix_");
+                })
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
+    #endregion
 }
 #endif
