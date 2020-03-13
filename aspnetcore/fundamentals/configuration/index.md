@@ -14,7 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 ::: moniker range=">= aspnetcore-3.0"
 
-App configuration in ASP.NET Core is based on key-value pairs established by [configuration providers](#cp). Configuration providers read configuration data into key-value pairs from a variety of configuration sources:
+[Configuration providers](#cp) read configuration data from key-value pairs using a variety of configuration sources:
 
 * Settings files such as *application.json*.
 * Environment variables
@@ -29,12 +29,13 @@ App configuration in ASP.NET Core is based on key-value pairs established by [co
 
 ## Default configuration
 
-Web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or the Visual Studio templates create the following code:
+ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or Visual Studio generate the following code:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Program.cs?name=snippet&highlight=9)]
 
  <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> provides default configuration for the app in the following order:
 
+* [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) : <!-- REVIEW, what is this? -->
 1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
 1. *appsettings.*`Environment`*.json* using the [JSON configuration provider](#file-configuration-provider). For example, the *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json* files. For more information, see <xref:fundamentals/environments>.
 1. [Secret Manager](xref:security/app-secrets) when the app runs on a local machine in the `Development` environment.
@@ -43,7 +44,7 @@ Web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or the Visual 
 
 Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in *appsettings.json* and in the environment, the value set in the environment is used. Using the default configuration providers, the  [Command-line configuration provider](#command-line-configuration-provider) overrides all the other providers.
 
-For more information on `CreateDefaultBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host).
+For more information on `CreateDefaultBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host#default-builder-settings).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -86,15 +87,15 @@ Create the following `PositionOptions` class:
 
 All the public read-write properties of the type are bound. Fields are ***not*** bound.
 
-The following code binds the `PositionOptions` class binds to the `Position` section and displays the `Position` configuration data:
+The following code binds the `PositionOptions` class to the `Position` section and displays the `Position` configuration data:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test22.cshtml.cs?name=snippet)]
 
-[`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) binds and returns the specified type. `Get<T>` is more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding example, which allows the bound instance to be directly assigned to the property used for rendering:
+[`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) binds and returns the specified type. `Get<T>` is more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding example:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test21.cshtml.cs?name=snippet)]
 
-An alternative approach when using the ***options pattern*** is to bind the `Position` section and add it to the service container. In the following code, `PositionOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
+An alternative approach when using the ***options pattern*** is to bind the `Position` section and add it to the [dependency injection service container](xref:fundamentals/dependency-injection). In the following code, `PositionOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Startup.cs?name=snippet)]
 
@@ -163,10 +164,10 @@ set Position__Name=Environment_Rick
 dotnet run
 ```
 
-The preceding commands:
+The preceding environment settings:
 
-* Are only set for processes launched from the command window they were set on.
-* Won't be read by browser launched with Visual Studio.
+* Are only set in processes launched from the command window they were set in.
+* Won't be read by browsers launched with Visual Studio.
 
 The following [setx](/windows-server/administration/windows-commands/setx) commands can be used to set the environment keys and values on Windows. Unlike `set`, `setx` settings are persisted. `/M` sets the variable in the system environment. If the `/M` switch isn't used, a user environment variable is set.
 
@@ -176,7 +177,7 @@ setx Position__Title Setx_Environment_Editor /M
 setx Position__Name Environment_Rick /M
 ```
 
-To test that the preceding commands override *apsettings.json* amd *appsettings.*`Environment`*.json*:
+To test that the preceding commands override *apsettings.json* and *appsettings.*`Environment`*.json*:
 
 * With Visual Studio: Exit and restart Visual Studio.
 * With the CLI: Start a new command window and enter `dotnet run`.
@@ -187,8 +188,8 @@ Call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.Add
 
 In the preceding code:
 
-* `config.AddEnvironmentVariables(prefix: "MyCustomPrefix_")` is added after the [default configuration providers](#default)
-* Environment variable set with `MyCustomPrefix_` override the [default configuration providers](#default), including environment variables without the prefix.
+* `config.AddEnvironmentVariables(prefix: "MyCustomPrefix_")` is added after the [default configuration providers](#default). For an example of ordering the configuration providers, see [JSON configuration provider](#jcp).
+* Environment variables set with  override the [default configuration providers](#default), including environment variables without the prefix.
 
 The prefix is stripped off when the configuration key-value pairs are read.
 
@@ -222,7 +223,7 @@ By [default](#default), the <xref:Microsoft.Extensions.Configuration.CommandLine
 * [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
 * Environment variables.
 
-Therefore, configuration values set on the command-line override configuration values set with the preceding configuration sources.
+By [default](#default), configuration values set on the command-line override configuration values set with all the other configuration providers.
 
 ### Command-line arguments
 
@@ -284,7 +285,7 @@ The following command works to test key replacement:
 dotnet run -k1 value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 value6
 ```
 
-For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't pass arguments. The `CreateDefaultBuilder` method's `AddCommandLine` call doesn't include mapped switches, and there's no way to pass the switch mapping dictionary to `CreateDefaultBuilder`. The solution isn't to pass the arguments to `CreateDefaultBuilder` but instead to allow the `ConfigurationBuilder` method's `AddCommandLine` method to process both the arguments and the switch mapping dictionary.
+For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't pass arguments. The `CreateDefaultBuilder` method's `AddCommandLine` call doesn't include mapped switches, and there's no way to pass the switch-mapping dictionary to `CreateDefaultBuilder`. The solution isn't to pass the arguments to `CreateDefaultBuilder` but instead to allow the `ConfigurationBuilder` method's `AddCommandLine` method to process both the arguments and the switch-mapping dictionary.
 
 ## Hierarchical configuration data
 
@@ -335,7 +336,7 @@ The following table shows the configuration providers available to ASP.NET Core 
 | [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app) | Azure App Configuration |
 | [Command-line configuration provider](#clcp) | Command-line parameters |
 | [Custom configuration provider](#custom-configuration-provider) | Custom source |
-| [Environment Variables configuration provider](#environment-variables-configuration-provider) | Environment variables |
+| [Environment Variables configuration provider](#evcp) | Environment variables |
 | [File configuration provider](#file-configuration-provider) | INI, JSON, and XML files |
 | [Key-per-file configuration provider](#key-per-file-configuration-provider) | Directory files |
 | [Memory configuration provider](#memory-configuration-provider) | In-memory collections |
@@ -400,7 +401,7 @@ The preceding code:
 * Configures the JSON configuration provider to load the *MyConfig.json* file with the following options:
   * `optional: true`: The file is optional.
   * `reloadOnChange: true` : The file is reloaded when changes are saved.
-* Reads the [default configuration providers](#default) before the "MyConfig.json" file. Settings in the *MyConfig.json* file override setting in the default configuration providers, including the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
+* Reads the [default configuration providers](#default) before the *MyConfig.json* file. Settings in the *MyConfig.json* file override setting in the default configuration providers, including the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
 You typically ***don't*** want a custom JSON file overriding values set in the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
@@ -417,7 +418,9 @@ The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspn
 
 [!code-json[](index/samples/3.x/ConfigSample/MyConfig.json)]
 
-The `TestModel.OnGet` method in the [appsettings.json](#appsettingsjson) section of this document reads the *MyConfig.json* file.
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 <a name="fcp"></a>
 
@@ -446,7 +449,9 @@ The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspn
 
 [!code-ini[](index/samples/3.x/ConfigSample/MyIniConfig.ini)]
 
-See the [appsettings.json](#appsettingsjson) section for sample code that reads the *MyIniConfig.ini* and *MyIniConfig*.`Environment`.*ini* files.
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 ### XML configuration provider
 
@@ -465,7 +470,9 @@ The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspn
 
 [!code-xml[](index/samples/3.x/ConfigSample/MyXMLFile.xml)]
 
-See the [appsettings.json](#appsettingsjson) section for sample code that reads the *MyXMLFile.xml* and *MyXMLFile*.`Environment`.*xml* files.
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 Repeating elements that use the same element name work if the `name` attribute is used to distinguish the elements:
 
@@ -516,35 +523,25 @@ Call `ConfigureAppConfiguration` when building the host to specify the app's con
 })
 ```
 
+<a name="mcp"></a>
+
 ## Memory configuration provider
 
 The <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider> uses an in-memory collection as configuration key-value pairs.
 
-To activate in-memory collection configuration, call the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>.
+The following code adds a memory collection to the configuration system:
 
-The configuration provider can be initialized with an `IEnumerable<KeyValuePair<String,String>>`.
+[!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet6)]
 
-Call `ConfigureAppConfiguration` when building the host to specify the app's configuration.
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays the preceding configurations settings:
 
-In the following example, a configuration dictionary is created:
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
-```csharp
-public static readonly Dictionary<string, string> _dict = 
-    new Dictionary<string, string>
-    {
-        {"MemoryCollectionKey1", "value1"},
-        {"MemoryCollectionKey2", "value2"}
-    };
-```
+In the preceding code, `config.AddInMemoryCollection(Dict)` is added after the [default configuration providers](#default). For an example of ordering the configuration providers, see [JSON configuration provider](#jcp).
 
-The dictionary is used with a call to `AddInMemoryCollection` to provide the configuration:
+For an example of ordering the configuration providers, see [JSON configuration provider](#jcp).
 
-```csharp
-.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.AddInMemoryCollection(_dict);
-})
-```
+See [Bind an array](#boa) for another example using `MemoryConfigurationProvider`.
 
 ## GetValue
 
@@ -633,7 +630,7 @@ Index: 4  Value: value50
 
 In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in *MyArray.json*. The bound array indices are continuous and not bound to the configuration key index. The configuration binder isn't capable of binding null values or creating null entries in bound objects
 
-The  following code loads the `array:entries` configuration with the the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*> extension method:
+The  following code loads the `array:entries` configuration with the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*> extension method:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet)]
 

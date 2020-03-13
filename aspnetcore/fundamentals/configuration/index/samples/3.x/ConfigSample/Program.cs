@@ -1,6 +1,6 @@
 //#define MAIN
 //#define MAIN2
-#define MyCustomPrefix_
+//#define MyCusomPrefix_
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -55,7 +55,7 @@ namespace ConfigSample
 }
 #endif
 
-#if MyCustomPrefix_
+#if MyCusomPrefix_
 
 namespace ConfigSample
 {

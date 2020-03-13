@@ -1,5 +1,7 @@
 //#define MAIN2
 //#define MAIN3
+#define MAIN4
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -72,6 +74,42 @@ namespace ConfigSample
                     config.AddInMemoryCollection(arrayDict);
                     config.AddJsonFile("Value3.json",
                                         optional: false, reloadOnChange: false);
+                })
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+        }
+    }
+#endregion
+}
+#endif
+
+#if MAIN4
+namespace ConfigSample
+{
+#region snippet6
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            var Dict = new Dictionary<string, string>
+            {
+               {"MyKey", "Dictionary MyKey Value"},
+               {"Position:Title", "Dictionary_Title"},
+               {"Position:Name", "Dictionary_Name" },
+               {"Logging:LogLevel:Default", "Warning"}
+            };
+
+            return Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.AddInMemoryCollection(Dict);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
