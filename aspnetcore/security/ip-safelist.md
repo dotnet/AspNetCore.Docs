@@ -103,7 +103,7 @@ The action filter can then be applied to a controller or action method with the 
 
 In the sample app, the action filter is applied to the controller's `Get` action method. When you test the app by sending:
 
-* An HTTP GET request, the `[ServiceFilter]` attribute validates the client IP address. If access is allowed to the `Get` action method, the following console output is produced by the action filter:
+* An HTTP GET request, the `[ServiceFilter]` attribute validates the client IP address. If access is allowed to the `Get` action method, a variation of the following console output is produced by the action filter:
 
     ```
     dbug: ClientIpAspNetCore.Controllers.ValuesController[0]
@@ -132,7 +132,7 @@ In `Startup.ConfigureServices`, enable the Razor Pages filter by adding it to th
 
 ::: moniker-end
 
-When the sample app's *Index* Razor page is requested, the Razor Pages filter validates the client IP address. The following console output is produced by the Razor Pages filter:
+When the sample app's *Index* Razor page is requested, the Razor Pages filter validates the client IP address. The filter produces a variation of the following console output:
 
 ```
 dbug: ClientIpSafelistComponents.Filters.ClientIpCheckPageFilter[0]
