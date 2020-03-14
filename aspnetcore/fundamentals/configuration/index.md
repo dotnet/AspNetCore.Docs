@@ -545,36 +545,21 @@ See [Bind an array](#boa) for another example using `MemoryConfigurationProvider
 
 ## GetValue
 
-[`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified noncollection type. An overload accepts a default value.
+[`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified type:
 
-The following example:
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestNum.cshtml.cs?name=snippet)]
 
-* Extracts the string value from configuration with the key `NumberKey`. If `NumberKey` isn't found in the configuration keys, the default value of `99` is used.
-* Types the value as an `int`.
-* Stores the value in the `NumberConfig` property for use by the page.
-
-```csharp
-public class IndexModel : PageModel
-{
-    public IndexModel(IConfiguration config)
-    {
-        _config = config;
-    }
-
-    public int NumberConfig { get; private set; }
-
-    public void OnGet()
-    {
-        NumberConfig = _config.GetValue<int>("NumberKey", 99);
-    }
-}
-```
+In the preceding code,  if `NumberKey` isn't found in the configuration, the default value of `99` is used.
 
 ## GetSection, GetChildren, and Exists
 
 For the examples that follow, consider the following *MySubsection.json* file:
 
 [!code-json[](index/samples/3.x/ConfigSample/MySubsection.json)]
+
+The following code adds *MySubsection.json* to the configuration providers:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSONsection.cs?name=snippet)]
 
 ### GetSection
 
@@ -610,7 +595,7 @@ Consider *MyArray.json* from the [sample download](https://github.com/dotnet/Asp
 
 [!code-json[](index/samples/3.x/ConfigSample/MyArray.json)]
 
-The following code adds *MyArray.json*:
+The following code adds *MyArray.json* to the configuration providers:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSONarray.cs?name=snippet)]
 
@@ -650,7 +635,7 @@ Index: 4  Value: value5
 
 Index &num;3 in the bound object holds the configuration data for the `array:4` configuration key and its value of `value4`. When configuration data containing an array is bound, the array indices in the configuration keys are used to iterate the configuration data when creating the object. A null value can't be retained in configuration data, and a null-valued entry isn't created in a bound object when an array in configuration keys skip one or more indices.
 
-The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that produces the correct key-value pair in configuration. Consider the following *Value3.json* file from the sample download:
+The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that reads the index &num;3 key/value pair. Consider the following *Value3.json* file from the sample download:
 
 [!code-json[](index/samples/3.x/ConfigSample/Value3.json)]
 

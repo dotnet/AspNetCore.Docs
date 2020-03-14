@@ -20,7 +20,7 @@ namespace ConfigSample
         {
             return Content(
                     $"section2:subsection0:key0 '{Config["key0"]}'\n" +
-                    $"section2:subsection0:key1: '{Config["key1"]}'");
+                    $"section2:subsection0:key1:'{Config["key1"]}'");
         }
     }
     #endregion
