@@ -1,6 +1,6 @@
 //#define MAIN2
 //#define MAIN3
-#define MAIN4
+//#define MAIN4
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

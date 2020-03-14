@@ -1,27 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using System.Linq;
 
 namespace ConfigSample.Pages
 {
-    public class IndexModel : PageModel
+    #region snippet
+    public class Index2Model : PageModel
     {
         private IConfigurationRoot ConfigRoot;
 
-        public IndexModel(IConfiguration configRoot)
+        public Index2Model(IConfiguration configRoot)
         {
             ConfigRoot = (IConfigurationRoot)configRoot;
         }
 
-        public void OnGet()
-        {
+        public ContentResult OnGet()
+        {           
             string str = "";
             foreach (var provider in ConfigRoot.Providers.ToList())
             {
                 str += provider.ToString() + "\n";
             }
 
-            ViewData["configProviders"] = str;
+            return Content(str);
         }
     }
+    #endregion
 }

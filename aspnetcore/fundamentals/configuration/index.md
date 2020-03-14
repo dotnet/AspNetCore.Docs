@@ -35,9 +35,9 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 
  <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> provides default configuration for the app in the following order:
 
-* [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) : <!-- REVIEW, what is this? -->
+1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) : <!-- REVIEW, what is this? -->
 1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
-1. *appsettings.*`Environment`*.json* using the [JSON configuration provider](#file-configuration-provider). For example, the *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json* files. For more information, see <xref:fundamentals/environments>.
+1. *appsettings.*`Environment`*.json* using the [JSON configuration provider](#file-configuration-provider). For example, the *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json* files.
 1. [Secret Manager](xref:security/app-secrets) when the app runs on a local machine in the `Development` environment.
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
 1. Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
@@ -87,11 +87,14 @@ Create the following `PositionOptions` class:
 
 All the public read-write properties of the type are bound. Fields are ***not*** bound.
 
-The following code binds the `PositionOptions` class to the `Position` section and displays the `Position` configuration data:
+The following code:
+
+* Calls [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) to bind the `PositionOptions` class to the `Position` section.
+* Displays the `Position` configuration data.
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test22.cshtml.cs?name=snippet)]
 
-[`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) binds and returns the specified type. `Get<T>` is more convenient than using `Bind`. The following code shows how to use `Get<T>` with the preceding example:
+[`ConfigurationBinder.Get<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Get*) binds and returns the specified type. `ConfigurationBinder.Get<T>` may be more convenient than using `ConfigurationBinder.Bind`. The following code shows how to use `ConfigurationBinder.Get<T>` with the `PositionOptions` class:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test21.cshtml.cs?name=snippet)]
 
@@ -111,17 +114,13 @@ See [JSON configuration provider](#jcp) in this document for information on addi
 
 The following code displays the enabled configuration providers in the order they were added:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Index.cshtml.cs?name=snippet)]
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
 
-[!code-cshtml[](index/samples/3.x/ConfigSample/Pages/Index.cshtml)]
+When using the [default configuration](#default), the following configuration providers are displayed in the development environment:
 
-The preceding code uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to display the environment.
-
-When using the [default configuration](#default), the following configuration providers are displayed:
-
-* [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) : <!-- REVIEW, what is this? -->
-* [JsonConfigurationProvider](#jcp) : For *appsettings.json*
-* JsonConfigurationProvider : For *appsettings.*`Environment`*.json*
+* <xref:Microsoft.Extensions.Configuration.ChainedConfigurationProvider?displayProperty=fullName> <!-- REVIEW, what is this? Should we add if when we call clear and add other providers? -->
+* [JsonConfigurationProvider](#jcp) for 'appsettings.json' (Optional)
+* `JsonConfigurationProvider` for 'appsettings.***Development***.json' (Optional)
 * [EnvironmentVariablesConfigurationProvider](#evcp)
 * [CommandLineConfigurationProvider](#clcp)
 
