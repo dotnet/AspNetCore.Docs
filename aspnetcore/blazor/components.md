@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/25/2020
+ms.date: 03/16/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/components
 ---
@@ -381,7 +381,7 @@ Consider the following example:
 ```csharp
 @foreach (var person in People)
 {
-    <DetailsEditor Details="person.Details" />
+    <DetailsEditor Details="@person.Details" />
 }
 
 @code {
@@ -397,7 +397,7 @@ The mapping process can be controlled with the `@key` directive attribute. `@key
 ```csharp
 @foreach (var person in People)
 {
-    <DetailsEditor @key="person" Details="person.Details" />
+    <DetailsEditor @key="person" Details="@person.Details" />
 }
 
 @code {
