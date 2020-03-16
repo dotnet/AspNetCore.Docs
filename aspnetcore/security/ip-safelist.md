@@ -34,17 +34,7 @@ In the sample app, the IP address safelist is:
 * Defined by the `AdminSafeList` property in the *appsettings.json* file.
 * A semicolon-delimited string that may contain both [Internet Protocol version 4 (IPv4)](https://wikipedia.org/wiki/IPv4) and [Internet Protocol version 6 (IPv6)](https://wikipedia.org/wiki/IPv6) addresses.
 
-::: moniker range=">= aspnetcore-3.0"
-
-[!code-json[](ip-safelist/samples/3.x/ClientIpAspNetCore/appsettings.json?highlight=2)]
-
-::: moniker-end
-
-::: moniker range="<= aspnetcore-2.2"
-
-[!code-json[](ip-safelist/samples/2.x/ClientIpAspNetCore/appsettings.json?highlight=2)]
-
-::: moniker-end
+[!code-json[](ip-safelist/samples/3.x/ClientIpAspNetCore/appsettings.json?range=1-3&highlight=2)]
 
 In the preceding example, the IPv4 addresses of `127.0.0.1` and `192.168.1.5` and the IPv6 loopback address of `::1` (compressed format for `0:0:0:0:0:0:0:1`) are allowed.
 
