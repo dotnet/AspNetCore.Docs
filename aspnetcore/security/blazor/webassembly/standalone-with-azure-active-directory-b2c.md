@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/09/2020
+ms.date: 03/16/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
 ---
@@ -34,7 +34,9 @@ To create a Blazor WebAssembly standalone app that uses [Azure Active Directory 
 
      Record the Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`).
 
-   * [Create user flows](/azure/active-directory-b2c/tutorial-create-user-flows) & ndash; Create a sign-up and sign-in user flow.
+   * [Create user flows](/azure/active-directory-b2c/tutorial-create-user-flows) &ndash; Create a sign-up and sign-in user flow.
+
+     At a minimum, select the **Application claims** > **Display Name** user attribute to populate the `context.User.Identity.Name` in the `LoginDisplay` component (*Shared/LoginDisplay.razor*).
 
      Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin`).
 
