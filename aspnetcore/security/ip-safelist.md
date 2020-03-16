@@ -2,6 +2,7 @@
 title: Client IP safelist for ASP.NET Core
 author: damienbod
 description: Learn how to write middleware or action filters to validate remote IP addresses against a list of approved IP addresses.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/12/2020
