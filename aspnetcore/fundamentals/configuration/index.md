@@ -14,9 +14,9 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[Configuration providers](#cp) read configuration data from key-value pairs using a variety of configuration sources:
+Configuration in ASP.NET Core is configured using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
-* Settings files such as *application.json*.
+* Settings files, such as *appsettings.json*
 * Environment variables
 * Azure Key Vault
 * Azure App Configuration
@@ -37,12 +37,12 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 
 1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) : <!-- REVIEW, what is this? -->
 1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
-1. *appsettings.*`Environment`*.json* using the [JSON configuration provider](#file-configuration-provider). For example, the *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json* files.
-1. [Secret Manager](xref:security/app-secrets) when the app runs on a local machine in the `Development` environment.
+1. *appsettings.*`Environment`*.json* using the [JSON configuration provider](#file-configuration-provider). For example, *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json*.
+1. [App secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
 1. Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
 
-Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in *appsettings.json* and in the environment, the value set in the environment is used. Using the default configuration providers, the  [Command-line configuration provider](#command-line-configuration-provider) overrides all the other providers.
+Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in both *appsettings.json* and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#command-line-configuration-provider) overrides all other providers.
 
 For more information on `CreateDefaultBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host#default-builder-settings).
 
@@ -74,7 +74,7 @@ The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvi
 
 The preferred way to read related configuration values is using the [options pattern](xref:fundamentals/configuration/options). For example, to read the following configuration values:
 
-```xml
+```json
   "Position": {
     "Title": "Editor",
     "Name": "Joe Smith"
@@ -134,7 +134,7 @@ Configuration data guidelines:
 * Don't use production secrets in development or test environments.
 * Specify secrets outside of the project so that they can't be accidentally committed to a source code repository.
 
-The [Secret manager](xref:security/app-secrets) reads configuration settings after *appsettings.json* and *appsettings.*`Environment`*.json*.
+By [default](#default), [Secret manager](xref:security/app-secrets) reads configuration settings after *appsettings.json* and *appsettings.*`Environment`*.json*.
 
 For more information on storing passwords or other sensitive data:
 
@@ -154,7 +154,7 @@ By [default](#default), the <xref:Microsoft.Extensions.Configuration.Environment
 The following `set` commands:
 
 * Set the environment keys and values of the [preceding example](#appsettingsjson) on Windows.
-* Tests the settings when using the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample). The `dotnet run` command must be run in the project directory.
+* Test the settings when using the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample). The `dotnet run` command must be run in the project directory.
 
 ```cmd
 set MyKey="My key from Environment"
@@ -188,7 +188,7 @@ Call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.Add
 In the preceding code:
 
 * `config.AddEnvironmentVariables(prefix: "MyCustomPrefix_")` is added after the [default configuration providers](#default). For an example of ordering the configuration providers, see [JSON configuration provider](#jcp).
-* Environment variables set with  override the [default configuration providers](#default), including environment variables without the prefix.
+* Environment variables set with the `MyCustomPrefix_` prefix override the [default configuration providers](#default). This includes environment variables without the prefix.
 
 The prefix is stripped off when the configuration key-value pairs are read.
 
@@ -201,7 +201,7 @@ set MyCustomPrefix_Position__Name=Environment_Rick_cp
 dotnet run
 ```
 
-The [default configuration](#default) loads environment variables and command line arguments prefixed with `DOTNET_` and `ASPNETCORE_`. The `DOTNET_` and `ASPNETCORE_` are used by ASP.NET Core for [host and app configuration](xref:fundamentals/host/generic-host#host-configuration), not for user configuration. For more information on host and app configuration, see [.NET Generic Host](xref:fundamentals/host/generic-host).
+The [default configuration](#default) loads environment variables and command line arguments prefixed with `DOTNET_` and `ASPNETCORE_`. The `DOTNET_` and `ASPNETCORE_` prefixes are used by ASP.NET Core for [host and app configuration](xref:fundamentals/host/generic-host#host-configuration), but not for user configuration. For more information on host and app configuration, see [.NET Generic Host](xref:fundamentals/host/generic-host).
 
 On [Azure App Service](https://azure.microsoft.com/services/app-service/), select **New application setting** on the **Settings > Configuration** page. Azure App Service application settings are:
 
@@ -246,8 +246,8 @@ dotnet run --MyKey "Using --" --Position:Title=Cmd-- --Position:Name=Cmd--Rick
 
 The key value:
 
-* Must follow `=`, or the key must have a prefix (`--` or `/`) when the value follows a space.
-* Isn't required if an equals sign is used. For example, `MySetting=`.
+* Must follow `=`, or the key must have a prefix of `--` or `/` when the value follows a space.
+* Isn't required if `=` is used. For example, `MySetting=`.
 
 Within the same command, don't mix command-line argument key-value pairs that use `=` with key-value pairs that use a space.
 
@@ -259,10 +259,10 @@ When the switch mappings dictionary is used, the dictionary is checked for a key
 
 Switch mappings dictionary key rules:
 
-* Switches must start with `-` or `--` characters.
+* Switches must start with `-` or `--`.
 * The switch mappings dictionary must not contain duplicate keys.
 
-Create a switch mappings dictionary. Call `AddCommandLine` with the switch mappings dictionary:
+To use a switch mappings dictionary, pass it into the call to `AddCommandLine`:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramSwitch.cs?name=snippet&highlight=10-18,23)]
 
