@@ -80,8 +80,6 @@ For information on setting an app's base path, see <xref:host-and-deploy/blazor/
 
 Components can include other components by declaring them using HTML element syntax. The markup for using a component looks like an HTML tag where the name of the tag is the component type.
 
-Attribute binding is case sensitive. For example, `@bind` is valid, and `@Bind` is invalid.
-
 The following markup in *Index.razor* renders a `HeadingComponent` instance:
 
 ```razor
