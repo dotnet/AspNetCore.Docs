@@ -5,7 +5,7 @@ description: Learn about Blazor's event handling scenarios, including event argu
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 03/16/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/event-handling
 ---
@@ -13,7 +13,7 @@ uid: blazor/event-handling
 
 By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
 
-Razor components provide event handling features. For an HTML element attribute named `on{EVENT}` (for example, `onclick` and `onsubmit`) with a delegate-typed value, Razor components treats the attribute's value as an event handler. The attribute's name is always formatted [`@on{EVENT}`](xref:mvc/views/razor#onevent).
+Razor components provide event handling scenarios. For an HTML element attribute named [`@on{EVENT}`](xref:mvc/views/razor#onevent) (for example, `@onclick`) with a delegate-typed value, a Razor component treats the attribute's value as an event handler.
 
 The following code calls the `UpdateHeading` method when the button is selected in the UI:
 
