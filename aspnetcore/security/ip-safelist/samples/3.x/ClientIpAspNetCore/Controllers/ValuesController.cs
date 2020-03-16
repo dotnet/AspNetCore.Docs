@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ClientIpAspNetCore.Models;
-using ClientIpSafelistComponents.Filters;
+﻿using ClientIpSafelistComponents.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace ClientIpAspNetCore.Controllers
 {
@@ -12,11 +9,6 @@ namespace ClientIpAspNetCore.Controllers
     [Route("[controller]")]
     public class ValuesController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<ValuesController> _logger;
 
         public ValuesController(ILogger<ValuesController> logger)
@@ -27,19 +19,18 @@ namespace ClientIpAspNetCore.Controllers
         #region snippet_ActionFilter
         [ServiceFilter(typeof(ClientIpCheckActionFilter))]
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<string> Get()
         #endregion snippet_ActionFilter
         {
             _logger.LogDebug("successful HTTP GET");
 
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)],
-            })
-            .ToArray();
+            return new string[] { "value1", "value2" };
+        }
+
+        [HttpGet("{id}")]
+        public string Get(int id)
+        {
+            return "value";
         }
 
         [HttpPost]
