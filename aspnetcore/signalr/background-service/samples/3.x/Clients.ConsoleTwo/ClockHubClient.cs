@@ -58,6 +58,6 @@ namespace Clients.ConsoleTwo
         {
             return _connection.DisposeAsync();
         }
-    }
 #endregion
+    }
 }
