@@ -14,7 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Configuration in ASP.NET Core is configured using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
+Configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
 * Settings files, such as *appsettings.json*
 * Environment variables
