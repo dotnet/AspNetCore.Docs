@@ -24,7 +24,7 @@ Browser security prevents a web page from making requests to a different domain 
 * Allows a server to explicitly allow some cross-origin requests while rejecting others.
 * Is safer and more flexible than earlier techniques, such as [JSONP](/dotnet/framework/wcf/samples/jsonp).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Same origin
 
@@ -42,19 +42,23 @@ These URLs have different origins than the previous two URLs:
 * `http://example.com/foo.html` &ndash; Different scheme
 * `https://example.com:9000/foo.html` &ndash; Different port
 
-Internet Explorer doesn't consider the port when comparing origins.
-
 ## CORS with named policy and middleware
 
-CORS Middleware handles cross-origin requests. The following code enables CORS for the entire app with the specified origin:
+CORS Middleware handles cross-origin requests. The following code applies CORS policies to all the apps endpoints with the specified origin:
 
-[!code-csharp[](cors/sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=8,14-23,38)]
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=8,14-22,38)]
 
 The preceding code:
 
-* Sets the policy name to "\_myAllowSpecificOrigins". The policy name is arbitrary.
-* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method, which enables CORS.
+* Sets the policy name to `_myAllowSpecificOrigins`. The policy name is arbitrary.
+* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method and specifies the CORS policy to use. `UseCors` enables the CORS middleware.
 * Calls <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> with a [lambda expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this article.
+
+With endpoint routing, the CORS middleware ***must*** be configured to execute between the calls to `UseRouting` and `UseEndpoints`.
+
+See [Enable CORS in Razor Pages, controllers, and action methods](#ecors) to apply CORS policy at the page/controller/action level.
+
+See [Test CORS](#test) for instructions on testing the preceding code.
 
 The <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors*> method call adds CORS services to the app's service container:
 
@@ -66,9 +70,9 @@ The <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> method can
 
 [!code-csharp[](cors/sample/Cors/WebAPI/Startup2.cs?name=snippet2)]
 
-Note: The URL must **not** contain a trailing slash (`/`). If the URL terminates with `/`, the comparison returns `false` and no header is returned.
+Note: The specified URL must **not** contain a trailing slash (`/`). If the URL terminates with `/`, the comparison returns `false` and no header is returned.
 
-<a name="acpall"></a>
+<a name="acpall"></a> zz
 
 ### Apply CORS policies to all endpoints
 
