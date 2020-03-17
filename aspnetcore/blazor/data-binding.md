@@ -1,11 +1,11 @@
 ---
 title: ASP.NET Core Blazor data binding
 author: guardrex
-description: Learn about data binding scenarios for components and DOM elements in Blazor apps.
+description: Learn about data binding features for components and DOM elements in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/24/2020
+ms.date: 03/16/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/data-binding
 ---
@@ -13,7 +13,9 @@ uid: blazor/data-binding
 
 By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
 
-Data binding to both components and DOM elements is accomplished with the [`@bind`](xref:mvc/views/razor#bind) attribute. The following example binds a `CurrentValue` property to the text box's value:
+Razor components provide data binding features via an HTML element attribute named [`@bind`](xref:mvc/views/razor#bind) with a field, property, or Razor expression value.
+
+The following example binds the `CurrentValue` property to the text box's value:
 
 ```razor
 <input @bind="CurrentValue" />
@@ -70,6 +72,8 @@ Use `@bind-{ATTRIBUTE}` with `@bind-{ATTRIBUTE}:event` syntax to bind element at
     private string _paragraphStyle = "color:red";
 }
 ```
+
+Attribute binding is case sensitive. For example, `@bind` is valid, and `@Bind` is invalid.
 
 ## Unparsable values
 

@@ -5,7 +5,7 @@ description: To create a new Blazor hosted app with authentication from within V
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/09/2020
+ms.date: 03/16/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/hosted-with-identity-server
 ---
@@ -216,5 +216,9 @@ The `LoginDisplay` component (*Shared/LoginDisplay.razor*) is rendered in the `M
 ### FetchData component
 
 [!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
+
+## Run the app
+
+Run the app from the Server project. When using Visual Studio, select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
