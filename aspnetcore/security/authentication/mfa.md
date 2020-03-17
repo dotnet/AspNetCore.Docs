@@ -52,7 +52,7 @@ Azure Active Directory provides support for FIDO2 and passwordless flows. For mo
 
 ### MFA SMS
 
-MFA with SMS increases security massively compared with password authentication (Single factor). However, using SMS as a second factor is no longer recommended. Too many known attack vectors exist for this type of implementation.
+MFA with SMS increases security massively compared with password authentication (single factor). However, using SMS as a second factor is no longer recommended. Too many known attack vectors exist for this type of implementation.
 
 [NIST guidelines](https://pages.nist.gov/800-63-3/sp800-63b.html)
 
