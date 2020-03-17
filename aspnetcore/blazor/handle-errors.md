@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/19/2020
+ms.date: 03/17/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/handle-errors
 ---
@@ -30,7 +30,7 @@ In a Blazor WebAssembly app, customize the experience in the *wwwroot/index.html
 <div id="blazor-error-ui">
     An unhandled error has occurred.
     <a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>
+    <a class="dismiss">??</a>
 </div>
 ```
 
@@ -45,7 +45,7 @@ In a Blazor Server app, customize the experience in the *Pages/_Host.cshtml* fil
         An unhandled exception has occurred. See browser dev tools for details.
     </environment>
     <a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>
+    <a class="dismiss">??</a>
 </div>
 ```
 
@@ -187,7 +187,7 @@ For more information, see the following articles:
 
 ### Blazor Server prerendering
 
-Blazor components can be prerendered using the `Component` Tag Helper so that their rendered HTML markup is returned as part of the user's initial HTTP request. This works by:
+Blazor components can be prerendered using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) so that their rendered HTML markup is returned as part of the user's initial HTTP request. This works by:
 
 * Creating a new circuit for all of the prerendered components that are part of the same page.
 * Generating the initial HTML.
