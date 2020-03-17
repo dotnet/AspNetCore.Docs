@@ -72,9 +72,9 @@ public void ConfigureServices(IServiceCollection services)
             Configuration.GetConnectionString("DefaultConnection")));
     
     services.AddIdentity<IdentityUser, IdentityRole>(
-        options => options.SignIn.RequireConfirmedAccount = false)
-     .AddEntityFrameworkStores<ApplicationDbContext>()
-     .AddDefaultTokenProviders();
+            options => options.SignIn.RequireConfirmedAccount = false)
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
 
     services.AddSingleton<IEmailSender, EmailSender>();
     services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, 
@@ -99,7 +99,8 @@ using System.Threading.Tasks;
 
 namespace IdentityStandaloneMfa
 {
-    public class AdditionalUserClaimsPrincipalFactory : UserClaimsPrincipalFactory<IdentityUser, IdentityRole>
+    public class AdditionalUserClaimsPrincipalFactory : 
+        UserClaimsPrincipalFactory<IdentityUser, IdentityRole>
     {
         public AdditionalUserClaimsPrincipalFactory( 
             UserManager<IdentityUser> userManager,
