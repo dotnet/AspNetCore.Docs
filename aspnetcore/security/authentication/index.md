@@ -105,6 +105,18 @@ See the following links for differences between challenge and forbid:
 * [Challenge and forbid with an operational resource handler](xref:security/authorization/resourcebased#challenge-and-forbid-with-an-operational-resource-handler).
 * [Differences between challenge and forbid](xref:security/authorization/secure-data#challenge).
 
+## Authentication providers per tenant
+
+ASP.NET Core framework does not have a built-in solution for multi-tenant authentication.
+While it's certainly possible for customers to write one, using the built-in features, we recommend customers to look into [Orchard Core](https://www.orchardcore.net/) for this purpose.
+
+Orchard Core is:
+
+* An open-source modular and multi-tenant app framework built with ASP.NET Core.
+* A content management system (CMS) built on top of that app framework.
+
+See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an example of authentication providers per tenant.
+
 ## Additional resources
 
 * <xref:security/authorization/limitingidentitybyscheme>
