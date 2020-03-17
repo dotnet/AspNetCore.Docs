@@ -243,8 +243,8 @@ Download the installer using the following link:
 
 To obtain an earlier version of the installer:
 
-1. Navigate to the [.NET download archives](https://www.microsoft.com/net/download/archives).
-1. Under **.NET Core**, select the .NET Core version.
+1. Navigate to the [Download .NET Core](https://dotnet.microsoft.com/download/dotnet-core) page.
+1. Click on the desired .NET Core version.
 1. In the **Run apps - Runtime** column, find the row of the .NET Core runtime version desired.
 1. Download the installer using the **Runtime & Hosting Bundle** link.
 
