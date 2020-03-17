@@ -335,6 +335,8 @@ public async Task<IActionResult> Login(LoginInputModel model)
     {
         return RedirectToAction(nameof(ErrorEnable2FA));
     }
+
+    // code omitted for brevity
 ```
 
 The `ExternalLoginCallback` method works like the local Identity login. The `AcrValues` property is checked for the `mfa` value. If the `mfa` value is present, MFA is forced before the login completes (for example, redirected to the `ErrorEnable2FA` view).
@@ -386,6 +388,8 @@ public async Task<IActionResult> ExternalLoginCallback(
             info.ProviderKey, 
             isPersistent: 
             false);
+
+    // code omitted for brevity
 ```
 
 If the user is already logged in, the client app:
@@ -428,8 +432,8 @@ namespace AspNetCoreRequireMfaOidc
     {
         protected override Task HandleRequirementAsync(
             AuthorizationHandlerContext context, 
-            RequireMfa requirement
-        ){
+            RequireMfa requirement)
+        {
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
             if (requirement == null)
