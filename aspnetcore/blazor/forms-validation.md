@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 03/17/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/forms-validation
 ---
@@ -452,8 +452,11 @@ To enable and disable the submit button based on form validation:
 
 * Use the form's `EditContext` to assign the model when the component is initialized.
 * Validate the form in the context's `OnFieldChanged` callback to enable and disable the submit button.
+* Unhook the event handler in the `Dispose` method. For more information, see <xref:blazor/lifecycle%23component-disposal-with-idisposable>.
 
 ```razor
+@implements IDisposable
+
 <EditForm EditContext="@_editContext">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -471,12 +474,18 @@ To enable and disable the submit button based on form validation:
     protected override void OnInitialized()
     {
         _editContext = new EditContext(_starship);
+        _editContext.OnFieldChanged += HandleFieldChanged;
+    }
 
-        _editContext.OnFieldChanged += (_, __) =>
-        {
-            _formInvalid = !_editContext.Validate();
-            StateHasChanged();
-        };
+    private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+    {
+        _formInvalid = !_editContext.Validate();
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        _editContext.OnFieldChanged -= HandleFieldChanged;
     }
 }
 ```
