@@ -1,25 +1,25 @@
 ---
-title: Multi-factor authentication
+title: Multi-factor authentication in ASP.NET Core
 author: damienbod
-description: Multi-factor authentication
+description: Learn how to set up multi-factor authentication (MFA) in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: rick-anderson
 ms.custom: mvc
-ms.date: 02/25/2020
+ms.date: 03/17/2020
 no-loc: [Identity]
 uid: security/authentication/mfa
 ---
-# Multi-factor authentication
+# Multi-factor authentication in ASP.NET Core
 
 By [Damien Bowden](https://github.com/damienbod)
 
-Multi-factor authentication (MFA) is a process where a user is requested during a sign-in event for additional forms of identification. This prompt could be to enter a code from a cellphone, use a FIDO2 key or to provide a fingerprint scan. When you require a second form of authentication, security is increased. The additional factor isn't easily obtained or duplicated by an attacker.
+Multi-factor authentication (MFA) is a process in which a user is requested during a sign-in event for additional forms of identification. This prompt could be to enter a code from a cellphone, use a FIDO2 key, or to provide a fingerprint scan. When you require a second form of authentication, security is enhanced. The additional factor isn't easily obtained or duplicated by an attacker.
 
-This article covers the following:
+This article covers the following areas:
 
 * What is MFA and what MFA flows are recommended
 * Configure MFA for administration pages using ASP.NET Core Identity
-* Send MFA signin requirement to OpenID Connect server 
+* Send MFA sign-in requirement to OpenID Connect server
 * Force ASP.NET Core OpenID Connect client to require MFA
 
 ## MFA, 2FA
@@ -30,7 +30,7 @@ Two-factor authentication (2FA) is like a subset of MFA, but the difference bein
 
 ### MFA TOTP (Time-based One-time Password Algorithm)
 
-MFA using TOTP is a supported implementation using ASP.NET Core Identity. This can be used together with any compliant authenticator application, including:
+MFA using TOTP is a supported implementation using ASP.NET Core Identity. This can be used together with any compliant authenticator app, including:
 
 * Microsoft Authenticator App
 * Google Authenticator App
@@ -67,27 +67,24 @@ The demo code is setup using ASP.NET Core with Identity and Razor Pages. The `Ad
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-	services.AddDbContext<ApplicationDbContext>(options =>
-		options.UseSqlite(
-			Configuration.GetConnectionString("DefaultConnection")));
-	
-	services.AddIdentity<IdentityUser, IdentityRole>(
-		options => options.SignIn.RequireConfirmedAccount = false)
-	 .AddEntityFrameworkStores<ApplicationDbContext>()
-	 .AddDefaultTokenProviders();
+    services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlite(
+            Configuration.GetConnectionString("DefaultConnection")));
+    
+    services.AddIdentity<IdentityUser, IdentityRole>(
+            options => options.SignIn.RequireConfirmedAccount = false)
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
 
-	services.AddSingleton<IEmailSender, EmailSender>();
-	services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, 
-		AdditionalUserClaimsPrincipalFactory>();
+    services.AddSingleton<IEmailSender, EmailSender>();
+    services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, 
+        AdditionalUserClaimsPrincipalFactory>();
 
-	services.AddAuthorization(options =>
-	{
-		options.AddPolicy("TwoFactorEnabled",
-			x => x.RequireClaim("amr", "mfa")
-		);
-	});
+    services.AddAuthorization(options =>
+        options.AddPolicy("TwoFactorEnabled",
+            x => x.RequireClaim("amr", "mfa")));
 
-	services.AddRazorPages();
+    services.AddRazorPages();
 }
 ```
 
@@ -102,7 +99,8 @@ using System.Threading.Tasks;
 
 namespace IdentityStandaloneMfa
 {
-    public class AdditionalUserClaimsPrincipalFactory : UserClaimsPrincipalFactory<IdentityUser, IdentityRole>
+    public class AdditionalUserClaimsPrincipalFactory : 
+        UserClaimsPrincipalFactory<IdentityUser, IdentityRole>
     {
         public AdditionalUserClaimsPrincipalFactory( 
             UserManager<IdentityUser> userManager,
@@ -153,7 +151,7 @@ Also assign the layout for all the manage pages from the Identity pages:
 
 ### Validate the MFA requirement in the administration page
 
-The administration Razor Page validates that the user has logged in using MFA. In the `OnGet` method, the identity is used to access the user claims. The `amr` claim is checked for the value `mfa`. If the identity is missing this claim or is false, the page redirects to the Enable MFA page. This is possible because the user has logged in already, but without MFA.
+The administration Razor Page validates that the user has logged in using MFA. In the `OnGet` method, the identity is used to access the user claims. The `amr` claim is checked for the value `mfa`. If the identity is missing this claim or is `false`, the page redirects to the Enable MFA page. This is possible because the user has logged in already, but without MFA.
 
 ```csharp
 using System;
@@ -169,15 +167,18 @@ namespace IdentityStandaloneMfa
     {
         public IActionResult OnGet()
         {
-            var claimTwoFactorEnabled = User.Claims.FirstOrDefault(t => t.Type == "amr");
+            var claimTwoFactorEnabled = 
+                User.Claims.FirstOrDefault(t => t.Type == "amr");
 
-            if (claimTwoFactorEnabled != null && "mfa".Equals(claimTwoFactorEnabled.Value))
+            if (claimTwoFactorEnabled != null && 
+                "mfa".Equals(claimTwoFactorEnabled.Value))
             {
-                // You logged in with MFA, do the admin stuff
+                // You logged in with MFA, do the administrative stuff
             }
             else
             {
-                return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
+                return Redirect(
+                    "/Identity/Account/Manage/TwoFactorAuthentication");
             }
 
             return Page();
@@ -192,11 +193,8 @@ An authorization policy was added at startup. The policy requires the `amr` clai
 
 ```csharp
 services.AddAuthorization(options =>
-{
-	options.AddPolicy("TwoFactorEnabled",
-		x => x.RequireClaim("amr", "mfa")
-	);
-});
+    options.AddPolicy("TwoFactorEnabled",
+        x => x.RequireClaim("amr", "mfa")));
 ```
 
 This policy can then be used in the `_Layout` view to show or hide the **Admin** menu with the warning:
@@ -209,90 +207,93 @@ This policy can then be used in the `_Layout` view to show or hide the **Admin**
 @inject IAuthorizationService AuthorizationService
 ```
 
-If the identity has logged in using MFA, the **Admin** menu is displayed without the tooltip warning. If the user has logged in without MFA, the **Admin (Not Enabled)** menu is displayed along with the tooltip that informs the user (explaining the warning).
+If the identity has logged in using MFA, the **Admin** menu is displayed without the tooltip warning. When the user has logged in without MFA, the **Admin (Not Enabled)** menu is displayed along with the tooltip that informs the user (explaining the warning).
 
 ```cshtml
 @if (SignInManager.IsSignedIn(User))
 {
-	@if ((AuthorizationService.AuthorizeAsync(User, "TwoFactorEnabled")).Result.Succeeded)
-	{
-		<li class="nav-item">
-			<a class="nav-link text-dark" asp-area="" asp-page="/Admin">Admin</a>
-		</li>
-	}
-	else
-	{
-		<li class="nav-item">
-			<a class="nav-link text-dark" asp-area="" asp-page="/Admin" 
-			   id="tooltip-demo"  
-			   data-toggle="tooltip" 
-			   data-placement="bottom" 
-			   title="MFA is NOT enabled. This is required for the Admin Page. If you have activated MFA, then logout, login again.">
-				Admin (Not Enabled)
-			</a>
-		</li>
-	}
+    @if ((AuthorizationService.AuthorizeAsync(User, "TwoFactorEnabled")).Result.Succeeded)
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Admin">Admin</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Admin" 
+               id="tooltip-demo"  
+               data-toggle="tooltip" 
+               data-placement="bottom" 
+               title="MFA is NOT enabled. This is required for the Admin Page. If you have activated MFA, then logout, login again.">
+                Admin (Not Enabled)
+            </a>
+        </li>
+    }
 }
 ```
 
 If the user logs in without MFA, the warning is displayed:
 
-![Admin MFA authentication](mfa/_static/identitystandalonemfa_01.png)
+![Administrator MFA authentication](mfa/_static/identitystandalonemfa_01.png)
 
-When the user clicks the admin link, the user is redirected to the MFA enable view.
+The user is redirected to the MFA enable view when clicking the **Admin** link:
 
-![Admin activate MFA authentication](mfa/_static/identitystandalonemfa_02.png)
+![Administrator activates MFA authentication](mfa/_static/identitystandalonemfa_02.png)
 
-## Send MFA signin requirement to OpenID Connect server 
+## Send MFA sign-in requirement to OpenID Connect server 
 
-The `acr_values` parameter can used to pass the `mfa` required value from the client to the server in an authentication request.
+The `acr_values` parameter can be used to pass the `mfa` required value from the client to the server in an authentication request.
 
 > [!NOTE]
 > The `acr_values` parameter needs to be handled on the Open ID Connect server for this to work.
 
 ### OpenID Connect ASP.NET Core client
 
-The ASP.NET Core Razor Pages Open ID Connnect client app uses the `AddOpenIdConnect` method to login to the Open ID Connect server. The `acr_values` parameter is set with the `mfa` value and sent with the authentication request. The `OpenIdConnectEvents` is used to add this.
+The ASP.NET Core Razor Pages Open ID Connect client app uses the `AddOpenIdConnect` method to login to the Open ID Connect server. The `acr_values` parameter is set with the `mfa` value and sent with the authentication request. The `OpenIdConnectEvents` is used to add this.
 
 For recommended `acr_values` parameter values, see [Authentication Method Reference Values](https://tools.ietf.org/html/draft-ietf-oauth-amr-values-08).
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-	services.AddAuthentication(options =>
-	{
-		options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-		options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-	})
-	.AddCookie()
-	.AddOpenIdConnect(options =>
-	{
-		options.SignInScheme = "Cookies";
-		options.Authority = "<OpenID Connect server URL>";
-		options.RequireHttpsMetadata = true;
-		options.ClientId = "<OpenID Connect client ID>";
-		options.ClientSecret = "<>";
-		options.ResponseType = "code id_token"; // Code with PKCE can also be used here
-		options.Scope.Add("profile");
-		options.Scope.Add("offline_access");
-		options.SaveTokens = true;
-		options.Events = new OpenIdConnectEvents
-		{
-			OnRedirectToIdentityProvider = context =>
-			{
-				context.ProtocolMessage.SetParameter("acr_values", "mfa");
-
-				return Task.FromResult(0);
-			}
-		};
-	});
+    services.AddAuthentication(options =>
+    {
+        options.DefaultScheme =
+            CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme =
+            OpenIdConnectDefaults.AuthenticationScheme;
+    })
+    .AddCookie()
+    .AddOpenIdConnect(options =>
+    {
+        options.SignInScheme =
+            CookieAuthenticationDefaults.AuthenticationScheme;
+        options.Authority = "<OpenID Connect server URL>";
+        options.RequireHttpsMetadata = true;
+        options.ClientId = "<OpenID Connect client ID>";
+        options.ClientSecret = "<>";
+        // Code with PKCE can also be used here
+        options.ResponseType = "code id_token";
+        options.Scope.Add("profile");
+        options.Scope.Add("offline_access");
+        options.SaveTokens = true;
+        options.Events = new OpenIdConnectEvents
+        {
+            OnRedirectToIdentityProvider = context =>
+            {
+                context.ProtocolMessage.SetParameter("acr_values", "mfa");
+                return Task.FromResult(0);
+            }
+        };
+    });
 ```
 
 ### Example OpenID Connect IdentityServer 4 server with ASP.NET Core Identity
 
 On the OpenID Connect server, which is implemented using ASP.NET Core Identity with MVC views, a new view named *ErrorEnable2FA.cshtml* is created. The view:
 
-* Displays if the Identity comes from an app which requires MFA but the user hasn't activated this in Identity.
+* Displays if the Identity comes from an app that requires MFA but the user hasn't activated this in Identity.
 * Informs the user and adds a link to activate this.
 
 ```cshtml
@@ -313,7 +314,7 @@ You can enable MFA to login here:
 
 In the `Login` method, the `IIdentityServerInteractionService` interface implementation `_interaction` is used to access the Open ID Connect request parameters. The `acr_values` parameter is accessed using the `AcrValues` property. As the client sent this with `mfa` set, this can then be checked.
 
-If MFA is required, and the user in ASP.NET Core Identity has MFA enabled, then the login continues. If the user has no MFA enabled, the user is redirected to the custom view *ErrorEnable2FA.cshtml*. Then ASP.NET Core Identity signs the user in.
+If MFA is required, and the user in ASP.NET Core Identity has MFA enabled, then the login continues. When the user has no MFA enabled, the user is redirected to the custom view *ErrorEnable2FA.cshtml*. Then ASP.NET Core Identity signs the user in.
 
 ```csharp
 //
@@ -323,15 +324,19 @@ If MFA is required, and the user in ASP.NET Core Identity has MFA enabled, then 
 [ValidateAntiForgeryToken]
 public async Task<IActionResult> Login(LoginInputModel model)
 {
-	var returnUrl = model.ReturnUrl;
-	var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
-	var requires2Fa = context?.AcrValues.Count(t => t.Contains("mfa")) >= 1;
+    var returnUrl = model.ReturnUrl;
+    var context = 
+        await _interaction.GetAuthorizationContextAsync(returnUrl);
+    var requires2Fa = 
+        context?.AcrValues.Count(t => t.Contains("mfa")) >= 1;
 
-	var user = await _userManager.FindByNameAsync(model.Email);
-	if (user != null && !user.TwoFactorEnabled && requires2Fa)
-	{
-		return RedirectToAction(nameof(ErrorEnable2FA));
-	}
+    var user = await _userManager.FindByNameAsync(model.Email);
+    if (user != null && !user.TwoFactorEnabled && requires2Fa)
+    {
+        return RedirectToAction(nameof(ErrorEnable2FA));
+    }
+
+    // code omitted for brevity
 ```
 
 The `ExternalLoginCallback` method works like the local Identity login. The `AcrValues` property is checked for the `mfa` value. If the `mfa` value is present, MFA is forced before the login completes (for example, redirected to the `ErrorEnable2FA` view).
@@ -341,41 +346,50 @@ The `ExternalLoginCallback` method works like the local Identity login. The `Acr
 // GET: /Account/ExternalLoginCallback
 [HttpGet]
 [AllowAnonymous]
-public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
+public async Task<IActionResult> ExternalLoginCallback(
+    string returnUrl = null,
+    string remoteError = null)
 {
-	var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
-	var requires2Fa = context?.AcrValues.Count(t => t.Contains("mfa")) >= 1;
+    var context =
+        await _interaction.GetAuthorizationContextAsync(returnUrl);
+    var requires2Fa =
+        context?.AcrValues.Count(t => t.Contains("mfa")) >= 1;
 
-	if (remoteError != null)
-	{
-		ModelState.AddModelError(string.Empty, _sharedLocalizer["EXTERNAL_PROVIDER_ERROR", remoteError]);
-		return View(nameof(Login));
-	}
-	var info = await _signInManager.GetExternalLoginInfoAsync();
+    if (remoteError != null)
+    {
+        ModelState.AddModelError(
+            string.Empty,
+            _sharedLocalizer["EXTERNAL_PROVIDER_ERROR", 
+            remoteError]);
+        return View(nameof(Login));
+    }
+    var info = await _signInManager.GetExternalLoginInfoAsync();
 
-	if (info == null)
-	{
-		return RedirectToAction(nameof(Login));
-	}
+    if (info == null)
+    {
+        return RedirectToAction(nameof(Login));
+    }
 
-	var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+    var email = info.Principal.FindFirstValue(ClaimTypes.Email);
 
-	if (!string.IsNullOrEmpty(email))
-	{
-		var user = await _userManager.FindByNameAsync(email);
-		if (user != null && !user.TwoFactorEnabled && requires2Fa)
-		{
-			return RedirectToAction(nameof(ErrorEnable2FA));
-		}
-	}
+    if (!string.IsNullOrEmpty(email))
+    {
+        var user = await _userManager.FindByNameAsync(email);
+        if (user != null && !user.TwoFactorEnabled && requires2Fa)
+        {
+            return RedirectToAction(nameof(ErrorEnable2FA));
+        }
+    }
 
-	// Sign in the user with this external login provider if the user already has a login.
-	var result = await _signInManager
-		.ExternalLoginSignInAsync(
-			info.LoginProvider, 
-			info.ProviderKey, 
-			isPersistent: 
-			false);
+    // Sign in the user with this external login provider if the user already has a login.
+    var result = await _signInManager
+        .ExternalLoginSignInAsync(
+            info.LoginProvider, 
+            info.ProviderKey, 
+            isPersistent: 
+            false);
+
+    // code omitted for brevity
 ```
 
 If the user is already logged in, the client app:
@@ -389,7 +403,7 @@ If the user is already logged in, the client app:
 
 This example shows how an ASP.NET Core Razor Page app, which uses OpenID Connect to sign in, can require that users have authenticated using MFA.
 
-To validate the MFA requirement, an `IAuthorizationRequirement` requirement is created. This will be added to the pages using a policy which require MFA.
+To validate the MFA requirement, an `IAuthorizationRequirement` requirement is created. This will be added to the pages using a policy that requires MFA.
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
@@ -404,7 +418,7 @@ An `AuthorizationHandler` is implemented that will use the `amr` claim and check
 
 The returned value depends on how the identity authenticated and on the Open ID Connect server implementation.
 
-The `AuthorizationHandler` uses the `RequireMfa` requirement and validates the `amr` claim. The OpenID Connect server can be implemented using IdentityServer4 with ASP.NET Core Identity. When a user logs in using TOTP, the `amr` claim is returned with a MFA value. If using a different OpenID Connect server implementation or a different MFA type, the `amr` claim will, or can, have a different value. The code would need to be extended to accept this as well.
+The `AuthorizationHandler` uses the `RequireMfa` requirement and validates the `amr` claim. The OpenID Connect server can be implemented using IdentityServer4 with ASP.NET Core Identity. When a user logs in using TOTP, the `amr` claim is returned with an MFA value. If using a different OpenID Connect server implementation or a different MFA type, the `amr` claim will, or can, have a different value. The code must be extended to accept this as well.
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
@@ -416,17 +430,17 @@ namespace AspNetCoreRequireMfaOidc
 {
     public class RequireMfaHandler : AuthorizationHandler<RequireMfa>
     {
-
         protected override Task HandleRequirementAsync(
             AuthorizationHandlerContext context, 
-            RequireMfa requirement
-        ){
+            RequireMfa requirement)
+        {
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
             if (requirement == null)
                 throw new ArgumentNullException(nameof(requirement));
 
-            var amrClaim = context.User.Claims.FirstOrDefault(t => t.Type == "amr");
+            var amrClaim =
+                context.User.Claims.FirstOrDefault(t => t.Type == "amr");
 
             if (amrClaim != null && amrClaim.Value == Amr.Mfa)
             {
@@ -444,41 +458,43 @@ In the `Startup.ConfigureServices` method, the `AddOpenIdConnect` method is used
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-	services.ConfigureApplicationCookie(options =>
-	{
-		options.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.Always;
-	});
+    services.ConfigureApplicationCookie(options =>
+        options.Cookie.SecurePolicy =
+            CookieSecurePolicy.Always);
 
-	services.AddSingleton<IAuthorizationHandler, RequireMfaHandler>();
+    services.AddSingleton<IAuthorizationHandler, RequireMfaHandler>();
 
-	services.AddAuthentication(options =>
-	{
-		options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-		options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-	})
-	.AddCookie()
-	.AddOpenIdConnect(options =>
-	{
-		options.SignInScheme = "Cookies";
-		options.Authority = "https://localhost:44352";
-		options.RequireHttpsMetadata = true;
-		options.ClientId = "AspNetCoreRequireMfaOidc";
-		options.ClientSecret = "AspNetCoreRequireMfaOidcSecret";
-		options.ResponseType = "code id_token";
-		options.Scope.Add("profile");
-		options.Scope.Add("offline_access");
-		options.SaveTokens = true;
-	});
+    services.AddAuthentication(options =>
+    {
+        options.DefaultScheme =
+            CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme =
+            OpenIdConnectDefaults.AuthenticationScheme;
+    })
+    .AddCookie()
+    .AddOpenIdConnect(options =>
+    {
+        options.SignInScheme =
+            CookieAuthenticationDefaults.AuthenticationScheme;
+        options.Authority = "https://localhost:44352";
+        options.RequireHttpsMetadata = true;
+        options.ClientId = "AspNetCoreRequireMfaOidc";
+        options.ClientSecret = "AspNetCoreRequireMfaOidcSecret";
+        options.ResponseType = "code id_token";
+        options.Scope.Add("profile");
+        options.Scope.Add("offline_access");
+        options.SaveTokens = true;
+    });
 
-	services.AddAuthorization(options =>
-	{
-		options.AddPolicy("RequireMfa", policyIsAdminRequirement =>
-		{
-			policyIsAdminRequirement.Requirements.Add(new RequireMfa());
-		});
-	});
+    services.AddAuthorization(options =>
+    {
+        options.AddPolicy("RequireMfa", policyIsAdminRequirement =>
+        {
+            policyIsAdminRequirement.Requirements.Add(new RequireMfa());
+        });
+    });
 
-	services.AddRazorPages();
+    services.AddRazorPages();
 }
 ```
 
@@ -508,13 +524,12 @@ namespace AspNetCoreRequireMfaOidc.Pages
 
         public void OnGet()
         {
-
         }
     }
 }
 ```
 
-If the user authenticates without MFA, the `amr` claim will probably have a `pwd` value. The request won't be authorized to access the page. Using the default values, the user will be redirected to the *Account/AccessDenied* page. This can be changed or you can implement your own custom logic here. In this example, a link is added so that the valid user can set up MFA for his or her account.
+If the user authenticates without MFA, the `amr` claim will probably have a `pwd` value. The request won't be authorized to access the page. Using the default values, the user will be redirected to the *Account/AccessDenied* page. This behavior can be changed or you can implement your own custom logic here. In this example, a link is added so that the valid user can set up MFA for their account.
 
 ```cshtml
 @page
@@ -537,12 +552,12 @@ When logging in without MFA (for example, using just a password):
 
 * The `amr` has the `pwd` value:
 
-	![require_mfa_oidc_02.png](mfa/_static/require_mfa_oidc_02.png)
-	
+    ![require_mfa_oidc_02.png](mfa/_static/require_mfa_oidc_02.png)
+
 * Access is denied:
 
-	![require_mfa_oidc_03.png](mfa/_static/require_mfa_oidc_03.png)
-	
+    ![require_mfa_oidc_03.png](mfa/_static/require_mfa_oidc_03.png)
+
 Alternatively, logging in using OTP with Identity:
 
 ![require_mfa_oidc_01.png](mfa/_static/require_mfa_oidc_01.png)
@@ -550,9 +565,6 @@ Alternatively, logging in using OTP with Identity:
 ## Additional resources
 
 * [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
-
 * [Passwordless authentication options for Azure Active Directory](/azure/active-directory/authentication/concept-authentication-passwordless)
-
 * [FIDO2 .NET library for FIDO2 / WebAuthn Attestation and Assertion using .NET](https://github.com/abergs/fido2-net-lib)
-
 * [WebAuthn Awesome](https://github.com/herrjemand/awesome-webauthn)
