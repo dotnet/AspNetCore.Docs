@@ -452,7 +452,7 @@ To enable and disable the submit button based on form validation:
 
 * Use the form's `EditContext` to assign the model when the component is initialized.
 * Validate the form in the context's `OnFieldChanged` callback to enable and disable the submit button.
-* Unhook the event handler in the `Dispose` method. For more information, see <xref:blazor/lifecycle%23component-disposal-with-idisposable>.
+* Unhook the event handler in the `Dispose` method. For more information, see <xref:blazor/lifecycle#component-disposal-with-idisposable>.
 
 ```razor
 @implements IDisposable

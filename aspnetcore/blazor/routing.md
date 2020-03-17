@@ -250,4 +250,4 @@ public void Dispose()
 * <xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.Location> &ndash; The URL of the new location.
 * <xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.IsNavigationIntercepted> &ndash; If `true`, Blazor intercepted the navigation from the browser. If `false`, [NavigationManager.NavigateTo](xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A) caused the navigation to occur.
 
-For more information on component disposal, see <xref:blazor/lifecycle%23component-disposal-with-idisposable>.
+For more information on component disposal, see <xref:blazor/lifecycle#component-disposal-with-idisposable>.
