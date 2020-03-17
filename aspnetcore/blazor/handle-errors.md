@@ -30,7 +30,7 @@ In a Blazor WebAssembly app, customize the experience in the *wwwroot/index.html
 <div id="blazor-error-ui">
     An unhandled error has occurred.
     <a href="" class="reload">Reload</a>
-    <a class="dismiss">❌</a>
+    <a class="dismiss">🗙</a>
 </div>
 ```
 
@@ -45,7 +45,7 @@ In a Blazor Server app, customize the experience in the *Pages/_Host.cshtml* fil
         An unhandled exception has occurred. See browser dev tools for details.
     </environment>
     <a href="" class="reload">Reload</a>
-    <a class="dismiss">❌</a>
+    <a class="dismiss">🗙</a>
 </div>
 ```
 
