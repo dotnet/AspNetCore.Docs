@@ -25,6 +25,8 @@ Configuration in ASP.NET Core is performed using one or more [configuration prov
 * Directory files
 * In-memory .NET objects
 
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
+
 <a name="default"></a>
 
 ## Default configuration
@@ -35,7 +37,7 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 
  <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> provides default configuration for the app in the following order:
 
-1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) : <!-- REVIEW, what is this? -->
+1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) :  Adds an existing `IConfiguration` as a source. In the default configuration case, adds the [host](#hvac) configuration and setting it as the first source for the _app_ configuration.
 1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
 1. *appsettings.*`Environment`*.json* using the [JSON configuration provider](#file-configuration-provider). For example, *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json*.
 1. [App secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
@@ -46,7 +48,9 @@ Configuration providers that are added later override previous key settings. For
 
 For more information on `CreateDefaultBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host#default-builder-settings).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
+The following code displays the enabled configuration providers in the order they were added:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
 
 ### appsettings.json
 
@@ -106,23 +110,9 @@ Using the preceding code, the following code reads the position options:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test2.cshtml.cs?name=snippet)]
 
-By [default](#default), the *appsettings.json* and *appsettings.*`Environment`*.json* files are enabled with [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75). Changes made to the *appsettings.json* and *appsettings.*`Environment`*.json* file ***after*** the app starts are read by the [JSON configuration provider](#jcp).
+Using the [default](#default) configuration, the *appsettings.json* and *appsettings.*`Environment`*.json* files are enabled with [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75). Changes made to the *appsettings.json* and *appsettings.*`Environment`*.json* file ***after*** the app starts are read by the [JSON configuration provider](#jcp).
 
 See [JSON configuration provider](#jcp) in this document for information on adding additional JSON configuration files.
-
-## Display configuration providers
-
-The following code displays the enabled configuration providers in the order they were added:
-
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
-
-When using the [default configuration](#default), the following configuration providers are displayed in the development environment:
-
-* <xref:Microsoft.Extensions.Configuration.ChainedConfigurationProvider?displayProperty=fullName> <!-- REVIEW, what is this? Should we add if when we call clear and add other providers? -->
-* [JsonConfigurationProvider](#jcp) for 'appsettings.json' (Optional)
-* `JsonConfigurationProvider` for 'appsettings.***Development***.json' (Optional)
-* [EnvironmentVariablesConfigurationProvider](#evcp)
-* [CommandLineConfigurationProvider](#clcp)
 
 <a name="security"></a>
 
@@ -147,7 +137,7 @@ For more information on storing passwords or other sensitive data:
 
 ## Environment variables
 
-By [default](#default), the <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs after reading *appsettings.json*, *appsettings.*`Environment`*.json*, and [Secret manager](xref:security/app-secrets). Therefore, key values read from the environment override values read from *appsettings.json*, *appsettings.*`Environment`*.json*, and Secret manager.
+Using the [default](#default) configuration, the <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs after reading *appsettings.json*, *appsettings.*`Environment`*.json*, and [Secret manager](xref:security/app-secrets). Therefore, key values read from the environment override values read from *appsettings.json*, *appsettings.*`Environment`*.json*, and Secret manager.
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
@@ -216,10 +206,10 @@ See [Connection string prefixes](#constr) for information on Azure database conn
 
 ## Command-line
 
-By [default](#default), the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
+Using the [default](#default) configuration, the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
 
 * *appsettings.json* and *appsettings*.`Environment`.*json* files.
-* [User secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
+* [App secrets (Secret Manager)](xref:security/app-secrets) in the Development environment.
 * Environment variables.
 
 By [default](#default), configuration values set on the command-line override configuration values set with all the other configuration providers.
@@ -725,9 +715,13 @@ The following code displays configuration data in a MVC view:
 
 [!code-cshtml[](index/samples/3.x/ConfigSample/Views/Home2/Index.cshtml)]
 
+<a name="hvac"></a>
+
 ## Host versus app configuration
 
 Before the app is configured and started, a *host* is configured and launched. The host is responsible for app startup and lifetime management. Both the app and the host are configured using the configuration providers described in this topic. Host configuration key-value pairs are also included in the app's configuration. For more information on how the configuration providers are used when the host is built and how configuration sources affect host configuration, see <xref:fundamentals/index#host>.
+
+<a name="dhc"></a>
 
 ## Default host configuration
 
