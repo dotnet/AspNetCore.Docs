@@ -32,13 +32,13 @@ In this tutorial, you learn how to:
 # [Visual Studio](#tab/visual-studio)
 
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
-* [.NET Core SDK 3.0 or later](https://www.microsoft.com/net/download/all)
+* [.NET Core SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * [Visual Studio Code](https://code.visualstudio.com/download)
-* [.NET Core SDK 3.0 or later](https://www.microsoft.com/net/download/all)
+* [.NET Core SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [C# for Visual Studio Code version 1.17.1 or later](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 
@@ -289,13 +289,13 @@ Confirm that the app works with the following steps.
 # [Visual Studio](#tab/visual-studio)
 
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
-* [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
+* [.NET Core SDK 2.2 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * [Visual Studio Code](https://code.visualstudio.com/download)
-* [.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download/all)
+* [.NET Core SDK 2.2 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [C# for Visual Studio Code version 1.17.1 or later](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 

@@ -214,7 +214,7 @@ Enabling account confirmation on a site with users locks out all the existing us
 
 ## Prerequisites
 
-[.NET Core 2.2 SDK or later](https://www.microsoft.com/net/download/all)
+[.NET Core 2.2 SDK or later](https://dotnet.microsoft.com/download/dotnet-core)
 
 ## Create a web  app and scaffold Identity
 

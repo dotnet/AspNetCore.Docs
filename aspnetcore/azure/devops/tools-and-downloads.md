@@ -22,7 +22,7 @@ The following subscriptions are required:
 The following tools are required:
 
 * [Git](https://git-scm.com/downloads) &mdash; A fundamental understanding of Git is recommended for this guide. Review the [Git documentation](https://git-scm.com/doc), specifically [git remote](https://git-scm.com/docs/git-remote) and [git push](https://git-scm.com/docs/git-push).
-* [.NET Core SDK](https://www.microsoft.com/net/download/) &mdash; Version 2.1.300 or later is required to build and run the sample app. If Visual Studio is installed with the **.NET Core cross-platform development** workload, the .NET Core SDK is already installed.
+* [.NET Core SDK](https://dotnet.microsoft.com/download/) &mdash; Version 2.1.300 or later is required to build and run the sample app. If Visual Studio is installed with the **.NET Core cross-platform development** workload, the .NET Core SDK is already installed.
 
     Verify your .NET Core SDK installation. Open a command shell, and run the following command:
 

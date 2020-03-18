@@ -237,14 +237,14 @@ Install the *.NET Core Hosting Bundle* on the hosting system. The bundle install
 
 Download the installer using the following link:
 
-[Current .NET Core Hosting Bundle installer (direct download)](https://www.microsoft.com/net/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+[Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
 ### Earlier versions of the installer
 
 To obtain an earlier version of the installer:
 
-1. Navigate to the [.NET download archives](https://www.microsoft.com/net/download/archives).
-1. Under **.NET Core**, select the .NET Core version.
+1. Navigate to the [Download .NET Core](https://dotnet.microsoft.com/download/dotnet-core) page.
+1. Click on the desired .NET Core version.
 1. In the **Run apps - Runtime** column, find the row of the .NET Core runtime version desired.
 1. Download the installer using the **Runtime & Hosting Bundle** link.
 
@@ -844,14 +844,14 @@ Install the *.NET Core Hosting Bundle* on the hosting system. The bundle install
 
 Download the installer using the following link:
 
-[Current .NET Core Hosting Bundle installer (direct download)](https://www.microsoft.com/net/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+[Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
 ### Earlier versions of the installer
 
 To obtain an earlier version of the installer:
 
-1. Navigate to the [.NET download archives](https://www.microsoft.com/net/download/archives).
-1. Under **.NET Core**, select the .NET Core version.
+1. Navigate to the [Download .NET Core](https://dotnet.microsoft.com/download/dotnet-core) page.
+1. Click on the desired .NET Core version.
 1. In the **Run apps - Runtime** column, find the row of the .NET Core runtime version desired.
 1. Download the installer using the **Runtime & Hosting Bundle** link.
 
@@ -1420,14 +1420,14 @@ Install the *.NET Core Hosting Bundle* on the hosting system. The bundle install
 
 Download the installer using the following link:
 
-[Current .NET Core Hosting Bundle installer (direct download)](https://www.microsoft.com/net/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+[Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
 ### Earlier versions of the installer
 
 To obtain an earlier version of the installer:
 
-1. Navigate to the [.NET download archives](https://www.microsoft.com/net/download/archives).
-1. Under **.NET Core**, select the .NET Core version.
+1. Navigate to the [Download .NET Core](https://dotnet.microsoft.com/download/dotnet-core) page.
+1. Click on the desired .NET Core version.
 1. In the **Run apps - Runtime** column, find the row of the .NET Core runtime version desired.
 1. Download the installer using the **Runtime & Hosting Bundle** link.
 
