@@ -101,8 +101,8 @@ The `Microsoft.AspNetCore.App` [metapackage](/dotnet/core/packages#metapackages)
 
 To update ASP.NET Core:
 
-* On development machines and build servers: Download and install the [.NET Core SDK](https://www.microsoft.com/net/download).
-* On deployment servers: Download and install the [.NET Core runtime](https://www.microsoft.com/net/download).
+* On development machines and build servers: Download and install the [.NET Core SDK](https://dotnet.microsoft.com/download).
+* On deployment servers: Download and install the [.NET Core runtime](https://dotnet.microsoft.com/download).
 
  Applications will roll forward to the latest installed version on application restart. It's not necessary to update the `Microsoft.AspNetCore.App` version number in the project file. For more information, see [Framework-dependent apps roll forward](/dotnet/core/versions/selection#framework-dependent-apps-roll-forward).
 

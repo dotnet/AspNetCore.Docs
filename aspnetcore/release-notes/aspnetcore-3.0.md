@@ -177,7 +177,7 @@ In the preceding code, `DomainRestrictedRequirement` serves as a custom `IAuthor
 Individual Hub methods can be marked with the name of the policy the code checks at run-time. As clients attempt to call individual Hub methods, the `DomainRestrictedRequirement` handler runs and controls access to the methods. Based on the way the `DomainRestrictedRequirement` controls access:
 
 * All logged-in users can call the `SendMessage` method.
-* Only users who have logged in with a `@jabbr.net` email address can view users’ histories.
+* Only users who have logged in with a `@jabbr.net` email address can view users' histories.
 * Only `bob42@jabbr.net` can ban users from the chat room.
 
 ```csharp
@@ -509,7 +509,7 @@ ASP.NET Core 3.0 includes many improvements that reduce memory usage and improve
 
 ## ASP.NET Core 3.0 only runs on .NET Core 3.0
 
-As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://www.microsoft.com/net/download/dotnet-core/2.1). Most ASP.NET Core 2.1.x related packages will be supported indefinitely, beyond the three-year LTS period for .NET Core 2.1.
+As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://dotnet.microsoft.com/download/dotnet-core/2.1). Most ASP.NET Core 2.1.x related packages will be supported indefinitely, beyond the three-year LTS period for .NET Core 2.1.
 
 For migration information, see [Port your code from .NET Framework to .NET Core](/dotnet/core/porting/).
 
@@ -534,3 +534,4 @@ For a complete list of assemblies removed from the shared framework, see [Assemb
 ## Additional information
 For the complete list of changes, see the [ASP.NET Core 3.0 Release Notes](WHERE IS THIS????).
 -->
+ 
