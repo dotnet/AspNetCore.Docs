@@ -22,8 +22,7 @@ namespace Clients.ConsoleTwo
                 .WithUrl(Strings.HubUrl)
                 .Build();
 
-            _connection.On<DateTime>(Strings.Events.TimeSent, 
-                dateTime => _ = ShowTime(dateTime));
+            _connection.On<DateTime>(Strings.Events.TimeSent, ShowTime);
         }
 
         public Task ShowTime(DateTime currentTime)
