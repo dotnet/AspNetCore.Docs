@@ -15,7 +15,7 @@ This article serves as a reference guide for migrating ASP.NET applications to A
 
 ## Prerequisites
 
-Install **one** of the following from [.NET Downloads: Windows](https://www.microsoft.com/net/download/windows):
+Install **one** of the following from [.NET Downloads: Windows](https://dotnet.microsoft.com/download):
 
 * .NET Core SDK
 * Visual Studio for Windows
