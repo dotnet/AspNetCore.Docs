@@ -20,7 +20,9 @@ namespace WebAPI
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    // webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<StartupEndPt>();
+
                 });
     }
 }

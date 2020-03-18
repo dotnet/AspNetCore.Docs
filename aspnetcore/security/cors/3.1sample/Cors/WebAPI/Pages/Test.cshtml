@@ -1,0 +1,55 @@
+﻿@page
+@model WebAPI.TestModel
+@{
+    Layout = null;
+}
+
+<div class="text-center">
+    <h1 class="display-4">CORS Test</h1>
+</div>
+
+
+<div>
+    <span id='result'></span>
+</div>
+
+<div>
+    <input type="button" value="Values"
+           onclick="requestVal('https://cors1.azurewebsites.net/api/values')" />
+</div>
+
+<div>
+    <input type="button" value="Echo"
+           onclick="requestVal('https://cors1.azurewebsites.net/echo')" />
+</div>
+
+<div>
+    <input type="button" value="Echo2"
+           onclick="requestVal2('https://cors1.azurewebsites.net/echo2')" />
+</div>
+
+<div>
+    <input type="button" value="Index"
+           onclick="requestVal('https://cors1.azurewebsites.net/Index')" />
+</div>
+
+<script>
+    function requestVal(uri) {
+        const resultSpan = document.getElementById('result');
+
+        fetch(uri)
+            .then(response => response.json())
+            .then(data => resultSpan.innerText = data)
+            .catch(error => resultSpan.innerText = 'See F12 Console for error');
+    }
+</script>
+
+<script>
+    function requestVal2(uri) {
+        const resultSpan = document.getElementById('result');
+
+        fetch(uri)
+            .then( resultSpan.innerText = response.status())
+            .catch(error => resultSpan.innerText = 'See F12 Console for error');
+    }
+</script>
