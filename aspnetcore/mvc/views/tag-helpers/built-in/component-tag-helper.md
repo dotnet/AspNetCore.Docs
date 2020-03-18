@@ -20,7 +20,7 @@ The following Component Tag Helper renders the `Counter` component in a page or 
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
 ```
 
-The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the checkbox label's color and size:
+The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the check box label's color and size:
 
 ```razor
 <label style="font-size:@(Size)px;color:@Color">
