@@ -14,7 +14,7 @@ This article serves as a reference guide for migrating ASP.NET apps to ASP.NET C
 
 ## Prerequisites
 
-[.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download)
+[.NET Core SDK 2.2 or later](https://dotnet.microsoft.com/download)
 
 ## Target frameworks
 

@@ -38,7 +38,7 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [.NET Core SDK 2.2](https://www.microsoft.com/net/download)
+* [.NET Core SDK 2.2](https://dotnet.microsoft.com/download)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the following workloads:
   * **ASP.NET and web development** workload
   * **.NET Core cross-platform development** workload
