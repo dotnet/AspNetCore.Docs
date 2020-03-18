@@ -42,7 +42,7 @@ The parameter type must be JSON serializable, which typically means that the typ
 | `Server`            | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
 | `Static`            | Renders the component into static HTML. |
 
-While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
+While pages and views can use components, the converse isn't true. Components can't use view- and page-specific features, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
 
 Rendering server components from a static HTML page isn't supported.
 
