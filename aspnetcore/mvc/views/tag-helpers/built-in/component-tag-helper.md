@@ -4,7 +4,7 @@ author: guardrex
 ms.author: riande
 description: Learn how to use the ASP.NET Core Component Tag Helper to render Razor components in pages and views.
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 03/18/2020
 no-loc: [Blazor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
 ---
@@ -20,14 +20,51 @@ The following Component Tag Helper renders the `Counter` component in a page or 
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
 ```
 
-The Component Tag Helper can also pass parameters to components. For the following example, the `ColorfulCheckbox` component has `Size` (`int`) and `Color` (`string`) [component parameters](xref:blazor/components#component-parameters):
+The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the checkbox label's color and size:
+
+```razor
+<label style="font-size:@(Size)px;color:@Color">
+    <input @bind="Answer"
+           id="survey" 
+           name="blazor" 
+           type="checkbox" />
+    Enjoying Blazor?
+</label>
+
+@code {
+    [Parameter]
+    public bool Answer { get; set; }
+
+    [Parameter]
+    public int Size { get; set; } = 8;
+
+    [Parameter]
+    public string Color { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Size += 10;
+    }
+}
+```
+
+The `Size` (`int`) and `Color` (`string`) [component parameters](xref:blazor/components#component-parameters) can be set by the Component Tag Helper:
 
 ```cshtml
 <component type="typeof(ColorfulCheckbox)" render-mode="ServerPrerendered" 
-    param-Size="10" param-Color="@("blue")" />
+    param-Size="14" param-Color="@("blue")" />
 ```
 
-Passing a quoted string requires an [explicit Razor expression](xref:mvc/views/razor#explicit-razor-expressions), as shown for `param-Color` in the preceding example. The Razor parsing behavior for a `string` type value doesn't apply to `param-*` attributes because the attribute is an `object` type.
+The following HTML is rendered in the page or view:
+
+```html
+<label style="font-size:24px;color:blue">
+    <input id="survey" name="blazor" type="checkbox">
+    Enjoying Blazor?
+</label>
+```
+
+Passing a quoted string requires an [explicit Razor expression](xref:mvc/views/razor#explicit-razor-expressions), as shown for `param-Color` in the preceding example. The Razor parsing behavior for a `string` type value doesn't apply to a `param-*` attribute because the attribute is an `object` type.
 
 The parameter type must be JSON serializable, which typically means that the type must have a default constructor and settable properties. For example, you can specify a value for `Size` and `Color` in the preceding example because the types of `Size` and `Color` are primitive types (`int` and `string`), which are supported by the JSON serializer.
 
@@ -42,7 +79,7 @@ The parameter type must be JSON serializable, which typically means that the typ
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renders the component into static HTML. |
 
-While pages and views can use components, the converse isn't true. Components can't use view- and page-specific features, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
+While pages and views can use components, the converse isn't true. Components can't use view- and page-specific features, such as partial views and sections. To use logic from a partial view in a component, factor out the partial view logic into a component.
 
 Rendering server components from a static HTML page isn't supported.
 
