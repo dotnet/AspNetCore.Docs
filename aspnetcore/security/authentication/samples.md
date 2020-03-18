@@ -26,7 +26,7 @@ The [ASP.NET Core repository](https://github.com/dotnet/AspNetCore) contains the
 
 * Select a [branch](https://github.com/dotnet/AspNetCore). For example, `Tag:v3.0.0`
 * Clone or download the [ASP.NET Core repository](https://github.com/dotnet/AspNetCore).
-* Verify you have installed the [.NET Core SDK](https://www.microsoft.com/net/download/all) version matching the clone of the ASP.NET Core repository.
+* Verify you have installed the [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core) version matching the clone of the ASP.NET Core repository.
 * Navigate to a sample in *AspNetCore/src/Security/samples* and run the sample with `dotnet run`.
 
 ::: moniker-end
@@ -47,7 +47,7 @@ The [ASP.NET Core repository](https://github.com/dotnet/AspNetCore) contains the
 
 * Select a [branch](https://github.com/dotnet/AspNetCore). For example, `release/2.2`
 * Clone or download the [ASP.NET Core repository](https://github.com/dotnet/AspNetCore).
-* Verify you have installed the [.NET Core SDK](https://www.microsoft.com/net/download/all) version matching the clone of the ASP.NET Core repository.
+* Verify you have installed the [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core) version matching the clone of the ASP.NET Core repository.
 * Navigate to a sample in *AspNetCore/src/Security/samples* and run the sample with `dotnet run`.
 
 ::: moniker-end

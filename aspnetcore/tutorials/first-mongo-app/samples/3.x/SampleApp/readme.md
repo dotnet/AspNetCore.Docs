@@ -23,7 +23,7 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-* [.NET Core SDK 3.0 or later](https://www.microsoft.com/net/download/all)
+* [.NET Core SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [Visual Studio 2019 Preview](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=community&ch=pre&rel=16&utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019preview) with the **ASP.NET and web development** workload
 * [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 
