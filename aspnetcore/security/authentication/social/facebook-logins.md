@@ -4,7 +4,7 @@ author: rick-anderson
 description: Tutorial with code examples demonstrating the integration of Facebook account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: "seoapril2019, mvc, seodec18"
-ms.date: 12/02/2019
+ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 uid: security/authentication/facebook-logins
 ---
@@ -54,18 +54,19 @@ This tutorial with code examples shows how to enable your users to sign in with 
 
 * When deploying the site you need to revisit the **Facebook Login** setup page and register a new public URI.
 
-## Store Facebook App ID and App Secret
+## Store the Facebook app ID and secret
 
-Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret`.
+Store sensitive settings such as the Facebook app ID and secret values with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
 
-[!INCLUDE[](~/includes/environmentVarableColon.md)]
+1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
+1. Store the sensitive settings in the local secret store with the secret keys `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret`:
 
-Execute the following commands to securely store `App ID` and `App Secret` using Secret Manager:
+    ```dotnetcli
+    dotnet user-secrets set "Authentication:Facebook:AppId" "<app-id>"
+    dotnet user-secrets set "Authentication:Facebook:AppSecret" "<app-secret>"
+    ```
 
-```dotnetcli
-dotnet user-secrets set Authentication:Facebook:AppId <app-id>
-dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
-```
+[!INCLUDE[](~/includes/environmentVariableColon.md)]
 
 ## Configure Facebook Authentication
 
