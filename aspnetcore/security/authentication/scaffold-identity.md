@@ -403,7 +403,7 @@ Delete the *Pages/Shared* folder and the files in that folder.
 
 To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.
 
-The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app. You might want to do this to have full control of the Identity UI.
+The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 3.1 web app. You might want to do this to have full control of the Identity UI.
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
 
