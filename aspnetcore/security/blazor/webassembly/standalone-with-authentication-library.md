@@ -59,7 +59,7 @@ Authentication support for standalone apps is offered using Open ID Connect (OID
 
 ## Index page
 
-[!INCLUDE[](~/includes/blazor-security/index-page.md)]
+[!INCLUDE[](~/includes/blazor-security/index-page-authentication.md)]
 
 ## App component
 
