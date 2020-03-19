@@ -26,7 +26,7 @@ This tutorial shows you how to enable users to sign in with their Google account
 
 Store sensitive settings such as the Google client ID and secret values with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
 
-1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets%23enable-secret-storage).
+1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
 1. Store the sensitive settings in the local secret store with the secret keys `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret`:
 
     ```dotnetcli
