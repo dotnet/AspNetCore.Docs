@@ -37,7 +37,7 @@ This sample shows how to enable users to [sign in with their Twitter account](ht
 
 Store sensitive settings such as the Twitter consumer API key and secret with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
 
-1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
+1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets%23enable-secret-storage).
 1. Store the sensitive settings in the local secret store with the secrets keys `Authentication:Twitter:ConsumerKey` and `Authentication:Twitter:ConsumerSecret`:
 
     ```dotnetcli
