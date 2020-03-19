@@ -32,7 +32,7 @@ Consider an ASP.NET Core web app in which **Individual User Accounts** security 
 > [!WARNING]
 > Environment variables are generally stored in plain, unencrypted text. If the machine or process is compromised, environment variables can be accessed by untrusted parties. Additional measures to prevent disclosure of user secrets may be required.
 
-[!INCLUDE[](~/includes/environmentVariableColon.md)]
+[!INCLUDE[](~/includes/environmentVarableColon.md)]
 
 ## Secret Manager
 

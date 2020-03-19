@@ -45,7 +45,7 @@ Store sensitive settings such as the Twitter consumer API key and secret with [S
     dotnet user-secrets set "Authentication:Twitter:ConsumerSecret" "<consumer-secret>"
     ```
 
-[!INCLUDE[](~/includes/environmentVariableColon.md)]
+[!INCLUDE[](~/includes/environmentVarableColon.md)]
 
 These tokens can be found on the **Keys and Access Tokens** tab after creating a new Twitter application:
 

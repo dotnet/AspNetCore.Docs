@@ -34,7 +34,7 @@ Store sensitive settings such as the Google client ID and secret values with [Se
     dotnet user-secrets set "Authentication:Google:ClientSecret" "<client-secret>"
     ```
 
-[!INCLUDE[](~/includes/environmentVariableColon.md)]
+[!INCLUDE[](~/includes/environmentVarableColon.md)]
 
 You can manage your API credentials and usage in the [API Console](https://console.developers.google.com/apis/dashboard).
 

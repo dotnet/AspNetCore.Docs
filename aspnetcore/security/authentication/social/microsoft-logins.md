@@ -52,7 +52,7 @@ Store sensitive settings such as the Microsoft client ID and secret values with 
     dotnet user-secrets set "Authentication:Microsoft:ClientSecret" "<client-secret>"
     ```
 
-[!INCLUDE[](~/includes/environmentVariableColon.md)]
+[!INCLUDE[](~/includes/environmentVarableColon.md)]
 
 ## Configure Microsoft Account Authentication
 

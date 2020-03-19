@@ -66,7 +66,7 @@ Store sensitive settings such as the Facebook app ID and secret values with [Sec
     dotnet user-secrets set "Authentication:Facebook:AppSecret" "<app-secret>"
     ```
 
-[!INCLUDE[](~/includes/environmentVariableColon.md)]
+[!INCLUDE[](~/includes/environmentVarableColon.md)]
 
 ## Configure Facebook Authentication
 
