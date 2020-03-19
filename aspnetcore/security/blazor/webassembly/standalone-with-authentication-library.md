@@ -17,7 +17,7 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
-*For Azure Active Directory (AAD) and Azure Active Directory B2C (AAD B2C), don't follow the guidance in this topic. See the AAD and AAD B2C topics in this node.*
+*For Azure Active Directory (AAD) and Azure Active Directory B2C (AAD B2C), don't follow the guidance in this topic. See the AAD and AAD B2C topics in this table of contents node.*
 
 To create a Blazor WebAssembly standalone app that uses `Microsoft.AspNetCore.Components.WebAssembly.Authentication` library, execute the following command in a command shell:
 
