@@ -5,9 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.0" />
+    <None Remove="MyIniConfig.Development.ini" />
+    <None Remove="MyIniConfig.ini" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="MyIniConfig.Development.ini" />
+    <Content Include="MyIniConfig.ini" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
   </ItemGroup>
+
+
 
 </Project>
