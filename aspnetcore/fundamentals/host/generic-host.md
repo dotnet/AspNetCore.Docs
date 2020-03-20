@@ -168,9 +168,9 @@ This section lists host settings that apply to both HTTP and non-HTTP workloads.
 
 The [IHostEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ApplicationName*) property is set from host configuration during host construction.
 
-**Key**: applicationName  
-**Type**: *string*  
-**Default**: The name of the assembly that contains the app's entry point.
+**Key**: `applicationName`  
+**Type**: `string`  
+**Default**: The name of the assembly that contains the app's entry point.  
 **Environment variable**: `<PREFIX_>APPLICATIONNAME`
 
 To set this value, use the environment variable. 
@@ -225,7 +225,7 @@ If the timeout period expires before all of the hosted services stop, any remain
 
 **Key**: `shutdownTimeoutSeconds`  
 **Type**: `int`  
-**Default**: 5 seconds
+**Default**: 5 seconds  
 **Environment variable**: `<PREFIX_>SHUTDOWNTIMEOUTSECONDS`
 
 To set this value, use the environment variable or configure `HostOptions`. The following example sets the timeout to 20 seconds:
