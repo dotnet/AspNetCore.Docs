@@ -74,7 +74,7 @@ The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method:
 
 * Sets the [content root](xref:fundamentals/index#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory*>.
 * Loads host configuration from:
-  * Environment variables prefixed with "DOTNET_".
+  * Environment variables prefixed with `DOTNET_`.
   * Command-line arguments.
 * Loads app configuration from:
   * *appsettings.json*.
@@ -91,10 +91,10 @@ The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method:
 
 The `ConfigureWebHostDefaults` method:
 
-* Loads host configuration from environment variables prefixed with "ASPNETCORE_".
+* Loads host configuration from environment variables prefixed with `ASPNETCORE_`.
 * Sets [Kestrel](xref:fundamentals/servers/kestrel) server as the web server and configures it using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel#kestrel-options>.
 * Adds [Host Filtering middleware](xref:fundamentals/servers/kestrel#host-filtering).
-* Adds [Forwarded Headers middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers) if ASPNETCORE_FORWARDEDHEADERS_ENABLED=true.
+* Adds [Forwarded Headers middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers) if `ASPNETCORE_FORWARDEDHEADERS_ENABLED` equals `true`.
 * Enables IIS integration. For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
 
 The [Settings for all app types](#settings-for-all-app-types) and [Settings for web apps](#settings-for-web-apps) sections later in this article show how to override default builder settings.
