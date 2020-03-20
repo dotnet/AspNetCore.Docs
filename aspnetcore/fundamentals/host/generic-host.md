@@ -232,8 +232,6 @@ To set this value, use the environment variable or configure `HostOptions`. The 
 
 [!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippet_HostOptions)]
 
-::: moniker range=">= aspnetcore-5.0"
-
 ### Disable app configuration reload on change
 
 By default, an app configuration file such as *appsettings.json* is reloaded when one of its property values changes. To disable this reload behavior in ASP.NET Core 5.0 Preview 3 or later, set the `hostBuilder:reloadConfigOnChange` key to `false`.
@@ -246,8 +244,6 @@ By default, an app configuration file such as *appsettings.json* is reloaded whe
 
 > [!WARNING]
 > The colon (`:`) separator doesn't work with environment variable hierarchical keys on all platforms. For more information, see [Environment variables](xref:fundamentals/configuration/index#environment-variables).
-
-::: moniker-end
 
 ## Settings for web apps
 
