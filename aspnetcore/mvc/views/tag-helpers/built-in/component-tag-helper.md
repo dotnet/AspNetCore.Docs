@@ -24,7 +24,7 @@ The Component Tag Helper can also pass parameters to components. Consider the fo
 
 ```razor
 <label style="font-size:@(Size)px;color:@Color">
-    <input @bind="Answer"
+    <input @bind="Value"
            id="survey" 
            name="blazor" 
            type="checkbox" />
@@ -33,7 +33,7 @@ The Component Tag Helper can also pass parameters to components. Consider the fo
 
 @code {
     [Parameter]
-    public bool Answer { get; set; }
+    public bool Value { get; set; }
 
     [Parameter]
     public int Size { get; set; } = 8;
