@@ -5,7 +5,7 @@ description: Learn about the .NET Core Generic Host, which is responsible for ap
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/02/2019
+ms.date: 03/20/2020
 uid: fundamentals/host/generic-host
 ---
 # .NET Generic Host
@@ -101,7 +101,7 @@ The [Settings for all app types](#settings-for-all-app-types) and [Settings for 
 
 ## Framework-provided services
 
-Services that are registered automatically include the following:
+The following services are registered automatically:
 
 * [IHostApplicationLifetime](#ihostapplicationlifetime)
 * [IHostLifetime](#ihostlifetime)
@@ -144,7 +144,7 @@ Host configuration is available from [HostBuilderContext.Configuration](xref:Mic
 
 To add host configuration, call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> on `IHostBuilder`. `ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last on a given key.
 
-The environment variable provider with prefix `DOTNET_` and command line args are included by CreateDefaultBuilder. For web apps, the environment variable provider with prefix `ASPNETCORE_` is added. The prefix is removed when the environment variables are read. For example, the environment variable value for `ASPNETCORE_ENVIRONMENT` becomes the host configuration value for the `environment` key.
+The environment variable provider with prefix `DOTNET_` and command-line arguments are included by `CreateDefaultBuilder`. For web apps, the environment variable provider with prefix `ASPNETCORE_` is added. The prefix is removed when the environment variables are read. For example, the environment variable value for `ASPNETCORE_ENVIRONMENT` becomes the host configuration value for the `environment` key.
 
 The following example creates host configuration:
 
@@ -199,7 +199,7 @@ For more information, see:
 
 ### EnvironmentName
 
-The [IHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName*) property can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive.
+The [IHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName*) property can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case-sensitive.
 
 **Key**: environment  
 **Type**: *string*  
@@ -231,6 +231,20 @@ If the timeout period expires before all of the hosted services stop, any remain
 To set this value, use the environment variable or configure `HostOptions`. The following example sets the timeout to 20 seconds:
 
 [!code-csharp[](generic-host/samples-snapshot/3.x/Program.cs?name=snippet_HostOptions)]
+
+::: moniker range=">= aspnetcore-5.0"
+
+### Disable app configuration reload on change
+
+By default, an app configuration file such as *appsettings.json* is reloaded when one of its property values changes. To disable this reload behavior, set the `hostBuilder:reloadConfigOnChange` key to `false`.
+
+**Key**: `hostBuilder:reloadConfigOnChange`  
+**Type**: `bool`  
+**Default**: `true`  
+**Environment variable**: `<PREFIX_>hostBuilder:reloadConfigOnChange`
+**Command-line argument**: `--hostBuilder:reloadConfigOnChange`
+
+::: moniker-end
 
 ## Settings for web apps
 
@@ -393,8 +407,8 @@ Kestrel has its own endpoint configuration API. For more information, see <xref:
 
 The relative path to the app's static assets.
 
-**Key**: webroot  
-**Type**: *string*  
+**Key**: `webroot`  
+**Type**: `string`  
 **Default**: The default is `wwwroot`. The path to *{content root}/wwwroot* must exist. If the path doesn't exist, a no-op file provider is used.  
 **Environment variable**: `<PREFIX_>WEBROOT`
 
@@ -518,7 +532,7 @@ The Generic Host library is available in the <xref:Microsoft.Extensions.Hosting>
 
 <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout*> sets the timeout for <xref:Microsoft.Extensions.Hosting.IHost.StopAsync*>. The default value is five seconds.
 
-The following option configuration in `Program.Main` increases the default five second shutdown timeout to 20 seconds:
+The following option configuration in `Program.Main` increases the default five-second shutdown timeout to 20 seconds:
 
 ```csharp
 var host = new HostBuilder()
@@ -558,8 +572,8 @@ Host configuration is created by:
 
 The [IHostingEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ApplicationName*) property is set from host configuration during host construction. To set the value explicitly, use the [HostDefaults.ApplicationKey](xref:Microsoft.Extensions.Hosting.HostDefaults.ApplicationKey):
 
-**Key**: applicationName  
-**Type**: *string*  
+**Key**: `applicationName`  
+**Type**: `string`  
 **Default**: The name of the assembly containing the app's entry point.  
 **Set using**: `HostBuilderContext.HostingEnvironment.ApplicationName`  
 **Environment variable**: `<PREFIX_>APPLICATIONNAME` (`<PREFIX_>` is [optional and user-defined](#configurehostconfiguration))
@@ -568,8 +582,8 @@ The [IHostingEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHos
 
 This setting determines where the host begins searching for content files.
 
-**Key**: contentRoot  
-**Type**: *string*  
+**Key**: `contentRoot`  
+**Type**: `string`  
 **Default**: Defaults to the folder where the app assembly resides.  
 **Set using**: `UseContentRoot`  
 **Environment variable**: `<PREFIX_>CONTENTROOT` (`<PREFIX_>` is [optional and user-defined](#configurehostconfiguration))
@@ -584,13 +598,13 @@ For more information, see [Fundamentals: Content root](xref:fundamentals/index#c
 
 Sets the app's [environment](xref:fundamentals/environments).
 
-**Key**: environment  
-**Type**: *string*  
-**Default**: Production  
+**Key**: `environment`  
+**Type**: `string`  
+**Default**: `Production`  
 **Set using**: `UseEnvironment`  
 **Environment variable**: `<PREFIX_>ENVIRONMENT` (`<PREFIX_>` is [optional and user-defined](#configurehostconfiguration))
 
-The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive.
+The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case-sensitive.
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_UseEnvironment)]
 
