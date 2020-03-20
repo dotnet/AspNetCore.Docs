@@ -146,7 +146,7 @@ The following `set` commands:
 * Set the environment keys and values of the [preceding example](#appsettingsjson) on Windows.
 * Test the settings when using the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample). The `dotnet run` command must be run in the project directory.
 
-```cmd
+```dotnetcli
 set MyKey="My key from Environment"
 set Position__Title=Environment_Editor
 set Position__Name=Environment_Rick
@@ -166,7 +166,7 @@ setx Position__Title Setx_Environment_Editor /M
 setx Position__Name Environment_Rick /M
 ```
 
-To test that the preceding commands override *apsettings.json* and *appsettings.*`Environment`*.json*:
+To test that the preceding commands override *appsettings.json* and *appsettings.*`Environment`*.json*:
 
 * With Visual Studio: Exit and restart Visual Studio.
 * With the CLI: Start a new command window and enter `dotnet run`.
@@ -184,7 +184,7 @@ The prefix is stripped off when the configuration key-value pairs are read.
 
 The following commands test the custom prefix:
 
-```cmd
+```dotnetcli
 set MyCustomPrefix_MyKey="My key with MyCustomPrefix_ Environment"
 set MyCustomPrefix_Position__Title=Editor_with_customPrefix
 set MyCustomPrefix_Position__Name=Environment_Rick_cp

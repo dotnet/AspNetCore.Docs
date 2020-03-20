@@ -157,12 +157,12 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-For single page applications, the SPA middleware <xref:Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions.UseSpaStaticFiles*> usually comes last in the middleware pipeline. The SPA middleware comes last:
+For Single Page Applications (SPAs), the SPA middleware <xref:Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions.UseSpaStaticFiles*> usually comes last in the middleware pipeline. The SPA middleware comes last:
 
 * To allow all other middlewares to respond to matching requests first.
 * To allow SPAs with client-side routing to run for all routes that are unrecognized by the server app.
 
-For more details on single page applications, see the guides for the [React](xref:spa/react) and [Angular](xref:spa/angular) project templates.
+For more details on SPAs, see the guides for the [React](xref:spa/react) and [Angular](xref:spa/angular) project templates.
 
 ## Branch the middleware pipeline
 

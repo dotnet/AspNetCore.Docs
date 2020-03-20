@@ -5,7 +5,7 @@ description: Learn how templated components can accept one or more UI templates 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 03/18/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/templated-components
 ---
@@ -40,6 +40,9 @@ When using a templated component, the template parameters can be specified using
     </RowTemplate>
 </TableTemplate>
 ```
+
+> [!NOTE]
+> Generic type constraints will be supported in a future release. For more information, see [Allow generic type constraints (dotnet/aspnetcore #8433)](https://github.com/dotnet/aspnetcore/issues/8433).
 
 ## Template context parameters
 
