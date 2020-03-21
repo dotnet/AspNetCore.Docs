@@ -222,3 +222,81 @@ Test the app:
 * Register a new user.
 * View the custom user data on the `/Identity/Account/Manage` page.
 * Download and view the users personal data from the `/Identity/Account/Manage/PersonalData` page.
+
+# Add claims to Identity using IUserClaimsPrincipalFactory<ApplicationUser>
+
+Additional claims can be added to ASP.NET Core Identity by using the `IUserClaimsPrincipalFactory<T>` interface. 
+This class can be added to the application in the `ConfigureServices` method. Add the custom implementation of the class as follows:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+	services.AddIdentity<ApplicationUser, IdentityRole>()
+		.AddEntityFrameworkStores<ApplicationDbContext>()
+		.AddDefaultTokenProviders();
+
+	services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, 
+		AdditionalUserClaimsPrincipalFactory>();
+```
+
+The demo implementation uses the `ApplicationUser` class. This class adds an `IsAdmin` property which is used to add the additional claim.
+
+```csharp
+public class ApplicationUser : IdentityUser
+{
+	public bool IsAdmin { get; set; }
+}
+```
+The `AdditionalUserClaimsPrincipalFactory` implements the `UserClaimsPrincipalFactory` interface. A new role claim is added to the `ClaimsPrincipal`.
+
+```csharp
+public class AdditionalUserClaimsPrincipalFactory 
+		: UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>
+{
+	public AdditionalUserClaimsPrincipalFactory( 
+		UserManager<ApplicationUser> userManager,
+		RoleManager<IdentityRole> roleManager, 
+		IOptions<IdentityOptions> optionsAccessor) 
+		: base(userManager, roleManager, optionsAccessor)
+	{}
+
+	public async override Task<ClaimsPrincipal> CreateAsync(ApplicationUser user)
+	{
+		var principal = await base.CreateAsync(user);
+		var identity = (ClaimsIdentity)principal.Identity;
+
+		var claims = new List<Claim>();
+		if (user.IsAdmin)
+		{
+			claims.Add(new Claim(JwtClaimTypes.Role, "admin"));
+		}
+		else
+		{
+			claims.Add(new Claim(JwtClaimTypes.Role, "user"));
+		}
+
+		identity.AddClaims(claims);
+		return principal;
+	}
+}
+
+```
+
+The additional claim can then be used in the application. In a Razor Page, the `IAuthorizationService` instance can be used to access the claim value.
+
+```csharp
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService﻿
+
+@if ((await AuthorizationService.AuthorizeAsync(User, "IsAdmin")).Succeeded)
+{
+	<ul class="mr-auto navbar-nav">
+		<li class="nav-item">
+			<a class="nav-link" asp-controller="Admin" asp-action="Index">ADMIN</a>
+		</li>
+	</ul>
+}
+```
+
+
+
