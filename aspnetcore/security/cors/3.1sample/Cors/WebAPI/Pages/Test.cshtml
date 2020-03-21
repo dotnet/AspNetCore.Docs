@@ -34,13 +34,13 @@
 </div>
 
 <div>
-    <input type="button" value="Post test"
-           onclick="PutVal('https://cors1.azurewebsites.net/api/TodoItems/5')" />
+    <input type="button" value="PUT/Delete test"
+           onclick="PutVal('https://cors1.azurewebsites.net/api/TodoItems/5', 'PUT')" />
 </div>
 
 <div>
     <input type="button" value="Delete test"
-           onclick="DeleteVal('https://cors1.azurewebsites.net/api/TodoItems/5')" />
+           onclick="DeleteVal('https://cors1.azurewebsites.net/api/TodoItems/5', 'DELETE')" />
 </div>
 
 <div>
@@ -75,12 +75,12 @@
             .catch(error => resultSpan.innerText = 'See F12 Console for error');
     }
 
-    function PutVal(uri) {
+    function PutVal(uri, methodName ) {
         const resultSpan = document.getElementById('result');
 
         fetch(uri,
             {
-                method: "PUT",
+                method: methodName,
                 headers:
                 {
                     "Content-Type": "x-my-custom-header"

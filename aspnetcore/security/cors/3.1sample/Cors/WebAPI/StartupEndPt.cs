@@ -5,11 +5,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace WebAPI
+namespace WebAPI5
 {
-    public class StartupEndPt
+    // StartupEndPt.c
+    #region snippet2
+    public class Startup
     {
-        public StartupEndPt(IConfiguration configuration)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -68,4 +70,5 @@ namespace WebAPI
         }
         #endregion
     }
+    #endregion
 }

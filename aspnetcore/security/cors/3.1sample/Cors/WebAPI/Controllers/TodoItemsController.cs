@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
             return NoContent();
         }
 
-        // PUT: api/TodoItems/5
+        // Delete: api/TodoItems/5
         [HttpOptions("api/[controller]/{id}")]
         [HttpDelete("{id}")]
         public IActionResult MyDelete(long id)

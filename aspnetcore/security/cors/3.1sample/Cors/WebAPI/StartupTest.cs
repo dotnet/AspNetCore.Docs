@@ -1,18 +1,23 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 
-namespace WebAPI
+namespace WebAPI6
 {
-    public class Startup7
+    // StartupTest.c
+    #region snippet2
+    public class Startup
     {
-        public Startup7(IConfiguration configuration)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
+
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public IConfiguration Configuration { get; }
 
@@ -20,8 +25,8 @@ namespace WebAPI
         {
             services.AddCors(options =>
             {
-               
-                options.AddPolicy("AllowHeaders",
+
+                options.AddPolicy(name: MyAllowSpecificOrigins,
                     builder =>
                     {
                         builder.WithOrigins("http://example.com",
@@ -29,7 +34,7 @@ namespace WebAPI
                                             "https://localhost:44398",
                                             "https://localhost:5001")
                                .WithHeaders(HeaderNames.ContentType, "x-custom-header")
-                               .WithMethods("PUT","DELETE","GET")
+                               .WithMethods("PUT", "DELETE", "GET")
                                ;
                     });
             });
@@ -46,19 +51,28 @@ namespace WebAPI
             }
 
             app.UseHttpsRedirection();
-
+            app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseCors("AllowHeaders");
+            app.UseCors();
 
             app.UseAuthorization();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapGet("/echo",
+                    context => context.Response.WriteAsync("echo"))
+                    .RequireCors(MyAllowSpecificOrigins);
+
+                endpoints.MapControllers().RequireCors(MyAllowSpecificOrigins);
+
+                endpoints.MapGet("/echo2",
+                    context => context.Response.WriteAsync("echo2"));
+
                 endpoints.MapRazorPages();
             });
         }
     }
+    #endregion
 }

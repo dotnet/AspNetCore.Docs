@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
+using System;
 
 namespace WebAPI
 {
@@ -63,6 +64,15 @@ namespace WebAPI
                     {
                         builder.WithOrigins("http://example.com")
                                .AllowCredentials();
+                    });
+                #endregion
+
+                #region snippet7
+                options.AddPolicy("SetPreflightExpiration",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://example.com")
+                               .SetPreflightMaxAge(TimeSpan.FromSeconds(2520));
                     });
                 #endregion
 

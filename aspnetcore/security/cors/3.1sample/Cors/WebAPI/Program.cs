@@ -14,11 +14,10 @@ namespace WebAPI
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    // webBuilder.UseStartup<Startup>();
-                 //   webBuilder.UseStartup<StartupEndPt>();
-                    webBuilder.UseStartup<Startup7>();
+                   // webBuilder.UseStartup<WebAPI5.Startup>();
+                    // webBuilder.UseStartup<WebAPI6.Startup>();
 
-
+                      webBuilder.UseStartup<Startup7>();
                 });
     }
 }
