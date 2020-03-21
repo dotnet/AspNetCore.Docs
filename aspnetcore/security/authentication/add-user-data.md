@@ -239,7 +239,7 @@ public void ConfigureServices(IServiceCollection services)
 		AdditionalUserClaimsPrincipalFactory>();
 ```
 
-The demo implementation uses the `ApplicationUser` class. This class adds an `IsAdmin` property which is used to add the additional claim.
+The demo code uses the `ApplicationUser` class. This class adds an `IsAdmin` property which is used to add the additional claim.
 
 ```csharp
 public class ApplicationUser : IdentityUser
