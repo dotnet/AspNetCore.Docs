@@ -20,7 +20,7 @@ Install the the following NuGet packages:
 
 * `Microsoft.AspNetCore.Identity.EntityFrameworkCore`
 * `Microsoft.AspNetCore.Authentication.Cookies`
-* Microsoft.EntityFrameworkCore.SqlServer
+* `Microsoft.EntityFrameworkCore.SqlServer`
 
 In *Startup.cs*, update the `Startup.ConfigureServices` method to use Entity Framework and Identity services:
 
