@@ -285,7 +285,7 @@ You can also supply different content for display if the user isn't authenticate
 </AuthorizeView>
 ```
 
-The `AuthorizeView` component can be used in the `NavMenu` component (*Shared/NavMenu.razor*) to display a listitem (`<li>...</li>`) for a `NavLink`, but note that this approach only removes the listitem from the rendered output. It doesn't prevent the user from navigating to the component.
+The `AuthorizeView` component can be used in the `NavMenu` component (*Shared/NavMenu.razor*) to display a list item (`<li>...</li>`) for a `NavLink`, but note that this approach only removes the list item from the rendered output. It doesn't prevent the user from navigating to the component.
 
 The content of `<Authorized>` and `<NotAuthorized>` tags can include arbitrary items, such as other interactive components.
 
