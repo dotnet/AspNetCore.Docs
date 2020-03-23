@@ -225,8 +225,7 @@ Test the app:
 
 # Add claims to Identity using IUserClaimsPrincipalFactory<ApplicationUser>
 
-Additional claims can be added to ASP.NET Core Identity by using the `IUserClaimsPrincipalFactory<T>` interface. 
-This class can be added to the application in the `ConfigureServices` method. Add the custom implementation of the class as follows:
+Additional claims can be added to ASP.NET Core Identity by using the `IUserClaimsPrincipalFactory<T>` interface. This class can be added to the app in the `Startup.ConfigureServices` method. Add the custom implementation of the class as follows:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -247,6 +246,7 @@ public class ApplicationUser : IdentityUser
 	public bool IsAdmin { get; set; }
 }
 ```
+
 The `AdditionalUserClaimsPrincipalFactory` implements the `UserClaimsPrincipalFactory` interface. A new role claim is added to the `ClaimsPrincipal`.
 
 ```csharp
@@ -282,9 +282,9 @@ public class AdditionalUserClaimsPrincipalFactory
 
 ```
 
-The additional claim can then be used in the application. In a Razor Page, the `IAuthorizationService` instance can be used to access the claim value.
+The additional claim can then be used in the app. In a Razor Page, the `IAuthorizationService` instance can be used to access the claim value.
 
-```csharp
+```cshtml
 ﻿@using Microsoft.AspNetCore.Authorization
 @inject IAuthorizationService AuthorizationService﻿
 
