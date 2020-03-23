@@ -94,7 +94,7 @@ conceptualContent:
   items:
     # Card
     - title: "Interactive client-side Blazor apps"
-      summary: Develop with reusable UI components that can take advantage of WebAssembly for near-native performance" 
+      summary: "Develop with reusable UI components that can take advantage of WebAssembly for near-native performance" 
       links:
         - url: blazor/index.md
           itemType: overview
