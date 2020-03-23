@@ -79,10 +79,10 @@ conceptualContent:
         - url: data/ef-rp/intro.md
           itemType: get-started
           text: "Razor Pages & Entity Framework Core"
-          - url: data/ef-mvc.md
+        - url: data/ef-mvc.md
           itemType: get-started
           text: "ASP.NET Core MVC with Entity Framework Core"
-          - url: https://docs.microsoft.com/en-us/learn/modules/build-web-api-net-core/
+        - url: https://docs.microsoft.com/en-us/learn/modules/build-web-api-net-core/
           itemType: get-started
           text: "Create a page-focused web UI that consumes a RESTful web API"
 
