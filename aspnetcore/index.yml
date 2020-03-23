@@ -73,8 +73,6 @@ conceptualContent:
     - title: Create a data-driven web app
       summary: "Create your first data-driven web apps"
       links:
-        - url: tutorials/first-mvc-app.md
-          itemType: get-started
           text: "Create a web app with ASP.NET Core MVC & SQL Server LocalDB"
         - url: data/ef-rp/intro.md
           itemType: get-started
@@ -156,7 +154,7 @@ conceptualContent:
         - url: tutorials/first-mvc-app/adding-model.md
           itemType: tutorial
           text: "Add a model"
-        - url: tutorials/first-mvc-app.md
+        - url: tutorials/first-mvc-app/validation.md
           itemType: tutorial
           text: "Add validation"
         - url: mvc/controllers/routing.md
@@ -263,7 +261,7 @@ conceptualContent:
           text: "Use gRPC in browser apps"
       # footerLink (optional)
       footerLink:
-        url: grpc.index.md
+        url: grpc/index.md
         text: See more
       # Card
     - title: Data-focused Web apps
@@ -281,7 +279,7 @@ conceptualContent:
         - url: data/ef-rp/intro.md
           itemType: tutorial
           text: "Entity Framework Core with Razor Pages"
-        - url: data/ef-mvc.md
+        - url: data/ef-rp/intro.md
           itemType: tutorial
           text: "Entity Framework Core with ASP.NET Core MVC"
         - url: https://docs.microsoft.com/en-us/visualstudio/azure/vs-azure-tools-connected-services-storage?view=vs-2019&viewFallbackFrom=aspnetcore-3.1
@@ -413,15 +411,15 @@ additionalContent:
         # Card
       - title: Advanced Features
         links:
-          - url: todo
+          - url: mvc/models/model-binding.md
             text: "Model binding"
-          - url: todo.md
+          - url: mvc/models/validation.md
             text: "Model validation"
-          - url: todo
+          - url: fundamentals/middleware.md
             text: "Write middleware"
-          - url: todo
+          - url: fundamentals/middleware/request-response.md
             text: "Request and response operations"
-          - url: todo
+          - url: fundamentals/url-rewriting.md
             text: "URL rewriting"
       # Card
       - title: Migration
@@ -434,7 +432,7 @@ additionalContent:
             text: "ASP.NET Core 2.1 to 2.2"
           - url: migration/20_21.md
             text: "ASP.NET Core 2.0 to 2.1"
-          - url: migration/1x-to-2x.md
+          - url: migration/1x-to-2x/index.md
             text: "ASP.NET Core 1.x to 2.0"
           - url: migration/proper-to-2x/index.md
             text: "ASP.NET to ASP.NET Core"
