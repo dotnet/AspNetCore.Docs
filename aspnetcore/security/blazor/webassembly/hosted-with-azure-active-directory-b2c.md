@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/16/2020
+ms.date: 03/22/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
 ---
@@ -144,7 +144,7 @@ The *appsettings.json* file contains the options to configure the JWT bearer han
 ```json
 {
   "AzureAd": {
-    "Instance": "https://login.microsoftonline.com/",
+    "Instance": "https://{ORGANIZATION}.b2clogin.com/",
     "ClientId": "{API CLIENT ID}",
     "Domain": "{DOMAIN}",
     "SignUpSignInPolicyId": "{SIGN UP OR SIGN IN POLICY}"
