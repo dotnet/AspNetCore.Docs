@@ -110,8 +110,6 @@ Include the `@using MyComponentLib1` directive in the top-level *_Import.razor* 
 
 An RCL can include static assets. The static assets are available to any app that consumes the library. For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
 
-
-
 ## Build, pack, and ship to NuGet
 
 Because component libraries are standard .NET libraries, packaging and shipping them to NuGet is no different from packaging and shipping any library to NuGet. Packaging is performed using the [dotnet pack](/dotnet/core/tools/dotnet-pack) command in a command shell:
