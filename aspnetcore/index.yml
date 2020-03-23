@@ -73,6 +73,8 @@ conceptualContent:
     - title: Create a data-driven web app
       summary: "Create your first data-driven web apps"
       links:
+        - url: tutorials/first-mvc-app.md
+          itemType: get-started
           text: "Create a web app with ASP.NET Core MVC & SQL Server LocalDB"
         - url: data/ef-rp/intro.md
           itemType: get-started
