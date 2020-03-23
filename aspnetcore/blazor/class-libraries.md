@@ -110,37 +110,7 @@ Include the `@using MyComponentLib1` directive in the top-level *_Import.razor* 
 
 An RCL can include static assets. The static assets are available to any app that consumes the library. For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
 
-## Add an XML linker configuration file to a library
 
-Embed the XML file into the library as an embedded resource.
-
-For example, create a *LinkerConfig.xml* file in the library that targets the `System.Linq.Queryable` type in the `System.Core` assembly:
-
-```xml
-<?xml version="1.0" encoding="utf-8" ?>
-<linker>
-  <assembly fullname="System.Core">
-    <type fullname="System.Linq.Queryable" preserve="all" />
-  </assembly>
-</linker>
-```
-
-For information on the IL linker format, see [Link xml file examples (mono/linker GitHub repository)](https://github.com/mono/linker#link-xml-file-examples).
-
-The library's project file has:
-
-* A package reference for [System.Linq.Dynamic.Core](https://www.nuget.org/packages/System.Linq.Dynamic.Core/).
-* The *LinkerConfig.xml* file specified as an embedded resource.
-
-```xml
-<ItemGroup>
-  <EmbeddedResource Include="LinkerConfig.xml">
-    <LogicalName>$(MSBuildProjectName).xml</LogicalName>
-  </EmbeddedResource>
-</ItemGroup>
-```
-
-For more information, see <xref:host-and-deploy/blazor/configure-linker>.
 
 ## Build, pack, and ship to NuGet
 
@@ -155,3 +125,4 @@ Upload the package to NuGet using the [dotnet nuget push](/dotnet/core/tools/dot
 ## Additional resources
 
 * <xref:razor-pages/ui-class>
+* [Add an XML linker configuration file to a library](xref:host-and-deploy/blazor/configure-linker#add-an-xml-linker-configuration-file-to-a-library)

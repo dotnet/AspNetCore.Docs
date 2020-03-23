@@ -28,7 +28,7 @@ Linking for Blazor apps can be configured using these MSBuild features:
 
 ## Control linking with an MSBuild property
 
-Linking is enabled when an app is built in `Release` configuation. To change this, configure the `BlazorWebAssemblyEnableLinking` MSBuild property in the project file:
+Linking is enabled when an app is built in `Release` configuration. To change this, configure the `BlazorWebAssemblyEnableLinking` MSBuild property in the project file:
 
 ```xml
 <PropertyGroup>
@@ -42,11 +42,11 @@ Control linking on a per-assembly basis by providing an XML configuration file a
 
 ```xml
 <ItemGroup>
-  <BlazorLinkerDescriptor Include="Linker.xml" />
+  <BlazorLinkerDescriptor Include="LinkerConfig.xml" />
 </ItemGroup>
 ```
 
-*Linker.xml*:
+*LinkerConfig.xml*:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -78,7 +78,21 @@ Control linking on a per-assembly basis by providing an XML configuration file a
 </linker>
 ```
 
-For more information, see [IL Linker: Syntax of xml descriptor](https://github.com/mono/linker/blob/master/src/linker/README.md#syntax-of-xml-descriptor).
+For more information, see [Link xml file examples (mono/linker GitHub repository)](https://github.com/mono/linker#link-xml-file-examples).
+
+## Add an XML linker configuration file to a library
+
+Embed the XML file into the library as an embedded resource in the library's project file.
+
+In the following example, the *LinkerConfig.xml* file specified as an embedded resource that has the same name as the assembly:
+
+```xml
+<ItemGroup>
+  <EmbeddedResource Include="LinkerConfig.xml">
+    <LogicalName>$(MSBuildProjectName).xml</LogicalName>
+  </EmbeddedResource>
+</ItemGroup>
+```
 
 ### Configure the linker for internationalization
 
@@ -105,7 +119,3 @@ To control which I18N assemblies are retained, set the `<MonoLinkerI18NAssemblie
 Use a comma to separate multiple values (for example, `mideast,west`).
 
 For more information, see [I18N: Pnetlib Internationalization Framework Library (mono/mono GitHub repository)](https://github.com/mono/mono/tree/master/mcs/class/I18N).
-
-## Additional resources
-
-* [Add an XML linker configuration file to a library](xref:blazor/class-libraries#add-an-xml-linker-configuration-file-to-a-library)
