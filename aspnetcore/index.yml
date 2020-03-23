@@ -29,7 +29,7 @@ highlightedContent:
       url: introduction-to-aspnet-core.md
     # Card
     - title: "Video Tutorials"
-      itemType: learn
+      itemType: video
       url: https://www.youtube.com/playlist?list=PLdo4fOcmZ0oW8nviYduHq7bmKode-p8Wy
     # Card
     - title: "What's new in ASP.NET Core docs"
@@ -144,7 +144,7 @@ conceptualContent:
         - url: mvc/overview.md
           itemType: overview
           text: "Overview"
-        - url: tutorials/first-mvc-app.md
+        - url: tutorials/first-mvc-app/index.md
           itemType: get-started
           text: "Create your first ASP.NET Core MVC app"
         - url: tutorials/first-mvc-app/adding-controller.md
