@@ -5,7 +5,7 @@ description: Learn how to control the Intermediate Language (IL) Linker when bui
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/10/2020
+ms.date: 03/23/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/configure-linker
 ---
@@ -105,3 +105,7 @@ To control which I18N assemblies are retained, set the `<MonoLinkerI18NAssemblie
 Use a comma to separate multiple values (for example, `mideast,west`).
 
 For more information, see [I18N: Pnetlib Internationalization Framework Library (mono/mono GitHub repository)](https://github.com/mono/mono/tree/master/mcs/class/I18N).
+
+## Additional resources
+
+* [Add an XML linker configuration file to a library](xref:blazor/class-libraries#add-an-xml-linker-configuration-file-to-a-library)

@@ -5,7 +5,7 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/23/2020
+ms.date: 03/23/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/class-libraries
 ---
@@ -106,6 +106,42 @@ Welcome to your new app.
 
 Include the `@using MyComponentLib1` directive in the top-level *_Import.razor* file to make the library's components available to an entire project. Add the directive to an *_Import.razor* file at any level to apply the namespace to a single page or set of pages within a folder.
 
+## Create a Razor components class library with static assets
+
+An RCL can include static assets. The static assets are available to any app that consumes the library. For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
+
+## Add an XML linker configuration file to a library
+
+Embed the XML file into the library as an embedded resource.
+
+For example, create a *LinkerConfig.xml* file in the library that targets the `System.Linq.Queryable` type in the `System.Core` assembly:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<linker>
+  <assembly fullname="System.Core">
+    <type fullname="System.Linq.Queryable" preserve="all" />
+  </assembly>
+</linker>
+```
+
+For information on the IL linker format, see [Link xml file examples (mono/linker GitHub repository)](https://github.com/mono/linker#link-xml-file-examples).
+
+The library's project file has:
+
+* A package reference for [System.Linq.Dynamic.Core](https://www.nuget.org/packages/System.Linq.Dynamic.Core/).
+* The *LinkerConfig.xml* file specified as an embedded resource.
+
+```xml
+<ItemGroup>
+  <EmbeddedResource Include="LinkerConfig.xml">
+    <LogicalName>$(MSBuildProjectName).xml</LogicalName>
+  </EmbeddedResource>
+</ItemGroup>
+```
+
+For more information, see <xref:host-and-deploy/blazor/configure-linker>.
+
 ## Build, pack, and ship to NuGet
 
 Because component libraries are standard .NET libraries, packaging and shipping them to NuGet is no different from packaging and shipping any library to NuGet. Packaging is performed using the [dotnet pack](/dotnet/core/tools/dotnet-pack) command in a command shell:
@@ -115,10 +151,6 @@ dotnet pack
 ```
 
 Upload the package to NuGet using the [dotnet nuget push](/dotnet/core/tools/dotnet-nuget-push) command in a command shell.
-
-## Create a Razor components class library with static assets
-
-An RCL can include static assets. The static assets are available to any app that consumes the library. For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
 
 ## Additional resources
 
