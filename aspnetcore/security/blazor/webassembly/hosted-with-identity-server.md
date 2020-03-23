@@ -159,7 +159,7 @@ By default, it loads the configuration for the app by convention from `_configur
 
 ### Index page
 
-[!INCLUDE[](~/includes/blazor-security/index-page.md)]
+[!INCLUDE[](~/includes/blazor-security/index-page-authentication.md)]
 
 ### App component
 

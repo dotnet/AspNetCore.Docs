@@ -229,7 +229,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 ### Index page
 
-[!INCLUDE[](~/includes/blazor-security/index-page.md)]
+[!INCLUDE[](~/includes/blazor-security/index-page-msal.md)]
 
 ### App component
 

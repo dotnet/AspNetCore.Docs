@@ -85,7 +85,7 @@ The `AddMsalAuthentication` method accepts a callback to configure the parameter
 
 ## Index page
 
-[!INCLUDE[](~/includes/blazor-security/index-page.md)]
+[!INCLUDE[](~/includes/blazor-security/index-page-msal.md)]
 
 ## App component
 
