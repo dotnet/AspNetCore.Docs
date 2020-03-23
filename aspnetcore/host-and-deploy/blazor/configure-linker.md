@@ -82,7 +82,7 @@ For more information, see [Link xml file examples (mono/linker GitHub repository
 
 ## Add an XML linker configuration file to a library
 
-Embed the XML file into the library as an embedded resource in the library's project file.
+Embed an XML linker configuration file into a library as an embedded resource in the library's project file.
 
 In the following example, the *LinkerConfig.xml* file specified as an embedded resource that has the same name as the assembly:
 
