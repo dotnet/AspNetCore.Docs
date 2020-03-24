@@ -3,7 +3,7 @@ title: Routing to controller actions in ASP.NET Core
 author: rick-anderson
 description: Learn how ASP.NET Core MVC uses Routing Middleware to match URLs of incoming requests and map them to actions.
 ms.author: riande
-ms.date: 1/25/2020
+ms.date: 3/25/2020
 uid: mvc/controllers/routing
 ---
 # Routing to controller actions in ASP.NET Core
