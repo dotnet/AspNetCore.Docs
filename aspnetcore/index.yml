@@ -90,7 +90,7 @@ conceptualContent:
 conceptualContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
   title: Develop ASP.NET Core apps # < 60 chars (optional)
-  summary: "Choose interactive web apps, web API, MVC patterned apps, Real-time apps, and more"
+  summary: "Choose interactive web apps, web API, MVC-patterned apps, real-time apps, and more"
   items:
     # Card
     - title: "Interactive client-side Blazor apps"
@@ -110,7 +110,7 @@ conceptualContent:
           text: "Blazor hosting models"
     # Card
     - title: RESTful web API apps
-      summary: Develop RESTful HTTP API's with ASP.NET Core web API
+      summary: Develop RESTful HTTP services with ASP.NET Core web API
       links:
         - url: web-api/index.md
           itemType: overview
@@ -138,7 +138,7 @@ conceptualContent:
         url: web-api/index.md
         text: "See more"
     # Card
-    - title: ASP.NET Core MVC
+    - title: Page-focused web UI with MVC
       summary: "Develop web apps using the Model-View-Controller design pattern"
       links:
         - url: mvc/overview.md
@@ -171,7 +171,7 @@ conceptualContent:
         text: See more
       # Card
     - title: "Page-focused web UI with Razor Pages"
-      summary: "Develop page-focused data-driven web apps with a clean separation of concerns"
+      summary: "Develop page-focused web apps with a clean separation of concerns"
       links:
         - url: razor-pages/index.md
           itemType: overview
@@ -234,8 +234,8 @@ conceptualContent:
         url: signalr/introduction.md
         text: See more
       # Card
-    - title: Remote Procedure Call apps - gRPC service
-      summary: "Develop contract-first, high-performance API services with gRPC in ASP.NET Core"
+    - title: Remote Procedure Call apps - gRPC services
+      summary: "Develop contract-first, high-performance services with gRPC in ASP.NET Core"
       links:
         - url: grpc/index.md
           itemType: overview
@@ -266,8 +266,8 @@ conceptualContent:
         url: grpc/index.md
         text: See more
       # Card
-    - title: Data-focused Web apps
-      summary: "Create data-focused Web apps in ASP.NET Core"
+    - title: Data-driven web apps
+      summary: "Create data-driven web apps in ASP.NET Core"
       links:
         - url: tutorials/first-mvc-app/working-with-sql.md
           itemType: tutorial
@@ -299,7 +299,7 @@ conceptualContent:
         text: See more
       # Card
     - title: Previous ASP.NET framework versions
-      summary: "Explore overviews, tutorials, fundamental concepts, architecture and API reference for pervious ASP.NET framework versions"
+      summary: "Explore overviews, tutorials, fundamental concepts, architecture and API reference for previous ASP.NET framework versions"
       links:
         - url: https://docs.microsoft.com/en-us/aspnet/overview
           itemType: concept
@@ -312,9 +312,9 @@ additionalContent:
     - title: Concepts and Features # < 60 chars (optional)
       items:
       # Card
-      - title: API Reference for ASP.NET Core
+      - title: API reference for ASP.NET Core
         links:
-          - url: https://docs.microsoft.com/en-us/dotnet/api/?view=aspnetcore-3.1
+          - url: https://docs.microsoft.com/dotnet/api/?view=aspnetcore-3.1
             text: ".NET API browser"
       # Card
       - title: Host and deploy
