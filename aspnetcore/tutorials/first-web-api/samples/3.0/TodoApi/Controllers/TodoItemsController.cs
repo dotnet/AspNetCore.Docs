@@ -10,13 +10,13 @@ using TodoApi.Models;
 namespace TodoApi.Controllers
 {
     #region TodoController
-    [Route("api/[controller]")]
+    [Route("api/TodoItem")]
     [ApiController]
-    public class TodoItemsController : ControllerBase
+    public class TodoOrNotToDoItemController : ControllerBase
     {
         private readonly TodoContext _context;
 
-        public TodoItemsController(TodoContext context)
+        public TodoOrNotToDoItemController(TodoContext context)
         {
             _context = context;
         }
