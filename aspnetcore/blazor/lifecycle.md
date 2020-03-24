@@ -5,7 +5,7 @@ description: Learn how to use Razor component lifecycle methods in ASP.NET Core 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
+ms.date: 03/17/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/lifecycle
 ---
@@ -48,6 +48,8 @@ To prevent developer code in `OnInitializedAsync` from running twice, see the [S
 
 While a Blazor Server app is prerendering, certain actions, such as calling into JavaScript, aren't possible because a connection with the browser hasn't been established. Components may need to render differently when prerendered. For more information, see the [Detect when the app is prerendering](#detect-when-the-app-is-prerendering) section.
 
+If any event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with IDisposable](#component-disposal-with-idisposable) section.
+
 ### Before parameters are set
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*> sets parameters supplied by the component's parent in the render tree:
@@ -66,6 +68,8 @@ public override async Task SetParametersAsync(ParameterView parameters)
 The default implementation of `SetParametersAsync` sets the value of each property with the `[Parameter]` or `[CascadingParameter]` attribute that has a corresponding value in the `ParameterView`. Parameters that don't have a corresponding value in `ParameterView` are left unchanged.
 
 If `base.SetParametersAync` isn't invoked, the custom code can interpret the incoming parameters value in any way required. For example, there's no requirement to assign the incoming parameters to the properties on the class.
+
+If any event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with IDisposable](#component-disposal-with-idisposable) section.
 
 ### After parameters are set
 
@@ -92,6 +96,8 @@ protected override void OnParametersSet()
     ...
 }
 ```
+
+If any event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with IDisposable](#component-disposal-with-idisposable) section.
 
 ### After component render
 
@@ -128,6 +134,8 @@ protected override void OnAfterRender(bool firstRender)
 ```
 
 `OnAfterRender` and `OnAfterRenderAsync` *aren't called when prerendering on the server.*
+
+If any event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with IDisposable](#component-disposal-with-idisposable) section.
 
 ### Suppress UI refreshing
 
@@ -180,6 +188,16 @@ If a component implements <xref:System.IDisposable>, the [Dispose method](/dotne
 
 > [!NOTE]
 > Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> in `Dispose` isn't supported. `StateHasChanged` might be invoked as part of tearing down the renderer, so requesting UI updates at that point isn't supported.
+
+Unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unhook an event handler in the `Dispose` method:
+
+* Private field and lambda approach
+
+  [!code-razor[](lifecycle/samples_snapshot/3.x/event-handler-disposal-1.razor?highlight=23,28)]
+
+* Private method approach
+
+  [!code-razor[](lifecycle/samples_snapshot/3.x/event-handler-disposal-2.razor?highlight=16,26)]
 
 ## Handle errors
 
