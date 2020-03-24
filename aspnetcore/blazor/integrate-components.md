@@ -5,7 +5,7 @@ description: Learn about data binding scenarios for components and DOM elements 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 03/17/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/integrate-components
 ---
@@ -217,31 +217,10 @@ For more information, see <xref:blazor/components#import-components>.
 
 *This section pertains to adding components to pages or views, where the components aren't directly routable from user requests.*
 
-To render a component from a page or view, use the `Component` Tag Helper:
-
-```cshtml
-<component type="typeof(Counter)" render-mode="ServerPrerendered" 
-    param-IncrementAmount="10" />
-```
-
-The parameter type must be JSON serializable, which typically means that the type must have a default constructor and settable properties. For example, you can specify a value for `IncrementAmount` because the type of `IncrementAmount` is an `int`, which is a primitive type supported by the JSON serializer.
-
-`RenderMode` configures whether the component:
-
-* Is prerendered into the page.
-* Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
-
-| `RenderMode`        | Description |
-| ------------------- | ----------- |
-| `ServerPrerendered` | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
-| `Server`            | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
-| `Static`            | Renders the component into static HTML. |
-
-While pages and views can use components, the converse isn't true. Components can't use view- and page-specific scenarios, such as partial views and sections. To use logic from partial view in a component, factor out the partial view logic into a component.
-
-Rendering server components from a static HTML page isn't supported.
+To render a component from a page or view, use the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
 For more information on how components are rendered, component state, and the `Component` Tag Helper, see the following articles:
 
 * <xref:blazor/hosting-models>
 * <xref:blazor/hosting-model-configuration>
+* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
