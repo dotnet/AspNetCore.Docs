@@ -15,40 +15,42 @@
 
 <div>
     <input type="button" value="Values"
-           onclick="requestVal('https://cors1.azurewebsites.net/api/values')" />
+           onclick="requestVal('api/values')" />
 </div>
 
 <div>
     <input type="button" value="Echo"
-           onclick="requestVal2('https://cors1.azurewebsites.net/echo')" />
+           onclick="requestVal2('echo')" />
 </div>
 
 <div>
     <input type="button" value="Echo2"
-           onclick="requestVal2('https://cors1.azurewebsites.net/echo2')" />
+           onclick="requestVal2('echo2')" />
 </div>
 
 <div>
     <input type="button" value="Index"
-           onclick="requestVal2('https://cors1.azurewebsites.net/Index')" />
+           onclick="requestVal2('Index')" />
 </div>
 
 <div>
     <input type="button" value="PUT/Delete test"
-           onclick="PutVal('https://cors1.azurewebsites.net/api/TodoItems/5', 'PUT')" />
+           onclick="PutVal('api/TodoItems/5', 'PUT')" />
 </div>
 
 <div>
     <input type="button" value="Delete test"
-           onclick="DeleteVal('https://cors1.azurewebsites.net/api/TodoItems/5', 'DELETE')" />
+           onclick="DeleteVal('api/TodoItems/5', 'DELETE')" />
 </div>
 
 <div>
     <input type="button" value="GET API test"
-           onclick="requestVal2('https://cors1.azurewebsites.net/api/TodoItems')" />
+           onclick="requestVal2('api/TodoItems')" />
 </div>
 
 <script>
+    var host = 'https://cors1.azurewebsites.net';
+
     function requestVal(uri) {
         const resultSpan = document.getElementById('result');
 
@@ -61,7 +63,7 @@
     function requestVal2(uri) {
         const resultSpan = document.getElementById('result');
 
-        fetch(uri)
+        fetch(host + uri)
             .then(response => {
                 if (response.ok) {
                     response.text().then(text => {
@@ -75,10 +77,10 @@
             .catch(error => resultSpan.innerText = 'See F12 Console for error');
     }
 
-    function PutVal(uri, methodName ) {
+    function PutVal(uri, methodName) {
         const resultSpan = document.getElementById('result');
 
-        fetch(uri,
+        fetch(host + uri,
             {
                 method: methodName,
                 headers:
@@ -90,21 +92,4 @@
                 resultSpan.innerText = response.status;
             });
     }
-
-    function DeleteVal(uri) {
-        const resultSpan = document.getElementById('result');
-
-        fetch(uri,
-            {
-                method: "DELETE",
-                headers:
-                {
-                    "Content-Type": "x-my-custom-header"
-                }
-
-            }).then((response) => {
-                resultSpan.innerText = response.status;
-            });
-    }
-
 </script>

@@ -28,9 +28,7 @@ namespace WebAPI5
                                   builder =>
                                   {
                                       builder.WithOrigins("http://example.com",
-                                                           "http://www.contoso.com",
-                                                           "https://localhost:44398",
-                                                           "https://localhost:5001");
+                                                          "http://www.contoso.com");
                                   });
             });
 

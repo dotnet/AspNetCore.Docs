@@ -1,16 +1,84 @@
 ﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @model WebAPI.Test2Model
 @{
     Layout = null;
 }
 
-<!DOCTYPE html>
+<div class="text-center">
+    <h1 class="display-4">CORS Test</h1>
+</div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Test2</title>
-</head>
-<body>
-</body>
-</html>
+
+<div>
+    <span id='result'></span>
+</div>
+
+<form>
+    <p>
+        Port: <input type="text" asp-for="Port" />
+
+        <input type="submit" value="Set" />
+    </p>
+</form>
+
+<ul>
+    <li>
+        <input type="button" value="PUT no opptions"
+               onclick="PutVal( '/api/TodoItems' + '@Model.Port' + '/5', 'PUT')" />
+    </li>
+
+    <li>
+        <input type="button" value="Delete test"
+               onclick="PutVal('/api/TodoItems/5', 'DELETE')" />
+    </li>
+    </ul>
+
+    <ul>
+        <li>
+            <input type="button" value="PUT test99"
+                   onclick="PutVal( '/api/TodoItems2/5', 'PUT')" />
+        </li>
+
+        <li>
+            <input type="button" value="Delete test"
+                   onclick="PutVal('/api/TodoItems2/5', 'DELETE')" />
+        </li>
+
+        <li>
+            <input type="button" value="Delete [EnableCors]"
+                   onclick="PutVal('/api/TodoItems2/MyDelete2/5', 'DELETE')" />
+        </li>
+
+        <li>
+            <input type="button" value="GET"
+                   onclick="PutVal('/api/TodoItems2/MyDelete2/5', 'GET')" />
+        </li>
+
+        <li>
+            <input type="button" value="Delete 3"
+                   onclick="PutVal('/api/TodoItems2/MyDelete3/5', 'DELETE')" />
+        </li>
+
+    </ul>
+
+    <script>
+
+    function PutVal(uri, methodName) {
+        const resultSpan = document.getElementById('result');
+
+      //  fetch('https://localhost:' + '@Model.Port' + uri,
+        fetch('https://cors1.azurewebsites.net' + uri,
+            {
+                method: methodName,
+                headers:
+                {
+                    "Content-Type": "x-my-custom-header"
+                }
+
+            }).then((response) => {
+                resultSpan.innerText = response.status;
+            });
+    }
+    </script>

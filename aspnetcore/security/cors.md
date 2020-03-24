@@ -76,7 +76,10 @@ Note: The specified URL must **not** contain a trailing slash (`/`). If the URL 
 
 ## Enable Cors with endpoint routing
 
-With endpoint routing, CORS can be enabled on a per-endpoint basis using the `RequireCors` set of extension methods:
+***Note:*** Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [pre-flight requests](pref). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/18665). 
+
+
+With endpoint routing, CORS can be enabled on a per-endpoint basis using the <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> set of extension methods:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPt.cs?name=snippet)]
 
@@ -237,9 +240,11 @@ I don't like "all CORS enabled domains must be trusted", because it implies that
 
 The CORS specification also states that setting origins to `"*"` (all origins) is invalid if the `Access-Control-Allow-Credentials` header is present.
 
-### Preflight requests
+<a name="pref"></a>
 
-For some CORS requests, the browser sends an additional request before making the actual request. This request is called a [preflight request](https://developer.mozilla.org/docs/Glossary/Preflight_request). The browser can skip the preflight request if the following conditions are true:
+## Preflight requests
+
+For some CORS requests, the browser sends an additional [OPTIONS](https://developer.mozilla.org/docs/Web/HTTP/Methods/OPTIONS) request before making the actual request. This request is called a [preflight request](https://developer.mozilla.org/docs/Glossary/Preflight_request). The browser can skip the preflight request if the following conditions are true:
 
 * The request method is GET, HEAD, or POST.
 * The app doesn't set request headers other than `Accept`, `Accept-Language`, `Content-Language`, `Content-Type`, or `Last-Event-ID`.
@@ -426,6 +431,19 @@ needs to be installed and configured for the app.
 * [Getting started with the IIS CORS module](https://blogs.iis.net/iisteam/getting-started-with-the-iis-cors-module)
 
 ::: moniker-end
+
+<!--
+curl come with Git. Add to path variable
+C:\Program Files\Git\mingw64\bin\
+curl -X OPTIONS https://localhost:5001/api/TodoItems/5 -i
+
+To add OPTIONS request to chrome/edge network tab/f12 tools:
+
+* chrome://flags/#out-of-blink-cors or edge://flags/#out-of-blink-cors
+* disable the flag
+* restart.
+
+-->
 
 ::: moniker range="< aspnetcore-3.0"
 
@@ -697,6 +715,8 @@ The pre-flight request uses the HTTP OPTIONS method. It includes two special hea
 * `Access-Control-Request-Method`: The HTTP method that will be used for the actual request.
 * `Access-Control-Request-Headers`: A list of request headers that the app sets on the actual request. As stated earlier, this doesn't include headers that the browser sets, such as `User-Agent`.
 
+When CORS is enabled with the appropriate policy, ASP.NET Core generally automatically responds to CORS preflight requests. See [[HttpOptions] attribute for preflight requests](#pro).
+
 A CORS preflight request might include an `Access-Control-Request-Headers` header, which indicates to the server the headers that are sent with the actual request.
 
 To allow specific headers, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*>:
@@ -725,6 +745,12 @@ Date: Wed, 20 May 2015 06:33:22 GMT
 The response includes an `Access-Control-Allow-Methods` header that lists the allowed methods and optionally an `Access-Control-Allow-Headers` header, which lists the allowed headers. If the preflight request succeeds, the browser sends the actual request.
 
 If the preflight request is denied, the app returns a *200 OK* response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request.
+
+<a name="pro"></a>
+
+### [HttpOptions] attribute for preflight requests
+
+When CORS is enabled with the appropriate policy, ASP.NET Core generally automatically responds to CORS preflight requests. In some cases, code may not be generated to respond to preflight requests, for example, using [CORS with endpoinnt routing](ecors)
 
 ### Set the preflight expiration time
 

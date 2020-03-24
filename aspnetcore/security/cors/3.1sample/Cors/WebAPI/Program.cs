@@ -17,7 +17,9 @@ namespace WebAPI
                    // webBuilder.UseStartup<WebAPI5.Startup>();
                     // webBuilder.UseStartup<WebAPI6.Startup>();
 
-                      webBuilder.UseStartup<Startup7>();
+                 //     webBuilder.UseStartup<Startup7>();
+                    webBuilder.UseStartup<Startup8>();
+
                 });
     }
 }
