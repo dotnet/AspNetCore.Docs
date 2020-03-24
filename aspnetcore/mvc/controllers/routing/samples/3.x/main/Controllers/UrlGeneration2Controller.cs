@@ -18,9 +18,11 @@ namespace WebMvcRouting.Controllers
         #endregion
 
         [HttpGet("custom/url/to/destination2", Name = "Destination_Route")]
-        public IActionResult Destination() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult Destination()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
+        #endregion
     }
-    #endregion
 }
 #endif

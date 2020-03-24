@@ -10,13 +10,15 @@ namespace WebMvcRouting.Controllers
 {
 #if MYDEMO3
     #region snippet2
-    public class MyDemo3Controller : Controller
+    public class MyDemo31Controller : Controller
     {
         [Route("")]
         [Route("Home")]
         [Route("Home/MyIndex")]
-        public IActionResult MyIndex() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult MyIndex()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
     }
     #endregion
 #endif
@@ -24,12 +26,14 @@ namespace WebMvcRouting.Controllers
 #if MYDEMO4
     public class MyDemo3Controller : Controller
     {
-    #region snippet3
+        #region snippet3
         [Route("")]
-        [Route("Home",Order = 2)]
+        [Route("Home", Order = 2)]
         [Route("Home/MyIndex")]
-        public IActionResult MyIndex()=>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult MyIndex()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
     #endregion
     }
 #endif

@@ -10,7 +10,9 @@ public class UrlGenerationAttrController : Controller
     }
 
     [HttpGet("custom/url/to/destination")]
-    public IActionResult Destination() =>
-            ControllerContext.MyDisplayRouteInfo();
+    public IActionResult Destination()
+    {
+       return ControllerContext.MyDisplayRouteInfo();
+    }
 }
 #endregion

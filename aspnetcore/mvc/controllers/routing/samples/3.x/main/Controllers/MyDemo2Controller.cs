@@ -9,8 +9,10 @@ namespace RoutingSample.Controllers
     public class MyDemo2Controller : Controller
         {
         [Route("/articles/{page}")]
-        public IActionResult ListArticles(int page) =>
-            ControllerContext.MyDisplayRouteInfo(page);
+        public IActionResult ListArticles(int page)
+        {
+            return ControllerContext.MyDisplayRouteInfo(page);
+        }
     }
     #endregion
 #endif

@@ -18,8 +18,10 @@ namespace WebMvcRouting.Controllers
     {
         // GET /api/MyTestApi
         [HttpGet]
-        public IActionResult Get() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult Get()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
     }
     #endregion
 }

@@ -13,12 +13,16 @@ namespace WebMvcRouting.Controllers
     public class ProductsApiController : ControllerBase
     {
         [HttpGet]
-        public IActionResult ListProducts() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult ListProducts()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
 
         [HttpGet("{id}")]
-        public IActionResult GetProduct(int id) =>
-            ControllerContext.MyDisplayRouteInfo(id);
+        public IActionResult GetProduct(int id)
+        {
+            return ControllerContext.MyDisplayRouteInfo(id);
+        }
     }
     #endregion
 #endif
@@ -29,8 +33,10 @@ namespace WebMvcRouting.Controllers
     public class Products2ApiController : ControllerBase
     {
         [HttpGet("/products2/{id}", Name = "Products_List")]
-        public IActionResult GetProduct(int id) =>
-            ControllerContext.MyDisplayRouteInfo(id);
+        public IActionResult GetProduct(int id)
+        {
+            return ControllerContext.MyDisplayRouteInfo(id);
+        }
     }
     #endregion
 #endif

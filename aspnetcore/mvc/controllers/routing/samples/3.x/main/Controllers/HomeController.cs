@@ -5,6 +5,7 @@
 //#define Second
 //#define Third
 //#define Forth
+
 #define Five
 
 using Microsoft.AspNetCore.Mvc;
@@ -20,12 +21,16 @@ namespace WebMvcRouting.Controllers
         [Route("")]
         [Route("Index")]
         [Route("/")]
-        public IActionResult Index() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult Index()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
 
         [Route("About")]
-        public IActionResult About() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult About()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
     }
     #endregion
 #elif Second
@@ -36,13 +41,17 @@ namespace WebMvcRouting.Controllers
         [Route("Home")]
         [Route("Home/Index")]
         [Route("Home/Index/{id?}")]
-        public IActionResult Index(int ?id) =>
-            ControllerContext.MyDisplayRouteInfo(id);
+        public IActionResult Index(int? id)
+        {
+            return ControllerContext.MyDisplayRouteInfo(id);
+        }
 
         [Route("Home/About")]
         [Route("Home/About/{id?}")]
-        public IActionResult About(int? id) =>
-            ControllerContext.MyDisplayRouteInfo(id);
+        public IActionResult About(int? id)
+        {
+            return ControllerContext.MyDisplayRouteInfo(id);
+        }
     }
     #endregion
 #elif Third
@@ -52,12 +61,16 @@ namespace WebMvcRouting.Controllers
         [Route("")]
         [Route("Home")]
         [Route("[controller]/[action]")]
-        public IActionResult Index() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult Index()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
 
         [Route("[controller]/[action]")]
-        public IActionResult About() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult About()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
     }
     #endregion
 
@@ -69,19 +82,25 @@ namespace WebMvcRouting.Controllers
         [Route("~/")]
         [Route("/Home")]
         [Route("~/Home/Index")]
-        public IActionResult Index() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult Index()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
 
-        public IActionResult About() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult About()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
     }
     #endregion
 #elif Five
     #region snippet24
     public class HomeController : Controller
     {
-        public IActionResult Index() =>
-                  ControllerContext.MyDisplayRouteInfo();
+        public IActionResult Index()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
     }
     #endregion
 #endif

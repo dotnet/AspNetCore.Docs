@@ -6,11 +6,15 @@ namespace WebMvcRouting.Controllers
     #region snippet
     public class BlogController : Controller
     {
-        public IActionResult Article() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult Article()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
 
-        public IActionResult Index() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult Index()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
     }
     #endregion
 }

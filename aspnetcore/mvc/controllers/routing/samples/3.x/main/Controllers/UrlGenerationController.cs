@@ -11,8 +11,10 @@ namespace WebMvcRouting.Controllers
             return ControllerContext.MyDisplayRouteInfo("", $" URL = {url}");
         }
 
-        public IActionResult Destination() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult Destination()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
     }
     #endregion
 }

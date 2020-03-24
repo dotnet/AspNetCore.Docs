@@ -6,8 +6,10 @@ namespace WebMvcRouting.Controllers
     public class SubscriptionManagementController : Controller
     {
         [HttpGet("[controller]/[action]")]
-        public IActionResult ListAll() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult ListAll()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
     }
     #endregion
 }
