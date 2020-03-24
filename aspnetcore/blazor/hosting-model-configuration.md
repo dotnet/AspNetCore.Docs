@@ -5,7 +5,7 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 03/24/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
@@ -17,11 +17,21 @@ By [Daniel Roth](https://github.com/danroth27)
 
 This article covers hosting model configuration.
 
-<!-- For future use:
-
 ## Blazor WebAssembly
 
--->
+As of the ASP.NET Core 3.2 Preview 3 release, Blazor WebAssembly supports configuration from:
+
+* *wwwroot/appsettings.json*
+* *wwwroot/appsettings.{ENVIRONMENT}.json*
+
+In a Blazor Hosted app, the value of `HostingEnvironment` is the same as the server app's value.
+
+`HostingEnvironment` defaults to the Development environment when using the Blazor development server. In non-ASP.NET Core hosts, the Production environment is used by default.
+
+> [!WARNING]
+> Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets or credentials in configuration.**
+
+For more information, see <xref:fundamentals/environments>.
 
 ## Blazor Server
 
