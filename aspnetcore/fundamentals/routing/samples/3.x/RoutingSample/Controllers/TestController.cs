@@ -11,13 +11,17 @@ namespace RoutingSample.Controllers
     {
         // GET /api/test/3
         [HttpGet("{id:customName}")]
-        public IActionResult Get(string id) =>
-            ControllerContext.MyDisplayRouteInfo(id); 
+        public IActionResult Get(string id)
+        {
+            return ControllerContext.MyDisplayRouteInfo(id);
+        }
 
         // GET /api/test/my/3
         [HttpGet("my/{id:customName}")]
-        public IActionResult Get(int id) =>
-            ControllerContext.MyDisplayRouteInfo(id);
+        public IActionResult Get(int id)
+        {
+            return ControllerContext.MyDisplayRouteInfo(id);
+        }
     }
     #endregion
 

@@ -13,7 +13,9 @@ namespace RoutingSample.Controllers
         }
         #endregion
 
-        public IActionResult Edit(int id) =>
-            ControllerContext.MyDisplayRouteInfo(id);
+        public IActionResult Edit(int id)
+        {
+            return ControllerContext.MyDisplayRouteInfo(id);
+        }
     }
 }

@@ -6,15 +6,21 @@ namespace RoutingSample.Controllers
     #region snippet
     public class HomeController : Controller
     {
-        public IActionResult Index() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult Index()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
 
-        public IActionResult Privacy() =>
-            ControllerContext.MyDisplayRouteInfo();
+        public IActionResult Privacy()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
 
         #endregion
 
-        public IActionResult Subscribe(int id) =>
-            ControllerContext.MyDisplayRouteInfo(id);
+        public IActionResult Subscribe(int id)
+        {
+            return ControllerContext.MyDisplayRouteInfo(id);
+        }
     }
 }
