@@ -5,7 +5,7 @@ description: Learn how to build a Blazor-based Progressive Web Application (PWA)
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/12/2020
+ms.date: 03/23/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/progressive-web-app
 ---
@@ -120,7 +120,7 @@ The cache-first strategy is valuable because:
 * **It ensures reliability.** &ndash; Network access isn't a boolean state. A user isn't simply online or offline:
 
   * The user's device may assume it's online, but the network might be so slow as to be impractical to wait for.
-  * he network might return invalid results for certain URLs, such as when there's a captive WIFI portal that's currently blocking or redirecting certain requests.
+  * The network might return invalid results for certain URLs, such as when there's a captive WIFI portal that's currently blocking or redirecting certain requests.
   
   This is why the browser's `navigator.onLine` API isn't reliable and shouldn't be depended upon.
 
