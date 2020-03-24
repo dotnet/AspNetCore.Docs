@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/16/2020
+ms.date: 03/24/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/debug
 ---
@@ -15,15 +15,13 @@ uid: blazor/debug
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-*Early* support exists for debugging Blazor WebAssembly using the browser dev tools in Chromium-based browsers (Chrome/Edge). Work is in progress to:
+As of ASP.NET Core 3.2 Preview 3, Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Chrome/Edge) in Visual Studio and Visual Studio Code.
 
-* Fully enable debugging in Visual Studio.
-* Enable debugging in Visual Studio Code.
-
-Debugger capabilities are limited. Available scenarios include:
+Available scenarios include:
 
 * Set and remove breakpoints.
-* Single-step (`F10`) through the code or resume (`F8`) code execution.
+* Run the app with debugging support in Visual Studio (<kbd>F5</kbd> support).
+* Single-step (<kbd>F10</kbd>) through the code or resume (<kbd>F8</kbd>) code execution.
 * In the *Locals* display, observe the values of any local variables of type `int`, `string`, and `bool`.
 * See the call stack, including call chains that go from JavaScript into .NET and from .NET to JavaScript.
 
@@ -49,16 +47,13 @@ Debugging requires either of the following browsers:
 
 # [Visual Studio](#tab/visual-studio)
 
-> [!WARNING]
-> Debugging support in Visual Studio is at an early stage of development. **F5** debugging isn't currently supported.
-
-1. Run a Blazor WebAssembly app in `Debug` configuration without debugging (**Ctrl**+**F5** instead of **F5**).
+1. Run a Blazor WebAssembly app in `Debug` configuration (<kbd>F5</kbd>).
 1. Open the Debug properties of the app (last entry in the **Debug** menu) and copy the HTTP **App URL**. Browse to the HTTP address (not the HTTPS address) of the app using a Chromium-based browser (Edge Beta or Chrome).
 1. Place the keyboard focus on the app in the browser window, not the developer tools panel. It's best to keep the developer tools panel closed for this procedure. After debugging has started, you can re-open the developer tools panel.
 1. Select the following Blazor-specific keyboard shortcut:
 
-   * `Shift+Alt+D` on Windows
-   * `Shift+Cmd+D` on macOS
+   * <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd> on Windows
+   * <kbd>Shift</kbd>+<kbd>Cmd</kbd>+<kbd>D</kbd> on macOS
 
    If you receive the **Unable to find debuggable browser tab**, see [Enable remote debugging](#enable-remote-debugging).
    
@@ -68,11 +63,9 @@ Debugging requires either of the following browsers:
 
    2\. Place the keyboard focus on the app in the browser window.
 
-   3\. Select the Blazor-specific keyboard shortcut in the new browser window: `Shift+Alt+D` on Windows or `Shift+Cmd+D` on macOS.
+   3\. Select the Blazor-specific keyboard shortcut in the new browser window: <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd> on Windows or <kbd>Shift</kbd>+<kbd>Cmd</kbd>+<kbd>D</kbd> on macOS.
 
    4\. The **DevTools** tab opens in the browser. **Reselect the app's tab in the browser window.**
-
-   To attach the app to Visual Studio, see the [Attach to process in Visual Studio](#attach-to-process-in-visual-studio) section.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -81,8 +74,8 @@ Debugging requires either of the following browsers:
 1. Place the keyboard focus on the app, not the developer tools panel. It's best to keep the developer tools panel closed for this procedure. After debugging has started, you can re-open the developer tools panel.
 1. Select the following Blazor-specific keyboard shortcut:
 
-   * `Shift+Alt+D` on Windows
-   * `Shift+Cmd+D` on macOS
+   * <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd> on Windows
+   * <kbd>Shift</kbd>+<kbd>Cmd</kbd>+<kbd>D</kbd> on macOS
 
    If you receive the **Unable to find debuggable browser tab**, see [Enable remote debugging](#enable-remote-debugging).
    
@@ -92,7 +85,7 @@ Debugging requires either of the following browsers:
 
    2\. Place the keyboard focus on the app in the browser window, not the developer tools panel.
 
-   3\. Select the Blazor-specific keyboard shortcut in the new browser window: `Shift+Alt+D` on Windows or `Shift+Cmd+D` on macOS.
+   3\. Select the Blazor-specific keyboard shortcut in the new browser window: <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd> on Windows or <kbd>Shift</kbd>+<kbd>Cmd</kbd>+<kbd>D</kbd> on macOS.
 
 ---
 
@@ -102,22 +95,9 @@ If remote debugging is disabled, an **Unable to find debuggable browser tab** er
 
 ## Debug the app
 
-Once Chrome is running with remote debugging enabled, the debugging keyboard shortcut opens a new debugger tab. After a moment, the **Sources** tab shows a list of the .NET assemblies in the app. Expand each assembly and find the *.cs*/*.razor* source files available for debugging. Set breakpoints, switch back to the app's tab, and the breakpoints are hit when the code executes. After a breakpoint is hit, single-step (`F10`) through the code or resume (`F8`) code execution normally.
+Once Chrome is running with remote debugging enabled, the debugging keyboard shortcut opens a new debugger tab. After a moment, the **Sources** tab shows a list of the .NET assemblies in the app. Expand each assembly and find the *.cs*/*.razor* source files available for debugging. Set breakpoints, switch back to the app's tab, and the breakpoints are hit when the code executes. After a breakpoint is hit, single-step (<kbd>F10</kbd>) through the code or resume (<kbd>F8</kbd>) code execution normally.
 
 Blazor provides a debugging proxy that implements the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) and augments the protocol with .NET-specific information. When debugging keyboard shortcut is pressed, Blazor points the Chrome DevTools at the proxy. The proxy connects to the browser window you're seeking to debug (hence the need to enable remote debugging).
-
-## Attach to process in Visual Studio
-
-Attaching to the app's process in Visual Studio is a *temporary* debugging scenario for Blazor WebAssembly while **F5** debugging is in development.
-
-To attach the running app's process to Visual Studio:
-
-1. In Visual Studio, select **Debug** > **Attach to Process**.
-1. For the **Connection type**, select **Chrome devtools protocol websocket (no authentication)**.
-1. For the **Connection target**, paste in the HTTP address (not the HTTPS address) of the app.
-1. Select **Refresh** to refresh the entries under **Available processes**.
-1. Select the browser process to debug and select **Attach**.
-1. In the **Select Code Type** dialog, select the code type for the specific browser you're attaching to (Edge or Chrome) and then select **OK**.
 
 ## Browser source maps
 
