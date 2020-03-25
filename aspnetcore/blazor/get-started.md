@@ -26,11 +26,11 @@ To get started with Blazor, follow the guidance for your choice of tooling:
    If installing a version of Visual Studio earlier than version 16.6 Preview 2, optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template. Run the following command in a command shell. The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview.
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.XXXXX.X
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
    ```
 
    > [!NOTE]
-   > .NET Core SDK version 3.1.200 or later is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
+   > .NET Core SDK version 3.1.201 or later is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
 
 1. Create a new project.
 
@@ -51,15 +51,15 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template:
 
-   * Install the [.NET Core 3.1.200 or later (Preview) SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+   * Install the [.NET Core 3.1.201 or later (Preview) SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
    * Run the following command in a command shell. The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview.
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.XXXXX.X
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
    ```
 
    > [!NOTE]
-   > .NET Core SDK version 3.1.200 or later is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
+   > .NET Core SDK version 3.1.201 or later is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
 
 1. Install [Visual Studio Code](https://code.visualstudio.com/).
 
@@ -113,15 +113,15 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template:
 
-   * Install the [.NET Core 3.1.200 or later (Preview) SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+   * Install the [.NET Core 3.1.201 or later (Preview) SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
    * Run the following command in a command shell. The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview.
 
    ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.XXXXX.X
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
    ```
 
    > [!NOTE]
-   > .NET Core SDK version 3.1.200 or later is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
+   > .NET Core SDK version 3.1.201 or later is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
 
 1. For a Blazor WebAssembly experience, execute the following commands in a command shell:
 
