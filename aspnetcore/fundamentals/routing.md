@@ -979,6 +979,8 @@ As an example of this guideline, consider the `UseAuthorization` middleware. The
 
 This makes the authorization middleware useful outside of the context of routing. The authorization middleware can be used for traditional middleware programming.
 
+[!INCLUDE[](~/includes/dbg-route.md)]
+
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.2"
@@ -1974,6 +1976,5 @@ Link generation only generates a link for this route when the matching values fo
 ## Complex segments
 
 Complex segments (for example `[Route("/x{token}y")]`) are processed by matching up literals from right to left in a non-greedy way. See [this code](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) for a detailed explanation of how complex segments are matched. The [code sample](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) is not used by ASP.NET Core, but it provides a good explanation of complex segments.
-
 
 ::: moniker-end
