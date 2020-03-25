@@ -17,9 +17,16 @@
     <span id='result'></span>
 </div>
 
+
 <form>
     <p>
         Controller: <input type="text" asp-for="CtlNum" />
+
+        Controller: <select name="number" asp-for="Number">
+            <option selected="selected" value="1">No-preflight</option>
+            <option value="2">Preflight</option>
+
+        </select>
 
         <input type="submit" value="Set" />
     </p>
@@ -28,7 +35,7 @@
 <ul>
     <li>
         <input type="button" value="PUT test"
-               onclick="TestCors( '/api/TodoItems' + '@Model.CtlNum' + '/5', 'PUT')" />
+               onclick="TestCors( '/api/TodoItems' + '@Model.Number' + '/5', 'PUT')" />
     </li>
 
     <li>

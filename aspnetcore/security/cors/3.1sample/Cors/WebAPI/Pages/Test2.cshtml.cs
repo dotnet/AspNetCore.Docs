@@ -10,6 +10,9 @@ namespace WebAPI
         [BindProperty(SupportsGet = true)]
         public string CtlNum { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public int Number { get; set; }
+
         public void OnGet()
         {
             if (string.IsNullOrEmpty(CtlNum))
