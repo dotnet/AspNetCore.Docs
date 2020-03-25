@@ -26,7 +26,7 @@ public class Startup
         {
             // Non-development service configuration
 
-            logger.LogInformation($"Environment: {_env.EnvironmentName}");
+            logger.LogInformation("Environment: {EnvironmentName}", _env.EnvironmentName);
         }
 
         // Configuration is available during startup.

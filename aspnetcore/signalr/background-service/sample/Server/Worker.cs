@@ -24,7 +24,7 @@ namespace Server
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.LogInformation($"Worker running at: {DateTime.Now}");
+                _logger.LogInformation("Worker running at: {Time}", DateTime.Now);
                 await _clockHub.Clients.All.ShowTime(DateTime.Now);
                 await Task.Delay(1000);
             }

@@ -39,7 +39,7 @@ namespace ContactManager.Pages.Contacts
                                                      ContactOperations.Delete);
             if (!isAuthorized.Succeeded)
             {
-                return new ChallengeResult();
+                return Forbid();
             }
 
             return Page();
@@ -61,7 +61,7 @@ namespace ContactManager.Pages.Contacts
                                                      ContactOperations.Delete);
             if (!isAuthorized.Succeeded)
             {
-                return new ChallengeResult();
+                return Forbid();
             }
 
             Context.Contact.Remove(contact);

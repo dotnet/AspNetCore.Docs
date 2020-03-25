@@ -1,18 +1,21 @@
 ---
 title: ASP.NET Core Blazor state management
 author: guardrex
-description: Learn how to persist state in Blazor server-side apps.
-monikerRange: '>= aspnetcore-3.0'
+description: Learn how to persist state in Blazor Server apps.
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/13/2019
+ms.date: 03/17/2020
+no-loc: [Blazor, SignalR]
 uid: blazor/state-management
 ---
 # ASP.NET Core Blazor state management
 
 By [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-Blazor server-side is a stateful app framework. Most of the time, the app maintains an ongoing connection to the server. The user's state is held in the server's memory in a *circuit*. 
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
+Blazor Server is a stateful app framework. Most of the time, the app maintains an ongoing connection to the server. The user's state is held in the server's memory in a *circuit*. 
 
 Examples of state held for a user's circuit include:
 
@@ -21,7 +24,7 @@ Examples of state held for a user's circuit include:
 * Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit.
 
 > [!NOTE]
-> This article addresses state persistence in Blazor server-side apps. Blazor client-side apps can take advantage of [client-side state persistence in the browser](#client-side-in-the-browser) but require custom solutions or 3rd party packages beyond the scope of this article.
+> This article addresses state persistence in Blazor Server apps. Blazor WebAssembly apps can take advantage of [client-side state persistence in the browser](#client-side-in-the-browser) but require custom solutions or 3rd party packages beyond the scope of this article.
 
 ## Blazor circuits
 
@@ -56,7 +59,7 @@ It's usually not necessary to preserve easily-recreated state, such as the usern
 
 ## Where to persist state
 
-Three common locations exist for persisting state in a Blazor server-side app. Each approach is best suited to different scenarios and has different caveats:
+Three common locations exist for persisting state in a Blazor Server app. Each approach is best suited to different scenarios and has different caveats:
 
 * [Server-side in a database](#server-side-in-a-database)
 * [URL](#url)
@@ -94,7 +97,7 @@ For information on defining URL patterns with the `@page` directive, see <xref:b
 For transient data that the user is actively creating, a common backing store is the browser's `localStorage` and `sessionStorage` collections. The app isn't required to manage or clear the stored state if the circuit is abandoned, which is an advantage over server-side storage.
 
 > [!NOTE]
-> "Client-side" in this section refers to client-side scenarios in the browser, not the [Blazor client-side hosting model](xref:blazor/hosting-models#client-side). `localStorage` and `sessionStorage` can be used in Blazor client-side apps but only by writing custom code or using a 3rd party package.
+> "Client-side" in this section refers to client-side scenarios in the browser, not the [Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-webassembly). `localStorage` and `sessionStorage` can be used in Blazor WebAssembly apps but only by writing custom code or using a 3rd party package.
 
 `localStorage` and `sessionStorage` differ as follows:
 
@@ -112,7 +115,7 @@ Caveats for using browser storage:
 
 * Similar to the use of a server-side database, loading and saving data are asynchronous.
 * Unlike a server-side database, storage isn't available during prerendering because the requested page doesn't exist in the browser during the prerendering stage.
-* Storage of a few kilobytes of data is reasonable to persist for Blazor server-side apps. Beyond a few kilobytes, you must consider the performance implications because the data is loaded and saved across the network.
+* Storage of a few kilobytes of data is reasonable to persist for Blazor Server apps. Beyond a few kilobytes, you must consider the performance implications because the data is loaded and saved across the network.
 * Users may view or tamper with the data. ASP.NET Core [Data Protection](xref:security/data-protection/introduction) can mitigate the risk.
 
 ## Third-party browser storage solutions
@@ -132,7 +135,7 @@ An example of a NuGet package that provides [Data Protection](xref:security/data
 
 To install the `Microsoft.AspNetCore.ProtectedBrowserStorage` package:
 
-1. In the Blazor server-side app project, add a package reference to [Microsoft.AspNetCore.ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
+1. In the Blazor Server app project, add a package reference to [Microsoft.AspNetCore.ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
 1. In the top-level HTML (for example, in the *Pages/_Host.cshtml* file in the default project template), add the following `<script>` tag:
 
    ```html
@@ -147,44 +150,44 @@ To install the `Microsoft.AspNetCore.ProtectedBrowserStorage` package:
 
 ### Save and load data within a component
 
-In any component that requires loading or saving data to browser storage, use [@inject](xref:blazor/dependency-injection#request-a-service-in-a-component) to inject an instance of either of the following:
+In any component that requires loading or saving data to browser storage, use [`@inject`](xref:blazor/dependency-injection#request-a-service-in-a-component) to inject an instance of either of the following:
 
 * `ProtectedLocalStorage`
 * `ProtectedSessionStorage`
 
 The choice depends on which backing store you wish to use. In the following example, `sessionStorage` is used:
 
-```cshtml
+```razor
 @using Microsoft.AspNetCore.ProtectedBrowserStorage
 @inject ProtectedSessionStorage ProtectedSessionStore
 ```
 
 The `@using` statement can be placed into an *_Imports.razor* file instead of in the component. Use of the *_Imports.razor* file makes the namespace available to larger segments of the app or the whole app.
 
-To persist the `currentCount` value in the `Counter` component of the project template, modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
+To persist the `_currentCount` value in the `Counter` component of the project template, modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
 
 ```csharp
 private async Task IncrementCount()
 {
-    currentCount++;
-    await ProtectedSessionStore.SetAsync("count", currentCount);
+    _currentCount++;
+    await ProtectedSessionStore.SetAsync("count", _currentCount);
 }
 ```
 
 In larger, more realistic apps, storage of individual fields is an unlikely scenario. Apps are more likely to store entire model objects that include complex state. `ProtectedSessionStore` automatically serializes and deserializes JSON data.
 
-In the preceding code example, the `currentCount` data is stored as `sessionStorage['count']` in the user's browser. The data isn't stored in plaintext but rather is protected using ASP.NET Core's [Data Protection](xref:security/data-protection/introduction). The encrypted data can be seen if `sessionStorage['count']` is evaluated in the browser's developer console.
+In the preceding code example, the `_currentCount` data is stored as `sessionStorage['count']` in the user's browser. The data isn't stored in plaintext but rather is protected using ASP.NET Core's [Data Protection](xref:security/data-protection/introduction). The encrypted data can be seen if `sessionStorage['count']` is evaluated in the browser's developer console.
 
-To recover the `currentCount` data if the user returns to the `Counter` component later (including if they're on an entirely new circuit), use `ProtectedSessionStore.GetAsync`:
+To recover the `_currentCount` data if the user returns to the `Counter` component later (including if they're on an entirely new circuit), use `ProtectedSessionStore.GetAsync`:
 
 ```csharp
 protected override async Task OnInitializedAsync()
 {
-    currentCount = await ProtectedSessionStore.GetAsync<int>("count");
+    _currentCount = await ProtectedSessionStore.GetAsync<int>("count");
 }
 ```
 
-If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign the result in `OnParametersSetAsync`, not `OnInitializedAsync`. `OnInitializedAsync` is only called one time when the component is first instantiated. `OnInitializedAsync` isn't called again later if the user navigates to a different URL while remaining on the same page.
+If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign the result in `OnParametersSetAsync`, not `OnInitializedAsync`. `OnInitializedAsync` is only called one time when the component is first instantiated. `OnInitializedAsync` isn't called again later if the user navigates to a different URL while remaining on the same page. For more information, see <xref:blazor/lifecycle>.
 
 > [!WARNING]
 > The examples in this section only work if the server doesn't have prerendering enabled. With prerendering enabled, an error is generated similar to:
@@ -197,18 +200,18 @@ If the component's parameters include navigation state, call `ProtectedSessionSt
 
 Since browser storage is asynchronous (accessed over a network connection), there's always a period of time before the data is loaded and available for use by a component. For the best results, render a loading-state message while loading is in progress instead of displaying blank or default data.
 
-One approach is to track whether the data is `null` (still loading) or not. In the default `Counter` component, the count is held in an `int`. Make `currentCount` nullable by adding a question mark (`?`) to the type (`int`):
+One approach is to track whether the data is `null` (still loading) or not. In the default `Counter` component, the count is held in an `int`. Make `_currentCount` nullable by adding a question mark (`?`) to the type (`int`):
 
 ```csharp
-private int? currentCount;
+private int? _currentCount;
 ```
 
 Instead of unconditionally displaying the count and **Increment** button, choose to display these elements only if the data is loaded:
 
-```cshtml
-@if (currentCount.HasValue)
+```razor
+@if (_currentCount.HasValue)
 {
-    <p>Current count: <strong>@currentCount</strong></p>
+    <p>Current count: <strong>@_currentCount</strong></p>
 
     <button @onclick="IncrementCount">Increment</button>
 }
@@ -231,48 +234,27 @@ During prerendering:
 
 One way to resolve the error is to disable prerendering. This is usually the best choice if the app makes heavy use of browser-based storage. Prerendering adds complexity and doesn't benefit the app because the app can't prerender any useful content until `localStorage` or `sessionStorage` are available.
 
-To disable prerendering:
-
-1. Open the *Pages/_Host.cshtml* file and remove the call to `Html.RenderComponentAsync`.
-1. Open the `Startup.cs` file and replace the call to `endpoints.MapBlazorHub()` with `endpoints.MapBlazorHub<App>("app")`. `App` is the type of the root component. `"app"` is a CSS selector specifying the location for the root component.
+To disable prerendering, open the *Pages/_Host.cshtml* file and change the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>.
 
 Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`. To keep prerendering enabled, defer the loading operation until the browser is connected to the circuit. The following is an example for storing a counter value:
 
-```cshtml
+```razor
 @using Microsoft.AspNetCore.ProtectedBrowserStorage
 @inject ProtectedLocalStorage ProtectedLocalStore
-@inject IComponentContext ComponentContext
 
 ... rendering code goes here ...
 
 @code {
-    private int? currentCount;
-    private bool isWaitingForConnection;
+    private int? _currentCount;
+    private bool _isConnected = false;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (ComponentContext.IsConnected)
+        if (firstRender)
         {
-            // It looks like the app isn't prerendering, so the data can be
-            // immediately loaded from browser storage.
-            await LoadStateAsync();
-        }
-        else
-        {
-            // Prerendering is in progress, so the app defers the load operation
-            // until later.
-            isWaitingForConnection = true;
-        }
-    }
-
-    protected override async Task OnAfterRenderAsync()
-    {
-        // By this stage, the client has connected back to the server, and
-        // browser services are available. If the app didn't load the data earlier,
-        // the app should do so now and then trigger a new render.
-        if (isWaitingForConnection)
-        {
-            isWaitingForConnection = false;
+            // When execution reaches this point, the first *interactive* render
+            // is complete. The component has an active connection to the browser.
+            _isConnected = true;
             await LoadStateAsync();
             StateHasChanged();
         }
@@ -280,13 +262,13 @@ Prerendering might be useful for other pages that don't use `localStorage` or `s
 
     private async Task LoadStateAsync()
     {
-        currentCount = await ProtectedLocalStore.GetAsync<int>("prerenderedCount");
+        _currentCount = await ProtectedLocalStore.GetAsync<int>("prerenderedCount");
     }
 
     private async Task IncrementCount()
     {
-        currentCount++;
-        await ProtectedSessionStore.SetAsync("count", currentCount);
+        _currentCount++;
+        await ProtectedSessionStore.SetAsync("count", _currentCount);
     }
 }
 ```
@@ -297,11 +279,11 @@ If many components rely on browser-based storage, re-implementing state provider
 
 In the following example of a `CounterStateProvider` component, counter data is persisted:
 
-```cshtml
+```razor
 @using Microsoft.AspNetCore.ProtectedBrowserStorage
 @inject ProtectedSessionStorage ProtectedSessionStore
 
-@if (hasLoaded)
+@if (_hasLoaded)
 {
     <CascadingValue Value="@this">
         @ChildContent
@@ -313,7 +295,7 @@ else
 }
 
 @code {
-    private bool hasLoaded;
+    private bool _hasLoaded;
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
@@ -323,7 +305,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         CurrentCount = await ProtectedSessionStore.GetAsync<int>("count");
-        hasLoaded = true;
+        _hasLoaded = true;
     }
 
     public async Task SaveChangesAsync()
@@ -337,7 +319,7 @@ The `CounterStateProvider` component handles the loading phase by not rendering 
 
 To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state. To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the `Router` in the `App` component (*App.razor*):
 
-```cshtml
+```razor
 <CounterStateProvider>
     <Router AppAssembly="typeof(Startup).Assembly">
         ...
@@ -347,7 +329,7 @@ To use the `CounterStateProvider` component, wrap an instance of the component a
 
 Wrapped components receive and can modify the persisted counter state. The following `Counter` component implements the pattern:
 
-```cshtml
+```razor
 @page "/counter"
 
 <p>Current count: <strong>@CounterStateProvider.CurrentCount</strong></p>

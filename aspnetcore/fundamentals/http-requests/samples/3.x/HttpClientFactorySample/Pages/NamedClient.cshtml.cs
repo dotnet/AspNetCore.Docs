@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using HttpClientFactorySample.GitHub;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -26,7 +27,7 @@ namespace HttpClientFactorySample.Pages
 
         public async Task OnGet()
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, 
+            var request = new HttpRequestMessage(HttpMethod.Get,
                 "repos/aspnet/AspNetCore.Docs/pulls");
 
             var client = _clientFactory.CreateClient("github");
@@ -35,8 +36,9 @@ namespace HttpClientFactorySample.Pages
 
             if (response.IsSuccessStatusCode)
             {
-                PullRequests = await response.Content
-                    .ReadAsAsync<IEnumerable<GitHubPullRequest>>();
+                using var responseStream = await response.Content.ReadAsStreamAsync();
+                PullRequests = await JsonSerializer.DeserializeAsync
+                        <IEnumerable<GitHubPullRequest>>(responseStream);
             }
             else
             {

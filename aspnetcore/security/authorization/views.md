@@ -2,8 +2,9 @@
 title: View-based authorization in ASP.NET Core MVC
 author: rick-anderson
 description: This document demonstrates how to inject and utilize the authorization service inside of an ASP.NET Core Razor view.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 10/30/2017
+ms.date: 11/08/2019
 uid: security/authorization/views
 ---
 # View-based authorization in ASP.NET Core MVC
@@ -19,8 +20,6 @@ If you want the authorization service in every view, place the `@inject` directi
 
 Use the injected authorization service to invoke `AuthorizeAsync` in exactly the same way you would check during [resource-based authorization](xref:security/authorization/resourcebased#security-authorization-resource-based-imperative):
 
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
-
 ```cshtml
 @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyName")).Succeeded)
 {
@@ -28,20 +27,7 @@ Use the injected authorization service to invoke `AuthorizeAsync` in exactly the
 }
 ```
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-```cshtml
-@if (await AuthorizationService.AuthorizeAsync(User, "PolicyName"))
-{
-    <p>This paragraph is displayed because you fulfilled PolicyName.</p>
-}
-```
-
----
-
 In some cases, the resource will be your view model. Invoke `AuthorizeAsync` in exactly the same way you would check during [resource-based authorization](xref:security/authorization/resourcebased#security-authorization-resource-based-imperative):
-
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```cshtml
 @if ((await AuthorizationService.AuthorizeAsync(User, Model, Operations.Edit)).Succeeded)
@@ -50,18 +36,6 @@ In some cases, the resource will be your view model. Invoke `AuthorizeAsync` in 
         href="@Url.Action("Edit", "Document", new { id = Model.Id })">Edit</a></p>
 }
 ```
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-```cshtml
-@if (await AuthorizationService.AuthorizeAsync(User, Model, Operations.Edit))
-{
-    <p><a class="btn btn-default" role="button"
-        href="@Url.Action("Edit", "Document", new { id = Model.Id })">Edit</a></p>
-}
-```
-
----
 
 In the preceding code, the model is passed as a resource the policy evaluation should take into consideration.
 

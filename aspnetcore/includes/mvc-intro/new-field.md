@@ -56,7 +56,9 @@ There are a few approaches to resolving the error:
 
 For this tutorial, we'll drop and re-create the database when the schema changes. Run the following command from a terminal to drop the db:
 
-`dotnet ef database drop`
+```dotnetcli
+dotnet ef database drop
+```
 
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
 

@@ -15,7 +15,6 @@ function showIf(condition: any, ifTrue: HTMLElement, ifFalse?: HTMLElement) {
     }
 }
 
-const loginForm = dom<HTMLFormElement>("loginForm");
 const chatDiv = dom<HTMLDivElement>("chatDiv");
 const errorDiv = dom<HTMLDivElement>("errorDiv");
 const logoutButton = dom<HTMLButtonElement>("logoutButton");
@@ -34,27 +33,18 @@ class ViewModel {
     public connection: signalR.HubConnection;
     public connectionStarted: boolean;
 
-    public async loginFormSubmitted(evt: Event) {
+    // TODO: Bind this method to a UI event that is triggered when the user is logging in
+    // For example, if you add UI with a username/password box and a login button, this
+    // method should be triggered when the login button is clicked.
+    public async connect(evt: Event) {
         try {
             evt.preventDefault();
 
-            // Send the username and password to the server
-            const formData = new FormData(loginForm);
-            const resp = await fetch("/account/token", { method: "POST", body: formData });
+            // TODO: Use the user input to acquire a JWT token from your authentication provider.
+            // Or, trigger an OIDC/OAuth login flow to acquire a token.
+            throw new Error("TODO: Add code to acquire the token.")
 
-            if (resp.status !== 200) {
-                this.error = `HTTP ${resp.status} error from server`;
-                return;
-            }
-
-            const json = await resp.json();
-
-            if (json["error"]) {
-                this.error = `Login error: ${json["error"]}`;
-                return;
-            } else {
-                this.loginToken = json["token"];
-            }
+            this.loginToken = "BOGUS TOKEN. Replace this with the real token.";
 
             // Update rendering while we connect
             this.render();
@@ -111,25 +101,18 @@ class ViewModel {
         messageList.appendChild(li);
     }
 
-    public async logoutButtonClicked(evt: MouseEvent) {
-        evt.preventDefault();
-
-        if (this.connection) {
-            await this.connection.stop();
-            this.connection = null;
-        }
-
-        // Just clear the token and re-render
-        this.loginToken = null;
-        this.render();
-    }
-
     // Update the state of DOM elements based on the view model
     public render() {
         errorDiv.textContent = this.error;
 
+        // Renders the errorDiv if there's an error
         showIf(this.error, errorDiv);
-        showIf(this.loginToken, chatDiv, loginForm);
+
+        // Renders the chatDiv if we're "authenticated" and now connecting.
+        showIf(this.loginToken, chatDiv);
+
+        // Renders the "connecting..." message if we're still connecting, or the
+        // full chat UI if we've connected.
         showIf(this.connectionStarted, connectedDiv, connectingDiv);
     }
 
@@ -137,8 +120,6 @@ class ViewModel {
         const model = new ViewModel();
 
         // Bind events
-        loginForm.addEventListener("submit", (e) => model.loginFormSubmitted(e));
-        logoutButton.addEventListener("click", (e) => model.logoutButtonClicked(e));
         messageForm.addEventListener("submit", (e) => model.messageFormSubmitted(e));
         directMessageForm.addEventListener("submit", (e) => model.directMessageFormSubmitted(e));
     }

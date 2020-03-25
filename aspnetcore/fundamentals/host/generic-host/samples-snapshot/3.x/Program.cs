@@ -15,7 +15,9 @@ namespace GenericHostSample
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-        #region snippet_HostConfig
+            #region snippet_HostConfig
+            // using Microsoft.Extensions.Configuration;
+
             Host.CreateDefaultBuilder(args)
                 .ConfigureHostConfiguration(configHost =>
                 {
@@ -24,7 +26,7 @@ namespace GenericHostSample
                     configHost.AddEnvironmentVariables(prefix: "PREFIX_");
                     configHost.AddCommandLine(args);
                 });
-        #endregion
+             #endregion
 
         public static IHostBuilder CreateHostBuilder2(string[] args) =>
         #region snippet_HostOptions

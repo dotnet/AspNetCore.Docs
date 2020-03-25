@@ -51,8 +51,7 @@ namespace RazorPagesProject.Tests
                     }
                     catch (Exception ex)
                     {
-                        logger.LogError(ex, "An error occurred seeding the " +
-                            $"database with test messages. Error: {ex.Message}");
+                        logger.LogError(ex, "An error occurred seeding the database. Error: {Message}", ex.Message);
                     }
                 }
             });

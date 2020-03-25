@@ -23,7 +23,6 @@ namespace MvcMovie
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddRazorPages();
 
             services.AddDbContext<MvcMovieContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
@@ -34,8 +33,7 @@ namespace MvcMovie
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddRazorPages();
-
+            
             services.AddDbContext<MvcMovieContext>(options =>
                     options.UseSqlite(Configuration.GetConnectionString("MvcMovieContext")));
         }
@@ -67,7 +65,6 @@ namespace MvcMovie
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
             });
             #endregion
         }

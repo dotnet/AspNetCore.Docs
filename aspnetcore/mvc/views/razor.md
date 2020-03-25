@@ -3,12 +3,12 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 08/05/2019
+ms.date: 02/12/2020
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Luke Latham](https://github.com/guardrex), [Taylor Mullen](https://twitter.com/ntaylormullen), and [Dan Vicarel](https://github.com/Rabadash8820)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen), and [Dan Vicarel](https://github.com/Rabadash8820)
 
 Razor is a markup syntax for embedding server-based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a *.cshtml* file extension. Razor is also found in [Razor components](xref:blazor/components) files (*.razor*).
 
@@ -122,7 +122,7 @@ The code renders the following HTML:
 
 The HTML is shown in the browser as:
 
-```
+```html
 <span>Hello World</span>
 ```
 
@@ -221,9 +221,9 @@ The `<text>` tag is useful to control whitespace when rendering content:
 * Only the content between the `<text>` tag is rendered.
 * No whitespace before or after the `<text>` tag appears in the HTML output.
 
-### Explicit line transition with \@&colon;
+### Explicit line transition
 
-To render the rest of an entire line as HTML inside a code block, use the `@:` syntax:
+To render the rest of an entire line as HTML inside a code block, use `@:` syntax:
 
 ```cshtml
 @for (var i = 0; i < people.Length; i++)
@@ -455,13 +455,13 @@ The `@attribute` directive adds the given attribute to the class of the generate
 
 The `@code` block enables a [Razor component](xref:blazor/components) to add C# members (fields, properties, and methods) to a component:
 
-```cshtml
+```razor
 @code {
     // C# members (fields, properties, and methods)
 }
 ```
 
-For Razor components, `@code` is an alias of [@functions](#functions) and recommended over `@functions`. More than one `@code` block is permissible.
+For Razor components, `@code` is an alias of [`@functions`](#functions) and recommended over `@functions`. More than one `@code` block is permissible.
 
 ::: moniker-end
 
@@ -670,7 +670,7 @@ If the *EvenMorePages* folder in the preceding example has an imports file with 
 
 The `@page` directive has different effects depending on the type of the file where it appears. The directive:
 
-* In in a *.cshtml* file indicates that the file is a Razor Page. For more information, see <xref:razor-pages/index>.
+* In in a *.cshtml* file indicates that the file is a Razor Page. For more information, see [Custom routes](xref:razor-pages/index#custom-routes) and <xref:razor-pages/index>.
 * Specifies that a Razor component should handle requests directly. For more information, see <xref:blazor/routing>.
 
 ::: moniker-end
@@ -713,13 +713,33 @@ In [Razor components](xref:blazor/components), `@using` also controls which comp
 
 *This scenario only applies to Razor components (.razor).*
 
-Data binding in components is accomplished with the `@bind` attribute. For more information, see <xref:blazor/components#data-binding>.
+Data binding in components is accomplished with the `@bind` attribute. For more information, see <xref:blazor/data-binding>.
 
-### \@on{event}
+### \@on{EVENT}
 
 *This scenario only applies to Razor components (.razor).*
 
-Razor provides event handling features for components. For more information, see <xref:blazor/components#event-handling>.
+Razor provides event handling features for components. For more information, see <xref:blazor/event-handling>.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.1"
+
+### \@on{EVENT}:preventDefault
+
+*This scenario only applies to Razor components (.razor).*
+
+Prevents the default action for the event.
+
+### \@on{EVENT}:stopPropagation
+
+*This scenario only applies to Razor components (.razor).*
+
+Stops event propagation for the event.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 ### \@key
 
@@ -732,6 +752,12 @@ The `@key` directive attribute causes the components diffing algorithm to guaran
 *This scenario only applies to Razor components (.razor).*
 
 Component references (`@ref`) provide a way to reference a component instance so that you can issue commands to that instance. For more information, see <xref:blazor/components#capture-references-to-components>.
+
+### \@typeparam
+
+*This scenario only applies to Razor components (.razor).*
+
+The `@typeparam` directive declares a generic type parameter for the generated component class. For more information, see <xref:blazor/templated-components#generic-typed-components>.
 
 ::: moniker-end
 
@@ -842,9 +868,9 @@ There are three directives that pertain to [Tag Helpers](xref:mvc/views/tag-help
 
 | Directive | Function |
 | --------- | -------- |
-| [@addTagHelper](xref:mvc/views/tag-helpers/intro#add-helper-label) | Makes Tag Helpers available to a view. |
-| [@removeTagHelper](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Removes Tag Helpers previously added from a view. |
-| [@tagHelperPrefix](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Specifies a tag prefix to enable Tag Helper support and to make Tag Helper usage explicit. |
+| [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#add-helper-label) | Makes Tag Helpers available to a view. |
+| [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Removes Tag Helpers previously added from a view. |
+| [`@tagHelperPrefix`](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Specifies a tag prefix to enable Tag Helper support and to make Tag Helper usage explicit. |
 
 ## Razor reserved keywords
 

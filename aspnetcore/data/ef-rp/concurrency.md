@@ -1,6 +1,6 @@
 ---
 title: Razor Pages with EF Core in ASP.NET Core - Concurrency - 8 of 8
-author: tdykstra
+author: rick-anderson
 description: This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
 ms.author: riande
 ms.custom: mvc
@@ -150,7 +150,7 @@ Build the project.
 
 * Run the following command in a terminal:
 
-  ```console
+  ```dotnetcli
   dotnet ef migrations add RowVersion
   ```
 
@@ -184,7 +184,7 @@ This command:
 
 * Run the following command in a terminal:
 
-  ```console
+  ```dotnetcli
   dotnet ef database update
   ```
 
@@ -210,13 +210,13 @@ This command:
 
   **On Windows:**
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
   ```
 
   **On Linux or macOS:**
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages/Departments --referenceScriptLibraries
   ```
 
@@ -357,7 +357,7 @@ Delete the test department from the second tab. A concurrency error is display w
 
 * [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
 * [Handle concurrency in EF Core](/ef/core/saving/concurrency)
-* [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/AspNetCore.Docs/issues/4155)
+* [Debugging ASP.NET Core 2.x source](https://github.com/dotnet/AspNetCore.Docs/issues/4155)
 
 ## Next steps
 
@@ -370,7 +370,7 @@ This is the last tutorial in the series. Additional topics are covered in the [M
 
 ::: moniker range="< aspnetcore-3.0"
 
-This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time). If you run into problems you can't solve, [download or view the completed app.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
+This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time). If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
 ## Concurrency conflicts
 
@@ -488,7 +488,7 @@ Adding the `RowVersion` property changes the DB model, which requires a migratio
 
 Build the project. Enter the following in a command window:
 
-```console
+```dotnetcli
 dotnet ef migrations add RowVersion
 dotnet ef database update
 ```
@@ -514,7 +514,7 @@ Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#sc
 
  Run the following command:
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Department -dc SchoolContext -udl -outDir Pages\Departments --referenceScriptLibraries
   ```
 

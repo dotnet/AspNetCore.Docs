@@ -1,0 +1,90 @@
+﻿@using TestingControllersSample.ViewModels
+@model StormSessionViewModel
+
+@{
+    ViewBag.Title = "Brainstormer Session : " + Model.Name;
+    Layout = "_Layout";
+}
+<h2>Brainstorm Session: @Model.Name</h2>
+<div class="small">@Model.DateCreated</div>
+
+<div class="row">
+    <div class="col-md-9">
+        <h3>Idea Count: <span data-bind="text:ideas().length"></span></h3>
+        <div data-bind='foreach: ideas'>
+            <div class="panel panel-default">
+                <div class="panel-heading" data-bind="text:name">
+                </div>
+                <div class="panel-body" data-bind="text:description">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Add New Idea
+            </div>
+            <div class="panel-body">
+                <div data-bind="with: ideaForEditing">
+                    <fieldset class="form-group">
+                        <label for="ideaName">Idea Name</label>
+                        <input type="text" class="form-control" id="ideaName" name="ideaName" placeholder="New Idea" data-bind="value:name">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="ideaDescription">Description</label>
+                        <textarea class="form-control" id="ideaDescription" name="ideaDescription" data-bind="value:description"></textarea>
+                    </fieldset>
+                    <input type="submit" value="Save" id="SaveButton" name="SaveButton" class="btn btn-primary" data-bind="click: $root.addIdea">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <a href="/">Return home</a>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        var Idea = function(id, name, description) {
+            this.id = ko.observable(id);
+            this.name = ko.observable(name);
+            this.description = ko.observable(description);
+            this.sessionId = @Model.Id;
+        };
+        var ViewModel = function() {
+            var self = this;
+            self.ideas = ko.observableArray([]);
+            self.ideaForEditing = ko.observable(new Idea());
+            self.addIdea = function(newIdea) {
+                if(newIdea.name() != undefined && newIdea.description() != undefined)
+                {
+                    console.log("add idea: " + newIdea.name() + " desc: " + newIdea.description());
+                    self.ideas.push(newIdea);
+                    $.ajax({
+                        url: '/api/ideas/create',
+                        type: 'POST',
+                        data: ko.toJSON(newIdea),
+                        contentType: 'application/json'
+                    });
+                    self.ideaForEditing(new Idea());
+                }
+            }
+        };
+        viewModel = new ViewModel();
+        ko.applyBindings(viewModel);
+        $(function() {
+            $.ajax({
+                url: '/api/ideas/forsession/@Model.Id',
+                dataType: 'json',
+                success: function(data) {
+                    if (data instanceof Array) {
+                        viewModel.ideas(data);
+                    }
+                }
+            });
+        });
+    </script>
+}

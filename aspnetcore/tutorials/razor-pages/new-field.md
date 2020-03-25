@@ -22,7 +22,7 @@ In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code 
 
 When using EF Code First to automatically create a database, Code First:
 
-* Adds a table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
+* Adds an `__EFMigrationsHistory` table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
 * If the model classes aren't in sync with the DB, EF throws an exception.
 
 Automatic verification of schema/model in sync makes it easier to find inconsistent database/code issues.
@@ -37,19 +37,21 @@ Build the app.
 
 Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
 
+<a name="addrat"></a>
+
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/SnapShots/IndexRating.cshtml?highlight=40-42,62-64)]
 
 Update the following pages:
 
 * Add the `Rating` field to the Delete and Details pages.
-* Update [Create.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) with a `Rating` field.
+* Update [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) with a `Rating` field.
 * Add the `Rating` field to the Edit Page.
 
-The app won't work until the DB is updated to include the new field. If run now, the app throws a `SqlException`:
+The app won't work until the DB is updated to include the new field. Running the app without updating the database throws a `SqlException`:
 
 `SqlException: Invalid column name 'Rating'.`
 
-This error is caused by the updated Movie model class being different than the schema of the Movie table of the database. (There's no `Rating` column in the database table.)
+The `SqlException` exception is caused by the updated Movie model class being different than the schema of the Movie table of the database. (There's no `Rating` column in the database table.)
 
 There are a few approaches to resolving the error:
 
@@ -65,7 +67,7 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
-See the [completed SeedData.cs file](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/SeedDataRating.cs).
+See the [completed SeedData.cs file](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/SeedDataRating.cs).
 
 Build the solution.
 
@@ -90,7 +92,7 @@ The `Add-Migration` command tells the framework to:
 
 The name "Rating" is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
-The `Update-Database` command tells the framework to apply the schema changes to the database.
+The `Update-Database` command tells the framework to apply the schema changes to the database and to preserve existing data.
 
 <a name="ssox"></a>
 
@@ -116,7 +118,7 @@ Another option is to delete the database and use migrations to re-create the dat
 
 Delete the migration folder.  Use the following commands to recreate the database.
 
-```console
+```dotnetcli
 dotnet ef database drop
 dotnet ef migrations add InitialCreate
 dotnet ef database update
@@ -167,7 +169,7 @@ Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
 Update the following pages:
 
 * Add the `Rating` field to the Delete and Details pages.
-* Update [Create.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml) with a `Rating` field.
+* Update [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml) with a `Rating` field.
 * Add the `Rating` field to the Edit Page.
 
 The app won't work until the DB is updated to include the new field. If run now, the app throws a `SqlException`:
@@ -190,7 +192,7 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
-See the [completed SeedData.cs file](https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/SeedDataRating.cs).
+See the [completed SeedData.cs file](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/SeedDataRating.cs).
 
 Build the solution.
 
@@ -241,7 +243,7 @@ Another option is to delete the database and use migrations to re-create the dat
 
 Delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command:
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 

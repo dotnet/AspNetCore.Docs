@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/05/2019
+no-loc: ["Let's Encrypt"]
 uid: security/docker-https
 ---
 # Hosting ASP.NET Core images with Docker over HTTPS
@@ -16,17 +17,17 @@ ASP.NET Core uses [HTTPS by default](/aspnet/core/security/enforcing-ssl). [HTTP
 
 This document explains how to run pre-built container images with HTTPS.
 
-See [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/aspnetcore-docker-https-development.md) for development scenarios.
+See [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/run-aspnetcore-https-development.md) for development scenarios.
 
 This sample requires [Docker 17.06](https://docs.docker.com/release-notes/docker-ce) or later of the [Docker client](https://www.docker.com/products/docker).
 
 ## Prerequisites
 
-The [.NET Core 2.2 SDK](https://www.microsoft.com/net/download) or later is required for some of the instructions in this document.
+The [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download) or later is required for some of the instructions in this document.
 
 ## Certificates
 
-A certificate from a [certificate authority](https://en.wikipedia.org/wiki/Certificate_authority) is required for [production hosting](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) for a domain.  [Let's Encrypt](https://letsencrypt.org/) is a certificate authority that offers free certificates.
+A certificate from a [certificate authority](https://wikipedia.org/wiki/Certificate_authority) is required for [production hosting](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) for a domain. [Let's Encrypt](https://letsencrypt.org/) is a certificate authority that offers free certificates.
 
 This document uses [self-signed development certificates](https://en.wikipedia.org/wiki/Self-signed_certificate) for hosting pre-built images over `localhost`. The instructions are similar to using production certificates.
 
@@ -35,7 +36,7 @@ For production certs:
 * The `dotnet dev-certs` tool is not required.
 * Certificates do not need to be stored in the location used in the instructions. Any location should work, although storing certs within your site directory is not recommended.
 
-The instructions volume mount certificates into containers. You can add certificates into container images with a `COPY` command in a Dockerfile. Copying certificates into an image is not recommended:
+The instructions contained in the following section volume mount certificates into containers using Docker's `-v` command-line option. You could add certificates into container images with a `COPY` command in a *Dockerfile*, but it's not recommended. Copying certificates into an image isn't recommended for the following reasons:
 
 * It makes difficult to use the same image for testing with developer certificates.
 * It makes difficult to use the same image for Hosting with production certificates.
@@ -49,7 +50,7 @@ Use the following instructions for your operating system configuration.
 
 Generate certificate and configure local machine:
 
-```console
+```dotnetcli
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
 dotnet dev-certs https --trust
 ```
@@ -69,7 +70,7 @@ The password must match the password used for the certificate.
 
 Generate certificate and configure local machine:
 
-```console
+```dotnetcli
 dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { password here }
 dotnet dev-certs https --trust
 ```
@@ -91,7 +92,7 @@ The password must match the password used for the certificate.
 
 Generate certificate and configure local machine:
 
-```console
+```dotnetcli
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
 dotnet dev-certs https --trust
 ```

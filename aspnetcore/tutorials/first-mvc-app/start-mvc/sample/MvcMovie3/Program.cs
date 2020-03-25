@@ -20,7 +20,6 @@ namespace MvcMovie
 
                 try
                 {
-                    var context = services.GetRequiredService<MvcMovieContext>();
                     SeedData.Initialize(services);
                 }
                 catch (Exception ex)

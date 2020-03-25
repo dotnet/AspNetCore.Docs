@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Update related data - ASP.NET MVC with EF Core"
 description: "In this tutorial you'll update related data by updating foreign key fields and navigation properties."
-author: tdykstra
+author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
@@ -296,7 +296,7 @@ As explained in the [CRUD tutorial](crud.md), the Entity Framework implicitly im
 
 ## Get the code
 
-[Download or view the completed application.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## Next steps
 

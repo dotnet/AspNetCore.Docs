@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Server"/>
+    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="0.1.22-pre2" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.23.2" />
   </ItemGroup>
 
 </Project>

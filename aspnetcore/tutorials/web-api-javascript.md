@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to call an ASP.NET Core web API with JavaScript.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/27/2019
+ms.date: 11/26/2019
 uid: tutorials/web-api-javascript
 ---
 # Tutorial: Call an ASP.NET Core web API with JavaScript
@@ -30,7 +30,7 @@ For ASP.NET Core 2.2, see the 2.2 version of [Call the web API with JavaScript](
 
 In this section, you'll add an HTML page containing forms for creating and managing to-do items. Event handlers are attached to elements on the page. The event handlers result in HTTP requests to the web API's action methods. The Fetch API's `fetch` function initiates each HTTP request.
 
-The `fetch` function returns a `Promise` object, which contains an HTTP response represented as a `Response` object. A common pattern is to extract the JSON response body by invoking the `json` function on the `Response` object. JavaScript updates the page with the details from the web API's response.
+The `fetch` function returns a [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) object, which contains an HTTP response represented as a `Response` object. A common pattern is to extract the JSON response body by invoking the `json` function on the `Response` object. JavaScript updates the page with the details from the web API's response.
 
 The simplest `fetch` call accepts a single parameter representing the route. A second parameter, known as the `init` object, is optional. `init` is used to configure the HTTP request.
 
@@ -38,13 +38,15 @@ The simplest `fetch` call accepts a single parameter representing the route. A s
 
     [!code-csharp[](first-web-api/samples/3.0/TodoApi/StartupJavaScript.cs?highlight=8-9&name=snippet_configure)]
 
-1. Create a *wwwroot* directory in the project root.
+1. Create a *wwwroot* folder in the project root.
 
-1. Add an HTML file named *index.html* to the *wwwroot* directory. Replace its contents with the following markup:
+1. Create a *js* folder inside of the *wwwroot* folder.
+
+1. Add an HTML file named *index.html* to the *wwwroot* folder. Replace the contents of *index.html* with the following markup:
 
     [!code-html[](first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
 
-1. Add a JavaScript file named *site.js* to the *wwwroot* directory. Replace its contents with the following code:
+1. Add a JavaScript file named *site.js* to the *wwwroot/js* folder. Replace the contents of *site.js* with the following code:
 
     [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_SiteJs)]
 
@@ -69,9 +71,9 @@ In the following code:
 
 * An `item` variable is declared to construct an object literal representation of the to-do item.
 * A Fetch request is configured with the following options:
-    * `method`&mdash;specifies the POST HTTP action verb.
-    * `body`&mdash;specifies the JSON representation of the request body. The JSON is produced by passing the object literal stored in `item` to the [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) function.
-    * `headers`&mdash;specifies the `Accept` and `Content-Type` HTTP request headers. Both headers are set to `application/json` to specify the media type being received and sent, respectively.
+  * `method`&mdash;specifies the POST HTTP action verb.
+  * `body`&mdash;specifies the JSON representation of the request body. The JSON is produced by passing the object literal stored in `item` to the [JSON.stringify](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) function.
+  * `headers`&mdash;specifies the `Accept` and `Content-Type` HTTP request headers. Both headers are set to `application/json` to specify the media type being received and sent, respectively.
 * An HTTP POST request is sent to the *api/TodoItems* route.
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_AddItem)]

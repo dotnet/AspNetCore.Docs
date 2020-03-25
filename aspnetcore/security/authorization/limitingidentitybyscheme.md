@@ -2,15 +2,14 @@
 title: Authorize with a specific scheme in ASP.NET Core
 author: rick-anderson
 description: This article explains how to limit identity to a specific scheme when working with multiple authentication methods.
+monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 10/22/2018
+ms.date: 11/08/2019
 uid: security/authorization/limitingidentitybyscheme
 ---
 # Authorize with a specific scheme in ASP.NET Core
 
-In some scenarios, such as Single Page Applications (SPAs), it's common to use multiple authentication methods. For example, the app may use cookie-based authentication to log in and JWT bearer authentication for JavaScript requests. In some cases, the app may have multiple instances of an authentication handler. For example, two cookie handlers where one contains a basic identity and one is created when a multi-factor authentication (MFA) has been triggered. MFA may be triggered because the user requested an operation that requires extra security.
-
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
+In some scenarios, such as Single Page Applications (SPAs), it's common to use multiple authentication methods. For example, the app may use cookie-based authentication to log in and JWT bearer authentication for JavaScript requests. In some cases, the app may have multiple instances of an authentication handler. For example, two cookie handlers where one contains a basic identity and one is created when a multi-factor authentication (MFA) has been triggered. MFA may be triggered because the user requested an operation that requires extra security. For more information on enforcing MFA when a user requests a resource that requires MFA, see the GitHub issue [Protect section with MFA](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195).
 
 An authentication scheme is named when the authentication service is configured during authentication. For example:
 
@@ -35,45 +34,9 @@ In the preceding code, two authentication handlers have been added: one for cook
 >[!NOTE]
 >Specifying the default scheme results in the `HttpContext.User` property being set to that identity. If that behavior isn't desired, disable it by invoking the parameterless form of `AddAuthentication`.
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-Authentication schemes are named when authentication middlewares are configured during authentication. For example:
-
-```csharp
-public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-{
-    // Code omitted for brevity
-
-    app.UseCookieAuthentication(new CookieAuthenticationOptions()
-    {
-        AuthenticationScheme = "Cookie",
-        LoginPath = "/Account/Unauthorized/",
-        AccessDeniedPath = "/Account/Forbidden/",
-        AutomaticAuthenticate = false
-    });
-    
-    app.UseJwtBearerAuthentication(new JwtBearerOptions()
-    {
-        AuthenticationScheme = "Bearer",
-        AutomaticAuthenticate = false,
-        Audience = "http://localhost:5001/",
-        Authority = "http://localhost:5000/",
-        RequireHttpsMetadata = false
-    });
-```
-
-In the preceding code, two authentication middlewares have been added: one for cookies and one for bearer.
-
->[!NOTE]
->Specifying the default scheme results in the `HttpContext.User` property being set to that identity. If that behavior isn't desired, disable it by setting the `AuthenticationOptions.AutomaticAuthenticate` property to `false`.
-
----
-
 ## Selecting the scheme with the Authorize attribute
 
 At the point of authorization, the app indicates the handler to be used. Select the handler with which the app will authorize by passing a comma-delimited list of authentication schemes to `[Authorize]`. The `[Authorize]` attribute specifies the authentication scheme or schemes to use regardless of whether a default is configured. For example:
-
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 [Authorize(AuthenticationSchemes = AuthSchemes)]
@@ -86,40 +49,13 @@ public class MixedController : Controller
         JwtBearerDefaults.AuthenticationScheme;
 ```
 
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-```csharp
-[Authorize(ActiveAuthenticationSchemes = AuthSchemes)]
-public class MixedController : Controller
-    // Requires the following imports:
-    // using Microsoft.AspNetCore.Authentication.Cookies;
-    // using Microsoft.AspNetCore.Authentication.JwtBearer;
-    private const string AuthSchemes =
-        CookieAuthenticationDefaults.AuthenticationScheme + "," +
-        JwtBearerDefaults.AuthenticationScheme;
-```
-
----
-
 In the preceding example, both the cookie and bearer handlers run and have a chance to create and append an identity for the current user. By specifying a single scheme only, the corresponding handler runs.
-
-# [ASP.NET Core 2.x](#tab/aspnetcore2x)
 
 ```csharp
 [Authorize(AuthenticationSchemes = 
     JwtBearerDefaults.AuthenticationScheme)]
 public class MixedController : Controller
 ```
-
-# [ASP.NET Core 1.x](#tab/aspnetcore1x)
-
-```csharp
-[Authorize(ActiveAuthenticationSchemes = 
-    JwtBearerDefaults.AuthenticationScheme)]
-public class MixedController : Controller
-```
-
----
 
 In the preceding code, only the handler with the "Bearer" scheme runs. Any cookie-based identities are ignored.
 

@@ -1,14 +1,15 @@
 ---
-title: Introduction to Blazor in ASP.NET Core
+title: Introduction to ASP.NET Core Blazor
 author: guardrex
 description: Explore ASP.NET Core Blazor, a way to build interactive client-side web UI with .NET in an ASP.NET Core app.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "mvc, seoapril2019"
-ms.date: 08/13/2019
+ms.date: 01/31/2020
+no-loc: [Blazor, SignalR]
 uid: blazor/index
 ---
-# Introduction to Blazor
+# Introduction to ASP.NET Core Blazor
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
@@ -44,7 +45,7 @@ The component class is usually written in the form of a [Razor](xref:mvc/views/r
 
 The following Razor markup demonstrates a component (*Dialog.razor*), which can be nested within another component:
 
-```cshtml
+```razor
 <div>
     <h1>@Title</h1>
 
@@ -75,7 +76,7 @@ In the following example, the `Index` component uses the `Dialog` component. `Ch
 
 *Index.razor*:
 
-```cshtml
+```razor
 @page "/"
 
 <h1>Hello, world!</h1>
@@ -95,41 +96,46 @@ When this component is used in the app, IntelliSense in [Visual Studio](/visuals
 
 Components render into an in-memory representation of the browser's Document Object Model (DOM) called a *render tree*, which is used to update the UI in a flexible and efficient way.
 
-## Blazor client-side
+## Blazor WebAssembly
 
-Blazor client-side is a single-page app framework for building interactive client-side web apps with .NET. Blazor client-side uses open web standards without plugins or code transpilation and works in all modern web browsers, including mobile browsers.
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
+Blazor WebAssembly is a single-page app framework for building interactive client-side web apps with .NET. Blazor WebAssembly uses open web standards without plugins or code transpilation and works in all modern web browsers, including mobile browsers.
 
 Running .NET code inside web browsers is made possible by [WebAssembly](https://webassembly.org) (abbreviated *wasm*). WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed. WebAssembly is an open web standard and supported in web browsers without plugins.
 
 WebAssembly code can access the full functionality of the browser via JavaScript, called *JavaScript interoperability* (or *JavaScript interop*). .NET code executed via WebAssembly in the browser runs in the browser's JavaScript sandbox with the protections that the sandbox provides against malicious actions on the client machine.
 
-![Blazor client-side runs .NET code in the browser with WebAssembly.](index/_static/blazor-client-side.png)
+![Blazor WebAssembly runs .NET code in the browser with WebAssembly.](index/_static/blazor-webassembly.png)
 
-When a Blazor client-side app is built and run in a browser:
+When a Blazor WebAssembly app is built and run in a browser:
 
 * C# code files and Razor files are compiled into .NET assemblies.
 * The assemblies and the .NET runtime are downloaded to the browser.
-* Blazor client-side bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor client-side runtime uses JavaScript interop to handle DOM manipulation and browser API calls.
+* Blazor WebAssembly bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle DOM manipulation and browser API calls.
 
-The size of the published app, its *payload size*, is a critical performance factor for an app's useability. A large app takes a relatively long time to download to a browser, which diminishes the user experience. Blazor client-side optimizes payload size to reduce download times:
+The size of the published app, its *payload size*, is a critical performance factor for an app's useability. A large app takes a relatively long time to download to a browser, which diminishes the user experience. Blazor WebAssembly optimizes payload size to reduce download times:
 
 * Unused code is stripped out of the app when it's published by the [Intermediate Language (IL) Linker](xref:host-and-deploy/blazor/configure-linker).
 * HTTP responses are compressed.
 * The .NET runtime and assemblies are cached in the browser.
 
-## Blazor server-side
+## Blazor Server
 
-Blazor decouples component rendering logic from how UI updates are applied. Blazor server-side provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a [SignalR](xref:signalr/introduction) connection.
+Blazor decouples component rendering logic from how UI updates are applied. Blazor Server provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a [SignalR](xref:signalr/introduction) connection.
 
 The runtime handles sending UI events from the browser to the server and applies UI updates sent by the server back to the browser after running the components.
 
-The connection used by Blazor server-side to communicate with the browser is also used to handle JavaScript interop calls.
+The connection used by Blazor Server to communicate with the browser is also used to handle JavaScript interop calls.
 
-![Blazor server-side runs .NET code on the server and interacts with the Document Object Model on the client over a SignalR connection](index/_static/blazor-server-side.png)
+![Blazor Server runs .NET code on the server and interacts with the Document Object Model on the client over a SignalR connection](index/_static/blazor-server.png)
 
 ## JavaScript interop
 
-For apps that require third-party JavaScript libraries and access to browser APIs, components interoperate with JavaScript. Components are capable of using any library or API that JavaScript is able to use. C# code can call into JavaScript code, and JavaScript code can call into C# code. For more information, see <xref:blazor/javascript-interop>.
+For apps that require third-party JavaScript libraries and access to browser APIs, components interoperate with JavaScript. Components are capable of using any library or API that JavaScript is able to use. C# code can call into JavaScript code, and JavaScript code can call into C# code. For more information, see the following articles:
+
+* <xref:blazor/call-javascript-from-dotnet>
+* <xref:blazor/call-dotnet-from-javascript>
 
 ## Code sharing and .NET Standard
 
@@ -141,6 +147,8 @@ APIs that aren't applicable inside of a web browser (for example, accessing the 
 
 * [WebAssembly](https://webassembly.org/)
 * <xref:blazor/hosting-models>
+* <xref:tutorials/signalr-blazor-webassembly>
 * [C# Guide](/dotnet/csharp/)
 * <xref:mvc/views/razor>
 * [HTML](https://www.w3.org/html/)
+* [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor) community links

@@ -1,5 +1,5 @@
 using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace HttpClientFactorySample.GitHub
 {
@@ -8,12 +8,13 @@ namespace HttpClientFactorySample.GitHub
     /// </summary>
     public class GitHubIssue
     {
-        [JsonProperty(PropertyName = "html_url")]
+        [JsonPropertyName("html_url")]
         public string Url { get; set; }
 
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [JsonProperty(PropertyName = "created_at")]
+        [JsonPropertyName("created_at")]
         public DateTime Created { get; set; }
     }
 }

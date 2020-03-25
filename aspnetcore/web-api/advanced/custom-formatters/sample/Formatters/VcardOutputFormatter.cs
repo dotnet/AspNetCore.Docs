@@ -69,7 +69,7 @@ namespace CustomFormatterDemo.Formatters
             buffer.AppendFormat($"FN:{contact.FirstName} {contact.LastName}\r\n");
             buffer.AppendFormat($"UID:{contact.ID}\r\n");
             buffer.AppendLine("END:VCARD");
-            logger.LogInformation($"Writing {contact.FirstName} {contact.LastName}");
+            logger.LogInformation("Writing {FirstName} {LastName}", contact.FirstName, contact.LastName);
         }
         #endregion
     }

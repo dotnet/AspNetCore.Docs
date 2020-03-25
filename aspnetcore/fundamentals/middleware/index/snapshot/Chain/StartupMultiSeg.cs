@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-
-#region snippet1
-public class Startup
+﻿public class Startup
 {
     private static void HandleMultiSeg(IApplicationBuilder app)
     {
@@ -23,4 +18,3 @@ public class Startup
         });
     }
 }
-#endregion

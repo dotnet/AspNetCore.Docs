@@ -1,15 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-  
+
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <ProjectUiSubcaption>.NET Core 3.x</ProjectUiSubcaption>
   </PropertyGroup>
-  
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0-preview5-19227-01" />
-    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="3.0.0-preview5.19227.9" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="3.1.0" />
   </ItemGroup>
-  
+
 </Project>

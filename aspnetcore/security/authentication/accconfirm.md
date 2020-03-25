@@ -35,7 +35,7 @@ See [this PDF file](https://webpifeed.blob.core.windows.net/webpifeed/Partners/a
 
 Run the following commands to create a web app with authentication.
 
-```console
+```dotnetcli
 dotnet new webapp -au Individual -uld -o WebPWrecover
 cd WebPWrecover
 dotnet run
@@ -60,7 +60,7 @@ Create a class to fetch the secure email key. For this sample, create *Services/
 
 Set the `SendGridUser` and `SendGridKey` with the [secret-manager tool](xref:security/app-secrets). For example:
 
-```console
+```dotnetcli
 dotnet user-secrets set SendGridUser RickAndMSFT
 dotnet user-secrets set SendGridKey <key>
 
@@ -90,7 +90,7 @@ Install the `SendGrid` NuGet package:
 
 From the Package Manager Console, enter the following command:
 
-``` PMC
+```powershell
 Install-Package SendGrid
 ```
 
@@ -98,7 +98,7 @@ Install-Package SendGrid
 
 From the console, enter the following command:
 
-```cli
+```dotnetcli
 dotnet add package SendGrid
 ```
 
@@ -150,11 +150,11 @@ The following code changes all data protection tokens timeout period to 3 hours:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/StartupAllTokens.cs?name=snippet1&highlight=11-12)]
 
-The built in Identity user tokens (see [AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) )have a [one day timeout](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
+The built in Identity user tokens (see [AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) )have a [one day timeout](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
 
 ### Change the email token lifespan
 
-The default token lifespan of [the Identity user tokens](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) is [one day](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). This section shows how to change the email token lifespan.
+The default token lifespan of [the Identity user tokens](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) is [one day](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). This section shows how to change the email token lifespan.
 
 Add a custom [DataProtectorTokenProvider\<TUser>](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
 
@@ -166,7 +166,7 @@ Add the custom provider to the service container:
 
 ### Resend email confirmation
 
-See [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/5410).
+See [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/5410).
 
 <a name="debug"></a>
 
@@ -214,13 +214,13 @@ Enabling account confirmation on a site with users locks out all the existing us
 
 ## Prerequisites
 
-[.NET Core 2.2 SDK or later](https://www.microsoft.com/net/download/all)
+[.NET Core 2.2 SDK or later](https://dotnet.microsoft.com/download/dotnet-core)
 
 ## Create a web  app and scaffold Identity
 
 Run the following commands to create a web app with authentication.
 
-```console
+```dotnetcli
 dotnet new webapp -au Individual -uld -o WebPWrecover
 cd WebPWrecover
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
@@ -234,7 +234,7 @@ dotnet run
 
 ## Test new user registration
 
-Run the app, select the **Register** link, and register a user. At this point, the only validation on the email is with the [[EmailAddress]](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After submitting the registration, you are logged into the app. Later in the tutorial, the code is updated so new users can't sign in until their email is validated.
+Run the app, select the **Register** link, and register a user. At this point, the only validation on the email is with the [`[EmailAddress]`](/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute) attribute. After submitting the registration, you are logged into the app. Later in the tutorial, the code is updated so new users can't sign in until their email is validated.
 
 [!INCLUDE[](~/includes/view-identity-db.md)]
 
@@ -296,7 +296,7 @@ Install the `SendGrid` NuGet package:
 
 From the Package Manager Console, enter the following command:
 
-``` PMC
+```powershell
 Install-Package SendGrid
 ```
 
@@ -304,7 +304,7 @@ Install-Package SendGrid
 
 From the console, enter the following command:
 
-```cli
+```dotnetcli
 dotnet add package SendGrid
 ```
 
@@ -377,11 +377,11 @@ The following code changes all data protection tokens timeout period to 3 hours:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/StartupAllTokens.cs?name=snippet1&highlight=15-16)]
 
-The built in Identity user tokens (see [AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) )have a [one day timeout](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
+The built in Identity user tokens (see [AspNetCore/src/Identity/Extensions.Core/src/TokenOptions.cs](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) )have a [one day timeout](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs).
 
 ### Change the email token lifespan
 
-The default token lifespan of [the Identity user tokens](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) is [one day](https://github.com/aspnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). This section shows how to change the email token lifespan.
+The default token lifespan of [the Identity user tokens](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) is [one day](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). This section shows how to change the email token lifespan.
 
 Add a custom [DataProtectorTokenProvider\<TUser>](/dotnet/api/microsoft.aspnetcore.identity.dataprotectortokenprovider-1) and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
 
@@ -393,7 +393,7 @@ Add the custom provider to the service container:
 
 ### Resend email confirmation
 
-See [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/5410).
+See [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/5410).
 
 <a name="debug"></a>
 

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace newsample1
+namespace KestrelSample
 {
     #region snippet_Program
     public class Program

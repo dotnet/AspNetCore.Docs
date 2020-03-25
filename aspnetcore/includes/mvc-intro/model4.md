@@ -11,7 +11,7 @@ The following table details the ASP.NET Core code generator parameters:
 
 Use the `h` switch to get help on the `aspnet-codegenerator controller` command:
 
-```console
+```dotnetcli
 dotnet aspnet-codegenerator controller -h
 ```
 

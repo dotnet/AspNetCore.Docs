@@ -1,3 +1,29 @@
 {
-    "omnisharp.autoStart": false
+    "omnisharp.autoStart": false,
+    "[markdown]": {
+        "files.trimTrailingWhitespace": false
+    },
+    "markdown.docsetLanguages": [
+        ".NET Core CLI",
+        "Azure CLI",
+        "Bash",
+        "C#",
+        "CSS",
+        "Dockerfile",
+        "Gradle",
+        "HTML",
+        "Ini",
+        "JSON",
+        "Java",
+        "JavaScript",
+        "Markdown",
+        "Nginx",
+        "PowerShell",
+        "Protocol Buffers",
+        "Razor CSHTML",
+        "SQL",
+        "TypeScript",
+        "XML",
+        "YAML"
+    ]
 }

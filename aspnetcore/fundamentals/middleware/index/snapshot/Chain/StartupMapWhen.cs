@@ -1,11 +1,4 @@
-﻿//#define Map
-#if Map
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-
-#region snippet1
-public class Startup
+﻿public class Startup
 {
     private static void HandleBranch(IApplicationBuilder app)
     {
@@ -27,5 +20,3 @@ public class Startup
         });
     }
 }
-#endregion
-#endif

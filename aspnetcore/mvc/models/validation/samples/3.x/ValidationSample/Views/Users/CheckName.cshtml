@@ -1,0 +1,41 @@
+@model User
+
+@{
+    ViewData["Title"] = "Check Name";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<ol>
+    <li>Enter a first name and last name. Validate accepts the name.</li>
+    <li>Enter a different first name and last name. Validate accepts the name.</li>
+    <li>Re-enter the first name and last name from the first step. Validation fails.</li>
+</ol>
+
+<div class="row">
+    <div class="col-md-4">
+        <form>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="button" value="Validate" class="btn btn-info" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

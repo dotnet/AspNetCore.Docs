@@ -4,22 +4,23 @@ author: mjrousos
 description: Tips for increasing performance in ASP.NET Core apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 05/10/2019
+ms.date: 12/05/2019
+no-loc: [SignalR]
 uid: performance/performance-best-practices
 ---
 # ASP.NET Core Performance Best Practices
 
 By [Mike Rousos](https://github.com/mjrousos)
 
-This topic provides guidelines for performance best practices with ASP.NET Core.
-
-<a name="hot"></a>
-
-In this document, a *hot code path* is defined as a code path that is frequently called and where much of the execution time occurs. Hot code paths typically limit app scale-out and performance.
+This article provides guidelines for performance best practices with ASP.NET Core.
 
 ## Cache aggressively
 
 Caching is discussed in several parts of this document. For more information, see <xref:performance/caching/response>.
+
+## Understand hot code paths
+
+In this document, a *hot code path* is defined as a code path that is frequently called and where much of the execution time occurs. Hot code paths typically limit app scale-out and performance and are discussed in several parts of this document.
 
 ## Avoid blocking calls
 
@@ -31,25 +32,25 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 
 * Block asynchronous execution by calling [Task.Wait](/dotnet/api/system.threading.tasks.task.wait) or [Task.Result](/dotnet/api/system.threading.tasks.task-1.result).
 * Acquire locks in common code paths. ASP.NET Core apps are most performant when architected to run code in parallel.
+* Call [Task.Run](/dotnet/api/system.threading.tasks.task.run) and immediately await it. ASP.NET Core already runs app code on normal Thread Pool threads, so calling Task.Run only results in extra unnecessary Thread Pool scheduling. Even if the scheduled code would block a thread, Task.Run does not prevent that.
 
 **Do**:
 
-* Make [hot code paths](#hot) asynchronous.
-* Call data access and long-running operations APIs asynchronously.
+* Make [hot code paths](#understand-hot-code-paths) asynchronous.
+* Call data access, I/O, and long-running operations APIs asynchronously if an asynchronous API is available. Do **not** use [Task.Run](/dotnet/api/system.threading.tasks.task.run) to make a synchronus API asynchronous.
 * Make controller/Razor Page actions asynchronous. The entire call stack is asynchronous in order to benefit from [async/await](/dotnet/csharp/programming-guide/concepts/async/) patterns.
 
-A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be used to find threads frequently added to the [Thread Pool](/windows/desktop/procthread/thread-pools). The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread added to the thread pool. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc  -->
+A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be used to find threads frequently added to the [Thread Pool](/windows/desktop/procthread/thread-pools). The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread added to the thread pool. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc)  -->
 
 ## Minimize large object allocations
 
-<!-- TODO review Bill - replaced original .NET language below with .NET Core since this targets .NET Core -->
-The [.NET Core garbage collector](/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection generally means that developers don't need to worry about how or when memory is freed. However, cleaning up unreferenced objects takes CPU time, so developers should minimize allocating objects in [hot code paths](#hot). Garbage collection is especially expensive on large objects (> 85 K bytes). Large objects are stored on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires a temporary suspension of app execution. Frequent allocation and de-allocation of large objects can cause inconsistent performance.
+The [.NET Core garbage collector](/dotnet/standard/garbage-collection/) manages allocation and release of memory automatically in ASP.NET Core apps. Automatic garbage collection generally means that developers don't need to worry about how or when memory is freed. However, cleaning up unreferenced objects takes CPU time, so developers should minimize allocating objects in [hot code paths](#understand-hot-code-paths). Garbage collection is especially expensive on large objects (> 85 K bytes). Large objects are stored on the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) and require a full (generation 2) garbage collection to clean up. Unlike generation 0 and generation 1 collections, a generation 2 collection requires a temporary suspension of app execution. Frequent allocation and de-allocation of large objects can cause inconsistent performance.
 
 Recommendations:
 
 * **Do** consider caching large objects that are frequently used. Caching large objects prevents expensive allocations.
-* **Do** pool buffers by using an [`ArrayPool<T>`](/dotnet/api/system.buffers.arraypool-1) to store large arrays.
-* **Do not** allocate many, short-lived large objects on [hot code paths](#hot).
+* **Do** pool buffers by using an [ArrayPool\<T>](/dotnet/api/system.buffers.arraypool-1) to store large arrays.
+* **Do not** allocate many, short-lived large objects on [hot code paths](#understand-hot-code-paths).
 
 Memory issues, such as the preceding, can be diagnosed by reviewing garbage collection (GC) stats in [PerfView](https://github.com/Microsoft/perfview) and examining:
 
@@ -59,7 +60,7 @@ Memory issues, such as the preceding, can be diagnosed by reviewing garbage coll
 
 For more information, see [Garbage Collection and Performance](/dotnet/standard/garbage-collection/performance).
 
-## Optimize Data Access
+## Optimize data access and I/O
 
 Interactions with a data store and other remote services are often the slowest parts of an ASP.NET Core app. Reading and writing data efficiently is critical for good performance.
 
@@ -102,7 +103,7 @@ You want all of your code to be fast, frequently called code paths are the most 
 Recommendations:
 
 * **Do not** use custom middleware components with long-running tasks.
-* **Do** use performance profiling tools, such as [Visual Studio Diagnostic Tools](/visualstudio/profiling/profiling-feature-tour) or [PerfView](https://github.com/Microsoft/perfview)), to identify [hot code paths](#hot).
+* **Do** use performance profiling tools, such as [Visual Studio Diagnostic Tools](/visualstudio/profiling/profiling-feature-tour) or [PerfView](https://github.com/Microsoft/perfview)), to identify [hot code paths](#understand-hot-code-paths).
 
 ## Complete long-running Tasks outside of HTTP requests
 
@@ -132,10 +133,7 @@ Recommendations:
 
 ## Use the latest ASP.NET Core release
 
-Each new release of ASP.NET Core includes performance improvements. Optimizations in .NET Core and ASP.NET Core mean that newer versions generally outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [`Span<T>`](https://msdn.microsoft.com/magazine/mt814808.aspx). ASP.NET Core 2.2 added support for HTTP/2. If performance is a priority, consider upgrading to the current version of ASP.NET Core.
-
-<!-- TODO review link and taking advantage of new [performance features](#TBD)
-Maybe skip this TBD link as each version will have perf improvements -->
+Each new release of ASP.NET Core includes performance improvements. Optimizations in .NET Core and ASP.NET Core mean that newer versions generally outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [Span\<T>](https://msdn.microsoft.com/magazine/mt814808.aspx). ASP.NET Core 2.2 added support for HTTP/2. [ASP.NET Core 3.0 adds many improvements](xref:aspnetcore-3.0) that reduce memory usage and improve throughput. If performance is a priority, consider upgrading to the current version of ASP.NET Core.
 
 ## Minimize exceptions
 
@@ -143,8 +141,203 @@ Exceptions should be rare. Throwing and catching exceptions is slow relative to 
 
 Recommendations:
 
-* **Do not** use throwing or catching exceptions as a means of normal program flow, especially in [hot code paths](#hot).
+* **Do not** use throwing or catching exceptions as a means of normal program flow, especially in [hot code paths](#understand-hot-code-paths).
 * **Do** include logic in the app to detect and handle conditions that would cause an exception.
 * **Do** throw or catch exceptions for unusual or unexpected conditions.
 
 App diagnostic tools, such as Application Insights, can help to identify common exceptions in an app that may affect performance.
+
+## Performance and reliability
+
+The following sections provide performance tips and known reliability problems and solutions.
+
+## Avoid synchronous read or write on HttpRequest/HttpResponse body
+
+All IO in ASP.NET Core is asynchronous. Servers implement the `Stream` interface, which has both synchronous and asynchronous overloads. The asynchronous ones should be preferred to avoid blocking thread pool threads. Blocking threads can lead to thread pool starvation.
+
+**Do not do this:** The following example uses the <xref:System.IO.StreamReader.ReadToEnd*>. It blocks the current thread to wait for the result. This is an example of [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
+).
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet1)]
+
+In the preceding code, `Get` synchronously reads the entire HTTP request body into memory. If the client is slowly uploading, the app is doing sync over async. The app does sync over async because Kestrel does **NOT** support synchronous reads.
+
+**Do this:** The following example uses <xref:System.IO.StreamReader.ReadToEndAsync*> and does not block the thread while reading.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet2)]
+
+The preceding code asynchronously reads the entire HTTP request body into memory.
+
+> [!WARNING]
+> If the request is large, reading the entire HTTP request body into memory could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
+
+**Do this:** The following example is fully asynchronous using a non buffered request body:
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet3)]
+
+The preceding code asynchronously de-serializes the request body into a C# object.
+
+## Prefer ReadFormAsync over Request.Form
+
+Use `HttpContext.Request.ReadFormAsync` instead of `HttpContext.Request.Form`.
+`HttpContext.Request.Form` can be safely read only with the following conditions:
+
+* The form has been read by a call to `ReadFormAsync`, and
+* The cached form value is being read using `HttpContext.Request.Form`
+
+**Do not do this:** The following example uses `HttpContext.Request.Form`.  `HttpContext.Request.Form` uses [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
+) and can lead to thread pool starvation.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/MySecondController.cs?name=snippet1)]
+
+**Do this:** The following example uses `HttpContext.Request.ReadFormAsync` to read the form body asynchronously.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/MySecondController.cs?name=snippet2)]
+
+<a name="arlb"></a>
+
+## Avoid reading large request bodies or response bodies into memory
+
+In .NET, every object allocation greater than 85 KB ends up in the large object heap ([LOH](https://blogs.msdn.microsoft.com/maoni/2006/04/19/large-object-heap/)). Large objects are expensive in two ways:
+
+* The allocation cost is high because the memory for a newly allocated large object has to be cleared. The CLR guarantees that memory for all newly allocated objects is cleared.
+* LOH is collected with the rest of the heap. LOH requires a full [garbage collection](/dotnet/standard/garbage-collection/fundamentals) or [Gen2 collection](/dotnet/standard/garbage-collection/fundamentals#generations).
+
+This [blog post](https://adamsitnik.com/Array-Pool/#the-problem) describes the problem succinctly:
+
+> When a large object is allocated, it’s marked as Gen 2 object. Not Gen 0 as for small objects. The consequences are that if you run out of memory in LOH, GC cleans up the whole managed heap, not only LOH. So it cleans up Gen 0, Gen 1 and Gen 2 including LOH. This is called full garbage collection and is the most time-consuming garbage collection. For many applications, it can be acceptable. But definitely not for high-performance web servers, where few big memory buffers are needed to handle an average web request (read from a socket, decompress, decode JSON & more).
+
+Naively storing a large request or response body into a single `byte[]` or `string`:
+
+* May result in quickly running out of space in the LOH.
+* May cause performance issues for the app because of full GCs running.
+
+## Working with a synchronous data processing API
+
+When using a serializer/de-serializer that only supports synchronous reads and writes (for example,  [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)):
+
+* Buffer the data into memory asynchronously before passing it into the serializer/de-serializer.
+
+> [!WARNING]
+> If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
+
+ASP.NET Core 3.0 uses <xref:System.Text.Json> by default for JSON serialization. <xref:System.Text.Json>:
+
+* Reads and writes JSON asynchronously.
+* Is optimized for UTF-8 text.
+* Typically higher performance than `Newtonsoft.Json`.
+
+## Do not store IHttpContextAccessor.HttpContext in a field
+
+The [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext) returns the `HttpContext` of the active request when accessed from the request thread. The `IHttpContextAccessor.HttpContext` should **not** be stored in a field or variable.
+
+**Do not do this:** The following example stores the `HttpContext` in a field, and then attempts to use it later.
+
+[!code-csharp[](performance-best-practices/samples/3.0/MyType.cs?name=snippet1)]
+
+The preceding code frequently captures a null or incorrect `HttpContext` in the constructor.
+
+**Do this:** The following example:
+
+* Stores the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in a field.
+* Uses the `HttpContext` field at the correct time and checks for `null`.
+
+[!code-csharp[](performance-best-practices/samples/3.0/MyType.cs?name=snippet2)]
+
+## Do not access HttpContext from multiple threads
+
+`HttpContext` is *NOT* thread-safe. Accessing `HttpContext` from multiple threads in parallel can result in undefined behavior such as hangs, crashes, and data corruption.
+
+**Do not do this:** The following example makes three parallel requests and logs the incoming request path before and after the outgoing HTTP request. The request path is accessed from multiple threads, potentially in parallel.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet1&highlight=25,28)]
+
+**Do this:** The following example copies all data from the incoming request before making the three parallel requests.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet2&highlight=6,8,22,28)]
+
+## Do not use the HttpContext after the request is complete
+
+`HttpContext` is only valid as long as there is an active HTTP request in the ASP.NET Core pipeline. The entire ASP.NET Core pipeline is an asynchronous chain of delegates that executes every request. When the `Task` returned from this chain completes, the `HttpContext` is recycled.
+
+**Do not do this:** The following example uses `async void` which makes the HTTP request complete when the first `await` is reached:
+
+* Which is **ALWAYS** a bad practice in ASP.NET Core apps.
+* Accesses the `HttpResponse` after the HTTP request is complete.
+* Crashes the process.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncBadVoidController.cs?name=snippet1)]
+
+**Do this:** The following example returns a `Task` to the framework so the HTTP request doesn't complete until the action completes.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncSecondController.cs?name=snippet1)]
+
+## Do not capture the HttpContext in background threads
+
+**Do not do this:** The following example shows a closure is capturing the `HttpContext` from the `Controller` property. This is a bad practice because the work item could:
+
+* Run outside of the request scope.
+* Attempt to read the wrong `HttpContext`.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetFirstController.cs?name=snippet1)]
+
+**Do this:** The following example:
+
+* Copies the data required in the background task during the request.
+* Doesn't reference anything from the controller.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetFirstController.cs?name=snippet2)]
+
+Background tasks should be implemented as hosted services. For more information, see [Background tasks with hosted services](xref:fundamentals/host/hosted-services).
+
+## Do not capture services injected into the controllers on background threads
+
+**Do not do this:** The following example shows a closure is capturing the `DbContext` from the `Controller` action parameter. This is a bad practice.  The work item could run outside of the request scope. The `ContosoDbContext` is scoped to the request, resulting in an `ObjectDisposedException`.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet1)]
+
+**Do this:** The following example:
+
+* Injects an <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory> in order to create a scope in the background work item. `IServiceScopeFactory` is a singleton.
+* Creates a new dependency injection scope in the background thread.
+* Doesn't reference anything from the controller.
+* Doesn't capture the `ContosoDbContext` from the incoming request.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2)]
+
+The following highlighted code:
+
+* Creates a scope for the lifetime of the background operation and resolves services from it.
+* Uses `ContosoDbContext` from the correct scope.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2&highlight=9-16)]
+
+## Do not modify the status code or headers after the response body has started
+
+ASP.NET Core does not buffer the HTTP response body. The first time the response is written:
+
+* The headers are sent along with that chunk of the body to the client.
+* It's no longer possible to change response headers.
+
+**Do not do this:** The following code tries to add response headers after the response has already started:
+
+[!code-csharp[](performance-best-practices/samples/3.0/Startup22.cs?name=snippet1)]
+
+In the preceding code, `context.Response.Headers["test"] = "test value";` will throw an exception if `next()` has written to the response.
+
+**Do this:** The following example checks if the HTTP response has started before modifying the headers.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Startup22.cs?name=snippet2)]
+
+**Do this:** The following example uses `HttpResponse.OnStarting` to set the headers before the response headers are flushed to the client.
+
+Checking if the response has not started allows registering a callback that will be invoked just before response headers are written. Checking if the response has not started:
+
+* Provides the ability to append or override headers just in time.
+* Doesn't require knowledge of the next middleware in the pipeline.
+
+[!code-csharp[](performance-best-practices/samples/3.0/Startup22.cs?name=snippet3)]
+
+## Do not call next() if you have already started writing to the response body
+
+Components only expect to be called if it's possible for them to handle and manipulate the response.

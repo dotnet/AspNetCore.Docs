@@ -1,16 +1,14 @@
 ---
 title: IIS modules with ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Discover active and inactive IIS modules for ASP.NET Core apps and how to manage IIS modules.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/12/2019
+ms.date: 01/13/2020
 uid: host-and-deploy/iis/modules
 ---
 # IIS modules with ASP.NET Core
-
-By [Luke Latham](https://github.com/guardrex)
 
 Some of the native IIS modules and all of the IIS managed modules aren't able to process requests for ASP.NET Core apps. In many cases, ASP.NET Core offers an alternative to the scenarios addressed by IIS native and managed modules.
 
@@ -161,8 +159,7 @@ The HTTP Caching Module (`HttpCacheModule`) implements the IIS output cache and 
 
 ## Additional resources
 
-* <xref:host-and-deploy/iis/index>
 * [Introduction to IIS Architectures: Modules in IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#modules-in-iis)
 * [IIS Modules Overview](/iis/get-started/introduction-to-iis/iis-modules-overview)
 * [Customizing IIS 7.0 Roles and Modules](https://technet.microsoft.com/library/cc627313.aspx)
-* [IIS `<system.webServer>`](/iis/configuration/system.webServer/)
+* [IIS \<system.webServer>](/iis/configuration/system.webServer/)

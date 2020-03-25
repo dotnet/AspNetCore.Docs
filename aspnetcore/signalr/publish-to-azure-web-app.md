@@ -5,7 +5,8 @@ description: Learn how to publish an ASP.NET Core SignalR app to Azure App Servi
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 06/26/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/publish-to-azure-web-app
 ---
 # Publish an ASP.NET Core SignalR app to Azure App Service

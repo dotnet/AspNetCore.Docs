@@ -234,6 +234,26 @@ public class HomeController : Controller
     }
     #endregion
 
+    #region snippet_ae
+    public IActionResult CacheAutoExpiringTryGetValueSet()
+    {
+        DateTime cacheEntry;
+
+        if (!_cache.TryGetValue(CacheKeys.Entry, out cacheEntry))
+        {
+            cacheEntry = DateTime.Now;
+
+            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+
+            var cacheEntryOptions = new MemoryCacheEntryOptions()
+                .AddExpirationToken(new CancellationChangeToken(cts.Token));
+
+            _cache.Set(CacheKeys.Entry, cacheEntry, cacheEntryOptions);
+        }
+
+        return View("Cache", cacheEntry);
+    }
+    #endregion
     public IActionResult Privacy()
     {
         return View();

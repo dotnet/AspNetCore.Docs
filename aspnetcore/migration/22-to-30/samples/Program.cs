@@ -1,17 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace aspnetcoreapp
 {
     #region snippet
+    // requires using Microsoft.AspNetCore.Hosting;
+    // requires using Microsoft.Extensions.Hosting;
+    
     public class Program
     {
         public static void Main(string[] args)

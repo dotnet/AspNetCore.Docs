@@ -3,7 +3,7 @@ title: Add search to ASP.NET Core Razor Pages
 author: rick-anderson
 description: Shows how to add search to ASP.NET Core Razor Pages
 ms.author: riande
-ms.date: 7/23/2019
+ms.date: 12/05/2019
 uid: tutorials/razor-pages/search
 ---
 # Add search to ASP.NET Core Razor Pages
@@ -20,7 +20,7 @@ Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contains the text users enter in the search text box. `SearchString` is decorated with the [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) attribute. `[BindProperty]` binds form values and query strings with the same name as the property. `(SupportsGet = true)` is required for binding on GET requests.
+* `SearchString`: contains the text users enter in the search text box. `SearchString` has the [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) attribute. `[BindProperty]` binds form values and query strings with the same name as the property. `(SupportsGet = true)` is required for binding on GET requests.
 * `Genres`: contains the list of genres. `Genres` allows the user to select a genre from the list. `SelectList` requires `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contains the specific genre the user selects (for example, "Western").
 * `Genres` and `MovieGenre` are used later in this tutorial.
@@ -47,7 +47,8 @@ If the `SearchString` property is not null or empty, the movies query is modifie
 
 The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) queries as arguments to standard query operator methods such as the [Where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) method or `Contains` (used in the preceding code). LINQ queries are not executed when they're defined or when they're modified by calling a method (such as `Where`, `Contains`  or `OrderBy`). Rather, query execution is deferred. That means the evaluation of an expression is delayed until its realized value is iterated over or the `ToListAsync` method is called. See [Query Execution](/dotnet/framework/data/adonet/ef/language-reference/query-execution) for more information.
 
-**Note:** The [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. In SQLite, with the default collation, it's case sensitive.
+> [!NOTE]
+> The [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. In SQLite, with the default collation, it's case sensitive.
 
 Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL (for example, `https://localhost:5001/Movies?searchString=Ghost`). The filtered movies are displayed.
 
@@ -122,7 +123,7 @@ Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contains the text users enter in the search text box. `SearchString` is decorated with the [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) attribute. `[BindProperty]` binds form values and query strings with the same name as the property. `(SupportsGet = true)` is required for binding on GET requests.
+* `SearchString`: contains the text users enter in the search text box. `SearchString` has the [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) attribute. `[BindProperty]` binds form values and query strings with the same name as the property. `(SupportsGet = true)` is required for binding on GET requests.
 * `Genres`: contains the list of genres. `Genres` allows the user to select a genre from the list. `SelectList` requires `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contains the specific genre the user selects (for example, "Western").
 * `Genres` and `MovieGenre` are used later in this tutorial.
@@ -203,6 +204,8 @@ Update *Index.cshtml* as follows:
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
 
 Test the app by searching by genre, by movie title, and by both.
+The preceding code uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper) and 
+Option Tag Helper.
 
 ## Additional resources
 

@@ -4,6 +4,6 @@ This sample illustrates integration testing of an [ASP.NET Core Razor Pages](htt
 
 If you aren't using an IDE with built-in testing features, execute the following command at a command prompt in the *tests/RazorPagesProject.Tests* folder:
 
-```console
+```dotnetcli
 dotnet test
 ```

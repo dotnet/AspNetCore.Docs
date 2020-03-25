@@ -24,7 +24,7 @@ namespace FileProviderSample
             #region snippet1
             var physicalProvider = _env.ContentRootFileProvider;
             var manifestEmbeddedProvider = 
-                new ManifestEmbeddedFileProvider(Assembly.GetEntryAssembly());
+                new ManifestEmbeddedFileProvider(typeof(Program).Assembly);
             var compositeProvider = 
                 new CompositeFileProvider(physicalProvider, manifestEmbeddedProvider);
 

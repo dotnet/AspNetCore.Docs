@@ -5,7 +5,8 @@ description: Learn how to stream data between the client and the server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 06/05/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/streaming
 ---
 # Use streaming in ASP.NET Core SignalR
@@ -24,7 +25,7 @@ ASP.NET Core SignalR supports streaming return values of server methods. This is
 
 ::: moniker-end
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/streaming/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/streaming/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Set up a hub for streaming
 
@@ -96,7 +97,7 @@ An <xref:System.Collections.Generic.IAsyncEnumerable%601> version of the method 
 [!INCLUDE[](~/includes/csharp-8-required.md)]
 
 ```csharp
-public async Task UploadStream(IAsyncEnumerable<Stream> stream) 
+public async Task UploadStream(IAsyncEnumerable<string> stream)
 {
     await foreach (var item in stream)
     {

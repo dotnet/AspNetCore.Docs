@@ -109,6 +109,23 @@ public class UpdateModel : PageModel
 
 Role requirements can also be expressed using the new Policy syntax, where a developer registers a policy at startup as part of the Authorization service configuration. This normally occurs in `ConfigureServices()` in your *Startup.cs* file.
 
+::: moniker range=">= aspnetcore-3.0"
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllersWithViews();
+    services.AddRazorPages();
+
+    services.AddAuthorization(options =>
+    {
+        options.AddPolicy("RequireAdministratorRole",
+             policy => policy.RequireRole("Administrator"));
+    });
+}
+```
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -121,6 +138,7 @@ public void ConfigureServices(IServiceCollection services)
     });
 }
 ```
+::: moniker-end
 
 Policies are applied using the `Policy` property on the `AuthorizeAttribute` attribute:
 
@@ -145,4 +163,11 @@ This example authorizes users who belong to the `Administrator`, `PowerUser` or 
 
 Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
 
-[!code-csharp[](roles/samples/Startup.cs?name=snippet&highlight=7)]
+::: moniker range=">= aspnetcore-3.0"
+[!code-csharp[](roles/samples/3_0/Startup.cs?name=snippet&highlight=7)]
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+[!code-csharp[](roles/samples/2_2/Startup.cs?name=snippet&highlight=7)]
+::: moniker-end
+

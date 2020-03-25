@@ -1,6 +1,6 @@
 ---
 title: Publish an ASP.NET Core app to Azure with Visual Studio Code
-author: ricardoserradas
+author: rick-anderson
 description: Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio Code
 ms.author: riserrad
 ms.custom: mvc
@@ -26,8 +26,8 @@ and deploy it within Visual Studio Code.
 - Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.
 - Install [.NET Core SDK](https://dotnet.microsoft.com/download)
 - Install [Visual Studio Code](https://code.visualstudio.com/Download)
-  - Install the [C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) to Visual Studio Code
-  - Instal the [Azure App Service Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice)
+  - Install the [C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) to Visual Studio Code
+  - Install the [Azure App Service Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice)
   to Visual Studio Code and configure it before proceeding
 
 ## Create an ASP.Net Core MVC project
@@ -35,8 +35,8 @@ and deploy it within Visual Studio Code.
 Using a terminal, navigate to the folder you want the project to be created on
 and use the following command:
 
-```cmd
-> dotnet new mvc
+```dotnetcli
+dotnet new mvc
 ```
 
 You'll have a folder structure similar to the following:

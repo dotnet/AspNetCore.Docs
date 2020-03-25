@@ -25,7 +25,7 @@ namespace HttpClientFactorySample.Handlers
         {
             var identifier = Guid.NewGuid(); // some information we want to generate and add per request
 
-            _logger.LogInformation($"Starting request {identifier}");
+            _logger.LogInformation("Starting request {Identifier}", identifier);
 
             request.Headers.Add(RequestSourceHeaderName, RequestSource);
             request.Headers.Add(RequestIdHeaderName, identifier.ToString());

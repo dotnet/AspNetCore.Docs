@@ -70,6 +70,8 @@ The sample below demonstrates using the `IKeyManager` interface to inspect and m
 
 [!code-csharp[](key-management/samples/key-management.cs)]
 
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
+
 ## Key storage
 
 The data protection system has a heuristic whereby it attempts to deduce an appropriate key storage location and encryption-at-rest mechanism automatically. The key persistence mechanism is also configurable by the app developer. The following documents discuss the in-box implementations of these mechanisms:

@@ -5,10 +5,10 @@ description: Add MessagePack Hub Protocol to ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 02/27/2019
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/messagepackhubprotocol
 ---
-
 # Use MessagePack Hub Protocol in SignalR for ASP.NET Core
 
 By [Brennan Conroy](https://github.com/BrennanConroy)
@@ -44,6 +44,18 @@ services.AddSignalR()
     });
 ```
 
+> [!WARNING]
+> We strongly recommend reviewing [CVE-2020-5234](https://github.com/neuecc/MessagePack-CSharp/security/advisories/GHSA-7q36-4xx7-xcxf) and applying the recommended patches. For example, setting the `MessagePackSecurity.Active` static property to `MessagePackSecurity.UntrustedData`. Setting the `MessagePackSecurity.Active` requires manually installing a [1.9.x version of MessagePack](https://www.nuget.org/packages/MessagePack/1.9.3). Installing `MessagePack` 1.9.x upgrades the version SignalR uses. When `MessagePackSecurity.Active` is not set to `MessagePackSecurity.UntrustedData`, a malicious client could cause a denial of service. Set `MessagePackSecurity.Active` in `Program.Main`, as shown in the following code:
+
+```csharp
+public static void Main(string[] args)
+{
+  MessagePackSecurity.Active = MessagePackSecurity.UntrustedData;
+
+  CreateHostBuilder(args).Build().Run();
+}
+```
+
 ## Configure MessagePack on the client
 
 > [!NOTE]
@@ -65,13 +77,41 @@ var hubConnection = new HubConnectionBuilder()
 
 ### JavaScript client
 
-MessagePack support for the JavaScript client is provided by the `@aspnet/signalr-protocol-msgpack` npm package.
+::: moniker range=">= aspnetcore-3.0"
+
+MessagePack support for the JavaScript client is provided by the `@microsoft/signalr-protocol-msgpack` npm package. Install the package by executing the following command in a command shell:
+
+```console
+npm install @microsoft/signalr-protocol-msgpack
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+MessagePack support for the JavaScript client is provided by the `@aspnet/signalr-protocol-msgpack` npm package. Install the package by executing the following command in a command shell:
 
 ```console
 npm install @aspnet/signalr-protocol-msgpack
 ```
 
-After installing the npm package, the module can be used directly via a JavaScript module loader or imported into the browser by referencing the *node_modules\\@aspnet\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* file. In a browser, the `msgpack5` library must also be referenced. Use a `<script>` tag to create a reference. The library can be found at *node_modules\msgpack5\dist\msgpack5.js*.
+::: moniker-end
+
+After installing the npm package, the module can be used directly via a JavaScript module loader or imported into the browser by referencing the following file:
+
+::: moniker range=">= aspnetcore-3.0"
+
+*node_modules\\@microsoft\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* 
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+*node_modules\\@aspnet\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* 
+
+::: moniker-end
+
+In a browser, the `msgpack5` library must also be referenced. Use a `<script>` tag to create a reference. The library can be found at *node_modules\msgpack5\dist\msgpack5.js*.
 
 > [!NOTE]
 > When using the `<script>` element, the order is important. If *signalr-protocol-msgpack.js* is referenced before *msgpack5.js*, an error occurs when trying to connect with MessagePack. *signalr.js* is also required before *signalr-protocol-msgpack.js*.
@@ -138,7 +178,7 @@ For more information on this limitation, see GitHub issue [aspnet/SignalR#2228](
 
 ### MessagePack support in "ahead-of-time" compilation environment
 
-The [MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp) library used by the .NET client and server uses code generation to optimize serialization. As a result, it isn't supported by default on environments that use "ahead-of-time" compilation (such as Xamarin iOS or Unity). It's possible to use MessagePack in these environments by "pre-generating" the serializer/deserializer code. For more information, see [the MessagePack-CSharp documentation](https://github.com/neuecc/MessagePack-CSharp#pre-code-generationunityxamarin-supports). Once you have pre-generated the serializers, you can register them using the configuration delegate passed to `AddMessagePackProtocol`:
+The [MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp/tree/v1.8) library used by the .NET client and server uses code generation to optimize serialization. As a result, it isn't supported by default on environments that use "ahead-of-time" compilation (such as Xamarin iOS or Unity). It's possible to use MessagePack in these environments by "pre-generating" the serializer/deserializer code. For more information, see [the MessagePack-CSharp documentation](https://github.com/neuecc/MessagePack-CSharp/tree/v1.8#pre-code-generationunityxamarin-supports). Once you have pre-generated the serializers, you can register them using the configuration delegate passed to `AddMessagePackProtocol`:
 
 ```csharp
 services.AddSignalR()

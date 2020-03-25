@@ -1,0 +1,77 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Change Token Sample";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-8">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Logging levels</h3>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>Select the <span style="font-weight:bold">Start Monitoring</span> button.</li>
+                    <li>Open the <em>appsettings.Production.json</em> file (or <em>appsettings.Development.json</em> if running the sample in the Development environment) in a text editor and set the logging levels to any of these valid values: <span class="label label-default">Trace</span>, <span class="label label-success">Debug</span>, <span class="label label-info">Information</span>, <span class="label label-warning">Warning</span>, <span class="label label-primary">Error</span>, or <span class="label label-danger">Critical</span>.</li>
+                    <li>Save the file.</li>
+                    <li>The console logs a message when the file watcher triggers a callback on the change token.<img width="258" height="70" alt="Console showing a message that the configuration changed on 10/27/2017 at 9:30:17 AM" src="~/images/console-config-change.png"></li>
+                    <li>Click the <b>Get Current Values</b> button to update the page with the latest values loaded into configuration.</li>
+                </ol>
+                <p>Current state: <span class="label label-default">@Model.CurrentState</span></p>
+                LogLevel
+                <ul>
+                    <li>Default: <span class="label label-@ViewData["DefaultLogLevelStyle"]">@Model.DefaultLogLevel</span></li>
+                    <li>System: <span class="label label-@ViewData["SystemLogLevelStyle"]">@Model.SystemLogLevel</span></li>
+                    <li>Microsoft: <span class="label label-@ViewData["MicrosoftLogLevelStyle"]">@Model.MicrosoftLogLevel</span></li>
+                </ul> 
+                <p>
+                    <form method="post">
+                        <a href="/Index" class="btn btn-default" role="button">Get Current Values</a>
+                        <!-- <snippet_Buttons> -->
+                        <button class="btn btn-success" asp-page-handler="StartMonitoring">
+                            Start Monitoring
+                        </button>
+
+                        <button class="btn btn-danger" asp-page-handler="StopMonitoring">
+                            Stop Monitoring
+                        </button>
+                        <!-- </snippet_Buttons> -->
+                    </form>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Cached File</h3>
+            </div>
+            <div class="panel-body">
+                <p><i>Spirits of the Dead</i> by Edgar Allan Poe is a cached file. A change token is established to watch the file for changes. If the file changes while it's cached, the change token's callback updates the cache with the file's content.</p>
+                <ol>
+                    <li>While the app is running, open <i>poem.txt</i> and change the file.</li>
+                    <li>Save the file. Saving the file triggers the change token's callback Action.</li>
+                    <li>The callback updates the file's contents in the cache.</li>
+                    <li>Select the <b>Refresh Page</b> button to reload the page and see the updated file content stored in the cache.</li>
+                </ol>
+                <p>
+                    <a href="/Index" class="btn btn-default" role="button">Refresh Page</a>
+                </p>
+                <h4>Cached File Contents</h4>
+                <p>
+                    @Model.FileContents
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>

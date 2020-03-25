@@ -1,0 +1,37 @@
+﻿@page
+@model BufferedDoubleFileUploadPhysicalModel
+@{
+    ViewData["Title"] = "Buffered Double File Upload (Physical)";
+}
+
+<h1>Upload two buffered files to physical storage with two file upload controls</h1>
+
+<p>The following form's page handler saves the files to disk.</p>
+
+<form enctype="multipart/form-data" method="post">
+    <dl>
+        <dt>
+            <label asp-for="FileUpload.FormFile1"></label>
+        </dt>
+        <dd>
+            <input asp-for="FileUpload.FormFile1" type="file" />
+            <span asp-validation-for="FileUpload.FormFile1"></span>
+        </dd>
+        <dt>
+            <label asp-for="FileUpload.FormFile2"></label>
+        </dt>
+        <dd>
+            <input asp-for="FileUpload.FormFile2" type="file" />
+            <span asp-validation-for="FileUpload.FormFile2"></span>
+        </dd>
+    </dl>
+    <input asp-page-handler="Upload" class="btn" type="submit" value="Upload" />
+</form>
+
+<p class="result">
+    @Model.Result
+</p>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

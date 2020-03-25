@@ -58,7 +58,7 @@ Select the **Create New** link. Complete the form with some invalid values. When
 
 ![Movie view form with multiple jQuery client-side validation errors](validation/_static/val.png)
 
-[!INCLUDE[](~/includes/currency.md)]
+[!INCLUDE[](~/includes/localization/currency.md)]
 
 Notice how the form has automatically rendered a validation error message in each field containing an invalid value. The errors are enforced both client-side (using JavaScript and jQuery) and server-side (when a user has JavaScript disabled).
 
@@ -87,6 +87,8 @@ Optional, test server-side validation:
       return Page();
    }
   ```
+  
+Alternatively, you can [Disable client-side validation on the server](xref:mvc/models/validation#disable-client-side-validation).
 
 The following code shows a portion of the *Create.cshtml* page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to display the initial form and to redisplay the form in the event of an error.
 
@@ -154,7 +156,7 @@ The DataAnnotations applied to the class change the schema. For example, the Dat
 
 The `Movie` table currently has the following schema:
 
-``` sql
+```sql
 CREATE TABLE [dbo].[Movie] (
     [ID]          INT             IDENTITY (1, 1) NOT NULL,
     [Title]       NVARCHAR (MAX)  NULL,
@@ -182,7 +184,7 @@ Update-Database
 
 The updated `Movie` table has the following schema:
 
-``` sql
+```sql
 CREATE TABLE [dbo].[Movie] (
     [ID]          INT             IDENTITY (1, 1) NOT NULL,
     [Title]       NVARCHAR (60)   NOT NULL,

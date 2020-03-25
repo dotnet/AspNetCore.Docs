@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 08/29/2019
+ms.date: 12/11/2019
 uid: web-api/http-repl
 ---
 # Test web APIs with the HTTP REPL
@@ -28,7 +28,7 @@ The following [HTTP verbs](https://github.com/microsoft/api-guidelines/blob/vNex
 * [POST](#test-http-post-requests)
 * [PUT](#test-http-put-requests)
 
-To follow along, [view or download the sample ASP.NET Core web API](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl/samples) ([how to download](xref:index#how-to-download-a-sample)).
+To follow along, [view or download the sample ASP.NET Core web API](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Prerequisites
 
@@ -38,8 +38,8 @@ To follow along, [view or download the sample ASP.NET Core web API](https://gith
 
 To install the HTTP REPL, run the following command:
 
-```console
-dotnet tool install -g Microsoft.dotnet-httprepl --version "3.0.0-*"
+```dotnetcli
+dotnet tool install -g Microsoft.dotnet-httprepl
 ```
 
 A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl) NuGet package.
@@ -49,24 +49,24 @@ A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool)
 After successful installation of the tool, run the following command to start the HTTP REPL:
 
 ```console
-dotnet httprepl
+httprepl
 ```
 
 To view the available HTTP REPL commands, run one of the following commands:
 
 ```console
-dotnet httprepl -h
+httprepl -h
 ```
 
 ```console
-dotnet httprepl --help
+httprepl --help
 ```
 
 The following output is displayed:
 
 ```console
 Usage:
-  dotnet httprepl [<BASE_ADDRESS>] [options]
+  httprepl [<BASE_ADDRESS>] [options]
 
 Arguments:
   <BASE_ADDRESS> - The initial base address for the REPL.
@@ -125,13 +125,13 @@ The HTTP REPL offers command completion. Pressing the <kbd>Tab</kbd> key iterate
 Connect to a web API by running the following command:
 
 ```console
-dotnet httprepl <ROOT URI>
+httprepl <ROOT URI>
 ```
 
 `<ROOT URI>` is the base URI for the web API. For example:
 
 ```console
-dotnet httprepl https://localhost:5001
+httprepl https://localhost:5001
 ```
 
 Alternatively, run the following command at any time while the HTTP REPL is running:
@@ -264,7 +264,7 @@ Response colorization is currently supported for JSON only. To customize the def
 https://localhost:5001/people~ pref set colors.json White
 ```
 
-Only the [allowed colors](https://github.com/aspnet/HttpRepl/blob/01d5c3c3373e98fe566ff5ef8a17c571de880293/src/Microsoft.Repl/ConsoleHandling/AllowedColors.cs) may be used. Subsequent HTTP requests display output with the new coloring.
+Only the [allowed colors](https://github.com/dotnet/HttpRepl/blob/01d5c3c3373e98fe566ff5ef8a17c571de880293/src/Microsoft.Repl/ConsoleHandling/AllowedColors.cs) may be used. Subsequent HTTP requests display output with the new coloring.
 
 When specific color keys aren't set, more generic keys are considered. To demonstrate this fallback behavior, consider the following example:
 
@@ -572,6 +572,7 @@ To issue an HTTP PUT request:
         "data": "Strawberry"
       }
     ]
+    ```
 
 1. Run the `put` command on an endpoint that supports it:
 
@@ -684,6 +685,7 @@ To issue an HTTP DELETE request:
         "data": "Strawberry"
       }
     ]
+    ```
 
 1. Run the `delete` command on an endpoint that supports it:
 
@@ -784,25 +786,107 @@ The route parameter, if any, expected by the associated controller action method
 
 To set an HTTP request header, use one of the following approaches:
 
-1. Set inline with the HTTP request. For example:
+* Set inline with the HTTP request. For example:
 
-  ```console
-  https://localhost:5001/people~ post -h Content-Type=application/json
-  ```
+    ```console
+    https://localhost:5001/people~ post -h Content-Type=application/json
+    ```
+    
+    With the preceding approach, each distinct HTTP request header requires its own `-h` option.
 
-  With the preceding approach, each distinct HTTP request header requires its own `-h` option.
+* Set before sending the HTTP request. For example:
 
-1. Set before sending the HTTP request. For example:
+    ```console
+    https://localhost:5001/people~ set header Content-Type application/json
+    ```
+    
+    When setting the header before sending a request, the header remains set for the duration of the command shell session. To clear the header, provide an empty value. For example:
+    
+    ```console
+    https://localhost:5001/people~ set header Content-Type
+    ```
 
-  ```console
-  https://localhost:5001/people~ set header Content-Type application/json
-  ```
+## Test secured endpoints
 
-  When setting the header before sending a request, the header remains set for the duration of the command shell session. To clear the header, provide an empty value. For example:
+The HTTP REPL supports the testing of secured endpoints through the use of HTTP request headers. Examples of supported authentication and authorization schemes include basic authentication, JWT bearer tokens, and digest authentication. For example, you can send a bearer token to an endpoint with the following command:
 
-  ```console
-  https://localhost:5001/people~ set header Content-Type
-  ```
+```console
+set header Authorization "bearer <TOKEN VALUE>"
+```
+
+To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azure/), you need a bearer token. Use the following steps to obtain a bearer token for your Azure subscription via the [Azure CLI](/cli/azure/). The HTTP REPL sets the bearer token in an HTTP request header and retrieves a list of Azure App Service Web Apps.
+
+1. Log in to Azure:
+
+    ```azcli
+    az login
+    ```
+
+1. Get your subscription ID with the following command:
+
+    ```azcli
+    az account show --query id
+    ```
+
+1. Copy your subscription ID and run the following command:
+
+    ```azcli
+    az account set --subscription "<SUBSCRIPTION ID>"
+    ```
+
+1. Get your bearer token with the following command:
+
+    ```azcli
+    az account get-access-token --query accessToken
+    ```
+
+1. Connect to the Azure REST API via the HTTP REPL:
+
+    ```console
+    httprepl https://management.azure.com
+    ```
+
+1. Set the `Authorization` HTTP request header:
+
+    ```console
+    https://management.azure.com/> set header Authorization "bearer <ACCESS TOKEN>"
+    ```
+
+1. Navigate to the subscription:
+
+    ```console
+    https://management.azure.com/> cd subscriptions/<SUBSCRIPTION ID>
+    ```
+
+1. Get a list of your subscription's Azure App Service Web Apps:
+
+    ```console
+    https://management.azure.com/subscriptions/{SUBSCRIPTION ID}> get providers/Microsoft.Web/sites?api-version=2016-08-01
+    ```
+
+    The following response is displayed:
+
+    ```console
+    HTTP/1.1 200 OK
+    Cache-Control: no-cache
+    Content-Length: 35948
+    Content-Type: application/json; charset=utf-8
+    Date: Thu, 19 Sep 2019 23:04:03 GMT
+    Expires: -1
+    Pragma: no-cache
+    Strict-Transport-Security: max-age=31536000; includeSubDomains
+    X-Content-Type-Options: nosniff
+    x-ms-correlation-request-id: <em>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</em>
+    x-ms-original-request-ids: <em>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</em>
+    x-ms-ratelimit-remaining-subscription-reads: 11999
+    x-ms-request-id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    x-ms-routing-request-id: WESTUS:xxxxxxxxxxxxxxxx:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx
+    {
+      "value": [
+        <AZURE RESOURCES LIST>
+      ]
+    }
+    ```
 
 ## Toggle HTTP request display
 
@@ -922,7 +1006,7 @@ If you frequently execute the same set of HTTP REPL commands, consider storing t
 To remove all output written to the command shell by the HTTP REPL tool, run the `clear` or `cls` command. To illustrate, imagine the command shell contains the following output:
 
 ```console
-dotnet httprepl https://localhost:5001
+httprepl https://localhost:5001
 (Disconnected)~ set base "https://localhost:5001"
 Using swagger metadata from https://localhost:5001/swagger/v1/swagger.json
 
@@ -949,4 +1033,4 @@ https://localhost:5001/~
 ## Additional resources
 
 * [REST API requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
-* [HTTP REPL GitHub repository](https://github.com/aspnet/HttpRepl)
+* [HTTP REPL GitHub repository](https://github.com/dotnet/HttpRepl)

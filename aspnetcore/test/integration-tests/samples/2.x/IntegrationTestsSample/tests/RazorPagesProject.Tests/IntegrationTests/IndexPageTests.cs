@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -76,28 +75,30 @@ namespace RazorPagesProject.Tests
 
                             try
                             {
-                                Utilities.InitializeDbForTests(db);
+                                Utilities.ReinitializeDbForTests(db);
                             }
                             catch (Exception ex)
                             {
                                 logger.LogError(ex, "An error occurred seeding " +
-                                    "the database with test messages. Error: " +
+                                    "the database with test messages. Error: {Message}" +
                                     ex.Message);
                             }
                         }
                     });
                 })
                 .CreateClient(new WebApplicationFactoryClientOptions
-                    {
-                        AllowAutoRedirect = false
-                    });
+                {
+                    AllowAutoRedirect = false
+                });
             var defaultPage = await client.GetAsync("/");
             var content = await HtmlHelpers.GetDocumentAsync(defaultPage);
 
             //Act
             var response = await client.SendAsync(
                 (IHtmlFormElement)content.QuerySelector("form[id='messages']"),
-                (IHtmlButtonElement)content.QuerySelector("button[id='deleteBtn1']"));
+                (IHtmlButtonElement)content.QuerySelector("form[id='messages']")
+                    .QuerySelector("div[class='panel-body']")
+                    .QuerySelector("button"));
 
             // Assert
             Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);

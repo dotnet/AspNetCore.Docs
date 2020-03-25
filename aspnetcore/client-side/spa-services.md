@@ -5,7 +5,7 @@ description: Learn about the benefits of using JavaScript Services to create a S
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: H1Hack27Feb2017
-ms.date: 05/28/2019
+ms.date: 09/06/2019
 uid: client-side/spa-services
 ---
 # Use JavaScript Services to Create Single Page Applications in ASP.NET Core
@@ -13,6 +13,13 @@ uid: client-side/spa-services
 By [Scott Addie](https://github.com/scottaddie) and [Fiyaz Hasan](https://fiyazhasan.me/)
 
 A Single Page Application (SPA) is a popular type of web application due to its inherent rich user experience. Integrating client-side SPA frameworks or libraries, such as [Angular](https://angular.io/) or [React](https://facebook.github.io/react/), with server-side frameworks such as ASP.NET Core can be difficult. JavaScript Services was developed to reduce friction in the integration process. It enables seamless operation between the different client and server technology stacks.
+
+::: moniker range=">= aspnetcore-3.0"
+
+> [!WARNING]
+> The features described in this article are obsolete as of ASP.NET Core 3.0. A simpler SPA frameworks integration mechanism is available in the [Microsoft.AspNetCore.SpaServices.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.SpaServices.Extensions) NuGet package. For more information, see [[Announcement] Obsoleting Microsoft.AspNetCore.SpaServices and Microsoft.AspNetCore.NodeServices](https://github.com/dotnet/AspNetCore/issues/12890).
+
+::: moniker-end
 
 ## What is JavaScript Services
 
@@ -206,7 +213,7 @@ JavaScript Services provide pre-configured application templates. SpaServices is
 
 These templates can be installed via the .NET Core CLI by running the following command:
 
-```console
+```dotnetcli
 dotnet new --install Microsoft.AspNetCore.SpaTemplates::*
 ```
 
@@ -220,7 +227,7 @@ A list of available SPA templates is displayed:
 
 To create a new project using one of the SPA templates, include the **Short Name** of the template in the [dotnet new](/dotnet/core/tools/dotnet-new) command. The following command creates an Angular application with ASP.NET Core MVC configured for the server side:
 
-```console
+```dotnetcli
 dotnet new angular
 ```
 
@@ -241,13 +248,13 @@ ASP.NET Core uses an environment variable named `ASPNETCORE_ENVIRONMENT` to stor
 
 Restore the required NuGet and npm packages by running the following command at the project root:
 
-```console
+```dotnetcli
 dotnet restore && npm i
 ```
 
 Build and run the application:
 
-```console
+```dotnetcli
 dotnet run
 ```
 
@@ -277,6 +284,8 @@ The script launches the Karma test runner, which reads the settings defined in t
 
 ## Publish the app
 
+See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/12474) for more information on publishing to Azure.
+
 Combining the generated client-side assets and the published ASP.NET Core artifacts into a ready-to-deploy package can be cumbersome. Thankfully, SpaServices orchestrates that entire publication process with a custom MSBuild target named `RunWebpack`:
 
 [!code-xml[](../client-side/spa-services/sample/SpaServicesSampleApp/SpaServicesSampleApp.csproj?range=31-45)]
@@ -290,7 +299,7 @@ The MSBuild target has the following responsibilities:
 
 The MSBuild target is invoked when running:
 
-```console
+```dotnetcli
 dotnet publish -c Release
 ```
 

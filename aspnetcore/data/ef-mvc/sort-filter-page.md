@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Add sorting, filtering, and paging - ASP.NET MVC with EF Core"
 description: "In this tutorial you'll add sorting, filtering, and paging functionality to the Students Index page. You'll also create a page that does simple grouping."
-author: tdykstra
+author: rick-anderson
 ms.author: riande
 ms.date: 03/27/2019
 ms.topic: tutorial
@@ -243,7 +243,7 @@ Run the app and go to the About page. The count of students for each enrollment 
 
 ## Get the code
 
-[Download or view the completed application.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## Next steps
 
