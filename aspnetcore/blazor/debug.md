@@ -92,9 +92,7 @@ The `inspectUri` property:
 * Enables the IDE to detect that the app is a Blazor WebAssembly app.
 * Instructs the script debugging infrastructure to connect to the browser through Blazor's debugging proxy.
 
-## Procedure
-
-### Visual Studio
+## Visual Studio
 
 To debug a Blazor WebAssembly app in Visual Studio:
 
@@ -126,7 +124,7 @@ While debugging your Blazor WebAssembly app, you can also debug your server code
 
 1. Press <kbd>F5</kbd> again to let execution continue and see the weather forecast table rendered.
 
-### Visual Studio Code
+## Visual Studio Code
 
 To debug a Blazor WebAssembly app in Visual Studio Code:
  
@@ -156,19 +154,15 @@ To debug a Blazor WebAssembly app in Visual Studio Code:
 
    ![Debug Counter in VS Code](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-debug-counter.png)
 
-### Debug in the browser
+## Debug in the browser
 
 1. Run a Debug build of the app in the Development environment.
 
 1. Press <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd>.
 
-1. Follow the instructions to restart the browser with [remote debugging enabled](#enable-remote-debugging), if needed.
+1. The browser must be run with remote debugging enabled. If remote debugging is disabled, an **Unable to find debuggable browser tab** error page is generated. The error page contains instructions for running the browser with the debugging port open so that the Blazor debugging proxy can connect to the app. *Close all browser instances* and restart the browser as instructed.
 
 1. Use the browser's developer tools to debug the app.
-
-## Enable remote debugging
-
-To debug a Blazor WebAssembly app, the browser must be run with remote debugging enabled. If remote debugging is disabled, an **Unable to find debuggable browser tab** error page is generated. The error page contains instructions for running the browser with the debugging port open so that the Blazor debugging proxy can connect to the app. *Close all browser instances* and restart the browser as instructed.
 
 ## Debug the app
 
