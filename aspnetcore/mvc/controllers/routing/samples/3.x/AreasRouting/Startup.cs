@@ -1,54 +1,43 @@
-﻿//#define First
-#define Third
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 
 namespace AreasRouting
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddMvc();
+            services.AddControllersWithViews();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
-
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-#if First
+            app.UseRouting();
+
+            app.UseAuthorization();
+
             #region snippet1
             app.UseEndpoints(endpoints =>
             {
@@ -57,27 +46,6 @@ namespace AreasRouting
                 endpoints.MapControllerRoute("default_route", "{controller}/{action}/{id?}");
             });
             #endregion
-#else
-            #region snippet2
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute("blog_route", "Manage/{controller}/{action}/{id?}",
-                    defaults: new { area = "Blog" }, constraints: new { area = "Blog" });
-                endpoints.MapControllerRoute("default_route", "{controller}/{action}/{id?}");
-            });
-            #endregion
-#endif
-#if Third
-            #region snippet3
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapAreaControllerRoute("duck_route", "Duck",
-                    "Manage/{controller}/{action}/{id?}");
-                endpoints.MapControllerRoute("default", "Manage/{controller=Home}/{action=Index}/{id?}");
-            });
-            #endregion
-#endif
-
         }
     }
 }

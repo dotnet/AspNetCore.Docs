@@ -12,18 +12,18 @@ namespace RoutingSample
 {
     public class MiddlewareFlowStartup
     {
-        #region snippet
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            #region snippet
             // Location 1: before routing runs, endpoint is always null here
             app.Use(next => context =>
             {
-                Console.WriteLine($"1. Endpoint is: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
+                Console.WriteLine($"1. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
                 return next(context);
             });
 
@@ -32,7 +32,7 @@ namespace RoutingSample
             // Location 2: after routing runs, endpoint will be non-null if routing found a match
             app.Use(next => context =>
             {
-                Console.WriteLine($"2. Endpoint is: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
+                Console.WriteLine($"2. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
                 return next(context);
             });
 
@@ -41,7 +41,8 @@ namespace RoutingSample
                 // Location 3: runs when this endpoint matches
                 endpoints.MapGet("/", context =>
                 {
-                    Console.WriteLine($"3. Endpoint is: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
+                    Console.WriteLine(
+                        $"3. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
                     return Task.CompletedTask;
                 }).WithDisplayName("Hello");
             });
@@ -49,11 +50,10 @@ namespace RoutingSample
             // Location 4: runs after UseEndpoints - will only run if there was no match
             app.Use(next => context =>
             {
-                Console.WriteLine($"4. Endpoint is: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
+                Console.WriteLine($"4. Endpoint: {context.GetEndpoint()?.DisplayName ?? "(null)"}");
                 return next(context);
             });
-
+            #endregion
         }
-        #endregion
     }
 }

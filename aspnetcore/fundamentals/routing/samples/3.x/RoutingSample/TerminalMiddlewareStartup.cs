@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace RoutingSample
 {
     public class TerminalMiddlewareStartup
     {
+        #region snippet
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -19,13 +15,12 @@ namespace RoutingSample
                 app.UseDeveloperExceptionPage();
             }
 
-            #region snippet
-            // Approach 1: writing a terminal middleware
+            // Approach 1: Writing a terminal middleware.
             app.Use(next => async context =>
             {
                 if (context.Request.Path == "/")
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    await context.Response.WriteAsync("Hello terminal middleware!");
                     return;
                 }
 
@@ -36,13 +31,13 @@ namespace RoutingSample
 
             app.UseEndpoints(endpoints =>
             {
-                // Approach 2: using routing
-                endpoints.MapGet("/", async context =>
+                // Approach 2: Using routing.
+                endpoints.MapGet("/Movie", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    await context.Response.WriteAsync("Hello routing!");
                 });
             });
-            #endregion
         }
+        #endregion
     }
 }

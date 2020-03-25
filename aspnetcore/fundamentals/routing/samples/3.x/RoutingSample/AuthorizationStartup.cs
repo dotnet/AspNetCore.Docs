@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,10 +32,10 @@ namespace RoutingSample
             // Execute the matched endpoint.
             app.UseEndpoints(endpoints =>
             {
-                // Configure the Health Check endpoint, require an authorized user
+                // Configure the Health Check endpoint and require an authorized user.
                 endpoints.MapHealthChecks("/healthz").RequireAuthorization();
 
-                // Configure another endpoint, no authorization requirements
+                // Configure another endpoint, no authorization requirements.
                 endpoints.MapGet("/", async context =>
                 {
                     await context.Response.WriteAsync("Hello World!");

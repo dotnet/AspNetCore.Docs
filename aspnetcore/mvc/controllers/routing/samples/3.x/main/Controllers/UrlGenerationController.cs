@@ -1,21 +1,20 @@
-﻿//#define 
-#if Never
-#region snippet_1
-using Microsoft.AspNetCore.Mvc;
-
-public class UrlGenerationController : Controller
+﻿using Microsoft.AspNetCore.Mvc;
+namespace WebMvcRouting.Controllers
 {
-    public IActionResult Source()
+    #region snippet_1
+    public class UrlGenerationController : Controller
     {
-        // Generates /UrlGeneration/Destination
-        var url = Url.Action("Destination");
-        return Content($"Go check out {url}, it's really great.");
-    }
+        public IActionResult Source()
+        {
+            // Generates /UrlGeneration/Destination
+            var url = Url.Action("Destination");
+            return ControllerContext.MyDisplayRouteInfo("", $" URL = {url}");
+        }
 
-    public IActionResult Destination()
-    {
-        return View();
+        public IActionResult Destination()
+        {
+            return ControllerContext.MyDisplayRouteInfo();
+        }
     }
+    #endregion
 }
-#endregion
-#endif

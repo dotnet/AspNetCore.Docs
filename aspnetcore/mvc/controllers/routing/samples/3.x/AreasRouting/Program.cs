@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace AreasRouting
 {
@@ -11,14 +7,23 @@ namespace AreasRouting
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
+            CreateHostBuilder(args).Build().Run();
         }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    //webBuilder.UseStartup<Startup>();
+                   // webBuilder.UseStartup<Startup2>();
+
+                    // webBuilder.UseStartup<Startup4>();
+                    //  webBuilder.UseStartup<Startup5>();
+                      webBuilder.UseStartup<Startup3>();
+                     //  webBuilder.UseStartup<Startup6>();
+
+
+
+                });
     }
 }

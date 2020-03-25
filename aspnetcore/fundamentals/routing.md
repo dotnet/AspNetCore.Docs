@@ -5,16 +5,16 @@ description: Discover how ASP.NET Core routing is responsible for matching HTTP 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/13/2019
+ms.date: 3/25/2020
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
 
-By [Ryan Nowak](https://github.com/rynowak), [Steve Smith](https://ardalis.com/), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/serpent5), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Routing is responsible for matching incoming HTTP requests and dispatching those requests to the applications executable endpoints. Endpoints are the apps' units of executable request-handling code. Endpoints are defined in the app and configured when the app starts. The matching process can extract values from the request's URL, and these values can then be used for request processing. Using endpoint information from the app, routing is also able to generate URLs that map to endpoints. 
+Routing is responsible for matching incoming HTTP requests and dispatching those requests to the app's executable endpoints. [Endpoints](#endpoint) are the app's units of executable request-handling code. Endpoints are defined in the app and configured when the app starts. The endpoint matching process can extract values from the request's URL and provide those values for request processing. Using endpoint information from the app, routing is also able to generate URLs that map to endpoints.
 
 Apps can configure routing using:
 
@@ -22,260 +22,360 @@ Apps can configure routing using:
 - Razor Pages
 - SignalR
 - gRPC Services
-- Endpoint-enabled middleware (*routerware*) such as Health Checks
-- Using routing primitives directly.
+- Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as [Health Checks](xref:host-and-deploy/health-checks).
+- Delegates and lambdas registered with routing.
 
-> [!IMPORTANT]
-> This document covers low-level details of ASP.NET Core routing. For information on configuring routing for Controllers, see <xref:mvc/controllers/routing>. For information on routing conventions in Razor Pages, see <xref:razor-pages/razor-pages-conventions>.
-a
-> [!IMPORTANT]
-> The routing system described here (Endpoint Routing) is new as of ASP.NET Core 3.0. For information on the previous routing system based on `IRouter` see //REVIEW - how do I link to another version of the doc???
+This document covers low-level details of ASP.NET Core routing. For information on configuring routing:
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples) ([how to download](xref:index#how-to-download-a-sample))
+* For controllers, see <xref:mvc/controllers/routing>.
+* For Razor Pages conventions, see <xref:razor-pages/razor-pages-conventions>.
 
-> [!INFO]
-> The samples shown here are a set of separate *Startup* classes. To run different samples, modify `Program.cs` to use the desired *Startup* class.
+The endpoint routing system described in this document applies to ASP.NET Core 3.0 and later. For information on the previous routing system based on <xref:Microsoft.AspNetCore.Routing.IRouter>, select the ASP.NET Core 2.1 version using one of the following approaches:
+
+* The version selector for a previous version.
+* Select [ASP.NET Core 2.1 routing](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-2.1).
+
+[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
+
+The download samples for this document are enabled by a specific `Startup` class. To run a specific sample, modify *Program.cs* to call the desired `Startup` class.
 
 ## Routing basics
 
-All ASP.NET Core templates include routing in the starter code. Routing is registered in the middleware pipeline in the `Configure(...)` method of `Startup.cs`.
+All ASP.NET Core templates include routing in the generated code. Routing is registered in the [middleware](xref:fundamentals/middleware/index) pipeline in `Startup.Configure`.
 
-The following code shows a basic example of using routing:
+The following code shows a basic example of routing:
 
-[!code-csharp[](routing/samples/3.x/RoutingSample/Startup.cs?name=snippet)]
+[!code-csharp[](routing/samples/3.x/RoutingSample/Startup.cs?name=snippet&highlight=8,10)]
 
-Routing uses a pair of middleware, registered by [UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) and [UseEndpoints](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*).
+Routing uses a pair of middleware, registered by <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>:
 
-* [UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) adds route matching to the middleware pipeline. This middleware will look at the set of endpoints defined in the application, and select the best match based on the request.
-* [UseEndpoints](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*) adds endpoint execution to the middleware pipeline. It runs the delegate associated with the selected endpoint.
+* `UseRouting` adds route matching to the middleware pipeline. This middleware looks at the set of endpoints defined in the app, and selects the [best match](#urlm) based on the request.
+* `UseEndpoints` adds endpoint execution to the middleware pipeline. It runs the delegate associated with the selected endpoint.
 
-This basic example includes a single *Route to Code* endpoint using the [MapGet](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*) method. 
-* If an HTTP `GET` request is sent to the root URL `/` (`http://localhost:5000/` by default) then the request delegate shown here will execute, and `Hello World!` will be written to the HTTP resonse.
-* If the request is not a `GET` or if the URL is anything else, this will not be a match and the result will be an HTTP 404.
+The preceding example includes a single *route to code* endpoint using the [MapGet](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*) method:
 
-The `MapGet` method is used to define an *endpoint* - that is, something that can be selected (by matching the URL and HTTP method), and can be executed (by running the delegate).
+* When an HTTP `GET` request is sent to the root URL `/`:
+  * The request delegate shown executes.
+  * `Hello World!` is written to the HTTP response. By default, the root URL `/` is `https://localhost:5001/`.
+* If the request method is not `GET` or the root URL is not `/`, no route matches and an HTTP 404 is returned.
 
-`UseEndpoints` is where endpoints are configured that can be matched and executed by the app. For example, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>, and [similar methods](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions)can be used to wire up your own code to the routing system.
+### Endpoint
 
-ASP.NET Core frameworks provide extend the builder provided by `UseEndpoints`:
-- [MapRazorPages (Razor Pages)](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
-- [MapControllers (Controllers)](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
-- [MapHub<THub> (SignalR)](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) <!-- Review required -->
-- MapGrpcService<TService> (gRPC)
-<!-- TODO provide link to MapGrpcService -->
+<a name="endpoint"></a>
 
-The following code shows an example of routing with a more sophisticated route template:
+The `MapGet` method is used to define an **endpoint**. An endpoint is something that can be:
+
+* Selected, by matching the URL and HTTP method.
+* Executed, by running the delegate.
+
+Endpoints that can be matched and executed by the app are configured in `UseEndpoints`. For example, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>, and [similar methods](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions) connect request delegates to the routing system.
+Additional methods can be used to connect ASP.NET Core framework features to the routing system:
+- [MapRazorPages for Razor Pages](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages*)
+- [MapControllers for controllers](xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*)
+- [MapHub\<THub> for SignalR](xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*) 
+- [MapGrpcService\<TService> for gRPC](xref:grpc/aspnetcore)
+
+The following example shows routing with a more sophisticated route template:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/RouteTemplateStartup.cs?name=snippet)]
 
-The string `/hello/{name:alpha}` is a *route template*, and is used to configure how the endpoint is matche3d. In this case, the template will match a URL like `/hello/Ryan` - any URL path that begins with `/hello/` followed by a sequence of alphabetic characters. The second segment of the URL path will be bound to the `name` parameter, and the captured value will be stored in [HttpRequest.RouteValues](xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues*).
+The string `/hello/{name:alpha}` is a **route template**. It is used to configure how the endpoint is matched. In this case, the template matches:
 
-> [!INFO]
-> The routing system described here (Endpoint Routing) is new as of ASP.NET Core 3.0. However, all versions of ASP.NET Core support the same set of route template features and route constraints.
+* A URL like `/hello/Ryan`
+* Any URL path that begins with `/hello/` followed by a sequence of alphabetic characters.  `:alpha` applies a route constraint that matches only alphabetic characters. [Route constraints](#route-constraint-reference) are explained later in this document.
 
-The following code shows an example of routing with other middleware:
+The second segment of the URL path, `{name:alpha}`:
+
+* Is bound to the `name` parameter.
+* Is captured and stored in [HttpRequest.RouteValues](xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues*).
+
+The endpoint routing system described in this document is new as of ASP.NET Core 3.0. However, all versions of ASP.NET Core support the same set of route template features and route constraints.
+
+The following example shows routing with [health checks](xref:host-and-deploy/health-checks) and authorization:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/AuthorizationStartup.cs?name=snippet)]
 
-This example demonstrates how the authorization middleware can be used with routing, and how endpoints can be used to configure authorization behavior.
+[!INCLUDE[](~/includes/MTcomments.md)]
 
-The `MapHealthChecks()` call adds a health check endpoint. Chaining this call to `RequireAuthorization()` attaches an authorization policy to the endpoint. 
+The preceding example demonstrates how:
 
-Invoking `UseAuthentication()` and `UseAuthorization()`, adds the authentication and authorization middleware (respectively). These middleware are placed between `UseRouting()` and `UseAuthorization()` so that they can:
-* See which endpoint was selected by `UseRouting()`
-* Apply an authorization policy before `UseEndpoints()` dispatches to the endpoint
+* The authorization middleware can be used with routing.
+* Endpoints can be used to configure authorization behavior.
 
-In this example there are two endpoints, but only the health check endpoint has an authorization policy attached. If the request matches the health check endpoint (URL path `/health`) then an authorization check will be performed. This demonstrates a feature of endpoints called *metadata* - endpoints can have extra data attached that can be processed by routing-aware middleware.
+The <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks*> call adds a health check endpoint. Chaining <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> on to this call attaches an authorization policy to the endpoint.
+
+Calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> adds the authentication and authorization middleware. These middleware are placed between <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and `UseEndpoints` so that they can:
+
+* See which endpoint was selected by `UseRouting`.
+* Apply an authorization policy before <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> dispatches to the endpoint.
+
+<a name="metadata"></a>
+
+### Endpoint metadata
+
+In the preceding example, there are two endpoints, but only the health check endpoint has an authorization policy attached. If the request matches the health check endpoint, `/healthz`, an authorization check is performed. This demonstrates that endpoints can have extra data attached to them. This extra data is called endpoint **metadata**:
+
+* The metadata can be processed by routing-aware middleware.
+* The metadata can be of any .NET type.
 
 ## Routing concepts
 
-The routing system builds on top of the middleware pipeline by adding the powerful *endpoint* concept. Endpoints represent units of the app's functionality that are distinct from each other from the point of view of routing, or authorization, or any number of ASP.NET Core's systems.
+The routing system builds on top of the middleware pipeline by adding the powerful **endpoint** concept. Endpoints represent units of the app's functionality that are distinct from each other in terms of routing, authorization, and any number of ASP.NET Core's systems.
 
-An endpoint is:
-* Executable: has a [RequestDelegate](xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate*)
-* Extensible: has an [Metadata](xref:Microsoft.AspNetCore.Http.Endpoint.Metadata*) collection
-* Selectable: (optionally) has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern*) 
-* Enumerable: the collection of endpoints can be listed by retrieving the [EndpointDataSource](xref:Microsoft.AspNetCore.Routing.EndpointDataSource) from DI
+<a name="endpoint"></a>
 
-The following code sample shows how to retrieve and inspect an endpoint:
+### ASP.NET Core endpoint definition
+
+An ASP.NET Core endpoint is:
+
+* Executable: Has a <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate>.
+* Extensible: Has a [Metadata](xref:Microsoft.AspNetCore.Http.Endpoint.Metadata*) collection.
+* Selectable: Optionally, has [routing information](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern*).
+* Enumerable: The collection of endpoints can be listed by retrieving the <xref:Microsoft.AspNetCore.Routing.EndpointDataSource> from [DI](xref:fundamentals/dependency-injection).
+
+The following code shows how to retrieve and inspect the endpoint matching the current request:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/EndpointInspectorStartup.cs?name=snippet)]
 
-The endpoint (if one is selected) can be retrieved from the `HttpContext`. It's properties can be inspected to for informational purposes. Endpoints objects are immutable, and cannot be modified after creation. The most common kind of endpoint to encounter is a `RouteEndpoint`, which includes information allowing to be to selected by the routing system.
+The endpoint, if selected, can be retrieved from the `HttpContext`. Its properties can be inspected. Endpoint objects are immutable and cannot be modified after creation. The most common type of endpoint is a <xref:Microsoft.AspNetCore.Routing.RouteEndpoint>. `RouteEndpoint` includes information that allows it to be to selected by the routing system.
 
-The following code sample shows how the endpoint associated with the request changes:
+In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*) configures an in-line [middleware](xref:fundamentals/middleware/index).
 
-[!code-csharp[](routing/samples/3.x/RoutingSample/EndpointInspectorStartup.cs?name=snippet)]
+<a name="mt"></a>
 
-This sample adds `Console.WriteLine` statements that print to the console about whether or not an endpoint has been selected at various points in the middleware pipeline. For clarity, the sample assigns a display name to the provided "hello world" endpoint.
+The following code shows that, depending on where `app.Use` is called in the pipeline, there may not be an endpoint:
 
-Running this code with a URL match `/` will produce different output than without.
+[!code-csharp[](routing/samples/3.x/RoutingSample/MiddlewareFlowStartup.cs?name=snippet)]
 
-URL is `/`:
+This preceding sample adds `Console.WriteLine` statements that display whether or not an endpoint has been selected. For clarity, the sample assigns a display name to the provided `/` endpoint.
+
+Running this code with a URL of `/` displays:
 
 ```txt
-1. Endpoint is: (null)
-2. Endpoint is: Hello
-3. Endpoint is: Hello
+1. Endpoint: (null)
+2. Endpoint: Hello
+3. Endpoint: Hello
 ```
 
-URL is not `/`:
+Running this code with any other URL displays:
 
 ```txt
-1. Endpoint is: (null)
-2. Endpoint is: (null)
-4. Endpoint is: (null)
+1. Endpoint: (null)
+2. Endpoint: (null)
+4. Endpoint: (null)
 ```
 
 This output demonstrates that:
-* The endpoint is always null before `UseRouting()` executes.
-* The endpoint will be non-null in between `UseRouting()` and `UseEndpoints()` if a match was found.
-* The `UseEndpoints()` middleware is *terminal* if a match was found.
-* The middleware after `UseEndpoints()` will execute only when no match was found.
 
-> [!INFO]
-> The `UseRouting()` middleware uses the [SetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.SetEndpoint*) method to attach the endpoint to the current context. It's possible to replace the `UseRouting()` middleware with custom logic and still get the benefits of using endpoints. Endpoints are a low-level primitive like middleware, and not coupled to the routing implementation.
+* The endpoint is always null before `UseRouting` is called.
+* If a match is found, the endpoint is non-null between `UseRouting` and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>.
+* The `UseEndpoints` middleware is **terminal** when a match is found. [Terminal middleware](#tm) is defined later in this document.
+* The middleware after `UseEndpoints` execute only when no match is found.
 
-> [!INFO]
-> The `UseEndpoints()` middleware is designed to be used in tandem with the `UseRouting()` middleware. The core logic to *execute* an endpoint is simple. Use `GetEndpoint()` to retrieve the endpoint, and then invoke its `RequestDelegate` property.
+The `UseRouting` middleware uses the [SetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.SetEndpoint*) method to attach the endpoint to the current context. It's possible to replace the `UseRouting` middleware with custom logic and still get the benefits of using endpoints. Endpoints are a low-level primitive like middleware, and aren't coupled to the routing implementation. Most apps don't need to replace `UseRouting` with custom logic.
 
-The following code sample demonstrates how middleware can influence or react to routing:
+The `UseEndpoints` middleware is designed to be used in tandem with the `UseRouting` middleware. The core logic to execute an endpoint isn't complicated. Use <xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*> to retrieve the endpoint, and then invoke its <xref:Microsoft.AspNetCore.Http.Endpoint.RequestDelegate> property.
+
+The following code demonstrates how middleware can influence or react to routing:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/IntegratedMiddlewareStartup.cs?name=snippet)]
 
-This example demonstrates two important concepts:
-* Middleware can run before `UseRouting()` to modify the data that routing operates upon. 
-    * Usually middleware that appear before routing to modify some property of the request, such as `UseRewriter()`, `UseHttpMethodOverride()`, or `UsePathBase()`.
-* Middleware can run between `UseRouting()` and `UseEndpoints()` to process the results of routing before the endpoint is executed.
-    * Usually middleware that run *between* inspect metadata to understand the endpoints.
-    * Often middleware that run *between* make a security decision, such as `UseAuthorization()`, or `UseCors()`.
+The preceding example demonstrates two important concepts:
+
+* Middleware can run before `UseRouting` to modify the data that routing operates upon.
+    * Usually middleware that appears before routing modifies some property of the request, such as <xref:Microsoft.AspNetCore.Builder.RewriteBuilderExtensions.UseRewriter*>, <xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions.UseHttpMethodOverride*>, or <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*>.
+* Middleware can run between `UseRouting` and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> to process the results of routing before the endpoint is executed.
+    * Middleware that runs between `UseRouting` and `UseEndpoints`:
+      * Usually inspects metadata to understand the endpoints.
+      * Often makes security decisions, as done by `UseAuthorization` and `UseCors`.
     * The combination of middleware and metadata allows configuring policies per-endpoint.
 
-This sample shows an example of a custom middleware that supports per-endpoint policies. The middleware writes an *audit log* of access to sensitive data to the console. The middleware can be configured to *audit* an endpoint with the `AuditPolicyAttribute` metadata. This sample demonstrates an *opt-in* pattern, only endpoints that are marked as sensitive will be audited. It would be possible to define this logic in the reverse, auditing everything that isn't marked as safe for example. The endpoint metadata system is flexible, this logic could be designed in whatever way suits the use case.
+The preceding code shows an example of a custom middleware that supports per-endpoint policies. The middleware writes an *audit log* of access to sensitive data to the console. The middleware can be configured to *audit* an endpoint with the `AuditPolicyAttribute` metadata. This sample demonstrates an *opt-in* pattern where only endpoints that are marked as sensitive are audited. It's possible to define this logic in reverse, auditing everything that isn't marked as safe, for example. The endpoint metadata system is flexible. This logic could be designed in whatever way suits the use case.
 
-> [!WARNING]
-> The sample code here is intended to demonstrate the concepts of endpoints in a simple way, and is not intended for production use. A more complete version of such an *audit log* middleware would log to a file or database, and would included details like the user, ip address, name of the sensitive endpoint, etc.
+The preceding sample code is intended to demonstrate the basic concepts of endpoints. **The sample is not intended for production use**. A more complete version of an *audit log* middleware would:
 
-> [!INFO]
-> The audit policy metadata (`AuditPolicyAttribute`) is defined as an `Attribute` for easier use with class-based frameworks such as Controllers and SignalR. When using *Route to Code*, metadata is attached with a builder API, but class-based frameworks will include all attributes on the corresponding method and class when creating endpoints. The best practices for metadata types are to define them either was interfaces or as attributes for maximum reuse. The metadata system is flexible, and doesn't impose any limitations.
+* Log to a file or database.
+* Include details such as the user, IP address, name of the sensitive endpoint, and more.
 
-> [!INFO]
-> The fact that routing uses two separate middleware can be confusing at first, but this design supports the kind of flexible designs demonstrated here. 
+The audit policy metadata `AuditPolicyAttribute` is defined as an `Attribute` for easier use with class-based frameworks such as controllers and SignalR. When using *route to code*:
 
-The following code sample constrasts using middleware with using routing:
+* Metadata is attached with a builder API.
+* Class-based frameworks include all attributes on the corresponding method and class when creating endpoints.
+
+The best practices for metadata types are to define them either as interfaces or attributes. Interfaces and attributes allow code reuse. The metadata system is flexible and doesn't impose any limitations.
+
+<a name="tm"></a>
+
+### Comparing a terminal middleware and routing
+
+The following code sample contrasts using middleware with using routing:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/TerminalMiddlewareStartup.cs?name=snippet)]
 
-We refer to the style of middleware shown with `Approach 1:` as a *terminal middleware* because it does a matching operation (`Path == "/"`), and if the match is successful, it will execute some functionality, and `return` rather than invoking the `next` middleware.
+The style of middleware shown with `Approach 1:` is **terminal middleware**. It's called terminal middleware because it does a matching operation:
+
+* The matching operation in the preceding sample is `Path == "/"` for the middleware and `Path == "/Movie"` for routing.
+* When a match is successful, it executes some functionality and returns, rather than invoking the `next` middleware.
+
+It's called terminal middleware middleware because it terminates the search, executes some functionality, and then returns.
 
 Comparing a terminal middleware and routing:
-* Both approaches allow *terminating* the processing pipeline
-    * Middleware can do this by returning rather than invoking `next`
-    * Endpoints are always terminal
-* Terminal middleware allow you to position the middleware at an arbitrary place in the pipeline
-    * Endpoints execute at the position of `UseEndpoints()`
-* Terminal middleware allow you to write arbitrary logic to detemine when they match
-    * Custom logic can be verbose, or complicated to get right
-    * Routing provides straightforward solutions for common needs 
-* Endpoints interface with middleware such as `UseAuthorization()` or `UseCors()`
-    * Using a terminal middleware in this fashion requires you to manually interface with the authorization system
+* Both approaches allow terminating the processing pipeline:
+    * Middleware terminates the pipeline by returning rather than invoking `next`.
+    * Endpoints are always terminal.
+* Terminal middleware allows positioning the middleware at an arbitrary place in the pipeline:
+    * Endpoints execute at the position of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>.
+* Terminal middleware allows arbitrary code to determine when the middleware matches:
+    * Custom route matching code can be verbose and difficult to write correctly.
+    * Routing provides straightforward solutions for typical apps. Most apps don't require custom route matching code.
+* Endpoints interface with middleware such as `UseAuthorization` and `UseCors`.
+    * Using a terminal middleware with `UseAuthorization` or `UseCors` requires manual interfacing with the authorization system.
 
-An endpoint defines a delegate to process requests and a collection of arbitrary metadata. The metadata is used to implement cross-cutting concerns based on policies and configuration attached to each endpoint.
+An [endpoint](#endpoint) defines both:
 
-Terminal middleware can still be an effective tool, but can require a lot of manual work, and manual integration with other systems to achieve the desired level of flexibility. Before writing a terminal middleware, think about integrating with routing instead. 
+* A delegate to process requests.
+* A collection of arbitrary metadata. The metadata is used to implement cross-cutting concerns based on policies and configuration attached to each endpoint.
 
-Existing terminal middleware that integrate with `Map` or `MapWhen` can usually be turned into a *router-ware* endpoint easily. [MapHealthChecks](https://github.com/aspnet/AspNetCore/blob/master/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for *router-ware*:
-* Write an extension method on `IEndpointRouteBuilder`.
-* Create a nested middleware pipeline using `CreateApplicationBuilder()`.
-* Attach your middleware to the new pipeline (in this case, `UseHealthChecks()`).
-* `Build()` the middleware pipeline into a `RequestDelegate`.
+Terminal middleware can be an effective tool, but can require:
+
+* A significant amount of coding and testing.
+* Manual integration with other systems to achieve the desired level of flexibility.
+
+Consider integrating with routing before writing a terminal middleware.
+
+Existing terminal middleware that integrates with [Map](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) or <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> can usually be turned into a routing aware endpoint. [MapHealthChecks](https://github.com/aspnet/AspNetCore/blob/master/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs#L16) demonstrates the pattern for router-ware:
+* Write an extension method on <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>.
+* Create a nested middleware pipeline using <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder.CreateApplicationBuilder*>.
+* Attach the middleware to the new pipeline. In this case, <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*>.
+* <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.Build*> the middleware pipeline into a <xref:Microsoft.AspNetCore.Http.RequestDelegate>.
 * Call `Map` and provide the new middleware pipeline.
 * Return the builder object provided by `Map` from the extension method.
 
-The following code sample shows use of `MapHealthChecks()`:
+The following code shows use of [MapHealthChecks](xref:host-and-deploy/health-checks):
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/AuthorizationStartup.cs?name=snippet)]
 
-This demonstrates why returning the builder object is important. This allows the application developer to configure policies such as authorization for the endpoint. In this example the health checks middleware has no direct integration with the authorization system, it is layered on top with metadata.
+The preceding sample shows why returning the builder object is important. Returning the builder object allows the app developer to configure policies such as authorization for the endpoint. In this example, the health checks middleware has no direct integration with the authorization system.
 
-> [!INFO]
-> The metadata system was invented by the ASP.NET Core team as a reaction to the problems encountered by extensibility authors using terminal middleware. It's not desirable for each middleware to implement its own integration with the authorization system.
+The metadata system was created in response to the problems encountered by extensibility authors using terminal middleware. It's problematic for each middleware to implement its own integration with the authorization system.
 
-### URL matching concepts
+<a name="urlm"></a>
 
-URL matching is the process by which routing matches an incoming request to an *endpoint*. This process is based on data in the URL path and headers but can be extended to consider any data in the request.
+### URL matching
 
-When a Routing Middleware executes, it sets an endpoint (`Endpoint`) and route values to a feature on the <xref:Microsoft.AspNetCore.Http.HttpContext>. For the current request:
+* Is the process by which routing matches an incoming request to an [endpoint](#endpoint).
+* Is based on data in the URL path and headers.
+* Can be extended to consider any data in the request.
 
-* Calling `HttpContext.GetEndpoint` gets the endpoint.
+When a routing middleware executes, it sets an `Endpoint` and route values to a [request feature](xref:fundamentals/request-features) on the <xref:Microsoft.AspNetCore.Http.HttpContext> from the current request:
+
+* Calling [HttpContext.GetEndpoint](<xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*>) gets the endpoint.
 * `HttpRequest.RouteValues` gets the collection of route values.
 
-Middleware running after the Routing Middleware can see the endpoint and take action. For example, an Authorization Middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
+[Middleware](xref:fundamentals/middleware/index) running after the routing middleware can inspect the endpoint and take action. For example, an authorization middleware can interrogate the endpoint's metadata collection for an authorization policy. After all of the middleware in the request processing pipeline is executed, the selected endpoint's delegate is invoked.
 
-The routing system in endpoint routing is responsible for all dispatching decisions. Since the middleware applies policies based on the selected endpoint, it's important that any decision that can affect dispatching or the application of security policies is made inside the routing system.
+The routing system in endpoint routing is responsible for all dispatching decisions. Because the middleware applies policies based on the selected endpoint, it's important that:
+
+* Any decision that can affect dispatching or the application of security policies is made inside the routing system.
 
 > [!WARNING]
-> For backwards-compatibility, when an MVC (Controller or Razor Pages) endpoint delegate is executed, the properties of [RouteContext.RouteData](xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData) are set to appropriate values based on the request processing performed thus far. 
+> For backwards-compatibility, when a Controller or Razor Pages endpoint delegate is executed, the properties of [RouteContext.RouteData](xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData) are set to appropriate values based on the request processing performed thus far.
 >
-> The `RouteContext` type will be marked obsolete in a future release. 
-> * Migrate usage of `RouteData.Values` to `HttpRequest.RouteValues`.
-> * Migrate usage of `RouteData.DataTokens` to retrieve [IDataTokensMetadata](xref:Microsoft.AspNetCore.Routing.IDataTokensMetadata) from the endpoint metadata.
+> The `RouteContext` type will be marked obsolete in a future release:
+>
+> * Migrate `RouteData.Values` to `HttpRequest.RouteValues`.
+> * Migrate `RouteData.DataTokens` to retrieve [IDataTokensMetadata](xref:Microsoft.AspNetCore.Routing.IDataTokensMetadata) from the endpoint metadata.
 
-URL Matching operates in a configurable set of phases. In each phase the output is a set of matches, which can be narrowed down further by the next phase. The routing implementation does not guarantee a *processing order* for matching endpoints, all possible matches are processed at once.
+URL matching operates in a configurable set of phases. In each phase, the output is a set of matches. The set of matches can be narrowed down further by the next phase. The routing implementation does not guarantee a processing order for matching endpoints. **All** possible matches are processed at once. The URL matching phases occur in the following order. ASP.NET Core:
 
-* First the URL path is processed according to the set of endpoints and their route templates.
-* Next route values are extracted and then `IRouteConstraint` implementations are executed.
-* Next the set of [MatcherPolicy](xref:Microsoft.AspNetCore.Routing.MatcherPolicy) instances are executed.
-* Last the [EndpointSelector](xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector) is executed.
+1. Processes the URL path against the set of endpoints and their route templates, collecting **all** of the matches.
+1. Takes the preceding list and removes matches that fail with route constraints applied.
+1. Takes the preceding list and removes matches that fail the set of [MatcherPolicy](xref:Microsoft.AspNetCore.Routing.MatcherPolicy) instances.
+1. Uses the [EndpointSelector](xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector) to make a final decision from the preceding list.
 
 The list of endpoints is prioritized according to:
-* The [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*) which is configurable.
-* The route template precedence, which is computed based on the route template.
 
-All matching endpoints are processed in each phase until the `EndpointSelector` (final phase) is reached. The `EndpointSelector` will choose the highest priority endpoint from the matches as the *best match*. If there are other matches with the same priority as the *best match* then an exception will be thrown to report an ambiguity.
+* The [RouteEndpoint.Order](xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order*)
+* The [route template precedence](#rtp)
 
-> [!INFO]
-> The route precedence is computed based on the idea that a *more specific* route template is higher priority. As an example the templates `/hello` and `/{message}` would both match the URL path `/hello`, but the former is more specific and thus higher priority. 
->
-> In general route precedence does a very good job of choosing the best match for the kinds of URL schemes used in practice. Use `Order` only when necessary to avoid an ambiguity.
+All matching endpoints are processed in each phase until the <xref:Microsoft.AspNetCore.Routing.Matching.EndpointSelector> is reached. The `EndpointSelector` is the final phase. It chooses the highest priority endpoint from the matches as the best match. If there are other matches with the same priority as the best match, an ambiguous match exception is thrown.
 
-> [!INFO]
-> Due to the kinds of extensibility provided by routing, it is not possible for the routing system to compute ahead of time the cases that will cause ambiguity. Consider an example like the route templates `/{message:alpha}`, `/{message:int}`, the `alpha` constraint matches only alphabetic characters, and `int` matches only numbers. These templates have the same route precedence, but there's no single URL they will both match - if the routing system reported an ambiguity error at startup, it would block this valid use case.
+The route precedence is computed based on a **more specific** route template being given a higher priority. For example, consider the templates `/hello` and `/{message}`:
+
+* Both match the URL path `/hello`.
+* `/hello`  is more specific and therefore higher priority.
+
+In general, route precedence does a good job of choosing the best match for the kinds of URL schemes used in practice. Use <xref:Microsoft.AspNetCore.Routing.RouteEndpoint.Order> only when necessary to avoid an ambiguity.
+
+Due to the kinds of extensibility provided by routing, it isn't possible for the routing system to compute ahead of time the ambiguous routes. Consider an example such as the route templates `/{message:alpha}` and `/{message:int}`:
+
+* The `alpha` constraint matches only alphabetic characters.
+* The `int` constraint matches only numbers.
+* These templates have the same route precedence, but there's no single URL they both match.
+* If the routing system reported an ambiguity error at startup, it would block this valid use case.
 
 > [!WARNING]
-> The order of operations inside `UseEndpoints()` **does not** influence the behavior of routing with one notable exception.
 >
-> The `MapControllerRoute` and `MapAreaRoute` methods will automatically assign an order value to their endpoints based on the order that they are invoked. This simulates long-time behavior of Controllers without the routing system providing the same guarantees as older routing implementations.
+> The order of operations inside <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> doesn't influence the behavior of routing, with one exception. <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> automatically assign an order value to their endpoints based on the order they are invoked. This simulates long-time behavior of controllers without the routing system providing the same guarantees as older routing implementations.
 >
-> It's possible in the legacy implementation of routing to implement routing extensbility that has a dependency on the order in which *routes* are processed. Endpoint routing in ASP.NET Core 3.0 does not have a concept of *routes*, and up does not provide ordering guarantees, all endpoints are processed at once. If you are stuck using the legacy routing system  for this reason please reach out to the team for assistance.
+> In the legacy implementation of routing, it's possible to implement routing extensibility that has a dependency on the order in which routes are processed. Endpoint routing in ASP.NET Core 3.0 and later:
+> 
+> * Doesn't have a concept of routes.
+> * Doesn't provide ordering guarantees. All endpoints are processed at once.
+>
+> If this means you're stuck using the legacy routing system, [open a GitHub issue for assistance](https://github.com/dotnet/aspnetcore/issues).
+
+<a name="rtp"></a>
+
+### Route template precedence and endpoint selection order
+
+[Route template precedence](https://github.com/dotnet/aspnetcore/blob/master/src/Http/Routing/src/Template/RoutePrecedence.cs#L16) is a system that assigns each route template a value based on how specific it is. Route template precedence:
+
+* Avoids the need to adjust the order of endpoints in common cases.
+* Attempts to match the common-sense expectations of routing behavior.
+
+For example, consider templates `/Products/List` and `/Products/{id}`. It would be reasonable to assume that `/Products/List` is a better match than `/Products/{id}` for the URL path `/Products/List`. The works because the literal segment `/List` is considered to have better precedence than the parameter segment `/{id}`.
+
+The details of how precedence works are coupled to how route templates are defined:
+
+* Templates with more segments are considered more specific.
+* A segment with literal text is considered more specific than a parameter segment.
+* A parameter segment with a constraint is considered more specific than one without.
+* A complex segment is considered as specific as a parameter segment with a constraint.
+* Catch all parameters are the least specific.
+
+See the [source code on GitHub](https://github.com/dotnet/aspnetcore/blob/master/src/Http/Routing/src/Template/RoutePrecedence.cs#L189) for a reference of exact values.
 
 <a name="lg"></a>
 
 ### URL generation concepts
 
-URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between your endpoints and the URLs that access them.
+URL generation:
 
-Endpoint routing includes the Link Generator API (<xref:Microsoft.AspNetCore.Routing.LinkGenerator>). <xref:Microsoft.AspNetCore.Routing.LinkGenerator> is a singleton service that can be retrieved from DI. The API can be used outside of the context of an executing request. MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> and scenarios that rely on <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the `LinkGenerator` internally to provide link generating capabilities.
+* Is the process by which routing can create a URL path based on a set of route values.
+* Allows for a logical separation between endpoints and the URLs that access them.
 
-The link generator is backed by the concept of an *address* and *address schemes*. An address scheme is a way of determining the endpoints that should be considered for link generation. For example, the route name and route values scenarios many users are familiar with from Controllers/Razor Pages are implemented as an address scheme.
+Endpoint routing includes the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API. `LinkGenerator` is a singleton service available from [DI](xref:fundamentals/dependency-injection). The `LinkGenerator` API can be used outside of the context of an executing request. [Mvc.IUrlHelper](xref:Microsoft.AspNetCore.Mvc.IUrlHelper) and scenarios that rely on <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the `LinkGenerator` API internally to provide link generating capabilities.
 
-The link generator can link to Controllers/Razor Pages actions and pages via the following extension methods:
+The link generator is backed by the concept of an **address** and **address schemes**. An address scheme is a way of determining the endpoints that should be considered for link generation. For example, the route name and route values scenarios many users are familiar with from controllers and Razor Pages are implemented as an address scheme.
+
+The link generator can link to controllers and Razor Pages via the following extension methods:
 
 * <xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetPathByAction*>
 * <xref:Microsoft.AspNetCore.Routing.ControllerLinkGeneratorExtensions.GetUriByAction*>
 * <xref:Microsoft.AspNetCore.Routing.PageLinkGeneratorExtensions.GetPathByPage*>
 * <xref:Microsoft.AspNetCore.Routing.PageLinkGeneratorExtensions.GetUriByPage*>
 
-An overload of these methods accepts arguments that include the `HttpContext`. These methods are functionally equivalent to `Url.Action` and `Url.Page` but offer additional flexibility and options.
+Overloads of these methods accept arguments that include the `HttpContext`. These methods are functionally equivalent to [Url.Action](xref:System.Web.Mvc.UrlHelper.Action*) and [Url.Page](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Page*), but offer additional flexibility and options.
 
-The `GetPath*` methods are most similar to `Url.Action` and `Url.Page` in that they generate a URI containing an absolute path. The `GetUri*` methods always generate an absolute URI containing a scheme and host. The methods that accept an `HttpContext` generate a URI in the context of the executing request. The ambient route values, URL base path, scheme, and host from the executing request are used unless overridden.
+The `GetPath*` methods are most similar to `Url.Action` and `Url.Page`, in that they generate a URI containing an absolute path. The `GetUri*` methods always generate an absolute URI containing a scheme and host. The methods that accept an `HttpContext` generate a URI in the context of the executing request. The [ambient](#ambient) route values, URL base path, scheme, and host from the executing request are used unless overridden.
 
 <xref:Microsoft.AspNetCore.Routing.LinkGenerator> is called with an address. Generating a URI occurs in two steps:
 
 1. An address is bound to a list of endpoints that match the address.
-1. Each endpoint's `RoutePattern` is evaluated until a route pattern that matches the supplied values is found. The resulting output is combined with the other URI parts supplied to the link generator and returned.
+1. Each endpoint's <xref:Microsoft.AspNetCore.Routing.RouteEndpoint.RoutePattern> is evaluated until a route pattern that matches the supplied values is found. The resulting output is combined with the other URI parts supplied to the link generator and returned.
 
-The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> support standard link generation capabilities for any type of address. The most convenient way to use the link generator is through extension methods that perform operations for a specific address type.
+The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> support standard link generation capabilities for any type of address. The most convenient way to use the link generator is through extension methods that perform operations for a specific address type:
 
 | Extension Method | Description |
 | ---------------- | ----------- |
@@ -285,61 +385,52 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 > [!WARNING]
 > Pay attention to the following implications of calling <xref:Microsoft.AspNetCore.Routing.LinkGenerator> methods:
 >
-> * Use `GetUri*` extension methods with caution in an app configuration that doesn't validate the `Host` header of incoming requests. If the `Host` header of incoming requests isn't validated, untrusted request input can be sent back to the client in URIs in a view/page. We recommend that all production apps configure their server to validate the `Host` header against known valid values.
+> * Use `GetUri*` extension methods with caution in an app configuration that doesn't validate the `Host` header of incoming requests. If the `Host` header of incoming requests isn't validated, untrusted request input can be sent back to the client in URIs in a view or page. We recommend that all production apps configure their server to validate the `Host` header against known valid values.
 >
-> * Use <xref:Microsoft.AspNetCore.Routing.LinkGenerator> with caution in middleware in combination with `Map` or `MapWhen`. `Map*` changes the base path of the executing request, which affects the output of link generation. All of the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> APIs allow specifying a base path. Always specify an empty base path to undo `Map*`'s affect on link generation.
+> * Use <xref:Microsoft.AspNetCore.Routing.LinkGenerator> with caution in middleware in combination with `Map` or `MapWhen`. `Map*` changes the base path of the executing request, which affects the output of link generation. All of the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> APIs allow specifying a base path. Specify an empty base path to undo the `Map*` affect on link generation.
 
 ### Middleware example
 
-In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API to create link to an action method that lists store products. Using the link generator by injecting it into a class and calling `GenerateLink` is available to any class in an app.
+In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API to create a link to an action method that lists store products. Using the link generator by injecting it into a class and calling `GenerateLink` is available to any class in an app:
 
-```csharp
-using Microsoft.AspNetCore.Routing;
+[!code-csharp[](routing/samples/3.x/RoutingSample/Middleware/ProductsLinkMiddleware.cs?name=snippet)]
 
-public class ProductsLinkMiddleware
-{
-    private readonly LinkGenerator _linkGenerator;
-
-    public ProductsLinkMiddleware(RequestDelegate next, LinkGenerator linkGenerator)
-    {
-        _linkGenerator = linkGenerator;
-    }
-
-    public async Task InvokeAsync(HttpContext httpContext)
-    {
-        var url = _linkGenerator.GetPathByAction("ListProducts", "Store");
-
-        httpContext.Response.ContentType = "text/plain";
-
-        await httpContext.Response.WriteAsync($"Go to {url} to see our products.");
-    }
-}
-```
+<a name="rtr"></a>
 
 ## Route template reference
 
-Tokens within curly braces (`{ ... }`) define *route parameters* that are bound if the route is matched. You can define more than one route parameter in a route segment, but they must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`. These route parameters must have a name and may have additional attributes specified.
+Tokens within `{}` define route parameters that are bound if the route is matched. More than one route parameter can be defined in a route segment, but route parameters  must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`.  Route parameters must have a name and may have additional attributes specified.
 
-Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match a literal route parameter delimiter (`{` or `}`), escape the delimiter by repeating the character (`{{` or `}}`).
+Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match a literal route parameter delimiter `{` or `}`, escape the delimiter by repeating the character. For example `{{` or `}}`.
 
-URL patterns that attempt to capture a file name with an optional file extension have additional considerations. For example, consider the template `files/{filename}.{ext?}`. When values for both `filename` and `ext` exist, both values are populated. If only a value for `filename` exists in the URL, the route matches because the trailing period (`.`) is  optional. The following URLs match this route:
+Asterisk `*` or double asterisk `**`:
+
+* Can be used as a prefix to a route parameter to bind to the rest of the URI.
+* Are called a **catch-all** parameters. For example, `blog/{**slug}`:
+  * Matches any URI that starts with `/blog` and has any value following it.
+  * The value following `/blog` is assigned to the [slug](https://developer.mozilla.org/docs/Glossary/Slug) route value.
+
+Catch-all parameters can also match the empty string.
+
+The catch-all parameter escapes the appropriate characters when the route is used to generate a URL, including path separator `/` characters. For example, the route `foo/{*path}` with route values `{ path = "my/path" }` generates `foo/my%2Fpath`. Note the escaped forward slash. To round-trip path separator characters, use the `**` route parameter prefix. The route `foo/{**path}` with `{ path = "my/path" }` generates `foo/my/path`.
+
+URL patterns that attempt to capture a file name with an optional file extension have additional considerations. For example, consider the template `files/{filename}.{ext?}`. When values for both `filename` and `ext` exist, both values are populated. If only a value for `filename` exists in the URL, the route matches because the trailing `.` is  optional. The following URLs match this route:
 
 * `/files/myFile.txt`
 * `/files/myFile`
 
-You can use an asterisk (`*`) or double asterisk (`**`) as a prefix to a route parameter to bind to the rest of the URI. These are called a *catch-all* parameters. For example, `blog/{**slug}` matches any URI that starts with `/blog` and has any value following it, which is assigned to the `slug` route value. Catch-all parameters can also match the empty string.
+Route parameters may have **default values** designated by specifying the default value after the parameter name separated by an equals sign (`=`). For example, `{controller=Home}` defines `Home` as the default value for `controller`. The default value is used if no value is present in the URL for the parameter. Route parameters are made optional by appending a question mark (`?`) to the end of the parameter name. For example, `id?`. The difference between optional values and default route parameters is:
 
-The catch-all parameter escapes the appropriate characters when the route is used to generate a URL, including path separator (`/`) characters. For example, the route `foo/{*path}` with route values `{ path = "my/path" }` generates `foo/my%2Fpath`. Note the escaped forward slash. To round-trip path separator characters, use the `**` route parameter prefix. The route `foo/{**path}` with `{ path = "my/path" }` generates `foo/my/path`.
+* A route parameter with a default value always produces a value.
+* An optional parameter has a value only when a value is provided by the request URL.
 
-Route parameters may have *default values* designated by specifying the default value after the parameter name separated by an equals sign (`=`). For example, `{controller=Home}` defines `Home` as the default value for `controller`. The default value is used if no value is present in the URL for the parameter. Route parameters are made optional by appending a question mark (`?`) to the end of the parameter name, as in `id?`. The difference between optional values and default route parameters is that a route parameter with a default value always produces a value&mdash;an optional parameter has a value only when a value is provided by the request URL.
-
-Route parameters may have constraints that must match the route value bound from the URL. Adding a colon (`:`) and constraint name after the route parameter name specifies an *inline constraint* on a route parameter. If the constraint requires arguments, they're enclosed in parentheses (`(...)`) after the constraint name. Multiple inline constraints can be specified by appending another colon (`:`) and constraint name.
+Route parameters may have constraints that must match the route value bound from the URL. Adding `:` and constraint name after the route parameter name specifies an inline constraint on a route parameter. If the constraint requires arguments, they're enclosed in parentheses `(...)` after the constraint name. Multiple *inline constraints* can be specified by appending another `:` and constraint name.
 
 The constraint name and arguments are passed to the <xref:Microsoft.AspNetCore.Routing.IInlineConstraintResolver> service to create an instance of <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> to use in URL processing. For example, the route template `blog/{article:minlength(10)}` specifies a `minlength` constraint with the argument `10`. For more information on route constraints and a list of the constraints provided by the framework, see the [Route constraint reference](#route-constraint-reference) section.
 
-Route parameters may also have parameter transformers, which transform a parameter's value when generating links and matching actions and pages to URLs. Like constraints, parameter transformers can be added inline to a route parameter by adding a colon (`:`) and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer. For more information on parameter transformers, see the [Parameter transformer reference](#parameter-transformer-reference) section.
+Route parameters may also have parameter transformers. Parameter transformers transform a parameter's value when generating links and matching actions and pages to URLs. Like constraints, parameter transformers can be added inline to a route parameter by adding a `:` and transformer name after the route parameter name. For example, the route template `blog/{article:slugify}` specifies a `slugify` transformer. For more information on parameter transformers, see the [Parameter transformer reference](#parameter-transformer-reference) section.
 
-The following table demonstrates example route templates and their behavior.
+The following table demonstrates example route templates and their behavior:
 
 | Route Template                           | Example Matching URI    | The request URI&hellip;                                                    |
 | ---------------------------------------- | ----------------------- | -------------------------------------------------------------------------- |
@@ -347,68 +438,76 @@ The following table demonstrates example route templates and their behavior.
 | `{Page=Home}`                            | `/`                     | Matches and sets `Page` to `Home`.                                         |
 | `{Page=Home}`                            | `/Contact`              | Matches and sets `Page` to `Contact`.                                      |
 | `{controller}/{action}/{id?}`            | `/Products/List`        | Maps to the `Products` controller and `List` action.                       |
-| `{controller}/{action}/{id?}`            | `/Products/Details/123` | Maps to the `Products` controller and  `Details` action (`id` set to 123). |
-| `{controller=Home}/{action=Index}/{id?}` | `/`                     | Maps to the `Home` controller and `Index` method (`id` is ignored).        |
+| `{controller}/{action}/{id?}`            | `/Products/Details/123` | Maps to the `Products` controller and  `Details` action with`id` set to 123. |
+| `{controller=Home}/{action=Index}/{id?}` | `/`                     | Maps to the `Home` controller and `Index` method. `id` is ignored.        |
+| `{controller=Home}/{action=Index}/{id?}` | `/Products`         | Maps to the `Products` controller and `Index` method. `id` is ignored.        |
 
 Using a template is generally the simplest approach to routing. Constraints and defaults can also be specified outside the route template.
 
-> [!TIP]
-> Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routing implementations, such as <xref:Microsoft.AspNetCore.Routing.Route>, match requests.
-
 ### Complex segments
 
-Complex segments (for example `[Route("/a{b}c{d}")]`) are processed by matching up literal delimiters from **right to left** in a non-greedy way.
+Complex segments are processed by matching up literal delimiters from right to left in a [non-greedy](#greedy) way. For example, `[Route("/a{b}c{d}")]` is a complex segment.
+Complex segments work in a particular way that must be understood to use them successfully. The example in this section demonstrates why complex segments only really work well when the delimiter text doesn't appear inside the parameter values. Using a [regex](/dotnet/standard/base-types/regular-expressions) and then manually extracting the values is needed for more complex cases.
 
-> [!TIP]
-> Complex segments work in a particular way that must be understood to use them successfully. The example in this section will demonstrate why complex segments only really work well when the *delimiter* text doesn't appread inside the parameter values. Using a regex and then manually extracting the values is needed for more complex cases.
+This is a summary of the steps that routing performs with the template `/a{b}c{d}` and the URL path `/abcd`. The `|` is used to help visualize how the algorithm works:
 
-This is a summary of the steps that routing would perform with the template `/a{b}c{d}` and the URL path `/abcd`. The `|` is used to help visualize how the algorithm works.
-* The first literal (right to left) is `c`, so `/abcd` is searched from right and found `/ab|c|d`.
+* The first literal, right to left, is `c`. So `/abcd` is searched from right and finds `/ab|c|d`.
 * Everything to the right (`d`) is now matched to the route parameter `{d}`.
-* The next literal (right to left) is `a`, so `/ab|c|d` is searched starting where we left off, then `a` is found `/|a|b|c|d`. 
+* The next literal, right to left, is `a`. So `/ab|c|d` is searched starting where we left off, then `a` is found `/|a|b|c|d`.
 * The value to the right (`b`) is now matched to the route parameter `{b}`.
-* There is no remaining text and no remaining route template so this is a match.
+* There is no remaining text and no remaining route template, so this is a match.
 
-Now here's an example of a negative case using the same template `/a{b}c{d}` and the URL path `/aabcd`. The `|` is used to help visualize how the algorithm works. This case *is not* a match, which is explained by the same algorithm.
-* The first literal (right to left) is `c`, so `/aabcd` is searched from right and found `/aab|c|d`.
+Here's an example of a negative case using the same template `/a{b}c{d}` and the URL path `/aabcd`. The `|` is used to help visualize how the algorithm works. This case isn't a match, which is explained by the same algorithm:
+* The first literal, right to left, is `c`. So `/aabcd` is searched from right and finds `/aab|c|d`.
 * Everything to the right (`d`) is now matched to the route parameter `{d}`.
-* The next literal (right to left) is `a`, so `/aab|c|d` is searched starting where we left off, then `a` is found `/a|a|b|c|d`. 
+* The next literal, right to left, is `a`. So `/aab|c|d` is searched starting where we left off, then `a` is found `/a|a|b|c|d`.
 * The value to the right (`b`) is now matched to the route parameter `{b}`.
 * At this point there is remaining text `a`, but the algorithm has run out of route template to parse, so this is not a match.
 
-Since the matching algorithm is non-greedy - it matches the smallest amount of text possible in each step - any case where the *delimiter value* will appear inside the parameter values will result in no match. Regular expressions provide much more control over their matching behavior.
+Since the matching algorithm is [non-greedy](#greedy):
+
+* It matches the smallest amount of text possible in each step.
+* Any case where the delimiter value appears inside the parameter values results in not matching.
+
+Regular expressions provide much more control over their matching behavior.
+
+<a name="greedy"></a>
+
+Greedy matching, also know as [lazy matching](https://wikipedia.org/wiki/Regular_expression#Lazy_matching), matches the largest possible string. Non-greedy matches the smallest possible string.
 
 ## Route constraint reference
 
-Route constraints execute when a match has occurred to the incoming URL and the URL path is tokenized into route values. Route constraints generally inspect the route value associated via the route template and make a yes/no decision about whether or not the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> can accept or reject a request based on its HTTP verb. Constraints are used in routing requests and link generation.
+Route constraints execute when a match has occurred to the incoming URL and the URL path is tokenized into route values. Route constraints generally inspect the route value associated via the route template and make a true or false decision about whether the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> can accept or reject a request based on its HTTP verb. Constraints are used in routing requests and link generation.
 
 > [!WARNING]
-> Don't use constraints for **input validation**. If constraints are used for **input validation**, invalid input results in a *404 - Not Found* response instead of a *400 - Bad Request* with an appropriate error message. Route constraints are used to **disambiguate** similar routes, not to validate the inputs for a particular route.
+> Don't use constraints for input validation. If constraints are used for input validation, invalid input results in a `404` Not Found response. Invalid input should produce a `400` Bad Request with an appropriate error message. Route constraints are used to disambiguate similar routes, not to validate the inputs for a particular route.
 
-The following table demonstrates example route constraints and their expected behavior.
+The following table demonstrates example route constraints and their expected behavior:
 
 | constraint | Example | Example Matches | Notes |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer |
-| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false` (case-insensitive) |
-| `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value (in the invariant culture - see warning) |
-| `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value (in the invariant culture - see warning) |
-| `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value (in the invariant culture - see warning) |
-| `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Matches a valid `float` value (in the invariant culture - see warning) |
-| `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Matches a valid `Guid` value |
+| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false`. Case-insensitive |
+| `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value in the invariant culture. See preceding warning. |
+| `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value in the invariant culture. See preceding warning.|
+| `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value in the invariant culture. See preceding warning.|
+| `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Matches a valid `float` value in the invariant culture. See preceding warning.|
+| `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638` | Matches a valid `Guid` value |
 | `long` | `{ticks:long}` | `123456789`, `-123456789` | Matches a valid `long` value |
 | `minlength(value)` | `{username:minlength(4)}` | `Rick` | String must be at least 4 characters |
-| `maxlength(value)` | `{filename:maxlength(8)}` | `Richard` | String must be no more than 8 characters |
+| `maxlength(value)` | `{filename:maxlength(8)}` | `MyFile` | String must be no more than 8 characters |
 | `length(length)` | `{filename:length(12)}` | `somefile.txt` | String must be exactly 12 characters long |
 | `length(min,max)` | `{filename:length(8,16)}` | `somefile.txt` | String must be at least 8 and no more than 16 characters long |
 | `min(value)` | `{age:min(18)}` | `19` | Integer value must be at least 18 |
 | `max(value)` | `{age:max(120)}` | `91` | Integer value must be no more than 120 |
 | `range(min,max)` | `{age:range(18,120)}` | `91` | Integer value must be at least 18 but no more than 120 |
-| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters (`a`-`z`, case-insensitive) |
-| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression (see tips about defining a regular expression) |
+| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters, `a`-`z` and case-insensitive. |
+| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression. See tips about defining a regular expression. |
 | `required` | `{name:required}` | `Rick` | Used to enforce that a non-parameter value is present during URL generation |
 
-Multiple, colon-delimited constraints can be applied to a single parameter. For example, the following constraint restricts a parameter to an integer value of 1 or greater:
+[!INCLUDE[](~/includes/regex.md)]
+
+Multiple, colon delimited constraints can be applied to a single parameter. For example, the following constraint restricts a parameter to an integer value of 1 or greater:
 
 ```csharp
 [Route("users/{id:int:min(1)}")]
@@ -416,37 +515,37 @@ public User GetUserById(int id) { }
 ```
 
 > [!WARNING]
-> Route constraints that verify the URL and are converted to a CLR type (such as `int` or `DateTime`) always use the invariant culture. These constraints assume that the URL is non-localizable. The framework-provided route constraints don't modify the values stored in route values. All route values parsed from the URL are stored as strings. For example, the `float` constraint attempts to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
+> Route constraints that verify the URL and are converted to a CLR type always use the invariant culture. For example, conversion to the CLR type `int` or `DateTime`. These constraints assume that the URL is not localizable. The framework-provided route constraints don't modify the values stored in route values. All route values parsed from the URL are stored as strings. For example, the `float` constraint attempts to convert the route value to a float, but the converted value is used only to verify it can be converted to a float.
 
 ### Regular expressions in constraints
 
-Regular expressions be specified as *inline constraints* using the `regex(...)` route constraint. Methods in the `MapControllerRoute` family also accept a object literal of constraints. If that form is used, then string values will be interpreted as regular expressions.
+[!INCLUDE[](~/includes/regex.md)]
 
-```csharp
-app.UseEndpoints(endpoints =>
-{
-    // Using an inline-constraint to specify a regex constraint.
-    endpoints.MapGet("{message:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}", context => { ... });
+Regular expressions can be specified as inline constraints using the `regex(...)` route constraint. Methods in the <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> family also accept an object literal of constraints. If that form is used, string values are interpreted as regular expressions.
 
-    // Using an object literal to specify a regex constraint.
-    endpoints.MapControllerRoute(
-        "people", 
-        "People/{ssn}", 
-        constraints: new { controller = "^\\d{3}-\\d{2}-\\d{4}$", },
-        defaults: new { controller = "People", action = "List", });
-})
-```
+The following code uses an inline regex constraint:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupRegex.cs?name=snippet)]
+
+The following code uses an object literal to specify a regex constraint:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupRegex2.cs?name=snippet)]
 
 The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See <xref:System.Text.RegularExpressions.RegexOptions> for a description of these members.
 
-Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. To use the regular expression `^\d{3}-\d{2}-\d{4}$` in an inline constraint, the expression must have the `\` (single backslash) characters provided in the string as `\\` (double backslash) characters in the C# source file in order to escape the `\` string escape character (unless using [verbatim string literals](/dotnet/csharp/language-reference/keywords/string)). To escape routing parameter delimiter characters (`{`, `}`, `[`, `]`), double the characters in the expression (`{{`, `}`, `[[`, `]]`). The following table shows a regular expression and the escaped version.
+Regular expressions use delimiters and tokens similar to those used by routing and the C# language. Regular expression tokens must be escaped. To use the regular expression `^\d{3}-\d{2}-\d{4}$` in an inline constraint, use one of the following:
 
-| Regular Expression    | Escaped Regular Expression     |
+* Replace `\` characters provided in the string as `\\` characters in the C# source file in order to escape the `\` string escape character.
+* [Verbatim string literals](/dotnet/csharp/language-reference/keywords/string).
+
+To escape routing parameter delimiter characters `{`, `}`, `[`, `]`, double the characters in the expression, for example, `{{`, `}}`, `[[`, `]]`. The following table shows a regular expression and its escaped version:
+
+| Regular expression    | Escaped regular expression     |
 | --------------------- | ------------------------------ |
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
 
-Regular expressions used in routing often start with the caret (`^`) character and match starting position of the string. The expressions often end with the dollar sign (`$`) character and match end of the string. The `^` and `$` characters ensure that the regular expression match the entire route parameter value. Without the `^` and `$` characters, the regular expression match any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match.
+Regular expressions used in routing often start with the `^` character and match the starting position of the string. The expressions often end with the `$` character and match the end of the string. The `^` and `$` characters ensure that the regular expression matches the entire route parameter value. Without the `^` and `$` characters, the regular expression matches any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match:
 
 | Expression   | String    | Match | Comment               |
 | ------------ | --------- | :---: |  -------------------- |
@@ -459,52 +558,65 @@ Regular expressions used in routing often start with the caret (`^`) character a
 
 For more information on regular expression syntax, see [.NET Framework Regular Expressions](/dotnet/standard/base-types/regular-expression-language-quick-reference).
 
-To constrain a parameter to a known set of possible values, use a regular expression. For example, `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string `^(list|get|create)$` is equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
+To constrain a parameter to a known set of possible values, use a regular expression. For example, `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string `^(list|get|create)$` is equivalent. Constraints that are passed in the constraints dictionary that don't match one of the known constraints are also treated as regular expressions. Constraints that are passed  within a template that don't match one of the known constraints are not treated as regular expressions.
 
-### Custom Route Constraints
+### Custom route constraints
 
-In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface contains a single method, `Match`, which returns `true` if the constraint is satisfied and `false` otherwise.
+Custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The `IRouteConstraint` interface contains <xref:System.Web.Routing.IRouteConstraint.Match*>, which returns `true` if the constraint is satisfied and `false` otherwise.
 
-To use a custom <xref:Microsoft.AspNetCore.Routing.IRouteConstraint>, the route constraint type must be registered with the app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in the app's service container. A <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> is a dictionary that maps route constraint keys to <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> implementations that validate those constraints. An app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> can be updated in `Startup.ConfigureServices` either as part of a [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) call or by configuring <xref:Microsoft.AspNetCore.Routing.RouteOptions> directly with `services.Configure<RouteOptions>`. For example:
+Custom route constraints are rarely needed. Before implementing a custom route constraint, consider alternatives, such as model binding.
 
-```csharp
-services.AddRouting(options =>
-{
-    options.ConstraintMap.Add("customName", typeof(MyCustomConstraint));
-});
-```
+To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in the service container. A `ConstraintMap` is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `ConstraintMap` can be updated in `Startup.ConfigureServices` either as part of a [services.AddRouting](xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*) call or by configuring <xref:Microsoft.AspNetCore.Routing.RouteOptions> directly with `services.Configure<RouteOptions>`. For example:
 
-The constraint can then be applied to routes in the usual manner, using the name specified when registering the constraint type. For example:
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint.cs?name=snippet)]
 
-```csharp
-[HttpGet("{id:customName}")]
-public ActionResult<string> Get(string id)
-```
+The preceding constraint is applied in the following code:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/TestController.cs?name=snippet&highlight=6,13)]
+
+The [MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x/RoutingSample/Extensions/ControllerContextExtensions.cs) method is included in the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x) and is used to display routing information.
+
+The implementation of `MyCustomConstraint` prevents `0` being applied to a route parameter:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint.cs?name=snippet2)]
+
+[!INCLUDE[](~/includes/regex.md)]
+
+The preceding code:
+
+* Prevents `0` in the `{id}` segment of the route.
+* Is shown to provide a basic example of implementing a custom constraint. It should not be used in a production app.
+
+The following code is a better approach to preventing an `id` containing a `0` from being processed:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/TestController.cs?name=snippet2)]
+
+The preceding code has the following advantages over the `MyCustomConstraint` approach:
+
+* It doesn't require a custom constraint.
+* It returns a more descriptive error when the route parameter includes `0`.
 
 ## Parameter transformer reference
 
 Parameter transformers:
 
-* Execute when generating a link using `LinkGenerator`
-* Implement `Microsoft.AspNetCore.Routing.IOutboundParameterTransformer`.
+* Execute when generating a link using <xref:Microsoft.AspNetCore.Routing.LinkGenerator>.
+* Implement <xref:Microsoft.AspNetCore.Routing.IOutboundParameterTransformer?displayProperty=fullName>.
 * Are configured using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap>.
 * Take the parameter's route value and transform it to a new string value.
 * Result in using the transformed value in the generated link.
 
 For example, a custom `slugify` parameter transformer in route pattern `blog\{article:slugify}` with `Url.Action(new { article = "MyTestArticle" })` generates `blog\my-test-article`.
 
-To use a parameter transformer in a route pattern, configure it first using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in `Startup.ConfigureServices`:
+Consider the following `IOutboundParameterTransformer` implementation:
 
-```csharp
-services.AddRouting(options =>
-{
-    // Replace the type and the name used to refer to it with your own
-    // IOutboundParameterTransformer implementation
-    options.ConstraintMap["slugify"] = typeof(SlugifyParameterTransformer);
-});
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint2.cs?name=snippet2)]
 
-Parameter transformers are used by the framework to transform the URI where an endpoint resolves. For example, ASP.NET Core MVC uses parameter transformers to transform the route value used to match an `area`, `controller`, `action`, and `page`.
+To use a parameter transformer in a route pattern, configure it using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in `Startup.ConfigureServices`:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupConstraint2.cs?name=snippet)]
+
+The ASP.NET Core framework uses parameter transformers to transform the URI where an endpoint resolves. For example, parameter transformers transform the route values used to match an `area`, `controller`, `action`, and `page`.
 
 ```csharp
 routes.MapControllerRoute(
@@ -512,119 +624,167 @@ routes.MapControllerRoute(
     template: "{controller:slugify=Home}/{action:slugify=Index}/{id?}");
 ```
 
-With the preceding route, the action `SubscriptionManagementController.GetAll()` is matched with the URI `/subscription-management/get-all`. A parameter transformer doesn't change the route values used to generate a link. For example, `Url.Action("GetAll", "SubscriptionManagement")` outputs `/subscription-management/get-all`.
+With the preceding route template, the action `SubscriptionManagementController.GetAll` is matched with the URI `/subscription-management/get-all`. A parameter transformer doesn't change the route values used to generate a link. For example, `Url.Action("GetAll", "SubscriptionManagement")` outputs `/subscription-management/get-all`.
 
-ASP.NET Core provides API conventions for using a parameter transformers with generated routes:
+ASP.NET Core provides API conventions for using parameter transformers with generated routes:
 
-* ASP.NET Core MVC has the `Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention` API convention. This convention applies a specified parameter transformer to all attribute routes in the app. The parameter transformer transforms attribute route tokens as they are replaced. For more information, see [Use a parameter transformer to customize token replacement](/aspnet/core/mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement).
-* Razor Pages has the `Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention` API convention. This convention applies a specified parameter transformer to all automatically discovered Razor Pages. The parameter transformer transforms the folder and file name segments of Razor Pages routes. For more information, see [Use a parameter transformer to customize page routes](/aspnet/core/razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes).
+* The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention?displayProperty=fullName> MVC convention applies a specified parameter transformer to all attribute routes in the app. The parameter transformer transforms attribute route tokens as they are replaced. For more information, see [Use a parameter transformer to customize token replacement](xref:mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement).
+* Razor Pages uses the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention> API convention. This convention applies a specified parameter transformer to all automatically discovered Razor Pages. The parameter transformer transforms the folder and file name segments of Razor Pages routes. For more information, see [Use a parameter transformer to customize page routes](xref:razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes).
+
+<a name="ugr"></a>
 
 ## URL generation reference
 
-This section contains a reference for the algorithm implemented by URL generation. Most complex examples of URL generation in practice use Controllers or Razor Pages. See the documentation [routing in controllers](xref:mvc/controllers/routing) for additional information.
+This section contains a reference for the algorithm implemented by URL generation. In practice, most complex examples of URL generation use controllers or Razor Pages. See  [routing in controllers](xref:mvc/controllers/routing) for additional information.
 
-> [!TIP]
-> The first step in troubleshooting URL generation should be to set the logging level of `Microsoft.AspNetCore.Routing` to `TRACE`. `LinkGenerator` logs many details about its processing which can be useful to troubleshoot problems.
+The URL generation process begins with a call to [LinkGenerator.GetPathByAddress](xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*) or a similar method. The method is provided with an address, a set of route values, and optionally information about the current request from `HttpContext`.
 
-The URL generation process begins with a call to [LinkGenerator.GetPathByAddress](xref:Microsoft.AspNetCore.Routing.LinkGenerator.GetPathByAddress*) or a similar method. The method is provided with an address, a set of route values, and optionally information about the current request (`HttpContext`).
+The first step is to use the address to resolve a set of candidate endpoints using an [`IEndpointAddressScheme<TAddress>`](xref:Microsoft.AspNetCore.Routing.IEndpointAddressScheme`1) that matches the address's type.
 
-The first step is to use the address to resolve a set of candidate endpoints using an `IAddressScheme<TAddress>` that matches the address's type. 
+Once of set of candidates is found by the address scheme, the endpoints are ordered and processed iteratively until a URL generation operation succeeds. URL generation does **not** check for ambiguities, the first result returned is the final result.
 
-One of set of candidates is found by the address scheme, the endpoints are ordered and processed iteratively until a URL generation operation succeeds. URL generation does not check for ambiguities, the first result returned is the final result.
+### Troubleshooting URL generation with logging
+
+The first step in troubleshooting URL generation is setting the logging level of `Microsoft.AspNetCore.Routing` to `TRACE`. `LinkGenerator` logs many details about its processing which can be useful to troubleshoot problems.
+
+See [URL generation reference](#ugr) for details on URL generation.
 
 ### Addresses
 
 Addresses are the concept in URL generation used to bind a call into the link generator to a set of candidate endpoints.
 
-Addresses are extensible concept that come with two implementations by default:
-* Using *endpoint name* (`string`) as the address.
+Addresses are an extensible concept that come with two implementations by default:
+
+* Using *endpoint name* (`string`) as the address:
     * Provides similar functionality to MVC's route name.
-    * Uses the `IEndpointNameMetadata` metadata type. 
+    * Uses the <xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata> metadata type.
     * Resolves the provided string against the metadata of all registered endpoints.
-    * Throw an exception on startup if multiple endpoints use the same name.
-    * Recommended for general-purpose use outside of Controllers and Razor Pages.
-* Using *route values* (`RouteValuesAddress`) as the address.
-    * Provides similar functionality to Controllers and Razor Pages legacy URL generation.
+    * Throws an exception on startup if multiple endpoints use the same name.
+    * Recommended for general-purpose use outside of controllers and Razor Pages.
+* Using *route values* (<xref:Microsoft.AspNetCore.Routing.RouteValuesAddress>) as the address:
+    * Provides similar functionality to controllers and Razor Pages legacy URL generation.
     * Very complex to extend and debug.
     * Provides the implementation used by `IUrlHelper`, Tag Helpers, HTML Helpers, Action Results, etc.
 
-The role of the address scheme is to make the assocation between the address and matching endpoints via arbitrary criteria.
-* The *endpoint name* scheme performs a simple dictionary lookup.
-* The *route values* scheme has a complex best-subset-of-set algorithm.
+The role of the address scheme is to make the association between the address and matching endpoints by arbitrary criteria:
+
+* The endpoint name scheme performs a basic dictionary lookup.
+* The route values scheme has a complex best subset of set algorithm.
+
+<a name="ambient"></a>
 
 ### Ambient values and explicit values
 
-From the current request, routing will access the route values of the current request `HttpContext.Request.RouteValues`. The values associated with the current request are referred to as the *ambient values*. For the purpose of clarity, the documentation will refer to the route values passed in to method as *explicit values*.
+From the current request, routing accesses the route values of the current request `HttpContext.Request.RouteValues`. The values associated with the current request are referred to as the **ambient values**. For the purpose of clarity, the documentation refers to the route values passed in to methods as **explicit values**.
 
-This example shows ambient values and explicit values:
+The following example shows ambient values and explicit values. It provides ambient values from the current request and explicit values: `{ id = 17, }`:
 
-```csharp
-// Provides ambient values (current request) and explicit values: { id = 17, }
-... = linkGenerator.GetPathByName(httpContext, "subscribe", new { id = 17, });
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs?name=snippet)]
 
-// Provides no ambient values, and explicit values: { id = 17, }
-... = linkGenerator.GetPathByName("subscribe", new { id = 17, });
+The preceding code:
 
-// Provides ambient values (current request) and explicit values: { action = "Edit, controller = "...", id = 17, }
-... = urlHelper.Action("Edit", new { id = 17, });
+* Returns `/Widget/Index/17`
+* Gets <xref:Microsoft.AspNetCore.Routing.LinkGenerator> via [DI](xref:fundamentals/dependency-injection).
 
-// Provides ambient values (current request) and explicit values: { page = "./Edit, id = 17, }
-... = urlHelper.Page("./Edit", new { id = 17, });
-```
+The following code provides no ambient values and explicit values: `{ controller = "Home", action = "Subscribe", id = 17, }`:
 
-> [!NOTE]
-> The behavior of MVC's `IUrlHelper` adds a layer of complexity in additon to the rules described here.
-> * `IUrlHelper` always provides the route values from the current request as ambient values.
-> * `IUrlHelper.Action` always copies the current `action` and `controller` route values as explicit values unless overridden by the user. 
-> * `IUrlHelper.Page` always copies the current `page` route value as an explicit values unless overridden by the user. 
-> * `IUrlHelper.Page` always overrides the current `handler` route value with `null` as an explicit values unless overridden by the user. 
->
-> Users are often surprised by the behavioral details of ambient values, because MVC doesn't seem to follow its own rules. For historical and compatibility reasons certain route values (`action`, `controller`, `page`, and `handler`) have their own special-case behavior.
->
-> The equivalent functionality provided by `LinkGenerator.GetPathByAction` and `LinkGenerator.GetPathByPage` duplicates these quirks of `IUrlHelper` for compatibility.
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs?name=snippet2)]
+
+The preceding  method returns `/Home/Subscribe/17`
+
+The following code in the `WidgetController` returns `/Widget/Subscribe/17`:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/WidgetController.cs?name=snippet3)]
+
+The following code provides the controller from ambient values in the current request and explicit values: `{ action = "Edit", id = 17, }`:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/GadgetController.cs?name=snippet)]
+
+In the preceding code:
+
+* `/Gadget/Edit/17` is returned.
+* <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Url> gets the <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>.
+* <xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action*> 	
+generates a URL with an absolute path for an action method. The URL contains the specified `action` name and `route` values.
+
+The following code provides ambient values from the current request and explicit values: `{ page = "./Edit, id = 17, }`:
+
+[!code-csharp[](routing/samples/3.x/RoutingSample/Pages/Index.cshtml.cs?name=snippet)]
+
+The preceding code sets `url` to  `/Edit/17` when the Edit Razor Page contains the following page directive:
+
+ `@page "{id:int}"`
+
+If the Edit page doesn't contain the `"{id:int}"` route template, `url` is `/Edit?id=17`.
+
+The behavior of MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> adds a layer of complexity in addition to the rules described here:
+
+* `IUrlHelper` always provides the route values from the current request as ambient values.
+* [IUrlHelper.Action](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Action*) always copies the current `action` and `controller` route values as explicit values unless overridden by the developer.
+* [IUrlHelper.Page](xref:Microsoft.AspNetCore.Mvc.UrlHelperExtensions.Page*) always copies the current `page` route value as an explicit value unless overridden. <!--by the user-->
+* `IUrlHelper.Page` always overrides the current `handler` route value with `null` as an explicit values unless overridden.
+
+Users are often surprised by the behavioral details of ambient values, because MVC doesn't seem to follow its own rules. For historical and compatibility reasons, certain route values such as `action`, `controller`, `page`, and `handler` have their own special-case behavior.
+
+The equivalent functionality provided by `LinkGenerator.GetPathByAction` and `LinkGenerator.GetPathByPage` duplicates these anomalies of `IUrlHelper` for compatibility.
 
 ### URL generation process
 
-Once the set of candiate endpoints has been found the URL generation process will process them iteratively and return the first successful result.
+Once the set of candidate endpoints are found, the URL generation algorithm:
 
-The first step in this process is called *route value invalidation* and is the process by which routing decides which route values from the ambient values should be used, and which should be ignored. Each ambient value is considered in turn, and either combined with the explicit values, or ignored.
+* Processes the endpoints iteratively.
+* Returns the first successful result.
 
-> [!NOTE]
-> The best way to think about the role of ambient values is that they attempt to save application developers typing in some common cases. Traditionally, the scenarios where ambient values are helpful are related to MVC.
-> * When linking to another action in the same controller, you don't need to specify the controller name.
-> * When linking to another controller in the same area, you don't need to specify the area name.
-> * When linking to the same action method, you don't need to specify any route values.
-> * When linking to another part of the app, you don't want to carry over route values that have no meaning in that part of the app.
+The first step in this process is called **route value invalidation**.  Route value invalidation is the process by which routing decides which route values from the ambient values should be used and which should be ignored. Each ambient value is considered and either combined with the explicit values, or ignored.
 
-> [!TIP]
-> If you encounter trouble with URL generation, where a call to `LinkGenerator` or `IUrlHelper` returns `null`, the most likely cause is misunderstanding with *route value invalidation*. Troubleshoot this by explicitly specifying more of the route values and see if that changes the outcome.
+The best way to think about the role of ambient values is that they attempt to save application developers typing, in some common cases. Traditionally, the scenarios where ambient values are helpful are related to MVC:
 
-Route value invalidation works on the base assumption that the application's URL scheme is hierarchical, with a hierarchy formed from left-to-right. Consider the the simple controller route template `{controller}/{action}/{id?}` to get an intuitive sense of how this works in practice. A *change* to a value will *invalidate* all of the route values that appear to the right. This reflects the assumption about hierarchy - if the app has an ambient value for `id`, but the operation specifies a different value for the `controller`, it's not clear that reusing the value for `id` is desirable, so it won't be reused.
+* When linking to another action in the same controller, the controller name doesn't need to be specified.
+* When linking to another controller in the same area, the area name doesn't need to be specified.
+* When linking to the same action method, route values don't need to be specified.
+* When linking to another part of the app, you don't want to carry over route values that have no meaning in that part of the app.
+
+Calls to `LinkGenerator` or `IUrlHelper` that return `null` are usually caused by not understanding route value invalidation. Troubleshoot route value invalidation by explicitly specifying more of the route values to see if that solves the problem.
+
+Route value invalidation works on the assumption that the app's URL scheme is hierarchical, with a hierarchy formed from left-to-right. Consider the basic controller route template `{controller}/{action}/{id?}` to get an intuitive sense of how this works in practice. A **change** to a value **invalidates** all of the route values that appear to the right. This reflects the assumption about hierarchy. If the app has an ambient value for `id`, and the operation specifies a different value for the `controller`:
+
+* `id` won't be reused because `{controller}` is to the left of `{id?}`.
 
 Some examples demonstrating this principle:
-* If the explicit values contains a value for `id` then the ambient value for `id`w ill be ignored. The ambient values for `controller` and `action` can be used.
-* If the explicit values contains a value for `action` then the ambient value for `action` (if present) will be ignored. The ambient values for `controller` can be used. If the explicit value for `action` is different from the ambient value for `action`, then the `id` value will not be used, otherwise it can be.
-* If the explicit values contains a value for `controller` then the ambient value for `controller` (if present) will be ignored. If the explicit value for `controller` is different from the ambient value for `controller`, then the `action` and `id` values will not be used, otherwise they can be.
 
-This process is further complicated by the existance of attribute routes and dedicated conventional routes. Controller conventional routes like `{controller}/{action}/{id?}` clearly specify a hierarchy using route parameters. For dedicated conventional routes, attribute routes to controllers, and Razor Pages, there is still a hierarchy of route values, but they don't appear in the template. For these cases, URL generation defines the *required values* concept. Endpoints created by Controllers and Razor Pages have *required values* specified that allow route value invalidation to work.
+* If the explicit values contain a value for `id`, the ambient value for `id` is ignored. The ambient values for `controller` and `action` can be used.
+* If the explicit values contain a value for `action`, any ambient value for `action` is ignored. The ambient values for `controller` can be used. If the explicit value for `action` is different from the ambient value for `action`, the `id` value won't be used.  If the explicit value for `action` is the same as the ambient value for `action`, the `id` value can be used.
+* If the explicit values contain a value for `controller`, any ambient value for `controller` is ignored. If the explicit value for `controller` is different from the ambient value for `controller`, the `action` and `id` values won't be used. If the explicit value for `controller` is the same as the ambient value for `controller`, the `action` and `id` values can be used.
+
+This process is further complicated by the existence of attribute routes and dedicated conventional routes. Controller conventional routes such as `{controller}/{action}/{id?}` specify a hierarchy using route parameters. For [dedicated conventional routes](xref:mvc/controllers/routing#dcr) and [attribute routes](xref:mvc/controllers/routing#ar) to controllers and Razor Pages:
+
+* There is a hierarchy of route values.
+* They don't appear in the template.
+
+For these cases, URL generation defines the **required values** concept. Endpoints created by controllers and Razor Pages have required values specified that allow route value invalidation to work.
 
 The route value invalidation algorithm in detail:
-* The required value names are combined with the route parameters, and then processed from left-to-right.
-* For each parameter the *ambient value* and *explicit value* are compared.
-    * If the *ambient value* and *explict value* are the same, the the process continues.
-    * If the *ambient value* is present and the *explicit value* is not present, then the ambient is copied to be used when generating the URL.
-    * If the *ambient value* is not present and the *explicit value* is present, reject the ambient value, and all subsequent ambient values.
-    * If the *ambient value* is present and the *explitic value* is present, and the two values are different, reject the ambient value, and all subsequent ambient values.
 
-At this point, the URL generation operation is ready to evaluate route constraints. The set of accepted values is combined with the parameter default values which is provided to constraints. If the constraints all pass, the operation will continue.
+* The required value names are combined with the route parameters, then processed from left-to-right.
+* For each parameter, the ambient value and explicit value are compared:
+    * If the ambient value and explicit value are the same, the process continues.
+    * If the ambient value is present and the explicit value isn't, the ambient value is used when generating the URL.
+    * If the ambient value isn't present and the explicit value is, reject the ambient value and all subsequent ambient values.
+    * If the ambient value and the explicit value are present, and the two values are different, reject the ambient value and all subsequent ambient values.
 
-Next the *accepted values* can be used to expand the route template. The route template is processed from left-to-right, and each parameter has its accepted value substituted, with the following special cases:
-* If the accepted values is missing a value and the parameter has a default value, the default value is used.
-* If the accepted values is missing a value and the parameter is optional, then processing continues.
-* If any route parameter to the right of a *missing optional parameter* has a value, then the operation fails.
-* Contiguous default-valued parameters optional parameters will be collapsed where possible. 
+At this point, the URL generation operation is ready to evaluate route constraints. The set of accepted values is combined with the parameter default values, which is provided to constraints. If the constraints all pass, the operation continues.
 
-Values explicitly provided but that don't match a segment of the route are added to the query string. The following table shows the result when using the route template `{controller}/{action}/{id?}`.
+Next, the **accepted values** can be used to expand the route template. The route template is processed:
+
+* From left-to-right.
+* Each parameter has its accepted value substituted.
+* With the following special cases:
+  * If the accepted values is missing a value and the parameter has a default value, the default value is used.
+  * If the accepted values is missing a value and the parameter is optional, processing continues.
+  * If any route parameter to the right of a missing optional parameter has a value, the operation fails.
+  * <!-- review default-valued parameters optional parameters --> Contiguous default-valued parameters and optional parameters are collapsed where possible.
+
+Values explicitly provided that don't match a segment of the route are added to the query string. The following table shows the result when using the route template `{controller}/{action}/{id?}`.
 
 | Ambient Values                     | Explicit Values                        | Result                  |
 | ---------------------------------- | -------------------------------------- | ----------------------- |
@@ -635,20 +795,16 @@ Values explicitly provided but that don't match a segment of the route are added
 
 ### Problems with route value invalidation
 
-As of ASP.NET Core 3.0 some URL generation schemes used in earlier ASP.NET Core versions don't work well with URL generation. The ASP.NET Core team plans to add features to address these needs in a future release. For now the best solution is to use legacy routing.
+As of ASP.NET Core 3.0, some URL generation schemes used in earlier ASP.NET Core versions don't work well with URL generation. The ASP.NET Core team plans to add features to address these needs in a future release. For now the best solution is to use legacy routing.
 
-This example demonstrates an example of a URL generation scheme that's not supported by routing.
+The following code shows an example of a URL generation scheme that's not supported by routing.
 
-```csharp
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute("default", "{culture}/{controller=Home}/{action=Index}/{id?}");
-    endpoints.MapControllerRoute("blog", "{culture}/{**slug}", new { controller = "Blog", action = "ReadPost", });
-});
-```
-In this example, the `culture` route parameter is used for localization. The desire is to have the `culture` parameter always accepted as an ambient value. However this doesn't work because of the way *required values* work.
-* In the first route template, the `culture` route parameter is *to the left* of `controller`, so changes to `controller` won't invalidate `culture`.
-* In the second route template, the `culture` route parameter is considered to be *to the right* of `controller`, which appears in the required values.
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupUnsupported.cs?name=snippet)]
+
+In the preceding code, the `culture` route parameter is used for localization. The desire is to have the `culture` parameter always accepted as an ambient value. However, the `culture` parameter is not accepted as an ambient value because of the way required values work:
+
+* In the `"default"` route template, the `culture` route parameter is to the left of `controller`, so changes to `controller` won't invalidate `culture`.
+* In the `"blog"` route template, the `culture` route parameter is considered to be to the right of `controller`, which appears in the required values.
 
 ## Configuring endpoint metadata
 
@@ -666,59 +822,22 @@ The following links provide information on configuring endpoint metadata:
 
 ## Host matching in routes with RequireHost
 
-`RequireHost` applies a constraint to the route which requires the specified host. The `RequireHost` or `[Host]` parameter can be:
+<xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.RequireHost*> applies a constraint to the route which requires the specified host. The `RequireHost` or [[Host]](xref:Microsoft.AspNetCore.Routing.HostAttribute) parameter can be:
 
-* Host: `www.domain.com` (matches `www.domain.com` with any port)
-* Host with wildcard: `*.domain.com` (matches `www.domain.com`, `subdomain.domain.com`, or `www.subdomain.domain.com` on any port)
-* Port: `*:5000` (matches port 5000 with any host)
-* Host and port: `www.domain.com:5000`, `*.domain.com:5000` (matches host and port)
+* Host: `www.domain.com`, matches `www.domain.com` with any port.
+* Host with wildcard: `*.domain.com`, matches `www.domain.com`, `subdomain.domain.com`, or `www.subdomain.domain.com` on any port.
+* Port: `*:5000`, matches port 5000 with any host.
+* Host and port: `www.domain.com:5000` or `*.domain.com:5000`, matches host and port.
 
-Multiple parameters can be specified using `RequireHost` or `[Host]`. The constraint will match hosts valid for any of the parameters. For example, `[Host("domain.com", "*.domain.com")]` will match `domain.com`, `www.domain.com`, or `subdomain.domain.com`.
+Multiple parameters can be specified using `RequireHost` or `[Host]`. The constraint  matches hosts valid for any of the parameters. For example, `[Host("domain.com", "*.domain.com")]` matches `domain.com`, `www.domain.com`, and `subdomain.domain.com`.
 
 The following code uses `RequireHost` to require the specified host on the route:
 
-```csharp
-public void Configure(IApplicationBuilder app)
-{
-    app.UseRouting();
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupRequireHost.cs?name=snippet)]
 
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapGet("/", context => context.Response.WriteAsync("Hi Contoso!"))
-            .RequireHost("contoso.com");
-        endpoints.MapGet("/", context => context.Response.WriteAsync("Hi AdventureWorks!"))
-            .RequireHost("adventure-works.com");
-        endpoints.MapHealthChecks("/healthz").RequireHost("*:8080");
-    });
-}
-```
+The following code uses the `[Host]` attribute on the controller to require any of the specified hosts:
 
-The following code uses the `[Host]` attribute to require the specified host on the controller:
-
-```csharp
-[Host("contoso.com", "adventure-works.com")]
-public class HomeController : Controller
-{
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
-    public IActionResult Index()
-    {
-        return View();
-    }
-
-    [Host("example.com:8080")]
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-}
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/ProductController.cs?name=snippet)]
 
 When the `[Host]` attribute is applied to both the controller and action method:
 
@@ -727,77 +846,54 @@ When the `[Host]` attribute is applied to both the controller and action method:
 
 ## Performance guidance for routing
 
-The performance of routing is often raised as an area of concern - usually upon investigation the problem is elsewhere. The reason for this phenomenon is that frameworks like Controllers and Razor Pages report the amount of time spent inside the framework in their logging messages. When there's a significant difference between the time reported by Controllers and the total time of the request, developers have eliminated their application code as the source of the problme, it's an easy assumption to make that routing is the cause.
+Most of routing was updated in ASP.NET Core 3.0 to increase performance.
 
-Routing is performance tested using thousands of endpoints. It's unlikely that a normal application will encounter a performance problem just by being too large. The most common root cause of investigating *routing performance* is usually a badly-behaving custom middleware. 
+When an app has performance problems, routing is often suspected as the problem. The reason routing is suspected is that frameworks like controllers and Razor Pages report the amount of time spent inside the framework in their logging messages. When there's a significant difference between the time reported by controllers and the total time of the request:
 
-This code sample demonstrates a straightforward technique for narrowing down the source of delay. 
+* Developers eliminate their app code as the source of the problem.
+* It's common to assume routing is the cause.
 
-```csharp
-public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
-{
-    app.Use(next => async context =>
-	{
-		var sw = new Stopwatch();
-		sw.Start();
-		await next(context);
-		sw.Stop();
+Routing is performance tested using thousands of endpoints. It's unlikely that a typical app will encounter a performance problem just by being too large. The most common root cause of slow routing performance is usually a badly-behaving custom middleware.
 
-        logger.LogInformation("Time in 1: {ElapsedMilliseconds}ms" sw.ElapsedMilliseconds);
-	});
- 
-    app.UseRouting();
+This following code sample demonstrates a basic technique for narrowing down the source of delay:
 
-    app.Use(next => async context =>
-	{
-		var sw = new Stopwatch();
-		sw.Start();
-		await next(context);
-		sw.Stop();
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupDelay.cs?name=snippet)]
 
-        logger.LogInformation("Time in 2: {ElapsedMilliseconds}ms" sw.ElapsedMilliseconds);
-	});
+To time routing:
 
-    app.UseAuthorization();
+* Interleave each middleware with a copy of the timing middleware shown in the preceding code.
+* Add a unique identifier to correlate the timing data with the code.
 
-    app.Use(next => async context =>
-	{
-		var sw = new Stopwatch();
-		sw.Start();
-		await next(context);
-		sw.Stop();
+This is a basic way to narrow down the delay when it's significant, for example, more than `10ms`.  Subtracting `Time 2` from `Time 1` reports the time spent inside the `UseRouting` middleware.
 
-        logger.LogInformation("Time in 3: {ElapsedMilliseconds}ms" sw.ElapsedMilliseconds);
-	});
+The following code uses a more compact approach to the preceding timing code:
 
-    app.UseEndpoints(endpoints =>
-    {
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupSW.cs?name=snippetSW)]
 
-    });
-}
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/StartupSW.cs?name=snippet)]
 
-Interleave each middleware with a copy of the *timing* middleware shown here, with a unique number or identifier so you can correlateit with the code. This is a very low-tech way to narrow down the delay when it's significant (`> 10ms`). For example, taking the value reported by `1` and then subtracting the value reported by `2` would report the time spent inside the `UseRouting()` middleware.
+### Potentially expensive routing features
 
----
+The following list provides some insight into routing features that are relatively expensive compared with basic route templates:
 
-The following list provides some insight into routing features that are relatively expensive compared with simpler route templates:
+* Regular expressions: It's possible to write regular expressions that are complex, or have long running time with a small amount of input.
 
-* Regular expresssions: It's possible to write regular expressions that are very complex, or have very long running time with a small amount of input.
+* Complex segments (`{x}-{y}-{z}`): 
+  * Are significantly more expensive than parsing a regular URL path segment.
+  * Result in many more substrings being allocated.
+  * The complex segment logic was not updated in ASP.NET Core 3.0 routing performance update.
 
-* Complex segements (`{x}-{y}-{z}`): Complex segments are significantly more expensive than parsing a regular URL path segment and result in many more substrings being allocated. Most of routing has a performance-focused rewrite in ASP.NET Core 3.0, but the complex segment logic was not updated.
-
-* Synchronous data access: Many complex application have database access as part of their routing strategy. Routing in the past might not always have provided the right extensibility points to support this - for instance `IRouteConstraint`, and `IActionConstraint` are synchronous. Extensibility points such as `MatcherPolicy` and `EndpointSelector` are async.
+* Synchronous data access: Many complex apps have database access as part of their routing. ASP.NET Core 2.2 and earlier routing might not provide the right extensibility points to support database access routing. For example, <xref:Microsoft.AspNetCore.Routing.IRouteConstraint>, and <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint> are synchronous. Extensibility points such as <xref:Microsoft.AspNetCore.Routing.MatcherPolicy> and <xref:Microsoft.AspNetCore.Routing.EndpointSelectorContext> are asynchronous.
 
 ## Guidance for library authors
 
-This section contains guidance for library authors building on top of routing. These details are intended to ensure that application developers will have a good experience using libraries and frameworks that extend routing. 
+This section contains guidance for library authors building on top of routing. These details are intended to ensure that app developers have a good experience using libraries and frameworks that extend routing.
 
-### Defining endpoints
+### Define endpoints
 
-To create a framework that uses routing for URL matching, start by defining a user experience that builds on top of `UseEndpoints()`. 
+To create a framework that uses routing for URL matching, start by defining a user experience that builds on top of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>.
 
-**DO** build on top of `IEndpointRouteBuilder`. This allows users to compose your framework with other ASP.NET Core features without confusion. Every ASP.NET Core template includes routing, assume it's present and familiar for users.
+**DO** build on top of <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>. This allows users to compose your framework with other ASP.NET Core features without confusion. Every ASP.NET Core template includes routing. Assume routing is present and familiar for users.
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -809,67 +905,58 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-**DO** return a sealed concrete type from a call to `MapMyFramework(...)` that implements `IEndpointConventionBuilder`. The vast majority of framework `Map...` methods follow this pattern. The `IEndpointConventionBuilder` interface allows composability of metadata, and is targeted by a variety of extension methods. Declaring your own type allows you to add your own framework-specific functionality to the builder. It's ok to wrap a framework-declared builder and forward calls to it.
+**DO** return a sealed concrete type from a call to `MapMyFramework(...)` that implements <xref:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder>. Most framework `Map...` methods follow this pattern. The `IEndpointConventionBuilder` interface:
+
+* Allows composability of metadata.
+* Is targeted by a variety of extension methods.
+
+Declaring your own type allows you to add your own framework-specific functionality to the builder. It's ok to wrap a framework-declared builder and forward calls to it.
 
 ```csharp
 app.UseEndpoints(endpoints =>
 {
     // Your framework
-    endpoints.MapMyFramework(...).RequrireAuthorization().WithMyFrameworkFeature(awesome: true);
+    endpoints.MapMyFramework(...).RequrireAuthorization()
+                                 .WithMyFrameworkFeature(awesome: true);
 
     endpoints.MapHealthChecks("/healthz");
 });
 ```
 
-**CONSIDER** writing your own `EndpointDataSource`. `EndpointDataSource` is the low-level primitive for declaring and updating a collection of endpoints. This is the power tool used by Controllers and Razor Pages. 
+**CONSIDER** writing your own <xref:Microsoft.AspNetCore.Routing.EndpointDataSource>. `EndpointDataSource` is the low-level primitive for declaring and updating a collection of endpoints. `EndpointDataSource` is a powerful API used by controllers and Razor Pages.
 
-The routing tests have a [simple example](https://github.com/aspnet/AspNetCore/blob/master/src/Http/Routing/test/testassets/RoutingSandbox/Framework/FrameworkEndpointDataSource.cs#L17) of a non-updating data source.
+The routing tests have a [basic example](https://github.com/aspnet/AspNetCore/blob/master/src/Http/Routing/test/testassets/RoutingSandbox/Framework/FrameworkEndpointDataSource.cs#L17) of a non-updating data source.
 
-**DO NOT** attempt to register an `EndpointDataSource` by default. Require users to register your framework in `UseEndpoints()`. The philosophy of routing is that nothing is included by default, and that `UseEndpoints()` is the place to register endpoints.
+**DO NOT** attempt to register an `EndpointDataSource` by default. Require users to register your framework in <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>. The philosophy of routing is that nothing is included by default, and that `UseEndpoints` is the place to register endpoints.
 
 ### Creating routing-integrated middleware
 
 **CONSIDER** defining metadata types as an interface.
-**DO** make it possible to used metadata types as an attribute on classes and methods.
 
-```csharp
-public interface ICoolMetadata { ...}
+**DO** make it possible to use metadata types as an attribute on classes and methods.
 
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-public class CoolMetadataAttribute : Attribute, ICoolMetadata { ...}
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/ICoolMetadata.cs?name=snippet2)]
 
-Frameworks like Controllers and Razor Pages support applying metadata attributes to types and methods. If you declare metadata types, make sure it's possible to use them as attributes, since that's the most idiomatic thing for many users. Declaring a metadata type as an interface adds another layer of flexibility, since interfaces are composable, developers can declare their own types that combine multiple policies.
+Frameworks like controllers and Razor Pages support applying metadata attributes to types and methods. If you declare metadata types:
 
-**DO** make it possible to override metadata.
+* Make them accessible as [attributes](/dotnet/csharp/programming-guide/concepts/attributes/).
+* Most users are familiar with applying attributes.
 
-```csharp
-public interface ICoolMetadata
-{
-    bool IsCool { get; }
-}
+Declaring a metadata type as an interface adds another layer of flexibility:
 
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-public class CoolMetadataAttribute : Attribute, ICoolMetadata 
-{ 
-    public bool IsCool => true;
-}
+* Interfaces are composable.
+* Developers can declare their own types that combine multiple policies.
 
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-public class SuppressCoolMetadataAttribute : Attribute, ICoolMetadata 
-{ 
-    public bool IsCool => false;
-}
+**DO** make it possible to override metadata, as shown in the following example:
 
-[CoolMetadata]
-public class MyController : Controller
-{
-    [SuppressCoolMetadata]
-    public void Uncool() { }
-}
-```
+[!code-csharp[](routing/samples/3.x/RoutingSample/ICoolMetadata.cs?name=snippet)]
 
-The best way to follow is guideline is to avoid defining *marker metadata* - don't just look for the presence of a metadata type, define a property on it and check that. The metadata collection is ordered and supports overriding by priority. In the case of Controllers, an metadata on the action method is *most specific*.
+The best way to follow these guidelines is to avoid defining **marker metadata**:
+
+* Don't just look for the presence of a metadata type.
+* Define a property on the metadata and check the property.
+
+The metadata collection is ordered and supports overriding by priority. In the case of controllers, metadata on the action method is most specific.
 
 **DO** make middleware useful with and without routing.
 
@@ -885,7 +972,12 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-As an examplar of this guideline, consider the `UseAuthorization()` middleware. The authorization middleware allows you pass in a fallback policy (shown here). The fallback policy (if specified) applies to endpoints without a specified policy, *and* to requests that don't match an endpoint. This makes the authorization middleware outside of the context of routing, it can be used for traditional middleware programming.
+As an example of this guideline, consider the `UseAuthorization` middleware. The authorization middleware allows you to pass in a fallback policy. <!-- shown where?  (shown here) --> The fallback policy, if specified, applies to both:
+
+* Endpoints without a specified policy.
+* Requests that don't match an endpoint.
+
+This makes the authorization middleware useful outside of the context of routing. The authorization middleware can be used for traditional middleware programming.
 
 ::: moniker-end
 
@@ -922,9 +1014,9 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 * Supports a basic and descriptive routing scheme.
 * Is a useful starting point for UI-based apps.
 
-Developers commonly add additional terse routes to high-traffic areas of an app in specialized situations (for example, blog and ecommerce endpoints) using [attribute routing](xref:mvc/controllers/routing#attribute-routing) or dedicated conventional routes.
+Developers commonly add additional terse routes to high-traffic areas of an app in specialized situations using [attribute routing](xref:mvc/controllers/routing#attribute-routing) or dedicated conventional routes. Specialized situations examples include, blog and ecommerce endpoints.
 
-Web APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations (for example, GET, POST) on the same logical resource will use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
+Web APIs should use attribute routing to model the app's functionality as a set of resources where operations are represented by HTTP verbs. This means that many operations, for example, GET, and POST, on the same logical resource use the same URL. Attribute routing provides a level of control that's needed to carefully design an API's public endpoint layout.
 
 Razor Pages apps use default conventional routing to serve named resources in the *Pages* folder of an app. Additional conventions are available that allow you to customize Razor Pages routing behavior. For more information, see <xref:razor-pages/index> and <xref:razor-pages/razor-pages-conventions>.
 
@@ -974,7 +1066,7 @@ When the endpoint delegate is executed, the properties of [RouteContext.RouteDat
 
 URL generation is the process by which routing can create a URL path based on a set of route values. This allows for a logical separation between your endpoints and the URLs that access them.
 
-Endpoint routing includes the Link Generator API (<xref:Microsoft.AspNetCore.Routing.LinkGenerator>). <xref:Microsoft.AspNetCore.Routing.LinkGenerator> is a singleton service that can be retrieved from DI. The API can be used outside of the context of an executing request. MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> and scenarios that rely on <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the link generator to provide link generating capabilities.
+Endpoint routing includes the Link Generator API (<xref:Microsoft.AspNetCore.Routing.LinkGenerator>). <xref:Microsoft.AspNetCore.Routing.LinkGenerator> is a singleton service that can be retrieved from [DI](xref:fundamentals/dependency-injection). The API can be used outside of the context of an executing request. MVC's <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> and scenarios that rely on <xref:Microsoft.AspNetCore.Mvc.IUrlHelper>, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), HTML Helpers, and [Action Results](xref:mvc/controllers/actions), use the link generator to provide link generating capabilities.
 
 The link generator is backed by the concept of an *address* and *address schemes*. An address scheme is a way of determining the endpoints that should be considered for link generation. For example, the route name and route values scenarios many users are familiar with from MVC/Razor Pages are implemented as an address scheme.
 
@@ -1137,7 +1229,7 @@ Route values are determined by splitting the URL path into segments and matching
 
 The preceding template could also match the URL path `/` and produce the values `{ controller = Home, action = Index }`. This occurs because the `{controller}` and `{action}` route parameters have default values and the `id` route parameter is optional. An equals sign (`=`) followed by a value after the route parameter name defines a default value for the parameter. A question mark (`?`) after the route parameter name defines an optional parameter.
 
-Route parameters with a default value *always* produce a route value when the route matches. Optional parameters don't produce a route value if there was no corresponding URL path segment. See the [Route template reference](#route-template-reference) section for a thorough description of route template scenarios and syntax.
+Route parameters with a default value *always* produce a route value when the route matches. Optional parameters don't produce a route value if there is no corresponding URL path segment. See the [Route template reference](#route-template-reference) section for a thorough description of route template scenarios and syntax.
 
 In the following example, the route parameter definition `{id:int}` defines a [route constraint](#route-constraint-reference) for the `id` route parameter:
 
@@ -1324,24 +1416,24 @@ The following table demonstrates example route constraints and their expected be
 
 | constraint | Example | Example Matches | Notes |
 | ---------- | ------- | --------------- | ----- |
-| `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer |
-| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false` (case-insensitive) |
-| `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value (in the invariant culture - see warning) |
-| `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value (in the invariant culture - see warning) |
-| `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value (in the invariant culture - see warning) |
-| `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Matches a valid `float` value (in the invariant culture - see warning) |
-| `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Matches a valid `Guid` value |
-| `long` | `{ticks:long}` | `123456789`, `-123456789` | Matches a valid `long` value |
-| `minlength(value)` | `{username:minlength(4)}` | `Rick` | String must be at least 4 characters |
-| `maxlength(value)` | `{filename:maxlength(8)}` | `Richard` | String must be no more than 8 characters |
-| `length(length)` | `{filename:length(12)}` | `somefile.txt` | String must be exactly 12 characters long |
-| `length(min,max)` | `{filename:length(8,16)}` | `somefile.txt` | String must be at least 8 and no more than 16 characters long |
-| `min(value)` | `{age:min(18)}` | `19` | Integer value must be at least 18 |
-| `max(value)` | `{age:max(120)}` | `91` | Integer value must be no more than 120 |
-| `range(min,max)` | `{age:range(18,120)}` | `91` | Integer value must be at least 18 but no more than 120 |
-| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters (`a`-`z`, case-insensitive) |
-| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression (see tips about defining a regular expression) |
-| `required` | `{name:required}` | `Rick` | Used to enforce that a non-parameter value is present during URL generation |
+| `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer. |
+| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false. Case-insensitive. |
+| `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value in the invariant culture. See  preceding warning.|
+| `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value in the invariant culture. See  preceding warning.|
+| `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value in the invariant culture. See  preceding warning.|
+| `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Matches a valid `float` value in the invariant culture. See  preceding warning.|
+| `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Matches a valid `Guid` value. |
+| `long` | `{ticks:long}` | `123456789`, `-123456789` | Matches a valid `long` value. |
+| `minlength(value)` | `{username:minlength(4)}` | `Rick` | String must be at least 4 characters. |
+| `maxlength(value)` | `{filename:maxlength(8)}` | `MyFile` | String has maximum of 8 characters. |
+| `length(length)` | `{filename:length(12)}` | `somefile.txt` | String must be exactly 12 characters long. |
+| `length(min,max)` | `{filename:length(8,16)}` | `somefile.txt` | String must be at least 8 and has maximum of 16 characters. |
+| `min(value)` | `{age:min(18)}` | `19` | Integer value must be at least 18. |
+| `max(value)` | `{age:max(120)}` | `91` | Integer value maximum of 120. |
+| `range(min,max)` | `{age:range(18,120)}` | `91` | Integer value must be at least 18 and maximum of 120. |
+| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters `a`-`z`.  Case-insensitive. |
+| `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression. See tips about defining a regular expression. |
+| `required` | `{name:required}` | `Rick` | Used to enforce that a non-parameter value is present during URL generation. |
 
 Multiple, colon-delimited constraints can be applied to a single parameter. For example, the following constraint restricts a parameter to an integer value of 1 or greater:
 
@@ -1357,14 +1449,20 @@ public User GetUserById(int id) { }
 
 The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See <xref:System.Text.RegularExpressions.RegexOptions> for a description of these members.
 
-Regular expressions use delimiters and tokens similar to those used by Routing and the C# language. Regular expression tokens must be escaped. To use the regular expression `^\d{3}-\d{2}-\d{4}$` in routing, the expression must have the `\` (single backslash) characters provided in the string as `\\` (double backslash) characters in the C# source file in order to escape the `\` string escape character (unless using [verbatim string literals](/dotnet/csharp/language-reference/keywords/string)). To escape routing parameter delimiter characters (`{`, `}`, `[`, `]`), double the characters in the expression (`{{`, `}`, `[[`, `]]`). The following table shows a regular expression and the escaped version.
+Regular expressions use delimiters and tokens similar to those used by routing and the C# language. Regular expression tokens must be escaped. To use the regular expression `^\d{3}-\d{2}-\d{4}$` in routing:
+
+* The expression must have the single backslash `\` characters provided in the string as double backslash `\\` characters in the source code.
+* The regular expression must us `\\` in order to escape the `\` string escape character.
+* The regular expression doesn't require `\\` when using [verbatim string literals](/dotnet/csharp/language-reference/keywords/string).
+
+To escape routing parameter delimiter characters `{`, `}`, `[`, `]`, double the characters in the expression `{{`, `}`, `[[`, `]]`. The following table shows a regular expression and the escaped version:
 
 | Regular Expression    | Escaped Regular Expression     |
 | --------------------- | ------------------------------ |
 | `^\d{3}-\d{2}-\d{4}$` | `^\\d{{3}}-\\d{{2}}-\\d{{4}}$` |
 | `^[a-z]{2}$`          | `^[[a-z]]{{2}}$`               |
 
-Regular expressions used in routing often start with the caret (`^`) character and match starting position of the string. The expressions often end with the dollar sign (`$`) character and match end of the string. The `^` and `$` characters ensure that the regular expression match the entire route parameter value. Without the `^` and `$` characters, the regular expression match any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match.
+Regular expressions used in routing often start with the caret `^` character and match starting position of the string. The expressions often end with the dollar sign `$` character and match end of the string. The `^` and `$` characters ensure that the regular expression match the entire route parameter value. Without the `^` and `$` characters, the regular expression match any substring within the string, which is often undesirable. The following table provides examples and explains why they match or fail to match.
 
 | Expression   | String    | Match | Comment               |
 | ------------ | --------- | :---: |  -------------------- |
@@ -1379,7 +1477,7 @@ For more information on regular expression syntax, see [.NET Framework Regular E
 
 To constrain a parameter to a known set of possible values, use a regular expression. For example, `{action:regex(^(list|get|create)$)}` only matches the `action` route value to `list`, `get`, or `create`. If passed into the constraints dictionary, the string `^(list|get|create)$` is equivalent. Constraints that are passed in the constraints dictionary (not inline within a template) that don't match one of the known constraints are also treated as regular expressions.
 
-## Custom Route Constraints
+## Custom route constraints
 
 In addition to the built-in route constraints, custom route constraints can be created by implementing the <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface. The <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> interface contains a single method, `Match`, which returns `true` if the constraint is satisfied and `false` otherwise.
 
@@ -1430,7 +1528,7 @@ routes.MapRoute(
     template: "{controller:slugify=Home}/{action:slugify=Index}/{id?}");
 ```
 
-With the preceding route, the action `SubscriptionManagementController.GetAll()` is matched with the URI `/subscription-management/get-all`. A parameter transformer doesn't change the route values used to generate a link. For example, `Url.Action("GetAll", "SubscriptionManagement")` outputs `/subscription-management/get-all`.
+With the preceding route, the action `SubscriptionManagementController.GetAll` is matched with the URI `/subscription-management/get-all`. A parameter transformer doesn't change the route values used to generate a link. For example, `Url.Action("GetAll", "SubscriptionManagement")` outputs `/subscription-management/get-all`.
 
 ASP.NET Core provides API conventions for using a parameter transformers with generated routes:
 
@@ -1506,7 +1604,7 @@ Razor Pages apps use default conventional routing to serve named resources in th
 
 URL generation support allows the app to be developed without hard-coding URLs to link the app together. This support allows for starting with a basic routing configuration and modifying the routes after the app's resource layout is determined.
 
-Routing uses *routes* (implementations of <xref:Microsoft.AspNetCore.Routing.IRouter>) to:
+Routing uses routes implementations of <xref:Microsoft.AspNetCore.Routing.IRouter> to:
 
 * Map incoming requests to *route handlers*.
 * Generate the URLs used in responses.
@@ -1521,8 +1619,8 @@ The routing system has the following characteristics:
 * App models, such as MVC/Razor Pages, register all of their routes, which have a predictable implementation of routing scenarios.
 * A response can use routing to generate URLs (for example, for redirection or links) based on route information and thus avoid hard-coded URLs, which helps maintainability.
 * URL generation is based on routes, which support arbitrary extensibility. <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> offers methods to build URLs.
-
-Routing is connected to the [middleware](xref:fundamentals/middleware/index) pipeline by the <xref:Microsoft.AspNetCore.Builder.RouterMiddleware> class. [ASP.NET Core MVC](xref:mvc/overview) adds routing to the middleware pipeline as part of its configuration and handles routing in MVC and Razor Pages apps. To learn how to use routing as a standalone component, see the [Use Routing Middleware](#use-routing-middleware) section.
+<!-- fix [middleware](xref:fundamentals/middleware/index) -->
+Routing is connected to the `[middleware](xref:fundamentals/middleware/index)` pipeline by the <xref:Microsoft.AspNetCore.Builder.RouterMiddleware> class. [ASP.NET Core MVC](xref:mvc/overview) adds routing to the middleware pipeline as part of its configuration and handles routing in MVC and Razor Pages apps. To learn how to use routing as a standalone component, see the [Use Routing Middleware](#use-routing-middleware) section.
 
 ### URL matching
 
@@ -1589,7 +1687,7 @@ Route values are determined by splitting the URL path into segments and matching
 
 The preceding template could also match the URL path `/` and produce the values `{ controller = Home, action = Index }`. This occurs because the `{controller}` and `{action}` route parameters have default values and the `id` route parameter is optional. An equals sign (`=`) followed by a value after the route parameter name defines a default value for the parameter. A question mark (`?`) after the route parameter name defines an optional parameter.
 
-Route parameters with a default value *always* produce a route value when the route matches. Optional parameters don't produce a route value if there was no corresponding URL path segment. See the [Route template reference](#route-template-reference) section for a thorough description of route template scenarios and syntax.
+Route parameters with a default value *always* produce a route value when the route matches. Optional parameters don't produce a route value if there is no corresponding URL path segment. See the [Route template reference](#route-template-reference) section for a thorough description of route template scenarios and syntax.
 
 In the following example, the route parameter definition `{id:int}` defines a [route constraint](#route-constraint-reference) for the `id` route parameter:
 
@@ -1671,7 +1769,7 @@ Both URLs generated round-trip with the following route definition (`/Home/Index
 
 For more information on URL generation, see the [Url generation reference](#url-generation-reference) section.
 
-## Use Routing Middleware
+## Use routing middleware
 
 Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) in the app's project file.
 
@@ -1770,10 +1868,10 @@ The following table demonstrates example route constraints and their expected be
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false` (case-insensitive) |
-| `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value (in the invariant culture - see warning) |
-| `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value (in the invariant culture - see warning) |
-| `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value (in the invariant culture - see warning) |
-| `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Matches a valid `float` value (in the invariant culture - see warning) |
+| `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value in the invariant culture. See  preceding warning.|
+| `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value in the invariant culture. See  preceding warning.|
+| `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value in the invariant culture. See  preceding warning.|
+| `float` | `{weight:float}` | `1.234`, `-1,001.01e8` | Matches a valid `float` value in the invariant culture. See  preceding warning.|
 | `guid` | `{id:guid}` | `CD2C1638-1638-72D5-1638-DEADBEEF1638`, `{CD2C1638-1638-72D5-1638-DEADBEEF1638}` | Matches a valid `Guid` value |
 | `long` | `{ticks:long}` | `123456789`, `-123456789` | Matches a valid `long` value |
 | `minlength(value)` | `{username:minlength(4)}` | `Rick` | String must be at least 4 characters |
@@ -1875,8 +1973,7 @@ Link generation only generates a link for this route when the matching values fo
 
 ## Complex segments
 
-Complex segments (for example `[Route("/x{token}y")]`) are processed by matching up literals from right to left in a non-greedy way. See [this code](https://github.com/dotnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) for a detailed explanation of how complex segments are matched. The [code sample](https://github.com/dotnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) is not used by ASP.NET Core, but it provides a good explanation of complex segments.
-<!-- While that code is no longer used by ASP.NET Core for complex segment matching, it provides a good match to the current algorithm. The [current code](https://github.com/dotnet/AspNetCore/blob/91514c9af7e0f4c44029b51f05a01c6fe4c96e4c/src/Http/Routing/src/Matching/DfaMatcherBuilder.cs#L227-L244) is too abstracted from matching to be useful for understanding complex segment matching.
--->
+Complex segments (for example `[Route("/x{token}y")]`) are processed by matching up literals from right to left in a non-greedy way. See [this code](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) for a detailed explanation of how complex segments are matched. The [code sample](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) is not used by ASP.NET Core, but it provides a good explanation of complex segments.
+
 
 ::: moniker-end
