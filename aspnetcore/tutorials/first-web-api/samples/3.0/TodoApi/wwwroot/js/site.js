@@ -1,5 +1,5 @@
 ﻿// <snippet_SiteJs>
-const uri = 'api/TodoItem';
+const uri = 'api/TodoItems';
 let todos = [];
 
 function getItems() {
