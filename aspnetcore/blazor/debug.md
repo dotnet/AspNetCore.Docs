@@ -20,7 +20,7 @@ Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-
 Available scenarios include:
 
 * Set and remove breakpoints.
-* Run the app with debugging support in Visual Studio (<kbd>F5</kbd> support).
+* Run the app with debugging support in Visual Studio and Visual Studio Code (<kbd>F5</kbd> support).
 * Single-step (<kbd>F10</kbd>) through the code.
 * Resume code execution in a browser with <kbd>F8</kbd> or <kbd>F5</kbd> in Visual Studio or Visual Studio Code.
 * In the *Locals* display, observe the values of any local variables.
