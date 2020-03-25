@@ -12,6 +12,7 @@ namespace TodoApi
     public class Startup
     {
         #region snippet_ConfigureServices
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TodoContext>(opt =>
@@ -31,12 +32,12 @@ namespace TodoApi
                     {
                         Name = "Shayne Boyer",
                         Email = string.Empty,
-                        Url = new Uri("https://twitter.com/spboyer"),
+                        Url = new Uri("https://twitter.com/spboyer")
                     },
                     License = new OpenApiLicense
                     {
                         Name = "Use under LICX",
-                        Url = new Uri("https://example.com/license"),
+                        Url = new Uri("https://example.com/license")
                     }
                 });
 
@@ -46,9 +47,11 @@ namespace TodoApi
                 c.IncludeXmlComments(xmlPath);
             });
         }
+
         #endregion
 
         #region snippet_Configure
+
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles();
@@ -58,17 +61,12 @@ namespace TodoApi
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
 
             app.UseRouting();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
+
         #endregion
     }
 }
