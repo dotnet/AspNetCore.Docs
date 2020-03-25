@@ -26,12 +26,17 @@ As of the ASP.NET Core 3.2 Preview 3 release, Blazor WebAssembly supports config
 
 In a Blazor Hosted app, the value of `HostingEnvironment` is the same as the server app's value.
 
-`HostingEnvironment` defaults to the Development environment when using the Blazor development server. In non-ASP.NET Core hosts, the Production environment is used by default.
+`HostingEnvironment` defaults to the Development environment when using the Blazor development server. In non-ASP.NET Core hosts, the Production environment is used by default. For more information, see <xref:fundamentals/environments>.
 
 > [!WARNING]
 > Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets or credentials in configuration.**
 
-For more information, see <xref:fundamentals/environments>.
+Configuration files are cached for offline use. With [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app), you can only update configuration files when creating a new deployment. Editing configuration files between deployments has no effect because:
+
+* Users have cached versions of the files that they continue to use.
+* The PWA's *service-worker.js* and *service-worker-assets.js* files must be rebuilt on compilation, which signal to the app on the user's next online visit that the app has been redeployed.
+
+For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.
 
 ## Blazor Server
 
