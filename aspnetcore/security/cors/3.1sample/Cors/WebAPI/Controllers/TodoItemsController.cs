@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
@@ -33,26 +32,6 @@ namespace WebAPI.Controllers
         public ContentResult GetTodoItems()
         {
             return Content("Get TO DO ");
-        }
-
-        [EnableCors("AllowHeaders")]
-        [HttpGet("{action}")]
-        public ContentResult GetTodoItems2()
-        {
-            return Content("GetTodoItems2");
-        }
-
-        // Delete: api/TodoItems/MyDelete2/5
-        [EnableCors("AllowHeaders")]
-        [HttpDelete("{action}/{id}")]
-        public IActionResult MyDelete2(long id)
-        {
-            if (id < 1)
-            {
-                return BadRequest();
-            }
-
-            return NoContent();
-        }
+        }        
     }
 }

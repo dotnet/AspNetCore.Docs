@@ -3,26 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
-    #region snippet
     [Route("api/[controller]")]
     [ApiController]
-    public class TodoItems2Controller : ControllerBase
+    public class TodoItems1Controller : ControllerBase
     {
-        // OPTIONS: api/TodoItems2/5
-        [HttpOptions("{id}")]
-        public IActionResult PreflightRouteID()
-        {
-            return NoContent();
-        }
-
-        // OPTIONS: api/TodoItems2 
-        [HttpOptions]
-        public IActionResult PreflightRoute()
-        {
-            return NoContent();
-        }
-
-        // PUT: api/TodoItems2/5
+        // PUT: api/TodoItems1/5
         [HttpPut("{id}")]
         public ContentResult PutTodoItem(long id)
         {
@@ -33,17 +18,15 @@ namespace WebAPI.Controllers
 
             return Content($"PutTodoItem: ID = {id}");
         }
-        #endregion
 
-        // Delete: api/TodoItems2/5
+        // Delete: api/TodoItems1/5
         [HttpDelete("{id}")]
         public ContentResult MyDelete(long id)
         {
             return Content($"MyDelete: ID = {id}");
         }
 
-
-        // GET: api/TodoItems2
+        // GET: api/TodoItems1
         [HttpGet]
         public ContentResult GetTodoItems()
         {
@@ -57,14 +40,12 @@ namespace WebAPI.Controllers
             return Content("GetTodoItems2");
         }
 
-        #region snippet2
-        // Delete: api/TodoItems2/MyDelete2/5
+        // Delete: api/TodoItems1/MyDelete2/5
         [EnableCors()]
         [HttpDelete("{action}/{id}")]
         public ContentResult MyDelete2(long id)
         {
             return Content($"MyDelete2: ID = {id}");
         }
-        #endregion
     }
 }

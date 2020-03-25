@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace WebAPI.Controllers
 {
@@ -10,26 +9,17 @@ namespace WebAPI.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ContentResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return Content("GET api/values");
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ContentResult Get(int id)
         {
-            switch (id)
-            {
-                case 1:
-                    return "1st Val";
-                case 2:
-                    return "2nd val";
-                default:
-                    return NotFound();
-            }
+            return Content($"PutTodoItem: ID = {id}");
         }
-       
     }
     #endregion
 }

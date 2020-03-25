@@ -14,11 +14,13 @@ namespace WebAPI
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                   // webBuilder.UseStartup<WebAPI5.Startup>();
-                    // webBuilder.UseStartup<WebAPI6.Startup>();
+                    // Deploy to Cors1
+                    webBuilder.UseStartup<StartupTest>();
 
-                 //     webBuilder.UseStartup<Startup7>();
-                    webBuilder.UseStartup<Startup8>();
+                    // Use StartupEndPointBugTest with Test2 to repo 
+                    // https://github.com/dotnet/aspnetcore/issues/18665
+                    // Deploy to Cors3
+                    //   webBuilder.UseStartup<StartupEndPointBugTest>();
 
                 });
     }

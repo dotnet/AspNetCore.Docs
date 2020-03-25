@@ -1,18 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace WebAPI
 {
     public class Test2Model : PageModel
     {
         [BindProperty(SupportsGet = true)]
-        public string Port { get; set; }
+        public string CtlNum { get; set; }
 
         public void OnGet()
         {
-            if (string.IsNullOrEmpty(Port))
+            if (string.IsNullOrEmpty(CtlNum))
             {
-                Port = "5001";
+                CtlNum = "1";
             }
         }
     }

@@ -4,9 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+// For snippets only
+
 namespace WebAPI
 {
-
     public class Startup2
     {
         public Startup2(IConfiguration configuration)

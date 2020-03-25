@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 using System;
 
+// This file used only for snippets
+
 namespace WebAPI
 {
     public class StartupAllowSubdomain

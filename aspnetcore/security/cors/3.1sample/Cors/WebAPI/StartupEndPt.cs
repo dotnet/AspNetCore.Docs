@@ -5,9 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace WebAPI5
+namespace WebAPIendPt
 {
-    // StartupEndPt.c
+    // Not used in Testing, just for the snippet.
+    // StartupEndPt.cs
     #region snippet2
     public class Startup
     {

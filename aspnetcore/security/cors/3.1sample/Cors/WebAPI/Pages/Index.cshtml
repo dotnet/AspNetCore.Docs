@@ -4,13 +4,63 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
+<div class="text-center">
+    <h1 class="display-4">CORS Test</h1>
+</div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-</body>
-</html>
+<div>
+    <span id='result'></span>
+</div>
+
+<ul>
+    <li>
+        <input type="button" value="Values"
+               onclick="requestVal('/api/values')" />
+    </li>
+    <li>
+        <input type="button" value="PUT test"
+               onclick="TestCors( '/api/TodoItems/5', 'PUT')" />
+    </li>
+</ul>
+
+<script>
+    var host = 'https://cors1.azurewebsites.net';
+
+    function requestVal(uri) {
+        const resultSpan = document.getElementById('result');
+
+        fetch(host + uri)
+            .then(response => {
+                if (response.ok) {
+                    response.text().then(text => {
+                        resultSpan.innerText = text;
+                    });
+                }
+                else {
+                    resultSpan.innerText = response.status;
+                }
+            })
+            .catch(error => resultSpan.innerText = 'See F12 Console for error');
+    }
+
+    function TestCors(uri, methodName) {
+        const resultSpan = document.getElementById('result');
+
+        fetch(host + uri,
+            {
+                method: methodName,
+
+            }).then(response => {
+                if (response.ok) {
+                    response.text().then(text => {
+                        resultSpan.innerText = text;
+                    });
+                }
+                else {
+                    resultSpan.innerText = response.status;
+                }
+            })
+            .catch(error => resultSpan.innerText = 'See F12 Console for error');
+    }
+
+</script>

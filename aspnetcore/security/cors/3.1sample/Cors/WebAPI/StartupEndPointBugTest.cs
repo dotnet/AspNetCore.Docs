@@ -7,21 +7,26 @@ using Microsoft.Net.Http.Headers;
 
 namespace WebAPI
 {
-    public class Startup7
+    public class StartupEndPointBugTest
     {
-        public Startup7(IConfiguration configuration)
+        public StartupEndPointBugTest(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        readonly string MyPolicy = "_myPolicy";
+
         public IConfiguration Configuration { get; }
+
+        // .WithHeaders(HeaderNames.ContentType, "x-custom-header")
+        // forces browsers to require a preflight request with GET
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
             {
-               
-                options.AddPolicy("AllowHeaders",
+
+                options.AddPolicy(name: MyPolicy,
                     builder =>
                     {
                         builder.WithOrigins("http://example.com",
@@ -29,7 +34,7 @@ namespace WebAPI
                                             "https://localhost:44398",
                                             "https://localhost:5001")
                                .WithHeaders(HeaderNames.ContentType, "x-custom-header")
-                               .WithMethods("PUT","DELETE","GET")
+                               .WithMethods("PUT", "DELETE", "GET")
                                ;
                     });
             });
@@ -46,17 +51,17 @@ namespace WebAPI
             }
 
             app.UseHttpsRedirection();
-
+            app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseCors("AllowHeaders");
+            app.UseCors();
 
             app.UseAuthorization();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers().RequireCors(MyPolicy);
                 endpoints.MapRazorPages();
             });
         }

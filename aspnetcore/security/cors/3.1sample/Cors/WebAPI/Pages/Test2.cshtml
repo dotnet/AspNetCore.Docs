@@ -6,6 +6,8 @@
     Layout = null;
 }
 
+@*Must be used with StartupEndPointBugTest*@
+
 <div class="text-center">
     <h1 class="display-4">CORS Test</h1>
 </div>
@@ -17,7 +19,7 @@
 
 <form>
     <p>
-        Port: <input type="text" asp-for="Port" />
+        Controller: <input type="text" asp-for="CtlNum" />
 
         <input type="submit" value="Set" />
     </p>
@@ -25,51 +27,39 @@
 
 <ul>
     <li>
-        <input type="button" value="PUT no opptions"
-               onclick="PutVal( '/api/TodoItems' + '@Model.Port' + '/5', 'PUT')" />
+        <input type="button" value="PUT test"
+               onclick="TestCors( '/api/TodoItems' + '@Model.CtlNum' + '/5', 'PUT')" />
     </li>
 
     <li>
         <input type="button" value="Delete test"
-               onclick="PutVal('/api/TodoItems/5', 'DELETE')" />
+               onclick="TestCors('/api/TodoItems' + '@Model.CtlNum' + '/5', 'DELETE')" />
     </li>
-    </ul>
 
-    <ul>
-        <li>
-            <input type="button" value="PUT test99"
-                   onclick="PutVal( '/api/TodoItems2/5', 'PUT')" />
-        </li>
+    <li>
+        <input type="button" value="Delete [EnableCors]"
+               onclick="TestCors('/api/TodoItems' + '@Model.CtlNum' + '/MyDelete2/5', 'DELETE')" />
+    </li>
 
-        <li>
-            <input type="button" value="Delete test"
-                   onclick="PutVal('/api/TodoItems2/5', 'DELETE')" />
-        </li>
+    <li>
+        <input type="button" value="GET"
+               onclick="TestCors('/api/TodoItems' + '@Model.CtlNum', 'GET')" />
+    </li>
 
-        <li>
-            <input type="button" value="Delete [EnableCors]"
-                   onclick="PutVal('/api/TodoItems2/MyDelete2/5', 'DELETE')" />
-        </li>
+    <li>
+        <input type="button" value="GET [EnableCors]"
+               onclick="TestCors('/api/TodoItems' + '@Model.CtlNum' + '/GetTodoItems2', 'GET')" />
+    </li>
 
-        <li>
-            <input type="button" value="GET"
-                   onclick="PutVal('/api/TodoItems2/MyDelete2/5', 'GET')" />
-        </li>
+</ul>
 
-        <li>
-            <input type="button" value="Delete 3"
-                   onclick="PutVal('/api/TodoItems2/MyDelete3/5', 'DELETE')" />
-        </li>
+<script>
+    var host = 'https://cors3.azurewebsites.net';
 
-    </ul>
-
-    <script>
-
-    function PutVal(uri, methodName) {
+    function TestCors(uri, methodName) {
         const resultSpan = document.getElementById('result');
 
-      //  fetch('https://localhost:' + '@Model.Port' + uri,
-        fetch('https://cors1.azurewebsites.net' + uri,
+        fetch(host + uri,
             {
                 method: methodName,
                 headers:
@@ -77,8 +67,17 @@
                     "Content-Type": "x-my-custom-header"
                 }
 
-            }).then((response) => {
-                resultSpan.innerText = response.status;
-            });
+            }).then(response => {
+                if (response.ok) {
+                    response.text().then(text => {
+                        resultSpan.innerText = text;
+                    });
+                }
+                else {
+                    resultSpan.innerText = response.status;
+                }
+            })
+            .catch(error => resultSpan.innerText = 'See F12 Console for error');
     }
-    </script>
+
+</script>
