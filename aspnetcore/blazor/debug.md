@@ -23,7 +23,7 @@ Available scenarios include:
 * Run the app with debugging support in Visual Studio and Visual Studio Code (<kbd>F5</kbd> support).
 * Single-step (<kbd>F10</kbd>) through the code.
 * Resume code execution with <kbd>F8</kbd> in a browser or <kbd>F5</kbd> in Visual Studio or Visual Studio Code.
-* In the *Locals* display, observe the values of any local variables.
+* In the *Locals* display, observe the values of local variables.
 * See the call stack, including call chains that go from JavaScript into .NET and from .NET to JavaScript.
 
 You *can't*:
