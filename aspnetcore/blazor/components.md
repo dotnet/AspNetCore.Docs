@@ -134,6 +134,9 @@ In the following example from the sample app, the `ParentComponent` sets the val
 
 [!code-razor[](components/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
+> [!WARNING]
+> Don't store component state in a *component parameter*, use a private field instead. For more information, see <xref:blazor/lifecycle#state-changes>.
+
 ## Child content
 
 Components can set the content of another component. The assigning component provides the content between the tags that specify the receiving component.

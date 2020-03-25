@@ -5,7 +5,7 @@ description: Learn how to use Razor component lifecycle methods in ASP.NET Core 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 03/25/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/lifecycle
 ---
@@ -157,6 +157,95 @@ Even if `ShouldRender` is overridden, the component is always initially rendered
 ## State changes
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> notifies the component that its state has changed. When applicable, calling `StateHasChanged` causes the component to be rerendered.
+
+Don't store component state in *component parameters*. Parameters are reset when both of the following are true:
+
+* Child content is rendered with a `RenderFragment`.
+* `StateHasChanged` is called in the parent component.
+
+Consider the following `Expander` component that:
+
+* Renders child content.
+* Toggles showing child content with a component parameter.
+
+```razor
+<div @onclick="@Toggle">
+    Toggle (Expanded = @Expanded)
+
+    @if (Expanded)
+    {
+        @ChildContent
+    }
+</div>
+
+@code {
+    [Parameter]
+    public bool Expanded { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private void Toggle()
+    {
+        Expanded = !Expanded;
+    }
+}
+```
+
+The `Expander` component is added to a parent component that may call `StateHasChanged`:
+
+```razor
+<Expander Expanded="true">
+    <h1>Hello, world!</h1>
+</Expander>
+
+<Expander Expanded="true" />
+
+<button @onclick="@(() => StateHasChanged())">
+    Call StateHasChanged
+</button>
+```
+
+Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected. When `StateHasChanged` is called in the parent, the `Expanded` parameter of the first child component is reset back to its initial value (`true`). The second `Expander` component's `Expanded` value isn't reset because no child content is rendered in the second component.
+
+To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
+
+The following `Expander` component:
+
+* Accepts the `Expanded` component parameter value from the parent.
+* Assigns the component parameter value to a *private field* (`_expanded`) in the [OnInitialized event](#component-initialization-methods).
+* Uses the private field to maintain its internal toggle state.
+
+```razor
+<div @onclick="@Toggle">
+    Toggle (Expanded = @_expanded)
+
+    @if (_expanded)
+    {
+        @ChildContent
+    }
+</div>
+
+@code {
+    [Parameter]
+    public bool Expanded { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private bool _expanded;
+
+    protected override void OnInitialized()
+    {
+        _expanded = Expanded;
+    }
+
+    private void Toggle()
+    {
+        _expanded = !_expanded;
+    }
+}
+```
 
 ## Handle incomplete async actions at render
 
