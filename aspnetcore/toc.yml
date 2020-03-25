@@ -355,7 +355,7 @@
           uid: blazor/state-management
         - name: Handle errors
           uid: blazor/handle-errors
-        - name: Debug
+        - name: Debug WebAssembly
           uid: blazor/debug
         - name: Call a web API
           uid: blazor/call-web-api
