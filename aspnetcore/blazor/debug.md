@@ -27,8 +27,15 @@ Available scenarios include:
 
 You *can't*:
 
-* Evaluate expressions in the console.
-* Step across async calls.
+* Inspect arrays.
+* Hover to inspect members.
+* Step debug into or out of managed code.
+* Have full support for inspecting value types.
+* Break on unhandled exceptions.
+* Hit breakpoints during app startup.
+* Debug an app with a service worker.
+
+We expect to continue to improve the debugging experience in future releases.
 
 ## Prerequisites
 
