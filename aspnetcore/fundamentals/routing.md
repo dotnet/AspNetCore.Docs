@@ -95,7 +95,7 @@ The following example shows routing with [health checks](xref:host-and-deploy/he
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/AuthorizationStartup.cs?name=snippet)]
 
-[!INCLUDE[](~/includes/MTcomments.md)]
+[!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
 The preceding example demonstrates how:
 
