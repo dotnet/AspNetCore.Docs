@@ -24,9 +24,9 @@ As of the ASP.NET Core 3.2 Preview 3 release, Blazor WebAssembly supports config
 * *wwwroot/appsettings.json*
 * *wwwroot/appsettings.{ENVIRONMENT}.json*
 
-In a Blazor Hosted app, the value of `HostingEnvironment` is the same as the server app's value.
+In a Blazor Hosted app, the [runtime environment](xref:fundamentals/environments) is the same as the server app's value.
 
-`HostingEnvironment` defaults to the Development environment when using the Blazor development server. In non-ASP.NET Core hosts, the Production environment is used by default. For more information, see <xref:fundamentals/environments>.
+When running the app locally, the environment defaults to Development. When the app is published, the environment defaults to Production. For more information, including how to configure the environment, see <xref:fundamentals/environments>.
 
 > [!WARNING]
 > Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets or credentials in configuration.**
