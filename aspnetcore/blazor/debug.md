@@ -22,7 +22,7 @@ Available scenarios include:
 * Set and remove breakpoints.
 * Run the app with debugging support in Visual Studio (<kbd>F5</kbd> support).
 * Single-step (<kbd>F10</kbd>) through the code.
-* Resume (<kbd>F8</kbd>) code execution in a browser.
+* Resume code execution in a browser with <kbd>F8</kbd> or <kbd>F5</kbd> in Visual Studio or Visual Studio Code.
 * In the *Locals* display, observe the values of any local variables.
 * See the call stack, including call chains that go from JavaScript into .NET and from .NET to JavaScript.
 
