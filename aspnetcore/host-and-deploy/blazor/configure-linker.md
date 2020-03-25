@@ -2,11 +2,11 @@
 title: Configure the Linker for ASP.NET Core Blazor
 author: guardrex
 description: Learn how to control the Intermediate Language (IL) Linker when building a Blazor app.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2019
-no-loc: [Blazor]
+ms.date: 03/23/2020
+no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/configure-linker
 ---
 # Configure the Linker for ASP.NET Core Blazor
@@ -15,20 +15,24 @@ By [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
-Blazor performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a build to remove unnecessary IL from the app's output assemblies.
+Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a build to trim unnecessary IL from the app's output assemblies. The linker is disabled when building in Debug configuration. Apps must build in Release configuration to enable the linker. We recommend building in Release when deploying your Blazor WebAssembly apps. 
 
-Control assembly linking using either of the following approaches:
+Linking an app optimizes for size but may have detrimental effects. Apps that use reflection or related dynamic features may break when trimmed because the linker doesn't know about this dynamic behavior and can't determine in general which types are required for reflection at runtime. To trim such apps, the linker must be informed about any types required by reflection in the code and in packages or frameworks that the app depends on. 
 
-* Disable linking globally with a [MSBuild property](#disable-linking-with-a-msbuild-property).
+To ensure the trimmed app works correctly once deployed, it's important to test Release builds of the app frequently while developing.
+
+Linking for Blazor apps can be configured using these MSBuild features:
+
+* Configure linking globally with a [MSBuild property](#control-linking-with-an-msbuild-property).
 * Control linking on a per-assembly basis with a [configuration file](#control-linking-with-a-configuration-file).
 
-## Disable linking with a MSBuild property
+## Control linking with an MSBuild property
 
-Linking is enabled by default when an app is built, which includes publishing. To disable linking for all assemblies, set the `BlazorLinkOnBuild` MSBuild property to `false` in the project file:
+Linking is enabled when an app is built in `Release` configuration. To change this, configure the `BlazorWebAssemblyEnableLinking` MSBuild property in the project file:
 
 ```xml
 <PropertyGroup>
-  <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
+  <BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
 </PropertyGroup>
 ```
 
@@ -38,11 +42,11 @@ Control linking on a per-assembly basis by providing an XML configuration file a
 
 ```xml
 <ItemGroup>
-  <BlazorLinkerDescriptor Include="Linker.xml" />
+  <BlazorLinkerDescriptor Include="LinkerConfig.xml" />
 </ItemGroup>
 ```
 
-*Linker.xml*:
+*LinkerConfig.xml*:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -74,7 +78,21 @@ Control linking on a per-assembly basis by providing an XML configuration file a
 </linker>
 ```
 
-For more information, see [IL Linker: Syntax of xml descriptor](https://github.com/mono/linker/blob/master/src/linker/README.md#syntax-of-xml-descriptor).
+For more information, see [Link xml file examples (mono/linker GitHub repository)](https://github.com/mono/linker#link-xml-file-examples).
+
+## Add an XML linker configuration file to a library
+
+To configure the linker for a specific library, add an XML linker configuration file into the library as an embedded resource. The embedded resource must have the same name as the assembly.
+
+In the following example, the *LinkerConfig.xml* file is specified as an embedded resource that has the same name as the library's assembly:
+
+```xml
+<ItemGroup>
+  <EmbeddedResource Include="LinkerConfig.xml">
+    <LogicalName>$(MSBuildProjectName).xml</LogicalName>
+  </EmbeddedResource>
+</ItemGroup>
+```
 
 ### Configure the linker for internationalization
 
@@ -100,4 +118,4 @@ To control which I18N assemblies are retained, set the `<MonoLinkerI18NAssemblie
 
 Use a comma to separate multiple values (for example, `mideast,west`).
 
-For more information, see [I18N: Pnetlib Internationalization Framework Libary (mono/mono GitHub repository)](https://github.com/mono/mono/tree/master/mcs/class/I18N).
+For more information, see [I18N: Pnetlib Internationalization Framework Library (mono/mono GitHub repository)](https://github.com/mono/mono/tree/master/mcs/class/I18N).

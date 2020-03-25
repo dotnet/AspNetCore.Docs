@@ -2,10 +2,10 @@
 title: Secure ASP.NET Core Blazor Server apps
 author: guardrex
 description: Learn how to mitigate security threats to Blazor Server apps.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 03/16/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/server
 ---
@@ -15,7 +15,7 @@ By [Javier Calvarro Nelson](https://github.com/javiercn)
 
 Blazor Server apps adopt a *stateful* data processing model, where the server and client maintain a long-lived relationship. The persistent state is maintained by a [circuit](xref:blazor/state-management), which can span connections that are also potentially long-lived.
 
-When a user visits a Blazor Server site, the server creates a circuit in the server's memory. The circuit indicates to the browser what content to render and responds to events, such as when the user selects a button in the UI. To perform these actions, a circuit invokes JavaScript functions in the user's browser and .NET methods on the server. This two-way JavaScript-based interaction is referred to as [JavaScript interop (JS interop)](xref:blazor/javascript-interop).
+When a user visits a Blazor Server site, the server creates a circuit in the server's memory. The circuit indicates to the browser what content to render and responds to events, such as when the user selects a button in the UI. To perform these actions, a circuit invokes JavaScript functions in the user's browser and .NET methods on the server. This two-way JavaScript-based interaction is referred to as [JavaScript interop (JS interop)](xref:blazor/call-javascript-from-dotnet).
 
 Because JS interop occurs over the Internet and the client uses a remote browser, Blazor Server apps share most web app security concerns. This topic describes common threats to Blazor Server apps and provides threat mitigation guidance focused on Internet-facing apps.
 
@@ -110,7 +110,7 @@ A client interacts with the server through JS interop event dispatching and rend
 For calls from .NET methods to JavaScript:
 
 * All invocations have a configurable timeout after which they fail, returning a <xref:System.OperationCanceledException> to the caller.
-  * There's a default timeout for the calls (`CircuitOptions.JSInteropDefaultCallTimeout`) of one minute. To configure this limit, see <xref:blazor/javascript-interop#harden-js-interop-calls>.
+  * There's a default timeout for the calls (`CircuitOptions.JSInteropDefaultCallTimeout`) of one minute. To configure this limit, see <xref:blazor/call-javascript-from-dotnet#harden-js-interop-calls>.
   * A cancellation token can be provided to control the cancellation on a per-call basis. Rely on the default call timeout where possible and time-bound any call to the client if a cancellation token is provided.
 * The result of a JavaScript call can't be trusted. The Blazor app client running in the browser searches for the JavaScript function to invoke. The function is invoked, and either the result or an error is produced. A malicious client can attempt to:
   * Cause an issue in the app by returning an error from the JavaScript function.
@@ -198,7 +198,7 @@ By adding the `if (count < 3) { ... }` check inside the handler, the decision to
 
 ### Guard against multiple dispatches
 
-If an event callback invokes a long running operation, such as fetching data from an external service or database, consider using a guard. The guard can prevent the user from queueing up multiple operations while the operation is in progress with visual feedback. The following component code sets `isLoading` to `true` while `GetForecastAsync` obtains data from the server. While `isLoading` is `true`, the button is disabled in the UI:
+If an event callback invokes a long running operation asynchronously, such as fetching data from an external service or database, consider using a guard. The guard can prevent the user from queueing up multiple operations while the operation is in progress with visual feedback. The following component code sets `isLoading` to `true` while `GetForecastAsync` obtains data from the server. While `isLoading` is `true`, the button is disabled in the UI:
 
 ```razor
 @page "/fetchdata"
@@ -222,6 +222,8 @@ If an event callback invokes a long running operation, such as fetching data fro
     }
 }
 ```
+
+The guard pattern demonstrated in the preceding example works if the background operation is executed asynchronously with the `async`-`await` pattern.
 
 ### Cancel early and avoid use-after-dispose
 
@@ -253,7 +255,7 @@ In addition to using a guard as described in the [Guard against multiple dispatc
 
     public void Dispose()
     {
-        CancellationTokenSource.Cancel();
+        TokenSource.Cancel();
     }
 }
 ```

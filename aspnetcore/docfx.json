@@ -4,8 +4,7 @@
       {
         "files": [
           "**/*.md",
-          "**/*.yml",
-          "breadcrumb/TOC.yml"
+          "**/*.yml"
         ],
         "exclude": [
           "**/obj/**",
@@ -46,17 +45,25 @@
     "globalMetadata": {
       "_navPath": "/foo",
       "_navRel": "/foo",
-      "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
-      "feedback_github_repo": "aspnet/AspNetCore.Docs",
+      "breadcrumb_path": "/aspnet/core/breadcrumb/toc.json",
+      "extendBreadcrumb": true,
+      "feedback_github_repo": "dotnet/AspNetCore.Docs",
       "feedback_product_url": "https://github.com/dotnet/aspnetcore/blob/master/CONTRIBUTING.md",
       "feedback_system": "GitHub",
       "ms.prod": "aspnet-core",
+      "ms.topic": "conceptual",
       "uhfHeaderId": "MSDocsHeader-DotNet",
       "searchScope": [
         "ASP.NET Core"
       ]
     },
     "fileMetadata": {
+      "author": {
+        "whats-new/**/**.md": "scottaddie"
+      },
+      "ms.author": {
+        "whats-new/**/**.md": "scaddie"
+      },
       "ms.technology": {
         "azure/**/**.md": "aspnetcore-azure",
         "client-side/**/**.md": "aspnetcore-clientside",
@@ -77,29 +84,12 @@
         "signalr/**/**.md": "aspnetcore-signalr",
         "test/**/**.md": "aspnetcore-test",
         "tutorials/**/**.md": "aspnetcore-tutorials",
-        "web-api/**/**.md": "aspnetcore-webapi"
+        "web-api/**/**.md": "aspnetcore-webapi",
+        "whats-new/**/**.md": "aspnetcore-whatsnew"
       },
       "ms.topic": {
-        "azure/**/**.md": "conceptual",
-        "blazor/**/**.md": "conceptual",
-        "client-side/**/**.md": "conceptual",
-        "data/**/**.md": "conceptual",
-        "fundamentals/**/**.md": "conceptual",
         "getting-started/**/**.md": "tutorial",
-        "grpc/**/**.md": "conceptual",
-        "host-and-deploy/**/**.md": "conceptual",
-        "index.md": "conceptual",
-        "migration/**/**.md": "conceptual",
-        "mobile/**/**.md": "conceptual",
-        "mvc/**/**.md": "conceptual",
-        "performance/**/**.md": "conceptual",
-        "razor-pages/**/**.md": "conceptual",
-        "release-notes/**/**.md": "conceptual",
-        "security/**/**.md": "conceptual",
-        "signalr/**/**.md": "conceptual",
-        "test/**/**.md": "conceptual",
-        "tutorials/**/**.md": "tutorial",
-        "web-api/**/**.md": "conceptual"
+        "tutorials/**/**.md": "tutorial"
       }
     },
     "template": [],

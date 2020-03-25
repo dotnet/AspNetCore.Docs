@@ -14,7 +14,7 @@ This article serves as a reference guide for migrating ASP.NET apps to ASP.NET C
 
 ## Prerequisites
 
-[.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download)
+[.NET Core SDK 2.2 or later](https://dotnet.microsoft.com/download)
 
 ## Target frameworks
 
@@ -96,10 +96,10 @@ The app reads from `Configuration` to get the settings:
 
 There are extensions to this approach to make the process more robust, such as using [Dependency Injection](xref:fundamentals/dependency-injection) (DI) to load a service with these values. The DI approach provides a strongly-typed set of configuration objects.
 
-````csharp
+```csharp
 // Assume AppConfiguration is a class representing a strongly-typed version of AppConfiguration section
 services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
-````
+```
 
 > [!NOTE]
 > For a more in-depth reference to ASP.NET Core configuration, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).

@@ -28,7 +28,7 @@ The following [HTTP verbs](https://github.com/microsoft/api-guidelines/blob/vNex
 * [POST](#test-http-post-requests)
 * [PUT](#test-http-put-requests)
 
-To follow along, [view or download the sample ASP.NET Core web API](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl/samples) ([how to download](xref:index#how-to-download-a-sample)).
+To follow along, [view or download the sample ASP.NET Core web API](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Prerequisites
 
@@ -572,6 +572,7 @@ To issue an HTTP PUT request:
         "data": "Strawberry"
       }
     ]
+    ```
 
 1. Run the `put` command on an endpoint that supports it:
 

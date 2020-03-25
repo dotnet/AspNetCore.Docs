@@ -35,7 +35,7 @@ Sample:
 
 The Form Tag Helper above generates the following HTML:
 
-```HTML
+```html
 <form method="post" action="/Demo/Register">
     <!-- Input and Submit elements -->
     <input name="__RequestVerificationToken" type="hidden" value="<removed for brevity>">
@@ -159,7 +159,7 @@ The Input Tag Helper binds an HTML [\<input>](https://www.w3.org/wiki/HTML/Eleme
 
 Syntax:
 
-```HTML
+```cshtml
 <input asp-for="<Expression Name>">
 ```
 
@@ -177,7 +177,7 @@ The Input Tag Helper:
 
 * Provides strong typing. If the name of the property changes and you don't update the Tag Helper you'll get an error similar to the following:
 
-```HTML
+```
 An error occurred during the compilation of a resource required to process
 this request. Please review the following specific error details and modify
 your source code appropriately.
@@ -219,7 +219,7 @@ Sample:
 
 The code above generates the following HTML:
 
-```HTML
+```html
   <form method="post" action="/Demo/RegisterInput">
       Email:
       <input type="email" data-val="true"
@@ -245,7 +245,7 @@ The data annotations applied to the `Email` and `Password` properties generate m
 
 `@Html.Editor()` and `@Html.EditorFor()` use a special `ViewDataDictionary` entry named `htmlAttributes` when executing their default templates. This behavior is optionally augmented using `additionalViewData` parameters. The key "htmlAttributes" is case-insensitive. The key "htmlAttributes" is handled similarly to the `htmlAttributes` object passed to input helpers like `@Html.TextBox()`.
 
-```HTML
+```cshtml
 @Html.EditorFor(model => model.YourProperty, 
   new { htmlAttributes = new { @class="myCssClass", style="Width:100px" } })
 ```
@@ -254,16 +254,17 @@ The data annotations applied to the `Email` and `Password` properties generate m
 
 The `asp-for` attribute value is a `ModelExpression` and the right hand side of a lambda expression. Therefore, `asp-for="Property1"` becomes `m => m.Property1` in the generated code which is why you don't need to prefix with `Model`. You can use the "\@" character to start an inline expression and move before the `m.`:
 
-```HTML
+```cshtml
 @{
-       var joe = "Joe";
-   }
-   <input asp-for="@joe">
+  var joe = "Joe";
+}
+
+<input asp-for="@joe">
 ```
 
 Generates the following:
 
-```HTML
+```html
 <input type="text" id="joe" name="joe" value="Joe">
 ```
 
@@ -288,7 +289,7 @@ In the view, we bind to `Address.AddressLine1`:
 
 The following HTML is generated for `Address.AddressLine1`:
 
-```HTML
+```html
 <input type="text" id="Address_AddressLine1" name="Address.AddressLine1" value="">
 ```
 
@@ -302,10 +303,10 @@ The action method:
 
 ```csharp
 public IActionResult Edit(int id, int colorIndex)
-   {
-       ViewData["Index"] = colorIndex;
-       return View(GetPerson(id));
-   }
+{
+    ViewData["Index"] = colorIndex;
+    return View(GetPerson(id));
+}
 ```
 
 The following Razor shows how you access a specific `Color` element:
@@ -353,7 +354,7 @@ Sample:
 
 The following HTML is generated:
 
-```HTML
+```html
 <form method="post" action="/Demo/RegisterTextArea">
   <textarea data-val="true"
    data-val-maxlength="The field Description must be a string or array type with a maximum length of &#x27;1024&#x27;."
@@ -389,7 +390,7 @@ Sample:
 
 The following HTML is generated for the `<label>` element:
 
-```HTML
+```html
 <label for="Email">Email Address</label>
 ```
 
@@ -409,13 +410,13 @@ There are two Validation Tag Helpers. The `Validation Message Tag Helper` (which
 
 The `Validation Message Tag Helper`  is used with the `asp-validation-for` attribute on a HTML [span](https://developer.mozilla.org/docs/Web/HTML/Element/span) element.
 
-```HTML
+```cshtml
 <span asp-validation-for="Email"></span>
 ```
 
 The Validation Message Tag Helper will generate the following HTML:
 
-```HTML
+```html
 <span class="field-validation-valid"
   data-valmsg-for="Email"
   data-valmsg-replace="true"></span>
@@ -428,7 +429,7 @@ You generally use the `Validation Message Tag Helper`  after an `Input` Tag Help
 
 When a server side validation error occurs (for example when you have custom server side validation or client-side validation is disabled), MVC places that error message as the body of the `<span>` element.
 
-```HTML
+```html
 <span class="field-validation-error" data-valmsg-for="Email"
             data-valmsg-replace="true">
    The Email Address field is required.
@@ -459,7 +460,7 @@ In the following example, the data model has `DataAnnotation` attributes, which 
 
 The generated HTML (when the model is valid):
 
-```HTML
+```html
 <form action="/DemoReg/Register" method="post">
   <div class="validation-summary-valid" data-valmsg-summary="true">
   <ul><li style="display:none"></li></ul></div>
@@ -545,7 +546,7 @@ You can mark your enumerator list with the `Display` attribute to get a richer U
 
 The following HTML is generated:
 
-```HTML
+```html
   <form method="post" action="/Home/IndexEnum">
          <select data-val="true" data-val-required="The EnumCountry field is required."
                  id="EnumCountry" name="EnumCountry">
@@ -575,7 +576,7 @@ The two groups are shown below:
 
 The generated HTML:
 
-```HTML
+```html
  <form method="post" action="/Home/IndexGroup">
       <select id="Country" name="Country">
           <optgroup label="North America">
@@ -606,7 +607,7 @@ With the following view:
 
 Generates the following HTML:
 
-```HTML
+```html
 <form method="post" action="/Home/IndexMultiSelect">
     <select id="CountryCodes"
     multiple="multiple"
@@ -642,7 +643,7 @@ The correct `<option>` element will be selected ( contain the `selected="selecte
 
 [!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=114-119)]
 
-```HTML
+```html
  <form method="post" action="/Home/IndexEmpty">
       <select id="Country" name="Country">
           <option value="">&lt;none&gt;</option>
@@ -663,4 +664,4 @@ The correct `<option>` element will be selected ( contain the `selected="selecte
 * <xref:mvc/models/model-binding>
 * <xref:mvc/models/validation>
 * [IAttributeAdapter Interface](/dotnet/api/Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter)
-* [Code snippets for this document](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/working-with-forms/sample/final)
+* [Code snippets for this document](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/working-with-forms/sample/final)

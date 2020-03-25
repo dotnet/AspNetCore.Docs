@@ -1,22 +1,22 @@
 ---
 title: Dependency injection in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Learn how ASP.NET Core implements dependency injection and how to use it.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/05/2019
+ms.date: 02/05/2020
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
 
-By [Steve Smith](https://ardalis.com/), [Scott Addie](https://scottaddie.com), and [Luke Latham](https://github.com/guardrex)
+By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://scottaddie.com)
 
 ASP.NET Core supports the dependency injection (DI) software design pattern, which is a technique for achieving [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) between classes and their dependencies.
 
 For more information specific to dependency injection within MVC controllers, see <xref:mvc/controllers/dependency-injection>.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Overview of dependency injection
 
@@ -66,7 +66,7 @@ Dependency injection addresses these problems through:
 * Registration of the dependency in a service container. ASP.NET Core provides a built-in service container, <xref:System.IServiceProvider>. Services are registered in the app's `Startup.ConfigureServices` method.
 * *Injection* of the service into the constructor of the class where it's used. The framework takes on the responsibility of creating an instance of the dependency and disposing of it when it's no longer needed.
 
-In the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples), the `IMyDependency` interface defines a method that the service provides to the app:
+In the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples), the `IMyDependency` interface defines a method that the service provides to the app:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -538,7 +538,17 @@ public class Program
 
 ## Scope validation
 
-When the app is running in the Development environment, the default service provider performs checks to verify that:
+::: moniker range=">= aspnetcore-3.0"
+
+When the app is running in the Development environment and calls [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) to build the host, the default service provider performs checks to verify that:
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+When the app is running in the Development environment and calls [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host) to build the host, the default service provider performs checks to verify that:
+
+::: moniker-end
 
 * Scoped services aren't directly or indirectly resolved from the root service provider.
 * Scoped services aren't directly or indirectly injected into singletons.
@@ -607,6 +617,7 @@ The built-in service container is designed to serve the needs of the framework a
 * Child containers
 * Custom lifetime management
 * `Func<T>` support for lazy initialization
+* Convention-based registration
 
 The following 3rd party containers can be used with ASP.NET Core apps:
 

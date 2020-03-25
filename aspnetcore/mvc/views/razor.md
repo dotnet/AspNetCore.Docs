@@ -3,12 +3,12 @@ title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
-ms.date: 12/05/2019
+ms.date: 02/12/2020
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Luke Latham](https://github.com/guardrex), [Taylor Mullen](https://twitter.com/ntaylormullen), and [Dan Vicarel](https://github.com/Rabadash8820)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen), and [Dan Vicarel](https://github.com/Rabadash8820)
 
 Razor is a markup syntax for embedding server-based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a *.cshtml* file extension. Razor is also found in [Razor components](xref:blazor/components) files (*.razor*).
 
@@ -122,7 +122,7 @@ The code renders the following HTML:
 
 The HTML is shown in the browser as:
 
-```
+```html
 <span>Hello World</span>
 ```
 
@@ -713,13 +713,13 @@ In [Razor components](xref:blazor/components), `@using` also controls which comp
 
 *This scenario only applies to Razor components (.razor).*
 
-Data binding in components is accomplished with the `@bind` attribute. For more information, see <xref:blazor/components#data-binding>.
+Data binding in components is accomplished with the `@bind` attribute. For more information, see <xref:blazor/data-binding>.
 
 ### \@on{EVENT}
 
 *This scenario only applies to Razor components (.razor).*
 
-Razor provides event handling features for components. For more information, see <xref:blazor/components#event-handling>.
+Razor provides event handling features for components. For more information, see <xref:blazor/event-handling>.
 
 ::: moniker-end
 
@@ -757,7 +757,7 @@ Component references (`@ref`) provide a way to reference a component instance so
 
 *This scenario only applies to Razor components (.razor).*
 
-The `@typeparam` directive declares a generic type parameter for the generated component class. For more information, see <xref:blazor/components#generic-typed-components>.
+The `@typeparam` directive declares a generic type parameter for the generated component class. For more information, see <xref:blazor/templated-components#generic-typed-components>.
 
 ::: moniker-end
 

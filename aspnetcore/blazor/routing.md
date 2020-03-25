@@ -2,11 +2,11 @@
 title: ASP.NET Core Blazor routing
 author: guardrex
 description: Learn how to route requests in apps and about the NavLink component.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
-no-loc: [Blazor]
+ms.date: 03/17/2020
+no-loc: [Blazor, SignalR]
 uid: blazor/routing
 ---
 # ASP.NET Core Blazor routing
@@ -40,7 +40,7 @@ The `Router` component enables routing to each component with a specified route.
 </Router>
 ```
 
-When a *.razor* file with an `@page` directive is compiled, the generated class is provided a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template.
+When a *.razor* file with an `@page` directive is compiled, the generated class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the route template.
 
 At runtime, the `RouteView` component:
 
@@ -114,7 +114,7 @@ The router uses route parameters to populate the corresponding component paramet
 }
 ```
 
-Optional parameters aren't supported for Blazor apps in ASP.NET Core 3.0. Two `@page` directives are applied in the previous example. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
+Optional parameters aren't supported. Two `@page` directives are applied in the previous example. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
 
 ## Route constraints
 
@@ -190,16 +190,16 @@ The following HTML markup is rendered:
 
 ## URI and navigation state helpers
 
-Use `Microsoft.AspNetCore.Components.NavigationManager` to work with URIs and navigation in C# code. `NavigationManager` provides the event and methods shown in the following table.
+Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to work with URIs and navigation in C# code. `NavigationManager` provides the event and methods shown in the following table.
 
 | Member | Description |
 | ------ | ----------- |
-| `Uri` | Gets the current absolute URI. |
-| `BaseUri` | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, `BaseUri` corresponds to the `href` attribute on the document's `<base>` element in *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server). |
-| `NavigateTo` | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul> |
-| `LocationChanged` | An event that fires when the navigation location has changed. |
-| `ToAbsoluteUri` | Converts a relative URI into an absolute URI. |
-| `ToBaseRelativePath` | Given a base URI (for example, a URI previously returned by `GetBaseUri`), converts an absolute URI into a URI relative to the base URI prefix. |
+| Uri | Gets the current absolute URI. |
+| BaseUri | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, `BaseUri` corresponds to the `href` attribute on the document's `<base>` element in *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server). |
+| NavigateTo | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul> |
+| LocationChanged | An event that fires when the navigation location has changed. |
+| ToAbsoluteUri | Converts a relative URI into an absolute URI. |
+| <span style="word-break:normal;word-wrap:normal">ToBaseRelativePath</span> | Given a base URI (for example, a URI previously returned by `GetBaseUri`), converts an absolute URI into a URI relative to the base URI prefix. |
 
 The following component navigates to the app's `Counter` component when the button is selected:
 
@@ -220,3 +220,34 @@ The following component navigates to the app's `Counter` component when the butt
     }
 }
 ```
+
+The following component handles a location changed event. The `HandleLocationChanged` method is unhooked when `Dispose` is called by the framework. Unhooking the method permits garbage collection of the component.
+
+```razor
+@implement IDisposable
+@inject NavigationManager NavigationManager
+
+...
+
+protected override void OnInitialized()
+{
+    NavigationManager.LocationChanged += HandleLocationChanged;
+}
+
+private void HandleLocationChanged(object sender, LocationChangedEventArgs e)
+{
+    ...
+}
+
+public void Dispose()
+{
+    NavigationManager.LocationChanged -= HandleLocationChanged;
+}
+```
+
+<xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs> provides the following information about the event:
+
+* <xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.Location> &ndash; The URL of the new location.
+* <xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.IsNavigationIntercepted> &ndash; If `true`, Blazor intercepted the navigation from the browser. If `false`, [NavigationManager.NavigateTo](xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A) caused the navigation to occur.
+
+For more information on component disposal, see <xref:blazor/lifecycle#component-disposal-with-idisposable>.

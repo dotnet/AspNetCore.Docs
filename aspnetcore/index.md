@@ -21,7 +21,7 @@ ASP.NET Core is a cross-platform, high-performance, [open-source](https://github
 
 ## Why choose ASP.NET Core?
 
-Millions of developers have used (and continue to use) [ASP.NET 4.x](/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework.
+Millions of developers use or have used [ASP.NET 4.x](/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework.
 
 [!INCLUDE[](~/includes/benefits.md)]
 
@@ -102,7 +102,7 @@ For a reference guide to migrating ASP.NET apps to ASP.NET Core, see <xref:migra
 
 Many of the articles and tutorials include links to sample code.
 
-1. [Download the ASP.NET repository zip file](https://codeload.github.com/aspnet/AspNetCore.Docs/zip/master).
+1. [Download the ASP.NET repository zip file](https://codeload.github.com/dotnet/AspNetCore.Docs/zip/master).
 1. Unzip the *Docs-master.zip* file.
 1. Use the URL in the sample link to help you navigate to the sample directory.
 
@@ -148,7 +148,7 @@ The preceding C# code snippet is referenced in the topic's markdown file with th
 
 You may safely ignore (or remove) the `#region` and `#endregion` directives that surround the code. Don't alter the code within these directives if you plan to run the sample scenarios described in the topic. Feel free to alter the code when experimenting with other scenarios.
 
-For more information, see [Contribute to the ASP.NET documentation: Code snippets](https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md#code-snippets).
+For more information, see [Contribute to the ASP.NET documentation: Code snippets](https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md#code-snippets).
 
 ## Next steps
 
