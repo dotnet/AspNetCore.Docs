@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Using the migrations feature - ASP.NET MVC with EF Core"
 description: "In this tutorial, you start using the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC application."
-author: tdykstra
+author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
@@ -33,7 +33,7 @@ When you develop a new application, your data model changes frequently, and each
 
 This method of keeping the database in sync with the data model works well until you deploy the application to production. When the application is running in production it's usually storing data that you want to keep, and you don't want to lose everything each time you make a change such as adding a new column. The EF Core Migrations feature solves this problem by enabling EF to update the database schema instead of creating  a new database.
 
-To work with migrations, you can use the **Package Manager Console** (PMC) or the command-line interface (CLI).  These tutorials show how to use CLI commands. Information about the PMC is at [the end of this tutorial](#pmc).
+To work with migrations, you can use the **Package Manager Console** (PMC) or the CLI.  These tutorials show how to use CLI commands. Information about the PMC is at [the end of this tutorial](#pmc).
 
 ## Change the connection string
 
@@ -46,7 +46,7 @@ This change sets up the project so that the first migration will create a new da
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
 >
-> ```console
+> ```dotnetcli
 > dotnet ef database drop
 > ```
 >
@@ -66,7 +66,7 @@ Save your changes and build the project. Then open a command window and navigate
 
 Enter the following command in the command window:
 
-```console
+```dotnetcli
 dotnet ef migrations add InitialCreate
 ```
 
@@ -99,7 +99,7 @@ If you created the initial migration when the database already exists, the datab
 
 Migrations creates a *snapshot* of the current database schema in *Migrations/SchoolContextModelSnapshot.cs*. When you add a migration, EF determines what changed by comparing the data model to the snapshot file.
 
-When deleting a migration, use the [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) command. `dotnet ef migrations remove` deletes the migration and ensures the snapshot is correctly reset.
+Use the [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove) command to remove a migration. `dotnet ef migrations remove` deletes the migration and ensures the snapshot is correctly reset. If `dotnet ef migrations remove` fails, use `dotnet ef migrations remove -v` to get more information on the failure.
 
 See [EF Core Migrations in Team Environments](/ef/core/managing-schemas/migrations/teams) for more information about how the snapshot file is used.
 
@@ -107,7 +107,7 @@ See [EF Core Migrations in Team Environments](/ef/core/managing-schemas/migratio
 
 In the command window, enter the following command to create the database and tables in it.
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 
@@ -164,7 +164,7 @@ For more information about the PMC commands, see [Package Manager Console (Visua
 
 ## Get the code
 
-[Download or view the completed application.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## Next step
 

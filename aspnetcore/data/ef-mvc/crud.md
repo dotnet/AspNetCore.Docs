@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Implement CRUD Functionality - ASP.NET MVC with EF Core"
 description: "In this tutorial, you'll review and customize the CRUD (create, read, update, delete) code that the MVC scaffolding automatically creates for you in controllers and views."
-author: tdykstra
+author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2019
@@ -288,7 +288,7 @@ For more information, see [Tracking vs. No-Tracking](/ef/core/querying/tracking)
 
 ## Get the code
 
-[Download or view the completed application.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## Next steps
 

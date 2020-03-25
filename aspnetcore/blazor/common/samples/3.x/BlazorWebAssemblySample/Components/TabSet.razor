@@ -1,0 +1,45 @@
+﻿@using BlazorSample.UIInterfaces
+
+<!-- Display the tab headers -->
+<CascadingValue Value=this>
+    <ul class="nav nav-tabs">
+        @ChildContent
+    </ul>
+</CascadingValue>
+
+<!-- Display body for only the active tab -->
+<div class="nav-tabs-body p-4">
+    @ActiveTab?.ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public ITab ActiveTab { get; private set; }
+
+    public void AddTab(ITab tab)
+    {
+        if (ActiveTab == null)
+        {
+            SetActivateTab(tab);
+        }
+    }
+
+    public void RemoveTab(ITab tab)
+    {
+        if (ActiveTab == tab)
+        {
+            SetActivateTab(null);
+        }
+    }
+
+    public void SetActivateTab(ITab tab)
+    {
+        if (ActiveTab != tab)
+        {
+            ActiveTab = tab;
+            StateHasChanged();
+        }
+    }
+}

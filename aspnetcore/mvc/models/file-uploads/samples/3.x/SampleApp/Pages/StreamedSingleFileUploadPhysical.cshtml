@@ -1,0 +1,58 @@
+﻿@page
+@model StreamedSingleFileUploadPhysicalModel
+@{
+    ViewData["Title"] = "Streamed Single File Upload with AJAX (Physical)";
+}
+
+<h1>Stream a file with AJAX to physical storage with a controller endpoint</h1>
+
+<p>The following form's <code>action</code> points to a controller endpoint that only receives the file and saves it to disk. If additional form data is added to the form, the additional data is ignored by the controller action.</p>
+
+<form id="uploadForm" action="Streaming/UploadPhysical" method="post" 
+    enctype="multipart/form-data" onsubmit="AJAXSubmit(this);return false;">
+    <dl>
+        <dt>
+            <label for="file">File</label>
+        </dt>
+        <dd>
+            <input id="file" type="file" name="file" />
+        </dd>
+    </dl>
+
+    <input class="btn" type="submit" value="Upload" />
+
+    <div style="margin-top:15px">
+        <output form="uploadForm" name="result"></output>
+    </div>
+</form>
+
+@section Scripts {
+  <script>
+    "use strict";
+
+    async function AJAXSubmit (oFormElement) {
+      const formData = new FormData(oFormElement);
+
+      try {
+        const response = await fetch(oFormElement.action, {
+          method: 'POST',
+          headers: {
+            'RequestVerificationToken': getCookie('RequestVerificationToken')
+          },
+          body: formData
+        });
+
+        oFormElement.elements.namedItem("result").value = 
+          'Result: ' + response.status + ' ' + response.statusText;
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+
+    function getCookie(name) {
+      var value = "; " + document.cookie;
+      var parts = value.split("; " + name + "=");
+      if (parts.length == 2) return parts.pop().split(";").shift();
+    }
+  </script>
+}

@@ -5,7 +5,7 @@ description: Use Identity with a Single Page App hosted inside an ASP.NET Core a
 monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 08/05/2019
+ms.date: 11/08/2019
 uid: security/authentication/identity/spa
 ---
 # Authentication and authorization for SPAs
@@ -20,13 +20,13 @@ User authentication and authorization can be used with both Angular and React SP
 
 **Angular**:
 
-```console
+```dotnetcli
 dotnet new angular -o <output_directory_name> -au Individual
 ```
 
 **React**:
 
-```console
+```dotnetcli
 dotnet new react -o <output_directory_name> -au Individual
 ```
 
@@ -52,7 +52,7 @@ The `Startup` class has the following additions:
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
-  * IdentityServer with an additional `AddApiAuthorization` helper method that setups some default ASP.NET Core conventions on top of IdentityServer:
+  * IdentityServer with an additional `AddApiAuthorization` helper method that sets up some default ASP.NET Core conventions on top of IdentityServer:
 
     ```csharp
     services.AddIdentityServer()
@@ -161,6 +161,46 @@ Now that you've seen the main components of the solution, you can take a deeper 
 
 By default, the system is configured to easily require authorization for new APIs. To do so, create a new controller and add the `[Authorize]` attribute to the controller class or to any action within the controller.
 
+## Customize the API authentication handler
+
+To customize the configuration of the API's JWT handler, configure its <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> instance:
+
+```csharp
+services.AddAuthentication()
+    .AddIdentityServerJwt();
+
+services.Configure<JwtBearerOptions>(
+    IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
+    options =>
+    {
+        ...
+    });
+```
+
+The API's JWT handler raises events that enable control over the authentication process using `JwtBearerEvents`. To provide support for API authorization, `AddIdentityServerJwt` registers its own event handlers.
+
+To customize the handling of an event, wrap the existing event handler with additional logic as required. For example:
+
+```csharp
+services.Configure<JwtBearerOptions>(
+    IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
+    options =>
+    {
+        var onTokenValidated = options.Events.OnTokenValidated;       
+        
+        options.Events.OnTokenValidated = async context =>
+        {
+            await onTokenValidated(context);
+            ...
+        }
+    });
+```
+
+In the preceding code, the `OnTokenValidated` event handler is replaced with a custom implementation. This implementation:
+
+1. Calls the original implementation provided by the API authorization support.
+1. Run its own custom logic.
+
 ## Protect a client-side route (Angular)
 
 Protecting a client-side route is done by adding the authorize guard to the list of guards to run when configuring a route. As an example, you can see how the `fetch-data` route is configured within the main app Angular module:
@@ -239,9 +279,9 @@ This section describes deploying the app to Azure websites using a certificate s
 }
 ```
 
-* The name property on certificate corresponds with the distinguished subject for the certificate.
-* The store location represents where to load the certificate from (`CurrentUser` or `LocalMachine`).
 * The store name represents the name of the certificate store where the certificate is stored. In this case, it points to the personal user store.
+* The store location represents where to load the certificate from (`CurrentUser` or `LocalMachine`).
+* The name property on certificate corresponds with the distinguished subject for the certificate.
 
 To deploy to Azure Websites, deploy the app following the steps in [Deploy the app to Azure](xref:tutorials/publish-to-azure-webapp-using-vs#deploy-the-app-to-azure) to create the necessary Azure resources and deploy the app to production.
 

@@ -103,7 +103,7 @@ namespace FormsTagHelper.Controllers
             if (ModelState.IsValid)
             {
                 var msg = !System.String.IsNullOrEmpty(model.Country) ? model.Country
-                    : "No slection";
+                    : "No selection";
                 msg += " Selected";
                 return RedirectToAction("IndexSuccess", new { message = msg });
             }

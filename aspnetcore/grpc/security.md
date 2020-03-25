@@ -40,8 +40,8 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddGrpc(options =>
     {
-        options.ReceiveMaxMessageSize = 1 * 1024 * 1024;  // 1 megabyte
-        options.SendMaxMessageSize = 1 * 1024 * 1024;     // 1 megabyte
+        options.MaxReceiveMessageSize = 1 * 1024 * 1024; // 1 MB
+        options.MaxSendMessageSize = 1 * 1024 * 1024; // 1 MB
     });
 }
 ```

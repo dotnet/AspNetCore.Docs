@@ -1,0 +1,35 @@
+@model User
+
+@{
+    ViewData["Title"] = "Check Email";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<ol>
+    <li>Enter an email. Validate accepts the email.</li>
+    <li>Enter a different email. Validate accepts the email.</li>
+    <li>Re-enter the first email. Validation fails.</li>
+</ol>
+
+<div class="row">
+    <div class="col-md-4">
+        <form>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="button" value="Validate" class="btn btn-info" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

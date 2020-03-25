@@ -39,6 +39,9 @@ connection.onclose(async () => {
     await start();
 });
 
+// Start the connection.
+start();
+
 /* this is here to show an alternative to start, with a then
 connection.start().then(function () {
     console.log("connected");

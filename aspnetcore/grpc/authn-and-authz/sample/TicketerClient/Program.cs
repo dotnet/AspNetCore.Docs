@@ -14,10 +14,12 @@ namespace GrpcGreeterClient
         // The port number(5001) must match the port of the gRPC server.
         private const string Address = "localhost:5001";
 
+        private static string _token;
+
         static async Task Main(string[] args)
         {
-            var httpClient = new HttpClient { BaseAddress = new Uri($"https://{Address}") };
-            var client = GrpcClient.Create<Ticketer.TicketerClient>(httpClient);
+            var channel = CreateAuthenticatedChannel($"https://{Address}");
+            var client = new Ticketer.TicketerClient(channel);
 
             Console.WriteLine("gRPC Ticketer");
             Console.WriteLine();
@@ -27,8 +29,6 @@ namespace GrpcGreeterClient
             Console.WriteLine("3: Authenticate");
             Console.WriteLine("4: Exit");
             Console.WriteLine();
-
-            string token = null;
 
             var exiting = false;
             while (!exiting)
@@ -40,10 +40,10 @@ namespace GrpcGreeterClient
                         await GetAvailableTickets(client);
                         break;
                     case '2':
-                        await PurchaseTicket(client, token);
+                        await PurchaseTicket(client);
                         break;
                     case '3':
-                        token = await Authenticate();
+                        _token = await Authenticate();
                         break;
                     case '4':
                         exiting = true;
@@ -52,6 +52,26 @@ namespace GrpcGreeterClient
             }
 
             Console.WriteLine("Exiting");
+        }
+
+        private static GrpcChannel CreateAuthenticatedChannel(string address)
+        {
+            var credentials = CallCredentials.FromInterceptor((context, metadata) =>
+            {
+                if (!string.IsNullOrEmpty(_token))
+                {
+                    metadata.Add("Authorization", $"Bearer {_token}");
+                }
+                return Task.CompletedTask;
+            });
+
+            // SslCredentials is used here because this channel is using TLS.
+            // Channels that aren't using TLS should use ChannelCredentials.Insecure instead.
+            var channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
+            {
+                Credentials = ChannelCredentials.Create(new SslCredentials(), credentials)
+            });
+            return channel;
         }
 
         private static async Task<string> Authenticate()
@@ -73,19 +93,12 @@ namespace GrpcGreeterClient
             return token;
         }
 
-        private static async Task PurchaseTicket(Ticketer.TicketerClient client, string token)
+        private static async Task PurchaseTicket(Ticketer.TicketerClient client)
         {
             Console.WriteLine("Purchasing ticket...");
             try
             {
-                Metadata? headers = null;
-                if (token != null)
-                {
-                    headers = new Metadata();
-                    headers.Add("Authorization", $"Bearer {token}");
-                }
-
-                var response = await client.BuyTicketsAsync(new BuyTicketsRequest { Count = 1 }, headers);
+                var response = await client.BuyTicketsAsync(new BuyTicketsRequest { Count = 1 });
                 if (response.Success)
                 {
                     Console.WriteLine("Purchase successful.");

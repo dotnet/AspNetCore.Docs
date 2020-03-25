@@ -128,19 +128,19 @@ Clean the project. The following appears in the Output window:
 
 Add the *BuildBundlerMinifier* package to your project:
 
-```console
+```dotnetcli
 dotnet add package BuildBundlerMinifier
 ```
 
 If using ASP.NET Core 1.x, restore the newly added package:
 
-```console
+```dotnetcli
 dotnet restore
 ```
 
 Build the project:
 
-```console
+```dotnetcli
 dotnet build
 ```
 
@@ -158,7 +158,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 
 Clean the project:
 
-```console
+```dotnetcli
 dotnet clean
 ```
 
@@ -186,7 +186,7 @@ It's possible to run the bundling and minification tasks on an ad hoc basis, wit
 
 This package extends the .NET Core CLI to include the *dotnet-bundle* tool. The following command can be executed in the Package Manager Console (PMC) window or in a command shell:
 
-```console
+```dotnetcli
 dotnet bundle
 ```
 
@@ -207,7 +207,7 @@ To minify *custom.css* and bundle it with *site.css* into a *site.min.css* file,
 > Alternatively, the following globbing pattern could be used:
 >
 > ```json
-> "inputFiles": ["wwwroot/**/*(*.css|!(*.min.css))"]
+> "inputFiles": ["wwwroot/**/!(*.min).css" ]
 > ```
 >
 > This globbing pattern matches all CSS files and excludes the minified file pattern.
@@ -321,7 +321,6 @@ In this example, any tasks defined within the `MyPreCompileTarget` target run be
 1>[14:17:49] Finished 'min:css' after 88 ms
 ========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
 ```
-
 
 ## Additional resources
 

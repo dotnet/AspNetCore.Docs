@@ -17,7 +17,7 @@ namespace DependencyInjectionSample.Services
         public Task WriteMessage(string message)
         {
             _logger.LogInformation(
-                "MyDependency.WriteMessage called. Message: {MESSAGE}", 
+                "MyDependency.WriteMessage called. Message: {Message}", 
                 message);
 
             return Task.FromResult(0);

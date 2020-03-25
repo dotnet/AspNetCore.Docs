@@ -5,7 +5,8 @@ description: Learn how to use the ASP.NET Core SignalR HubContext service for se
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/01/2018
+ms.date: 11/12/2019
+no-loc: [SignalR]
 uid: signalr/hubcontext
 ---
 # Send messages from outside a hub
@@ -14,7 +15,7 @@ By [Mikael Mengistu](https://twitter.com/MikaelM_12)
 
 The SignalR hub is the core abstraction for sending messages to clients connected to the SignalR server. It's also possible to send messages from other places in your app using the `IHubContext` service. This article explains how to access a SignalR `IHubContext` to send notifications to clients from outside a hub.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubcontext/sample/) [(how to download)](xref:index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/hubcontext/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 
 ## Get an instance of IHubContext
 

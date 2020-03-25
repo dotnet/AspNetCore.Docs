@@ -5,7 +5,7 @@ description: Learn how compilation of Razor files occurs in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/20/2019
+ms.date: 12/05/2019
 uid: mvc/views/view-compilation
 ---
 # Razor file compilation in ASP.NET Core
@@ -32,13 +32,14 @@ A Razor file is compiled at runtime, when the associated Razor Page or MVC view 
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Razor files are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk). Runtime compilation may be optionally enabled by configuring your application.
+Razor files with a *.cshtml* extension are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk). Runtime compilation may be optionally enabled by configuring your application.
 
 ::: moniker-end
 
 ## Razor compilation
 
 ::: moniker range=">= aspnetcore-3.0"
+
 Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they are edited.
 
 ::: moniker-end
@@ -83,7 +84,7 @@ Set the `MvcRazorCompileOnPublish` property to `true`, and install the [Microsof
 
 Prepare the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd) with the [.NET Core CLI publish command](/dotnet/core/tools/dotnet-publish). For example, execute the following command at the project root:
 
-```console
+```dotnetcli
 dotnet publish -c Release
 ```
 
@@ -108,7 +109,7 @@ Build-time compilation is supplemented by runtime compilation of Razor files. Th
 The default value is `true` for:
 
 * If the app's compatibility version is set to <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1> or earlier
-* If the app's compatibility version is set to <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2> or later and the app is in the Development environment <xref:Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions.IsDevelopment*>. In other words, Razor files would not recompile in non-Development environment unless <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> is explicitly set.
+* If the app's compatibility version is set to <xref:Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2> or later and the app is in the Development environment <xref:Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions.IsDevelopment*>. In other words, Razor files wouldn't recompile in non-Development environment unless <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.AllowRecompilingViewsOnFileChange> is explicitly set.
 
 For guidance and examples of setting the app's compatibility version, see <xref:mvc/compatibility-version>.
 
@@ -116,16 +117,57 @@ For guidance and examples of setting the app's compatibility version, see <xref:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Runtime compilation is enabled using the `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation` package. To enable runtime compilation, apps must:
+To enable runtime compilation for all environments and configuration modes:
 
-* Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
-* Update the project's `Startup.ConfigureServices` method to include a call to `AddRazorRuntimeCompilation`:
+1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
 
-  ```csharp
-  services
-      .AddControllersWithViews()
-      .AddRazorRuntimeCompilation();
-  ```
+1. Update the project's `Startup.ConfigureServices` method to include a call to `AddRazorRuntimeCompilation`. For example:
+
+    ```csharp
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddRazorPages()
+            .AddRazorRuntimeCompilation();
+
+        // code omitted for brevity
+    }
+    ```
+
+### Conditionally enable runtime compilation
+
+Runtime compilation can be enabled such that it's only available for local development. Conditionally enabling in this manner ensures that the published output:
+
+* Uses compiled views.
+* Is smaller in size.
+* Doesn't enable file watchers in production.
+
+To enable runtime compilation based on the environment and configuration mode:
+
+1. Conditionally reference the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) package based on the active `Configuration` value:
+
+    ```xml
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0" Condition="'$(Configuration)' == 'Debug'" />
+    ```
+
+1. Update the project's `Startup.ConfigureServices` method to include a call to `AddRazorRuntimeCompilation`. Conditionally execute `AddRazorRuntimeCompilation` such that it only runs in Debug mode when the `ASPNETCORE_ENVIRONMENT` variable is set to `Development`:
+
+    ```csharp
+    public IWebHostEnvironment Env { get; set; }
+
+    public void ConfigureServices(IServiceCollection services)
+    {
+        IMvcBuilder builder = services.AddRazorPages();
+
+    #if DEBUG
+        if (Env.IsDevelopment())
+        {
+            builder.AddRazorRuntimeCompilation();
+        }
+    #endif
+
+        // code omitted for brevity
+    }
+    ```
 
 ::: moniker-end
 

@@ -12,6 +12,7 @@ using System.Net.Http;
 
 namespace HttpClientFactorySample
 {
+    #region snippet1
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -23,9 +24,8 @@ namespace HttpClientFactorySample
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // basic usage
-            #region snippet1
             services.AddHttpClient();
+            // Remaining code deleted for brevity.
             #endregion
 
             // named client
@@ -53,17 +53,6 @@ namespace HttpClientFactorySample
                 c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
                 c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
             });
-            #endregion
-
-            #region snippet5
-            services.AddTransient<ValidateHeaderHandler>();
-
-            services.AddHttpClient("externalservice", c =>
-            {
-                // Assume this is an "external" service which requires an API KEY
-                c.BaseAddress = new Uri("https://localhost:5000/");
-            })
-            .AddHttpMessageHandler<ValidateHeaderHandler>();
             #endregion
 
             #region snippet6
@@ -131,8 +120,7 @@ namespace HttpClientFactorySample
                 });
             #endregion
 
-            services.AddControllers()
-                .AddNewtonsoftJson();
+            services.AddControllers();
             services.AddRazorPages();
         }
         

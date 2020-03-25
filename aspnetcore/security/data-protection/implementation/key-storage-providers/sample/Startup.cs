@@ -34,6 +34,11 @@ namespace WebApp1
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+            // Add a DbContext to store your Database Keys
+            services.AddDbContext<MyKeysContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("MyKeysConnection")));
+
             // using Microsoft.AspNetCore.DataProtection;
             services.AddDataProtection()
                 .PersistKeysToDbContext<MyKeysContext>();

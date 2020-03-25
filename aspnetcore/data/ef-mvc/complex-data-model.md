@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Create a complex data model - ASP.NET MVC with EF Core"
 description: "In this tutorial, add more entities and relationships and customize the data model by specifying formatting, validation, and mapping rules."
-author: tdykstra
+author: rick-anderson
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
@@ -93,11 +93,11 @@ The database model has now changed in a way that requires a change in the databa
 
 Save your changes and build the project. Then open the command window in the project folder and enter the following commands:
 
-```console
+```dotnetcli
 dotnet ef migrations add MaxLengthOnNames
 ```
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 
@@ -121,11 +121,11 @@ The addition of the `Column` attribute changes the model backing the `SchoolCont
 
 Save your changes and build the project. Then open the command window in the project folder and enter the following commands to create another migration:
 
-```console
+```dotnetcli
 dotnet ef migrations add ColumnFirstName
 ```
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 
@@ -150,11 +150,12 @@ In *Models/Student.cs*, replace the code you added earlier with the following co
 
 The `Required` attribute makes the name properties required fields. The `Required` attribute isn't needed for non-nullable types such as value types (DateTime, int, double, float, etc.). Types that can't be null are automatically treated as required fields.
 
-You could remove the `Required` attribute and replace it with a minimum length parameter for the `StringLength` attribute:
+The `Required` attribute must be used with `MinimumLength` for the `MinimumLength` to be enforced.
 
 ```csharp
 [Display(Name = "Last Name")]
-[StringLength(50, MinimumLength=1)]
+[Required]
+[StringLength(50, MinimumLength=2)]
 public string LastName { get; set; }
 ```
 
@@ -429,7 +430,7 @@ As you saw in the first tutorial, most of this code simply creates new entity ob
 
 Save your changes and build the project. Then open the command window in the project folder and enter the `migrations add` command (don't do the update-database command yet):
 
-```console
+```dotnetcli
 dotnet ef migrations add ComplexDataModel
 ```
 
@@ -478,7 +479,7 @@ Save your change to *appsettings.json*.
 > [!NOTE]
 > As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
 >
-> ```console
+> ```dotnetcli
 > dotnet ef database drop
 > ```
 
@@ -486,7 +487,7 @@ Save your change to *appsettings.json*.
 
 After you have changed the database name or deleted the database, run the `database update` command in the command window to execute the migrations.
 
-```console
+```dotnetcli
 dotnet ef database update
 ```
 
@@ -504,7 +505,7 @@ Right-click the **CourseAssignment** table and select **View Data** to verify th
 
 ## Get the code
 
-[Download or view the completed application.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## Next steps
 

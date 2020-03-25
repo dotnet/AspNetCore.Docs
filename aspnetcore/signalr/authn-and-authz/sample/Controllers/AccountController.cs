@@ -32,52 +32,5 @@ namespace SignalRAuthenticationSample.Controllers
             _logger.LogInformation("User logged out.");
             return RedirectToPage("/Index");
         }
-
-        [HttpPost]
-        public async Task<IActionResult> Token(string email, string password)
-        {
-            try
-            {
-                // Check the password but don't "sign in" (which would set a cookie)
-                var user = await _signInManager.UserManager.FindByEmailAsync(email);
-                if (user == null)
-                {
-                    return Json(new
-                    {
-                        error = "Login failed"
-                    });
-                }
-
-                var result = await _signInManager.CheckPasswordSignInAsync(user, password, lockoutOnFailure: false);
-                if (result.Succeeded)
-                {
-                    var principal = await _signInManager.CreateUserPrincipalAsync(user);
-                    var token = new JwtSecurityToken(
-                        "SignalRAuthenticationSample",
-                        "SignalRAuthenticationSample",
-                        principal.Claims,
-                        expires: DateTime.UtcNow.AddDays(30),
-                        signingCredentials: SigningCreds);
-                    return Json(new
-                    {
-                        token = _tokenHandler.WriteToken(token)
-                    });
-                }
-                else
-                {
-                    return Json(new
-                    {
-                        error = result.IsLockedOut ? "User is locked out" : "Login failed"
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                return Json(new
-                {
-                    error = ex.ToString()
-                });
-            }
-        }
     }
 }

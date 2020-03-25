@@ -16,7 +16,7 @@ The `MvcMovieContext` object handles the task of connecting to the database and 
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_ConfigureServices&highlight=6-7)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file:
 
@@ -24,7 +24,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=6-7)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file:
 
@@ -70,7 +70,7 @@ Note the key icon next to `ID`. By default, EF will make a property named `ID` t
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/SeedData.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/SeedData.cs?name=snippet_1)]
 
 If there are any movies in the DB, the seed initializer returns and no movies are added.
 
@@ -87,7 +87,7 @@ if (context.Movie.Any())
 
 Replace the contents of *Program.cs* with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Program.cs)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Program.cs)]
 
 Test the app
 
@@ -225,7 +225,7 @@ Delete all the records in the DB (So the seed method will run). Stop and start t
 
 The app shows the seeded data.
 
-![MVC Movie application open in Microsoft Edge showing movie data](working-with-sql/_static/m55.png)
+![MVC Movie application open in Microsoft Edge showing movie data](working-with-sql/_static/m55_mac.png)
 
 > [!div class="step-by-step"]
 > [Previous](adding-model.md)

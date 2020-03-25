@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to migrate a web API implementation from ASP.NET 4.x Web API to ASP.NET Core MVC.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/10/2018
+ms.date: 12/05/2019
 uid: migration/webapi
 ---
 # Migrate from ASP.NET Web API to ASP.NET Core
@@ -13,7 +13,7 @@ By [Scott Addie](https://twitter.com/scott_addie) and [Steve Smith](https://arda
 
 An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients, including browsers and mobile devices. ASP.NET Core unifies ASP.NET 4.x's MVC and Web API app models into a simpler programming model known as ASP.NET Core MVC. This article demonstrates the steps required to migrate from ASP.NET 4.x Web API to ASP.NET Core MVC.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/migration/webapi/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/migration/webapi/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -91,14 +91,14 @@ return product;
 
 Configure routing as follows:
 
-1. Decorate the `ProductsController` class with the following attributes:
+1. Mark the `ProductsController` class with the following attributes:
 
     ```csharp
     [Route("api/[controller]")]
     [ApiController]
     ```
 
-    The preceding [[Route]](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute configures the controller's attribute routing pattern. The [[ApiController]](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
+    The preceding [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute configures the controller's attribute routing pattern. The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
 
     Attribute routing supports tokens, such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens reduce the number of magic strings in the project. The tokens also ensure routes remain synchronized with the corresponding controllers and actions when automatic rename refactorings are applied.
 1. Set the project's compatibility mode to ASP.NET Core 2.2:
@@ -110,7 +110,7 @@ Configure routing as follows:
     * Is required to use the `[ApiController]` attribute at the controller level.
     * Opts in to potentially breaking behaviors introduced in ASP.NET Core 2.2.
 1. Enable HTTP Get requests to the `ProductController` actions:
-    * Apply the [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute to the `GetAllProducts` action.
+    * Apply the [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute to the `GetAllProducts` action.
     * Apply the `[HttpGet("{id}")]` attribute to the `GetProduct` action.
 
 After the preceding changes and the removal of unused `using` statements, *ProductsController.cs* file looks like this:

@@ -1,5 +1,6 @@
 public void ConfigureServices(IServiceCollection services)
 {
+    // requires using Microsoft.Extensions.Options
     services.Configure<BookstoreDatabaseSettings>(
         Configuration.GetSection(nameof(BookstoreDatabaseSettings)));
 

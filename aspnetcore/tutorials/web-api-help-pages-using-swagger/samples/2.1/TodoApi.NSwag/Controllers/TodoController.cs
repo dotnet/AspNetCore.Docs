@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using TodoApi.Models;
@@ -68,8 +69,8 @@ namespace TodoApi.Controllers
         /// <response code="201">Returns the newly created item</response>
         /// <response code="400">If the item is null</response>
         #region snippet_CreateActionAttributes
-        [ProducesResponseType(201)]     // Created
-        [ProducesResponseType(400)]     // BadRequest
+        [ProducesResponseType(StatusCodes.Status201Created)]     // Created
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]  // BadRequest
         #endregion snippet_CreateActionAttributes
         #region snippet_CreateAction
         [HttpPost]

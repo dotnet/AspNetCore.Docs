@@ -4,7 +4,8 @@ author: rick-anderson
 description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/07/2019
+ms.date: 11/12/2019
+no-loc: [Blazor, SignalR]
 uid: index
 ---
 # Introduction to ASP.NET Core
@@ -20,7 +21,7 @@ ASP.NET Core is a cross-platform, high-performance, [open-source](https://github
 
 ## Why choose ASP.NET Core?
 
-Millions of developers have used (and continue to use) [ASP.NET 4.x](/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework.
+Millions of developers use or have used [ASP.NET 4.x](/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework.
 
 [!INCLUDE[](~/includes/benefits.md)]
 
@@ -57,7 +58,7 @@ There are several advantages to targeting .NET Core, and these advantages increa
 
 * Cross-platform. Runs on macOS, Linux, and Windows.
 * Improved performance
-* Side-by-side versioning
+* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#a-need-for-side-by-side-of-net-versions-per-application-level)
 * New APIs
 * Open source
 
@@ -71,10 +72,12 @@ We recommend the following sequence of tutorials and articles for an introductio
 
    |App type  |Scenario  |Tutorial  |
    |----------|----------|----------|
-   |Web app       | For new development        |[Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) |
-   |Web app       | For maintaining an MVC app |[Get started with MVC](xref:tutorials/first-mvc-app/start-mvc)|
-   |Web API       |                            |[Create a web API](xref:tutorials/first-web-api)\*  |
-   |Real-time app |                            |[Get started with SignalR](xref:tutorials/signalr) |
+   |Web app                   | For new development        |[Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) |
+   |Web app                   | For maintaining an MVC app |[Get started with MVC](xref:tutorials/first-mvc-app/start-mvc)|
+   |Web API                   |                            |[Create a web API](xref:tutorials/first-web-api)\*  |
+   |Real-time app             |                            |[Get started with SignalR](xref:tutorials/signalr) |
+   |Blazor app                |                            |[Get started with Blazor](xref:blazor/get-started) |
+   |Remote Procedure Call app |                            |[Get started with a gRPC service](xref:tutorials/grpc/grpc-start) |
 
 1. Follow a tutorial that shows how to do basic data access:
 
@@ -91,17 +94,21 @@ We recommend the following sequence of tutorials and articles for an introductio
 
 \* There is a new [web API tutorial that you follow entirely in the browser](https://docs.microsoft.com/learn/modules/build-web-api-net-core), no local IDE installation required.  The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), and [curl](https://curl.haxx.se/) is used for testing.
 
+## Migration from the .NET Framework
+
+For a reference guide to migrating ASP.NET apps to ASP.NET Core, see <xref:migration/proper-to-2x/index>.
+
 ## How to download a sample
 
 Many of the articles and tutorials include links to sample code.
 
-1. [Download the ASP.NET repository zip file](https://codeload.github.com/aspnet/AspNetCore.Docs/zip/master).
+1. [Download the ASP.NET repository zip file](https://codeload.github.com/dotnet/AspNetCore.Docs/zip/master).
 1. Unzip the *Docs-master.zip* file.
 1. Use the URL in the sample link to help you navigate to the sample directory.
 
 ### Preprocessor directives in sample code
 
-To demonstrate multiple scenarios, sample apps use the `#define` and `#if-#else/#elif-#endif` C# statements to selectively compile and run different sections of sample code. For those samples that make use of this approach, set the `#define` statement at the top of the C# files to the symbol associated with the scenario that you want to run. Some samples require setting the symbol at the top of multiple files in order to run a scenario.
+To demonstrate multiple scenarios, sample apps use the `#define` and `#if-#else/#elif-#endif` preprocessor directives to selectively compile and run different sections of sample code. For those samples that make use of this approach, set the `#define` directive at the top of the C# files to define the symbol associated with the scenario that you want to run. Some samples require defining the symbol at the top of multiple files in order to run a scenario.
 
 For example, the following `#define` symbol list indicates that four scenarios are available (one scenario per symbol). The current sample configuration runs the `TemplateCode` scenario:
 
@@ -119,30 +126,29 @@ For more information on using [C# preprocessor directives](/dotnet/csharp/langua
 
 ### Regions in sample code
 
-Some sample apps contain sections of code surrounded by [#region](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region) and [#endregion](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-endregion) C# statements. The documentation build system injects these regions into the rendered documentation topics.  
+Some sample apps contain sections of code surrounded by [#region](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region) and [#endregion](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-endregion) C# directives. The documentation build system injects these regions into the rendered documentation topics.  
 
-Region names usually contain the word "snippet." The following example shows a region named `snippet_FilterInCode`:
+Region names usually contain the word "snippet." The following example shows a region named `snippet_WebHostDefaults`:
 
 ```csharp
-#region snippet_FilterInCode
-WebHost.CreateDefaultBuilder(args)
-    .UseStartup<Startup>()
-    .ConfigureLogging(logging =>
-        logging.AddFilter("System", LogLevel.Debug)
-            .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Trace))
-            .Build();
+#region snippet_WebHostDefaults
+Host.CreateDefaultBuilder(args)
+    .ConfigureWebHostDefaults(webBuilder =>
+    {
+        webBuilder.UseStartup<Startup>();
+    });
 #endregion
 ```
 
 The preceding C# code snippet is referenced in the topic's markdown file with the following line:
 
 ```md
-[!code-csharp[](sample/SampleApp/Program.cs?name=snippet_FilterInCode)]
+[!code-csharp[](sample/SampleApp/Program.cs?name=snippet_WebHostDefaults)]
 ```
 
-You may safely ignore (or remove) the `#region` and `#endregion` statements that surround the code. Don't alter the code within these statements if you plan to run the sample scenarios described in the topic. Feel free to alter the code when experimenting with other scenarios.
+You may safely ignore (or remove) the `#region` and `#endregion` directives that surround the code. Don't alter the code within these directives if you plan to run the sample scenarios described in the topic. Feel free to alter the code when experimenting with other scenarios.
 
-For more information, see [Contribute to the ASP.NET documentation: Code snippets](https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md#code-snippets).
+For more information, see [Contribute to the ASP.NET documentation: Code snippets](https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md#code-snippets).
 
 ## Next steps
 

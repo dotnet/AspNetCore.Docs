@@ -1,10 +1,10 @@
 ---
 title: Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
-author: tdykstra
+author: rick-anderson
 description: Shows how to create a Razor Pages app using Entity Framework Core
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 07/22/2019
+ms.date: 09/26/2019
 uid: data/ef-rp/intro
 ---
 
@@ -14,9 +14,9 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitte
 
 ::: moniker range=">= aspnetcore-3.0"
 
-This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an ASP.NET Core Razor Pages app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments.
+This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](xref:razor-pages/index) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
-[Download or view the completed app.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
 ## Prerequisites
 
@@ -42,7 +42,7 @@ If you choose to use SQLite, download and install a third-party tool for managin
 
 ## Troubleshooting
 
-If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to StackOverflow.com, using the [ASP.NET Core tag](https://stackoverflow.com/questions/tagged/asp.net-core) or the [EF Core tag](https://stackoverflow.com/questions/tagged/entity-framework-core).
+If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to StackOverflow.com, using the [ASP.NET Core tag](https://stackoverflow.com/questions/tagged/asp.net-core) or the [EF Core tag](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
 ## The sample app
 
@@ -81,8 +81,8 @@ To run the app after downloading the completed project:
 * Build the project.
 * At a command prompt in the project folder, run the following commands:
 
-  ```console
-  dotnet tool install --global dotnet-ef --version 3.0.0-*
+  ```dotnetcli
+  dotnet tool install --global dotnet-ef
   dotnet ef database update
   ```
 
@@ -111,7 +111,7 @@ To run the app after downloading the completed project:
 
 * Run the following commands to create a Razor Pages project and `cd` into the new project folder:
 
-  ```console
+  ```dotnetcli
   dotnet new webapp -o ContosoUniversity
   cd ContosoUniversity
   ```
@@ -222,14 +222,17 @@ The following packages are automatically installed:
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Run the following .NET Core CLI commands to install required NuGet packages:
-
-  ```console
-  dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 3.0.0-*
-  dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.0.0-*
-  dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.0.0-*
-  dotnet add package Microsoft.EntityFrameworkCore.Tools --version 3.0.0-*
-  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.0.0-*
-  dotnet add package Microsoft.Extensions.Logging.Debug --version 3.0.0-*
+<!-- TO DO  After testing, Replace with
+[!INCLUDE[](~/includes/includes/add-EF-NuGet-SQLite-CLI.md)]
+remove dotnet tool install --global  below
+ -->
+  ```dotnetcli
+  dotnet add package Microsoft.EntityFrameworkCore.SQLite
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+  dotnet add package Microsoft.EntityFrameworkCore.Design
+  dotnet add package Microsoft.EntityFrameworkCore.Tools
+  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+  dotnet add package Microsoft.Extensions.Logging.Debug
   ```
 
   The Microsoft.VisualStudio.Web.CodeGeneration.Design package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
@@ -238,21 +241,21 @@ The following packages are automatically installed:
 
 * Run the following command to install the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
-  ```console
-  dotnet tool install --global dotnet-aspnet-codegenerator --version 3.0.0-*
+  ```dotnetcli
+  dotnet tool install --global dotnet-aspnet-codegenerator
   ```
 
 * Run the following command to scaffold Student pages.
 
   **On Windows**
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
   ```
 
   **On macOS or Linux**
 
-  ```console
+  ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
   ```
 
@@ -369,7 +372,7 @@ Create *Data/DbInitializer.cs* with the following code:
   ```csharp
   // context.Database.EnsureCreated();
   DbInitializer.Initialize(context);
-  ````
+  ```
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -450,7 +453,7 @@ The Contoso University sample web app demonstrates how to create an ASP.NET Core
 
 The sample app is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This page is the first in a series of tutorials that explain how to build the Contoso University sample app.
 
-[Download or view the completed app.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
 ## Prerequisites
 
@@ -468,7 +471,7 @@ Familiarity with [Razor Pages](xref:razor-pages/index). New programmers should c
 
 ## Troubleshooting
 
-If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed project](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to [StackOverflow.com](https://stackoverflow.com/questions/tagged/asp.net-core) for [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
+If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to [StackOverflow.com](https://stackoverflow.com/questions/tagged/asp.net-core) for [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
 ## The Contoso University web app
 
@@ -495,7 +498,7 @@ Run the app.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-```CLI
+```dotnetcli
 dotnet new webapp -o ContosoUniversity
 cd ContosoUniversity
 dotnet run
@@ -600,7 +603,7 @@ See [Scaffold the movie model](xref:tutorials/razor-pages/model#scaffold-the-mov
 
 Run the following commands to scaffold the student model.
 
-```console
+```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.1.0
 dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Models.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
@@ -628,7 +631,7 @@ The scaffolding tool automatically created a DB Context and registered it with t
 
 Examine the `ConfigureServices` method in *Startup.cs*. The highlighted line was added by the scaffolder:
 
-[!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=5-6)]
+[!code-csharp[](intro/samples/cu21/Startup.cs?name=snippet_SchoolContext&highlight=13-14)]
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 

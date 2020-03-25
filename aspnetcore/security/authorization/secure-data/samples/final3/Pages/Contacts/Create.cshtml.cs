@@ -54,7 +54,7 @@ namespace ContactManager.Pages.Contacts
                                                         ContactOperations.Create);
             if (!isAuthorized.Succeeded)
             {
-                return new ChallengeResult();
+                return Forbid();
             }
 
             Context.Contact.Add(Contact);

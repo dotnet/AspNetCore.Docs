@@ -5,12 +5,12 @@ description: Learn how to share authentication cookies among ASP.NET 4.x and ASP
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/14/2019
+ms.date: 09/05/2019
 uid: security/cookie-sharing
 ---
 # Share authentication cookies among ASP.NET apps
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Luke Latham](https://github.com/guardrex)
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Websites often consist of individual web apps working together. To provide a single sign-on (SSO) experience, web apps within a site must share authentication cookies. To support this scenario, the data protection stack allows sharing Katana cookie authentication and ASP.NET Core cookie authentication tickets.
 
@@ -28,7 +28,7 @@ In the examples that follow:
   * In .NET Framework apps, add a package reference to [Microsoft.AspNetCore.DataProtection.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/).
 * <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> sets the common app name.
 
-## Share authentication cookies among ASP.NET Core apps
+## Share authentication cookies with ASP.NET Core Identity
 
 When using ASP.NET Core Identity:
 
@@ -40,7 +40,7 @@ In `Startup.ConfigureServices`:
 
 ```csharp
 services.AddDataProtection()
-    .PersistKeysToFileSystem({PATH TO COMMON KEY RING FOLDER})
+    .PersistKeysToFileSystem("{PATH TO COMMON KEY RING FOLDER}")
     .SetApplicationName("SharedCookieApp");
 
 services.ConfigureApplicationCookie(options => {
@@ -48,11 +48,13 @@ services.ConfigureApplicationCookie(options => {
 });
 ```
 
+## Share authentication cookies without ASP.NET Core Identity
+
 When using cookies directly without ASP.NET Core Identity, configure data protection and authentication in `Startup.ConfigureServices`. In the following example, the authentication type is set to `Identity.Application`:
 
 ```csharp
 services.AddDataProtection()
-    .PersistKeysToFileSystem({PATH TO COMMON KEY RING FOLDER})
+    .PersistKeysToFileSystem("{PATH TO COMMON KEY RING FOLDER}")
     .SetApplicationName("SharedCookieApp");
 
 services.AddAuthentication("Identity.Application")
@@ -61,6 +63,23 @@ services.AddAuthentication("Identity.Application")
         options.Cookie.Name = ".AspNet.SharedCookie";
     });
 ```
+
+## Share cookies across different base paths
+
+An authentication cookie uses the [HttpRequest.PathBase](xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase) as its default [Cookie.Path](xref:Microsoft.AspNetCore.Http.CookieBuilder.Path). If the app's cookie must be shared across different base paths, `Path` must be overridden:
+
+```csharp
+services.AddDataProtection()
+    .PersistKeysToFileSystem("{PATH TO COMMON KEY RING FOLDER}")
+    .SetApplicationName("SharedCookieApp");
+
+services.ConfigureApplicationCookie(options => {
+    options.Cookie.Name = ".AspNet.SharedCookie";
+    options.Cookie.Path = "/";
+});
+```
+
+## Share cookies across subdomains
 
 When hosting apps that share cookies across subdomains, specify a common domain in the [Cookie.Domain](xref:Microsoft.AspNetCore.Http.CookieBuilder.Domain) property. To share cookies across apps at `contoso.com`, such as `first_subdomain.contoso.com` and `second_subdomain.contoso.com`, specify the `Cookie.Domain` as `.contoso.com`:
 
@@ -85,7 +104,7 @@ When an app uses Katana Cookie Authentication Middleware, it calls `UseCookieAut
 
 An ASP.NET 4.x app must target .NET Framework 4.5.1 or later. Otherwise, the necessary NuGet packages fail to install.
 
-To share authentication cookies between an ASP.NET 4.x app and an ASP.NET Core app, configure the ASP.NET Core app as stated in the [Share authentication cookies among ASP.NET Core apps](#share-authentication-cookies-among-aspnet-core-apps) section, then configure the ASP.NET 4.x app as follows.
+To share authentication cookies between an ASP.NET 4.x app and an ASP.NET Core app, configure the ASP.NET Core app as stated in the [Share authentication cookies among ASP.NET Core apps](#share-authentication-cookies-with-aspnet-core-identity) section, then configure the ASP.NET 4.x app as follows.
 
 Confirm that the app's packages are updated to the latest releases. Install the [Microsoft.Owin.Security.Interop](https://www.nuget.org/packages/Microsoft.Owin.Security.Interop/) package into each ASP.NET 4.x app.
 
@@ -117,7 +136,7 @@ app.UseCookieAuthentication(new CookieAuthenticationOptions
     },
     TicketDataFormat = new AspNetTicketDataFormat(
         new DataProtectorShim(
-            DataProtectionProvider.Create({PATH TO COMMON KEY RING FOLDER},
+            DataProtectionProvider.Create("{PATH TO COMMON KEY RING FOLDER}",
                 (builder) => { builder.SetApplicationName("SharedCookieApp"); })
             .CreateProtector(
                 "Microsoft.AspNetCore.Authentication.Cookies." +

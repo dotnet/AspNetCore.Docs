@@ -39,7 +39,7 @@ namespace ContactManager.Pages.Contacts
                                                       ContactOperations.Update);
             if (!isAuthorized.Succeeded)
             {
-                return new ChallengeResult();
+                return Forbid();
             }
 
             return Page();
@@ -67,7 +67,7 @@ namespace ContactManager.Pages.Contacts
                                                      ContactOperations.Update);
             if (!isAuthorized.Succeeded)
             {
-                return new ChallengeResult();
+                return Forbid();
             }
 
             Contact.OwnerID = contact.OwnerID;

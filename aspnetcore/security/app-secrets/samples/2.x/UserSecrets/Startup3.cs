@@ -29,9 +29,9 @@ namespace UserSecrets
 
         public void Configure(IApplicationBuilder app)
         {
-            var result = string.IsNullOrEmpty(_moviesApiKey) ? "Null" : "Not Null";
             app.Run(async (context) =>
             {
+                var result = string.IsNullOrEmpty(_moviesApiKey) ? "Null" : "Not Null";
                 await context.Response.WriteAsync($"Secret is {result}");
             });
         }

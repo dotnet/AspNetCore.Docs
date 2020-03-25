@@ -3,7 +3,7 @@ title: "Tutorial: Get started with Razor Pages in ASP.NET Core"
 author: rick-anderson
 description: This series of tutorials shows how to use Razor Pages in ASP.NET Core. Learn how to create a model, generate code for Razor pages, use Entity Framework Core and SQL Server for data access, add search functionality, add input validation, and use migrations to update the model.
 ms.author: riande
-ms.date: 07/25/2019
+ms.date: 11/12/2019
 uid: tutorials/razor-pages/razor-pages-start
 ---
 
@@ -35,15 +35,15 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.1.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-mac-3.1.md)]
 
 ---
 
@@ -57,7 +57,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 * Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code.
   ![new ASP.NET Core Web Application](razor-pages-start/_static/config.png)
 
-* Select **ASP.NET Core 3.0** in the dropdown, **Web Application**, and then select **Create**.
+* Select **ASP.NET Core 3.1** in the dropdown, **Web Application**, and then select **Create**.
 
 ![new ASP.NET Core Web Application](razor-pages-start/_static/3/npx.png)
 
@@ -73,7 +73,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 * Run the following commands:
 
-  ```console
+  ```dotnetcli
   dotnet new webapp -o RazorPagesMovie
   code -r RazorPagesMovie
   ```
@@ -95,18 +95,13 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   ![macOS New project dialog](razor-pages-start/_static/webapp.png)
 
-* In the **Configure your new ASP.NET Core Web API** dialog, set the  **Target Framework** to **.NET Core 3.0**.
+* In the **Configure your new Web Application** dialog, set the  **Target Framework** to **.NET Core 3.1**.
 
-  ![macOS .NET Core 3.0 selection](razor-pages-start/_static/targetframework3.png)
+  ![macOS .NET Core 3.1 selection](razor-pages-start/_static/targetframework3.png)
 
 * Name the project **RazorPagesMovie**, and then select **Create**.
 
   ![nameproj](razor-pages-start/_static/RazorPagesMovie.png)
-
-
-## Open the project
-
-From Visual Studio, select **File > Open**, and then select the *RazorPagesMovie.csproj* file.
 
 <!-- End of VS tabs -->
 
@@ -114,34 +109,7 @@ From Visual Studio, select **File > Open**, and then select the *RazorPagesMovie
 
 ## Run the app
 
-# [Visual Studio](#tab/visual-studio)
-
-* Press Ctrl+F5 to run without the debugger.
-
-  [!INCLUDE[](~/includes/trustCertVS.md)]
-
-  Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for the local computer. Localhost only serves web requests from the local computer. When Visual Studio creates a web project, a random port is used for the web server.
- 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-  [!INCLUDE[](~/includes/trustCertVSC.md)]
-
-* Press **Ctrl-F5** to run without the debugger.
-
-  Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
-
-  
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-  [!INCLUDE[](~/includes/trustCertMac.md)]
-
-* Press **Alt-Cmd-Enter** to run without the debugger. Alternatively, navigate to the menu bar and go to Run>Start Without Debugging.
-
-  Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`.
-
-<!-- End of VS tabs -->
-
----
+  [!INCLUDE[](~/includes/run-the-app.md)]
 
 ## Examine the project files
 
@@ -250,7 +218,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 * Run the following commands:
 
-  ```console
+  ```dotnetcli
   dotnet new webapp -o RazorPagesMovie
   code -r RazorPagesMovie
   ```
@@ -264,19 +232,21 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-From a terminal, run the following command:
+* Select **File** > **New Solution**.
 
-<!-- TODO: update these instruction once mac support 2.2 projects -->
+![macOS New solution](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-```console
-dotnet new webapp -o RazorPagesMovie
-```
+* Select **.NET Core** > **App** > **Web Application** > **Next**.
 
-The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create a Razor Pages project.
+  ![macOS New project dialog](razor-pages-start/_static/webapp.png)
 
-## Open the project
+* In the **Configure your new ASP.NET Core Web API** dialog, set the  **Target Framework** to **.NET Core 3.1**.
 
-From Visual Studio, select **File > Open**, and then select the *RazorPagesMovie.csproj* file.
+  ![macOS .NET Core 3.0 selection](razor-pages-start/_static/targetframework3.png)
+
+* Name the project **RazorPagesMovie**, and then select **Create**.
+
+  ![nameproj](razor-pages-start/_static/RazorPagesMovie.png)
 
 <!-- End of VS tabs -->
 

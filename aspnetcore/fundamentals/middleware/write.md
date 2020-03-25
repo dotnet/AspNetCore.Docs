@@ -5,7 +5,7 @@ description: Learn how to write custom ASP.NET Core middleware.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/17/2019
+ms.date: 08/22/2019
 uid: fundamentals/middleware/write
 ---
 # Write custom ASP.NET Core middleware
@@ -18,7 +18,7 @@ Middleware is software that's assembled into an app pipeline to handle requests 
 
 Middleware is generally encapsulated in a class and exposed with an extension method. Consider the following middleware, which sets the culture for the current request from a query string:
 
-[!code-csharp[](index/snapshot/Culture/StartupCulture.cs?name=snippet1)]
+[!code-csharp[](write/snapshot/StartupCulture.cs)]
 
 The preceding sample code is used to demonstrate creating a middleware component. For ASP.NET Core's built-in localization support, see <xref:fundamentals/localization>.
 
@@ -26,7 +26,7 @@ Test the middleware by passing in the culture. For example, request `https://loc
 
 The following code moves the middleware delegate to a class:
 
-[!code-csharp[](index/snapshot/Culture/RequestCultureMiddleware.cs)]
+[!code-csharp[](write/snapshot/RequestCultureMiddleware.cs)]
 
 The middleware class must include:
 
@@ -70,11 +70,11 @@ public class CustomMiddleware
 
 The following extension method exposes the middleware through <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder>:
 
-[!code-csharp[](index/snapshot/Culture/RequestCultureMiddlewareExtensions.cs)]
+[!code-csharp[](write/snapshot/RequestCultureMiddlewareExtensions.cs)]
 
 The following code calls the middleware from `Startup.Configure`:
 
-[!code-csharp[](index/snapshot/Culture/Startup.cs?name=snippet1&highlight=5)]
+[!code-csharp[](write/snapshot/Startup.cs?highlight=5)]
 
 ## Additional resources
 

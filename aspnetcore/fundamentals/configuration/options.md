@@ -1,16 +1,14 @@
 ---
 title: Options pattern in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Discover how to use the options pattern to represent groups of related settings in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/19/2019
+ms.date: 02/12/2020
 uid: fundamentals/configuration/options
 ---
 # Options pattern in ASP.NET Core
-
-By [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -21,11 +19,11 @@ The options pattern uses classes to represent groups of related settings. When [
 
 Options also provide a mechanism to validate configuration data. For more information, see the [Options validation](#options-validation) section.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([how to download](xref:index#how-to-download-a-sample))
 
-## Prerequisites
+## Package
 
-Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) or add a package reference to the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package.
+The [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package is implicitly referenced in ASP.NET Core apps.
 
 ## Options interfaces
 
@@ -48,7 +46,7 @@ Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapacka
 
 ## General options configuration
 
-General options configuration is demonstrated as Example &num;1 in the sample app.
+General options configuration is demonstrated as Example 1 in the sample app.
 
 An options class must be non-abstract with a public parameterless constructor. The following class, `MyOptions`, has two properties, `Option1` and `Option2`. Setting default values is optional, but the class constructor in the following example sets the default value of `Option1`. `Option2` has a default value set by initializing the property directly (*Models/MyOptions.cs*):
 
@@ -92,7 +90,7 @@ option1 = value1_from_json, option2 = -1
 
 ## Configure simple options with a delegate
 
-Configuring simple options with a delegate is demonstrated as Example &num;2 in the sample app.
+Configuring simple options with a delegate is demonstrated as Example 2 in the sample app.
 
 Use a delegate to set options values. The sample app uses the `MyOptionsWithDelegateConfig` class (*Models/MyOptionsWithDelegateConfig.cs*):
 
@@ -122,7 +120,7 @@ delegate_option1 = value1_configured_by_delegate, delegate_option2 = 500
 
 ## Suboptions configuration
 
-Suboptions configuration is demonstrated as Example &num;3 in the sample app.
+Suboptions configuration is demonstrated as Example 3 in the sample app.
 
 Apps should create options classes that pertain to specific scenario groups (classes) in the app. Parts of the app that require configuration values should only have access to the configuration values that they use.
 
@@ -132,7 +130,7 @@ In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOpti
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-The `GetSection` extension method requires the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) NuGet package. If the app uses the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later), the package is automatically included.
+The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
 
 The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:
 
@@ -156,11 +154,16 @@ When the app is run, the `OnGet` method returns a string showing the suboption c
 subOption1 = subvalue1_from_json, subOption2 = 200
 ```
 
-## Options provided by a view model or with direct view injection
+## Options injection
 
-Options provided by a view model or with direct view injection is demonstrated as Example &num;4 in the sample app.
+Options injection is demonstrated as Example 4 in the sample app.
 
-Options can be supplied in a view model or by injecting <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> directly into a view (*Pages/Index.cshtml.cs*):
+Inject <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into:
+
+* A Razor page or MVC view with the [`@inject`](xref:mvc/views/razor#inject) Razor directive.
+* A page or view model.
+
+The following example from the sample app injects <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into a page model (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
 
@@ -178,11 +181,14 @@ When the app is run, the options values are shown in the rendered page:
 
 ## Reload configuration data with IOptionsSnapshot
 
-Reloading configuration data with <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is demonstrated in Example &num;5 in the sample app.
+Reloading configuration data with <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is demonstrated in Example 5 in the sample app.
 
-<xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> supports reloading options with minimal processing overhead.
+Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, options are computed once per request when accessed and cached for the lifetime of the request.
 
-Options are computed once per request when accessed and cached for the lifetime of the request.
+The difference between `IOptionsMonitor` and `IOptionsSnapshot` is that:
+
+* `IOptionsMonitor` is a [singleton service](xref:fundamentals/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
+* `IOptionsSnapshot` is a [scoped service](xref:fundamentals/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
 
 The following example demonstrates how a new <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is created after *appsettings.json* changes (*Pages/Index.cshtml.cs*). Multiple requests to the server return constant values provided by the *appsettings.json* file until the file is changed and configuration reloads.
 
@@ -206,9 +212,9 @@ snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 
 ## Named options support with IConfigureNamedOptions
 
-Named options support with <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> is demonstrated as Example &num;6 in the sample app.
+Named options support with <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> is demonstrated as Example 6 in the sample app.
 
-*Named options* support allows the app to distinguish between named options configurations. In the sample app, named options are declared with [OptionsServiceCollectionExtensions.Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), which calls the [ConfigureNamedOptions\<TOptions>.Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) extension method:
+Named options support allows the app to distinguish between named options configurations. In the sample app, named options are declared with [OptionsServiceCollectionExtensions.Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), which calls the [ConfigureNamedOptions\<TOptions>.Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) extension method. Named options are case sensitive.
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 
@@ -269,7 +275,7 @@ services.AddOptions<MyOptions>("optionalName")
 
 You can access other services from dependency injection while configuring options in two ways:
 
-* Pass a configuration delegate to [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) on [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1). [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1) provides overloads of [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) that allow you to use up to five services to configure options:
+* Pass a configuration delegate to [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) on [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1). `OptionsBuilder<TOptions>` provides overloads of [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) that allow use up to five services to configure options:
 
   ```csharp
   services.AddOptions<MyOptions>("optionalName")
@@ -310,12 +316,14 @@ catch (OptionsValidationException e)
 }
 ```
 
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
+
 The preceding example sets the named options instance to `optionalOptionsName`. The default options instance is `Options.DefaultName`.
 
-Validation runs when the options instance is created. Your options instance is guaranteed to pass validation the first time it's accessed.
+Validation runs when the options instance is created. An options instance is guaranteed to pass validation the first time it's accessed.
 
 > [!IMPORTANT]
-> Options validation doesn't guard against options modifications after the options are initially configured and validated.
+> Options validation doesn't guard against options modifications after the options instance is created. For example, `IOptionsSnapshot` options are created and validated once per request when the options are first accessed. The `IOptionsSnapshot` options aren't validated again on subsequent access attempts *for the same request*.
 
 The `Validate` method accepts a `Func<TOptions, bool>`. To fully customize validation, implement `IValidateOptions<TOptions>`, which allows:
 
@@ -336,9 +344,10 @@ public interface IValidateOptions<TOptions> where TOptions : class
 }
 ```
 
-Data Annotation-based validation is available from the [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) package by calling the <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> method on `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations` is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.2 or later).
+Data Annotation-based validation is available from the [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) package by calling the <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> method on `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations` is implicitly referenced in ASP.NET Core apps.
 
 ```csharp
+using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.DependencyInjection;
 
 private class AnnotatedOptions
@@ -369,7 +378,7 @@ public void CanValidateDataAnnotations()
     var sp = services.BuildServiceProvider();
 
     var error = Assert.Throws<OptionsValidationException>(() => 
-        sp.GetRequiredService<IOptionsMonitor<AnnotatedOptions>>().Value);
+        sp.GetRequiredService<IOptionsMonitor<AnnotatedOptions>>().CurrentValue);
     ValidateFailure<AnnotatedOptions>(error, Options.DefaultName, 1,
         "DataAnnotation validation failed for members Required " +
             "with the error 'The Required field is required.'.",
@@ -416,7 +425,8 @@ services.PostConfigureAll<MyOptions>(myOptions =>
 <xref:Microsoft.Extensions.Options.IOptions%601> and <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> can be used in `Startup.Configure`, since services are built before the `Configure` method executes.
 
 ```csharp
-public void Configure(IApplicationBuilder app, IOptionsMonitor<MyOptions> optionsAccessor)
+public void Configure(IApplicationBuilder app, 
+    IOptionsMonitor<MyOptions> optionsAccessor)
 {
     var option1 = optionsAccessor.CurrentValue.Option1;
 }
@@ -435,7 +445,7 @@ The options pattern uses classes to represent groups of related settings. When [
 
 Options also provide a mechanism to validate configuration data. For more information, see the [Options validation](#options-validation) section.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -462,7 +472,7 @@ Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapacka
 
 ## General options configuration
 
-General options configuration is demonstrated as Example &num;1 in the sample app.
+General options configuration is demonstrated as Example 1 in the sample app.
 
 An options class must be non-abstract with a public parameterless constructor. The following class, `MyOptions`, has two properties, `Option1` and `Option2`. Setting default values is optional, but the class constructor in the following example sets the default value of `Option1`. `Option2` has a default value set by initializing the property directly (*Models/MyOptions.cs*):
 
@@ -506,7 +516,7 @@ option1 = value1_from_json, option2 = -1
 
 ## Configure simple options with a delegate
 
-Configuring simple options with a delegate is demonstrated as Example &num;2 in the sample app.
+Configuring simple options with a delegate is demonstrated as Example 2 in the sample app.
 
 Use a delegate to set options values. The sample app uses the `MyOptionsWithDelegateConfig` class (*Models/MyOptionsWithDelegateConfig.cs*):
 
@@ -536,7 +546,7 @@ delegate_option1 = value1_configured_by_delegate, delegate_option2 = 500
 
 ## Suboptions configuration
 
-Suboptions configuration is demonstrated as Example &num;3 in the sample app.
+Suboptions configuration is demonstrated as Example 3 in the sample app.
 
 Apps should create options classes that pertain to specific scenario groups (classes) in the app. Parts of the app that require configuration values should only have access to the configuration values that they use.
 
@@ -546,7 +556,7 @@ In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOpti
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-The `GetSection` extension method requires the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) NuGet package. If the app uses the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later), the package is automatically included.
+The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
 
 The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:
 
@@ -570,11 +580,16 @@ When the app is run, the `OnGet` method returns a string showing the suboption c
 subOption1 = subvalue1_from_json, subOption2 = 200
 ```
 
-## Options provided by a view model or with direct view injection
+## Options injection
 
-Options provided by a view model or with direct view injection is demonstrated as Example &num;4 in the sample app.
+Options injection is demonstrated as Example 4 in the sample app.
 
-Options can be supplied in a view model or by injecting <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> directly into a view (*Pages/Index.cshtml.cs*):
+Inject <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into:
+
+* A Razor page or MVC view with the [`@inject`](xref:mvc/views/razor#inject) Razor directive.
+* A page or view model.
+
+The following example from the sample app injects <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into a page model (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
 
@@ -592,11 +607,14 @@ When the app is run, the options values are shown in the rendered page:
 
 ## Reload configuration data with IOptionsSnapshot
 
-Reloading configuration data with <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is demonstrated in Example &num;5 in the sample app.
+Reloading configuration data with <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is demonstrated in Example 5 in the sample app.
 
-<xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> supports reloading options with minimal processing overhead.
+Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, options are computed once per request when accessed and cached for the lifetime of the request.
 
-Options are computed once per request when accessed and cached for the lifetime of the request.
+The difference between `IOptionsMonitor` and `IOptionsSnapshot` is that:
+
+* `IOptionsMonitor` is a [singleton service](xref:fundamentals/dependency-injection#singleton) that retrieves current option values at any time, which is especially useful in singleton dependencies.
+* `IOptionsSnapshot` is a [scoped service](xref:fundamentals/dependency-injection#scoped) and provides a snapshot of the options at the time the `IOptionsSnapshot<T>` object is constructed. Options snapshots are designed for use with transient and scoped dependencies.
 
 The following example demonstrates how a new <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is created after *appsettings.json* changes (*Pages/Index.cshtml.cs*). Multiple requests to the server return constant values provided by the *appsettings.json* file until the file is changed and configuration reloads.
 
@@ -620,9 +638,9 @@ snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 
 ## Named options support with IConfigureNamedOptions
 
-Named options support with <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> is demonstrated as Example &num;6 in the sample app.
+Named options support with <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> is demonstrated as Example 6 in the sample app.
 
-*Named options* support allows the app to distinguish between named options configurations. In the sample app, named options are declared with [OptionsServiceCollectionExtensions.Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), which calls the [ConfigureNamedOptions\<TOptions>.Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) extension method:
+Named options support allows the app to distinguish between named options configurations. In the sample app, named options are declared with [OptionsServiceCollectionExtensions.Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), which calls the [ConfigureNamedOptions\<TOptions>.Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) extension method. Named options are case sensitive.
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 
@@ -726,10 +744,10 @@ catch (OptionsValidationException e)
 
 The preceding example sets the named options instance to `optionalOptionsName`. The default options instance is `Options.DefaultName`.
 
-Validation runs when the options instance is created. Your options instance is guaranteed to pass validation the first time it's accessed.
+Validation runs when the options instance is created. An options instance is guaranteed to pass validation the first time it's accessed.
 
 > [!IMPORTANT]
-> Options validation doesn't guard against options modifications after the options are initially configured and validated.
+> Options validation doesn't guard against options modifications after the options instance is created. For example, `IOptionsSnapshot` options are created and validated once per request when the options are first accessed. The `IOptionsSnapshot` options aren't validated again on subsequent access attempts *for the same request*.
 
 The `Validate` method accepts a `Func<TOptions, bool>`. To fully customize validation, implement `IValidateOptions<TOptions>`, which allows:
 
@@ -750,7 +768,7 @@ public interface IValidateOptions<TOptions> where TOptions : class
 }
 ```
 
-Data Annotation-based validation is available from the [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) package by calling the <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> method on `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations` is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.2 or later).
+Data Annotation-based validation is available from the [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) package by calling the <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> method on `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations` is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -783,7 +801,7 @@ public void CanValidateDataAnnotations()
     var sp = services.BuildServiceProvider();
 
     var error = Assert.Throws<OptionsValidationException>(() => 
-        sp.GetRequiredService<IOptionsMonitor<AnnotatedOptions>>().Value);
+        sp.GetRequiredService<IOptionsMonitor<AnnotatedOptions>>().CurrentValue);
     ValidateFailure<AnnotatedOptions>(error, Options.DefaultName, 1,
         "DataAnnotation validation failed for members Required " +
             "with the error 'The Required field is required.'.",
@@ -849,7 +867,7 @@ The options pattern uses classes to represent groups of related settings. When [
 
 Options also provide a mechanism to validate configuration data. For more information, see the [Options validation](#options-validation) section.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -876,7 +894,7 @@ Reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapacka
 
 ## General options configuration
 
-General options configuration is demonstrated as Example &num;1 in the sample app.
+General options configuration is demonstrated as Example 1 in the sample app.
 
 An options class must be non-abstract with a public parameterless constructor. The following class, `MyOptions`, has two properties, `Option1` and `Option2`. Setting default values is optional, but the class constructor in the following example sets the default value of `Option1`. `Option2` has a default value set by initializing the property directly (*Models/MyOptions.cs*):
 
@@ -920,7 +938,7 @@ option1 = value1_from_json, option2 = -1
 
 ## Configure simple options with a delegate
 
-Configuring simple options with a delegate is demonstrated as Example &num;2 in the sample app.
+Configuring simple options with a delegate is demonstrated as Example 2 in the sample app.
 
 Use a delegate to set options values. The sample app uses the `MyOptionsWithDelegateConfig` class (*Models/MyOptionsWithDelegateConfig.cs*):
 
@@ -950,7 +968,7 @@ delegate_option1 = value1_configured_by_delegate, delegate_option2 = 500
 
 ## Suboptions configuration
 
-Suboptions configuration is demonstrated as Example &num;3 in the sample app.
+Suboptions configuration is demonstrated as Example 3 in the sample app.
 
 Apps should create options classes that pertain to specific scenario groups (classes) in the app. Parts of the app that require configuration values should only have access to the configuration values that they use.
 
@@ -960,7 +978,7 @@ In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOpti
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example3)]
 
-The `GetSection` extension method requires the [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) NuGet package. If the app uses the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) (ASP.NET Core 2.1 or later), the package is automatically included.
+The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
 
 The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:
 
@@ -986,7 +1004,7 @@ subOption1 = subvalue1_from_json, subOption2 = 200
 
 ## Options provided by a view model or with direct view injection
 
-Options provided by a view model or with direct view injection is demonstrated as Example &num;4 in the sample app.
+Options provided by a view model or with direct view injection is demonstrated as Example 4 in the sample app.
 
 Options can be supplied in a view model or by injecting <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> directly into a view (*Pages/Index.cshtml.cs*):
 
@@ -1006,7 +1024,7 @@ When the app is run, the options values are shown in the rendered page:
 
 ## Reload configuration data with IOptionsSnapshot
 
-Reloading configuration data with <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is demonstrated in Example &num;5 in the sample app.
+Reloading configuration data with <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is demonstrated in Example 5 in the sample app.
 
 <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> supports reloading options with minimal processing overhead.
 
@@ -1034,9 +1052,9 @@ snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
 
 ## Named options support with IConfigureNamedOptions
 
-Named options support with <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> is demonstrated as Example &num;6 in the sample app.
+Named options support with <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> is demonstrated as Example 6 in the sample app.
 
-*Named options* support allows the app to distinguish between named options configurations. In the sample app, named options are declared with [OptionsServiceCollectionExtensions.Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), which calls the [ConfigureNamedOptions\<TOptions>.Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) extension method:
+Named options support allows the app to distinguish between named options configurations. In the sample app, named options are declared with [OptionsServiceCollectionExtensions.Configure](xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.Configure*), which calls the [ConfigureNamedOptions\<TOptions>.Configure](xref:Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure*) extension method. Named options are case sensitive.
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 

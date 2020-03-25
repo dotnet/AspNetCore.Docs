@@ -109,11 +109,11 @@ Editor preferences are available in the [editor config](https://github.com/twbs/
 
 Get updates on Bootstrap's development and chat with the project maintainers and community members.
 
-* Follow [@getbootstrap on Twitter](https://twitter.com/getbootstrap).
+* Follow [`@getbootstrap` on Twitter](https://twitter.com/getbootstrap).
 * Read and subscribe to [The Official Bootstrap Blog](http://blog.getbootstrap.com).
 * Join [the official Slack room](https://bootstrap-slack.herokuapp.com).
 * Chat with fellow Bootstrappers in IRC. On the `irc.freenode.net` server, in the `##bootstrap` channel.
-* Implementation help may be found at Stack Overflow (tagged [`twitter-bootstrap-3`](https://stackoverflow.com/questions/tagged/twitter-bootstrap-3)).
+* Implementation help may be found at Stack Overflow (tagged [twitter-bootstrap-3](https://stackoverflow.com/questions/tagged/twitter-bootstrap-3)).
 * Developers should use the keyword `bootstrap` on packages which modify or add to the functionality of Bootstrap when distributing through [npm](https://www.npmjs.com/browse/keyword/bootstrap) or similar delivery mechanisms for maximum discoverability.
 
 

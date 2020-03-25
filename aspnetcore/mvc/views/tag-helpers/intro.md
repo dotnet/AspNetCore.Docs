@@ -131,6 +131,22 @@ The same hierarchy rules that apply to `@addTagHelper` also apply to `@tagHelper
 
 Many Tag Helpers can't be used as self-closing tags. Some Tag Helpers are designed to be self-closing tags. Using a Tag Helper that was not designed to be self-closing suppresses the rendered output. Self-closing a Tag Helper results in a self-closing tag in the rendered output. For more information, see [this note](xref:mvc/views/tag-helpers/authoring#self-closing) in [Authoring Tag Helpers](xref:mvc/views/tag-helpers/authoring).
 
+## C# in Tag Helpers attribute/declaration 
+
+Tag Helpers do not allow C# in the element's attribute or tag declaration area. For example, the following code is not valid:
+
+```cshtml
+<input asp-for="LastName"  
+       @(Model?.LicenseId == null ? "disabled" : string.Empty) />
+```
+
+The preceding code can be written as:
+
+```cshtml
+<input asp-for="LastName" 
+       disabled="@(Model?.LicenseId == null)" />
+```
+
 ## IntelliSense support for Tag Helpers
 
 When you create a new ASP.NET Core web app in Visual Studio, it adds the NuGet package "Microsoft.AspNetCore.Razor.Tools". This is the package that adds Tag Helper tooling.

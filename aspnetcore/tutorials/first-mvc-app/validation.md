@@ -32,7 +32,7 @@ Tap the **Create New** link to add a new movie. Fill out the form with some inva
 
 ![Movie view form with multiple jQuery client side validation errors](~/tutorials/first-mvc-app/validation/_static/val.png)
 
-[!INCLUDE[](~/includes/currency.md)]
+[!INCLUDE[](~/includes/localization/currency.md)]
 
 Notice how the form has automatically rendered an appropriate validation error message in each field containing an invalid value. The errors are enforced both client-side (using JavaScript and jQuery) and server-side (in case a user has JavaScript disabled).
 
@@ -50,7 +50,7 @@ The first (HTTP GET) `Create` action method displays the initial Create form. Th
 
 You can set a break point in the `[HttpPost] Create` method and verify the method is never called, client side validation won't submit the form data when validation errors are detected. If you disable JavaScript in your browser, then submit the form with errors, the break point will be hit. You still get full validation without JavaScript. 
 
-The following image shows how to disable JavaScript in the FireFox browser.
+The following image shows how to disable JavaScript in the Firefox browser.
 
 ![Firefox: On the Content tab of Options, uncheck the Enable Javascript check box.](~/tutorials/first-mvc-app/validation/_static/ff.png)
 

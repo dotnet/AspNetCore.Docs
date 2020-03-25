@@ -5,7 +5,8 @@ description: Learn how the ASP.NET Core SignalR library simplifies adding real-t
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 04/25/2018
+ms.date: 11/27/2019
+no-loc: [SignalR]
 uid: signalr/introduction
 ---
 # Introduction to ASP.NET Core SignalR
@@ -30,11 +31,11 @@ Here are some features of SignalR for ASP.NET Core:
 * Sends messages to specific clients or groups of clients.
 * Scales to handle increasing traffic.
 
-The source is hosted in a [SignalR repository on GitHub](https://github.com/aspnet/AspNetCore/tree/master/src/SignalR).
+The source is hosted in a [SignalR repository on GitHub](https://github.com/dotnet/AspNetCore/tree/master/src/SignalR).
 
 ## Transports
 
-SignalR supports several techniques for handling real-time communications:
+SignalR supports the following techniques for handling real-time communication (in order of graceful fallback):
 
 * [WebSockets](https://tools.ietf.org/html/rfc7118)
 * Server-Sent Events

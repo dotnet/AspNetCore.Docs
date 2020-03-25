@@ -14,13 +14,15 @@ The updated React project template provides a convenient starting point for ASP.
 
 The template is equivalent to creating both an ASP.NET Core project to act as an API backend, and a standard CRA React project to act as a UI, but with the convenience of hosting both in a single app project that can be built and published as a single unit.
 
+The React project template isn't meant for server-side rendering (SSR). For SSR with React and Node.js, consider [Next.js](https://github.com/zeit/next.js/) or [Razzle](https://github.com/jaredpalmer/razzle).
+
 ## Create a new app
 
 If you have ASP.NET Core 2.1 installed, there's no need to install the React project template.
 
 Create a new project from a command prompt using the command `dotnet new react` in an empty directory. For example, the following commands create the app in a *my-new-app* directory and switch to that directory:
 
-```console
+```dotnetcli
 dotnet new react -o my-new-app
 cd my-new-app
 ```
@@ -47,7 +49,7 @@ The project template creates an ASP.NET Core app and a React app. The ASP.NET Co
 
 ## Add pages, images, styles, modules, etc.
 
-The *ClientApp* directory is a standard CRA React app. See the official [CRA documentation](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md) for more information.
+The *ClientApp* directory is a standard CRA React app. See the official [CRA documentation](https://create-react-app.dev/docs/getting-started/) for more information.
 
 There are slight differences between the React app created by this template and the one created by CRA itself; however, the app's capabilities are unchanged. The app created by the template contains a [Bootstrap](https://getbootstrap.com/)-based layout and a basic routing example.
 
