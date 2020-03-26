@@ -39,32 +39,31 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. Install the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
-1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template:
-
-   * Install the [.NET Core 3.1.201 or later (Preview) SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
-   * Run the following command in a command shell. The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview.
+1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template. Run the following command in a command shell. The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview.
 
    ```dotnetcli
    dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
    ```
 
    > [!NOTE]
-   > .NET Core SDK version 3.1.201 or later is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
+   > The [.NET Core SDK version 3.1.201 or later](https://dotnet.microsoft.com/download/dotnet-core/3.1) is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
 
 1. Install [Visual Studio Code](https://code.visualstudio.com/).
 
-1. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
+1. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) and the [JavaScript Debugger (Nightly)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) extension with `debug.javascript.usePreview` set to `true`.
 
-1. For a Blazor WebAssembly experience, execute the following command in a command shell:
 
-   ```dotnetcli
-   dotnet new blazorwasm -o WebApplication1
-   ```
 
-   For a Blazor Server experience, execute the following command in a command shell:
+1. For a Blazor Server experience, execute the following command in a command shell:
 
    ```dotnetcli
    dotnet new blazorserver -o WebApplication1
+   ```
+
+   For a Blazor WebAssembly experience, execute the following command in a command shell:
+
+   ```dotnetcli
+   dotnet new blazorwasm -o WebApplication1
    ```
 
    For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
@@ -103,17 +102,14 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 1. Install the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
-1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template:
-
-   * Install the [.NET Core 3.1.201 or later (Preview) SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
-   * Run the following command in a command shell. The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview.
+1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template. Run the following command in a command shell. The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview.
 
    ```dotnetcli
    dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
    ```
 
    > [!NOTE]
-   > .NET Core SDK version 3.1.201 or later is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
+   > The [.NET Core SDK version 3.1.201 or later](https://dotnet.microsoft.com/download/dotnet-core/3.1) is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
 
 1. For a Blazor WebAssembly experience, execute the following commands in a command shell:
 
