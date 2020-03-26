@@ -23,6 +23,8 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
    To create Blazor Server and Blazor WebAssembly apps, install Visual Studio 2019 16.6 Preview 2 or later with the **ASP.NET and web development** workload.
 
+   For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
+
 1. Create a new project.
 
 1. Select **Blazor App**. Select **Next**.
@@ -30,8 +32,6 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 1. Provide a project name in the **Project name** field or accept the default project name. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
 
 1. For a Blazor WebAssembly experience (Visual Studio 16.6 Preview 2 or later), choose the **Blazor WebAssembly App** template. For a Blazor Server experience (Visual Studio 16.4 or later), choose the **Blazor Server App** template. Select **Create**.
-
-   For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
 
