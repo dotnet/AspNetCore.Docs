@@ -151,7 +151,7 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Password=password
       - ASPNETCORE_Kestrel__Certificates__Default__Path=C:\https\aspnetapp.pfx
     volumes:
-      - %USERPROFILE%\.aspnet\https:C:\https:ro
+      - ${USERPROFILE}\.aspnet\https:C:\https:ro
 ```
 The password specified in the docker compose file must match the password used for the certificate.
 
