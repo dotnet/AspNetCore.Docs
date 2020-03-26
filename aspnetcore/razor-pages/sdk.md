@@ -5,7 +5,7 @@ description: Learn how Razor Pages in ASP.NET Core makes coding page-focused sce
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 08/23/2019
+ms.date: 03/26/2020
 no-loc: [Blazor]
 uid: razor-pages/sdk
 ---
@@ -116,7 +116,7 @@ The properties and items in the following table are used to configure inputs and
 | `GenerateRazorTargetAssemblyInfo` | When `true`, generates a *.cs* file containing attributes specified by `RazorAssemblyAttribute` and includes the file in the compile output. |
 | `EnableDefaultRazorTargetAssemblyInfoAttributes` | When `true`, adds a default set of assembly attributes to `RazorAssemblyAttribute`. |
 | `CopyRazorGenerateFilesToPublishDirectory` | When `true`, copies `RazorGenerate` items (*.cshtml*) files to the publish directory. Typically, Razor files aren't required for a published app if they participate in compilation at build-time or publish-time. Defaults to `false`. |
-| `CopyRefAssembliesToPublishDirectory` | When `true`, copy reference assembly items to the publish directory. Typically, reference assemblies aren't required for a published app if Razor compilation occurs at build-time or publish-time. Set to `true` if your published app requires runtime compilation. For example, set the value to `true` if the app modifies *.cshtml* files at runtime or uses embedded views. Defaults to `false`. For projects building using .NET Core SDK 3.0 or newer, the recommended alternative is to use `PreserveCompilationReferences` property instead which has the same behavior as `CopyRefAssembliesToPublishDirectory`. |
+| `CopyRefAssembliesToPublishDirectory` | When `true`, copy reference assembly items to the publish directory. Typically, reference assemblies aren't required for a published app if Razor compilation occurs at build-time or publish-time. Set to `true` if your published app requires runtime compilation. For example, set the value to `true` if the app modifies *.cshtml* files at runtime or uses embedded views. For projects built using .NET Core SDK 3.0 or later, the recommended alternative is to use the `PreserveCompilationReferences` property instead, which has the same behavior as `CopyRefAssembliesToPublishDirectory`. Defaults to `false`. |
 | `IncludeRazorContentInPack` | When `true`, all Razor content items (*.cshtml* files) are marked for inclusion in the generated NuGet package. Defaults to `false`. |
 | `EmbedRazorGenerateSources` | When `true`, adds RazorGenerate (*.cshtml*) items as embedded files to the generated Razor assembly. Defaults to `false`. |
 | `UseRazorBuildServer` | When `true`, uses a persistent build server process to offload code generation work. Defaults to the value of `UseSharedCompilation`. |
