@@ -32,7 +32,9 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. Provide a project name in the **Project name** field or accept the default project name. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
 
-1. For a Blazor WebAssembly experience (Visual Studio 16.6 Preview 2 or later), choose the **Blazor WebAssembly App** template. For a Blazor Server experience (Visual Studio 16.4 or later), choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>. If the Blazor WebAssembly template isn't present, reinstall the template.
+1. For a Blazor WebAssembly experience (Visual Studio 16.6 Preview 2 or later), choose the **Blazor WebAssembly App** template. For a Blazor Server experience (Visual Studio 16.4 or later), choose the **Blazor Server App** template. Select **Create**.
+
+   For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>. If the Blazor WebAssembly template isn't present, reinstall the template.
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
 
@@ -98,7 +100,9 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. In the sidebar, select **.NET Core** > **App**.
 
-1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>. If the Blazor WebAssembly template isn't present, reinstall the template.
+1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Create**.
+
+   For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>. If the Blazor WebAssembly template isn't present, reinstall the template.
 
 1. Set the **Target Framework** to **.NET Core 3.1** and select **Next**.
 
