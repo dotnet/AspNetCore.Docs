@@ -8,7 +8,7 @@ public void Configure(IApplicationBuilder app)
 {
     app.UseRouting();
 
-    app.UseGrpcWeb();
+    app.UseGrpcWeb(); // Must be added between UseRouting and UseEndpoints
 
     app.UseEndpoints(endpoints =>
     {

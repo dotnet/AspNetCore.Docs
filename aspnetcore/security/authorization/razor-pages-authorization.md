@@ -1,6 +1,6 @@
 ---
 title: Razor Pages authorization conventions in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Learn how to control access to pages with conventions that authorize users and allow anonymous users to access pages or folders of pages.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -10,13 +10,11 @@ uid: security/authorization/razor-pages-authorization
 ---
 # Razor Pages authorization conventions in ASP.NET Core
 
-By [Luke Latham](https://github.com/guardrex)
-
 ::: moniker range=">= aspnetcore-3.0"
 
 One way to control access in your Razor Pages app is to use authorization conventions at startup. These conventions allow you to authorize users and allow anonymous users to access individual pages or folders of pages. The conventions described in this topic automatically apply [authorization filters](xref:mvc/controllers/filters#authorization-filters) to control access.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/razor-pages-authorization/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/razor-pages-authorization/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 The sample app uses [cookie authentication without ASP.NET Core Identity](xref:security/authentication/cookie). The concepts and examples shown in this topic apply equally to apps that use ASP.NET Core Identity. To use ASP.NET Core Identity, follow the guidance in <xref:security/authentication/identity>.
 
@@ -101,7 +99,7 @@ The specified path is the View Engine path, which is the Razor Pages root relati
 
 ## Note on combining authorized and anonymous access
 
-It's valid to specify that a folder of pages that require authorization and than specify that a page within that folder allows anonymous access:
+It's valid to specify that a folder of pages requires authorization and then specify that a page within that folder allows anonymous access:
 
 ```csharp
 // This works.
@@ -128,7 +126,7 @@ Requiring authorization on the Private page fails. When both the <xref:Microsoft
 
 One way to control access in your Razor Pages app is to use authorization conventions at startup. These conventions allow you to authorize users and allow anonymous users to access individual pages or folders of pages. The conventions described in this topic automatically apply [authorization filters](xref:mvc/controllers/filters#authorization-filters) to control access.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/razor-pages-authorization/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/razor-pages-authorization/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 The sample app uses [cookie authentication without ASP.NET Core Identity](xref:security/authentication/cookie). The concepts and examples shown in this topic apply equally to apps that use ASP.NET Core Identity. To use ASP.NET Core Identity, follow the guidance in <xref:security/authentication/identity>.
 

@@ -102,7 +102,7 @@ Select the **Home** link and notice that the title and anchor text also display 
 
 Examine the *Views/_ViewStart.cshtml* file:
 
-```HTML
+```cshtml
 @{
     Layout = "_Layout";
 }
@@ -118,9 +118,9 @@ The title and `<h2>` element are slightly different so you can see which bit of 
 
 `ViewData["Title"] = "Movie List";` in the code above sets the `Title` property of the `ViewData` dictionary to "Movie List". The `Title` property is used in the `<title>` HTML element in the layout page:
 
-```HTML
+```cshtml
 <title>@ViewData["Title"] - Movie App</title>
-   ```
+```
 
 Save the change and navigate to `https://localhost:{PORT}/HelloWorld`. Notice that the browser title, the primary heading, and the secondary headings have changed. (If you don't see changes in the browser, you might be viewing cached content. Press Ctrl+F5 in your browser to force the response from the server to be loaded.) The browser title is created with `ViewData["Title"]` we set in the *Index.cshtml* view template and the additional "- Movie App" added in the layout file.
 
@@ -262,7 +262,7 @@ Select the **Home** link and notice that the title and anchor text also display 
 
 Examine the *Views/_ViewStart.cshtml* file:
 
-```HTML
+```cshtml
 @{
     Layout = "_Layout";
 }
@@ -278,9 +278,9 @@ The title and `<h2>` element are slightly different so you can see which bit of 
 
 `ViewData["Title"] = "Movie List";` in the code above sets the `Title` property of the `ViewData` dictionary to "Movie List". The `Title` property is used in the `<title>` HTML element in the layout page:
 
-```HTML
+```cshtml
 <title>@ViewData["Title"] - Movie App</title>
-   ```
+```
 
 Save the change and navigate to `https://localhost:{PORT}/HelloWorld`. Notice that the browser title, the primary heading, and the secondary headings have changed. (If you don't see changes in the browser, you might be viewing cached content. Press Ctrl+F5 in your browser to force the response from the server to be loaded.) The browser title is created with `ViewData["Title"]` we set in the *Index.cshtml* view template and the additional "- Movie App" added in the layout file.
 

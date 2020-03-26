@@ -9,7 +9,7 @@ uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
 ---
 # Environment Tag Helper in ASP.NET Core
 
-By [Peter Kellner](https://peterkellner.net), [Hisham Bin Ateya](https://twitter.com/hishambinateya), and [Luke Latham](https://github.com/guardrex)
+By [Peter Kellner](https://peterkellner.net) and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
 The Environment Tag Helper conditionally renders its enclosed content based on the current [hosting environment](xref:fundamentals/environments). The Environment Tag Helper's single attribute, `names`, is a comma-separated list of environment names. If any of the provided environment names match the current environment, the enclosed content is rendered.
 

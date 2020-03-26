@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2020
+ms.date: 02/21/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/index
 ---
@@ -23,6 +23,8 @@ Security scenarios differ between Blazor Server and Blazor WebAssembly apps. Bec
 * Access rules for areas of the app and components.
 
 Blazor WebAssembly apps run on the client. Authorization is *only* used to determine which UI options to show. Since client-side checks can be modified or bypassed by a user, a Blazor WebAssembly app can't enforce authorization access rules.
+
+[Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page](xref:blazor/integrate-components#render-components-from-a-page-or-view), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
 
 ## Authentication
 
@@ -131,7 +133,7 @@ The `AuthenticationStateProvider` service can provide the current user's <xref:S
 @using Microsoft.AspNetCore.Components.Authorization
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-<button @onclick="@LogUsername">Write user info to console</button>
+<button @onclick="LogUsername">Write user info to console</button>
 
 @code {
     private async Task LogUsername()
@@ -186,7 +188,7 @@ namespace BlazorSample.Services
 In a Blazor WebAssembly app, the `CustomAuthStateProvider` service is registered in `Main` of *Program.cs*:
 
 ```csharp
-using Microsoft.AspNetCore.Blazor.Hosting;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using BlazorSample.Services;
@@ -214,7 +216,7 @@ If authentication state data is required for procedural logic, such as when perf
 ```razor
 @page "/"
 
-<button @onclick="@LogUsername">Log username</button>
+<button @onclick="LogUsername">Log username</button>
 
 @code {
     [CascadingParameter]
@@ -245,6 +247,8 @@ If `user.Identity.IsAuthenticated` is `true`, claims can be enumerated and membe
 Set up the `Task<AuthenticationState>` cascading parameter using the `AuthorizeRouteView` and `CascadingAuthenticationState` components in the *App.razor* file:
 
 ```razor
+@using Microsoft.AspNetCore.Components.Authorization
+
 <Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
         <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
@@ -257,6 +261,13 @@ Set up the `Task<AuthenticationState>` cascading parameter using the `AuthorizeR
         </CascadingAuthenticationState>
     </NotFound>
 </Router>
+```
+
+Add services for options and authorization to `Program.Main`:
+
+```csharp
+builder.Services.AddOptions();
+builder.Services.AddAuthorizationCore();
 ```
 
 ## Authorization
@@ -497,6 +508,8 @@ In Blazor WebAssembly apps, authorization checks can be bypassed because all cli
 
 **Always perform authorization checks on the server within any API endpoints accessed by your client-side app.**
 
+For more information, see the articles under <xref:security/blazor/webassembly/index>.
+
 ## Troubleshoot errors
 
 Common errors:
@@ -522,3 +535,4 @@ The `CascadingAuthenticationState` supplies the `Task<AuthenticationState>` casc
 * <xref:security/index>
 * <xref:security/blazor/server>
 * <xref:security/authentication/windowsauth>
+* [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links

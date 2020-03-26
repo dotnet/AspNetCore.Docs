@@ -10,7 +10,7 @@ uid: fundamentals/startup
 ---
 # App startup in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), [Luke Latham](https://github.com/guardrex), and [Steve Smith](https://ardalis.com)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), and [Steve Smith](https://ardalis.com)
 
 The `Startup` class configures services and the app's request pipeline.
 

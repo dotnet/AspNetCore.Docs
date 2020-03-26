@@ -4,8 +4,7 @@
       {
         "files": [
           "**/*.md",
-          "**/*.yml",
-          "breadcrumb/TOC.yml"
+          "**/*.yml"
         ],
         "exclude": [
           "**/obj/**",
@@ -46,8 +45,9 @@
     "globalMetadata": {
       "_navPath": "/foo",
       "_navRel": "/foo",
-      "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
-      "feedback_github_repo": "aspnet/AspNetCore.Docs",
+      "breadcrumb_path": "/aspnet/core/breadcrumb/toc.json",
+      "extendBreadcrumb": true,
+      "feedback_github_repo": "dotnet/AspNetCore.Docs",
       "feedback_product_url": "https://github.com/dotnet/aspnetcore/blob/master/CONTRIBUTING.md",
       "feedback_system": "GitHub",
       "ms.prod": "aspnet-core",
@@ -84,7 +84,8 @@
         "signalr/**/**.md": "aspnetcore-signalr",
         "test/**/**.md": "aspnetcore-test",
         "tutorials/**/**.md": "aspnetcore-tutorials",
-        "web-api/**/**.md": "aspnetcore-webapi"
+        "web-api/**/**.md": "aspnetcore-webapi",
+        "whats-new/**/**.md": "aspnetcore-whatsnew"
       },
       "ms.topic": {
         "getting-started/**/**.md": "tutorial",

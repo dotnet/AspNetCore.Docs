@@ -295,26 +295,62 @@
           uid: blazor/templates
         - name: Components
           uid: blazor/components
+        - name: Data binding
+          uid: blazor/data-binding
+        - name: Event handling
+          uid: blazor/event-handling
+        - name: Templated components
+          uid: blazor/templated-components
+        - name: Integrate components
+          uid: blazor/integrate-components
+        - name: Globalization and localization
+          uid: blazor/globalization-localization
         - name: Lifecycle
           uid: blazor/lifecycle
-        - name: Forms and validation
-          uid: blazor/forms-validation
-        - name: Component libraries
-          uid: blazor/class-libraries
         - name: Layouts
           uid: blazor/layouts
+        - name: Forms and validation
+          uid: blazor/forms-validation
         - name: Dependency injection
           uid: blazor/dependency-injection
         - name: Routing
           uid: blazor/routing
-        - name: JavaScript interop
-          uid: blazor/javascript-interop
+        - name: Call JavaScript from .NET
+          uid: blazor/call-javascript-from-dotnet
+        - name: Call .NET from JavaScript
+          uid: blazor/call-dotnet-from-javascript
+        - name: Hosting model configuration
+          uid: blazor/hosting-model-configuration
+        - name: Component libraries
+          uid: blazor/class-libraries
         - name: Security and Identity
           items:
             - name: Overview
               uid: security/blazor/index
+            - name: Blazor WebAssembly
+              items:
+                - name: Overview
+                  uid: security/blazor/webassembly/index
+                - name: Standalone with Authentication library
+                  uid: security/blazor/webassembly/standalone-with-authentication-library
+                - name: Standalone with Microsoft Accounts
+                  uid: security/blazor/webassembly/standalone-with-microsoft-accounts
+                - name: Standalone with AAD
+                  uid: security/blazor/webassembly/standalone-with-azure-active-directory
+                - name: Standalone with AAD B2C
+                  uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
+                - name: Hosted with Identity Server
+                  uid: security/blazor/webassembly/hosted-with-identity-server
+                - name: Hosted with AAD
+                  uid: security/blazor/webassembly/hosted-with-azure-active-directory
+                - name: Hosted with AAD B2C
+                  uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+                - name: Additional scenarios
+                  uid: security/blazor/webassembly/additional-scenarios
             - name: Blazor Server
               uid: security/blazor/server
+            - name: Content Security Policy
+              uid: security/blazor/content-security-policy
         - name: State management
           uid: blazor/state-management
         - name: Handle errors
@@ -323,6 +359,8 @@
           uid: blazor/debug
         - name: Call a web API
           uid: blazor/call-web-api
+        - name: Progressive Web Applications
+          uid: blazor/progressive-web-app
         - name: Host and deploy
           items:
             - name: Overview
@@ -333,6 +371,8 @@
               uid: host-and-deploy/blazor/server
             - name: Configure the Linker
               uid: host-and-deploy/blazor/configure-linker
+        - name: Advanced scenarios
+          uid: blazor/advanced-scenarios
     - name: Client-side development
       items:
         - name: Single Page Apps
@@ -359,7 +399,7 @@
           uid: client-side/bundling-and-minification
         - name: Browser Link
           uid: client-side/using-browserlink
-    - name: Session and app state
+    - name: Session and state management
       uid: fundamentals/app-state
     - name: Layout
       uid: mvc/views/layout
@@ -384,6 +424,8 @@
               uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
             - name: Cache
               uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
+            - name: Component
+              uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
             - name: Distributed Cache
               uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
             - name: Environment
@@ -929,6 +971,8 @@
           uid: security/authentication/individual
         - name: Configure certificate authentication
           uid: security/authentication/certauth
+        - name: Multi-factor authentication
+          uid: security/authentication/mfa
     - name: Authorization
       items:
         - name: Overview
@@ -1052,6 +1096,14 @@
       uid: security/cookie-sharing
     - name: SameSite cookies
       uid: security/samesite
+    - name: SameSite samples
+      items:
+       - name: Razor Pages 2.1 SameSite cookie sample
+         uid: security/samesite/rp21
+       - name: Razor Pages 3.1 SameSite cookie sample
+         uid: security/samesite/rp31
+       - name: MVC SameSite cookie sample
+         uid: security/samesite/mvc21
     - name: IP safelist
       uid: security/ip-safelist
     - name: Application security - OWASP
@@ -1060,8 +1112,30 @@
       items:
         - name: Overview
           uid: security/blazor/index
+        - name: Blazor WebAssembly
+          items:
+            - name: Overview
+              uid: security/blazor/webassembly/index
+            - name: Standalone with Authentication library
+              uid: security/blazor/webassembly/standalone-with-authentication-library
+            - name: Standalone with Microsoft Accounts
+              uid: security/blazor/webassembly/standalone-with-microsoft-accounts
+            - name: Standalone with AAD
+              uid: security/blazor/webassembly/standalone-with-azure-active-directory
+            - name: Standalone with AAD B2C
+              uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
+            - name: Hosted with Identity Server
+              uid: security/blazor/webassembly/hosted-with-identity-server
+            - name: Hosted with AAD
+              uid: security/blazor/webassembly/hosted-with-azure-active-directory
+            - name: Hosted with AAD B2C
+              uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+            - name: Additional scenarios
+              uid: security/blazor/webassembly/additional-scenarios
         - name: Blazor Server
           uid: security/blazor/server
+        - name: Content Security Policy
+          uid: security/blazor/content-security-policy
 - name: Performance
   items:
     - name: Overview
@@ -1145,6 +1219,9 @@
       uid: fundamentals/middleware/extensibility-third-party-container
 - name: Migration
   items:
+    - name: 3.1 to 5.0
+      displayName: migrate, migration
+      uid: migration/31-to-50
     - name: 3.0 to 3.1
       displayName: migrate, migration
       uid: migration/30-to-31
@@ -1189,4 +1266,4 @@
 - name: API reference
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribute
-  href: https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md
+  href: https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md

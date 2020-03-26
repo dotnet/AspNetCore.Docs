@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 3.1.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 02/12/2020
 no-loc: [Blazor, SignalR]
 uid: aspnetcore-3.1
 ---
@@ -35,7 +35,7 @@ For example, prerender a `Counter` component with an increment amount (`Incremen
     param-IncrementAmount="10" />
 ```
 
-For more information, see [Integrate components into Razor Pages and MVC apps](xref:blazor/components#integrate-components-into-razor-pages-and-mvc-apps).
+For more information, see [Integrate components into Razor Pages and MVC apps](xref:blazor/integrate-components).
 
 ## Support for shared queues in HTTP.sys
 
@@ -55,7 +55,7 @@ Use the `@on{EVENT}:preventDefault` directive attribute to prevent the default a
 <input value="@_count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
 ```
 
-For more information, see [Prevent default actions](xref:blazor/components#prevent-default-actions).
+For more information, see [Prevent default actions](xref:blazor/event-handling#prevent-default-actions).
 
 ## Stop event propagation in Blazor apps
 
@@ -75,7 +75,7 @@ Use the `@on{EVENT}:stopPropagation` directive attribute to stop event propagati
 }
 ```
 
-For more information, see [Stop event propagation](xref:blazor/components#stop-event-propagation).
+For more information, see [Stop event propagation](xref:blazor/event-handling#stop-event-propagation).
 
 ## Detailed errors during Blazor app development
 
