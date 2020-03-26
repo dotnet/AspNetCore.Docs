@@ -79,9 +79,9 @@ conceptualContent:
       links:
         - url: tutorials/first-web-api.md
           itemType: get-started
-          text: "Create your first web API with ASP.NET Core"
-        - url: web-api/index.md
-          itemType: tutorial
+          text: "Create a web API with ASP.NET Core"
+        - url: https://docs.microsoft.com/learn/modules/build-web-api-net-core/
+          itemType: learn
           text: "Create web APIs with ASP.NET Core"
         - url: tutorials/web-api-help-pages-using-swagger.md
           itemType: tutorial
@@ -105,9 +105,9 @@ conceptualContent:
         - url: tutorials/razor-pages/razor-pages-start.md
           itemType: get-started
           text: "Create your first Razor Pages web app"
-        - url: razor-pages/index.md
+        - url: https://docs.microsoft.com/learn/modules/create-razor-pages-aspnet-core/
           itemType: tutorial
-          text: "Create a Razor Pages web app with ASP.NET Core"
+          text: "Create a page-focused web UI that consumes a web API"
         - url: mvc/views/razor.md
           itemType: concept
           text: "Razor syntax"
@@ -282,6 +282,8 @@ additionalContent:
             text: "Authentication"
           - url: security/authorization/introduction.md
             text: "Authorization"
+          - url: https://docs.microsoft.com/learn/modules/secure-aspnet-core-identity/
+            text: "Course: Secure an ASP.NET Core web app with the Identity framework"
           - url: security/data-protection/introduction.md
             text: "Data protection"
           - url: security/app-secrets.md
@@ -318,6 +320,8 @@ additionalContent:
             text: "Troubleshoot and debug"
           - url: fundamentals/logging/index.md
             text: "Logging"
+          - url: https://docs.microsoft.com/learn/modules/load-test-web-app-azure-devops/
+            text: "Load test Azure web apps by using Azure DevOps"
       # Card
       - title: Azure and ASP.NET Core
         links:
@@ -333,6 +337,8 @@ additionalContent:
             text: "Managed identity with ASP.NET and Azure SQL Database"
           - url: https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-rest-api
             text: "Web API with CORS in Azure App Service"
+          - url: https://docs.microsoft.com/learn/modules/capture-application-logs-app-service/
+            text: "Capture Web Application Logs with App Service Diagnostics Logging"
       # Card
       - title: Performance
         links:
