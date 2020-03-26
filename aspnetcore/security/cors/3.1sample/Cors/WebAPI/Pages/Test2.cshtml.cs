@@ -11,14 +11,11 @@ namespace WebAPI
         public string CtlNum { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public int Number { get; set; }
+        public int Number { get; set; } = 1;
 
         public void OnGet()
         {
-            if (string.IsNullOrEmpty(CtlNum))
-            {
-                CtlNum = "1";
-            }
+
         }
     }
 }

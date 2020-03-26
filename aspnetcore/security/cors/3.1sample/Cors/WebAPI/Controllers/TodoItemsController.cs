@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
@@ -32,6 +33,6 @@ namespace WebAPI.Controllers
         public ContentResult GetTodoItems()
         {
             return Content("Get TO DO ");
-        }        
+        }
     }
 }

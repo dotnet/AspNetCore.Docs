@@ -1,3 +1,5 @@
+#define StartupTest
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
@@ -14,14 +16,15 @@ namespace WebAPI
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+#if StartupTest
                     // Deploy to Cors1
                     webBuilder.UseStartup<StartupTest>();
-
+#else
                     // Use StartupEndPointBugTest with Test2 to repo 
                     // https://github.com/dotnet/aspnetcore/issues/18665
                     // Deploy to Cors3
-                    //   webBuilder.UseStartup<StartupEndPointBugTest>();
-
+                    webBuilder.UseStartup<StartupEndPointBugTest>();
+#endif
                 });
     }
 }

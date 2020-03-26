@@ -31,6 +31,8 @@ namespace WebAPI
                     {
                         builder.WithOrigins("http://example.com",
                                             "http://www.contoso.com",
+                                            "https://cors1.azurewebsites.net",
+                                            "https://cors3.azurewebsites.net",
                                             "https://localhost:44398",
                                             "https://localhost:5001")
                                .WithHeaders(HeaderNames.ContentType, "x-custom-header")

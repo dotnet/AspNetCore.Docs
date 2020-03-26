@@ -20,8 +20,6 @@
 
 <form>
     <p>
-        Controller: <input type="text" asp-for="CtlNum" />
-
         Controller: <select name="number" asp-for="Number">
             <option selected="selected" value="1">No-preflight</option>
             <option value="2">Preflight</option>
@@ -40,28 +38,36 @@
 
     <li>
         <input type="button" value="Delete test"
-               onclick="TestCors('/api/TodoItems' + '@Model.CtlNum' + '/5', 'DELETE')" />
+               onclick="TestCors('/api/TodoItems' + '@Model.Number' + '/5', 'DELETE')" />
     </li>
 
     <li>
         <input type="button" value="Delete [EnableCors]"
-               onclick="TestCors('/api/TodoItems' + '@Model.CtlNum' + '/MyDelete2/5', 'DELETE')" />
+               onclick="TestCors('/api/TodoItems' + '@Model.Number' + '/MyDelete2/5', 'DELETE')" />
     </li>
 
     <li>
         <input type="button" value="GET"
-               onclick="TestCors('/api/TodoItems' + '@Model.CtlNum', 'GET')" />
+               onclick="TestCors('/api/TodoItems' + '@Model.Number', 'GET')" />
     </li>
 
     <li>
         <input type="button" value="GET [EnableCors]"
-               onclick="TestCors('/api/TodoItems' + '@Model.CtlNum' + '/GetTodoItems2', 'GET')" />
+               onclick="TestCors('/api/TodoItems' + '@Model.Number' + '/GetTodoItems2', 'GET')" />
     </li>
 
 </ul>
 
 <script>
     var host = 'https://cors3.azurewebsites.net';
+
+    var protocol = location.protocol;
+    var slashes = protocol.concat("//");
+    var theHost = slashes.concat(window.location.hostname);
+
+    if (theHost == host) {
+        var host = 'https://cors1.azurewebsites.net';
+    }
 
     function TestCors(uri, methodName) {
         const resultSpan = document.getElementById('result');

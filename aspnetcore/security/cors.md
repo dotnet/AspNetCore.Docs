@@ -116,7 +116,7 @@ The following code creates a CORS default policy and a policy named `"AnotherPol
 
 ### Disable CORS
 
-The [[DisableCors]](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute disables CORS for the controller, page-model, or action.
+The [[DisableCors]](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute disables CORS for the controller, page-model, or action when you haven't enabled CORS globally.
 
 <a name="cpo"></a>
 

@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
-    #region snippet
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -18,8 +18,15 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public ContentResult Get(int id)
         {
-            return Content($"PutTodoItem: ID = {id}");
+            return Content($"GET ID: ID = {id}");
+        }
+
+        // GET: api/values/GetValues2
+        [DisableCors]
+        [HttpGet("{action}")]
+        public ContentResult GetValues2()
+        {
+            return Content("GetValues2");
         }
     }
-    #endregion
 }
