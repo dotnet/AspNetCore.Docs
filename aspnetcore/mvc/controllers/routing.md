@@ -841,6 +841,8 @@ Public methods on a controller, except those with the [NonAction](xref:Microsoft
  * The [MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x/main/Extensions/ControllerContextExtensions.cs) method is included in the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) and is used to display routing information.
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
+[!INCLUDE[](~/includes/dbg-route.md)]
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
