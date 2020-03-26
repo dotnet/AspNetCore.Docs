@@ -70,7 +70,7 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. The IDE requests that you add assets to build and debug the project. Select **Yes**.
 
-1. Tun the app using the Visual Studio Code debugger.
+1. Run the app using the Visual Studio Code debugger.
 
 1. In a browser, navigate to `https://localhost:5001`.
 
