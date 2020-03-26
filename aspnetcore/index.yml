@@ -34,58 +34,24 @@ highlightedContent:
     - title: "What's new in ASP.NET Core docs"
       itemType: whats-new
       url: whats-new/index.yml
+    # Card
+    - title: "Create your first web UI"
+      itemType: get-started
+      url: tutorials/build-your-first-blazor-app.md
+    # Card
+    - title: "Create your first web API"
+      itemType: get-started
+      url: tutorials/first-web-api.md
+    # Card
+    - title: "Create your first real-time web app"
+      itemType: get-started
+      url: tutorials/signalr.md
+    # Card
+    - title: "Create your first data-driven MVC web app"
+      itemType: get-started
+      url: tutorials/first-mvc-app.md
 
 # conceptualContent section (optional)
-conceptualContent:
-# itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
-  title: Get Started # < 60 chars (optional)
-  summary: "Create your first ASP.NET Core app"
-  items:
-    # Card
-    - title: Create a web UI
-      summary: Create your first web UI in ASP.NET Core
-      links:
-        - url: getting-started/index.md
-          itemType: get-started
-          text: "Create an ASP.NET Core app on any platform in 5 minutes"
-        - url: tutorials/build-your-first-blazor-app.md
-          itemType: get-started
-          text: "Create a client-side web UI in C# with ASP.NET Core Blazor"
-    # Card
-    - title: Create a web API
-      summary: "Create your first web API in ASP.NET Core"
-      links:
-        - url: tutorials/first-web-api.md
-          itemType: get-started
-          text: "Create a RESTful web API with ASP.NET Core"
-        - url: tutorials/grpc/grpc-start.md
-          itemType: get-started
-          text: "Create a gRPC service with ASP.NET Core"
-    # Card
-    - title: Create a real-time web app
-      summary: "Create your first real-time web app in ASP.NET Core"
-      links:
-        - url: tutorials/signalr.md
-          itemType: get-started
-          text: "Create a real-time web app with ASP.NET Core SignalR"
-    # Card
-    - title: Create a data-driven web app
-      summary: "Create your first data-driven web apps"
-      links:
-        - url: tutorials/first-mvc-app.md
-          itemType: get-started
-          text: "Create a web app with ASP.NET Core MVC & SQL Server LocalDB"
-        - url: data/ef-rp/intro.md
-          itemType: get-started
-          text: "Razor Pages & Entity Framework Core"
-        - url: data/ef-mvc.md
-          itemType: get-started
-          text: "ASP.NET Core MVC with Entity Framework Core"
-        - url: /learn/modules/build-web-api-net-core/
-          itemType: get-started
-          text: "Create a page-focused web UI that consumes a RESTful web API"
-
-# additionalContent section (optional)
 conceptualContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
   title: Develop ASP.NET Core apps # < 60 chars (optional)
