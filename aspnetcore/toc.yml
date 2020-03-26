@@ -180,10 +180,10 @@
       uid: fundamentals/middleware/index
     - name: Host
       items:
-      - name: Generic Host
-        uid: fundamentals/host/generic-host
-      - name: Web Host
-        uid: fundamentals/host/web-host
+        - name: Generic Host
+          uid: fundamentals/host/generic-host
+        - name: Web Host
+          uid: fundamentals/host/web-host
     - name: Servers
       uid: fundamentals/servers/index
     - name: Configuration
@@ -1082,6 +1082,8 @@
       uid: security/enforcing-ssl
     - name: Host Docker with HTTPS
       uid: security/docker-https
+    - name: Docker Compose with HTTPS
+      uid: security/docker-compose-https
     - name: EU General Data Protection Regulation (GDPR) support
       uid: security/gdpr
     - name: Anti-request forgery
@@ -1098,12 +1100,12 @@
       uid: security/samesite
     - name: SameSite samples
       items:
-       - name: Razor Pages 2.1 SameSite cookie sample
-         uid: security/samesite/rp21
-       - name: Razor Pages 3.1 SameSite cookie sample
-         uid: security/samesite/rp31
-       - name: MVC SameSite cookie sample
-         uid: security/samesite/mvc21
+        - name: Razor Pages 2.1 SameSite cookie sample
+          uid: security/samesite/rp21
+        - name: Razor Pages 3.1 SameSite cookie sample
+          uid: security/samesite/rp31
+        - name: MVC SameSite cookie sample
+          uid: security/samesite/mvc21
     - name: IP safelist
       uid: security/ip-safelist
     - name: Application security - OWASP
