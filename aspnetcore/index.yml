@@ -12,7 +12,7 @@ metadata:
   ms.collection: collection
   author: WadePickett
   ms.author: wpickett
-  ms.date: 02/26/2020
+  ms.date: 02/27/2020
 
 # highlightedContent section (optional)
 # Maximum of 8 items
@@ -85,10 +85,6 @@ conceptualContent:
         - url: https://docs.microsoft.com/en-us/learn/modules/build-web-api-net-core/
           itemType: get-started
           text: "Create a page-focused web UI that consumes a RESTful web API"
-
-# conceptualContent section (optional)
-conceptualContent:
-# itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
   title: Develop ASP.NET Core apps # < 60 chars (optional)
   summary: "Choose interactive web apps, web API, MVC patterned apps, Real-time apps, and more"
   items:
