@@ -23,9 +23,6 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
    To create Blazor Server and Blazor WebAssembly apps, install Visual Studio 2019 16.6 Preview 2 or later with the **ASP.NET and web development** workload.
 
-   > [!NOTE]
-   > .NET Core SDK version 3.1.201 or later is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
-
 1. Create a new project.
 
 1. Select **Blazor App**. Select **Next**.
