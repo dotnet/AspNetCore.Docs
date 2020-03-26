@@ -11,25 +11,26 @@ namespace WebAPI.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ContentResult Get()
-        {
-            return Content("GET api/values");
-        }
+        public IActionResult Get() =>
+            ControllerContext.MyDisplayRouteInfo();
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ContentResult Get(int id)
-        {
-            return Content($"GET ID: ID = {id}");
-        }
+        public IActionResult Get(int id) =>
+            ControllerContext.MyDisplayRouteInfo(id);
+
+        // Put api/values/5
+        [HttpPut("{id}")]
+        public IActionResult Put(int id) =>
+            ControllerContext.MyDisplayRouteInfo(id);
+
 
         // GET: api/values/GetValues2
         [DisableCors]
         [HttpGet("{action}")]
-        public ContentResult GetValues2()
-        {
-            return Content("GetValues2");
-        }
+        public IActionResult GetValues2() =>
+            ControllerContext.MyDisplayRouteInfo();
+
     }
     #endregion
 }
