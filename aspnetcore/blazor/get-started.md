@@ -19,15 +19,9 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Install [Visual Studio 2019 version 16.4 or later](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
+1. To create Blazor Server apps, install [Visual Studio 2019 version 16.4 or later](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
-   When installing Visual Studio 2019 16.6 Preview 2 or later, the .NET Core 3.1.300 SDK is automatically installed with Visual Studio. The 3.1.300 SDK automatically provides the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template to create Blazor WebAssembly apps.
-   
-   If installing a version of Visual Studio earlier than version 16.6 Preview 2, optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template. Run the following command in a command shell. The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview.
-
-   ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
-   ```
+   To create Blazor Server and Blazor WebAssembly apps, install Visual Studio 2019 16.6 Preview 2 or later with the **ASP.NET and web development** workload.
 
    > [!NOTE]
    > .NET Core SDK version 3.1.201 or later is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
@@ -38,7 +32,7 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. Provide a project name in the **Project name** field or accept the default project name. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
 
-1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>. If the Blazor WebAssembly template isn't present, return to the previous step and reinstall the template.
+1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>. If the Blazor WebAssembly template isn't present, reinstall the template.
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
 
@@ -91,13 +85,20 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
+1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template. Run the following command in a command shell. The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview.
+
+   ```dotnetcli
+   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
+   ```
+
+   > [!NOTE]
+   > .NET Core SDK version 3.1.201 or later is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
+
 1. Select **File** > **New Solution** or create a **New Project**.
 
 1. In the sidebar, select **.NET Core** > **App**.
 
-1. Select the **Blazor Server App** template. Only the Blazor Server template is available in Visual Studio for Mac at this time. For a Blazor WebAssembly experience, follow the instructions on the **.NET Core CLI** tab. After selecting the Blazor Server template, select **Next**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
-
-<!-- For a Blazor WebAssembly experience, select the **Blazor WebAssembly App** template. Select **Next**. -->
+1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Create**. For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>. If the Blazor WebAssembly template isn't present, reinstall the template.
 
 1. Set the **Target Framework** to **.NET Core 3.1** and select **Next**.
 
