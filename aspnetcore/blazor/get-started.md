@@ -31,8 +31,6 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. For a Blazor WebAssembly experience (Visual Studio 16.6 Preview 2 or later), choose the **Blazor WebAssembly App** template. For a Blazor Server experience (Visual Studio 16.4 or later), choose the **Blazor Server App** template. Select **Create**.
 
-   If the Blazor WebAssembly template isn't present, reinstall the template.
-
    For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
