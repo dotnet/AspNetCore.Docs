@@ -5,7 +5,7 @@ description: Learn about data binding features for components and DOM elements i
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/16/2020
+ms.date: 03/26/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/data-binding
 ---
@@ -233,7 +233,7 @@ The following `PasswordField` component (*PasswordField.razor*):
 * Uses the `onclick` event is used to trigger the `ToggleShowPassword` method. For more information, see <xref:blazor/event-handling>.
 
 ```razor
-<h1>Child Component</h2>
+<h1>Child Component</h1>
 
 Password: 
 
@@ -291,9 +291,7 @@ To perform checks or trap errors on the password in the preceding example:
 The following example provides immediate feedback to the user if a space is used in the password's value:
 
 ```razor
-@page "/ParentComponent"
-
-<h1>Parent Component</h1>
+<h1>Child Component</h1>
 
 Password: 
 
