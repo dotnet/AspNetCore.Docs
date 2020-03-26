@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/24/2020
+ms.date: 03/26/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/debug
 ---
@@ -26,7 +26,7 @@ Available scenarios include:
 * In the *Locals* display, observe the values of local variables.
 * See the call stack, including call chains that go from JavaScript into .NET and from .NET to JavaScript.
 
-You *can't*:
+For now, you *can't*:
 
 * Inspect arrays.
 * Hover to inspect members.
@@ -36,7 +36,7 @@ You *can't*:
 * Hit breakpoints during app startup.
 * Debug an app with a service worker.
 
-We expect to continue to improve the debugging experience in future releases.
+We will continue to improve the debugging experience in upcoming releases.
 
 ## Prerequisites
 
