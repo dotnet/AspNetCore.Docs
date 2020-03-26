@@ -9,7 +9,7 @@ ms.date: 07/05/2019
 no-loc: ["Let's Encrypt"]
 uid: security/docker-compose-https
 ---
-# Hosting ASP.NET Core images with Docker over HTTPS
+# Hosting ASP.NET Core images with Docker Compose over HTTPS
 
 
 ASP.NET Core uses [HTTPS by default](/aspnet/core/security/enforcing-ssl). [HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.
@@ -160,5 +160,4 @@ Start the container with ASP.NET Core configured for HTTPS:
 ```console
 docker-compose -f "docker-compose.debug.yml" up -d
 ```
-
 
