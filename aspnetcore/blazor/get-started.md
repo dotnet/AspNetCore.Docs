@@ -52,8 +52,6 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) and the [JavaScript Debugger (Nightly)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) extension with `debug.javascript.usePreview` set to `true`.
 
-
-
 1. For a Blazor Server experience, execute the following command in a command shell:
 
    ```dotnetcli
