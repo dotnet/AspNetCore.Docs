@@ -5,7 +5,7 @@ description: Learn how ASP.NET Core implements dependency injection and how to u
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/05/2020
+ms.date: 03/26/2020
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -449,6 +449,8 @@ public void ConfigureServices(IServiceCollection services)
     services.AddSingleton(new Service2());
 }
 ```
+
+For a discussion of service disposal options, see [Four ways to dispose IDisposables in ASP.NET Core](https://andrewlock.net/four-ways-to-dispose-idisposables-in-asp-net-core/).
 
 ## Default service container replacement
 
