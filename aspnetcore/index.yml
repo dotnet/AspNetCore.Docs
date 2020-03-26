@@ -111,15 +111,6 @@ conceptualContent:
         - url: mvc/views/razor.md
           itemType: concept
           text: "Razor syntax"
-        - url: tutorials/razor-pages/model.md
-          itemType: tutorial
-          text: "Add a model"
-        - url: tutorials/razor-pages/page.md
-          itemType: tutorial
-          text: "Scaffolding"
-        - url: tutorials/razor-pages/sql.md
-          itemType: tutorial
-          text: "Work with a database"
         - url: razor-pages/filter.md
           itemType: concept
           text: "Filters"
