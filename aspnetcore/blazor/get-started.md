@@ -35,9 +35,6 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
 
-> [!NOTE]
-> If you installed the Blazor Visual Studio extension for a prior preview release of ASP.NET Core Blazor, you can uninstall the extension. Installing the Blazor templates in a command shell is now sufficient to surface the templates in Visual Studio when using a version prior to 16.6 Preview 2.
-
 # [Visual Studio Code](#tab/visual-studio-code)
 
 1. Install the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
