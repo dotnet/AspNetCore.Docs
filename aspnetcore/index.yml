@@ -25,7 +25,7 @@ highlightedContent:
     # Card
     - title: "ASP.NET Core overview"
       itemType: overview
-      url: introduction-to-aspnet-core.md
+      url: index.md
     # Card
     - title: "ASP.NET Core video tutorials"
       itemType: video
