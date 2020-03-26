@@ -87,26 +87,17 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+Blazor Server is supported in Visual Studio for Mac. Blazor WebAssembly isn't supported at this time. To build Blazor WebAssembly apps on macOS, follow the guidance on the **.NET Core CLI** tab.
+
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
-
-1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template. Run the following command in a command shell. The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview.
-
-   ```dotnetcli
-   dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
-   ```
-
-   > [!NOTE]
-   > .NET Core SDK version 3.1.201 or later is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
 
 1. Select **File** > **New Solution** or create a **New Project**.
 
 1. In the sidebar, select **.NET Core** > **App**.
 
-1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Create**.
+1. Select the **Blazor Server App** template. Select **Create**.
 
-   If the Blazor WebAssembly template isn't present, reinstall the template.
-
-   For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
+   For information on the Blazor Server hosting model, see <xref:blazor/hosting-models>.
 
 1. Set the **Target Framework** to **.NET Core 3.1** and select **Next**.
 
