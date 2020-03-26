@@ -70,7 +70,7 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. Open the *WebApplication1* folder in Visual Studio Code.
 
-1. For a Blazor Server project, the IDE requests that you add assets to build and debug the project. Select **Yes**.
+1. The IDE requests that you add assets to build and debug the project. Select **Yes**.
 
 1. If using a Blazor Server app, run the app using the Visual Studio Code debugger. If using a Blazor WebAssembly app, execute `dotnet run` from the app's project folder.
 
