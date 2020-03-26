@@ -36,7 +36,7 @@ namespace WebAPI
                                             "https://localhost:44398",
                                             "https://localhost:5001")
                                .WithHeaders(HeaderNames.ContentType, "x-custom-header")
-                               .WithMethods("PUT", "DELETE", "GET")
+                               .WithMethods("PUT", "DELETE", "GET", "OPTIONS")
                                ;
                     });
             });

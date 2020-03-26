@@ -1,21 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 namespace WebAPI
 {
-    public class Test2Model : PageModel
+    public class Test2Model : HostPageModel
     {
-        [BindProperty(SupportsGet = true)]
-        public string CtlNum { get; set; }
+        private readonly IConfiguration Configuration;
+
+        public Test2Model(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
         [BindProperty(SupportsGet = true)]
         public int Number { get; set; } = 1;
 
+
         public void OnGet()
         {
-
+            SetHost(Configuration);
         }
     }
 }

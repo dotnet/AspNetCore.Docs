@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    #region snippet
+    [EnableCors(MyGC.MyAllowSpecificOrigins)]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -29,4 +31,5 @@ namespace WebAPI.Controllers
             return Content("GetValues2");
         }
     }
+    #endregion
 }

@@ -1,4 +1,5 @@
 ﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model WebAPI.IndexModel
 @{
     Layout = null;
@@ -19,25 +20,20 @@
     </li>
     <li>
         <input type="button" value="PUT test"
-               onclick="TestCors( '/api/TodoItems/5', 'PUT')" />
+               onclick="TestCors( '/api/TodoItems2/5', 'PUT')" />
+    </li>
+
+    <li>
+        <input type="button" value="GetValues2 [DisableCors]"
+               onclick="requestVal('/api/values/GetValues2')" />
     </li>
 </ul>
 
 <script>
-    var host = 'https://cors3.azurewebsites.net';
-
-    var protocol = location.protocol;
-    var slashes = protocol.concat("//");
-    var theHost = slashes.concat(window.location.hostname);
-
-    if (theHost == host) {
-        host = 'https://cors1.azurewebsites.net';
-    }
-
     function requestVal(uri) {
         const resultSpan = document.getElementById('result');
 
-        fetch(host + uri)
+        fetch('@Model.Host' + uri)
             .then(response => {
                 if (response.ok) {
                     response.text().then(text => {
@@ -54,7 +50,7 @@
     function TestCors(uri, methodName) {
         const resultSpan = document.getElementById('result');
 
-        fetch(host + uri,
+        fetch('@Model.Host' + uri,
             {
                 method: methodName,
 

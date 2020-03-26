@@ -42,7 +42,6 @@ namespace WebAPI.Controllers
             return Content($"MyDelete: ID = {id}");
         }
 
-
         // GET: api/TodoItems2
         [HttpGet]
         public ContentResult GetTodoItems()

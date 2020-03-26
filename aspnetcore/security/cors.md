@@ -76,8 +76,7 @@ Note: The specified URL must **not** contain a trailing slash (`/`). If the URL 
 
 ## Enable Cors with endpoint routing
 
-***Note:*** Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [pre-flight requests](pref). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/18665). 
-
+***Note:*** Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support automatic [pre-flight requests](pref). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/18665).
 
 With endpoint routing, CORS can be enabled on a per-endpoint basis using the <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> set of extension methods:
 
@@ -93,7 +92,7 @@ See [Test CORS](#test) for instructions on testing the preceding code.
 
 ## Enable CORS with attributes
 
-The [[EnableCors](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute provides an alternative to applying CORS globally. The `[EnableCors]` attribute enables CORS for selected end points, rather than all end points:
+The [[EnableCors]](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute provides an alternative to applying CORS globally. The `[EnableCors]` attribute enables CORS for selected end points, rather than all end points:
 
 * `[EnableCors]` to specifies the default policy.
 * `[EnableCors("{Policy String}")]` to a specific a policy.
@@ -116,7 +115,18 @@ The following code creates a CORS default policy and a policy named `"AnotherPol
 
 ### Disable CORS
 
-The [[DisableCors]](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute disables CORS for the controller, page-model, or action when you haven't enabled CORS globally.
+The [[DisableCors]](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute does ***not***  disables CORS when a CORS policy has been enabled in middleware. For example, either of the following calls in `Startup.Configure` sets a CORS policy in middleware:
+
+* `app.UseCors("MyPolicy");`
+* `endpoints.MapControllers().RequireCors("MyPolicy");`
+
+The following code doesn't set a CORS policy in middleware:
+
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup3.cs?name=snippet2)]
+
+Using the preceding code, the following code disables CORS in for the `GetValues2` method:
+
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet&highlight=1,21)]
 
 <a name="cpo"></a>
 

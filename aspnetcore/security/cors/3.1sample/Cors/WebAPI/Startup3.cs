@@ -42,6 +42,7 @@ namespace WebAPI3
             services.AddControllers();
         }
 
+        #region snippet2
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -63,6 +64,7 @@ namespace WebAPI3
                 endpoints.MapControllers();
             });
         }
+        #endregion
     }
     #endregion
 }

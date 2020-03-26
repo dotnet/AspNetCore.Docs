@@ -15,15 +15,13 @@ namespace WebAPI
             Configuration = configuration;
         }
 
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
         public IConfiguration Configuration { get; }
         #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
             {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
+                options.AddPolicy(name: MyGC.MyAllowSpecificOrigins,
                                   builder =>
                                   {
                                       builder.WithOrigins("http://example.com",
@@ -53,7 +51,7 @@ namespace WebAPI
             app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors();
 
             app.UseAuthorization();
             app.UseAuthorization();
