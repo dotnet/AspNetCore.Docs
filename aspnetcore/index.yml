@@ -325,7 +325,7 @@ additionalContent:
             text: "Deploy an ASP.NET web app"
           - url: https://docs.microsoft.com/visualstudio/containers/container-tools?view=vs-2019.md
             text: "ASP.NET Core and Docker"
-          - url: https://docs.microsoft.com/learn/modules/host-a-web-app-with-azure-app-service/
+          - url: /learn/modules/host-a-web-app-with-azure-app-service/
             text: "Host a web application with Azure App Service"
           - url: https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase
             text: "App Service and Azure SQL Database"
