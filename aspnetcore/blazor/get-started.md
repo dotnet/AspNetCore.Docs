@@ -111,18 +111,18 @@ If a prompt appears to trust the development certificate, trust the certificate 
    > [!NOTE]
    > The [.NET Core SDK version 3.1.201 or later](https://dotnet.microsoft.com/download/dotnet-core/3.1) is **required** to use the 3.2 Preview 3 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
 
-1. For a Blazor WebAssembly experience, execute the following commands in a command shell:
+1. For a Blazor Server experience, execute the following commands in a command shell:
 
    ```dotnetcli
-   dotnet new blazorwasm -o WebApplication1
+   dotnet new blazorserver -o WebApplication1
    cd WebApplication1
    dotnet run
    ```
 
-   For a Blazor Server experience, execute the following commands in a command shell:
+   For a Blazor WebAssembly experience, execute the following commands in a command shell:
 
    ```dotnetcli
-   dotnet new blazorserver -o WebApplication1
+   dotnet new blazorwasm -o WebApplication1
    cd WebApplication1
    dotnet run
    ```
