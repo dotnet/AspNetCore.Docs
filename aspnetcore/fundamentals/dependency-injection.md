@@ -378,17 +378,7 @@ public class Program
 
 ## Scope validation
 
-::: moniker range=">= aspnetcore-3.0"
-
 When the app is running in the Development environment and calls [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) to build the host, the default service provider performs checks to verify that:
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-When the app is running in the Development environment and calls [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host) to build the host, the default service provider performs checks to verify that:
-
-::: moniker-end
 
 * Scoped services aren't directly or indirectly resolved from the root service provider.
 * Scoped services aren't directly or indirectly injected into singletons.
