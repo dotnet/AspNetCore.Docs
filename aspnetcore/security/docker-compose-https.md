@@ -28,7 +28,7 @@ The [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download) or later is requi
 
 A certificate from a [certificate authority](https://wikipedia.org/wiki/Certificate_authority) is required for [production hosting](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) for a domain. [Let's Encrypt](https://letsencrypt.org/) is a certificate authority that offers free certificates.
 
-This document uses [self-signed development certificates](https://en.wikipedia.org/wiki/Self-signed_certificate) for hosting pre-built images over `localhost`. The instructions are similar to using production certificates.
+This document uses [self-signed development certificates](https://wikipedia.org/wiki/Self-signed_certificate) for hosting pre-built images over `localhost`. The instructions are similar to using production certificates.
 
 For production certs:
 
@@ -160,4 +160,3 @@ Start the container with ASP.NET Core configured for HTTPS:
 ```console
 docker-compose -f "docker-compose.debug.yml" up -d
 ```
-
