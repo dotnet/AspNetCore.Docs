@@ -35,7 +35,7 @@ For production certificates:
 * The `dotnet dev-certs` tool is not required.
 * Certificates do not need to be stored in the location used in the instructions. Any location should work, although storing certs within your site directory is not recommended.
 
-The instructions contained in the following section volume mount certificates into containers using volumes: property in docker-compose.yml. You could add certificates into container images with a `COPY` command in a *Dockerfile*, but it's not recommended. Copying certificates into an image isn't recommended for the following reasons:
+The instructions contained in the following section volume mount certificates into containers using the `volumes` property in *docker-compose.yml.* You could add certificates into container images with a `COPY` command in a *Dockerfile*, but it's not recommended. Copying certificates into an image isn't recommended for the following reasons:
 
 * It makes difficult to use the same image for testing with developer certificates.
 * It makes difficult to use the same image for Hosting with production certificates.
