@@ -5,7 +5,7 @@ description: Learn how to host ASP.NET Core Images with Docker Compose over HTTP
 monikerRange: '>= aspnetcore-2.1'
 ms.author: ravipal
 ms.custom: mvc
-ms.date: 07/05/2019
+ms.date: 03/28/2020
 no-loc: ["Let's Encrypt"]
 uid: security/docker-compose-https
 ---
