@@ -37,8 +37,8 @@ For production certificates:
 
 The instructions contained in the following section volume mount certificates into containers using the `volumes` property in *docker-compose.yml.* You could add certificates into container images with a `COPY` command in a *Dockerfile*, but it's not recommended. Copying certificates into an image isn't recommended for the following reasons:
 
-* It makes difficult to use the same image for testing with developer certificates.
-* It makes difficult to use the same image for Hosting with production certificates.
+* It makes it difficult to use the same image for testing with developer certificates.
+* It makes it difficult to use the same image for Hosting with production certificates.
 * There is significant risk of certificate disclosure.
 
 ## Starting a container with https support using docker compose
