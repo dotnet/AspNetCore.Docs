@@ -363,7 +363,7 @@ This section describes what happens in a [CORS](https://developer.mozilla.org/en
 
 The [CORS specification](https://www.w3.org/TR/cors/) introduced several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests. Custom JavaScript code isn't required to enable CORS.
 
-The following is an example of a cross-origin request from https://cors3.azurewebsites.net/ to `https://cors1.azurewebsites.net/api/values` . The `Origin` header:
+The following is an example of a cross-origin request from the **Values** button at https://cors3.azurewebsites.net/ to `https://cors1.azurewebsites.net/api/values` . The `Origin` header:
 
 * Provides the domain of the site that's making the request.
 * Is required and must be different from the host.
@@ -404,7 +404,7 @@ Sec-Fetch-Site: cross-site
 User-Agent: Mozilla/5.0 ...
 ```
 
-In `OPTIONS` requests, the server sets the **Response headers** `Access-Control-Allow-Origin: {allowed origin}` header in the response. For example, the [`deployed sample, Delete [EnableCors] button](https://cors1.azurewebsites.net/test2?number=2) `OPTIONS` request contains the following  headers:
+In `OPTIONS` requests, the server sets the **Response headers** `Access-Control-Allow-Origin: {allowed origin}` header in the response. For example, the [deployed sample, Delete [EnableCors] button](https://cors1.azurewebsites.net/test2?number=2) `OPTIONS` request contains the following  headers:
 
 **General headers**
 
@@ -451,6 +451,16 @@ If <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrig
 If the response doesn't include the `Access-Control-Allow-Origin` header, the cross-origin request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser doesn't make the response available to the client app.
 
 <a name="test"></a>
+
+### Display OPTIONS request
+
+By default, the Chrome and Edge browsers don't show OPTIONS requests on the network tab of the F12 tools. To display OPTIONS requests, in the browser:
+
+* chrome://flags/#out-of-blink-cors or edge://flags/#out-of-blink-cors
+* disable the flag.
+* restart.
+
+Firefox shows OPTIONS requests.
 
 ## Test CORS
 
