@@ -16,7 +16,7 @@ By [Steve Sanderson](https://github.com/SteveSandersonMS) and [Luke Latham](http
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 > [!NOTE]
-> For the guidance in this article that applies to Blazor WebAssembly, the guidance pertains to the ASP.NET Core Blazor WebAssembly template version 3.2 or later. To obtain the latest Blazor WebAssembly template (version `3.2.0-preview2.XXXXX.X`) when not using Visual Studio version 16.6 Preview 2 or later, see <xref:blazor/get-started>.
+> For the guidance in this article that applies to Blazor WebAssembly, the ASP.NET Core Blazor WebAssembly template version 3.2 or later is required. If you aren't using Visual Studio version 16.6 Preview 2 or later, obtain the latest Blazor WebAssembly template by following the guidance in <xref:blazor/get-started>.
 
 ASP.NET Core supports the configuration and management of security in Blazor apps.
 
