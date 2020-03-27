@@ -134,7 +134,7 @@ dotnet dev-certs https --trust
 
 In the preceding commands, replace `{ password here }` with a password.
 
-Create a docker-compose.debug.yml file with below content
+Create a _docker-compose.debug.yml_ file with the following content:
 
 ```json
 version: '3.4'
