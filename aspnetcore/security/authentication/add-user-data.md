@@ -3,7 +3,7 @@ title: Add, download, and delete user data to Identity in an ASP.NET Core projec
 author: rick-anderson
 description: Learn how to add custom user data to Identity in an ASP.NET Core project. Delete data per GDPR.
 ms.author: riande
-ms.date: 01/28/2020
+ms.date: 03/26/2020
 ms.custom: "mvc, seodec18"
 uid: security/authentication/add-user-data
 ---
@@ -279,14 +279,13 @@ public class AdditionalUserClaimsPrincipalFactory
 		return principal;
 	}
 }
-
 ```
 
 The additional claim can then be used in the app. In a Razor Page, the `IAuthorizationService` instance can be used to access the claim value.
 
 ```cshtml
-﻿@using Microsoft.AspNetCore.Authorization
-@inject IAuthorizationService AuthorizationService﻿
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
 
 @if ((await AuthorizationService.AuthorizeAsync(User, "IsAdmin")).Succeeded)
 {
@@ -297,6 +296,3 @@ The additional claim can then be used in the app. In a Razor Page, the `IAuthori
 	</ul>
 }
 ```
-
-
-
