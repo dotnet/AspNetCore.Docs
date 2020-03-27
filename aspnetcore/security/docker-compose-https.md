@@ -30,7 +30,7 @@ A certificate from a [certificate authority](https://wikipedia.org/wiki/Certific
 
 This document uses [self-signed development certificates](https://wikipedia.org/wiki/Self-signed_certificate) for hosting pre-built images over `localhost`. The instructions are similar to using production certificates.
 
-For production certs:
+For production certificates:
 
 * The `dotnet dev-certs` tool is not required.
 * Certificates do not need to be stored in the location used in the instructions. Any location should work, although storing certs within your site directory is not recommended.
