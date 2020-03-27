@@ -223,7 +223,7 @@ Test the app:
 * View the custom user data on the `/Identity/Account/Manage` page.
 * Download and view the users personal data from the `/Identity/Account/Manage/PersonalData` page.
 
-# Add claims to Identity using IUserClaimsPrincipalFactory<ApplicationUser>
+## Add claims to Identity using IUserClaimsPrincipalFactory<ApplicationUser>
 
 Additional claims can be added to ASP.NET Core Identity by using the `IUserClaimsPrincipalFactory<T>` interface. This class can be added to the app in the `Startup.ConfigureServices` method. Add the custom implementation of the class as follows:
 
