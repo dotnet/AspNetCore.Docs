@@ -11,7 +11,7 @@ metadata:
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 03/26/2020
+  ms.date: 03/27/2020
 
 # highlightedContent section (optional)
 # Maximum of 8 items
@@ -25,7 +25,7 @@ highlightedContent:
     # Card
     - title: "ASP.NET Core overview"
       itemType: overview
-      url: index.md
+      url: introduction-to-aspnet-core.md
     # Card
     - title: "ASP.NET Core video tutorials"
       itemType: video
