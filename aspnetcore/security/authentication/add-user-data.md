@@ -188,7 +188,7 @@ Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following hig
 
 Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
 
-[!code-chtml[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
+[!code-cshtml[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
 ::: moniker-end
 
