@@ -22,27 +22,22 @@ namespace WebAPI.Controllers
             return NoContent();
         }
 
-        // PUT: api/TodoItems2/5
         [HttpPut("{id}")]
-        public ContentResult PutTodoItem(long id)
+        public IActionResult PutTodoItem(int id)
         {
             if (id < 1)
             {
-                return Content($"ID = {id}");
+                return BadRequest();
             }
 
-            return Content($"PutTodoItem: ID = {id}");
+            return ControllerContext.MyDisplayRouteInfo(id);
         }
         #endregion
 
-        // Delete: api/TodoItems2/5
         [HttpDelete("{id}")]
-        public ContentResult MyDelete(long id)
-        {
-            return Content($"MyDelete: ID = {id}");
-        }
+        public IActionResult MyDelete(int id) =>
+            ControllerContext.MyDisplayRouteInfo(id);
 
-        // GET: api/TodoItems2
         [HttpGet]
         public ContentResult GetTodoItems()
         {
@@ -51,18 +46,17 @@ namespace WebAPI.Controllers
 
         [EnableCors()]
         [HttpGet("{action}")]
-        public ContentResult GetTodoItems2()
+        public IActionResult GetTodoItems2()
         {
             return Content("GetTodoItems2");
         }
 
         #region snippet2
-        // Delete: api/TodoItems2/MyDelete2/5
         [EnableCors()]
         [HttpDelete("{action}/{id}")]
-        public ContentResult MyDelete2(long id)
+        public IActionResult MyDelete2(int id)
         {
-            return Content($"MyDelete2: ID = {id}");
+            return ControllerContext.MyDisplayRouteInfo(id);
         }
         #endregion
     }

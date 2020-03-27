@@ -1,4 +1,4 @@
-//#define StartupTest
+#define StartupTest
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;

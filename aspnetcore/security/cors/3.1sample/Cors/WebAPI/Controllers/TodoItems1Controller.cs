@@ -9,43 +9,35 @@ namespace WebAPI.Controllers
     {
         // PUT: api/TodoItems1/5
         [HttpPut("{id}")]
-        public ContentResult PutTodoItem(long id)
+        public IActionResult PutTodoItem(int id)
         {
             if (id < 1)
             {
                 return Content($"ID = {id}");
             }
 
-            return Content($"PutTodoItem: ID = {id}");
+            return ControllerContext.MyDisplayRouteInfo(id);
         }
 
         // Delete: api/TodoItems1/5
         [HttpDelete("{id}")]
-        public ContentResult MyDelete(long id)
-        {
-            return Content($"MyDelete: ID = {id}");
-        }
+        public IActionResult MyDelete(int id) =>
+            ControllerContext.MyDisplayRouteInfo(id);
 
         // GET: api/TodoItems1
         [HttpGet]
-        public ContentResult GetTodoItems()
-        {
-            return Content("Get TO DO ");
-        }
+        public IActionResult GetTodoItems() =>
+            ControllerContext.MyDisplayRouteInfo();
 
         [EnableCors()]
         [HttpGet("{action}")]
-        public ContentResult GetTodoItems2()
-        {
-            return Content("GetTodoItems2");
-        }
+        public IActionResult GetTodoItems2() =>
+            ControllerContext.MyDisplayRouteInfo();
 
         // Delete: api/TodoItems1/MyDelete2/5
         [EnableCors()]
         [HttpDelete("{action}/{id}")]
-        public ContentResult MyDelete2(long id)
-        {
-            return Content($"MyDelete2: ID = {id}");
-        }
+        public IActionResult MyDelete2(int id) =>
+            ControllerContext.MyDisplayRouteInfo(id);
     }
 }

@@ -9,6 +9,8 @@ uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
 
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Method
+
 ::: moniker range=">= aspnetcore-3.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
@@ -173,7 +175,7 @@ To allow all [author request headers](https://www.w3.org/TR/cors/#author-request
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupAllowSubdomain.cs?name=snippet3)]
 
-`AllowAnyHeader` affects preflight requests and the `Access-Control-Request-Headers` header. For more information, see the [Preflight requests](#preflight-requests) section.
+`AllowAnyHeader` affects preflight requests and the [Access-Control-Request-Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Method) header. For more information, see the [Preflight requests](#preflight-requests) section.
 
 A CORS Middleware policy match to specific headers specified by `WithHeaders` is only possible when the headers sent in `Access-Control-Request-Headers` exactly match the headers stated in `WithHeaders`.
 
@@ -265,26 +267,43 @@ For some CORS requests, the browser sends an additional [OPTIONS](https://develo
 
 The rule on request headers set for the client request applies to headers that the app sets by calling `setRequestHeader` on the `XMLHttpRequest` object. The CORS specification calls these headers [author request headers](https://www.w3.org/TR/cors/#author-request-headers). The rule doesn't apply to headers the browser can set, such as `User-Agent`, `Host`, or `Content-Length`.
 
-The following is an example of a preflight request:
+The following is an example response to a preflight request made from the [Put test button of the deployed sample](https://cors1.azurewebsites.net/):
 
 ```
-OPTIONS https://myservice.azurewebsites.net/api/test HTTP/1.1
+General:
+Request URL: https://cors1.azurewebsites.net/api/values/5
+Request Method: OPTIONS
+Status Code: 204 No Content
+
+Response Headers:
+Access-Control-Allow-Methods: PUT,DELETE,GET
+Access-Control-Allow-Origin: https://cors3.azurewebsites.net
+Server: Microsoft-IIS/10.0
+Set-Cookie: ARRAffinity=8f8...8;Path=/;HttpOnly;Domain=cors1.azurewebsites.net
+Vary: Origin
+
+Request Headers:
 Accept: */*
-Origin: https://myclient.azurewebsites.net
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
 Access-Control-Request-Method: PUT
-Access-Control-Request-Headers: accept, x-my-custom-header
-Accept-Encoding: gzip, deflate
-User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)
-Host: myservice.azurewebsites.net
-Content-Length: 0
+Connection: keep-alive
+Host: cors1.azurewebsites.net
+Origin: https://cors3.azurewebsites.net
+Referer: https://cors3.azurewebsites.net/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+User-Agent: Mozilla/5.0
 ```
 
-The pre-flight request uses the [HTTP OPTIONS](https://developer.mozilla.org/docs/Web/HTTP/Methods/OPTIONS) method. It includes two special headers:
+The pre-flight request uses the [HTTP OPTIONS](https://developer.mozilla.org/docs/Web/HTTP/Methods/OPTIONS) method. It may includes the following headers:
 
-* `Access-Control-Request-Method`: The HTTP method that will be used for the actual request.
-* `Access-Control-Request-Headers`: A list of request headers that the app sets on the actual request. As stated earlier, this doesn't include headers that the browser sets, such as `User-Agent`.
+* [Access-Control-Request-Method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Method): The HTTP method that will be used for the actual request.
+* [Access-Control-Request-Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers): A list of request headers that the app sets on the actual request. As stated earlier, this doesn't include headers that the browser sets, such as `User-Agent`.
+* [Access-Control-Allow-Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods)
 
-A CORS preflight request might include an `Access-Control-Request-Headers` header, which indicates to the server the headers that are sent with the actual request.
+If the preflight request is denied, the app returns a `200 OK` response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request. For an example of denied preflight request, try the [Delete [EnableCores] button](https://cors3.azurewebsites.net/test2) on the deployed sample.
 
 To allow specific headers, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*>:
 
@@ -300,7 +319,7 @@ Browsers aren't consistent in how they set `Access-Control-Request-Headers`. If 
 * <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.AllowAnyHeader*>) is called:
 
   Include at least `Accept`, `Content-Type`, and `Origin`, plus any custom headers that you want to support.
-
+<!-- >
 The following is an example response to the preflight request. The sample assumes that the server allows the request:
 
 ```
@@ -317,6 +336,8 @@ Date: Wed, 20 May 2015 06:33:22 GMT
 The response includes an `Access-Control-Allow-Methods` header that lists the allowed methods and optionally an `Access-Control-Allow-Headers` header, which lists the allowed headers. If the preflight request succeeds, the browser sends the actual request.
 
 If the preflight request is denied, the app returns a *200 OK* response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request.
+
+-->
 
 ### Set the preflight expiration time
 
@@ -342,29 +363,28 @@ This section describes what happens in a [CORS](https://developer.mozilla.org/en
 
 The [CORS specification](https://www.w3.org/TR/cors/) introduced several new HTTP headers that enable cross-origin requests. If a browser supports CORS, it sets these headers automatically for cross-origin requests. Custom JavaScript code isn't required to enable CORS.
 
-The following is an example of a cross-origin request from `https://localhost:5001` to `https://cors1.azurewebsites.net/api/values` . The `Origin` header:
+The following is an example of a cross-origin request from https://cors3.azurewebsites.net/ to `https://cors1.azurewebsites.net/api/values` . The `Origin` header:
 
 * Provides the domain of the site that's making the request.
 * Is required and must be different from the host.
-* Is https://localhost:5001
 
 **General headers**
 
 ```
 Request URL: https://cors1.azurewebsites.net/api/values
 Request Method: GET
+Status Code: 200 OK
 ```
 
 **Response headers**
 
 ```
-Access-Control-Allow-Origin: https://localhost:5001
 Content-Encoding: gzip
-Content-Type: application/json; charset=utf-8
-Date: Sat, 21 Mar 2020 00:02:18 GMT
+Content-Type: text/plain; charset=utf-8
 Server: Microsoft-IIS/10.0
+Set-Cookie: ARRAffinity=8f...;Path=/;HttpOnly;Domain=cors1.azurewebsites.net
 Transfer-Encoding: chunked
-Vary: Origin,Accept-Encoding
+Vary: Accept-Encoding
 X-Powered-By: ASP.NET
 ```
 
@@ -376,15 +396,55 @@ Accept-Encoding: gzip, deflate, br
 Accept-Language: en-US,en;q=0.9
 Connection: keep-alive
 Host: cors1.azurewebsites.net
-Origin: https://localhost:5001
-Referer: https://localhost:5001/test
+Origin: https://cors3.azurewebsites.net
+Referer: https://cors3.azurewebsites.net/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+User-Agent: Mozilla/5.0 ...
+```
+
+In `OPTIONS` requests, the server sets the **Response headers** `Access-Control-Allow-Origin: {allowed origin}` header in the response. For example, the [`deployed sample, Delete [EnableCors] button](https://cors1.azurewebsites.net/test2?number=2) `OPTIONS` request contains the following  headers:
+
+**General headers**
+
+```
+Request URL: https://cors3.azurewebsites.net/api/TodoItems2/MyDelete2/5
+Request Method: OPTIONS
+Status Code: 204 No Content
+```
+
+**Response headers**
+
+```
+Access-Control-Allow-Headers: Content-Type,x-custom-header
+Access-Control-Allow-Methods: PUT,DELETE,GET,OPTIONS
+Access-Control-Allow-Origin: https://cors1.azurewebsites.net
+Server: Microsoft-IIS/10.0
+Set-Cookie: ARRAffinity=8f...;Path=/;HttpOnly;Domain=cors3.azurewebsites.net
+Vary: Origin
+X-Powered-By: ASP.NET
+```
+
+**Request headers**
+
+```
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Access-Control-Request-Headers: content-type
+Access-Control-Request-Method: DELETE
+Connection: keep-alive
+Host: cors3.azurewebsites.net
+Origin: https://cors1.azurewebsites.net
+Referer: https://cors1.azurewebsites.net/test2?number=2
 Sec-Fetch-Dest: empty
 Sec-Fetch-Mode: cors
 Sec-Fetch-Site: cross-site
 User-Agent: Mozilla/5.0
 ```
 
-In the preceding **Response headers**, the server sets the `Access-Control-Allow-Origin: https://localhost:5001` header in the response. The `https://localhost:5001` value of this header matches the `Origin` header from the request.
+In the preceding **Response headers**, the server sets the [Access-Control-Allow-Origin](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin): `https://cors1.azurewebsites.net` header in the response. The `https://cors1.azurewebsites.net` value of this header matches the Origin header from the request
 
 If <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrigin*> is called, the `Access-Control-Allow-Origin: *`, the wildcard value, is returned. `AllowAnyOrigin` allows any origin.
 

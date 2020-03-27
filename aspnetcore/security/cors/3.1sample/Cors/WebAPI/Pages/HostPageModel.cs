@@ -9,11 +9,11 @@ namespace WebAPI
 
         public void SetHost(IConfiguration configuration)
         {
-            Host = configuration["host3"];
+            Host = configuration["host1"];
             var theHost = HttpContext.Request.Host.Value;
             if (Host.Contains(theHost))
             {
-                Host = configuration["host1"];
+                Host = configuration["host3"];
             }
         }
     }

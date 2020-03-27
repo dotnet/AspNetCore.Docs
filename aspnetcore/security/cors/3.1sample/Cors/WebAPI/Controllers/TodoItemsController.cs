@@ -10,7 +10,7 @@ namespace WebAPI.Controllers
     {
         // PUT: api/TodoItems/5
         [HttpPut("{id}")]
-        public ContentResult PutTodoItem(long id)
+        public ContentResult PutTodoItem(int id)
         {
             if (id < 1)
             {
@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
 
         // Delete: api/TodoItems/5
         [HttpDelete("{id}")]
-        public ContentResult MyDelete(long id)
+        public ContentResult MyDelete(int id)
         {
             return Content($"MyDelete: ID = {id}");
         }
