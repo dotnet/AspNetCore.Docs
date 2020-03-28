@@ -29,13 +29,13 @@ namespace WebAPI.Controllers
         public IActionResult GetTodoItems() =>
             ControllerContext.MyDisplayRouteInfo();
 
-        [EnableCors()]
+        [EnableCors]
         [HttpGet("{action}")]
         public IActionResult GetTodoItems2() =>
             ControllerContext.MyDisplayRouteInfo();
 
         // Delete: api/TodoItems1/MyDelete2/5
-        [EnableCors()]
+        [EnableCors]
         [HttpDelete("{action}/{id}")]
         public IActionResult MyDelete2(int id) =>
             ControllerContext.MyDisplayRouteInfo(id);
