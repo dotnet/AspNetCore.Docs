@@ -7,6 +7,7 @@ using Microsoft.Net.Http.Headers;
 
 namespace WebAPI
 {
+    #region snippet2
     public class StartupEndPointBugTest
     {
         public StartupEndPointBugTest(IConfiguration configuration)
@@ -68,4 +69,5 @@ namespace WebAPI
             });
         }
     }
+    #endregion
 }

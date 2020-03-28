@@ -303,7 +303,7 @@ The pre-flight request uses the [HTTP OPTIONS](https://developer.mozilla.org/doc
 * [Access-Control-Request-Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers): A list of request headers that the app sets on the actual request. As stated earlier, this doesn't include headers that the browser sets, such as `User-Agent`.
 * [Access-Control-Allow-Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods)
 
-If the preflight request is denied, the app returns a `200 OK` response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request. For an example of denied preflight request, try the [Delete [EnableCores] button](https://cors3.azurewebsites.net/test2) on the deployed sample.
+If the preflight request is denied, the app returns a `200 OK` response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request. For an example of denied preflight request, try the [Delete [EnableCores] button](https://cors3.azurewebsites.net/test) on the deployed sample.
 
 To allow specific headers, call <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithHeaders*>:
 
@@ -404,7 +404,7 @@ Sec-Fetch-Site: cross-site
 User-Agent: Mozilla/5.0 ...
 ```
 
-In `OPTIONS` requests, the server sets the **Response headers** `Access-Control-Allow-Origin: {allowed origin}` header in the response. For example, the [deployed sample, Delete [EnableCors] button](https://cors1.azurewebsites.net/test2?number=2) `OPTIONS` request contains the following  headers:
+In `OPTIONS` requests, the server sets the **Response headers** `Access-Control-Allow-Origin: {allowed origin}` header in the response. For example, the [deployed sample, Delete [EnableCors] button](https://cors1.azurewebsites.net/test?number=2) `OPTIONS` request contains the following  headers:
 
 **General headers**
 
@@ -437,7 +437,7 @@ Access-Control-Request-Method: DELETE
 Connection: keep-alive
 Host: cors3.azurewebsites.net
 Origin: https://cors1.azurewebsites.net
-Referer: https://cors1.azurewebsites.net/test2?number=2
+Referer: https://cors1.azurewebsites.net/test?number=2
 Sec-Fetch-Dest: empty
 Sec-Fetch-Mode: cors
 Sec-Fetch-Site: cross-site
@@ -450,9 +450,9 @@ If <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrig
 
 If the response doesn't include the `Access-Control-Allow-Origin` header, the cross-origin request fails. Specifically, the browser disallows the request. Even if the server returns a successful response, the browser doesn't make the response available to the client app.
 
-<a name="test"></a>
+<a name="options"></a>
 
-### Display OPTIONS request
+### Display OPTIONS requests
 
 By default, the Chrome and Edge browsers don't show OPTIONS requests on the network tab of the F12 tools. To display OPTIONS requests, in the browser:
 
@@ -460,36 +460,31 @@ By default, the Chrome and Edge browsers don't show OPTIONS requests on the netw
 * disable the flag.
 * restart.
 
-Firefox shows OPTIONS requests.
+Firefox shows OPTIONS requests by default.
 
 ## Test CORS
 
-To test CORS:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/Cors/WebApi) has code to test CORS. See [how to download](xref:index#how-to-download-a-sample). The sample is an API project with Razor Pages added:
 
-[Download the sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/Cors/WebApi). See [how to download](xref:index#how-to-download-a-sample). The sample is an API project with Razor Pages added:
-
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPt.cs?name=snippet2)]
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPointBugTest.cs?name=snippet2)]
 
   > [!WARNING]
   > `WithOrigins("https://localhost:<port>");` should only be used for testing a sample app similar to the [download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/cors/sample/Cors).
 
-The download sample contains the following Razor Pages Test file:
+Run the code testing CORS be either:
 
-  [!code-csharp[](cors/sample/Cors/ClientApp/Pages/Index2.cshtml?highlight=7-99)]
+* Running the deployed sample app at [https://cors3.azurewebsites.net/](https://cors3.azurewebsites.net/). There is no need to download the sample.
+* Running the sample from `dotnet run` using the default [https://localhost:5001](https://localhost:5001) localhost port.
+* Running the sample from Visual Studio with the port set to 44398. [https://localhost:44398](https://localhost:44398).
 
-1. In the preceding code, replace `url: 'https://<web app>.azurewebsites.net/api/values/1',` with the URL to the deployed app.
-1. Deploy the API project. For example, [deploy to Azure](xref:host-and-deploy/azure-apps/index).
-1. Run the Razor Pages or MVC app from the desktop and click on the **Test** button. Use the F12 tools to review error messages.
-1. Remove the localhost origin from `WithOrigins` and deploy the app. Alternatively, run the client app with a different port. For example, run from Visual Studio.
-1. Test with the client app. CORS failures return an error, but the error message isn't available to JavaScript. Use the console tab in the F12 tools to see the error. Depending on the browser, you get an error (in the F12 tools console) similar to the following:
+Using a browser with the F12 tools:
 
-   * Using Microsoft Edge:
+* Select the **Values** button and review the headers in the **Network** tab.
+* Select the **PUT test** button. See [Display OPTIONS requests](#options) for instructions on displaying the OPTIONS request. The **PUT test** displays two requests, an OPTIONS preflight request and the PUT request.
+* Select the **`GetValues2 [DisableCors]`** button to trigger a failed CORS request. As mentioned in the document, the response returns 200 success, but the CORS request is not made. Use the **Console** to see the CORS error.
+Use the console tab in the F12 tools to see errors. Depending on the browser, an error similar to the following is displayed:
 
-     **SEC7120: [CORS] The origin `https://localhost:44375` did not find `https://localhost:44375` in the Access-Control-Allow-Origin response header for cross-origin  resource at `https://webapi.azurewebsites.net/api/values/1`**
-
-   * Using Chrome:
-
-     **Access to XMLHttpRequest at `https://webapi.azurewebsites.net/api/values/1` from origin `https://localhost:44375` has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.**
+     Access to fetch at `'https://cors1.azurewebsites.net/api/values/GetValues2'` from origin `'https://cors3.azurewebsites.net'` has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
      
 CORS-enabled endpoints can be tested with a tool, such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/). When using a tool, the origin of the request specified by the `Origin` header must differ from the host receiving the request. If the request isn't *cross-origin* based on the value of the `Origin` header:
 

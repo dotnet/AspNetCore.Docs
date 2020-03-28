@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 
 namespace WebAPI
@@ -16,10 +15,9 @@ namespace WebAPI
         [BindProperty(SupportsGet = true)]
         public int Number { get; set; } = 1;
 
-
         public void OnGet()
         {
-            SetHost(Configuration);
+            SetHost(Configuration,true);
         }
     }
 }

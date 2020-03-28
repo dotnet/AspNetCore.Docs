@@ -7,13 +7,20 @@ namespace WebAPI
     {
         public string Host { get; set; }
 
-        public void SetHost(IConfiguration configuration)
+        public void SetHost(IConfiguration configuration, bool changeOrder=false)
         {
-            Host = configuration["host1"];
+            var h1 = "host1";
+            var h3 = "host3";
+            if (changeOrder==true)
+            {
+                h1 = "host3";
+                h3 = "host1";
+            }
+            Host = configuration[h1];
             var theHost = HttpContext.Request.Host.Value;
             if (Host.Contains(theHost))
             {
-                Host = configuration["host3"];
+                Host = configuration[h3];
             }
         }
     }

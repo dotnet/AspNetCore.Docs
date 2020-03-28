@@ -1,17 +1,25 @@
 ﻿@page
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
 @model WebAPI.TestModel
-@{
-    Layout = null;
-}
-
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @*Must be used with StartupEndPointBugTest*@
 
- <script src="~/js/MyJS.js"></script>
+<script src="~/js/MyJS.js"></script>
 
 <div class="text-center">
     <h1 class="display-4">CORS Test</h1>
+    @{
+        var host1 = Configuration["host1"];
+        var hostTest = host1 + "/test";
+
+        var theHost = HttpContext.Request.Host.Value;
+        if (!host1.Contains(theHost) && !theHost.Contains("localhost"))
+        {
+            <text>Test from <a href="@hostTest">@hostTest</a>  or
+            <a href="https://localhost:5001/test">https://localhost:5001/test</a>
+            </text>
+        }
+    }
+
 </div>
 
 
@@ -22,7 +30,7 @@
 
 <form>
     <p>
-        Controller: 
+        Controller:
         <select name="number" asp-for="Number">
             <option selected="selected" value="1">No-preflight</option>
             <option value="2">Preflight</option>
@@ -34,7 +42,7 @@
 
 <ul>
     <li>
-        <input type="button" value="PUT test MyTestCors"
+        <input type="button" value="PUT test "
                onclick="MyTestCors( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/5', 'PUT')" />
     </li>
 
