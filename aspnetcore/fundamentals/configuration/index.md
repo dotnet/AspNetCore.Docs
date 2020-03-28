@@ -278,7 +278,7 @@ For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't 
 
 ## Hierarchical configuration data
 
-The Configuration API is reads hierarchical configuration data by flattening the hierarchical data with the use of a delimiter in the configuration keys.
+The Configuration API reads hierarchical configuration data by flattening the hierarchical data with the use of a delimiter in the configuration keys.
 
 The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  *appsettings.json* file:
 
