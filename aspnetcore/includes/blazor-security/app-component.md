@@ -5,6 +5,7 @@ The `App` component (*App.razor*) is similar to the `App` component found in Bla
 * The `RedirectToLogin` component manages redirecting unauthorized users to the login page.
 
 ```razor
+@using Microsoft.AspNetCore.Components.Authorization
 <CascadingAuthenticationState>
     <Router AppAssembly="@typeof(Program).Assembly">
         <Found Context="routeData">
