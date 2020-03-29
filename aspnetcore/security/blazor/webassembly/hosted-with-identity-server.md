@@ -157,6 +157,10 @@ builder.Services.AddApiAuthorization();
 
 By default, it loads the configuration for the app by convention from `_configuration/{client-id}`. By convention, the client ID is set to the app's assembly name. This URL can be changed to point to a separate endpoint by calling the overload with options.
 
+### Imports file
+
+[!INCLUDE[](~/includes/blazor-security/imports-file-hosted.md)]
+
 ### Index page
 
 [!INCLUDE[](~/includes/blazor-security/index-page-authentication.md)]
