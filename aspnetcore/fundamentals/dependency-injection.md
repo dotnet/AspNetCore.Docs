@@ -395,7 +395,7 @@ The services available within an ASP.NET Core request from `HttpContext` are exp
 
 Request Services represent the services configured and requested as part of the app. When the objects specify dependencies, these are satisfied by the types found in `RequestServices`, not `ApplicationServices`.
 
-Generally, the app shouldn't use these properties directly. Instead, request the types that classes require via class constructors and allow the framework inject the dependencies. This yields classes that are easier to test.
+Generally, the app shouldn't use these properties directly. Instead, request the types that classes require via class constructors and allow the framework to inject the dependencies. This yields classes that are easier to test.
 
 > [!NOTE]
 > Prefer requesting dependencies as constructor parameters to accessing the `RequestServices` collection.
