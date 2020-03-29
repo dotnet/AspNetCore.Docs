@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    #region snippet2
     [Route("api/[controller]")]
     [ApiController]
     public class TodoItems1Controller : ControllerBase
@@ -40,4 +41,5 @@ namespace WebAPI.Controllers
         public IActionResult MyDelete2(int id) =>
             ControllerContext.MyDisplayRouteInfo(id);
     }
+    #endregion
 }

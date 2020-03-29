@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     #region snippet
-    [EnableCors(MyGC.MyAllowSpecificOrigins)]
+    [EnableCors()]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    #region snippet2
     #region snippet
     [Route("api/[controller]")]
     [ApiController]
@@ -10,7 +11,7 @@ namespace WebAPI.Controllers
     {
         // OPTIONS: api/TodoItems2/5
         [HttpOptions("{id}")]
-        public IActionResult PreflightRouteID()
+        public IActionResult PreflightRoute(int id)
         {
             return NoContent();
         }
@@ -42,14 +43,13 @@ namespace WebAPI.Controllers
         public IActionResult GetTodoItems() =>
             ControllerContext.MyDisplayRouteInfo();
 
-        [EnableCors]
         [HttpGet("{action}")]
         public IActionResult GetTodoItems2() =>
             ControllerContext.MyDisplayRouteInfo();
 
-        [EnableCors]
         [HttpDelete("{action}/{id}")]
         public IActionResult MyDelete2(int id) =>
             ControllerContext.MyDisplayRouteInfo(id);
     }
+    #endregion
 }

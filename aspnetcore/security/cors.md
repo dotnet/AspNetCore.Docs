@@ -94,8 +94,8 @@ In the preceding code:
 
 The [[EnableCors]](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute provides an alternative to applying CORS globally. The `[EnableCors]` attribute enables CORS for selected end points, rather than all end points:
 
-* `[EnableCors]` to specifies the default policy.
-* `[EnableCors("{Policy String}")]` to a specific a policy.
+* `[EnableCors]` specifies the default policy.
+* `[EnableCors("{Policy String}")]` specifies a specific a policy.
 
 The `[EnableCors]` attribute can be applied to:
 
@@ -127,6 +127,8 @@ The following code doesn't set a CORS policy in middleware:
 Using the preceding code, the following code disables CORS in for the `GetValues2` method:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet&highlight=1,21)]
+
+See [Test CORS](#testc) for instructions on testing the preceding code.
 
 <a name="cpo"></a>
 
@@ -359,11 +361,11 @@ Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*
 
 When CORS is enabled with the appropriate policy, ASP.NET Core generally automatically responds to CORS preflight requests. In some cases, code may not be generated to respond to preflight requests, for example, using [CORS with endpoint routing](ecors).
 
-The following code uses the [[HttpOptions]](xref:Microsoft.AspNetCore.Mvc.HttpOptionsAttribute) attribute to generate code to respond to OPTIONS requests:
+The following code uses the [[HttpOptions]](xref:Microsoft.AspNetCore.Mvc.HttpOptionsAttribute) attribute to create routes to OPTIONS requests:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/TodoItems2Controller.cs?name=snippet&highlight=6,14)]
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/TodoItems2Controller.cs?name=snippet&highlight=5-17)]
 
-See [Test CORS](#testc) for instructions on testing the preceding code.
+See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions on testing the preceding code.
 
 ### Set the preflight expiration time
 
@@ -494,12 +496,16 @@ Firefox shows OPTIONS requests by default.
 
 The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/Cors/WebApi) has code to test CORS. See [how to download](xref:index#how-to-download-a-sample). The sample is an API project with Razor Pages added:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPointBugTest.cs?name=snippet2)]
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupTest.cs?name=snippet2)]
 
   > [!WARNING]
   > `WithOrigins("https://localhost:<port>");` should only be used for testing a sample app similar to the [download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/cors/sample/Cors).
 
-Test the sample code by one of the following approaches:
+The following `ValuesController` provides the endpoints for testing:
+
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet)]
+
+Test the preceding sample code by one of the following approaches:
 
 * Running the deployed sample app at [https://cors3.azurewebsites.net/](https://cors3.azurewebsites.net/). There is no need to download the sample.
 * Running the sample from `dotnet run` using the default [https://localhost:5001](https://localhost:5001) localhost port.
@@ -519,11 +525,28 @@ CORS-enabled endpoints can be tested with a tool, such as [Fiddler](https://www.
 * There's no need for CORS Middleware to process the request.
 * CORS headers aren't returned in the response.
 
+<a name="tcer"></a>
 
-<!---
+### Test CORS with endpoint routing and [HttpOptions]
 
-Access to fetch at 'https://cors1.azurewebsites.net/api/TodoItems/5' from origin 'https://localhost:5001' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.S
--->
+Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [automatic pre-flight requests](apf). Consider the following code which uses [endpoint routing to enable CORS](ecors):
+
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPointBugTest.cs?name=snippet2)]
+
+The following `TodoItems1Controller` provides endpoints for testing:
+
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/TodoItems1Controller.cs?name=snippet2)]
+
+Test the preceding code from the [test page](https://cors1.azurewebsites.net/test) of the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi).
+
+The **Delete [EnableCors]** and **GET [EnableCors]** buttons succeed, because the endpoints have `[EnableCors]` and respond to preflight requests. The other endpoints fails.
+
+The following `TodoItems2Controller` provides similar endpoints, but includes explicit code to respond to OPTIONS requests:
+
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/TodoItems1Controller.cs?name=snippet2)]
+
+Test the preceding code from the [test page of the deployed sample](https://cors1.azurewebsites.net/test). In the **Controller** drop down list, select **Preflight** and then **Set**. All the CORS calls to these endpoints succeed.
+
 ## CORS in IIS
 
 When deploying to IIS, CORS has to run before Windows Authentication if the server isn't configured to allow anonymous access. To support this scenario, the [IIS CORS module](https://www.iis.net/downloads/microsoft/iis-cors-module)
@@ -631,7 +654,7 @@ Note: `UseCors` must be called before `UseMvc`.
 
 See [Enable CORS in Razor Pages, controllers, and action methods](#ecors) to apply CORS policy at the page/controller/action level.
 
-See [Test CORS](#testc) for instructions on testing the preceding code.
+See [Test CORS](#test) for instructions on testing the preceding code.
 
 ## Enable CORS with attributes
 

@@ -4,10 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-// Default test case and snippets for test case
-
 namespace WebAPI
 {
+    #region snippet2
     public class StartupTest
     {
         public StartupTest(IConfiguration configuration)
@@ -21,7 +20,7 @@ namespace WebAPI
         {
             services.AddCors(options =>
             {
-                options.AddPolicy(name: MyGC.MyAllowSpecificOrigins,
+                options.AddDefaultPolicy(
                                   builder =>
                                   {
                                       builder.WithOrigins("http://example.com",
@@ -63,4 +62,5 @@ namespace WebAPI
             });
         }
     }
+    #endregion
 }
