@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     #region snippet
-    [EnableCors()]
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
         public IActionResult Get(int id) =>
             ControllerContext.MyDisplayRouteInfo(id);
 
-        // Put api/values/5
+        // PUT api/values/5
         [HttpPut("{id}")]
         public IActionResult Put(int id) =>
             ControllerContext.MyDisplayRouteInfo(id);
