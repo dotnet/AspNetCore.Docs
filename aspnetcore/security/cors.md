@@ -307,7 +307,7 @@ The pre-flight request uses the [HTTP OPTIONS](https://developer.mozilla.org/doc
 * [Access-Control-Request-Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers): A list of request headers that the app sets on the actual request. As stated earlier, this doesn't include headers that the browser sets, such as `User-Agent`.
 * [Access-Control-Allow-Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods)
 
-If the preflight request is denied, the app returns a `200 OK` response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request. For an example of denied preflight request, try the [Delete [EnableCores]](https://cors3.azurewebsites.net/test) button on the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi). Using the F12 tools, the console app shows an error similar to one of the following, depending on the browser:
+If the preflight request is denied, the app returns a `200 OK` response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request. For an example of denied preflight request, select the [GetValues2 [DisableCores]](https://cors3.azurewebsites.net/test) button on the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi). Using the F12 tools, the console app shows an error similar to one of the following, depending on the browser:
 
 * Firefox: Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at `https://cors1.azurewebsites.net/api/TodoItems1/MyDelete2/5`. (Reason: CORS request did not succeed). [Learn More](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSDidNotSucceed)
 * Chromium based: Access to fetch at 'https://cors1.azurewebsites.net/api/TodoItems1/MyDelete2/5' from origin 'https://cors3.azurewebsites.net' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
@@ -498,6 +498,11 @@ Firefox shows OPTIONS requests by default.
 
 <a name="testc"></a>
 
+## CORS in IIS
+
+When deploying to IIS, CORS has to run before Windows Authentication if the server isn't configured to allow anonymous access. To support this scenario, the [IIS CORS module](https://www.iis.net/downloads/microsoft/iis-cors-module)
+needs to be installed and configured for the app.
+
 ## Test CORS
 
 The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/Cors/WebApi) has code to test CORS. See [how to download](xref:index#how-to-download-a-sample). The sample is an API project with Razor Pages added:
@@ -505,34 +510,42 @@ The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspn
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupTest.cs?name=snippet2)]
 
   > [!WARNING]
-  > `WithOrigins("https://localhost:<port>");` should only be used for testing a sample app similar to the [download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/cors/sample/Cors).
+  > `WithOrigins("https://localhost:<port>");` should only be used for testing a sample app similar to the [download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/cors/3.1sample/Cors).
 
 The following `ValuesController` provides the endpoints for testing:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet)]
 
+[MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/Cors/WebApi/Extensions/ControllerContextExtensions.cs) in the preceding code displays route information.
+
 Test the preceding sample code by one of the following approaches:
 
 * Running the deployed sample app at [https://cors3.azurewebsites.net/](https://cors3.azurewebsites.net/). There is no need to download the sample.
 * Running the sample from `dotnet run` using the default [https://localhost:5001](https://localhost:5001) localhost port.
-* Running the sample from Visual Studio with the port set to 44398. [https://localhost:44398](https://localhost:44398).
+* Running the sample from Visual Studio with the port set to 44398, `https://localhost:44398`.
 
 Using a browser with the F12 tools:
 
 * Select the **Values** button and review the headers in the **Network** tab.
 * Select the **PUT test** button. See [Display OPTIONS requests](#options) for instructions on displaying the OPTIONS request. The **PUT test** displays two requests, an OPTIONS preflight request and the PUT request.
-* Select the **`GetValues2 [DisableCors]`** button to trigger a failed CORS request. As mentioned in the document, the response returns 200 success, but the CORS request is not made. Use the **Console** to see the CORS error.
-Use the console tab in the F12 tools to see errors. Depending on the browser, an error similar to the following is displayed:
+* Select the **`GetValues2 [DisableCors]`** button to trigger a failed CORS request. As mentioned in the document, the response returns 200 success, but the CORS request is not made. Select the **Console** tab to see the CORS error. Depending on the browser, an error similar to the following is displayed:
 
      Access to fetch at `'https://cors1.azurewebsites.net/api/values/GetValues2'` from origin `'https://cors3.azurewebsites.net'` has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
      
-CORS-enabled endpoints can be tested with a tool, such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/). When using a tool, the origin of the request specified by the `Origin` header must differ from the host receiving the request. If the request isn't *cross-origin* based on the value of the `Origin` header:
+CORS-enabled endpoints can be tested with a tool, such as [curl](https://curl.haxx.se/), [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/). When using a tool, the origin of the request specified by the `Origin` header must differ from the host receiving the request. If the request isn't *cross-origin* based on the value of the `Origin` header:
 
 * There's no need for CORS Middleware to process the request.
 * CORS headers aren't returned in the response.
 
-<!--
+The following command uses `curl`:
 
+```cmd
+curl -X OPTIONS https://cors3.azurewebsites.net/api/TodoItems2/5 -i
+```
+
+<!--
+curl come with Git. Add to path variable
+C:\Program Files\Git\mingw64\bin\
 -->
 
 <a name="tcer"></a>
@@ -553,14 +566,9 @@ The **Delete [EnableCors]** and **GET [EnableCors]** buttons succeed, because th
 
 The following `TodoItems2Controller` provides similar endpoints, but includes explicit code to respond to OPTIONS requests:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/TodoItems1Controller.cs?name=snippet2)]
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/TodoItems2Controller.cs?name=snippet2)]
 
-Test the preceding code from the [test page of the deployed sample](https://cors1.azurewebsites.net/test). In the **Controller** drop down list, select **Preflight** and then **Set**. All the CORS calls to these endpoints succeed.
-
-## CORS in IIS
-
-When deploying to IIS, CORS has to run before Windows Authentication if the server isn't configured to allow anonymous access. To support this scenario, the [IIS CORS module](https://www.iis.net/downloads/microsoft/iis-cors-module)
-needs to be installed and configured for the app.
+Test the preceding code from the [test page of the deployed sample](https://cors1.azurewebsites.net/test). In the **Controller** drop down list, select **Preflight** and then **Set**. All the CORS calls to the `TodoItems2Controller` endpoints succeed.
 
 ## Additional resources
 
@@ -568,19 +576,6 @@ needs to be installed and configured for the app.
 * [Getting started with the IIS CORS module](https://blogs.iis.net/iisteam/getting-started-with-the-iis-cors-module)
 
 ::: moniker-end
-
-<!--
-curl come with Git. Add to path variable
-C:\Program Files\Git\mingw64\bin\
-curl -X OPTIONS https://localhost:5001/api/TodoItems/5 -i
-
-To add OPTIONS request to chrome/edge network tab/f12 tools:
-
-* chrome://flags/#out-of-blink-cors or edge://flags/#out-of-blink-cors
-* disable the flag
-* restart.
-
--->
 
 ::: moniker range="< aspnetcore-3.0"
 
