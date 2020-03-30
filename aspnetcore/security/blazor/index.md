@@ -40,7 +40,10 @@ Blazor uses the existing ASP.NET Core authentication mechanisms to establish the
 
 In Blazor WebAssembly apps, authentication checks can be bypassed because all client-side code can be modified by users. The same is true for all client-side app technologies, including JavaScript SPA frameworks or native apps for any operating system.
 
-Add a package reference for [Microsoft.AspNetCore.Components.Authorization](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization/) to the app's project file.
+Add the following:
+
+* A package reference for [Microsoft.AspNetCore.Components.Authorization](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization/) to the app's project file.
+* The `Microsoft.AspNetCore.Components.Authorization` namespace to the app's *_Imports.razor* file.
 
 To handle authentication, implementation of a built-in or custom `AuthenticationStateProvider` service is covered in the following sections.
 
@@ -206,12 +209,6 @@ If authentication state data is required for procedural logic, such as when perf
 }
 ```
 
-> [!NOTE]
-> In a Blazor WebAssembly app component, add:
->
-> * A package reference for [Microsoft.AspNetCore.Components.Authorization](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization/).
-> * The `Microsoft.AspNetCore.Components.Authorization` namespace (`@using Microsoft.AspNetCore.Components.Authorization`).
-
 If `user.Identity.IsAuthenticated` is `true`, claims can be enumerated and membership in roles evaluated.
 
 Set up the `Task<AuthenticationState>` cascading parameter using the `AuthorizeRouteView` and `CascadingAuthenticationState` components in the `App` component (*App.razor*):
@@ -230,12 +227,6 @@ Set up the `Task<AuthenticationState>` cascading parameter using the `AuthorizeR
     </NotFound>
 </Router>
 ```
-
-> [!NOTE]
-> In a Blazor WebAssembly app component, add:
->
-> * A package reference for [Microsoft.AspNetCore.Components.Authorization](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization/).
-> * The `Microsoft.AspNetCore.Components.Authorization` namespace (`@using Microsoft.AspNetCore.Components.Authorization`) to the `App` component.
 
 In a Blazor WebAssembly App, add services for options and authorization to `Program.Main`:
 
@@ -358,9 +349,6 @@ The `[Authorize]` attribute can be used in Razor components:
 You can only see this if you're signed in.
 ```
 
-> [!NOTE]
-> In a Blazor WebAssembly app, add the `Microsoft.AspNetCore.Authorization` namespace (`@using Microsoft.AspNetCore.Authorization`) to the examples in this section.
-
 > [!IMPORTANT]
 > Only use `[Authorize]` on `@page` components reached via the Blazor Router. Authorization is only performed as an aspect of routing and *not* for child components rendered within a page. To authorize the display of specific parts within a page, use `AuthorizeView` instead.
 
@@ -423,12 +411,6 @@ In the default Blazor Server project template, the `App` component (*App.razor*)
 </Router>
 ```
 
-> [!NOTE]
-> In a Blazor WebAssembly app, add:
->
-> * A package reference for [Microsoft.AspNetCore.Components.Authorization](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization/).
-> * The `Microsoft.AspNetCore.Components.Authorization` namespace (`@using Microsoft.AspNetCore.Components.Authorization`) to the `App` component.
-
 The content of `<NotFound>`, `<NotAuthorized>`, and `<Authorizing>` tags can include arbitrary items, such as other interactive components.
 
 If the `<NotAuthorized>` element isn't specified, the `AuthorizeRouteView` uses the following fallback message:
@@ -485,6 +467,8 @@ If the app is required to check authorization rules as part of procedural logic,
 > @using Microsoft.AspNetCore.Authorization
 > @using Microsoft.AspNetCore.Components.Authorization
 > ```
+>
+> These namespaces can be provided globally by adding them to the app's *_Imports.razor* file.
 
 ## Authorization in Blazor WebAssembly apps
 
@@ -513,12 +497,6 @@ It's likely that the project wasn't created using a Blazor Server template with 
 ```
 
 The `CascadingAuthenticationState` supplies the `Task<AuthenticationState>` cascading parameter, which in turn it receives from the underlying `AuthenticationStateProvider` DI service.
-
-> [!NOTE]
-> In a Blazor WebAssembly app, add:
->
-> * A package reference for [Microsoft.AspNetCore.Components.Authorization](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization/).
-> * The `Microsoft.AspNetCore.Components.Authorization` namespace (`@using Microsoft.AspNetCore.Components.Authorization`) to the `App` component.
 
 ## Additional resources
 
