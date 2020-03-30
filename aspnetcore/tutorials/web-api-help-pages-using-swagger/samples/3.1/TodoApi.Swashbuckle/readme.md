@@ -178,18 +178,18 @@ To suppress warnings only for specific members, enclose the code in [#pragma war
 ```csharp
 namespace TodoApi
 {
-#pragma warning disable CS1591
+    #pragma warning disable CS1591
     public class Program
     {
-        public static void Main(string[] args) =>
-            BuildWebHost(args).Run();
+        public static void Main(string[] args) => 
+            CreateHostBuilder(args).Build().Run();
+     
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });       
     }
-#pragma warning restore CS1591
+    #pragma warning restore CS1591
 }
 ```
 
