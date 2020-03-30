@@ -1,11 +1,17 @@
 ﻿@page
-@model WebAPI.TestModel
+@using WebAPI
+
+@model TestModel
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @*Must be used with StartupEndPointBugTest*@
 
 <script src="~/js/MyJS.js"></script>
 
 <div class="text-center">
+
     <h1 class="display-4">CORS Test</h1>
     @{
         var host1 = Configuration["host1"];
@@ -30,40 +36,38 @@
 
 <form>
     <p>
-        Controller:
-        <select name="number" asp-for="Number">
-            <option selected="selected" value="1">No-preflight</option>
-            <option value="2">Preflight</option>
+        <select asp-for="Number" asp-items="Model.Genres">
         </select>
-
-        <input type="submit" value="Set" />
+        <input type="submit" value="Set Controller" />
     </p>
 </form>
 
 <ul>
     <li>
         <input type="button" value="PUT test "
-               onclick="MyTestCors( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/5', 'PUT')" />
+               onclick="MyTestCorsX( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/5', 'PUT')" />
     </li>
 
     <li>
         <input type="button" value="Delete test"
-               onclick="MyTestCors( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/5', 'DELETE')" />
+               onclick="MyTestCorsX( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/5', 'DELETE')" />
     </li>
 
     <li>
         <input type="button" value="Delete [EnableCors]"
-               onclick="MyTestCors( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/MyDelete2/5', 'DELETE')" />
+               onclick="MyTestCorsX( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/MyDelete2/5', 'DELETE')" />
     </li>
 
     <li>
+        @*GET requires preflight request because of
+        "Content-Type": "x-custom-header"*@
         <input type="button" value="GET"
-               onclick="MyTestCors( '@Model.Host', '/api/TodoItems' + '@Model.Number', 'GET')" />
+               onclick="MyTestCorsX( '@Model.Host', '/api/TodoItems' + '@Model.Number', 'GET')" />
     </li>
 
     <li>
         <input type="button" value="GET [EnableCors]"
-               onclick="MyTestCors( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/GetTodoItems2', 'GET')" />
+               onclick="MyTestCorsX( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/GetTodoItems2', 'GET')" />
     </li>
 
 </ul>

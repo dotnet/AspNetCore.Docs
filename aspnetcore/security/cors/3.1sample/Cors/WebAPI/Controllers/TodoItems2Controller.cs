@@ -35,10 +35,12 @@ namespace WebAPI.Controllers
         }
         #endregion
 
+        // [EnableCors] // Not needed as OPTIONS path provided
         [HttpDelete("{id}")]
         public IActionResult MyDelete(int id) =>
             ControllerContext.MyDisplayRouteInfo(id);
 
+        [EnableCors]  // Rquired for this path
         [HttpGet]
         public IActionResult GetTodoItems() =>
             ControllerContext.MyDisplayRouteInfo();
@@ -47,6 +49,7 @@ namespace WebAPI.Controllers
         public IActionResult GetTodoItems2() =>
             ControllerContext.MyDisplayRouteInfo();
 
+        [EnableCors]  // Rquired for this path
         [HttpDelete("{action}/{id}")]
         public IActionResult MyDelete2(int id) =>
             ControllerContext.MyDisplayRouteInfo(id);
