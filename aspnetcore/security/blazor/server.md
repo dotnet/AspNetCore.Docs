@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats to Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/23/2020
+ms.date: 03/30/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/server
 ---
@@ -64,17 +64,13 @@ Permissible authentication values (`{AUTHENTICATION}`) are shown in the followin
 
 The command creates a folder named with the value provided for the `{APP NAME}` placeholder and uses the folder name as the app's name. For more information, see the [dotnet new](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
-<!--
-
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Follow the Visual Studio for Mac guidance in the <xref:blazor/get-started> article.
 
-1.
+1. On the **Configure your new Blazor Server App** step, select **Individual Authentication (in-app)** from the **Authentication** drop down.
 
-1.
-
--->
+1. The app is created for individual users stored in the app with ASP.NET Core Identity.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
