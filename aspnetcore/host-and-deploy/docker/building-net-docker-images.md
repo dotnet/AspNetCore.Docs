@@ -173,7 +173,7 @@ To use the manually published application within a Docker container, create a ne
 
 ::: moniker range="< aspnetcore-3.0"
 
-```console
+```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
 WORKDIR /app
 COPY published/aspnetapp.dll ./
@@ -209,7 +209,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ::: moniker range=">= aspnetcore-3.0"
 
-```console
+```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
 COPY published/aspnetapp.dll ./
@@ -243,7 +243,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ::: moniker-end
 
-```console
+```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
 COPY published/aspnetapp.dll ./
