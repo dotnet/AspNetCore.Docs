@@ -128,21 +128,11 @@ For managing confidential configuration data such as passwords, ASP.NET Core pro
 
 For more information, see <xref:fundamentals/configuration/index>.
 
-## Options
-
-ASP.NET Core uses the *options pattern* for storing and retrieving configuration values. The options pattern uses classes to represent groups of related settings.
-
-The following example sets options for WebSockets:
-
-[!code-csharp[](index/samples_snapshot/3.x/UseWebSockets.cs)]
-
-For more information, see <xref:fundamentals/configuration/options>.
-
 ## Environments
 
-Execution environments, such as *Development*, *Staging*, and *Production*, are a first-class notion in ASP.NET Core. Specify the environment an app is running in by setting the `ASPNETCORE_ENVIRONMENT` environment variable. ASP.NET Core reads that environment variable at app startup and stores the value in an `IWebHostEnvironment` implementation. This implementation is available anywhere in an app via dependency injection (DI).
+Execution environments, such as `Development`, `Staging`, and `Production`, are a first-class notion in ASP.NET Core. Specify the environment an app is running in by setting the `ASPNETCORE_ENVIRONMENT` environment variable. ASP.NET Core reads that environment variable at app startup and stores the value in an `IWebHostEnvironment` implementation. This implementation is available anywhere in an app via dependency injection (DI).
 
-The following example configures the app to provide detailed error information when running in the *Development* environment:
+The following example configures the app to provide detailed error information when running in the `Development` environment:
 
 [!code-csharp[](index/samples_snapshot/3.x/StartupConfigure.cs?highlight=3-6)]
 
