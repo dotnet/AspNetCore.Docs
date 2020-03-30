@@ -294,6 +294,9 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 > [!NOTE]
 > The code in this article requires the ASP.NET Core HTTPS development certificate to secure the gRPC service. If the client fails with the message `The remote certificate is invalid according to the validation procedure.`, the development certificate is not trusted. For instructions to fix this issue, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
 
+> [!NOTE]
+> The .NET gRPC client requires the service to have a trusted certificate. If the client fails with the message `The SSL connection could not be established.` you can call the gRPC service with an untrusted/invalid certificate in **development mode**. For instructions to fix this issue, see [Call insecure gRPC services with .NET Core client](xref:grpc/troubleshoot#call-a-grpc-service-with-an-untrustedinvalid-certificate).
+
 [!INCLUDE[](~/includes/gRPCazure.md)]
 
 ### Next steps
