@@ -562,13 +562,19 @@ The following `TodoItems1Controller` provides endpoints for testing:
 
 Test the preceding code from the [test page](https://cors1.azurewebsites.net/test?number=1) of the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi).
 
-The **Delete [EnableCors]** and **GET [EnableCors]** buttons succeed, because the endpoints have `[EnableCors]` and respond to preflight requests. The other endpoints fails.
+The **Delete [EnableCors]** and **GET [EnableCors]** buttons succeed, because the endpoints have `[EnableCors]` and respond to preflight requests. The other endpoints fails. The **GET** button fails, because the JavaScript is sending:
+
+```JavaScript
+ headers: {
+                "Content-Type": "x-custom-header"
+            },
+```
 
 The following `TodoItems2Controller` provides similar endpoints, but includes explicit code to respond to OPTIONS requests:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/TodoItems2Controller.cs?name=snippet2)]
 
-Test the preceding code from the [test page of the deployed sample](https://cors1.azurewebsites.net/test?number=2). In the **Controller** drop down list, select **Preflight** and then **Set**. All the CORS calls to the `TodoItems2Controller` endpoints succeed.
+Test the preceding code from the [test page](https://cors1.azurewebsites.net/test?number=2) of the deployed sample. In the **Controller** drop down list, select **Preflight** and then **Set**. All the CORS calls to the `TodoItems2Controller` endpoints succeed.
 
 ## Additional resources
 
