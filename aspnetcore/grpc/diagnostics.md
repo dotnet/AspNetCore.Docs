@@ -94,7 +94,7 @@ If your app isn't using DI then you can create a new `ILoggerFactory` instance w
 
 #### gRPC client log scopes
 
-The gRPC client adds a [logging scope](https://docs.microsoft.com/aspnet/core/fundamentals/logginglog-scopes) to logs made during a gRPC call. The scope has metadata related to the gRPC call:
+The gRPC client adds a [logging scope](https://docs.microsoft.com/aspnet/core/fundamentals/logging#log-scopes) to logs made during a gRPC call. The scope has metadata related to the gRPC call:
 
 * **GrpcMethodType** - The gRPC method type. Possible values are names from `Grpc.Core.MethodType` enum, e.g. Unary
 * **GrpcUri** - The relative URI of the gRPC method, e.g. /greet.Greeter/SayHellos

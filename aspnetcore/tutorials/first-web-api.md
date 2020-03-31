@@ -10,7 +10,7 @@ uid: tutorials/first-web-api
 
 # Tutorial: Create a web API with ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5),  and [Mike Wasson](https://github.com/mikewasson)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5), and [Mike Wasson](https://github.com/mikewasson)
 
 This tutorial teaches the basics of building a web API with ASP.NET Core.
 
@@ -130,7 +130,7 @@ If you get a dialog box that asks if you should trust the IIS Express certificat
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001/WeatherForecast](https://localhost:5001/WeatherForecast).
+Press Ctrl+F5 to run the app. In a browser, go to following URL: `https://localhost:5001/WeatherForecast`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -369,8 +369,8 @@ These methods implement two GET endpoints:
 
 Test the app by calling the two endpoints from a browser or Postman. For example:
 
-* [https://localhost:5001/api/TodoItems](https://localhost:5001/api/TodoItems)
-* [https://localhost:5001/api/TodoItems/1](https://localhost:5001/api/TodoItems/1)
+* `https://localhost:5001/api/TodoItems`
+* `https://localhost:5001/api/TodoItems/1`
 
 A response similar to the following is produced by the call to `GetTodoItems`:
 
@@ -601,7 +601,7 @@ If you get a dialog box that asks if you should trust the IIS Express certificat
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001/api/values](https://localhost:5001/api/values).
+Press Ctrl+F5 to run the app. In a browser, go to following URL: `https://localhost:5001/api/values`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -887,7 +887,7 @@ The `DeleteTodoItem` response is [204 (No Content)](https://www.w3.org/Protocols
 Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
-* Set the URI of the object to delete (for example `https://localhost:5001/api/todo/1`).
+* Set the URI of the object to delete (for example, `https://localhost:5001/api/todo/1`).
 * Select **Send**.
 
 The sample app allows you to delete all the items. However, when the last item is deleted, a new one is created by the model class constructor the next time the API is called.
