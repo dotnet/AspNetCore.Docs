@@ -5,7 +5,7 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/25/2020
+ms.date: 03/31/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-models
 ---
@@ -38,7 +38,7 @@ The templates include the `blazor.webassembly.js` script that handles:
 
 The Blazor WebAssembly hosting model offers several benefits:
 
-* There's no .NET server-side dependency. The app is fully functioning after it is downloaded to the client.
+* There's no .NET server-side dependency. The app is fully functioning after it's downloaded to the client.
 * Client resources and capabilities are fully leveraged.
 * Work is offloaded from the server to the client.
 * An ASP.NET Core web server isn't required to host the app. Serverless deployment scenarios are possible (for example, serving the app from a CDN).
