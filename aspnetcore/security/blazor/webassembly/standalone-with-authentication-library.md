@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/19/2020
+ms.date: 03/30/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/standalone-with-authentication-library
 ---
@@ -84,3 +84,7 @@ Authentication support for standalone apps is offered using Open ID Connect (OID
 [!INCLUDE[](~/includes/blazor-security/authentication-component.md)]
 
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
+
+## Additional resources
+
+* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)

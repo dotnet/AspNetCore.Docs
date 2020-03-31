@@ -5,7 +5,7 @@ description: Learn how to secure Blazor WebAssemlby apps as Single Page Applicat
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/12/2020
+ms.date: 03/31/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/index
 ---
@@ -46,6 +46,85 @@ The `Microsoft.AspNetCore.Components.WebAssembly.Authentication` library offers 
 * When the Blazor WebAssembly app loads the login callback endpoint (`/authentication/login-callback`), the authentication response is processed.
   * If the authentication process completes successfully, the user is authenticated and optionally sent back to the original protected URL that the user requested.
   * If the authentication process fails for any reason, the user is sent to the login failed page (`/authentication/login-failed`), and an error is displayed.
+
+## Support prerendering with authentication
+
+After following the guidance in one of the hosted Blazor WebAssembly app topics, use the following instructions to create an app that:
+
+* Prerenders paths for which authorization isn't required.
+* Doesn't prerender paths for which authorization is required.
+
+In the Client app's `Program` class (*Program.cs*), factor common service registrations into a separate method (for example, `ConfigureCommonServices`):
+
+```csharp
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        builder.RootComponents.Add<App>("app");
+
+        services.AddBaseAddressHttpClient();
+        services.Add...;
+
+        ConfigureCommonServices(builder.Services);
+
+        await builder.Build().RunAsync();
+    }
+
+    public static void ConfigureCommonServices(IServiceCollection services)
+    {
+        // Common service registrations
+    }
+}
+```
+
+In the Server app's `Startup.ConfigureServices`, register the following additional services:
+
+```csharp
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+public void ConfigureServices(IServiceCollection services)
+{
+    ...
+
+    services.AddRazorPages();
+    services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
+    services.AddScoped<SignOutSessionStateManager>();
+
+    Client.Program.ConfigureCommonServices(services);
+}
+```
+
+In the Server app's `Startup.Configure` method, replace `endpoints.MapFallbackToFile("index.html")` with `endpoints.MapFallbackToPage("/_Host")`:
+
+```csharp
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapFallbackToPage("/_Host");
+});
+```
+
+In the Server app, create a *Pages* folder if it doesn't exist. Create a *_Host.cshtml* page inside the Server app's *Pages* folder. Paste the contents from the Client app's *wwwroot/index.html* file into the *Pages/_Host.cshtml* file. Update the file's contents:
+
+* Add `@page "_Host"` to the top of the file.
+* Replace the `<app>Loading...</app>` tag with the following:
+
+  ```cshtml
+  <app>
+      @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
+      {
+          <component type="typeof(Wasm.Authentication.Client.App)" render-mode="Static" />
+      }
+      else
+      {
+          <text>Loading...</text>
+      }
+  </app>
+  ```
   
 ## Options for hosted apps and third-party login providers
 
