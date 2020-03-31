@@ -95,7 +95,7 @@ The command creates a folder named with the value provided for the `{APP NAME}` 
 
 ---
 
-# Pass tokens to a Blazor Server app
+## Pass tokens to a Blazor Server app
 
 Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie. For example:
 
