@@ -367,7 +367,7 @@ The [Test CORS](#testc) section of this document demonstrates this behavior.
 
 ### [HttpOptions] attribute for preflight requests
 
-When CORS is enabled with the appropriate policy, ASP.NET Core generally automatically responds to CORS preflight requests. In some cases, code may not be generated to respond to preflight requests, for example, using [CORS with endpoint routing](ecors).
+When CORS is enabled with the appropriate policy, ASP.NET Core generally automatically responds to CORS preflight requests. In some cases, code may not be generated to respond to preflight requests, for example, using [CORS with endpoint routing](#ecors).
 
 The following code uses the [[HttpOptions]](xref:Microsoft.AspNetCore.Mvc.HttpOptionsAttribute) attribute to create endpoints for OPTIONS requests:
 
@@ -556,7 +556,7 @@ C:\Program Files\Git\mingw64\bin\
 
 ### Test CORS with endpoint routing and [HttpOptions]
 
-Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [automatic pre-flight requests](apf). Consider the following code which uses [endpoint routing to enable CORS](ecors):
+Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [automatic pre-flight requests](#apf). Consider the following code which uses [endpoint routing to enable CORS](#ecors):
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPointBugTest.cs?name=snippet2)]
 
