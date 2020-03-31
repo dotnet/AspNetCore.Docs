@@ -120,7 +120,7 @@ For more information on dependency injection (DI) and services, see <xref:blazor
 
 ## Implement a custom AuthenticationStateProvider
 
-If the app requires a custom provider, implement a provider and override `GetAuthenticationStateAsync`:
+If the app requires a custom provider, implement `AuthenticationStateProvider` and override `GetAuthenticationStateAsync`:
 
 ```csharp
 using System.Security.Claims;
