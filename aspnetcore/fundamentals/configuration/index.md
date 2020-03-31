@@ -42,7 +42,7 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 1. *appsettings.*`Environment`*.json* using the [JSON configuration provider](#file-configuration-provider). For example, *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json*.
 1. [App secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
-1. Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
+1. Command-line arguments using the [Command-line configuration provider](#command-line).
 
 Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in both *appsettings.json* and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#command-line-configuration-provider) overrides all other providers.
 
