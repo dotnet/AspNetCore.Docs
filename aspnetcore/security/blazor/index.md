@@ -87,8 +87,11 @@ The `AuthenticationStateProvider` service can provide the current user's <xref:S
     </ul>
 }
 
+<p>@_surnameMessage</p>
+
 @code {
     private string _authMessage;
+    private string _surnameMessage;
     private IEnumerable<Claim> _claims = Enumerable.Empty<Claim>();
 
     private async Task GetClaimsPrincipalData()
@@ -100,6 +103,8 @@ The `AuthenticationStateProvider` service can provide the current user's <xref:S
         {
             _authMessage = $"{user.Identity.Name} is authenticated.";
             _claims = user.Claims;
+            _surnameMessage = 
+                $"Surname: {user.FindFirst(c => c.Type == ClaimTypes.Surname)?.Value}";
         }
         else
         {
