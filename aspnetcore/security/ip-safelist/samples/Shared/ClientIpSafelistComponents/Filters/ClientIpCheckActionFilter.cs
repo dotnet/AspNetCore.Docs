@@ -1,29 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Linq;
 using System.Net;
 
-namespace ClientIpAspNetCore
+namespace ClientIpSafelistComponents.Filters
 {
-    public class ClientIpCheckPageFilter : IPageFilter
+    #region snippet_ClassOnly
+    public class ClientIpCheckActionFilter : ActionFilterAttribute
     {
         private readonly ILogger _logger;
         private readonly string _safelist;
 
-        public ClientIpCheckPageFilter
-            (ILoggerFactory loggerFactory, IConfiguration configuration)
+        public ClientIpCheckActionFilter(
+            string safelist,
+            ILogger logger)
         {
-            _logger = loggerFactory.CreateLogger("ClientIdCheckPageFilter");
-            _safelist = configuration["AdminSafeList"];
+            _safelist = safelist;
+            _logger = logger;
         }
 
-        public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
             var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
-            _logger.LogInformation(
+            _logger.LogDebug(
                 "Remote IpAddress: {RemoteIp}", remoteIp);
 
             string[] ip = _safelist.Split(';');
@@ -45,19 +45,14 @@ namespace ClientIpAspNetCore
 
             if (badIp)
             {
-                _logger.LogInformation(
+                _logger.LogWarning(
                     "Forbidden Request from Remote IP address: {RemoteIp}", remoteIp);
-                context.Result = new StatusCodeResult(401);
+                context.Result = new StatusCodeResult(StatusCodes.Status403Forbidden);
                 return;
             }
-        }
 
-        public void OnPageHandlerExecuted(PageHandlerExecutedContext context)
-        {
-        }
-
-        public void OnPageHandlerSelected(PageHandlerSelectedContext context)
-        {
+            base.OnActionExecuting(context);
         }
     }
+    #endregion snippet_ClassOnly
 }

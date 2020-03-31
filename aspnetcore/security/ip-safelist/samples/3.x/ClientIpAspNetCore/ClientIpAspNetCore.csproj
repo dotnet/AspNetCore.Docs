@@ -1,13 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <ProjectUISubcaption>ASP.NET Core 2.x</ProjectUISubcaption>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ProjectUISubcaption>ASP.NET Core 3.x</ProjectUISubcaption>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\ClientIpSafelistComponents\ClientIpSafelistComponents.csproj" />
