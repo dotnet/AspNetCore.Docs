@@ -19,7 +19,7 @@ ASP.NET Core abstracts file system access through the use of File Providers. Fil
 * `IWebHostEnvironment` exposes the app's [content root](xref:fundamentals/index#content-root) and [web root](xref:fundamentals/index#web-root) as `IFileProvider` types.
 * [Static File Middleware](xref:fundamentals/static-files) uses File Providers to locate static files.
 * [Razor](xref:mvc/views/razor) uses File Providers to locate pages and views.
-* .NET Core tooling uses File Providers and glob patterns to specify which files should be published.
+* .NET Core tooling uses File Providers to specify which files should be published.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -91,8 +91,6 @@ To generate a manifest of the embedded files, set the `<GenerateEmbeddedFilesMan
 
 [!code-csharp[](file-providers/samples/3.x/FileProviderSample/FileProviderSample.csproj?highlight=5,13)]
 
-Use [glob patterns](#glob-patterns) to specify one or more files to embed into the assembly.
-
 The sample app creates an `ManifestEmbeddedFileProvider` and passes the currently executing assembly to its constructor.
 
 *Startup.cs*:
@@ -124,7 +122,7 @@ In the sample app, a `PhysicalFileProvider` and a `ManifestEmbeddedFileProvider`
 
 ## Watch for changes
 
-The [IFileProvider.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*) method provides a scenario to watch one or more files or directories for changes. `Watch` accepts a path string, which can use [glob patterns](#glob-patterns) to specify multiple files. `Watch` returns an <xref:Microsoft.Extensions.Primitives.IChangeToken>. The change token exposes:
+The [IFileProvider.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*) method provides a scenario to watch one or more files or directories for changes. `Watch` accepts a path string. `Watch` returns an <xref:Microsoft.Extensions.Primitives.IChangeToken>. The change token exposes:
 
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged> &ndash; A property that can be inspected to determine if a change has occurred.
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*> &ndash; Called when changes are detected to the specified path string. Each change token only calls its associated callback in response to a single change. To enable constant monitoring, use a <xref:System.Threading.Tasks.TaskCompletionSource`1> (shown below) or recreate `IChangeToken` instances in response to changes.
@@ -135,30 +133,6 @@ In the sample app, the *WatchConsole* console app is configured to display a mes
 
 Some file systems, such as Docker containers and network shares, may not reliably send change notifications. Set the `DOTNET_USE_POLLING_FILE_WATCHER` environment variable to `1` or `true` to poll the file system for changes every four seconds (not configurable).
 
-## Glob patterns
-
-File system paths use wildcard patterns called *glob (or globbing) patterns*. Specify groups of files with these patterns. The two wildcard characters are `*` and `**`:
-
-**`*`**  
-Matches anything at the current folder level, any filename, or any file extension. Matches are terminated by `/` and `.` characters in the file path.
-
-**`**`**  
-Matches anything across multiple directory levels. Can be used to recursively match many files within a directory hierarchy.
-
-**Glob pattern examples**
-
-**`directory/file.txt`**  
-Matches a specific file in a specific directory.
-
-**`directory/*.txt`**  
-Matches all files with *.txt* extension in a specific directory.
-
-**`directory/*/appsettings.json`**  
-Matches all `appsettings.json` files in directories exactly one level below the *directory* folder.
-
-**`directory/**/*.txt`**  
-Matches all files with *.txt* extension found anywhere under the *directory* folder.
-
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -168,7 +142,7 @@ ASP.NET Core abstracts file system access through the use of File Providers. Fil
 * <xref:Microsoft.Extensions.Hosting.IHostingEnvironment> exposes the app's [content root](xref:fundamentals/index#content-root) and [web root](xref:fundamentals/index#web-root) as `IFileProvider` types.
 * [Static File Middleware](xref:fundamentals/static-files) uses File Providers to locate static files.
 * [Razor](xref:mvc/views/razor) uses File Providers to locate pages and views.
-* .NET Core tooling uses File Providers and glob patterns to specify which files should be published.
+* .NET Core tooling uses File Providers to specify which files should be published.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/file-providers/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -238,8 +212,6 @@ To generate a manifest of the embedded files, set the `<GenerateEmbeddedFilesMan
 
 [!code-csharp[](file-providers/samples/2.x/FileProviderSample/FileProviderSample.csproj?highlight=6,14)]
 
-Use [glob patterns](#glob-patterns) to specify one or more files to embed into the assembly.
-
 The sample app creates an `ManifestEmbeddedFileProvider` and passes the currently executing assembly to its constructor.
 
 *Startup.cs*:
@@ -271,7 +243,7 @@ In the sample app, a `PhysicalFileProvider` and a `ManifestEmbeddedFileProvider`
 
 ## Watch for changes
 
-The [IFileProvider.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*) method provides a scenario to watch one or more files or directories for changes. `Watch` accepts a path string, which can use [glob patterns](#glob-patterns) to specify multiple files. `Watch` returns an <xref:Microsoft.Extensions.Primitives.IChangeToken>. The change token exposes:
+The [IFileProvider.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*) method provides a scenario to watch one or more files or directories for changes. `Watch` accepts a path string. `Watch` returns an <xref:Microsoft.Extensions.Primitives.IChangeToken>. The change token exposes:
 
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged> &ndash; A property that can be inspected to determine if a change has occurred.
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*> &ndash; Called when changes are detected to the specified path string. Each change token only calls its associated callback in response to a single change. To enable constant monitoring, use a <xref:System.Threading.Tasks.TaskCompletionSource`1> (shown below) or recreate `IChangeToken` instances in response to changes.
@@ -281,29 +253,5 @@ In the sample app, the *WatchConsole* console app is configured to display a mes
 [!code-csharp[](file-providers/samples/2.x/WatchConsole/Program.cs?name=snippet1&highlight=1-2,16,19-20)]
 
 Some file systems, such as Docker containers and network shares, may not reliably send change notifications. Set the `DOTNET_USE_POLLING_FILE_WATCHER` environment variable to `1` or `true` to poll the file system for changes every four seconds (not configurable).
-
-## Glob patterns
-
-File system paths use wildcard patterns called *glob (or globbing) patterns*. Specify groups of files with these patterns. The two wildcard characters are `*` and `**`:
-
-**`*`**  
-Matches anything at the current folder level, any filename, or any file extension. Matches are terminated by `/` and `.` characters in the file path.
-
-**`**`**  
-Matches anything across multiple directory levels. Can be used to recursively match many files within a directory hierarchy.
-
-**Glob pattern examples**
-
-**`directory/file.txt`**  
-Matches a specific file in a specific directory.
-
-**`directory/*.txt`**  
-Matches all files with *.txt* extension in a specific directory.
-
-**`directory/*/appsettings.json`**  
-Matches all `appsettings.json` files in directories exactly one level below the *directory* folder.
-
-**`directory/**/*.txt`**  
-Matches all files with *.txt* extension found anywhere under the *directory* folder.
 
 ::: moniker-end
