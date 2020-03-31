@@ -149,23 +149,11 @@ namespace BlazorSample.Services
 In a Blazor WebAssembly app, the `CustomAuthStateProvider` service is registered in `Main` of *Program.cs*:
 
 ```csharp
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.Extensions.DependencyInjection;
-using BlazorSample.Services;
 
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        builder.Services.AddScoped<AuthenticationStateProvider, 
-            CustomAuthStateProvider>();
-        builder.RootComponents.Add<App>("app");
+...
 
-        await builder.Build().RunAsync();
-    }
-}
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 ```
 
 In a Blazor Server app, the `CustomAuthStateProvider` service is registered in `Startup.ConfigureServices`:
