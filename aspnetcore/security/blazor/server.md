@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats to Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/30/2020
+ms.date: 03/31/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/server
 ---
@@ -94,6 +94,126 @@ Permissible authentication values (`{AUTHENTICATION}`) are shown in the followin
 The command creates a folder named with the value provided for the `{APP NAME}` placeholder and uses the folder name as the app's name. For more information, see the [dotnet new](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
 ---
+
+# Pass tokens to a Blazor Server app
+
+Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie. For example:
+
+```csharp
+services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
+{
+    options.ResponseType = "code";
+    options.SaveTokens = true;
+
+    options.Scope.Add("offline_access");
+    options.Scope.Add("{SCOPE}");
+    options.Resource = "{RESOURCE}";
+});
+```
+
+For sample code, including a complete `Startup.ConfigureServices` example, see the [Passing tokens to a server-side Blazor application](https://github.com/javiercn/blazor-server-aad-sample).
+
+Define a class to pass in the initial app state with the access and refresh tokens:
+
+```csharp
+public class InitialApplicationState
+{
+    public string AccessToken { get; set; }
+    public string RefreshToken { get; set; }
+}
+```
+
+Define a **scoped** token provider service that can be used within the Blazor app to resolve the tokens from DI:
+
+```csharp
+using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
+
+public class TokenProvider
+{
+    public string AccessToken { get; set; }
+    public string RefreshToken { get; set; }
+}
+```
+
+In `Startup.ConfigureServices`, register the token provider service:
+
+```csharp
+services.AddScoped<TokenProvider>();
+```
+
+In the *_Host.cshtml* file, create and instance of `InitialApplicationState` and pass it as a parameter to the app:
+
+```cshtml
+@using Microsoft.AspNetCore.Authentication
+
+...
+
+@{
+    var tokens = new InitialApplicationState
+    {
+        AccessToken = await HttpContext.GetTokenAsync("access_token"),
+        RefreshToken = await HttpContext.GetTokenAsync("refresh_token")
+    };
+}
+
+<app>
+    <component type="typeof(App)" param-InitialState="tokens" 
+        render-mode="ServerPrerendered" />
+</app>
+```
+
+In the `App` component (*App.razor*), resolve the service and initialize it with the data from the parameter:
+
+```razor
+@inject TokenProvider TokensProvider
+
+...
+
+@code {
+    [Parameter]
+    public InitialApplicationState InitialState { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        TokensProvider.AccessToken = InitialState.AccessToken;
+        TokensProvider.RefreshToken = InitialState.RefreshToken;
+
+        return base.OnInitializedAsync();
+    }
+}
+```
+
+In the service that makes a secure API request, inject the token provider and retrieve the token to call the API:
+
+```csharp
+public class WeatherForecastService
+{
+    private readonly TokenProvider _store;
+
+    public WeatherForecastService(IHttpClientFactory clientFactory, 
+        TokenProvider tokenProvider)
+    {
+        Client = clientFactory.CreateClient();
+        _store = tokenProvider;
+    }
+
+    public HttpClient Client { get; }
+
+    public async Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
+    {
+        var token = _store.AccessToken;
+        var request = new HttpRequestMessage(HttpMethod.Get, 
+            "https://localhost:5003/WeatherForecast");
+        request.Headers.Add("Authorization", $"Bearer {token}");
+        var response = await Client.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+
+        return await response.Content.ReadAsAsync<WeatherForecast[]>();
+    }
+}
+```
 
 ## Resource exhaustion
 
