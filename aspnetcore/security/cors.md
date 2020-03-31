@@ -56,9 +56,9 @@ The preceding code:
 
 With endpoint routing, the CORS middleware ***must*** be configured to execute between the calls to `UseRouting` and `UseEndpoints`.
 
-See [Enable CORS in Razor Pages, controllers, and action methods](#ecors) to apply CORS policy at the page/controller/action level.
+See [Enable CORS in Razor Pages, controllers, and action methods](#ecors) to apply CORS policy at the page, controller, or action level.
 
-See [Test CORS](#testc) for instructions on testing the preceding code.
+See [Test CORS](#testc) for instructions on testing code similar to the preceding code.
 
 The <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensions.AddCors*> method call adds CORS services to the app's service container:
 
@@ -115,7 +115,7 @@ The following code creates a CORS default policy and a policy named `"AnotherPol
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup3.cs?name=snippet&highlight=12-28,45)]
 
-See [Test CORS](#testc) for instructions on testing the preceding code.
+See [Test CORS](#testc) for instructions on testing code similar to the preceding code.
 
 ### Disable CORS
 
@@ -271,7 +271,7 @@ For some CORS requests, the browser sends an additional [OPTIONS](https://develo
 
 The rule on request headers set for the client request applies to headers that the app sets by calling `setRequestHeader` on the `XMLHttpRequest` object. The CORS specification calls these headers [author request headers](https://www.w3.org/TR/cors/#author-request-headers). The rule doesn't apply to headers the browser can set, such as `User-Agent`, `Host`, or `Content-Length`.
 
-The following is an example response similar to the preflight request made from the [Put test button](https://cors1.azurewebsites.net/test?Number=2) of the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi):
+The following is an example response similar to the preflight request made from the **[Put test]** button in the [Test CORS](#testc) section of this document.
 
 ```
 General:
@@ -525,7 +525,7 @@ The following `ValuesController` provides the endpoints for testing:
 Test the preceding sample code by one of the following approaches:
 
 * Running the deployed sample app at [https://cors3.azurewebsites.net/](https://cors3.azurewebsites.net/). There is no need to download the sample.
-* Running the sample from `dotnet run` using the default [https://localhost:5001](https://localhost:5001) localhost port.
+* Running the sample from `dotnet run` using the default `https://localhost:5001` localhost port.
 * Running the sample from Visual Studio with the port set to 44398, `https://localhost:44398`.
 
 Using a browser with the F12 tools:
@@ -667,9 +667,9 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 ```
 Note: `UseCors` must be called before `UseMvc`.
 
-See [Enable Cors with endpoint routing](#ecors) to apply CORS policy at the page, controller, or action level using endpoint routing.
+See [Enable CORS in Razor Pages, controllers, and action methods](#ecors) to apply CORS policy at the page/controller/action level.
 
-See [Test CORS](#test) for instructions on testing the preceding code.
+See [Test CORS](#test) for instructions on testing code similar to the preceding code.
 
 ## Enable CORS with attributes
 
