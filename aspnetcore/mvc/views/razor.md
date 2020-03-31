@@ -982,3 +982,7 @@ Developers are encouraged to match the casing of file and directory names to the
 * Razor Pages.
 
 Matching case ensures the deployments find their views regardless of the underlying file system.
+
+## Additional resources
+
+[Introduction to ASP.NET Web Programming Using the Razor Syntax](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) provides many samples of programming with Razor syntax.

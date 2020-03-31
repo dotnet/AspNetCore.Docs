@@ -5,7 +5,7 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 03/24/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
@@ -17,11 +17,26 @@ By [Daniel Roth](https://github.com/danroth27)
 
 This article covers hosting model configuration.
 
-<!-- For future use:
-
 ## Blazor WebAssembly
 
--->
+As of the ASP.NET Core 3.2 Preview 3 release, Blazor WebAssembly supports configuration from:
+
+* *wwwroot/appsettings.json*
+* *wwwroot/appsettings.{ENVIRONMENT}.json*
+
+In a Blazor Hosted app, the [runtime environment](xref:fundamentals/environments) is the same as the server app's value.
+
+When running the app locally, the environment defaults to Development. When the app is published, the environment defaults to Production. For more information, including how to configure the environment, see <xref:fundamentals/environments>.
+
+> [!WARNING]
+> Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets or credentials in configuration.**
+
+Configuration files are cached for offline use. With [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app), you can only update configuration files when creating a new deployment. Editing configuration files between deployments has no effect because:
+
+* Users have cached versions of the files that they continue to use.
+* The PWA's *service-worker.js* and *service-worker-assets.js* files must be rebuilt on compilation, which signal to the app on the user's next online visit that the app has been redeployed.
+
+For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.
 
 ## Blazor Server
 

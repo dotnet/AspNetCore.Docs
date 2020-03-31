@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core Blazor app templates and Blazor project st
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2020
+ms.date: 03/26/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/templates
 ---
@@ -50,18 +50,17 @@ The following files and folders make up a Blazor app generated from a Blazor tem
     * Downloads the .NET runtime, the app, and the app's dependencies.
     * Initializes the runtime to run the app.
 
-* *Pages/_Host.cshtml* (Blazor Server) &ndash; The root page of the app implemented as a Razor Page:
-  * When any page of the app is initially requested, this page is rendered and returned in the response.
-  * The `_framework/blazor.server.js` JavaScript file is loaded, which sets up the real-time SignalR connection between the browser and the server.
-  * The Host page specifies where the root `App` component (*App.razor*) is rendered.
-
 * *App.razor* &ndash; The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The `Router` component intercepts browser navigation and renders the page that matches the requested address.
 
-* *Pages* folder &ndash; Contains the routable components/pages (*.razor*) that make up the Blazor app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
-  * `Index` (*Index.razor*) &ndash; Implements the Home page.
+* *Pages* folder &ndash; Contains the routable components/pages (*.razor*) that make up the Blazor app and the root Razor page of a Blazor Server app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following:
+  * *_Host.cshtml* (Blazor Server) &ndash; The root page of the app implemented as a Razor Page:
+    * When any page of the app is initially requested, this page is rendered and returned in the response.
+    * The `_framework/blazor.server.js` JavaScript file is loaded, which sets up the real-time SignalR connection between the browser and the server.
+    * The Host page specifies where the root `App` component (*App.razor*) is rendered.
   * `Counter` (*Counter.razor*) &ndash; Implements the Counter page.
   * `Error` (*Error.razor*, Blazor Server app only) &ndash; Rendered when an unhandled exception occurs in the app.
   * `FetchData` (*FetchData.razor*) &ndash; Implements the Fetch data page.
+  * `Index` (*Index.razor*) &ndash; Implements the Home page.
 
 * *Shared* folder &ndash; Contains other UI components (*.razor*) used by the app:
   * `MainLayout` (*MainLayout.razor*) &ndash; The app's layout component.

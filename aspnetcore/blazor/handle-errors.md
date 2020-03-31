@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 03/29/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/handle-errors
 ---
@@ -49,7 +49,28 @@ In a Blazor Server app, customize the experience in the *Pages/_Host.cshtml* fil
 </div>
 ```
 
-The `blazor-error-ui` element is hidden by the styles included with the Blazor templates and then shown when an error occurs.
+The `blazor-error-ui` element is hidden by the styles included in the Blazor templates (*wwwroot/css/site.css*) and then shown when an error occurs:
+
+```css
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+```
 
 ## How a Blazor Server app reacts to unhandled exceptions
 

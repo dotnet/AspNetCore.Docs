@@ -227,6 +227,10 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
+### Imports file
+
+[!INCLUDE[](~/includes/blazor-security/imports-file-hosted.md)]
+
 ### Index page
 
 [!INCLUDE[](~/includes/blazor-security/index-page-msal.md)]

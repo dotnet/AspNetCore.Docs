@@ -95,6 +95,10 @@ builder.Services.AddMsalAuthentication(options =>
 > [!NOTE]
 > The default access token scope must be in the format `{SERVER API APP CLIENT ID}/{DEFAULT SCOPE}` (for example, `11111111-1111-1111-1111-111111111111/API.Access`). If a scheme or scheme and host is provided to the scope setting (as shown in the Azure Portal), the *Client app* throws an unhandled exception when it receives a *401 Unauthorized* response from the *Server API app*.
 
+### Imports file
+
+[!INCLUDE[](~/includes/blazor-security/imports-file-standalone.md)]
+
 ## Index page
 
 [!INCLUDE[](~/includes/blazor-security/index-page-msal.md)]

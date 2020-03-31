@@ -59,6 +59,10 @@ builder.Services.AddOidcAuthentication(options =>
 
 Authentication support for standalone apps is offered using Open ID Connect (OIDC). The `AddOidcAuthentication` method accepts a callback to configure the parameters required to authenticate an app using OIDC. The values required for configuring the app can be obtained from the OIDC-compliant IP. Obtain the values when you register the app, which typically occurs in their online portal.
 
+### Imports file
+
+[!INCLUDE[](~/includes/blazor-security/imports-file-standalone.md)]
+
 ## Index page
 
 [!INCLUDE[](~/includes/blazor-security/index-page-authentication.md)]

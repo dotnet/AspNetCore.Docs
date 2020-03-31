@@ -50,7 +50,7 @@ The first (HTTP GET) `Create` action method displays the initial Create form. Th
 
 You can set a break point in the `[HttpPost] Create` method and verify the method is never called, client side validation won't submit the form data when validation errors are detected. If you disable JavaScript in your browser, then submit the form with errors, the break point will be hit. You still get full validation without JavaScript. 
 
-The following image shows how to disable JavaScript in the FireFox browser.
+The following image shows how to disable JavaScript in the Firefox browser.
 
 ![Firefox: On the Content tab of Options, uncheck the Enable Javascript check box.](~/tutorials/first-mvc-app/validation/_static/ff.png)
 

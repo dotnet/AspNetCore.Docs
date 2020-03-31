@@ -83,6 +83,10 @@ builder.Services.AddMsalAuthentication(options =>
 
 The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Microsoft Accounts configuration when you register the app.
 
+### Imports file
+
+[!INCLUDE[](~/includes/blazor-security/imports-file-standalone.md)]
+
 ## Index page
 
 [!INCLUDE[](~/includes/blazor-security/index-page-msal.md)]
