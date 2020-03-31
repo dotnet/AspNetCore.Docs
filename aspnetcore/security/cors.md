@@ -76,7 +76,7 @@ Note: The specified URL must **not** contain a trailing slash (`/`). If the URL 
 
 ## Enable Cors with endpoint routing
 
-***Note:*** Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [automatic pre-flight requests](#apf). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/18665).
+***Note:*** Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [automatic pre-flight requests](#apf). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/18665) and [Test CORS with endpoint routing and [HttpOptions]](#tcer).
 
 With endpoint routing, CORS can be enabled on a per-endpoint basis using the <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> set of extension methods:
 
@@ -307,7 +307,9 @@ The pre-flight request uses the [HTTP OPTIONS](https://developer.mozilla.org/doc
 * [Access-Control-Request-Headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Headers): A list of request headers that the app sets on the actual request. As stated earlier, this doesn't include headers that the browser sets, such as `User-Agent`.
 * [Access-Control-Allow-Methods](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Methods)
 
-If the preflight request is denied, the app returns a `200 OK` response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request. For an example of denied preflight request, select the [GetValues2 [DisableCores]](https://cors3.azurewebsites.net) button on the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi). Using the F12 tools, the console app shows an error similar to one of the following, depending on the browser:
+If the preflight request is denied, the app returns a `200 OK` response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request. For an example of denied preflight request, see the [Test CORS](#testc) section of this document.
+
+Using the F12 tools, the console app shows an error similar to one of the following, depending on the browser:
 
 * Firefox: Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at `https://cors1.azurewebsites.net/api/TodoItems1/MyDelete2/5`. (Reason: CORS request did not succeed). [Learn More](https://developer.mozilla.org/docs/Web/HTTP/CORS/Errors/CORSDidNotSucceed)
 * Chromium based: Access to fetch at 'https://cors1.azurewebsites.net/api/TodoItems1/MyDelete2/5' from origin 'https://cors3.azurewebsites.net' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
@@ -665,7 +667,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 ```
 Note: `UseCors` must be called before `UseMvc`.
 
-See [Enable CORS in Razor Pages, controllers, and action methods](#ecors) to apply CORS policy at the page/controller/action level.
+See [Enable Cors with endpoint routing](#ecors) to apply CORS policy at the page, controller, or action level using endpoint routing.
 
 See [Test CORS](#test) for instructions on testing the preceding code.
 
