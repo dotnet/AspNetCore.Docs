@@ -38,7 +38,7 @@ The templates include the `blazor.webassembly.js` script that handles:
 
 The Blazor WebAssembly hosting model offers several benefits:
 
-* There's no .NET server-side dependency. The app is fully functioning after downloaded to the client.
+* There's no .NET server-side dependency. The app is fully functioning after it is downloaded to the client.
 * Client resources and capabilities are fully leveraged.
 * Work is offloaded from the server to the client.
 * An ASP.NET Core web server isn't required to host the app. Serverless deployment scenarios are possible (for example, serving the app from a CDN).
