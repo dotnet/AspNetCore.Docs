@@ -105,7 +105,7 @@ The `[EnableCors]` attribute can be applied to:
 * Controller
 * Controller action method
 
-Different policies can be applied to controller, page-model, or action with the  `[EnableCors]` attribute. When the `[EnableCors]` attribute is applied to a controllers, page-model, or action method, and CORS is enabled in middleware, both policies are applied. We recommend against combining policies. Use the `[EnableCors]` attribute or middleware, not both in the same app.
+Different policies can be applied to controller, page-model, or action with the  `[EnableCors]` attribute. When the `[EnableCors]` attribute is applied to a controllers, page-model, or action method, and CORS is enabled in middleware, ***both*** policies are applied. ***We recommend against combining policies. Use the*** `[EnableCors]` ***attribute or middleware, not both in the same app.***
 
 The following code applies a different policy to each method:
 
@@ -271,17 +271,17 @@ For some CORS requests, the browser sends an additional [OPTIONS](https://develo
 
 The rule on request headers set for the client request applies to headers that the app sets by calling `setRequestHeader` on the `XMLHttpRequest` object. The CORS specification calls these headers [author request headers](https://www.w3.org/TR/cors/#author-request-headers). The rule doesn't apply to headers the browser can set, such as `User-Agent`, `Host`, or `Content-Length`.
 
-The following is an example response to a preflight request made from the [Put test button] (https://cors3.azurewebsites.net/) of the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi):
+The following is an example response similar to the preflight request made from the [Put test button](https://cors1.azurewebsites.net/test?Number=2) of the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi):
 
 ```
 General:
-Request URL: https://cors1.azurewebsites.net/api/values/5
+Request URL: https://cors3.azurewebsites.net/api/values/5
 Request Method: OPTIONS
 Status Code: 204 No Content
 
 Response Headers:
 Access-Control-Allow-Methods: PUT,DELETE,GET
-Access-Control-Allow-Origin: https://cors3.azurewebsites.net
+Access-Control-Allow-Origin: https://cors1.azurewebsites.net
 Server: Microsoft-IIS/10.0
 Set-Cookie: ARRAffinity=8f8...8;Path=/;HttpOnly;Domain=cors1.azurewebsites.net
 Vary: Origin
@@ -292,9 +292,9 @@ Accept-Encoding: gzip, deflate, br
 Accept-Language: en-US,en;q=0.9
 Access-Control-Request-Method: PUT
 Connection: keep-alive
-Host: cors1.azurewebsites.net
-Origin: https://cors3.azurewebsites.net
-Referer: https://cors3.azurewebsites.net/
+Host: cors3.azurewebsites.net
+Origin: https://cors1.azurewebsites.net
+Referer: https://cors1.azurewebsites.net/
 Sec-Fetch-Dest: empty
 Sec-Fetch-Mode: cors
 Sec-Fetch-Site: cross-site
@@ -307,7 +307,7 @@ The pre-flight request uses the [HTTP OPTIONS](https://developer.mozilla.org/doc
 * [Access-Control-Request-Headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Headers): A list of request headers that the app sets on the actual request. As stated earlier, this doesn't include headers that the browser sets, such as `User-Agent`.
 * [Access-Control-Allow-Methods](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Methods)
 
-If the preflight request is denied, the app returns a `200 OK` response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request. For an example of denied preflight request, select the [GetValues2 [DisableCores]](https://cors3.azurewebsites.net/test) button on the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi). Using the F12 tools, the console app shows an error similar to one of the following, depending on the browser:
+If the preflight request is denied, the app returns a `200 OK` response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request. For an example of denied preflight request, select the [GetValues2 [DisableCores]](https://cors3.azurewebsites.net) button on the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi). Using the F12 tools, the console app shows an error similar to one of the following, depending on the browser:
 
 * Firefox: Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at `https://cors1.azurewebsites.net/api/TodoItems1/MyDelete2/5`. (Reason: CORS request did not succeed). [Learn More](https://developer.mozilla.org/docs/Web/HTTP/CORS/Errors/CORSDidNotSucceed)
 * Chromium based: Access to fetch at 'https://cors1.azurewebsites.net/api/TodoItems1/MyDelete2/5' from origin 'https://cors3.azurewebsites.net' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
@@ -355,9 +355,11 @@ When the CORS policy is applied either:
 * Globally by calling  `app.UseCors("The Policy")` in `Configure`.
 * Using the `[EnableCors]` attribute.
 
-ASP.NET Core responds to the preflight OPTIONS request. The  [PUT test button](https://cors3.azurewebsites.net/test) on the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi) shows this behavior.
+ASP.NET Core responds to the preflight OPTIONS request.
 
 Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support automatic pre-flight requests.
+
+The [Test CORS](#testc) section of this document demonstrates this behavior.
 
 <a name="pro"></a>
 
@@ -496,12 +498,12 @@ By default, the Chrome and Edge browsers don't show OPTIONS requests on the netw
 
 Firefox shows OPTIONS requests by default.
 
-<a name="testc"></a>
-
 ## CORS in IIS
 
 When deploying to IIS, CORS has to run before Windows Authentication if the server isn't configured to allow anonymous access. To support this scenario, the [IIS CORS module](https://www.iis.net/downloads/microsoft/iis-cors-module)
 needs to be installed and configured for the app.
+
+<a name="testc"></a>
 
 ## Test CORS
 

@@ -11,7 +11,7 @@ namespace WebAPI
 
         public SelectList Genres { get; set; }
         [BindProperty(SupportsGet = true)]
-        public int Number { get; set; }
+        public int Number { get; set; } = 1;
 
 
         public TestModel(IConfiguration configuration)

@@ -24,7 +24,7 @@ namespace WebAPI
             services.AddCors(options =>
             {
                 #region snippet
-                options.AddPolicy("AllowSubdomain",
+                options.AddPolicy("MyAllowSubdomainPolicy",
                     builder =>
                     {
                         builder.WithOrigins("https://*.example.com")
@@ -33,7 +33,7 @@ namespace WebAPI
                 #endregion
 
                 #region snippet2
-                options.AddPolicy("AllowHeaders",
+                options.AddPolicy("MyAllowHeadersPolicy",
                     builder =>
                     {
                         // requires using Microsoft.Net.Http.Headers;
@@ -43,7 +43,7 @@ namespace WebAPI
                 #endregion
 
                 #region snippet3
-                options.AddPolicy("AllowAllHeaders",
+                options.AddPolicy("MyAllowAllHeadersPolicy",
                     builder =>
                     {
                         builder.WithOrigins("https://*.example.com")
@@ -52,7 +52,7 @@ namespace WebAPI
                 #endregion
 
                 #region snippet5
-                options.AddPolicy("ExposeResponseHeaders",
+                options.AddPolicy("MyExposeResponseHeadersPolicy",
                     builder =>
                     {
                         builder.WithOrigins("https://*.example.com")
@@ -61,7 +61,7 @@ namespace WebAPI
                 #endregion
 
                 #region snippet6
-                options.AddPolicy("AllowCredentials",
+                options.AddPolicy("MyMyAllowCredentialsPolicy",
                     builder =>
                     {
                         builder.WithOrigins("http://example.com")
@@ -70,7 +70,7 @@ namespace WebAPI
                 #endregion
 
                 #region snippet7
-                options.AddPolicy("SetPreflightExpiration",
+                options.AddPolicy("MyMySetPreflightExpirationPolicy",
                     builder =>
                     {
                         builder.WithOrigins("http://example.com")
