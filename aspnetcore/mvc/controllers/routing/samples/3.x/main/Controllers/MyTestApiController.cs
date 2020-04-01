@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using System;
+using Microsoft.Docs.Samples;
 
 namespace WebMvcRouting.Controllers
 {
