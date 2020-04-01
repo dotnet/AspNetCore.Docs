@@ -1,7 +1,8 @@
-﻿//#define MYDEMO4
+﻿//define MYDEMO4
 //#define MYDEMO3
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Docs.Samples;
 
 // This uses same routes as HomeController, so only one can be defined without setting order
 // Test with                     webBuilder.UseStartup<StartupDefaultMVC>();

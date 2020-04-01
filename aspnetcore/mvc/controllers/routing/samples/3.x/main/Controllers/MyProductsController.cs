@@ -1,5 +1,6 @@
 ﻿#define PROD1  
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Docs.Samples;
 
 namespace WebMvcRouting.Controllers
 {

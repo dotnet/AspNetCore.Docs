@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core routing is responsible for matching HTTP 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 3/25/2020
+ms.date: 4/1/2020
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -574,7 +574,7 @@ The preceding constraint is applied in the following code:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/TestController.cs?name=snippet&highlight=6,13)]
 
-The [MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x/RoutingSample/Extensions/ControllerContextExtensions.cs) method is included in the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x) and is used to display routing information.
+[!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
 The implementation of `MyCustomConstraint` prevents `0` being applied to a route parameter:
 
