@@ -113,7 +113,7 @@ The following code applies a different policy to each method:
 
 The following code creates a CORS default policy and a policy named `"AnotherPolicy"`:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup3.cs?name=snippet&highlight=12-28,45)]
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup3.cs?name=snippet&highlight=12-28,44)]
 
 See [Test CORS](#testc) for instructions on testing code similar to the preceding code.
 
@@ -543,7 +543,7 @@ CORS-enabled endpoints can be tested with a tool, such as [curl](https://curl.ha
 
 The following command uses `curl` to issue an OPTIONS request with information:
 
-```cmd
+```bash
 curl -X OPTIONS https://cors3.azurewebsites.net/api/TodoItems2/5 -i
 ```
 
