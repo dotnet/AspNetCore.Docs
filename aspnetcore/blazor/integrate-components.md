@@ -5,7 +5,7 @@ description: Learn about data binding scenarios for components and DOM elements 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 04/01/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/integrate-components
 ---
@@ -104,6 +104,19 @@ To support routable Razor components in Razor Pages apps:
    ```
 
    Components use the shared *_Layout.cshtml* file for their layout.
+
+   <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
+
+   * Is prerendered into the page.
+   * Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
+
+   | Render Mode | Description |
+   | ----------- | ----------- |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renders the `App` component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renders a marker for a Blazor Server app. Output from the `App` component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+   | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renders the `App` component into static HTML. |
+
+   For more information on the Component Tag Helper, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 1. Add a low-priority route for the *_Host.cshtml* page to endpoint configuration in `Startup.Configure`:
 
