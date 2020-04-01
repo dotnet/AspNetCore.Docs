@@ -23,15 +23,12 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            switch (id)
+            return id switch
             {
-                case 1:
-                    return "green widget";
-                case 2:
-                    return "red widget";
-                default:
-                    return NotFound();
-            }
+                1 => "green widget",
+                2 => "red widget",
+                _ => NotFound(),
+            };
         }
         #endregion
     }

@@ -44,7 +44,7 @@ These URLs have different origins than the previous two URLs:
 
 ## CORS with named policy and middleware
 
-CORS Middleware handles cross-origin requests. The following code applies CORS policies to all the apps endpoints with the specified origin:
+CORS Middleware handles cross-origin requests. The following code applies CORS policies to all the app's endpoints with the specified origin:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=8,14-22,38)]
 
@@ -76,7 +76,7 @@ Note: The specified URL must **not** contain a trailing slash (`/`). If the URL 
 
 ## Enable Cors with endpoint routing
 
-***Note:*** Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [automatic pre-flight requests](#apf). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/18665) and [Test CORS with endpoint routing and [HttpOptions]](#tcer).
+Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [automatic pre-flight requests](#apf). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/18665) and [Test CORS with endpoint routing and [HttpOptions]](#tcer).
 
 With endpoint routing, CORS can be enabled on a per-endpoint basis using the <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> set of extension methods:
 

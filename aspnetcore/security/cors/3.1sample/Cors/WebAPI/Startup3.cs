@@ -25,7 +25,6 @@ namespace WebAPI3
                 options.AddDefaultPolicy(
                     builder =>
                     {
-
                         builder.WithOrigins("http://example.com",
                                             "http://www.contoso.com");
                     });

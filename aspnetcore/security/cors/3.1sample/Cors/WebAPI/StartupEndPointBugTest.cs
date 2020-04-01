@@ -26,7 +26,6 @@ namespace WebAPI
         {
             services.AddCors(options =>
             {
-
                 options.AddPolicy(name: MyPolicy,
                     builder =>
                     {
@@ -37,8 +36,7 @@ namespace WebAPI
                                             "https://localhost:44398",
                                             "https://localhost:5001")
                                .WithHeaders(HeaderNames.ContentType, "x-custom-header")
-                               .WithMethods("PUT", "DELETE", "GET", "OPTIONS")
-                               ;
+                               .WithMethods("PUT", "DELETE", "GET", "OPTIONS");
                     });
             });
 
