@@ -4,7 +4,7 @@
 
 
 <div class="text-center">
-    <h1 class="display-4">CORS Test</h1>
+    <h1 class="display-4">CORS Test 1</h1>
     @{
         var host3 = Configuration["host3"];
 
@@ -27,17 +27,17 @@
 <ul>
     <li>
         <input type="button" value="Values"
-               onclick="MyTestCors( '@Model.Host','/api/values', 'GET')" />
+               onclick="MyTestCors3( '@Model.Host','/api/values', 'GET')" />
     </li>
 
     <li>
         <input type="button" value="PUT test"
-               onclick="MyTestCors( '@Model.Host', '/api/values/5', 'PUT')" />
+               onclick="MyTestCors3( '@Model.Host', '/api/values/5', 'PUT')" />
     </li>
 
     <li>
         <input type="button" value="GetValues2 [DisableCors]"
-               onclick="MyTestCors( '@Model.Host','/api/values/GetValues2', 'GET')" />
+               onclick="MyTestCors3( '@Model.Host','/api/values/GetValues2', 'GET')" />
     </li>
 </ul>
 

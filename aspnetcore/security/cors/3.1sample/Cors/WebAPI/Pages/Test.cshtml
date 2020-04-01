@@ -12,7 +12,7 @@
 
 <div class="text-center">
 
-    <h1 class="display-4">CORS Test</h1>
+    <h1 class="display-4">CORS Test 2</h1>
     @{
         var host1 = Configuration["host1"];
         var hostTest = host1 + "/test";
@@ -45,29 +45,29 @@
 <ul>
     <li>
         <input type="button" value="PUT test "
-               onclick="MyTestCorsX( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/5', 'PUT')" />
+               onclick="MyTestCors3( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/5', 'PUT', true)" />
     </li>
 
     <li>
         <input type="button" value="Delete test"
-               onclick="MyTestCorsX( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/5', 'DELETE')" />
+               onclick="MyTestCors3( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/5', 'DELETE', true)" />
     </li>
 
     <li>
         <input type="button" value="Delete [EnableCors]"
-               onclick="MyTestCorsX( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/MyDelete2/5', 'DELETE')" />
+               onclick="MyTestCors3( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/MyDelete2/5', 'DELETE', true)" />
     </li>
 
     <li>
         @*GET requires preflight request because of
         "Content-Type": "x-custom-header"*@
         <input type="button" value="GET"
-               onclick="MyTestCorsX( '@Model.Host', '/api/TodoItems' + '@Model.Number', 'GET')" />
+               onclick="MyTestCors3( '@Model.Host', '/api/TodoItems' + '@Model.Number', 'GET', true)" />
     </li>
 
     <li>
         <input type="button" value="GET [EnableCors]"
-               onclick="MyTestCorsX( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/GetTodoItems2', 'GET')" />
+               onclick="MyTestCors3( '@Model.Host', '/api/TodoItems' + '@Model.Number' + '/GetTodoItems2', 'GET', true)" />
     </li>
 
 </ul>
