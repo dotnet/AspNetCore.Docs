@@ -520,7 +520,7 @@ The following `ValuesController` provides the endpoints for testing:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet)]
 
-[MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/Cors/WebApi/Extensions/ControllerContextExtensions.cs) in the preceding code displays route information.
+[MyDisplayRouteInfo](https://github.com/Rick-Anderson/RouteInfo/blob/master/Microsoft.Docs.Samples.RouteInfo/ControllerContextExtensions.cs) in the preceding code displays route information.
 
 Test the preceding sample code by one of the following approaches:
 
