@@ -134,7 +134,7 @@ For more information, see <xref:security/authentication/social/additional-claims
 
 ### Authenticate users to only call protected third party APIs
 
-Authenticate the user with a client-side oAuth flow against the third-party API provider:
+Authenticate the user with a client-side OAuth flow against the third-party API provider:
 
  ```csharp
  builder.services.AddOidcAuthentication(options => { ... });
@@ -156,7 +156,7 @@ When a user logs in, Identity collects access and refresh tokens as part of the 
 
 Use the access token generated on the server to retrieve the third-party access token from a server API endpoint. From there, use the third-party access token to call third-party API resources directly from Identity on the client.
 
-We don't recommend this approach. This approach requires treating the third-party access token as if it were generated for a public client. In oAuth terms, the public app doesn't have a client secret because it can't be trusted to store secrets safely, and the access token is produced for a confidential client. A confidential client is a client that has a client secret and is assumed to be able to safely store secrets.
+We don't recommend this approach. This approach requires treating the third-party access token as if it were generated for a public client. In OAuth terms, the public app doesn't have a client secret because it can't be trusted to store secrets safely, and the access token is produced for a confidential client. A confidential client is a client that has a client secret and is assumed to be able to safely store secrets.
 
 * The third-party access token might be granted additional scopes to perform sensitive operations based on the fact that the third-party emitted the token for a more trusted client.
 * Similarly, refresh tokens shouldn't be issued to a client that isn't trusted, as doing so gives the client unlimited access unless other restrictions are put into place.
