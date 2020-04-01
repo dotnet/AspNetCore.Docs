@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 This article shows how to enable CORS in an ASP.NET Core app.
 
-Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. Sometimes, you might want to allow other sites make cross-origin requests to your app. For more information, see the [Mozilla CORS article](https://developer.mozilla.org/docs/Web/HTTP/CORS).
+Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. Sometimes, you might want to allow other sites to make cross-origin requests to your app. For more information, see the [Mozilla CORS article](https://developer.mozilla.org/docs/Web/HTTP/CORS).
 
 [Cross Origin Resource Sharing](https://www.w3.org/TR/cors/) (CORS):
 
@@ -94,7 +94,7 @@ See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions 
 
 Enabling CORS with the [[EnableCors]](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute to only those endpoints that require CORS is preferred to enabling CORS globally.
 
-The [[EnableCors]](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute provides an alternative to applying CORS globally. The `[EnableCors]` attribute enables CORS for selected end points, rather than all end points:
+The [[EnableCors]](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute provides an alternative to applying CORS globally. The `[EnableCors]` attribute enables CORS for selected endpoints, rather than all endpoints:
 
 * `[EnableCors]` specifies the default policy.
 * `[EnableCors("{Policy String}")]` specifies a specific a policy.
@@ -105,7 +105,7 @@ The `[EnableCors]` attribute can be applied to:
 * Controller
 * Controller action method
 
-Different policies can be applied to controller, page-model, or action with the  `[EnableCors]` attribute. When the `[EnableCors]` attribute is applied to a controllers, page-model, or action method, and CORS is enabled in middleware, ***both*** policies are applied. ***We recommend against combining policies. Use the*** `[EnableCors]` ***attribute or middleware, not both in the same app.***
+Different policies can be applied to controllers, page models, or action methods with the `[EnableCors]` attribute. When the `[EnableCors]` attribute is applied to a controller, page model, or action method, and CORS is enabled in middleware, ***both*** policies are applied. ***We recommend against combining policies. Use the*** `[EnableCors]` ***attribute or middleware, not both in the same app.***
 
 The following code applies a different policy to each method:
 
@@ -301,13 +301,13 @@ Sec-Fetch-Site: cross-site
 User-Agent: Mozilla/5.0
 ```
 
-The pre-flight request uses the [HTTP OPTIONS](https://developer.mozilla.org/docs/Web/HTTP/Methods/OPTIONS) method. It may includes the following headers:
+The pre-flight request uses the [HTTP OPTIONS](https://developer.mozilla.org/docs/Web/HTTP/Methods/OPTIONS) method. It may include the following headers:
 
 * [Access-Control-Request-Method](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Request-Method): The HTTP method that will be used for the actual request.
 * [Access-Control-Request-Headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Headers): A list of request headers that the app sets on the actual request. As stated earlier, this doesn't include headers that the browser sets, such as `User-Agent`.
 * [Access-Control-Allow-Methods](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Methods)
 
-If the preflight request is denied, the app returns a `200 OK` response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request. For an example of denied preflight request, see the [Test CORS](#testc) section of this document.
+If the preflight request is denied, the app returns a `200 OK` response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request. For an example of a denied preflight request, see the [Test CORS](#testc) section of this document.
 
 Using the F12 tools, the console app shows an error similar to one of the following, depending on the browser:
 
@@ -354,7 +354,7 @@ If the preflight request is denied, the app returns a *200 OK* response but does
 
 When the CORS policy is applied either:
 
-* Globally by calling  `app.UseCors("The Policy")` in `Configure`.
+* Globally by calling `app.UseCors("The Policy")` in `Startup.Configure`.
 * Using the `[EnableCors]` attribute.
 
 ASP.NET Core responds to the preflight OPTIONS request.
@@ -367,7 +367,7 @@ The [Test CORS](#testc) section of this document demonstrates this behavior.
 
 ### [HttpOptions] attribute for preflight requests
 
-When CORS is enabled with the appropriate policy, ASP.NET Core generally automatically responds to CORS preflight requests. In some cases, code may not be generated to respond to preflight requests, for example, using [CORS with endpoint routing](#ecors).
+When CORS is enabled with the appropriate policy, ASP.NET Core generally automatically responds to CORS preflight requests. In some cases, code may not be generated to respond to preflight requests. For example, using [CORS with endpoint routing](#ecors).
 
 The following code uses the [[HttpOptions]](xref:Microsoft.AspNetCore.Mvc.HttpOptionsAttribute) attribute to create endpoints for OPTIONS requests:
 
@@ -388,7 +388,7 @@ This section describes what happens in a [CORS](https://developer.mozilla.org/do
 
 * CORS is **not** a security feature. CORS is a W3C standard that allows a server to relax the same-origin policy.
   * For example, a malicious actor could use [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) against your site and execute a cross-site request to their CORS enabled site to steal information.
-* An API is not safer by allowing CORS.
+* An API isn't safer by allowing CORS.
   * It's up to the client (browser) to enforce CORS. The server executes the request and returns the response, it's the client that returns an error and blocks the response. For example, any of the following tools will display the server response:
     * [Fiddler](https://www.telerik.com/fiddler)
     * [Postman](https://www.getpostman.com/)
@@ -401,7 +401,7 @@ The [CORS specification](https://www.w3.org/TR/cors/) introduced several new HTT
 
 The  [PUT test button](https://cors3.azurewebsites.net/test) on the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi)
 
-The following is an example of a cross-origin request from the [Values](https://cors3.azurewebsites.net/) test button to `https://cors1.azurewebsites.net/api/values` . The `Origin` header:
+The following is an example of a cross-origin request from the [Values](https://cors3.azurewebsites.net/) test button to `https://cors1.azurewebsites.net/api/values`. The `Origin` header:
 
 * Provides the domain of the site that's making the request.
 * Is required and must be different from the host.
@@ -482,7 +482,7 @@ Sec-Fetch-Site: cross-site
 User-Agent: Mozilla/5.0
 ```
 
-In the preceding **Response headers**, the server sets the [Access-Control-Allow-Origin](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin): `https://cors1.azurewebsites.net` header in the response. The `https://cors1.azurewebsites.net` value of this header matches the Origin header from the request
+In the preceding **Response headers**, the server sets the [Access-Control-Allow-Origin](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin): `https://cors1.azurewebsites.net` header in the response. The `https://cors1.azurewebsites.net` value of this header matches the `Origin` header from the request.
 
 If <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrigin*> is called, the `Access-Control-Allow-Origin: *`, the wildcard value, is returned. `AllowAnyOrigin` allows any origin.
 
@@ -568,7 +568,7 @@ Test the preceding code from the [test page](https://cors1.azurewebsites.net/tes
 
 The **Delete [EnableCors]** and **GET [EnableCors]** buttons succeed, because the endpoints have `[EnableCors]` and respond to preflight requests. The other endpoints fails. The **GET** button fails, because the [JavaScript](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi/wwwroot/js/MyJS.js) is sending:
 
-```JavaScript
+```javascript
  headers: {
       "Content-Type": "x-custom-header"
  },
@@ -683,7 +683,7 @@ The `[EnableCors]` attribute can be applied to:
 * Controller
 * Controller action method
 
-You can apply different policies to controller/page-model/action with the  `[EnableCors]` attribute. When the `[EnableCors]` attribute is applied to a controllers/page-model/action method, and CORS is enabled in middleware, ***both*** policies are applied. We recommend ***not*** combining policies. Use the `[EnableCors]` attribute or middleware, ***not both*** in the same app.
+You can apply different policies to controller/page-model/action with the  `[EnableCors]` attribute. When the `[EnableCors]` attribute is applied to a controllers/page model/action method, and CORS is enabled in middleware, ***both*** policies are applied. We recommend ***not*** combining policies. Use the `[EnableCors]` attribute or middleware, ***not both*** in the same app.
 
 The following code applies a different policy to each method:
 

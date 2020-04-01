@@ -11,7 +11,7 @@ namespace WebAPI
         {
             var h1 = "host1";
             var h3 = "host3";
-            if (changeOrder==true)
+            if (changeOrder == true)
             {
                 h1 = "host3";
                 h3 = "host1";
