@@ -45,9 +45,9 @@ The route template `"{controller=Home}/{action=Index}/{id?}"`:
 * Matches a URL path like `/Products/Details/5`
 * Extracts the route values `{ controller = Products, action = Details, id = 5 }` by tokenizing the path. The extraction of route values results in a match if the app has a controller named `ProductsController` and a `Details` action:
 
-[!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippetA)]
+  [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippetA)]
 
-[!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
+  [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
   * `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. See [Model Binding](xref:mvc/models/model-binding) for more details.
 * `{controller=Home}` defines `Home` as the default `controller`.
