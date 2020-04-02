@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats to Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/31/2020
+ms.date: 04/02/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/server
 ---
@@ -137,9 +137,13 @@ public class TokenProvider
 }
 ```
 
-In `Startup.ConfigureServices`, register the token provider service:
+In `Startup.ConfigureServices`, add services for:
+
+* `IHttpClientFactory`
+* `TokenProvider`
 
 ```csharp
+services.AddHttpClient();
 services.AddScoped<TokenProvider>();
 ```
 
