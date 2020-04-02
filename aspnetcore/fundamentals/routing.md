@@ -217,7 +217,7 @@ The style of middleware shown with `Approach 1:` is **terminal middleware**. It'
 * The matching operation in the preceding sample is `Path == "/"` for the middleware and `Path == "/Movie"` for routing.
 * When a match is successful, it executes some functionality and returns, rather than invoking the `next` middleware.
 
-It's called terminal middleware middleware because it terminates the search, executes some functionality, and then returns.
+It's called terminal middleware because it terminates the search, executes some functionality, and then returns.
 
 Comparing a terminal middleware and routing:
 * Both approaches allow terminating the processing pipeline:
