@@ -100,6 +100,10 @@ The command creates a folder named with the value provided for the `{APP NAME}` 
 Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie. For example:
 
 ```csharp
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+
+...
+
 services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
 {
     options.ResponseType = "code";
