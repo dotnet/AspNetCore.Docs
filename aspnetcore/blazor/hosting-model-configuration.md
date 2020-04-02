@@ -68,7 +68,7 @@ Add an *appsettings.json* file in the *wwwroot* folder:
 
 ```json
 {
-    "message": "Hello from config!"
+  "message": "Hello from config!"
 }
 ```
 
@@ -81,7 +81,7 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 
 <h1>Configuration example</h1>
 
-<p>@Configuration["message"]</p>
+<p>Message: @Configuration["message"]</p>
 ```
 
 > [!WARNING]
