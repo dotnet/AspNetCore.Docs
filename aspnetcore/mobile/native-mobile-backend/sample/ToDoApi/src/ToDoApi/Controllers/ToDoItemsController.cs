@@ -1,95 +1,84 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ToDoApi.Interfaces;
 using ToDoApi.Models;
 
-namespace ToDoApi.Controllers
-{
-    [Route("api/[controller]")]
-    public class ToDoItemsController : Controller
-    {
+namespace ToDoApi.Controllers {
+    [Route ("api/[controller]")]
+    [ApiController]
+    public class ToDoItemsController : ControllerBase {
         private readonly IToDoRepository _toDoRepository;
 
-        public ToDoItemsController(IToDoRepository toDoRepository)
-        {
+        public ToDoItemsController (IToDoRepository toDoRepository) {
             _toDoRepository = toDoRepository;
         }
 
+        // GET: api/TodoItems
         [HttpGet]
-        public IActionResult List()
-        {
-            return Ok(_toDoRepository.All);
+        public ActionResult<List<ToDoItem>> GetTodoItems () =>
+            _toDoRepository.Get ();
+
+        [HttpGet ("{id}")]
+        public ActionResult<ToDoItem> GetTodoItem (string id) {
+            var todoItem = _toDoRepository.Get (id);
+
+            if (todoItem == null) {
+                return NotFound ();
+            }
+
+            return todoItem;
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] ToDoItem item)
-        {
-            try
-            {
-                if (item == null || !ModelState.IsValid)
-                {
-                    return BadRequest(ErrorCode.TodoItemNameAndNotesRequired.ToString());
+        public IActionResult CreateTodoItem (ToDoItem todoItem) {
+            try {
+                bool itemExists = _toDoRepository.DoesItemExist (todoItem.Id);
+                if (itemExists) {
+                    return StatusCode (StatusCodes.Status409Conflict, ErrorCode.TodoItemIDInUse.ToString ());
                 }
-                bool itemExists = _toDoRepository.DoesItemExist(item.ID);
-                if (itemExists)
-                {
-                    return StatusCode(StatusCodes.Status409Conflict, ErrorCode.TodoItemIDInUse.ToString());
-                }
-                _toDoRepository.Insert(item);
+                _toDoRepository.Create (todoItem);
+            } catch (Exception) {
+                return BadRequest (ErrorCode.CouldNotCreateItem.ToString ());
             }
-            catch (Exception)
-            {
-                return BadRequest(ErrorCode.CouldNotCreateItem.ToString());
-            }
-            return Ok(item);
+
+            return CreatedAtAction (
+                nameof (GetTodoItem),
+                new { id = todoItem.Id },
+                todoItem);
         }
 
         [HttpPut]
-        public IActionResult Edit([FromBody] ToDoItem item)
-        {
-            try
-            {
-                if (item == null || !ModelState.IsValid)
-                {
-                    return BadRequest(ErrorCode.TodoItemNameAndNotesRequired.ToString());
+        public IActionResult UpdateTodoItem (ToDoItem todoItem) {
+            try {
+                var existingItem = _toDoRepository.Get (todoItem.Id);
+                if (existingItem == null) {
+                    return NotFound (ErrorCode.RecordNotFound.ToString ());
                 }
-                var existingItem = _toDoRepository.Find(item.ID);
-                if (existingItem == null)
-                {
-                    return NotFound(ErrorCode.RecordNotFound.ToString());
-                }
-                _toDoRepository.Update(item);
+                _toDoRepository.Update (todoItem);
+            } catch (Exception) {
+                return BadRequest (ErrorCode.CouldNotUpdateItem.ToString ());
             }
-            catch (Exception)
-            {
-                return BadRequest(ErrorCode.CouldNotUpdateItem.ToString());
-            }
-            return NoContent();
+            return NoContent ();
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
-        {
-            try
-            {
-                var item = _toDoRepository.Find(id);
-                if (item == null)
-                {
-                    return NotFound(ErrorCode.RecordNotFound.ToString());
+        [HttpDelete ("{id}")]
+        public IActionResult DeleteTodoItem (string id) {
+            try {
+                var item = _toDoRepository.Get (id);
+                if (item == null) {
+                    return NotFound (ErrorCode.RecordNotFound.ToString ());
                 }
-                _toDoRepository.Delete(id);
+                _toDoRepository.Delete (id);
+            } catch (Exception) {
+                return BadRequest (ErrorCode.CouldNotDeleteItem.ToString ());
             }
-            catch (Exception)
-            {
-                return BadRequest(ErrorCode.CouldNotDeleteItem.ToString());
-            }
-            return NoContent();
+            return NoContent ();
         }
     }
 
-    public enum ErrorCode
-    {
+    public enum ErrorCode {
         TodoItemNameAndNotesRequired,
         TodoItemIDInUse,
         RecordNotFound,
