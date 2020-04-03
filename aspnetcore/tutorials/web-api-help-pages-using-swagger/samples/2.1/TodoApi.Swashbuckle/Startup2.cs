@@ -35,7 +35,7 @@ namespace TodoApi
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(options =>
             {
-                swaggerUIOptions.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
             app.UseMvc();
