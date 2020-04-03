@@ -18,7 +18,7 @@ namespace TodoApi
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen(swaggerGeneratorOptions =>
+            services.AddSwaggerGen(options =>
             {
                 swaggerGeneratorOptions.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
