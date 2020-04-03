@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Docs.Samples;
+
 #region snippet_1
 public class UrlGenerationAttrController : Controller
 {

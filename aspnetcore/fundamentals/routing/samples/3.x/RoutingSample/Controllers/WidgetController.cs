@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-
+using Microsoft.Docs.Samples;
 
 namespace RoutingSample.Controllers
 {

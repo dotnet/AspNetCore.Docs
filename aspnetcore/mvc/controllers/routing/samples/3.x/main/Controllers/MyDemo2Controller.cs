@@ -1,6 +1,6 @@
 ﻿#define First
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.Docs.Samples;
 
 namespace RoutingSample.Controllers
 {
