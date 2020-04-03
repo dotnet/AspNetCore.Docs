@@ -5,7 +5,7 @@ description: Learn how to make Razor components accessible to users in multiple 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/01/2020
+ms.date: 04/02/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/globalization-localization
 ---
@@ -60,7 +60,7 @@ To explicitly configure the culture, set `CultureInfo.DefaultThreadCurrentCultur
 
 By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. For more information and guidance on controlling the linker's behavior, see <xref:host-and-deploy/blazor/configure-linker#configure-the-linker-for-internationalization>.
 
-For a Blazor WebAssembly sample app with a culture picker, see the [LocSample](https://github.com/pranavkm/LocSample) localization sample app.
+While the culture that Blazor selects by default might be sufficient for most users, consider offering a way for users to specify their preferred locale. For a Blazor WebAssembly sample app with a culture picker, see the [LocSample](https://github.com/pranavkm/LocSample) localization sample app.
 
 ### Blazor Server
 
