@@ -157,7 +157,7 @@ The following example shows how to set and get an integer and a string:
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Pages/Index.cshtml.cs?name=snippet1&highlight=18-19,22-23)]
 
-All session data must be serialized to enable a distributed cache scenario, even when using the in-memory cache. String and integer serializers are provided by the extension methods of ([ISession](/dotnet/api/microsoft.aspnetcore.http.isession)). Complex types must be serialized by the user using another mechanism, such as JSON.
+All session data must be serialized to enable a distributed cache scenario, even when using the in-memory cache. String and integer serializers are provided by the extension methods of [ISession](/dotnet/api/microsoft.aspnetcore.http.isession). Complex types must be serialized by the user using another mechanism, such as JSON.
 
 Use the following sample code to serialize objects:
 
