@@ -22,9 +22,9 @@ namespace TodoApi
             services.AddMvc();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen(swaggerGeneratorOptions =>
+            services.AddSwaggerGen(options =>
             {
-                swaggerGeneratorOptions.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
         }
         #endregion
@@ -37,9 +37,9 @@ namespace TodoApi
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(swaggerUIOptions =>
+            app.UseSwaggerUI(options =>
             {
-                swaggerUIOptions.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
             app.UseMvc();
