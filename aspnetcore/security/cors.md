@@ -44,19 +44,19 @@ These URLs have different origins than the previous two URLs:
 
 ## CORS with named policy and middleware
 
-CORS Middleware handles cross-origin requests. The following code applies CORS policies to all the app's endpoints with the specified origin:
+CORS Middleware handles cross-origin requests. The following code applies a CORS policy to all the app's endpoints with the specified origins:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup.cs?name=snippet&highlight=8,14-22,38)]
 
 The preceding code:
 
 * Sets the policy name to `_myAllowSpecificOrigins`. The policy name is arbitrary.
-* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method and specifies the CORS policy to use. `UseCors` enables the CORS middleware.
+* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method and specifies the default CORS policy. `UseCors` adds the CORS middleware.
 * Calls <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> with a [lambda expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this article.
 
 With endpoint routing, the CORS middleware ***must*** be configured to execute between the calls to `UseRouting` and `UseEndpoints`.
 
-See [Enable CORS in Razor Pages, controllers, and action methods](#ecors) to apply CORS policy at the page, controller, or action level.
+See [Enable CORS in Razor Pages, controllers, and action methods](#ecors) to apply CORS policies at the page, controller, or action level.
 
 See [Test CORS](#testc) for instructions on testing code similar to the preceding code.
 
@@ -66,7 +66,7 @@ The <xref:Microsoft.Extensions.DependencyInjection.MvcCorsMvcCoreBuilderExtensio
 
 For more information, see [CORS policy options](#cpo) in this document.
 
-The <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> method can chain methods, as shown in the following code:
+The <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> methods can be chained, as shown in the following code:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup2.cs?name=snippet)]
 
@@ -76,7 +76,7 @@ Note: The specified URL must **not** contain a trailing slash (`/`). If the URL 
 
 ## Enable Cors with endpoint routing
 
-Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [automatic pre-flight requests](#apf). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/18665) and [Test CORS with endpoint routing and [HttpOptions]](#tcer).
+Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [automatic preflight requests](#apf). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/18665) and [Test CORS with endpoint routing and [HttpOptions]](#tcer).
 
 With endpoint routing, CORS can be enabled on a per-endpoint basis using the <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> set of extension methods:
 
@@ -85,8 +85,8 @@ With endpoint routing, CORS can be enabled on a per-endpoint basis using the <xr
 In the preceding code:
 
 * `app.UseCors` enables the CORS middleware but doesn't add a policy. `app.UseCors` by itself, without a policy, does ***not*** allow cross-origin requests.
-* The endpoints `/echo` and API controller endpoints allow cross-origin requests for the specified policy.
-* The endpoints `/echo2` and Razor Pages endpoints do ***not*** allow cross-origin requests unless the [[EnableCors]](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute is applied.
+* The `/echo` and controller endpoints allow cross-origin requests using the specified policy.
+* The `/echo2` and Razor Pages endpoints do ***not*** allow cross-origin requests.
 
 See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions on testing code similar to the preceding.
 
@@ -97,7 +97,7 @@ Enabling CORS with the [[EnableCors]](xref:Microsoft.AspNetCore.Cors.EnableCorsA
 The [[EnableCors]](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute provides an alternative to applying CORS globally. The `[EnableCors]` attribute enables CORS for selected endpoints, rather than all endpoints:
 
 * `[EnableCors]` specifies the default policy.
-* `[EnableCors("{Policy String}")]` specifies a specific a policy.
+* `[EnableCors("{Policy String}")]` specifies a named policy.
 
 The `[EnableCors]` attribute can be applied to:
 
@@ -301,13 +301,13 @@ Sec-Fetch-Site: cross-site
 User-Agent: Mozilla/5.0
 ```
 
-The pre-flight request uses the [HTTP OPTIONS](https://developer.mozilla.org/docs/Web/HTTP/Methods/OPTIONS) method. It may include the following headers:
+The preflight request uses the [HTTP OPTIONS](https://developer.mozilla.org/docs/Web/HTTP/Methods/OPTIONS) method. It may include the following headers:
 
 * [Access-Control-Request-Method](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Request-Method): The HTTP method that will be used for the actual request.
 * [Access-Control-Request-Headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Headers): A list of request headers that the app sets on the actual request. As stated earlier, this doesn't include headers that the browser sets, such as `User-Agent`.
 * [Access-Control-Allow-Methods](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Methods)
 
-If the preflight request is denied, the app returns a `200 OK` response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request. For an example of a denied preflight request, see the [Test CORS](#testc) section of this document.
+If the preflight request is denied, the app returns a `200 OK` response but doesn't set the CORS headers. Therefore, the browser doesn't attempt the cross-origin request. For an example of a denied preflight request, see the [Test CORS](#testc) section of this document.
 
 Using the F12 tools, the console app shows an error similar to one of the following, depending on the browser:
 
@@ -359,7 +359,7 @@ When the CORS policy is applied either:
 
 ASP.NET Core responds to the preflight OPTIONS request.
 
-Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support automatic pre-flight requests.
+Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support automatic preflight requests.
 
 The [Test CORS](#testc) section of this document demonstrates this behavior.
 
@@ -367,7 +367,7 @@ The [Test CORS](#testc) section of this document demonstrates this behavior.
 
 ### [HttpOptions] attribute for preflight requests
 
-When CORS is enabled with the appropriate policy, ASP.NET Core generally automatically responds to CORS preflight requests. In some cases, code may not be generated to respond to preflight requests. For example, using [CORS with endpoint routing](#ecors).
+When CORS is enabled with the appropriate policy, ASP.NET Core generally responds to CORS preflight requests automatically. In some scenarios, this may not be the case. For example, using [CORS with endpoint routing](#ecors).
 
 The following code uses the [[HttpOptions]](xref:Microsoft.AspNetCore.Mvc.HttpOptionsAttribute) attribute to create endpoints for OPTIONS requests:
 
@@ -482,7 +482,7 @@ Sec-Fetch-Site: cross-site
 User-Agent: Mozilla/5.0
 ```
 
-In the preceding **Response headers**, the server sets the [Access-Control-Allow-Origin](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin): `https://cors1.azurewebsites.net` header in the response. The `https://cors1.azurewebsites.net` value of this header matches the `Origin` header from the request.
+In the preceding **Response headers**, the server sets the [Access-Control-Allow-Origin](https://developer.mozilla.org/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) header in the response. The `https://cors1.azurewebsites.net` value of this header matches the `Origin` header from the request.
 
 If <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.AllowAnyOrigin*> is called, the `Access-Control-Allow-Origin: *`, the wildcard value, is returned. `AllowAnyOrigin` allows any origin.
 
@@ -492,7 +492,7 @@ If the response doesn't include the `Access-Control-Allow-Origin` header, the cr
 
 ### Display OPTIONS requests
 
-By default, the Chrome and Edge browsers don't show OPTIONS requests on the network tab of the F12 tools. To display OPTIONS requests, in Chrome or Edge browser:
+By default, the Chrome and Edge browsers don't show OPTIONS requests on the network tab of the F12 tools. To display OPTIONS requests in these browsers:
 
 * `chrome://flags/#out-of-blink-cors` or `edge://flags/#out-of-blink-cors`
 * disable the flag.
@@ -522,11 +522,11 @@ The following `ValuesController` provides the endpoints for testing:
 
 [MyDisplayRouteInfo](https://github.com/Rick-Anderson/RouteInfo/blob/master/Microsoft.Docs.Samples.RouteInfo/ControllerContextExtensions.cs) is provided by the [Rick.Docs.Samples.RouteInfo](https://www.nuget.org/packages/Rick.Docs.Samples.RouteInfo) NuGet package and displays route information.
 
-Test the preceding sample code by one of the following approaches:
+Test the preceding sample code by using one of the following approaches:
 
-* Running the deployed sample app at [https://cors3.azurewebsites.net/](https://cors3.azurewebsites.net/). There is no need to download the sample.
-* Running the sample from `dotnet run` using the default `https://localhost:5001` localhost port.
-* Running the sample from Visual Studio with the port set to 44398, `https://localhost:44398`.
+* Use the deployed sample app at [https://cors3.azurewebsites.net/](https://cors3.azurewebsites.net/). There is no need to download the sample.
+* Run the sample with `dotnet run` using the default URL of `https://localhost:5001`.
+* Run the sample from Visual Studio with the port set to 44398 for a URL of `https://localhost:44398`.
 
 Using a browser with the F12 tools:
 
@@ -536,7 +536,7 @@ Using a browser with the F12 tools:
 
      Access to fetch at `'https://cors1.azurewebsites.net/api/values/GetValues2'` from origin `'https://cors3.azurewebsites.net'` has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
      
-CORS-enabled endpoints can be tested with a tool, such as [curl](https://curl.haxx.se/), [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/). When using a tool, the origin of the request specified by the `Origin` header must differ from the host receiving the request. If the request isn't *cross-origin* based on the value of the `Origin` header:
+CORS-enabled endpoints can be tested with a tool, such as [curl](https://curl.haxx.se/), [Fiddler](https://www.telerik.com/fiddler), or [Postman](https://www.getpostman.com/). When using a tool, the origin of the request specified by the `Origin` header must differ from the host receiving the request. If the request isn't *cross-origin* based on the value of the `Origin` header:
 
 * There's no need for CORS Middleware to process the request.
 * CORS headers aren't returned in the response.
@@ -556,7 +556,7 @@ C:\Program Files\Git\mingw64\bin\
 
 ### Test CORS with endpoint routing and [HttpOptions]
 
-Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [automatic pre-flight requests](#apf). Consider the following code which uses [endpoint routing to enable CORS](#ecors):
+Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [automatic preflight requests](#apf). Consider the following code which uses [endpoint routing to enable CORS](#ecors):
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPointBugTest.cs?name=snippet2)]
 
@@ -566,7 +566,7 @@ The following `TodoItems1Controller` provides endpoints for testing:
 
 Test the preceding code from the [test page](https://cors1.azurewebsites.net/test?number=1) of the deployed [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi).
 
-The **Delete [EnableCors]** and **GET [EnableCors]** buttons succeed, because the endpoints have `[EnableCors]` and respond to preflight requests. The other endpoints fails. The **GET** button fails, because the [JavaScript](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi/wwwroot/js/MyJS.js) is sending:
+The **Delete [EnableCors]** and **GET [EnableCors]** buttons succeed, because the endpoints have `[EnableCors]` and respond to preflight requests. The other endpoints fails. The **GET** button fails, because the [JavaScript](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/WebApi/wwwroot/js/MyJS.js) sends:
 
 ```javascript
  headers: {
