@@ -430,7 +430,7 @@ The main difference is allocated bytes, and as a consequence much fewer generati
 When multiple containerized apps are running on one machine, Workstation GC might be more preformant than Server GC. For more information, see:
 
 * [Running with Server GC in a Small Container](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-0/)
-* [Workstation GC vs. Server GC](#gc)
+* [Workstation GC vs. Server GC](#sc)
 
 ## Additional resources
 

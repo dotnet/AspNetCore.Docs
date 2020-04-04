@@ -258,7 +258,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 * [Configure ASP.NET Core to work with proxy servers and load balancers](/aspnet/core/host-and-deploy/proxy-load-balancer)
 * [Working with Visual Studio Docker Tools](https://docs.microsoft.com/aspnet/core/publishing/visual-studio-tools-for-docker)
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)
-* [GC using Docker and small containers](xref:performance/memory#gc)
+* [GC using Docker and small containers](xref:performance/memory#sc)
 
 ## Next steps
 
