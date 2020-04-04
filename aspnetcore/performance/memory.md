@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how memory is managed in ASP.NET Core and how the garbage collector (GC) works.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 4/05/2019
 uid: performance/memory
 ---
 
@@ -116,6 +116,8 @@ The preceding chart shows:
 * CPU is 33%.
 * The memory consumption and release (through GC) is stable.
 * The CPU (33%) is not over-utilized, therefore the garbage collection can keep up with a high number of allocations.
+
+<a name="gc"></a>
 
 ### Workstation GC vs. Server GC
 
@@ -420,6 +422,15 @@ Applying the same load as the non-pooled version results in the following chart:
 ![preceding chart](memory/_static/pooledarray.png)
 
 The main difference is allocated bytes, and as a consequence much fewer generation 0 collections.
+
+<a name="sc"></a>
+
+## GC using Docker and small containers
+
+When multiple containerized apps are running on one machine, Workstation GC might be more preformant than Server GC. For more information, see:
+
+* [Running with Server GC in a Small Container](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-0/)
+* [Workstation GC vs. Server GC](#gc)
 
 ## Additional resources
 
