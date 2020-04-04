@@ -111,10 +111,10 @@ To specify the output location, which creates a project folder if it doesn't exi
 
 ### Authentication package
 
-The support for authenticating and authorizing calls to ASP.NET Core Web APIs is provided by the `Microsoft.AspNetCore.Authentication.AzureAD.UI`:
+The support for authenticating and authorizing calls to ASP.NET Core Web APIs is provided by the `Microsoft.AspNetCore.Authentication.AzureADB2C.UI`:
 
 ```xml
-<PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" 
+<PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" 
     Version="3.1.0" />
 ```
 
@@ -123,8 +123,8 @@ The support for authenticating and authorizing calls to ASP.NET Core Web APIs is
 The `AddAuthentication` method sets up authentication services within the app and configures the JWT Bearer handler as the default authentication method. The `AddAzureADBearer` method sets up the specific parameters in the JWT Bearer handler required to validate tokens emitted by the Azure Active Directory:
 
 ```csharp
-services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
-    .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
+services.AddAuthentication(AzureADB2CDefaults.BearerAuthenticationScheme)
+    .AddAzureADB2CBearer(options => Configuration.Bind("AzureAdB2C", options));
 ```
 
 `UseAuthentication` and `UseAuthorization` ensure that:
