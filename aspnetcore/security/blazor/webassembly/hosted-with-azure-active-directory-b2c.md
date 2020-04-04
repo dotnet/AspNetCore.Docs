@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/30/2020
+ms.date: 04/04/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
 ---
@@ -111,20 +111,20 @@ To specify the output location, which creates a project folder if it doesn't exi
 
 ### Authentication package
 
-The support for authenticating and authorizing calls to ASP.NET Core Web APIs is provided by the `Microsoft.AspNetCore.Authentication.AzureAD.UI`:
+The support for authenticating and authorizing calls to ASP.NET Core Web APIs is provided by the `Microsoft.AspNetCore.Authentication.AzureADB2C.UI`:
 
 ```xml
-<PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" 
+<PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" 
     Version="3.1.0" />
 ```
 
 ### Authentication service support
 
-The `AddAuthentication` method sets up authentication services within the app and configures the JWT Bearer handler as the default authentication method. The `AddAzureADBearer` method sets up the specific parameters in the JWT Bearer handler required to validate tokens emitted by the Azure Active Directory:
+The `AddAuthentication` method sets up authentication services within the app and configures the JWT Bearer handler as the default authentication method. The `AddAzureADBearer` method sets up the specific parameters in the JWT Bearer handler required to validate tokens emitted by the Azure Active Directory B2C:
 
 ```csharp
-services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
-    .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
+services.AddAuthentication(AzureADB2CDefaults.BearerAuthenticationScheme)
+    .AddAzureADB2CBearer(options => Configuration.Bind("AzureAdB2C", options));
 ```
 
 `UseAuthentication` and `UseAuthorization` ensure that:
@@ -135,6 +135,20 @@ services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
 ```csharp
 app.UseAuthentication();
 app.UseAuthorization();
+```
+
+### User.Identity.Name
+
+By default, the `User.Identity.Name` isn't populated.
+
+To configure the app to receive the value from the `name` claim type, configure the [TokenValidationParameters.NameClaimType](xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType) of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices`:
+
+```csharp
+services.Configure<JwtBearerOptions>(
+    AzureADB2CDefaults.JwtBearerAuthenticationScheme, options =>
+    {
+        options.TokenValidationParameters.NameClaimType = "name";
+    });
 ```
 
 ### App settings
@@ -263,8 +277,9 @@ builder.Services.AddMsalAuthentication(options =>
 
 Run the app from the Server project. When using Visual Studio, select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
+<!-- HOLD
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
-
+-->
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
 
 ## Additional resources
