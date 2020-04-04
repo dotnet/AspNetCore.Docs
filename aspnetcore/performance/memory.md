@@ -150,6 +150,15 @@ The differences between this chart and the server version are significant:
 
 On a typical web server environment, CPU usage is more important than memory, therefore the Server GC is better. If memory utilization is high and CPU usage is relatively low, the Workstation GC might be more performant. For example, high density hosting several web apps where memory is scarce.
 
+<a name="sc"></a>
+
+### GC using Docker and small containers
+
+When multiple containerized apps are running on one machine, Workstation GC might be more preformant than Server GC. For more information, see:
+
+* [Running with Server GC in a Small Container](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-0/)
+* [Workstation GC vs. Server GC](#sc)
+
 ### Persistent object references
 
 The GC cannot free objects that are referenced. Objects that are referenced but no longer needed result in a memory leak. If the app frequently allocates objects and fails to free them after they are no longer needed, memory usage will increase over time.
@@ -422,15 +431,6 @@ Applying the same load as the non-pooled version results in the following chart:
 ![preceding chart](memory/_static/pooledarray.png)
 
 The main difference is allocated bytes, and as a consequence much fewer generation 0 collections.
-
-<a name="sc"></a>
-
-## GC using Docker and small containers
-
-When multiple containerized apps are running on one machine, Workstation GC might be more preformant than Server GC. For more information, see:
-
-* [Running with Server GC in a Small Container](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-0/)
-* [Workstation GC vs. Server GC](#sc)
 
 ## Additional resources
 
