@@ -154,10 +154,7 @@ On a typical web server environment, CPU usage is more important than memory, th
 
 ### GC using Docker and small containers
 
-When multiple containerized apps are running on one machine, Workstation GC might be more preformant than Server GC. For more information, see:
-
-* [Running with Server GC in a Small Container](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-0/)
-* [Workstation GC vs. Server GC](#sc)
+When multiple containerized apps are running on one machine, Workstation GC might be more preformant than Server GC. For more information, see [Running with Server GC in a Small Container](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-0/).
 
 ### Persistent object references
 
