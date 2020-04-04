@@ -117,8 +117,6 @@ The preceding chart shows:
 * The memory consumption and release (through GC) is stable.
 * The CPU (33%) is not over-utilized, therefore the garbage collection can keep up with a high number of allocations.
 
-<a name="gc"></a>
-
 ### Workstation GC vs. Server GC
 
 The .NET Garbage Collector has two different modes:
