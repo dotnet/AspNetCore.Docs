@@ -132,6 +132,20 @@ app.UseAuthentication();
 app.UseAuthorization();
 ```
 
+### User.Identity.Name
+
+By default, the Server app API populates `User.Identity.Name` with the value from the `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` claim type (for example, `2d64b3da-d9d5-42c6-9352-53d8df33d770@contoso.onmicrosoft.com`).
+
+To configure the app to receive the value from the `name` claim type, configure the [TokenValidationParameters.NameClaimType](xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType) of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices`:
+
+```csharp
+services.Configure<JwtBearerOptions>(
+    AzureADDefaults.JwtBearerAuthenticationScheme, options =>
+    {
+        options.TokenValidationParameters.NameClaimType = "name";
+    });
+```
+
 ### App settings
 
 The *appsettings.json* file contains the options to configure the JWT bearer handler used to validate access tokens.
@@ -259,7 +273,9 @@ builder.Services.AddMsalAuthentication(options =>
 
 Run the app from the Server project. When using Visual Studio, select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
+<!-- HOLD
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
+-->
 
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
 
