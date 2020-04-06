@@ -5,7 +5,7 @@ description: Learn how ASP.NET Core abstracts file system access through the use
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/03/2020
+ms.date: 04/06/2020
 uid: fundamentals/file-providers
 ---
 # File Providers in ASP.NET Core
@@ -57,7 +57,7 @@ The following table lists implementations of `IFileProvider`.
 
 The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
 
-When instantiating this provider directly, a directory path is required and serves as the base path for all requests made using the provider.
+When instantiating this provider directly, an absolute directory path is required and serves as the base path for all requests made using the provider. Glob patterns aren't supported in the directory path.
 
 The following code shows how to use `PhysicalFileProvider` to obtain directory contents and file information:
 
