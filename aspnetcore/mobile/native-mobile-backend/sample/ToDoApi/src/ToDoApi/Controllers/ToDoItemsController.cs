@@ -36,7 +36,7 @@ namespace ToDoApi.Controllers {
             try {
                 bool itemExists = _toDoRepository.DoesItemExist (todoItem.Id);
                 if (itemExists) {
-                    return StatusCode (StatusCodes.Status409Conflict, ErrorCode.TodoItemIDInUse.ToString ());
+                    return StatusCode (StatusCodes.Status409Conflict, ErrorCode.TodoItemIdInUse.ToString ());
                 }
                 _toDoRepository.Create (todoItem);
             } catch (Exception) {
@@ -79,8 +79,7 @@ namespace ToDoApi.Controllers {
     }
 
     public enum ErrorCode {
-        TodoItemNameAndNotesRequired,
-        TodoItemIDInUse,
+        TodoItemIdInUse,
         RecordNotFound,
         CouldNotCreateItem,
         CouldNotUpdateItem,
