@@ -66,13 +66,13 @@ The following diagram depicts the complete request processing pipeline for ASP.N
 
 ![ASP.NET Core middleware pipeline](index/_static/middleware-pipeline.svg)
 
-The **Endpoint** middleware in the preceding diagram executes the filter pipeline for the corresponding app type&ndash;MVC or Razor Pages.
+The **Endpoint** middleware in the preceding diagram executes the filter pipeline for the corresponding app type&mdash;MVC or Razor Pages.
 
 ![ASP.NET Core filter pipeline](index/_static/mvc-endpoint.svg)
 
 The order that middleware components are added in the `Startup.Configure` method defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
-The following `Startup.Configure` method adds security related middleware components in the recommended order:
+The following `Startup.Configure` method adds security-related middleware components in the recommended order:
 
 [!code-csharp[](index/snapshot/StartupAll3.cs?name=snippet)]
 
