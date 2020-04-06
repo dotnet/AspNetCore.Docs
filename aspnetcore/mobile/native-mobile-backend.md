@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 12/05/2019
 uid: mobile/native-mobile-backend
 ---
+
 # Create backend services for native mobile apps with ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/)
@@ -34,7 +35,7 @@ Tapping an item on the main list screen opens up an edit dialog where the item's
 
 ![Edit item dialog](native-mobile-backend/_static/todo-android-edit-item.png)
 
-This sample is configured by default to use backend services hosted at developer.xamarin.com, which allow read-only operations. To test it out yourself against the ASP.NET Core app created in the next section running on your computer, you'll need to update the app's `RestUrl` constant. Navigate to the `ToDoREST` project and open the *Constants.cs* file. Replace the `RestUrl` with a URL that includes your machine's IP address (not localhost or 127.0.0.1, since this address is used from the device emulator, not from your machine). Include the port number as well (5000). In order to test that your services work with a device, ensure you don't have an active firewall blocking access to this port.
+This sample is configured by default to use backend services hosted at developer.xamarin.com, which allow read-only operations. To test it out yourself against the ASP.NET Core app created in the next section running on your computer, you'll need to update the app's `RestUrl` constant. Navigate to the `ToDoREST` project and open the _Constants.cs_ file. Replace the `RestUrl` with a URL that includes your machine's IP address (not localhost or 127.0.0.1, since this address is used from the device emulator, not from your machine). Include the port number as well (5000). In order to test that your services work with a device, ensure you don't have an active firewall blocking access to this port.
 
 ```csharp
 // URL of REST service (Xamarin ReadOnly Service)
@@ -46,11 +47,49 @@ public static string RestUrl = "http://192.168.1.207:5000/api/todoitems/{0}";
 
 ## Creating the ASP.NET Core Project
 
-Create a new ASP.NET Core Web Application in Visual Studio. Choose the Web API template and No Authentication. Name the project *ToDoApi*.
+# [Visual Studio](#tab/visual-studio)
 
-![New ASP.NET Web Application dialog with Web API project template selected](native-mobile-backend/_static/web-api-template.png)
+- From the **File** menu, select **New** > **Project**.
+- Select the **ASP.NET Core Web Application** template and click **Next**.
+- Name the project _TodoApi_ and click **Create**.
+- In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Select the **API** template and click **Create**.
 
-The application should respond to all requests made to port 5000. Update *Program.cs* to include `.UseUrls("http://*:5000")` to achieve this:
+![VS new project dialog](native-mobile-backend/_static/vs3.png)
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+- Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+- Change directories (`cd`) to the folder that will contain the project folder.
+- Run the following commands:
+
+  ```dotnetcli
+  dotnet new webapi -o TodoApi
+  code -r TodoApi
+  ```
+
+- When a dialog box asks if you want to add required assets to the project, select **Yes**.
+
+  The preceding commands:
+
+  - Creates a new web API project and opens it in Visual Studio Code.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+- Select **File** > **New Solution**.
+
+  ![macOS New solution](native-mobile-backend/_static/mac-sln.png)
+
+- Select **.NET Core** > **App** > **API** > **Next**.
+
+  ![macOS New project dialog](native-mobile-backend/_static/mac-1.png)
+
+- In the **Configure your new ASP.NET Core Web API** dialog, select **Target Framework** of \*_.NET Core 3.1_.
+
+- Enter _TodoApi_ for the **Project Name** and then select **Create**.
+
+  ![config dialog](native-mobile-backend/_static/mac-2.png)
+
+The application should respond to all requests made to port 5000. Update _Program.cs_ to include `.UseUrls("http://*:5000")` to achieve this:
 
 [!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Program.cs?range=10-16&highlight=3)]
 
@@ -69,18 +108,20 @@ For this sample, the implementation just uses a private collection of items:
 
 [!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Services/ToDoRepository.cs)]
 
-Configure the implementation in *Startup.cs*:
+Configure the implementation in _Startup.cs_:
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Startup.cs?highlight=6&range=29-35)]
+[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Startup.cs?highlight=4&range=18-22)]
 
-At this point, you're ready to create the *ToDoItemsController*.
+At this point, you're ready to create the _ToDoItemsController_.
 
 > [!TIP]
 > Learn more about creating web APIs in [Build your first Web API with ASP.NET Core MVC and Visual Studio](../tutorials/first-web-api.md).
 
 ## Creating the Controller
 
-Add a new controller to the project, *ToDoItemsController*. It should inherit from Microsoft.AspNetCore.Mvc.Controller. Add a `Route` attribute to indicate that the controller will handle requests made to paths starting with `api/todoitems`. The `[controller]` token in the route is replaced by the name of the controller (omitting the `Controller` suffix), and is especially helpful for global routes. Learn more about [routing](../fundamentals/routing.md).
+Add a new controller to the project, _ToDoItemsController_. It should inherit from Microsoft.AspNetCore.Mvc.ControllerBase. Learn more about [ControllerBase](../web-api/index.md).
+
+Add a `Route` attribute to indicate that the controller will handle requests made to paths starting with `api/todoitems`. The `[controller]` token in the route is replaced by the name of the controller (omitting the `Controller` suffix), and is especially helpful for global routes. Learn more about [routing](../fundamentals/routing.md).
 
 The controller requires an `IToDoRepository` to function; request an instance of this type through the controller's constructor. At runtime, this instance will be provided using the framework's support for [dependency injection](../fundamentals/dependency-injection.md).
 
@@ -90,11 +131,11 @@ This API supports four different HTTP verbs to perform CRUD (Create, Read, Updat
 
 ### Reading Items
 
-Requesting a list of items is done with a GET request to the `List` method. The `[HttpGet]` attribute on the `List` method indicates that this action should only handle GET requests. The route for this action is the route specified on the controller. You don't necessarily need to use the action name as part of the route. You just need to ensure each action has a unique and unambiguous route. Routing attributes can be applied at both the controller and method levels to build up specific routes.
+Requesting a list of items is done with a GET request to the `GetTodoItems` method. The `[HttpGet]` attribute on the `GetTodoItems` method indicates that this action should only handle GET requests. The route for this action is the route specified on the controller. You don't necessarily need to use the action name as part of the route. You just need to ensure each action has a unique and unambiguous route. Routing attributes can be applied at both the controller and method levels to build up specific routes.
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=19-23)]
+[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=18-22)]
 
-The `List` method returns a 200 OK response code and all of the ToDo items, serialized as JSON.
+The `GetTodoItems` method returns a 200 OK response code and all of the ToDo items, serialized as JSON.
 
 You can test your new API method using a variety of tools, such as [Postman](https://www.getpostman.com/docs/), shown here:
 
@@ -102,11 +143,12 @@ You can test your new API method using a variety of tools, such as [Postman](htt
 
 ### Creating Items
 
-By convention, creating new data items is mapped to the HTTP POST verb. The `Create` method has an `[HttpPost]` attribute applied to it and accepts a `ToDoItem` instance. Since the `item` argument is passed in the body of the POST, this parameter specifies the `[FromBody]` attribute.
+By convention, creating new data items is mapped to the HTTP POST verb. The `CreateTodoItem` method has an `[HttpPost]` attribute applied to it and accepts a `ToDoItem` instance. Because we use `[ApiController]` attribute, we don't need `[FromBody]` attribute for arguments.
 
-Inside the method, the item is checked for validity and prior existence in the data store, and if no issues occur, it's added using the repository. Checking `ModelState.IsValid` performs [model validation](../mvc/models/validation.md), and should be done in every API method that accepts user input.
+> [!TIP]
+> The [ApiController] attribute makes model validation errors automatically trigger an HTTP 400 response. Consequently, the `ModelState.IsValid` code is unnecessary in an action method.
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=25-46)]
+[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=34-51)]
 
 The sample uses an enum containing error codes that are passed to the mobile client:
 
@@ -120,9 +162,9 @@ The method returns the newly created item in the response.
 
 ### Updating Items
 
-Modifying records is done using HTTP PUT requests. Other than this change, the `Edit` method is almost identical to `Create`. Note that if the record isn't found, the `Edit` action will return a `NotFound` (404) response.
+Modifying records is done using HTTP PUT requests. Other than this change, the `UpdateTodoItem` method is almost identical to `CreateTodoItem`. Note that if the record isn't found, the `UpdateTodoItem` action will return a `NotFound` (404) response.
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=48-69)]
+[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=52-65)]
 
 To test with Postman, change the verb to PUT. Specify the updated object data in the Body of the request.
 
@@ -132,9 +174,9 @@ This method returns a `NoContent` (204) response when successful, for consistenc
 
 ### Deleting Items
 
-Deleting records is accomplished by making DELETE requests to the service, and passing the ID of the item to be deleted. As with updates, requests for items that don't exist will receive `NotFound` responses. Otherwise, a successful request will get a `NoContent` (204) response.
+Deleting records is accomplished by making DELETE requests to the service, and passing the Id of the item to be deleted. As with updates, requests for items that don't exist will receive `NotFound` responses. Otherwise, a successful request will get a `NoContent` (204) response.
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=71-88)]
+[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=66-80)]
 
 Note that when testing the delete functionality, nothing is required in the Body of the request.
 
@@ -142,10 +184,10 @@ Note that when testing the delete functionality, nothing is required in the Body
 
 ## Common Web API Conventions
 
-As you develop the backend services for your app, you will want to come up with a consistent set of conventions or policies for handling cross-cutting concerns. For example, in the service shown above, requests for specific records that weren't found received a `NotFound` response, rather than a `BadRequest` response. Similarly, commands made to this service that passed in model bound types always checked `ModelState.IsValid` and returned a `BadRequest` for invalid model types.
+As you develop the backend services for your app, you will want to come up with a consistent set of conventions or policies for handling cross-cutting concerns. For example, in the service shown above, requests for specific records that weren't found received a `NotFound` response, rather than a `BadRequest` response.
 
 Once you've identified a common policy for your APIs, you can usually encapsulate it in a [filter](../mvc/controllers/filters.md). Learn more about [how to encapsulate common API policies in ASP.NET Core MVC applications](https://msdn.microsoft.com/magazine/mt767699.aspx).
 
 ## Additional resources
 
-* [Authentication and Authorization](/xamarin/xamarin-forms/enterprise-application-patterns/authentication-and-authorization)
+- [Authentication and Authorization](/xamarin/xamarin-forms/enterprise-application-patterns/authentication-and-authorization)
