@@ -62,7 +62,7 @@ In the preceding example, the `Run` delegate writes `"Hello from 2nd delegate."`
 
 ## Middleware order
 
-The following diagram depicts the complete request processing pipeline for ASP.NET Core MVC and Razor Pages apps. You can see how existing middlewares are ordered and where custom middlewares are typically added. There are exceptions to this ordering. You can choose to add middleware in any other stage.
+The following diagram shows the complete request processing pipeline for ASP.NET Core MVC and Razor Pages apps. You can see how, in a typical app, existing middlewares are ordered and where custom middlewares are added. You have full control over how to reorder existing middlewares or inject new custom middlewares as necessary for your scenarios.
 
 ![ASP.NET Core middleware pipeline](index/_static/middleware-pipeline.svg)
 
