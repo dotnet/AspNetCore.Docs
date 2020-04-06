@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor Server app using ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/06/2020
+ms.date: 03/03/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/server
 ---
@@ -83,22 +83,6 @@ When using IIS, enable:
 
 * [WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis).
 * [Sticky sessions with Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
-
-#### Use a custom web.config file
-
-To use a custom *web.config* file:
-
-1. Place the custom *web.config* file at the root of the project folder.
-1. Add the following target to the project file (*.csproj*):
-
-   ```xml
-   <Target Name="CopyWebConfigOnPublish" AfterTargets="Publish">
-     <Copy SourceFiles="web.config" DestinationFolder="$(PublishDir)" />
-   </Target>
-   ```
-   
-> [!NOTE]
-> Use of the MSBuild property `<IsWebConfigTransformDisabled>` set to `true` isn't supported in Blazor [as it is for ASP.NET Core apps deployed to IIS](xref:host-and-deploy/iis/index#webconfig-file). For more information, see [Copy target required to provide custom web.config (dotnet/aspnetcore #20569)](https://github.com/dotnet/aspnetcore/issues/20569).
 
 #### Kubernetes
 
