@@ -95,7 +95,7 @@ Recommendations:
 
 ## Keep common code paths fast
 
-You want all of your code to be fast, frequently called code paths are the most critical to optimize:
+You want all of your code to be fast. Frequently called code paths are the most critical to optimize. These include:
 
 * Middleware components in the app's request processing pipeline, especially middleware run early in the pipeline. These components have a large impact on performance.
 * Code that's executed for every request or multiple times per request. For example, custom logging, authorization handlers, or initialization of transient services.
@@ -153,7 +153,7 @@ The following sections provide performance tips and known reliability problems a
 
 ## Avoid synchronous read or write on HttpRequest/HttpResponse body
 
-All IO in ASP.NET Core is asynchronous. Servers implement the `Stream` interface, which has both synchronous and asynchronous overloads. The asynchronous ones should be preferred to avoid blocking thread pool threads. Blocking threads can lead to thread pool starvation.
+All I/O in ASP.NET Core is asynchronous. Servers implement the `Stream` interface, which has both synchronous and asynchronous overloads. The asynchronous ones should be preferred to avoid blocking thread pool threads. Blocking threads can lead to thread pool starvation.
 
 **Do not do this:** The following example uses the <xref:System.IO.StreamReader.ReadToEnd*>. It blocks the current thread to wait for the result. This is an example of [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
 ).
@@ -231,7 +231,7 @@ ASP.NET Core 3.0 uses <xref:System.Text.Json> by default for JSON serialization.
 
 The [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext) returns the `HttpContext` of the active request when accessed from the request thread. The `IHttpContextAccessor.HttpContext` should **not** be stored in a field or variable.
 
-**Do not do this:** The following example stores the `HttpContext` in a field, and then attempts to use it later.
+**Do not do this:** The following example stores the `HttpContext` in a field and then attempts to use it later.
 
 [!code-csharp[](performance-best-practices/samples/3.0/MyType.cs?name=snippet1)]
 
@@ -268,7 +268,7 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncBadVoidController.cs?name=snippet1)]
 
-**Do this:** The following example returns a `Task` to the framework so the HTTP request doesn't complete until the action completes.
+**Do this:** The following example returns a `Task` to the framework, so the HTTP request doesn't complete until the action completes.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncSecondController.cs?name=snippet1)]
 

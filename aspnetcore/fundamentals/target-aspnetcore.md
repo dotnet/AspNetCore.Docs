@@ -201,7 +201,7 @@ If you can't rewrite the library, take the following steps:
 * Add a `<FrameworkReference>` element for the shared framework.
 * Use the [#if preprocessor directive](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if) with the appropriate target framework symbol to conditionally compile code.
 
-For example, synchronous reads and writes on HTTP request and response streams are disabled by default as of ASP.NET Core 3.0. ASP.NET Core 2.2 supports the synchronous behavior by default. Consider a middleware library in which synchronous reads and writes should be enabled where IO is occurring. The library should enclose the code to enable synchronous features in the appropriate preprocessor directive. For example:
+For example, synchronous reads and writes on HTTP request and response streams are disabled by default as of ASP.NET Core 3.0. ASP.NET Core 2.2 supports the synchronous behavior by default. Consider a middleware library in which synchronous reads and writes should be enabled where I/O is occurring. The library should enclose the code to enable synchronous features in the appropriate preprocessor directive. For example:
 
 [!code-csharp[](target-aspnetcore/samples/middleware.cs?highlight=9-24)]
 
