@@ -153,7 +153,7 @@ The following sections provide performance tips and known reliability problems a
 
 ## Avoid synchronous read or write on HttpRequest/HttpResponse body
 
-All IO in ASP.NET Core is asynchronous. Servers implement the `Stream` interface, which has both synchronous and asynchronous overloads. The asynchronous ones should be preferred to avoid blocking thread pool threads. Blocking threads can lead to thread pool starvation.
+All I/O in ASP.NET Core is asynchronous. Servers implement the `Stream` interface, which has both synchronous and asynchronous overloads. The asynchronous ones should be preferred to avoid blocking thread pool threads. Blocking threads can lead to thread pool starvation.
 
 **Do not do this:** The following example uses the <xref:System.IO.StreamReader.ReadToEnd*>. It blocks the current thread to wait for the result. This is an example of [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
 ).
