@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
 
         #region snippet2
         // GET api/values/5
-        [EnableCors]        // Default policy.
+        [EnableCors("Policy1")]
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {

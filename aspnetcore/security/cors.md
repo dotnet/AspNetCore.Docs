@@ -42,6 +42,18 @@ These URLs have different origins than the previous two URLs:
 * `http://example.com/foo.html` &ndash; Different scheme
 * `https://example.com:9000/foo.html` &ndash; Different port
 
+## Enable CORS
+
+There are three ways to enable CORS:
+
+* In middleware using a [named policy](#np) or [default policy](#dp).
+* Using [endpoint routing](#ecors).
+* With the [[EnableCors]](#attr) attribute.
+
+Each approach is detailed in the following sections.
+
+<a name="np"></a>
+
 ## CORS with named policy and middleware
 
 CORS Middleware handles cross-origin requests. The following code applies a CORS policy to all the app's endpoints with the specified origins:
@@ -72,6 +84,10 @@ The <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> methods ca
 
 Note: The specified URL must **not** contain a trailing slash (`/`). If the URL terminates with `/`, the comparison returns `false` and no header is returned.
 
+<a name="dp"></a>
+
+### CORS with default policy and middleware
+
 The following highlighted code enables the default CORS policy:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupDefaultPolicy.cs?name=snippet2&highlight=29)]
@@ -84,7 +100,7 @@ Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*
 
 With endpoint routing, CORS can be enabled on a per-endpoint basis using the <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> set of extension methods:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPt.cs?name=snippet2&highlight=7-15,41,44)]
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPt.cs?name=snippet2&highlight=7-15,32,41,44)]
 
 In the preceding code:
 
@@ -93,6 +109,8 @@ In the preceding code:
 * The `/echo2` and Razor Pages endpoints do ***not*** allow cross-origin requests because no default policy was specified.
 
 See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions on testing code similar to the preceding.
+
+<a name="attr"></a>
 
 ## Enable CORS with attributes
 
@@ -115,7 +133,7 @@ The following code applies a different policy to each method:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/WidgetController.cs?name=snippet&highlight=6,14)]
 
-The following code creates a CORS default policy and a policy named `"AnotherPolicy"`:
+The following code creates two CORS policies:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup3.cs?name=snippet&highlight=12-28,44)]
 
@@ -687,7 +705,7 @@ The `[EnableCors]` attribute can be applied to:
 * Controller
 * Controller action method
 
-You can apply different policies to controller/page-model/action with the  `[EnableCors]` attribute. When the `[EnableCors]` attribute is applied to a controllers/page model/action method, and CORS is enabled in middleware, ***both*** policies are applied. We recommend ***not*** combining policies. Use the `[EnableCors]` attribute or middleware, ***not both*** in the same app.
+You can apply different policies to controller/page-model/action with the  `[EnableCors]` attribute. When the `[EnableCors]` attribute is applied to a controllers/page model/action method, and CORS is enabled in middleware, ***both*** policies are applied. We recommend ***not*** combining policies. Use the `[EnableCors]` attribute or middleware, ***not both**. When using `[EnableCors]`, do **not** define a default policy.
 
 The following code applies a different policy to each method:
 
