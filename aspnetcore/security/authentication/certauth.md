@@ -266,16 +266,9 @@ public void ConfigureServices(IServiceCollection services)
     });
 }
 
-private static byte[] StringToByteArray(string hex)
+private static byte[] StringToByteArray(string base64)
 {
-    int NumberChars = hex.Length;
-    byte[] bytes = new byte[NumberChars / 2];
-
-    for (int i = 0; i < NumberChars; i += 2)
-    {
-        bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
-    }
-
+    var bytes = Convert.FromBase64String(base64);
     return bytes;
 }
 ```
