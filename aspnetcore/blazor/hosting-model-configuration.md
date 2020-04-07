@@ -5,7 +5,7 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/02/2020
+ms.date: 04/07/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
@@ -44,6 +44,9 @@ In the following example for IIS, add the custom header to the published *web.co
   </system.webServer>
 </configuration>
 ```
+
+> [!NOTE]
+> To use a custom *web.config* file for IIS that isn't overwritten when the app is published to the *publish* folder, see <xref:host-and-deploy/blazor/webassembly#use-a-custom-webconfig>.
 
 Obtain the app's environment in a component by injecting `IWebAssemblyHostEnvironment` and reading the `Environment` property:
 
