@@ -72,6 +72,10 @@ The <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> methods ca
 
 Note: The specified URL must **not** contain a trailing slash (`/`). If the URL terminates with `/`, the comparison returns `false` and no header is returned.
 
+The following highlighted code enables the default CORS policy:
+
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupDefaultPolicy.cs?name=snippet2&highlight=29)]
+
 <a name="ecors"></a>
 
 ## Enable Cors with endpoint routing
@@ -80,13 +84,13 @@ Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*
 
 With endpoint routing, CORS can be enabled on a per-endpoint basis using the <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> set of extension methods:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPt.cs?name=snippet)]
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPt.cs?name=snippet2&highlight=7-15,41,44)]
 
 In the preceding code:
 
-* `app.UseCors` enables the CORS middleware but doesn't add a policy. `app.UseCors` by itself, without a policy, does ***not*** allow cross-origin requests.
+* `app.UseCors` enables the CORS middleware with the default policy. Because no default policy has be specified, `app.UseCors()` doesn't enable CORS.
 * The `/echo` and controller endpoints allow cross-origin requests using the specified policy.
-* The `/echo2` and Razor Pages endpoints do ***not*** allow cross-origin requests.
+* The `/echo2` and Razor Pages endpoints do ***not*** allow cross-origin requests because no default policy was specified.
 
 See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions on testing code similar to the preceding.
 
