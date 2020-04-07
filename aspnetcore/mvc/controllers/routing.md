@@ -677,7 +677,7 @@ The following example uses attribute routing:
 
 The `Source` action in the preceding code generates `custom/url/to/destination`.
 
-<xref:Microsoft.AspNetCore.Routing.LinkGenerator> was added in ASP.NET Core 3.0 as an alternative to `IUrlHelper`. `LinkGenerator` offers similar but more flexible functionality. Each other the methods on `IUrlHelper` has a corresponding family of methods on `LinkGenerator` as well.
+<xref:Microsoft.AspNetCore.Routing.LinkGenerator> was added in ASP.NET Core 3.0 as an alternative to `IUrlHelper`. `LinkGenerator` offers similar but more flexible functionality. Each method on `IUrlHelper` has a corresponding family of methods on `LinkGenerator` as well.
 
 ### Generating URLs by action name
 
