@@ -90,7 +90,7 @@ Note: The specified URL must **not** contain a trailing slash (`/`). If the URL 
 
 The following highlighted code enables the default CORS policy:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupDefaultPolicy.cs?name=snippet2&highlight=29)]
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupDefaultPolicy.cs?name=snippet2&highlight=7,29)]
 
 <a name="ecors"></a>
 
@@ -100,7 +100,7 @@ Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*
 
 With endpoint routing, CORS can be enabled on a per-endpoint basis using the <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> set of extension methods:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPt.cs?name=snippet2&highlight=7-15,32,41,44)]
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPt.cs?name=snippet2&highlight=3,7-15,32,41,44)]
 
 In the preceding code:
 
