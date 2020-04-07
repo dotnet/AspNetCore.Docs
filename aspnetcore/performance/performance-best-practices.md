@@ -4,7 +4,7 @@ author: mjrousos
 description: Tips for increasing performance in ASP.NET Core apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 12/05/2019
+ms.date: 04/06/2020
 no-loc: [SignalR]
 uid: performance/performance-best-practices
 ---
@@ -95,7 +95,7 @@ Recommendations:
 
 ## Keep common code paths fast
 
-You want all of your code to be fast. Frequently called code paths are the most critical to optimize. These include:
+You want all of your code to be fast. Frequently-called code paths are the most critical to optimize. These include:
 
 * Middleware components in the app's request processing pipeline, especially middleware run early in the pipeline. These components have a large impact on performance.
 * Code that's executed for every request or multiple times per request. For example, custom logging, authorization handlers, or initialization of transient services.
