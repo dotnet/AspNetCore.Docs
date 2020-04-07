@@ -231,7 +231,16 @@ See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer
 
 ### Use certificate authentication in Azure Web Apps
 
-No forwarding configuration is required for Azure. This is already setup in the certificate forwarding middleware.
+No forwarding configuration for `HeaderConverter` is required for Azure. This is already setup in the certificate forwarding middleware by setting `HeaderConverter` to  `Convert.FromBase64String(headerValue)`.
+
+Azure Application Service sends certificates in header `X-ARR-ClientCert`, so you need to set this header in certificate forwarding configuration if your application will be deployed to Azure.
+
+```csharp
+ services.AddCertificateForwarding(options =>
+ 	{
+		options.CertificateHeader = "X-ARR-ClientCert";
+	}
+```
 
 > [!NOTE]
 > This requires that the CertificateForwardingMiddleware is present.
@@ -266,9 +275,16 @@ public void ConfigureServices(IServiceCollection services)
     });
 }
 
-private static byte[] StringToByteArray(string base64)
+private static byte[] StringToByteArray(string hex)
 {
-    var bytes = Convert.FromBase64String(base64);
+    int NumberChars = hex.Length;
+    byte[] bytes = new byte[NumberChars / 2];
+
+    for (int i = 0; i < NumberChars; i += 2)
+    {
+        bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+    }
+
     return bytes;
 }
 ```
