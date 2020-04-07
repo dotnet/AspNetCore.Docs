@@ -5,7 +5,7 @@ description: Learn how to secure Blazor WebAssemlby apps as Single Page Applicat
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/31/2020
+ms.date: 04/07/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/index
 ---
@@ -125,7 +125,57 @@ In the Server app, create a *Pages* folder if it doesn't exist. Create a *_Host.
       }
   </app>
   ```
+
+## Customize the user
+
+Users bound to the app can be customized. In the following server API example, all authenticated users receive an `amr` claim with an array of the user's authentication methods.
+
+1. Create a class that extends the `Account` class:
+
+   ```csharp
+   using System.Text.Json.Serialization;
+
+   public class UserAccount : Account
+   {
+       [JsonPropertyName("amr")]
+       public string[] AuthenticationMethod { get; set; }
+   }
+   ```
+
+1. Create a factory that extends `AccountClaimsPrincipalFactory<T>`:
+
+   ```csharp
+   public class CustomAccountFactory : AccountClaimsPrincipalFactory<OidcAccount>
+   {
+       public AccountClaimsPrincipalFactory(NavigationManager navigationManager, IAccessTokenProviderAccessor accessor)
+           : base(accessor)
+       {
+       }
   
+       public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+           OidcAccount account,
+           RemoteAuthenticationUserOptions options)
+       {
+           var initialUser = await base.CreateUserAsync(account, options);
+
+           if (initialUser.Identity.IsAuthenticated)
+           {
+               foreach (var value in account.AuthenticationMethod)
+               {
+                   ((ClaimsIdentity)initialUser.Identity).AddClaim(new Claim("amr", value));
+               }
+           }
+       }
+   }
+   ```
+
+1. Register services 
+
+   ```csharp
+   services.AddApiAuthorization<RemoteAuthenticationState, UserAccount>()
+       .AddUserFactory<RemoteAuthenticationState, UserAccount, CustomAccountFactory>();
+   ```
+
 ## Options for hosted apps and third-party login providers
 
 When authenticating and authorizing a hosted Blazor WebAssembly app with a third-party provider, there are several options available for authenticating the user. Which one you choose depends on your scenario.
