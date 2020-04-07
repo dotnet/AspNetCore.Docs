@@ -233,7 +233,7 @@ See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer
 
 No forwarding configuration for `HeaderConverter` is required for Azure. This is already setup in the certificate forwarding middleware by setting `HeaderConverter` to  `Convert.FromBase64String(headerValue)`.
 
-Azure Application Service sends certificates in header `X-ARR-ClientCert`, so you need to set this header in certificate forwarding configuration if your application will be deployed to Azure.
+Azure Application Service sends certificates in the `X-ARR-ClientCert` header. For apps deployed to Azure Application service, set  `X-ARR-ClientCert` as shown in the following code:
 
 ```csharp
  services.AddCertificateForwarding(options =>
