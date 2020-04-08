@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 
 namespace WebAPI
@@ -10,14 +8,7 @@ namespace WebAPI
     #region snippet2
     public class StartupEndPointBugTest
     {
-        public StartupEndPointBugTest(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
         readonly string MyPolicy = "_myPolicy";
-
-        public IConfiguration Configuration { get; }
 
         // .WithHeaders(HeaderNames.ContentType, "x-custom-header")
         // forces browsers to require a preflight request with GET
@@ -46,11 +37,6 @@ namespace WebAPI
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();

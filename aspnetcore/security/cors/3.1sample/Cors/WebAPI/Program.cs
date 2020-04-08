@@ -18,7 +18,6 @@ namespace WebAPI
                 {
 #if StartupTest
                     // Deploy to Cors1
-                    //webBuilder.UseStartup<StartupTest>();
                     webBuilder.UseStartup<StartupTest2>();
 
 #else
