@@ -50,6 +50,8 @@ There are three ways to enable CORS:
 * Using [endpoint routing](#ecors).
 * With the [[EnableCors]](#attr) attribute.
 
+Using the [[EnableCors]](#attr) attribute with a named policy provides the finest control in limiting endpoints that support CORS.
+
 Each approach is detailed in the following sections.
 
 <a name="np"></a>
@@ -65,6 +67,7 @@ The preceding code:
 * Sets the policy name to `_myAllowSpecificOrigins`. The policy name is arbitrary.
 * Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method and specifies the default CORS policy. `UseCors` adds the CORS middleware.
 * Calls <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> with a [lambda expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this article.
+* Enables the `_myAllowSpecificOrigins` CORS policy for all controller endpoints. See [endpoint routing](#ecors) to limit CORS to specific endpoints.
 
 With endpoint routing, the CORS middleware ***must*** be configured to execute between the calls to `UseRouting` and `UseEndpoints`.
 
@@ -366,33 +369,13 @@ Browsers aren't consistent in how they set `Access-Control-Request-Headers`. If 
 * <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy.AllowAnyHeader*> is called:
   Include at least `Accept`, `Content-Type`, and `Origin`, plus any custom headers that you want to support.
 
-<!-- >
-The following is an example response to the preflight request. The sample assumes that the server allows the request:
-
-```
-HTTP/1.1 200 OK
-Cache-Control: no-cache
-Pragma: no-cache
-Content-Length: 0
-Access-Control-Allow-Origin: https://myclient.azurewebsites.net
-Access-Control-Allow-Headers: x-my-custom-header
-Access-Control-Allow-Methods: PUT
-Date: Wed, 20 May 2015 06:33:22 GMT
-```
-
-The response includes an `Access-Control-Allow-Methods` header that lists the allowed methods and optionally an `Access-Control-Allow-Headers` header, which lists the allowed headers. If the preflight request succeeds, the browser sends the actual request.
-
-If the preflight request is denied, the app returns a *200 OK* response but doesn't send the CORS headers back. Therefore, the browser doesn't attempt the cross-origin request.
-
--->
-
 <a name="apf"></a>
 
 ### Automatic preflight request code
 
 When the CORS policy is applied either:
 
-* Globally by calling `app.UseCors("The Policy")` in `Startup.Configure`.
+* Globally by calling `app.UseCors` in `Startup.Configure`.
 * Using the `[EnableCors]` attribute.
 
 ASP.NET Core responds to the preflight OPTIONS request.

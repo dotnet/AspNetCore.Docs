@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace WebAPI
 {
+    #region snippet2
     public class StartupTest2
     {
         public void ConfigureServices(IServiceCollection services)
@@ -44,5 +45,5 @@ namespace WebAPI
             });
         }
     }
-
+    #endregion
 }

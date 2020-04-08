@@ -70,7 +70,7 @@ namespace WebAPI
                 #endregion
 
                 #region snippet7
-                options.AddPolicy("MyMySetPreflightExpirationPolicy",
+                options.AddPolicy("MySetPreflightExpirationPolicy",
                     builder =>
                     {
                         builder.WithOrigins("http://example.com")
