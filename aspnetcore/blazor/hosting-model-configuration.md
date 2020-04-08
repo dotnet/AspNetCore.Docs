@@ -5,7 +5,7 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/24/2020
+ms.date: 04/08/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
@@ -18,6 +18,8 @@ By [Daniel Roth](https://github.com/danroth27)
 This article covers hosting model configuration.
 
 ## Blazor WebAssembly
+
+### Configuration
 
 As of the ASP.NET Core 3.2 Preview 3 release, Blazor WebAssembly supports configuration from:
 
@@ -37,6 +39,10 @@ Configuration files are cached for offline use. With [Progressive Web Applicatio
 * The PWA's *service-worker.js* and *service-worker-assets.js* files must be rebuilt on compilation, which signal to the app on the user's next online visit that the app has been redeployed.
 
 For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.
+
+### Logging
+
+For information on Blazor WebAssembly logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor-webassembly>.
 
 ## Blazor Server
 
