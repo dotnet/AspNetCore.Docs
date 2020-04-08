@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/30/2020
+ms.date: 04/08/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/standalone-with-authentication-library
 ---
@@ -59,7 +59,34 @@ builder.Services.AddOidcAuthentication(options =>
 
 Authentication support for standalone apps is offered using Open ID Connect (OIDC). The `AddOidcAuthentication` method accepts a callback to configure the parameters required to authenticate an app using OIDC. The values required for configuring the app can be obtained from the OIDC-compliant IP. Obtain the values when you register the app, which typically occurs in their online portal.
 
-### Imports file
+## Access token scopes
+
+The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API. To provision a token as part of the sign-in flow, add the scope to the default token scopes of the `OidcProviderOptions`:
+
+```csharp
+builder.Services.AddOidcAuthentication(options =>
+{
+    ...
+    options.ProviderOptions.DefaultScopes.Add("{SCOPE URI}");
+});
+```
+
+> [!NOTE]
+> If the Azure portal provides a scope URI and **the app throws an unhandled exception** when it receives a *401 Unauthorized* response from the API, try using a scope URI that doesn't include the scheme and host. For example, the Azure portal may provide one of the following scope URI formats:
+>
+> * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
+> * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
+>
+> Supply the scope URI without the scheme and host:
+>
+> ```csharp
+> options.ProviderOptions.DefaultScopes.Add(
+>     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
+> ```
+
+For more information, see <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+
+## Imports file
 
 [!INCLUDE[](~/includes/blazor-security/imports-file-standalone.md)]
 
