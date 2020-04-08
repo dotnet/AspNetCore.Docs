@@ -141,16 +141,9 @@ See [Test CORS](#testc) for instructions on testing code similar to the precedin
 
 ### Disable CORS
 
-The [[DisableCors]](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute does ***not***  disables CORS when a CORS policy has been enabled in middleware. For example, either of the following calls in `Startup.Configure` sets a CORS policy in middleware:
+The [[DisableCors]](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute does ***not***  disable CORS that has been enabled by [endpoint routing](#ecors).
 
-* `app.UseCors("MyPolicy");`
-* `endpoints.MapControllers().RequireCors("MyPolicy");`
-
-The following code doesn't set a CORS policy in middleware:
-
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup3.cs?name=snippet2)]
-
-Using the preceding code, the following code disables CORS in for the `GetValues2` method:
+The following code disables CORS in for the `GetValues2` method:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet&highlight=1,23)]
 

@@ -22,7 +22,7 @@ namespace WebAPI3
         {
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(
+                options.AddPolicy("Policy1",
                     builder =>
                     {
                         builder.WithOrigins("http://example.com",
