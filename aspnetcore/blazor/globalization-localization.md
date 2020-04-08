@@ -5,7 +5,7 @@ description: Learn how to make Razor components accessible to users in multiple 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/02/2020
+ms.date: 04/07/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/globalization-localization
 ---
@@ -154,7 +154,7 @@ The following component shows an example of how to perform the initial redirecti
     private void OnSelected(ChangeEventArgs e)
     {
         var culture = (string)e.Value;
-        var uri = new Uri(NavigationManager.Uri())
+        var uri = new Uri(NavigationManager.Uri)
             .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
         var query = $"?culture={Uri.EscapeDataString(culture)}&" +
             $"redirectUri={Uri.EscapeDataString(uri)}";

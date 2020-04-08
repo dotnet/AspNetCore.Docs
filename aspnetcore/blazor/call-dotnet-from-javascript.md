@@ -5,7 +5,7 @@ description: Learn how to invoke .NET methods from JavaScript functions in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/24/2020
+ms.date: 04/07/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/call-dotnet-from-javascript
 ---
@@ -351,6 +351,18 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 ```
 
 [!INCLUDE[Share interop code in a class library](~/includes/blazor-share-interop-code.md)]
+
+## Avoid circular object references
+
+Objects that contain circular references can't be serialized on the client for either:
+
+* .NET method calls.
+* JavaScript method calls from C# when the return type has circular references.
+
+For more information, see the following issues:
+
+* [Circular references are not supported, take two (dotnet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525)
+* [Proposal: Add mechanism to handle circular references when serializing (dotnet/runtime #30820)](https://github.com/dotnet/runtime/issues/30820)
 
 ## Additional resources
 
