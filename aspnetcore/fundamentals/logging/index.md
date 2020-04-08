@@ -5,7 +5,7 @@ description: Learn how to use the logging framework provided by the Microsoft.Ex
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/05/2020
+ms.date: 04/08/2020
 uid: fundamentals/logging/index
 ---
 # Logging in .NET Core and ASP.NET Core
@@ -284,6 +284,30 @@ public class Program
     }
 }
 ```
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.1"
+
+### Create logs in Blazor WebAssembly
+
+Configure logging in Blazor WebAssembly apps with the `WebAssemblyHostBuilder.Logging` property in `Program.Main`:
+
+```csharp
+using Microsoft.Extensions.Logging;
+using Microsoft.JSInterop;
+
+...
+
+builder.Logging.SetMinimumLevel(LogLevel.Debug);
+builder.Logging.AddProvider(new CustomLoggingProvider());
+builder.Logging.Services.AddSingleton<ILoggerProvider, 
+    PrependMessageLoggerProvider>(s =>
+        new PrependMessageLoggerProvider("Custom logger", 
+            s.GetService<IJSRuntime>()));
+```
+
+The `Logging` property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so all of the extension methods available on <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are also available on `Logging`.
 
 ::: moniker-end
 
