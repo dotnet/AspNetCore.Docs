@@ -295,16 +295,11 @@ Configure logging in Blazor WebAssembly apps with the `WebAssemblyHostBuilder.Lo
 
 ```csharp
 using Microsoft.Extensions.Logging;
-using Microsoft.JSInterop;
 
 ...
 
 builder.Logging.SetMinimumLevel(LogLevel.Debug);
 builder.Logging.AddProvider(new CustomLoggingProvider());
-builder.Logging.Services.AddSingleton<ILoggerProvider, 
-    PrependMessageLoggerProvider>(s =>
-        new PrependMessageLoggerProvider("Custom logger", 
-            s.GetService<IJSRuntime>()));
 ```
 
 The `Logging` property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so all of the extension methods available on <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are also available on `Logging`.
