@@ -294,9 +294,11 @@ public class Program
 Configure logging in Blazor WebAssembly apps with the `WebAssemblyHostBuilder.Logging` property in `Program.Main`:
 
 ```csharp
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
 ...
+
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 builder.Logging.SetMinimumLevel(LogLevel.Debug);
 builder.Logging.AddProvider(new CustomLoggingProvider());
