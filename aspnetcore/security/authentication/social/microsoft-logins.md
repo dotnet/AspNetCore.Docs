@@ -23,7 +23,7 @@ If you don't have a Microsoft account, select **Create one**. After signing in, 
 
 * Select **New registration**
 * Enter a **Name**.
-* Select an option for **Supported account types**.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts -->
+* Select an option for **Supported account types**.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts. It took 24 hours after setting this up for the keys to work -->
 * Under **Redirect URI**, enter your development URL with `/signin-microsoft` appended. For example, `https://localhost:5001/signin-microsoft`. The Microsoft authentication scheme configured later in this sample will automatically handle requests at `/signin-microsoft` route to implement the OAuth flow.
 * Select **Register**
 
@@ -37,8 +37,7 @@ If you don't have a Microsoft account, select **Create one**. After signing in, 
 
 * Under **Client secrets**, copy the value of the client secret.
 
-> [!NOTE]
-> The URI segment `/signin-microsoft` is set as the default callback of the Microsoft authentication provider. You can change the default callback URI while configuring the Microsoft authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.authentication.microsoftaccount.microsoftaccountoptions) class.
+The URI segment `/signin-microsoft` is set as the default callback of the Microsoft authentication provider. You can change the default callback URI while configuring the Microsoft authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.authentication.microsoftaccount.microsoftaccountoptions) class.
 
 ## Store the Microsoft client ID and secret
 
@@ -62,8 +61,6 @@ Add the Microsoft Account service to the `Startup.ConfigureServices`:
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
-[!INCLUDE[](includes/chain-auth-providers.md)]
-
 For more information about configuration options supported by Microsoft Account authentication, see the [MicrosoftAccountOptions](/dotnet/api/microsoft.aspnetcore.builder.microsoftaccountoptions) API reference. This can be used to request different information about the user.
 
 ## Sign in with Microsoft Account
@@ -75,6 +72,31 @@ Tap **Yes** and you will be redirected back to the web site where you can set yo
 You are now logged in using your Microsoft credentials:
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
+
+<a name="react"></a>
+
+## React to cancel authorize external sign-in
+
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.AccessDeniedPath> can provide a redirect path to the user agent when the user doesn't approve the requested authorization demand.
+
+The following code sets the `AccessDeniedPath` to `"/AccessDeniedPathInfo"`:
+
+[!code-csharp[](~/security/authentication/social/social-code/StartupAccessDeniedPath.cs?name=snippetMS)]
+
+We recommend the `AccessDeniedPath` page contain the following information:
+
+*  Remote authentication was canceled.
+* This app requires authentication.
+* To try sign-in again, select the Login link.
+
+### Test AccessDeniedPath
+
+* Navigate to [office.com](https://www.office.com/)
+* If you are signed in, you must sign out.
+* Run the app and select Microsoft sign-in.
+* Select **No** when prompted to accept access and permissions. You are redirected to the specified `AccessDeniedPath` page.
+
+[!INCLUDE[](includes/chain-auth-providers.md)]
 
 ## Troubleshooting
 

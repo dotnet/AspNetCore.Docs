@@ -13,6 +13,9 @@ uid: security/authentication/facebook-logins
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+<!-- per @rick-anderson and scott addie, don't update images. Remove images and point the customer to the FB set up page. FB needs to maintain  instructions to get key and secret.
+-->
+
 This tutorial with code examples shows how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 3.0 project created on the [previous page](xref:security/authentication/social/index). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com).
 
 ## Create the app in Facebook
@@ -96,7 +99,7 @@ You are now logged in using your Facebook credentials:
 
 ## React to cancel authorize external sign-in
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.AccessDeniedPath> can provide a path the user agent is redirected to if the user doesn't approve the authorization demand requested by the remote server.
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.AccessDeniedPath> can provide a redirect path to the user agent when the user doesn't approve the requested authorization demand.
 
 The following code sets the `AccessDeniedPath` to `"/AccessDeniedPathInfo"`:
 
@@ -112,7 +115,7 @@ We recommend the `AccessDeniedPath` page contain the following information:
 
 * Navigate to [facebook.com](https://www.facebook.com/)
 * If you are signed in, you must sign out.
-* Run the app and select facebook sign-in.
+* Run the app and select Facebook sign-in.
 * Select **Not now**. You are redirected to the specified `AccessDeniedPath` page.
 
 <!-- End of React  -->
