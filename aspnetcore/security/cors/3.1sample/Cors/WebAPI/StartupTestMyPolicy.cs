@@ -1,34 +1,22 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace WebAPI
+namespace MyPolicy
 {
-    #region snippet2
-    public class StartupTest
+    #region snippet
+    public class Startup
     {
-        public StartupTest(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(
+                options.AddPolicy(name: "MyPolicy",
                     builder =>
                     {
                         builder.WithOrigins("http://example.com",
-                            "http://www.contoso.com",
-                            "https://cors1.azurewebsites.net",
-                            "https://cors3.azurewebsites.net",
-                            "https://localhost:44398",
-                            "https://localhost:5001")
+                                            "http://www.contoso.com")
                                 .WithMethods("PUT", "DELETE", "GET");
                     });
             });
@@ -36,7 +24,6 @@ namespace WebAPI
             services.AddControllers();
             services.AddRazorPages();
         }
-        #endregion
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -61,5 +48,5 @@ namespace WebAPI
             });
         }
     }
-    #endregion
+    #endregion  
 }

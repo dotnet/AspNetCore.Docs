@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -9,18 +8,11 @@ using Microsoft.Extensions.Hosting;
 namespace WebAPI
 {
     #region snippet
+    #region snippet2
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
-        public IConfiguration Configuration { get; }
-
-        #region snippet2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>

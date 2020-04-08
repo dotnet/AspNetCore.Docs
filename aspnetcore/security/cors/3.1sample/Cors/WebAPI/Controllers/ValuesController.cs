@@ -5,7 +5,7 @@ using Microsoft.Docs.Samples;
 namespace WebAPI.Controllers
 {
     #region snippet
-    [EnableCors]
+    [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase

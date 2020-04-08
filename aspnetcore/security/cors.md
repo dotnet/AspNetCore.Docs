@@ -108,6 +108,8 @@ In the preceding code:
 * The `/echo` and controller endpoints allow cross-origin requests using the specified policy.
 * The `/echo2` and Razor Pages endpoints do ***not*** allow cross-origin requests because no default policy was specified.
 
+The [[DisableCors]](#dc) attribute does ***not***  disable CORS that has been enabled by endpoint routing.
+
 See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions on testing code similar to the preceding.
 
 <a name="attr"></a>
@@ -137,15 +139,36 @@ The following code creates two CORS policies:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Startup3.cs?name=snippet&highlight=12-28,44)]
 
+For the finest control of limiting CORS requests:
+
+* Use `[EnableCors("MyPolicy")]` with a named policy.
+* Don't define a default policy.
+* Don't use [endpoint routing](#ecors).
+
+The code in the next section meets preceding list.
+
 See [Test CORS](#testc) for instructions on testing code similar to the preceding code.
+
+<a name="dc"></a>
 
 ### Disable CORS
 
 The [[DisableCors]](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute does ***not***  disable CORS that has been enabled by [endpoint routing](#ecors).
 
+The following code defines the CORS policy `"MyPolicy"`:
+
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupTestMyPolicy.cs?name=snippet)]
+
 The following code disables CORS in for the `GetValues2` method:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet&highlight=1,23)]
+
+The preceding code:
+
+* Doesn't enable CORS with [endpoint routing](#ecors).
+* Doesn't define a [default CORS policy](#dp).
+* Uses [[EnableCors("MyPolicy")]](#attr) to enable the `"MyPolicy"` CORS policy for the controller.
+* Disables CORS for the `GetValues2` method.
 
 See [Test CORS](#testc) for instructions on testing the preceding code.
 
@@ -526,7 +549,7 @@ needs to be installed and configured for the app.
 
 The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/cors/3.1sample/Cors/WebApi) has code to test CORS. See [how to download](xref:index#how-to-download-a-sample). The sample is an API project with Razor Pages added:
 
-[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupTest.cs?name=snippet2)]
+[!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupTest2.cs?name=snippet2)]
 
   > [!WARNING]
   > `WithOrigins("https://localhost:<port>");` should only be used for testing a sample app similar to the [download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/cors/3.1sample/Cors).
