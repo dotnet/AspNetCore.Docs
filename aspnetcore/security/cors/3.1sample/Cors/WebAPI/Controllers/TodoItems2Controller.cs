@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Docs.Samples;
 
+// Used in both the MD file and the RP Test.cshtml
+
 namespace WebAPI.Controllers
 {
     #region snippet2
