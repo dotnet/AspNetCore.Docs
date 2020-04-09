@@ -27,7 +27,7 @@ If you're using Visual Studio, run `npm install` from the **Package Manager Cons
 
 ::: moniker range=">= aspnetcore-3.0"
 
-```console
+```bash
 npm init -y
 npm install @microsoft/signalr
 ```
@@ -38,7 +38,7 @@ npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\
 
 ::: moniker range="< aspnetcore-3.0"
 
-```console
+```bash
 npm init -y
 npm install @aspnet/signalr
 ```
