@@ -70,9 +70,7 @@ Run the app and click **Log in**. An option to sign in with Microsoft appears. W
 Tap **Yes** and you will be redirected back to the web site where you can set your email.
 
 You are now logged in using your Microsoft credentials:
-
-[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
-
+<!--  This doesn't work with MSFT external sign-in
 <a name="react"></a>
 
 ## React to cancel authorize external sign-in
@@ -94,9 +92,12 @@ We recommend the `AccessDeniedPath` page contain the following information:
 * Navigate to [office.com](https://www.office.com/)
 * If you are signed in, you must sign out.
 * Run the app and select Microsoft sign-in.
-* Select **No** when prompted to accept access and permissions. You are redirected to the specified `AccessDeniedPath` page.
+* Select **Cancel** when prompted to accept access and permissions. You are redirected to the specified `AccessDeniedPath` page.
+-->
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
+
+[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
 ## Troubleshooting
 
