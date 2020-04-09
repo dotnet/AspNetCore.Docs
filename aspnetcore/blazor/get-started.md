@@ -72,7 +72,7 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. With Blazor Server, run the app using the Visual Studio Code debugger.
 
-   With Blazor WebAssembly, start the app and then start the browser using the correct launch configuration. For more information, see <xref:blazor/debug#visual-studio-code>.
+   With Blazor WebAssembly, start the app using the **.NET Core Launch (Blazor Standalone)** launch configuration and then start the browser using the **.NET Core Debug Blazor Web Assembly in Chrome** launch configuration (requires Chrome). For more information, see <xref:blazor/debug#visual-studio-code>.
 
 1. In a browser, navigate to `https://localhost:5001`.
 
