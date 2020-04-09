@@ -4,23 +4,21 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace RazorRuntimeComp
+#region snippet
+public class Startup
 {
-    #region snippet
-    public class Startup
+    public Startup(IConfiguration configuration, IWebHostEnvironment env)
     {
-        public Startup(IConfiguration configuration, IWebHostEnvironment env)
-        {
-            Configuration = configuration;
-            Env = env;
-        }
+        Configuration = configuration;
+        Env = env;
+    }
 
-        public IWebHostEnvironment Env { get; set; }
-        public IConfiguration Configuration { get; }
+    public IWebHostEnvironment Env { get; set; }
+    public IConfiguration Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            IMvcBuilder builder = services.AddRazorPages();
+    public void ConfigureServices(IServiceCollection services)
+    {
+        IMvcBuilder builder = services.AddRazorPages();
 
 #if DEBUG
             if (Env.IsDevelopment())
@@ -28,32 +26,31 @@ namespace RazorRuntimeComp
                 builder.AddRazorRuntimeCompilation();
             }
 #endif
-        }
-
-        public void Configure(IApplicationBuilder app)
-        {
-            if (Env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
-        }
     }
-    #endregion
+
+    public void Configure(IApplicationBuilder app)
+    {
+        if (Env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
+        else
+        {
+            app.UseExceptionHandler("/Error");
+            app.UseHsts();
+        }
+
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
+
+        app.UseRouting();
+
+        app.UseAuthorization();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapRazorPages();
+        });
+    }
 }
+#endregion
