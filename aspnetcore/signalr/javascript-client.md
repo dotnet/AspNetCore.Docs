@@ -63,9 +63,21 @@ To use the client library without the npm prerequisite, reference a CDN-hosted c
 
 The client library is available on the following CDNs:
 
+::: moniker range=">= aspnetcore-3.0"
+
 * [cdnjs](https://cdnjs.com/libraries/microsoft-signalr)
 * [jsDelivr](https://www.jsdelivr.com/package/npm/@microsoft/signalr)
 * [unpkg](https://unpkg.com/@microsoft/signalr)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+* [cdnjs](https://cdnjs.com/libraries/aspnet-signalr)
+* [jsDelivr](https://www.jsdelivr.com/package/npm/@aspnet/signalr)
+* [unpkg](https://unpkg.com/@aspnet/signalr)
+
+::: moniker-end
 
 ### Install with LibMan
 
