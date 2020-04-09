@@ -111,7 +111,7 @@ In the preceding code:
 * The `/echo` and controller endpoints allow cross-origin requests using the specified policy.
 * The `/echo2` and Razor Pages endpoints do ***not*** allow cross-origin requests because no default policy was specified.
 
-The [[DisableCors]](#dc) attribute does ***not***  disable CORS that has been enabled by endpoint routing.
+The [[DisableCors]](#dc) attribute does ***not***  disable CORS that has been enabled by endpoint routing with `RequireCors`.
 
 See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions on testing code similar to the preceding.
 
