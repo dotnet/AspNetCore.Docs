@@ -23,19 +23,12 @@ Build- and publish-time compilation of Razor files is enabled by default by the 
 
 To enable runtime compilation for all environments and configuration modes:
 
-1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
+* Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
 
-1. Update the project's `Startup.ConfigureServices` method to include a call to `AddRazorRuntimeCompilation`. For example:
+* Update the project's `Startup.ConfigureServices` method to include a call to <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*>. For example:
 
-    ```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddRazorPages()
-            .AddRazorRuntimeCompilation();
-
-        // code omitted for brevity
-    }
-    ```
+[!code-csharp[](~/mvc/views/view-compilation/sample/Startup.cs
+?name=snippet]
 
 ### Conditionally enable runtime compilation
 
@@ -75,9 +68,11 @@ To enable runtime compilation based on the environment and configuration mode:
 
 ## Additional resources
 
+* [RazorCompileOnBuild and RazorCompileOnPublish](xref:razor-pages/sdk#properties) properties.
 * <xref:razor-pages/index>
 * <xref:mvc/views/overview>
 * <xref:razor-pages/sdk>
+* See the [runtimecompilation sample on GitHub](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/mvc/runtimecompilation) for a sample that shows making `RuntimeCompilation` work across projects.
 
 ::: moniker-end
 
