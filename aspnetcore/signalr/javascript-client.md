@@ -23,7 +23,7 @@ The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs
 
 ### Install with npm
 
-If you're using Visual Studio, run `npm install` from the **Package Manager Console** while in the root folder. For Visual Studio Code, run the command from the **Integrated Terminal**.
+If using Visual Studio, run the following commands from **Package Manager Console** while in the root folder. For Visual Studio Code, run the following commands from the **Integrated Terminal**.
 
 ::: moniker range=">= aspnetcore-3.0"
 
