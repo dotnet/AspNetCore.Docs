@@ -67,7 +67,7 @@ The client library is available on the following CDNs:
 
 * [cdnjs](https://cdnjs.com/libraries/microsoft-signalr)
 * [jsDelivr](https://www.jsdelivr.com/package/npm/@microsoft/signalr)
-* [unpkg](https://unpkg.com/@microsoft/signalr)
+* [unpkg](https://unpkg.com/@microsoft/signalr@next/dist/browser/signalr.min.js)
 
 ::: moniker-end
 
@@ -75,7 +75,7 @@ The client library is available on the following CDNs:
 
 * [cdnjs](https://cdnjs.com/libraries/aspnet-signalr)
 * [jsDelivr](https://www.jsdelivr.com/package/npm/@aspnet/signalr)
-* [unpkg](https://unpkg.com/@aspnet/signalr)
+* [unpkg](https://unpkg.com/@aspnet/signalr@next/dist/browser/signalr.min.js)
 
 ::: moniker-end
 
