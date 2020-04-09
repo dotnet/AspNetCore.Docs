@@ -297,11 +297,10 @@ Run the app from the Server project. When using Visual Studio, select the Server
 <!-- HOLD
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
 -->
-[!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
-
-## Custom user flows
 
 [!INCLUDE[](~/includes/blazor-security/wasm-aad-b2c-userflows.md)]
+
+[!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
 
 ## Additional resources
 
