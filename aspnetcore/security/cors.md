@@ -67,7 +67,7 @@ The preceding code:
 * Sets the policy name to `_myAllowSpecificOrigins`. The policy name is arbitrary.
 * Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method and specifies the  `_myAllowSpecificOrigins` CORS policy. `UseCors` adds the CORS middleware.
 * Calls <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> with a [lambda expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this article.
-* Enables the `_myAllowSpecificOrigins` CORS policy for all controller endpoints. See [endpoint routing](#ecors) to limit CORS to specific endpoints.
+* Enables the `_myAllowSpecificOrigins` CORS policy for all controller endpoints. See [endpoint routing](#ecors) to apply a CORS policy to specific endpoints.
 
 With endpoint routing, the CORS middleware ***must*** be configured to execute between the calls to `UseRouting` and `UseEndpoints`.
 
@@ -107,7 +107,7 @@ With endpoint routing, CORS can be enabled on a per-endpoint basis using the <xr
 
 In the preceding code:
 
-* `app.UseCors` enables the CORS middleware with the default policy. Because no default policy has be specified, `app.UseCors()` doesn't enable CORS.
+* `app.UseCors` enables the CORS middleware. Because a default policy hasn't been configured, `app.UseCors()` alone doesn't enable CORS.
 * The `/echo` and controller endpoints allow cross-origin requests using the specified policy.
 * The `/echo2` and Razor Pages endpoints do ***not*** allow cross-origin requests because no default policy was specified.
 
@@ -119,7 +119,7 @@ See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions 
 
 ## Enable CORS with attributes
 
-Enabling CORS with the [[EnableCors]](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute and a named policy to only those endpoints that require CORS is provides the finest control over CORS.
+Enabling CORS with the [[EnableCors]](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute and applying a named policy to only those endpoints that require CORS provides the finest control.
 
 The [[EnableCors]](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute provides an alternative to applying CORS globally. The `[EnableCors]` attribute enables CORS for selected endpoints, rather than all endpoints:
 
@@ -148,7 +148,7 @@ For the finest control of limiting CORS requests:
 * Don't define a default policy.
 * Don't use [endpoint routing](#ecors).
 
-The code in the next section meets preceding list.
+The code in the next section meets the preceding list.
 
 See [Test CORS](#testc) for instructions on testing code similar to the preceding code.
 
@@ -162,7 +162,7 @@ The following code defines the CORS policy `"MyPolicy"`:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupTestMyPolicy.cs?name=snippet)]
 
-The following code disables CORS in for the `GetValues2` method:
+The following code disables CORS for the `GetValues2` action:
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/Controllers/ValuesController.cs?name=snippet&highlight=1,23)]
 
