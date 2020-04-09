@@ -503,7 +503,7 @@
 * Completely removed dependency on element IDs, though they are still used (when present) to link error labels to inputs. Achieved by using
   an array with {name, message, element} instead of an object with id:message pairs for the internal errorList.
 * Added support for specifying simple rules as simple strings, eg. "required" is equivalent to {required: true}
-* Added feature: Add errorClass to invalid field�s parent element, making it easy to style the label/field container or the label for the field.
+* Added feature: Add errorClass to invalid field's parent element, making it easy to style the label/field container or the label for the field.
 * Added feature: focusCleanup - If enabled, removes the errorClass from the invalid elements and hides all errors messages whenever the element is focused.
 * Added success option to show the a field was validated successfully
 * Fixed Opera select-issue (avoiding a attribute-collision)
@@ -516,7 +516,7 @@
 * Customize error element via errorElement option
 * Added validator.refresh() to find new inputs in the form
 * Added accept validation method, checks file extensions
-* Improved dependency feature by adding two custom expressions: ":blank" to select elements with an empty value and �:filled� to select elements with a value, both excluding whitespace
+* Improved dependency feature by adding two custom expressions: ":blank" to select elements with an empty value and ":filled" to select elements with a value, both excluding whitespace
 * Added a resetForm() method to the validator: Resets each form element (using the form plugin, if available), removes classes on invalid elements and hides all error messages
 * Fixed docs for validator.showErrors()
 * Fixed error label creation to always use html() instead of text(), allowing arbitrary HTML passed in as messages
@@ -524,7 +524,7 @@
 * Added dependency feature: The requires method accepts both String (jQuery expressions) and Functions as the argument
 * Heavily improved customizing of error message display: Use normal messages and show/hide an additional container; Completely replace message display with own mechanism (while being able to delegate to the default handler; Customize placing of generated labels (instead of default below-element)
 * Fixed two major bugs in IE (error containers) and Opera (metadata)
-* Modified validation methods to accept empty fields as valid (exception: of course �required� and also �equalTo� methods)
+* Modified validation methods to accept empty fields as valid (exception: of course "required" and also "equalTo" methods)
 * Renamed "min" to "minLength", "max" to "maxLength", "length" to "rangeLength"
 * Added "minValue", "maxValue" and "rangeValue"
 * Streamlined API for support of different events. The default, submit, can be disabled. If any event is specified, that is applied to each element (instead of the entire form). Combining keyup-validation with submit-validation is now extremely easy to setup
