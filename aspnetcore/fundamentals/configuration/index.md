@@ -305,7 +305,7 @@ Configuration keys:
 * Hierarchical keys
   * Within the Configuration API, a colon separator (`:`) works on all platforms.
   * In environment variables, a colon separator may not work on all platforms. A double underscore, `__`, is supported by all platforms and is automatically converted into a colon `:`.
-  * In Azure Key Vault, hierarchical keys use `--` as a separator. Write code to replace the `--` with a `:` when the secrets are loaded into the app's configuration.
+  * In Azure Key Vault, hierarchical keys use `--` as a separator. The [Azure Key Vault configuration provider](xref:security/key-vault-configuration) automatically replaces `--` with a `:` when the secrets are loaded into the app's configuration.
 * The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder> supports binding arrays to objects using array indices in configuration keys. Array binding is described in the [Bind an array to a class](#boa) section.
 
 Configuration values:
