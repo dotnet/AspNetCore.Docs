@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 04/09/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/get-started
 ---
@@ -70,7 +70,9 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. The IDE requests that you add assets to build and debug the project. Select **Yes**.
 
-1. Run the app using the Visual Studio Code debugger.
+1. With Blazor Server, run the app using the Visual Studio Code debugger.
+
+   With Blazor WebAssembly, start the app and then start the browser using the correct launch configuration. For more information, see <xref:blazor/debug#visual-studio-code>.
 
 1. In a browser, navigate to `https://localhost:5001`.
 
