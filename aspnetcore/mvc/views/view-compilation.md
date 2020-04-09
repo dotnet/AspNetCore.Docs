@@ -85,6 +85,8 @@ To enable runtime compilation based on the environment and configuration mode:
 
 A Razor file is compiled at runtime, when the associated Razor Page or MVC view is invoked. Razor files are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk).
 
+## Razor compilation
+
 Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. Editing Razor files after they're updated is supported at build time. By default, only the compiled *Views.dll* and no *.cshtml* files or references assemblies required to compile Razor files are deployed with your app.
 
 > [!IMPORTANT]
