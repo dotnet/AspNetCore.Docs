@@ -5,7 +5,7 @@ description: Overview of ASP.NET Core SignalR JavaScript client.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 04/08/2020
 no-loc: [SignalR]
 uid: signalr/javascript-client
 ---
@@ -19,14 +19,18 @@ The ASP.NET Core SignalR JavaScript client library enables developers to call se
 
 ## Install the SignalR client package
 
-The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs.com/) package. If you're using Visual Studio, run `npm install` from the **Package Manager Console** while in the root folder. For Visual Studio Code, run the command from the **Integrated Terminal**.
+The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs.com/) package. The following sections outline different ways to install the client library.
+
+### Install with npm
+
+If using Visual Studio, run the following commands from **Package Manager Console** while in the root folder. For Visual Studio Code, run the following commands from the **Integrated Terminal**.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-  ```console
-  npm init -y
-  npm install @microsoft/signalr
-  ```
+```bash
+npm init -y
+npm install @microsoft/signalr
+```
 
 npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
 
@@ -34,22 +38,50 @@ npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\
 
 ::: moniker range="< aspnetcore-3.0"
 
-  ```console
-  npm init -y
-  npm install @aspnet/signalr
-  ```
+```bash
+npm init -y
+npm install @aspnet/signalr
+```
 
 npm installs the package contents in the *node_modules\\@aspnet\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
 
 ::: moniker-end
 
-## Use the SignalR JavaScript client
-
-Reference the SignalR JavaScript client in the `<script>` element.
+Reference the SignalR JavaScript client in the `<script>` element. For example:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
 ```
+
+### Use a Content Delivery Network (CDN)
+
+To use the client library without the npm prerequisite, reference a CDN-hosted copy of the client library. For example:
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>
+```
+
+The client library is available on the following CDNs:
+
+::: moniker range=">= aspnetcore-3.0"
+
+* [cdnjs](https://cdnjs.com/libraries/microsoft-signalr)
+* [jsDelivr](https://www.jsdelivr.com/package/npm/@microsoft/signalr)
+* [unpkg](https://unpkg.com/@microsoft/signalr@next/dist/browser/signalr.min.js)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+* [cdnjs](https://cdnjs.com/libraries/aspnet-signalr)
+* [jsDelivr](https://www.jsdelivr.com/package/npm/@aspnet/signalr)
+* [unpkg](https://unpkg.com/@aspnet/signalr@next/dist/browser/signalr.min.js)
+
+::: moniker-end
+
+### Install with LibMan
+
+[LibMan](xref:client-side/libman/index) can be used to install specific client library files from the CDN-hosted client library. For example, only add the minified JavaScript file to the project. For details on that approach, see [Add the SignalR client library](xref:tutorials/signalr#add-the-signalr-client-library).
 
 ## Connect to a hub
 
