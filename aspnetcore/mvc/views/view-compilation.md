@@ -27,8 +27,15 @@ To enable runtime compilation for all environments and configuration modes:
 
 * Update the project's `Startup.ConfigureServices` method to include a call to <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*>. For example:
 
-[!code-csharp[](~/mvc/views/view-compilation/sample/Startup.cs
-?name=snippet]
+    ```csharp
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddRazorPages()
+            .AddRazorRuntimeCompilation();
+
+        // code omitted for brevity
+    }
+    ```
 
 ### Conditionally enable runtime compilation
 
@@ -40,31 +47,15 @@ Runtime compilation can be enabled such that it's only available for local devel
 
 To enable runtime compilation based on the environment and configuration mode:
 
-1. Conditionally reference the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) package based on the active `Configuration` value:
+* Conditionally reference the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) package based on the active `Configuration` value:
 
     ```xml
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0" Condition="'$(Configuration)' == 'Debug'" />
     ```
 
-1. Update the project's `Startup.ConfigureServices` method to include a call to `AddRazorRuntimeCompilation`. Conditionally execute `AddRazorRuntimeCompilation` such that it only runs in Debug mode when the `ASPNETCORE_ENVIRONMENT` variable is set to `Development`:
+* Update the project's `Startup.ConfigureServices` method to include a call to `AddRazorRuntimeCompilation`. Conditionally execute `AddRazorRuntimeCompilation` such that it only runs in Debug mode when the `ASPNETCORE_ENVIRONMENT` variable is set to `Development`:
 
-    ```csharp
-    public IWebHostEnvironment Env { get; set; }
-
-    public void ConfigureServices(IServiceCollection services)
-    {
-        IMvcBuilder builder = services.AddRazorPages();
-
-    #if DEBUG
-        if (Env.IsDevelopment())
-        {
-            builder.AddRazorRuntimeCompilation();
-        }
-    #endif
-
-        // code omitted for brevity
-    }
-    ```
+[!code-csharp[](~/mvc/views/view-compilation/sample/Startup.cs?name=snippet]
 
 ## Additional resources
 
