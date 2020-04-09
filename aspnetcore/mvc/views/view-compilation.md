@@ -55,7 +55,7 @@ To enable runtime compilation based on the environment and configuration mode:
 
 * Update the project's `Startup.ConfigureServices` method to include a call to `AddRazorRuntimeCompilation`. Conditionally execute `AddRazorRuntimeCompilation` such that it only runs in Debug mode when the `ASPNETCORE_ENVIRONMENT` variable is set to `Development`:
 
-[!code-csharp[](~/mvc/views/view-compilation/sample/Startup.cs?name=snippet]
+[!code-csharp[](~/mvc/views/view-compilation/sample/Startup.cs?name=snippet)]
 
 ## Additional resources
 
