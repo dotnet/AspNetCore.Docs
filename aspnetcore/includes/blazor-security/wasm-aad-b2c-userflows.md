@@ -1,3 +1,5 @@
+## Custom user flows
+
 The Microsoft Authentication Library (`Microsoft.Authentication.WebAssembly.Msal`) doesn't support user flows by default. Create custom user flows in developer code.
 
 For more information on how to build a challenge for a custom user flow, see [User flows in Azure Active Directory B2C](/azure/active-directory-b2c/user-flow-overview).
