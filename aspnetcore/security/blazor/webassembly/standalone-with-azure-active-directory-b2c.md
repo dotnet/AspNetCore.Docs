@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/08/2020
+ms.date: 04/09/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
 ---
@@ -132,6 +132,8 @@ For more information, see <xref:security/blazor/webassembly/additional-scenarios
 ## Authentication component
 
 [!INCLUDE[](~/includes/blazor-security/authentication-component.md)]
+
+[!INCLUDE[](~/includes/blazor-security/wasm-aad-b2c-userflows.md)]
 
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
 

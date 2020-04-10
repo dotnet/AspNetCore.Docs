@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/08/2020
+ms.date: 04/09/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
 ---
@@ -297,6 +297,9 @@ Run the app from the Server project. When using Visual Studio, select the Server
 <!-- HOLD
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
 -->
+
+[!INCLUDE[](~/includes/blazor-security/wasm-aad-b2c-userflows.md)]
+
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
 
 ## Additional resources
