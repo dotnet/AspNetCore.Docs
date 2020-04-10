@@ -38,12 +38,14 @@ To customize how MessagePack will format your data, `AddMessagePackProtocol` tak
 services.AddSignalR()
     .AddMessagePackProtocol(options =>
     {
-        options.SerializerOptions = MessagePackSerializerOptions.Standard.WithResolver(new CustomResolver()).WithSecurity(MessagePackSecurity.UntrustedData);
+        options.SerializerOptions = MessagePackSerializerOptions.Standard
+            .WithResolver(new CustomResolver())
+            .WithSecurity(MessagePackSecurity.UntrustedData);
     });
 ```
 
 > [!WARNING]
-> We strongly recommend reviewing [CVE-2020-5234](https://github.com/neuecc/MessagePack-CSharp/security/advisories/GHSA-7q36-4xx7-xcxf) and applying the recommended patches. For example, calling `.WithSecurity(MessagePackSecurity.UntrustedData)` when overriding the `SerializerOptions`.
+> We strongly recommend reviewing [CVE-2020-5234](https://github.com/neuecc/MessagePack-CSharp/security/advisories/GHSA-7q36-4xx7-xcxf) and applying the recommended patches. For example, calling `.WithSecurity(MessagePackSecurity.UntrustedData)` when replacing the `SerializerOptions`.
 
 ## Configure MessagePack on the client
 
@@ -152,7 +154,9 @@ services.AddSignalR()
             MessagePack.Resolvers.GeneratedResolver.Instance,
             MessagePack.Resolvers.StandardResolver.Instance
         );
-        options.SerializerOptions = MessagePackSerializerOptions.Standard.WithResolver(StaticCompositeResolver.Instance).WithSecurity(MessagePackSecurity.UntrustedData);
+        options.SerializerOptions = MessagePackSerializerOptions.Standard
+            .WithResolver(StaticCompositeResolver.Instance)
+            .WithSecurity(MessagePackSecurity.UntrustedData);
     });
 ```
 
