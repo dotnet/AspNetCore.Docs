@@ -48,14 +48,12 @@ namespace RPgoog2
             });
             #endregion
 
-            #region snippetMS
             services.AddAuthentication().AddMicrosoftAccount(options =>
             {
                 options.ClientId = Configuration["Authentication:Microsoft:ClientId"];
                 options.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
-                options.AccessDeniedPath = "/AccessDeniedPathInfo";
+                // options.AccessDeniedPath = "/AccessDeniedPathInfo";
             });
-            #endregion
 
             services.AddAuthentication().AddTwitter(options =>
             {
