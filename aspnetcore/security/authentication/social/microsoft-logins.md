@@ -70,30 +70,6 @@ Run the app and click **Log in**. An option to sign in with Microsoft appears. W
 Tap **Yes** and you will be redirected back to the web site where you can set your email.
 
 You are now logged in using your Microsoft credentials:
-<!--  This doesn't work with MSFT external sign-in
-<a name="react"></a>
-
-## React to cancel authorize external sign-in
-
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.AccessDeniedPath> can provide a redirect path to the user agent when the user doesn't approve the requested authorization demand.
-
-The following code sets the `AccessDeniedPath` to `"/AccessDeniedPathInfo"`:
-
-[!code-csharp[](~/security/authentication/social/social-code/StartupAccessDeniedPath.cs?name=snippetMS)]
-
-We recommend the `AccessDeniedPath` page contain the following information:
-
-*  Remote authentication was canceled.
-* This app requires authentication.
-* To try sign-in again, select the Login link.
-
-### Test AccessDeniedPath
-
-* Navigate to [office.com](https://www.office.com/)
-* If you are signed in, you must sign out.
-* Run the app and select Microsoft sign-in.
-* Select **Cancel** when prompted to accept access and permissions. You are redirected to the specified `AccessDeniedPath` page.
--->
 
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
