@@ -93,9 +93,7 @@ The Visual Studio project properties **Debug** tab provides a GUI to edit the *l
 
 When using [Visual Studio Code](https://code.visualstudio.com/), environment variables can be set in the *.vscode/launch.json* file. The following example sets several [Host configuration values environment variable](xref:fundamentals/host/web-host#host-configuration-values) to `Development`:
 
-[!code-html[](environments/3.1sample/EnvironmentsSample/.vscode/launch.json?name=snippet)]
-
-[!code-html[](environments/3.1sample/EnvironmentsSample/.vscode/launch.json?name=snippet2)]
+[!code-json[](environments/3.1sample/EnvironmentsSample/.vscode/launch.json?range=4-10,32-38)]
 
 A *.vscode/launch.json* file in the project isn't read when starting the app with `dotnet run`.
 
