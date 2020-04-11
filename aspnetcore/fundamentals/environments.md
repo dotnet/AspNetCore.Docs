@@ -79,52 +79,6 @@ info: Microsoft.Hosting.Lifetime[0]
       Content root path: c:\tmp\EnvironmentsSample
 ```
 
-<!-- 
-The following JSON shows three profiles from a *launchSettings.json* file:
-
-```json
-{
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:54339/",
-      "sslPort": 0
-    }
-  },
-  "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_My_Environment": "1",
-        "ASPNETCORE_DETAILEDERRORS": "1",
-        "ASPNETCORE_ENVIRONMENT": "Staging"
-      }
-    },
-    "EnvironmentsSample": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Staging"
-      },
-      "applicationUrl": "http://localhost:54340/"
-    },
-    "Kestrel Staging": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_My_Environment": "1",
-        "ASPNETCORE_DETAILEDERRORS": "1",
-        "ASPNETCORE_ENVIRONMENT": "Staging"
-      },
-      "applicationUrl": "http://localhost:51997/"
-    }
-  }
-}
-```
--->
-
 The value of `commandName` specifies the web server to launch. `commandName` can be any one of the following:
 
 * `IISExpress` : launches IISExpress.
