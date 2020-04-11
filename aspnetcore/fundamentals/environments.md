@@ -90,11 +90,11 @@ The Visual Studio project properties **Debug** tab provides a GUI to edit the *l
 > [!WARNING]
 > *launchSettings.json* shouldn't store secrets. The [Secret Manager tool](xref:security/app-secrets) can be used to store secrets for local development.
 
-When using [Visual Studio Code](https://code.visualstudio.com/), environment variables can be set in the *.vscode/launch.json* file. The following example sets several [ASP.NET Core environment variable](xref:) to `Development`:
+When using [Visual Studio Code](https://code.visualstudio.com/), environment variables can be set in the *.vscode/launch.json* file. The following example sets several [Host configuration values environment variable](xref:fundamentals/host/web-host#host-configuration-values) to `Development`:
 
-[!code-json[](environments/3.1sample/EnvironmentsSample/Properties/.vscode/launch.json?name=snippet)]
+[!code-json[](environments/3.1sample/EnvironmentsSample/.vscode/launch.json?name=snippet)]
 
-[!code-json[](environments/3.1sample/EnvironmentsSample/Properties/.vscode/launch.json?name=snippet2)]
+[!code-json[](environments/3.1sample/EnvironmentsSample/.vscode/launch.json?name=snippet2)]
 
 A *.vscode/launch.json* file in the project isn't read when starting the app with `dotnet run`.
 
