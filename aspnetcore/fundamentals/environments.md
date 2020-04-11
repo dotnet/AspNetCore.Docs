@@ -54,7 +54,8 @@ The following JSON shows the *launchSettings.json* file for an ASP.NET Core web 
 The preceding markup contains two profiles:
 
 * `IIS Express`: The default profile used when launching the app from Visual Studio. The `"commandName"` key has the value `"IISExpress"`, therefore, [IISExpress](/iis/extensions/introduction-to-iis-express/iis-express-overview) is the web server. You can set the launch profile to the project or any other profile included. For example, in the image below, selecting `EnvironmentsSample` causes Visual Studio to launch the [Kestrel server](xref:fundamentals/servers/kestrel).
-  ![IIS Express launch on menu](environments/_static/iisx.png)
+
+  ![IIS Express launch on menu](environments/_static/iisx2.png)
 * `EnvironmentsSample`: The profile name is the project name. This profile is used by default when launching the app with `dotnet run`.  The `"commandName"` key has the value `"Project"`, therefore, the [Kestrel server](xref:fundamentals/servers/kestrel) is the web server.
 
 The following code and output:
