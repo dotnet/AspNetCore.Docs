@@ -5,7 +5,7 @@ description: Learn how to control app behavior across multiple environments in A
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/17/2019
+ms.date: 4/12/2020
 uid: fundamentals/environments
 ---
 # Use multiple environments in ASP.NET Core
@@ -22,20 +22,16 @@ ASP.NET Core configures app behavior based on the runtime environment using an e
 
 ASP.NET Core reads the environment variable `ASPNETCORE_ENVIRONMENT` at app startup and stores the value in [IWebHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName). `ASPNETCORE_ENVIRONMENT` can be set to any value, but three values are provided by the framework:
 
-* <xref:Microsoft.Extensions.Hosting.Environments.Development>
+* <xref:Microsoft.Extensions.Hosting.Environments.Development> : The default in development.
 * <xref:Microsoft.Extensions.Hosting.Environments.Staging>
-* <xref:Microsoft.Extensions.Hosting.Environments.Production> (default)
+* <xref:Microsoft.Extensions.Hosting.Environments.Production> : The default when not in the development environment.
 
-[!code-csharp[](environments/sample/EnvironmentsSample/Startup.cs?name=snippet)]
-
-The preceding code:
+The following code:
 
 * Calls [UseDeveloperExceptionPage](/dotnet/api/microsoft.aspnetcore.builder.developerexceptionpageextensions.usedeveloperexceptionpage) when `ASPNETCORE_ENVIRONMENT` is set to `Development`.
-* Calls [UseExceptionHandler](/dotnet/api/microsoft.aspnetcore.builder.exceptionhandlerextensions.useexceptionhandler) when the value of `ASPNETCORE_ENVIRONMENT` is set one of the following:
+* Calls [UseExceptionHandler](/dotnet/api/microsoft.aspnetcore.builder.exceptionhandlerextensions.useexceptionhandler) when the value of `ASPNETCORE_ENVIRONMENT` is set to `Staging`, `Production`, or  `Staging_2`.
 
-  * `Staging`
-  * `Production`
-  * `Staging_2`
+[!code-csharp[](environments/3.1sample/EnvironmentsSample/Startup.cs?name=snippet)]
 
 The [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) uses the value of `IHostingEnvironment.EnvironmentName` to include or exclude markup in the element:
 
@@ -43,12 +39,47 @@ The [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-t
 
 On Windows and macOS, environment variables and values aren't case sensitive. Linux environment variables and values are **case sensitive** by default.
 
-### Development
+### Development and launchSettings.json
+
+The *launchSettings.json* file is only read in the development environment.
 
 The development environment can enable features that shouldn't be exposed in production. For example, the ASP.NET Core templates enable the [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page) in the development environment.
 
 The environment for local machine development can be set in the *Properties\launchSettings.json* file of the project. Environment values set in *launchSettings.json* override values set in the system environment.
 
+The following JSON shows the *launchSettings.json* file for an ASP.NET Core web projected named *EnvironmentsSample* created with Visual Studio or `dotnet new`:
+
+[!code-json[](environments/sample/EnvironmentsSample/Properties/launchSettingsCopy.json)]
+
+The preceding markup contains two profiles:
+
+* `IIS Express`: The default profile used when launching the app from Visual Studio. The `"commandName"` key has the value `"IISExpress"`, therefore, [IISExpress](/iis/extensions/introduction-to-iis-express/iis-express-overview) is the web server. You can set the launch profile to the project or any other profile included. For example, in the image below, selecting `EnvironmentsSample` causes Visual Studio to launch the [Kestrel server](xref:fundamentals/servers/kestrel).
+  ![IIS Express launch on menu](environments/_static/iisx.png)
+* `EnvironmentsSample`: The profile name is the project name. This profile is used by default when launching the app with `dotnet run`.  The `"commandName"` key has the value `"Project"`, therefore, the [Kestrel server](xref:fundamentals/servers/kestrel) is the web server.
+
+The following code and output:
+
+* Creates and runs and web app named *EnvironmentsSample*.
+* Shows the output.
+
+```bash
+cd c:\tmp
+dotnet new webapp -o EnvironmentsSample
+cd EnvironmentsSample
+dotnet run
+info: Microsoft.Hosting.Lifetime[0]
+      Now listening on: https://localhost:5001
+info: Microsoft.Hosting.Lifetime[0]
+      Now listening on: http://localhost:5000
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: c:\tmp\EnvironmentsSample
+```
+
+<!-- 
 The following JSON shows three profiles from a *launchSettings.json* file:
 
 ```json
@@ -92,72 +123,26 @@ The following JSON shows three profiles from a *launchSettings.json* file:
   }
 }
 ```
+-->
 
-> [!NOTE]
-> The `applicationUrl` property in *launchSettings.json* can specify a list of server URLs. Use a semicolon between the URLs in the list:
->
-> ```json
-> "EnvironmentsSample": {
->    "commandName": "Project",
->    "launchBrowser": true,
->    "applicationUrl": "https://localhost:5001;http://localhost:5000",
->    "environmentVariables": {
->      "ASPNETCORE_ENVIRONMENT": "Development"
->    }
-> }
-> ```
+The value of `commandName` specifies the web server to launch. `commandName` can be any one of the following:
 
-When the app is launched with [dotnet run](/dotnet/core/tools/dotnet-run), the first profile with `"commandName": "Project"` is used. The value of `commandName` specifies the web server to launch. `commandName` can be any one of the following:
-
-* `IISExpress`
+* `IISExpress` : launches IISExpress.
 * `IIS`
-* `Project` (which launches Kestrel)
+* `Project` : launches Kestrel.
 
-When an app is launched with [dotnet run](/dotnet/core/tools/dotnet-run):
-
-* *launchSettings.json* is read if available. `environmentVariables` settings in *launchSettings.json* override environment variables.
-* The hosting environment is displayed.
-
-The following output shows an app started with [dotnet run](/dotnet/core/tools/dotnet-run):
-
-```bash
-PS C:\Websites\EnvironmentsSample> dotnet run
-Using launch settings from C:\Websites\EnvironmentsSample\Properties\launchSettings.json...
-Hosting environment: Staging
-Content root path: C:\Websites\EnvironmentsSample
-Now listening on: http://localhost:54340
-Application started. Press Ctrl+C to shut down.
-```
-
-The Visual Studio project properties **Debug** tab provides a GUI to edit the *launchSettings.json* file:
-
-![Project Properties Setting Environment variables](environments/_static/project-properties-debug.png)
-
-Changes made to project profiles may not take effect until the web server is restarted. Kestrel must be restarted before it can detect changes made to its environment.
+The Visual Studio project properties **Debug** tab provides a GUI to edit the *launchSettings.json* file. Changes made to project profiles may not take effect until the web server is restarted. Kestrel must be restarted before it can detect changes made to its environment.
 
 > [!WARNING]
 > *launchSettings.json* shouldn't store secrets. The [Secret Manager tool](xref:security/app-secrets) can be used to store secrets for local development.
 
-When using [Visual Studio Code](https://code.visualstudio.com/), environment variables can be set in the *.vscode/launch.json* file. The following example sets the environment to `Development`:
+When using [Visual Studio Code](https://code.visualstudio.com/), environment variables can be set in the *.vscode/launch.json* file. The following example sets several [ASP.NET Core environment variable](xref:) to `Development`:
 
-```json
-{
-   "version": "0.2.0",
-   "configurations": [
-        {
-            "name": ".NET Core Launch (web)",
+[!code-json[](environments/sample/EnvironmentsSample/Properties/.vscode/launch.json?name=snippet)]
 
-            ... additional VS Code configuration settings ...
+[!code-json[](environments/sample/EnvironmentsSample/Properties/.vscode/launch.json?name=snippet2)]
 
-            "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            }
-        }
-    ]
-}
-```
-
-A *.vscode/launch.json* file in the project isn't read when starting the app with `dotnet run` in the same way as *Properties/launchSettings.json*. When launching an app in development that doesn't have a *launchSettings.json* file, either set the environment with an environment variable or a command-line argument to the `dotnet run` command.
+A *.vscode/launch.json* file in the project isn't read when starting the app with `dotnet run`.
 
 ### Production
 
