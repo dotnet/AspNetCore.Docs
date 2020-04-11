@@ -49,7 +49,7 @@ The environment for local machine development can be set in the *Properties\laun
 
 The following JSON shows the *launchSettings.json* file for an ASP.NET Core web projected named *EnvironmentsSample* created with Visual Studio or `dotnet new`:
 
-[!code-json[](environments/sample/EnvironmentsSample/Properties/launchSettingsCopy.json)]
+[!code-json[](environments/3.1sample/EnvironmentsSample/Properties/launchSettingsCopy.json)]
 
 The preceding markup contains two profiles:
 
@@ -138,9 +138,9 @@ The Visual Studio project properties **Debug** tab provides a GUI to edit the *l
 
 When using [Visual Studio Code](https://code.visualstudio.com/), environment variables can be set in the *.vscode/launch.json* file. The following example sets several [ASP.NET Core environment variable](xref:) to `Development`:
 
-[!code-json[](environments/sample/EnvironmentsSample/Properties/.vscode/launch.json?name=snippet)]
+[!code-json[](environments/3.1sample/EnvironmentsSample/Properties/.vscode/launch.json?name=snippet)]
 
-[!code-json[](environments/sample/EnvironmentsSample/Properties/.vscode/launch.json?name=snippet2)]
+[!code-json[](environments/3.1sample/EnvironmentsSample/Properties/.vscode/launch.json?name=snippet2)]
 
 A *.vscode/launch.json* file in the project isn't read when starting the app with `dotnet run`.
 
