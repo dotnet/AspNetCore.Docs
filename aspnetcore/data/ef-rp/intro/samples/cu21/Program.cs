@@ -101,12 +101,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;   // CreateScope
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
 
 namespace ContosoUniversity
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();
 
@@ -118,7 +119,7 @@ namespace ContosoUniversity
                 {
                     var context = services.GetRequiredService<SchoolContext>();
                     // using ContosoUniversity.Data; 
-                    context.Database.Migrate();
+                    await context.Database.MigrateAsync();
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)

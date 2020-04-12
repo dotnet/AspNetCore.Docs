@@ -6,13 +6,14 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using ContosoUniversity.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace ContosoUniversity
 {
     #region snippet
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = BuildWebHost(args);
 
@@ -23,7 +24,7 @@ namespace ContosoUniversity
                 {
                     var context = services.GetRequiredService<SchoolContext>();
                     // requires using Microsoft.EntityFrameworkCore;
-                    context.Database.Migrate();
+                    await context.Database.MigrateAsync();
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)

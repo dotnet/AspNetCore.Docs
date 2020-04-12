@@ -4,12 +4,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
 
 namespace ContosoUniversity
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
 
@@ -27,7 +28,7 @@ namespace ContosoUniversity
                 try
                 {
                     var context = services.GetRequiredService<SchoolContext>();
-                    context.Database.EnsureCreated();
+                    await context.Database.EnsureCreatedAsync();
                 }
                 catch (Exception ex)
                 {
