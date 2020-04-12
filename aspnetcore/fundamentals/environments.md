@@ -16,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core configures app behavior based on the runtime environment using an environment variable.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Environments
 
@@ -33,9 +33,11 @@ The following code:
 
 [!code-csharp[](environments/3.1sample/EnvironmentsSample/Startup.cs?name=snippet)]
 
-The [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) uses the value of `IHostingEnvironment.EnvironmentName` to include or exclude markup in the element:
+The [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) uses the value of [IWebHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName) to include or exclude markup in the element:
 
 [!code-cshtml[](environments/sample-snapshot/EnvironmentsSample/Pages/About.cshtml)]
+
+The [About page](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample/EnvironmentsSample/Pages/About.cshtml) from the [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample) displays the value of `IWebHostEnvironment.EnvironmentName`.
 
 On Windows and macOS, environment variables and values aren't case sensitive. Linux environment variables and values are **case sensitive** by default.
 
@@ -53,10 +55,10 @@ The following JSON shows the *launchSettings.json* file for an ASP.NET Core web 
 
 The preceding markup contains two profiles:
 
-* `IIS Express`: The default profile used when launching the app from Visual Studio. The `"commandName"` key has the value `"IISExpress"`, therefore, [IISExpress](/iis/extensions/introduction-to-iis-express/iis-express-overview) is the web server. You can set the launch profile to the project or any other profile included. For example, in the image below, selecting `EnvironmentsSample` causes Visual Studio to launch the [Kestrel server](xref:fundamentals/servers/kestrel).
+* `IIS Express`: The default profile used when launching the app from Visual Studio. The `"commandName"` key has the value `"IISExpress"`, therefore, [IISExpress](/iis/extensions/introduction-to-iis-express/iis-express-overview) is the web server. You can set the launch profile to the project or any other profile included. For example, in the image below, selecting the project name launches the [Kestrel server](xref:fundamentals/servers/kestrel).
 
   ![IIS Express launch on menu](environments/_static/iisx2.png)
-* `EnvironmentsSample`: The profile name is the project name. This profile is used by default when launching the app with `dotnet run`.  The `"commandName"` key has the value `"Project"`, therefore, the [Kestrel server](xref:fundamentals/servers/kestrel) is the web server.
+* `EnvironmentsSample`: The profile name is the project name. This profile is used by default when launching the app with `dotnet run`.  The `"commandName"` key has the value `"Project"`, therefore, the [Kestrel web server](xref:fundamentals/servers/kestrel) is launched.
 
 The following code and output:
 
@@ -82,7 +84,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 The value of `commandName` specifies the web server to launch. `commandName` can be any one of the following:
 
-* `IISExpress` : launches IISExpress.
+* `IISExpress` : launches IIS Express.
 * `IIS`
 * `Project` : launches Kestrel.
 
@@ -91,21 +93,21 @@ The Visual Studio project properties **Debug** tab provides a GUI to edit the *l
 > [!WARNING]
 > *launchSettings.json* shouldn't store secrets. The [Secret Manager tool](xref:security/app-secrets) can be used to store secrets for local development.
 
-When using [Visual Studio Code](https://code.visualstudio.com/), environment variables can be set in the *.vscode/launch.json* file. The following example sets several [Host configuration values environment variable](xref:fundamentals/host/web-host#host-configuration-values) to `Development`:
+When using [Visual Studio Code](https://code.visualstudio.com/), environment variables can be set in the *.vscode/launch.json* file. The following example sets several [Host configuration values environment variables](xref:fundamentals/host/web-host#host-configuration-values):
 
 [!code-json[](environments/3.1sample/EnvironmentsSample/.vscode/launch.json?range=4-10,32-38)]
 
-A *.vscode/launch.json* file in the project isn't read when starting the app with `dotnet run`.
+The*.vscode/launch.json* file is only used by Visual Studio Code.
 
 ### Production
 
-The production environment should be configured to maximize security, performance, and app robustness. Some common settings that differ from development include:
+The production environment should be configured to maximize security, [performance](xref:performance/performance-best-practices), and application robustness. Some common settings that differ from development include:
 
-* Caching.
+* [Caching](xref:performance/caching/memory).
 * Client-side resources are bundled, minified, and potentially served from a CDN.
 * Diagnostic error pages disabled.
 * Friendly error pages enabled.
-* Production logging and monitoring enabled. For example, [Application Insights](/azure/application-insights/app-insights-asp-net-core).
+* Production [logging](xref:fundamentals/logging) and monitoring enabled. For example, using [Application Insights](/azure/application-insights/app-insights-asp-net-core).
 
 ## Set the environment
 
@@ -113,9 +115,9 @@ It's often useful to set a specific environment for testing with an environment 
 
 When the host is built, the last environment setting read by the app determines the app's environment. The app's environment can't be changed while the app is running.
 
-### Environment variable or platform setting
+The [About page](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample/EnvironmentsSample/Pages/About.cshtml) from the [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample) displays the value of `IWebHostEnvironment.EnvironmentName`.
 
-#### Azure App Service
+### Azure App Service
 
 To set the environment in [Azure App Service](https://azure.microsoft.com/services/app-service/), perform the following steps:
 
@@ -129,23 +131,29 @@ To set the environment in [Azure App Service](https://azure.microsoft.com/servic
 
 Azure App Service automatically restarts the app after an app setting (environment variable) is added, changed, or deleted in the Azure portal.
 
-#### Windows
+### Windows
+
+Environment values in *launchSettings.json* override values set in the system environment. Rename the *launchSettings.json* file to read the the system environment settings.
 
 To set the `ASPNETCORE_ENVIRONMENT` for the current session when the app is started using [dotnet run](/dotnet/core/tools/dotnet-run), the following commands are used:
 
 **Command prompt**
 
 ```console
-set ASPNETCORE_ENVIRONMENT=Development
+rename Properties\launchSettings.json launchSettings2.json
+set ASPNETCORE_ENVIRONMENT=Staging
+dotnet run
 ```
 
 **PowerShell**
 
 ```powershell
-$Env:ASPNETCORE_ENVIRONMENT = "Development"
+Rename-Item Properties\launchSettings.json launchSettings2.json
+$Env:ASPNETCORE_ENVIRONMENT = "Staging"
+dotnet run
 ```
 
-These commands only take effect for the current window. When the window is closed, the `ASPNETCORE_ENVIRONMENT` setting reverts to the default setting or machine value.
+The preceding command sets `ASPNETCORE_ENVIRONMENT` only for processes launched from that command window.
 
 To set the value globally in Windows, use either of the following approaches:
 
@@ -173,7 +181,7 @@ To set the value globally in Windows, use either of the following approaches:
 
   The `Machine` option value indicates to set the environment variable at the system level. If the option value is changed to `User`, the environment variable is set for the user account.
 
-When the `ASPNETCORE_ENVIRONMENT` environment variable is set globally, it takes effect for `dotnet run` in any command window opened after the value is set.
+When the `ASPNETCORE_ENVIRONMENT` environment variable is set globally, it takes effect for `dotnet run` in any command window opened after the value is set. Environment values in *launchSettings.json* override values set in the system environment.
 
 **web.config**
 
@@ -227,34 +235,17 @@ For Linux distros, use the `export` command at a command prompt for session-base
 
 Call <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseEnvironment*> when building the host. See <xref:fundamentals/host/generic-host#environmentname>.
 
-
 ### Configuration by environment
 
-To load configuration by environment, we recommend:
-
-* *appsettings* files (*appsettings.{Environment}.json*). See <xref:fundamentals/configuration/index#json-configuration-provider>.
-* Environment variables (set on each system where the app is hosted). See <xref:fundamentals/host/generic-host#environmentname> and <xref:security/app-secrets#environment-variables>.
-* Secret Manager (in the Development environment only). See <xref:security/app-secrets>.
+To load configuration by environment, see <xref:fundamentals/configuration/index#json-configuration-provider>.
 
 ## Environment-based Startup class and methods
 
 ### Inject IWebHostEnvironment into Startup.Configure
 
-Inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup.Configure`. This approach is useful when the app only requires adjusting `Startup.Configure` for a few environments with minimal code differences per environment.
+Inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup.Configure`. This approach is useful when the app only requires adjusting `Startup.Configure` for a few environments with minimal code differences per environment. The following code is the generated by the Razor Page template:
 
-```csharp
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-{
-    if (env.IsDevelopment())
-    {
-        // Development environment code
-    }
-    else
-    {
-        // Code for all other environments
-    }
-}
-```
+[!code-csharp[](environments/3.1sample/EnvironmentsSample/StartupTemplate.cs?name=snippet&highlight=3-11)]
 
 ### Inject IWebHostEnvironment into the Startup class
 
@@ -265,48 +256,11 @@ In the following example:
 * The environment is held in the `_env` field.
 * `_env` is used in `ConfigureServices` and `Configure` to apply startup configuration based on the app's environment.
 
-```csharp
-public class Startup
-{
-    private readonly IWebHostEnvironment _env;
+[!code-csharp[](environments/3.1sample/EnvironmentsSample/Startup2.cs?name=snippet&highlight=3-11)]
 
-    public Startup(IWebHostEnvironment env)
-    {
-        _env = env;
-    }
-
-    public void ConfigureServices(IServiceCollection services)
-    {
-        if (_env.IsDevelopment())
-        {
-            // Development environment code
-        }
-        else if (_env.IsStaging())
-        {
-            // Staging environment code
-        }
-        else
-        {
-            // Code for all other environments
-        }
-    }
-
-    public void Configure(IApplicationBuilder app)
-    {
-        if (_env.IsDevelopment())
-        {
-            // Development environment code
-        }
-        else
-        {
-            // Code for all other environments
-        }
-    }
-}
-```
 ### Startup class conventions
 
-When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) bootstraps the app. The app can define separate `Startup` classes for different environments (for example, `StartupDevelopment`). The appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If a matching `Startup{EnvironmentName}` class isn't found, the `Startup` class is used. This approach is useful when the app requires configuring startup for several environments with many code differences per environment.
+When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) bootstraps the app. The app can define multiple `Startup` classes for different environments. The appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If a matching `Startup{EnvironmentName}` class isn't found, the `Startup` class is used. This approach is useful when the app requires configuring startup for several environments with many code differences per environment. Typical apps will not need this approach.
 
 To implement environment-based `Startup` classes, create a `Startup{EnvironmentName}` class for each environment in use and a fallback `Startup` class:
 
@@ -349,7 +303,6 @@ public class Startup
 }
 ```
 
-[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usestartup) overload that accepts an assembly name:
 
@@ -367,6 +320,8 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         .UseStartup(assemblyName);
 }
 ```
+
+[!INCLUDE[](~/includes/code-comments-loc.md)]
 
 ### Startup method conventions
 

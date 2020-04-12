@@ -35,6 +35,7 @@
                 "ASPNETCORE_DETAILEDERRORS": "1",
                 "ASPNETCORE_SHUTDOWNTIMEOUTSECONDS": "3"
             },
+            // Configuration ommitted for brevity.
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
             }

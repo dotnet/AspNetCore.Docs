@@ -9,18 +9,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace EnvironmentsSample
+namespace WebApplication102
 {
-    #region snippet_all
-    public class Startup
+    public class StartupTemplate
     {
-        public Startup(IConfiguration configuration)
+        public StartupTemplate(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
@@ -33,10 +33,10 @@ namespace EnvironmentsSample
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            if (env.IsProduction() || env.IsStaging() || env.IsEnvironment("Staging_2"))
+            else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
@@ -52,30 +52,5 @@ namespace EnvironmentsSample
             });
         }
         #endregion
-
-        public void ConfigureStaging(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (!env.IsStaging())
-            {
-                throw new Exception("Not staging.");
-            }
-
-            // Call staging specific configuration
-
-            app.UseExceptionHandler("/Error");
-
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
-        }
     }
-    #endregion
 }
