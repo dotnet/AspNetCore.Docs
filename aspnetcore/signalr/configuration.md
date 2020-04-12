@@ -5,7 +5,7 @@ description: Learn how to configure ASP.NET Core SignalR apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 12/10/2019
+ms.date: 04/12/2020
 no-loc: [SignalR]
 uid: signalr/configuration
 ---
@@ -25,7 +25,7 @@ As an example, to configure the serializer to not change the casing of property 
 ```csharp
 services.AddSignalR()
     .AddJsonProtocol(options => {
-        options.PayloadSerializerOptions.PropertyNamingPolicy = null
+        options.PayloadSerializerOptions.PropertyNamingPolicy = null;
     });
 ```
 
