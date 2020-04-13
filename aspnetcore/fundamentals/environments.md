@@ -282,7 +282,7 @@ Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.h
 
 [Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) support environment-specific versions of the form `Configure<EnvironmentName>` and `Configure<EnvironmentName>Services`. This approach is useful when the app requires configuring startup for several environments with many code differences per environment.
 
-[!code-csharp[](environments/sample/EnvironmentsSample/StartupMethodConventions.cs?name=snippet)]
+[!code-csharp[](environments/3.1sample/EnvironmentsSample/StartupMethodConventions.cs?name=snippet)]
 
 ## Additional resources
 
