@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Configurations>Debug;Release;IISxMultiConfig</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IISxMultiConfig|AnyCPU'">
+    <DefineConstants>TRACE;MULTI</DefineConstants>
   </PropertyGroup>
 
 

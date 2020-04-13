@@ -1,17 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Reflection;
 
-namespace First
+namespace MethodConventions
 {
-    #region snippet_all
+    #region snippet
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -21,22 +18,35 @@ namespace First
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services)
+        private void StartupConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
         }
 
-        #region snippet
+        public void ConfigureStagingServices(IServiceCollection services)
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            StartupConfigureServices(services);
+        }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            StartupConfigureServices(services);
+        }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            if (env.IsProduction() || env.IsStaging() || env.IsEnvironment("Staging_2"))
+            else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
@@ -51,18 +61,19 @@ namespace First
                 endpoints.MapRazorPages();
             });
         }
-        #endregion
 
         public void ConfigureStaging(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+
             if (!env.IsStaging())
             {
                 throw new Exception("Not staging.");
             }
 
-            // Call staging specific configuration
-
             app.UseExceptionHandler("/Error");
+            app.UseHsts();
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

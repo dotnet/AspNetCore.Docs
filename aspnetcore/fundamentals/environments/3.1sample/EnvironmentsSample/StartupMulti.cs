@@ -6,9 +6,12 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Reflection;
 
-namespace WebApplication102
+//      MethodBase.GetCurrentMethod().Name returns ctor, so we need DeclaringType
+
+
+namespace ClassConventions
 {
-    #region snippet
+#region snippet
     public class StartupDevelopment
     {
         public StartupDevelopment(IConfiguration configuration)
@@ -117,5 +120,5 @@ namespace WebApplication102
             });
         }
     }
-    #endregion
+#endregion
 }

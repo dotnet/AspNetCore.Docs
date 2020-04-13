@@ -15,6 +15,20 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    "IISX-Production": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      }
+    },
+    "IISX-Staging": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Staging"
+      }
+    },
     "EnvironmentsSample": {
       "commandName": "Project",
       "launchBrowser": true,
