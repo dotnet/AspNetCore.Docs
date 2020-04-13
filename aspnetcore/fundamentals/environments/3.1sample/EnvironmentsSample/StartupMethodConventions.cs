@@ -101,8 +101,9 @@ namespace MethodConventions
 
     public static class MyTrace
     {
-        public static void TraceMessage([System.Runtime.CompilerServices.CallerMemberName] 
-                                        string memberName = "")
+        public static void 
+                     TraceMessage([System.Runtime.CompilerServices.CallerMemberName] 
+                                   string memberName = "")
         {
             Console.WriteLine($"Method: {memberName}");
         }
