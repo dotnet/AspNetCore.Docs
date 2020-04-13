@@ -161,7 +161,6 @@ dotnet run --no-launch-profile
 **PowerShell**
 
 ```powershell
-Rename-Item Properties\launchSettings.json launchSettings2.json
 $Env:ASPNETCORE_ENVIRONMENT = "Staging"
 dotnet run --no-launch-profile
 ```
@@ -273,7 +272,7 @@ When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) 
 
 To implement environment-based `Startup` classes, create a `Startup{EnvironmentName}` class for each environment in use and a fallback `Startup` class:
 
-[!code-csharp[](environments/3.1sample/EnvironmentsSample/StartupConventions.cs?name=snippet)]
+[!code-csharp[](environments/3.1sample/EnvironmentsSample/StartupClassConventions.cs?name=snippet)]
 
 Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usestartup) overload that accepts an assembly name:
 
@@ -283,7 +282,7 @@ Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.h
 
 [Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) support environment-specific versions of the form `Configure<EnvironmentName>` and `Configure<EnvironmentName>Services`. This approach is useful when the app requires configuring startup for several environments with many code differences per environment.
 
-[!code-csharp[](environments/sample/EnvironmentsSample/ConfigureStagingServices.cs?name=snippet)]
+[!code-csharp[](environments/sample/EnvironmentsSample/StartupMethodConventions.cs?name=snippet)]
 
 ## Additional resources
 

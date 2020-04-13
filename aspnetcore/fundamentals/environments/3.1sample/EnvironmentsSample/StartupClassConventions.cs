@@ -6,8 +6,8 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Reflection;
 
-//      MethodBase.GetCurrentMethod().Name returns ctor, so we need DeclaringType
-
+// Define MULTI, see Program.cs
+// MethodBase.GetCurrentMethod().Name returns ctor, so we need DeclaringType
 
 namespace ClassConventions
 {
