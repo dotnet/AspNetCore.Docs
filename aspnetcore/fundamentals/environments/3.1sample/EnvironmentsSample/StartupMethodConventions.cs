@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Reflection;
 
 namespace MethodConventions
 {
@@ -25,19 +24,25 @@ namespace MethodConventions
 
         public void ConfigureStagingServices(IServiceCollection services)
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            MyTrace.TraceMessage();
+            StartupConfigureServices(services);
+        }
+
+        public void ConfigureProductionServices(IServiceCollection services)
+        {
+            MyTrace.TraceMessage();
             StartupConfigureServices(services);
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            MyTrace.TraceMessage();
             StartupConfigureServices(services);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            MyTrace.TraceMessage();
 
             if (env.IsDevelopment())
             {
@@ -64,7 +69,7 @@ namespace MethodConventions
 
         public void ConfigureStaging(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            MyTrace.TraceMessage();
 
             if (!env.IsStaging())
             {
@@ -86,6 +91,15 @@ namespace MethodConventions
             {
                 endpoints.MapRazorPages();
             });
+        }
+    }
+
+    public static class MyTrace
+    {
+        public static void TraceMessage([System.Runtime.CompilerServices.CallerMemberName] 
+                                        string memberName = "")
+        {
+            Console.WriteLine($"Method: {memberName}");
         }
     }
     #endregion
