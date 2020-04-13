@@ -57,7 +57,7 @@ To enable runtime compilation for all environments in an existing project:
     }
     ```
 
-### Conditionally enable runtime compilation
+## Conditionally enable runtime compilation in existing project
 
 Runtime compilation can be enabled such that it's only available for local development. Conditionally enabling in this manner ensures that the published output:
 
@@ -65,11 +65,12 @@ Runtime compilation can be enabled such that it's only available for local devel
 * Is smaller in size.
 * Doesn't enable file watchers in production.
 
-To enable runtime compilation only in the Development environment, apply the following changes in *launchSettings.json*:
+To enable runtime compilation only in the Development environment:
 
-1. Locate the appropriate launch profile configuration section.
-1. Set the section's `ASPNETCORE_ENVIRONMENT` environment variable to `Development`.
-1. Set the section's `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable to the runtime compilation assembly name.
+1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
+1. Modify the launch profile `environmentVariables` section in *launchSettings.json*:
+  * Set the section's `ASPNETCORE_ENVIRONMENT` environment variable to `Development`.
+  * Set the section's `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable to the runtime compilation assembly name.
 
 In the following example, runtime compilation is enabled in the Development environment for the `IIS Express` and `RazorPagesApp` launch profiles:
 
@@ -137,7 +138,7 @@ To enable runtime compilation based on the environment and configuration mode:
 * <xref:razor-pages/index>
 * <xref:mvc/views/overview>
 * <xref:razor-pages/sdk>
-* See the [runtimecompilation sample on GitHub](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/mvc/runtimecompilation) for a sample that shows making runtime compilation work across projects.
+* See the [runtime compilation sample on GitHub](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/mvc/runtimecompilation) for a sample that shows making runtime compilation work across projects.
 
 ::: moniker-end
 
