@@ -1180,6 +1180,14 @@ Using a third-party framework is similar to using one of the built-in providers:
 
 For more information, see each provider's documentation. Third-party logging providers aren't supported by Microsoft.
 
+## Third-party logging samples
+
+Third-party logging samples that demonstrate logging in .NET Core and ASP.NET Core:
+
+* [Logging.Samples](https://github.com/akovac35/Logging.Samples)
+
+Third-party logging samples aren't supported by Microsoft.
+
 ## Additional resources
 
 * <xref:fundamentals/logging/loggermessage>
