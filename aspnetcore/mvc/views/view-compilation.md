@@ -73,7 +73,7 @@ To enable runtime compilation only in the Development environment, apply the fol
 
 In the following example, runtime compilation is enabled in the Development environment for the `IIS Express` and `RazorPagesApp` launch profiles:
 
-[!code-json[](~/mvc/views/view-compilation/sample/launchSettings.json?highlight=16,25)]
+[!code-json[](~/mvc/views/view-compilation/sample/launchSettings.json?highlight=15-16,24-25)]
 
 ## Additional resources
 
