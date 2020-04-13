@@ -5,7 +5,7 @@ description: Add MessagePack Hub Protocol to ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 04/13/2020
 no-loc: [SignalR]
 uid: signalr/messagepackhubprotocol
 ---
@@ -18,11 +18,11 @@ This article assumes the reader is familiar with the topics covered in [Get Star
 
 ## What is MessagePack?
 
-[MessagePack](https://msgpack.org/index.html) is a binary serialization format that is fast and compact. It's useful when performance and bandwidth are a concern because it creates smaller messages compared to [JSON](https://www.json.org/). Because it's a binary format, messages are unreadable when looking at network traces and logs unless the bytes are passed through a MessagePack parser. SignalR has built-in support for the MessagePack format, and provides APIs for the client and server to use.
+[MessagePack](https://msgpack.org/index.html) is a fast and compact binary serialization format. It's useful when performance and bandwidth are a concern because it creates smaller messages compared to [JSON](https://www.json.org/). The binary messages are unreadable when looking at network traces and logs unless the bytes are passed through a MessagePack parser. SignalR has built-in support for the MessagePack format and provides APIs for the client and server to use.
 
 ## Configure MessagePack on the server
 
-To enable the MessagePack Hub Protocol on the server, install the `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` package in your app. In the Startup.cs file add `AddMessagePackProtocol` to the `AddSignalR` call to enable MessagePack support on the server.
+To enable the MessagePack Hub Protocol on the server, install the `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` package in your app. In the `Startup.ConfigureServices` method, add `AddMessagePackProtocol` to the `AddSignalR` call to enable MessagePack support on the server.
 
 > [!NOTE]
 > JSON is enabled by default. Adding MessagePack enables support for both JSON and MessagePack clients.
@@ -68,14 +68,13 @@ var hubConnection = new HubConnectionBuilder()
 
 ### JavaScript client
 
-MessagePack support for the JavaScript client is provided by the `@microsoft/signalr-protocol-msgpack` npm package. Install the package by executing the following command in a command shell:
+MessagePack support for the JavaScript client is provided by the [@microsoft/signalr-protocol-msgpack](https://www.npmjs.com/package/@microsoft/signalr-protocol-msgpack) npm package. Install the package by executing the following command in a command shell:
 
-```console
+```bash
 npm install @microsoft/signalr-protocol-msgpack
 ```
 
 After installing the npm package, the module can be used directly via a JavaScript module loader or imported into the browser by referencing the following file:
-
 
 *node_modules\\@microsoft\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* 
 
@@ -132,7 +131,7 @@ The MessagePack protocol doesn't provide a way to encode the `Kind` value of a `
 
 ### DateTime.MinValue is not supported by MessagePack in JavaScript
 
-The [msgpack5](https://github.com/mcollina/msgpack5) library used by the SignalR JavaScript client doesn't support the `timestamp96` type in MessagePack. This type is used to encode very large date values (either very early in the past or very far in the future). The value of `DateTime.MinValue` is `January 1, 0001` which must be encoded in a `timestamp96` value. Because of this, sending `DateTime.MinValue` to a JavaScript client isn't supported. When `DateTime.MinValue` is received by the JavaScript client, the following error is thrown:
+The [msgpack5](https://github.com/mcollina/msgpack5) library used by the SignalR JavaScript client doesn't support the `timestamp96` type in MessagePack. This type is used to encode very large date values (either very early in the past or very far in the future). The value of `DateTime.MinValue` is `January 1, 0001`, which must be encoded in a `timestamp96` value. Because of this, sending `DateTime.MinValue` to a JavaScript client isn't supported. When `DateTime.MinValue` is received by the JavaScript client, the following error is thrown:
 
 ```
 Uncaught Error: unable to find ext type 255 at decoder.js:427
@@ -177,17 +176,18 @@ For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](
 * [JavaScript client](xref:signalr/javascript-client)
 
 ::: moniker-end
+
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 This article assumes the reader is familiar with the topics covered in [Get Started](xref:tutorials/signalr).
 
 ## What is MessagePack?
 
-[MessagePack](https://msgpack.org/index.html) is a binary serialization format that is fast and compact. It's useful when performance and bandwidth are a concern because it creates smaller messages compared to [JSON](https://www.json.org/). Because it's a binary format, messages are unreadable when looking at network traces and logs unless the bytes are passed through a MessagePack parser. SignalR has built-in support for the MessagePack format, and provides APIs for the client and server to use.
+[MessagePack](https://msgpack.org/index.html) is a fast and compact binary serialization format. It's useful when performance and bandwidth are a concern because it creates smaller messages compared to [JSON](https://www.json.org/). The binary messages are unreadable when looking at network traces and logs unless the bytes are passed through a MessagePack parser. SignalR has built-in support for the MessagePack format, and provides APIs for the client and server to use.
 
 ## Configure MessagePack on the server
 
-To enable the MessagePack Hub Protocol on the server, install the `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` package in your app. In the Startup.cs file add `AddMessagePackProtocol` to the `AddSignalR` call to enable MessagePack support on the server.
+To enable the MessagePack Hub Protocol on the server, install the `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` package in your app. In the `Startup.ConfigureServices` method, add `AddMessagePackProtocol` to the `AddSignalR` call to enable MessagePack support on the server.
 
 > [!NOTE]
 > JSON is enabled by default. Adding MessagePack enables support for both JSON and MessagePack clients.
@@ -243,14 +243,13 @@ var hubConnection = new HubConnectionBuilder()
 
 ### JavaScript client
 
-MessagePack support for the JavaScript client is provided by the `@microsoft/signalr-protocol-msgpack` npm package. Install the package by executing the following command in a command shell:
+MessagePack support for the JavaScript client is provided by the [@microsoft/signalr-protocol-msgpack](https://www.npmjs.com/package/@microsoft/signalr-protocol-msgpack) npm package. Install the package by executing the following command in a command shell:
 
-```console
+```bash
 npm install @microsoft/signalr-protocol-msgpack
 ```
 
 After installing the npm package, the module can be used directly via a JavaScript module loader or imported into the browser by referencing the following file:
-
 
 *node_modules\\@microsoft\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* 
 
@@ -309,7 +308,7 @@ For more information on this limitation, see GitHub issue [aspnet/SignalR#2632](
 
 ### DateTime.MinValue is not supported by MessagePack in JavaScript
 
-The [msgpack5](https://github.com/mcollina/msgpack5) library used by the SignalR JavaScript client doesn't support the `timestamp96` type in MessagePack. This type is used to encode very large date values (either very early in the past or very far in the future). The value of `DateTime.MinValue` is `January 1, 0001` which must be encoded in a `timestamp96` value. Because of this, sending `DateTime.MinValue` to a JavaScript client isn't supported. When `DateTime.MinValue` is received by the JavaScript client, the following error is thrown:
+The [msgpack5](https://github.com/mcollina/msgpack5) library used by the SignalR JavaScript client doesn't support the `timestamp96` type in MessagePack. This type is used to encode very large date values (either very early in the past or very far in the future). The value of `DateTime.MinValue` is `January 1, 0001`, which must be encoded in a `timestamp96` value. Because of this, sending `DateTime.MinValue` to a JavaScript client isn't supported. When `DateTime.MinValue` is received by the JavaScript client, the following error is thrown:
 
 ```
 Uncaught Error: unable to find ext type 255 at decoder.js:427
@@ -352,17 +351,18 @@ For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](
 * [JavaScript client](xref:signalr/javascript-client)
 
 ::: moniker-end
+
 ::: moniker range="< aspnetcore-3.0"
 
 This article assumes the reader is familiar with the topics covered in [Get Started](xref:tutorials/signalr).
 
 ## What is MessagePack?
 
-[MessagePack](https://msgpack.org/index.html) is a binary serialization format that is fast and compact. It's useful when performance and bandwidth are a concern because it creates smaller messages compared to [JSON](https://www.json.org/). Because it's a binary format, messages are unreadable when looking at network traces and logs unless the bytes are passed through a MessagePack parser. SignalR has built-in support for the MessagePack format, and provides APIs for the client and server to use.
+[MessagePack](https://msgpack.org/index.html) is a fast and compact binary serialization format. It's useful when performance and bandwidth are a concern because it creates smaller messages compared to [JSON](https://www.json.org/). The binary messages are unreadable when looking at network traces and logs unless the bytes are passed through a MessagePack parser. SignalR has built-in support for the MessagePack format, and provides APIs for the client and server to use.
 
 ## Configure MessagePack on the server
 
-To enable the MessagePack Hub Protocol on the server, install the `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` package in your app. In the Startup.cs file add `AddMessagePackProtocol` to the `AddSignalR` call to enable MessagePack support on the server.
+To enable the MessagePack Hub Protocol on the server, install the `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` package in your app. In the `Startup.ConfigureServices` method, add `AddMessagePackProtocol` to the `AddSignalR` call to enable MessagePack support on the server.
 
 > [!NOTE]
 > JSON is enabled by default. Adding MessagePack enables support for both JSON and MessagePack clients.
@@ -418,9 +418,9 @@ var hubConnection = new HubConnectionBuilder()
 
 ### JavaScript client
 
-MessagePack support for the JavaScript client is provided by the `@aspnet/signalr-protocol-msgpack` npm package. Install the package by executing the following command in a command shell:
+MessagePack support for the JavaScript client is provided by the [@aspnet/signalr-protocol-msgpack](https://www.npmjs.com/package/@aspnet/signalr-protocol-msgpack) npm package. Install the package by executing the following command in a command shell:
 
-```console
+```bash
 npm install @aspnet/signalr-protocol-msgpack
 ```
 
