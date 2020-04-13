@@ -22,6 +22,12 @@ namespace MethodConventions
             services.AddRazorPages();
         }
 
+        public void ConfigureDevelopmentServices(IServiceCollection services)
+        {
+            MyTrace.TraceMessage();
+            StartupConfigureServices(services);
+        }
+
         public void ConfigureStagingServices(IServiceCollection services)
         {
             MyTrace.TraceMessage();
@@ -78,7 +84,6 @@ namespace MethodConventions
 
             app.UseExceptionHandler("/Error");
             app.UseHsts();
-
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
