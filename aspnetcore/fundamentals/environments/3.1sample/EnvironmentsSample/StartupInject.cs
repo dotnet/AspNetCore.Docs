@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace Inject
 {
@@ -22,15 +23,15 @@ namespace Inject
         {
             if (_env.IsDevelopment())
             {
-                // Development environment.
+                Console.WriteLine(_env.EnvironmentName);
             }
             else if (_env.IsStaging())
             {
-                // Staging environment.
+                Console.WriteLine(_env.EnvironmentName);
             }
             else
             {
-                // Code for all other environments.
+                Console.WriteLine("Not dev or staging");
             }
 
             services.AddRazorPages();

@@ -56,7 +56,7 @@ dotnet run --verbosity normal
 The preceding code displays some of the following output:
 
 ```bash
-Using launch settings from c:\tmp\EnvironmentsSample\Properties\launchSettings.json...
+Using launch settings from c:\tmp\EnvironmentsSample\Properties\launchSettings.json
 info: Microsoft.Hosting.Lifetime[0]
       Now listening on: https://localhost:5001
 info: Microsoft.Hosting.Lifetime[0]
@@ -145,7 +145,7 @@ To set the environment in [Azure App Service](https://azure.microsoft.com/servic
 1. Select **OK** to close the **Add/Edit application setting** window.
 1. Select **Save** at the top of the **Configuration** blade.
 
-Azure App Service automatically restarts the app after an app setting (environment variable) is added, changed, or deleted in the Azure portal.
+Azure App Service automatically restarts the app after an app setting is added, changed, or deleted in the Azure portal.
 
 ### Windows
 
@@ -215,11 +215,10 @@ To set the `ASPNETCORE_ENVIRONMENT` environment variable with *web.config*, see 
 
 To set the `ASPNETCORE_ENVIRONMENT` environment variable for an app running in an isolated Application Pool (supported on IIS 10.0 or later), see the *AppCmd.exe command* section of the [Environment Variables &lt;environmentVariables&gt;](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic. When the `ASPNETCORE_ENVIRONMENT` environment variable is set for an app pool, its value overrides a setting at the system level.
 
-> [!IMPORTANT]
-> When hosting an app in IIS and adding or changing the `ASPNETCORE_ENVIRONMENT` environment variable, use any one of the following approaches to have the new value picked up by apps:
->
-> * Execute `net stop was /y` followed by `net start w3svc` from a command prompt.
-> * Restart the server.
+When hosting an app in IIS and adding or changing the `ASPNETCORE_ENVIRONMENT` environment variable, use any one of the following approaches to have the new value picked up by apps:
+
+* Execute `net stop was /y` followed by `net start w3svc` from a command prompt.
+* Restart the server.
 
 #### macOS
 
@@ -265,8 +264,6 @@ In the following example:
 * `_env` is used in `ConfigureServices` and `Configure` to apply startup configuration based on the app's environment.
 
 [!code-csharp[](environments/3.1sample/EnvironmentsSample/StartupInject.cs?name=snippet&highlight=3-11)]
-
-[!INCLUDE[](~/includes/code-comments-loc.md)]
 
 ### Startup class conventions
 
@@ -323,7 +320,7 @@ The [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-t
 
 [!code-cshtml[](environments/sample-snapshot/EnvironmentsSample/Pages/About.cshtml)]
 
-On Windows and macOS, environment variables and values aren't case-sensitive. Linux environment variables and values are **case-sensitive** by default.
+On Windows and macOS, environment variables and values aren't case-sensitive. Linux environment variables and values are case-sensitive by default.
 
 ### Development
 
