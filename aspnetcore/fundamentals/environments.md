@@ -41,13 +41,43 @@ The [About page](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcor
 
 On Windows and macOS, environment variables and values aren't case sensitive. Linux environment variables and values are **case sensitive** by default.
 
-### Development and launchSettings.json
+### Create EnvironmentsSample
 
-The *launchSettings.json* file is only read in the development environment.
+The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample) used in this document is based on a Razor Pages project named *EnvironmentsSample*.
+
+The following code creates and runs a web app named *EnvironmentsSample*:
+
+```bash
+dotnet new webapp -o EnvironmentsSample
+cd EnvironmentsSample
+dotnet run --verbosity normal
+```
+
+The preceding code displays some of the following output:
+
+```bash
+Using launch settings from c:\tmp\EnvironmentsSample\Properties\launchSettings.json...
+info: Microsoft.Hosting.Lifetime[0]
+      Now listening on: https://localhost:5001
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: c:\tmp\EnvironmentsSample
+```
+
+### Development and launchSettings.json
 
 The development environment can enable features that shouldn't be exposed in production. For example, the ASP.NET Core templates enable the [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page) in the development environment.
 
 The environment for local machine development can be set in the *Properties\launchSettings.json* file of the project. Environment values set in *launchSettings.json* override values set in the system environment.
+
+The *launchSettings.json* file:
+
+* Is only used on the local development machine.
+* Is not deployed.
+* contains profile settings.
 
 The following JSON shows the *launchSettings.json* file for an ASP.NET Core web projected named *EnvironmentsSample* created with Visual Studio or `dotnet new`:
 
@@ -60,35 +90,19 @@ The preceding markup contains two profiles:
   ![IIS Express launch on menu](environments/_static/iisx2.png)
 * `EnvironmentsSample`: The profile name is the project name. This profile is used by default when launching the app with `dotnet run`.  The `"commandName"` key has the value `"Project"`, therefore, the [Kestrel web server](xref:fundamentals/servers/kestrel) is launched.
 
-The following code and output:
-
-* Creates and runs and web app named *EnvironmentsSample*.
-* Shows the output.
-
-```bash
-cd c:\tmp
-dotnet new webapp -o EnvironmentsSample
-cd EnvironmentsSample
-dotnet run
-info: Microsoft.Hosting.Lifetime[0]
-      Now listening on: https://localhost:5001
-info: Microsoft.Hosting.Lifetime[0]
-      Now listening on: http://localhost:5000
-info: Microsoft.Hosting.Lifetime[0]
-      Application started. Press Ctrl+C to shut down.
-info: Microsoft.Hosting.Lifetime[0]
-      Hosting environment: Development
-info: Microsoft.Hosting.Lifetime[0]
-      Content root path: c:\tmp\EnvironmentsSample
-```
-
-The value of `commandName` specifies the web server to launch. `commandName` can be any one of the following:
+The value of `commandName` can specify the web server to launch. `commandName` can be any one of the following:
 
 * `IISExpress` : launches IIS Express.
-* `IIS`
+* `IIS` : No web server launched. IIS is expected to be available.
 * `Project` : launches Kestrel.
 
 The Visual Studio project properties **Debug** tab provides a GUI to edit the *launchSettings.json* file. Changes made to project profiles may not take effect until the web server is restarted. Kestrel must be restarted before it can detect changes made to its environment.
+
+The following *launchSettings.json* file contains multiple profiles: 
+
+[!code-json[](environments/3.1sample/EnvironmentsSample/Properties/launchSettings.json)]
+
+Profiles can be selected from Visual Studio or from `dotnet run --launch-profile <Profile Name>`.
 
 > [!WARNING]
 > *launchSettings.json* shouldn't store secrets. The [Secret Manager tool](xref:security/app-secrets) can be used to store secrets for local development.
@@ -133,16 +147,15 @@ Azure App Service automatically restarts the app after an app setting (environme
 
 ### Windows
 
-Environment values in *launchSettings.json* override values set in the system environment. Rename the *launchSettings.json* file to read the the system environment settings.
+Environment values in *launchSettings.json* override values set in the system environment.
 
 To set the `ASPNETCORE_ENVIRONMENT` for the current session when the app is started using [dotnet run](/dotnet/core/tools/dotnet-run), the following commands are used:
 
 **Command prompt**
 
-```console
-rename Properties\launchSettings.json launchSettings2.json
+```console zz
 set ASPNETCORE_ENVIRONMENT=Staging
-dotnet run
+dotnet run --no-launch-profile
 ```
 
 **PowerShell**
@@ -150,7 +163,7 @@ dotnet run
 ```powershell
 Rename-Item Properties\launchSettings.json launchSettings2.json
 $Env:ASPNETCORE_ENVIRONMENT = "Staging"
-dotnet run
+dotnet run --no-launch-profile
 ```
 
 The preceding command sets `ASPNETCORE_ENVIRONMENT` only for processes launched from that command window.
