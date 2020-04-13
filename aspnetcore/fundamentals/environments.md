@@ -37,9 +37,9 @@ The [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-t
 
 [!code-cshtml[](environments/sample-snapshot/EnvironmentsSample/Pages/About.cshtml)]
 
-The [About page](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample/EnvironmentsSample/Pages/About.cshtml) from the [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample) displays the value of `IWebHostEnvironment.EnvironmentName`.
+The [About page](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample/EnvironmentsSample/Pages/About.cshtml) from the [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample) includes the preceding markup and displays the value of `IWebHostEnvironment.EnvironmentName`.
 
-On Windows and macOS, environment variables and values aren't case sensitive. Linux environment variables and values are **case sensitive** by default.
+On Windows and macOS, environment variables and values aren't case-sensitive. Linux environment variables and values are **case-sensitive** by default.
 
 ### Create EnvironmentsSample
 
@@ -92,13 +92,15 @@ The preceding markup contains two profiles:
 
 The value of `commandName` can specify the web server to launch. `commandName` can be any one of the following:
 
-* `IISExpress` : launches IIS Express.
+* `IISExpress` : Launches IIS Express.
 * `IIS` : No web server launched. IIS is expected to be available.
-* `Project` : launches Kestrel.
+* `Project` : Launches Kestrel.
 
 The Visual Studio project properties **Debug** tab provides a GUI to edit the *launchSettings.json* file. Changes made to project profiles may not take effect until the web server is restarted. Kestrel must be restarted before it can detect changes made to its environment.
 
-The following *launchSettings.json* file contains multiple profiles: 
+![Project Properties Setting Environment variables](environments/_static/project-properties-debug.png)
+
+The following *launchSettings.json* file contains multiple profiles:
 
 [!code-json[](environments/3.1sample/EnvironmentsSample/Properties/launchSettings.json)]
 
@@ -111,7 +113,7 @@ When using [Visual Studio Code](https://code.visualstudio.com/), environment var
 
 [!code-json[](environments/3.1sample/EnvironmentsSample/.vscode/launch.json?range=4-10,32-38)]
 
-The*.vscode/launch.json* file is only used by Visual Studio Code.
+The *.vscode/launch.json* file is only used by Visual Studio Code.
 
 ### Production
 
@@ -270,7 +272,7 @@ In the following example:
 
 When an ASP.NET Core app starts, the [Startup class](xref:fundamentals/startup) bootstraps the app. The app can define multiple `Startup` classes for different environments. The appropriate `Startup` class is selected at runtime. The class whose name suffix matches the current environment is prioritized. If a matching `Startup{EnvironmentName}` class isn't found, the `Startup` class is used. This approach is useful when the app requires configuring startup for several environments with many code differences per environment. Typical apps will not need this approach.
 
-To implement environment-based `Startup` classes, create a `Startup{EnvironmentName}` class for each environment in use and a fallback `Startup` class:
+To implement environment-based `Startup` classes, create a `Startup{EnvironmentName}` classes and a fallback `Startup` class:
 
 [!code-csharp[](environments/3.1sample/EnvironmentsSample/StartupClassConventions.cs?name=snippet)]
 
@@ -280,7 +282,7 @@ Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.h
 
 ### Startup method conventions
 
-[Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) support environment-specific versions of the form `Configure<EnvironmentName>` and `Configure<EnvironmentName>Services`. This approach is useful when the app requires configuring startup for several environments with many code differences per environment.
+[Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) support environment-specific versions of the form `Configure<EnvironmentName>` and `Configure<EnvironmentName>Services`. This approach is useful when the app requires configuring startup for several environments with many code differences per environment:
 
 [!code-csharp[](environments/3.1sample/EnvironmentsSample/StartupMethodConventions.cs?name=snippet)]
 
@@ -321,7 +323,7 @@ The [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-t
 
 [!code-cshtml[](environments/sample-snapshot/EnvironmentsSample/Pages/About.cshtml)]
 
-On Windows and macOS, environment variables and values aren't case sensitive. Linux environment variables and values are **case sensitive** by default.
+On Windows and macOS, environment variables and values aren't case-sensitive. Linux environment variables and values are **case-sensitive** by default.
 
 ### Development
 
