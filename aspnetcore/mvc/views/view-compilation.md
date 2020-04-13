@@ -13,13 +13,11 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Razor files with a *.cshtml* extension are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk). [Runtime compilation](#runtime-compilation) may be optionally enabled by configuring your app.
+Razor files with a *.cshtml* extension are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk). Runtime compilation may be optionally enabled by configuring your app.
 
 ## Razor compilation
 
-Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, [runtime compilation](#runtime-compilation) complements build-time compilation, allowing Razor files to be updated if they are edited.
-
-## Runtime compilation
+Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they are edited.
 
 ## Enable runtime compilation at project creation
 
