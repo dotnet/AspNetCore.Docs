@@ -123,7 +123,7 @@ The production environment should be configured to maximize security, [performan
 * Client-side resources are bundled, minified, and potentially served from a CDN.
 * Diagnostic error pages disabled.
 * Friendly error pages enabled.
-* Production [logging](xref:fundamentals/logging) and monitoring enabled. For example, using [Application Insights](/azure/application-insights/app-insights-asp-net-core).
+* Production [logging](xref:fundamentals/logging/index) and monitoring enabled. For example, using [Application Insights](/azure/application-insights/app-insights-asp-net-core).
 
 ## Set the environment
 
