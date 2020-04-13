@@ -132,6 +132,9 @@ The following code loads related data with the `Select` method:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=6)]
 
+Notice that the result set doesn't contain any entity types, then no tracking is done. we return a `CourseViewModel` object with some of the values from the entity (but no instances of the actual entity type). There are no tracked entities coming out of the query.
+For more information about the Tracking behavior, see [Tracking vs. No-Tracking Queries](/ef/core/querying/tracking)
+
 The `CourseViewModel`:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Models/SchoolViewModels/CourseViewModel.cs?name=snippet)]
