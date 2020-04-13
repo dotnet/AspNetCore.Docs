@@ -79,13 +79,13 @@ The instructions provided by the [Quickstart: Set and retrieve a secret from Azu
 
 1. Create a resource group with the following command, where `{RESOURCE GROUP NAME}` is the resource group name for the new resource group and `{LOCATION}` is the Azure region (datacenter):
 
-   ```azure-cli
+   ```azurecli
    az group create --name "{RESOURCE GROUP NAME}" --location {LOCATION}
    ```
 
 1. Create a key vault in the resource group with the following command, where `{KEY VAULT NAME}` is the name for the new key vault and `{LOCATION}` is the Azure region (datacenter):
 
-   ```azure-cli
+   ```azurecli
    az keyvault create --name {KEY VAULT NAME} --resource-group "{RESOURCE GROUP NAME}" --location {LOCATION}
    ```
 
@@ -95,7 +95,7 @@ The instructions provided by the [Quickstart: Set and retrieve a secret from Azu
 
    The following secrets are for use with the sample app. The values include a `_prod` suffix to distinguish them from the `_dev` suffix values loaded in the Development environment from User Secrets. Replace `{KEY VAULT NAME}` with the name of the key vault that you created in the prior step:
 
-   ```azure-cli
+   ```azurecli
    az keyvault secret set --vault-name {KEY VAULT NAME} --name "SecretName" --value "secret_value_1_prod"
    az keyvault secret set --vault-name {KEY VAULT NAME} --name "Section--SecretName" --value "secret_value_2_prod"
    ```
@@ -165,7 +165,7 @@ An app deployed to Azure App Service is automatically registered with Azure AD w
 
 Using Azure CLI and the app's Object ID, provide the app with `list` and `get` permissions to access the key vault:
 
-```azure-cli
+```azurecli
 az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-permissions get list
 ```
 
@@ -265,7 +265,7 @@ When this approach is implemented:
 
 1. Secrets are saved in Azure Key Vault using the following Azure CLI commands:
 
-   ```azure-cli
+   ```azurecli
    az keyvault secret set --vault-name {KEY VAULT NAME} --name "5000-AppSecret" --value "5.0.0.0_secret_value_prod"
    az keyvault secret set --vault-name {KEY VAULT NAME} --name "5100-AppSecret" --value "5.1.0.0_secret_value_prod"
    ```
@@ -425,13 +425,13 @@ The instructions provided by the [Quickstart: Set and retrieve a secret from Azu
 
 1. Create a resource group with the following command, where `{RESOURCE GROUP NAME}` is the resource group name for the new resource group and `{LOCATION}` is the Azure region (datacenter):
 
-   ```azure-cli
+   ```azurecli
    az group create --name "{RESOURCE GROUP NAME}" --location {LOCATION}
    ```
 
 1. Create a key vault in the resource group with the following command, where `{KEY VAULT NAME}` is the name for the new key vault and `{LOCATION}` is the Azure region (datacenter):
 
-   ```azure-cli
+   ```azurecli
    az keyvault create --name {KEY VAULT NAME} --resource-group "{RESOURCE GROUP NAME}" --location {LOCATION}
    ```
 
@@ -441,7 +441,7 @@ The instructions provided by the [Quickstart: Set and retrieve a secret from Azu
 
    The following secrets are for use with the sample app. The values include a `_prod` suffix to distinguish them from the `_dev` suffix values loaded in the Development environment from User Secrets. Replace `{KEY VAULT NAME}` with the name of the key vault that you created in the prior step:
 
-   ```azure-cli
+   ```azurecli
    az keyvault secret set --vault-name {KEY VAULT NAME} --name "SecretName" --value "secret_value_1_prod"
    az keyvault secret set --vault-name {KEY VAULT NAME} --name "Section--SecretName" --value "secret_value_2_prod"
    ```
@@ -511,7 +511,7 @@ An app deployed to Azure App Service is automatically registered with Azure AD w
 
 Using Azure CLI and the app's Object ID, provide the app with `list` and `get` permissions to access the key vault:
 
-```azure-cli
+```azurecli
 az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-permissions get list
 ```
 
@@ -592,7 +592,7 @@ When this approach is implemented:
 
 1. Secrets are saved in Azure Key Vault using the following Azure CLI commands:
 
-   ```azure-cli
+   ```azurecli
    az keyvault secret set --vault-name {KEY VAULT NAME} --name "5000-AppSecret" --value "5.0.0.0_secret_value_prod"
    az keyvault secret set --vault-name {KEY VAULT NAME} --name "5100-AppSecret" --value "5.1.0.0_secret_value_prod"
    ```
