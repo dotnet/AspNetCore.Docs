@@ -76,7 +76,7 @@ In the following example, runtime compilation is enabled in the Development envi
 
 [!code-json[](~/mvc/views/view-compilation/samples/3.1/launchSettings.json?highlight=15-16,24-25)]
 
-No code is needed in the project's `Startup` class. At runtime, ASP.NET Core searches for an [assembly-level HostingStartup attribute](xref:fundamentals/host/platform-specific-configuration#hostingstartup-attribute) in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`&mdash;the assembly specified by the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable. The `HostingStartup` attribute specifies the app startup code to execute. That startup code enables runtime compilation.
+No code is needed in the project's `Startup` class. At runtime, ASP.NET Core searches for an [assembly-level HostingStartup attribute](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`&mdash;the assembly specified by the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable. The `HostingStartup` attribute specifies the app startup code to execute. That startup code enables runtime compilation.
 
 ## Additional resources
 
