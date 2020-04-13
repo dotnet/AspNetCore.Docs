@@ -32,7 +32,7 @@ In the **Create a new ASP.NET Core web application** dialog:
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-Append the `-rrc` or `--razor-runtime-compilation` option to the .NET Core CLI command. For example, the following command creates a new Razor Pages project with runtime compilation enabled:
+Use the `-rrc` or `--razor-runtime-compilation` template option. For example, the following command creates a new Razor Pages project with runtime compilation enabled:
 
 ```dotnetcli
 dotnet new webapp --razor-runtime-compilation
