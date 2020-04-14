@@ -230,7 +230,8 @@ The `RedirectToLogin` component in the app's *Shared* folder handles redirecting
 @code {
     protected override void OnInitialized()
     {
-        Navigation.NavigateTo($"Identity/Account/Login?returnUrl={Navigation.Uri}");
+        Navigation.NavigateTo("Identity/Account/Login?returnUrl=" +
+            Navigation.ToBaseRelativePath(Navigation.Uri));
     }
 }
 ```

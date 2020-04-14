@@ -196,7 +196,8 @@ Add a `RedirectToLogin` component (*RedirectToLogin.razor*) to the app's *Shared
 @code {
     protected override void OnInitialized()
     {
-        Navigation.NavigateTo($"Identity/Account/Login?returnUrl={Navigation.Uri}");
+        Navigation.NavigateTo("Identity/Account/Login?returnUrl=" +
+            Navigation.ToBaseRelativePath(Navigation.Uri));
     }
 }
 ```
