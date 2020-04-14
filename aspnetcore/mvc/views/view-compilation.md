@@ -17,7 +17,7 @@ Razor files with a *.cshtml* extension are compiled at both build and publish ti
 
 ## Razor compilation
 
-Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they are edited.
+Build-time and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they're edited.
 
 ## Enable runtime compilation at project creation
 
@@ -62,21 +62,20 @@ To enable runtime compilation for all environments in an existing project:
 Runtime compilation can be enabled such that it's only available for local development. Conditionally enabling in this manner ensures that the published output:
 
 * Uses compiled views.
-* Is smaller in size.
 * Doesn't enable file watchers in production.
 
 To enable runtime compilation only in the Development environment:
 
 1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
 1. Modify the launch profile `environmentVariables` section in *launchSettings.json*:
-    * Verify `ASPNETCORE_ENVIRONMENT` is set to `Development`.
+    * Verify `ASPNETCORE_ENVIRONMENT` is set to `"Development"`.
     * Set `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` to `"Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"`.
 
 In the following example, runtime compilation is enabled in the Development environment for the `IIS Express` and `RazorPagesApp` launch profiles:
 
 [!code-json[](~/mvc/views/view-compilation/samples/3.1/launchSettings.json?highlight=15-16,24-25)]
 
-No code changes are needed in the project's `Startup` class. At runtime, ASP.NET Core searches for an [assembly-level HostingStartup attribute](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`&mdash;the assembly specified by the `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` environment variable. The `HostingStartup` attribute specifies the app startup code to execute. That startup code enables runtime compilation.
+No code changes are needed in the project's `Startup` class. At runtime, ASP.NET Core searches for an [assembly-level HostingStartup attribute](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. The `HostingStartup` attribute specifies the app startup code to execute. That startup code enables runtime compilation.
 
 ## Additional resources
 
@@ -94,7 +93,7 @@ Razor files with a *.cshtml* extension are compiled at both build and publish ti
 
 ## Razor compilation
 
-Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they are edited.
+Build-time and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they're edited.
 
 ## Runtime compilation
 
