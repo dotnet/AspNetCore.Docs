@@ -149,7 +149,7 @@ Inject the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> service into a c
 
 * [ApplicationName](#applicationname)
 * [EnvironmentName](#environmentname)
-* [ContentRootPath](#contentrootpath)
+* [ContentRootPath](#contentroot)
 
 Web apps implement the `IWebHostEnvironment` interface, which inherits `IHostEnvironment` and adds the [WebRootPath](#webroot).
 
@@ -192,7 +192,7 @@ The [IHostEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHostEn
 
 To set this value, use the environment variable. 
 
-### ContentRootPath
+### ContentRoot
 
 The [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath*) property determines where the host begins searching for content files. If the path doesn't exist, the host fails to start.
 
@@ -408,14 +408,14 @@ Kestrel has its own endpoint configuration API. For more information, see <xref:
 
 ### WebRoot
 
-The relative path to the app's static assets.
+The [IWebHostEnvironment.WebRootPath](xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath) property determines the relative path to the app's static assets. If the path doesn't exist, a no-op file provider is used.  
 
 **Key**: `webroot`  
 **Type**: `string`  
-**Default**: The default is `wwwroot`. The path to *{content root}/wwwroot* must exist. If the path doesn't exist, a no-op file provider is used.  
+**Default**: The default is `wwwroot`. The path to *{content root}/wwwroot* must exist.  
 **Environment variable**: `<PREFIX_>WEBROOT`
 
-To set this value, use the environment variable or call `UseWebRoot`:
+To set this value, use the environment variable or call `UseWebRoot` on `IWebHostBuilder`:
 
 ```csharp
 webBuilder.UseWebRoot("public");
@@ -424,7 +424,7 @@ webBuilder.UseWebRoot("public");
 For more information, see:
 
 * [Fundamentals: Web root](xref:fundamentals/index#web-root)
-* [ContentRootPath](#contentrootpath)
+* [ContentRoot](#contentroot)
 
 ## Manage the host lifetime
 
@@ -1124,7 +1124,7 @@ Inject the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> service into a c
 
 * [ApplicationName](#applicationname)
 * [EnvironmentName](#environmentname)
-* [ContentRootPath](#contentrootpath)
+* [ContentRootPath](#contentroot)
 
 Web apps implement the `IWebHostEnvironment` interface, which inherits `IHostEnvironment` and adds the [WebRootPath](#webroot).
 
@@ -1167,7 +1167,7 @@ The [IHostEnvironment.ApplicationName](xref:Microsoft.Extensions.Hosting.IHostEn
 
 To set this value, use the environment variable. 
 
-### ContentRootPath
+### ContentRoot
 
 The [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath*) property determines where the host begins searching for content files. If the path doesn't exist, the host fails to start.
 
@@ -1396,14 +1396,14 @@ Kestrel has its own endpoint configuration API. For more information, see <xref:
 
 ### WebRoot
 
-The relative path to the app's static assets.
+The [IWebHostEnvironment.WebRootPath](xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath) property determines the relative path to the app's static assets. If the path doesn't exist, a no-op file provider is used.  
 
 **Key**: `webroot`  
 **Type**: `string`  
-**Default**: The default is `wwwroot`. The path to *{content root}/wwwroot* must exist. If the path doesn't exist, a no-op file provider is used.  
+**Default**: The default is `wwwroot`. The path to *{content root}/wwwroot* must exist.  
 **Environment variable**: `<PREFIX_>WEBROOT`
 
-To set this value, use the environment variable or call `UseWebRoot`:
+To set this value, use the environment variable or call `UseWebRoot` on `IWebHostBuilder`:
 
 ```csharp
 webBuilder.UseWebRoot("public");
@@ -1412,7 +1412,7 @@ webBuilder.UseWebRoot("public");
 For more information, see:
 
 * [Fundamentals: Web root](xref:fundamentals/index#web-root)
-* [ContentRootPath](#contentrootpath)
+* [ContentRoot](#contentroot)
 
 ## Manage the host lifetime
 
