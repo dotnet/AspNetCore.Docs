@@ -81,8 +81,8 @@ No code changes are needed in the project's `Startup` class. At runtime, ASP.NET
 
 Imagine a scenario in which a Razor Pages project references a [Razor Class Library (RCL)](xref:razor-pages/ui-class) named *MyClassLib*. The RCL contains a *_Layout.cshtml* file that all of your team's MVC and Razor Pages projects consume. You want to enable runtime compilation for the *_Layout.cshtml* file in that RCL. Use the following steps:
 
-1. Enable runtime compilation in the ASP.NET Core project with the instructions at [Conditionally enable runtime compilation in an existing project](#conditionally-enable-runtime-compilation-in-an-existing-project).
-1. Configure the Razor runtime compilation options in `Startup.ConfigureServices`:
+1. Enable runtime compilation in the Razor Pages project with the instructions at [Conditionally enable runtime compilation in an existing project](#conditionally-enable-runtime-compilation-in-an-existing-project).
+1. Configure the runtime compilation options in the Razor Pages project's `Startup.ConfigureServices` method:
 
     [!code-csharp[](~/mvc/views/view-compilation/samples/3.1/Startup.cs?name=snippet_ConfigureServices&highlight=5-10)]
 
