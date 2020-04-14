@@ -24,7 +24,7 @@ The [ASP.NET Core repository](https://github.com/dotnet/AspNetCore) contains the
 
 ## Run the samples
 
-* Select a [branch](https://github.com/dotnet/AspNetCore). For example, `Tag:v3.0.0`
+* Select a [branch](https://github.com/dotnet/AspNetCore). For example, `release/3.1`
 * Clone or download the [ASP.NET Core repository](https://github.com/dotnet/AspNetCore).
 * Verify you have installed the [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core) version matching the clone of the ASP.NET Core repository.
 * Navigate to a sample in *AspNetCore/src/Security/samples* and run the sample with `dotnet run`.
