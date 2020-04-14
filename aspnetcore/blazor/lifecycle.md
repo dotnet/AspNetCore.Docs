@@ -5,7 +5,7 @@ description: Learn how to use Razor component lifecycle methods in ASP.NET Core 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 04/14/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/lifecycle
 ---
@@ -266,3 +266,58 @@ For more information on the `RenderMode`, see <xref:blazor/hosting-model-configu
 ## Detect when the app is prerendering
 
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
+
+## Cancelable background work
+
+To implement a cancelable background work pattern in a component:
+
+* Use a <xref:System.Threading.CancellationTokenSource> and <xref:System.Threading.CancellationToken>.
+* On [disposal of the component](#component-disposal-with-idisposable) and at any point cancellation is desired, call [CancellationTokenSource.Cancel](xref:System.Threading.CancellationTokenSource.Cancel%2A) to signal that the background work should be cancelled.
+* After the asynchronous call returns, call `_cts.Token.ThrowIfCancellationRequested();`.
+
+```razor
+@implements IDisposable
+@using System.Threading
+<button @onclick="LongRunningWork">Trigger long running work</button>
+
+@code {
+    private Resource _resource = new Resource();
+    private CancellationTokenSource _cts = new CancellationTokenSource();
+
+    protected async Task LongRunningWork()
+    {
+        await Task.Delay(5000, _cts.Token);
+        _cts.Token.ThrowIfCancellationRequested();
+        _resource.DoSomething();
+    }
+
+    public void Dispose()
+    {
+        _cts.Cancel();
+        _resource?.Dispose();
+    }
+
+    private class Resource : IDisposable
+    {
+        private bool _disposed;
+
+        public void Dispose()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(nameof(Resource));
+            }
+
+            _disposed = true;
+        }
+
+        public void DoSomething()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(nameof(Resource));
+            }
+        }
+    }
+}
+```
