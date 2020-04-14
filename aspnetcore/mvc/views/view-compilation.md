@@ -40,7 +40,7 @@ dotnet new webapp --razor-runtime-compilation
 
 ---
 
-## Enable runtime compilation to existing project
+## Enable runtime compilation in an existing project
 
 To enable runtime compilation for all environments in an existing project:
 
@@ -57,7 +57,7 @@ To enable runtime compilation for all environments in an existing project:
     }
     ```
 
-## Conditionally enable runtime compilation in existing project
+## Conditionally enable runtime compilation in an existing project
 
 Runtime compilation can be enabled such that it's only available for local development. Conditionally enabling in this manner ensures that the published output:
 
