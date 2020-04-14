@@ -4,20 +4,96 @@ author: rick-anderson
 description: Learn how compilation of Razor files occurs in an ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/8/2020
+ms.date: 04/13/2020
 uid: mvc/views/view-compilation
 ---
 # Razor file compilation in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.1"
+
+Razor files with a *.cshtml* extension are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk). Runtime compilation may be optionally enabled by configuring your project.
+
+## Razor compilation
+
+Build-time and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they're edited.
+
+## Enable runtime compilation at project creation
+
+The Razor Pages and MVC project templates include an option to enable runtime compilation when the project is created. This option is supported in ASP.NET Core 3.1 and later.
+
+# [Visual Studio](#tab/visual-studio)
+
+In the **Create a new ASP.NET Core web application** dialog:
+
+1. Select either the **Web Application** or the **Web Application (Model-View-Controller)** project template.
+1. Select the **Enable Razor runtime compilation** check box.
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+Use the `-rrc` or `--razor-runtime-compilation` template option. For example, the following command creates a new Razor Pages project with runtime compilation enabled:
+
+```dotnetcli
+dotnet new webapp --razor-runtime-compilation
+```
+
+---
+
+## Enable runtime compilation in an existing project
+
+To enable runtime compilation for all environments in an existing project:
+
+1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
+1. Update the project's `Startup.ConfigureServices` method to include a call to <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*>. For example:
+
+    ```csharp
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddRazorPages()
+            .AddRazorRuntimeCompilation();
+
+        // code omitted for brevity
+    }
+    ```
+
+## Conditionally enable runtime compilation in an existing project
+
+Runtime compilation can be enabled such that it's only available for local development. Conditionally enabling in this manner ensures that the published output:
+
+* Uses compiled views.
+* Doesn't enable file watchers in production.
+
+To enable runtime compilation only in the Development environment:
+
+1. Install the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) NuGet package.
+1. Modify the launch profile `environmentVariables` section in *launchSettings.json*:
+    * Verify `ASPNETCORE_ENVIRONMENT` is set to `"Development"`.
+    * Set `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` to `"Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"`.
+
+In the following example, runtime compilation is enabled in the Development environment for the `IIS Express` and `RazorPagesApp` launch profiles:
+
+[!code-json[](~/mvc/views/view-compilation/samples/3.1/launchSettings.json?highlight=15-16,24-25)]
+
+No code changes are needed in the project's `Startup` class. At runtime, ASP.NET Core searches for an [assembly-level HostingStartup attribute](xref:fundamentals/configuration/platform-specific-configuration#hostingstartup-attribute) in `Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation`. The `HostingStartup` attribute specifies the app startup code to execute. That startup code enables runtime compilation.
+
+## Additional resources
+
+* [RazorCompileOnBuild and RazorCompileOnPublish](xref:razor-pages/sdk#properties) properties.
+* <xref:razor-pages/index>
+* <xref:mvc/views/overview>
+* <xref:razor-pages/sdk>
+* See the [runtime compilation sample on GitHub](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/mvc/runtimecompilation) for a sample that shows making runtime compilation work across projects.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-3.0"
 
 Razor files with a *.cshtml* extension are compiled at both build and publish time using the [Razor SDK](xref:razor-pages/sdk). Runtime compilation may be optionally enabled by configuring your application.
 
 ## Razor compilation
 
-Build- and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they are edited.
+Build-time and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they're edited.
 
 ## Runtime compilation
 
@@ -55,7 +131,7 @@ To enable runtime compilation based on the environment and configuration mode:
 
 1. Update the project's `Startup.ConfigureServices` method to include a call to `AddRazorRuntimeCompilation`. Conditionally execute `AddRazorRuntimeCompilation` such that it only runs in Debug mode when the `ASPNETCORE_ENVIRONMENT` variable is set to `Development`:
 
-  [!code-csharp[](~/mvc/views/view-compilation/sample/Startup.cs?name=snippet)]
+    [!code-csharp[](~/mvc/views/view-compilation/samples/3.0/Startup.cs?name=snippet)]
 
 ## Additional resources
 
@@ -63,7 +139,7 @@ To enable runtime compilation based on the environment and configuration mode:
 * <xref:razor-pages/index>
 * <xref:mvc/views/overview>
 * <xref:razor-pages/sdk>
-* See the [runtimecompilation sample on GitHub](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/mvc/runtimecompilation) for a sample that shows making runtime compilation work across projects.
+* See the [runtime compilation sample on GitHub](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/mvc/runtimecompilation) for a sample that shows making runtime compilation work across projects.
 
 ::: moniker-end
 
