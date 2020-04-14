@@ -52,9 +52,11 @@ The following field types have specific formatting requirements and aren't curre
 
 ## Localization
 
-<!-- HOLD FOR 3.2 PREVIEW 4
-
 ### Blazor WebAssembly
+
+By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. For more information and guidance on controlling the linker's behavior, see <xref:host-and-deploy/blazor/configure-linker#configure-the-linker-for-internationalization>.
+
+<!-- HOLD FOR 3.2 PREVIEW 4: Replace prior paragraph with ...
 
 Blazor WebAssembly apps set the culture using the user's [language preference](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages).
 
