@@ -3,13 +3,14 @@ Run the Identity scaffolder:
 # [Visual Studio](#tab/visual-studio)
 
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
-* From the left pane of the **Add Scaffold** dialog, select **Identity** > **ADD**.
-* In the **ADD Identity** dialog, select the options you want.
-  * Select your existing layout page, or your layout file will be overwritten with incorrect markup. For example
-  `~/Pages/Shared/_Layout.cshtml` for Razor Pages
-  `~/Views/Shared/_Layout.cshtml` for MVC projects
-  * Select the **+** button to create a new **Data context class**.
-* Select **ADD**.
+* From the left pane of the **Add New Scaffolded Item** dialog, select **Identity** > **Add**.
+* In the **Add Identity** dialog, select the options you want.
+  * Select your existing layout page, or your layout file will be overwritten with incorrect markup:
+    * `~/Pages/Shared/_Layout.cshtml` for Razor Pages
+    * `~/Views/Shared/_Layout.cshtml` for MVC projects
+    * Blazor Server apps created from the Blazor Server template (`blazorserver`) aren't configured for Razor Pages or MVC by default. Leave the layout page entry blank.
+  * Select the **+** button to create a new **Data context class**. Accept the default value or specify a class (for example, `MyApplication.Data.ApplicationDbContext`).
+* Select **Add**.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
@@ -19,7 +20,7 @@ If you have not previously installed the ASP.NET Core scaffolder, install it now
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
-Add required NuGet package references to the project (\*.csproj) file. Run the following command in the project directory:
+Add required NuGet package references to the project file (*.csproj*). Run the following commands in the project directory:
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design

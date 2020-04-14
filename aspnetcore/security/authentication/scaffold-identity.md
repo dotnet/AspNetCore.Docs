@@ -5,7 +5,7 @@ description: Learn how to scaffold Identity in an ASP.NET Core project.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/15/2020
+ms.date: 04/13/2020
 uid: security/authentication/scaffold-identity
 ---
 # Scaffold Identity in ASP.NET Core projects
@@ -14,7 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full identity UI source](#full).
+ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#full).
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
@@ -26,7 +26,7 @@ Services are required when using [Two Factor Authentication](xref:security/authe
 
 This document contains more complete instructions than the *ScaffoldingReadme.txt* file which is generated when running the scaffolder.
 
-## Scaffold identity into an empty project
+## Scaffold Identity into an empty project
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
@@ -38,7 +38,7 @@ Update the `Startup` class with code similar to the following:
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-## Scaffold identity into a Razor project without existing authorization
+## Scaffold Identity into a Razor project without existing authorization
 
 <!--  Updated for 3.0
 set projNam=RPnoAuth
@@ -67,7 +67,7 @@ before dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. for more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 <a name="efm"></a>
 
@@ -89,9 +89,9 @@ Update the `Startup` class with code similar to the following:
 
 Optional: Add the login partial (`_LoginPartial`) to the layout file:
 
-[!code-html[Main](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
+[!code-html[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
-## Scaffold identity into a Razor project with authorization
+## Scaffold Identity into a Razor project with authorization
 
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
@@ -105,9 +105,10 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 -->
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
+
 Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
-## Scaffold identity into an MVC project without existing authorization
+## Scaffold Identity into an MVC project without existing authorization
 
 <!--
 set projNam=MvcNoAuth
@@ -127,7 +128,7 @@ dotnet ef database update
 
 Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:
 
-[!code-html[Main](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
+[!code-html[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
 * Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*
 
@@ -141,7 +142,7 @@ Update the `Startup` class with code similar to the following:
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-## Scaffold identity into an MVC project with authorization
+## Scaffold Identity into an MVC project with authorization
 
 <!--
 dotnet new mvc -au Individual -o MvcAuth
@@ -153,9 +154,146 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
+## Scaffold Identity into a Blazor Server project without existing authorization
+
+[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
+
+Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+
+### Migrations
+
+[!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
+
+### Pass tokens to the app
+
+Tokens can be passed to components:
+
+* When authentication tokens are provisioned and saved to the authentication cookie, they can be passed to components.
+* Razor components can't use `HttpContext` directly, so there's no way to obtain an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity's logout endpoint at `/Identity/Account/Logout`. An XSRF token can be passed to components.
+
+For more information and example code, see <xref:security/blazor/server#pass-tokens>. The `TokenProvider` service demonstrated in the topic is used in the `LoginDisplay` component in the following [Layout and authentication flow changes](#layout-and-authentication-flow-changes) section.
+
+### Enable authentication
+
+In the `Startup` class:
+
+* Confirm that Razor Pages services are added in `Startup.ConfigureServices`.
+* If using the [TokenProvider](xref:security/blazor/server#pass-tokens), register the service.
+* Call `UseDatabaseErrorPage` on the application builder in `Startup.Configure` for the Development environment.
+* Call `UseAuthentication` and `UseAuthorization` after `UseRouting`.
+* Add an endpoint for Razor Pages.
+
+[!code-csharp[](scaffold-identity/3.1sample/StartupBlazor.cs?highlight=3,6,14,27-28,32)]
+
+[!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
+
+### Layout and authentication flow changes
+
+Add a `RedirectToLogin` component (*RedirectToLogin.razor*) to the app's *Shared* folder in the project root:
+
+```razor
+@inject NavigationManager Navigation
+@code {
+    protected override void OnInitialized()
+    {
+        Navigation.NavigateTo($"Identity/Account/Login?returnUrl={Navigation.Uri}");
+    }
+}
+```
+
+Add a `LoginDisplay` component (*LoginDisplay.razor*) to the app's *Shared* folder. The [TokenProvider service](xref:security/blazor/server#pass-tokens) provides the XSRF token for the HTML form that POSTs to Identity's logout endpoint:
+
+```razor
+@using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager Navigation
+@inject TokenProvider TokenProvider
+
+<AuthorizeView>
+    <Authorized>
+        <a href="Identity/Account/Manage/Index">
+            Hello, @context.User.Identity.Name!
+        </a>
+        <form action="/Identity/Account/Logout?returnUrl=%2F" method="post">
+            <button class="nav-link btn btn-link" type="submit">Logout</button>
+            <input name="__RequestVerificationToken" type="hidden" 
+                value="@TokenProvider.XsrfToken">
+        </form>
+    </Authorized>
+    <NotAuthorized>
+        <a href="Identity/Account/Register">Register</a>
+        <a href="Identity/Account/Login">Login</a>
+    </NotAuthorized>
+</AuthorizeView>
+```
+
+In the `MainLayout` component (*Shared/MainLayout.razor*), add the `LoginDisplay` component to the top-row `<div>` element's content:
+
+```razor
+<div class="top-row px-4 auth">
+    <LoginDisplay />
+    <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+</div>
+```
+
+In the `App` component (*App.razor*):
+
+* Wrap the `Router` component with the `CascadingAuthenticationState` component.
+* Add the `RedirectToLogin` component for unauthorized routes.
+
+The following shows the complete component if the app is also using the [TokenProvider service](xref:security/blazor/server#pass-tokens):
+
+```razor
+@inject TokenProvider TokenProvider
+
+<CascadingAuthenticationState>
+    <Router AppAssembly="@typeof(Program).Assembly">
+        <Found Context="routeData">
+            <AuthorizeRouteView RouteData="@routeData"
+                                DefaultLayout="@typeof(MainLayout)">
+                <NotAuthorized>
+                    <RedirectToLogin />
+                </NotAuthorized>
+            </AuthorizeRouteView>
+        </Found>
+        <NotFound>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>
+
+@code {
+    [Parameter]
+    public InitialApplicationState InitialState { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        TokenProvider.AccessToken = InitialState.AccessToken;
+        TokenProvider.RefreshToken = InitialState.RefreshToken;
+        TokenProvider.XsrfToken = InitialState.XsrfToken;
+
+        return base.OnInitializedAsync();
+    }
+}
+```
+
+### Style authentication endpoints
+
+Because Blazor Server uses Razor Pages Identity pages, the styling of the UI changes when a visitor navigates between Identity pages and components. You have two options to address the incongruous styles:
+
+* Style the Identity pages with CSS to match Blazor's styles.
+* Rebuild Identity pages as Razor components.
+
+## Scaffold Identity into a Blazor Server project with authorization
+
+[!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
+
+Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+
 <a name="full"></a>
 
-## Create full identity UI source
+## Create full Identity UI source
 
 To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.
 
@@ -276,7 +414,7 @@ We recommend using a source control system that shows file differences and allow
 > [!NOTE]
 > Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).
 
-## Scaffold identity into an empty project
+## Scaffold Identity into an empty project
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
@@ -288,7 +426,7 @@ Add the following highlighted calls to the `Startup` class:
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-## Scaffold identity into a Razor project without existing authorization
+## Scaffold Identity into a Razor project without existing authorization
 
 <!--  Updated for 3.0
 set projNam=RPnoAuth
@@ -309,7 +447,7 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. for more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
+Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
 <a name="efm"></a>
 
@@ -331,9 +469,9 @@ In the `Configure` method of the `Startup` class, call [UseAuthentication](/dotn
 
 Optional: Add the login partial (`_LoginPartial`) to the layout file:
 
-[!code-html[Main](scaffold-identity/sample/_Layout.cshtml?highlight=37)]
+[!code-html[](scaffold-identity/sample/_Layout.cshtml?highlight=37)]
 
-## Scaffold identity into a Razor project with authorization
+## Scaffold Identity into a Razor project with authorization
 
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
@@ -349,7 +487,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
-## Scaffold identity into an MVC project without existing authorization
+## Scaffold Identity into an MVC project without existing authorization
 
 <!--
 set projNam=MvcNoAuth
@@ -383,7 +521,7 @@ Call [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilder
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-## Scaffold identity into an MVC project with authorization
+## Scaffold Identity into an MVC project with authorization
 
 <!--
 dotnet new mvc -au Individual -o MvcAuth
@@ -399,7 +537,7 @@ Delete the *Pages/Shared* folder and the files in that folder.
 
 <a name="full"></a>
 
-## Create full identity UI source
+## Create full Identity UI source
 
 To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.
 
