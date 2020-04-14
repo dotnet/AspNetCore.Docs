@@ -12,7 +12,7 @@ uid: fundamentals/host/generic-host
 
 ::: moniker range=">= aspnetcore-3.0 <= aspnetcore-3.1"
 
-This ASP.NET Core templates create a .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
+The ASP.NET Core templates create a .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
 
 ## Host definition
 
@@ -987,7 +987,7 @@ public class MyClass
 
 ::: moniker range=">= aspnetcore-5.0"
 
-This ASP.NET Core templates create a .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
+The ASP.NET Core templates create a .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
 
 ## Host definition
 
