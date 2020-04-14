@@ -39,7 +39,6 @@ namespace WebAPIDefault
             app.UseCors();
 
             app.UseAuthorization();
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
