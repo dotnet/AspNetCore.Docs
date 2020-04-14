@@ -5,7 +5,7 @@ description: Learn about the .NET Core Generic Host, which is responsible for ap
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/23/2020
+ms.date: 4/17/2020
 uid: fundamentals/host/generic-host
 ---
 # .NET Generic Host
