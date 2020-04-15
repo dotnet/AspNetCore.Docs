@@ -8,7 +8,7 @@ public void ConfigureServices(IServiceCollection services)
         builder.AllowAnyOrigin()
                .AllowAnyMethod()
                .AllowAnyHeader()
-               .WithExposedHeaders("Grpc-Status", "Grpc-Message");
+               .WithExposedHeaders("Grpc-Status", "Grpc-Message", "Grpc-Encoding");
     }));
 }
 
