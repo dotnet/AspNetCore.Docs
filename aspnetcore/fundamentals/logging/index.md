@@ -5,7 +5,7 @@ description: Learn how to use the logging framework provided by the Microsoft.Ex
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/05/2020
+ms.date: 4/17/2020
 uid: fundamentals/logging/index
 ---
 # Logging in .NET Core and ASP.NET Core
@@ -14,21 +14,15 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Steve Smith](https://ardalis.
 
 .NET Core supports a logging API that works with a variety of built-in and third-party logging providers. This article shows how to use the logging API with built-in providers.
 
-::: moniker range=">= aspnetcore-3.0"
-
 Most of the code examples shown in this article are from ASP.NET Core apps. The logging-specific parts of these code snippets apply to any .NET Core app that uses the [Generic Host](xref:fundamentals/host/generic-host). For an example of how to use the Generic Host in a non-web console app, see the *Program.cs* file of the [Background Tasks sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples) (<xref:fundamentals/host/hosted-services>).
 
 Logging code for apps without Generic Host differs in the way [providers are added](#add-providers) and [loggers are created](#create-logs). Non-host code examples are shown in those sections of the article.
-
-::: moniker-end
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Add providers
 
 A logging provider displays or stores logs. For example, the Console provider displays logs on the console, and the Azure Application Insights provider stores them in Azure Application Insights. Logs can be sent to multiple destinations by adding multiple providers.
-
-::: moniker range=">= aspnetcore-3.0"
 
 To add a provider in an app that uses Generic Host, call the provider's `Add{provider name}` extension method in *Program.cs*:
 
@@ -51,30 +45,6 @@ You can replace the default providers with your own choices. Call <xref:Microsof
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_AddProvider&highlight=5)]
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0 "
-
-To add a provider, call the provider's `Add{provider name}` extension method in *Program.cs*:
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_ExpandDefault&highlight=18-20)]
-
-The preceding code requires references to `Microsoft.Extensions.Logging` and `Microsoft.Extensions.Configuration`.
-
-The default project template calls <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>, which adds the following logging providers:
-
-* Console
-* Debug
-* EventSource (starting in ASP.NET Core 2.2)
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_TemplateCode&highlight=7)]
-
-If you use `CreateDefaultBuilder`, you can replace the default providers with your own choices. Call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A>, and add the providers you want.
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=18-22)]
-
-::: moniker-end
-
 Learn more about [built-in logging providers](#built-in-logging-providers) and [third-party logging providers](#third-party-logging-providers) later in the article.
 
 ## Create logs
@@ -83,41 +53,19 @@ To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object. I
 
 The following ASP.NET Core example creates a logger with `TodoApiSample.Pages.AboutModel` as the category. The log *category* is a string that is associated with each log. The `ILogger<T>` instance provided by DI creates logs that have the fully qualified name of type `T` as the category. 
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](index/samples/3.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_LoggerDI&highlight=3,5,7)]
 
 The following non-host console app example creates a logger with `LoggingConsoleApp.Program` as the category.
 
 [!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=10)]
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_LoggerDI&highlight=3,5,7)]
-
-::: moniker-end
-
-In the following ASP.NET Core and console app examples, the logger is used to create logs with `Information` as the level. The Log *level* indicates the severity of the logged event. 
-
-::: moniker range=">= aspnetcore-3.0"
+In the following ASP.NET Core and console app examples, the logger is used to create logs with `Information` as the level. The Log *level* indicates the severity of the logged event.
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=4)]
 
 [!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=11)]
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=4)]
-
-::: moniker-end
-
-[Levels](#log-level) and [categories](#log-category) are explained in more detail later in this article. 
-
-::: moniker range=">= aspnetcore-3.0"
+[Levels](#log-level) and [categories](#log-category) are explained in more detail later in this article.
 
 ### Create logs in the Program class
 
@@ -209,84 +157,6 @@ If you need to configure a service that depends on `ILogger<T>`, you can still d
 
 The preceding highlighted code is a `Func` that runs the first time the DI container needs to construct an instance of `MyService`. You can access any of the registered services in this way.
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-### Create logs in Startup
-
-To write logs in the `Startup` class, include an `ILogger` parameter in the constructor signature:
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Startup.cs?name=snippet_Startup&highlight=3,5,8,20,27)]
-
-### Create logs in the Program class
-
-To write logs in the `Program` class, get an `ILogger` instance from DI:
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_LogFromMain&highlight=9,10)]
-
-Logging during host construction isn't directly supported. However, a separate logger can be used. In the following example, a [Serilog](https://serilog.net/) logger is used to log in `CreateWebHostBuilder`. `AddSerilog` uses the static configuration specified in `Log.Logger`:
-
-```csharp
-using System;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateWebHostBuilder(args).Build().Run();
-    }
-
-    public static IWebHostBuilder CreateWebHostBuilder(string[] args)
-    {
-        var builtConfig = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json")
-            .AddCommandLine(args)
-            .Build();
-
-        Log.Logger = new LoggerConfiguration()
-            .WriteTo.Console()
-            .WriteTo.File(builtConfig["Logging:FilePath"])
-            .CreateLogger();
-
-        try
-        {
-            return WebHost.CreateDefaultBuilder(args)
-                .ConfigureServices((context, services) =>
-                {
-                    services.AddMvc();
-                })
-                .ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    config.AddConfiguration(builtConfig);
-                })
-                .ConfigureLogging(logging =>
-                {
-                    logging.AddSerilog();
-                })
-                .UseStartup<Startup>();
-        }
-        catch (Exception ex)
-        {
-            Log.Fatal(ex, "Host builder error");
-
-            throw;
-        }
-        finally
-        {
-            Log.CloseAndFlush();
-        }
-    }
-}
-```
-
-::: moniker-end
-
 ### No asynchronous logger methods
 
 Logging should be so fast that it isn't worth the performance cost of asynchronous code. If your logging data store is slow, don't write to it directly. Consider writing the log messages to a fast store initially, then move them to the slow store later. For example, if you're logging to SQL Server, you don't want to do that directly in a `Log` method, since the `Log` methods are synchronous. Instead, synchronously add log messages to an in-memory queue and have a background worker pull the messages out of the queue to do the asynchronous work of pushing data to SQL Server. For more information, see [this](https://github.com/dotnet/AspNetCore.Docs/issues/11801) GitHub issue.
@@ -337,8 +207,6 @@ For information on implementing configuration providers, see <xref:fundamentals/
 
 With the sample code shown in the preceding section, logs appear in the console when the app is run from the command line. Here's an example of console output:
 
-::: moniker range=">= aspnetcore-3.0"
-
 ```console
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
       Request starting HTTP/1.1 GET http://localhost:5000/api/todo/0
@@ -358,34 +226,9 @@ info: Microsoft.AspNetCore.Mvc.StatusCodeResult[1]
       Executing HttpStatusCodeResult, setting HTTP status code 404
 ```
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-```console
-info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
-      Request starting HTTP/1.1 GET http://localhost:5000/api/todo/0
-info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
-      Executing action method TodoApi.Controllers.TodoController.GetById (TodoApi) with arguments (0) - ModelState is Valid
-info: TodoApi.Controllers.TodoController[1002]
-      Getting item 0
-warn: TodoApi.Controllers.TodoController[4000]
-      GetById(0) NOT FOUND
-info: Microsoft.AspNetCore.Mvc.StatusCodeResult[1]
-      Executing HttpStatusCodeResult, setting HTTP status code 404
-info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
-      Executed action TodoApi.Controllers.TodoController.GetById (TodoApi) in 42.9286ms
-info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
-      Request finished in 148.889ms 404
-```
-
-::: moniker-end
-
 The preceding logs were generated by making an HTTP Get request to the sample app at `http://localhost:5000/api/todo/0`.
 
 Here's an example of the same logs as they appear in the Debug window when you run the sample app in Visual Studio:
-
-::: moniker range=">= aspnetcore-3.0"
 
 ```console
 Microsoft.AspNetCore.Hosting.Diagnostics: Information: Request starting HTTP/2.0 GET https://localhost:44328/api/todo/0  
@@ -401,24 +244,6 @@ Microsoft.AspNetCore.Hosting.Diagnostics: Information: Request finished in 98.41
 
 The logs that are created by the `ILogger` calls shown in the preceding section begin with "TodoApiSample". The logs that begin with "Microsoft" categories are from ASP.NET Core framework code. ASP.NET Core and application code are using the same logging API and providers.
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-```console
-Microsoft.AspNetCore.Hosting.Internal.WebHost:Information: Request starting HTTP/1.1 GET http://localhost:53104/api/todo/0  
-Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker:Information: Executing action method TodoApi.Controllers.TodoController.GetById (TodoApi) with arguments (0) - ModelState is Valid
-TodoApi.Controllers.TodoController:Information: Getting item 0
-TodoApi.Controllers.TodoController:Warning: GetById(0) NOT FOUND
-Microsoft.AspNetCore.Mvc.StatusCodeResult:Information: Executing HttpStatusCodeResult, setting HTTP status code 404
-Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker:Information: Executed action TodoApi.Controllers.TodoController.GetById (TodoApi) in 152.5657ms
-Microsoft.AspNetCore.Hosting.Internal.WebHost:Information: Request finished in 316.3195ms 404
-```
-
-The logs that are created by the `ILogger` calls shown in the preceding section begin with "TodoApi". The logs that begin with "Microsoft" categories are from ASP.NET Core framework code. ASP.NET Core and application code are using the same logging API and providers.
-
-::: moniker-end
-
 The remainder of this article explains some details and options for logging.
 
 ## NuGet packages
@@ -431,31 +256,11 @@ When an `ILogger` object is created, a *category* is specified for it. That cate
 
 Use `ILogger<T>` to get an `ILogger` instance that uses the fully qualified type name of `T` as the category:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LoggerDI&highlight=7)]
-
-::: moniker-end
 
 To explicitly specify the category, call `ILoggerFactory.CreateLogger`:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CreateLogger&highlight=7,10)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CreateLogger&highlight=7,10)]
-
-::: moniker-end
 
 `ILogger<T>` is equivalent to calling `CreateLogger` with the fully qualified type name of `T`.
 
@@ -465,17 +270,7 @@ Every log specifies a <xref:Microsoft.Extensions.Logging.LogLevel> value. The lo
 
 The following code creates `Information` and `Warning` logs:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
-
-::: moniker-end
 
 In the preceding code, the first parameter is the [Log event ID](#log-event-id). The second parameter is a message template with placeholders for argument values provided by the remaining method parameters. The method parameters are explained in the [message template section](#log-message-template) later in this article.
 
@@ -520,8 +315,6 @@ The [Log filtering](#log-filtering) section later in this article explains how t
 
 ASP.NET Core writes logs for framework events. The log examples earlier in this article excluded logs below `Information` level, so no `Debug` or `Trace` level logs were created. Here's an example of console logs produced by running the sample app configured to show `Debug` logs:
 
-::: moniker range=">= aspnetcore-3.0"
-
 ```console
 info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[3]
       Route matched with {action = "GetById", controller = "Todo", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetById(System.String) on controller TodoApiSample.Controllers.TodoController (TodoApiSample).
@@ -561,60 +354,13 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
       Request finished in 176.9103ms 404
 ```
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-```console
-info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
-      Request starting HTTP/1.1 GET http://localhost:62555/api/todo/0
-dbug: Microsoft.AspNetCore.Routing.Tree.TreeRouter[1]
-      Request successfully matched the route with name 'GetTodo' and template 'api/Todo/{id}'.
-dbug: Microsoft.AspNetCore.Mvc.Internal.ActionSelector[2]
-      Action 'TodoApi.Controllers.TodoController.Update (TodoApi)' with id '089d59b6-92ec-472d-b552-cc613dfd625d' did not match the constraint 'Microsoft.AspNetCore.Mvc.Internal.HttpMethodActionConstraint'
-dbug: Microsoft.AspNetCore.Mvc.Internal.ActionSelector[2]
-      Action 'TodoApi.Controllers.TodoController.Delete (TodoApi)' with id 'f3476abe-4bd9-4ad3-9261-3ead09607366' did not match the constraint 'Microsoft.AspNetCore.Mvc.Internal.HttpMethodActionConstraint'
-dbug: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
-      Executing action TodoApi.Controllers.TodoController.GetById (TodoApi)
-info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[1]
-      Executing action method TodoApi.Controllers.TodoController.GetById (TodoApi) with arguments (0) - ModelState is Valid
-info: TodoApi.Controllers.TodoController[1002]
-      Getting item 0
-warn: TodoApi.Controllers.TodoController[4000]
-      GetById(0) NOT FOUND
-dbug: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
-      Executed action method TodoApi.Controllers.TodoController.GetById (TodoApi), returned result Microsoft.AspNetCore.Mvc.NotFoundResult.
-info: Microsoft.AspNetCore.Mvc.StatusCodeResult[1]
-      Executing HttpStatusCodeResult, setting HTTP status code 404
-info: Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker[2]
-      Executed action TodoApi.Controllers.TodoController.GetById (TodoApi) in 0.8788ms
-dbug: Microsoft.AspNetCore.Server.Kestrel[9]
-      Connection id "0HL6L7NEFF2QD" completed keep alive response.
-info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
-      Request finished in 2.7286ms 404
-```
-
-::: moniker-end
-
 ## Log event ID
 
 Each log can specify an *event ID*. The sample app does this by using a locally defined `LoggingEvents` class:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Core/LoggingEvents.cs?name=snippet_LoggingEvents)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Core/LoggingEvents.cs?name=snippet_LoggingEvents)]
-
-::: moniker-end
 
 An event ID associates a set of events. For example, all logs related to displaying a list of items on a page might be 1001.
 
@@ -631,17 +377,7 @@ warn: TodoApi.Controllers.TodoController[4000]
 
 Each log specifies a message template. The message template can contain placeholders for which arguments are provided. Use names for the placeholders, not numbers.
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
-
-::: moniker-end
 
 The order of placeholders, not their names, determines which parameters are used to provide their values. In the following code, notice that the parameter names are out of sequence in the message template:
 
@@ -669,17 +405,7 @@ If you're sending the logs to Azure Table Storage, each Azure Table entity can h
 
 The logger methods have overloads that let you pass in an exception, as in the following example:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LogException&highlight=3)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LogException&highlight=3)]
-
-::: moniker-end
 
 Different providers handle the exception information in different ways. Here's an example of Debug provider output from the code shown above.
 
@@ -702,17 +428,7 @@ The project template code calls `CreateDefaultBuilder` to set up logging for the
 
 The configuration data specifies minimum log levels by provider and category, as in the following example:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-json[](index/samples/3.x/TodoApiSample/appsettings.json)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-json[](index/samples/2.x/TodoApiSample/appsettings.json)]
-
-::: moniker-end
 
 This JSON creates six filter rules: one for the Debug provider, four for the Console provider, and one for all providers. A single rule is chosen for each provider when an `ILogger` object is created.
 
@@ -720,17 +436,7 @@ This JSON creates six filter rules: one for the Debug provider, four for the Con
 
 The following example shows how to register filter rules in code:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_FilterInCode&highlight=2-3)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_FilterInCode&highlight=4-5)]
-
-::: moniker-end
 
 The second `AddFilter` specifies the Debug provider by using its type name. The first `AddFilter` applies to all providers because it doesn't specify a provider type.
 
@@ -782,17 +488,7 @@ Each provider defines an *alias* that can be used in configuration in place of t
 
 There's a minimum level setting that takes effect only if no rules from configuration or code apply for a given provider and category. The following example shows how to set the minimum level:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_MinLevel&highlight=3)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_MinLevel&highlight=3)]
-
-::: moniker-end
 
 If you don't explicitly set the minimum level, the default value is `Information`, which means that `Trace` and `Debug` logs are ignored.
 
@@ -800,17 +496,7 @@ If you don't explicitly set the minimum level, the default value is `Information
 
 A filter function is invoked for all providers and categories that don't have rules assigned to them by configuration or code. Code in the function has access to the provider type, category, and log level. For example:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_FilterFunction&highlight=3-11)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_FilterFunction&highlight=5-13)]
-
-::: moniker-end
 
 ## System categories and levels
 
@@ -834,33 +520,13 @@ Here are some categories used by ASP.NET Core and Entity Framework Core, with no
 
 A scope is an `IDisposable` type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope*> method and lasts until it's disposed. Use a scope by wrapping logger calls in a `using` block:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_Scopes&highlight=4-5,13)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_Scopes&highlight=4-5,13)]
-
-::: moniker-end
 
 The following code enables scopes for the console provider:
 
 *Program.cs*:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_Scopes&highlight=6)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_Scopes&highlight=4)]
-
-::: moniker-end
 
 > [!NOTE]
 > Configuring the `IncludeScopes` console logger option is required to enable scope-based logging.
@@ -926,8 +592,6 @@ logging.AddEventSourceLogger();
 ```
 
 The Event Source provider is added automatically when `CreateDefaultBuilder` is called to build the host.
-
-::: moniker range=">= aspnetcore-3.0"
 
 #### dotnet trace tooling
 
@@ -1029,8 +693,6 @@ For more information, see:
 
 #### Perfview
 
-::: moniker-end
-
 Use the [PerfView utility](https://github.com/Microsoft/perfview) to collect and view logs. There are other tools for viewing ETW logs, but PerfView provides the best experience for working with the ETW events emitted by ASP.NET Core.
 
 To configure PerfView for collecting events logged by this provider, add the string `*Microsoft-Extensions-Logging` to the **Additional Providers** list. (Don't miss the asterisk at the start of the string.)
@@ -1081,39 +743,11 @@ The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packag
 logging.AddAzureWebAppDiagnostics();
 ```
 
-::: moniker range=">= aspnetcore-3.0"
-
 The provider package isn't included in the shared framework. To use the provider, add the provider package to the project.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-The provider package isn't included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). When targeting .NET Framework or referencing the `Microsoft.AspNetCore.App` metapackage, add the provider package to the project. 
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-3.0"
 
 To configure provider settings, use <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureFileLoggerOptions> and <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureBlobLoggerOptions>, as shown in the following example:
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_AzLogOptions&highlight=17-28)]
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.2"
-
-To configure provider settings, use <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureFileLoggerOptions> and <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureBlobLoggerOptions>, as shown in the following example:
-
-[!code-csharp[](index/samples/2.x/TodoApiSample/Program.cs?name=snippet_AzLogOptions&highlight=19-27)]
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.1"
-
-An <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.AddAzureWebAppDiagnostics*> overload lets you pass in <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureAppServicesDiagnosticsSettings>. The settings object can override default settings, such as the logging output template, blob name, and file size limit. (*Output template* is a message template that's applied to all logs in addition to what's provided with an `ILogger` method call.)
-
-::: moniker-end
 
 When you deploy to an App Service app, the application honors the settings in the [App Service logs](/azure/app-service/web-sites-enable-diagnostic-log/#enablediag) section of the **App Service** page of the Azure portal. When the following settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
 
