@@ -138,9 +138,9 @@ SignalR determines which client method to call by matching the method name and a
 
 Chain a `catch` method to the end of the `start` method to handle client-side errors. Use `console.error` to output errors to the browser's console.
 
-[!code-javascript[Error handling](javascript-client/sample/wwwroot/js/chat.js?range=49-51)]
+[!code-javascript[Error handling](javascript-client/sample/wwwroot/js/chat.js?range=52-54)]
 
-Setup client-side log tracing by passing a logger and type of event to log when the connection is made. Messages are logged with the specified log level and higher. Available log levels are as follows:
+Set up client-side log tracing by passing a logger and type of event to log when the connection is made. Messages are logged with the specified log level and higher. Available log levels are as follows:
 
 * `signalR.LogLevel.Error` &ndash; Error messages. Logs `Error` messages only.
 * `signalR.LogLevel.Warning` &ndash; Warning messages about potential errors. Logs `Warning`, and `Error` messages.

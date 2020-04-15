@@ -4,7 +4,7 @@
 // such as Internet Explorer 11, use a transpiler such as 
 // Babel at http://babeljs.io/. 
 //
-// See Es5-chat.js for a Babel transpiled version of the following code:
+// See Es5-chat.js for a Babel-transpiled version of the following code:
 
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("/chatHub")
@@ -12,7 +12,7 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 
 connection.on("ReceiveMessage", (user, message) => {
-    const encodedMsg = user + " says " + message;
+    const encodedMsg = `${user} says ${message}`;
     const li = document.createElement("li");
     li.textContent = encodedMsg;
     document.getElementById("messagesList").appendChild(li);
