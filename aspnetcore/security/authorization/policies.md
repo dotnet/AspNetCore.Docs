@@ -428,7 +428,7 @@ For example, the previous `BadgeEntryHandler` could be rewritten as follows:
 
 The `HandleRequirementAsync` method you implement in an authorization handler has two parameters: an `AuthorizationHandlerContext` and the `TRequirement` you are handling. Frameworks such as MVC or SignalR are free to add any object to the `Resource` property on the `AuthorizationHandlerContext` to pass extra information.
 
-When using endpoint routing, authorization typically happens as part of the AuthorizationMiddleware. In this case, the `Resource` property is an instance of `<xref:Microsoft.AspNetCore.Http.Endpoint />`. The Endpoint can be used to probe the underlying the resource being routed to. For instance, 
+When using endpoint routing, authorization typically happens as part of the AuthorizationMiddleware. In this case, the `Resource` property is an instance of `<xref:Microsoft.AspNetCore.Http.Endpoint />`. The Endpoint can be used to probe the underlying resource being routed to. For instance, 
 ```csharp
 if (context.Resource is Endpoint endpoint)
 {
