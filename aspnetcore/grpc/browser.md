@@ -28,7 +28,7 @@ It is not possible to call a HTTP/2 gRPC service from a browser-based app. [gRPC
 There are two choices for how to add gRPC-Web to an ASP.NET Core app:
 
 * Support gRPC-Web alongside gRPC HTTP/2 in ASP.NET Core. This option uses middleware provided by the `Grpc.AspNetCore.Web` package.
-* Use the [Envoy proxy's](https://www.envoyproxy.io/) gRPC-Web support to translate gRPC-Web to gRPC HTTP/2. The translate call is then forwarded onto the ASP.NET Core app.
+* Use the [Envoy proxy's](https://www.envoyproxy.io/) gRPC-Web support to translate gRPC-Web to gRPC HTTP/2. The translated call is then forwarded onto the ASP.NET Core app.
 
 There are pros and cons to each approach. If you're already using Envoy as a proxy in your app's environment, it might make sense to also use it to provide gRPC-Web support. If you want a simple solution for gRPC-Web that only requires ASP.NET Core, `Grpc.AspNetCore.Web` is a good choice.
 
