@@ -12,13 +12,11 @@ uid: fundamentals/logging/index
 
 ::: moniker range=">= aspnetcore-3.0"
 
-By [Tom Dykstra](https://github.com/tdykstra) and [Steve Smith](https://ardalis.com/)
+By  [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5), [Tom Dykstra](https://github.com/tdykstra) and [Steve Smith](https://ardalis.com/)
 
 .NET Core supports a logging API that works with a variety of built-in and third-party logging providers. This article shows how to use the logging API with built-in providers.
 
-Most of the code examples shown in this article are from ASP.NET Core apps. The logging-specific parts of these code snippets apply to any .NET Core app that uses the [Generic Host](xref:fundamentals/host/generic-host). For an example of how to use the Generic Host in a non-web console app, see the *Program.cs* file of the [Background Tasks sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples) (<xref:fundamentals/host/hosted-services>).
-
-Logging code for apps without Generic Host differs in the way [providers are added](#add-providers) and [loggers are created](#create-logs). Non-host code examples are shown in those sections of the article.
+Most of the code examples shown in this article are from ASP.NET Core apps. The logging-specific parts of these code snippets apply to any .NET Core app that uses the [Generic Host](xref:fundamentals/host/generic-host). The ASP.NET Core web app templates use Generic Host.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -815,6 +813,17 @@ Using a third-party framework is similar to using one of the built-in providers:
 1. Call an `ILoggerFactory` extension method provided by the logging framework.
 
 For more information, see each provider's documentation. Third-party logging providers aren't supported by Microsoft.
+
+## Non-host console apps
+
+<!-- review required. Need to explain why you'd want to use Non-host console apps -->
+Non-host console app's are typically used with [headless services](https://docs.okd.io/3.6/architecture/core_concepts/pods_and_services.html#headless-services). Headless services are frequently used with containers and [Kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services).
+
+For an example of how to use the Generic Host in a non-web console app, see the *Program.cs* file of the [Background Tasks sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples) (<xref:fundamentals/host/hosted-services>).
+
+Logging code for apps without Generic Host differs in the way [providers are added](#add-providers) and [loggers are created](#create-logs). 
+
+
 
 ## Additional resources
 
