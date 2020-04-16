@@ -34,7 +34,7 @@ The host is typically configured, built, and run by code in the `Program` class.
 * Calls a `CreateHostBuilder` method to create and configure a builder object.
 * Calls `Build` and `Run` methods on the builder object.
 
-The ASP.NET Core web templates generate the following code to create a generic host:
+The ASP.NET Core web templates generate the following code to create a Generic Host:
 
 ```csharp
 public class Program
@@ -53,7 +53,7 @@ public class Program
 }
 ```
 
-The following code creates a generic host using non-HTTP workload. The `IHostedService` implementation is added to the DI container:
+The following code creates a Generic Host using non-HTTP workload. The `IHostedService` implementation is added to the DI container:
 
 ```csharp
 public class Program
