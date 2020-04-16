@@ -52,7 +52,7 @@ The `Startup` class has the following additions:
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
-  * IdentityServer with an additional `AddApiAuthorization` helper method that setups some default ASP.NET Core conventions on top of IdentityServer:
+  * IdentityServer with an additional `AddApiAuthorization` helper method that sets up some default ASP.NET Core conventions on top of IdentityServer:
 
     ```csharp
     services.AddIdentityServer()
@@ -279,9 +279,9 @@ This section describes deploying the app to Azure websites using a certificate s
 }
 ```
 
-* The name property on certificate corresponds with the distinguished subject for the certificate.
-* The store location represents where to load the certificate from (`CurrentUser` or `LocalMachine`).
 * The store name represents the name of the certificate store where the certificate is stored. In this case, it points to the personal user store.
+* The store location represents where to load the certificate from (`CurrentUser` or `LocalMachine`).
+* The name property on certificate corresponds with the distinguished subject for the certificate.
 
 To deploy to Azure Websites, deploy the app following the steps in [Deploy the app to Azure](xref:tutorials/publish-to-azure-webapp-using-vs#deploy-the-app-to-azure) to create the necessary Azure resources and deploy the app to production.
 

@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how gRPC compares with HTTP APIs and what it's recommend scenarios are.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 11/12/2019
+ms.date: 12/05/2019
 no-loc: [SignalR]
 uid: grpc/comparison
 ---
@@ -42,7 +42,7 @@ gRPC is designed for HTTP/2, a major revision of HTTP that provides significant 
 
 ### Code generation
 
-All gRPC frameworks provide first-class support for code generation. A core file to gRPC development is the [*.proto* file](https://developers.google.com/protocol-buffers/docs/proto3), which defines the contract of gRPC services and messages. From this file gRPC frameworks will code generate a service base class, messages, and a complete client.
+All gRPC frameworks provide first-class support for code generation. A core file to gRPC development is the [.proto file](https://developers.google.com/protocol-buffers/docs/proto3), which defines the contract of gRPC services and messages. From this file gRPC frameworks will code generate a service base class, messages, and a complete client.
 
 By sharing the *.proto* file between the server and client, messages and client code can be generated from end to end. Code generation of the client eliminates duplication of messages on the client and server, and creates a strongly-typed client for you. Not having to write a client saves significant development time in applications with many services.
 
@@ -87,6 +87,9 @@ It's impossible to directly call a gRPC service from a browser today. gRPC heavi
 [gRPC-Web](https://grpc.io/docs/tutorials/basic/web.html) is an additional technology from the gRPC team that provides limited gRPC support in the browser. gRPC-Web consists of two parts: a JavaScript client that supports all modern browsers, and a gRPC-Web proxy on the server. The gRPC-Web client calls the proxy and the proxy will forward on the gRPC requests to the gRPC server.
 
 Not all of gRPC's features are supported by gRPC-Web. Client and bi-directional streaming isn't supported, and there is limited support for server streaming.
+
+> [!TIP]
+> .NET Core has experimental support for gRPC-Web. Visit <xref:grpc/browser> for more information.
 
 ### Not human readable
 

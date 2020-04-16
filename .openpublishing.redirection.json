@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+            "source_path": "aspnet/core/client-side/bower.md",
+            "redirect_url": "/aspnet/core/client-side/libman/index",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/tutorials/grpc/grpc-client.md",
             "redirect_url": "/aspnet/core/tutorials/grpc/grpc-start",
             "redirect_document_id": false
@@ -229,12 +234,7 @@
             "source_path": "aspnetcore/azure/index.md", 
             "redirect_url": "/aspnet/core/azure/devops", 
             "redirect_document_id": false 
-        }, 
-        {   
-            "source_path": "aspnetcore/security/authentication/index.md", 
-            "redirect_url": "/aspnet/core/security/authentication/identity", 
-            "redirect_document_id": false 
-        }, 
+        },         
         {   
             "source_path": "aspnetcore/security/authorization/index.md", 
             "redirect_url": "/aspnet/core/security/authorization/introduction", 
@@ -533,6 +533,11 @@
         {
             "source_path": "aspnetcore/mvc/views/tag-helpers/index.md",
             "redirect_url": "/aspnet/core/mvc/views/tag-helpers/intro",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/authentication/azure-ad-b2c-webapi.md",
+            "redirect_url": "/aspnet/core/security/authentication/azure-active-directory",
             "redirect_document_id": false
         },
         {
@@ -908,6 +913,11 @@
         {
             "source_path": "aspnetcore/razor-pages/upload-files.md",
             "redirect_url": "/aspnet/core/mvc/models/file-uploads",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/javascript-interop.md",
+            "redirect_url": "/aspnet/core/blazor/call-javascript-from-dotnet",
             "redirect_document_id": false
         }
     ]

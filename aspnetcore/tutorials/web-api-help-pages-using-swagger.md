@@ -1,10 +1,10 @@
 ---
 title: ASP.NET Core Web API help pages with Swagger / OpenAPI
-author: rsuter
+author: RicoSuter
 description: This tutorial provides a walkthrough of adding Swagger to generate documentation and help pages for a Web API app.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 09/20/2018
+ms.date: 12/07/2019
 uid: tutorials/web-api-help-pages-using-swagger
 ---
 # ASP.NET Core web API help pages with Swagger / OpenAPI

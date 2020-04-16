@@ -2,10 +2,11 @@
 title: Host and deploy ASP.NET Core Blazor
 author: guardrex
 description: Discover how to host and deploy Blazor apps.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
+ms.date: 03/11/2020
+no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/index
 ---
 # Host and deploy ASP.NET Core Blazor
@@ -36,48 +37,59 @@ dotnet publish -c Release
 
 Publishing the app triggers a [restore](/dotnet/core/tools/dotnet-restore) of the project's dependencies and [builds](/dotnet/core/tools/dotnet-build) the project before creating the assets for deployment. As part of the build process, unused methods and assemblies are removed to reduce app download size and load times.
 
-A Blazor WebAssembly app is published to the */bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist* folder. A Blazor Server app is published to the */bin/Release/{TARGET FRAMEWORK}/publish* folder.
+Publish locations:
+
+* Blazor WebAssembly
+  * Standalone &ndash; The app is published into the */bin/Release/{TARGET FRAMEWORK}/publish/wwwroot* folder. To deploy the app as a static site, copy the contents of the *wwwroot* folder to the static site host.
+  * Hosted &ndash; The client Blazor WebAssembly app is published into the */bin/Release/{TARGET FRAMEWORK}/publish/wwwroot* folder of the server app, along with any other static web assets of the server app. Deploy the contents of the *publish* folder to the host.
+* Blazor Server &ndash; The app is published into the */bin/Release/{TARGET FRAMEWORK}/publish* folder. Deploy the contents of the *publish* folder to the host.
 
 The assets in the folder are deployed to the web server. Deployment might be a manual or automated process depending on the development tools in use.
 
 ## App base path
 
-The *app base path* is the app's root URL path. Consider the following main app and Blazor app:
+The *app base path* is the app's root URL path. Consider the following ASP.NET Core app and Blazor sub-app:
 
-* The main app is called `MyApp`:
-  * The app physically resides at *d:\\MyApp*.
+* The ASP.NET Core app is named `MyApp`:
+  * The app physically resides at *d:/MyApp*.
   * Requests are received at `https://www.contoso.com/{MYAPP RESOURCE}`.
-* A Blazor app called `CoolApp` is a sub-app of `MyApp`:
-  * The sub-app physically resides at *d:\\MyApp\\CoolApp*.
+* A Blazor app named `CoolApp` is a sub-app of `MyApp`:
+  * The sub-app physically resides at *d:/MyApp/CoolApp*.
   * Requests are received at `https://www.contoso.com/CoolApp/{COOLAPP RESOURCE}`.
 
 Without specifying additional configuration for `CoolApp`, the sub-app in this scenario has no knowledge of where it resides on the server. For example, the app can't construct correct relative URLs to its resources without knowing that it resides at the relative URL path `/CoolApp/`.
 
-To provide configuration for the Blazor app's base path of `https://www.contoso.com/CoolApp/`, the `<base>` tag's `href` attribute is set to the relative root path in the *wwwroot/index.html* file:
+To provide configuration for the Blazor app's base path of `https://www.contoso.com/CoolApp/`, the `<base>` tag's `href` attribute is set to the relative root path in the *Pages/_Host.cshtml* file (Blazor Server) or *wwwroot/index.html* file (Blazor WebAssembly):
 
 ```html
 <base href="/CoolApp/">
 ```
 
-By providing the relative URL path, a component that isn't in the root directory can construct URLs relative to the app's root path. Components at different levels of the directory structure can build links to other resources at locations throughout the app. The app base path is also used to intercept hyperlink clicks where the `href` target of the link is within the app base path URI space&mdash;the Blazor router handles the internal navigation.
+Blazor Server apps additionally set the server-side base path by calling <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> in the app's request pipeline of `Startup.Configure`:
 
-In many hosting scenarios, the relative URL path to the app is the root of the app. In these cases, the app's relative URL base path is a forward slash (`<base href="/" />`), which is the default configuration for a Blazor app. In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base path must be set to the server's relative URL path to the app.
+```csharp
+app.UsePathBase("/CoolApp");
+```
 
-To set the app's base path, update the `<base>` tag within the `<head>` tag elements of the *wwwroot/index.html* file. Set the `href` attribute value to `/{RELATIVE URL PATH}/` (the trailing slash is required), where `{RELATIVE URL PATH}` is the app's full relative URL path.
+By providing the relative URL path, a component that isn't in the root directory can construct URLs relative to the app's root path. Components at different levels of the directory structure can build links to other resources at locations throughout the app. The app base path is also used to intercept selected hyperlinks where the `href` target of the link is within the app base path URI space. The Blazor router handles the internal navigation.
 
-For an app with a non-root relative URL path (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime. To pass the path base argument when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
+In many hosting scenarios, the relative URL path to the app is the root of the app. In these cases, the app's relative URL base path is a forward slash (`<base href="/" />`), which is the default configuration for a Blazor app. In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base path must be set to the server's relative URL path of the app.
+
+To set the app's base path, update the `<base>` tag within the `<head>` tag elements of the *Pages/_Host.cshtml* file (Blazor Server) or *wwwroot/index.html* file (Blazor WebAssembly). Set the `href` attribute value to `/{RELATIVE URL PATH}/` (the trailing slash is required), where `{RELATIVE URL PATH}` is the app's full relative URL path.
+
+For an Blazor WebAssembly app with a non-root relative URL path (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime. Don't include a trailing slash. To pass the path base argument when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
 
 ```dotnetcli
 dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}
 ```
 
-For an app with a relative URL path of `/CoolApp/` (`<base href="/CoolApp/">`), the command is:
+For a Blazor WebAssembly app with a relative URL path of `/CoolApp/` (`<base href="/CoolApp/">`), the command is:
 
 ```dotnetcli
 dotnet run --pathbase=/CoolApp
 ```
 
-The app responds locally at `http://localhost:port/CoolApp`.
+The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
 ## Deployment
 

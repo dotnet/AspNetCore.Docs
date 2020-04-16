@@ -131,6 +131,17 @@ namespace HttpClientFactorySample
                 });
             #endregion
 
+            #region snippet13
+            services.AddHttpClient("configured-disable-automatic-cookies")
+                .ConfigurePrimaryHttpMessageHandler(() =>
+                {
+                    return new SocketsHttpHandler()
+                    {
+                        UseCookies = false,
+                    };
+                });
+            #endregion
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
         

@@ -150,11 +150,12 @@ In *Models/Student.cs*, replace the code you added earlier with the following co
 
 The `Required` attribute makes the name properties required fields. The `Required` attribute isn't needed for non-nullable types such as value types (DateTime, int, double, float, etc.). Types that can't be null are automatically treated as required fields.
 
-You could remove the `Required` attribute and replace it with a minimum length parameter for the `StringLength` attribute:
+The `Required` attribute must be used with `MinimumLength` for the `MinimumLength` to be enforced.
 
 ```csharp
 [Display(Name = "Last Name")]
-[StringLength(50, MinimumLength=1)]
+[Required]
+[StringLength(50, MinimumLength=2)]
 public string LastName { get; set; }
 ```
 
@@ -504,7 +505,7 @@ Right-click the **CourseAssignment** table and select **View Data** to verify th
 
 ## Get the code
 
-[Download or view the completed application.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## Next steps
 

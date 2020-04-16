@@ -2,13 +2,12 @@
 
 <h1>Cascading Values & Parameters - TabSet</h1>
 
-<!-- <snippet_TabSet> -->
 <TabSet>
     <Tab Title="First tab">
         <h4>Greetings from the first tab!</h4>
 
         <label>
-            <input type="checkbox" @bind="showThirdTab" />
+            <input type="checkbox" @bind="_showThirdTab" />
             Toggle third tab
         </label>
     </Tab>
@@ -16,7 +15,7 @@
         <h4>The second tab says Hello World!</h4>
     </Tab>
 
-    @if (showThirdTab)
+    @if (_showThirdTab)
     {
         <Tab Title="Third tab">
             <h4>Welcome to the disappearing third tab!</h4>
@@ -24,7 +23,6 @@
         </Tab>
     }
 </TabSet>
-<!-- </snippet_TabSet> -->
 
 <h2>ITab.cs</h2>
 
@@ -49,7 +47,7 @@ namespace BlazorSample.UIInterfaces
         &lt;h4&gt;Greetings from the first tab!&lt;/h4&gt;
 
         &lt;label&gt;
-            &lt;input type="checkbox" @@bind="showThirdTab" /&gt;
+            &lt;input type="checkbox" @@bind="_showThirdTab" /&gt;
             Toggle third tab
         &lt;/label&gt;
     &lt;/Tab&gt;
@@ -57,7 +55,7 @@ namespace BlazorSample.UIInterfaces
         &lt;h4&gt;The second tab says Hello World!&lt;/h4&gt;
     &lt;/Tab&gt;
 
-    @@if (showThirdTab)
+    @@if (_showThirdTab)
     {
         &lt;Tab Title="Third tab"&gt;
             &lt;h4&gt;Welcome to the disappearing third tab!&lt;/h4&gt;
@@ -68,7 +66,7 @@ namespace BlazorSample.UIInterfaces
     
 @@code
 {
-    private bool showThirdTab;
+    private bool _showThirdTab;
 }</code></pre>
 
 <h2>TabSet.csthml</h2>
@@ -159,5 +157,5 @@ namespace BlazorSample.UIInterfaces
 
 @code
 {
-    private bool showThirdTab;
+    private bool _showThirdTab;
 }

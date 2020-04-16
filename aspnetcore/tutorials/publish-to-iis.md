@@ -1,6 +1,6 @@
 ---
 title: Publish an ASP.NET Core app to IIS
-author: guardrex
+author: rick-anderson
 description: Learn how to host an ASP.NET Core app on an IIS server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
@@ -9,8 +9,6 @@ ms.date: 10/03/2019
 uid: tutorials/publish-to-iis
 ---
 # Publish an ASP.NET Core app to IIS
-
-By [Luke Latham](https://github.com/guardrex)
 
 This tutorial shows how to host an ASP.NET Core app on an IIS server.
 
@@ -41,7 +39,7 @@ Install the *.NET Core Hosting Bundle* on the IIS server. The bundle installs th
 
 Download the installer using the following link:
 
-[Current .NET Core Hosting Bundle installer (direct download)](https://www.microsoft.com/net/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+[Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
 1. Run the installer on the IIS server.
 

@@ -2,11 +2,11 @@
 title: ASP.NET Core Blazor layouts
 author: guardrex
 description: Learn how to create reusable layout components for Blazor apps.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/23/2019
-no-loc: [Blazor]
+ms.date: 02/12/2020
+no-loc: [Blazor, SignalR]
 uid: blazor/layouts
 ---
 # ASP.NET Core Blazor layouts
@@ -15,7 +15,7 @@ By [Rainer Stropek](https://www.timecockpit.com) and [Luke Latham](https://githu
 
 Some app elements, such as menus, copyright messages, and company logos, are usually part of app's overall layout and used by every component in the app. Copying the code of these elements into all of the components of an app isn't an efficient approach&mdash;every time one of the elements requires an update, every component must be updated. Such duplication is difficult to maintain and can lead to inconsistent content over time. *Layouts* solve this problem.
 
-Technically, a layout is just another component. A layout is defined in a Razor template or in C# code and can use [data binding](xref:blazor/components#data-binding), [dependency injection](xref:blazor/dependency-injection), and other component scenarios.
+Technically, a layout is just another component. A layout is defined in a Razor template or in C# code and can use [data binding](xref:blazor/data-binding), [dependency injection](xref:blazor/dependency-injection), and other component scenarios.
 
 To turn a *component* into a *layout*, the component:
 
@@ -24,7 +24,7 @@ To turn a *component* into a *layout*, the component:
 
 The following code sample shows the Razor template of a layout component, *MainLayout.razor*. The layout inherits `LayoutComponentBase` and sets the `@Body` between the navigation bar and the footer:
 
-[!code-cshtml[](layouts/sample_snapshot/3.x/MainLayout.razor?highlight=1,13)]
+[!code-razor[](layouts/sample_snapshot/3.x/MainLayout.razor?highlight=1,13)]
 
 In an app based on one of the Blazor app templates, the `MainLayout` component (*MainLayout.razor*) is in the app's *Shared* folder.
 
@@ -32,11 +32,11 @@ In an app based on one of the Blazor app templates, the `MainLayout` component (
 
 Specify the default app layout in the `Router` component in the app's *App.razor* file. The following `Router` component, which is provided by the default Blazor templates, sets the default layout to the `MainLayout` component:
 
-[!code-cshtml[](layouts/sample_snapshot/3.x/App1.razor?highlight=3)]
+[!code-razor[](layouts/sample_snapshot/3.x/App1.razor?highlight=3)]
 
 To supply a default layout for `NotFound` content, specify a `LayoutView` for `NotFound` content:
 
-[!code-cshtml[](layouts/sample_snapshot/3.x/App2.razor?highlight=6-9)]
+[!code-razor[](layouts/sample_snapshot/3.x/App2.razor?highlight=6-9)]
 
 For more information on the `Router` component, see <xref:blazor/routing>.
 
@@ -48,7 +48,7 @@ Use the Razor directive `@layout` to apply a layout to a component. The compiler
 
 The content of the following `MasterList` component is inserted into the `MasterLayout` at the position of `@Body`:
 
-[!code-cshtml[](layouts/sample_snapshot/3.x/MasterList.razor?highlight=1)]
+[!code-razor[](layouts/sample_snapshot/3.x/MasterList.razor?highlight=1)]
 
 Specifying the layout directly in a component overrides a *default layout* set in the router or an `@layout` directive imported from *_Imports.razor*.
 
@@ -62,7 +62,7 @@ The following *_Imports.razor* file imports:
 * All Razor components in the same folder and any subfolders.
 * The `BlazorApp1.Data` namespace.
  
-[!code-cshtml[](layouts/sample_snapshot/3.x/_Imports.razor)]
+[!code-razor[](layouts/sample_snapshot/3.x/_Imports.razor)]
 
 The *_Imports.razor* file is similar to the [_ViewImports.cshtml file for Razor views and pages](xref:mvc/views/layout#importing-shared-directives) but applied specifically to Razor component files.
 
@@ -74,15 +74,19 @@ Apps can consist of nested layouts. A component can reference a layout which in 
 
 The following example shows how to use nested layouts. The *EpisodesComponent.razor* file is the component to display. The component references the `MasterListLayout`:
 
-[!code-cshtml[](layouts/sample_snapshot/3.x/EpisodesComponent.razor?highlight=1)]
+[!code-razor[](layouts/sample_snapshot/3.x/EpisodesComponent.razor?highlight=1)]
 
 The *MasterListLayout.razor* file provides the `MasterListLayout`. The layout references another layout, `MasterLayout`, where it's rendered. `EpisodesComponent` is rendered where `@Body` appears:
 
-[!code-cshtml[](layouts/sample_snapshot/3.x/MasterListLayout.razor?highlight=1,9)]
+[!code-razor[](layouts/sample_snapshot/3.x/MasterListLayout.razor?highlight=1,9)]
 
 Finally, `MasterLayout` in *MasterLayout.razor* contains the top-level layout elements, such as the header, main menu, and footer. `MasterListLayout` with the `EpisodesComponent` is rendered where `@Body` appears:
 
-[!code-cshtml[](layouts/sample_snapshot/3.x/MasterLayout.razor?highlight=6)]
+[!code-razor[](layouts/sample_snapshot/3.x/MasterLayout.razor?highlight=6)]
+
+## Share a Razor Pages layout with integrated components
+
+When routable components are integrated into a Razor Pages app, the app's shared layout can be used with the components. For more information, see <xref:blazor/integrate-components>.
 
 ## Additional resources
 

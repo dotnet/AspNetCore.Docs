@@ -1,16 +1,16 @@
 ---
 title: Host ASP.NET Core in a web farm
-author: guardrex
+author: rick-anderson
 description: Learn how to host multiple instances of an ASP.NET Core app with shared resources in a web farm environment.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/07/2019
+ms.date: 01/13/2020
 uid: host-and-deploy/web-farm
 ---
 # Host ASP.NET Core in a web farm
 
-By [Luke Latham](https://github.com/guardrex) and [Chris Ross](https://github.com/Tratcher)
+By [Chris Ross](https://github.com/Tratcher)
 
 A *web farm* is a group of two or more web servers (or *nodes*) that host multiple instances of an app. When requests from users arrive to a web farm, a *load balancer* distributes the requests to the web farm's nodes. Web farms improve:
 
@@ -56,8 +56,8 @@ The following scenarios don't require additional configuration, but they depend 
 | -------- | ------------------- |
 | Authentication | Data Protection (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/authentication/cookie> and <xref:security/cookie-sharing>. |
 | Identity | Authentication and database configuration.<br><br>For more information, see <xref:security/authentication/identity>. |
-| Session | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) and Caching (see <xref:performance/caching/distributed>).<br><br>For more information, see [Session and app state: Session state](xref:fundamentals/app-state#session-state). |
-| TempData | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) or Session (see [Session and app state: Session state](xref:fundamentals/app-state#session-state)).<br><br>For more information, see [Session and app state: TempData](xref:fundamentals/app-state#tempdata). |
+| Session | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) and Caching (see <xref:performance/caching/distributed>).<br><br>For more information, see [Session and state management: Session state](xref:fundamentals/app-state#session-state). |
+| TempData | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) or Session (see [Session and state management: Session state](xref:fundamentals/app-state#session-state)).<br><br>For more information, see [Session and state management: TempData](xref:fundamentals/app-state#tempdata). |
 | Anti-forgery | Data Protection (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/anti-request-forgery>. |
 
 ## Troubleshoot
@@ -86,3 +86,5 @@ If the web farm apps are capable of responding to requests, obtain request, conn
 ## Additional resources
 
 * [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows) &ndash; Downloads and executes scripts on Azure virtual machines, which is useful for post-deployment configuration and software installation.
+* <xref:host-and-deploy/proxy-load-balancer>
+ 

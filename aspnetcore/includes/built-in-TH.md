@@ -4,11 +4,11 @@
 
 **[Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)**
 
+**[Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper)**
+
 **[Distributed Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)**
 
 **[Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper)**
-
-**[FormActionTagHelper](xref:mvc/views/working-with-forms#the-form-action-tag-helper)**
 
 **[Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper)**
 
@@ -20,13 +20,11 @@
 
 **[Label Tag Helper](xref:mvc/views/working-with-forms#the-label-tag-helper)**
 
-**[LinkTagHelper](xref:mvc/views/tag-helpers/builtin-th/link-tag-helper)**
-
-[comment]: **[OptionTagHelper](xref:mvc/views/tag-helpers/builtin-th/option-tag-helper)**
-
-**[ScriptTagHelper](xref:mvc/views/tag-helpers/builtin-th/script-tag-helper)**
+**[Link Tag Helper](xref:mvc/views/tag-helpers/builtin-th/link-tag-helper)**
 
 **[Partial Tag Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)**
+
+**[Script Tag Helper](xref:mvc/views/tag-helpers/builtin-th/script-tag-helper)**
 
 **[Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper)**
 

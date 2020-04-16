@@ -34,7 +34,7 @@ namespace RequestResponseSample
 
                     foreach (var item in list)
                     {
-                        await context.Response.WriteAsync(item.ToUpper());
+                        await context.Response.WriteAsync(item.ToUpperInvariant());
                         await context.Response.WriteAsync(Environment.NewLine);
                     }
                 });
@@ -45,7 +45,7 @@ namespace RequestResponseSample
 
                     foreach (var item in list)
                     {
-                        await context.Response.WriteAsync(item.ToUpper());
+                        await context.Response.WriteAsync(item.ToUpperInvariant());
                         await context.Response.WriteAsync(Environment.NewLine);
                     }
                 });
@@ -55,7 +55,7 @@ namespace RequestResponseSample
                     var list = await GetListOfStringFromPipe(context.Request.BodyPipe);
                     foreach (var item in list)
                     {
-                        await context.Response.WriteAsync(item.ToUpper());
+                        await context.Response.WriteAsync(item.ToUpperInvariant());
                         await context.Response.WriteAsync(Environment.NewLine);
                     }
                 });

@@ -1,4 +1,4 @@
-@using Microsoft.AspNetCore.Blazor.Http
+@using Microsoft.AspNetCore.Components.WebAssembly.Http
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 
@@ -9,7 +9,6 @@
 <ul>
     <li>An endpoint URI of <code>https://localhost:10000/api/TodoItems</code>.</li>
     <li>The <code>Content-Type</code> header set to <code>application/json</code>, which describes the payload of a POST/PUT request to the service.</li>
-    <li>Fetch API credentials of <code>include</code>, which is permitted by the service's CORS Middleware policy with an <code>Authorization</code> header included in the request.</li>
 </ul>
 
 <p>Add the following CORS middleware configuration to the web API's <code>Startup.Configure</code> method before it calls <code>UseMvc</code>:</p>
@@ -40,15 +39,6 @@
 </p>
 
 <p>
-    <div>Credentials:</div>
-    <select id="request-credentials" @bind="_credentials">
-        <option value="include" selected>include</option>
-        <option value="same-origin">same-origin</option>
-        <option value="omit">omit</option>
-    </select>
-</p>
-
-<p>
     <div>Request body:</div>
     <textarea id="request-body" @bind="_requestBody"></textarea>
 </p>
@@ -64,11 +54,6 @@
         </div>
     }
     <button class="btn btn-primary" id="add-header" @onclick="@AddHeader">Add</button>
-</p>
-
-<p>
-    <div>Request referrer:</div>
-    <input id="request-referrer" type="text" @bind="_requestReferrer" size="120" />
 </p>
 
 <button class="btn btn-success" id="send-request" @onclick="@DoRequest">Request</button>
@@ -90,16 +75,9 @@
         new RequestHeader() { Name = "Content-Type", Value = "application/json" },
         new RequestHeader() { Name = "Authorization", Value = "Bearer MHrHDcEfxjoYZgeFONFh7HgQ" }
     };
-    private string _requestReferrer;
-    private string _credentials = "include";
     private System.Net.HttpStatusCode? _responseStatusCode;
     private string _responseBody;
     private string _responseHeaders;
-
-    protected override void OnInitialized()
-    {
-        _requestReferrer = NavigationManager.Uri;
-    }
 
     private async void DoRequest()
     {
@@ -130,12 +108,6 @@
                     requestMessage.Content?.Headers.TryAddWithoutValidation(header.Name, header.Value);
                 }
             }
-
-            requestMessage.Properties[WebAssemblyHttpMessageHandler.FetchArgs] = new
-            {
-                referrer = _requestReferrer,
-                credentials = _credentials
-            };
 
             var response = await Http.SendAsync(requestMessage);
             _responseStatusCode = response.StatusCode;

@@ -4,7 +4,7 @@ author: bradygaster
 description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 11/21/2019
 no-loc: [SignalR]
 uid: tutorials/signalr
 
@@ -85,7 +85,7 @@ At the end, you'll have a working chat app:
 
 ## Add the SignalR client library
 
-The SignalR server library is included in the ASP.NET Core 3.0 shared framework. The JavaScript client library isn't automatically included in the project. For this tutorial, you use Library Manager (LibMan) to get the client library from *unpkg*. unpkg is a content delivery network (CDN)) that can deliver anything found in npm, the Node.js package manager.
+The SignalR server library is included in the ASP.NET Core 3.0 shared framework. The JavaScript client library isn't automatically included in the project. For this tutorial, you use Library Manager (LibMan) to get the client library from *unpkg*. unpkg is a content delivery network (CDN) that can deliver anything found in npm, the Node.js package manager.
 
 # [Visual Studio](#tab/visual-studio/)
 
@@ -317,7 +317,7 @@ At the end, you'll have a working chat app:
 
 ## Add the SignalR client library	
 
-The SignalR server library is included in the `Microsoft.AspNetCore.App` metapackage. The JavaScript client library isn't automatically included in the project. For this tutorial, you use Library Manager (LibMan) to get the client library from *unpkg*. unpkg is a content delivery network (CDN)) that can deliver anything found in npm, the Node.js package manager.	
+The SignalR server library is included in the `Microsoft.AspNetCore.App` metapackage. The JavaScript client library isn't automatically included in the project. For this tutorial, you use Library Manager (LibMan) to get the client library from *unpkg*. unpkg is a content delivery network (CDN) that can deliver anything found in npm, the Node.js package manager.	
 
 # [Visual Studio](#tab/visual-studio/)	
 
@@ -325,7 +325,7 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
 
 * In the **Add Client-Side Library** dialog, for **Provider** select **unpkg**.	
 
-* For **Library**, enter `@aspnet/signalr@1`, and select the latest version that isn't preview.	
+* For **Library**, enter `@microsoft/signalr@3`, and select the latest version that isn't preview.	
 
   ![Add Client-Side Library dialog - select library](signalr/_static/2.x/libman1.png)	
 
@@ -348,7 +348,7 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
 * Run the following command to get the SignalR client library by using LibMan. You might have to wait a few seconds before seeing output.	
 
   ```console	
-  libman install @aspnet/signalr -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js	
+  libman install @microsoft/signalr -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js	
   ```	
 
   The parameters specify the following options:	
@@ -361,7 +361,7 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
   ```console	
   wwwroot/lib/signalr/dist/browser/signalr.js written to disk	
   wwwroot/lib/signalr/dist/browser/signalr.min.js written to disk	
-  Installed library "@aspnet/signalr@1.0.3" to "wwwroot/lib/signalr"	
+  Installed library "@microsoft/signalr@3.0.1" to "wwwroot/lib/signalr"	
   ```	
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)	
@@ -377,7 +377,7 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
 * Run the following command to get the SignalR client library by using LibMan.	
 
   ```console	
-  libman install @aspnet/signalr -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js	
+  libman install @microsoft/signalr -p unpkg -d wwwroot/lib/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js	
   ```	
 
   The parameters specify the following options:	
@@ -390,7 +390,7 @@ The SignalR server library is included in the `Microsoft.AspNetCore.App` metapac
   ```console	
   wwwroot/lib/signalr/dist/browser/signalr.js written to disk	
   wwwroot/lib/signalr/dist/browser/signalr.min.js written to disk	
-  Installed library "@aspnet/signalr@1.0.3" to "wwwroot/lib/signalr"	
+  Installed library "@microsoft/signalr@3.x.x" to "wwwroot/lib/signalr"	
   ```	
 
 ---	
@@ -451,17 +451,17 @@ The SignalR server must be configured to pass SignalR requests to SignalR.
 
 * In the integrated terminal, run the following command:	
 
-  ```dotnetcli	
-  dotnet run -p SignalRChat.csproj	
-  ```	
+  ```dotnetcli
+  dotnet run -p SignalRChat.csproj
+  ```
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)	
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* From the menu, select **Run > Start Without Debugging**.	
+* From the menu, select **Run > Start Without Debugging**.
 
----	
+---
 
-* Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.	
+* Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 * Choose either browser, enter a name and message, and select the **Send Message** button.	
 

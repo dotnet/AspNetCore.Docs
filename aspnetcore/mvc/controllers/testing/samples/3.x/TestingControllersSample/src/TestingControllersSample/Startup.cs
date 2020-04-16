@@ -29,11 +29,12 @@ namespace TestingControllersSample
 
         public void Configure(IApplicationBuilder app,
             IWebHostEnvironment env,
-            ILoggerFactory loggerFactory)
+            IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
-                var repository = app.ApplicationServices.GetService<IBrainstormSessionRepository>();
+                var repository = serviceProvider.GetRequiredService<IBrainstormSessionRepository>();
+
                 InitializeDatabaseAsync(repository).Wait();
             }
 

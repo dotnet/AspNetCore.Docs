@@ -2,10 +2,10 @@
 title: Introduction to ASP.NET Core Blazor
 author: guardrex
 description: Explore ASP.NET Core Blazor, a way to build interactive client-side web UI with .NET in an ASP.NET Core app.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "mvc, seoapril2019"
-ms.date: 11/12/2019
+ms.date: 03/25/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/index
 ---
@@ -20,6 +20,7 @@ Blazor is a framework for building interactive client-side web UI with .NET:
 * Create rich interactive UIs using C# instead of JavaScript.
 * Share server-side and client-side app logic written in .NET.
 * Render the UI as HTML and CSS for wide browser support, including mobile browsers.
+* Integrate with modern hosting platforms, such as [Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index).
 
 Using .NET for client-side web development offers the following advantages:
 
@@ -45,7 +46,7 @@ The component class is usually written in the form of a [Razor](xref:mvc/views/r
 
 The following Razor markup demonstrates a component (*Dialog.razor*), which can be nested within another component:
 
-```cshtml
+```razor
 <div>
     <h1>@Title</h1>
 
@@ -76,7 +77,7 @@ In the following example, the `Index` component uses the `Dialog` component. `Ch
 
 *Index.razor*:
 
-```cshtml
+```razor
 @page "/"
 
 <h1>Hello, world!</h1>
@@ -132,7 +133,10 @@ The connection used by Blazor Server to communicate with the browser is also use
 
 ## JavaScript interop
 
-For apps that require third-party JavaScript libraries and access to browser APIs, components interoperate with JavaScript. Components are capable of using any library or API that JavaScript is able to use. C# code can call into JavaScript code, and JavaScript code can call into C# code. For more information, see <xref:blazor/javascript-interop>.
+For apps that require third-party JavaScript libraries and access to browser APIs, components interoperate with JavaScript. Components are capable of using any library or API that JavaScript is able to use. C# code can call into JavaScript code, and JavaScript code can call into C# code. For more information, see the following articles:
+
+* <xref:blazor/call-javascript-from-dotnet>
+* <xref:blazor/call-dotnet-from-javascript>
 
 ## Code sharing and .NET Standard
 
@@ -144,6 +148,7 @@ APIs that aren't applicable inside of a web browser (for example, accessing the 
 
 * [WebAssembly](https://webassembly.org/)
 * <xref:blazor/hosting-models>
+* <xref:tutorials/signalr-blazor-webassembly>
 * [C# Guide](/dotnet/csharp/)
 * <xref:mvc/views/razor>
 * [HTML](https://www.w3.org/html/)

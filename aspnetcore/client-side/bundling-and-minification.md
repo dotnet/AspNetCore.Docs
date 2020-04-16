@@ -207,7 +207,7 @@ To minify *custom.css* and bundle it with *site.css* into a *site.min.css* file,
 > Alternatively, the following globbing pattern could be used:
 >
 > ```json
-> "inputFiles": ["wwwroot/**/*(*.css|!(*.min.css))"]
+> "inputFiles": ["wwwroot/**/!(*.min).css" ]
 > ```
 >
 > This globbing pattern matches all CSS files and excludes the minified file pattern.
@@ -321,7 +321,6 @@ In this example, any tasks defined within the `MyPreCompileTarget` target run be
 1>[14:17:49] Finished 'min:css' after 88 ms
 ========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
 ```
-
 
 ## Additional resources
 

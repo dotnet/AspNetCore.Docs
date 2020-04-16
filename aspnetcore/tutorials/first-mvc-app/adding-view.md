@@ -56,9 +56,9 @@ Add an `Index` view for the `HelloWorldController`.
 * Right click on the *Views/HelloWorld* folder, and then **Add > New File**.
 * In the **New File** dialog:
 
-  * Select **Web** in the left pane.
-  * Select **Empty HTML file** in the center pane.
-  * Type *Index.cshtml* in the **Name** box.
+  * Select **ASP .NET Core** in the left pane.
+  * Select **MVC View Page** in the center pane.
+  * Type *Index* in the **Name** box.
   * Select **New**.
 
 ![Add New Item dialog](adding-view/_static/add_view_mac.png)
@@ -102,7 +102,7 @@ Select the **Home** link and notice that the title and anchor text also display 
 
 Examine the *Views/_ViewStart.cshtml* file:
 
-```HTML
+```cshtml
 @{
     Layout = "_Layout";
 }
@@ -118,9 +118,9 @@ The title and `<h2>` element are slightly different so you can see which bit of 
 
 `ViewData["Title"] = "Movie List";` in the code above sets the `Title` property of the `ViewData` dictionary to "Movie List". The `Title` property is used in the `<title>` HTML element in the layout page:
 
-```HTML
+```cshtml
 <title>@ViewData["Title"] - Movie App</title>
-   ```
+```
 
 Save the change and navigate to `https://localhost:{PORT}/HelloWorld`. Notice that the browser title, the primary heading, and the secondary headings have changed. (If you don't see changes in the browser, you might be viewing cached content. Press Ctrl+F5 in your browser to force the response from the server to be loaded.) The browser title is created with `ViewData["Title"]` we set in the *Index.cshtml* view template and the additional "- Movie App" added in the layout file.
 
@@ -262,7 +262,7 @@ Select the **Home** link and notice that the title and anchor text also display 
 
 Examine the *Views/_ViewStart.cshtml* file:
 
-```HTML
+```cshtml
 @{
     Layout = "_Layout";
 }
@@ -278,9 +278,9 @@ The title and `<h2>` element are slightly different so you can see which bit of 
 
 `ViewData["Title"] = "Movie List";` in the code above sets the `Title` property of the `ViewData` dictionary to "Movie List". The `Title` property is used in the `<title>` HTML element in the layout page:
 
-```HTML
+```cshtml
 <title>@ViewData["Title"] - Movie App</title>
-   ```
+```
 
 Save the change and navigate to `https://localhost:{PORT}/HelloWorld`. Notice that the browser title, the primary heading, and the secondary headings have changed. (If you don't see changes in the browser, you might be viewing cached content. Press Ctrl+F5 in your browser to force the response from the server to be loaded.) The browser title is created with `ViewData["Title"]` we set in the *Index.cshtml* view template and the additional "- Movie App" added in the layout file.
 

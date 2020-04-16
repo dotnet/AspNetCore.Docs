@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to format response data in ASP.NET Core Web API.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 8/22/2019
+ms.date: 12/05/2019
 uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API
@@ -13,7 +13,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ar
 
 ASP.NET Core MVC has support for formatting response data. Response data can be formatted using specific formats or in response to client requested format.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/formatting) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/formatting) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Format-specific Action Results
 
@@ -114,7 +114,7 @@ XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer> a
 
 The preceding code serializes results using `XmlSerializer`.
 
-When using the preceding code, controller methods should return the appropriate format based on the request's `Accept` header.
+When using the preceding code, controller methods return the appropriate format based on the request's `Accept` header.
 
 ### Configure System.Text.Json-based formatters
 
