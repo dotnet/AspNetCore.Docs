@@ -508,7 +508,7 @@ To maintain state in the preceding scenario, use a *private field* in the `Expan
 The following `Expander` component:
 
 * Accepts the `Expanded` component parameter value from the parent.
-* Assigns the component parameter value to a *private field* (`_expanded`) in the [OnInitialized event](#component-initialization-methods).
+* Assigns the component parameter value to a *private field* (`_expanded`) in the [OnInitialized event](xref:blazor/lifecycle#component-initialization-methods).
 * Uses the private field to maintain its internal toggle state.
 
 ```razor
