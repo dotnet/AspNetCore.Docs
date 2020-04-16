@@ -5,7 +5,7 @@ description: Learn how to use Razor component lifecycle methods in ASP.NET Core 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/25/2020
+ms.date: 03/17/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/lifecycle
 ---
@@ -153,6 +153,9 @@ protected override bool ShouldRender()
 `ShouldRender` is called each time the component is rendered.
 
 Even if `ShouldRender` is overridden, the component is always initially rendered.
+
+## State changes
+<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> notifies the component that its state has changed. When applicable, calling `StateHasChanged` causes the component to be rerendered.
 
 ## Handle incomplete async actions at render
 
