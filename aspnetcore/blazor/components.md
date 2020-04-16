@@ -135,7 +135,7 @@ In the following example from the sample app, the `ParentComponent` sets the val
 [!code-razor[](components/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
 > [!WARNING]
-> Don't store component state in a *component parameter*, use a private field instead. For more information, see <xref:blazor/lifecycle#state-changes>.
+> Don't store component state in a *component parameter*, use a private field instead. For more information, see the [Avoid state in component parameters](#avoid-state-in-component-parameters) section.
 
 ## Child content
 
