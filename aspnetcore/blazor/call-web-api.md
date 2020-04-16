@@ -32,6 +32,18 @@ Reference the [System.Net.Http.Json](https://www.nuget.org/packages/System.Net.H
 
 To use a stable API, use the [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client/) package, which uses [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/)/[Json.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm). Using the stable API in `Microsoft.AspNet.WebApi.Client` doesn't provide the JSON helpers described in this topic, which are unique to the `System.Net.Http.Json` package.
 
+## Add HttpClient service
+
+In `Program.Main`, add an `HttpClient` service:
+
+```csharp
+builder.Services.AddSingleton(
+    new HttpClient
+    {
+        BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+    });
+```
+
 ## HttpClient and JSON helpers
 
 In a Blazor WebAssembly app, [HttpClient](xref:fundamentals/http-requests) is available as a preconfigured service for making requests back to the origin server.
