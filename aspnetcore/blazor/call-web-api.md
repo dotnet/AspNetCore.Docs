@@ -5,7 +5,7 @@ description: Learn how to call a web API from a Blazor app using JSON helpers, i
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/22/2020
+ms.date: 04/16/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/call-web-api
 ---
@@ -28,9 +28,9 @@ See the following components in the *BlazorWebAssemblySample* sample app:
 
 ## Packages
 
-Reference the *experimental* [Microsoft.AspNetCore.Blazor.HttpClient](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.HttpClient/) NuGet package in the project file. `Microsoft.AspNetCore.Blazor.HttpClient` is based on `HttpClient` and [System.Text.Json](https://www.nuget.org/packages/System.Text.Json/).
+Reference the [System.Net.Http.Json](https://www.nuget.org/packages/System.Net.Http.Json/) NuGet package in the project file.
 
-To use a stable API, use the [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client/) package, which uses [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/)/[Json.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm). Using the stable API in `Microsoft.AspNet.WebApi.Client` doesn't provide the JSON helpers described in this topic, which are unique to the experimental `Microsoft.AspNetCore.Blazor.HttpClient` package.
+To use a stable API, use the [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client/) package, which uses [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/)/[Json.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm). Using the stable API in `Microsoft.AspNet.WebApi.Client` doesn't provide the JSON helpers described in this topic, which are unique to the `System.Net.Http.Json` package.
 
 ## HttpClient and JSON helpers
 
@@ -64,7 +64,7 @@ private class TodoItem
 
 JSON helper methods send requests to a URI (a web API in the following examples) and process the response:
 
-* `GetJsonAsync` &ndash; Sends an HTTP GET request and parses the JSON response body to create an object.
+* `GetFromJsonAsync` &ndash; Sends an HTTP GET request and parses the JSON response body to create an object.
 
   In the following code, the `_todoItems` are displayed by the component. The `GetTodoItems` method is triggered when the component is finished rendering ([OnInitializedAsync](xref:blazor/lifecycle#component-initialization-methods)). See the sample app for a complete example.
 
@@ -76,11 +76,11 @@ JSON helper methods send requests to a URI (a web API in the following examples)
       private TodoItem[] _todoItems;
 
       protected override async Task OnInitializedAsync() => 
-          _todoItems = await Http.GetJsonAsync<TodoItem[]>("api/TodoItems");
+          _todoItems = await Http.GetFromJsonAsync<TodoItem[]>("api/TodoItems");
   }
   ```
 
-* `PostJsonAsync` &ndash; Sends an HTTP POST request, including JSON-encoded content, and parses the JSON response body to create an object.
+* `PostAsJsonAsync` &ndash; Sends an HTTP POST request, including JSON-encoded content, and parses the JSON response body to create an object.
 
   In the following code, `_newItemName` is provided by a bound element of the component. The `AddItem` method is triggered by selecting a `<button>` element. See the sample app for a complete example.
 
@@ -97,12 +97,14 @@ JSON helper methods send requests to a URI (a web API in the following examples)
       private async Task AddItem()
       {
           var addItem = new TodoItem { Name = _newItemName, IsComplete = false };
-          await Http.PostJsonAsync("api/TodoItems", addItem);
+          await Http.PostAsJsonAsync("api/TodoItems", addItem);
       }
   }
   ```
+  
+  Calls to `PostAsJsonAsync` return an <xref:System.Net.Http.HttpResponseMessage>.
 
-* `PutJsonAsync` &ndash; Sends an HTTP PUT request, including JSON-encoded content.
+* `PutAsJsonAsync` &ndash; Sends an HTTP PUT request, including JSON-encoded content.
 
   In the following code, `_editItem` values for `Name` and `IsCompleted` are provided by bound elements of the component. The item's `Id` is set when the item is selected in another part of the UI and `EditItem` is called. The `SaveItem` method is triggered by selecting the Save `<button>` element. See the sample app for a complete example.
 
@@ -125,9 +127,11 @@ JSON helper methods send requests to a URI (a web API in the following examples)
       }
 
       private async Task SaveItem() =>
-          await Http.PutJsonAsync($"api/TodoItems/{_editItem.Id}, _editItem);
+          await Http.PutAsJsonAsync($"api/TodoItems/{_editItem.Id}, _editItem);
   }
   ```
+  
+  Calls to `PutAsJsonAsync` return an <xref:System.Net.Http.HttpResponseMessage>.
 
 <xref:System.Net.Http> includes additional extension methods for sending HTTP requests and receiving HTTP responses. [HttpClient.DeleteAsync](xref:System.Net.Http.HttpClient.DeleteAsync*) is used to send an HTTP DELETE request to a web API.
 
