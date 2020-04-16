@@ -32,7 +32,7 @@ Reference the [System.Net.Http.Json](https://www.nuget.org/packages/System.Net.H
 
 To use a stable API, use the [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client/) package, which uses [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/)/[Json.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm). Using the stable API in `Microsoft.AspNet.WebApi.Client` doesn't provide the JSON helpers described in this topic, which are unique to the `System.Net.Http.Json` package.
 
-## Add HttpClient service
+## Add the HttpClient service
 
 In `Program.Main`, add an `HttpClient` service:
 
