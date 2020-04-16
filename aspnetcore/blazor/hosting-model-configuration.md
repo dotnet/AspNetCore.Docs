@@ -69,10 +69,10 @@ if (builder.HostEnvironment == "Custom")
 };
 ```
 
-The following convenience extension methods permit checking the current environment:
+The following convenience extension methods permit checking the current environment for Development, Production, and Staging:
 
-* `IsProduction()`
 * `IsDevelopment()`
+* `IsProduction()`
 * `IsStaging()`
 
 ```csharp
