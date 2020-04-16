@@ -11,7 +11,7 @@ metadata:
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 03/27/2020
+  ms.date: 04/15/2020
 
 # highlightedContent section (optional)
 # Maximum of 8 items
@@ -49,7 +49,7 @@ highlightedContent:
     # Card
     - title: "Create your first data-driven MVC web app"
       itemType: get-started
-      url: tutorials/first-mvc-app/index.md
+      url: tutorials/first-mvc-app//start-mvc.md
 
 # conceptualContent section (optional)
 conceptualContent:
