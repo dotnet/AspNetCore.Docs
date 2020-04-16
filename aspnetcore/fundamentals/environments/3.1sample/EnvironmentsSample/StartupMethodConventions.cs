@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using CompilerServices = System.Runtime.CompilerServices;
 
 namespace MethodConventions
 {
@@ -89,9 +90,8 @@ namespace MethodConventions
 
     public static class MyTrace
     {
-        public static void 
-                     TraceMessage([System.Runtime.CompilerServices.CallerMemberName] 
-                                   string memberName = "")
+        public static void TraceMessage([CompilerServices.CallerMemberName] 
+                                        string memberName = "")
         {
             Console.WriteLine($"Method: {memberName}");
         }
