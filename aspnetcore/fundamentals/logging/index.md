@@ -20,9 +20,16 @@ Most of the code examples shown in this article are from ASP.NET Core apps. The 
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
-## Add providers
+## Logging providers
 
-A logging provider displays or stores logs. For example, the Console provider displays logs on the console, and the Azure Application Insights provider stores them in Azure Application Insights. Logs can be sent to multiple destinations by adding multiple providers.
+Logging providers store logs, except for the Console provider which displays logs. For example, the Azure Application Insights provider stores them in Azure Application Insights. Multiple providers can be enabled.
+
+The default ASP.NET Core project templates call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>, which adds the following logging providers:
+
+* [Console](#console-provider)
+* [Debug](#debug-provider)
+* [EventSource](#event-source-provider)
+* [EventLog](#windows-eventlog-provider) : Windows only
 
 To add a provider in an app that uses Generic Host, call the provider's `Add{provider name}` extension method in *Program.cs*:
 
@@ -33,13 +40,6 @@ In a non-host console app, call the provider's `Add{provider name}` extension me
 [!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=1,7)]
 
 `LoggerFactory` and `AddConsole` require a `using` statement for `Microsoft.Extensions.Logging`.
-
-The default ASP.NET Core project templates call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>, which adds the following logging providers:
-
-* [Console](#console-provider)
-* [Debug](#debug-provider)
-* [EventSource](#event-source-provider)
-* [EventLog](#windows-eventlog-provider) (only when running on Windows)
 
 You can replace the default providers with your own choices. Call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A>, and add the providers you want.
 
