@@ -17,7 +17,7 @@ By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.time
 
 With the [Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-webassembly):
 
-* The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser.
+* The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser in parallel.
 * The app is executed directly on the browser UI thread.
 
 The following deployment strategies are supported:
