@@ -155,6 +155,7 @@ protected override bool ShouldRender()
 Even if `ShouldRender` is overridden, the component is always initially rendered.
 
 ## State changes
+
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> notifies the component that its state has changed. When applicable, calling `StateHasChanged` causes the component to be rerendered.
 
 ## Handle incomplete async actions at render
