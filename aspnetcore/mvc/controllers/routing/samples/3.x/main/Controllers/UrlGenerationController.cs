@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Docs.Samples;
+
 namespace WebMvcRouting.Controllers
 {
     #region snippet_1

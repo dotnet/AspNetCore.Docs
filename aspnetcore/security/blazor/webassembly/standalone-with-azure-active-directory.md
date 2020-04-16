@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/09/2020
+ms.date: 04/08/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/standalone-with-azure-active-directory
 ---
@@ -81,19 +81,36 @@ builder.Services.AddMsalAuthentication(options =>
 
 The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure Portal AAD configuration when you register the app.
 
+## Access token scopes
+
 The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API. To provision a token as part of the sign-in flow, add the scope to the default access token scopes of the `MsalProviderOptions`:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
 {
     ...
-    options.ProviderOptions.DefaultAccessTokenScopes.Add(
-        "{SERVER API APP CLIENT ID}/{DEFAULT SCOPE}");
+    options.ProviderOptions.DefaultAccessTokenScopes.Add("{SCOPE URI}");
 });
 ```
 
 > [!NOTE]
-> The default access token scope must be in the format `{SERVER API APP CLIENT ID}/{DEFAULT SCOPE}` (for example, `11111111-1111-1111-1111-111111111111/API.Access`). If a scheme or scheme and host is provided to the scope setting (as shown in the Azure Portal), the *Client app* throws an unhandled exception when it receives a *401 Unauthorized* response from the *Server API app*.
+> If the Azure portal provides a scope URI and **the app throws an unhandled exception** when it receives a *401 Unauthorized* response from the API, try using a scope URI that doesn't include the scheme and host. For example, the Azure portal may provide one of the following scope URI formats:
+>
+> * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
+> * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
+>
+> Supply the scope URI without the scheme and host:
+>
+> ```csharp
+> options.ProviderOptions.DefaultAccessTokenScopes.Add(
+>     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
+> ```
+
+For more information, see <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+
+## Imports file
+
+[!INCLUDE[](~/includes/blazor-security/imports-file-standalone.md)]
 
 ## Index page
 
@@ -119,4 +136,6 @@ builder.Services.AddMsalAuthentication(options =>
 
 ## Additional resources
 
+* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
 * <xref:security/authentication/azure-active-directory/index>
+* [Microsoft identity platform documentation](/azure/active-directory/develop/)

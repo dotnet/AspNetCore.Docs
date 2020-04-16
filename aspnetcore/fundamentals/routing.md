@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core routing is responsible for matching HTTP 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 3/25/2020
+ms.date: 4/1/2020
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -217,7 +217,7 @@ The style of middleware shown with `Approach 1:` is **terminal middleware**. It'
 * The matching operation in the preceding sample is `Path == "/"` for the middleware and `Path == "/Movie"` for routing.
 * When a match is successful, it executes some functionality and returns, rather than invoking the `next` middleware.
 
-It's called terminal middleware middleware because it terminates the search, executes some functionality, and then returns.
+It's called terminal middleware because it terminates the search, executes some functionality, and then returns.
 
 Comparing a terminal middleware and routing:
 * Both approaches allow terminating the processing pipeline:
@@ -449,6 +449,8 @@ Using a template is generally the simplest approach to routing. Constraints and 
 Complex segments are processed by matching up literal delimiters from right to left in a [non-greedy](#greedy) way. For example, `[Route("/a{b}c{d}")]` is a complex segment.
 Complex segments work in a particular way that must be understood to use them successfully. The example in this section demonstrates why complex segments only really work well when the delimiter text doesn't appear inside the parameter values. Using a [regex](/dotnet/standard/base-types/regular-expressions) and then manually extracting the values is needed for more complex cases.
 
+[!INCLUDE[](~/includes/regex.md)]
+
 This is a summary of the steps that routing performs with the template `/a{b}c{d}` and the URL path `/abcd`. The `|` is used to help visualize how the algorithm works:
 
 * The first literal, right to left, is `c`. So `/abcd` is searched from right and finds `/ab|c|d`.
@@ -574,7 +576,7 @@ The preceding constraint is applied in the following code:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/Controllers/TestController.cs?name=snippet&highlight=6,13)]
 
-The [MyDisplayRouteInfo](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x/RoutingSample/Extensions/ControllerContextExtensions.cs) method is included in the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x) and is used to display routing information.
+[!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
 The implementation of `MyCustomConstraint` prevents `0` being applied to a route parameter:
 
@@ -978,6 +980,8 @@ As an example of this guideline, consider the `UseAuthorization` middleware. The
 * Requests that don't match an endpoint.
 
 This makes the authorization middleware useful outside of the context of routing. The authorization middleware can be used for traditional middleware programming.
+
+[!INCLUDE[](~/includes/dbg-route.md)]
 
 ::: moniker-end
 
@@ -1620,7 +1624,7 @@ The routing system has the following characteristics:
 * A response can use routing to generate URLs (for example, for redirection or links) based on route information and thus avoid hard-coded URLs, which helps maintainability.
 * URL generation is based on routes, which support arbitrary extensibility. <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> offers methods to build URLs.
 <!-- fix [middleware](xref:fundamentals/middleware/index) -->
-Routing is connected to the `[middleware](xref:fundamentals/middleware/index)` pipeline by the <xref:Microsoft.AspNetCore.Builder.RouterMiddleware> class. [ASP.NET Core MVC](xref:mvc/overview) adds routing to the middleware pipeline as part of its configuration and handles routing in MVC and Razor Pages apps. To learn how to use routing as a standalone component, see the [Use Routing Middleware](#use-routing-middleware) section.
+Routing is connected to the [middleware](xref:fundamentals/middleware/index) pipeline by the <xref:Microsoft.AspNetCore.Builder.RouterMiddleware> class. [ASP.NET Core MVC](xref:mvc/overview) adds routing to the middleware pipeline as part of its configuration and handles routing in MVC and Razor Pages apps. To learn how to use routing as a standalone component, see the [Use Routing Middleware](#use-routing-middleware) section.
 
 ### URL matching
 
@@ -1974,6 +1978,5 @@ Link generation only generates a link for this route when the matching values fo
 ## Complex segments
 
 Complex segments (for example `[Route("/x{token}y")]`) are processed by matching up literals from right to left in a non-greedy way. See [this code](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) for a detailed explanation of how complex segments are matched. The [code sample](https://github.com/aspnet/AspNetCore/blob/release/2.2/src/Http/Routing/src/Patterns/RoutePatternMatcher.cs#L293) is not used by ASP.NET Core, but it provides a good explanation of complex segments.
-
 
 ::: moniker-end

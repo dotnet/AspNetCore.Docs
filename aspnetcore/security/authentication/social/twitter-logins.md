@@ -73,6 +73,12 @@ You are now logged in using your Twitter credentials:
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
+<!-- 
+### React to cancel Authorize External sign-in
+Twitter doesn't support AccessDeniedPath
+Rather in the twitter setup, you can provide an External sign-in homepage. The external sign-in homepage doesn't support localhost. Tested with https://cors3.azurewebsites.net/ and that works.
+-->
+
 ## Troubleshooting
 
 * **ASP.NET Core 2.x only:** If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate will result in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this sample ensures that this is done.

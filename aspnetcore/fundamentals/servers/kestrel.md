@@ -339,14 +339,14 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 The default value is 96 KB (98,304).
 
-### Synchronous IO
+### Synchronous I/O
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous IO is allowed for the request and response. The default value is `false`.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous I/O is allowed for the request and response. The default value is `false`.
 
 > [!WARNING]
-> A large number of blocking synchronous IO operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous IO.
+> A large number of blocking synchronous I/O operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous I/O.
 
-The following example enables synchronous IO:
+The following example enables synchronous I/O:
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_SyncIO)]
 
@@ -1320,14 +1320,14 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 The default value is 96 KB (98,304).
 
-### Synchronous IO
+### Synchronous I/O
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous IO is allowed for the request and response. The  default value is `true`.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous I/O is allowed for the request and response. The  default value is `true`.
 
 > [!WARNING]
-> A large number of blocking synchronous IO operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous IO.
+> A large number of blocking synchronous I/O operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous I/O.
 
-The following example enables synchronous IO:
+The following example enables synchronous I/O:
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_SyncIO)]
 
@@ -2177,14 +2177,14 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-### Synchronous IO
+### Synchronous I/O
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous IO is allowed for the request and response. The  default value is `true`.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous I/O is allowed for the request and response. The  default value is `true`.
 
 > [!WARNING]
-> A large number of blocking synchronous IO operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous IO.
+> A large number of blocking synchronous I/O operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous I/O.
 
-The following example disables synchronous IO:
+The following example disables synchronous I/O:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

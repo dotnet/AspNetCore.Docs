@@ -5,7 +5,7 @@ description: To create a new Blazor hosted app with authentication from within V
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/16/2020
+ms.date: 03/30/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/hosted-with-identity-server
 ---
@@ -157,6 +157,10 @@ builder.Services.AddApiAuthorization();
 
 By default, it loads the configuration for the app by convention from `_configuration/{client-id}`. By convention, the client ID is set to the app's assembly name. This URL can be changed to point to a separate endpoint by calling the overload with options.
 
+### Imports file
+
+[!INCLUDE[](~/includes/blazor-security/imports-file-hosted.md)]
+
 ### Index page
 
 [!INCLUDE[](~/includes/blazor-security/index-page-authentication.md)]
@@ -221,4 +225,10 @@ The `LoginDisplay` component (*Shared/LoginDisplay.razor*) is rendered in the `M
 
 Run the app from the Server project. When using Visual Studio, select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
+[!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
+
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
+
+## Additional resources
+
+* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
