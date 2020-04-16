@@ -5,7 +5,7 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/07/2020
+ms.date: 04/16/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
@@ -62,7 +62,7 @@ Obtain the app's environment in a component by injecting `IWebAssemblyHostEnviro
 
 ### Configuration
 
-As of the ASP.NET Core 3.2 Preview 3 release, Blazor WebAssembly supports configuration from:
+As of the ASP.NET Core 3.2 Preview 3 release ([current release is 3.2 Preview 4](xref:blazor/get-started)), Blazor WebAssembly supports configuration from:
 
 * *wwwroot/appsettings.json*
 * *wwwroot/appsettings.{ENVIRONMENT}.json*
