@@ -202,13 +202,13 @@ conceptualContent:
     - title: Data-driven web apps
       summary: "Create data-driven web apps in ASP.NET Core"
       links:
-        - url: tutorials/first-mvc-app/working-with-sql.md
+        - url: tutorials/first-mvc-app/start-mvc.md
           itemType: tutorial
           text: "SQL with ASP.NET Core"
         - url: blazor/data-binding.md
           itemType: concept
           text: "Data binding in ASP.NET Core Blazor"
-        - url: tutorials/razor-pages/sql.md
+        - url: tutorials/razor-pages/razor-pages-start.md
           itemType: tutorial
           text: "SQL Server Express and Razor Pages"
         - url: data/ef-rp/intro.md
