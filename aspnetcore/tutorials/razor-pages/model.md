@@ -14,7 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 <!-- In the next update on the CLI version, let the scaffolder do the same work the VS driven scaffolder does. That is, create the DB context, etc -->
 
-In this section, classes are added for managing movies. The app's model classes are used with [Entity Framework Core (EF Core)](/ef/core) to work with the database. EF Core is an object-relational mapping (ORM) framework that simplifies data access.
+In this section, classes are added for managing movies. The app's model classes use [Entity Framework Core (EF Core)](/ef/core) to work with the database. EF Core is an object-relational mapping (ORM) framework that simplifies data access.
 
 The model classes are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
 
