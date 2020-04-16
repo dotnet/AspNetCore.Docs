@@ -22,7 +22,7 @@ ASP.NET Core configures app behavior based on the runtime environment using an e
 
 To determine the runtime environment, ASP.NET Core reads from the following environment variables:
 
-1. [DOTNET_ENVIRONMENT](xref:fundamentals/configuration#default-host-configuration)
+1. [DOTNET_ENVIRONMENT](xref:fundamentals/configuration/index#default-host-configuration)
 1. `ASPNETCORE_ENVIRONMENT` when <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> is called. The default ASP.NET Core web app templates call `ConfigureWebHostDefaults`. The `ASPNETCORE_ENVIRONMENT` value overrides `DOTNET_ENVIRONMENT`.
 
 `IHostEnvironment.EnvironmentName` can be set to any value, but the following values are provided by the framework:
