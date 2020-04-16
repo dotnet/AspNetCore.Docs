@@ -34,7 +34,7 @@ To use a stable API, use the [Microsoft.AspNet.WebApi.Client](https://www.nuget.
 
 ## Add the HttpClient service
 
-In `Program.Main`, add an `HttpClient` service:
+In `Program.Main`, add an `HttpClient` service if it doesn't already exist:
 
 ```csharp
 builder.Services.AddSingleton(
