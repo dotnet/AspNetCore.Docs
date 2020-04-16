@@ -14,13 +14,6 @@ namespace First
     #region snippet_all
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
@@ -55,11 +48,6 @@ namespace First
 
         public void ConfigureStaging(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (!env.IsStaging())
-            {
-                throw new Exception("Not staging.");
-            }
-
             // Call staging specific configuration
 
             app.UseExceptionHandler("/Error");

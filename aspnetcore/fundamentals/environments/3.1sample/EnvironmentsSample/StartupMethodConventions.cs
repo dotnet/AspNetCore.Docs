@@ -10,13 +10,6 @@ namespace MethodConventions
     #region snippet
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
         private void StartupConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
@@ -76,11 +69,6 @@ namespace MethodConventions
         public void ConfigureStaging(IApplicationBuilder app, IWebHostEnvironment env)
         {
             MyTrace.TraceMessage();
-
-            if (!env.IsStaging())
-            {
-                throw new Exception("Not staging.");
-            }
 
             app.UseExceptionHandler("/Error");
             app.UseHsts();
