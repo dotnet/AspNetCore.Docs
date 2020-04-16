@@ -5,7 +5,7 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/07/2020
+ms.date: 04/16/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
@@ -59,6 +59,30 @@ Obtain the app's environment in a component by injecting `IWebAssemblyHostEnviro
 
 <p>Environment: @HostEnvironment.Environment</p>
 ```
+
+During startup, the `WebAssemblyHostBuilder` exposes the `IWebAssemblyHostEnvironment` through the `HostEnvironment` property:
+
+```csharp
+if (builder.HostEnvironment == "Custom")
+{
+    ...
+};
+```
+
+The following convenience extension methods permit checking the current environment:
+
+* `IsProduction()`
+* `IsDevelopment()`
+* `IsStaging()`
+
+```csharp
+if (builder.HostEnvironment.IsStaging())
+{
+    ...
+};
+```
+
+The `IWebAssemblyHostEnvironment.BaseAddress` property can be used during startup when the `NavigationManager` service isn't available.
 
 ### Configuration
 
