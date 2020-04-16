@@ -20,16 +20,16 @@ ASP.NET Core configures app behavior based on the runtime environment using an e
 
 ## Environments
 
-ASP.NET Core reads the environment variable [IHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName) value on app startup from the environment variable:
+To determine the runtime environment, ASP.NET Core reads from the following environment variables:
 
 1. [DOTNET_ENVIRONMENT](xref:fundamentals/configuration#default-host-configuration)
 1. `ASPNETCORE_ENVIRONMENT` when <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> is called. The default ASP.NET Core web app templates call `ConfigureWebHostDefaults`. The `ASPNETCORE_ENVIRONMENT` value overrides `DOTNET_ENVIRONMENT`.
 
-`IHostEnvironment.EnvironmentName` can be set to any value, but three values are provided by the framework:
+`IHostEnvironment.EnvironmentName` can be set to any value, but the following values are provided by the framework:
 
-* <xref:Microsoft.Extensions.Hosting.Environments.Development> : The [launchSettings.json](#lsj) file sets `EnvironmentName` to `Development` on the local machine.
+* <xref:Microsoft.Extensions.Hosting.Environments.Development> : The [launchSettings.json](#lsj) file sets `ASPNETCORE_ENVIRONMENT` to `Development` on the local machine.
 * <xref:Microsoft.Extensions.Hosting.Environments.Staging>
-* <xref:Microsoft.Extensions.Hosting.Environments.Production> : The default if `DOTNET_ENVIRONMENT` or `ASPNETCORE_ENVIRONMENT` has not been set.
+* <xref:Microsoft.Extensions.Hosting.Environments.Production> : The default if `DOTNET_ENVIRONMENT` and `ASPNETCORE_ENVIRONMENT` have not been set.
 
 The following code:
 
@@ -40,7 +40,7 @@ The following code:
 
 [!code-csharp[](environments/3.1sample/EnvironmentsSample/Startup.cs?name=snippet)]
 
-The [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) uses the value of [IWebHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName) to include or exclude markup in the element:
+The [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) uses the value of [IHostEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName) to include or exclude markup in the element:
 
 [!code-cshtml[](environments/sample-snapshot/EnvironmentsSample/Pages/About.cshtml)]
 
