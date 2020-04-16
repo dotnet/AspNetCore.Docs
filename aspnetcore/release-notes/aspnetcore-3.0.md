@@ -420,7 +420,7 @@ All services can still be injected directly as arguments to the `Startup.Configu
 * Connection Adapters have been removed from Kestrel and replaced with Connection Middleware, which is similar to HTTP Middleware in the ASP.NET Core pipeline but for lower-level connections.
 * The Kestrel transport layer has been exposed as a public interface in `Connections.Abstractions`.
 * Ambiguity between headers and trailers has been resolved by moving trailing headers to a new collection.
-* Synchronous IO APIs, such as `HttpRequest.Body.Read`, are a common source of thread starvation leading to app crashes. In 3.0, `AllowSynchronousIO` is disabled by default.
+* Synchronous I/O APIs, such as `HttpRequest.Body.Read`, are a common source of thread starvation leading to app crashes. In 3.0, `AllowSynchronousIO` is disabled by default.
 
 For more information, see <xref:migration/22-to-30#kestrel>.
 

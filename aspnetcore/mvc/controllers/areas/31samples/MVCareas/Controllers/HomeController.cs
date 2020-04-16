@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVCareas.Models;
 using System.Diagnostics;
+using Microsoft.Docs.Samples;
 
 namespace MVCareas.Controllers
 {
@@ -8,19 +9,19 @@ namespace MVCareas.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["routeInfo"] = ControllerContext.ToCtxString();
+            ViewData["routeInfo"] = ControllerContext.MyDisplayRouteInfo();
             return View();
         }
 
         public IActionResult Privacy()
         {
-            ViewData["routeInfo"] = ControllerContext.ToCtxString();
+            ViewData["routeInfo"] = ControllerContext.MyDisplayRouteInfo();
             return View();
         }
 
         public IActionResult About()
         {
-            ViewData["routeInfo"] = ControllerContext.ToCtxString();
+            ViewData["routeInfo"] = ControllerContext.MyDisplayRouteInfo();
             return View();
         }
 

@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/29/2020
+ms.date: 3/29/2020
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -42,7 +42,7 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 1. *appsettings.*`Environment`*.json* using the [JSON configuration provider](#file-configuration-provider). For example, *appsettings*.***Production***.*json* and *appsettings*.***Development***.*json*.
 1. [App secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
-1. Command-line arguments using the [Command-line configuration provider](#command-line-configuration-provider).
+1. Command-line arguments using the [Command-line configuration provider](#command-line).
 
 Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in both *appsettings.json* and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#command-line-configuration-provider) overrides all other providers.
 
@@ -278,7 +278,7 @@ For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't 
 
 ## Hierarchical configuration data
 
-The Configuration API is reads hierarchical configuration data by flattening the hierarchical data with the use of a delimiter in the configuration keys.
+The Configuration API reads hierarchical configuration data by flattening the hierarchical data with the use of a delimiter in the configuration keys.
 
 The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  *appsettings.json* file:
 
@@ -305,7 +305,7 @@ Configuration keys:
 * Hierarchical keys
   * Within the Configuration API, a colon separator (`:`) works on all platforms.
   * In environment variables, a colon separator may not work on all platforms. A double underscore, `__`, is supported by all platforms and is automatically converted into a colon `:`.
-  * In Azure Key Vault, hierarchical keys use `--` as a separator. Write code to replace the `--` with a `:` when the secrets are loaded into the app's configuration.
+  * In Azure Key Vault, hierarchical keys use `--` as a separator. The [Azure Key Vault configuration provider](xref:security/key-vault-configuration) automatically replaces `--` with a `:` when the secrets are loaded into the app's configuration.
 * The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder> supports binding arrays to objects using array indices in configuration keys. Array binding is described in the [Bind an array to a class](#boa) section.
 
 Configuration values:

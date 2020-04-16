@@ -44,7 +44,7 @@ namespace WebApiSample
                     {
                         var result = new BadRequestObjectResult(context.ModelState);
 
-                        // TODO: add `using using System.Net.Mime;` to resolve MediaTypeNames
+                        // TODO: add `using System.Net.Mime;` to resolve MediaTypeNames
                         result.ContentTypes.Add(MediaTypeNames.Application.Json);
                         result.ContentTypes.Add(MediaTypeNames.Application.Xml);
 

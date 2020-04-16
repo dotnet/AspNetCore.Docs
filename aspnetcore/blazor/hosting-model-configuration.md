@@ -5,7 +5,7 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 04/07/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
@@ -17,11 +17,85 @@ By [Daniel Roth](https://github.com/danroth27)
 
 This article covers hosting model configuration.
 
-<!-- For future use:
-
 ## Blazor WebAssembly
 
--->
+### Environment
+
+When running an app locally, the environment defaults to Development. When the app is published, the environment defaults to Production.
+
+A hosted Blazor WebAssembly app picks up the environment from the server via a middleware that communicates the environment to the browser by adding the `blazor-environment` header. The value of the header is the environment. The hosted Blazor app and the server app share the same environment. For more information, including how to configure the environment, see <xref:fundamentals/environments>.
+
+For a standalone app running locally, the development server adds the `blazor-environment` header to specify the Development environment. To specify the environment for other hosting environments, add the `blazor-environment` header.
+
+In the following example for IIS, add the custom header to the published *web.config* file. The *web.config* file is located in the *bin/Release/{TARGET FRAMEWORK}/publish* folder:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <system.webServer>
+
+    ...
+
+    <httpProtocol>
+      <customHeaders>
+        <add name="blazor-environment" value="Staging" />
+      </customHeaders>
+    </httpProtocol>
+  </system.webServer>
+</configuration>
+```
+
+> [!NOTE]
+> To use a custom *web.config* file for IIS that isn't overwritten when the app is published to the *publish* folder, see <xref:host-and-deploy/blazor/webassembly#use-a-custom-webconfig>.
+
+Obtain the app's environment in a component by injecting `IWebAssemblyHostEnvironment` and reading the `Environment` property:
+
+```razor
+@page "/"
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@inject IWebAssemblyHostEnvironment HostEnvironment
+
+<h1>Environment example</h1>
+
+<p>Environment: @HostEnvironment.Environment</p>
+```
+
+### Configuration
+
+As of the ASP.NET Core 3.2 Preview 3 release, Blazor WebAssembly supports configuration from:
+
+* *wwwroot/appsettings.json*
+* *wwwroot/appsettings.{ENVIRONMENT}.json*
+
+Add an *appsettings.json* file in the *wwwroot* folder:
+
+```json
+{
+  "message": "Hello from config!"
+}
+```
+
+Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:
+
+```razor
+@page "/"
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<h1>Configuration example</h1>
+
+<p>Message: @Configuration["message"]</p>
+```
+
+> [!WARNING]
+> Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets or credentials in configuration.**
+
+Configuration files are cached for offline use. With [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app), you can only update configuration files when creating a new deployment. Editing configuration files between deployments has no effect because:
+
+* Users have cached versions of the files that they continue to use.
+* The PWA's *service-worker.js* and *service-worker-assets.js* files must be rebuilt on compilation, which signal to the app on the user's next online visit that the app has been redeployed.
+
+For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.
 
 ## Blazor Server
 

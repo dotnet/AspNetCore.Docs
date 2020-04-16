@@ -1,6 +1,7 @@
 ﻿#define MYDEMO
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Docs.Samples;
 
 // This uses same routes as HomeController, and MyDemo3Controller so only one can be defined
 // Test with                     webBuilder.UseStartup<StartupAPI>();

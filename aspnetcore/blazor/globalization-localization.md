@@ -5,7 +5,7 @@ description: Learn how to make Razor components accessible to users in multiple 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 04/14/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/globalization-localization
 ---
@@ -52,6 +52,24 @@ The following field types have specific formatting requirements and aren't curre
 
 ## Localization
 
+### Blazor WebAssembly
+
+By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. For more information and guidance on controlling the linker's behavior, see <xref:host-and-deploy/blazor/configure-linker#configure-the-linker-for-internationalization>.
+
+<!-- HOLD FOR 3.2 PREVIEW 4: Replace prior paragraph with ...
+
+Blazor WebAssembly apps set the culture using the user's [language preference](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages).
+
+To explicitly configure the culture, set `CultureInfo.DefaultThreadCurrentCulture` and `CultureInfo.DefaultThreadCurrentUICulture` in `Program.Main`.
+
+By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. For more information and guidance on controlling the linker's behavior, see <xref:host-and-deploy/blazor/configure-linker#configure-the-linker-for-internationalization>.
+
+While the culture that Blazor selects by default might be sufficient for most users, consider offering a way for users to specify their preferred locale. For a Blazor WebAssembly sample app with a culture picker, see the [LocSample](https://github.com/pranavkm/LocSample) localization sample app.
+
+-->
+
+### Blazor Server
+
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). The middleware selects the appropriate culture for users requesting resources from the app.
 
 The culture can be set using one of the following approaches:
@@ -61,11 +79,7 @@ The culture can be set using one of the following approaches:
 
 For more information and examples, see <xref:fundamentals/localization>.
 
-### Configure the linker for internationalization (Blazor WebAssembly)
-
-By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. For more information and guidance on controlling the linker's behavior, see <xref:host-and-deploy/blazor/configure-linker#configure-the-linker-for-internationalization>.
-
-### Cookies
+#### Cookies
 
 A localization culture cookie can persist the user's culture. The cookie is created by the `OnGet` method of the app's host page (*Pages/Host.cshtml.cs*). The Localization Middleware reads the cookie on subsequent requests to set the user's culture. 
 
@@ -73,7 +87,7 @@ Use of a cookie ensures that the WebSocket connection can correctly propagate th
 
 Any technique can be used to assign a culture if the culture is persisted in a localization cookie. If the app already has an established localization scheme for server-side ASP.NET Core, continue to use the app's existing localization infrastructure and set the localization culture cookie within the app's scheme.
 
-The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware. Create a *Pages/Host.cshtml.cs* file with the following contents in the Blazor Server app:
+The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware. Create a *Pages/_Host.cshtml.cs* file with the following contents in the Blazor Server app:
 
 ```csharp
 public class HostModel : PageModel
@@ -99,9 +113,9 @@ Localization is handled by the app in the following sequence of events:
 1. The Localization Middleware reads the cookie and assigns the culture.
 1. The Blazor Server session begins with the correct culture.
 
-### Provide UI to choose the culture
+#### Provide UI to choose the culture
 
-To provide UI to allow a user to select a culture, a *redirect-based approach* is recommended. The process is similar to what happens in a web app when a user attempts to access a secure resource&mdash;the user is redirected to a sign-in page and then redirected back to the original resource. 
+To provide UI to allow a user to select a culture, a *redirect-based approach* is recommended. The process is similar to what happens in a web app when a user attempts to access a secure resource. The user is redirected to a sign-in page and then redirected back to the original resource. 
 
 The app persists the user's selected culture via a redirect to a controller. The controller sets the user's selected culture into a cookie and redirects the user back to the original URI.
 
@@ -146,7 +160,7 @@ The following component shows an example of how to perform the initial redirecti
     private void OnSelected(ChangeEventArgs e)
     {
         var culture = (string)e.Value;
-        var uri = new Uri(NavigationManager.Uri())
+        var uri = new Uri(NavigationManager.Uri)
             .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
         var query = $"?culture={Uri.EscapeDataString(culture)}&" +
             $"redirectUri={Uri.EscapeDataString(uri)}";

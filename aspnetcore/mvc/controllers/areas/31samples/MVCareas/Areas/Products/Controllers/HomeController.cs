@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Docs.Samples;
 
 namespace MVCareas.Areas.Products.Controllers
 {
@@ -7,13 +8,13 @@ namespace MVCareas.Areas.Products.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["routeInfo"] = ControllerContext.ToCtxString();
+            ViewData["routeInfo"] = ControllerContext.MyDisplayRouteInfo();
             return View();
         }
 
         public IActionResult About()
         {
-            ViewData["routeInfo"] = ControllerContext.ToCtxString();
+            ViewData["routeInfo"] = ControllerContext.MyDisplayRouteInfo();
             return View();
         }
     }
