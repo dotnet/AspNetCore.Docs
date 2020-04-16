@@ -53,7 +53,7 @@ cd EnvironmentsSample
 dotnet run --verbosity normal
 ```
 
-The preceding code displays some of the following output:
+When the app runs, it displays some of the following output:
 
 ```bash
 Using launch settings from c:\tmp\EnvironmentsSample\Properties\launchSettings.json
@@ -85,7 +85,7 @@ The following JSON shows the *launchSettings.json* file for an ASP.NET Core web 
 
 The preceding markup contains two profiles:
 
-* `IIS Express`: The default profile used when launching the app from Visual Studio. The `"commandName"` key has the value `"IISExpress"`, therefore, [IISExpress](/iis/extensions/introduction-to-iis-express/iis-express-overview) is the web server. You can set the launch profile to the project or any other profile included. For example, in the image below, selecting the project name launches the [Kestrel server](xref:fundamentals/servers/kestrel).
+* `IIS Express`: The default profile used when launching the app from Visual Studio. The `"commandName"` key has the value `"IISExpress"`, therefore, [IISExpress](/iis/extensions/introduction-to-iis-express/iis-express-overview) is the web server. You can set the launch profile to the project or any other profile included. For example, in the image below, selecting the project name launches the [Kestrel web server](xref:fundamentals/servers/kestrel).
 
   ![IIS Express launch on menu](environments/_static/iisx2.png)
 * `EnvironmentsSample`: The profile name is the project name. This profile is used by default when launching the app with `dotnet run`.  The `"commandName"` key has the value `"Project"`, therefore, the [Kestrel web server](xref:fundamentals/servers/kestrel) is launched.
@@ -104,7 +104,7 @@ The following *launchSettings.json* file contains multiple profiles:
 
 [!code-json[](environments/3.1sample/EnvironmentsSample/Properties/launchSettings.json)]
 
-Profiles can be selected from Visual Studio or from `dotnet run --launch-profile <Profile Name>`.
+Profiles can be selected from Visual Studio or using `dotnet run --launch-profile <Profile Name>`.
 
 > [!WARNING]
 > *launchSettings.json* shouldn't store secrets. The [Secret Manager tool](xref:security/app-secrets) can be used to store secrets for local development.
@@ -155,7 +155,7 @@ To set the `ASPNETCORE_ENVIRONMENT` for the current session when the app is star
 
 **Command prompt**
 
-```console zz
+```console
 set ASPNETCORE_ENVIRONMENT=Staging
 dotnet run --no-launch-profile
 ```
