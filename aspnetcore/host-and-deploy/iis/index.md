@@ -15,7 +15,7 @@ uid: host-and-deploy/iis/index
     NOTE FOR 5.0
     
     When making the 5.0 version of this topic, remove the Hosting Bundle
-    direct download section from the (new) <=3.1 & >2.2 version and modify 
+    direct download section from the (new) <5.0 & >2.2 version and modify 
     the text and heading for the *Earlier versions of the installer* 
     section. See the 2.2 version for an example.
     
