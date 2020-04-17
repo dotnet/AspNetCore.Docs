@@ -1,6 +1,5 @@
-﻿#define LogFromMain  // or ExpandDefault or FilterInCode or MinLevel or FilterFunction or AzLogOptions or Scopes
-#define FirstProgram
-
+﻿//#define LogFromMain  // or ExpandDefault or FilterInCode or MinLevel or FilterFunction or AzLogOptions or Scopes
+//#define FirstProgram  // comment out this and preceding to define snippet_TemplateCode
 
 using System;
 using System.Collections.Generic;

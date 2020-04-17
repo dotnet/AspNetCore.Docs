@@ -23,46 +23,40 @@ Most of the code examples shown in this article are from ASP.NET Core apps. The 
 
 Logging providers store logs, except for the Console provider which displays logs. For example, the Azure Application Insights provider stores them in Azure Application Insights. Multiple providers can be enabled.
 
-The default ASP.NET Core project templates call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>, which adds the following logging providers:
+The default ASP.NET Core web app templates:
 
-* [Console](#console-provider)
-* [Debug](#debug-provider)
-* [EventSource](#event-source-provider)
-* [EventLog](#windows-eventlog-provider) : Windows only
+* Use [Generic Host](xref:fundamentals/host/generic-host).
+* Call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>, which adds the following logging providers:
+  * [Console](#console-provider)
+  * [Debug](#debug-provider)
+  * [EventSource](#event-source-provider)
+  * [EventLog](#windows-eventlog-provider) : Windows only
+
+[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_TemplateCode)]
+
+The preceding code shows the `Program` class created with the ASP.NET Core web app templates.
 
 To add a provider in an app that uses Generic Host, call the provider's `Add{provider name}` extension method in *Program.cs*:
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_AddProvider&highlight=6)]
 
-In a non-host console app, call the provider's `Add{provider name}` extension method while creating a `LoggerFactory`:
-
-[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=1,7)]
-
-`LoggerFactory` and `AddConsole` require a `using` statement for `Microsoft.Extensions.Logging`.
-
-You can replace the default providers with your own choices. Call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A>, and add the providers you want.
+To replace the default providers, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> and add the selected providers:
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_AddProvider&highlight=5)]
 
 Learn more about [built-in logging providers](#built-in-logging-providers) and [third-party logging providers](#third-party-logging-providers) later in the article.
 
+[Non-host console apps](#nhca) are discussed later in this document.
+
 ## Create logs
 
-To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object. In a web app or hosted service, get an `ILogger` from dependency injection (DI). In non-host console apps, use the `LoggerFactory` to create an `ILogger`.
+To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object from dependency injection (DI).
 
-The following ASP.NET Core example creates a logger with `TodoApiSample.Pages.AboutModel` as the category. The log *category* is a string that is associated with each log. The `ILogger<T>` instance provided by DI creates logs that have the fully qualified name of type `T` as the category. 
+The following example creates a logger with `TodoApiSample.Pages.AboutModel` as the category. The log *category* is a string that is associated with each log. The `ILogger<T>` instance provided by DI creates logs that have the fully qualified name of type `T` as the category.
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_LoggerDI&highlight=3,5,7)]
-
-The following non-host console app example creates a logger with `LoggingConsoleApp.Program` as the category.
-
-[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=10)]
-
-In the following ASP.NET Core and console app examples, the logger is used to create logs with `Information` as the level. The Log *level* indicates the severity of the logged event.
+In the following examples, the logger is used to create logs with `Information` as the level. The Log *level* indicates the severity of the logged event.
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=4)]
-
-[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=11)]
 
 [Levels](#log-level) and [categories](#log-category) are explained in more detail later in this article.
 
@@ -813,7 +807,10 @@ Using a third-party framework is similar to using one of the built-in providers:
 
 For more information, see each provider's documentation. Third-party logging providers aren't supported by Microsoft.
 
-## Non-host console apps
+zz
+<a name="nhca"></a>
+
+## Non-host console app
 
 <!-- review required. Need to explain why you'd want to use Non-host console apps -->
 Non-host console app's are typically used with [headless services](https://docs.okd.io/3.6/architecture/core_concepts/pods_and_services.html#headless-services). Headless services are frequently used with containers and [Kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services).
@@ -822,7 +819,25 @@ For an example of how to use the Generic Host in a non-web console app, see the 
 
 Logging code for apps without Generic Host differs in the way [providers are added](#add-providers) and [loggers are created](#create-logs). 
 
+### Non-host console app Logging providers
 
+In a non-host console app, call the provider's `Add{provider name}` extension method while creating a `LoggerFactory`:
+
+[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=1,7)]
+
+### Non-host console app Create logs
+
+To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object. Use the `LoggerFactory` to create an `ILogger`.
+
+The following example creates a logger with `LoggingConsoleApp.Program` as the category.
+
+[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=10)]
+
+In the following ASP.NET examples, the logger is used to create logs with `Information` as the level. The Log *level* indicates the severity of the logged event.
+
+[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=11)]
+
+[Levels](#log-level) and [categories](#log-category) are explained in more detail in this article.
 
 ## Additional resources
 
