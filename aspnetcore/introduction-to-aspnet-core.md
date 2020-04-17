@@ -16,14 +16,14 @@ By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.
 
 ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/dotnet/aspnetcore) framework for building modern, cloud-enabled, Internet-connected apps. With ASP.NET Core, you can:
 
-* Build web apps and services, [IoT](https://www.microsoft.com/internet-of-things/) apps, and mobile backends.
+* Build web apps and services, [Internet of Things (IoT)](https://www.microsoft.com/internet-of-things/) apps, and mobile backends.
 * Use your favorite development tools on Windows, macOS, and Linux.
 * Deploy to the cloud or on-premises.
 * Run on [.NET Core](/dotnet/core/introduction).
 
 ## Why choose ASP.NET Core?
 
-Millions of developers use or have used [ASP.NET 4.x](/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, with architectural changes that result in a leaner, more modular framework.
+Millions of developers use or have used [ASP.NET 4.x](/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, including architectural changes that result in a leaner, more modular framework.
 
 [!INCLUDE[](~/includes/benefits.md)]
 
@@ -51,7 +51,7 @@ ASP.NET Core 3.x and later can only target .NET Core. Generally, ASP.NET Core is
 
 There are several advantages to targeting .NET Core, and these advantages increase with each release. Some advantages of .NET Core over .NET Framework include:
 
-* Cross-platform. Runs on macOS, Linux, and Windows.
+* Cross-platform. Runs on Windows, macOS, and Linux.
 * Improved performance
 * [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#a-need-for-side-by-side-of-net-versions-per-application-level)
 * New APIs
@@ -68,7 +68,7 @@ We recommend the following sequence of tutorials for an introduction to developi
    |Web app                   | New server-side web UI development |[Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) |
    |Web app                   | Maintaining an MVC app |[Get started with MVC](xref:tutorials/first-mvc-app/start-mvc)|
    |Web app                   | Client-side web UI development |[Get started with Blazor](xref:tutorials/first-blazor-app) |
-   |Web API                   | RESTful HTTP services |[Create a web API](xref:tutorials/first-web-api)\* |
+   |Web API                   | RESTful HTTP services |[Create a web API](xref:tutorials/first-web-api)&dagger; |
    |Remote Procedure Call app | Contract-first services using Protocol Buffers |[Get started with a gRPC service](xref:tutorials/grpc/grpc-start) |
    |Real-time app             | Bidirectional communication between servers and connected clients |[Get started with SignalR](xref:tutorials/signalr) |
 
@@ -83,7 +83,7 @@ We recommend the following sequence of tutorials for an introduction to developi
 
 1. Browse the table of contents for other topics of interest.
 
-\* There's also an [interactive web API tutorial](/learn/modules/build-web-api-net-core). No local installation of development tools is required. The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/) in your browser, and [curl](https://curl.haxx.se/) is used for testing.
+&dagger;There's also an [interactive web API tutorial](/learn/modules/build-web-api-net-core). No local installation of development tools is required. The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/) in your browser, and [curl](https://curl.haxx.se/) is used for testing.
 
 ## Migrate from .NET Framework
 
@@ -95,7 +95,7 @@ For a reference guide to migrating ASP.NET 4.x apps to ASP.NET Core, see <xref:m
 
 ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/dotnet/aspnetcore) framework for building modern, cloud-enabled, Internet-connected apps. With ASP.NET Core, you can:
 
-* Build web apps and services, [IoT](https://www.microsoft.com/internet-of-things/) apps, and mobile backends.
+* Build web apps and services, [Internet of Things (IoT)](https://www.microsoft.com/internet-of-things/) apps, and mobile backends.
 * Use your favorite development tools on Windows, macOS, and Linux.
 * Deploy to the cloud or on-premises.
 * Run on [.NET Core or .NET Framework](/dotnet/articles/standard/choosing-core-framework-server).
@@ -155,7 +155,7 @@ We recommend the following sequence of tutorials and articles for an introductio
    |----------|----------|----------|
    |Web app                   | For new development        |[Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) |
    |Web app                   | For maintaining an MVC app |[Get started with MVC](xref:tutorials/first-mvc-app/start-mvc)|
-   |Web API                   |                            |[Create a web API](xref:tutorials/first-web-api)\*  |
+   |Web API                   |                            |[Create a web API](xref:tutorials/first-web-api)&dagger; |
    |Real-time app             |                            |[Get started with SignalR](xref:tutorials/signalr) |
 
 1. Follow a tutorial that shows how to do basic data access.
@@ -169,7 +169,7 @@ We recommend the following sequence of tutorials and articles for an introductio
 
 1. Browse the Table of Contents for other topics of interest.
 
-\* There is a [web API tutorial that you follow entirely in the browser](/learn/modules/build-web-api-net-core), no local IDE installation required. The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), and [curl](https://curl.haxx.se/) is used for testing.
+&dagger;There's also a [web API tutorial that you follow entirely in the browser](/learn/modules/build-web-api-net-core), no local IDE installation required. The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), and [curl](https://curl.haxx.se/) is used for testing.
 
 ## Migrate from .NET Framework
 
