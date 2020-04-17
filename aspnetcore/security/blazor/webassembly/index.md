@@ -91,7 +91,8 @@ public void ConfigureServices(IServiceCollection services)
     ...
 
     services.AddRazorPages();
-    services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
+    services.AddScoped<AuthenticationStateProvider, 
+        ServerAuthenticationStateProvider>();
     services.AddScoped<SignOutSessionStateManager>();
 
     Client.Program.ConfigureCommonServices(services);
@@ -115,9 +116,11 @@ In the Server app, create a *Pages* folder if it doesn't exist. Create a *_Host.
 
   ```cshtml
   <app>
-      @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
+      @if (!HttpContext.Request.Path.StartsWithSegments(
+          "/authentication"))
       {
-          <component type="typeof(Wasm.Authentication.Client.App)" render-mode="Static" />
+          <component type="typeof(Wasm.Authentication.Client.App)" 
+              render-mode="Static" />
       }
       else
       {
@@ -145,9 +148,11 @@ Users bound to the app can be customized. In the following server API example, a
 1. Create a factory that extends `AccountClaimsPrincipalFactory<T>`:
 
    ```csharp
-   public class CustomAccountFactory : AccountClaimsPrincipalFactory<OidcAccount>
+   public class CustomAccountFactory 
+       : AccountClaimsPrincipalFactory<OidcAccount>
    {
-       public AccountClaimsPrincipalFactory(NavigationManager navigationManager, IAccessTokenProviderAccessor accessor)
+       public AccountClaimsPrincipalFactory(NavigationManager navigationManager, 
+           IAccessTokenProviderAccessor accessor)
            : base(accessor)
        {
        }
@@ -162,7 +167,8 @@ Users bound to the app can be customized. In the following server API example, a
            {
                foreach (var value in account.AuthenticationMethod)
                {
-                   ((ClaimsIdentity)initialUser.Identity).AddClaim(new Claim("amr", value));
+                   ((ClaimsIdentity)initialUser.Identity)
+                       .AddClaim(new Claim("amr", value));
                }
            }
        }
@@ -172,8 +178,10 @@ Users bound to the app can be customized. In the following server API example, a
 1. Register services:
 
    ```csharp
-   services.AddApiAuthorization<RemoteAuthenticationState, UserAccount>()
-       .AddUserFactory<RemoteAuthenticationState, UserAccount, CustomAccountFactory>();
+   services.AddApiAuthorization<RemoteAuthenticationState, 
+       UserAccount>()
+       .AddUserFactory<RemoteAuthenticationState, UserAccount, 
+           CustomAccountFactory>();
    ```
 
 ## Options for hosted apps and third-party login providers
