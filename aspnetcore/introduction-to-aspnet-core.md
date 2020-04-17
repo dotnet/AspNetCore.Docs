@@ -61,7 +61,7 @@ There are several advantages to targeting .NET Core, and these advantages increa
 
 We recommend the following sequence of tutorials for an introduction to developing ASP.NET Core apps:
 
-1. Follow a tutorial for the type of app you want to develop or maintain:
+1. Follow a tutorial for the app type you want to develop or maintain.
 
    |App type  |Scenario  |Tutorial  |
    |----------|----------|----------|
@@ -70,14 +70,14 @@ We recommend the following sequence of tutorials for an introduction to developi
    |Web app                   | Client-side web UI development |[Get started with Blazor](xref:tutorials/first-blazor-app) |
    |Web API                   | RESTful HTTP services |[Create a web API](xref:tutorials/first-web-api)\* |
    |Remote Procedure Call app | Contract-first services using Protocol Buffers |[Get started with a gRPC service](xref:tutorials/grpc/grpc-start) |
-   |Real-time app             | Bidirectional client and server communication |[Get started with SignalR](xref:tutorials/signalr) |
+   |Real-time app             | Bidirectional communication between servers and connected clients |[Get started with SignalR](xref:tutorials/signalr) |
 
-1. Follow a tutorial that shows how to do basic data access:
+1. Follow a tutorial that shows how to do basic data access.
 
    |Scenario  |Tutorial  |
    |----------|----------|
-   | New development        |[Razor Pages with Entity Framework Core](xref:data/ef-rp/intro) |
-   | Maintaining an MVC app |[MVC with Entity Framework Core](xref:data/ef-mvc/intro) |
+   |New development        |[Razor Pages with Entity Framework Core](xref:data/ef-rp/intro) |
+   |Maintaining an MVC app |[MVC with Entity Framework Core](xref:data/ef-mvc/intro) |
 
 1. Read an overview of ASP.NET Core features that apply to all app types:
 
@@ -159,8 +159,6 @@ We recommend the following sequence of tutorials and articles for an introductio
    |Web app                   | For maintaining an MVC app |[Get started with MVC](xref:tutorials/first-mvc-app/start-mvc)|
    |Web API                   |                            |[Create a web API](xref:tutorials/first-web-api)\*  |
    |Real-time app             |                            |[Get started with SignalR](xref:tutorials/signalr) |
-   |Blazor app                |                            |[Get started with Blazor](xref:blazor/get-started) |
-   |Remote Procedure Call app |                            |[Get started with a gRPC service](xref:tutorials/grpc/grpc-start) |
 
 1. Follow a tutorial that shows how to do basic data access:
 
