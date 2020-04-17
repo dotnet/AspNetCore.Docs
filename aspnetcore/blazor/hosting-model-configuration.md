@@ -60,7 +60,7 @@ Obtain the app's environment in a component by injecting `IWebAssemblyHostEnviro
 <p>Environment: @HostEnvironment.Environment</p>
 ```
 
-During startup, the `WebAssemblyHostBuilder` exposes the `IWebAssemblyHostEnvironment` through the `HostEnvironment` property:
+During startup, the `WebAssemblyHostBuilder` exposes the `IWebAssemblyHostEnvironment` through the `HostEnvironment` property, which enables developers to have environment-specific logic in their code:
 
 ```csharp
 if (builder.HostEnvironment.Environment == "Custom")
