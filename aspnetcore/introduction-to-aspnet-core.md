@@ -67,7 +67,7 @@ We recommend the following sequence of tutorials for an introduction to developi
    |----------|----------|----------|
    |Web app                   | New server-side web UI development |[Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) |
    |Web app                   | Maintaining an MVC app |[Get started with MVC](xref:tutorials/first-mvc-app/start-mvc)|
-   |Web app                   | Client-side web UI development |[Get started with Blazor](xref:tutorials/build-your-first-blazor-app) |
+   |Web app                   | Client-side web UI development |[Get started with Blazor](xref:tutorials/first-blazor-app) |
    |Web API                   | RESTful HTTP services |[Create a web API](xref:tutorials/first-web-api)\* |
    |Remote Procedure Call app | Contract-first services using Protocol Buffers |[Get started with a gRPC service](xref:tutorials/grpc/grpc-start) |
    |Real-time app             | Bidirectional client and server communication |[Get started with SignalR](xref:tutorials/signalr) |
