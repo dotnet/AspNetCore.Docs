@@ -90,8 +90,7 @@ namespace MethodConventions
 
     public static class MyTrace
     {
-        public static void TraceMessage([CallerMemberName] 
-                                        string memberName = "")
+        public static void TraceMessage([CallerMemberName] string memberName = "")
         {
             Console.WriteLine($"Method: {memberName}");
         }
