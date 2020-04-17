@@ -175,7 +175,7 @@ Users bound to the app can be customized. In the following server API example, a
    }
    ```
 
-1. Register services:
+1. Register services to use the `CustomAccountFactory`:
 
    ```csharp
    services.AddApiAuthorization<RemoteAuthenticationState, UserAccount>()
