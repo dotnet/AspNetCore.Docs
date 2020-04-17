@@ -1,7 +1,7 @@
 ---
-title: Call a web API from ASP.NET Core Blazor
+title: Call a web API from ASP.NET Core Blazor WebAssembly
 author: guardrex
-description: Learn how to call a web API from a Blazor app using JSON helpers, including making cross-origin resource sharing (CORS) requests.
+description: Learn how to call a web API from a Blazor WebAssembly app using JSON helpers, including making cross-origin resource sharing (CORS) requests.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -29,8 +29,6 @@ See the following components in the *BlazorWebAssemblySample* sample app:
 ## Packages
 
 Reference the [System.Net.Http.Json](https://www.nuget.org/packages/System.Net.Http.Json/) NuGet package in the project file.
-
-To use a stable API, use the [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client/) package, which uses [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/)/[Json.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm). Using the stable API in `Microsoft.AspNet.WebApi.Client` doesn't provide the JSON helpers described in this topic, which are unique to the `System.Net.Http.Json` package.
 
 ## Add the HttpClient service
 
