@@ -131,7 +131,7 @@ In the Server app, create a *Pages* folder if it doesn't exist. Create a *_Host.
 
 ## Customize the user
 
-Users bound to the app can be customized. In the following server API example, all authenticated users receive an `amr` claim with an array of the user's authentication methods.
+Users bound to the app can be customized. In the following server API example, all authenticated users receive an `amr` claim for each of the user's authentication methods.
 
 1. Create a class that extends the `Account` class:
 
