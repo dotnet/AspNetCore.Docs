@@ -19,7 +19,7 @@ If the request failed because the token couldn't be provisioned without user int
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject IAccessTokenProvider AuthenticationService
 @inject NavigationManager Navigation
-@using HostedIdentityServer.Shared
+@using {APPLICATION NAMESPACE}.Shared
 @attribute [Authorize]
 
 ...
