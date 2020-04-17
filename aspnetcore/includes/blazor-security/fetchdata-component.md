@@ -15,7 +15,11 @@ If the request failed because the token couldn't be provisioned without user int
 
 ```razor
 @page "/fetchdata"
-...
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject IAccessTokenProvider AuthenticationService
+@inject NavigationManager Navigation
+@using {APPLICATION NAMESPACE}.Shared
 @attribute [Authorize]
 
 ...
