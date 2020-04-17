@@ -1,7 +1,7 @@
 ---
 title: Introduction to ASP.NET Core
 author: rick-anderson
-description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.
+description: Get an introduction to ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-enabled, Internet-connected apps.
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/17/2020
@@ -14,7 +14,7 @@ By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/aspnet/home) framework for building modern, cloud-based, Internet-connected applications. With ASP.NET Core, you can:
+ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/dotnet/aspnetcore) framework for building modern, cloud-enabled, Internet-connected apps. With ASP.NET Core, you can:
 
 * Build web apps and services, [IoT](https://www.microsoft.com/internet-of-things/) apps, and mobile backends.
 * Use your favorite development tools on Windows, macOS, and Linux.
@@ -95,7 +95,7 @@ For a reference guide to migrating ASP.NET 4.x apps to ASP.NET Core, see <xref:m
 
 ::: moniker range="< aspnetcore-3.0"
 
-ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/aspnet/home) framework for building modern, cloud-based, Internet-connected applications. With ASP.NET Core, you can:
+ASP.NET Core is a cross-platform, high-performance, [open-source](https://github.com/dotnet/aspnetcore) framework for building modern, cloud-enabled, Internet-connected apps. With ASP.NET Core, you can:
 
 * Build web apps and services, [IoT](https://www.microsoft.com/internet-of-things/) apps, and mobile backends.
 * Use your favorite development tools on Windows, macOS, and Linux.
