@@ -151,7 +151,7 @@ We're working hard to close the API gap from .NET Framework to .NET Core. The [W
 
 We recommend the following sequence of tutorials and articles for an introduction to developing ASP.NET Core apps:
 
-1. Follow a tutorial for the type of app you want to develop or maintain:
+1. Follow a tutorial for the type of app you want to develop or maintain.
 
    |App type  |Scenario  |Tutorial  |
    |----------|----------|----------|
@@ -160,7 +160,7 @@ We recommend the following sequence of tutorials and articles for an introductio
    |Web API                   |                            |[Create a web API](xref:tutorials/first-web-api)\*  |
    |Real-time app             |                            |[Get started with SignalR](xref:tutorials/signalr) |
 
-1. Follow a tutorial that shows how to do basic data access:
+1. Follow a tutorial that shows how to do basic data access.
 
    |Scenario  |Tutorial  |
    |----------|----------|
