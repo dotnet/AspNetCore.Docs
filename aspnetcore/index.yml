@@ -11,7 +11,7 @@ metadata:
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 03/27/2020
+  ms.date: 04/15/2020
 
 # highlightedContent section (optional)
 # Maximum of 8 items
@@ -49,7 +49,7 @@ highlightedContent:
     # Card
     - title: "Create your first data-driven MVC web app"
       itemType: get-started
-      url: tutorials/first-mvc-app/index.md
+      url: tutorials/first-mvc-app//start-mvc.md
 
 # conceptualContent section (optional)
 conceptualContent:
@@ -202,13 +202,13 @@ conceptualContent:
     - title: Data-driven web apps
       summary: "Create data-driven web apps in ASP.NET Core"
       links:
-        - url: tutorials/first-mvc-app/working-with-sql.md
+        - url: tutorials/first-mvc-app/start-mvc.md
           itemType: tutorial
           text: "SQL with ASP.NET Core"
         - url: blazor/data-binding.md
           itemType: concept
           text: "Data binding in ASP.NET Core Blazor"
-        - url: tutorials/razor-pages/sql.md
+        - url: tutorials/razor-pages/razor-pages-start.md
           itemType: tutorial
           text: "SQL Server Express and Razor Pages"
         - url: data/ef-rp/intro.md

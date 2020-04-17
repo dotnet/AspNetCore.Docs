@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -90,8 +89,7 @@ namespace MethodConventions
 
     public static class MyTrace
     {
-        public static void TraceMessage([CallerMemberName] 
-                                        string memberName = "")
+        public static void TraceMessage([CallerMemberName] string memberName = "")
         {
             Console.WriteLine($"Method: {memberName}");
         }

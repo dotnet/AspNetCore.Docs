@@ -19,5 +19,5 @@ document.getElementById("sendButton").addEventListener("click", function (event)
 });
 
 connection.start().catch(function (err) {
-    return console.error(err.toString());
+    return console.error(err);
 });

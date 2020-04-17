@@ -266,12 +266,6 @@ public class HomeController : Controller
 }
 ```
 
-In the About view, access the `Title` property as a model property:
-
-```cshtml
-<h1>@Model.Title</h1>
-```
-
 In the layout, the title is read from the ViewData dictionary:
 
 ```cshtml
