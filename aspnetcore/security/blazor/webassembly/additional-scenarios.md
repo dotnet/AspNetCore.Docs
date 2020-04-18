@@ -307,7 +307,7 @@ Users bound to the app can be customized. In the following example, all authenti
    }
    ```
 
-1. Create a factory that extends `AccountClaimsPrincipalFactory<T>`:
+1. Create a factory that extends `AccountClaimsPrincipalFactory<TAccount>`:
 
    ```csharp
    using System.Security.Claims;
