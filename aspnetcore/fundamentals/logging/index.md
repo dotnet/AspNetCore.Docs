@@ -34,15 +34,14 @@ The default ASP.NET Core web app templates:
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_TemplateCode)]
 
-The preceding code shows the `Program` class created with the ASP.NET Core web app templates.
+The preceding code shows the `Program` class created with the ASP.NET Core web app templates. The next several sections provide samples using Generic Host. [Non-host console apps](#nhca) are discussed later in this document.
 
-To add a provider in an app that uses Generic Host, call the provider's `Add{provider name}` extension method in *Program.cs*:
+The following code:
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_AddProvider&highlight=6)]
+* Calls xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> to remove all the <xref:Microsoft.Extensions.Logging.ILoggerProvider> instances from the builder.
+* Adds the [Console](#console-provider) logging provider.
 
-To replace the default providers, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> and add the selected providers:
-
-[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_AddProvider&highlight=5)]
+[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_AddProvider)]
 
 Learn more about [built-in logging providers](#built-in-logging-providers) and [third-party logging providers](#third-party-logging-providers) later in the article.
 
