@@ -317,7 +317,7 @@ Users bound to the app can be customized. In the following example, all authenti
    using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 
    public class CustomAccountFactory 
-       : AccountClaimsPrincipalFactory<OidcAccount>
+       : AccountClaimsPrincipalFactory<UserAccount>
    {
        public AccountClaimsPrincipalFactory(NavigationManager navigationManager, 
            IAccessTokenProviderAccessor accessor)
@@ -326,7 +326,7 @@ Users bound to the app can be customized. In the following example, all authenti
        }
   
        public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
-           OidcAccount account,
+           UserAccount account,
            RemoteAuthenticationUserOptions options)
        {
            var initialUser = await base.CreateUserAsync(account, options);
