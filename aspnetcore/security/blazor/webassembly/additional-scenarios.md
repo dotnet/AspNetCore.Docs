@@ -292,67 +292,64 @@ The `RemoteAuthenticatorView` has one fragment that can be used per authenticati
 
 ## Customize the user
 
-Users bound to the app can be customized. In the following example, all authenticated users receive an `amr` claim for each of the user's authentication methods.
+Users bound to the app can be customized. In the following example, all authenticated users receive an `amr` claim for each of the user's authentication methods:
 
-1. Create a class that extends the `RemoteUserAccount` class:
+Create a class that extends the `RemoteUserAccount` class:
 
-   ```csharp
-   using System.Text.Json.Serialization;
-   using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+```csharp
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
-   public class UserAccount : RemoteUserAccount
-   {
-       [JsonPropertyName("amr")]
-       public string[] AuthenticationMethods { get; set; }
-   }
-   ```
+public class UserAccount : RemoteUserAccount
+{
+    [JsonPropertyName("amr")]
+    public string[] AuthenticationMethods { get; set; }
+}
+```
 
-1. Create a factory that extends `AccountClaimsPrincipalFactory<TAccount>`:
+Create a factory that extends `AccountClaimsPrincipalFactory<TAccount>`:
 
-   ```csharp
-   using System.Security.Claims;
-   using System.Threading.Tasks;
-   using Microsoft.AspNetCore.Components;
-   using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-   using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
+```csharp
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 
-   public class CustomAccountFactory 
-       : AccountClaimsPrincipalFactory<UserAccount>
-   {
-       public AccountClaimsPrincipalFactory(NavigationManager navigationManager, 
-           IAccessTokenProviderAccessor accessor)
-           : base(accessor)
-       {
-       }
+public class CustomAccountFactory : AccountClaimsPrincipalFactory<UserAccount>
+{
+    public AccountClaimsPrincipalFactory(NavigationManager navigationManager, 
+        IAccessTokenProviderAccessor accessor) : base(accessor)
+    {
+    }
   
-       public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
-           UserAccount account,
-           RemoteAuthenticationUserOptions options)
-       {
-           var initialUser = await base.CreateUserAsync(account, options);
+    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+        UserAccount account, RemoteAuthenticationUserOptions options)
+    {
+        var initialUser = await base.CreateUserAsync(account, options);
 
-           if (initialUser.Identity.IsAuthenticated)
-           {
-               foreach (var value in account.AuthenticationMethods)
-               {
-                   ((ClaimsIdentity)initialUser.Identity)
-                       .AddClaim(new Claim("amr", value));
-               }
-           }
+        if (initialUser.Identity.IsAuthenticated)
+        {
+            foreach (var value in account.AuthenticationMethods)
+            {
+                ((ClaimsIdentity)initialUser.Identity)
+                    .AddClaim(new Claim("amr", value));
+            }
+        }
            
-           return initialUser;
-       }
-   }
-   ```
+        return initialUser;
+    }
+}
+```
 
-1. Register services to use the `CustomAccountFactory`:
+Register services to use the `CustomAccountFactory`:
 
-   ```csharp
-   using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
-   ...
+...
 
-   services.AddApiAuthorization<RemoteAuthenticationState, UserAccount>()
-       .AddUserFactory<RemoteAuthenticationState, UserAccount, 
-           CustomAccountFactory>();
-   ```
+services.AddApiAuthorization<RemoteAuthenticationState, UserAccount>()
+    .AddUserFactory<RemoteAuthenticationState, UserAccount, 
+        CustomAccountFactory>();
+```
