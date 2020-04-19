@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/30/2020
+ms.date: 04/19/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/additional-scenarios
 ---
@@ -134,7 +134,7 @@ The following example shows how to:
         {
             httpClient.DefaultRequestHeaders.Add("Authorization", 
                 $"Bearer {token.Value}");
-            await httpClient.PostJsonAsync("Save", User);
+            await httpClient.PostAsJsonAsync("Save", User);
         }
         else
         {

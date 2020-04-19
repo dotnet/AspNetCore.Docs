@@ -38,7 +38,7 @@ If the request failed because the token couldn't be provisioned without user int
         {
             httpClient.DefaultRequestHeaders.Add("Authorization", 
                 $"Bearer {token.Value}");
-            forecasts = await httpClient.GetJsonAsync<WeatherForecast[]>(
+            forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>(
                 "WeatherForecast");
         }
         else
