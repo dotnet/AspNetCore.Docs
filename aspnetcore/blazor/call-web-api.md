@@ -5,7 +5,7 @@ description: Learn how to call a web API from a Blazor WebAssembly app using JSO
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 04/19/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/call-web-api
 ---
@@ -112,7 +112,11 @@ JSON helper methods send requests to a URI (a web API in the following examples)
   }
   ```
   
-  Calls to `PostAsJsonAsync` return an <xref:System.Net.Http.HttpResponseMessage>.
+  Calls to `PostAsJsonAsync` return an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the `ReadFromJsonAsync<T>` extension method:
+  
+  ```csharp
+  var content = response.content.ReadFromJsonAsync<WeatherForecast>();
+  ```
 
 * `PutAsJsonAsync` &ndash; Sends an HTTP PUT request, including JSON-encoded content.
 
@@ -141,7 +145,11 @@ JSON helper methods send requests to a URI (a web API in the following examples)
   }
   ```
   
-  Calls to `PutAsJsonAsync` return an <xref:System.Net.Http.HttpResponseMessage>.
+  Calls to `PutAsJsonAsync` return an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the `ReadFromJsonAsync<T>` extension method:
+  
+  ```csharp
+  var content = response.content.ReadFromJsonAsync<WeatherForecast>();
+  ```
 
 <xref:System.Net.Http> includes additional extension methods for sending HTTP requests and receiving HTTP responses. [HttpClient.DeleteAsync](xref:System.Net.Http.HttpClient.DeleteAsync*) is used to send an HTTP DELETE request to a web API.
 

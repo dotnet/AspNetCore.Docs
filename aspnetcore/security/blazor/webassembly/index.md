@@ -5,7 +5,7 @@ description: Learn how to secure Blazor WebAssemlby apps as Single Page Applicat
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/31/2020
+ms.date: 04/19/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/index
 ---
@@ -64,7 +64,11 @@ public class Program
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
         builder.RootComponents.Add<App>("app");
 
-        services.AddBaseAddressHttpClient();
+        builder.Services.AddSingleton(new HttpClient 
+        {
+            BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+        });
+
         services.Add...;
 
         ConfigureCommonServices(builder.Services);
