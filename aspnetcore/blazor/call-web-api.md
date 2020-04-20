@@ -216,7 +216,7 @@ When running on WebAssembly in a Blazor WebAssembly app, use [HttpClient](xref:f
 }
 ```
 
-Under the covers, .NET WebAssembly's implementation of HttpClient uses [WindowOrWorkerGlobalScope.fetch()](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch allows configuring several [request specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). Blazor WebAssembly provides extension methods on <xref:System.Net.Http.HttpRequestMessage /> to allow configuring these. For instance, to include credentials in a cross-origin request, use the `SetBrowserRequestCredentials` extension method:
+.NET WebAssembly's implementation of `HttpClient` uses [WindowOrWorkerGlobalScope.fetch()](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch allows configuring several [request-specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). Blazor WebAssembly provides extension methods on <xref:System.Net.Http.HttpRequestMessage> to allow configuring Fetch's options. For instance to include credentials in a cross-origin request, use the `SetBrowserRequestCredentials` extension method:
 
 ```csharp
 requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
