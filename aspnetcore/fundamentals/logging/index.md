@@ -64,7 +64,7 @@ The following example:
 
 To write logs in the `Program` class of an ASP.NET Core app, get an `ILogger` instance from DI after building the host:
 
-[!code-csharp[](index/samples_snapshot/3.x/TodoApiDTO/Program.cs?highlight=9,10)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Program.cs?name=snippet_LogProgram)]
 
 ### Create logs in the Startup class
 

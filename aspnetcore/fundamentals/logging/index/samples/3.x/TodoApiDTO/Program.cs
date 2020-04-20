@@ -1,5 +1,6 @@
-//#define LogFromMain  // or ExpandDefault or FilterInCode or MinLevel or FilterFunction or AzLogOptions or Scopes
-//#define FirstProgram  // comment out this and preceding to define snippet_TemplateCode
+#define snippet_LogProgram //LogFromMain  // or ExpandDefault or FilterInCode or MinLevel or FilterFunction or AzLogOptions or Scopes
+#define FirstProgram  // This should always be defined except, comment out this and preceding to define 
+                      // snippet_TemplateCode
 
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace TodoApi
     {
 
 #if LogFromMain
-    #region snippet_LogFromMain
+        #region snippet_LogFromMain
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
@@ -40,9 +41,9 @@ namespace TodoApi
 
             host.Run();
         }
-    #endregion
+        #endregion
 
-    #region snippet_AddProvider
+        #region snippet_AddProvider
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureLogging(logging =>
@@ -54,9 +55,9 @@ namespace TodoApi
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-    #endregion
+        #endregion
 #elif AzLogOptions
-    #region snippet_AzLogOptions
+        #region snippet_AzLogOptions
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
@@ -89,7 +90,7 @@ namespace TodoApi
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-    #endregion
+        #endregion
 #elif Scopes
         public static void Main(string[] args)
         {
@@ -105,7 +106,7 @@ namespace TodoApi
             host.Run();
         }
 
-    #region snippet_Scopes
+        #region snippet_Scopes
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureLogging((hostingContext, logging) =>
@@ -118,7 +119,7 @@ namespace TodoApi
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-    #endregion
+        #endregion
 #elif FilterInCode
         public static void Main(string[] args)
         {
@@ -127,11 +128,11 @@ namespace TodoApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-    #region snippet_FilterInCode
+        #region snippet_FilterInCode
                 .ConfigureLogging(logging =>
                     logging.AddFilter("System", LogLevel.Debug)
                            .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Trace))
-    #endregion
+        #endregion
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
@@ -142,11 +143,11 @@ namespace TodoApi
             CreateHostBuilder(args).Build().Run();
         }
 
-    #region snippet_MinLevel
+        #region snippet_MinLevel
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning))
-    #endregion
+        #endregion
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
@@ -159,7 +160,7 @@ namespace TodoApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-    #region snippet_FilterFunction
+        #region snippet_FilterFunction
                 .ConfigureLogging(logBuilder =>
                 {
                     logBuilder.AddFilter((provider, category, logLevel) =>
@@ -172,11 +173,30 @@ namespace TodoApi
                         return true;
                     });
                 })
-    #endregion
+        #endregion
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+#elif snippet_LogProgram
+        #region snippet_LogProgram
+        public static void Main(string[] args)
+        {
+            var host = CreateHostBuilder(args).Build();
+
+            var logger = host.Services.GetRequiredService<ILogger<Program>>();
+            logger.LogInformation("Host created.");
+
+            host.Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+        #endregion
 #else
         // Do nothing.
 #endif
