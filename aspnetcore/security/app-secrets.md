@@ -4,12 +4,12 @@ author: rick-anderson
 description: Learn how to store and retrieve sensitive information as app secrets during the development of an ASP.NET Core app.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 4/20/2020
 uid: security/app-secrets
 ---
 # Safe storage of app secrets in development in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://github.com/danroth27), and [Scott Addie](https://github.com/scottaddie)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5), [Daniel Roth](https://github.com/danroth27), and [Scott Addie](https://github.com/scottaddie)
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/app-secrets/samples) ([how to download](xref:index#how-to-download-a-sample))
 
