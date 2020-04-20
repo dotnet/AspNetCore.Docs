@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/18/2020
+ms.date: 04/20/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/additional-scenarios
 ---
@@ -300,10 +300,10 @@ Create a class that extends the `RemoteUserAccount` class:
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
-public class UserAccount : RemoteUserAccount
+public class OidcAccount : RemoteUserAccount
 {
     [JsonPropertyName("amr")]
-    public string[] AuthenticationMethods { get; set; }
+    public string[] AuthenticationMethod { get; set; }
 }
 ```
 
@@ -316,7 +316,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 
-public class CustomAccountFactory : AccountClaimsPrincipalFactory<UserAccount>
+public class CustomAccountFactory : AccountClaimsPrincipalFactory<OidcAccount>
 {
     public AccountClaimsPrincipalFactory(NavigationManager navigationManager, 
         IAccessTokenProviderAccessor accessor) : base(accessor)
@@ -324,13 +324,13 @@ public class CustomAccountFactory : AccountClaimsPrincipalFactory<UserAccount>
     }
   
     public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
-        UserAccount account, RemoteAuthenticationUserOptions options)
+        OidcAccount account, RemoteAuthenticationUserOptions options)
     {
         var initialUser = await base.CreateUserAsync(account, options);
 
         if (initialUser.Identity.IsAuthenticated)
         {
-            foreach (var value in account.AuthenticationMethods)
+            foreach (var value in account.AuthenticationMethod)
             {
                 ((ClaimsIdentity)initialUser.Identity)
                     .AddClaim(new Claim("amr", value));
@@ -349,7 +349,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-services.AddApiAuthorization<RemoteAuthenticationState, UserAccount>()
-    .AddUserFactory<RemoteAuthenticationState, UserAccount, 
+services.AddApiAuthorization<RemoteAuthenticationState, OidcAccount>()
+    .AddUserFactory<RemoteAuthenticationState, OidcAccount, 
         CustomAccountFactory>();
 ```
