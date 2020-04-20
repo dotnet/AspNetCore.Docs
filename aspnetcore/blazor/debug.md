@@ -96,6 +96,8 @@ While debugging your Blazor WebAssembly app, you can also debug your server code
 
 1. Press <kbd>F5</kbd> again to let execution continue and see the weather forecast table rendered.
 
+<a id="vscode"></a>
+
 ## Visual Studio Code
 
 To debug a Blazor WebAssembly app in Visual Studio Code:
