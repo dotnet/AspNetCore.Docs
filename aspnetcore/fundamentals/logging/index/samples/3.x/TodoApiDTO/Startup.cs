@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using TodoApi.Models;
 
 namespace TodoApi
@@ -25,11 +26,20 @@ namespace TodoApi
             services.AddRazorPages();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        #region snippet_Configure
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+                              ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
+                logger.LogInformation("In Development.");
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                logger.LogInformation("Not Development.");
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
@@ -45,5 +55,6 @@ namespace TodoApi
                 endpoints.MapRazorPages();
             });
         }
+        #endregion
     }
 }

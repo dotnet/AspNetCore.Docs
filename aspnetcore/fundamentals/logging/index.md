@@ -32,7 +32,7 @@ The default ASP.NET Core web app templates:
   * [EventSource](#event-source-provider)
   * [EventLog](#windows-eventlog-provider) : Windows only
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_TemplateCode)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Program.cs?name=snippet_TemplateCode)]
 
 The preceding code shows the `Program` class created with the ASP.NET Core web app templates. The next several sections provide samples based on the the ASP.NET Core web app templates, which uses Generic Host. [Non-host console apps](#nhca) are discussed later in this document.
 
@@ -41,7 +41,7 @@ The following code:
 * Calls <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> to remove all the <xref:Microsoft.Extensions.Logging.ILoggerProvider> instances from the builder.
 * Adds the [Console](#console-provider) logging provider.
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_AddProvider)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Program.cs?name=snippet_AddProvider)]
 
 Learn more about [built-in logging providers](#built-in-logging-providers) and [third-party logging providers](#third-party-logging-providers) later in the article.
 
@@ -56,90 +56,23 @@ The following example:
 * Creates a logger `ILogger<AboutModel>`. The `ILogger<T>` instance provided by [DI](xref:fundamentals/dependency-injection) creates logs that have the fully qualified name of type `T` as the category. The fully qualified name of `AboutModel` is `TodoApi.Pages.AboutModel`, therefore `TodoApi.Pages.AboutModel` is the category. The log *category* is a string that is associated with each log.
 * Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*> to log s with `Information` as the level. The Log *level* indicates the severity of the logged event.
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=4)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=4)]
 
 [Levels](#log-level) and [categories](#log-category) are explained in more detail later in this article.
-
-The preceding code using the `Program` class created with the ASP.NET Core web app templates, generates the following output:
-
-* In Visual Studio
-  * 
 
 ### Create logs in the Program class
 
 To write logs in the `Program` class of an ASP.NET Core app, get an `ILogger` instance from DI after building the host:
 
-[!code-csharp[](index/samples_snapshot/3.x/TodoApiSample/Program.cs?highlight=9,10)]
-
-Logging during host construction isn't directly supported. However, a separate logger can be used. In the following example, a [Serilog](https://serilog.net/) logger is used to log in `CreateHostBuilder`. `AddSerilog` uses the static configuration specified in `Log.Logger`:
-
-```csharp
-using System;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
-
-    public static IHostBuilder CreateHostBuilder(string[] args)
-    {
-        var builtConfig = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json")
-            .AddCommandLine(args)
-            .Build();
-
-        Log.Logger = new LoggerConfiguration()
-            .WriteTo.Console()
-            .WriteTo.File(builtConfig["Logging:FilePath"])
-            .CreateLogger();
-
-        try
-        {
-            return Host.CreateDefaultBuilder(args)
-                .ConfigureServices((context, services) =>
-                {
-                    services.AddRazorPages();
-                })
-                .ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    config.AddConfiguration(builtConfig);
-                })
-                .ConfigureLogging(logging =>
-                {   
-                    logging.AddSerilog();
-                })
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-        }
-        catch (Exception ex)
-        {
-            Log.Fatal(ex, "Host builder error");
-
-            throw;
-        }
-        finally
-        {
-            Log.CloseAndFlush();
-        }
-    }
-}
-```
+[!code-csharp[](index/samples_snapshot/3.x/TodoApiDTO/Program.cs?highlight=9,10)]
 
 ### Create logs in the Startup class
 
-To write logs in the `Startup.Configure` method of an ASP.NET Core app, include an `ILogger` parameter in the method signature:
+The following code writes logs`Startup.Configure`:
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Startup.cs?name=snippet_Configure&highlight=1,5)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Startup.cs?name=snippet_Configure)]
 
+3.x/TodoApiSample zz end
 Writing logs before completion of the DI container setup in the `Startup.ConfigureServices` method is not supported:
 
 * Logger injection into the `Startup` constructor is not supported.
@@ -843,6 +776,73 @@ In the following ASP.NET examples, the logger is used to create logs with `Infor
 [!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=11)]
 
 [Levels](#log-level) and [categories](#log-category) are explained in more detail in this article.
+
+<a name="lhc"></a>
+
+## Log during host construction
+
+Logging during host construction isn't directly supported. However, a separate logger can be used. In the following example, a [Serilog](https://serilog.net/) logger is used to log in `CreateHostBuilder`. `AddSerilog` uses the static configuration specified in `Log.Logger`:
+
+```csharp
+using System;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        CreateHostBuilder(args).Build().Run();
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args)
+    {
+        var builtConfig = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .AddCommandLine(args)
+            .Build();
+
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .WriteTo.File(builtConfig["Logging:FilePath"])
+            .CreateLogger();
+
+        try
+        {
+            return Host.CreateDefaultBuilder(args)
+                .ConfigureServices((context, services) =>
+                {
+                    services.AddRazorPages();
+                })
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.AddConfiguration(builtConfig);
+                })
+                .ConfigureLogging(logging =>
+                {   
+                    logging.AddSerilog();
+                })
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+        }
+        catch (Exception ex)
+        {
+            Log.Fatal(ex, "Host builder error");
+
+            throw;
+        }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
+    }
+}
+```
 
 ## Additional resources
 
