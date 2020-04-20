@@ -154,6 +154,15 @@ ANCM failed to start within the provied startup time limit. By default, the time
 
 This error can occur when starting a large number of apps on the same machine. Check for CPU/Memory usage spikes on the server during startup. You may need to stagger the startup process of multiple apps.
 
+### 500.38 ANCM Application DLL Not Found
+
+ANCM failed to locate the application DLL, which should be next to the executable.
+
+This error occurs when hosting an app packaged as a [single-file executable](https://docs.microsoft.com/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables) using the in-process hosting model. The in-process model requires that ANCM load the .NET Core app into the existing IIS process. This scenario is not supported by the single-file deployment model. To fix this error:
+
+1. Disable single-file publishing for your app by setting the `PublishSingleFile` MSBuild property to `false` in your project file.
+1. Or, switch to the out-of-process hosting model by setting the `AspNetCoreHostingModel` MSBuild property to `OutOfProcess` in your project file.
+
 ### 502.5 Process Failure
 
 The worker process fails. The app doesn't start.
