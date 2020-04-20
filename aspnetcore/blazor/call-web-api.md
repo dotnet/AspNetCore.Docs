@@ -185,26 +185,22 @@ When running on WebAssembly in a Blazor WebAssembly app, use [HttpClient](xref:f
 ```razor
 @using System.Net.Http
 @using System.Net.Http.Headers
+@using System.Net.Http.Json
 @inject HttpClient Http
 
 @code {
     private async Task PostRequest()
     {
-        Http.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue("Bearer", "{OAUTH TOKEN}");
-
         var requestMessage = new HttpRequestMessage()
         {
             Method = new HttpMethod("POST"),
             RequestUri = new Uri("https://localhost:10000/api/TodoItems"),
             Content = 
-                new StringContent(
-                    @"{""name"":""A New Todo Item"",""isComplete"":false}")
+                JsonContent.Create(new TodoItem { Name: "A New Todo Item"", IsComplete: false })
         };
-
-        requestMessage.Content.Headers.ContentType = 
-            new System.Net.Http.Headers.MediaTypeHeaderValue(
-                "application/json");
+        
+        requestMessage.Headers.Authorization = 
+           new AuthenticationHeaderValue("Bearer", "{OAUTH TOKEN}");
 
         requestMessage.Content.Headers.TryAddWithoutValidation(
             "x-custom-header", "value");
@@ -216,7 +212,12 @@ When running on WebAssembly in a Blazor WebAssembly app, use [HttpClient](xref:f
 }
 ```
 
-For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlobalScope.fetch():Parameters](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
+Under the covers, .NET WebAssembly's implementation of HttpClient uses [WindowOrWorkerGlobalScope.fetch()](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch allows configuring several [request specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). Blazor WebAssembly provides extension methods on <xref:System.Net.Http.HttpRequestMessage /> to allow configuring these. For instance, to include credentials in a cross-origin request, use the `SetBrowserRequestCredentials` extension method:
+
+
+```csharp
+requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
+```
 
 When sending credentials (authorization cookies/headers) on CORS requests, the `Authorization` header must be allowed by the CORS policy.
 
