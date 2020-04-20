@@ -238,8 +238,9 @@ Select the menu links (**MvcMovie**, **Home**, and **Privacy**). Each page shows
 
 ## Change the title, footer, and menu link in the layout file
 
-* In the title and footer elements, change `MvcMovie` to `Movie App`.
+* In the title and footer elements, change `MvcMovie` to `Movie App` and remove asp-area attribute.
 * Change the anchor element `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` to `<a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App</a>`.
+* Change the anchor element `<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>` to `<a asp-controller="Home" asp-action="Privacy">Privacy</a>`.
 
 The following markup shows the highlighted changes:
 
