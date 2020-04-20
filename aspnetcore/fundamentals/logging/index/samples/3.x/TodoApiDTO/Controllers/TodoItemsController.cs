@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Docs.Samples;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,10 +16,13 @@ namespace TodoApi.Controllers
     public class TodoItemsController : ControllerBase
     {
         private readonly TodoContext _context;
+        private readonly ILogger _logger;
 
-        public TodoItemsController(TodoContext context)
+        public TodoItemsController(TodoContext context,
+            ILogger<TodoItemsController> logger)
         {
             _context = context;
+            _logger = logger;
         }
         #endregion
 
@@ -24,6 +30,12 @@ namespace TodoApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItemDTO>>> GetTodoItems()
         {
+            using (_logger.BeginScope("Message {HoleValue}", DateTime.Now))
+            {
+                _logger.LogInformation(MyLoggingEvents.ListItems, ControllerContext.ToCtxString());
+                MyUtil.SeedDBifEmpty(_context, _logger);
+            }
+
             return await _context.TodoItems
                 .Select(x => ItemToDTO(x))
                 .ToListAsync();
@@ -117,3 +129,5 @@ namespace TodoApi.Controllers
             };       
     }
 }
+
+//                 _logger.LogInformation(MyLoggingEvents.ListItems, ControllerContext.ToCtxString());

@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use the logging framework provided by the Microsoft.Extensions.Logging NuGet package.
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/17/2020
+ms.date: 4/25/2020
 uid: fundamentals/logging/index
 ---
 # Logging in .NET Core and ASP.NET Core
@@ -34,11 +34,11 @@ The default ASP.NET Core web app templates:
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_TemplateCode)]
 
-The preceding code shows the `Program` class created with the ASP.NET Core web app templates. The next several sections provide samples using Generic Host. [Non-host console apps](#nhca) are discussed later in this document.
+The preceding code shows the `Program` class created with the ASP.NET Core web app templates. The next several sections provide samples based on the the ASP.NET Core web app templates, which uses Generic Host. [Non-host console apps](#nhca) are discussed later in this document.
 
 The following code:
 
-* Calls xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> to remove all the <xref:Microsoft.Extensions.Logging.ILoggerProvider> instances from the builder.
+* Calls <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> to remove all the <xref:Microsoft.Extensions.Logging.ILoggerProvider> instances from the builder.
 * Adds the [Console](#console-provider) logging provider.
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_AddProvider)]
@@ -49,15 +49,21 @@ Learn more about [built-in logging providers](#built-in-logging-providers) and [
 
 ## Create logs
 
-To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object from dependency injection (DI).
+To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object from [dependency injection](xref:fundamentals/dependency-injection) (DI).
 
-The following example creates a logger with `TodoApiSample.Pages.AboutModel` as the category. The log *category* is a string that is associated with each log. The `ILogger<T>` instance provided by DI creates logs that have the fully qualified name of type `T` as the category.
+The following example:
 
-In the following examples, the logger is used to create logs with `Information` as the level. The Log *level* indicates the severity of the logged event.
+* Creates a logger `ILogger<AboutModel>`. The `ILogger<T>` instance provided by [DI](xref:fundamentals/dependency-injection) creates logs that have the fully qualified name of type `T` as the category. The fully qualified name of `AboutModel` is `TodoApi.Pages.AboutModel`, therefore `TodoApi.Pages.AboutModel` is the category. The log *category* is a string that is associated with each log.
+* Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*> to log s with `Information` as the level. The Log *level* indicates the severity of the logged event.
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/Pages/About.cshtml.cs?name=snippet_CallLogMethods&highlight=4)]
 
 [Levels](#log-level) and [categories](#log-category) are explained in more detail later in this article.
+
+The preceding code using the `Program` class created with the ASP.NET Core web app templates, generates the following output:
+
+* In Visual Studio
+  * 
 
 ### Create logs in the Program class
 
