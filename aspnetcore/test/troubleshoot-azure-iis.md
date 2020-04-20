@@ -158,10 +158,10 @@ This error can occur when starting a large number of apps on the same machine. C
 
 ANCM failed to locate the application DLL, which should be next to the executable.
 
-This error occurs when hosting an app packaged as a [single-file executable](https://docs.microsoft.com/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables) using the in-process hosting model. The in-process model requires that ANCM load the .NET Core app into the existing IIS process. This scenario is not supported by the single-file deployment model. To fix this error:
+This error occurs when hosting an app packaged as a [single-file executable](/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables) using the in-process hosting model. The in-process model requires that the ANCM load the .NET Core app into the existing IIS process. This scenario isn't supported by the single-file deployment model. Use **one** of the following approaches in the app's project file to fix this error:
 
-1. Disable single-file publishing for your app by setting the `PublishSingleFile` MSBuild property to `false` in your project file.
-1. Or, switch to the out-of-process hosting model by setting the `AspNetCoreHostingModel` MSBuild property to `OutOfProcess` in your project file.
+1. Disable single-file publishing by setting the `PublishSingleFile` MSBuild property to `false`.
+1. Switch to the out-of-process hosting model by setting the `AspNetCoreHostingModel` MSBuild property to `OutOfProcess`.
 
 ### 502.5 Process Failure
 
