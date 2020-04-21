@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 04/21/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/components
 ---
@@ -135,7 +135,7 @@ In the following example from the sample app, the `ParentComponent` sets the val
 [!code-razor[](components/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
 > [!WARNING]
-> Don't store component state in a *component parameter*, use a private field instead. For more information, see the [Avoid state in component parameters](#avoid-state-in-component-parameters) section.
+> Don't create components that write to their own *component parameters*, use a private field instead. For more information, see the [Don't create components that write to their own parameter properties](#dont-create-components-that-write-to-their-own-parameter-properties) section.
 
 ## Child content
 
@@ -449,14 +449,14 @@ Generally, it makes sense to supply one of the following kinds of value for `@ke
 
 Ensure that values used for `@key` don't clash. If clashing values are detected within the same parent element, Blazor throws an exception because it can't deterministically map old elements or components to new elements or components. Only use distinct values, such as object instances or primary key values.
 
-## Avoid state in component parameters
+## Don't create components that write to their own parameter properties
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> notifies the component that its state has changed. When applicable, calling `StateHasChanged` causes the component to be rerendered.
+Parameters are overwritten under the following conditions:
 
-Don't store component state in *component parameters*. Parameters are reset when both of the following are true:
+* A child content is rendered with a `RenderFragment`.
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in the parent component.
 
-* Child content is rendered with a `RenderFragment`.
-* `StateHasChanged` is called in the parent component.
+Parameters are reset because the parent component rerenders when <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called and new parameter values are supplied to the child component.
 
 Consider the following `Expander` component that:
 
