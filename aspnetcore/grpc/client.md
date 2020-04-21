@@ -100,13 +100,12 @@ If you are using C# 8 or later, the `await foreach` syntax can be used to read m
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
-using (var call = client.SayHellos(new HelloRequest { Name = "World" }))
+using var call = client.SayHellos(new HelloRequest { Name = "World" });
+
+await foreach (var response in call.ResponseStream.ReadAllAsync())
 {
-    await foreach (var response in call.ResponseStream.ReadAllAsync())
-    {
-        Console.WriteLine("Greeting: " + response.Message);
-        // "Greeting: Hello World" is written multiple times
-    }
+    Console.WriteLine("Greeting: " + response.Message);
+    // "Greeting: Hello World" is written multiple times
 }
 ```
 
@@ -116,18 +115,17 @@ A client streaming call starts *without* the client sending a message. The clien
 
 ```csharp
 var client = new Counter.CounterClient(channel);
-using (var call = client.AccumulateCount())
-{
-    for (var i = 0; i < 3; i++)
-    {
-        await call.RequestStream.WriteAsync(new CounterRequest { Count = 1 });
-    }
-    await call.RequestStream.CompleteAsync();
+using var call = client.AccumulateCount();
 
-    var response = await call;
-    Console.WriteLine($"Count: {response.Count}");
-    // Count: 3
+for (var i = 0; i < 3; i++)
+{
+    await call.RequestStream.WriteAsync(new CounterRequest { Count = 1 });
 }
+await call.RequestStream.CompleteAsync();
+
+var response = await call;
+Console.WriteLine($"Count: {response.Count}");
+// Count: 3
 ```
 
 ### Bi-directional streaming call
@@ -135,38 +133,96 @@ using (var call = client.AccumulateCount())
 A bi-directional streaming call starts *without* the client sending a message. The client can choose to send messages with `RequestStream.WriteAsync`. Messages streamed from the service are accessible with `ResponseStream.MoveNext()` or `ResponseStream.ReadAllAsync()`. The bi-directional streaming call is complete when the `ResponseStream` has no more messages.
 
 ```csharp
-using (var call = client.Echo())
+var client = new Echo.EchoClient(channel);
+using var call = client.Echo();
+
+Console.WriteLine("Starting background task to receive messages");
+var readTask = Task.Run(async () =>
 {
-    Console.WriteLine("Starting background task to receive messages");
-    var readTask = Task.Run(async () =>
+    await foreach (var response in call.ResponseStream.ReadAllAsync())
     {
-        await foreach (var response in call.ResponseStream.ReadAllAsync())
-        {
-            Console.WriteLine(response.Message);
-            // Echo messages sent to the service
-        }
-    });
+        Console.WriteLine(response.Message);
+        // Echo messages sent to the service
+    }
+});
 
-    Console.WriteLine("Starting to send messages");
-    Console.WriteLine("Type a message to echo then press enter.");
-    while (true)
+Console.WriteLine("Starting to send messages");
+Console.WriteLine("Type a message to echo then press enter.");
+while (true)
+{
+    var result = Console.ReadLine();
+    if (string.IsNullOrEmpty(result))
     {
-        var result = Console.ReadLine();
-        if (string.IsNullOrEmpty(result))
-        {
-            break;
-        }
-
-        await call.RequestStream.WriteAsync(new EchoMessage { Message = result });
+        break;
     }
 
-    Console.WriteLine("Disconnecting");
-    await call.RequestStream.CompleteAsync();
-    await readTask;
+    await call.RequestStream.WriteAsync(new EchoMessage { Message = result });
 }
+
+Console.WriteLine("Disconnecting");
+await call.RequestStream.CompleteAsync();
+await readTask;
 ```
 
 During a bi-directional streaming call, the client and service can send messages to each other at any time. The best client logic for interacting with a bi-directional call varies depending upon the service logic.
+
+## Access gRPC trailers
+
+gRPC calls may return a collection of name/value metadata at the end of the call. These are called gRPC trailers and are accessible using `GetTrailers()` on a gRPC call. Because trailers are returned after the response is complete, you must await all returning response messages before accessing the trailers.
+
+Unary and client streaming calls must await `ResponseAsync` before calling `GetTrailers()`:
+
+```csharp
+var client = new Greet.GreeterClient(channel);
+using var call = client.SayHelloAsync(new HelloRequest { Name = "World" });
+var response = await call.ResponseAsync;
+
+Console.WriteLine("Greeting: " + response.Message);
+// Greeting: Hello World
+
+var trailers = call.GetTrailers();
+var myValue = trailers.First(e => e.Key == "my-trailer-name");
+```
+
+Server and bidirectional streaming calls must finish reading the response stream before calling `GetTrailers()`:
+
+```csharp
+var client = new Greet.GreeterClient(channel);
+using var call = client.SayHellos(new HelloRequest { Name = "World" });
+
+await foreach (var response in call.ResponseStream.ReadAllAsync())
+{
+    Console.WriteLine("Greeting: " + response.Message);
+    // "Greeting: Hello World" is written multiple times
+}
+
+var trailers = call.GetTrailers();
+var myValue = trailers.First(e => e.Key == "my-trailer-name");
+```
+
+gRPC trailers are also accessible from `RpcException`. A service may return trailers together with a non-OK gRPC status. In this situation the trailers can be are retrieved from the exception thrown by the gRPC client:
+
+```csharp
+var client = new Greet.GreeterClient(channel);
+string myValue = null;
+
+try
+{
+    using var call = client.SayHelloAsync(new HelloRequest { Name = "World" });
+    var response = await call.ResponseAsync;
+
+    Console.WriteLine("Greeting: " + response.Message);
+    // Greeting: Hello World
+
+    var trailers = call.GetTrailers();
+    myValue = trailers.First(e => e.Key == "my-trailer-name");
+}
+catch (RpcException ex)
+{
+    var trailers = ex.Trailers;
+    myValue = trailers.First(e => e.Key == "my-trailer-name");
+}
+```
 
 ## Additional resources
 
