@@ -127,6 +127,10 @@ Configuration files are cached for offline use. With [Progressive Web Applicatio
 
 For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.
 
+### Logging
+
+For information on Blazor WebAssembly logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor-webassembly>.
+
 ## Blazor Server
 
 ### Reflect the connection state in the UI
