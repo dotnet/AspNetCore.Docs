@@ -318,13 +318,15 @@ In the *Pages/Shared/Layout.cshtml* file, make the following changes:
 
   ```cshtml
   <div class="sidebar" style="float:left">
-      <component type="typeof(NavMenu_IdentityLayout)" render-mode="ServerPrerendered" />
+      <component type="typeof(NavMenu_IdentityLayout)" 
+          render-mode="ServerPrerendered" />
   </div>
 
   <div class="main" style="padding-left:250px">
       <div class="top-row px-4">
           @{
-              var result = Engine.FindView(ViewContext, "_LoginPartial", isMainPage: false);
+              var result = Engine.FindView(ViewContext, "_LoginPartial", 
+                  isMainPage: false);
           }
           @if (result.Success)
           {
@@ -332,9 +334,8 @@ In the *Pages/Shared/Layout.cshtml* file, make the following changes:
           }
           else
           {
-              throw new InvalidOperationException("The default Identity UI layout requires a partial view '_LoginPartial' " +
-                  "usually located at '/Pages/_LoginPartial' or at '/Views/Shared/_LoginPartial' to work. Based on your configuration " +
-                  $"we have looked at it in the following locations: {System.Environment.NewLine}{string.Join(System.Environment.NewLine, result.SearchedLocations)}.");
+              throw new InvalidOperationException("The default Identity UI " +
+                  "layout requires a partial view '_LoginPartial'.");
           }
           <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
       </div>
