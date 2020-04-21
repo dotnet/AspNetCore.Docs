@@ -5,7 +5,7 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/07/2020
+ms.date: 04/16/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
@@ -60,9 +60,39 @@ Obtain the app's environment in a component by injecting `IWebAssemblyHostEnviro
 <p>Environment: @HostEnvironment.Environment</p>
 ```
 
+During startup, the `WebAssemblyHostBuilder` exposes the `IWebAssemblyHostEnvironment` through the `HostEnvironment` property, which enables developers to have environment-specific logic in their code:
+
+```csharp
+if (builder.HostEnvironment.Environment == "Custom")
+{
+    ...
+};
+```
+
+The following convenience extension methods permit checking the current environment for Development, Production, Staging, and custom environment names:
+
+* `IsDevelopment()`
+* `IsProduction()`
+* `IsStaging()`
+* `IsEnvironment("{ENVIRONMENT NAME}")
+
+```csharp
+if (builder.HostEnvironment.IsStaging())
+{
+    ...
+};
+
+if (builder.HostEnvironment.IsEnvironment("Custom"))
+{
+    ...
+};
+```
+
+The `IWebAssemblyHostEnvironment.BaseAddress` property can be used during startup when the `NavigationManager` service isn't available.
+
 ### Configuration
 
-As of the ASP.NET Core 3.2 Preview 3 release, Blazor WebAssembly supports configuration from:
+As of the ASP.NET Core 3.2 Preview 3 release ([current release is 3.2 Preview 4](xref:blazor/get-started)), Blazor WebAssembly supports configuration from:
 
 * *wwwroot/appsettings.json*
 * *wwwroot/appsettings.{ENVIRONMENT}.json*
@@ -96,6 +126,10 @@ Configuration files are cached for offline use. With [Progressive Web Applicatio
 * The PWA's *service-worker.js* and *service-worker-assets.js* files must be rebuilt on compilation, which signal to the app on the user's next online visit that the app has been redeployed.
 
 For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.
+
+### Logging
+
+For information on Blazor WebAssembly logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor-webassembly>.
 
 ## Blazor Server
 

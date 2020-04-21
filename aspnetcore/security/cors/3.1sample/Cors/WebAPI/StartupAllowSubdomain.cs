@@ -99,7 +99,6 @@ namespace WebAPI
             #endregion
 
             app.UseAuthorization();
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

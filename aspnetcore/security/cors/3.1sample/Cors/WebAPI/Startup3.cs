@@ -56,7 +56,6 @@ namespace WebAPI3
             app.UseCors();
 
             app.UseAuthorization();
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

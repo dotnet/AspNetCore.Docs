@@ -4,7 +4,7 @@ author: guardrex
 ms.author: riande
 description: Learn how to use the ASP.NET Core Component Tag Helper to render Razor components in pages and views.
 ms.custom: mvc
-ms.date: 04/01/2020
+ms.date: 04/15/2020
 no-loc: [Blazor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
 ---
@@ -16,7 +16,7 @@ To render a component from a page or view, use the [Component Tag Helper](xref:M
 
 ## Prerequisites
 
-Follow the guidance in the *Prepare the app to use components in pages and views* section of the <xref:blazor/integrate-components#prepare-the-app-to-use-components-in-pages-and-views> article.
+Follow the guidance in the *Prepare the app to use components in pages and views* section of the <xref:blazor/integrate-components#prepare-the-app> article.
 
 ## Component Tag Helper
 

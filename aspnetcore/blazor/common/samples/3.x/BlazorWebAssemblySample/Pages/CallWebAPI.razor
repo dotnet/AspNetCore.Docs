@@ -87,7 +87,7 @@ else
 
     protected override async Task OnInitializedAsync() => await GetTodoItems();
 
-    private async Task GetTodoItems() => _todoItems = await Http.GetJsonAsync<TodoItem[]>(ServiceEndpoint);
+    private async Task GetTodoItems() => _todoItems = await Http.GetFromJsonAsync<TodoItem[]>(ServiceEndpoint);
 
     private void EditItem(long id)
     {
@@ -99,7 +99,7 @@ else
     private async Task AddItem()
     {
         var addItem = new TodoItem { Name = _newItemName, IsComplete = false };
-        await Http.PostJsonAsync(ServiceEndpoint, addItem);
+        await Http.PostAsJsonAsync(ServiceEndpoint, addItem);
         _newItemName = string.Empty;
         await GetTodoItems();
         _editRowStyle = "none";
@@ -107,7 +107,7 @@ else
 
     private async Task SaveItem()
     {
-        await Http.PutJsonAsync($"{ServiceEndpoint}/{_editItem.Id}", _editItem);
+        await Http.PutAsJsonAsync($"{ServiceEndpoint}/{_editItem.Id}", _editItem);
         await GetTodoItems();
         _editRowStyle = "none";
     }

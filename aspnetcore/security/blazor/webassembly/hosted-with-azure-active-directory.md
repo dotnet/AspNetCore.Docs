@@ -17,8 +17,6 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
-
-
 This article describes how to create a [Blazor WebAssembly hosted app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
 
 ## Register apps in AAD B2C and create solution
