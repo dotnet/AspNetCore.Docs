@@ -5,7 +5,7 @@ description: Learn how to scaffold Identity in an ASP.NET Core project.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/13/2020
+ms.date: 04/21/2020
 uid: security/authentication/scaffold-identity
 ---
 # Scaffold Identity in ASP.NET Core projects
@@ -283,8 +283,73 @@ The following shows the complete component if the app is also using the [TokenPr
 
 Because Blazor Server uses Razor Pages Identity pages, the styling of the UI changes when a visitor navigates between Identity pages and components. You have two options to address the incongruous styles:
 
-* Style the Identity pages with CSS to match Blazor's styles.
-* Rebuild Identity pages as Razor components.
+#### Build Identity components
+
+An approach to using components for Identity instead of pages is to build Identity components. Because `SignInManager` and `UserManager` aren't supported in Razor components, use API endpoints in the Blazor Server app to process user account actions.
+
+#### Use a custom layout with Blazor app styles
+
+The Identity pages layout and styles can be modified to produce pages that use the default Blazor theme.
+
+> [!NOTE]
+> The example in this section is merely a starting point for customization. Additional work is likely required for the best user experience.
+
+Create a new `NavMenu_IdentityLayout` component (*Shared/NavMenu_IdentityLayout.razor*). For the markup and code of the component, use the same content of the app's `NavMenu` component (*Shared/NavMenu.razor*). Strip out any `NavLink`s to components that can't be reached anonymously because automatic redirects in the `RedirectToLogin` component fail for components requiring authentication or authorization.
+
+In the *Pages/Shared/Layout.cshtml* file, make the following changes:
+
+* Add Razor directives to the top of the file to use Tag Helpers and the app's components in the *Shared* folder:
+
+  ```cshtml
+  @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+  @using {APPLICATION ASSEMBLY}.Shared
+  ```
+
+  Replace `{APPLICATION ASSEMBLY}` with the app's assembly name.
+
+* Add a `<base>` tag and Blazor stylesheet `<link>` to the `<head>` content:
+
+  ```cshtml
+  <base href="~/" />
+  <link rel="stylesheet" href="~/css/site.css" />
+  ```
+
+* Change the content of the `<body>` tag to the following:
+
+  ```cshtml
+  <div class="sidebar" style="float:left">
+      <component type="typeof(NavMenu_IdentityLayout)" render-mode="ServerPrerendered" />
+  </div>
+
+  <div class="main" style="padding-left:250px">
+      <div class="top-row px-4">
+          @{
+              var result = Engine.FindView(ViewContext, "_LoginPartial", isMainPage: false);
+          }
+          @if (result.Success)
+          {
+              await Html.RenderPartialAsync("_LoginPartial");
+          }
+          else
+          {
+              throw new InvalidOperationException("The default Identity UI layout requires a partial view '_LoginPartial' " +
+                  "usually located at '/Pages/_LoginPartial' or at '/Views/Shared/_LoginPartial' to work. Based on your configuration " +
+                  $"we have looked at it in the following locations: {System.Environment.NewLine}{string.Join(System.Environment.NewLine, result.SearchedLocations)}.");
+          }
+          <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+      </div>
+
+      <div class="content px-4">
+          @RenderBody()
+      </div>
+  </div>
+
+  <script src="~/Identity/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/Identity/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/Identity/js/site.js" asp-append-version="true"></script>
+  @RenderSection("Scripts", required: false)
+  <script src="_framework/blazor.server.js"></script>
+  ```
 
 ## Scaffold Identity into a Blazor Server project with authorization
 
