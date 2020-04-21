@@ -86,13 +86,12 @@ A server streaming call starts with the client sending a request message. `Respo
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
-using (var call = client.SayHellos(new HelloRequest { Name = "World" }))
+using var call = client.SayHellos(new HelloRequest { Name = "World" });
+
+while (await call.ResponseStream.MoveNext())
 {
-    while (await call.ResponseStream.MoveNext())
-    {
-        Console.WriteLine("Greeting: " + call.ResponseStream.Current.Message);
-        // "Greeting: Hello World" is written multiple times
-    }
+    Console.WriteLine("Greeting: " + call.ResponseStream.Current.Message);
+    // "Greeting: Hello World" is written multiple times
 }
 ```
 
