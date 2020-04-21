@@ -168,7 +168,9 @@ During a bi-directional streaming call, the client and service can send messages
 
 ## Access gRPC trailers
 
-gRPC calls may return gRPC trailers. gRPC trailers are used to provide name/value metadata about a call, similar to HTTP response headers, but received at the end of the call. gRPC trailers are accessible using `GetTrailers()`, which returns a collection of metadata. gRPC trailers are returned after the response is complete, therefore, you must await all returning response messages before accessing the trailers.
+gRPC calls may return gRPC trailers. gRPC trailers are used to provide name/value metadata about a call. Trailers provide similar functionality to HTTP headers, but are received at the end of the call.
+
+gRPC trailers are accessible using `GetTrailers()`, which returns a collection of metadata. Trailers are returned after the response is complete, therefore, you must await all response messages before accessing the trailers.
 
 Unary and client streaming calls must await `ResponseAsync` before calling `GetTrailers()`:
 
