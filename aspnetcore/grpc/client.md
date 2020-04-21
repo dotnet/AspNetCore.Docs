@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to call gRPC services with the .NET gRPC client.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 08/21/2019
+ms.date: 04/21/2020
 uid: grpc/client
 ---
 # Call gRPC services with the .NET client
@@ -44,7 +44,7 @@ Channel and client performance and usage:
 * A channel and clients created from the channel can safely be used by multiple threads.
 * Clients created from the channel can make multiple simultaneous calls.
 
-`GrpcChannel.ForAddress` isn't the only option for creating a gRPC client. If you're calling gRPC services from an ASP.NET Core app, consider [gRPC client factory integration](xref:grpc/clientfactory). gRPC integration with `HttpClientFactory` offers a centralized alternative to creating gRPC clients.
+`GrpcChannel.ForAddress` isn't the only option for creating a gRPC client. If calling gRPC services from an ASP.NET Core app, consider [gRPC client factory integration](xref:grpc/clientfactory). gRPC integration with `HttpClientFactory` offers a centralized alternative to creating gRPC clients.
 
 > [!NOTE]
 > Additional configuration is required to [call insecure gRPC services with the .NET client](xref:grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client).
@@ -56,7 +56,7 @@ Channel and client performance and usage:
 
 A gRPC call is initiated by calling a method on the client. The gRPC client will handle message serialization and addressing the gRPC call to the correct service.
 
-gRPC has different types of methods. How you use the client to make a gRPC call depends on the type of method you are calling. The gRPC method types are:
+gRPC has different types of methods. How the client is used to make a gRPC call depends on the type of method called. The gRPC method types are:
 
 * Unary
 * Server streaming
@@ -96,7 +96,7 @@ using (var call = client.SayHellos(new HelloRequest { Name = "World" }))
 }
 ```
 
-If you are using C# 8 or later, the `await foreach` syntax can be used to read messages. The `IAsyncStreamReader<T>.ReadAllAsync()` extension method reads all messages from the response stream:
+When using C# 8 or later, the `await foreach` syntax can be used to read messages. The `IAsyncStreamReader<T>.ReadAllAsync()` extension method reads all messages from the response stream:
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
@@ -111,7 +111,7 @@ await foreach (var response in call.ResponseStream.ReadAllAsync())
 
 ### Client streaming call
 
-A client streaming call starts *without* the client sending a message. The client can choose to send messages with `RequestStream.WriteAsync`. When the client has finished sending messages `RequestStream.CompleteAsync` should be called to notify the service. The call is finished when the service returns a response message.
+A client streaming call starts *without* the client sending a message. The client can choose to send messages with `RequestStream.WriteAsync`. When the client has finished sending messages, `RequestStream.CompleteAsync` should be called to notify the service. The call is finished when the service returns a response message.
 
 ```csharp
 var client = new Counter.CounterClient(channel);
@@ -168,7 +168,7 @@ During a bi-directional streaming call, the client and service can send messages
 
 ## Access gRPC trailers
 
-gRPC calls may return a collection of name/value metadata at the end of the call. These are called gRPC trailers and are accessible using `GetTrailers()` on a gRPC call. Because trailers are returned after the response is complete, you must await all returning response messages before accessing the trailers.
+gRPC calls may return gRPC trailers.  gRPC trailers are a collection of name/value metadata at the end of the call. gRPC trailers are accessible using `GetTrailers()` on a gRPC call. gRPC trailers are returned after the response is complete, therefore, you must await all returning response messages before accessing the trailers.
 
 Unary and client streaming calls must await `ResponseAsync` before calling `GetTrailers()`:
 
@@ -200,7 +200,7 @@ var trailers = call.GetTrailers();
 var myValue = trailers.First(e => e.Key == "my-trailer-name");
 ```
 
-gRPC trailers are also accessible from `RpcException`. A service may return trailers together with a non-OK gRPC status. In this situation the trailers can be are retrieved from the exception thrown by the gRPC client:
+gRPC trailers are also accessible from `RpcException`. A service may return trailers together with a non-OK gRPC status. In this situation the trailers are retrieved from the exception thrown by the gRPC client:
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
