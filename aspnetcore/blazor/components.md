@@ -453,7 +453,7 @@ Ensure that values used for `@key` don't clash. If clashing values are detected 
 
 Parameters are overwritten under the following conditions:
 
-* A child content is rendered with a `RenderFragment`.
+* A child component's content is rendered with a `RenderFragment`.
 * <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in the parent component.
 
 Parameters are reset because the parent component rerenders when <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called and new parameter values are supplied to the child component.
