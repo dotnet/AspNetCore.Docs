@@ -128,7 +128,7 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 
 #### Provider configuration
 
-The following example uses the [Memory Configuration Provider](xref:fundamentals/configuration/index#memory-configuration-provider):
+The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> and the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) to supply additional configuration:
 
 `Program.Main`:
 
