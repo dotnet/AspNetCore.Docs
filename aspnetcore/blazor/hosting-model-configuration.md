@@ -126,6 +126,53 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 <p>Message: @Configuration["message"]</p>
 ```
 
+#### Provider configuration
+
+The following example uses the [Memory Configuration Provider](xref:fundamentals/configuration/index#memory-configuration-provider):
+
+`Program.Main`:
+
+```csharp
+var vehicleData = new Dictionary<string, string>()
+{
+    { "color", "blue" },
+    { "type", "car" },
+    { "wheels:count", "3" },
+    { "wheels:brand", "Blazin" },
+    { "wheels:brand:type", "rally" },
+    { "wheels:year", "2008" },
+};
+
+...
+
+builder.Configuration..AddInMemoryCollection(vehicleData);
+```
+
+Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:
+
+```razor
+@page "/"
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<h1>Configuration example</h1>
+
+<h2>Wheels</h2>
+
+<ul>
+    <li>Count: @Configuration["wheels:count"]</p>
+    <li>Brand: @Configuration["wheels:brand"]</p>
+    <li>Type: @Configuration["wheels:brand:type"]</p>
+    <li>Year: @Configuration["wheels:year"]</p>
+</ul>
+
+@code {
+    var wheelsSection = Configuration.GetSection("wheels");
+    
+    ...
+}
+```
+
 #### Authentication configuration
 
 *wwwroot/appsettings.json*:
