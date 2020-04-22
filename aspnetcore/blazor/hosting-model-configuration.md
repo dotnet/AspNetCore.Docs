@@ -104,7 +104,7 @@ Blazor WebAssembly supports configuration from:
 
 For more information on configuration providers, see <xref:fundamentals/configuration/index>.
 
-#### App settings
+#### App settings configuration
 
 *wwwroot/appsettings.json*:
 
