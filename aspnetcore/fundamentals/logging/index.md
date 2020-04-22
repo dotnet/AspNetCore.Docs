@@ -141,6 +141,22 @@ To explicitly specify the category, call `ILoggerFactory.CreateLogger`:
 
 ## Log level
 
+zz <xref:Microsoft.Extensions.Logging.LoggerExtensions?displayProperty=fullName> or <xref:Microsoft.Extensions.Logging.LoggerExtensions>
+
+The [Log](xref:Microsoft.Extensions.Logging.LoggerExtensions) methods first parameter, <xref:Microsoft.Extensions.Logging.LogLevel>, indicates the severity of the log. Rather than calling `Log` with the `LogLevel`, most developers call the [`Log{LogLevel}` extension methods](xref:Microsoft.Extensions.Logging.LoggerExtensions). The `Log{LogLevel}` extension methods [call the `Log` method and specify the `LogLevel`](https://github.com/dotnet/extensions/blob/release/3.1/src/Logging/Logging.Abstractions/src/LoggerExtensions.cs).
+
+The following table lists the <xref:Microsoft.Extensions.Logging.LogLevel>, the convenience `Log{LogLevel}` extension methods, and the suggested usage. The `LogLevel` is listed from lowest to highest severity.
+
+| LogLevel  | Method | Description |
+| ----------------- | ------------ | ----- |
+| [Trace](xref:Microsoft.Extensions.Logging.LogLevel) | [LogTrace]( https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.logtrace?view=dotnet-plat-ext-3.1 | Contain the most detailed messages. These messages may contain sensitive app data. These messages are disabled by default and should ***not&& be enabled in a production environment. |
+| [Debug](xref:Microsoft.Extensions.Logging.LogLevel) | [LogDebug](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.logdebug?view=dotnet-plat-ext-3.1)  | For debugging and development. Use with caution in production due to the high volume. |
+| [Information](xref:Microsoft.Extensions.Logging.LogLevel) | [LogInformation](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.loginformation?view=dotnet-plat-ext-3.1)  | Tracks the general flow of the app. May have long-term value. |
+| [Warning](xref:Microsoft.Extensions.Logging.LogLevel) | [LogWarning](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.logwarning?view=dotnet-plat-ext-3.1)  | For abnormal or unexpected events. Typically includes errors or conditions that don't cause the app to fail.  |
+| [Error](xref:Microsoft.Extensions.Logging.LogLevel) | [LogError](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.logerror?view=dotnet-plat-ext-3.1)  | For errors and exceptions that cannot be handled. These messages indicate a failure in the current operation or request, not an app-wide failure. |
+| [Critical](xref:Microsoft.Extensions.Logging.LogLevel) | [](  |  |
+| [](xref:Microsoft.Extensions.Logging.LogLevel) | [LogCritical](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.logcritical?view=dotnet-plat-ext-3.1)  | For failures that require immediate attention. Examples: data loss scenarios, out of disk space. |
+
 Every log specifies a <xref:Microsoft.Extensions.Logging.LogLevel> value. The log level indicates the severity or importance. For example, you might write an `Information` log when a method ends normally and a `Warning` log when a method returns a *404 Not Found* status code.
 
 The following code creates `Information` and `Warning` logs:
