@@ -43,14 +43,13 @@ The `Startup` class has the following additions:
 
 * In `Startup.ConfigureServices`:
 
-  * Identity with the default UI:
+  * Identity:
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
     services.AddDefaultIdentity<ApplicationUser>()
-        .AddDefaultUI(UIFramework.Bootstrap4)
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
