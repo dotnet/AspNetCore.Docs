@@ -132,7 +132,7 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 
 ```json
 {
-  "OidcConfig": {
+  "AzureAD": {
     "Authority": "https://login.microsoftonline.com/",
     "ClientId": "aeaebf0f-d416-4d92-a08f-e1d5b51fc494"
   }
@@ -143,7 +143,7 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
-    builder.Configuration.Bind("OidcConfig", options);
+    builder.Configuration.Bind("AzureAD", options);
 ```
 
 #### Logging configuration
