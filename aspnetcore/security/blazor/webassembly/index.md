@@ -46,3 +46,8 @@ The `Microsoft.AspNetCore.Components.WebAssembly.Authentication` library offers 
 * When the Blazor WebAssembly app loads the login callback endpoint (`/authentication/login-callback`), the authentication response is processed.
   * If the authentication process completes successfully, the user is authenticated and optionally sent back to the original protected URL that the user requested.
   * If the authentication process fails for any reason, the user is sent to the login failed page (`/authentication/login-failed`), and an error is displayed.
+
+## Additional resources
+
+* Articles under this *Overview* provide information on authenticating users in Blazor WebAssembly apps against specific providers.
+* <xref:security/blazor/webassembly/additional-scenarios>
