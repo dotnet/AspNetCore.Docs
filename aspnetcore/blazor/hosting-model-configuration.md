@@ -145,7 +145,7 @@ var vehicleData = new Dictionary<string, string>()
 
 ...
 
-builder.Configuration..AddInMemoryCollection(vehicleData);
+builder.Configuration.AddInMemoryCollection(vehicleData);
 ```
 
 Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:
