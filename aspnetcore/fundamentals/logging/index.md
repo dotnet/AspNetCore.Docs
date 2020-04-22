@@ -149,13 +149,12 @@ The following table lists the <xref:Microsoft.Extensions.Logging.LogLevel>, the 
 
 | LogLevel  | Method | Description |
 | ----------------- | ------------ | ----- |
-| [Trace](xref:Microsoft.Extensions.Logging.LogLevel) | [LogTrace]( https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.logtrace?view=dotnet-plat-ext-3.1 | Contain the most detailed messages. These messages may contain sensitive app data. These messages are disabled by default and should ***not&& be enabled in a production environment. |
+| [Trace](xref:Microsoft.Extensions.Logging.LogLevel) | [LogTrace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.logtrace?view=dotnet-plat-ext-3.1 | Contain the most detailed messages. These messages may contain sensitive app data. These messages are disabled by default and should ***not&& be enabled in a production environment. |
 | [Debug](xref:Microsoft.Extensions.Logging.LogLevel) | [LogDebug](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.logdebug?view=dotnet-plat-ext-3.1)  | For debugging and development. Use with caution in production due to the high volume. |
 | [Information](xref:Microsoft.Extensions.Logging.LogLevel) | [LogInformation](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.loginformation?view=dotnet-plat-ext-3.1)  | Tracks the general flow of the app. May have long-term value. |
 | [Warning](xref:Microsoft.Extensions.Logging.LogLevel) | [LogWarning](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.logwarning?view=dotnet-plat-ext-3.1)  | For abnormal or unexpected events. Typically includes errors or conditions that don't cause the app to fail.  |
 | [Error](xref:Microsoft.Extensions.Logging.LogLevel) | [LogError](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.logerror?view=dotnet-plat-ext-3.1)  | For errors and exceptions that cannot be handled. These messages indicate a failure in the current operation or request, not an app-wide failure. |
-| [Critical](xref:Microsoft.Extensions.Logging.LogLevel) | [](  |  |
-| [](xref:Microsoft.Extensions.Logging.LogLevel) | [LogCritical](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.logcritical?view=dotnet-plat-ext-3.1)  | For failures that require immediate attention. Examples: data loss scenarios, out of disk space. |
+| [Critical](xref:Microsoft.Extensions.Logging.LogLevel) | [LogCritical](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.loggerextensions.logcritical?view=dotnet-plat-ext-3.1)  | For failures that require immediate attention. Examples: data loss scenarios, out of disk space. |
 
 Every log specifies a <xref:Microsoft.Extensions.Logging.LogLevel> value. The log level indicates the severity or importance. For example, you might write an `Information` log when a method ends normally and a `Warning` log when a method returns a *404 Not Found* status code.
 
