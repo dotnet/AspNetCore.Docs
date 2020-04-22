@@ -149,14 +149,11 @@ var vehicleData = new Dictionary<string, string>()
 
 var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
 
-var additionalFileConfig = new ConfigurationBuilder().AddJsonFile(
-    "cars.json", optional: false, reloadOnChange: true).Build();
-
 ...
 
 builder.Configuration
     .Add(memoryConfig)
-    .Add(additionalFileConfig);
+    .AddJsonFile("cars.json", optional: false, reloadOnChange: true);
 ```
 
 Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:
