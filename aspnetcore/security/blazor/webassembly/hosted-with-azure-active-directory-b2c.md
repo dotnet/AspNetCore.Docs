@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/09/2020
+ms.date: 04/22/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
 ---
@@ -304,6 +304,7 @@ Run the app from the Server project. When using Visual Studio, select the Server
 
 ## Additional resources
 
+* <xref:security/blazor/webassembly/additional-scenarios>
 * [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
 * <xref:security/authentication/azure-ad-b2c>
 * [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant)
