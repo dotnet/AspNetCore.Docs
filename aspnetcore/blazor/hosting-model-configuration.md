@@ -147,9 +147,12 @@ var vehicleData = new Dictionary<string, string>()
     { "wheels:year", "2008" },
 };
 
+var config = new ConfigurationBuilder()
+    .AddInMemoryCollection(vehicleData).Build();
+
 ...
 
-builder.Configuration.AddInMemoryCollection(vehicleData);
+builder.Configuration.Add(config);
 ```
 
 Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:
