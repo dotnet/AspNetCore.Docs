@@ -5,13 +5,13 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 04/23/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
 # ASP.NET Core Blazor hosting model configuration
 
-By [Daniel Roth](https://github.com/danroth27)
+By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
@@ -92,12 +92,21 @@ The `IWebAssemblyHostEnvironment.BaseAddress` property can be used during startu
 
 ### Configuration
 
-As of the ASP.NET Core 3.2 Preview 3 release ([current release is 3.2 Preview 4](xref:blazor/get-started)), Blazor WebAssembly supports configuration from:
+Blazor WebAssembly supports configuration from:
 
-* *wwwroot/appsettings.json*
-* *wwwroot/appsettings.{ENVIRONMENT}.json*
+* The [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) for app settings files by default:
+  * *wwwroot/appsettings.json*
+  * *wwwroot/appsettings.{ENVIRONMENT}.json*
+* Other [configuration providers](xref:fundamentals/configuration/index) registered by the app.
 
-Add an *appsettings.json* file in the *wwwroot* folder:
+> [!WARNING]
+> Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets or credentials in configuration.**
+
+For more information on configuration providers, see <xref:fundamentals/configuration/index>.
+
+#### App settings
+
+*wwwroot/appsettings.json*:
 
 ```json
 {
@@ -117,8 +126,58 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 <p>Message: @Configuration["message"]</p>
 ```
 
-> [!WARNING]
-> Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets or credentials in configuration.**
+#### Authentication configuration
+
+*wwwroot/appsettings.json*:
+
+```json
+{
+  "OidcConfig": {
+    "Authority": "https://login.microsoftonline.com/",
+    "ClientId": "aeaebf0f-d416-4d92-a08f-e1d5b51fc494"
+  }
+}
+```
+
+`Program.Main`:
+
+```csharp
+builder.Services.AddOidcAuthentication(options =>
+    builder.Configuration.Bind("OidcConfig", options);
+```
+
+#### Logging configuration
+
+*wwwroot/appsettings.json*:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  }
+}
+```
+
+`Program.Main`:
+
+```csharp
+builder.Logging.AddConfiguration(
+    builder.Configuration.GetSection("Logging"));
+```
+
+#### Host builder configuration
+
+`Program.Main`:
+
+```csharp
+var hostname = builder.Configuration["HostName"];
+```
+
+#### Cached configuration
 
 Configuration files are cached for offline use. With [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app), you can only update configuration files when creating a new deployment. Editing configuration files between deployments has no effect because:
 
