@@ -5,7 +5,7 @@ description: To create a new Blazor hosted app with authentication from within V
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/30/2020
+ms.date: 04/22/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/hosted-with-identity-server
 ---
@@ -43,14 +43,13 @@ The `Startup` class has the following additions:
 
 * In `Startup.ConfigureServices`:
 
-  * Identity with the default UI:
+  * Identity:
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
     services.AddDefaultIdentity<ApplicationUser>()
-        .AddDefaultUI(UIFramework.Bootstrap4)
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
@@ -231,4 +230,4 @@ Run the app from the Server project. When using Visual Studio, select the Server
 
 ## Additional resources
 
-* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* <xref:security/blazor/webassembly/additional-scenarios>

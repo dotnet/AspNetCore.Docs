@@ -1,5 +1,6 @@
 ﻿#if never
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,11 +21,11 @@ namespace UserSecrets
 
         public void ConfigureServices(IServiceCollection services)
         {
-            #region snippet_BindToObjectGraph
-            var moviesConfig = new MovieSettings();
-            Configuration.GetSection("Movies").Bind(moviesConfig);
+#region snippet_BindToObjectGraph
+            var moviesConfig = Configuration.GetSection("Movies")
+                                            .Get<MovieSettings>();
             _moviesApiKey = moviesConfig.ServiceApiKey;
-            #endregion
+#endregion
         }
 
         public void Configure(IApplicationBuilder app)
