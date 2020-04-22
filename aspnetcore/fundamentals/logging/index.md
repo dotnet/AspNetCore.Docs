@@ -111,17 +111,19 @@ Logs created with the [default logging providers](#lp) are displayed:
 
 * In Visual Studio
   * In the Debug output window when debugging.
-  * In the ASP.NET Core Web Server window
-* In the console window when the app is run with `dotnet run`
+  * In the ASP.NET Core Web Server window.
+* In the console window when the app is run with `dotnet run`.
 
 Logs that begin with "Microsoft" categories are from ASP.NET Core framework code. ASP.NET Core and application code use the same logging API and providers.
 
 ## ILogger and  ILoggerFactory
 
-The <xref:Microsoft.Extensions.Logging.ILogger%601> and <xref:Microsoft.Extensions.Logging.ILoggerFactory> interfaces and implementations are included in the .NET Core SDK. They are also available in NuGet packages:  
+The <xref:Microsoft.Extensions.Logging.ILogger%601> and <xref:Microsoft.Extensions.Logging.ILoggerFactory> interfaces and implementations are included in the .NET Core SDK. They are also available in the following NuGet packages:  
 
 * The interfaces are in [Microsoft.Extensions.Logging.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/).
 * The default implementations are in [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/).
+
+<a name="lcat"></a>
 
 ## Log category
 
@@ -135,15 +137,17 @@ To explicitly specify the category, call `ILoggerFactory.CreateLogger`:
 
 `ILogger<T>` is equivalent to calling `CreateLogger` with the fully qualified type name of `T`.
 
+<a name="llvl"></a>
+
 ## Log level
 
 Every log specifies a <xref:Microsoft.Extensions.Logging.LogLevel> value. The log level indicates the severity or importance. For example, you might write an `Information` log when a method ends normally and a `Warning` log when a method returns a *404 Not Found* status code.
 
 The following code creates `Information` and `Warning` logs:
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=4,9)]
 
-In the preceding code, the first parameter is the [Log event ID](#log-event-id). The second parameter is a message template with placeholders for argument values provided by the remaining method parameters. The method parameters are explained in the [message template section](#log-message-template) later in this article.
+In the preceding code, the first parameter is the [Log event ID](#leid). The second parameter is a message template with placeholders for argument values provided by the remaining method parameters. The method parameters are explained in the [message template section](#lmt) later in this article.
 
 Log methods that include the level in the method name (for example, `LogInformation` and `LogWarning`) are [extension methods for ILogger](xref:Microsoft.Extensions.Logging.LoggerExtensions). These methods call a `Log` method that takes a `LogLevel` parameter. You can call the `Log` method directly rather than one of these extension methods, but the syntax is relatively complicated. For more information, see <xref:Microsoft.Extensions.Logging.ILogger> and the [logger extensions source code](https://github.com/dotnet/extensions/blob/release/2.2/src/Logging/Logging.Abstractions/src/LoggerExtensions.cs).
 
@@ -163,92 +167,59 @@ ASP.NET Core defines the following log levels, ordered here from lowest to highe
 
 * Warning = 3
 
-  For abnormal or unexpected events in the app flow. These may include errors or other conditions that don't cause the app to stop but might need to be investigated. Handled exceptions are a common place to use the `Warning` log level. Example: `FileNotFoundException for file quotes.txt.`
+  For abnormal or unexpected events. These may include errors or other conditions that don't cause the app to stop but might need to be investigated. Handled exceptions are a common place to use the `Warning` log level. Example: `FileNotFoundException`
 
 * Error = 4
 
-  For errors and exceptions that cannot be handled. These messages indicate a failure in the current activity or operation (such as the current HTTP request), not an app-wide failure. Example log message: `Cannot insert record due to duplicate key violation.`
+  For errors and exceptions that cannot be handled. These messages indicate a failure in the current operation or request, not an app-wide failure. Example log message: `Cannot insert record due to duplicate key violation.`
 
 * Critical = 5
 
   For failures that require immediate attention. Examples: data loss scenarios, out of disk space.
 
-Use the log level to control how much log output is written to a particular storage medium or display window. For example:
+Use the log level to control how much log output is written to a particular storage medium or display. For example:
 
 * In production:
   * Logging at the `Trace` through `Information` levels produces a high-volume of detailed log messages. To control costs and not exceed data storage limits, log `Trace` through `Information` level messages to a high-volume, low-cost data store.
-  * Logging at `Warning` through `Critical` levels typically produces fewer, smaller log messages. Therefore, costs and storage limits usually aren't a concern, which results in greater flexibility of data store choice.
-* During development:
-  * Log `Warning` through `Critical` messages to the console.
+  * Logging at `Warning` through `Critical` levels should produces few log messages.
+    * Costs and storage limits usually aren't a concern.
+    * Greater flexibility of data store choice.
+* In development:
+  * Log `Warning` and higher.
   * Add `Trace` through `Information` messages when troubleshooting.
 
-The [Log filtering](#log-filtering) section later in this article explains how to control which log levels a provider handles.
+The [Log filtering](#log-filtering) section in this article explains how to control which log levels a provider handles.
 
-ASP.NET Core writes logs for framework events. The log examples earlier in this article excluded logs below `Information` level, so no `Debug` or `Trace` level logs were created. Here's an example of console logs produced by running the sample app configured to show `Debug` logs:
+ASP.NET Core writes logs for framework events.
 
-```console
-info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[3]
-      Route matched with {action = "GetById", controller = "Todo", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetById(System.String) on controller TodoApiSample.Controllers.TodoController (TodoApiSample).
-dbug: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[1]
-      Execution plan of authorization filters (in the following order): None
-dbug: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[1]
-      Execution plan of resource filters (in the following order): Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter
-dbug: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[1]
-      Execution plan of action filters (in the following order): Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648), Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)
-dbug: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[1]
-      Execution plan of exception filters (in the following order): None
-dbug: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[1]
-      Execution plan of result filters (in the following order): Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter
-dbug: Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder[22]
-      Attempting to bind parameter 'id' of type 'System.String' ...
-dbug: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder[44]
-      Attempting to bind parameter 'id' of type 'System.String' using the name 'id' in request data ...
-dbug: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder[45]
-      Done attempting to bind parameter 'id' of type 'System.String'.
-dbug: Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder[23]
-      Done attempting to bind parameter 'id' of type 'System.String'.
-dbug: Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder[26]
-      Attempting to validate the bound parameter 'id' of type 'System.String' ...
-dbug: Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder[27]
-      Done attempting to validate the bound parameter 'id' of type 'System.String'.
-info: TodoApiSample.Controllers.TodoController[1002]
-      Getting item 0
-warn: TodoApiSample.Controllers.TodoController[4000]
-      GetById(0) NOT FOUND
-info: Microsoft.AspNetCore.Mvc.StatusCodeResult[1]
-      Executing HttpStatusCodeResult, setting HTTP status code 404
-info: Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker[2]
-      Executed action TodoApiSample.Controllers.TodoController.GetById (TodoApiSample) in 32.690400000000004ms
-info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
-      Executed endpoint 'TodoApiSample.Controllers.TodoController.GetById (TodoApiSample)'
-info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
-      Request finished in 176.9103ms 404
-```
+<a name="leid"></a>
 
 ## Log event ID
 
-Each log can specify an *event ID*. The sample app does this by using a locally defined `LoggingEvents` class:
+Each log can specify an *event ID*. The sample app does this with the `MyLoggingEvents` class:
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Models/MyLoggingEvents.cs?name=snippet_LoggingEvents)]
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Core/LoggingEvents.cs?name=snippet_LoggingEvents)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
 An event ID associates a set of events. For example, all logs related to displaying a list of items on a page might be 1001.
 
 The logging provider may store the event ID in an ID field, in the logging message, or not at all. The Debug provider doesn't show event IDs. The console provider shows event IDs in brackets after the category:
 
 ```console
-info: TodoApi.Controllers.TodoController[1002]
-      Getting item invalidid
-warn: TodoApi.Controllers.TodoController[4000]
-      GetById(invalidid) NOT FOUND
+info: TodoApi.Controllers.TodoItemsController[1002]
+      Getting item 9
+warn: TodoApi.Controllers.TodoItemsController[4000]
+      GetTodoItem(9) NOT FOUND
 ```
+
+<a name="lmt"></a>
 
 ## Log message template
 
 Each log specifies a message template. The message template can contain placeholders for which arguments are provided. Use names for the placeholders, not numbers.
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
 The order of placeholders, not their names, determines which parameters are used to provide their values. In the following code, notice that the parameter names are out of sequence in the message template:
 
@@ -264,28 +235,24 @@ This code creates a log message with the parameter values in sequence:
 Parameter values: parm1, parm2
 ```
 
-The logging framework works this way so that logging providers can implement [semantic logging, also known as structured logging](https://softwareengineering.stackexchange.com/questions/312197/benefits-of-structured-logging-vs-basic-logging). The arguments themselves are passed to the logging system, not just the formatted message template. This information enables logging providers to store the parameter values as fields. For example, suppose logger method calls look like this:
+The logging framework works this way so that logging providers can implement [semantic or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging). The arguments themselves are passed to the logging system, not just the formatted message template. Logging this way enables logging providers to store the parameter values as fields. For example, consider the following logger method:
 
 ```csharp
 _logger.LogInformation("Getting item {Id} at {RequestTime}", id, DateTime.Now);
 ```
 
-If you're sending the logs to Azure Table Storage, each Azure Table entity can have `ID` and `RequestTime` properties, which simplifies queries on log data. A query can find all logs within a particular `RequestTime` range without parsing the time out of the text message.
+When logging to Azure Table Storage:
+
+* Each Azure Table entity can have `ID` and `RequestTime` properties.
+* This simplifies queries on log data. A query can find all logs within a particular `RequestTime` range without parsing the time out of the text message.
 
 ## Logging exceptions
 
-The logger methods have overloads that let you pass in an exception, as in the following example:
+The logger methods have overloads that let you pass in an exception:
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_LogException&highlight=3)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TestController.cs?name=snippet_Exp)]
 
-Different providers handle the exception information in different ways. Here's an example of Debug provider output from the code shown above.
-
-```text
-TodoApiSample.Controllers.TodoController: Warning: GetById(55) NOT FOUND
-
-System.Exception: Item not found exception.
-   at TodoApiSample.Controllers.TodoController.GetById(String id) in C:\TodoApiSample\Controllers\TodoController.cs:line 226
-```
+Exception logging is provider specific.
 
 ## Log filtering
 

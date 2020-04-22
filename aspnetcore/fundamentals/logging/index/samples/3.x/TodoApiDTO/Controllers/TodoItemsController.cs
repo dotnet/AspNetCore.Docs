@@ -41,18 +41,22 @@ namespace TodoApi.Controllers
                 .ToListAsync();
         }
 
+        #region snippet_CallLogMethods
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItemDTO>> GetTodoItem(long id)
         {
+            _logger.LogInformation(MyLoggingEvents.GetItem, "Getting item {Id}", id);
             var todoItem = await _context.TodoItems.FindAsync(id);
 
             if (todoItem == null)
             {
+                _logger.LogWarning(MyLoggingEvents.GetItemNotFound, "GetTodoItem({Id}) NOT FOUND", id);
                 return NotFound();
             }
 
             return ItemToDTO(todoItem);
         }
+        #endregion
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateTodoItem(long id, TodoItemDTO todoItemDTO)
@@ -126,7 +130,9 @@ namespace TodoApi.Controllers
                 Id = todoItem.Id,
                 Name = todoItem.Name,
                 IsComplete = todoItem.IsComplete
-            };       
+            };
+
+
     }
 }
 

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace TodoApi.Pages
 {
+    #region snippet
     public class ContactModel : PageModel
     {
         private readonly ILogger _logger;
@@ -16,5 +17,6 @@ namespace TodoApi.Pages
         {
             _logger.LogInformation("GET Pages.ContactModel called.");
         }
+        #endregion
     }
 }
