@@ -150,7 +150,7 @@ var vehicleData = new Dictionary<string, string>()
 var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
 
 var additionalFileConfig = new ConfigurationBuilder().AddJsonFile(
-    "cars.json", optional: false, reloadOnChange: true);
+    "cars.json", optional: false, reloadOnChange: true).Build();
 
 ...
 
