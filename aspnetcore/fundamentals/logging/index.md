@@ -145,7 +145,7 @@ Every log specifies a <xref:Microsoft.Extensions.Logging.LogLevel> value. The lo
 
 The following code creates `Information` and `Warning` logs:
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=4,9)]
+[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
 In the preceding code, the first parameter is the [Log event ID](#leid). The second parameter is a message template with placeholders for argument values provided by the remaining method parameters. The method parameters are explained in the [message template section](#lmt) later in this article.
 
@@ -200,7 +200,7 @@ Each log can specify an *event ID*. The sample app does this with the `MyLogging
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Models/MyLoggingEvents.cs?name=snippet_LoggingEvents)]
 
-[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
 An event ID associates a set of events. For example, all logs related to displaying a list of items on a page might be 1001.
 
@@ -219,7 +219,7 @@ warn: TodoApi.Controllers.TodoItemsController[4000]
 
 Each log specifies a message template. The message template can contain placeholders for which arguments are provided. Use names for the placeholders, not numbers.
 
-[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet_CallLogMethods&highlight=3,7)]
 
 The order of placeholders, not their names, determines which parameters are used to provide their values. In the following code, notice that the parameter names are out of sequence in the message template:
 
@@ -251,6 +251,8 @@ When logging to Azure Table Storage:
 The logger methods have overloads that let you pass in an exception:
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TestController.cs?name=snippet_Exp)]
+
+[!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
 Exception logging is provider specific.
 
