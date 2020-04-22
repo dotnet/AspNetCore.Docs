@@ -291,6 +291,5 @@ Run the app from the Server project. When using Visual Studio, select the Server
 ## Additional resources
 
 * <xref:security/blazor/webassembly/additional-scenarios>
-* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
