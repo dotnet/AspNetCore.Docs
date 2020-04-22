@@ -133,6 +133,10 @@ The following example uses the [Memory Configuration Provider](xref:fundamentals
 `Program.Main`:
 
 ```csharp
+using Microsoft.Extensions.Configuration;
+
+...
+
 var vehicleData = new Dictionary<string, string>()
 {
     { "color", "blue" },
