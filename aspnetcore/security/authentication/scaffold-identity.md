@@ -176,12 +176,26 @@ For more information, see <xref:security/blazor/server#pass-tokens-to-a-blazor-s
 In the *Pages/_Host.cshtml* file, establish the token after adding it to the `InitialApplicationState` and `TokenProvider` classes:
 
 ```csharp
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
+...
+
 var tokens = new InitialApplicationState
 {
     ...
 
     XsrfToken = Xsrf.GetAndStoreTokens(HttpContext).RequestToken
 };
+```
+
+Update the `App` component (*App.razor*) to assign the `InitialState.XsrfToken`:
+
+```csharp
+@inject TokenProvider TokensProvider
+
+...
+
+TokensProvider.XsrfToken = InitialState.XsrfToken;
 ```
 
 The `TokenProvider` service demonstrated in the topic is used in the `LoginDisplay` component in the following [Layout and authentication flow changes](#layout-and-authentication-flow-changes) section.
@@ -210,7 +224,7 @@ Add a `RedirectToLogin` component (*RedirectToLogin.razor*) to the app's *Shared
     protected override void OnInitialized()
     {
         Navigation.NavigateTo("Identity/Account/Login?returnUrl=" +
-            Navigation.ToBaseRelativePath(Navigation.Uri), true);
+            Uri.EscapeDataString(Navigation.Uri), true);
     }
 }
 ```
@@ -220,7 +234,7 @@ Add a `LoginDisplay` component (*LoginDisplay.razor*) to the app's *Shared* fold
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization
 @inject NavigationManager Navigation
-@inject TokenProvider TokenProvider
+@inject TokenProvider TokensProvider
 
 <AuthorizeView>
     <Authorized>
@@ -230,7 +244,7 @@ Add a `LoginDisplay` component (*LoginDisplay.razor*) to the app's *Shared* fold
         <form action="/Identity/Account/Logout?returnUrl=%2F" method="post">
             <button class="nav-link btn btn-link" type="submit">Logout</button>
             <input name="__RequestVerificationToken" type="hidden" 
-                value="@TokenProvider.XsrfToken">
+                value="@TokensProvider.XsrfToken">
         </form>
     </Authorized>
     <NotAuthorized>
@@ -247,49 +261,6 @@ In the `MainLayout` component (*Shared/MainLayout.razor*), add the `LoginDisplay
     <LoginDisplay />
     <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
 </div>
-```
-
-In the `App` component (*App.razor*):
-
-* Wrap the `Router` component with the `CascadingAuthenticationState` component.
-* Add the `RedirectToLogin` component for unauthorized routes.
-
-The following shows the complete component if the app is also using the [TokenProvider service](xref:security/blazor/server#pass-tokens-to-a-blazor-server-app):
-
-```razor
-@inject TokenProvider TokenProvider
-
-<CascadingAuthenticationState>
-    <Router AppAssembly="@typeof(Program).Assembly">
-        <Found Context="routeData">
-            <AuthorizeRouteView RouteData="@routeData"
-                                DefaultLayout="@typeof(MainLayout)">
-                <NotAuthorized>
-                    <RedirectToLogin />
-                </NotAuthorized>
-            </AuthorizeRouteView>
-        </Found>
-        <NotFound>
-            <LayoutView Layout="@typeof(MainLayout)">
-                <p>Sorry, there's nothing at this address.</p>
-            </LayoutView>
-        </NotFound>
-    </Router>
-</CascadingAuthenticationState>
-
-@code {
-    [Parameter]
-    public InitialApplicationState InitialState { get; set; }
-
-    protected override Task OnInitializedAsync()
-    {
-        TokenProvider.AccessToken = InitialState.AccessToken;
-        TokenProvider.RefreshToken = InitialState.RefreshToken;
-        TokenProvider.XsrfToken = InitialState.XsrfToken;
-
-        return base.OnInitializedAsync();
-    }
-}
 ```
 
 ### Style authentication endpoints
