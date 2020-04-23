@@ -106,7 +106,7 @@ During development, Blazor usually sends the full details of exceptions to the b
 
 You must decide which incidents to log and the level of severity of logged incidents. Hostile users might be able to trigger errors deliberately. For example, don't log an incident from an error where an unknown `ProductId` is supplied in the URL of a component that displays product details. Not all errors should be treated as high-severity incidents for logging.
 
-For more information, <xref:fundamentals/logging/index#create-logs-in-blazor>.
+For more information, see <xref:fundamentals/logging/index#create-logs-in-blazor>.
 
 ## Places where errors may occur
 
