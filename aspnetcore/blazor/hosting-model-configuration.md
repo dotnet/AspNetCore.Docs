@@ -5,7 +5,7 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 04/23/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
@@ -129,7 +129,7 @@ For more information on how background updates are handled by PWAs, see <xref:bl
 
 ### Logging
 
-For information on Blazor WebAssembly logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor-webassembly>.
+For information on Blazor WebAssembly logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor>.
 
 ## Blazor Server
 
@@ -247,3 +247,7 @@ To configure the SignalR client in the *Pages/_Host.cshtml* file:
   });
 </script>
 ```
+
+### Logging
+
+For information on Blazor Server logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor>.
