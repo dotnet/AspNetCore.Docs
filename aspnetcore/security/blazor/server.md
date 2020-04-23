@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats to Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/13/2020
+ms.date: 04/02/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/server
 ---
@@ -178,24 +178,6 @@ In the `App` component (*App.razor*), resolve the service and initialize it with
 @inject TokenProvider TokensProvider
 
 ...
-
-<CascadingAuthenticationState>
-    <Router AppAssembly="@typeof(Program).Assembly">
-        <Found Context="routeData">
-            <AuthorizeRouteView RouteData="@routeData"
-                                DefaultLayout="@typeof(MainLayout)">
-                <NotAuthorized>
-                    <RedirectToLogin />
-                </NotAuthorized>
-            </AuthorizeRouteView>
-        </Found>
-        <NotFound>
-            <LayoutView Layout="@typeof(MainLayout)">
-                <p>Sorry, there's nothing at this address.</p>
-            </LayoutView>
-        </NotFound>
-    </Router>
-</CascadingAuthenticationState>
 
 @code {
     [Parameter]
