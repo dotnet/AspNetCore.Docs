@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/08/2020
+ms.date: 04/22/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/standalone-with-authentication-library
 ---
@@ -114,4 +114,4 @@ For more information, see <xref:security/blazor/webassembly/additional-scenarios
 
 ## Additional resources
 
-* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* <xref:security/blazor/webassembly/additional-scenarios>
