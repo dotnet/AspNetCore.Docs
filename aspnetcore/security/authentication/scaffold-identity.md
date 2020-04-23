@@ -164,21 +164,34 @@ Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*. For more i
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-### Pass tokens to the app
+### Pass an XSRF token to the app
 
 Tokens can be passed to components:
 
 * When authentication tokens are provisioned and saved to the authentication cookie, they can be passed to components.
 * Razor components can't use `HttpContext` directly, so there's no way to obtain an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity's logout endpoint at `/Identity/Account/Logout`. An XSRF token can be passed to components.
 
-For more information and example code, see <xref:security/blazor/server#pass-tokens>. The `TokenProvider` service demonstrated in the topic is used in the `LoginDisplay` component in the following [Layout and authentication flow changes](#layout-and-authentication-flow-changes) section.
+For more information, see <xref:security/blazor/server#pass-tokens-to-a-blazor-server-app>.
+
+In the *Pages/_Host.cshtml* file, establish the token after adding it to the `InitialApplicationState` and `TokenProvider` classes:
+
+```csharp
+var tokens = new InitialApplicationState
+{
+    ...
+
+    XsrfToken = Xsrf.GetAndStoreTokens(HttpContext).RequestToken
+};
+```
+
+The `TokenProvider` service demonstrated in the topic is used in the `LoginDisplay` component in the following [Layout and authentication flow changes](#layout-and-authentication-flow-changes) section.
 
 ### Enable authentication
 
 In the `Startup` class:
 
 * Confirm that Razor Pages services are added in `Startup.ConfigureServices`.
-* If using the [TokenProvider](xref:security/blazor/server#pass-tokens), register the service.
+* If using the [TokenProvider](xref:security/blazor/server#pass-tokens-to-a-blazor-server-app), register the service.
 * Call `UseDatabaseErrorPage` on the application builder in `Startup.Configure` for the Development environment.
 * Call `UseAuthentication` and `UseAuthorization` after `UseRouting`.
 * Add an endpoint for Razor Pages.
@@ -202,7 +215,7 @@ Add a `RedirectToLogin` component (*RedirectToLogin.razor*) to the app's *Shared
 }
 ```
 
-Add a `LoginDisplay` component (*LoginDisplay.razor*) to the app's *Shared* folder. The [TokenProvider service](xref:security/blazor/server#pass-tokens) provides the XSRF token for the HTML form that POSTs to Identity's logout endpoint:
+Add a `LoginDisplay` component (*LoginDisplay.razor*) to the app's *Shared* folder. The [TokenProvider service](xref:security/blazor/server#pass-tokens-to-a-blazor-server-app) provides the XSRF token for the HTML form that POSTs to Identity's logout endpoint:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization
@@ -241,7 +254,7 @@ In the `App` component (*App.razor*):
 * Wrap the `Router` component with the `CascadingAuthenticationState` component.
 * Add the `RedirectToLogin` component for unauthorized routes.
 
-The following shows the complete component if the app is also using the [TokenProvider service](xref:security/blazor/server#pass-tokens):
+The following shows the complete component if the app is also using the [TokenProvider service](xref:security/blazor/server#pass-tokens-to-a-blazor-server-app):
 
 ```razor
 @inject TokenProvider TokenProvider
