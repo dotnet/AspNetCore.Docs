@@ -17,6 +17,9 @@ By [Javier Calvarro Nelson](https://github.com/javiercn)
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
+> [!NOTE]
+> The guidance in this article applies to ASP.NET Core 3.2 Preview 4. This topic will be updated to cover Preview 5 on Friday, April 24.
+
 ## Request additional access tokens
 
 Most apps only require an access token to interact with the protected resources that they use. In some scenarios, an app might require more than one token in order to interact with two or more resources.
