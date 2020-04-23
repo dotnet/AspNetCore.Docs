@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/22/2020
+ms.date: 04/23/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/standalone-with-authentication-library
 ---
@@ -16,6 +16,9 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
+
+> [!NOTE]
+> The guidance in this article applies to ASP.NET Core 3.2 Preview 4. This topic will be updated to cover Preview 5 on Friday, April 24.
 
 *For Azure Active Directory (AAD) and Azure Active Directory B2C (AAD B2C), don't follow the guidance in this topic. See the AAD and AAD B2C topics in this table of contents node.*
 
@@ -86,6 +89,10 @@ builder.Services.AddOidcAuthentication(options =>
 
 For more information, see <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
 
+<!--
+    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
+-->
+
 ## Imports file
 
 [!INCLUDE[](~/includes/blazor-security/imports-file-standalone.md)]
@@ -115,3 +122,4 @@ For more information, see <xref:security/blazor/webassembly/additional-scenarios
 ## Additional resources
 
 * <xref:security/blazor/webassembly/additional-scenarios>
+ 
