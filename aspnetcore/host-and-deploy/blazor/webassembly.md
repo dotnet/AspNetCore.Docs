@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 04/23/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/webassembly
 ---
@@ -92,19 +92,7 @@ When a Blazor project is published, a *web.config* file is created with the foll
   
 #### Use a custom web.config
 
-To use a custom *web.config* file:
-
-1. Place the custom *web.config* file at the root of the project folder.
-1. Add the following target to the project file (*.csproj*):
-
-   ```xml
-   <Target Name="CopyWebConfigOnPublish" AfterTargets="Publish">
-     <Copy SourceFiles="web.config" DestinationFolder="$(PublishDir)" />
-   </Target>
-   ```
-   
-> [!NOTE]
-> Use of the MSBuild property `<IsWebConfigTransformDisabled>` set to `true` isn't supported in Blazor WebAssembly apps [as it is for ASP.NET Core apps deployed to IIS](xref:host-and-deploy/iis/index#webconfig-file). For more information, see [Copy target required to provide custom Blazor WASM web.config (dotnet/aspnetcore #20569)](https://github.com/dotnet/aspnetcore/issues/20569).
+To use a custom *web.config* file, place the custom *web.config* file at the root of the project folder and publish the project.
 
 #### Install the URL Rewrite Module
 

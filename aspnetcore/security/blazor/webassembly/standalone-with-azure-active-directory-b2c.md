@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/22/2020
+ms.date: 04/23/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
 ---
@@ -108,6 +108,10 @@ builder.Services.AddMsalAuthentication(options =>
 > ```
 
 For more information, see <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+
+<!--
+    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
+-->
 
 ## Imports file
 

@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/22/2020
+ms.date: 04/23/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/additional-scenarios
 ---
@@ -55,6 +55,108 @@ if (tokenResult.TryGetToken(out var token))
 
 * `true` with the `token` for use.
 * `false` if the token isn't retrieved.
+
+## Attach tokens to outgoing requests
+
+The `AuthorizationMessageHandler` service can be used with `HttpClient` to attach access tokens to outgoing requests. Tokens are acquired using the existing `IAccessTokenProvider` service. If a token can't be acquired, an `AccessTokenNotAvailableException` is thrown. `AccessTokenNotAvailableException` has a `Redirect` method that can be used to navigate the user to the identity provider to acquire a new token. The `AuthorizationMessageHandler` can be configured with the authorized URLs, scopes, and return URL using the `ConfigureHandler` method.
+
+In the following example, `AuthorizationMessageHandler` configures an `HttpClient` in `Program.Main` (*Program.cs*):
+
+```csharp
+builder.Services.AddSingleton(sp =>
+{
+    return new HttpClient(sp.GetRequiredService<AuthorizationMessageHandler>()
+        .ConfigureHandler(
+            new [] { "https://www.example.com/base" },
+            scopes: new[] { "example.read", "example.write" }))
+        {
+            BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+        };
+});
+```
+
+For convenience, a `BaseAddressAuthorizationMessageHandler` is included that's preconfigured with the app base address as an authorized URL. The authentication-enabled Blazor WebAssembly templates now use [IHttpClientFactory](https://docs.microsoft.com/aspnet/core/fundamentals/http-requests) to set up an `HttpClient` with the `BaseAddressAuthorizationMessageHandler`:
+
+```csharp
+builder.Services.AddHttpClient("BlazorWithIdentityApp1.ServerAPI", 
+    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+        .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+
+builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("BlazorWithIdentityApp1.ServerAPI"));
+```
+
+Where the client is created with `CreateClient` in the preceding example, the `HttpClient` is supplied instances that include access tokens when making requests to the server project.
+
+The configured `HttpClient` is then used to make authorized requests using a simple `try-catch` pattern. The following `FetchData` component requests weather forecast data:
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    try
+    {
+        forecasts = 
+            await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+    }
+    catch (AccessTokenNotAvailableException exception)
+    {
+        exception.Redirect();
+    }
+}
+```
+
+Alternatively, you can define a typed client that handles all of the HTTP and token acquisition concerns within a single class:
+
+*WeatherClient.cs*:
+
+```csharp
+public class WeatherClient
+{
+    private readonly HttpClient httpClient;
+ 
+    public WeatherClient(HttpClient httpClient)
+    {
+        this.httpClient = httpClient;
+    }
+ 
+    public async Task<IEnumerable<WeatherForecast>> GetWeatherForeacasts()
+    {
+        IEnumerable<WeatherForecast> forecasts = new WeatherForecast[0];
+
+        try
+        {
+            forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>(
+                "WeatherForecast");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+
+        return forecasts;
+    }
+}
+```
+
+*Program.cs*:
+
+```csharp
+builder.Services.AddHttpClient<WeatherClient>(
+    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+    .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+```
+
+*FetchData.razor*:
+
+```razor
+@inject WeatherClient WeatherClient
+
+...
+
+protected override async Task OnInitializedAsync()
+{
+    forecasts = await WeatherClient.GetWeatherForeacasts();
+}
+```
 
 ## Handle token request errors
 

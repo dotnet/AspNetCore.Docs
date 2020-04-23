@@ -5,7 +5,7 @@ description: Learn how to call a web API from a Blazor WebAssembly app using JSO
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/19/2020
+ms.date: 04/23/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/call-web-api
 ---
@@ -216,6 +216,19 @@ When running on WebAssembly in a Blazor WebAssembly app, use [HttpClient](xref:f
 }
 ```
 
+HTTP fetch request options can be configured with `HttpRequestMessage` extension methods shown in the following table.
+
+| `HttpRequestMessage` extension method | Fetch request property |
+| ------------------------------------- | ---------------------- |
+| `SetBrowserRequestCredentials`        | [credentials](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
+| `SetBrowserRequestCache`              | [cache](https://developer.mozilla.org/docs/Web/API/Request/cache) |
+| `SetBrowserRequestMode`               | [mode](https://developer.mozilla.org/docs/Web/API/Request/mode) |
+| `SetBrowserRequestIntegrity`          | [integrity](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
+
+You can set additional options using the more generic `SetBrowserRequestOption` extension method.
+ 
+The HTTP response is typically buffered in a Blazor WebAssembly app to enable support for sync reads on the response content. To enable support for response streaming, use the `SetBrowserResponseStreamingEnabled` extension method on the request.
+
 For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlobalScope.fetch():Parameters](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
 
 When sending credentials (authorization cookies/headers) on CORS requests, the `Authorization` header must be allowed by the CORS policy.
@@ -239,6 +252,8 @@ For more information, see <xref:security/cors> and the sample app's HTTP Request
 
 ## Additional resources
 
+* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [Attach tokens to outgoing requests](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
 * <xref:fundamentals/http-requests>
 * <xref:security/enforcing-ssl>
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration)
