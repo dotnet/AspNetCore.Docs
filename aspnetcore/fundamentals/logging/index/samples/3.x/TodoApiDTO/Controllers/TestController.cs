@@ -22,7 +22,7 @@ namespace TodoApi.Controllers
         public IActionResult TestExp(int id)
         {
             var routeInfo = ControllerContext.ToCtxString(id);
-            _logger.LogInformation(MyLoggingEvents.TestItem, routeInfo);
+            _logger.LogInformation(MyLogEvents.TestItem, routeInfo);
 
             try
             {
@@ -33,7 +33,7 @@ namespace TodoApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogWarning(MyLoggingEvents.GetItemNotFound, ex, "TestExp({Id})", id);
+                _logger.LogWarning(MyLogEvents.GetItemNotFound, ex, "TestExp({Id})", id);
                 return NotFound();
             }
 

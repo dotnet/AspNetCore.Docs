@@ -141,11 +141,9 @@ To explicitly specify the category, call `ILoggerFactory.CreateLogger`:
 
 ## Log level
 
-zz <xref:Microsoft.Extensions.Logging.LoggerExtensions?displayProperty=fullName> or <xref:Microsoft.Extensions.Logging.LoggerExtensions>
+The [Log](xref:Microsoft.Extensions.Logging.LoggerExtensions) methods first parameter, <xref:Microsoft.Extensions.Logging.LogLevel>, indicates the severity of the log. Rather than calling `Log` with the `LogLevel`, most developers call the [Log{LogLevel}](xref:Microsoft.Extensions.Logging.LoggerExtensions) extension methods. The `Log{LogLevel}` extension methods [call the Log method and specify the LogLevel](https://github.com/dotnet/extensions/blob/release/3.1/src/Logging/Logging.Abstractions/src/LoggerExtensions.cs).
 
-The [Log](xref:Microsoft.Extensions.Logging.LoggerExtensions) methods first parameter, <xref:Microsoft.Extensions.Logging.LogLevel>, indicates the severity of the log. Rather than calling `Log` with the `LogLevel`, most developers call the [`Log{LogLevel}` extension methods](xref:Microsoft.Extensions.Logging.LoggerExtensions). The `Log{LogLevel}` extension methods [call the `Log` method and specify the `LogLevel`](https://github.com/dotnet/extensions/blob/release/3.1/src/Logging/Logging.Abstractions/src/LoggerExtensions.cs).
-
-The following table lists the <xref:Microsoft.Extensions.Logging.LogLevel>, the convenience `Log{LogLevel}` extension methods, and the suggested usage. The `LogLevel` is listed from lowest to highest severity.
+The following table lists the <xref:Microsoft.Extensions.Logging.LogLevel>, the convenience `Log{LogLevel}` extension method, and the suggested usage:
 
 | LogLevel  | Method | Description |
 | ----------------- | ------------ | ----- |
@@ -156,43 +154,20 @@ The following table lists the <xref:Microsoft.Extensions.Logging.LogLevel>, the 
 | [Error](xref:Microsoft.Extensions.Logging.LogLevel) | [LogError](/dotnet/api/microsoft.extensions.logging.loggerextensions.logerror)  | For errors and exceptions that cannot be handled. These messages indicate a failure in the current operation or request, not an app-wide failure. |
 | [Critical](xref:Microsoft.Extensions.Logging.LogLevel) | [LogCritical](/dotnet/api/microsoft.extensions.logging.loggerextensions.logcritical)  | For failures that require immediate attention. Examples: data loss scenarios, out of disk space. |
 
-Every log specifies a <xref:Microsoft.Extensions.Logging.LogLevel> value. The log level indicates the severity or importance. For example, you might write an `Information` log when a method ends normally and a `Warning` log when a method returns a *404 Not Found* status code.
+In the previous table, the `LogLevel` is listed from lowest to highest severity.
 
 The following code creates `Information` and `Warning` logs:
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+<!-- xx
+Old index/samples/3.x/TodoApiSample/Controllers/TodoController.cs
+new index/samples/3.x/TodoApiDTO/Controllers/TodoItemsController.cs
+\
+-->
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet_CallLogMethods&highlight=4,9)]
 
 In the preceding code, the first parameter is the [Log event ID](#leid). The second parameter is a message template with placeholders for argument values provided by the remaining method parameters. The method parameters are explained in the [message template section](#lmt) later in this article.
 
-Log methods that include the level in the method name (for example, `LogInformation` and `LogWarning`) are [extension methods for ILogger](xref:Microsoft.Extensions.Logging.LoggerExtensions). These methods call a `Log` method that takes a `LogLevel` parameter. You can call the `Log` method directly rather than one of these extension methods, but the syntax is relatively complicated. For more information, see <xref:Microsoft.Extensions.Logging.ILogger> and the [logger extensions source code](https://github.com/dotnet/extensions/blob/release/2.2/src/Logging/Logging.Abstractions/src/LoggerExtensions.cs).
-
-ASP.NET Core defines the following log levels, ordered here from lowest to highest severity.
-
-* Trace = 0
-
-  For information that's typically valuable only for debugging. These messages may contain sensitive application data and so shouldn't be enabled in a production environment. *Disabled by default.*
-
-* Debug = 1
-
-  For information that may be useful in development and debugging. Example: `Entering method Configure with flag set to true.` Enable `Debug` level logs in production only when troubleshooting, due to the high volume of logs.
-
-* Information = 2
-
-  For tracking the general flow of the app. These logs typically have some long-term value. Example: `Request received for path /api/todo`
-
-* Warning = 3
-
-  For abnormal or unexpected events. These may include errors or other conditions that don't cause the app to stop but might need to be investigated. Handled exceptions are a common place to use the `Warning` log level. Example: `FileNotFoundException`
-
-* Error = 4
-
-  For errors and exceptions that cannot be handled. These messages indicate a failure in the current operation or request, not an app-wide failure. Example log message: `Cannot insert record due to duplicate key violation.`
-
-* Critical = 5
-
-  For failures that require immediate attention. Examples: data loss scenarios, out of disk space.
-
-Use the log level to control how much log output is written to a particular storage medium or display. For example:
+Call the appropriate `Log{LogLevel}` method to control how much log output is written to a particular storage medium. For example:
 
 * In production:
   * Logging at the `Trace` through `Information` levels produces a high-volume of detailed log messages. To control costs and not exceed data storage limits, log `Trace` through `Information` level messages to a high-volume, low-cost data store.
@@ -211,11 +186,11 @@ ASP.NET Core writes logs for framework events.
 
 ## Log event ID
 
-Each log can specify an *event ID*. The sample app does this with the `MyLoggingEvents` class:
+Each log can specify an *event ID*. The sample app does this with the `MyLogEvents` class:
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Models/MyLoggingEvents.cs?name=snippet_LoggingEvents)]
 
-[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet_CallLogMethods&highlight=4,9)]
 
 An event ID associates a set of events. For example, all logs related to displaying a list of items on a page might be 1001.
 
@@ -223,9 +198,9 @@ The logging provider may store the event ID in an ID field, in the logging messa
 
 ```console
 info: TodoApi.Controllers.TodoItemsController[1002]
-      Getting item 9
+      Getting item 1
 warn: TodoApi.Controllers.TodoItemsController[4000]
-      GetTodoItem(9) NOT FOUND
+      Get(1) NOT FOUND
 ```
 
 <a name="lmt"></a>
@@ -234,9 +209,9 @@ warn: TodoApi.Controllers.TodoItemsController[4000]
 
 Each log specifies a message template. The message template can contain placeholders for which arguments are provided. Use names for the placeholders, not numbers.
 
-[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet_CallLogMethods&highlight=3,7)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet_CallLogMethods&highlight=4,9)]
 
-The order of placeholders, not their names, determines which parameters are used to provide their values. In the following code, notice that the parameter names are out of sequence in the message template:
+The order of placeholders, not their names, determines which parameters are used to provide their values. In the following code, the parameter names are out of sequence in the message template:
 
 ```csharp
 string p1 = "parm1";
@@ -261,21 +236,21 @@ When logging to Azure Table Storage:
 * Each Azure Table entity can have `ID` and `RequestTime` properties.
 * This simplifies queries on log data. A query can find all logs within a particular `RequestTime` range without parsing the time out of the text message.
 
-## Logging exceptions
+## Log exceptions
 
-The logger methods have overloads that let you pass in an exception:
+The logger methods have overloads take an exception:
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TestController.cs?name=snippet_Exp)]
 
-[!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
+[!INCLUDE[](~/includes/MyDisplayRouteInfoBoth.md)]
 
 Exception logging is provider specific.
 
 ## Log filtering
 
-You can specify a minimum log level for a specific provider and category or for all providers or all categories. Any logs below the minimum level aren't passed to that provider, so they don't get displayed or stored.
+The minimum log level for a specific provider and category or for all providers or all categories can be specified. Any logs below the minimum level aren't passed to that provider, so they don't get displayed or stored.
 
-To suppress all logs, specify `LogLevel.None` as the minimum log level. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
+To suppress all logs, specify [LogLevel.None](xref:Microsoft.Extensions.Logging.LogLevel) as the minimum log level. The integer value of `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
 
 ### Create filter rules in configuration
 

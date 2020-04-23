@@ -10,7 +10,7 @@ namespace TodoApi.Models
         {
             if (context.TodoItems.Any())
             {
-                _logger.LogInformation(MyLoggingEvents.GenerateItems, 
+                _logger.LogInformation(MyLogEvents.GenerateItems, 
                                        "Generating sample items.");
 
                 for (int i=0; i<5; i++)

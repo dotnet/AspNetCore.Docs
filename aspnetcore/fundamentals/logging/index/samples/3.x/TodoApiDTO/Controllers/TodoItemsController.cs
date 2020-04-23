@@ -32,7 +32,7 @@ namespace TodoApi.Controllers
         {
             using (_logger.BeginScope("Message {HoleValue}", DateTime.Now))
             {
-                _logger.LogInformation(MyLoggingEvents.ListItems, ControllerContext.ToCtxString());
+                _logger.LogInformation(MyLogEvents.ListItems, ControllerContext.ToCtxString());
                 MyUtil.SeedDBifEmpty(_context, _logger);
             }
 
@@ -45,12 +45,13 @@ namespace TodoApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItemDTO>> GetTodoItem(long id)
         {
-            _logger.LogInformation(MyLoggingEvents.GetItem, "Getting item {Id}", id);
+            _logger.LogInformation(MyLogEvents.GetItem, "Getting item {Id}", id);
+
             var todoItem = await _context.TodoItems.FindAsync(id);
 
             if (todoItem == null)
             {
-                _logger.LogWarning(MyLoggingEvents.GetItemNotFound, "GetTodoItem({Id}) NOT FOUND", id);
+                _logger.LogWarning(MyLogEvents.GetItemNotFound, "Get({Id}) NOT FOUND", id);
                 return NotFound();
             }
 
