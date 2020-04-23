@@ -11,7 +11,7 @@ uid: host-and-deploy/blazor/webassembly
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly
 
-By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
+By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), [Daniel Roth](https://github.com/danroth27), and [Ben Adams](https://twitter.com/ben_a_adams).
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
@@ -28,6 +28,8 @@ The following deployment strategies are supported:
 ## Brotli precompression
 
 When a Blazor WebAssembly app is published, the output is precompressed using the [Brotli compression algorithm](https://tools.ietf.org/html/rfc7932) at the highest level to reduce the app size and remove the need for runtime compression.
+
+For IIS *web.config* compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section.
 
 ## Rewrite URLs for correct routing
 
@@ -139,6 +141,10 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
   ```
 
 Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:host-and-deploy/blazor/index#app-base-path). Set the app base path in the app's *index.html* file to the IIS alias used when configuring the sub-app in IIS.
+
+#### Brotli and Gzip compression
+
+IIS can be configured via *web.config* to serve Brotli or Gzip compressed Blazor assets. For an example configuration, see [web.config](webassembly/_samples/web.config?raw=true).
 
 #### Troubleshooting
 

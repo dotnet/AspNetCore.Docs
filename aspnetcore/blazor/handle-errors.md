@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/29/2020
+ms.date: 04/23/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/handle-errors
 ---
@@ -105,6 +105,8 @@ If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Ext
 During development, Blazor usually sends the full details of exceptions to the browser's console to aid in debugging. In production, detailed errors in the browser's console are disabled by default, which means that errors aren't sent to clients but the exception's full details are still logged server-side. For more information, see <xref:fundamentals/error-handling>.
 
 You must decide which incidents to log and the level of severity of logged incidents. Hostile users might be able to trigger errors deliberately. For example, don't log an incident from an error where an unknown `ProductId` is supplied in the URL of a component that displays product details. Not all errors should be treated as high-severity incidents for logging.
+
+For more information, see <xref:fundamentals/logging/index#create-logs-in-blazor>.
 
 ## Places where errors may occur
 
