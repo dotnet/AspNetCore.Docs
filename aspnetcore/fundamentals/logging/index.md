@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use the logging framework provided by the Microsoft.Extensions.Logging NuGet package.
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/25/2020
+ms.date: 5/2/2020
 
 uid: fundamentals/logging/index
 ---
