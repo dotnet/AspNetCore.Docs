@@ -246,11 +246,11 @@ Configuration is supplied by the *wwwroot/appsettings.json* file:
 
 ```json
 {
-    "AzureAd": {
-        "Authority": "https://login.microsoftonline.com/{TENANT ID}",
-        "ClientId": "{CLIENT APP CLIENT ID}",
-        "ValidateAuthority": true
-    }
+  "AzureAd": {
+    "Authority": "https://login.microsoftonline.com/{TENANT ID}",
+    "ClientId": "{CLIENT APP CLIENT ID}",
+    "ValidateAuthority": true
+  }
 }
 ```
 
@@ -258,11 +258,11 @@ Example:
 
 ```json
 {
-    "AzureAd": {
-        "Authority": "https://login.microsoftonline.com/e86c78e2-...-918e0565a45e",
-        "ClientId": "4369008b-21fa-427c-abaa-9b53bf58e538",
-        "ValidateAuthority": true
-    }
+  "AzureAd": {
+    "Authority": "https://login.microsoftonline.com/e86c78e2-...-918e0565a45e",
+    "ClientId": "4369008b-21fa-427c-abaa-9b53bf58e538",
+    "ValidateAuthority": true
+  }
 }
 ```
 
