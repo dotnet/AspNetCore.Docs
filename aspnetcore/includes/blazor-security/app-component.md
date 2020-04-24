@@ -11,7 +11,17 @@ The `App` component (*App.razor*) is similar to the `App` component found in Bla
             <AuthorizeRouteView RouteData="@routeData" 
                 DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>
-                    <RedirectToLogin />
+                    @if (!context.User.Identity.IsAuthenticated)
+                    {
+                        <RedirectToLogin />
+                    }
+                    else
+                    {
+                        <p>
+                            You are not authorized to access 
+                            this resource.
+                        </p>
+                    }
                 </NotAuthorized>
             </AuthorizeRouteView>
         </Found>

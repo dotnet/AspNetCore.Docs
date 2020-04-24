@@ -5,7 +5,7 @@ description: To create a new Blazor hosted app with authentication from within V
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/30/2020
+ms.date: 04/22/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/hosted-with-identity-server
 ---
@@ -16,6 +16,9 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
+
+> [!NOTE]
+> The guidance in this article applies to ASP.NET Core 3.2 Preview 4. This topic will be updated to cover Preview 5 on Friday, April 24.
 
 To create a new Blazor hosted app in Visual Studio that uses [IdentityServer](https://identityserver.io/) to authenticate users and API calls:
 
@@ -43,14 +46,13 @@ The `Startup` class has the following additions:
 
 * In `Startup.ConfigureServices`:
 
-  * Identity with the default UI:
+  * Identity:
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
     services.AddDefaultIdentity<ApplicationUser>()
-        .AddDefaultUI(UIFramework.Bootstrap4)
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
@@ -231,4 +233,4 @@ Run the app from the Server project. When using Visual Studio, select the Server
 
 ## Additional resources
 
-* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* <xref:security/blazor/webassembly/additional-scenarios>

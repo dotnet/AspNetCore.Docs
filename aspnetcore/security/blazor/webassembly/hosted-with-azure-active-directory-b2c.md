@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/09/2020
+ms.date: 04/23/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
 ---
@@ -16,6 +16,9 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
+
+> [!NOTE]
+> The guidance in this article applies to ASP.NET Core 3.2 Preview 4. This topic will be updated to cover Preview 5 on Friday, April 24.
 
 This article describes how to create a Blazor WebAssembly standalone app that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
@@ -262,6 +265,10 @@ builder.Services.AddMsalAuthentication(options =>
 
 For more information, see <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
 
+<!--
+    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
+-->
+
 ### Imports file
 
 [!INCLUDE[](~/includes/blazor-security/imports-file-hosted.md)]
@@ -304,7 +311,7 @@ Run the app from the Server project. When using Visual Studio, select the Server
 
 ## Additional resources
 
-* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* <xref:security/blazor/webassembly/additional-scenarios>
 * <xref:security/authentication/azure-ad-b2c>
 * [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant)
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)

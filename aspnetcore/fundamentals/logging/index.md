@@ -5,7 +5,7 @@ description: Learn how to use the logging framework provided by the Microsoft.Ex
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/17/2020
+ms.date: 4/23/2020
 uid: fundamentals/logging/index
 ---
 # Logging in .NET Core and ASP.NET Core
@@ -158,6 +158,82 @@ If you need to configure a service that depends on `ILogger<T>`, you can still d
 [!code-csharp[](index/samples/3.x/TodoApiSample/Startup.cs?name=snippet_ConfigureServices&highlight=6-10)]
 
 The preceding highlighted code is a `Func` that runs the first time the DI container needs to construct an instance of `MyService`. You can access any of the registered services in this way.
+
+### Create logs in Blazor
+
+#### Blazor WebAssembly
+
+Configure logging in Blazor WebAssembly apps with the `WebAssemblyHostBuilder.Logging` property in `Program.Main`:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+
+...
+
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
+builder.Logging.SetMinimumLevel(LogLevel.Debug);
+builder.Logging.AddProvider(new CustomLoggingProvider());
+```
+
+The `Logging` property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so all of the extension methods available on <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are also available on `Logging`.
+
+#### Log in Razor components
+
+Loggers respect app startup configuration.
+
+The `using` directive for <xref:Microsoft.Extensions.Logging> is required to support Intellisense completions for APIs, such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> and <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A>.
+
+The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILogger> in Razor components:
+
+```razor
+@page "/counter"
+@using Microsoft.Extensions.Logging;
+@inject ILogger<Counter> logger;
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        logger.LogWarning("Someone has clicked me!");
+
+        currentCount++;
+    }
+}
+```
+
+The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in Razor components:
+
+```razor
+@page "/counter"
+@using Microsoft.Extensions.Logging;
+@inject ILoggerFactory LoggerFactory
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        var logger = LoggerFactory.CreateLogger<Counter>();
+        logger.LogWarning("Someone has clicked me!");
+
+        currentCount++;
+    }
+}
+```
 
 ### No asynchronous logger methods
 

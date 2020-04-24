@@ -5,13 +5,13 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 04/23/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/webassembly
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly
 
-By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
+By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), [Daniel Roth](https://github.com/danroth27), and [Ben Adams](https://twitter.com/ben_a_adams).
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
@@ -28,6 +28,8 @@ The following deployment strategies are supported:
 ## Brotli precompression
 
 When a Blazor WebAssembly app is published, the output is precompressed using the [Brotli compression algorithm](https://tools.ietf.org/html/rfc7932) at the highest level to reduce the app size and remove the need for runtime compression.
+
+For IIS *web.config* compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section.
 
 ## Rewrite URLs for correct routing
 
@@ -92,19 +94,7 @@ When a Blazor project is published, a *web.config* file is created with the foll
   
 #### Use a custom web.config
 
-To use a custom *web.config* file:
-
-1. Place the custom *web.config* file at the root of the project folder.
-1. Add the following target to the project file (*.csproj*):
-
-   ```xml
-   <Target Name="CopyWebConfigOnPublish" AfterTargets="Publish">
-     <Copy SourceFiles="web.config" DestinationFolder="$(PublishDir)" />
-   </Target>
-   ```
-   
-> [!NOTE]
-> Use of the MSBuild property `<IsWebConfigTransformDisabled>` set to `true` isn't supported in Blazor WebAssembly apps [as it is for ASP.NET Core apps deployed to IIS](xref:host-and-deploy/iis/index#webconfig-file). For more information, see [Copy target required to provide custom Blazor WASM web.config (dotnet/aspnetcore #20569)](https://github.com/dotnet/aspnetcore/issues/20569).
+To use a custom *web.config* file, place the custom *web.config* file at the root of the project folder and publish the project.
 
 #### Install the URL Rewrite Module
 
@@ -151,6 +141,10 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
   ```
 
 Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:host-and-deploy/blazor/index#app-base-path). Set the app base path in the app's *index.html* file to the IIS alias used when configuring the sub-app in IIS.
+
+#### Brotli and Gzip compression
+
+IIS can be configured via *web.config* to serve Brotli or Gzip compressed Blazor assets. For an example configuration, see [web.config](webassembly/_samples/web.config?raw=true).
 
 #### Troubleshooting
 
