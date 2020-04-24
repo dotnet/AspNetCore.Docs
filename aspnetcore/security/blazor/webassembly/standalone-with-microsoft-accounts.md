@@ -85,10 +85,10 @@ Configuration is supplied by the *wwwroot/appsettings.json* file:
 
 ```json
 {
-    "AzureAd": {
-        "Authority": "https://login.microsoftonline.com/common",
-        "ClientId": "{CLIENT ID}"
-    }
+  "AzureAd": {
+    "Authority": "https://login.microsoftonline.com/common",
+    "ClientId": "{CLIENT ID}"
+  }
 }
 ```
 
@@ -96,10 +96,10 @@ Example:
 
 ```json
 {
-    "AzureAd": {
-        "Authority": "https://login.microsoftonline.com/common",
-        "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd"
-    }
+  "AzureAd": {
+    "Authority": "https://login.microsoftonline.com/common",
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd"
+  }
 }
 ```
 
