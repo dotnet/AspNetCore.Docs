@@ -1,6 +1,6 @@
 ## Troubleshoot
 
-### Cookies and site dataAppXq0fevzme2pys62n3e0fbqa7peapykr8v
+### Cookies and site data
 
 Cookies and site data can persist across app updates and interfere with testing and troubleshooting. Clear the following when making app code changes, user account changes with the provider, or provider app configuration changes:
 
