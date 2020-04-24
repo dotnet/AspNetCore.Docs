@@ -5,7 +5,7 @@ description: Learn how to secure Blazor WebAssemlby apps as Single Page Applicat
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/31/2020
+ms.date: 04/24/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/index
 ---
@@ -47,125 +47,7 @@ The `Microsoft.AspNetCore.Components.WebAssembly.Authentication` library offers 
   * If the authentication process completes successfully, the user is authenticated and optionally sent back to the original protected URL that the user requested.
   * If the authentication process fails for any reason, the user is sent to the login failed page (`/authentication/login-failed`), and an error is displayed.
 
-## Support prerendering with authentication
+## Additional resources
 
-After following the guidance in one of the hosted Blazor WebAssembly app topics, use the following instructions to create an app that:
-
-* Prerenders paths for which authorization isn't required.
-* Doesn't prerender paths for which authorization is required.
-
-In the Client app's `Program` class (*Program.cs*), factor common service registrations into a separate method (for example, `ConfigureCommonServices`):
-
-```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        builder.RootComponents.Add<App>("app");
-
-        services.AddBaseAddressHttpClient();
-        services.Add...;
-
-        ConfigureCommonServices(builder.Services);
-
-        await builder.Build().RunAsync();
-    }
-
-    public static void ConfigureCommonServices(IServiceCollection services)
-    {
-        // Common service registrations
-    }
-}
-```
-
-In the Server app's `Startup.ConfigureServices`, register the following additional services:
-
-```csharp
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.Server;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-
-public void ConfigureServices(IServiceCollection services)
-{
-    ...
-
-    services.AddRazorPages();
-    services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
-    services.AddScoped<SignOutSessionStateManager>();
-
-    Client.Program.ConfigureCommonServices(services);
-}
-```
-
-In the Server app's `Startup.Configure` method, replace `endpoints.MapFallbackToFile("index.html")` with `endpoints.MapFallbackToPage("/_Host")`:
-
-```csharp
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapFallbackToPage("/_Host");
-});
-```
-
-In the Server app, create a *Pages* folder if it doesn't exist. Create a *_Host.cshtml* page inside the Server app's *Pages* folder. Paste the contents from the Client app's *wwwroot/index.html* file into the *Pages/_Host.cshtml* file. Update the file's contents:
-
-* Add `@page "_Host"` to the top of the file.
-* Replace the `<app>Loading...</app>` tag with the following:
-
-  ```cshtml
-  <app>
-      @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
-      {
-          <component type="typeof(Wasm.Authentication.Client.App)" render-mode="Static" />
-      }
-      else
-      {
-          <text>Loading...</text>
-      }
-  </app>
-  ```
-  
-## Options for hosted apps and third-party login providers
-
-When authenticating and authorizing a hosted Blazor WebAssembly app with a third-party provider, there are several options available for authenticating the user. Which one you choose depends on your scenario.
-
-For more information, see <xref:security/authentication/social/additional-claims>.
-
-### Authenticate users to only call protected third party APIs
-
-Authenticate the user with a client-side OAuth flow against the third-party API provider:
-
- ```csharp
- builder.services.AddOidcAuthentication(options => { ... });
- ```
- 
- In this scenario:
-
-* The server hosting the app doesn't play a role.
-* APIs on the server can't be protected.
-* The app can only call protected third-party APIs.
-
-### Authenticate users with a third-party provider and call protected APIs on the host server and the third party
-
-Configure Identity with a third-party login provider. Obtain the tokens required for third-party API access and store them.
-
-When a user logs in, Identity collects access and refresh tokens as part of the authentication process. At that point, there are a couple of approaches available for making API calls to third-party APIs.
-
-#### Use a server access token to retrieve the third-party access token
-
-Use the access token generated on the server to retrieve the third-party access token from a server API endpoint. From there, use the third-party access token to call third-party API resources directly from Identity on the client.
-
-We don't recommend this approach. This approach requires treating the third-party access token as if it were generated for a public client. In OAuth terms, the public app doesn't have a client secret because it can't be trusted to store secrets safely, and the access token is produced for a confidential client. A confidential client is a client that has a client secret and is assumed to be able to safely store secrets.
-
-* The third-party access token might be granted additional scopes to perform sensitive operations based on the fact that the third-party emitted the token for a more trusted client.
-* Similarly, refresh tokens shouldn't be issued to a client that isn't trusted, as doing so gives the client unlimited access unless other restrictions are put into place.
-
-#### Make API calls from the client to the server API in order to call third-party APIs
-
-Make an API call from the client to the server API. From the server, retrieve the access token for the third-party API resource and issue whatever call is necessary.
-
-While this approach requires an extra network hop through the server to call a third-party API, it ultimately results in a safer experience:
-
-* The server can store refresh tokens and ensure that the app doesn't lose access to third-party resources.
-* The app can't leak access tokens from the server that might contain more sensitive permissions.
+* Articles under this *Overview* provide information on authenticating users in Blazor WebAssembly apps against specific providers.
+* <xref:security/blazor/webassembly/additional-scenarios>

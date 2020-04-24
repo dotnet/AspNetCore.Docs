@@ -1,11 +1,11 @@
 ---
-title: Call a web API from ASP.NET Core Blazor
+title: Call a web API from ASP.NET Core Blazor WebAssembly
 author: guardrex
-description: Learn how to call a web API from a Blazor app using JSON helpers, including making cross-origin resource sharing (CORS) requests.
+description: Learn how to call a web API from a Blazor WebAssembly app using JSON helpers, including making cross-origin resource sharing (CORS) requests.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/22/2020
+ms.date: 04/23/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/call-web-api
 ---
@@ -28,9 +28,19 @@ See the following components in the *BlazorWebAssemblySample* sample app:
 
 ## Packages
 
-Reference the *experimental* [Microsoft.AspNetCore.Blazor.HttpClient](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.HttpClient/) NuGet package in the project file. `Microsoft.AspNetCore.Blazor.HttpClient` is based on `HttpClient` and [System.Text.Json](https://www.nuget.org/packages/System.Text.Json/).
+Reference the [System.Net.Http.Json](https://www.nuget.org/packages/System.Net.Http.Json/) NuGet package in the project file.
 
-To use a stable API, use the [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client/) package, which uses [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/)/[Json.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm). Using the stable API in `Microsoft.AspNet.WebApi.Client` doesn't provide the JSON helpers described in this topic, which are unique to the experimental `Microsoft.AspNetCore.Blazor.HttpClient` package.
+## Add the HttpClient service
+
+In `Program.Main`, add an `HttpClient` service if it doesn't already exist:
+
+```csharp
+builder.Services.AddSingleton(
+    new HttpClient
+    {
+        BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+    });
+```
 
 ## HttpClient and JSON helpers
 
@@ -64,7 +74,7 @@ private class TodoItem
 
 JSON helper methods send requests to a URI (a web API in the following examples) and process the response:
 
-* `GetJsonAsync` &ndash; Sends an HTTP GET request and parses the JSON response body to create an object.
+* `GetFromJsonAsync` &ndash; Sends an HTTP GET request and parses the JSON response body to create an object.
 
   In the following code, the `_todoItems` are displayed by the component. The `GetTodoItems` method is triggered when the component is finished rendering ([OnInitializedAsync](xref:blazor/lifecycle#component-initialization-methods)). See the sample app for a complete example.
 
@@ -76,11 +86,11 @@ JSON helper methods send requests to a URI (a web API in the following examples)
       private TodoItem[] _todoItems;
 
       protected override async Task OnInitializedAsync() => 
-          _todoItems = await Http.GetJsonAsync<TodoItem[]>("api/TodoItems");
+          _todoItems = await Http.GetFromJsonAsync<TodoItem[]>("api/TodoItems");
   }
   ```
 
-* `PostJsonAsync` &ndash; Sends an HTTP POST request, including JSON-encoded content, and parses the JSON response body to create an object.
+* `PostAsJsonAsync` &ndash; Sends an HTTP POST request, including JSON-encoded content, and parses the JSON response body to create an object.
 
   In the following code, `_newItemName` is provided by a bound element of the component. The `AddItem` method is triggered by selecting a `<button>` element. See the sample app for a complete example.
 
@@ -97,12 +107,18 @@ JSON helper methods send requests to a URI (a web API in the following examples)
       private async Task AddItem()
       {
           var addItem = new TodoItem { Name = _newItemName, IsComplete = false };
-          await Http.PostJsonAsync("api/TodoItems", addItem);
+          await Http.PostAsJsonAsync("api/TodoItems", addItem);
       }
   }
   ```
+  
+  Calls to `PostAsJsonAsync` return an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the `ReadFromJsonAsync<T>` extension method:
+  
+  ```csharp
+  var content = response.content.ReadFromJsonAsync<WeatherForecast>();
+  ```
 
-* `PutJsonAsync` &ndash; Sends an HTTP PUT request, including JSON-encoded content.
+* `PutAsJsonAsync` &ndash; Sends an HTTP PUT request, including JSON-encoded content.
 
   In the following code, `_editItem` values for `Name` and `IsCompleted` are provided by bound elements of the component. The item's `Id` is set when the item is selected in another part of the UI and `EditItem` is called. The `SaveItem` method is triggered by selecting the Save `<button>` element. See the sample app for a complete example.
 
@@ -125,8 +141,14 @@ JSON helper methods send requests to a URI (a web API in the following examples)
       }
 
       private async Task SaveItem() =>
-          await Http.PutJsonAsync($"api/TodoItems/{_editItem.Id}, _editItem);
+          await Http.PutAsJsonAsync($"api/TodoItems/{_editItem.Id}, _editItem);
   }
+  ```
+  
+  Calls to `PutAsJsonAsync` return an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the `ReadFromJsonAsync<T>` extension method:
+  
+  ```csharp
+  var content = response.content.ReadFromJsonAsync<WeatherForecast>();
   ```
 
 <xref:System.Net.Http> includes additional extension methods for sending HTTP requests and receiving HTTP responses. [HttpClient.DeleteAsync](xref:System.Net.Http.HttpClient.DeleteAsync*) is used to send an HTTP DELETE request to a web API.
@@ -163,26 +185,26 @@ When running on WebAssembly in a Blazor WebAssembly app, use [HttpClient](xref:f
 ```razor
 @using System.Net.Http
 @using System.Net.Http.Headers
+@using System.Net.Http.Json
 @inject HttpClient Http
 
 @code {
     private async Task PostRequest()
     {
-        Http.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue("Bearer", "{OAUTH TOKEN}");
-
         var requestMessage = new HttpRequestMessage()
         {
             Method = new HttpMethod("POST"),
             RequestUri = new Uri("https://localhost:10000/api/TodoItems"),
             Content = 
-                new StringContent(
-                    @"{""name"":""A New Todo Item"",""isComplete"":false}")
+                JsonContent.Create(new TodoItem
+                { 
+                    Name: "A New Todo Item",
+                    IsComplete: false
+                })
         };
-
-        requestMessage.Content.Headers.ContentType = 
-            new System.Net.Http.Headers.MediaTypeHeaderValue(
-                "application/json");
+        
+        requestMessage.Headers.Authorization = 
+           new AuthenticationHeaderValue("Bearer", "{OAUTH TOKEN}");
 
         requestMessage.Content.Headers.TryAddWithoutValidation(
             "x-custom-header", "value");
@@ -192,6 +214,27 @@ When running on WebAssembly in a Blazor WebAssembly app, use [HttpClient](xref:f
         var responseBody = await response.Content.ReadAsStringAsync();
     }
 }
+```
+
+.NET WebAssembly's implementation of `HttpClient` uses [WindowOrWorkerGlobalScope.fetch()](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch allows configuring several [request-specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). 
+
+HTTP fetch request options can be configured with `HttpRequestMessage` extension methods shown in the following table.
+
+| `HttpRequestMessage` extension method | Fetch request property |
+| ------------------------------------- | ---------------------- |
+| `SetBrowserRequestCredentials`        | [credentials](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
+| `SetBrowserRequestCache`              | [cache](https://developer.mozilla.org/docs/Web/API/Request/cache) |
+| `SetBrowserRequestMode`               | [mode](https://developer.mozilla.org/docs/Web/API/Request/mode) |
+| `SetBrowserRequestIntegrity`          | [integrity](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
+
+You can set additional options using the more generic `SetBrowserRequestOption` extension method.
+ 
+The HTTP response is typically buffered in a Blazor WebAssembly app to enable support for sync reads on the response content. To enable support for response streaming, use the `SetBrowserResponseStreamingEnabled` extension method on the request.
+
+To include credentials in a cross-origin request, use the `SetBrowserRequestCredentials` extension method:
+
+```csharp
+requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 ```
 
 For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlobalScope.fetch():Parameters](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
@@ -217,6 +260,8 @@ For more information, see <xref:security/cors> and the sample app's HTTP Request
 
 ## Additional resources
 
+* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [Attach tokens to outgoing requests](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
 * <xref:fundamentals/http-requests>
 * <xref:security/enforcing-ssl>
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration)

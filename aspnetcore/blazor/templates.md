@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core Blazor app templates and Blazor project st
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 04/19/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/templates
 ---
@@ -23,6 +23,13 @@ The Blazor framework provides templates to develop apps for each of the Blazor h
 For more information on Blazor's hosting models, see <xref:blazor/hosting-models>.
 
 For step-by-step instructions on creating a Blazor app from a template, see <xref:blazor/get-started>.
+
+Template options are available by passing the `--help` option to the [dotnet new](/dotnet/core/tools/dotnet-new) CLI command:
+
+```dotnetcli
+dotnet new blazorwasm --help
+dotnet new blazorserver --help
+```
 
 ## Blazor project structure
 

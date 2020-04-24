@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 04/16/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/debug
 ---
@@ -47,7 +47,7 @@ Debugging requires either of the following browsers:
 
 ## Enable debugging for Visual Studio and Visual Studio Code
 
-Debugging is enabled automatically for new projects that are created using the ASP.NET Core 3.2 Preview 3 or later Blazor WebAssembly project template.
+Debugging is enabled automatically for new projects that are created using the ASP.NET Core 3.2 Preview 3 or later Blazor WebAssembly project template ([current release is 3.2 Preview 4](xref:blazor/get-started)).
 
 To enable debugging for an existing Blazor WebAssembly app, update the *launchSettings.json* file in the startup project to include the following `inspectUri` property in each launch profile:
 
@@ -95,6 +95,8 @@ While debugging your Blazor WebAssembly app, you can also debug your server code
    ![Debug server](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-server.png)
 
 1. Press <kbd>F5</kbd> again to let execution continue and see the weather forecast table rendered.
+
+<a id="vscode"></a>
 
 ## Visual Studio Code
 

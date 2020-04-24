@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to format response data in ASP.NET Core Web API.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 12/05/2019
+ms.date: 04/17/2020
 uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API
@@ -124,10 +124,10 @@ Features for the `System.Text.Json`-based formatters can be configured using `Mi
 services.AddControllers().AddJsonOptions(options =>
 {
     // Use the default property (Pascal) casing.
-    options.SerializerOptions.PropertyNamingPolicy = null;
+    options.JsonSerializerOptions.PropertyNamingPolicy = null;
 
     // Configure a custom converter.
-    options.SerializerOptions.Converters.Add(new MyCustomJsonConverter());
+    options.JsonSerializerOptions.Converters.Add(new MyCustomJsonConverter());
 });
 ```
 
@@ -166,7 +166,7 @@ services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ContractResolver = new DefaultContractResolver();
 
     // Configure a custom converter
-    options.SerializerOptions.Converters.Add(new MyCustomJsonConverter());
+    options.SerializerSettings.Converters.Add(new MyCustomJsonConverter());
 });
 ```
 

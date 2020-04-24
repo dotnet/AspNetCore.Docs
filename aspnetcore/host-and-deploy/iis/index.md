@@ -5,10 +5,21 @@ description: Learn how to host ASP.NET Core apps on Windows Server Internet Info
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/07/2020
+ms.date: 04/17/2020
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
+
+<!-- 
+
+    NOTE FOR 5.0
+    
+    When making the 5.0 version of this topic, remove the Hosting Bundle
+    direct download section from the (new) <5.0 & >2.2 version and modify 
+    the text and heading for the *Earlier versions of the installer* 
+    section. See the 2.2 version for an example.
+    
+-->
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -244,9 +255,9 @@ Download the installer using the following link:
 To obtain an earlier version of the installer:
 
 1. Navigate to the [Download .NET Core](https://dotnet.microsoft.com/download/dotnet-core) page.
-1. Click on the desired .NET Core version.
+1. Select the desired .NET Core version.
 1. In the **Run apps - Runtime** column, find the row of the .NET Core runtime version desired.
-1. Download the installer using the **Runtime & Hosting Bundle** link.
+1. Download the installer using the **Hosting Bundle** link.
 
 > [!WARNING]
 > Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
@@ -840,20 +851,12 @@ Install the *.NET Core Hosting Bundle* on the hosting system. The bundle install
 >
 > If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET Core, SDKs might appear to be missing ([No .NET Core SDKs were detected](xref:test/troubleshoot#no-net-core-sdks-were-detected)). To resolve the problem, see <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
 
-### Direct download (current version)
-
-Download the installer using the following link:
-
-[Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
-
-### Earlier versions of the installer
-
-To obtain an earlier version of the installer:
+### Download
 
 1. Navigate to the [Download .NET Core](https://dotnet.microsoft.com/download/dotnet-core) page.
-1. Click on the desired .NET Core version.
+1. Select the desired .NET Core version.
 1. In the **Run apps - Runtime** column, find the row of the .NET Core runtime version desired.
-1. Download the installer using the **Runtime & Hosting Bundle** link.
+1. Download the installer using the **Hosting Bundle** link.
 
 > [!WARNING]
 > Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
@@ -1416,20 +1419,12 @@ Install the *.NET Core Hosting Bundle* on the hosting system. The bundle install
 >
 > If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET Core, SDKs might appear to be missing ([No .NET Core SDKs were detected](xref:test/troubleshoot#no-net-core-sdks-were-detected)). To resolve the problem, see <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
 
-### Direct download (current version)
-
-Download the installer using the following link:
-
-[Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
-
-### Earlier versions of the installer
-
-To obtain an earlier version of the installer:
+### Download
 
 1. Navigate to the [Download .NET Core](https://dotnet.microsoft.com/download/dotnet-core) page.
-1. Click on the desired .NET Core version.
+1. Select the desired .NET Core version.
 1. In the **Run apps - Runtime** column, find the row of the .NET Core runtime version desired.
-1. Download the installer using the **Runtime & Hosting Bundle** link.
+1. Download the installer using the **Hosting Bundle** link.
 
 > [!WARNING]
 > Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
