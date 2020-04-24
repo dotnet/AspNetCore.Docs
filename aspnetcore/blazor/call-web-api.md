@@ -185,26 +185,26 @@ When running on WebAssembly in a Blazor WebAssembly app, use [HttpClient](xref:f
 ```razor
 @using System.Net.Http
 @using System.Net.Http.Headers
+@using System.Net.Http.Json
 @inject HttpClient Http
 
 @code {
     private async Task PostRequest()
     {
-        Http.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue("Bearer", "{OAUTH TOKEN}");
-
         var requestMessage = new HttpRequestMessage()
         {
             Method = new HttpMethod("POST"),
             RequestUri = new Uri("https://localhost:10000/api/TodoItems"),
             Content = 
-                new StringContent(
-                    @"{""name"":""A New Todo Item"",""isComplete"":false}")
+                JsonContent.Create(new TodoItem
+                { 
+                    Name: "A New Todo Item",
+                    IsComplete: false
+                })
         };
-
-        requestMessage.Content.Headers.ContentType = 
-            new System.Net.Http.Headers.MediaTypeHeaderValue(
-                "application/json");
+        
+        requestMessage.Headers.Authorization = 
+           new AuthenticationHeaderValue("Bearer", "{OAUTH TOKEN}");
 
         requestMessage.Content.Headers.TryAddWithoutValidation(
             "x-custom-header", "value");
@@ -215,6 +215,8 @@ When running on WebAssembly in a Blazor WebAssembly app, use [HttpClient](xref:f
     }
 }
 ```
+
+.NET WebAssembly's implementation of `HttpClient` uses [WindowOrWorkerGlobalScope.fetch()](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch allows configuring several [request-specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). 
 
 HTTP fetch request options can be configured with `HttpRequestMessage` extension methods shown in the following table.
 
@@ -228,6 +230,12 @@ HTTP fetch request options can be configured with `HttpRequestMessage` extension
 You can set additional options using the more generic `SetBrowserRequestOption` extension method.
  
 The HTTP response is typically buffered in a Blazor WebAssembly app to enable support for sync reads on the response content. To enable support for response streaming, use the `SetBrowserResponseStreamingEnabled` extension method on the request.
+
+To include credentials in a cross-origin request, use the `SetBrowserRequestCredentials` extension method:
+
+```csharp
+requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
+```
 
 For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlobalScope.fetch():Parameters](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
 
