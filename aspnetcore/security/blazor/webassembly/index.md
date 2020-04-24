@@ -5,7 +5,7 @@ description: Learn how to secure Blazor WebAssemlby apps as Single Page Applicat
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/22/2020
+ms.date: 04/24/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/index
 ---
@@ -16,9 +16,6 @@ By [Javier Calvarro Nelson](https://github.com/javiercn)
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-> [!NOTE]
-> The guidance in this article applies to ASP.NET Core 3.2 Preview 4. This topic will be updated to cover Preview 5 on Friday, April 24.
 
 Blazor WebAssembly apps are secured in the same manner as Single Page Applications (SPAs). There are several approaches for authenticating users to SPAs, but the most common and comprehensive approach is to use an implementation based on the [OAuth 2.0 protocol](https://oauth.net/), such as [Open ID Connect (OIDC)](https://openid.net/connect/).
 

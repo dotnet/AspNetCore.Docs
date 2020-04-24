@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/24/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
 ---
@@ -16,9 +16,6 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-> [!NOTE]
-> The guidance in this article applies to ASP.NET Core 3.2 Preview 4. This topic will be updated to cover Preview 5 on Friday, April 24.
 
 To create a Blazor WebAssembly standalone app that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication:
 
@@ -80,14 +77,38 @@ builder.Services.AddMsalAuthentication(options =>
         "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}";
     authentication.ClientId = "{CLIENT ID}";
     authentication.ValidateAuthority = false;
+
+    builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
 });
 ```
 
-The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure Portal AAD configuration when you register the app.
+The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Microsoft Accounts configuration when you register the app.
+
+Configuration is supplied by the *wwwroot/appsettings.json* file:
+
+```json
+{
+  "AzureAdB2C": {
+    "Authority": "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
+    "ClientId": "{CLIENT ID}"
+  }
+}
+```
+
+Example:
+
+```json
+{
+  "AzureAdB2C": {
+    "Authority": "https://contoso.b2clogin.com/contoso.onmicrosoft.com/B2C_1_signupsignin1",
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd"
+  }
+}
+```
 
 ## Access token scopes
 
-The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API. To provision a token as part of the sign-in flow, add the scope to the default access token scopes of the `MsalProviderOptions`:
+The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API. To provision an access token as part of the sign-in flow, add the scope to the default access token scopes of the `MsalProviderOptions`:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -110,11 +131,10 @@ builder.Services.AddMsalAuthentication(options =>
 >     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
 > ```
 
-For more information, see <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+For more information, see the following sections of the *Additional scenarios* article:
 
-<!--
-    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
--->
+* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [Attach tokens to outgoing requests](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
 
 ## Imports file
 

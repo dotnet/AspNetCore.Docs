@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/24/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/hosted-with-azure-active-directory
 ---
@@ -16,9 +16,6 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
-> [!NOTE]
-> The guidance in this article applies to ASP.NET Core 3.2 Preview 4. This topic will be updated to cover Preview 5 on Friday, April 24.
 
 This article describes how to create a [Blazor WebAssembly hosted app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
 
@@ -112,7 +109,7 @@ The support for authenticating and authorizing calls to ASP.NET Core Web APIs is
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" 
-    Version="3.1.0" />
+    Version="{VERSION}" />
 ```
 
 ### Authentication service support
@@ -158,7 +155,20 @@ The *appsettings.json* file contains the options to configure the JWT bearer han
     "Instance": "https://login.microsoftonline.com/",
     "Domain": "{DOMAIN}",
     "TenantId": "{TENANT ID}",
-    "ClientId": "{API CLIENT ID}",
+    "ClientId": "{SERVER API APP CLIENT ID}",
+  }
+}
+```
+
+Example:
+
+```json
+{
+  "AzureAd": {
+    "Instance": "https://login.microsoftonline.com/",
+    "Domain": "contoso.onmicrosoft.com",
+    "TenantId": "e86c78e2-8bb4-4c41-aefd-918e0565a45e",
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
   }
 }
 ```
@@ -205,6 +215,19 @@ The `Microsoft.Authentication.WebAssembly.Msal` package transitively adds the `M
 
 ### Authentication service support
 
+Support for `HttpClient` instances is added that include access tokens when making requests to the server project.
+
+*Program.cs*:
+
+```csharp
+builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", client => 
+        client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+    .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+
+builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
+    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
+```
+
 Support for authenticating users is registered in the service container with the `AddMsalAuthentication` extension method provided by the `Microsoft.Authentication.WebAssembly.Msal` package. This method sets up all of the services required for the app to interact with the Identity Provider (IP).
 
 *Program.cs*:
@@ -212,14 +235,36 @@ Support for authenticating users is registered in the service container with the
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
 {
-    var authentication = options.ProviderOptions.Authentication;
-    authentication.Authority = "https://login.microsoftonline.com/{TENANT ID}";
-    authentication.ClientId = "{CLIENT ID}";
+    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
     options.ProviderOptions.DefaultAccessTokenScopes.Add("{SCOPE URI}");
 });
 ```
 
 The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure Portal AAD configuration when you register the app.
+
+Configuration is supplied by the *wwwroot/appsettings.json* file:
+
+```json
+{
+    "AzureAd": {
+        "Authority": "https://login.microsoftonline.com/{TENANT ID}",
+        "ClientId": "{CLIENT APP CLIENT ID}",
+        "ValidateAuthority": true
+    }
+}
+```
+
+Example:
+
+```json
+{
+    "AzureAd": {
+        "Authority": "https://login.microsoftonline.com/e86c78e2-...-918e0565a45e",
+        "ClientId": "4369008b-21fa-427c-abaa-9b53bf58e538",
+        "ValidateAuthority": true
+    }
+}
+```
 
 ### Access token scopes
 
@@ -251,11 +296,11 @@ builder.Services.AddMsalAuthentication(options =>
 >     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
 > ```
 
-For more information, see <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+For more information, see the following sections of the *Additional scenarios* article:
 
-<!--
-    For more information, see <xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests>.
--->
+* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [Attach tokens to outgoing requests](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
+
 
 ### Imports file
 
