@@ -5,7 +5,7 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/25/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
@@ -294,53 +294,6 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 | `Static`            | Renders the component into static HTML. |
 
 Rendering server components from a static HTML page isn't supported.
-
-### Render stateful interactive components from Razor pages and views
-
-Stateful interactive components can be added to a Razor page or view.
-
-When the page or view renders:
-
-* The component is prerendered with the page or view.
-* The initial component state used for prerendering is lost.
-* New component state is created when the SignalR connection is established.
-
-The following Razor page renders a `Counter` component:
-
-```cshtml
-<h1>My Razor Page</h1>
-
-<component type="typeof(Counter)" render-mode="ServerPrerendered" 
-    param-InitialValue="InitialValue" />
-
-@code {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-### Render noninteractive components from Razor pages and views
-
-In the following Razor page, the `Counter` component is statically rendered with an initial value that's specified using a form:
-
-```cshtml
-<h1>My Razor Page</h1>
-
-<form>
-    <input type="number" asp-for="InitialValue" />
-    <button type="submit">Set initial value</button>
-</form>
-
-<component type="typeof(Counter)" render-mode="Static" 
-    param-InitialValue="InitialValue" />
-
-@code {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-Since `MyComponent` is statically rendered, the component can't be interactive.
 
 ### Configure the SignalR client for Blazor Server apps
 
