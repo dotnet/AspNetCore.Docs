@@ -528,8 +528,6 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 In the preceding code, `config.AddInMemoryCollection(Dict)` is added after the [default configuration providers](#default). For an example of ordering the configuration providers, see [JSON configuration provider](#jcp).
 
-For an example of ordering the configuration providers, see [JSON configuration provider](#jcp).
-
 See [Bind an array](#boa) for another example using `MemoryConfigurationProvider`.
 
 ## GetValue
