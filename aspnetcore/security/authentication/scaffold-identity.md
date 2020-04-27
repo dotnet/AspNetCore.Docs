@@ -191,11 +191,11 @@ var tokens = new InitialApplicationState
 Update the `App` component (*App.razor*) to assign the `InitialState.XsrfToken`:
 
 ```csharp
-@inject TokenProvider TokensProvider
+@inject TokenProvider TokenProvider
 
 ...
 
-TokensProvider.XsrfToken = InitialState.XsrfToken;
+TokenProvider.XsrfToken = InitialState.XsrfToken;
 ```
 
 The `TokenProvider` service demonstrated in the topic is used in the `LoginDisplay` component in the following [Layout and authentication flow changes](#layout-and-authentication-flow-changes) section.
@@ -234,7 +234,7 @@ Add a `LoginDisplay` component (*LoginDisplay.razor*) to the app's *Shared* fold
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization
 @inject NavigationManager Navigation
-@inject TokenProvider TokensProvider
+@inject TokenProvider TokenProvider
 
 <AuthorizeView>
     <Authorized>
@@ -244,7 +244,7 @@ Add a `LoginDisplay` component (*LoginDisplay.razor*) to the app's *Shared* fold
         <form action="/Identity/Account/Logout?returnUrl=%2F" method="post">
             <button class="nav-link btn btn-link" type="submit">Logout</button>
             <input name="__RequestVerificationToken" type="hidden" 
-                value="@TokensProvider.XsrfToken">
+                value="@TokenProvider.XsrfToken">
         </form>
     </Authorized>
     <NotAuthorized>
