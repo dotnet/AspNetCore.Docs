@@ -5,13 +5,13 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 04/25/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
 # ASP.NET Core Blazor hosting model configuration
 
-By [Daniel Roth](https://github.com/danroth27)
+By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
@@ -92,12 +92,21 @@ The `IWebAssemblyHostEnvironment.BaseAddress` property can be used during startu
 
 ### Configuration
 
-As of the ASP.NET Core 3.2 Preview 3 release ([current release is 3.2 Preview 4](xref:blazor/get-started)), Blazor WebAssembly supports configuration from:
+Blazor WebAssembly supports configuration from:
 
-* *wwwroot/appsettings.json*
-* *wwwroot/appsettings.{ENVIRONMENT}.json*
+* The [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) for app settings files by default:
+  * *wwwroot/appsettings.json*
+  * *wwwroot/appsettings.{ENVIRONMENT}.json*
+* Other [configuration providers](xref:fundamentals/configuration/index) registered by the app.
 
-Add an *appsettings.json* file in the *wwwroot* folder:
+> [!WARNING]
+> Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets or credentials in configuration.**
+
+For more information on configuration providers, see <xref:fundamentals/configuration/index>.
+
+#### App settings configuration
+
+*wwwroot/appsettings.json*:
 
 ```json
 {
@@ -117,8 +126,113 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 <p>Message: @Configuration["message"]</p>
 ```
 
-> [!WARNING]
-> Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets or credentials in configuration.**
+#### Provider configuration
+
+The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> and the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) to supply additional configuration:
+
+`Program.Main`:
+
+```csharp
+using Microsoft.Extensions.Configuration;
+
+...
+
+var vehicleData = new Dictionary<string, string>()
+{
+    { "color", "blue" },
+    { "type", "car" },
+    { "wheels:count", "3" },
+    { "wheels:brand", "Blazin" },
+    { "wheels:brand:type", "rally" },
+    { "wheels:year", "2008" },
+};
+
+var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
+
+...
+
+builder.Configuration
+    .Add(memoryConfig)
+    .AddJsonFile("cars.json", optional: false, reloadOnChange: true);
+```
+
+Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:
+
+```razor
+@page "/"
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<h1>Configuration example</h1>
+
+<h2>Wheels</h2>
+
+<ul>
+    <li>Count: @Configuration["wheels:count"]</p>
+    <li>Brand: @Configuration["wheels:brand"]</p>
+    <li>Type: @Configuration["wheels:brand:type"]</p>
+    <li>Year: @Configuration["wheels:year"]</p>
+</ul>
+
+@code {
+    var wheelsSection = Configuration.GetSection("wheels");
+    
+    ...
+}
+```
+
+#### Authentication configuration
+
+*wwwroot/appsettings.json*:
+
+```json
+{
+  "AzureAD": {
+    "Authority": "https://login.microsoftonline.com/",
+    "ClientId": "aeaebf0f-d416-4d92-a08f-e1d5b51fc494"
+  }
+}
+```
+
+`Program.Main`:
+
+```csharp
+builder.Services.AddOidcAuthentication(options =>
+    builder.Configuration.Bind("AzureAD", options);
+```
+
+#### Logging configuration
+
+*wwwroot/appsettings.json*:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  }
+}
+```
+
+`Program.Main`:
+
+```csharp
+builder.Logging.AddConfiguration(
+    builder.Configuration.GetSection("Logging"));
+```
+
+#### Host builder configuration
+
+`Program.Main`:
+
+```csharp
+var hostname = builder.Configuration["HostName"];
+```
+
+#### Cached configuration
 
 Configuration files are cached for offline use. With [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app), you can only update configuration files when creating a new deployment. Editing configuration files between deployments has no effect because:
 
@@ -129,7 +243,7 @@ For more information on how background updates are handled by PWAs, see <xref:bl
 
 ### Logging
 
-For information on Blazor WebAssembly logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor-webassembly>.
+For information on Blazor WebAssembly logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor>.
 
 ## Blazor Server
 
@@ -181,53 +295,6 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 
 Rendering server components from a static HTML page isn't supported.
 
-### Render stateful interactive components from Razor pages and views
-
-Stateful interactive components can be added to a Razor page or view.
-
-When the page or view renders:
-
-* The component is prerendered with the page or view.
-* The initial component state used for prerendering is lost.
-* New component state is created when the SignalR connection is established.
-
-The following Razor page renders a `Counter` component:
-
-```cshtml
-<h1>My Razor Page</h1>
-
-<component type="typeof(Counter)" render-mode="ServerPrerendered" 
-    param-InitialValue="InitialValue" />
-
-@code {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-### Render noninteractive components from Razor pages and views
-
-In the following Razor page, the `Counter` component is statically rendered with an initial value that's specified using a form:
-
-```cshtml
-<h1>My Razor Page</h1>
-
-<form>
-    <input type="number" asp-for="InitialValue" />
-    <button type="submit">Set initial value</button>
-</form>
-
-<component type="typeof(Counter)" render-mode="Static" 
-    param-InitialValue="InitialValue" />
-
-@code {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-Since `MyComponent` is statically rendered, the component can't be interactive.
-
 ### Configure the SignalR client for Blazor Server apps
 
 Sometimes, you need to configure the SignalR client used by Blazor Server apps. For example, you might want to configure logging on the SignalR client to diagnose a connection issue.
@@ -247,3 +314,7 @@ To configure the SignalR client in the *Pages/_Host.cshtml* file:
   });
 </script>
 ```
+
+### Logging
+
+For information on Blazor Server logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor>.

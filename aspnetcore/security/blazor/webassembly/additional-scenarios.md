@@ -35,7 +35,7 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-The `IAccessTokenProvider.RequestToken` method provides an overload that allows an app to provision a token with a given set of scopes, as seen in the following example:
+The `IAccessTokenProvider.RequestToken` method provides an overload that allows an app to provision an access token with a given set of scopes, as seen in the following example:
 
 ```csharp
 var tokenResult = await AuthenticationService.RequestAccessToken(
@@ -55,6 +55,109 @@ if (tokenResult.TryGetToken(out var token))
 
 * `true` with the `token` for use.
 * `false` if the token isn't retrieved.
+
+## Attach tokens to outgoing requests
+
+The `AuthorizationMessageHandler` service can be used with `HttpClient` to attach access tokens to outgoing requests. Tokens are acquired using the existing `IAccessTokenProvider` service. If a token can't be acquired, an `AccessTokenNotAvailableException` is thrown. `AccessTokenNotAvailableException` has a `Redirect` method that can be used to navigate the user to the identity provider to acquire a new token. The `AuthorizationMessageHandler` can be configured with the authorized URLs, scopes, and return URL using the `ConfigureHandler` method.
+
+In the following example, `AuthorizationMessageHandler` configures an `HttpClient` in `Program.Main` (*Program.cs*):
+
+```csharp
+builder.Services.AddSingleton(sp =>
+{
+    return new HttpClient(sp.GetRequiredService<AuthorizationMessageHandler>()
+        .ConfigureHandler(
+            new [] { "https://www.example.com/base" },
+            scopes: new[] { "example.read", "example.write" }))
+        {
+            BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+        };
+});
+```
+
+For convenience, a `BaseAddressAuthorizationMessageHandler` is included that's preconfigured with the app base address as an authorized URL. The authentication-enabled Blazor WebAssembly templates now use [IHttpClientFactory](https://docs.microsoft.com/aspnet/core/fundamentals/http-requests) to set up an `HttpClient` with the `BaseAddressAuthorizationMessageHandler`:
+
+```csharp
+builder.Services.AddHttpClient("BlazorWithIdentityApp1.ServerAPI", 
+    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+        .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+
+builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
+    .CreateClient("BlazorWithIdentityApp1.ServerAPI"));
+```
+
+Where the client is created with `CreateClient` in the preceding example, the `HttpClient` is supplied instances that include access tokens when making requests to the server project.
+
+The configured `HttpClient` is then used to make authorized requests using a simple `try-catch` pattern. The following `FetchData` component requests weather forecast data:
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    try
+    {
+        forecasts = 
+            await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+    }
+    catch (AccessTokenNotAvailableException exception)
+    {
+        exception.Redirect();
+    }
+}
+```
+
+Alternatively, you can define a typed client that handles all of the HTTP and token acquisition concerns within a single class:
+
+*WeatherClient.cs*:
+
+```csharp
+public class WeatherClient
+{
+    private readonly HttpClient httpClient;
+ 
+    public WeatherClient(HttpClient httpClient)
+    {
+        this.httpClient = httpClient;
+    }
+ 
+    public async Task<IEnumerable<WeatherForecast>> GetWeatherForeacasts()
+    {
+        IEnumerable<WeatherForecast> forecasts = new WeatherForecast[0];
+
+        try
+        {
+            forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>(
+                "WeatherForecast");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+
+        return forecasts;
+    }
+}
+```
+
+*Program.cs*:
+
+```csharp
+builder.Services.AddHttpClient<WeatherClient>(
+    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+    .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+```
+
+*FetchData.razor*:
+
+```razor
+@inject WeatherClient WeatherClient
+
+...
+
+protected override async Task OnInitializedAsync()
+{
+    forecasts = await WeatherClient.GetWeatherForeacasts();
+}
+```
 
 ## Handle token request errors
 
@@ -290,6 +393,71 @@ The `RemoteAuthenticatorView` has one fragment that can be used per authenticati
 | `authentication/profile`         | `<UserProfile>`         |
 | `authentication/register`        | `<Registering>`         |
 
+## Customize the user
+
+Users bound to the app can be customized. In the following example, all authenticated users receive an `amr` claim for each of the user's authentication methods.
+
+Create a class that extends the `RemoteUserAccount` class:
+
+```csharp
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+public class OidcAccount : RemoteUserAccount
+{
+    [JsonPropertyName("amr")]
+    public string[] AuthenticationMethod { get; set; }
+}
+```
+
+Create a factory that extends `AccountClaimsPrincipalFactory<TAccount>`:
+
+```csharp
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
+
+public class CustomAccountFactory 
+    : AccountClaimsPrincipalFactory<OidcAccount>
+{
+    public AccountClaimsPrincipalFactory(NavigationManager navigationManager, 
+        IAccessTokenProviderAccessor accessor) : base(accessor)
+    {
+    }
+  
+    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+        OidcAccount account, RemoteAuthenticationUserOptions options)
+    {
+        var initialUser = await base.CreateUserAsync(account, options);
+        
+        if (initialUser.Identity.IsAuthenticated)
+        {
+            foreach (var value in account.AuthenticationMethod)
+            {
+                ((ClaimsIdentity)initialUser.Identity)
+                    .AddClaim(new Claim("amr", value));
+            }
+        }
+           
+        return initialUser;
+    }
+}
+```
+
+Register services to use the `CustomAccountFactory`:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+...
+
+builder.Services.AddApiAuthorization<RemoteAuthenticationState, OidcAccount>()
+    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, OidcAccount, 
+        CustomAccountFactory>();
+```
+
 ## Support prerendering with authentication
 
 After following the guidance in one of the hosted Blazor WebAssembly app topics, use the following instructions to create an app that:
@@ -338,7 +506,8 @@ public void ConfigureServices(IServiceCollection services)
     ...
 
     services.AddRazorPages();
-    services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
+    services.AddScoped<AuthenticationStateProvider, 
+        ServerAuthenticationStateProvider>();
     services.AddScoped<SignOutSessionStateManager>();
 
     Client.Program.ConfigureCommonServices(services);
@@ -364,7 +533,8 @@ In the Server app, create a *Pages* folder if it doesn't exist. Create a *_Host.
   <app>
       @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
       {
-          <component type="typeof(Wasm.Authentication.Client.App)" render-mode="Static" />
+          <component type="typeof(Wasm.Authentication.Client.App)" 
+              render-mode="Static" />
       }
       else
       {

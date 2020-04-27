@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/22/2020
+ms.date: 04/24/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
 ---
@@ -119,7 +119,7 @@ The support for authenticating and authorizing calls to ASP.NET Core Web APIs is
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" 
-    Version="3.1.0" />
+    Version="{VERSION}" />
 ```
 
 ### Authentication service support
@@ -163,9 +163,22 @@ The *appsettings.json* file contains the options to configure the JWT bearer han
 {
   "AzureAd": {
     "Instance": "https://{ORGANIZATION}.b2clogin.com/",
-    "ClientId": "{API CLIENT ID}",
+    "ClientId": "{SERVER API APP CLIENT ID}",
     "Domain": "{DOMAIN}",
     "SignUpSignInPolicyId": "{SIGN UP OR SIGN IN POLICY}"
+  }
+}
+```
+
+Example:
+
+```json
+{
+  "AzureAd": {
+    "Instance": "https://contoso.b2clogin.com/",
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "Domain": "contoso.onmicrosoft.com",
+    "SignUpSignInPolicyId": "B2C_1_signupsignin1",
   }
 }
 ```
@@ -212,6 +225,19 @@ The `Microsoft.Authentication.WebAssembly.Msal` package transitively adds the `M
 
 ### Authentication service support
 
+Support for `HttpClient` instances is added that include access tokens when making requests to the server project.
+
+*Program.cs*:
+
+```csharp
+builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", client => 
+        client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+    .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+
+builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
+    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
+```
+
 Support for authenticating users is registered in the service container with the `AddMsalAuthentication` extension method provided by the `Microsoft.Authentication.WebAssembly.Msal` package. This method sets up all of the services required for the app to interact with the Identity Provider (IP).
 
 *Program.cs*:
@@ -219,16 +245,36 @@ Support for authenticating users is registered in the service container with the
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
 {
-    var authentication = options.ProviderOptions.Authentication;
-    authentication.Authority = 
-        "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}";
-    authentication.ClientId = "{CLIENT ID}";
-    authentication.ValidateAuthority = false;
+    builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
     options.ProviderOptions.DefaultAccessTokenScopes.Add("{SCOPE URI}");
 });
 ```
 
 The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure Portal AAD configuration when you register the app.
+
+Configuration is supplied by the *wwwroot/appsettings.json* file:
+
+```json
+{
+  "AzureAdB2C": {
+    "Authority": "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
+    "ClientId": "{CLIENT APP CLIENT ID}",
+    "ValidateAuthority": false
+  }
+}
+```
+
+Example:
+
+```json
+{
+  "AzureAdB2C": {
+    "Authority": "https://contoso.b2clogin.com/contoso.onmicrosoft.com/B2C_1_signupsignin1",
+    "ClientId": "4369008b-21fa-427c-abaa-9b53bf58e538",
+    "ValidateAuthority": false
+  }
+}
+```
 
 ### Access token scopes
 
@@ -260,7 +306,11 @@ builder.Services.AddMsalAuthentication(options =>
 >     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
 > ```
 
-For more information, see <xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens>.
+For more information, see the following sections of the *Additional scenarios* article:
+
+* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [Attach tokens to outgoing requests](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
+
 
 ### Imports file
 
