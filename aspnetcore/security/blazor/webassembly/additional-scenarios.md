@@ -422,7 +422,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 public class CustomAccountFactory 
     : AccountClaimsPrincipalFactory<OidcAccount>
 {
-    public AccountClaimsPrincipalFactory(NavigationManager navigationManager, 
+    public CustomAccountFactory(NavigationManager navigationManager, 
         IAccessTokenProviderAccessor accessor) : base(accessor)
     {
     }
