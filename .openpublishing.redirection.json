@@ -919,6 +919,11 @@
             "source_path": "aspnetcore/blazor/javascript-interop.md",
             "redirect_url": "/aspnet/core/blazor/call-javascript-from-dotnet",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/server.md",
+            "redirect_url": "/aspnet/core/security/blazor/server",
+            "redirect_document_id": false
         }
     ]
 }

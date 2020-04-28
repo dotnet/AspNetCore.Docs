@@ -348,7 +348,13 @@
                 - name: Additional scenarios
                   uid: security/blazor/webassembly/additional-scenarios
             - name: Blazor Server
-              uid: security/blazor/server
+              items:
+                - name: Overview
+                  uid: security/blazor/server/index
+                - name: Threat mitigation
+                  uid: security/blazor/server/threat-mitigation
+                - name: Additional scenarios
+                  uid: security/blazor/server/additional-scenarios
             - name: Content Security Policy
               uid: security/blazor/content-security-policy
         - name: State management
@@ -1135,7 +1141,13 @@
             - name: Additional scenarios
               uid: security/blazor/webassembly/additional-scenarios
         - name: Blazor Server
-          uid: security/blazor/server
+          items:
+            - name: Overview
+              uid: security/blazor/server/index
+            - name: Threat mitigation
+              uid: security/blazor/server/threat-mitigation
+            - name: Additional scenarios
+              uid: security/blazor/server/additional-scenarios
         - name: Content Security Policy
           uid: security/blazor/content-security-policy
 - name: Performance
