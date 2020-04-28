@@ -24,7 +24,7 @@ Most of the code examples shown in this article are from ASP.NET Core apps. The 
 
 ## Logging providers
 
-Logging providers store logs, except for the Console provider which displays logs. For example, the Azure Application Insights provider stores them in Azure Application Insights. Multiple providers can be enabled.
+Logging providers store logs, except for the `Console` provider which displays logs. For example, the Azure Application Insights provider stores logs in Azure Application Insights. Multiple providers can be enabled.
 
 The default ASP.NET Core web app templates:
 
@@ -59,8 +59,8 @@ To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object fr
 
 The following example:
 
-* Creates a logger `ILogger<AboutModel>`. The `ILogger<T>` instance provided by [DI](xref:fundamentals/dependency-injection) creates logs that have the fully qualified name of type `T` as the category. The fully qualified name of `AboutModel` is `TodoApi.Pages.AboutModel`, therefore `TodoApi.Pages.AboutModel` is the category. The log *category* is a string that is associated with each log.
-* Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*> to log s with `Information` as the level. The Log *level* indicates the severity of the logged event.
+* Creates a logger `ILogger<AboutModel>`. The `ILogger<T>` instance provided by [DI](xref:fundamentals/dependency-injection) creates logs that have the fully qualified name of type `T` as the category. The fully qualified name of `AboutModel` in the sample app is `TodoApi.Pages.AboutModel`, therefore `TodoApi.Pages.AboutModel` is the category. The log *category* is a string that is associated with each log.
+* Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*> to log at the `Information` level. The Log *level* indicates the severity of the logged event.
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Pages/About.cshtml.cs?name=snippet_CallLogMethods)]
 
@@ -103,11 +103,16 @@ In the preceding JSON:
 
 * A log providers is not specified, so `LogLevel` applies to all the enabled logging providers.
 * The `"Default"`, `"Microsoft"`, and `"Microsoft.Hosting.Lifetime"` categories are specified.
-* The `"Default"` and `"Microsoft.Hosting.Lifetime"` categories
+* The `"Default"` and `"Microsoft.Hosting.Lifetime"` categories log at log level `Information` and higher.
+* The `"Microsoft"` category logs at log level `Warning` and higher.
 
 The `Logging` property can have `LogLevel` and log provider properties. The `LogLevel` property under `Logging` specifies the minimum [level](#log-level) to log for selected categories.
 
-If a provider supports [log scopes](#log-scopes), `IncludeScopes` indicates whether they're enabled. A provider property can specify a `LogLevel` property. `LogLevel` under a provider specifies levels to log for that provider.
+The `"Default"` category specifies the default log level for every category. When a specific category is listed, the specific category overrides the default category. In the preceding JSON, the `"Microsoft"` and `"Microsoft.Hosting.Lifetime"` categories values override the `"Default"` value.
+
+If a provider supports [log scopes](#log-scopes), `IncludeScopes` indicates whether they're enabled. 
+
+A provider property can specify a `LogLevel` property. `LogLevel` under a provider specifies levels to log for that provider.
 
 Settings in `Logging.{providername}.LogLevel` override settings in `Logging.LogLevel`.
 
@@ -160,24 +165,23 @@ To explicitly specify the category, call `ILoggerFactory.CreateLogger`:
 
 ## Log level
 
-The [Log](xref:Microsoft.Extensions.Logging.LoggerExtensions) methods first parameter, <xref:Microsoft.Extensions.Logging.LogLevel>, indicates the severity of the log. Rather than calling `Log(LogLevel, ...)`, most developers call the [Log{LogLevel}](xref:Microsoft.Extensions.Logging.LoggerExtensions) extension methods. The `Log{LogLevel}` extension methods [call the Log method and specify the LogLevel](https://github.com/dotnet/extensions/blob/release/3.1/src/Logging/Logging.Abstractions/src/LoggerExtensions.cs). For example, the following code:
+The [Log](xref:Microsoft.Extensions.Logging.LoggerExtensions) methods first parameter, <xref:Microsoft.Extensions.Logging.LogLevel>, indicates the severity of the log. Rather than calling `Log(LogLevel, ...)`, most developers call the [Log{LogLevel}](xref:Microsoft.Extensions.Logging.LoggerExtensions) extension methods. The `Log{LogLevel}` extension methods [call the Log method and specify the LogLevel](https://github.com/dotnet/extensions/blob/release/3.1/src/Logging/Logging.Abstractions/src/LoggerExtensions.cs). For example, the following two logging calls are functionally equivalent and produce the same log:
 
-[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TestController.cs?name=snippet0)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TestController.cs?name=snippet0&highlight=6-7)]
 
-Is typically replaced with the following code:
-
-[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TestController.cs?name=snippet1)]
+[!INCLUDE[](~/includes/MyDisplayRouteInfoBoth.md)]
 
 The following table lists the <xref:Microsoft.Extensions.Logging.LogLevel>, the convenience `Log{LogLevel}` extension method, and the suggested usage:
 
-| LogLevel  | Method | Description |
-| ----------------- | ------------ | ----- |
-| [Trace](xref:Microsoft.Extensions.Logging.LogLevel) | [LogTrace](/dotnet/api/microsoft.extensions.logging.loggerextensions.logtrace) | Contain the most detailed messages. These messages may contain sensitive app data. These messages are disabled by default and should ***not*** be enabled in production. |
-| [Debug](xref:Microsoft.Extensions.Logging.LogLevel) | [LogDebug](/dotnet/api/microsoft.extensions.logging.loggerextensions.logdebug)  | For debugging and development. Use with caution in production due to the high volume. |
-| [Information](xref:Microsoft.Extensions.Logging.LogLevel) | [LogInformation](/dotnet/api/microsoft.extensions.logging.loggerextensions.loginformation)  | Tracks the general flow of the app. May have long-term value. |
-| [Warning](xref:Microsoft.Extensions.Logging.LogLevel) | [LogWarning](/dotnet/api/microsoft.extensions.logging.loggerextensions.logwarning)  | For abnormal or unexpected events. Typically includes errors or conditions that don't cause the app to fail.  |
-| [Error](xref:Microsoft.Extensions.Logging.LogLevel) | [LogError](/dotnet/api/microsoft.extensions.logging.loggerextensions.logerror)  | For errors and exceptions that cannot be handled. These messages indicate a failure in the current operation or request, not an app-wide failure. |
-| [Critical](xref:Microsoft.Extensions.Logging.LogLevel) | [LogCritical](/dotnet/api/microsoft.extensions.logging.loggerextensions.logcritical)  | For failures that require immediate attention. Examples: data loss scenarios, out of disk space. |
+| LogLevel  | Value |  Method | Description |
+| -------- | --------- | ------------ | ----- |
+| [Trace](xref:Microsoft.Extensions.Logging.LogLevel) | [LogTrace](/dotnet/api/microsoft.extensions.logging.loggerextensions.logtrace) | 0 | Contain the most detailed messages. These messages may contain sensitive app data. These messages are disabled by default and should ***not*** be enabled in production. |
+| [Debug](xref:Microsoft.Extensions.Logging.LogLevel) | 1 | [LogDebug](/dotnet/api/microsoft.extensions.logging.loggerextensions.logdebug)  | For debugging and development. Use with caution in production due to the high volume. |
+| [Information](xref:Microsoft.Extensions.Logging.LogLevel) | 2 | [LogInformation](/dotnet/api/microsoft.extensions.logging.loggerextensions.loginformation)  | Tracks the general flow of the app. May have long-term value. |
+| [Warning](xref:Microsoft.Extensions.Logging.LogLevel) | 3 | [LogWarning](/dotnet/api/microsoft.extensions.logging.loggerextensions.logwarning)  | For abnormal or unexpected events. Typically includes errors or conditions that don't cause the app to fail.  |
+| [Error](xref:Microsoft.Extensions.Logging.LogLevel) | 4 | [LogError](/dotnet/api/microsoft.extensions.logging.loggerextensions.logerror)  | For errors and exceptions that cannot be handled. These messages indicate a failure in the current operation or request, not an app-wide failure. |
+| [Critical](xref:Microsoft.Extensions.Logging.LogLevel) | 5| [LogCritical](/dotnet/api/microsoft.extensions.logging.loggerextensions.logcritical)  | For failures that require immediate attention. Examples: data loss scenarios, out of disk space. |
+| [Critical](xref:Microsoft.Extensions.Logging.None) | 5|   | Specifies that a logging category should not write any messages. |
 
 In the previous table, the `LogLevel` is listed from lowest to highest severity.
 

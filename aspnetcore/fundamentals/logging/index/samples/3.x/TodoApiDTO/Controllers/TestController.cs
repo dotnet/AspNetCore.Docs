@@ -41,20 +41,17 @@ namespace TodoApi.Controllers
         }
         #endregion
 
+        #region snippet0
         [HttpGet]
         public IActionResult Test1(int id)
         {
             var routeInfo = ControllerContext.ToCtxString(id);
 
-            #region snippet0
             _logger.Log(LogLevel.Information, MyLogEvents.TestItem, routeInfo);
-            #endregion
-
-            #region snippet1
             _logger.LogInformation(MyLogEvents.TestItem, routeInfo);
-            #endregion
 
             return ControllerContext.MyDisplayRouteInfo();
         }
+        #endregion
     }
 }
