@@ -42,14 +42,14 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 Permissible authentication values (`{AUTHENTICATION}`) are shown in the following table.
 
-| Authentication mechanism                                                                 | `{AUTHENTICATION}` value |
-| ---------------------------------------------------------------------------------------- | :----------------------: |
-| No Authentication                                                                        | `None`                   |
-| Individual<br>Users stored in the app with ASP.NET Core Identity.                        | `Individual`             |
-| Individual<br>Users stored in [Azure AD B2C](xref:security/authentication/azure-ad-b2c). | `IndividualB2C`          |
-| Work or School Accounts<br>Organizational authentication for a single tenant.            | `SingleOrg`              |
-| Work or School Accounts<br>Organizational authentication for multiple tenants.           | `MultiOrg`               |
-| Windows Authentication                                                                   | `Windows`                |
+| Authentication mechanism | Description |
+| ------------------------ | ----------- |
+| `None` (default)         | No authentication |
+| `Individual`             | Users stored in the app with ASP.NET Core Identity |
+| `IndividualB2C`          | Users stored in [Azure AD B2C](xref:security/authentication/azure-ad-b2c) |
+| `SingleOrg`              | Organizational authentication for a single tenant |
+| `MultiOrg`               | Organizational authentication for multiple tenants |
+| `Windows`                | Windows Authentication |
 
 Using the `-o|--output` option, the command uses the value provided for the `{APP NAME}` placeholder to:
 
@@ -76,14 +76,14 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 Permissible authentication values (`{AUTHENTICATION}`) are shown in the following table.
 
-| Authentication mechanism                                                                 | `{AUTHENTICATION}` value |
-| ---------------------------------------------------------------------------------------- | :----------------------: |
-| No Authentication                                                                        | `None`                   |
-| Individual<br>Users stored in the app with ASP.NET Core Identity.                        | `Individual`             |
-| Individual<br>Users stored in [Azure AD B2C](xref:security/authentication/azure-ad-b2c). | `IndividualB2C`          |
-| Work or School Accounts<br>Organizational authentication for a single tenant.            | `SingleOrg`              |
-| Work or School Accounts<br>Organizational authentication for multiple tenants.           | `MultiOrg`               |
-| Windows Authentication                                                                   | `Windows`                |
+| Authentication mechanism | Description |
+| ------------------------ | ----------- |
+| `None` (default)         | No authentication |
+| `Individual`             | Users stored in the app with ASP.NET Core Identity |
+| `IndividualB2C`          | Users stored in [Azure AD B2C](xref:security/authentication/azure-ad-b2c) |
+| `SingleOrg`              | Organizational authentication for a single tenant |
+| `MultiOrg`               | Organizational authentication for multiple tenants |
+| `Windows`                | Windows Authentication |
 
 Using the `-o|--output` option, the command uses the value provided for the `{APP NAME}` placeholder to:
 

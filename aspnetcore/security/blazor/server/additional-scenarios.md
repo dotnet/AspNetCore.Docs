@@ -45,7 +45,7 @@ public class InitialApplicationState
 }
 ```
 
-Define a **scoped** token provider service that can be used within the Blazor app to resolve the tokens from DI:
+Define a **scoped** token provider service that can be used within the Blazor app to resolve the tokens from [dependency injection (DI)](xref:blazor/dependency-injection):
 
 ```csharp
 public class TokenProvider
