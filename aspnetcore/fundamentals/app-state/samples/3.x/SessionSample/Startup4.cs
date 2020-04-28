@@ -44,10 +44,9 @@ namespace SessionSample2
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
-            app.UseHttpContextItemsMiddleware();
 
             app.UseRouting();
 
