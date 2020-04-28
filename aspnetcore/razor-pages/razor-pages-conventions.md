@@ -18,7 +18,7 @@ When you need to configure custom page routes for individual pages, configure ro
 
 To specify a page route, add route segments, or add parameters to a route, use the page's `@page` directive. For more information, see [Custom routes](xref:razor-pages/index#custom-routes).
 
-There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](xref:fundamentals/routing#reserved-routing-names).
+There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](xref:mvc/controllers/routing#reserved-routing-names).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -186,18 +186,11 @@ public void ConfigureServices(IServiceCollection services)
                     new SlugifyParameterTransformer()));
         });
 }
-
-public class SlugifyParameterTransformer : IOutboundParameterTransformer
-{
-    public string TransformOutbound(object value)
-    {
-        if (value == null) { return null; }
-
-        // Slugify value
-        return Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1-$2").ToLower();
-    }
-}
 ```
+
+[!code-csharp[](~/mvc/controllers/routing/samples/3.x/main/StartupSlugifyParamTransformer.cs?name=snippet2)]
+
+[!INCLUDE[](~/includes/regex.md)]
 
 ## Configure a page route
 

@@ -450,7 +450,7 @@ JS interop may fail due to networking errors and should be treated as unreliable
       TimeSpan.FromSeconds({SECONDS}), new[] { "Arg1" });
   ```
 
-For more information on resource exhaustion, see <xref:security/blazor/server>.
+For more information on resource exhaustion, see <xref:security/blazor/server/threat-mitigation>.
 
 [!INCLUDE[Share interop code in a class library](~/includes/blazor-share-interop-code.md)]
 

@@ -11,7 +11,7 @@ metadata:
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 03/27/2020
+  ms.date: 04/26/2020
 
 # highlightedContent section (optional)
 # Maximum of 8 items
@@ -27,9 +27,9 @@ highlightedContent:
       itemType: overview
       url: introduction-to-aspnet-core.md
     # Card
-    - title: "ASP.NET Core video tutorials"
-      itemType: video
-      url: https://www.youtube.com/playlist?list=PLdo4fOcmZ0oW8nviYduHq7bmKode-p8Wy
+    - title: "Download .NET"
+      itemType: download
+      url: https://dotnet.microsoft.com/download
     # Card
     - title: "What's new in ASP.NET Core docs"
       itemType: whats-new
@@ -49,7 +49,7 @@ highlightedContent:
     # Card
     - title: "Create your first data-driven MVC web app"
       itemType: get-started
-      url: tutorials/first-mvc-app/index.md
+      url: tutorials/first-mvc-app//start-mvc.md
 
 # conceptualContent section (optional)
 conceptualContent:
@@ -202,13 +202,13 @@ conceptualContent:
     - title: Data-driven web apps
       summary: "Create data-driven web apps in ASP.NET Core"
       links:
-        - url: tutorials/first-mvc-app/working-with-sql.md
+        - url: tutorials/first-mvc-app/start-mvc.md
           itemType: tutorial
           text: "SQL with ASP.NET Core"
         - url: blazor/data-binding.md
           itemType: concept
           text: "Data binding in ASP.NET Core Blazor"
-        - url: tutorials/razor-pages/sql.md
+        - url: tutorials/razor-pages/razor-pages-start.md
           itemType: tutorial
           text: "SQL Server Express and Razor Pages"
         - url: data/ef-rp/intro.md
@@ -233,6 +233,24 @@ conceptualContent:
         - url: https://docs.microsoft.com/aspnet/overview
           itemType: concept
           text: "ASP.NET 4.x"
+      # Card
+    - title: ASP.NET Core video tutorials
+      links:
+        - url: https://www.youtube.com/playlist?list=PLdo4fOcmZ0oW8nviYduHq7bmKode-p8Wy
+          itemType: video
+          text: "ASP.NET Core 101 video series"
+        - url: https://www.youtube.com/playlist?list=PLdo4fOcmZ0oX7uTkjYwvCJDG2qhcSzwZ6
+          itemType: video
+          text: "Entity Framework Core 101 video series with .NET Core and ASP.NET Core"
+        - url: https://www.youtube.com/watch?v=RyHDWlIq6vI
+          itemType: video
+          text: "Microservice architecture with ASP.NET Core"
+        - url: https://www.youtube.com/watch?v=KlngrOF6RPw&list=PLdo4fOcmZ0oWlP1Qpzg7Dwzxr298ewdUQ
+          itemType: video
+          text: "Focus on Blazor video series"
+        - url: https://www.youtube.com/channel/UCvtT19MZW8dq5Wwfu6B0oxw/
+          itemType: video
+          text: ".NET Channel"
 
 # Card with summary style
 additionalContent:

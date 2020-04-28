@@ -15,8 +15,11 @@ If the request failed because the token couldn't be provisioned without user int
 
 ```razor
 @page "/fetchdata"
-...
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using {APP NAMESPACE}.Shared
 @attribute [Authorize]
+@inject HttpClient Http
 
 ...
 
@@ -25,25 +28,14 @@ If the request failed because the token couldn't be provisioned without user int
 
     protected override async Task OnInitializedAsync()
     {
-        var httpClient = new HttpClient();
-        httpClient.BaseAddress = new Uri(Navigation.BaseUri);
-
-        var tokenResult = await AuthenticationService.RequestAccessToken();
-
-        if (tokenResult.TryGetToken(out var token))
+        try
         {
-            httpClient.DefaultRequestHeaders.Add("Authorization", 
-                $"Bearer {token.Value}");
-            forecasts = await httpClient.GetJsonAsync<WeatherForecast[]>(
-                "WeatherForecast");
+            forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
         }
-        else
+        catch (AccessTokenNotAvailableException exception)
         {
-            Navigation.NavigateTo(tokenResult.RedirectUrl);
+            exception.Redirect();
         }
-
     }
 }
 ```
-
-For more information, see [Save app state before an authentication operation](xref:security/blazor/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation).

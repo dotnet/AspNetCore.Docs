@@ -467,7 +467,7 @@ In some cases, an HTTP 500 error is returned with ambiguous routes. Use [logging
 
 For convenience, attribute routes support token replacement for reserved route parameters by enclosing a token in one of the following:
 
-* Square braces: `[]`
+* Square brackets: `[]`
 * Curly braces: `{}`
 
 The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined:
@@ -524,6 +524,7 @@ The `RouteTokenTransformerConvention` is registered as an option in `ConfigureSe
 
 See [MDN web docs on Slug](https://developer.mozilla.org/docs/Glossary/Slug) for the definition of Slug.
 
+[!INCLUDE[](~/includes/regex.md)]
 <a name="routing-multiple-routes-ref-label"></a>
 
 ### Multiple attribute routes
@@ -1211,7 +1212,7 @@ Razor Pages routing and MVC controller routing share an implementation. Informat
 
 ## Token replacement in route templates ([controller], [action], [area])
 
-For convenience, attribute routes support *token replacement* by enclosing a token in square-braces (`[`, `]`). The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined. In the following example, the actions match URL paths as described in the comments:
+For convenience, attribute routes support *token replacement* by enclosing a token in square-brackets (`[`, `]`). The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined. In the following example, the actions match URL paths as described in the comments:
 
 [!code-csharp[](routing/samples/2.x/main/Controllers/ProductsController.cs?range=7-11,13-17,20-22)]
 

@@ -5,7 +5,7 @@ description: Create a chat app that uses ASP.NET Core SignalR with Blazor WebAss
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 04/23/2020
 no-loc: [Blazor, SignalR]
 uid: tutorials/signalr-blazor-webassembly
 ---
@@ -53,7 +53,7 @@ At the end of this tutorial, you'll have a working chat app.
 When not using Visual Studio version 16.6 Preview 2 or later, install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template. The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview. In a command shell, execute the following command:
 
 ```dotnetcli
-dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview3.20168.3
+dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview5.20216.8
 ```
 
 Follow the guidance for your choice of tooling:
@@ -160,7 +160,7 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
 
 [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Hubs/ChatHub.cs)]
 
-## Add SignalR services and an endpoint for the SignalR hub
+## Add services and an endpoint for the SignalR hub
 
 1. In the **BlazorSignalRApp.Server** project, open the *Startup.cs* file.
 
@@ -170,15 +170,13 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
    using BlazorSignalRApp.Server.Hubs;
    ```
 
-1. Add the SignalR services to `Startup.ConfigureServices`:
+1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   ```csharp
-   services.AddSignalR();
-   ```
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
 
-1. In `Startup.Configure` between the endpoints for the default controller route and the client-side fallback, add an endpoint for the hub:
+1. In `Startup.Configure` between the endpoints for controllers and the client-side fallback, add an endpoint for the hub:
 
-   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet&highlight=4)]
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_UseEndpoints&highlight=4)]
 
 ## Add Razor component code for chat
 
@@ -194,7 +192,7 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
 
 # [Visual Studio](#tab/visual-studio)
 
-1. In **Solution Explorer**, select the **BlazorSignalRApp.Server** project. Press **Ctrl+F5** to run the app without debugging.
+1. In **Solution Explorer**, select the **BlazorSignalRApp.Server** project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -206,7 +204,13 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. Select **Debug** > **Run Without Debugging** from the toolbar.
+1. When VS Code offers to create a launch profile for the Server app (*.vscode/launch.json*), the `program` entry appears similar to the following to point to the app's assembly (`{APPLICATION NAME}.Server.dll`):
+
+   ```json
+   "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/{APPLICATION NAME}.Server.dll"
+   ```
+
+1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -218,7 +222,7 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. In the **Solution** sidebar, select the **BlazorSignalRApp.Server** project. From the menu, select **Run** > **Start Without Debugging**.
+1. In the **Solution** sidebar, select the **BlazorSignalRApp.Server** project. Press <kbd>⌘</kbd>+<kbd>↩</kbd>** to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 

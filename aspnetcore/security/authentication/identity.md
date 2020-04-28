@@ -23,7 +23,7 @@ The [Identity source code](https://github.com/dotnet/AspNetCore/tree/master/src/
 
 Identity is typically configured using a SQL Server database to store user names, passwords, and profile data. Alternatively, another persistent store can be used, for example, Azure Table Storage.
 
-In this topic, you learn how to use Identity to register, log in, and log out a user. For more detailed instructions about creating apps that use Identity, see the Next Steps section at the end of this article.
+In this topic, you learn how to use Identity to register, log in, and log out a user. Note: the templates treat username and email as the same for users. For more detailed instructions about creating apps that use Identity, see the Next Steps section at the end of this article.
 
 [Microsoft identity platform](/azure/active-directory/develop/) is:
 
