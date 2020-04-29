@@ -351,7 +351,7 @@ A Blazor WebAssembly app can use `loadBootResource` to override the built-in boo
 
 External sources must return the required CORS headers for browsers to allow the cross-origin resource loading. CDNs usually provide the required headers by default.
 
-You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behavior.
+You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors.
 
 In the following example, the following files are served from a CDN at `https://my-awesome-cdn.com/`:
 
