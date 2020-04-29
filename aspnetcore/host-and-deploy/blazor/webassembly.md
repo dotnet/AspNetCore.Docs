@@ -5,13 +5,13 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 04/29/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/webassembly
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly
 
-By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), [Daniel Roth](https://github.com/danroth27), and [Ben Adams](https://twitter.com/ben_a_adams).
+By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), [Daniel Roth](https://github.com/danroth27), [Ben Adams](https://twitter.com/ben_a_adams), and [Safia Abdalla](https://safia.rocks)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
@@ -325,3 +325,59 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
 ## Configure the Linker
 
 Blazor performs Intermediate Language (IL) linking on each Release build to remove unnecessary IL from the output assemblies. For more information, see <xref:host-and-deploy/blazor/configure-linker>.
+
+## Custom boot resource loading
+
+A Blazor WebAssembly app can use `loadBootResource` to override the built-in boot resource loading mechanism. Use `loadBootResource` for the following scenarios:
+
+* Allow users to load static resources, such as timezone data or *dotnet.wasm* from a CDN.
+* Load compressed assemblies using an HTTP request and decompress them on the client for hosts that don't support fetching compressed contents from the server.
+* Alias resources to a different name by redirecting each `fetch` request to a new name.
+
+`loadBootResource` parameters appear in the following table.
+
+| Parameter    | Description |
+| ------------ | ----------- |
+| `type`       | The type of the resource. Permissable types: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, `timezonedata` |
+| `name`       | The name of the resource. |
+| `defaultUri` | The relative or absolute URI of the resource. |
+| `integrity`  | The integrity string representing the expected content in the response. |
+
+`loadBootResource` returns any of the following to override the loading process:
+
+* URI string. Example: `https://my-awesome-cdn.com/blazorwebassembly/3.2.0/${name}`
+* `Promise<Response>`. Example: `return fetch(someUrl);`
+* `null`/`undefined`, which results in the default loading behavior to occur.
+
+External sources must return the required CORS headers for browsers to allow the cross-origin resource loading. CDNs usually provide the required headers by default.
+
+You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behavior.
+
+In the following example, the following files are served from a CDN at `https://my-awesome-cdn.com/`:
+
+* *dotnet.\*.js*
+* *dotnet.wasm*
+* Timezone data
+
+*wwwroot/index.html*:
+
+```html
+...
+
+<script src="_framework/blazor.webassembly.js" autostart="false"></script>
+<script>
+  Blazor.start({
+    loadBootResource: function (type, name, defaultUri, integrity) {
+      console.log(`Loading: '${type}', '${name}', '${defaultUri}', '${integrity}'`);
+
+      switch (type) {
+        case 'dotnetjs':
+        case 'dotnetwasm':
+        case 'timezonedata':
+	  return `https://my-awesome-cdn.com/blazorwebassembly/3.2.0/${name}`;
+      }
+
+    }
+  });
+</script>
+```
