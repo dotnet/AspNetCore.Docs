@@ -5,7 +5,7 @@ description: Learn how to control the Intermediate Language (IL) Linker when bui
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/23/2020
+ms.date: 04/29/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/configure-linker
 ---
@@ -98,7 +98,7 @@ In the following example, the *LinkerConfig.xml* file is specified as an embedde
 
 By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. Removing these assemblies minimizes the app's size.
 
-To control which I18N assemblies are retained, set the `<MonoLinkerI18NAssemblies>` MSBuild property in the project file:
+To control which I18N assemblies are retained, set the `<BlazorWebAssemblyI18NAssemblies>` MSBuild property in the project file:
 
 ```xml
 <PropertyGroup>
