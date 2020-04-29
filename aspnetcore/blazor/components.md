@@ -958,4 +958,4 @@ However, inline SVG markup isn't supported in all scenarios. If you place an `<s
 
 ## Additional resources
 
-* <xref:security/blazor/server> &ndash; Includes guidance on building Blazor Server apps that must contend with resource exhaustion.
+* <xref:security/blazor/server/threat-mitigation> &ndash; Includes guidance on building Blazor Server apps that must contend with resource exhaustion.

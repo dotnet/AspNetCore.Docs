@@ -30,13 +30,12 @@ For more information on configuring CORS, see [Enable Cross-Origin Requests (COR
 * HTTP methods `GET` and `POST` must be allowed.
 * Credentials must be allowed in order for cookie-based sticky sessions to work correctly. They must be enabled even when authentication isn't used.
 
-<!--
-::: moniker range=">= aspnetcore-5.0"  // Moniker here just to make sure this doesn't get missed in the 5.0 version update.
-However, in 5.0 we have provided an option in the TypeScript client to not use credentials.
-The not to use credentials option should only be used when you know 100% that credentials like Cookies are not needed in your app (cookies are used by azure app service when using multiple servers)
+::: moniker range=">= aspnetcore-5.0"
 
-For more info, see https://github.com/dotnet/AspNetCore.Docs/issues/16003
-.-->
+However, in 5.0 we have provided an option in the TypeScript client to not use credentials.
+The option to not use credentials should only be used when you know 100% that credentials like Cookies are not needed in your app (cookies are used by azure app service when using multiple servers for sticky sessions).
+
+::: moniker-end
 
 For example, the following CORS policy allows a SignalR browser client hosted on `https://example.com` to access the SignalR app hosted on `https://signalr.example.com`:
 
@@ -75,9 +74,6 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 [!code-csharp[Main](security/sample/Startup.cs?name=snippet1)]
 
 ::: moniker-end
-
-> [!NOTE]
-> SignalR is not compatible with the built-in CORS feature in Azure App Service.
 
 ## WebSocket Origin Restriction
 

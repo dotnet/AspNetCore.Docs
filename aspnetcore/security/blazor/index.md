@@ -53,7 +53,7 @@ For more information on creating apps and configuration, see <xref:security/blaz
 
 Blazor Server apps operate over a real-time connection that's created using SignalR. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token.
 
-For more information on creating apps and configuration, see <xref:security/blazor/server>.
+For more information on creating apps and configuration, see <xref:security/blazor/server/index>.
 
 ## AuthenticationStateProvider service
 
@@ -491,6 +491,5 @@ The `CascadingAuthenticationState` supplies the `Task<AuthenticationState>` casc
 ## Additional resources
 
 * <xref:security/index>
-* <xref:security/blazor/server>
 * <xref:security/authentication/windowsauth>
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links
