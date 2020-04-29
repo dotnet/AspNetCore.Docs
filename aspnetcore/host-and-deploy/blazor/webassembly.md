@@ -347,7 +347,7 @@ A Blazor WebAssembly app can use `loadBootResource` to override the built-in boo
 
 * URI string. Example: `https://my-awesome-cdn.com/blazorwebassembly/3.2.0/${name}`
 * `Promise<Response>`. Example: `return fetch(someUrl);`
-* `null`/`undefined`, which results in the default loading behavior to occur.
+* `null`/`undefined`, which results in the default loading behavior.
 
 External sources must return the required CORS headers for browsers to allow the cross-origin resource loading. CDNs usually provide the required headers by default.
 
