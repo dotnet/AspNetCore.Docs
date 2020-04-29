@@ -193,13 +193,6 @@ Logs created with the [default logging providers](#lp) are displayed:
 
 Logs that begin with "Microsoft" categories are from ASP.NET Core framework code. ASP.NET Core and application code use the same logging API and providers.
 
-## ILogger and  ILoggerFactory
-
-The <xref:Microsoft.Extensions.Logging.ILogger%601> and <xref:Microsoft.Extensions.Logging.ILoggerFactory> interfaces and implementations are included in the .NET Core SDK. They are also available in the following NuGet packages:  
-
-* The interfaces are in [Microsoft.Extensions.Logging.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/).
-* The default implementations are in [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/).
-
 <a name="lcat"></a>
 
 ## Log category
@@ -260,9 +253,34 @@ Call the appropriate `Log{LogLevel}` method to control how much log output is wr
   * Log `Warning` and higher.
   * Add `Trace` through `Information` messages when troubleshooting.
 
-The [Log filtering](#log-filtering) section in this article explains how to control which log levels a provider handles.
+ASP.NET Core writes logs for framework events. For example, consider the log output for:
 
-ASP.NET Core writes logs for framework events.
+* A Razor Pages app created with the ASP.NET Core templates.
+* `Logging:LogLevel:Microsoft:Information`
+*  Navigate to the Privacy page:
+
+```console
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 GET https://localhost:5001/Privacy
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/Privacy'
+info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[3]
+      Route matched with {page = "/Privacy"}. Executing page /Privacy
+info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[101]
+      Executing handler method DefaultRP.Pages.PrivacyModel.OnGet - ModelState is Valid
+info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[102]
+      Executed handler method OnGet, returned result .
+info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[103]
+      Executing an implicit handler method - ModelState is Valid
+info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[104]
+      Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[4]
+      Executed page /Privacy in 74.5188ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/Privacy'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished in 149.3023ms 200 text/html; charset=utf-8
+```
 
 <a name="leid"></a>
 
@@ -870,6 +888,13 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 ## Change log levels in running app
 
 The Logging API doesn't include a scenario to change log levels while an app is running. However, some configuration providers are capable of reloading configuration, which takes immediate effect on logging configuration. For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider), reloads logging configuration by default. If configuration is changed in code while an app is running, the app can call [IConfigurationRoot.Reload](xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*) to update the app's logging configuration.
+
+## ILogger and ILoggerFactory
+
+The <xref:Microsoft.Extensions.Logging.ILogger%601> and <xref:Microsoft.Extensions.Logging.ILoggerFactory> interfaces and implementations are included in the .NET Core SDK. They are also available in the following NuGet packages:  
+
+* The interfaces are in [Microsoft.Extensions.Logging.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/).
+* The default implementations are in [Microsoft.Extensions.Logging](https://www.nuget.org/packages/microsoft.extensions.logging/).
 
 ## Additional resources
 

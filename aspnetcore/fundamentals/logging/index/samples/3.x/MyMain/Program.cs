@@ -17,10 +17,10 @@ namespace MyMain
         }
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(logging =>
-                    logging.AddFilter("System", LogLevel.Debug)
-                           .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Information)
-                           .AddFilter<ConsoleLoggerProvider>("Microsoft", LogLevel.Information))
+                .ConfigureLogging(log =>
+                   log.AddFilter("System", LogLevel.Debug)
+                      .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Information)
+                      .AddFilter<ConsoleLoggerProvider>("Microsoft", LogLevel.Trace))
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
