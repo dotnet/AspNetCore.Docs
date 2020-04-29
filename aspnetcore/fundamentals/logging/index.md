@@ -51,8 +51,6 @@ For additional providers, see:
 * [Built-in logging providers](#bilp)
 * [Third-party logging providers](#third-party-logging-providers).
 
-[Non-host console apps](#nhca) are discussed later in this document.
-
 ## Create logs
 
 To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object from [dependency injection](xref:fundamentals/dependency-injection) (DI).
@@ -66,32 +64,9 @@ The following example:
 
 [Levels](#log-level) and [categories](#log-category) are explained in more detail later in this article.
 
-### Create logs in Main
-
-The following code logins in `Main` by getting an `ILogger` instance from DI after building the host:
-
-[!code-csharp[](index/samples/3.x/TodoApiDTO/Program.cs?name=snippet_LogProgram)]
-
-### Create logs in Startup
-
-The following code writes logs`Startup.Configure`:
-
-[!code-csharp[](index/samples/3.x/TodoApiDTO/Startup.cs?name=snippet_Configure)]
-
-Writing logs before completion of the DI container setup in the `Startup.ConfigureServices` method is not supported:
-
-* Logger injection into the `Startup` constructor is not supported.
-* Logger injection into the `Startup.ConfigureServices` method signature is not supported
-
-The reason for this restriction is that logging depends on DI and on configuration, which in turns depends on DI. The DI container isn't set up until `ConfigureServices` finishes.
-
-For information on configuring a service that depends on `ILogger<T>` or why constructor injection of a logger into `Startup` worked in earlier versions, see [Configure a service that depends on ILogger](#csdi)
-
 For information on Blazor, see [Create logs in Blazor and Blazor WebAssembly](#clib) in this document.
 
-### No asynchronous logger methods
-
-Logging should be so fast that it isn't worth the performance cost of asynchronous code. If your logging data store is slow, don't write to it directly. Consider writing the log messages to a fast store initially, then move them to the slow store later. For example, if you're logging to SQL Server, you don't want to do that directly in a `Log` method, since the `Log` methods are synchronous. Instead, synchronously add log messages to an in-memory queue and have a background worker pull the messages out of the queue to do the asynchronous work of pushing data to SQL Server. For more information, see [this](https://github.com/dotnet/AspNetCore.Docs/issues/11801) GitHub issue.
+[Create logs in Main and Startup](#clms) show how to create logs in `Main` and `Startup`.
 
 ## Configure logging
 
@@ -112,7 +87,15 @@ The `Logging` property can have <xref:Microsoft.Extensions.Logging.LogLevel> and
 
 When a `LogLevel` is specified, logging is enabled for messages at the specified level and higher. In the preceding Jason, the `Default` category is logged for `Information` and higher. For example, `Information`, `Warning`, `Error`, and `Critical`messages are logged. If no `LogLevel` is specified, the level is `Information`. See [Log levels](#llvl) for more information.
 
-A provider property can specify a `LogLevel` property. `LogLevel` under a provider specifies levels to log for that provider. In the preceding JSON, the `"Default"` category specifies the `Information` log level for every category. When a specific category is listed, the specific category overrides the default category. In the preceding JSON, the `"Microsoft"` and `"Microsoft.Hosting.Lifetime"` categories values override the `"Default"` value.
+A provider property can specify a `LogLevel` property. `LogLevel` under a provider specifies levels to log for that provider. Consider the following *appsettings.json* file:
+
+[!code-json[](index/samples/3.x/TodoApiDTO/appsettings.Prod2.json)]
+
+Settings in `Logging.{providername}.LogLevel` override settings in `Logging.LogLevel`. In the preceding JSON, the `Debug` provider default log level is `Information`:
+
+`Logging:Debug:LogLevel:Default:Information`
+
+The preceding setting specifies the `Information` log level for every `Logging:Debug:` category except `Microsoft.Hosting`. When a specific category is listed, the specific category overrides the default category. In the preceding JSON, the `Logging:Debug:LogLevel` categories `"Microsoft.Hosting"` and `"Default"` override the settings in `Logging:LogLevel`
 
 The minimum log level can be specified for any of:
 
@@ -125,11 +108,9 @@ Any logs below the minimum level are ***not***:
 * Passed to the provider.
 * Logged or displayed.
 
-To suppress all logs, specify [LogLevel.None](xref:Microsoft.Extensions.Logging.LogLevel) as the minimum log level. `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
+To suppress all logs, specify [LogLevel.None](xref:Microsoft.Extensions.Logging.LogLevel). `LogLevel.None` is 6, which is higher than `LogLevel.Critical` (5).
 
 If a provider supports [log scopes](#logscopes), `IncludeScopes` indicates whether they're enabled. For more information, see [log scopes](#logscopes)
-
-Settings in `Logging.{providername}.LogLevel` override settings in `Logging.LogLevel`.
 
 The following *appsettings.json* file contains all the providers enabled by default:
 
@@ -248,7 +229,7 @@ Call the appropriate `Log{LogLevel}` method to control how much log output is wr
   * Logging at the `Trace` through `Information` levels produces a high-volume of detailed log messages. To control costs and not exceed data storage limits, log `Trace` through `Information` level messages to a high-volume, low-cost data store.
   * Logging at `Warning` through `Critical` levels should produces few log messages.
     * Costs and storage limits usually aren't a concern.
-    * Greater flexibility of data store choice.
+    * Flexible data store choices.
 * In development:
   * Log `Warning` and higher.
   * Add `Trace` through `Information` messages when troubleshooting.
@@ -257,7 +238,7 @@ ASP.NET Core writes logs for framework events. For example, consider the log out
 
 * A Razor Pages app created with the ASP.NET Core templates.
 * `Logging:LogLevel:Microsoft:Information`
-*  Navigate to the Privacy page:
+* Navigation to the Privacy page:
 
 ```console
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
@@ -302,6 +283,8 @@ info: TodoApi.Controllers.TodoItemsController[1002]
 warn: TodoApi.Controllers.TodoItemsController[4000]
       Get(1) NOT FOUND
 ```
+
+Some logging providers store the event ID in a field, which allows for filtering on the ID.
 
 <a name="lmt"></a>
 
@@ -806,6 +789,33 @@ If you need to configure a service that depends on `ILogger<T>`, you can still d
 The preceding highlighted code is a [Func](/dotnet/api/system.func-2) that runs the first time the DI container needs to construct an instance of `MyService`. You can access any of the registered services in this way.
 
 [!code-csharp[](index/samples/3.x/TodoApiSample/MyService.cs?name=snippet)]
+
+<a name="clms"></a>
+
+## Create logs in Main
+
+The following code logins in `Main` by getting an `ILogger` instance from DI after building the host:
+
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Program.cs?name=snippet_LogProgram)]
+
+### Create logs in Startup
+
+The following code writes logs`Startup.Configure`:
+
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Startup.cs?name=snippet_Configure)]
+
+Writing logs before completion of the DI container setup in the `Startup.ConfigureServices` method is not supported:
+
+* Logger injection into the `Startup` constructor is not supported.
+* Logger injection into the `Startup.ConfigureServices` method signature is not supported
+
+The reason for this restriction is that logging depends on DI and on configuration, which in turns depends on DI. The DI container isn't set up until `ConfigureServices` finishes.
+
+For information on configuring a service that depends on `ILogger<T>` or why constructor injection of a logger into `Startup` worked in earlier versions, see [Configure a service that depends on ILogger](#csdi)
+
+### No asynchronous logger methods
+
+Logging should be so fast that it isn't worth the performance cost of asynchronous code. If your logging data store is slow, don't write to it directly. Consider writing the log messages to a fast store initially, then move them to the slow store later. For example, if you're logging to SQL Server, you don't want to do that directly in a `Log` method, since the `Log` methods are synchronous. Instead, synchronously add log messages to an in-memory queue and have a background worker pull the messages out of the queue to do the asynchronous work of pushing data to SQL Server. For more information, see [this](https://github.com/dotnet/AspNetCore.Docs/issues/11801) GitHub issue.
 
 <a name="clib"></a>
 
