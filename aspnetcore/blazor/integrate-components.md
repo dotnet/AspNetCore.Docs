@@ -261,7 +261,7 @@ The following Razor page renders a `Counter` component:
 }
 ```
 
-For more information, see <xref:xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ### Render noninteractive components
 
@@ -284,7 +284,7 @@ In the following Razor page, the `Counter` component is statically rendered with
 }
 ```
 
-For more information, see <xref:xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ## Component namespaces
 
