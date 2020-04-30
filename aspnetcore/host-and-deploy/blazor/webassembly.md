@@ -345,16 +345,48 @@ A Blazor WebAssembly app can use `loadBootResource` to override the built-in boo
 
 `loadBootResource` returns any of the following to override the loading process:
 
-* URI string.
+* URI string. In the following example (*wwwroot/index.html*), the following files are served from a CDN at `https://my-awesome-cdn.com/`:
 
+  * *dotnet.\*.js*
+  * *dotnet.wasm*
+  * Timezone data
+
+  ```html
+  ...
+
+  <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+  <script>
+    Blazor.start({
+      loadBootResource: function (type, name, defaultUri, integrity) {
+        console.log(`Loading: '${type}', '${name}', '${defaultUri}', '${integrity}'`);
+        switch (type) {
+          case 'dotnetjs':
+          case 'dotnetwasm':
+          case 'timezonedata':
+            return `https://my-awesome-cdn.com/blazorwebassembly/3.2.0/${name}`;
+        }
+      }
+    });
+  </script>
   ```
-  https://my-awesome-cdn.com/blazorwebassembly/3.2.0/${name}
-  ```
 
-* `Promise<Response>`. Pass the `integrity` parameter in a header to retain the default integrity checking behavior.
+* `Promise<Response>`. Pass the `integrity` parameter in a header to retain the default integrity-checking behavior.
 
-  ```javascript
-  return fetch(defaultUri, { cache: 'no-cache', integrity: integrity });
+  The following example (*wwwroot/index.html*) adds a custom HTTP header to the outbound requests and passes the `integrity` parameter through to the `fetch` call:
+  
+  ```html
+  <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+  <script>
+    Blazor.start({
+      loadBootResource: function (type, name, defaultUri, integrity) {
+        return fetch(defaultUri, { 
+          cache: 'no-cache',
+          integrity: integrity,
+          headers: { 'MyCustomHeader': 'My custom value' }
+        });
+      }
+    });
+  </script>
   ```
 
 * `null`/`undefined`, which results in the default loading behavior.
@@ -362,54 +394,3 @@ A Blazor WebAssembly app can use `loadBootResource` to override the built-in boo
 External sources must return the required CORS headers for browsers to allow the cross-origin resource loading. CDNs usually provide the required headers by default.
 
 You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors.
-
-In the following example, the following files are served from a CDN at `https://my-awesome-cdn.com/`:
-
-* *dotnet.\*.js*
-* *dotnet.wasm*
-* Timezone data
-
-*wwwroot/index.html*:
-
-```html
-...
-
-<script src="_framework/blazor.webassembly.js" autostart="false"></script>
-<script>
-  Blazor.start({
-    loadBootResource: function (type, name, defaultUri, integrity) {
-      console.log(`Loading: '${type}', '${name}', '${defaultUri}', '${integrity}'`);
-
-      switch (type) {
-        case 'dotnetjs':
-        case 'dotnetwasm':
-        case 'timezonedata':
-	  return `https://my-awesome-cdn.com/blazorwebassembly/3.2.0/${name}`;
-      }
-
-    }
-  });
-</script>
-```
-
-To customize more than just the URLs, `loadBootResource` can call fetch directly and return the result. The following example:
-
-* Adds a custom HTTP header to the outbound requests.
-* Passes the `integrity` parameter through to the `fetch` call to retain the default integrity checking behavior.
-
-```html
-<script src="_framework/blazor.webassembly.js" autostart="false"></script>
-<script>
-  Blazor.start({
-    loadBootResource: function (type, name, defaultUri, integrity) {
-
-      return fetch(defaultUri, { 
-        cache: 'no-cache',
-        integrity: integrity,
-        headers: { 'MyCustomHeader': 'My custom value' }
-      });
-
-    }
-  });
-</script>
-```
