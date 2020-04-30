@@ -5,7 +5,7 @@ description: Learn how to scaffold Identity in an ASP.NET Core project.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/15/2020
+ms.date: 5/1/2020
 uid: security/authentication/scaffold-identity
 ---
 # Scaffold Identity in ASP.NET Core projects
@@ -35,8 +35,8 @@ For example, `AddDbContext` and `AddDefaultIdentity` are commented out in the fo
 
 The preceeding code comments out the code that is duplicated in *Areas/Identity/IdentityHostingStartup.cs*
 
-Typically, apps that have are created with individual accounts should ***not*** create a new data content.
-  
+Typically, apps that were created with individual accounts should ***not*** create a new data content.
+
 This document contains more complete instructions than the *ScaffoldingReadme.txt* file which is generated when running the scaffolder.
 
 ## Scaffold identity into an empty project
