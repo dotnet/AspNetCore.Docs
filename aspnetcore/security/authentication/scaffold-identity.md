@@ -36,7 +36,7 @@ For example, `AddDbContext` and `AddDefaultIdentity` are commented out in the fo
 
 The preceeding code comments out the code that is duplicated in *Areas/Identity/IdentityHostingStartup.cs*
 
-Typically, apps that were created with individual accounts should ***not*** create a new data content.
+Typically, apps that were created with individual accounts should ***not*** create a new data context.
 
 ## Scaffold identity into an empty project
 
