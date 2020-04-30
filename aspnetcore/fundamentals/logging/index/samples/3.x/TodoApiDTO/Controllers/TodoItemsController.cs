@@ -30,7 +30,7 @@ namespace TodoApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItemDTO>>> GetTodoItems()
         {
-            using (_logger.BeginScope("Message {HoleValue}", DateTime.Now))
+            using (_logger.BeginScope("Message {Time}", DateTime.Now))
             {
                 _logger.LogInformation(MyLogEvents.ListItems, ControllerContext.ToCtxString());
                 MyUtil.SeedDBifEmpty(_context, _logger);

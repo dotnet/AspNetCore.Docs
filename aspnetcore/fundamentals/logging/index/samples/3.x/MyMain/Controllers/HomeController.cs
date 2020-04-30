@@ -13,6 +13,7 @@ namespace MyMain.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -20,11 +21,18 @@ namespace MyMain.Controllers
 
         public IActionResult Index()
         {
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            ViewData["Message"] = $"ASPNETCORE_ENVIRONMENT = {env}";
             return View();
         }
 
         public IActionResult Privacy()
         {
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            ViewData["Message"] = $"ASPNETCORE_ENVIRONMENT = {env}";
+            _logger.LogWarning("Test warning in privacy");
+            _logger.LogInformation("Test Info in privacy");
+
             return View();
         }
 

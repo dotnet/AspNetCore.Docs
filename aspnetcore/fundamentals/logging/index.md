@@ -343,24 +343,32 @@ The configuration data specifies minimum log levels by provider and category, as
 This JSON creates six filter rules: one for the Debug provider, four for the Console provider, and one for all providers. A single rule is chosen for each provider when an `ILogger` object is created.
 -->
 
+### Default log level
 
-### Default minimum level
+If the default log level is not set, the default log level value is `Information`.
 
-There's a minimum level setting that takes effect only if no rules from configuration or code apply for a given provider and category. The following example shows how to set the minimum level:
+For example, consider the following web app:
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_MinLevel&highlight=3)]
+* Created with the ASP.NET web app templates.
+* *appsettings.json* and *appsettings.Development.json* deleted or renamed.
 
-If you don't explicitly set the minimum level, the default value is `Information`, which means that `Trace` and `Debug` logs are ignored.
+With the preceding code, navigating to the privacy or home page produces many `Trace`, `Debug`, and `Information`  messages with `Microsoft` in the category name.
 
-### Filter functions
+The following code sets the default log level when the default log level is not set in configuration:
 
-A filter function is invoked for all providers and categories that don't have rules assigned to them by configuration or code. Code in the function has access to the provider type, category, and log level. For example:
+[!code-csharp[](index/samples/3.x/MyMain/Program.cs?name=snippet_MinLevel&highlight=9)]
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Program.cs?name=snippet_FilterFunction&highlight=3-11)]
+### Filter function
 
-## System categories and levels
+A filter function is invoked for all providers and categories that don't have rules assigned to them by configuration or code:
 
-Here are some categories used by ASP.NET Core and Entity Framework Core, with notes about what logs to expect from them:
+[!code-csharp[](index/samples/3.x/MyMain/Program.cs?name=snippet_FilterFunction&highlight=3-11)]
+
+The preceding code displays console logs when the category contains `Controller` or `Microsoft` and the log level is `Information` or higher.
+
+## ASP.NET Core and EF Core categories
+
+The following table contains some categories used by ASP.NET Core and Entity Framework Core, with notes about the logs:
 
 | Category                            | Notes |
 | ----------------------------------- | ----- |
@@ -374,15 +382,25 @@ Here are some categories used by ASP.NET Core and Entity Framework Core, with no
 | Microsoft.AspNetCore.StaticFiles    | Files served. |
 | Microsoft.EntityFrameworkCore       | General Entity Framework Core diagnostics. Database activity and configuration, change detection, migrations. |
 
+To view more categories in the console window, set **appsettings.Development.json** to the following:
+
+[!code-csharp[](index/samples/3.x/MyMain/appsettings.Trace.json)]
 <a name="logscopes"></a>
 
 ## Log scopes
 
  A *scope* can group a set of logical operations. This grouping can be used to attach the same data to each log that's created as part of a set. For example, every log created as part of processing a transaction can include the transaction ID.
 
-A scope is an `IDisposable` type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope*> method and lasts until it's disposed. Use a scope by wrapping logger calls in a `using` block:
+A scope:
 
-[!code-csharp[](index/samples/3.x/TodoApiSample/Controllers/TodoController.cs?name=snippet_Scopes&highlight=4-5,13)]
+* Is an <xref:System.IDisposable> type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope*> method.
+* Lasts until it's disposed. Use a scope by wrapping logger calls in a `using` block:
+
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TestController.cs?name=snippet_Scopes)]
+
+The following JSON enables scopes for the console provider:
+
+[!code-json[](index/samples/3.x/TodoApiDTO/appsettings.Scopes.json)]
 
 The following code enables scopes for the console provider:
 
