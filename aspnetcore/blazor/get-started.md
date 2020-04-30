@@ -90,19 +90,19 @@ Blazor Server is supported in Visual Studio for Mac. Blazor WebAssembly isn't su
 
 1. Select **File** > **New Solution** or create a **New Project**.
 
-1. In the sidebar, select **.NET Core** > **App**.
+1. In the sidebar, select **Web and Console** > **App**.
 
-1. Select the **Blazor Server App** template. Select **Create**.
+1. Select the **Blazor Server App** template. Select **Next**.
 
    For information on the Blazor Server hosting model, see <xref:blazor/hosting-models>.
 
-1. Set the **Target Framework** to **.NET Core 3.1** and select **Next**.
+1. Confirm that the **Target Framework** is set to **.NET Core 3.1** and select **Next**.
 
 1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
 
-1. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Run the app with **Start Debugging** to run the app *with the debugger*.
+1. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Run the app with **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
-If a prompt appears to trust the development certificate, trust the certificate and continue.
+If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
