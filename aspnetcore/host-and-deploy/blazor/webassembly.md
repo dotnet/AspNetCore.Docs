@@ -328,7 +328,7 @@ Blazor performs Intermediate Language (IL) linking on each Release build to remo
 
 ## Custom boot resource loading
 
-A Blazor WebAssembly app can use `loadBootResource` to override the built-in boot resource loading mechanism. Use `loadBootResource` for the following scenarios:
+A Blazor WebAssembly app can be initialized with the `loadBootResource` function to override the built-in boot resource loading mechanism. Use `loadBootResource` for the following scenarios:
 
 * Allow users to load static resources, such as timezone data or *dotnet.wasm* from a CDN.
 * Load compressed assemblies using an HTTP request and decompress them on the client for hosts that don't support fetching compressed contents from the server.
