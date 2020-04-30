@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/29/2020
+ms.date: 04/30/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/webassembly
 ---
@@ -345,8 +345,18 @@ A Blazor WebAssembly app can use `loadBootResource` to override the built-in boo
 
 `loadBootResource` returns any of the following to override the loading process:
 
-* URI string. Example: `https://my-awesome-cdn.com/blazorwebassembly/3.2.0/${name}`
-* `Promise<Response>`. Example: `return fetch(someUrl);`
+* URI string.
+
+  ```
+  https://my-awesome-cdn.com/blazorwebassembly/3.2.0/${name}
+  ```
+
+* `Promise<Response>`. Pass the `integrity` parameter in a header to retain the default integrity checking behavior.
+
+  ```javascript
+  return fetch(defaultUri, { cache: 'no-cache', integrity: integrity });
+  ```
+
 * `null`/`undefined`, which results in the default loading behavior.
 
 External sources must return the required CORS headers for browsers to allow the cross-origin resource loading. CDNs usually provide the required headers by default.
@@ -376,6 +386,28 @@ In the following example, the following files are served from a CDN at `https://
         case 'timezonedata':
 	  return `https://my-awesome-cdn.com/blazorwebassembly/3.2.0/${name}`;
       }
+
+    }
+  });
+</script>
+```
+
+To customize more than just the URLs, `loadBootResource` can call fetch directly and return the result. The following example:
+
+* Adds a custom HTTP header to the outbound requests.
+* Passes the `integrity` parameter through to the `fetch` call to retain the default integrity checking behavior.
+
+```html
+<script src="_framework/blazor.webassembly.js" autostart="false"></script>
+<script>
+  Blazor.start({
+    loadBootResource: function (type, name, defaultUri, integrity) {
+
+      return fetch(defaultUri, { 
+        cache: 'no-cache',
+        integrity: integrity,
+        headers: { 'MyCustomHeader': 'My custom value' }
+      });
 
     }
   });
