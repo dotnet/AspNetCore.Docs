@@ -37,8 +37,6 @@ The preceeding code comments out the code that is duplicated in *Areas/Identity/
 
 Typically, apps that were created with individual accounts should ***not*** create a new data content.
 
-This document contains more complete instructions than the *ScaffoldingReadme.txt* file which is generated when running the scaffolder.
-
 ## Scaffold identity into an empty project
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
