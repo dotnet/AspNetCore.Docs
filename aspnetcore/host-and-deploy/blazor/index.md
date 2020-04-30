@@ -5,7 +5,7 @@ description: Discover how to host and deploy Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/11/2020
+ms.date: 04/30/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/index
 ---
@@ -24,6 +24,11 @@ Apps are published for deployment in Release configuration.
 1. Select **Build** > **Publish {APPLICATION}** from the navigation bar.
 1. Select the *publish target*. To publish locally, select **Folder**.
 1. Accept the default location in the **Choose a folder** field or specify a different location. Select the **Publish** button.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+1. Select **Build** > **Publish to Folder**.
+1. Confirm the folder to receive the published assets and select **Publish**.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
