@@ -128,7 +128,6 @@ In the preceding sample:
   * Debug
   * EventSource
   * EventLog
-  * TraceSource
   * AzureAppServicesFile
   * AzureAppServicesBlob
   * ApplicationInsights
@@ -147,6 +146,8 @@ The following algorithm is used for each provider when an `ILogger` is created f
 * From the result of the preceding step, select rules with longest matching category prefix. If no match is found, select all rules that don't specify a category.
 * If multiple rules are selected, take the **last** one.
 * If no rules are selected, use `MinimumLevel`.
+
+<a name="dnrvs"></a>
 
 ## Logging output from dotnet run and Visual Studio
 
@@ -406,24 +407,27 @@ The following code enables scopes for the console provider:
 
 ## Built-in logging providers
 
-ASP.NET Core ships the following providers:
+ASP.NET Core includes the following logging providers:
 
 * [Console](#console-provider)
 * [Debug](#debug-provider)
 * [EventSource](#event-source-provider)
 * [EventLog](#windows-eventlog-provider)
-* [TraceSource](#tracesource-provider)
 * [AzureAppServicesFile](#azure-app-service-provider)
 * [AzureAppServicesBlob](#azure-app-service-provider)
-* [ApplicationInsights](#azure-application-insights-trace-logging)
+* [ApplicationInsights](#azure-application-insights)
 
-For information on stdout and debug logging with the ASP.NET Core Module, see <xref:test/troubleshoot-azure-iis> and <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
+For information on `stdout` and debug logging with the ASP.NET Core Module, see <xref:test/troubleshoot-azure-iis> and <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
+
+### Console provider
+
+The `Console` provider logs output to the console. For more information on viewing `Console` logs in development, see [Logging output from dotnet run and Visual Studio](#dnrvs).
 
 ### Debug provider
 
 The `Debug` provider writes log output by using the [System.Diagnostics.Debug](/dotnet/api/system.diagnostics.debug) class. For example, calls to `System.Diagnostics.Debug.WriteLine` write to the `Debug` provider.
 
-On Linux, the `Debug` provider log location is distribution dependent. Some distributions write to one of the following locations:
+On Linux, the `Debug` provider log location is distribution dependent. Linux the `Debug` provider log locations may be in one of the following locations:
 
 * */var/log/message*
 * */var/log/syslog*
@@ -649,7 +653,7 @@ In a non-host console app, call the provider's `Add{provider name}` extension me
 
 [!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=1,7)]
 
-### Non-host console app Create logs
+### Non-host console app create logs
 
 To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object. Use the `LoggerFactory` to create an `ILogger`.
 
