@@ -57,7 +57,7 @@ namespace TodoApi.Controllers
         }
         #endregion
 
-        #region snippet_CallLogMethods
+        #region snippet_Scopes
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItemDTO>> GetTodoItem(long id)
         {

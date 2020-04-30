@@ -1,7 +1,9 @@
-#define Scopes // FilterFunction // MinLevel // FilterCode // FilterFunction
+#define Azure // Default // Scopes // FilterFunction // MinLevel // FilterCode // FilterFunction
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.AzureAppServices;
 using Microsoft.Extensions.Logging.Console;
 using Microsoft.Extensions.Logging.Debug;
 using MyMain;
@@ -89,7 +91,7 @@ public class Program
 #endregion
 
 #elif Scopes
-#region snippet_MinLevel
+#region snippet_Scopes
 public class Scopes
 {
     public static void Main(string[] args)
@@ -110,5 +112,54 @@ public class Scopes
             });
 }
 #endregion
+
+#elif Azure
+#region snippet_AzLogOptions
+public class Scopes
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+            .ConfigureLogging(logging => logging.AddAzureWebAppDiagnostics())
+            .ConfigureServices(serviceCollection => serviceCollection
+                .Configure<AzureFileLoggerOptions>(options =>
+                {
+                    options.FileName = "azure-diagnostics-";
+                    options.FileSizeLimit = 50 * 1024;
+                    options.RetainedFileCountLimit = 5;
+                }).Configure<AzureBlobLoggerOptions>(options =>
+                {
+                    options.BlobName = "log.txt";
+                })
+            )
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
+}
+#endregion
+
+#elif Default  // What the templates generate.
+public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
 
 #endif
