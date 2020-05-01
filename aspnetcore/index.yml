@@ -11,7 +11,7 @@ metadata:
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 04/26/2020
+  ms.date: 05/01/2020
 
 # highlightedContent section (optional)
 # Maximum of 8 items
@@ -37,7 +37,7 @@ highlightedContent:
     # Card
     - title: "Create your first web UI"
       itemType: get-started
-      url: tutorials/build-your-first-blazor-app.md
+      url: tutorials/razor-pages/razor-pages-start.md
     # Card
     - title: "Create your first web API"
       itemType: get-started
