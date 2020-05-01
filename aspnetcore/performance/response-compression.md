@@ -124,7 +124,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The Brotoli Compression Provider must be added when any compression providers are explicitly added:
+The Brotli Compression Provider must be added when any compression providers are explicitly added:
 
 [!code-csharp[](response-compression/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=5)]
 
@@ -370,7 +370,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The Brotoli Compression Provider must be added when any compression providers are explicitly added:
+The Brotli Compression Provider must be added when any compression providers are explicitly added:
 
 [!code-csharp[](response-compression/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=5)]
 
