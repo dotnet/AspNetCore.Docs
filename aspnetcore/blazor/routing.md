@@ -224,7 +224,7 @@ The following component navigates to the app's `Counter` component when the butt
 The following component handles a location changed event. The `HandleLocationChanged` method is unhooked when `Dispose` is called by the framework. Unhooking the method permits garbage collection of the component.
 
 ```razor
-@implement IDisposable
+@implements IDisposable
 @inject NavigationManager NavigationManager
 
 ...
