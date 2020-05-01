@@ -8,7 +8,6 @@ ms.date: 5/2/2020
 
 uid: fundamentals/logging/index
 ---
-https://docs.microsoft.com/en-us/azure/azure-monitor/app/cloudservices
 # Logging in .NET Core and ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
@@ -19,7 +18,7 @@ By  [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twit
 
 Most of the code examples shown in this article are from ASP.NET Core apps. The logging-specific parts of these code snippets apply to any .NET Core app that uses the [Generic Host](xref:fundamentals/host/generic-host). The ASP.NET Core web app templates use Generic Host.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
 <a name="lp"></a>
 
@@ -90,7 +89,7 @@ The `Logging` property can have <xref:Microsoft.Extensions.Logging.LogLevel> and
 
 When a `LogLevel` is specified, logging is enabled for messages at the specified level and higher. In the preceding Jason, the `Default` category is logged for `Information` and higher. For example, `Information`, `Warning`, `Error`, and `Critical`messages are logged. If no `LogLevel` is specified, logging defaults to the `Information` level. See [Log levels](#llvl) for more information.
 
-A provider property can specify a `LogLevel` property. `LogLevel` under a provider specifies levels to log for that provider. Consider the following *appsettings.json* file:
+A provider property can specify a `LogLevel` property. `LogLevel` under a provider specifies levels to log for that provider, and overrides the non-provider log settings. Consider the following *appsettings.json* file:
 
 [!code-json[](index/samples/3.x/TodoApiDTO/appsettings.Prod2.json)]
 
@@ -212,7 +211,7 @@ Call the appropriate `Log{LogLevel}` method to control how much log output is wr
   * Logging at the `Trace` or `Information` levels produces a high-volume of detailed log messages. To control costs and not exceed data storage limits, log `Trace` and `Information` level messages to a high-volume, low-cost data store. Consider limiting `Trace` and `Information` to specific categories.
   * Logging at `Warning` through `Critical` levels should produces few log messages.
     * Costs and storage limits usually aren't a concern.
-    * Flexible data store choices.
+    * Few logs providers more flexibility in data store choices.
 * In development:
   * Set to `Warning`.
   * Add `Trace` or `Information` messages when troubleshooting. To limit output, set `Trace` or `Information` only for the categories under investigation.
@@ -220,7 +219,7 @@ Call the appropriate `Log{LogLevel}` method to control how much log output is wr
 ASP.NET Core writes logs for framework events. For example, consider the log output for:
 
 * A Razor Pages app created with the ASP.NET Core templates.
-* `Logging:Console:LogLevel:Microsoft:Information`
+* Logging set to `Logging:Console:LogLevel:Microsoft:Information`
 * Navigation to the Privacy page:
 
 ```console
@@ -304,31 +303,17 @@ _logger.LogInformation("Getting item {Id} at {RequestTime}", id, DateTime.Now);
 When logging to Azure Table Storage:
 
 * Each Azure Table entity can have `ID` and `RequestTime` properties.
-* This simplifies queries on log data. A query can find all logs within a particular `RequestTime` range without parsing the time out of the text message.
+* Tables with properties simplify queries on loged data. For example, a query can find all logs within a particular `RequestTime` range without parsing the time out of the text message.
 
 ## Log exceptions
 
-The logger methods have overloads that take an exception:
+The logger methods have overloads that take an exception parameter:
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TestController.cs?name=snippet_Exp)]
 
 [!INCLUDE[](~/includes/MyDisplayRouteInfoBoth.md)]
 
 Exception logging is provider specific.
-
-
-
-<!-- 
-### Create filter rules in configuration
-
-The project template code calls `CreateDefaultBuilder` to set up logging for the Console, Debug, and EventSource (ASP.NET Core 2.2 or later) providers. The `CreateDefaultBuilder` method sets up logging to look for configuration in a `Logging` section, as explained [earlier in this article](#configuration).
-
-The configuration data specifies minimum log levels by provider and category, as in the following example:
-
-[!code-json[](index/samples/3.x/TodoApiSample/appsettings.json)]
-
-This JSON creates six filter rules: one for the Debug provider, four for the Console provider, and one for all providers. A single rule is chosen for each provider when an `ILogger` object is created.
--->
 
 ### Default log level
 
@@ -403,6 +388,8 @@ The following code enables scopes for the console provider:
 
 [!code-csharp[](index/samples/3.x/MyMain/Program.cs?name=snippet_Scopes)]
 
+Generally, logging should be specified in configuration and not code.
+
 <a name="bilp"></a>
 
 ## Built-in logging providers
@@ -425,7 +412,7 @@ The `Console` provider logs output to the console. For more information on viewi
 
 ### Debug provider
 
-The `Debug` provider writes log output by using the [System.Diagnostics.Debug](/dotnet/api/system.diagnostics.debug) class. For example, calls to `System.Diagnostics.Debug.WriteLine` write to the `Debug` provider.
+The `Debug` provider writes log output by using the [System.Diagnostics.Debug](/dotnet/api/system.diagnostics.debug) class. Calls to `System.Diagnostics.Debug.WriteLine` write to the `Debug` provider.
 
 On Linux, the `Debug` provider log location is distribution dependent. Linux the `Debug` provider log locations may be in one of the following locations:
 
@@ -434,24 +421,18 @@ On Linux, the `Debug` provider log location is distribution dependent. Linux the
 
 ### Event Source provider
 
-The `EventSource` provider writes to an Event Source cross-platform with the name `Microsoft-Extensions-Logging`. On Windows, the provider uses [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803).
+The `EventSource` provider writes to an cross-platform event source with the name `Microsoft-Extensions-Logging`. On Windows, the provider uses [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803).
 
 #### dotnet trace tooling
 
 The [dotnet-trace](/dotnet/core/diagnostics/dotnet-trace) tool is a cross-platform CLI global tool that enables the collection of .NET Core traces of a running process. The tool collects <xref:Microsoft.Extensions.Logging.EventSource> provider data using a <xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource>.
 
-Install the dotnet trace tooling with the following command:
-
-```dotnetcli
-dotnet tool install --global dotnet-trace
-```
+See [dotnet-trace](/dotnet/core/diagnostics/dotnet-trace) for installation instructions.
 
 Use the dotnet trace tooling to collect a trace from an app:
 
 1. Run the app with the `dotnet run` command.
-
 1. Determine the process identifier (PID) of the .NET Core app:
-
    * On Windows, use one of the following approaches:
      * Task Manager (Ctrl+Alt+Del)
      * [tasklist command](/windows-server/administration/windows-commands/tasklist)
@@ -597,7 +578,7 @@ Navigate to the **Log Stream** page to view logs. The logged messages are logged
 
 ### Azure Application Insights
 
-The [Microsoft.Extensions.Logging.ApplicationInsights](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights) provider package writes logs to [Azure Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/cloudservices). Application Insights is a service that monitors a web app and provides tools for querying and analyzing the telemetry data. If you use this provider, you can query and analyze your logs by using the Application Insights tools.
+The [Microsoft.Extensions.Logging.ApplicationInsights](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights) provider package writes logs to [Azure Application Insights](/azure/azure-monitor/app/cloudservices). Application Insights is a service that monitors a web app and provides tools for querying and analyzing the telemetry data. If you use this provider, you can query and analyze your logs by using the Application Insights tools.
 
 The logging provider is included as a dependency of [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore), which is the package that provides all available telemetry for ASP.NET Core. If you use this package, you don't have to install the provider package.
 
