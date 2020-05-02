@@ -33,7 +33,7 @@ The default ASP.NET Core web app templates:
   * [Console](#console-provider)
   * [Debug](#debug-provider)
   * [EventSource](#event-source-provider)
-  * [EventLog](#windows-eventlog-provider) : Windows only
+  * [EventLog](#welog) : Windows only
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Program.cs?name=snippet_TemplateCode&highlight=9)]
 
@@ -405,7 +405,7 @@ ASP.NET Core includes the following logging providers:
 * [Console](#console-provider)
 * [Debug](#debug-provider)
 * [EventSource](#event-source-provider)
-* [EventLog](#windows-eventlog-provider)
+* [EventLog](#welog)
 * [AzureAppServicesFile](#azure-app-service-provider)
 * [AzureAppServicesBlob](#azure-app-service-provider)
 * [ApplicationInsights](#azure-application-insights)
