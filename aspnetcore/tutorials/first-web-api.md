@@ -33,11 +33,11 @@ This tutorial creates the following API:
 
 |API | Description | Request body | Response body |
 |--- | ---- | ---- | ---- |
-|GET /api/TodoItems | Get all to-do items | None | Array of to-do items|
-|GET /api/TodoItems/{id} | Get an item by ID | None | To-do item|
-|POST /api/TodoItems | Add a new item | To-do item | To-do item |
-|PUT /api/TodoItems/{id} | Update an existing item &nbsp; | To-do item | None |
-|DELETE /api/TodoItems/{id} &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+|`GET /api/TodoItems` | Get all to-do items | None | Array of to-do items|
+|`GET /api/TodoItems/{id}` | Get an item by ID | None | To-do item|
+|`POST /api/TodoItems` | Add a new item | To-do item | To-do item |
+|`PUT /api/TodoItems/{id}` | Update an existing item &nbsp; | To-do item | None |
+|`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
 
 The following diagram shows the design of the app.
 
