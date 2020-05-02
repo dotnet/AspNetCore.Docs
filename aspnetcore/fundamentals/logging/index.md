@@ -12,7 +12,7 @@ uid: fundamentals/logging/index
 
 ::: moniker range=">= aspnetcore-3.0"
 
-By  [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5), [Tom Dykstra](https://github.com/tdykstra) and [Steve Smith](https://ardalis.com/)
+By  [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5), [Tom Dykstra](https://github.com/tdykstra), and [Steve Smith](https://ardalis.com/)
 
 .NET Core supports a logging API that works with a variety of built-in and third-party logging providers. This article shows how to use the logging API with built-in providers.
 
@@ -37,7 +37,7 @@ The default ASP.NET Core web app templates:
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Program.cs?name=snippet_TemplateCode&highlight=9)]
 
-The preceding code shows the `Program` class created with the ASP.NET Core web app templates. The next several sections provide samples based on the the ASP.NET Core web app templates, which uses Generic Host. [Non-host console apps](#nhca) are discussed later in this document.
+The preceding code shows the `Program` class created with the ASP.NET Core web app templates. The next several sections provide samples based on the ASP.NET Core web app templates, which uses Generic Host. [Non-host console apps](#nhca) are discussed later in this document.
 
 The following code:
 
@@ -87,7 +87,7 @@ The `Logging` property can have <xref:Microsoft.Extensions.Logging.LogLevel> and
 
 `Trace` = 0, `Debug` = 1, `Information` = 2, `Warning` = 3, `Error` = 4, `Critical` = 5, and `None` = 6.
 
-When a `LogLevel` is specified, logging is enabled for messages at the specified level and higher. In the preceding Jason, the `Default` category is logged for `Information` and higher. For example, `Information`, `Warning`, `Error`, and `Critical`messages are logged. If no `LogLevel` is specified, logging defaults to the `Information` level. See [Log levels](#llvl) for more information.
+When a `LogLevel` is specified, logging is enabled for messages at the specified level and higher. In the preceding Jason, the `Default` category is logged for `Information` and higher. For example, `Information`, `Warning`, `Error`, and `Critical`messages are logged. If no `LogLevel` is specified, logging defaults to the `Information` level. For more information, see [Log levels](#llvl).
 
 A provider property can specify a `LogLevel` property. `LogLevel` under a provider specifies levels to log for that provider, and overrides the non-provider log settings. Consider the following *appsettings.json* file:
 
@@ -314,7 +314,7 @@ The logger methods have overloads that take an exception parameter:
 
 [!INCLUDE[](~/includes/MyDisplayRouteInfoBoth.md)]
 
-Exception logging is provider specific.
+Exception logging is provider-specific.
 
 ### Default log level
 
@@ -420,14 +420,14 @@ The `Console` provider logs output to the console. For more information on viewi
 
 The `Debug` provider writes log output by using the [System.Diagnostics.Debug](/dotnet/api/system.diagnostics.debug) class. Calls to `System.Diagnostics.Debug.WriteLine` write to the `Debug` provider.
 
-On Linux, the `Debug` provider log location is distribution dependent. Linux the `Debug` provider log locations may be in one of the following locations:
+On Linux, the `Debug` provider log location is distribution-dependent. Linux the `Debug` provider log locations may be in one of the following locations:
 
 * */var/log/message*
 * */var/log/syslog*
 
 ### Event Source provider
 
-The `EventSource` provider writes to an cross-platform event source with the name `Microsoft-Extensions-Logging`. On Windows, the provider uses [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803).
+The `EventSource` provider writes to a cross-platform event source with the name `Microsoft-Extensions-Logging`. On Windows, the provider uses [ETW](https://msdn.microsoft.com/library/windows/desktop/bb968803).
 
 #### dotnet trace tooling
 
