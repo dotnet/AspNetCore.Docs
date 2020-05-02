@@ -5,7 +5,7 @@ description: Learn how to secure Blazor Server apps as ASP.NET Core applications
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2020
+ms.date: 05/02/2020
 no-loc: [Blazor, SignalR]
 uid: security/blazor/server/index
 ---
@@ -93,3 +93,7 @@ Using the `-o|--output` option, the command uses the value provided for the `{AP
 For more information, see the [dotnet new](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
 ---
+
+## Secure an existing app
+
+Blazor Server apps are configured for security in the same manner as ASP.NET Core apps. For more information, see the articles under <xref:security/index>.
