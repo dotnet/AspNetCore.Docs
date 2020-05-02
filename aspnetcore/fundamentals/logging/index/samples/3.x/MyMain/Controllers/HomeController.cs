@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Docs.Samples;
 using Microsoft.Extensions.Logging;
 using MyMain.Models;
 
@@ -30,8 +31,9 @@ namespace MyMain.Controllers
         {
             var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             ViewData["Message"] = $"ASPNETCORE_ENVIRONMENT = {env}";
-            _logger.LogWarning("Test warning in privacy");
-            _logger.LogInformation("Test Info in privacy");
+            var routeInfo = ControllerContext.ToCtxString();
+            _logger.LogWarning(2000,"Test  {x}", routeInfo);
+            _logger.LogInformation(1100, "Test  {x}", routeInfo);
 
             return View();
         }

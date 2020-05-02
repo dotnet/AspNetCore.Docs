@@ -35,7 +35,7 @@ The default ASP.NET Core web app templates:
   * [EventSource](#event-source-provider)
   * [EventLog](#windows-eventlog-provider) : Windows only
 
-[!code-csharp[](index/samples/3.x/TodoApiDTO/Program.cs?name=snippet_TemplateCode)]
+[!code-csharp[](index/samples/3.x/TodoApiDTO/Program.cs?name=snippet_TemplateCode&highlight=9)]
 
 The preceding code shows the `Program` class created with the ASP.NET Core web app templates. The next several sections provide samples based on the the ASP.NET Core web app templates, which uses Generic Host. [Non-host console apps](#nhca) are discussed later in this document.
 
@@ -76,14 +76,14 @@ Logging configuration is commonly provided by the `Logging` section of *appsetti
 
 In the preceding JSON:
 
-* A log providers is not specified, so `LogLevel` applies to all the enabled logging providers.
+* A log provider is not specified, so `LogLevel` applies to all the enabled logging providers except for the [Windows EventLog](#welog).
 * The `"Default"`, `"Microsoft"`, and `"Microsoft.Hosting.Lifetime"` categories are specified.
 * The `"Microsoft"` category applies to all categories that start with `"Microsoft"`. For example, this setting applies to the `"Microsoft.AspNetCore.Routing.EndpointMiddleware"` category.
 * `"Microsoft.Hosting.Lifetime"` category is more specific than `"Microsoft"`, so the value of `"Microsoft.Hosting.Lifetime"` is used for this category.
 * The `"Default"` and `"Microsoft.Hosting.Lifetime"` categories log at log level `Information` and higher.
 * The `"Microsoft"` category logs at log level `Warning` and higher.
 
-The `Logging` property can have <xref:Microsoft.Extensions.Logging.LogLevel> and log provider properties. The `LogLevel` specifies the minimum [level](#log-level) to log for selected categories. In the preceding JSON, `Information` and `Warning` log levels are used. `LogLevel` indicates the severity of the log. `LogLevel` ranges from 0 to 6:
+The `Logging` property can have <xref:Microsoft.Extensions.Logging.LogLevel> and log provider properties. The `LogLevel` specifies the minimum [level](#log-level) to log for selected categories. In the preceding JSON, `Information` and `Warning` log levels are specified. `LogLevel` indicates the severity of the log. `LogLevel` ranges from 0 to 6:
 
 `Trace` = 0, `Debug` = 1, `Information` = 2, `Warning` = 3, `Error` = 4, `Critical` = 5, and `None` = 6.
 
@@ -187,7 +187,7 @@ The following table lists the <xref:Microsoft.Extensions.Logging.LogLevel>, the 
 | [Warning](xref:Microsoft.Extensions.Logging.LogLevel) | 3 | [LogWarning](/dotnet/api/microsoft.extensions.logging.loggerextensions.logwarning)  | For abnormal or unexpected events. Typically includes errors or conditions that don't cause the app to fail.  |
 | [Error](xref:Microsoft.Extensions.Logging.LogLevel) | 4 | [LogError](/dotnet/api/microsoft.extensions.logging.loggerextensions.logerror)  | For errors and exceptions that cannot be handled. These messages indicate a failure in the current operation or request, not an app-wide failure. |
 | [Critical](xref:Microsoft.Extensions.Logging.LogLevel) | 5| [LogCritical](/dotnet/api/microsoft.extensions.logging.loggerextensions.logcritical)  | For failures that require immediate attention. Examples: data loss scenarios, out of disk space. |
-| [Critical](xref:Microsoft.Extensions.Logging.None) | 5|   | Specifies that a logging category should not write any messages. |
+| [None](xref:Microsoft.Extensions.Logging.None) | 6|   | Specifies that a logging category should not write any messages. |
 
 In the previous table, the `LogLevel` is listed from lowest to highest severity.
 
@@ -211,7 +211,7 @@ Call the appropriate `Log{LogLevel}` method to control how much log output is wr
   * Logging at the `Trace` or `Information` levels produces a high-volume of detailed log messages. To control costs and not exceed data storage limits, log `Trace` and `Information` level messages to a high-volume, low-cost data store. Consider limiting `Trace` and `Information` to specific categories.
   * Logging at `Warning` through `Critical` levels should produces few log messages.
     * Costs and storage limits usually aren't a concern.
-    * Few logs providers more flexibility in data store choices.
+    * Few logs allow more flexibility in data store choices.
 * In development:
   * Set to `Warning`.
   * Add `Trace` or `Information` messages when troubleshooting. To limit output, set `Trace` or `Information` only for the categories under investigation.
@@ -253,8 +253,9 @@ The following JSON sets `Logging:Console:LogLevel:Microsoft:Information`:
 
 ## Log event ID
 
-Each log can specify an *event ID*. The sample app uses the `MyLogEvents` class:
+Each log can specify an *event ID*. The sample app uses the `MyLogEvents` class tp define event IDs:
 
+<!-- Review: to bad there is no way to use an enum for event ID's -->
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Models/MyLogEvents.cs?name=snippet_LoggingEvents)]
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet_CallLogMethods&highlight=4,10)]
@@ -288,7 +289,7 @@ string p2 = "parm2";
 _logger.LogInformation("Parameter values: {p2}, {p1}", p1, p2);
 ```
 
-This code creates a log message with the parameter values in sequence:
+The  preceding code creates a log message with the parameter values in sequence:
 
 ```text
 Parameter values: parm1, parm2
@@ -375,6 +376,11 @@ A scope:
 
 * Is an <xref:System.IDisposable> type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope*> method.
 * Lasts until it's disposed.
+
+The following providers support scopes:
+
+* `Console`
+* [AzureAppServicesFile and AzureAppServicesBlob](xref:Microsoft.Extensions.Logging.AzureAppServices.BatchingLoggerOptions.IncludeScopes)
 
 Use a scope by wrapping logger calls in a `using` block:
 
@@ -521,17 +527,13 @@ Use the [PerfView utility](https://github.com/Microsoft/perfview) to collect and
 
 To configure PerfView for collecting events logged by this provider, add the string `*Microsoft-Extensions-Logging` to the **Additional Providers** list. Don't miss the `*` at the start of the string.
 
-### Windows EventLog provider
+<a name="welog"></a>
 
-The `EventLog` provider sends log output to the Windows Event Log.
+### Windows EventLog
 
-[AddEventLog overloads](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) let you pass in <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. If `null` or not specified, the following default settings are used:
+The `EventLog` provider sends log output to the Windows Event Log. Unlike the other providers, the `EventLog` provider does ***not*** inherit the default non-provider settings. If `EventLog` log settings are specified, they [default to LogLevel.Warning](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L99-L103).
 
-* `LogName : "Application"`
-* `SourceName : ".NET Runtime"`
-* `MachineName` : local machine
-
-Events are logged for [Warning level and higher](#log-level). To log events lower than `Warning`, explicitly set the log level. For example, add the following to the *appsettings.json* file:
+To log events lower than `Warning`, explicitly set the log level. For example, add the following to the *appsettings.json* file:
 
 ```json
 "EventLog": {
@@ -540,6 +542,16 @@ Events are logged for [Warning level and higher](#log-level). To log events lowe
   }
 }
 ```
+
+[AddEventLog overloads](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) can pass in <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. If `null` or not specified, the following default settings are used:
+
+* `LogName : "Application"`
+* `SourceName : ".NET Runtime"`
+* `MachineName` : local machine
+
+The following code changes the `SourceName` from the default value of `".NET Runtime"` to `MyLogs`:
+
+[!code-csharp[](index/samples/3.x/MyMain/Program.cs?name=snippetEventLog)]
 
 ### Azure App Service provider
 
@@ -620,9 +632,6 @@ For more information, see each provider's documentation. Third-party logging pro
 <a name="nhca"></a>
 
 ## Non-host console app
-
-<!-- review required. Need to explain why you'd want to use Non-host console apps -->
-Non-host console app's are typically used with [headless services](https://docs.okd.io/3.6/architecture/core_concepts/pods_and_services.html#headless-services). Headless services are frequently used with containers and [Kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services).
 
 For an example of how to use the Generic Host in a non-web console app, see the *Program.cs* file of the [Background Tasks sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples) (<xref:fundamentals/host/hosted-services>).
 

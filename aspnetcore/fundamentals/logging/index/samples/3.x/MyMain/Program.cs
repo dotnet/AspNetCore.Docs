@@ -1,4 +1,4 @@
-#define Azure // Default // Scopes // FilterFunction // MinLevel // FilterCode // FilterFunction
+#define EventLog // Default // Azure // Default // Scopes // FilterFunction // MinLevel // FilterCode // FilterFunction
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.AzureAppServices;
 using Microsoft.Extensions.Logging.Console;
 using Microsoft.Extensions.Logging.Debug;
+using Microsoft.Extensions.Logging.EventLog;
 using MyMain;
 
 
@@ -146,6 +147,31 @@ public class Scopes
 }
 #endregion
 
+#elif EventLog  //
+#region snippetEventLog
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        CreateHostBuilder(args).Build().Run();
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+        .ConfigureLogging(logging =>
+        {
+            logging.AddEventLog(eventLogSettings =>
+            {
+              eventLogSettings.SourceName = "MyLogs"; 
+            });
+        })
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
+}
+#endregion
+
 #elif Default  // What the templates generate.
 public class Program
     {
@@ -163,3 +189,9 @@ public class Program
     }
 
 #endif
+
+/*             loggerFactory.AddEventLog(new EventLogSettings
+            {
+                SourceName = "YourSourceName"
+            });
+*/
