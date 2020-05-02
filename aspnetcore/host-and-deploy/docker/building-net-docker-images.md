@@ -5,6 +5,7 @@ description: Learn how to use the published .NET Core Docker images from the Doc
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/15/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/docker/building-net-docker-images
 ---
 

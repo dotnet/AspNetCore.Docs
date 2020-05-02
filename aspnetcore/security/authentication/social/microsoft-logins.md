@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/microsoft-logins
 ---
 # Microsoft Account external login setup with ASP.NET Core

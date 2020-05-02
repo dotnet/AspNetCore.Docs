@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
 ms.date: 03/26/2020
-no-loc: [Blazor]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: razor-pages/sdk
 ---
 # ASP.NET Core Razor SDK

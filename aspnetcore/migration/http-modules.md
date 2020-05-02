@@ -4,6 +4,7 @@ author: rick-anderson
 description: 
 ms.author: riande
 ms.date: 12/07/2016
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/http-modules
 ---
 # Migrate HTTP handlers and modules to ASP.NET Core middleware

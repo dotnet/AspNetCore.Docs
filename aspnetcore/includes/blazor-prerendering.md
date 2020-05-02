@@ -1,5 +1,4 @@
 ---
-no-loc: [Blazor, SignalR]
 ---
 While a Blazor Server app is prerendering, certain actions, such as calling into JavaScript, aren't possible because a connection with the browser hasn't been established. Components may need to render differently when prerendered.
 

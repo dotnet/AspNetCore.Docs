@@ -4,6 +4,7 @@ author: ardalis
 description: Learn about web server implementation details related to HTTP requests and responses that are defined in interfaces for ASP.NET Core.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/request-features
 ---
 # Request Features in ASP.NET Core

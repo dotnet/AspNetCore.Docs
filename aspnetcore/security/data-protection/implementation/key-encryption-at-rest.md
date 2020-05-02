@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn implementation details of ASP.NET Core Data Protection key encryption at rest.
 ms.author: riande
 ms.date: 07/16/2018
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/implementation/key-encryption-at-rest
 ---
 # Key encryption at rest in ASP.NET Core
