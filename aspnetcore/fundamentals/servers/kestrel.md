@@ -2707,13 +2707,36 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 
 ::: moniker-end
 
-## Request draining
+## HTTP connection request draining
 
-Since opening a http connection is relatively expensive, Kestrel tries to re-use connections when possible. However, sometimes a request may not be fully consumed, for example if a POST request is made but the server returns a redirect, the client may already have sent part of the post data as the server writes the 301 response. At this point, the connection cannot be used for a new request since there is data from the old request still waiting to be read. For this reason, kestrel tries to drain the request, that is, read and discard the data waiting to be read. This process has a timeout of 5 seconds, if all the data (specified by the content-length header) has not been read at that point, the connection is closed.
+Opening HTTP connections is relatively expensive, therefore, Kestrel tries to reuse connections. A request must be fully consumed to be reused. Some requests cannot be fully consumed. For example, a `POST` request where the server returns a redirect. In the `POST`-redirect case:
 
-While this is a good trade off in most cases there are times where an application may want to terminate the request immediately either before or after writing the response. For example, the clients may have restrictive data caps and limiting uploaded data might be a priority. In those cases, the application may call `HttpContext.Abort()` from either a controller or a custom middleware. However, there are caveats to this. Besides it being expensive to close and open tcp connections, there is no guarantee that the client has actually read the response  before the connection closes. Calling `HttpResponse.CompleteAsync()` before calling `HttpContext.Abort()` will at least ensure that the server has tried to send the complete response, but client behavior is still not completely predictable.
+* The client may already have sent part of the post data.
+* The server writes the 301 response.
+* The connection cannot be used for a new request because there is data from the previous request that hasn't been read.
+* Kestrel tries to drain the request. Draining the request means reading and discarding the data waiting to be read. 
 
-This approach should therefore only be used when a specific problem needs to be solved, such as if malicious clients are trying to post garbage data or when there is a bug in client code that causes large or numerous requests. If possible, it's better for clients to utilize the `Expect: 100-continue` request header so that they wait for the server to respond before starting to send the request body.
+The draining process:
+
+* Has a timeout of 5 seconds.
+* If all the data specified by the content-length header has not been read at by the timeout, the connection is closed.
+* Is a good trade off in most cases.
+
+Sometimes an app may want to terminate the request immediately, before or after writing the response. For example, the clients may have restrictive data caps and limiting uploaded data might be a priority. In those cases, the app can call [HttpContext.Abort()(xref:Microsoft.AspNetCore.Http.HttpContext.Abort*). `Abort` is called from a controller, Razor Page, or a custom middleware.
+
+There are caveats to calling `Abort`:
+
+* It's expensive to close and open tcp connections
+* Rhere is no guarantee that the client has read the response before the connection closes.
+
+Calling [HttpResponse.CompleteAsync](xref:Microsoft.AspNetCore.Http.HttpResponse.CompleteAsync*) before calling `HttpContext.Abort`:
+
+* Ensure that the server has tried to send the complete response.
+* The client behavior is not predictable.
+
+The `Abort` approach should only be used when a specific problem needs to be solved. For example, if malicious clients are trying to post data or when there is a bug in client code that causes large or numerous requests.
+
+If possible, it's better for clients to utilize the `Expect: 100-continue` request header so that they wait for the server to respond before starting to send the request body.
 
 ## Additional resources
 
