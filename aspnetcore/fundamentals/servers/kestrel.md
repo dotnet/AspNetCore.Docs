@@ -2714,11 +2714,11 @@ Opening HTTP connections is relatively expensive, therefore, Kestrel tries to re
 * The client may already have sent part of the post data.
 * The server writes the 301 response.
 * The connection cannot be used for a new request because there is data from the previous request that hasn't been read.
-* Kestrel tries to drain the request. Draining the request means reading and discarding the data waiting to be read. 
+* Kestrel tries to drain the request. Draining the request means reading and discarding the data waiting to be read.
 
 The draining process:
 
-* Has a timeout of 5 seconds.
+* Has a timeout of 5 seconds. This value is not configurable.
 * If all the data specified by the content-length header has not been read at by the timeout, the connection is closed.
 * Is a good trade off in most cases.
 
@@ -2727,11 +2727,12 @@ Sometimes an app may want to terminate the request immediately, before or after 
 There are caveats to calling `Abort`:
 
 * It's expensive to close and open tcp connections
-* Rhere is no guarantee that the client has read the response before the connection closes.
+* There is no guarantee that the client has read the response before the connection closes.
+* Calling `Abort` should be rare and reserved for sever error cases, not common errors like HTTP 404.
 
 Calling [HttpResponse.CompleteAsync](xref:Microsoft.AspNetCore.Http.HttpResponse.CompleteAsync*) before calling `HttpContext.Abort`:
 
-* Ensure that the server has tried to send the complete response.
+* Ensures that the server has tried to send the complete response.
 * The client behavior is not predictable.
 
 The `Abort` approach should only be used when a specific problem needs to be solved. For example, if malicious clients are trying to post data or when there is a bug in client code that causes large or numerous requests.
