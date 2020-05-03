@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/10/2020
+ms.date: 05/03/2020
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -2706,6 +2706,34 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 > For more information on Forwarded Headers Middleware, see <xref:host-and-deploy/proxy-load-balancer>.
 
 ::: moniker-end
+
+## HTTP connection request draining
+
+Opening HTTP connections is relatively demanding on server resources, so Kestrel tries to reuse connections. A request must be fully consumed to be reused. Some requests can't be fully consumed, such as a `POST` requests where the server returns a redirect. In the `POST`-redirect case:
+
+* The client may already have sent part of the `POST` data.
+* The server writes the 301 response.
+* The connection can't be used for a new request because the `POST` data from the previous request hasn't been fully read.
+* Kestrel tries to drain the request. Draining the request means reading and discarding the data waiting to be read without processing the data.
+
+The draining process makes a tradoff between allowing remaining data to be read/discarded and closing the connection without reading remaining data:
+
+* Draining has a timeout of five seconds, which isn't configurable.
+* If all of the data specified by the `Content-Length` header hasn't been read before reaching the timeout, the connection is closed.
+
+Sometimes you may want to terminate the request immediately, before or after writing the response. For example, clients may have restrictive data caps, so limiting uploaded data might be a priority. In such cases to terminate a request, call [HttpContext.Abort](xref:Microsoft.AspNetCore.Http.HttpContext.Abort%2A) from a controller, Razor Page, or middleware.
+
+There are caveats to calling `Abort`:
+
+* It's demanding on server resources to close and open TCP connections.
+* There's no guarantee that the client has read the response before the connection closes.
+* Calling `Abort` should be rare and reserved for server error cases, not common errors.
+  * Only call `Abort` when a specific problem needs to be solved. For example, call `Abort` if malicious clients are trying to `POST` data or when there's a bug in client code that causes large or numerous requests.
+  * Don't call `Abort` to process ordinary resonses, such as HTTP 404 (Not Found).
+
+Calling [HttpResponse.CompleteAsync](xref:Microsoft.AspNetCore.Http.HttpResponse.CompleteAsync%2A) before calling `Abort` ensures that the response has left the server. However, client behavior isn't predictable and can't be directly controlled by the app. Clients may continue to send data after calling `CompleteAsync` and `Abort`.
+
+If possible, it's better for clients to utilize the [Expect: 100-continue](https://developer.mozilla.org/docs/Web/HTTP/Status/100) request header so that they wait for the server to respond before starting to send the request body.
 
 ## Additional resources
 
