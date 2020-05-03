@@ -5,7 +5,7 @@ description: Learn how to write custom ASP.NET Core middleware.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/22/2019
+ms.date: 05/03/2020
 uid: fundamentals/middleware/write
 ---
 # Write custom ASP.NET Core middleware
@@ -79,6 +79,7 @@ The following code calls the middleware from `Startup.Configure`:
 ## Additional resources
 
 * <xref:fundamentals/middleware/index>
+* <xref:test/middleware>
 * <xref:migration/http-modules>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/request-features>
