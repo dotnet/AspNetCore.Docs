@@ -2731,10 +2731,7 @@ There are caveats to calling `Abort`:
   * Only call `Abort` when a specific problem needs to be solved. For example, call `Abort` if malicious clients are trying to `POST` data or when there's a bug in client code that causes large or numerous requests.
   * Don't call `Abort` to process ordinary resonses, such as HTTP 404 (Not Found).
 
-Calling [HttpResponse.CompleteAsync](xref:Microsoft.AspNetCore.Http.HttpResponse.CompleteAsync%2A) before calling `Abort`:
-
-* Ensures that the server has tried to send the complete response.
-* The client behavior isn't predictable.
+Calling [HttpResponse.CompleteAsync](xref:Microsoft.AspNetCore.Http.HttpResponse.CompleteAsync%2A) before calling `Abort` ensures that the response has left the server. However, client behavior isn't predictable and can't be directly controlled by the app. Clients may continue to send data after calling `CompleteAsync` and `Abort`.
 
 If possible, it's better for clients to utilize the [Expect: 100-continue](https://developer.mozilla.org/docs/Web/HTTP/Status/100) request header so that they wait for the server to respond before starting to send the request body.
 
