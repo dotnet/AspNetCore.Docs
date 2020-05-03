@@ -2713,7 +2713,7 @@ Opening HTTP connections is relatively demanding on server resources, so Kestrel
 
 * The client may already have sent part of the `POST` data.
 * The server writes the 301 response.
-* The connection can't be used for a new request because there's data from the previous request, the `POST` data, that hasn't been read.
+* The connection can't be used for a new request because the `POST` data from the previous request hasn't been fully read.
 * Kestrel tries to drain the request. Draining the request means reading and discarding the data waiting to be read without processing the data.
 
 The draining process makes a tradoff between allowing remaining data to be read/discarded and closing the connection without reading remaining data:
