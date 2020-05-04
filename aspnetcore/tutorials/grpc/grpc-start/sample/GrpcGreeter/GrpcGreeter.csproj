@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.28.0" />
   </ItemGroup>
 
 </Project>
