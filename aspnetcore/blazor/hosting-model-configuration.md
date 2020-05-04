@@ -5,7 +5,7 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/25/2020
+ms.date: 05/04/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
@@ -92,9 +92,9 @@ The `IWebAssemblyHostEnvironment.BaseAddress` property can be used during startu
 
 ### Configuration
 
-Blazor WebAssembly supports configuration from:
+Blazor WebAssembly loads configuration from:
 
-* The [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) for app settings files by default:
+* App settings files by default:
   * *wwwroot/appsettings.json*
   * *wwwroot/appsettings.{ENVIRONMENT}.json*
 * Other [configuration providers](xref:fundamentals/configuration/index) registered by the app.
@@ -128,12 +128,12 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 
 #### Provider configuration
 
-The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> and the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) to supply additional configuration:
+The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> to supply additional configuration:
 
 `Program.Main`:
 
 ```csharp
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Memory;
 
 ...
 
@@ -151,9 +151,7 @@ var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
 
 ...
 
-builder.Configuration
-    .Add(memoryConfig)
-    .AddJsonFile("cars.json", optional: false, reloadOnChange: true);
+builder.Configuration.Add(memoryConfig);
 ```
 
 Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:
@@ -168,10 +166,10 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 <h2>Wheels</h2>
 
 <ul>
-    <li>Count: @Configuration["wheels:count"]</p>
-    <li>Brand: @Configuration["wheels:brand"]</p>
-    <li>Type: @Configuration["wheels:brand:type"]</p>
-    <li>Year: @Configuration["wheels:year"]</p>
+    <li>Count: @Configuration["wheels:count"]</li>
+    <li>Brand: @Configuration["wheels:brand"]</li>
+    <li>Type: @Configuration["wheels:brand:type"]</li>
+    <li>Year: @Configuration["wheels:year"]</li>
 </ul>
 
 @code {
@@ -179,6 +177,34 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
     
     ...
 }
+```
+
+To read other configuration files from the *wwwroot* folder into configuration, use an `HttpClient` to obtain the file's content:
+
+*wwwroot/cars.json*:
+
+```json
+{
+    "size": "tiny"
+}
+```
+
+`Program.Main`:
+
+```csharp
+using Microsoft.Extensions.Configuration;
+
+...
+
+var client = new HttpClient()
+{
+    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+};
+
+using var response = await client.GetAsync("cars.json");
+using var stream = await response.Content.ReadAsStreamAsync();
+
+builder.Configuration.AddJsonStream(stream);
 ```
 
 #### Authentication configuration
