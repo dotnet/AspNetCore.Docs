@@ -97,7 +97,7 @@ Blazor WebAssembly loads configuration from:
 * App settings files by default:
   * *wwwroot/appsettings.json*
   * *wwwroot/appsettings.{ENVIRONMENT}.json*
-* Other [configuration providers](xref:fundamentals/configuration/index) registered by the app.
+* Other [configuration providers](xref:fundamentals/configuration/index) registered by the app. Not all providers are appropriate for Blazor WebAssembly apps. Clarification on which providers are supported for Blazor WebAssembly is tracked by [Clarify configuration providers for Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).
 
 > [!WARNING]
 > Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets or credentials in configuration.**
