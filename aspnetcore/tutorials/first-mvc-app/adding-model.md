@@ -4,6 +4,7 @@ author: rick-anderson
 description: Add a model to a simple ASP.NET Core app.
 ms.author: riande
 ms.date: 01/13/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-model
 ---
 

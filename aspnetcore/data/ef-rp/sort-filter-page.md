@@ -5,6 +5,7 @@ description: In this tutorial you'll add sorting, filtering, and paging function
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/sort-filter-page
 ---
 

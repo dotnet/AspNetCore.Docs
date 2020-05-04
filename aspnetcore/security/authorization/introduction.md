@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn the basics of authorization and how authorization works in ASP.NET Core apps.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/introduction
 ---
 # Introduction to authorization in ASP.NET Core

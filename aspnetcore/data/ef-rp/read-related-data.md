@@ -5,6 +5,7 @@ description: In this tutorial you read and display related data -- that is, data
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/read-related-data
 ---
 

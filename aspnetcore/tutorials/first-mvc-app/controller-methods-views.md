@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn how to work with controller methods, views, and DataAnnotations in ASP.NET Core.
 ms.author: riande
 ms.date: 12/13/2018
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/controller-methods-views
 ---
 

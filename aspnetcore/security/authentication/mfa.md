@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: rick-anderson
 ms.custom: mvc
 ms.date: 03/17/2020
-no-loc: [Identity]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/mfa
 ---
 # Multi-factor authentication in ASP.NET Core

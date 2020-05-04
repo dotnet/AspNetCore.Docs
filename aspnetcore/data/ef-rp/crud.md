@@ -4,6 +4,7 @@ author: rick-anderson
 description: Shows how to create, read, update,delete with EF Core.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/crud
 ---
 # Razor Pages with EF Core in ASP.NET Core - CRUD - 2 of 8
