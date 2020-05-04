@@ -5,7 +5,7 @@ description: Discover approaches to preserve session between requests.
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/06/2020
-no-loc: [SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/app-state
 ---
 # Session and state management in ASP.NET Core
@@ -89,7 +89,7 @@ To enable the session middleware, `Startup` must contain:
 
 The following code shows how to set up the in-memory session provider with a default in-memory implementation of `IDistributedCache`:
 
-[!code-csharp[](app-state/samples/3.x/SessionSample/Startup4.cs?name=snippet1&highlight=12-19,39)]
+[!code-csharp[](app-state/samples/3.x/SessionSample/Startup4.cs?name=snippet1&highlight=12-19,45)]
 
 The preceding code sets a short timeout to simplify testing.
 

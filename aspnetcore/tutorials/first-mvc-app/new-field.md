@@ -5,6 +5,7 @@ description: Learn how to use Entity Framework Code First Migrations to add a ne
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/13/2018
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/new-field
 ---
 # Add a new field to an ASP.NET Core MVC app

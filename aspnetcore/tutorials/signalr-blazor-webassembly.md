@@ -5,8 +5,8 @@ description: Create a chat app that uses ASP.NET Core SignalR with Blazor WebAss
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
-no-loc: [Blazor, SignalR]
+ms.date: 04/30/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/signalr-blazor-webassembly
 ---
 # Use ASP.NET Core SignalR with Blazor WebAssembly
@@ -53,7 +53,7 @@ At the end of this tutorial, you'll have a working chat app.
 When not using Visual Studio version 16.6 Preview 2 or later, install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template. The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview. In a command shell, execute the following command:
 
 ```dotnetcli
-dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-preview5.20216.8
+dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
 ```
 
 Follow the guidance for your choice of tooling:

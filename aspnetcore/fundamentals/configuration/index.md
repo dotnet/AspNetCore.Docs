@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 3/29/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -527,8 +528,6 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 In the preceding code, `config.AddInMemoryCollection(Dict)` is added after the [default configuration providers](#default). For an example of ordering the configuration providers, see [JSON configuration provider](#jcp).
-
-For an example of ordering the configuration providers, see [JSON configuration provider](#jcp).
 
 See [Bind an array](#boa) for another example using `MemoryConfigurationProvider`.
 

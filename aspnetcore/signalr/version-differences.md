@@ -5,7 +5,7 @@ description: Differences between SignalR and ASP.NET Core SignalR
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.date: 11/21/2019
-no-loc: [SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/version-differences
 ---
 

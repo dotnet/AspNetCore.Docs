@@ -5,6 +5,7 @@ description: Learn how CORS as a standard for allowing or rejecting cross-origin
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/17/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core

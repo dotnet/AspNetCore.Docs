@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/response-compression
 ---
 # Response compression in ASP.NET Core
@@ -124,7 +125,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The Brotoli Compression Provider must be added when any compression providers are explicitly added:
+The Brotli Compression Provider must be added when any compression providers are explicitly added:
 
 [!code-csharp[](response-compression/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=5)]
 
@@ -370,7 +371,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The Brotoli Compression Provider must be added when any compression providers are explicitly added:
+The Brotli Compression Provider must be added when any compression providers are explicitly added:
 
 [!code-csharp[](response-compression/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=5)]
 

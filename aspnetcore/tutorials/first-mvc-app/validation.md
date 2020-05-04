@@ -4,6 +4,7 @@ author: rick-anderson
 description: How to add validation to an ASP.NET Core app.
 ms.author: riande
 ms.date: 04/13/2017
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/validation
 ---
 

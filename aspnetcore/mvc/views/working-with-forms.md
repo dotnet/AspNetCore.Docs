@@ -5,6 +5,7 @@ description: Describes the built-in Tag Helpers used with Forms.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/working-with-forms
 ---
 # Tag Helpers in forms in ASP.NET Core
@@ -635,7 +636,7 @@ The *Views/Shared/EditorTemplates/CountryViewModel.cshtml* template:
 
 Adding HTML [\<option>](https://www.w3.org/wiki/HTML/Elements/option) elements isn't limited to the *No selection* case. For example, the following view and action method will generate HTML similar to the code above:
 
-[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?range=114-119)]
+[!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?name=snippetNone)]
 
 [!code-HTML[](working-with-forms/sample/final/Views/Home/IndexOption.cshtml)]
 

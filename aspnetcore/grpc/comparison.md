@@ -5,14 +5,14 @@ description: Learn how gRPC compares with HTTP APIs and what it's recommend scen
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 12/05/2019
-no-loc: [SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/comparison
 ---
 # Compare gRPC services with HTTP APIs
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-This article explains how [gRPC services](https://grpc.io/docs/guides/) compare to HTTP APIs (including ASP.NET Core [web APIs](xref:web-api/index)). The technology used to provide an API for your app is an important choice, and gRPC offers unique benefits compared to HTTP APIs. This article discusses the strengths and weaknesses of gRPC and recommends scenarios for using gRPC over other technologies.
+This article explains how [gRPC services](https://grpc.io/docs/guides/) compare to HTTP APIs with JSON (including ASP.NET Core [web APIs](xref:web-api/index)). The technology used to provide an API for your app is an important choice, and gRPC offers unique benefits compared to HTTP APIs. This article discusses the strengths and weaknesses of gRPC and recommends scenarios for using gRPC over other technologies.
 
 ## High-level comparison
 
@@ -39,6 +39,8 @@ gRPC is designed for HTTP/2, a major revision of HTTP that provides significant 
 
 * Binary framing and compression. HTTP/2 protocol is compact and efficient both in sending and receiving.
 * Multiplexing of multiple HTTP/2 calls over a single TCP connection. Multiplexing eliminates [head-of-line blocking](https://en.wikipedia.org/wiki/Head-of-line_blocking).
+
+HTTP/2 is not exclusive to gRPC. Many request types, including HTTP APIs with JSON, can use HTTP/2 and benefit from its performance improvements.
 
 ### Code generation
 

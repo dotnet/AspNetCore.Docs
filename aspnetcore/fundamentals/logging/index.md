@@ -5,7 +5,7 @@ description: Learn how to use the logging framework provided by the Microsoft.Ex
 ms.author: riande
 ms.custom: mvc
 ms.date: 5/2/2020
-
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/logging/index
 ---
 # Logging in .NET Core and ASP.NET Core

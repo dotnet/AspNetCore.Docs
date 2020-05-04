@@ -5,6 +5,7 @@ description: Learn how to optimize static resources in an ASP.NET Core web appli
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 04/15/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/bundling-and-minification
 ---
 # Bundle and minify static assets in ASP.NET Core

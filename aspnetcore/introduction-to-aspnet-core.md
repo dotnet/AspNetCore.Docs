@@ -5,7 +5,7 @@ description: Get an introduction to ASP.NET Core, a cross-platform, high-perform
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/17/2020
-no-loc: [Blazor, SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: index
 ---
 # Introduction to ASP.NET Core
@@ -53,7 +53,7 @@ There are several advantages to targeting .NET Core, and these advantages increa
 
 * Cross-platform. Runs on Windows, macOS, and Linux.
 * Improved performance
-* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#a-need-for-side-by-side-of-net-versions-per-application-level)
+* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#side-by-side-net-versions-per-application-level)
 * New APIs
 * Open source
 
@@ -139,11 +139,11 @@ There are several advantages to targeting .NET Core, and these advantages increa
 
 * Cross-platform. Runs on macOS, Linux, and Windows.
 * Improved performance
-* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#a-need-for-side-by-side-of-net-versions-per-application-level)
+* [Side-by-side versioning](/dotnet/standard/choosing-core-framework-server#side-by-side-net-versions-per-application-level)
 * New APIs
 * Open source
 
-We're working hard to close the API gap from .NET Framework to .NET Core. The [Windows Compatibility Pack](/dotnet/core/porting/windows-compat-pack) made thousands of Windows-only APIs available in .NET Core. These APIs weren't available in .NET Core 1.x.
+To help close the API gap from .NET Framework to .NET Core, the [Windows Compatibility Pack](/dotnet/core/porting/windows-compat-pack) made thousands of Windows-only APIs available in .NET Core. These APIs weren't available in .NET Core 1.x.
 
 ## Recommended learning path
 

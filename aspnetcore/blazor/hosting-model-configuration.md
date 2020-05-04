@@ -5,8 +5,8 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
-no-loc: [Blazor, SignalR]
+ms.date: 05/04/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
 # ASP.NET Core Blazor hosting model configuration
@@ -92,12 +92,12 @@ The `IWebAssemblyHostEnvironment.BaseAddress` property can be used during startu
 
 ### Configuration
 
-Blazor WebAssembly supports configuration from:
+Blazor WebAssembly loads configuration from:
 
-* The [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) for app settings files by default:
+* App settings files by default:
   * *wwwroot/appsettings.json*
   * *wwwroot/appsettings.{ENVIRONMENT}.json*
-* Other [configuration providers](xref:fundamentals/configuration/index) registered by the app.
+* Other [configuration providers](xref:fundamentals/configuration/index) registered by the app. Not all providers are appropriate for Blazor WebAssembly apps. Clarification on which providers are supported for Blazor WebAssembly is tracked by [Clarify configuration providers for Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).
 
 > [!WARNING]
 > Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets or credentials in configuration.**
@@ -128,12 +128,12 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 
 #### Provider configuration
 
-The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> and the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) to supply additional configuration:
+The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> to supply additional configuration:
 
 `Program.Main`:
 
 ```csharp
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Memory;
 
 ...
 
@@ -151,9 +151,7 @@ var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
 
 ...
 
-builder.Configuration
-    .Add(memoryConfig)
-    .AddJsonFile("cars.json", optional: false, reloadOnChange: true);
+builder.Configuration.Add(memoryConfig);
 ```
 
 Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:
@@ -168,10 +166,10 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 <h2>Wheels</h2>
 
 <ul>
-    <li>Count: @Configuration["wheels:count"]</p>
-    <li>Brand: @Configuration["wheels:brand"]</p>
-    <li>Type: @Configuration["wheels:brand:type"]</p>
-    <li>Year: @Configuration["wheels:year"]</p>
+    <li>Count: @Configuration["wheels:count"]</li>
+    <li>Brand: @Configuration["wheels:brand"]</li>
+    <li>Type: @Configuration["wheels:brand:type"]</li>
+    <li>Year: @Configuration["wheels:year"]</li>
 </ul>
 
 @code {
@@ -179,6 +177,36 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
     
     ...
 }
+```
+
+To read other configuration files from the *wwwroot* folder into configuration, use an `HttpClient` to obtain the file's content. When using this approach, the existing `HttpClient` service registration can use the local client created to read the file, as the following example shows:
+
+*wwwroot/cars.json*:
+
+```json
+{
+    "size": "tiny"
+}
+```
+
+`Program.Main`:
+
+```csharp
+using Microsoft.Extensions.Configuration;
+
+...
+
+var client = new HttpClient()
+{
+    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+};
+
+builder.Services.AddTransient(sp => client);
+
+using var response = await client.GetAsync("cars.json");
+using var stream = await response.Content.ReadAsStreamAsync();
+
+builder.Configuration.AddJsonStream(stream);
 ```
 
 #### Authentication configuration
@@ -294,53 +322,6 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 | `Static`            | Renders the component into static HTML. |
 
 Rendering server components from a static HTML page isn't supported.
-
-### Render stateful interactive components from Razor pages and views
-
-Stateful interactive components can be added to a Razor page or view.
-
-When the page or view renders:
-
-* The component is prerendered with the page or view.
-* The initial component state used for prerendering is lost.
-* New component state is created when the SignalR connection is established.
-
-The following Razor page renders a `Counter` component:
-
-```cshtml
-<h1>My Razor Page</h1>
-
-<component type="typeof(Counter)" render-mode="ServerPrerendered" 
-    param-InitialValue="InitialValue" />
-
-@code {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-### Render noninteractive components from Razor pages and views
-
-In the following Razor page, the `Counter` component is statically rendered with an initial value that's specified using a form:
-
-```cshtml
-<h1>My Razor Page</h1>
-
-<form>
-    <input type="number" asp-for="InitialValue" />
-    <button type="submit">Set initial value</button>
-</form>
-
-<component type="typeof(Counter)" render-mode="Static" 
-    param-InitialValue="InitialValue" />
-
-@code {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-Since `MyComponent` is statically rendered, the component can't be interactive.
 
 ### Configure the SignalR client for Blazor Server apps
 
