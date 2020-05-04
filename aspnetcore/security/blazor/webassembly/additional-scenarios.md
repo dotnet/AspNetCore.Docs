@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2020
+ms.date: 05/04/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/additional-scenarios
 ---
@@ -63,7 +63,7 @@ The `AuthorizationMessageHandler` service can be used with `HttpClient` to attac
 In the following example, `AuthorizationMessageHandler` configures an `HttpClient` in `Program.Main` (*Program.cs*):
 
 ```csharp
-builder.Services.AddSingleton(sp =>
+builder.Services.AddTransient(sp =>
 {
     return new HttpClient(sp.GetRequiredService<AuthorizationMessageHandler>()
         .ConfigureHandler(
@@ -475,7 +475,7 @@ public class Program
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
         builder.RootComponents.Add<App>("app");
 
-        builder.Services.AddSingleton(new HttpClient 
+        builder.Services.AddTransient(new HttpClient 
         {
             BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
         });

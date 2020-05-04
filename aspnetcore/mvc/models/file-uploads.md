@@ -5,7 +5,7 @@ description: How to use model binding and streaming to upload files in ASP.NET C
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/18/2020
+ms.date: 05/03/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/file-uploads
 ---
@@ -1467,6 +1467,7 @@ The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the u
 
 ## Additional resources
 
+* [HTTP connection request draining](xref:fundamentals/servers/kestrel#http-connection-request-draining)
 * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 * [Azure Security: Security Frame: Input Validation | Mitigations](/azure/security/azure-security-threat-modeling-tool-input-validation)
 * [Azure Cloud Design Patterns: Valet Key pattern](/azure/architecture/patterns/valet-key)
