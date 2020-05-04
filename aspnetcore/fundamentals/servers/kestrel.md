@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/03/2020
+ms.date: 05/04/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/servers/kestrel
 ---
@@ -2710,7 +2710,7 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 
 ## HTTP/1.1 request draining
 
-Opening HTTP connections is time consuming and for HTTPS it is also resource intensive, so Kestrel tries to reuse connections per the HTTP/1.1 protocol. A request body must be fully consumed to allow the connection to be reused. The application doesn't always consume the request body, such as a `POST` requests where the server returns a redirect or 404 response. In the `POST`-redirect case:
+Opening HTTP connections is time consuming. For HTTPS, it's also resource intensive. Therefore, Kestrel tries to reuse connections per the HTTP/1.1 protocol. A request body must be fully consumed to allow the connection to be reused. The app doesn't always consume the request body, such as a `POST` requests where the server returns a redirect or 404 response. In the `POST`-redirect case:
 
 * The client may already have sent part of the `POST` data.
 * The server writes the 301 response.
@@ -2732,9 +2732,9 @@ There are caveats to calling `Abort`:
   * Only call `Abort` when a specific problem needs to be solved. For example, call `Abort` if malicious clients are trying to `POST` data or when there's a bug in client code that causes large or numerous requests.
   * Don't call `Abort` for common error situations, such as HTTP 404 (Not Found).
 
-Calling [HttpResponse.CompleteAsync](xref:Microsoft.AspNetCore.Http.HttpResponse.CompleteAsync%2A) before calling `Abort` ensures that the server has completeled writing the response. However, client behavior isn't predictable and they may not read the response before the connection is aborted.
+Calling [HttpResponse.CompleteAsync](xref:Microsoft.AspNetCore.Http.HttpResponse.CompleteAsync%2A) before calling `Abort` ensures that the server has completed writing the response. However, client behavior isn't predictable and they may not read the response before the connection is aborted.
 
-This process is different for HTTP/2 because the protocol supports aborting individual request streams without closing the connection. The 5 second drain timeout does not apply, if there is any unread request body data after completing a response then the server will send an HTTP/2 RST frame. Additional request body data frames will be ignored.
+This process is different for HTTP/2 because the protocol supports aborting individual request streams without closing the connection. The five second drain timeout doesn't apply. If there's any unread request body data after completing a response, then the server sends an HTTP/2 RST frame. Additional request body data frames are ignored.
 
 If possible, it's better for clients to utilize the [Expect: 100-continue](https://developer.mozilla.org/docs/Web/HTTP/Status/100) request header and wait for the server to respond before starting to send the request body. That gives the client an opportunity to examine the response and abort before sending unneeded data.
 
