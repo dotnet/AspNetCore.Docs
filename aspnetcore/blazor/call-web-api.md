@@ -5,7 +5,7 @@ description: Learn how to call a web API from a Blazor WebAssembly app using JSO
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2020
+ms.date: 05/04/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/call-web-api
 ---
@@ -35,7 +35,7 @@ Reference the [System.Net.Http.Json](https://www.nuget.org/packages/System.Net.H
 In `Program.Main`, add an `HttpClient` service if it doesn't already exist:
 
 ```csharp
-builder.Services.AddSingleton(
+builder.Services.AddTransient(sp => 
     new HttpClient
     {
         BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
