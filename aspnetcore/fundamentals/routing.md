@@ -343,7 +343,7 @@ The details of how precedence works are coupled to how route templates are defin
 * A segment with literal text is considered more specific than a parameter segment.
 * A parameter segment with a constraint is considered more specific than one without.
 * A complex segment is considered as specific as a parameter segment with a constraint.
-* Catch all parameters are the least specific.
+* Catch-all parameters are the least specific. See **catch-all** in the [Route template reference](#rtr) for important information on catch-all routes.
 
 See the [source code on GitHub](https://github.com/dotnet/aspnetcore/blob/master/src/Http/Routing/src/Template/RoutePrecedence.cs#L189) for a reference of exact values.
 
@@ -410,6 +410,8 @@ Asterisk `*` or double asterisk `**`:
 * Are called a **catch-all** parameters. For example, `blog/{**slug}`:
   * Matches any URI that starts with `/blog` and has any value following it.
   * The value following `/blog` is assigned to the [slug](https://developer.mozilla.org/docs/Glossary/Slug) route value.
+
+[!INCLUDE[](~/includes/catchall.md)]
 
 Catch-all parameters can also match the empty string.
 
