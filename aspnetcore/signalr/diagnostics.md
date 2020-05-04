@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: signalr
 ms.date: 11/12/2019
-no-loc: [SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/diagnostics
 ---
 # Logging and diagnostics in ASP.NET Core SignalR

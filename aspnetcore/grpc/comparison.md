@@ -5,7 +5,7 @@ description: Learn how gRPC compares with HTTP APIs and what it's recommend scen
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 12/05/2019
-no-loc: [SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/comparison
 ---
 # Compare gRPC services with HTTP APIs

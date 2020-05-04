@@ -5,7 +5,7 @@ description: Tips for increasing performance in ASP.NET Core apps and avoiding c
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 04/06/2020
-no-loc: [SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/performance-best-practices
 ---
 # ASP.NET Core Performance Best Practices
