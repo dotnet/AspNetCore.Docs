@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/30/2020
+ms.date: 05/04/2020
 no-loc: [Blazor, SignalR]
 uid: host-and-deploy/blazor/webassembly
 ---
@@ -399,36 +399,48 @@ You only need to specify types for custom behaviors. Types not specified to `loa
 
 Some environments block the download of *.dll* files that are normally part of a Blazor app's published deployment. To address this issue, you can rename *.dll* files to use a different file extension and update the *blazor.boot.json* file.
 
-After publishing the app:
+After publishing the app, use a shell script or DevOps build pipeline to rename *.dll* files to use a different file extension. Target the *.dll* files in the *wwwroot* directory of the app's published output (for example, *{CONTENT ROOT}/bin/Release/netstandard2.1/publish/wwwroot*).
 
-1. Open PowerShell (Windows) or a command shell (Linux or macOS) to the *wwwroot* directory of the app's published output (for example, *{CONTENT ROOT}/bin/Release/netstandard2.1/publish/wwwroot*).
-1. Execute the following commands, which rename *.dll* files to use the *.bin* file extension:
+In the following examples, *.dll* files are renamed to use the *.bin* file extension.
 
-   On Windows:
+On Windows:
 
-   ```powershell
-   dir .\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
-   ```
-   
-   ```powershell
-   ((Get-Content .\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content .\_framework\blazor.boot.json
-   ```
-   
-   On Linux or macOS:
-   
-   ```console
-   for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll\b/.bin/g'`"; done
-   ```
-   
-   ```console
-   sed -i 's/\.dll"/.bin"/g' _framework/blazor.boot.json
-   ```
+```powershell
+dir .\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
+((Get-Content .\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content .\_framework\blazor.boot.json
+```
+
+On Linux or macOS:
+
+```console
+for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll\b/.bin/g'`"; done
+sed -i 's/\.dll"/.bin"/g' _framework/blazor.boot.json
+```
    
 To use a different file extension than *.bin*, replace *.bin* in the preceding commands.
-   
+
 To address the compressed *blazor.boot.json.gz* and *blazor.boot.json.br* files, adopt either of the following approaches:
 
-* Remove the compressed *blazor.boot.json.gz* and *blazor.boot.json.br* files.
+* Remove the compressed *blazor.boot.json.gz* and *blazor.boot.json.br* files. Compression is disabled with this approach.
 * Recompress the updated *blazor.boot.json* file.
-   
+
+The following Windows example uses a PowerShell script placed at the root of the project.
+
+*ChangeDLLExtensions.ps1:*:
+
+```powershell
+param([string]$filepath,[string]$tfm)
+dir $filepath\bin\Release\$tfm\wwwroot\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
+((Get-Content $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json
+Remove-Item $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json.gz
+```
+
+In the project file, the script is run after publishing the app:
+
+```xml
+<Target Name="ChangeDLLFileExtensions" AfterTargets="Publish" Condition="'$(Configuration)'=='Release'">
+  <Exec Command="powershell.exe -command &quot;&amp; { .\ChangeDLLExtensions.ps1 '$(SolutionDir)' '$(TargetFramework)'}&quot;" />
+</Target>
+```
+
 To provide feedback, visit [Consider changing URLs of .NET assemblies not to end with .dll (aspnetcore/issues #5477)](https://github.com/dotnet/aspnetcore/issues/5477).
