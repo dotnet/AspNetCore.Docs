@@ -394,3 +394,36 @@ A Blazor WebAssembly app can be initialized with the `loadBootResource` function
 External sources must return the required CORS headers for browsers to allow the cross-origin resource loading. CDNs usually provide the required headers by default.
 
 You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors.
+
+## Rename DLL files to bypass proxies, firewalls, and antivirus software
+
+Some environments block the download of *.dll* files that are normally part of a Blazor app's published deployment. To address this issue, you can rename *.dll* files to use a different file extension and update the *blazor.boot.json* file.
+
+After publishing the app:
+
+1. Open PowerShell (Windows) or a command shell (Linux or macOS) to the *wwwroot* directory of the app's published output (for example, *{CONTENT ROOT}/bin/Release/netstandard2.1/publish/wwwroot*).
+1. Execute the following commands, which rename *.dll* files to use the *.bin* file extension:
+
+   On Windows:
+
+   ```powershell
+   dir .\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
+   ```
+   
+   ```powershell
+   ((Get-Content .\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content .\_framework\blazor.boot.json
+   ```
+   
+   On Linux or macOS:
+   
+   ```console
+   for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll\b/.bin/g'`"; done
+   ```
+   
+   ```console
+   sed -i 's/\.dll"/.bin"/g' _framework/blazor.boot.json
+   ```
+   
+   To use a different file extension than *.bin*, replace *.bin* in the preceding commands.
+   
+   To provide feedback on this approach, visit [Consider changing URLs of .NET assemblies not to end with .dll (aspnetcore/issues #5477)](https://github.com/dotnet/aspnetcore/issues/5477).
