@@ -399,6 +399,10 @@ You only need to specify types for custom behaviors. Types not specified to `loa
 
 Some environments block the download of *.dll* files that are normally part of a Blazor app's published deployment. To address this issue, you can rename *.dll* files to use a different file extension and update the *blazor.boot.json* file.
 
+## Change the filename extension of DLL files
+
+In case you have a need to change the filename extensions of the app's published *.dll* files, follow the guidance in this section.
+
 After publishing the app, use a shell script or DevOps build pipeline to rename *.dll* files to use a different file extension. Target the *.dll* files in the *wwwroot* directory of the app's published output (for example, *{CONTENT ROOT}/bin/Release/netstandard2.1/publish/wwwroot*).
 
 In the following examples, *.dll* files are renamed to use the *.bin* file extension.
