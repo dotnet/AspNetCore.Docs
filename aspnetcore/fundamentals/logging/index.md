@@ -874,6 +874,8 @@ The following example shows how to register filter rules in code:
 ## Additional resources
 
 * <xref:fundamentals/logging/loggermessage>
+* Logging bugs should be created in the [github.com/dotnet/runtime/](https://github.com/dotnet/runtime/issues) repo.
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
