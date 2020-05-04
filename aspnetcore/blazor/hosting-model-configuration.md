@@ -179,7 +179,7 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 }
 ```
 
-To read other configuration files from the *wwwroot* folder into configuration, use an `HttpClient` to obtain the file's content:
+To read other configuration files from the *wwwroot* folder into configuration, use an `HttpClient` to obtain the file's content. When using this approach, the existing `HttpClient` service registration can use the local client created to read the file, as the following example shows:
 
 *wwwroot/cars.json*:
 
@@ -200,6 +200,8 @@ var client = new HttpClient()
 {
     BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
 };
+
+builder.Services.AddTransient(sp => client);
 
 using var response = await client.GetAsync("cars.json");
 using var stream = await response.Content.ReadAsStreamAsync();
