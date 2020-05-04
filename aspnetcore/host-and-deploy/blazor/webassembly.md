@@ -395,10 +395,6 @@ External sources must return the required CORS headers for browsers to allow the
 
 You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors.
 
-## Rename DLL files to bypass proxies, firewalls, and antivirus software
-
-Some environments block the download of *.dll* files that are normally part of a Blazor app's published deployment. To address this issue, you can rename *.dll* files to use a different file extension and update the *blazor.boot.json* file.
-
 ## Change the filename extension of DLL files
 
 In case you have a need to change the filename extensions of the app's published *.dll* files, follow the guidance in this section.
