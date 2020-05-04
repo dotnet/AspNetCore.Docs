@@ -4,6 +4,7 @@ author: ardalis
 description: Discover how ASP.NET Core MVC controllers request their dependencies explicitly via their constructors with dependency injection in ASP.NET Core.
 ms.author: riande
 ms.date: 02/24/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/controllers/dependency-injection
 ---
 # Dependency injection into controllers in ASP.NET Core

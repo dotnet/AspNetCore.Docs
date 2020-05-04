@@ -4,6 +4,7 @@ author: rick-anderson
 description: Authentication policy schemes make it easier to have a single logical authentication scheme
 ms.author: riande
 ms.date: 12/05/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/policyschemes
 ---
 

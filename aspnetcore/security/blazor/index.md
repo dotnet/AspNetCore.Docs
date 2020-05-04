@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/26/2020
-no-loc: [Blazor, SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/index
 ---
 # ASP.NET Core Blazor authentication and authorization

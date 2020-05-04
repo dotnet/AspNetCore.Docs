@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/30/2020
-no-loc: [Blazor, SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/blazor/webassembly
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly

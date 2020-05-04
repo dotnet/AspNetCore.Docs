@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/02/2020
-no-loc: [Blazor, SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/get-started
 ---
 # Get started with ASP.NET Core Blazor

@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn how to update the generated pages in an ASP.NET Core app.
 ms.author: riande
 ms.date: 12/20/2018
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/da1
 ---
 # Update the generated pages in an ASP.NET Core app
