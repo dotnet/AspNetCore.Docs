@@ -5,6 +5,7 @@ description: Learn the basic concepts when writing gRPC services with ASP.NET Co
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/03/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/aspnetcore
 ---
 # gRPC services with ASP.NET Core

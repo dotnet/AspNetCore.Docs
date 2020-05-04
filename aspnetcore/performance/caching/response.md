@@ -5,6 +5,7 @@ description: Learn how to use response caching to lower bandwidth requirements a
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/caching/response
 ---
 # Response caching in ASP.NET Core

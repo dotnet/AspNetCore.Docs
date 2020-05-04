@@ -5,6 +5,7 @@ description: Discover External OAuth authentication providers that work with ASP
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/11/2018
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/otherlogins
 ---
 # External OAuth authentication providers

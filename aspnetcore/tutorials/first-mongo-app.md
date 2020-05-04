@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: "mvc, seodec18"
 ms.date: 08/17/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB

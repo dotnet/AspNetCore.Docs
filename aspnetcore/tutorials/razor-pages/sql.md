@@ -4,6 +4,7 @@ author: rick-anderson
 description: Explains working with a database and ASP.NET Core.
 ms.author: riande
 ms.date: 7/22/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/sql
 ---
 # Work with a database and ASP.NET Core

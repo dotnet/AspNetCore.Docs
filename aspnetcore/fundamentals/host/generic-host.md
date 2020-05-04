@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/17/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/host/generic-host
 ---
 # .NET Generic Host

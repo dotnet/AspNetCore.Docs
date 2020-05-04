@@ -5,6 +5,7 @@ description: Learn about the concept of data protection and the design principle
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/introduction
 ---
 # ASP.NET Core Data Protection

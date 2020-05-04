@@ -5,6 +5,7 @@ description: Discover how to add validation to a Razor Page in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/validation
 ---
 # Add validation to an ASP.NET Core Razor Page

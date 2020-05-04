@@ -5,6 +5,7 @@ description: Learn how to require HTTPS/TLS in a ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core

@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/1/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core

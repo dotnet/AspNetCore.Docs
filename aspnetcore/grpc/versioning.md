@@ -5,6 +5,7 @@ description: Learn how to version gRPC services.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 01/09/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/versioning
 ---
 # Versioning gRPC services
