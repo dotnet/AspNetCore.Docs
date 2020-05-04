@@ -424,6 +424,11 @@ After publishing the app:
    sed -i 's/\.dll"/.bin"/g' _framework/blazor.boot.json
    ```
    
-   To use a different file extension than *.bin*, replace *.bin* in the preceding commands.
+To use a different file extension than *.bin*, replace *.bin* in the preceding commands.
    
-   To provide feedback on this approach, visit [Consider changing URLs of .NET assemblies not to end with .dll (aspnetcore/issues #5477)](https://github.com/dotnet/aspnetcore/issues/5477).
+To address the compressed *blazor.boot.json.gz* and *blazor.boot.json.br* files, adopt either of the following approaches:
+
+* Remove the compressed *blazor.boot.json.gz* and *blazor.boot.json.br* files.
+* Recompress the updated *blazor.boot.json* file.
+   
+To provide feedback, visit [Consider changing URLs of .NET assemblies not to end with .dll (aspnetcore/issues #5477)](https://github.com/dotnet/aspnetcore/issues/5477).
