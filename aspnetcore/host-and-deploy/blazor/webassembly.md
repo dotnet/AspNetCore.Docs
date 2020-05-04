@@ -443,4 +443,4 @@ In the project file, the script is run after publishing the app:
 </Target>
 ```
 
-To provide feedback, visit [Consider changing URLs of .NET assemblies not to end with .dll (aspnetcore/issues #5477)](https://github.com/dotnet/aspnetcore/issues/5477).
+To provide feedback, visit [aspnetcore/issues #5477](https://github.com/dotnet/aspnetcore/issues/5477).
