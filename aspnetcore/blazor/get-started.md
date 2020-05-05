@@ -5,8 +5,8 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/30/2020
-no-loc: [Blazor, SignalR]
+ms.date: 05/02/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/get-started
 ---
 # Get started with ASP.NET Core Blazor
@@ -25,7 +25,7 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) preview template by running the following command:
+1. Install the Blazor WebAssembly Preview template by running the following command:
 
    ```dotnetcli
    dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
@@ -50,9 +50,11 @@ To get started with Blazor, follow the guidance for your choice of tooling:
    ```dotnetcli
    dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
    ```
+   
+   For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
 
    > [!NOTE]
-   > The [.NET Core SDK version 3.1.201 or later](https://dotnet.microsoft.com/download/dotnet-core/3.1) is **required** to use the 3.2 Preview 4 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
+   > The [.NET Core SDK version 3.1.201 or later](https://dotnet.microsoft.com/download/dotnet-core/3.1) is **required** to use the 3.2 Preview Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
 
 1. Install [Visual Studio Code](https://code.visualstudio.com/).
 
@@ -70,8 +72,6 @@ To get started with Blazor, follow the guidance for your choice of tooling:
    dotnet new blazorwasm -o WebApplication1
    ```
 
-   For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
-
 1. Open the *WebApplication1* folder in Visual Studio Code.
 
 1. The IDE requests that you add assets to build and debug the project. Select **Yes**.
@@ -84,23 +84,49 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Blazor Server is supported in Visual Studio for Mac. Blazor WebAssembly isn't supported at this time. To build Blazor WebAssembly apps on macOS, follow the guidance on the **.NET Core CLI** tab.
+Blazor Server is supported in Visual Studio for Mac. Blazor WebAssembly isn't supported at this time. To create Blazor WebAssembly apps on macOS, follow the guidance on the **.NET Core CLI** tab. For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
 
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
-1. Select **File** > **New Solution** or create a **New Project**.
+1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
 
-1. In the sidebar, select **Web and Console** > **App**.
+1. In the sidebar, select **.NET Core** > **App**.
 
 1. Select the **Blazor Server App** template. Select **Next**.
 
-   For information on the Blazor Server hosting model, see <xref:blazor/hosting-models>.
+1. Confirm the following configurations:
 
-1. Confirm that the **Target Framework** is set to **.NET Core 3.1** and select **Next**.
+   * **Target Framework** set to **.NET Core 3.1**.
+   * **Authentication** set to **No Authentication**.
+   
+   Select **Next**.
 
 1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
 
-1. Select **Run** > **Run Without Debugging** to run the app *without the debugger*. Run the app with **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
+1. Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Debugging isn't supported at this time.
+
+<!-- HOLD FOR 8.6 GA
+
+1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+
+1. In the sidebar, select **Web and Console** > **App**.
+
+1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
+
+   For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
+
+1. Confirm the following configurations:
+
+   * **Target Framework** set to **.NET Core 3.1**.
+   * **Authentication** set to **No Authentication**.
+   
+   Select **Next**.
+
+1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
+
+1. Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Run** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
+
+-->
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
@@ -108,14 +134,16 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 1. Install the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
-1. Optionally install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) preview template by running the following command:
+1. Optionally install the Blazor WebAssembly preview template by running the following command:
 
    ```dotnetcli
    dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
    ```
+   
+   For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
 
    > [!NOTE]
-   > The [.NET Core SDK version 3.1.201 or later](https://dotnet.microsoft.com/download/dotnet-core/3.1) is **required** to use the 3.2 Preview 4 Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
+   > The [.NET Core SDK version 3.1.201 or later](https://dotnet.microsoft.com/download/dotnet-core/3.1) is **required** to use the 3.2 Preview Blazor WebAssembly template. Confirm the installed .NET Core SDK version by running `dotnet --version` in a command shell.
 
 1. For a Blazor Server experience, execute the following commands in a command shell:
 
@@ -132,8 +160,6 @@ If a prompt appears to trust the development certificate, trust the certificate 
    cd WebApplication1
    dotnet run
    ```
-
-   For information on the two Blazor hosting models, *Blazor Server* and *Blazor WebAssembly*, see <xref:blazor/hosting-models>.
 
 1. In a browser, navigate to `https://localhost:5001`.
 

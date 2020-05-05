@@ -4,6 +4,7 @@ author: rick-anderson
 description: Receive a brief overview of the various consumer APIs available within the ASP.NET Core data protection library.
 ms.author: riande
 ms.date: 06/11/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/consumer-apis/overview
 ---
 # Consumer APIs overview for ASP.NET Core

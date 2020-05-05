@@ -5,6 +5,7 @@ description: Learn how to use NSwag to generate documentation and help pages for
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/get-started-with-nswag
 ---
 # Get started with NSwag and ASP.NET Core

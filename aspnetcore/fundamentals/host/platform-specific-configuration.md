@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
 ms.date: 09/26/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Use hosting startup assemblies in ASP.NET Core

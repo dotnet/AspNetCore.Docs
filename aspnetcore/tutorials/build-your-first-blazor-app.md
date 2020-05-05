@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/20/2020
-no-loc: [Blazor]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-blazor-app
 ---
 # Build your first Blazor app

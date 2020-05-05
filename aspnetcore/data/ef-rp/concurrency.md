@@ -5,6 +5,7 @@ description: This tutorial shows how to handle conflicts when multiple users upd
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/concurrency
 ---
 # Razor Pages with EF Core in ASP.NET Core - Concurrency - 8 of 8

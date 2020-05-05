@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/17/2020
-no-loc: [Blazor, SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/routing
 ---
 # ASP.NET Core Blazor routing
@@ -224,7 +224,7 @@ The following component navigates to the app's `Counter` component when the butt
 The following component handles a location changed event. The `HandleLocationChanged` method is unhooked when `Dispose` is called by the framework. Unhooking the method permits garbage collection of the component.
 
 ```razor
-@implement IDisposable
+@implements IDisposable
 @inject NavigationManager NavigationManager
 
 ...

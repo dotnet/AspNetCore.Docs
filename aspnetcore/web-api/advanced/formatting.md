@@ -5,6 +5,7 @@ description: Learn how to format response data in ASP.NET Core Web API.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 04/17/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API

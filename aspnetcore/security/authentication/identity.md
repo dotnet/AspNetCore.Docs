@@ -4,6 +4,7 @@ author: rick-anderson
 description: Use Identity with an ASP.NET Core app. Learn how to set password requirements (RequireDigit, RequiredLength, RequiredUniqueChars, and more).
 ms.author: riande
 ms.date: 01/15/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
