@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats to Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/27/2020
+ms.date: 05/05/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/server/threat-mitigation
 ---
@@ -270,7 +270,7 @@ The guidance for securing ASP.NET Core apps apply to Blazor Server apps and are 
 
 * [Logging and sensitive data](#logging-and-sensitive-data)
 * [Protect information in transit with HTTPS](#protect-information-in-transit-with-https)
-* [Cross-site scripting (XSS)](#cross-site-scripting-xss))
+* [Cross-site scripting (XSS)](#cross-site-scripting-xss)
 * [Cross-origin protection](#cross-origin-protection)
 * [Click-jacking](#click-jacking)
 * [Open redirects](#open-redirects)
