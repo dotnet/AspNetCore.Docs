@@ -4,7 +4,7 @@ author: cross
 description: Learn how to test ASP.NET Core middleware with TestServer.
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/05/2019
+ms.date: 05/04/2019
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/middleware
 ---
@@ -12,14 +12,36 @@ uid: test/middleware
 
 By [Chris Ross](https://github.com/Tratcher)
 
-Middleware can be tested in isolation using the <xref:Microsoft.AspNetCore.TestHost.TestServer>. Instantiate an app pipeline containing only the components that you need to test and send custom requests to verify middleware behavior.
+Middleware can be tested in isolation using the <xref:Microsoft.AspNetCore.TestHost.TestServer>. This allows you to instantiate an app pipeline containing only the components that you need to test and send custom requests to verify middleware behavior.
 
-The requests:
+Advantages:
 
-* Are sent in-memory rather than being serialized over the network.
-* Avoid additional concerns like port management and HTTPS certificates.
+* Requests are sent in-memory rather than being serialized over the network.
+* This avoids additional concerns, such as port management and HTTPS certificates.
+* Exceptions in the middleware can flow directly back to the calling test.
+* It's possible to customize server data structures, such as <xref:Microsoft.AspNetCore.Http.HttpContext>, directly in the test.
 
-Exceptions in the middleware can flow directly back to the calling test.
+## Send requests with HttpClient
+
+
+
+```csharp
+using var host = await new HostBuilder()
+    .ConfigureWebHost(webBuilder =>
+    {
+        webBuilder
+            .UseTestServer()
+            .ConfigureServices(services =>
+            {
+                services.AddMyServices();
+            })
+            .Configure(app =>
+            {
+                app.UseMiddleware<MyMiddleware>();
+            });
+    })
+    .StartAsync();
+```
 
 Set up your test app, add your own middleware and services, and send a request using <xref:System.Net.Http.HttpClient>:
 
