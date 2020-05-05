@@ -251,16 +251,16 @@ if (user.IsInRole("admin") && user.IsInRole("developer"))
 The Object IDs presented in the following table are used to create [policies](xref:security/authorization/policies) for `groups` claims. The policies permit an app to authorize users for various activities in an app.
 
 AAD Administrative Role | Object ID
--- | --
+--- | ---
 Application administrator | fa11557b-4f15-4ddd-85d5-313c7cd74047
 Application developer | 68adcbb8-9504-44f6-89f2-5cd48dc74a2c
 Authentication administrator | 02d110a1-96b1-419e-af87-746461b60ed7
 Azure DevOps administrator | a5311ace-ca41-44cd-b833-8d22caa0b34f
-Azure Information Protection   administrator | 18632dce-f9b5-4f01-abb5-37051f06860e
+Azure Information Protection administrator | 18632dce-f9b5-4f01-abb5-37051f06860e
 B2C IEF Keyset administrator | 0c2e87e5-94f9-4adb-ae8c-bcafe11bd368
 B2C IEF Policy administrator | bfcab36c-10c6-4b13-b63c-4d8b62c0c44e
 B2C user flow administrator | baa531b7-8cf0-44ad-8f98-eded88dae827
-B2C user flow attribute   administrator | dd0baca0-a535-48c1-b871-8431abe16452
+B2C user flow attribute administrator | dd0baca0-a535-48c1-b871-8431abe16452
 Billing administrator | 69ff516a-b57d-4697-a429-9de4af7b5609
 Cloud application administrator | 250b5fe3-b553-458d-9a53-b782c13c34bf
 Cloud device administrator | 26cd4b44-2636-4ddb-bdfa-27feae66f86d
@@ -272,7 +272,7 @@ Desktop Analytics administrator | c62c4ac5-e4c6-4096-8a2f-1ee3cbaaae15
 Directory readers | e1fc84a6-7762-4b9b-8e29-518b4adbc23b
 Dynamics 365 administrator | f20a9cfa-9fdf-49a8-a977-1afe446a1d6e
 Exchange administrator | b2ec2cc0-d5c9-4864-ad9b-38dd9dba2652
-External Identity Provider   administrator | febfaeb4-e478-407a-b4b3-f4d9716618a2
+External Identity Provider administrator | febfaeb4-e478-407a-b4b3-f4d9716618a2
 Global administrator | a45ba61b-44db-462c-924b-3b2719152588
 Global reader | f6903b21-6aba-4124-b44c-76671796b9d5
 Groups administrator | 158b3e5a-d89d-460b-92b5-3b34985f0197
@@ -287,7 +287,7 @@ Office apps administrator | 5f3870cd-b042-4f93-86d7-c9d77c664dc7
 Password administrator | 466e48b7-5d66-4ae5-8911-1a118de74941
 Power BI administrator | 984e83b8-8337-4255-91a1-acb663175ab4
 Power platform administrator | 76d6f95e-9a15-4d7d-8d21-00de00faf9fd
-Privileged authentication   administrator | 0829f731-b46d-419f-9742-aeb122367d11
+Privileged authentication administrator | 0829f731-b46d-419f-9742-aeb122367d11
 Privileged role administrator | f20a725a-d1c8-4107-83ea-1171c97d00c7
 Reports reader | 54635450-e8ed-4f2d-9632-07db2517b4de
 Search administrator | c770a2f1-c9ba-4e60-9176-9f52b1eb1a31
@@ -299,8 +299,8 @@ Service support administrator | 2c92cf45-c914-48f8-9bf9-fc14b28818ab
 SharePoint administrator | e1c32229-875e-461d-ae24-3cb99116e86c
 Skype for Business administrator | 0a8cee12-e21d-43ef-abd9-f1ea85710e30
 Teams Communications Administrator | 2393e455-6e13-4743-9f52-63fcec2b6a9c
-Teams Communications Support   Engineer | 802dd94e-d717-46f6-af98-b9167071e9fc
-Teams Communications Support   Specialist | ef547281-cf46-4cc6-bcaa-f5eac3f030c9
+Teams Communications Support Engineer | 802dd94e-d717-46f6-af98-b9167071e9fc
+Teams Communications Specialist | ef547281-cf46-4cc6-bcaa-f5eac3f030c9
 Teams Service Administrator | 8846a0be-197b-443a-b13c-11192691fa24
 User administrator | 1f6eed58-7dd3-460b-a298-666f975427a1
 
