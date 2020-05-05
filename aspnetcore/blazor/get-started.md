@@ -183,7 +183,7 @@ Each time the **Click me** button is selected:
 
 * The `onclick` event is fired.
 * The `IncrementCount` method is called.
-* The `_currentCount` is incremented.
+* The `currentCount` is incremented.
 * The component is rendered again.
 
 The runtime compares the new content to the previous content and only applies the changed content to the Document Object Model (DOM).
@@ -199,7 +199,7 @@ Run the app. The homepage has its own counter provided by the `Counter` componen
 Component parameters are specified using attributes or [child content](xref:blazor/components#child-content), which allow you to set properties on the child component. To add a parameter to the `Counter` component, update the component's `@code` block:
 
 * Add a public property for `IncrementAmount` with a `[Parameter]` attribute.
-* Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `_currentCount`.
+* Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
 
 *Pages/Counter.razor*:
 
