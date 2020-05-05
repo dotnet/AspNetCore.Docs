@@ -340,6 +340,10 @@ Run the app from the Server project. When using Visual Studio, select the Server
 
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
 
+## Azure AD Groups, Administrative Roles, and user-defined roles
+
+[!INCLUDE[](~/includes/blazor-security/azuread-roles-groups.md)]
+
 ## Additional resources
 
 * <xref:security/blazor/webassembly/additional-scenarios>

@@ -159,6 +159,10 @@ For more information, see the following sections of the *Additional scenarios* a
 
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
 
+## Azure AD Groups, Administrative Roles, and user-defined roles
+
+[!INCLUDE[](~/includes/blazor-security/azuread-roles-groups.md)]
+
 ## Additional resources
 
 * <xref:security/blazor/webassembly/additional-scenarios>

@@ -339,12 +339,12 @@
                   uid: security/blazor/webassembly/standalone-with-azure-active-directory
                 - name: Standalone with AAD B2C
                   uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
-                - name: Hosted with Identity Server
-                  uid: security/blazor/webassembly/hosted-with-identity-server
                 - name: Hosted with AAD
                   uid: security/blazor/webassembly/hosted-with-azure-active-directory
                 - name: Hosted with AAD B2C
                   uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+                - name: Hosted with Identity Server
+                  uid: security/blazor/webassembly/hosted-with-identity-server
                 - name: Additional scenarios
                   uid: security/blazor/webassembly/additional-scenarios
             - name: Blazor Server
@@ -1132,12 +1132,12 @@
               uid: security/blazor/webassembly/standalone-with-azure-active-directory
             - name: Standalone with AAD B2C
               uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
-            - name: Hosted with Identity Server
-              uid: security/blazor/webassembly/hosted-with-identity-server
             - name: Hosted with AAD
               uid: security/blazor/webassembly/hosted-with-azure-active-directory
             - name: Hosted with AAD B2C
               uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+            - name: Hosted with Identity Server
+              uid: security/blazor/webassembly/hosted-with-identity-server
             - name: Additional scenarios
               uid: security/blazor/webassembly/additional-scenarios
         - name: Blazor Server
