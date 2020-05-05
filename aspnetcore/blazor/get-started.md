@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/02/2020
+ms.date: 05/05/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/get-started
 ---
@@ -183,7 +183,7 @@ Each time the **Click me** button is selected:
 
 * The `onclick` event is fired.
 * The `IncrementCount` method is called.
-* The `currentCount` is incremented.
+* The `_currentCount` is incremented.
 * The component is rendered again.
 
 The runtime compares the new content to the previous content and only applies the changed content to the Document Object Model (DOM).
@@ -199,7 +199,7 @@ Run the app. The homepage has its own counter provided by the `Counter` componen
 Component parameters are specified using attributes or [child content](xref:blazor/components#child-content), which allow you to set properties on the child component. To add a parameter to the `Counter` component, update the component's `@code` block:
 
 * Add a public property for `IncrementAmount` with a `[Parameter]` attribute.
-* Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
+* Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `_currentCount`.
 
 *Pages/Counter.razor*:
 
