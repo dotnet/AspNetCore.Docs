@@ -4,6 +4,7 @@ author: rick-anderson
 description: In this tutorial, you update related data by updating foreign key fields and navigation properties.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/update-related-data
 ---
 

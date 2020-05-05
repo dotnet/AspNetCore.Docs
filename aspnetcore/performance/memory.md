@@ -5,6 +5,7 @@ description: Learn how memory is managed in ASP.NET Core and how the garbage col
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/05/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/memory
 ---
 

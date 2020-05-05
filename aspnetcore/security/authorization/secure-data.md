@@ -5,6 +5,7 @@ description: Learn how to create a Razor Pages app with user data protected by a
 ms.author: riande
 ms.date: 12/18/2018
 ms.custom: "mvc, seodec18"
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/secure-data
 ---
 

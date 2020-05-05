@@ -5,6 +5,7 @@ description: Deploy an ASP.NET Core app to Azure App Service, the first step for
 ms.author: casoper
 ms.custom: "mvc, seodec18"
 ms.date: 10/24/2018
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: azure/devops/deploy-to-app-service
 ---
 # Deploy an app to App Service

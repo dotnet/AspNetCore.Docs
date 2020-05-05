@@ -5,6 +5,7 @@ description: The Microsoft.AspNetCore.App shared framework
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 09/24/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/metapackage-app
 ---
 # Microsoft.AspNetCore.App for ASP.NET Core

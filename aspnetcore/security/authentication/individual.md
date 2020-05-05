@@ -4,6 +4,7 @@ author: rick-anderson
 description: Discover articles based on ASP.NET Core projects created with individual user accounts.
 ms.author: riande
 ms.date: 12/11/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/individual
 ---
 # Articles based on ASP.NET Core projects created with individual user accounts

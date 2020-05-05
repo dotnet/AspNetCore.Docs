@@ -4,6 +4,7 @@ author: ardalis
 description: Learn how ASP.NET Core supports dependency injection into MVC views.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/dependency-injection
 ---
 # Dependency injection into views in ASP.NET Core

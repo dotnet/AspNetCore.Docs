@@ -4,6 +4,7 @@ author: ardalis
 description: Learn how views handle the app's data presentation and user interaction in ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/05/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/overview
 ---
 # Views in ASP.NET Core MVC
