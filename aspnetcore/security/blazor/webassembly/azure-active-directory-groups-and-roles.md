@@ -93,7 +93,6 @@ public class CustomUserFactory
 
         if (initialUser.Identity.IsAuthenticated)
         {
-            
             var userIdentity = (ClaimsIdentity)initialUser.Identity;
 
             foreach (var role in account.Roles)
