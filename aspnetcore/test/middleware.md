@@ -12,7 +12,7 @@ uid: test/middleware
 
 By [Chris Ross](https://github.com/Tratcher)
 
-Test middleware in isolation with <xref:Microsoft.AspNetCore.TestHost.TestServer> for the following goals:
+Middleware can be tested in isolation with <xref:Microsoft.AspNetCore.TestHost.TestServer>. It allows you to:
 
 * Instantiate an app pipeline containing only the components that you need to test.
 * Send custom requests to verify middleware behavior.
@@ -24,9 +24,9 @@ Advantages:
 * Exceptions in the middleware can flow directly back to the calling test.
 * It's possible to customize server data structures, such as <xref:Microsoft.AspNetCore.Http.HttpContext>, directly in the test.
 
-## Test middleware with HttpClient
+## Set up the TestServer
 
-In the test app, create a test:
+In the test project, create a test:
 
 * Build and start a host that uses <xref:Microsoft.AspNetCore.TestHost.TestServer>.
 * Add any required services that the middleware uses.
@@ -34,6 +34,7 @@ In the test app, create a test:
 
 [!code-csharp[](middleware/samples_snapshot/3.x/setup.cs?highlight=4-18)]
 
+## Send requests with HttpClient
 Send a request using <xref:System.Net.Http.HttpClient>:
 
 [!code-csharp[](middleware/samples_snapshot/3.x/request.cs?highlight=20)]
@@ -99,6 +100,6 @@ public async Task TestMiddleware_ExpectedResponse()
 }
 ```
 
-<xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> permits direct configuration of an <xref:Microsoft.AspNetCore.Http.HttpContext> object rather than using the <xref:Microsoft.AspNetCore.Http.HttpContext> abstractions. Use <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> to manipulate structures only available on the server, such as [HttpContext.Items](xref:Microsoft.AspNetCore.Http.HttpContext.Items) or [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features).
+<xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> permits direct configuration of an <xref:Microsoft.AspNetCore.Http.HttpContext> object rather than using the <xref:System.Net.Http.HttpClient> abstractions. Use <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> to manipulate structures only available on the server, such as [HttpContext.Items](xref:Microsoft.AspNetCore.Http.HttpContext.Items) or [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features).
 
 As with the earlier example that tested for a *404 - Not Found* response, check the opposite for each `Assert` statement in the preceding test. The check confirms that the test fails correctly when the middleware is operating normally. After you've confirmed that the false positive test works, set the final `Assert` statements for the expected conditions and values of the test. Run it again to confirm that the test passes.
