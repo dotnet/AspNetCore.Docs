@@ -4,6 +4,7 @@ author: rick-anderson
 description: Adding a view to a simple ASP.NET Core MVC app
 ms.author: riande
 ms.date: 8/04/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-view
 ---
 

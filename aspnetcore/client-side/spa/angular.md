@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: stevesa
 ms.custom: mvc
 ms.date: 02/06/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: spa/angular
 ---
 # Use the Angular project template with ASP.NET Core

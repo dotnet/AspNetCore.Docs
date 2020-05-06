@@ -5,7 +5,8 @@ description: Learn how to write custom ASP.NET Core middleware.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/03/2020
+ms.date: 5/6/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/middleware/write
 ---
 # Write custom ASP.NET Core middleware
