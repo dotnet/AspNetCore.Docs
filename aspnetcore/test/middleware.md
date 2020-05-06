@@ -48,7 +48,7 @@ Change the assertion to test the middleware under normal operating conditions. T
 
 [!code-csharp[](middleware/samples_snapshot/3.x/final-test.md?highlight=22)]
 
-## Test middleware with SendAsync
+## Send requests with HttpContext
 
 A test app can also send a request using [SendAsync(Action\<HttpContext>, CancellationToken)](xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A). In the following example, several checks are made when `https://example.com/A/Path/?and=query` is processed by the middleware:
 
