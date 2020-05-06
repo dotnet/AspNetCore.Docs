@@ -16,7 +16,7 @@ Azure has several interfaces for provisioning and managing resources, such as th
 
 The following subscriptions are required:
 
-* Azure &mdash; If you don't have an account, [get a free trial](https://azure.microsoft.com/free/).
+* Azure &mdash; If you don't have an account, [get a free trial](https://azure.microsoft.com/free/dotnet/).
 * Azure DevOps Services &mdash; your Azure DevOps subscription and organization is created in Chapter 4.
 * GitHub &mdash; If you don't have an account, [sign up for free](https://github.com/join).
 
