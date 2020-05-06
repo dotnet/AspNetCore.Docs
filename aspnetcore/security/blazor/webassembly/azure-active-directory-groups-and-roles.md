@@ -110,14 +110,17 @@ There's no need to provide code to remove the original `groups` claim, as it is 
 Register the factory in `Program.Main` (*Program.cs*) of the standalone app or Client app of a Hosted solution:
 
 ```csharp
-builder.Services.AddMsalAuthentication<RemoteAuthenticationState, CustomUserAccount>(options =>
-{
-    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
-    options.ProviderOptions.DefaultAccessTokenScopes.Add("...");
-
-    ...
-})
-.AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, CustomUserAccount, CustomUserFactory>();
+builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
+    CustomUserAccount>(options =>
+    {
+        builder.Configuration.Bind("AzureAd", 
+            options.ProviderOptions.Authentication);
+        options.ProviderOptions.DefaultAccessTokenScopes.Add("...");
+    
+        ...
+    })
+.AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, CustomUserAccount, 
+    CustomUserFactory>();
 ```
 
 Create a [policy](xref:security/authorization/policies) for each group or role in `Program.Main`. The following example creates a policy for the AAD built-in Billing Administrator Role:
