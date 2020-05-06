@@ -161,7 +161,7 @@ The *appsettings.json* file contains the options to configure the JWT bearer han
 
 ```json
 {
-  "AzureAd": {
+  "AzureAdB2C": {
     "Instance": "https://{ORGANIZATION}.b2clogin.com/",
     "ClientId": "{SERVER API APP CLIENT ID}",
     "Domain": "{DOMAIN}",
@@ -174,7 +174,7 @@ Example:
 
 ```json
 {
-  "AzureAd": {
+  "AzureAdB2C": {
     "Instance": "https://contoso.b2clogin.com/",
     "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
     "Domain": "contoso.onmicrosoft.com",
