@@ -186,7 +186,7 @@ The following table lists the <xref:Microsoft.Extensions.Logging.LogLevel> value
 | [Warning](xref:Microsoft.Extensions.Logging.LogLevel) | 3 | [LogWarning](/dotnet/api/microsoft.extensions.logging.loggerextensions.logwarning)  | For abnormal or unexpected events. Typically includes errors or conditions that don't cause the app to fail.  |
 | [Error](xref:Microsoft.Extensions.Logging.LogLevel) | 4 | [LogError](/dotnet/api/microsoft.extensions.logging.loggerextensions.logerror)  | For errors and exceptions that cannot be handled. These messages indicate a failure in the current operation or request, not an app-wide failure. |
 | [Critical](xref:Microsoft.Extensions.Logging.LogLevel) | 5| [LogCritical](/dotnet/api/microsoft.extensions.logging.loggerextensions.logcritical)  | For failures that require immediate attention. Examples: data loss scenarios, out of disk space. |
-| [None](xref:Microsoft.Extensions.Logging.None) | 6|   | Specifies that a logging category should not write any messages. |
+| [`None` | 6|   | Specifies that a logging category should not write any messages. |
 
 In the previous table, the `LogLevel` is listed from lowest to highest severity.
 
