@@ -1,4 +1,23 @@
-AAD provides several authorization approaches that can be combined with ASP.NET Core Identity:
+---
+title: ASP.NET Core Blazor WebAssembly with Azure Active Directory groups and roles
+author: guardrex
+description: Learn how to configure Blazor WebAssembly to use Azure Active Directory groups and roles.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 05/06/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+uid: security/blazor/webassembly/aad-groups-roles
+---
+# Azure AD Groups, Administrative Roles, and user-defined roles
+
+By [Luke Latham](https://github.com/guardrex) and [Javier Calvarro Nelson](https://github.com/javiercn)
+
+[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+
+[!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
+
+Azure Active Directory (AAD) provides several authorization approaches that can be combined with ASP.NET Core Identity:
 
 * User-defined groups
   * Security
@@ -7,6 +26,12 @@ AAD provides several authorization approaches that can be combined with ASP.NET 
 * Roles
   * Built-in Administrative Roles
   * User-defined roles
+
+The guidance in this article applies to the AAD deployment scenarios described in the following topics:
+
+* <xref:security/blazor/webassembly/standalone-with-microsoft-accounts>
+* <xref:security/blazor/webassembly/standalone-with-azure-active-directory>
+* <xref:security/blazor/webassembly/hosted-with-azure-active-directory>
 
 ### User-defined groups and AAD built-in Administrative Roles
 
@@ -26,18 +51,33 @@ To enable an AAD-registered app for user-defined AAD groups and built-in Adminis
 
 1. Assign users to user-defined AAD groups and built-in Administrative Roles. The following examples assume that a user is assigned to the AAD built-in Billing Administrator Role.
 
-The `groups` claim sent by AAD presents the user's groups and roles as Object IDs (GUIDs) in a JSON array. The app must convert the JSON array of groups and roles into individual `groups` claims that the app can build [policies](xref:security/authorization/policies) against. Create a custom user factory in the standalone app or Client app of a Hosted solution:
+The `groups` claim sent by AAD presents the user's groups and roles as Object IDs (GUIDs) in a JSON array. The app must convert the JSON array of groups and roles into individual `groups` claims that the app can build [policies](xref:security/authorization/policies) against.
+
+Extend `RemoteUserAccount` to include array properties for groups and roles.
+
+*CustomUserAccount.cs*:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+public class CustomUserAccount : RemoteUserAccount
+{
+    public string[] Groups { get; set; }
+    public string[] Roles { get; set; }
+}
+```
+
+Create a custom user factory in the standalone app or Client app of a Hosted solution. The following factory is set up to handle both groups and roles claim arrays:
 
 ```csharp
 using System.Security.Claims;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 
 public class CustomUserFactory
-    : AccountClaimsPrincipalFactory<RemoteUserAccount>
+    : AccountClaimsPrincipalFactory<CustomUserAccount>
 {
     public CustomUserFactory(NavigationManager navigationManager,
         IAccessTokenProviderAccessor accessor)
@@ -46,7 +86,7 @@ public class CustomUserFactory
     }
 
     public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
-        RemoteUserAccount account,
+        CustomUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
         var initialUser = await base.CreateUserAsync(account, options);
@@ -59,38 +99,14 @@ public class CustomUserFactory
 
         return initialUser;
     }
-
-    private void SetClaimsFromJsonArray(RemoteUserAccount account, 
-        ClaimsPrincipal user, string claimName, bool removeOriginalClaim)
-    {
-        if (account.AdditionalProperties.TryGetValue(claimName, out var rolesObj))
-        {
-            var identity = (ClaimsIdentity)user.Identity;
-            var rolesElement = (JsonElement)rolesObj;
-
-            if (rolesElement.ValueKind == JsonValueKind.Array)
-            {
-                foreach (var element in rolesElement.EnumerateArray())
-                {
-                    identity.AddClaim(new Claim(claimName, element.GetString()));
-                }
-
-                if (removeOriginalClaim)
-                {
-                    identity.TryRemoveClaim(
-                        identity.FindFirst(c => c.Type == claimName));
-                }
-            }
-        }
-    }
 }
 ```
 
 Register the factory in `Program.Main` (*Program.cs*) of the standalone app or Client app of a Hosted solution:
 
 ```csharp
-builder.Services.AddApiAuthorization<RemoteAuthenticationState, RemoteUserAccount>()
-    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, RemoteUserAccount, 
+builder.Services.AddApiAuthorization<RemoteAuthenticationState, CustomUserAccount>()
+    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, CustomUserAccount, 
         CustomUserFactory>();
 ```
 
@@ -311,3 +327,4 @@ User administrator | 1f6eed58-7dd3-460b-a298-666f975427a1
 * <xref:security/authorization/claims>
 * <xref:security/blazor/index>
 * [How to: Add app roles in your application and receive them in the token (Azure documentation)](/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps)
+

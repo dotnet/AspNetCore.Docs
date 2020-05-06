@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/24/2020
+ms.date: 05/06/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/hosted-with-azure-active-directory
 ---
@@ -340,12 +340,9 @@ Run the app from the Server project. When using Visual Studio, select the Server
 
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
 
-## Azure AD Groups, Administrative Roles, and user-defined roles
-
-[!INCLUDE[](~/includes/blazor-security/azuread-roles-groups.md)]
-
 ## Additional resources
 
 * <xref:security/blazor/webassembly/additional-scenarios>
+* <xref:security/blazor/webassembly/aad-groups-roles>
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)

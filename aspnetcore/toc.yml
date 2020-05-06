@@ -347,6 +347,8 @@
                   uid: security/blazor/webassembly/hosted-with-identity-server
                 - name: Additional scenarios
                   uid: security/blazor/webassembly/additional-scenarios
+                - name: AAD groups and roles
+                  uid: security/blazor/webassembly/aad-groups-roles
             - name: Blazor Server
               items:
                 - name: Overview
@@ -1140,6 +1142,8 @@
               uid: security/blazor/webassembly/hosted-with-identity-server
             - name: Additional scenarios
               uid: security/blazor/webassembly/additional-scenarios
+            - name: AAD groups and roles
+              uid: security/blazor/webassembly/aad-groups-roles
         - name: Blazor Server
           items:
             - name: Overview
