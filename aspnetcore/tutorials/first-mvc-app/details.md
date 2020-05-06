@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn about the Details controller method and view in a basic ASP.NET Core MVC app.
 ms.author: riande
 ms.date: 12/13/2018
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/details
 ---
 

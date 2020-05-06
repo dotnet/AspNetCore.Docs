@@ -299,14 +299,14 @@
           uid: blazor/data-binding
         - name: Event handling
           uid: blazor/event-handling
+        - name: Lifecycle
+          uid: blazor/lifecycle
         - name: Templated components
           uid: blazor/templated-components
         - name: Integrate components
           uid: blazor/integrate-components
         - name: Globalization and localization
           uid: blazor/globalization-localization
-        - name: Lifecycle
-          uid: blazor/lifecycle
         - name: Layouts
           uid: blazor/layouts
         - name: Forms and validation
@@ -348,7 +348,13 @@
                 - name: Additional scenarios
                   uid: security/blazor/webassembly/additional-scenarios
             - name: Blazor Server
-              uid: security/blazor/server
+              items:
+                - name: Overview
+                  uid: security/blazor/server/index
+                - name: Threat mitigation
+                  uid: security/blazor/server/threat-mitigation
+                - name: Additional scenarios
+                  uid: security/blazor/server/additional-scenarios
             - name: Content Security Policy
               uid: security/blazor/content-security-policy
         - name: State management
@@ -659,6 +665,8 @@
       uid: test/razor-pages-tests
     - name: Test controllers
       uid: mvc/controllers/testing
+    - name: Test middleware
+      uid: test/middleware
     - name: Remote debugging
       href: /visualstudio/debugger/remote-debugging-azure
     - name: Snapshot debugging
@@ -1135,7 +1143,13 @@
             - name: Additional scenarios
               uid: security/blazor/webassembly/additional-scenarios
         - name: Blazor Server
-          uid: security/blazor/server
+          items:
+            - name: Overview
+              uid: security/blazor/server/index
+            - name: Threat mitigation
+              uid: security/blazor/server/threat-mitigation
+            - name: Additional scenarios
+              uid: security/blazor/server/additional-scenarios
         - name: Content Security Policy
           uid: security/blazor/content-security-policy
 - name: Performance

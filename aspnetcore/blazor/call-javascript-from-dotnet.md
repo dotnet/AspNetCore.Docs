@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/07/2020
-no-loc: [Blazor, SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
@@ -450,7 +450,7 @@ JS interop may fail due to networking errors and should be treated as unreliable
       TimeSpan.FromSeconds({SECONDS}), new[] { "Arg1" });
   ```
 
-For more information on resource exhaustion, see <xref:security/blazor/server>.
+For more information on resource exhaustion, see <xref:security/blazor/server/threat-mitigation>.
 
 [!INCLUDE[Share interop code in a class library](~/includes/blazor-share-interop-code.md)]
 

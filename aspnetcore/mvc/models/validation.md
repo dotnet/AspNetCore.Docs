@@ -5,6 +5,7 @@ description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/validation
 ---
 
@@ -73,7 +74,7 @@ Internally, the attributes call `String.Format` with a placeholder for the field
 
 When applied to a `Name` property, the error message created by the preceding code would be "Name length must be between 6 and 8.".
 
-To find out which parameters are passed to `String.Format` for a particular attribute's error message, see the [DataAnnotations source code](https://github.com/dotnet/corefx/tree/master/src/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
+To find out which parameters are passed to `String.Format` for a particular attribute's error message, see the [DataAnnotations source code](https://github.com/dotnet/runtime/tree/master/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
 
 ## [Required] attribute
 

@@ -5,8 +5,8 @@ description: Learn about data binding scenarios for components and DOM elements 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/14/2020
-no-loc: [Blazor, SignalR]
+ms.date: 04/25/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/integrate-components
 ---
 # Integrate ASP.NET Core Razor components into Razor Pages and MVC apps
@@ -237,11 +237,54 @@ For more information on namespaces, see the [Component namespaces](#component-na
 
 To render a component from a page or view, use the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
-For more information on how components are rendered, component state, and the `Component` Tag Helper, see the following articles:
+### Render stateful interactive components
 
-* <xref:blazor/hosting-models>
-* <xref:blazor/hosting-model-configuration>
-* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
+Stateful interactive components can be added to a Razor page or view.
+
+When the page or view renders:
+
+* The component is prerendered with the page or view.
+* The initial component state used for prerendering is lost.
+* New component state is created when the SignalR connection is established.
+
+The following Razor page renders a `Counter` component:
+
+```cshtml
+<h1>My Razor Page</h1>
+
+<component type="typeof(Counter)" render-mode="ServerPrerendered" 
+    param-InitialValue="InitialValue" />
+
+@functions {
+    [BindProperty(SupportsGet=true)]
+    public int InitialValue { get; set; }
+}
+```
+
+For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+
+### Render noninteractive components
+
+In the following Razor page, the `Counter` component is statically rendered with an initial value that's specified using a form. Since the component is statically rendered, the component isn't interactive:
+
+```cshtml
+<h1>My Razor Page</h1>
+
+<form>
+    <input type="number" asp-for="InitialValue" />
+    <button type="submit">Set initial value</button>
+</form>
+
+<component type="typeof(Counter)" render-mode="Static" 
+    param-InitialValue="InitialValue" />
+
+@functions {
+    [BindProperty(SupportsGet=true)]
+    public int InitialValue { get; set; }
+}
+```
+
+For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ## Component namespaces
 

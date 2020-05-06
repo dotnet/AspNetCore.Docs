@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/03/2020
-no-loc: [Blazor, SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/blazor/server
 ---
 # Host and deploy Blazor Server
@@ -28,7 +28,7 @@ A web server capable of hosting an ASP.NET Core app is required. Visual Studio i
 Plan a deployment to make the best use of the available infrastructure for a Blazor Server app. See the following resources to address Blazor Server app scalability:
 
 * [Fundamentals of Blazor Server apps](xref:blazor/hosting-models#blazor-server)
-* <xref:security/blazor/server>
+* <xref:security/blazor/server/threat-mitigation>
 
 ### Deployment server
 
@@ -37,7 +37,7 @@ When considering the scalability of a single server (scale up), the memory avail
 * Number of active circuits that a server can support.
 * UI latency on the client.
 
-For guidance on building secure and scalable Blazor server apps, see <xref:security/blazor/server>.
+For guidance on building secure and scalable Blazor server apps, see <xref:security/blazor/server/threat-mitigation>.
 
 Each circuit uses approximately 250 KB of memory for a minimal *Hello World*-style app. The size of a circuit depends on the app's code and the state maintenance requirements associated with each component. We recommend that you measure resource demands during development for your app and infrastructure, but the following baseline can be a starting point in planning your deployment target: If you expect your app to support 5,000 concurrent users, consider budgeting at least 1.3 GB of server memory to the app (or ~273 KB per user).
 
