@@ -4,7 +4,7 @@ author: cross
 description: Learn how to test ASP.NET Core middleware with TestServer.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/04/2019
+ms.date: 05/06/2019
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/middleware
 ---
@@ -12,7 +12,10 @@ uid: test/middleware
 
 By [Chris Ross](https://github.com/Tratcher)
 
-Middleware can be tested in isolation using the <xref:Microsoft.AspNetCore.TestHost.TestServer>. This allows you to instantiate an app pipeline containing only the components that you need to test and send custom requests to verify middleware behavior.
+Test middleware in isolation with <xref:Microsoft.AspNetCore.TestHost.TestServer> for the following goals:
+
+* Instantiate an app pipeline containing only the components that you need to test.
+* Send custom requests to verify middleware behavior.
 
 Advantages:
 
@@ -21,57 +24,55 @@ Advantages:
 * Exceptions in the middleware can flow directly back to the calling test.
 * It's possible to customize server data structures, such as <xref:Microsoft.AspNetCore.Http.HttpContext>, directly in the test.
 
-## Send requests with HttpClient
+## Test middleware with HttpClient
 
+In the test app, create a test:
 
+* Build and start a host that uses <xref:Microsoft.AspNetCore.TestHost.TestServer>.
+* Add any required services that the middleware uses.
+* Configure the processing pipeline to use the middleware for the test.
 
-```csharp
-using var host = await new HostBuilder()
-    .ConfigureWebHost(webBuilder =>
-    {
-        webBuilder
-            .UseTestServer()
-            .ConfigureServices(services =>
-            {
-                services.AddMyServices();
-            })
-            .Configure(app =>
-            {
-                app.UseMiddleware<MyMiddleware>();
-            });
-    })
-    .StartAsync();
-```
+[!code-csharp[](middleware/samples_snapshot/3.x/setup.md?highlight=4-18)]
 
-Set up your test app, add your own middleware and services, and send a request using <xref:System.Net.Http.HttpClient>:
+Send a request using <xref:System.Net.Http.HttpClient>:
+
+[!code-csharp[](middleware/samples_snapshot/3.x/request.md?highlight=20)]
+
+Assert the result. First, make an assertion the opposite of the result that you expect. An initial run with a false positive assertion confirms that the test fails when the middleware is performing correctly. Run the test and confirm that the test fails.
+
+In the following example, the middleware should return a 404 status code (*Not Found*) when the root endpoint is requested. Make the first test run with `Assert.NotEqual( ... );`, which should fail:
+
+[!code-csharp[](middleware/samples_snapshot/3.x/false-failure-check.md?highlight=22)]
+
+Change the assertion to test the middleware under normal operating conditions. The final test uses `Assert.Equal( ... );`. Run the test again to confirm that it passes.
+
+[!code-csharp[](middleware/samples_snapshot/3.x/final-test.md?highlight=22)]
+
+## Test middleware with SendAsync
+
+A test app can also send a request using [SendAsync(Action\<HttpContext>, CancellationToken)](xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A). In the following example, several checks are made when `https://example.com/A/Path/?and=query` is processed by the middleware:
 
 ```csharp
 [Fact]
-public async Task GenericCreateAndStartHost_GetTestServer()
+public async Task TestMiddleware_ExpectedResponse()
 {
     using var host = await new HostBuilder()
         .ConfigureWebHost(webBuilder =>
         {
             webBuilder
                 .UseTestServer()
-                .Configure(app => { });
+                .ConfigureServices(services =>
+                {
+                    services.AddMyServices();
+                })
+                .Configure(app =>
+                {
+                    app.UseMiddleware<MyMiddleware>();
+                });
         })
         .StartAsync();
 
-    var response = await host.GetTestServer().CreateClient().GetAsync("/");
-
-    Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
-}
-```
-
-A test app can also send a request using [SendAsync(Action\<HttpContext>, CancellationToken)](xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A):
-
-```csharp
-[Fact]
-public async Task ExpectedValuesAreAvailable()
-{
-    var builder = new WebHostBuilder().Configure(app => { });
-    var server = new TestServer(builder);
+    var server = host.GetTestServer();
     server.BaseAddress = new Uri("https://example.com/A/Path/");
 
     var context = await server.SendAsync(c =>
@@ -98,4 +99,6 @@ public async Task ExpectedValuesAreAvailable()
 }
 ```
 
-`SendAsync` permits direct configuration of an <xref:Microsoft.AspNetCore.Http.HttpContext> object rather than using the `HttpClient` abstractions. Use `SendAsync` to manipulate structures only available on the server, such as [HttpContext.Items](xref:Microsoft.AspNetCore.Http.HttpContext.Items) or [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features).
+<xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> permits direct configuration of an <xref:Microsoft.AspNetCore.Http.HttpContext> object rather than using the <xref:Microsoft.AspNetCore.Http.HttpContext> abstractions. Use <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> to manipulate structures only available on the server, such as [HttpContext.Items](xref:Microsoft.AspNetCore.Http.HttpContext.Items) or [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features).
+
+As with the earlier example that tested for a *404 - Not Found* response, check the opposite for each `Assert` statement in the preceding test. The check confirms that the test fails correctly when the middleware is operating normally. After you've confirmed that the false positive test works, set the final `Assert` statements for the expected conditions and values of the test. Run it again to confirm that the test passes.
