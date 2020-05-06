@@ -5,7 +5,7 @@ description: Learn how to use Razor component lifecycle methods in ASP.NET Core 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 05/06/2020
 no-loc: [Blazor, SignalR]
 uid: blazor/lifecycle
 ---
@@ -268,6 +268,14 @@ For more information on the `RenderMode`, see <xref:blazor/hosting-model-configu
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
 
 ## Cancelable background work
+
+Apps that perform long-running background work may need to cancel or suspend the background work. The following list indicates some of the reasons why background work items might require cancellation:
+
+* An executing background task was started with faulty input data or processing parameters.
+* The current set of executing background work items must be replaced with a new set of work items.
+* The priority of currently executing tasks must be changed.
+* The app has to be shut down in order to redeploy it to the server.
+* Server resources become limited, necessitating the rescheduling of backgound work items.
 
 To implement a cancelable background work pattern in a component:
 
