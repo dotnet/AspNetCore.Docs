@@ -5,7 +5,7 @@ description: Learn how to access HttpContext in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/03/2019
+ms.date: 5/5/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/httpcontext
 ---
@@ -158,3 +158,8 @@ public class EmailController : Controller
         ...
     }
 }
+```
+
+## Blazor and shared state
+
+[!INCLUDE[](~/includes/blazor-security/blazor-shared-state.md)]
