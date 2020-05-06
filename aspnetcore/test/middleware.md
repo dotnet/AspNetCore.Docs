@@ -1,10 +1,10 @@
 ---
 title: Test ASP.NET Core middleware
-author: cross
+author: tratcher
 description: Learn how to test ASP.NET Core middleware with TestServer.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/06/2019
+ms.date: 5/6/2019
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/middleware
 ---
