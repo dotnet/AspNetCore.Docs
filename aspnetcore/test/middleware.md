@@ -32,21 +32,21 @@ In the test app, create a test:
 * Add any required services that the middleware uses.
 * Configure the processing pipeline to use the middleware for the test.
 
-[!code-csharp[](middleware/samples_snapshot/3.x/setup.md?highlight=4-18)]
+[!code-csharp[](middleware/samples_snapshot/3.x/setup.cs?highlight=4-18)]
 
 Send a request using <xref:System.Net.Http.HttpClient>:
 
-[!code-csharp[](middleware/samples_snapshot/3.x/request.md?highlight=20)]
+[!code-csharp[](middleware/samples_snapshot/3.x/request.cs?highlight=20)]
 
 Assert the result. First, make an assertion the opposite of the result that you expect. An initial run with a false positive assertion confirms that the test fails when the middleware is performing correctly. Run the test and confirm that the test fails.
 
 In the following example, the middleware should return a 404 status code (*Not Found*) when the root endpoint is requested. Make the first test run with `Assert.NotEqual( ... );`, which should fail:
 
-[!code-csharp[](middleware/samples_snapshot/3.x/false-failure-check.md?highlight=22)]
+[!code-csharp[](middleware/samples_snapshot/3.x/false-failure-check.cs?highlight=22)]
 
 Change the assertion to test the middleware under normal operating conditions. The final test uses `Assert.Equal( ... );`. Run the test again to confirm that it passes.
 
-[!code-csharp[](middleware/samples_snapshot/3.x/final-test.md?highlight=22)]
+[!code-csharp[](middleware/samples_snapshot/3.x/final-test.cs?highlight=22)]
 
 ## Send requests with HttpContext
 
