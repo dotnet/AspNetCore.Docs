@@ -93,8 +93,18 @@ public class CustomUserFactory
 
         if (initialUser.Identity.IsAuthenticated)
         {
-            SetClaimsFromJsonArray(account, initialUser, "roles", true);
-            SetClaimsFromJsonArray(account, initialUser, "groups", true);
+            
+            var userIdentity = (ClaimsIdentity)initialUser.Identity;
+
+            foreach (var role in account.Roles)
+            {
+                userIdentity.AddClaim(new Claim("role", role));
+            }
+
+            foreach (var group in account.Groups)
+            {
+                userIdentity.AddClaim(new Claim("group", group));
+            }
         }
 
         return initialUser;
@@ -116,7 +126,7 @@ Create a [policy](xref:security/authorization/policies) for each group or role i
 builder.Services.AddAuthorizationCore(options =>
 {
     options.AddPolicy("BillingAdministrator", policy => 
-        policy.RequireClaim("groups", "69ff516a-b57d-4697-a429-9de4af7b5609"));
+        policy.RequireClaim("group", "69ff516a-b57d-4697-a429-9de4af7b5609"));
 });
 ```
 
@@ -228,13 +238,9 @@ An AAD-registered app can also be configured to use user-defined roles:
 1. Navigate to **Enterprise Applications** and select the app's registration.
 1. In **Users and groups**, add a user and give them one of the configured roles. Multiple roles are allowed by **_re-adding a user_** for each additional role assignment.
 
-The `roles` claim sent by AAD presents the user-defined roles as the `appRoles`'s `value`s set in the manifest file in a JSON array. The app must convert the JSON array of roles into individual `roles` claims. Use the `CustomUserFactory` shown in the [User-defined groups and AAD built-in Administrative Roles](#user-defined-groups-and-aad-built-in-administrative-roles) section in the standalone app or Client app of a Hosted solution. The example `CustomUserFactory` is already configured to act on a `roles` claim with a JSON array value:
+The `roles` claim sent by AAD presents the user-defined roles as the `appRoles`'s `value`s set in the manifest file in a JSON array. The app must convert the JSON array of roles into individual `role` claims.
 
-```csharp
-SetClaimsFromJsonArray(account, initialUser, "roles", true);
-```
-
-Register the `CustomUserFactory` as shown in the *User-defined groups and AAD built-in Administrative Roles* section.
+The `CustomUserFactory` shown in the [User-defined groups and AAD built-in Administrative Roles](#user-defined-groups-and-aad-built-in-administrative-roles) section is set up to act on a `roles` claim with a JSON array value. Add and register the `CustomUserFactory` in the standalone app or Client app of a Hosted solution as shown in the [User-defined groups and AAD built-in Administrative Roles](#user-defined-groups-and-aad-built-in-administrative-roles) section.
 
 In `Program.Main` of the standalone app or Client app of a Hosted solution, specify the claim named "`roles`" as the role claim:
 
@@ -243,7 +249,7 @@ builder.Services.AddMsalAuthentication(options =>
 {
     ...
 
-    options.UserOptions.RoleClaim = "roles";
+    options.UserOptions.RoleClaim = "role";
 });
 ```
 
