@@ -363,7 +363,7 @@ Later in the tutorial series, you delete the database that was created by `Ensur
 The `EnsureCreated` method creates an empty database. This section adds code that populates the database with test data.
 
 Create *Data/DbInitializer.cs* with the following code:
-
+<!-- next update, keep this file in the project and surround with #if -->
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/DbInitializer.cs)]
 
   The code checks if there are any students in the database. If there are no students, it adds test data to the database. It creates the test data in arrays rather than `List<T>` collections to optimize performance.
