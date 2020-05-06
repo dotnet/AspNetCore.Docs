@@ -35,23 +35,14 @@ The guidance in this article applies to the AAD deployment scenarios described i
 
 ### User-defined groups and AAD built-in Administrative Roles
 
-To enable an AAD-registered app for user-defined AAD groups and built-in Administrative Roles, perform the following actions in the Azure portal:
+To configure the app in the Azure portal to provide a `groups` membership claim, see the following Azure articles. Assign users to user-defined AAD groups and built-in Administrative Roles.
 
-1. Edit the app's manifest (standalone app or Client app of a Hosted solution).
-1. Set `groupMembershipClaims` to `All` to have AAD send a `groups` claim for:
+* [Roles using Azure AD security groups](/azure/architecture/multitenant-identity/app-roles#roles-using-azure-ad-security-groups)
+* [groupMembershipClaims attribute](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute)
 
-   * AAD Security Groups
-   * Distribution Groups
-   * Administrative Roles
+The following examples assume that a user is assigned to the AAD built-in **Billing Administrator** Role.
 
-   Set `groupMembershipClaims` to `SecurityGroup` to have AAD send a `roles` claim for:
-
-   * AAD Security Groups
-   * Administrative Roles
-
-1. Assign users to user-defined AAD groups and built-in Administrative Roles. The following examples assume that a user is assigned to the AAD built-in Billing Administrator Role.
-
-The `groups` claim sent by AAD presents the user's groups and roles as Object IDs (GUIDs) in a JSON array. The app must convert the JSON array of groups and roles into individual `groups` claims that the app can build [policies](xref:security/authorization/policies) against.
+The `groups` claim sent by AAD presents the user's groups and roles as Object IDs (GUIDs) in a JSON array. The app must convert the JSON array of groups and roles into individual `group` claims that the app can build [policies](xref:security/authorization/policies) against.
 
 Extend `RemoteUserAccount` to include array properties for groups and roles.
 
@@ -208,50 +199,23 @@ A policy check can also be performed in code:
 
 An AAD-registered app can also be configured to use user-defined roles:
 
-1. Edit the app's manifest (standalone app or Client app of a Hosted solution) and provide user-defined roles. The following example creates two roles:
+To configure the app in the Azure portal to provide a `roles` membership claim, see [How to: Add app roles in your application and receive them in the token (Azure documentation)](/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps).
 
-   * `admin`
-   * `developer`
+The following example assumes that an app is configured with two roles:
 
-   Generate unique custom `id` entires for each role added to the manifest.
+* `admin`
+* `developer`
 
-   ```json
-   "appRoles": [
-       {
-           "allowedMemberTypes": [
-               "User"
-           ],
-           "description": "Administrators can access administrator-only areas",
-           "displayName": "Administrators",
-           "id": "d1613ef0-097a-44a0-b1d2-c13c02231a97",
-           "isEnabled": true,
-           "lang": null,
-           "origin": "Application",
-           "value": "admin"
-       },
-       {
-           "allowedMemberTypes": [
-               "User"
-           ],
-           "description": "Developers can access developer-only areas",
-           "displayName": "Developers",
-           "id": "87731ab9-df42-418a-b3bb-37b759eb4111",
-           "isEnabled": true,
-           "lang": null,
-           "origin": "Application",
-           "value": "developer"
-       }
-   ],
-   ```
+> [!NOTE]
+> Although you can't assign roles to security groups without an Azure AD Premium account, you can assign users to roles and receive a `roles` claim for users with a standard Azure account. The guidance in this section doesn't require an Azure AD Premium account.
+>
+> Multiple roles are assigned in the Azure portal by **_re-adding a user_** for each additional role assignment.
 
-1. Navigate to **Enterprise Applications** and select the app's registration.
-1. In **Users and groups**, add a user and give them one of the configured roles. Multiple roles are allowed by **_re-adding a user_** for each additional role assignment.
-
-The `roles` claim sent by AAD presents the user-defined roles as the `appRoles`'s `value`s set in the manifest file in a JSON array. The app must convert the JSON array of roles into individual `role` claims.
+The `roles` claim sent by AAD presents the user-defined roles as the `appRoles`'s `value`s in a JSON array. The app must convert the JSON array of roles into individual `role` claims.
 
 The `CustomUserFactory` shown in the [User-defined groups and AAD built-in Administrative Roles](#user-defined-groups-and-aad-built-in-administrative-roles) section is set up to act on a `roles` claim with a JSON array value. Add and register the `CustomUserFactory` in the standalone app or Client app of a Hosted solution as shown in the [User-defined groups and AAD built-in Administrative Roles](#user-defined-groups-and-aad-built-in-administrative-roles) section. There's no need to provide code to remove the original `roles` claim, as it is automatically removed by the framework.
 
-In `Program.Main` of the standalone app or Client app of a Hosted solution, specify the claim named "`roles`" as the role claim:
+In `Program.Main` of the standalone app or Client app of a Hosted solution, specify the claim named "`role`" as the role claim:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -279,7 +243,7 @@ if (user.IsInRole("admin") && user.IsInRole("developer"))
 
 ## AAD Adminstrative Role Group IDs
 
-The Object IDs presented in the following table are used to create [policies](xref:security/authorization/policies) for `groups` claims. The policies permit an app to authorize users for various activities in an app.
+The Object IDs presented in the following table are used to create [policies](xref:security/authorization/policies) for `group` claims. The policies permit an app to authorize users for various activities in an app.
 
 AAD Administrative Role | Object ID
 --- | ---
@@ -335,11 +299,7 @@ Teams Communications Specialist | ef547281-cf46-4cc6-bcaa-f5eac3f030c9
 Teams Service Administrator | 8846a0be-197b-443a-b13c-11192691fa24
 User administrator | 1f6eed58-7dd3-460b-a298-666f975427a1
 
-## Additional resources for AAD groups and roles
+## Additional resources
 
-* [Roles using Azure AD security groups (Azure documentation)](/azure/architecture/multitenant-identity/app-roles#roles-using-azure-ad-security-groups)
-* [groupMembershipClaims attribute (Azure documentation)](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute)
 * <xref:security/authorization/claims>
 * <xref:security/blazor/index>
-* [How to: Add app roles in your application and receive them in the token (Azure documentation)](/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps)
-
