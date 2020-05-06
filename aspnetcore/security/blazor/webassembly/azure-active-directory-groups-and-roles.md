@@ -62,7 +62,10 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 public class CustomUserAccount : RemoteUserAccount
 {
+    [JsonPropertyName("groups")]
     public string[] Groups { get; set; }
+
+    [JsonPropertyName("roles")]
     public string[] Roles { get; set; }
 }
 ```
@@ -111,12 +114,19 @@ public class CustomUserFactory
 }
 ```
 
+There's no need to provide code to remove the original `groups` claim, as it is automatically removed by the framework.
+
 Register the factory in `Program.Main` (*Program.cs*) of the standalone app or Client app of a Hosted solution:
 
 ```csharp
-builder.Services.AddApiAuthorization<RemoteAuthenticationState, CustomUserAccount>()
-    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, CustomUserAccount, 
-        CustomUserFactory>();
+builder.Services.AddMsalAuthentication<RemoteAuthenticationState, CustomUserAccount>(options =>
+{
+    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
+    options.ProviderOptions.DefaultAccessTokenScopes.Add("...");
+
+    ...
+})
+.AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, CustomUserAccount, CustomUserFactory>();
 ```
 
 Create a [policy](xref:security/authorization/policies) for each group or role in `Program.Main`. The following example creates a policy for the AAD built-in Billing Administrator Role:
@@ -239,7 +249,7 @@ An AAD-registered app can also be configured to use user-defined roles:
 
 The `roles` claim sent by AAD presents the user-defined roles as the `appRoles`'s `value`s set in the manifest file in a JSON array. The app must convert the JSON array of roles into individual `role` claims.
 
-The `CustomUserFactory` shown in the [User-defined groups and AAD built-in Administrative Roles](#user-defined-groups-and-aad-built-in-administrative-roles) section is set up to act on a `roles` claim with a JSON array value. Add and register the `CustomUserFactory` in the standalone app or Client app of a Hosted solution as shown in the [User-defined groups and AAD built-in Administrative Roles](#user-defined-groups-and-aad-built-in-administrative-roles) section.
+The `CustomUserFactory` shown in the [User-defined groups and AAD built-in Administrative Roles](#user-defined-groups-and-aad-built-in-administrative-roles) section is set up to act on a `roles` claim with a JSON array value. Add and register the `CustomUserFactory` in the standalone app or Client app of a Hosted solution as shown in the [User-defined groups and AAD built-in Administrative Roles](#user-defined-groups-and-aad-built-in-administrative-roles) section. There's no need to provide code to remove the original `roles` claim, as it is automatically removed by the framework.
 
 In `Program.Main` of the standalone app or Client app of a Hosted solution, specify the claim named "`roles`" as the role claim:
 
