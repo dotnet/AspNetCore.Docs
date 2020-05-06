@@ -24,6 +24,10 @@ In constrained environments, such as inside corporate networks or intranets, som
 * Doesn't apply in the constrained environment.
 * Isn't worth the cost to implement because the security risk is low in a constrained environment.
 
+## Blazor and shared state
+
+[!INCLUDE[](~/includes/blazor-security/blazor-shared-state.md)]
+
 ## Resource exhaustion
 
 Resource exhaustion can occur when a client interacts with the server and causes the server to consume excessive resources. Excessive resource consumption primarily affects:
