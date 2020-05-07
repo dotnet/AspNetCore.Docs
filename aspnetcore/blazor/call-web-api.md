@@ -174,7 +174,11 @@ In the following code, the Delete `<button>` element calls the `DeleteItem` meth
 
 When errors occur while interacting with a web API, they can be handled by developer code. For example, `GetFromJsonAsync` expects a JSON response from the server API with a `Content-Type` of `application/json`. If the response isn't in JSON format, content validation throws a <xref:System.NotSupportedException>.
 
-In the following example, the URI endpoint for the weather forecast data request is misspelled. The URI should be to `WeatherForecast` but appears in the call as `WeatherForcast` (missing "e"). The call expects JSON to be returned, but the server returns HTML for an unhandled exception on the server with a `Content-Type` of `text/html`. The call throws a <xref:System.NotSupportedException> when the response content is validated as non-JSON. The exception is caught in the `catch` block, where it could be logged or result in a friendly error message to the user.
+In the following example, the URI endpoint for the weather forecast data request is misspelled. The URI should be to `WeatherForecast` but appears in the call as `WeatherForcast` (missing "e").
+
+The call expects JSON to be returned, but the server returns HTML for an unhandled exception on the server with a `Content-Type` of `text/html`. The unhandled exception occurs on the server because the path isn't found and middleware can't serve a page or view for the request.
+
+The call throws a <xref:System.NotSupportedException> when the response content is validated as non-JSON. The exception is caught in the `catch` block, where custom logic could log the error or present a friendly error message to the user.
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -183,10 +187,6 @@ protected override async Task OnInitializedAsync()
     {
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>(
             "WeatherForcast");
-    }
-    catch (AccessTokenNotAvailableException exception)
-    {
-        exception.Redirect();
     }
     catch (NotSupportedException exception)
     {
