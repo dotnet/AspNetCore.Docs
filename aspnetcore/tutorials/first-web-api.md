@@ -248,6 +248,8 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
 
+Add Microsoft.EntityFrameworkCore.InMemory NuGet Package before proceeding.
+
 Update *Startup.cs* with the following highlighted code:
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApi/Startup.cs?highlight=7-8,23-24&name=snippet_all)]
@@ -261,7 +263,7 @@ The preceding code:
 ## Scaffold a controller
 
 # [Visual Studio](#tab/visual-studio)
-
+* Add Microsoft.VisualStudio.Web.CodeGeneration.Utils NuGet Package.
 * Right-click the *Controllers* folder.
 * Select **Add** > **New Scaffolded Item**.
 * Select **API Controller with actions, using Entity Framework**, and then select **Add**.
