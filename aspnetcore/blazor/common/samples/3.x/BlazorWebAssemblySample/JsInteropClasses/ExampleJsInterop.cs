@@ -10,26 +10,26 @@ namespace BlazorSample.JsInteropClasses
     #region snippet1
     public class ExampleJsInterop : IDisposable
     {
-        private readonly IJSRuntime _jsRuntime;
-        private DotNetObjectReference<HelloHelper> _objRef;
+        private readonly IJSRuntime jsRuntime;
+        private DotNetObjectReference<HelloHelper> objRef;
 
         public ExampleJsInterop(IJSRuntime jsRuntime)
         {
-            _jsRuntime = jsRuntime;
+            this.jsRuntime = jsRuntime;
         }
 
         public ValueTask<string> CallHelloHelperSayHello(string name)
         {
-            _objRef = DotNetObjectReference.Create(new HelloHelper(name));
+            objRef = DotNetObjectReference.Create(new HelloHelper(name));
 
-            return _jsRuntime.InvokeAsync<string>(
+            return jsRuntime.InvokeAsync<string>(
                 "exampleJsFunctions.sayHello",
-                _objRef);
+                objRef);
         }
 
         public void Dispose()
         {
-            _objRef?.Dispose();
+            objRef?.Dispose();
         }
     }
     #endregion

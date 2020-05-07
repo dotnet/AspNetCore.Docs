@@ -5,13 +5,13 @@
 <div class="form-group">
     <label>
         User:
-        <input @bind="_userInput" />
+        <input @bind="userInput" />
     </label>
 </div>
 <div class="form-group">
     <label>
         Message:
-        <input @bind="_messageInput" size="50" />
+        <input @bind="messageInput" size="50" />
     </label>
 </div>
 <button @onclick="Send" disabled="@(!IsConnected)">Send</button>
@@ -19,37 +19,37 @@
 <hr>
 
 <ul id="messagesList">
-    @foreach (var message in _messages)
+    @foreach (var message in messages)
     {
         <li>@message</li>
     }
 </ul>
 
 @code {
-    private HubConnection _hubConnection;
-    private List<string> _messages = new List<string>();
-    private string _userInput;
-    private string _messageInput;
+    private HubConnection hubConnection;
+    private List<string> messages = new List<string>();
+    private string userInput;
+    private string messageInput;
 
     protected override async Task OnInitializedAsync()
     {
-        _hubConnection = new HubConnectionBuilder()
+        hubConnection = new HubConnectionBuilder()
             .WithUrl(NavigationManager.ToAbsoluteUri("/chatHub"))
             .Build();
 
-        _hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+        hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
         {
             var encodedMsg = $"{user}: {message}";
-            _messages.Add(encodedMsg);
+            messages.Add(encodedMsg);
             StateHasChanged();
         });
 
-        await _hubConnection.StartAsync();
+        await hubConnection.StartAsync();
     }
 
     Task Send() =>
-        _hubConnection.SendAsync("SendMessage", _userInput, _messageInput);
+        hubConnection.SendAsync("SendMessage", userInput, messageInput);
 
     public bool IsConnected =>
-        _hubConnection.State == HubConnectionState.Connected;
+        hubConnection.State == HubConnectionState.Connected;
 }

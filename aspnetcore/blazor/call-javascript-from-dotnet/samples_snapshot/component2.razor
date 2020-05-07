@@ -1,14 +1,14 @@
 @inject IJSRuntime JSRuntime
 @using JsInteropClasses
 
-<input @ref="_username" />
+<input @ref="username" />
 <button @onclick="SetFocus">Set focus on username</button>
 
 @code {
-    private ElementReference _username;
+    private ElementReference username;
 
     public async Task SetFocus()
     {
-        await _username.Focus(JSRuntime);
+        await username.Focus(JSRuntime);
     }
 }
