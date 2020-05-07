@@ -288,7 +288,7 @@ To implement a cancelable background work pattern in a component:
 In the following example:
 
 * `await Task.Delay(5000, cts.Token);` represents long-running asynchronous background work.
-* `BackgroundResourceMethod` represents a long-running background method that shouldn't start if the `Resource` is disposed before the method starts.
+* `BackgroundResourceMethod` represents a long-running background method that shouldn't start if the `Resource` is disposed before the method is called.
 
 ```razor
 @implements IDisposable
