@@ -38,7 +38,7 @@ The sample app adds headers to control caching on subsequent requests:
 
 [!code-csharp[](middleware/samples_snippets/3.x/AddHeaders.cs)]
 
-The preceding middeware is not run when a controller, action, or Razor Page has a [[ResponseCache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute.
+<!-- make same change here once approved -->
 
 Response Caching Middleware only caches server responses that result in a 200 (OK) status code. Any other responses, including [error pages](xref:fundamentals/error-handling), are ignored by the middleware.
 
@@ -180,7 +180,10 @@ The sample app adds headers to control caching on subsequent requests:
 
 [!code-csharp[](middleware/samples_snippets/2.x/AddHeaders.cs)]
 
-The preceding middeware is not run when a controller, action, or Razor Page has a [[ResponseCache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute.
+The preceding headers are not written to the response and overriden when a controller, action, or Razor Page:
+
+* Has a [[ResponseCache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute.
+* The `[ResponseCache]` attribute doesn't contain [VaryByHeader](/aspnet/core/performance/caching/response#vary)
 
 Response Caching Middleware only caches server responses that result in a 200 (OK) status code. Any other responses, including [error pages](xref:fundamentals/error-handling), are ignored by the middleware.
 
