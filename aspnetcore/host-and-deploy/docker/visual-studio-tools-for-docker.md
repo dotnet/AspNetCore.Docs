@@ -83,7 +83,7 @@ Visual Studio 2017 versions 15.8 or later add an orchestration solution only whe
 
 * [Docker Compose](#docker-compose)
 * [Service Fabric](#service-fabric)
-* [HELM](https://helm.sh/)
+* [Kubernetes/Helm ](https://helm.sh/)
 
 ### Docker Compose
 
