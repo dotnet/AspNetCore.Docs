@@ -5,7 +5,7 @@ description: Learn how to use Razor component lifecycle methods in ASP.NET Core 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/06/2020
+ms.date: 05/07/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/lifecycle
 ---
@@ -271,6 +271,7 @@ For more information on the `RenderMode`, see <xref:blazor/hosting-model-configu
 
 Apps that perform long-running background work may need to cancel or suspend the background work. The following list indicates some of the reasons why background work items might require cancellation:
 
+* The user navigates away from the component and background asynchronous operations should be terminated, which doesn't occur automatically. Background operations may include network calls (<xref:System.Net.Http.HttpClient>) and interaction with databases. If background operations shouldn't persist after a user navigates away from a component, the operations should be terminated to conserve resources.
 * An executing background task was started with faulty input data or processing parameters.
 * The current set of executing background work items must be replaced with a new set of work items.
 * The priority of currently executing tasks must be changed.
@@ -283,48 +284,54 @@ To implement a cancelable background work pattern in a component:
 * On [disposal of the component](#component-disposal-with-idisposable) and at any point cancellation is desired, call [CancellationTokenSource.Cancel](xref:System.Threading.CancellationTokenSource.Cancel%2A) to signal that the background work should be cancelled.
 * After the asynchronous call returns, call `_cts.Token.ThrowIfCancellationRequested();`.
 
+In the following example:
+
+* `await Task.Delay(5000, cts.Token);` represents long-running background work.
+* `BackgroundResourceMethod` represents a long-running background method that shouldn't start if cancellation is requested.
+
 ```razor
 @implements IDisposable
 @using System.Threading
+
 <button @onclick="LongRunningWork">Trigger long running work</button>
 
 @code {
-    private Resource _resource = new Resource();
-    private CancellationTokenSource _cts = new CancellationTokenSource();
+    private Resource resource = new Resource();
+    private CancellationTokenSource cts = new CancellationTokenSource();
 
     protected async Task LongRunningWork()
     {
-        await Task.Delay(5000, _cts.Token);
-        _cts.Token.ThrowIfCancellationRequested();
-        _resource.DoSomething();
+        cts.Token.ThrowIfCancellationRequested();
+
+        await Task.Delay(5000, cts.Token);
+
+        resource.BackgroundResourceMethod();
     }
 
     public void Dispose()
     {
-        _cts.Cancel();
-        _resource?.Dispose();
+        cts.Cancel();
+        cts.Dispose();
+        resource.Dispose();
     }
 
     private class Resource : IDisposable
     {
-        private bool _disposed;
+        private bool disposed;
 
+        public void BackgroundResourceMethod()
+        {
+            if (disposed)
+            {
+                throw new ObjectDisposedException(nameof(Resource));
+            }
+            
+            ...
+        }
+        
         public void Dispose()
         {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException(nameof(Resource));
-            }
-
-            _disposed = true;
-        }
-
-        public void DoSomething()
-        {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException(nameof(Resource));
-            }
+            disposed = true;
         }
     }
 }
