@@ -171,7 +171,7 @@ Configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Buil
 
 [!code-csharp[](middleware/samples/2.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=14)]
 
-The sample app adds headers to control caching on subsequent requests:
+The sample app adds headers to control caching on subsequent requests. Note that this only has affect if there is no [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) in user for the request. If there is, it will overwrite any cache related headers:
 
 * [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2) &ndash; Caches cacheable responses for up to 10 seconds.
 * [Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4) &ndash; Configures the middleware to serve a cached response only if the [Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request.
