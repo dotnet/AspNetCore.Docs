@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/04/2020
+ms.date: 05/07/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/blazor/webassembly
 ---
@@ -68,6 +68,12 @@ For information on deploying to Azure App Service, see <xref:tutorials/publish-t
 A *standalone deployment* serves the Blazor WebAssembly app as a set of static files that are requested directly by clients. Any static file server is able to serve the Blazor app.
 
 Standalone deployment assets are published into the */bin/Release/{TARGET FRAMEWORK}/publish/wwwroot* folder.
+
+### Azure App Service
+
+Blazor WebAssembly apps can be deployed to Azure App Services on Windows, which hosts the app on [IIS](#iis).
+
+Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported because there isn't an available server in the Linux images to host the app. Work is in progress to enable this scenario.
 
 ### IIS
 
