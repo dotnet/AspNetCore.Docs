@@ -3,12 +3,12 @@
 @inject IProductRepository ProductRepository
 @inject ILogger<ProductDetails> Logger
 
-@if (_details != null)
+@if (details != null)
 {
-    <h1>@_details.ProductName</h1>
-    <p>@_details.Description</p>
+    <h1>@details.ProductName</h1>
+    <p>@details.Description</p>
 }
-else if (_loadFailed)
+else if (loadFailed)
 {
     <h1>Sorry, we could not load this product due to an error.</h1>
 }
@@ -18,8 +18,8 @@ else
 }
 
 @code {
-    private ProductDetails _details;
-    private bool _loadFailed;
+    private ProductDetails details;
+    private bool loadFailed;
 
     [Parameter]
     public int ProductId { get; set; }
@@ -28,12 +28,12 @@ else
     {
         try
         {
-            _loadFailed = false;
-            _details = await ProductRepository.GetProductByIdAsync(ProductId);
+            loadFailed = false;
+            details = await ProductRepository.GetProductByIdAsync(ProductId);
         }
         catch (Exception ex)
         {
-            _loadFailed = true;
+            loadFailed = true;
             Logger.LogWarning(ex, "Failed to load product {ProductId}", ProductId);
         }
     }
