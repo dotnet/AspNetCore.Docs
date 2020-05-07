@@ -173,10 +173,10 @@ A policy check can also be performed in code:
 
 <button @onclick="CheckPolicy">Check 'BillingAdministrator' policy</button>
 
-<p>Policy Message: @_policyMessage</p>
+<p>Policy Message: @policyMessage</p>
 
 @code {
-    private string _policyMessage = "Check hasn't been made yet.";
+    private string policyMessage = "Check hasn't been made yet.";
 
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
@@ -188,11 +188,11 @@ A policy check can also be performed in code:
         if ((await AuthorizationService.AuthorizeAsync(user, "BillingAdministrator"))
             .Succeeded)
         {
-            _policyMessage = "Yes! The 'BillingAdministrator' policy is met.";
+            policyMessage = "Yes! The 'BillingAdministrator' policy is met.";
         }
         else
         {
-            _policyMessage = "No! 'BillingAdministrator' policy is NOT met.";
+            policyMessage = "No! 'BillingAdministrator' policy is NOT met.";
         }
     }
 }
