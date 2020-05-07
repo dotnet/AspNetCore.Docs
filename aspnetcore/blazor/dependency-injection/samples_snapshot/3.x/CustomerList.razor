@@ -2,10 +2,10 @@
 @using Services
 @inject IDataAccess DataRepository
 
-@if (_customers != null)
+@if (customers != null)
 {
     <ul>
-        @foreach (var customer in _customers)
+        @foreach (var customer in customers)
         {
             <li>@customer.FirstName @customer.LastName</li>
         }
@@ -13,10 +13,10 @@
 }
 
 @code {
-    private IReadOnlyList<Customer> _customers;
+    private IReadOnlyList<Customer> customers;
 
     protected override async Task OnInitializedAsync()
     {
-        _customers = await DataRepository.GetAllCustomersAsync();
+        customers = await DataRepository.GetAllCustomersAsync();
     }
 }

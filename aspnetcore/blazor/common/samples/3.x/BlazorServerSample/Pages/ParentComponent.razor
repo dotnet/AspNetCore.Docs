@@ -8,14 +8,14 @@
     by the parent component.
 </ChildComponent>
 
-<p><b>@_messageText</b></p>
+<p><b>@messageText</b></p>
 
 @code {
-    private string _messageText;
+    private string messageText;
 
     private void ShowMessage(MouseEventArgs e)
     {
-        _messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
+        messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
     }
 }
 
@@ -37,14 +37,14 @@
     Content of the child component is supplied by the parent component.
 &lt;/ChildComponent&gt;
 
-&lt;p&gt;&lt;b&gt;@@_messageText&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;@@messageText&lt;/b&gt;&lt;/p&gt;
     
 @@code {
-    private string _messageText;
+    private string messageText;
 
     private void ShowMessage(MouseEventArgs e)
     {
-        _messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
+        messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
     }
 }</code></pre>
 

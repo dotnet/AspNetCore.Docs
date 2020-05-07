@@ -1,19 +1,19 @@
 @inject IJSRuntime JSRuntime
 @using JsInteropClasses
 
-<input @ref="_username" />
+<input @ref="username" />
 <button @onclick="OnClickMethod">Do something generic</button>
 
 <p>
-    _returnValue: @_returnValue
+    returnValue: @returnValue
 </p>
 
 @code {
-    private ElementReference _username;
-    private string _returnValue;
+    private ElementReference username;
+    private string returnValue;
 
     private async Task OnClickMethod()
     {
-        _returnValue = await _username.GenericMethod<string>(JSRuntime);
+        returnValue = await username.GenericMethod<string>(JSRuntime);
     }
 }

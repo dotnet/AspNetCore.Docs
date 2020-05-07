@@ -28,10 +28,8 @@ namespace ContosoUniversity.Data
                 new Student{FirstMidName="Laura",LastName="Norman",EnrollmentDate=DateTime.Parse("2018-09-01")},
                 new Student{FirstMidName="Nino",LastName="Olivetto",EnrollmentDate=DateTime.Parse("2019-09-01")}
             };
-            foreach (Student s in students)
-            {
-                context.Students.Add(s);
-            }
+
+            context.Students.AddRange(students);
             context.SaveChanges();
 
             var courses = new Course[]
@@ -44,10 +42,8 @@ namespace ContosoUniversity.Data
                 new Course{CourseID=2021,Title="Composition",Credits=3},
                 new Course{CourseID=2042,Title="Literature",Credits=4}
             };
-            foreach (Course c in courses)
-            {
-                context.Courses.Add(c);
-            }
+
+            context.Courses.AddRange(courses);
             context.SaveChanges();
 
             var enrollments = new Enrollment[]
@@ -65,10 +61,8 @@ namespace ContosoUniversity.Data
                 new Enrollment{StudentID=6,CourseID=1045},
                 new Enrollment{StudentID=7,CourseID=3141,Grade=Grade.A},
             };
-            foreach (Enrollment e in enrollments)
-            {
-                context.Enrollments.Add(e);
-            }
+
+            context.Enrollments.AddRange(enrollments);
             context.SaveChanges();
         }
     }
