@@ -172,7 +172,7 @@ In the following code, the Delete `<button>` element calls the `DeleteItem` meth
 
 ## Handle errors
 
-When errors occur when interacting with a web API, they can be handled by developer code. For example, `GetFromJsonAsync` expects JSON from the server API, a `Content-Type` of `application/json`. If the response isn't JSON, content validation throws a <xref:System.NotSupportedException>.
+When errors occur while interacting with a web API, they can be handled by developer code. For example, `GetFromJsonAsync` expects JSON from the server API, a `Content-Type` of `application/json`. If the response isn't JSON, content validation throws a <xref:System.NotSupportedException>.
 
 In the following example, the URI endpoint for the weather forecast data request is misspelled. The URI should be to `WeatherForecast` but appears in the call as `WeatherForcast` (missing "e"). The call expects JSON to be returned, but the server returns HTML for an unhandled exception on the server with a `Content-Type` of `text/html`. The call throws a <xref:System.NotSupportedException> when the response content is validated as non-JSON. The exception is caught in the `catch` block, where it could be logged or result in a friendly error message to the user.
 
