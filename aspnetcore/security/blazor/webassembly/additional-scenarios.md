@@ -604,7 +604,7 @@ Register the `CustomAccountFactory` for the authentication provider in use. Any 
       CustomUserAccount, CustomAccountFactory>();
   ```
 
-* `AddMsalAthentication`:
+* `AddMsalAuthentication`:
 
   ```csharp
   using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
