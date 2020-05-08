@@ -586,18 +586,55 @@ public class CustomAccountFactory
 }
 ```
 
-Register services to use the `CustomAccountFactory`:
+Register the `CustomAccountFactory` factory for the authentication provider in use. Any of the following registrations are valid: 
 
-```csharp
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+* `AddOidcAuthentication`:
 
-...
+  ```csharp
+  using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
-builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
-    CustomUserAccount>()
-    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, 
-        CustomUserAccount, CustomAccountFactory>();
-```
+  ...
+
+  builder.Services.AddOidcAuthentication<RemoteAuthenticationState, 
+      CustomUserAccount>(options =>
+  {
+      ...
+  })
+  .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, 
+      CustomUserAccount, CustomAccountFactory>();
+  ```
+
+* `AddMsalAthentication`:
+
+  ```csharp
+  using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+  ...
+
+  builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
+      CustomUserAccount>(options =>
+  {
+      ...
+  })
+  .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, 
+      CustomUserAccount, CustomAccountFactory>();
+  ```
+  
+* `AddApiAuthorization`:
+
+  ```csharp
+  using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+  ...
+
+  builder.Services.AddApiAuthorization<RemoteAuthenticationState, 
+      CustomUserAccount>(options =>
+  {
+      ...
+  })
+  .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, 
+      CustomUserAccount, CustomAccountFactory>();
+  ```
 
 ## Support prerendering with authentication
 
