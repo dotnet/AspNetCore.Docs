@@ -7,7 +7,7 @@ ms.date: 07/16/2018
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/implementation/key-encryption-at-rest
 ---
-# Key encryption At rest in Windows and Azure using ASP.NET Core
+# Key encryption at rest in Windows and Azure using ASP.NET Core
 
 The data protection system [employs a discovery mechanism by default](xref:security/data-protection/configuration/default-settings) to determine how cryptographic keys should be encrypted at rest. The developer can override the discovery mechanism and manually specify how keys should be encrypted at rest.
 
