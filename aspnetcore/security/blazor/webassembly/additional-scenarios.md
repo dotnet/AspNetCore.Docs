@@ -586,7 +586,7 @@ public class CustomAccountFactory
 }
 ```
 
-Register the `CustomAccountFactory` factory for the authentication provider in use. Any of the following registrations are valid: 
+Register the `CustomAccountFactory` for the authentication provider in use. Any of the following registrations are valid: 
 
 * `AddOidcAuthentication`:
 
