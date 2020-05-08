@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly to use Azure Active Direc
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/06/2020
+ms.date: 05/08/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/aad-groups-roles
 ---
@@ -27,28 +27,29 @@ Azure Active Directory (AAD) provides several authorization approaches that can 
   * Built-in Administrative Roles
   * User-defined roles
 
-The guidance in this article applies to the AAD deployment scenarios described in the following topics:
+The guidance in this article applies to the Blazor WebAssembly AAD deployment scenarios described in the following topics:
 
-* <xref:security/blazor/webassembly/standalone-with-microsoft-accounts>
-* <xref:security/blazor/webassembly/standalone-with-azure-active-directory>
-* <xref:security/blazor/webassembly/hosted-with-azure-active-directory>
+* [Standalone with Microsoft Accounts](xref:security/blazor/webassembly/standalone-with-microsoft-accounts)
+* [Standalone with AAD](xref:security/blazor/webassembly/standalone-with-azure-active-directory)
+* [Hosted with AAD](xref:security/blazor/webassembly/hosted-with-azure-active-directory)
 
-### User-defined groups and AAD built-in Administrative Roles
+### User-defined groups and built-in Administrative Roles
 
 To configure the app in the Azure portal to provide a `groups` membership claim, see the following Azure articles. Assign users to user-defined AAD groups and built-in Administrative Roles.
 
 * [Roles using Azure AD security groups](/azure/architecture/multitenant-identity/app-roles#roles-using-azure-ad-security-groups)
 * [groupMembershipClaims attribute](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute)
 
-The following examples assume that a user is assigned to the AAD built-in **Billing Administrator** Role.
+The following examples assume that a user is assigned to the AAD built-in *Billing Administrator* role.
 
-The `groups` claim sent by AAD presents the user's groups and roles as Object IDs (GUIDs) in a JSON array. The app must convert the JSON array of groups and roles into individual `group` claims that the app can build [policies](xref:security/authorization/policies) against.
+The single `groups` claim sent by AAD presents the user's groups and roles as Object IDs (GUIDs) in a JSON array. The app must convert the JSON array of groups and roles into individual `group` claims that the app can build [policies](xref:security/authorization/policies) against.
 
 Extend `RemoteUserAccount` to include array properties for groups and roles.
 
 *CustomUserAccount.cs*:
 
 ```csharp
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 public class CustomUserAccount : RemoteUserAccount
@@ -61,7 +62,7 @@ public class CustomUserAccount : RemoteUserAccount
 }
 ```
 
-Create a custom user factory in the standalone app or Client app of a Hosted solution. The following factory is set up to handle both groups and roles claim arrays:
+Create a custom user factory in the standalone app or Client app of a Hosted solution. The following factory is also configured to handle `roles` claim arrays, which are covered in the [User-defined roles](#user-defined-roles) section:
 
 ```csharp
 using System.Security.Claims;
@@ -105,25 +106,25 @@ public class CustomUserFactory
 }
 ```
 
-There's no need to provide code to remove the original `groups` claim, as it is automatically removed by the framework.
+There's no need to provide code to remove the original `groups` claim because it's automatically removed by the framework.
 
 Register the factory in `Program.Main` (*Program.cs*) of the standalone app or Client app of a Hosted solution:
 
 ```csharp
 builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
     CustomUserAccount>(options =>
-    {
-        builder.Configuration.Bind("AzureAd", 
-            options.ProviderOptions.Authentication);
-        options.ProviderOptions.DefaultAccessTokenScopes.Add("...");
+{
+    builder.Configuration.Bind("AzureAd", 
+        options.ProviderOptions.Authentication);
+    options.ProviderOptions.DefaultAccessTokenScopes.Add("...");
     
-        ...
-    })
+    ...
+})
 .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, CustomUserAccount, 
     CustomUserFactory>();
 ```
 
-Create a [policy](xref:security/authorization/policies) for each group or role in `Program.Main`. The following example creates a policy for the AAD built-in Billing Administrator Role:
+Create a [policy](xref:security/authorization/policies) for each group or role in `Program.Main`. The following example creates a policy for the AAD built-in *Billing Administrator* role:
 
 ```csharp
 builder.Services.AddAuthorizationCore(options =>
@@ -137,20 +138,26 @@ For the complete list of AAD role Object IDs, see the [AAD Adminstrative Role Gr
 
 In the following examples, the app uses the preceding policy to authorize the user.
 
-The `AuthorizeView` component works with the policy:
+The [AuthorizeView component](xref:security/blazor/index#authorizeview-component) works with the policy:
 
 ```razor
 <AuthorizeView Policy="BillingAdministrator">
     <Authorized>
-        <p>The user is in the 'Billing Adminstrator' AAD Administrative Role.</p>
+        <p>
+            The user is in the 'Billing Administrator' AAD Administrative Role
+            and can see this content.
+        </p>
     </Authorized>
     <NotAuthorized>
-        <p>You aren't authorized to see this content.</p>
+        <p>
+            The user is NOT in the 'Billing Administrator' role and sees this
+            content.
+        </p>
     </NotAuthorized>
 </AuthorizeView>
 ```
 
-Access to a component can be based on the policy:
+Access to an entire component can be based on the policy using the [`[Authorize]` attribute directive](xref:security/blazor/index#authorize-attribute) directive:
 
 ```razor
 @page "/"
@@ -160,7 +167,7 @@ Access to a component can be based on the policy:
 
 If the user isn't logged in, they're redirected to the AAD sign-in page and then back to the component after they sign in.
 
-A policy check can also be performed in code:
+A policy check can also be [performed in code with procedural logic](xref:security/blazor/index#procedural-logic):
 
 ```razor
 @page "/checkpolicy"
@@ -185,8 +192,8 @@ A policy check can also be performed in code:
     {
         var user = (await authenticationStateTask).User;
 
-        if ((await AuthorizationService.AuthorizeAsync(user, "BillingAdministrator"))
-            .Succeeded)
+        if ((await AuthorizationService.AuthorizeAsync(user, 
+            "BillingAdministrator")).Succeeded)
         {
             policyMessage = "Yes! The 'BillingAdministrator' policy is met.";
         }
@@ -200,9 +207,9 @@ A policy check can also be performed in code:
 
 ### User-defined roles
 
-An AAD-registered app can also be configured to use user-defined roles:
+An AAD-registered app can also be configured to use user-defined roles.
 
-To configure the app in the Azure portal to provide a `roles` membership claim, see [How to: Add app roles in your application and receive them in the token (Azure documentation)](/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps).
+To configure the app in the Azure portal to provide a `roles` membership claim, see [How to: Add app roles in your application and receive them in the token](/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps) in the Azure documentation.
 
 The following example assumes that an app is configured with two roles:
 
@@ -214,9 +221,9 @@ The following example assumes that an app is configured with two roles:
 >
 > Multiple roles are assigned in the Azure portal by **_re-adding a user_** for each additional role assignment.
 
-The `roles` claim sent by AAD presents the user-defined roles as the `appRoles`'s `value`s in a JSON array. The app must convert the JSON array of roles into individual `role` claims.
+The single `roles` claim sent by AAD presents the user-defined roles as the `appRoles`'s `value`s in a JSON array. The app must convert the JSON array of roles into individual `role` claims.
 
-The `CustomUserFactory` shown in the [User-defined groups and AAD built-in Administrative Roles](#user-defined-groups-and-aad-built-in-administrative-roles) section is set up to act on a `roles` claim with a JSON array value. Add and register the `CustomUserFactory` in the standalone app or Client app of a Hosted solution as shown in the [User-defined groups and AAD built-in Administrative Roles](#user-defined-groups-and-aad-built-in-administrative-roles) section. There's no need to provide code to remove the original `roles` claim, as it is automatically removed by the framework.
+The `CustomUserFactory` shown in the [User-defined groups and AAD built-in Administrative Roles](#user-defined-groups-and-built-in-administrative-roles) section is set up to act on a `roles` claim with a JSON array value. Add and register the `CustomUserFactory` in the standalone app or Client app of a Hosted solution as shown in the [User-defined groups and AAD built-in Administrative Roles](#user-defined-groups-and-built-in-administrative-roles) section. There's no need to provide code to remove the original `roles` claim because it's automatically removed by the framework.
 
 In `Program.Main` of the standalone app or Client app of a Hosted solution, specify the claim named "`role`" as the role claim:
 
@@ -229,24 +236,24 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-Component authorization approaches are functional at this point. The following examples use the `admin` role to authorize the user:
+Component authorization approaches are functional at this point. Any of the authorization mechanisms in components can use the `admin` role to authorize the user:
 
-* `<AuthorizeView Roles="admin">`
-* `@attribute [Authorize(Roles = "admin")]`
-* `if (user.IsInRole("admin")) { ... }`
+* [AuthorizeView component](xref:security/blazor/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)
+* [`[Authorize]` attribute directive](xref:security/blazor/index#authorize-attribute) (Example: `@attribute [Authorize(Roles = "admin")]`)
+* [Procedural logic](xref:security/blazor/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)
 
-Multiple role tests are supported:
+  Multiple role tests are supported:
 
-```csharp
-if (user.IsInRole("admin") && user.IsInRole("developer"))
-{
-    ...
-}
-```
+  ```csharp
+  if (user.IsInRole("admin") && user.IsInRole("developer"))
+  {
+      ...
+  }
+  ```
 
 ## AAD Adminstrative Role Group IDs
 
-The Object IDs presented in the following table are used to create [policies](xref:security/authorization/policies) for `group` claims. The policies permit an app to authorize users for various activities in an app.
+The Object IDs presented in the following table are used to create [policies](xref:security/authorization/policies) for `group` claims. Policies permit an app to authorize users for various activities in an app. For more information, see the [User-defined groups and AAD built-in Administrative Roles](#user-defined-groups-and-built-in-administrative-roles) section.
 
 AAD Administrative Role | Object ID
 --- | ---
