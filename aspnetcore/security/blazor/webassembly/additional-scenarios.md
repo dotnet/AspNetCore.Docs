@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/04/2020
+ms.date: 05/08/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/additional-scenarios
 ---
@@ -543,7 +543,7 @@ Create a class that extends the `RemoteUserAccount` class:
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
-public class OidcAccount : RemoteUserAccount
+public class CustomUserAccount : RemoteUserAccount
 {
     [JsonPropertyName("amr")]
     public string[] AuthenticationMethod { get; set; }
@@ -560,7 +560,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 
 public class CustomAccountFactory 
-    : AccountClaimsPrincipalFactory<OidcAccount>
+    : AccountClaimsPrincipalFactory<CustomUserAccount>
 {
     public CustomAccountFactory(NavigationManager navigationManager, 
         IAccessTokenProviderAccessor accessor) : base(accessor)
@@ -568,7 +568,7 @@ public class CustomAccountFactory
     }
   
     public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
-        OidcAccount account, RemoteAuthenticationUserOptions options)
+        CustomUserAccount account, RemoteAuthenticationUserOptions options)
     {
         var initialUser = await base.CreateUserAsync(account, options);
         
@@ -593,9 +593,10 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-builder.Services.AddApiAuthorization<RemoteAuthenticationState, OidcAccount>()
-    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, OidcAccount, 
-        CustomAccountFactory>();
+builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
+    CustomUserAccount>()
+    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, 
+        CustomUserAccount, CustomAccountFactory>();
 ```
 
 ## Support prerendering with authentication
