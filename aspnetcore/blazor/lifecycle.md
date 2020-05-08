@@ -5,7 +5,7 @@ description: Learn how to use Razor component lifecycle methods in ASP.NET Core 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 05/07/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/lifecycle
 ---
@@ -266,3 +266,73 @@ For more information on the `RenderMode`, see <xref:blazor/hosting-model-configu
 ## Detect when the app is prerendering
 
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
+
+## Cancelable background work
+
+Components often perform long-running background work, such as making network calls (<xref:System.Net.Http.HttpClient>) and interacting with databases. It's desirable to stop the background work to conserve system resources in several situations. For example, background asynchronous operations don't automatically stop when a user navigates away from a component.
+
+Other reasons why background work items might require cancellation include:
+
+* An executing background task was started with faulty input data or processing parameters.
+* The current set of executing background work items must be replaced with a new set of work items.
+* The priority of currently executing tasks must be changed.
+* The app has to be shut down in order to redeploy it to the server.
+* Server resources become limited, necessitating the rescheduling of backgound work items.
+
+To implement a cancelable background work pattern in a component:
+
+* Use a <xref:System.Threading.CancellationTokenSource> and <xref:System.Threading.CancellationToken>.
+* On [disposal of the component](#component-disposal-with-idisposable) and at any point cancellation is desired by manually cancelling the token, call [CancellationTokenSource.Cancel](xref:System.Threading.CancellationTokenSource.Cancel%2A) to signal that the background work should be cancelled.
+* After the asynchronous call returns, call <xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A> on the token.
+
+In the following example:
+
+* `await Task.Delay(5000, cts.Token);` represents long-running asynchronous background work.
+* `BackgroundResourceMethod` represents a long-running background method that shouldn't start if the `Resource` is disposed before the method is called.
+
+```razor
+@implements IDisposable
+@using System.Threading
+
+<button @onclick="LongRunningWork">Trigger long running work</button>
+
+@code {
+    private Resource resource = new Resource();
+    private CancellationTokenSource cts = new CancellationTokenSource();
+
+    protected async Task LongRunningWork()
+    {
+        await Task.Delay(5000, cts.Token);
+
+        cts.Token.ThrowIfCancellationRequested();
+        resource.BackgroundResourceMethod();
+    }
+
+    public void Dispose()
+    {
+        cts.Cancel();
+        cts.Dispose();
+        resource.Dispose();
+    }
+
+    private class Resource : IDisposable
+    {
+        private bool disposed;
+
+        public void BackgroundResourceMethod()
+        {
+            if (disposed)
+            {
+                throw new ObjectDisposedException(nameof(Resource));
+            }
+            
+            ...
+        }
+        
+        public void Dispose()
+        {
+            disposed = true;
+        }
+    }
+}
+```
