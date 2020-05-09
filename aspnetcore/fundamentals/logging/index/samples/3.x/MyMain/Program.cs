@@ -9,7 +9,6 @@ using Microsoft.Extensions.Logging.Debug;
 using Microsoft.Extensions.Logging.EventLog;
 using MyMain;
 
-
 #if FilterCode
 #region snippet_FilterInCode
     public class Program
@@ -18,10 +17,11 @@ using MyMain;
         {
             CreateHostBuilder(args).Build().Run();
         }
+
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(log =>
-                   log.AddFilter("System", LogLevel.Debug)
+                .ConfigureLogging(logging =>
+                   logging.AddFilter("System", LogLevel.Debug)
                       .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Information)
                       .AddFilter<ConsoleLoggerProvider>("Microsoft", LogLevel.Trace))
                 .ConfigureWebHostDefaults(webBuilder =>
@@ -39,23 +39,22 @@ public class Program
     {
         CreateHostBuilder(args).Build().Run();
     }
+
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
-            .ConfigureLogging(logBuilder =>
+            .ConfigureLogging(logging =>
             {
-                logBuilder.AddFilter((provider, category, logLevel) =>
+                logging.AddFilter((provider, category, logLevel) =>
                 {
                     if (provider.Contains("ConsoleLoggerProvider")
                         && category.Contains("Controller")
-                        && logLevel >= LogLevel.Information
-                        )
+                        && logLevel >= LogLevel.Information)
                     {
                         return true;
                     }
                     else if (provider.Contains("ConsoleLoggerProvider")
                         && category.Contains("Microsoft")
-                        && logLevel >= LogLevel.Information
-                        )
+                        && logLevel >= LogLevel.Information)
                     {
                         return true;
                     }
@@ -63,7 +62,6 @@ public class Program
                     {
                         return false;
                     }
-                    
                 });
             })
             .ConfigureWebHostDefaults(webBuilder =>
@@ -81,6 +79,7 @@ public class Program
     {
         CreateHostBuilder(args).Build().Run();
     }
+
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
             .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning))
@@ -99,6 +98,7 @@ public class Scopes
     {
         CreateHostBuilder(args).Build().Run();
     }
+
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
             .ConfigureLogging((hostingContext, logging) =>
@@ -127,18 +127,18 @@ public class Scopes
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-            .ConfigureLogging(logging => logging.AddAzureWebAppDiagnostics())
-            .ConfigureServices(serviceCollection => serviceCollection
-                .Configure<AzureFileLoggerOptions>(options =>
-                {
-                    options.FileName = "azure-diagnostics-";
-                    options.FileSizeLimit = 50 * 1024;
-                    options.RetainedFileCountLimit = 5;
-                }).Configure<AzureBlobLoggerOptions>(options =>
-                {
-                    options.BlobName = "log.txt";
-                })
-            )
+                .ConfigureLogging(logging => logging.AddAzureWebAppDiagnostics())
+                .ConfigureServices(serviceCollection => serviceCollection
+                    .Configure<AzureFileLoggerOptions>(options =>
+                    {
+                        options.FileName = "azure-diagnostics-";
+                        options.FileSizeLimit = 50 * 1024;
+                        options.RetainedFileCountLimit = 5;
+                    })
+                    .Configure<AzureBlobLoggerOptions>(options =>
+                    {
+                        options.BlobName = "log.txt";
+                    }))
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
@@ -158,13 +158,13 @@ public class Program
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
-        .ConfigureLogging(logging =>
-        {
-            logging.AddEventLog(eventLogSettings =>
+            .ConfigureLogging(logging =>
             {
-              eventLogSettings.SourceName = "MyLogs"; 
-            });
-        })
+                logging.AddEventLog(eventLogSettings =>
+                {
+                    eventLogSettings.SourceName = "MyLogs"; 
+                });
+            })
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseStartup<Startup>();

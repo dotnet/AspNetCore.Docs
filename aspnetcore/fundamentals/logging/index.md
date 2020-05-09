@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use the logging framework provided by the Microsoft.Extensions.Logging NuGet package.
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/8/2020
+ms.date: 5/9/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/logging/index
 ---
@@ -328,7 +328,7 @@ With the preceding setup, navigating to the privacy or home page produces many `
 
 The following code sets the default log level when the default log level is not set in configuration:
 
-[!code-csharp[](index/samples/3.x/MyMain/Program.cs?name=snippet_MinLevel&highlight=9)]
+[!code-csharp[](index/samples/3.x/MyMain/Program.cs?name=snippet_MinLevel&highlight=10)]
 
 <!-- review required: I say this a couple times -->
 Generally, log levels should be specified in configuration and not code.
@@ -405,8 +405,7 @@ ASP.NET Core includes the following logging providers:
 * [Debug](#debug-provider)
 * [EventSource](#event-source-provider)
 * [EventLog](#welog)
-* [AzureAppServicesFile](#azure-app-service-provider)
-* [AzureAppServicesBlob](#azure-app-service-provider)
+* [AzureAppServicesFile and AzureAppServicesBlob](#azure-app-service)
 * [ApplicationInsights](#azure-application-insights)
 
 For information on `stdout` and debug logging with the ASP.NET Core Module, see <xref:test/troubleshoot-azure-iis> and <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
@@ -640,7 +639,7 @@ Logging code for apps without Generic Host differs in the way [providers are add
 
 In a non-host console app, call the provider's `Add{provider name}` extension method while creating a `LoggerFactory`:
 
-[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=1,7)]
+[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=11-12)]
 
 ### Create logs
 
@@ -648,11 +647,11 @@ To create logs, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object. U
 
 The following example creates a logger with `LoggingConsoleApp.Program` as the category.
 
-[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=10)]
+[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=14)]
 
 In the following ASP.NET CORE examples, the logger is used to create logs with `Information` as the level. The Log *level* indicates the severity of the logged event.
 
-[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=11)]
+[!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=15)]
 
 [Levels](#log-level) and [categories](#log-category) are explained in more detail in this document.
 
