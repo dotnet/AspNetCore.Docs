@@ -17,7 +17,7 @@ This tutorial shows you how to enable users to sign in with their Google account
 ## Create a Google API Console project and client ID
 
 * Install [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google).
-* Navigate to [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/devconsole-project) and select **CONFIGURE A PROJECT**.
+* Navigate to [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/sign-in) and select **Configure a project**.
 * In the **Configure your OAuth client** dialog, select **Web server**.
 * In the **Authorized redirect URIs** text entry box, set the redirect URI. For example, `https://localhost:44312/signin-google`
 * Save the **Client ID** and **Client Secret**.
