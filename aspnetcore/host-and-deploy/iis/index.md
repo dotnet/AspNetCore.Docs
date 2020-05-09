@@ -667,7 +667,11 @@ Use a 64-bit (x64) .NET Core SDK to publish a 64-bit app. A 64-bit runtime must 
 
 ### In-process hosting model
 
-Using in-process hosting, an ASP.NET Core app runs in the same process as its IIS worker process. In-process hosting provides improved performance over out-of-process hosting because requests aren't proxied over the loopback adapter, a network interface that returns outgoing network traffic back to the same machine. IIS handles process management with the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
+Using in-process hosting, an ASP.NET Core app runs in the same process as its IIS worker process. In-process hosting provides improved performance over out-of-process hosting because:
+
+* Requests aren't proxied over the loopback adapter. A loopback adapter is a network interface that returns outgoing network traffic back to the same machine.
+
+IIS handles process management with the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
 The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module):
 
