@@ -188,7 +188,7 @@ Sensitive files exist on the app's physical path, such as *\<assembly>.runtimeco
 
 ### Transform web.config
 
-If you need to transform *web.config* on publish (for example, set environment variables based on the configuration, profile, or environment), see <xref:host-and-deploy/iis/transform-webconfig>.
+If you need to transform *web.config* on publish, see <xref:host-and-deploy/iis/transform-webconfig>. You might need to transform *web.config* on publish to set environment variables based on the configuration, profile, or environment.
 
 ## IIS configuration
 

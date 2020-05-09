@@ -802,7 +802,7 @@
     - name: IIS
       displayName: deploy, publish
       items:
-        - name: Overview
+        - name: Host and deploy on IIS
           displayName: deploy, publish
           uid: host-and-deploy/iis/index
         - name: Publish to IIS tutorial
