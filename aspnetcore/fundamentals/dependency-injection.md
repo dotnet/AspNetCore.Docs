@@ -535,6 +535,10 @@ Like all sets of recommendations, you may encounter situations where ignoring a 
 
 DI is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI if you mix it with static object access.
 
+## Recommended patterns for multi-tenancy in DI
+
+[Orchard Core](https://github.com/OrchardCMS/OrchardCore) provides multi-tenancy.
+
 ## Additional resources
 
 * <xref:mvc/views/dependency-injection>
