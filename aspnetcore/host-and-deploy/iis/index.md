@@ -66,22 +66,26 @@ The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module):
   * Calls `Program.Main`.
 * Handles the lifetime of the IIS native request.
 
-The in-process hosting model isn't supported for ASP.NET Core apps that target the .NET Framework.
-
 The following diagram illustrates the relationship between IIS, the ASP.NET Core Module, and an app hosted in-process:
 
 ![ASP.NET Core Module in the in-process hosting scenario](index/_static/ancm-inprocess.png)
 
-A request arrives from the web to the kernel-mode HTTP.sys driver. The driver routes the native request to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The ASP.NET Core Module receives the native request and passes it to IIS HTTP Server (`IISHttpServer`). IIS HTTP Server is an in-process server implementation for IIS that converts the request from native to managed.
+1. A request arrives from the web to the kernel-mode HTTP.sys driver.
+1. The driver routes the native request to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS).
+1. The ASP.NET Core Module receives the native request and passes it to IIS HTTP Server (`IISHttpServer`). IIS HTTP Server is an in-process server implementation for IIS that converts the request from native to managed.
 
-After the IIS HTTP Server processes the request, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. The app's response is passed back to IIS through IIS HTTP Server. IIS sends the response to the client that initiated the request.
+After the IIS HTTP Server processes the request:
 
-In-process hosting is opt-in for existing apps, but [dotnet new](/dotnet/core/tools/dotnet-new) templates default to the in-process hosting model for all IIS and IIS Express scenarios.
+1. The request is sent to the ASP.NET Core middleware pipeline.
+1. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic.
+1. The app's response is passed back to IIS through IIS HTTP Server.
+1. IIS sends the response to the client that initiated the request.
 
-`CreateDefaultBuilder` adds an <xref:Microsoft.AspNetCore.Hosting.Server.IServer> instance by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> method to boot the [CoreCLR](/dotnet/standard/glossary#coreclr) and host the app inside of the IIS worker process (*w3wp.exe* or *iisexpress.exe*). Performance tests indicate that hosting a .NET Core app in-process delivers significantly higher request throughput compared to hosting the app out-of-process and proxying requests to [Kestrel](xref:fundamentals/servers/kestrel) server.
+In-process hosting is opt-in for existing apps. The ASP.NET Core web templates use the in-process hosting model.
 
-> [!NOTE]
-> Apps published as a single file executable can't be loaded by the in-process hosting model.
+`CreateDefaultBuilder` adds an <xref:Microsoft.AspNetCore.Hosting.Server.IServer> instance by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> method to boot the [CoreCLR](/dotnet/standard/glossary#coreclr) and host the app inside of the IIS worker process (*w3wp.exe* or *iisexpress.exe*). Performance tests indicate that hosting a .NET Core app in-process delivers significantly higher request throughput compared to hosting the app out-of-process and proxying requests to [Kestrel](xref:fundamentals/servers/kestrel).
+
+Apps published as a single file executable can't be loaded by the in-process hosting model.
 
 ### Out-of-process hosting model
 
@@ -91,11 +95,14 @@ The following diagram illustrates the relationship between IIS, the ASP.NET Core
 
 ![ASP.NET Core Module in the out-of-process hosting scenario](index/_static/ancm-outofprocess.png)
 
-Requests arrive from the web to the kernel-mode HTTP.sys driver. The driver routes the requests to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module forwards the requests to Kestrel on a random port for the app, which isn't port 80 or 443.
+1. Requests arrive from the web to the kernel-mode HTTP.sys driver.
+1. The driver routes the requests to IIS on the website's configured port. The configured port is usually 80 (HTTP) or 443 (HTTPS).
+1. The module forwards the requests to Kestrel on a random port for the app. The random port isn't 80 or 443.
 
-The module specifies the port via an environment variable at startup, and the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> extension configures the server to listen on `http://localhost:{PORT}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
+<!-- make this a bullet list -->
+The ASP.NET Core Module specifies the port via an environment variable at startup. The <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> extension configures the server to listen on `http://localhost:{PORT}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding. Requests are forwarded over HTTP even if received by IIS over HTTPS.
 
-After Kestrel picks up the request from the module, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. Middleware added by IIS Integration updates the scheme, remote IP, and pathbase to account for forwarding the request to Kestrel. The app's response is passed back to IIS, which pushes it back out to the HTTP client that initiated the request.
+After Kestrel picks up the request from the module, the request is forwarded into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. Middleware added by IIS Integration updates the scheme, remote IP, and pathbase to account for forwarding the request to Kestrel. The app's response is passed back to IIS, which forwards it back to the HTTP client that initiated the request.
 
 For ASP.NET Core Module configuration guidance, see <xref:host-and-deploy/aspnet-core-module>.
 
@@ -154,7 +161,14 @@ services.Configure<IISOptions>(options =>
 
 ### Proxy server and load balancer scenarios
 
-The [IIS Integration Middleware](#enable-the-iisintegration-components), which configures Forwarded Headers Middleware, and the ASP.NET Core Module are configured to forward the scheme (HTTP/HTTPS) and the remote IP address where the request originated. Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+The [IIS Integration Middleware](#enable-the-iisintegration-components) and the ASP.NET Core Module are configured to forward the:
+
+* Scheme (HTTP/HTTPS).
+* Remote IP address where the request originated.
+
+The [IIS Integration Middleware](#enable-the-iisintegration-components) configures Forwarded Headers Middleware.
+
+Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
 
 ### web.config file
 
