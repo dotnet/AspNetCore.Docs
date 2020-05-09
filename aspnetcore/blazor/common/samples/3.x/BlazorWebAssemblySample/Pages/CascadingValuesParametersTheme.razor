@@ -4,21 +4,21 @@
 
 <h1>Cascading Values & Parameters - Theme</h1>
 
-<p>Current count: @_currentCount</p>
+<p>Current count: @currentCount</p>
 
 <p><button class="btn btn-primary" @onclick="IncrementCount">Increment Counter (Unthemed)</button></p>
 
 <p><button class="btn @ThemeInfo.ButtonClass" @onclick="IncrementCount">Increment Counter (Themed)</button></p>
 
 @code {
-    private int _currentCount = 0;
+    private int currentCount = 0;
 
     [CascadingParameter]
     protected ThemeInfo ThemeInfo { get; set; }
 
     private void IncrementCount()
     {
-        _currentCount++;
+        currentCount++;
     }
 }
 
@@ -32,7 +32,7 @@
 &lt;/div&gt;
 
 &lt;div class="main"&gt;
-    &lt;CascadingValue Value="_theme"&gt;
+    &lt;CascadingValue Value="theme"&gt;
         &lt;div class="content px-4"&gt;
             @@Body
         &lt;/div&gt;
@@ -40,7 +40,7 @@
 &lt;/div&gt;
 
 @@code {
-    private ThemeInfo _theme = new ThemeInfo { ButtonClass = "btn-success" };
+    private ThemeInfo theme = new ThemeInfo { ButtonClass = "btn-success" };
 }</code></pre>
 
 <p>This component (<em>CascadingValuesParametersTheme.razor</em>) receives the <code>ThemeInfo</code> as a <code>CascadingParameter</code>. The parameter is used to style one of the buttons:</p>
@@ -50,13 +50,13 @@
 &lt;button class="btn @@ThemeInfo.ButtonClass" @@onclick="IncrementCount"&gt;Increment Counter (Themed)&lt;/button&gt;
 
 @@code {
-    private int _currentCount = 0;
+    private int currentCount = 0;
 
     [CascadingParameter]
     protected ThemeInfo ThemeInfo { get; set; }
 
     private void IncrementCount()
     {
-        _currentCount++;
+        currentCount++;
     }
 }</code></pre>

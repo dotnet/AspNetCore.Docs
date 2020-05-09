@@ -31,17 +31,17 @@ public class ExampleModel
 A form is defined using the `EditForm` component. The following form demonstrates typical elements, components, and Razor code:
 
 ```razor
-<EditForm Model="@_exampleModel" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@exampleModel" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <InputText id="name" @bind-Value="_exampleModel.Name" />
+    <InputText id="name" @bind-Value="exampleModel.Name" />
 
     <button type="submit">Submit</button>
 </EditForm>
 
 @code {
-    private ExampleModel _exampleModel = new ExampleModel();
+    private ExampleModel exampleModel = new ExampleModel();
 
     private void HandleValidSubmit()
     {
@@ -52,9 +52,9 @@ A form is defined using the `EditForm` component. The following form demonstrate
 
 In the preceding example:
 
-* The form validates user input in the `name` field using the validation defined in the `ExampleModel` type. The model is created in the component's `@code` block and held in a private field (`_exampleModel`). The field is assigned to the `Model` attribute of the `<EditForm>` element.
+* The form validates user input in the `name` field using the validation defined in the `ExampleModel` type. The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to the `Model` attribute of the `<EditForm>` element.
 * The `InputText` component's `@bind-Value` binds:
-  * The model property (`_exampleModel.Name`) to the `InputText` component's `Value` property.
+  * The model property (`exampleModel.Name`) to the `InputText` component's `Value` property.
   * A change event delegate to the `InputText` component's `ValueChanged` property.
 * The `DataAnnotationsValidator` component attaches validation support using data annotations.
 * The `ValidationSummary` component summarizes validation messages.
@@ -116,26 +116,26 @@ The following form validates user input using the validation defined in the `Sta
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@_starship" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
     <p>
         <label>
             Identifier:
-            <InputText @bind-Value="_starship.Identifier" />
+            <InputText @bind-Value="starship.Identifier" />
         </label>
     </p>
     <p>
         <label>
             Description (optional):
-            <InputTextArea @bind-Value="_starship.Description" />
+            <InputTextArea @bind-Value="starship.Description" />
         </label>
     </p>
     <p>
         <label>
             Primary Classification:
-            <InputSelect @bind-Value="_starship.Classification">
+            <InputSelect @bind-Value="starship.Classification">
                 <option value="">Select classification ...</option>
                 <option value="Exploration">Exploration</option>
                 <option value="Diplomacy">Diplomacy</option>
@@ -146,19 +146,19 @@ The following form validates user input using the validation defined in the `Sta
     <p>
         <label>
             Maximum Accommodation:
-            <InputNumber @bind-Value="_starship.MaximumAccommodation" />
+            <InputNumber @bind-Value="starship.MaximumAccommodation" />
         </label>
     </p>
     <p>
         <label>
             Engineering Approval:
-            <InputCheckbox @bind-Value="_starship.IsValidatedDesign" />
+            <InputCheckbox @bind-Value="starship.IsValidatedDesign" />
         </label>
     </p>
     <p>
         <label>
             Production Date:
-            <InputDate @bind-Value="_starship.ProductionDate" />
+            <InputDate @bind-Value="starship.ProductionDate" />
         </label>
     </p>
 
@@ -172,7 +172,7 @@ The following form validates user input using the validation defined in the `Sta
 </EditForm>
 
 @code {
-    private Starship _starship = new Starship();
+    private Starship starship = new Starship();
 
     private void HandleValidSubmit()
     {
@@ -191,7 +191,7 @@ In the following example:
 * Additional code is run depending on the result of the client- and server-side validation by checking `isValid`.
 
 ```razor
-<EditForm EditContext="@_editContext" OnSubmit="@HandleSubmit">
+<EditForm EditContext="@editContext" OnSubmit="@HandleSubmit">
 
     ...
 
@@ -199,18 +199,18 @@ In the following example:
 </EditForm>
 
 @code {
-    private Starship _starship = new Starship();
-    private EditContext _editContext;
+    private Starship starship = new Starship();
+    private EditContext editContext;
 
     protected override void OnInitialized()
     {
-        _editContext = new EditContext(_starship);
+        editContext = new EditContext(starship);
     }
 
     private async Task HandleSubmit()
     {
-        var isValid = _editContext.Validate() && 
-            await ServerValidate(_editContext);
+        var isValid = editContext.Validate() && 
+            await ServerValidate(editContext);
 
         if (isValid)
         {
@@ -303,14 +303,14 @@ The following `EditForm` uses the preceding `InputRadio` component to obtain and
 
 <h1>Radio Button Group Test</h1>
 
-<EditForm Model="_model" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="model" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
     @for (int i = 1; i <= 5; i++)
     {
         <label>
-            <InputRadio name="rate" SelectedValue="i" @bind-Value="_model.Rating" />
+            <InputRadio name="rate" SelectedValue="i" @bind-Value="model.Rating" />
             @i
         </label>
     }
@@ -318,10 +318,10 @@ The following `EditForm` uses the preceding `InputRadio` component to obtain and
     <button type="submit">Submit</button>
 </EditForm>
 
-<p>You chose: @_model.Rating</p>
+<p>You chose: @model.Rating</p>
 
 @code {
-    private Model _model = new Model();
+    private Model model = new Model();
 
     private void HandleValidSubmit()
     {
@@ -356,13 +356,13 @@ The `ValidationSummary` component summarizes all validation messages, which is s
 Output validation messages for a specific model with the `Model` parameter:
   
 ```razor
-<ValidationSummary Model="@_starship" />
+<ValidationSummary Model="@starship" />
 ```
 
 The `ValidationMessage` component displays validation messages for a specific field, which is similar to the [Validation Message Tag Helper](xref:mvc/views/working-with-forms#the-validation-message-tag-helper). Specify the field for validation with the `For` attribute and a lambda expression naming the model property:
 
 ```razor
-<ValidationMessage For="@(() => _starship.MaximumAccommodation)" />
+<ValidationMessage For="@(() => starship.MaximumAccommodation)" />
 ```
 
 The `ValidationMessage` and `ValidationSummary` components support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the generated `<div>` or `<ul>` element.
@@ -403,7 +403,7 @@ Blazor provides support for validating form input using data annotations with th
 To validate the bound model's entire object graph, including collection- and complex-type properties, use the `ObjectGraphDataAnnotationsValidator` provided by the *experimental* [Microsoft.AspNetCore.Components.DataAnnotations.Validation](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) package:
 
 ```razor
-<EditForm Model="@_model" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
     <ObjectGraphDataAnnotationsValidator />
     ...
 </EditForm>
@@ -457,40 +457,40 @@ To enable and disable the submit button based on form validation:
 ```razor
 @implements IDisposable
 
-<EditForm EditContext="@_editContext">
+<EditForm EditContext="@editContext">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
     ...
 
-    <button type="submit" disabled="@_formInvalid">Submit</button>
+    <button type="submit" disabled="@formInvalid">Submit</button>
 </EditForm>
 
 @code {
-    private Starship _starship = new Starship();
-    private bool _formInvalid = true;
-    private EditContext _editContext;
+    private Starship starship = new Starship();
+    private bool formInvalid = true;
+    private EditContext editContext;
 
     protected override void OnInitialized()
     {
-        _editContext = new EditContext(_starship);
-        _editContext.OnFieldChanged += HandleFieldChanged;
+        editContext = new EditContext(starship);
+        editContext.OnFieldChanged += HandleFieldChanged;
     }
 
     private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
     {
-        _formInvalid = !_editContext.Validate();
+        formInvalid = !editContext.Validate();
         StateHasChanged();
     }
 
     public void Dispose()
     {
-        _editContext.OnFieldChanged -= HandleFieldChanged;
+        editContext.OnFieldChanged -= HandleFieldChanged;
     }
 }
 ```
 
-In the preceding example, set `_formInvalid` to `false` if:
+In the preceding example, set `formInvalid` to `false` if:
 
 * The form is preloaded with valid default values.
 * You want the submit button enabled when the form loads.
@@ -501,23 +501,23 @@ A side effect of the preceding approach is that a `ValidationSummary` component 
 * Make the `ValidationSummary` component visible when the submit button is selected (for example, in a `HandleValidSubmit` method).
 
 ```razor
-<EditForm EditContext="@_editContext" OnValidSubmit="HandleValidSubmit">
+<EditForm EditContext="@editContext" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator />
-    <ValidationSummary style="@_displaySummary" />
+    <ValidationSummary style="@displaySummary" />
 
     ...
 
-    <button type="submit" disabled="@_formInvalid">Submit</button>
+    <button type="submit" disabled="@formInvalid">Submit</button>
 </EditForm>
 
 @code {
-    private string _displaySummary = "display:none";
+    private string displaySummary = "display:none";
 
     ...
 
     private void HandleValidSubmit()
     {
-        _displaySummary = "display:block";
+        displaySummary = "display:block";
     }
 }
 ```

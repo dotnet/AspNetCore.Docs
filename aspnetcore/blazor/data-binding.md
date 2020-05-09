@@ -55,21 +55,21 @@ Bind a property or field on other events by also including an `@bind:event` attr
 
 Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
-Use `@bind-{ATTRIBUTE}` with `@bind-{ATTRIBUTE}:event` syntax to bind element attributes other than `value`. In the following example, the paragraph's style is updated when the `_paragraphStyle` value changes:
+Use `@bind-{ATTRIBUTE}` with `@bind-{ATTRIBUTE}:event` syntax to bind element attributes other than `value`. In the following example, the paragraph's style is updated when the `paragraphStyle` value changes:
 
 ```razor
 @page "/binding-example"
 
 <p>
-    <input type="text" @bind="_paragraphStyle" />
+    <input type="text" @bind="paragraphStyle" />
 </p>
 
-<p @bind-style="_paragraphStyle" @bind-style:event="onchange">
+<p @bind-style="paragraphStyle" @bind-style:event="onchange">
     Blazorify the app!
 </p>
 
 @code {
-    private string _paragraphStyle = "color:red";
+    private string paragraphStyle = "color:red";
 }
 ```
 
@@ -239,7 +239,7 @@ Password:
 
 <input @oninput="OnPasswordChanged" 
        required 
-       type="@(_showPassword ? "text" : "password")" 
+       type="@(showPassword ? "text" : "password")" 
        value="@Password" />
 
 <button class="btn btn-primary" @onclick="ToggleShowPassword">
@@ -247,7 +247,7 @@ Password:
 </button>
 
 @code {
-    private bool _showPassword;
+    private bool showPassword;
 
     [Parameter]
     public string Password { get; set; }
@@ -264,7 +264,7 @@ Password:
 
     private void ToggleShowPassword()
     {
-        _showPassword = !_showPassword;
+        showPassword = !showPassword;
     }
 }
 ```
@@ -276,16 +276,16 @@ The `PasswordField` component is used in another component:
 
 <h1>Parent Component</h1>
 
-<PasswordField @bind-Password="_password" />
+<PasswordField @bind-Password="password" />
 
 @code {
-    private string _password;
+    private string password;
 }
 ```
 
 To perform checks or trap errors on the password in the preceding example:
 
-* Create a backing field for `Password` (`_password` in the following example code).
+* Create a backing field for `Password` (`password` in the following example code).
 * Perform the checks or trap errors in the `Password` setter.
 
 The following example provides immediate feedback to the user if a space is used in the password's value:
@@ -297,36 +297,36 @@ Password:
 
 <input @oninput="OnPasswordChanged" 
        required 
-       type="@(_showPassword ? "text" : "password")" 
+       type="@(showPassword ? "text" : "password")" 
        value="@Password" />
 
 <button class="btn btn-primary" @onclick="ToggleShowPassword">
     Show password
 </button>
 
-<span class="text-danger">@_validationMessage</span>
+<span class="text-danger">@validationMessage</span>
 
 @code {
-    private bool _showPassword;
-    private string _password;
-    private string _validationMessage;
+    private bool showPassword;
+    private string password;
+    private string validationMessage;
 
     [Parameter]
     public string Password
     {
-        get { return _password ?? string.Empty; }
+        get { return password ?? string.Empty; }
         set
         {
-            if (_password != value)
+            if (password != value)
             {
                 if (value.Contains(' '))
                 {
-                    _validationMessage = "Spaces not allowed!";
+                    validationMessage = "Spaces not allowed!";
                 }
                 else
                 {
-                    _password = value;
-                    _validationMessage = string.Empty;
+                    password = value;
+                    validationMessage = string.Empty;
                 }
             }
         }
@@ -344,7 +344,7 @@ Password:
 
     private void ToggleShowPassword()
     {
-        _showPassword = !_showPassword;
+        showPassword = !showPassword;
     }
 }
 ```

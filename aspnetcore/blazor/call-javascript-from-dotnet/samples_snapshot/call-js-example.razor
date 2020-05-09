@@ -9,7 +9,7 @@
 
 <p class="mt-2" style="font-size:1.6em">
     <span class="badge badge-success">
-        @_convertedText
+        @convertedText
     </span>
 </p>
 
@@ -18,10 +18,10 @@
     // https://www.uphe.com/movies/serenity
     // David Krumholtz on IMDB: https://www.imdb.com/name/nm0472710/
 
-    private MarkupString _convertedText =
+    private MarkupString convertedText =
         new MarkupString("Select the <b>Convert Array</b> button.");
 
-    private uint[] _quoteArray = new uint[]
+    private uint[] quoteArray = new uint[]
         {
             60, 101, 109, 62, 67, 97, 110, 39, 116, 32, 115, 116, 111, 112, 32,
             116, 104, 101, 32, 115, 105, 103, 110, 97, 108, 44, 32, 77, 97,
@@ -32,9 +32,9 @@
     private async Task ConvertArray()
     {
         var text =
-            await JSRuntime.InvokeAsync<string>("convertArray", _quoteArray);
+            await JSRuntime.InvokeAsync<string>("convertArray", quoteArray);
 
-        _convertedText = new MarkupString(text);
+        convertedText = new MarkupString(text);
 
         StateHasChanged();
     }
