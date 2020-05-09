@@ -97,7 +97,7 @@ For more information, see the following resources:
 It's often convenient to close over additional values, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` passing an event argument (`MouseEventArgs`) and its button number (`buttonNumber`) when selected in the UI:
 
 ```razor
-<h2>@_message</h2>
+<h2>@message</h2>
 
 @for (var i = 1; i < 4; i++)
 {
@@ -110,11 +110,11 @@ It's often convenient to close over additional values, such as when iterating ov
 }
 
 @code {
-    private string _message = "Select a button to learn its position.";
+    private string message = "Select a button to learn its position.";
 
     private void UpdateHeading(MouseEventArgs e, int buttonNumber)
     {
-        _message = $"You selected Button #{buttonNumber} at " +
+        message = $"You selected Button #{buttonNumber} at " +
             $"mouse position: {e.ClientX} X {e.ClientY}.";
     }
 }
@@ -146,28 +146,28 @@ The `ParentComponent` sets the child's `EventCallback<T>` (`OnClickCallback`) to
     by the parent component.
 </ChildComponent>
 
-<p><b>@_messageText</b></p>
+<p><b>@messageText</b></p>
 
 @code {
-    private string _messageText;
+    private string messageText;
 
     private void ShowMessage(MouseEventArgs e)
     {
-        _messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
+        messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
     }
 }
 ```
 
 When the button is selected in the `ChildComponent`:
 
-* The `ParentComponent`'s `ShowMessage` method is called. `_messageText` is updated and displayed in the `ParentComponent`.
+* The `ParentComponent`'s `ShowMessage` method is called. `messageText` is updated and displayed in the `ParentComponent`.
 * A call to [StateHasChanged](xref:blazor/lifecycle#state-changes) isn't required in the callback's method (`ShowMessage`). `StateHasChanged` is called automatically to rerender the `ParentComponent`, just as child events trigger component rerendering in event handlers that execute within the child.
 
 `EventCallback` and `EventCallback<T>` permit asynchronous delegates. `EventCallback<T>` is strongly typed and requires a specific argument type. `EventCallback` is weakly typed and allows any argument type.
 
 ```razor
 <ChildComponent 
-    OnClickCallback="@(async () => { await Task.Yield(); _messageText = "Blaze It!"; })" />
+    OnClickCallback="@(async () => { await Task.Yield(); messageText = "Blaze It!"; })" />
 ```
 
 Invoke an `EventCallback` or `EventCallback<T>` with `InvokeAsync` and await the <xref:System.Threading.Tasks.Task>:
@@ -187,16 +187,16 @@ Use the [`@on{EVENT}:preventDefault`](xref:mvc/views/razor#oneventpreventdefault
 When a key is selected on an input device and the element focus is on a text box, a browser normally displays the key's character in the text box. In the following example, the default behavior is prevented by specifying the `@onkeypress:preventDefault` directive attribute. The counter increments, and the **+** key isn't captured into the `<input>` element's value:
 
 ```razor
-<input value="@_count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
+<input value="@count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
 
 @code {
-    private int _count = 0;
+    private int count = 0;
 
     private void KeyHandler(KeyboardEventArgs e)
     {
         if (e.Key == "+")
         {
-            _count++;
+            count++;
         }
     }
 }
@@ -204,10 +204,10 @@ When a key is selected on an input device and the element focus is on a text box
 
 Specifying the `@on{EVENT}:preventDefault` attribute without a value is equivalent to `@on{EVENT}:preventDefault="true"`.
 
-The value of the attribute can also be an expression. In the following example, `_shouldPreventDefault` is a `bool` field set to either `true` or `false`:
+The value of the attribute can also be an expression. In the following example, `shouldPreventDefault` is a `bool` field set to either `true` or `false`:
 
 ```razor
-<input @onkeypress:preventDefault="_shouldPreventDefault" />
+<input @onkeypress:preventDefault="shouldPreventDefault" />
 ```
 
 An event handler isn't required to prevent the default action. The event handler and prevent default action scenarios can be used independently.
@@ -220,7 +220,7 @@ In the following example, selecting the check box prevents click events from the
 
 ```razor
 <label>
-    <input @bind="_stopPropagation" type="checkbox" />
+    <input @bind="stopPropagation" type="checkbox" />
     Stop Propagation
 </label>
 
@@ -231,13 +231,13 @@ In the following example, selecting the check box prevents click events from the
         Child div that doesn't stop propagation when selected.
     </div>
 
-    <div @onclick="OnSelectChildDiv" @onclick:stopPropagation="_stopPropagation">
+    <div @onclick="OnSelectChildDiv" @onclick:stopPropagation="stopPropagation">
         Child div that stops propagation when selected.
     </div>
 </div>
 
 @code {
-    private bool _stopPropagation = false;
+    private bool stopPropagation = false;
 
     private void OnSelectParentDiv() => 
         Console.WriteLine($"The parent div was selected. {DateTime.Now}");

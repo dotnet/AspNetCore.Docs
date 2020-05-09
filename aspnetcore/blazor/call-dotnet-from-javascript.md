@@ -143,26 +143,26 @@ To avoid a memory leak and allow garbage collection on a component that creates 
   ```csharp
   public class ExampleJsInterop : IDisposable
   {
-      private readonly IJSRuntime _jsRuntime;
-      private DotNetObjectReference<HelloHelper> _objRef;
+      private readonly IJSRuntime jsRuntime;
+      private DotNetObjectReference<HelloHelper> objRef;
 
       public ExampleJsInterop(IJSRuntime jsRuntime)
       {
-          _jsRuntime = jsRuntime;
+          this.jsRuntime = jsRuntime;
       }
 
       public ValueTask<string> CallHelloHelperSayHello(string name)
       {
-          _objRef = DotNetObjectReference.Create(new HelloHelper(name));
+          objRef = DotNetObjectReference.Create(new HelloHelper(name));
 
-          return _jsRuntime.InvokeAsync<string>(
+          return jsRuntime.InvokeAsync<string>(
               "exampleJsFunctions.sayHello",
-              _objRef);
+              objRef);
       }
 
       public void Dispose()
       {
-          _objRef?.Dispose();
+          objRef?.Dispose();
       }
   }
   ```
@@ -182,20 +182,20 @@ To avoid a memory leak and allow garbage collection on a component that creates 
   </button>
 
   @code {
-      private DotNetObjectReference<HelloHelper> _objRef;
+      private DotNetObjectReference<HelloHelper> objRef;
 
       public async Task TriggerNetInstanceMethod()
       {
-          _objRef = DotNetObjectReference.Create(new HelloHelper("Blazor"));
+          objRef = DotNetObjectReference.Create(new HelloHelper("Blazor"));
 
           await JSRuntime.InvokeAsync<string>(
               "exampleJsFunctions.sayHello",
-              _objRef);
+              objRef);
       }
 
       public void Dispose()
       {
-          _objRef?.Dispose();
+          objRef?.Dispose();
       }
   }
   ```
@@ -230,7 +230,7 @@ function updateMessageCallerJS() {
 @page "/JSInteropComponent"
 
 <p>
-    Message: @_message
+    Message: @message
 </p>
 
 <p>
@@ -238,24 +238,24 @@ function updateMessageCallerJS() {
 </p>
 
 @code {
-    private static Action _action;
-    private string _message = "Select the button.";
+    private static Action action;
+    private string message = "Select the button.";
 
     protected override void OnInitialized()
     {
-        _action = UpdateMessage;
+        action = UpdateMessage;
     }
 
     private void UpdateMessage()
     {
-        _message = "UpdateMessage Called!";
+        message = "UpdateMessage Called!";
         StateHasChanged();
     }
 
     [JSInvokable]
     public static void UpdateMessageCaller()
     {
-        _action.Invoke();
+        action.Invoke();
     }
 }
 ```
@@ -276,17 +276,17 @@ using Microsoft.JSInterop;
 
 public class MessageUpdateInvokeHelper
 {
-    private Action _action;
+    private Action action;
 
     public MessageUpdateInvokeHelper(Action action)
     {
-        _action = action;
+        action = action;
     }
 
     [JSInvokable("BlazorSample")]
     public void UpdateMessageCaller()
     {
-        _action.Invoke();
+        action.Invoke();
     }
 }
 ```
@@ -306,30 +306,30 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 @inject IJSRuntime JsRuntime
 
 <li>
-    @_message
-    <button @onclick="InteropCall" style="display:@_display">InteropCall</button>
+    @message
+    <button @onclick="InteropCall" style="display:@display">InteropCall</button>
 </li>
 
 @code {
-    private string _message = "Select one of these list item buttons.";
-    private string _display = "inline-block";
-    private MessageUpdateInvokeHelper _messageUpdateInvokeHelper;
+    private string message = "Select one of these list item buttons.";
+    private string display = "inline-block";
+    private MessageUpdateInvokeHelper messageUpdateInvokeHelper;
 
     protected override void OnInitialized()
     {
-        _messageUpdateInvokeHelper = new MessageUpdateInvokeHelper(UpdateMessage);
+        messageUpdateInvokeHelper = new MessageUpdateInvokeHelper(UpdateMessage);
     }
 
     protected async Task InteropCall()
     {
         await JsRuntime.InvokeVoidAsync("updateMessageCallerJS",
-            DotNetObjectReference.Create(_messageUpdateInvokeHelper));
+            DotNetObjectReference.Create(messageUpdateInvokeHelper));
     }
 
     private void UpdateMessage()
     {
-        _message = "UpdateMessage Called!";
-        _display = "none";
+        message = "UpdateMessage Called!";
+        display = "none";
         StateHasChanged();
     }
 }

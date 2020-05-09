@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use the logging framework provided by the Microsoft.Extensions.Logging NuGet package.
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/2/2020
+ms.date: 5/8/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/logging/index
 ---
@@ -874,6 +874,7 @@ The following example shows how to register filter rules in code:
 
 * <xref:fundamentals/logging/loggermessage>
 * Logging bugs should be created in the [github.com/dotnet/runtime/](https://github.com/dotnet/runtime/issues) repo.
+* [How to add custom logging in ASP.NET Core](https://asp.net-hacker.rocks/2017/05/05/add-custom-logging-in-aspnetcore.html)
 
 ::: moniker-end
 

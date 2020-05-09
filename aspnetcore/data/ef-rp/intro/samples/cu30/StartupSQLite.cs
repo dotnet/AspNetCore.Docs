@@ -13,9 +13,9 @@ using ContosoUniversity.Data;
 
 namespace ContosoUniversity
 {
-    public class Startup
+    public class StartupSQLite
     {
-        public Startup(IConfiguration configuration)
+        public StartupSQLite(IConfiguration configuration)
         {
             Configuration = configuration;
         }

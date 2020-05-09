@@ -61,7 +61,6 @@ Follow the link at the top of the page to get the source code for the completed 
 
 To run the app after downloading the completed project:
 
-* Delete three files and one folder that have *SQLite* in the name.
 * Build the project.
 * In Package Manager Console (PMC) run the following command:
 
@@ -79,6 +78,7 @@ To run the app after downloading the completed project:
 * Delete *Startup.cs*, and rename *StartupSQLite.cs* to *Startup.cs*.
 * Delete *appSettings.json*, and rename *appSettingsSQLite.json* to *appSettings.json*.
 * Delete the *Migrations* folder, and rename *MigrationsSQL* to *Migrations*.
+* Do a global search for `#if SQLiteVersion` and remove `#if SQLiteVersion` and the associated `#endif` statement.
 * Build the project.
 * At a command prompt in the project folder, run the following commands:
 
@@ -363,7 +363,7 @@ Later in the tutorial series, you delete the database that was created by `Ensur
 The `EnsureCreated` method creates an empty database. This section adds code that populates the database with test data.
 
 Create *Data/DbInitializer.cs* with the following code:
-
+<!-- next update, keep this file in the project and surround with #if -->
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/DbInitializer.cs)]
 
   The code checks if there are any students in the database. If there are no students, it adds test data to the database. It creates the test data in arrays rather than `List<T>` collections to optimize performance.

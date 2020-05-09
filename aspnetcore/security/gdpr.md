@@ -12,7 +12,7 @@ uid: security/gdpr
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements:
+ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://ec.europa.eu/info/law/law-topic/data-protection/reform/what-does-general-data-protection-regulation-gdpr-govern_en) requirements:
 
 ::: moniker range=">= aspnetcore-3.0"
 

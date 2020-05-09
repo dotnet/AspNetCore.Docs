@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/04/2020
+ms.date: 05/08/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/additional-scenarios
 ---
@@ -24,6 +24,11 @@ The `AuthorizationMessageHandler` service can be used with `HttpClient` to attac
 In the following example, `AuthorizationMessageHandler` configures an `HttpClient` in `Program.Main` (*Program.cs*):
 
 ```csharp
+using System.Net.Http;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+...
+
 builder.Services.AddTransient(sp =>
 {
     return new HttpClient(sp.GetRequiredService<AuthorizationMessageHandler>()
@@ -36,9 +41,14 @@ builder.Services.AddTransient(sp =>
 });
 ```
 
-For convenience, a `BaseAddressAuthorizationMessageHandler` is included that's preconfigured with the app base address as an authorized URL. The authentication-enabled Blazor WebAssembly templates now use [IHttpClientFactory](https://docs.microsoft.com/aspnet/core/fundamentals/http-requests) to set up an `HttpClient` with the `BaseAddressAuthorizationMessageHandler`:
+For convenience, a `BaseAddressAuthorizationMessageHandler` is included that's preconfigured with the app base address as an authorized URL. The authentication-enabled Blazor WebAssembly templates now use <xref:System.Net.Http.IHttpClientFactory> in the Server API project to set up an <xref:System.Net.Http.HttpClient> with the `BaseAddressAuthorizationMessageHandler`:
 
 ```csharp
+using System.Net.Http;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+...
+
 builder.Services.AddHttpClient("BlazorWithIdentityApp1.ServerAPI", 
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
         .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
@@ -47,11 +57,16 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("BlazorWithIdentityApp1.ServerAPI"));
 ```
 
-Where the client is created with `CreateClient` in the preceding example, the `HttpClient` is supplied instances that include access tokens when making requests to the server project.
+Where the client is created with `CreateClient` in the preceding example, the <xref:System.Net.Http.HttpClient> is supplied instances that include access tokens when making requests to the server project.
 
-The configured `HttpClient` is then used to make authorized requests using a simple `try-catch` pattern. The following `FetchData` component requests weather forecast data:
+The configured <xref:System.Net.Http.HttpClient> is then used to make authorized requests using a simple `try-catch` pattern. The following `FetchData` component requests weather forecast data:
 
 ```csharp
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject HttpClient Http
+
+...
+
 protected override async Task OnInitializedAsync()
 {
     try
@@ -71,6 +86,13 @@ Alternatively, you can define a typed client that handles all of the HTTP and to
 *WeatherClient.cs*:
 
 ```csharp
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using static {APP ASSEMBLY}.Data;
+
 public class WeatherClient
 {
     private readonly HttpClient httpClient;
@@ -88,6 +110,8 @@ public class WeatherClient
         {
             forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>(
                 "WeatherForecast");
+
+            ...
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -102,6 +126,11 @@ public class WeatherClient
 *Program.cs*:
 
 ```csharp
+using System.Net.Http;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+...
+
 builder.Services.AddHttpClient<WeatherClient>(
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
@@ -514,7 +543,7 @@ Create a class that extends the `RemoteUserAccount` class:
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
-public class OidcAccount : RemoteUserAccount
+public class CustomUserAccount : RemoteUserAccount
 {
     [JsonPropertyName("amr")]
     public string[] AuthenticationMethod { get; set; }
@@ -531,7 +560,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 
 public class CustomAccountFactory 
-    : AccountClaimsPrincipalFactory<OidcAccount>
+    : AccountClaimsPrincipalFactory<CustomUserAccount>
 {
     public CustomAccountFactory(NavigationManager navigationManager, 
         IAccessTokenProviderAccessor accessor) : base(accessor)
@@ -539,7 +568,7 @@ public class CustomAccountFactory
     }
   
     public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
-        OidcAccount account, RemoteAuthenticationUserOptions options)
+        CustomUserAccount account, RemoteAuthenticationUserOptions options)
     {
         var initialUser = await base.CreateUserAsync(account, options);
         
@@ -557,17 +586,55 @@ public class CustomAccountFactory
 }
 ```
 
-Register services to use the `CustomAccountFactory`:
+Register the `CustomAccountFactory` for the authentication provider in use. Any of the following registrations are valid: 
 
-```csharp
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+* `AddOidcAuthentication`:
 
-...
+  ```csharp
+  using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
-builder.Services.AddApiAuthorization<RemoteAuthenticationState, OidcAccount>()
-    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, OidcAccount, 
-        CustomAccountFactory>();
-```
+  ...
+
+  builder.Services.AddOidcAuthentication<RemoteAuthenticationState, 
+      CustomUserAccount>(options =>
+  {
+      ...
+  })
+  .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, 
+      CustomUserAccount, CustomAccountFactory>();
+  ```
+
+* `AddMsalAuthentication`:
+
+  ```csharp
+  using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+  ...
+
+  builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
+      CustomUserAccount>(options =>
+  {
+      ...
+  })
+  .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, 
+      CustomUserAccount, CustomAccountFactory>();
+  ```
+  
+* `AddApiAuthorization`:
+
+  ```csharp
+  using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+  ...
+
+  builder.Services.AddApiAuthorization<RemoteAuthenticationState, 
+      CustomUserAccount>(options =>
+  {
+      ...
+  })
+  .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, 
+      CustomUserAccount, CustomAccountFactory>();
+  ```
 
 ## Support prerendering with authentication
 
