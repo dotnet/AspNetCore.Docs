@@ -707,6 +707,8 @@ Terms:
 <!-- ASP.NET Core 5.x starts here -->
 ::: moniker range="> aspnetcore-3.1"
 
+Version 5
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
 A multilingual website allows the site to reach a wider audience. ASP.NET Core provides services and middleware for localizing into different languages and cultures.
