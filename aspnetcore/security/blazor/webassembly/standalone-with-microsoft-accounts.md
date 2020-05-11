@@ -162,7 +162,7 @@ For more information, see the following sections of the *Additional scenarios* a
 ## Additional resources
 
 * <xref:security/blazor/webassembly/additional-scenarios>
-* [Insecure web API requests in an app with a secure default client](xref:security/blazor/webassembly/additional-scenarios#insecure-web-api-requests-in-an-app-with-a-secure-default-client)
+* [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:security/blazor/webassembly/aad-groups-roles>
 * [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal)
 * [Quickstart: Configure an application to expose web APIs](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)

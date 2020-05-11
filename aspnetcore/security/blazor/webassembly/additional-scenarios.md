@@ -163,9 +163,9 @@ builder.Services.AddHttpClient<WeatherForecastClient>(client => client.BaseAddre
         scopes: new[] { "example.read", "example.write" }));
 ```
 
-## Insecure web API requests in an app with a secure default client
+## Unauthenticated or unauthorized web API requests in an app with a secure default client
 
-If the Blazor WebAssembly app ordinarily uses a secure default <xref:System.Net.Http.HttpClient>, the app can also make insecure web API requests by configuring a named <xref:System.Net.Http.HttpClient>:
+If the Blazor WebAssembly app ordinarily uses a secure default <xref:System.Net.Http.HttpClient>, the app can also make unauthenticated or unauthorized web API requests by configuring a named <xref:System.Net.Http.HttpClient>:
 
 `Program.Main` (*Program.cs*):
 
@@ -176,7 +176,7 @@ builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient",
 
 The preceding registration is in addition to the existing secure default <xref:System.Net.Http.HttpClient> registration.
 
-A component creates the <xref:System.Net.Http.HttpClient> from the <xref:System.Net.Http.IHttpClientFactory> to make insecure requests:
+A component creates the <xref:System.Net.Http.HttpClient> from the <xref:System.Net.Http.IHttpClientFactory> to make unauthenticated or unauthorized requests:
 
 ```razor
 @inject IHttpClientFactory ClientFactory

@@ -355,7 +355,7 @@ Run the app from the Server project. When using Visual Studio, select the Server
 ## Additional resources
 
 * <xref:security/blazor/webassembly/additional-scenarios>
-* [Insecure web API requests in an app with a secure default client](xref:security/blazor/webassembly/additional-scenarios#insecure-web-api-requests-in-an-app-with-a-secure-default-client)
+* [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:security/authentication/azure-ad-b2c>
 * [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant)
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
