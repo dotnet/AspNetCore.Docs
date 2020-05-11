@@ -869,6 +869,192 @@ The following example shows how to register filter rules in code:
 * Log level `Information` and higher.
 * All categories starting with `"Microsoft"`.
 
+## Create a custom logger 
+
+To add a custom logger to your application you need to add an own `ILoggerProvider` to the `ILoggerFactory`, that can be injected into the method `Configure` in the `Startup.cs`:
+
+```csharp
+// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+public void Configure(
+    IApplicationBuilder app, 
+    IWebHostEnvironment env, 
+    ILoggerFactory loggerFactory)
+{
+    loggerFactory.AddProvider(new CustomLoggerProvider(new CustomLoggerConfiguration()));
+```
+
+The `ILoggerProvider` creates one or more `ILogger` which are used by the framework to log the information.
+
+### The custom logger configuration
+
+The idea is, to create different colored console entries per log level and event ID. To configure this we need a configuration type like this:
+
+~~~ csharp
+public class ColoredConsoleLoggerConfiguration
+{
+    public LogLevel LogLevel { get; set; } = LogLevel.Warning;
+    public int EventId { get; set; } = 0;
+    public ConsoleColor Color { get; set; } = ConsoleColor.Yellow;
+}
+~~~
+
+This sets the default level to `Warning` and the color to `Yellow`. If the `EventId` is set to 0, we will log all events.
+
+### Creating the custom logger
+
+The actual logger is an `ILogger` implementation gets a name and the configuration passed in via the constructor. The name is the category name, which usually is the logging source, eg. the type where the logger is created in:
+
+~~~ csharp
+public class ColoredConsoleLogger : ILogger
+{
+    private readonly string _name;
+    private readonly ColoredConsoleLoggerConfiguration _config;
+
+    public ColoredConsoleLogger(string name, ColoredConsoleLoggerConfiguration config)
+    {
+        _name = name;
+        _config = config;
+    }
+
+    public IDisposable BeginScope<TState>(TState state)
+    {
+        return null;
+    }
+
+    public bool IsEnabled(LogLevel logLevel)
+    {
+        return logLevel == _config.LogLevel;
+    }
+
+    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+    {
+        if (!IsEnabled(logLevel))
+        {
+            return;
+        }
+
+        if (_config.EventId == 0 || _config.EventId == eventId.Id)
+        {
+            var color = Console.ForegroundColor;
+            Console.ForegroundColor = _config.Color;
+            Console.WriteLine($"{logLevel.ToString()} - {eventId.Id} - {_name} - {formatter(state, exception)}");
+            Console.ForegroundColor = color;
+        }
+    }
+}
+~~~
+
+This creates a logger instance per category name with the `ILoggerProvider`, that needs to be created in the next step.
+
+### creating the custom LoggerProvider
+
+The `LoggerProvider` is the class that creates the logger instances. Maybe it is not needed to create a logger instance per category, but this makes sense for some Loggers, like NLog or log4net. Doing this you are also able to choose different logging output targets per category if needed:
+
+~~~ csharp
+public class ColoredConsoleLoggerProvider : ILoggerProvider
+{
+    private readonly ColoredConsoleLoggerConfiguration _config;
+    private readonly ConcurrentDictionary<string, ColoredConsoleLogger> _loggers = new ConcurrentDictionary<string, ColoredConsoleLogger>();
+
+    public ColoredConsoleLoggerProvider(ColoredConsoleLoggerConfiguration config)
+    {
+        _config = config;
+    }
+
+    public ILogger CreateLogger(string categoryName)
+    {
+        return _loggers.GetOrAdd(categoryName, name => new ColoredConsoleLogger(name, _config));
+    }
+
+    public void Dispose()
+    {
+        _loggers.Clear();
+    }
+}
+~~~
+
+There's no magic here. The method `CreateLogger` creates a single instance of the `ColoredConsoleLogger` per category name and stores it in the `ConcurrentDictionary`.
+
+### Usage and registration of the custom logger
+
+Now you are able to register the logger in the `Startup.cs`:
+
+~~~ csharp
+public void Configure(
+    IApplicationBuilder app, 
+    IHostingEnvironment env, 
+    ILoggerFactory loggerFactory)
+{
+    // here is our CustomLogger
+    loggerFactory.AddProvider(new ColoredConsoleLoggerProvider(new ColoredConsoleLoggerConfiguration
+    {
+        LogLevel = LogLevel.Information,
+        Color = ConsoleColor.Blue
+    }));
+    loggerFactory.AddProvider(new ColoredConsoleLoggerProvider(new ColoredConsoleLoggerConfiguration
+    {
+        LogLevel = LogLevel.Debug,
+        Color = ConsoleColor.Gray
+}));
+~~~
+
+The loggers will automatically be used, if a log entry is crated.
+
+But those registrations don't really look nice. You are able to encapsulate the registrations to provide an API like this: 
+
+```csharp
+// using the custom registration with default values:
+loggerFactory.AddColoredConsoleLogger();
+
+// using the custom registration with a new configuration instance:
+loggerFactory.AddColoredConsoleLogger(new ColoredConsoleLoggerConfiguration
+{
+    LogLevel = LogLevel.Debug,
+    Color = ConsoleColor.Gray
+});
+
+// using the custom registration with a configuration object:
+loggerFactory.AddColoredConsoleLogger(c =>
+{
+    c.LogLevel = LogLevel.Information;
+    c.Color = ConsoleColor.Blue;
+});
+```
+
+This means you need to write at least one extension method for the `ILoggerFactory`:
+
+~~~ csharp
+public static class ColoredConsoleLoggerExtensions
+{
+    // custom registration with a configuration instance
+    public static ILoggerFactory AddColoredConsoleLogger(
+        this ILoggerFactory loggerFactory, 
+        ColoredConsoleLoggerConfiguration config)
+    {
+        loggerFactory.AddProvider(new ColoredConsoleLoggerProvider(config));
+        return loggerFactory;
+    }
+    // custom registration with default values
+    public static ILoggerFactory AddColoredConsoleLogger(
+        this ILoggerFactory loggerFactory)
+    {
+        var config = new ColoredConsoleLoggerConfiguration();
+        return loggerFactory.AddColoredConsoleLogger(config);
+    }
+    // custom registration with a configuration object
+    public static ILoggerFactory AddColoredConsoleLogger(
+        this ILoggerFactory loggerFactory, 
+        Action<ColoredConsoleLoggerConfiguration> configure)
+    {
+        var config = new ColoredConsoleLoggerConfiguration();
+        configure(config);
+        return loggerFactory.AddColoredConsoleLogger(config);
+    }
+}
+~~~
+
+
+
 ## Additional resources
 
 * <xref:fundamentals/logging/loggermessage>
