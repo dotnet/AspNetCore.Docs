@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/24/2020
+ms.date: 05/11/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
 ---
@@ -355,6 +355,7 @@ Run the app from the Server project. When using Visual Studio, select the Server
 ## Additional resources
 
 * <xref:security/blazor/webassembly/additional-scenarios>
+* [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:security/authentication/azure-ad-b2c>
 * [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant)
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)

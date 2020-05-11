@@ -5,7 +5,7 @@ description: Learn how to call a web API from a Blazor WebAssembly app using JSO
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/07/2020
+ms.date: 05/11/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-web-api
 ---
@@ -170,6 +170,102 @@ In the following code, the Delete `<button>` element calls the `DeleteItem` meth
 }
 ```
 
+## Named HttpClient with IHttpClientFactory
+
+<xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient> are supported.
+
+`Program.Main` (*Program.cs*):
+
+```csharp
+builder.Services.AddHttpClient("ServerAPI", client => 
+    client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+```
+
+`FetchData` component (*Pages/FetchData.razor*):
+
+```razor
+@inject IHttpClientFactory ClientFactory
+
+...
+
+@code {
+    private WeatherForecast[] forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var client = ClientFactory.CreateClient("ServerAPI");
+
+        forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
+            "WeatherForecast");
+    }
+}
+```
+
+## Typed HttpClient
+
+Typed <xref:System.Net.Http.HttpClient> uses one or more of the app's <xref:System.Net.Http.HttpClient> instances, default or named, to return data from one or more web API endpoints.
+
+*WeatherForecastClient.cs*:
+
+```csharp
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+
+public class WeatherForecastClient
+{
+    private readonly HttpClient client;
+
+    public WeatherForecastClient(HttpClient client)
+    {
+        this.client = client;
+    }
+
+    public async Task<WeatherForecast[]> GetForecastAsync()
+    {
+        var forecasts = new WeatherForecast[0];
+    
+        try
+        {
+            forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
+                "WeatherForecast");
+        }
+        catch
+        {
+            ...
+        }
+    
+        return forecasts;
+    }
+}
+```
+
+`Program.Main` (*Program.cs*):
+
+```csharp
+builder.Services.AddHttpClient<WeatherForecastClient>(client => 
+    client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+```
+
+Components inject the typed `HttpClient` to call the web API.
+
+`FetchData` component (*Pages/FetchData.razor*):
+
+```razor
+@inject WeatherForecastClient Client
+
+...
+
+@code {
+    private WeatherForecast[] forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await Client.GetForecastAsync();
+    }
+}
+```
+
 ## Handle errors
 
 When errors occur while interacting with a web API, they can be handled by developer code. For example, `GetFromJsonAsync` expects a JSON response from the server API with a `Content-Type` of `application/json`. If the response isn't in JSON format, content validation throws a <xref:System.NotSupportedException>.
@@ -210,8 +306,7 @@ To allow other sites to make cross-origin resource sharing (CORS) requests to yo
 
 ## Additional resources
 
-* <xref:security/blazor/webassembly/index>
-* <xref:security/blazor/webassembly/additional-scenarios>
+* <xref:security/blazor/webassembly/additional-scenarios> &ndash; Includes coverage on using `HttpClient` to make secure web API requests.
 * <xref:fundamentals/http-requests>
 * <xref:security/enforcing-ssl>
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration)
