@@ -84,7 +84,8 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Blazor Server is supported in Visual Studio for Mac. Blazor WebAssembly isn't supported at this time. To create Blazor WebAssembly apps on macOS, follow the guidance on the **.NET Core CLI** tab. For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
+> [!NOTE]
+> Blazor Server is supported in Visual Studio for Mac. Blazor WebAssembly isn't supported at this time, but a Blazor WebAssembly app can be created with the preview version of Visual Studio for Mac.
 
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
@@ -107,7 +108,7 @@ Blazor Server is supported in Visual Studio for Mac. Blazor WebAssembly isn't su
 
    * Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Debugging isn't supported at this time.
 
-   In the preview of Visual Studio for Mac version 8.6:
+   In the preview of Visual Studio for Mac version 8.6, which uses the [Preview channel](/visualstudio/mac/update):
 
    * Select **File** > **New Solution** or create a **New** project from the **Start Window**.
 
@@ -128,7 +129,7 @@ Blazor Server is supported in Visual Studio for Mac. Blazor WebAssembly isn't su
 
    * Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Run** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
-If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
+   If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
