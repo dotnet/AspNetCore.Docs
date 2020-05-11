@@ -12,7 +12,7 @@ uid: fundamentals/logging/index
 
 ::: moniker range=">= aspnetcore-3.0"
 
-By [Kirk Larkin](https://twitter.com/serpent5), [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), and [Steve Smith](https://ardalis.com/)
+By [Kirk Larkin](https://twitter.com/serpent5), [Juergen Gutsch](https://github.com/JuergenGutsch) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 .NET Core supports a logging API that works with a variety of built-in and third-party logging providers. This article shows how to use the logging API with built-in providers.
 
