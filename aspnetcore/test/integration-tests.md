@@ -665,7 +665,7 @@ For more information on `WebApplicationFactoryClientOptions`, see the [Client op
 By default, the SUT's host and app environment is configured to use the Development environment. To override the SUT's environment:
 
 * Set the `ASPNETCORE_ENVIRONMENT` environment variable (for example, `Staging`, `Production`, or other custom value, such as `Testing`).
-* Override `CreateWebHostBuilder` in the test app to read environment variables prefixed with `ASPNETCORE`.
+* Override `CreateWebHostBuilder` in the test app to read the `ASPNETCORE_ENVIRONMENT` environment variable.
 
 ```csharp
 public class CustomWebApplicationFactory<TStartup> 
