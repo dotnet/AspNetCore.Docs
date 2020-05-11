@@ -89,9 +89,7 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 
   ![macOS New solution](./start-mvc/_static/new_project_vsmac.png)
 
-* Select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**.
-
-  ![macOS New project dialog](./start-mvc/_static/new_project_mvc_vsmac.png)
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next** from the sidebar. In version 8.6 or later, select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Next** from the sidebar.
 
 * In the **Configure your new ASP.NET Core Web API** dialog, set the  **Target Framework** of **.NET Core 3.1**.
 
@@ -237,9 +235,7 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 
   ![macOS New solution](./start-mvc/_static/new_project_vsmac.png)
 
-* Select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**.
-
-  ![macOS New project dialog](./start-mvc/_static/new_project_mvc_vsmac.png)
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next** from the sidebar. In version 8.6 or later, select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Next** from the sidebar.
 
 * In the **Configure your new ASP.NET Core Web API** dialog, accept the default **Target Framework** of **.NET Core 2.2**.
 

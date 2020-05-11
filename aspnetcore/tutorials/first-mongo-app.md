@@ -174,7 +174,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Go to **File** > **New Solution** > **.NET Core** > **App**.
+1. In Visual Studio for Mac earlier than version 8.6, select **File** > **New Solution** > **.NET Core** > **App** from the sidebar. In version 8.6 or later, select **File** > **New Solution** > **Web and Console** > **App** from the sidebar.
 1. Select the **ASP.NET Core Web API** C# project template, and select **Next**.
 1. Select **.NET Core 3.0** from the **Target Framework** drop-down list, and select **Next**.
 1. Enter *BooksApi* for the **Project Name**, and select **Create**.
@@ -524,7 +524,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Go to **File** > **New Solution** > **.NET Core** > **App**.
+1. In Visual Studio for Mac earlier than version 8.6, select **File** > **New Solution** > **.NET Core** > **App** from the sidebar. In version 8.6 or later, select **File** > **New Solution** > **Web and Console** > **App** from the sidebar.
 1. Select the **ASP.NET Core Web API** C# project template, and select **Next**.
 1. Select **.NET Core 2.2** from the **Target Framework** drop-down list, and select **Next**.
 1. Enter *BooksApi* for the **Project Name**, and select **Create**.

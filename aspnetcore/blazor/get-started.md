@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/02/2020
+ms.date: 05/11/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/get-started
 ---
@@ -88,45 +88,45 @@ Blazor Server is supported in Visual Studio for Mac. Blazor WebAssembly isn't su
 
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+1. In Visual Studio for Mac versions prior to 8.6:
 
-1. In the sidebar, select **.NET Core** > **App**.
+   * Select **File** > **New Solution** or create a **New** project from the **Start Window**.
 
-1. Select the **Blazor Server App** template. Select **Next**.
+   * In the sidebar, select **.NET Core** > **App**.
 
-1. Confirm the following configurations:
+   * Select the **Blazor Server App** template. Select **Next**.
 
-   * **Target Framework** set to **.NET Core 3.1**.
-   * **Authentication** set to **No Authentication**.
+   * Confirm the following configurations:
+
+     * **Target Framework** set to **.NET Core 3.1**.
+     * **Authentication** set to **No Authentication**.
    
-   Select **Next**.
+     Select **Next**.
 
-1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
+   * In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
 
-1. Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Debugging isn't supported at this time.
+   * Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Debugging isn't supported at this time.
 
-<!-- HOLD FOR 8.6 GA
+   In the preview of Visual Studio for Mac version 8.6:
 
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+   * Select **File** > **New Solution** or create a **New** project from the **Start Window**.
 
-1. In the sidebar, select **Web and Console** > **App**.
+   * In the sidebar, select **Web and Console** > **App**.
 
-1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
+   * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
 
-   For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
+     For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Confirm the following configurations:
+   * Confirm the following configurations:
 
-   * **Target Framework** set to **.NET Core 3.1**.
-   * **Authentication** set to **No Authentication**.
+     * **Target Framework** set to **.NET Core 3.1**.
+     * **Authentication** set to **No Authentication**.
    
-   Select **Next**.
+     Select **Next**.
 
-1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
+   * In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
 
-1. Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Run** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
-
--->
+   * Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Run** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
