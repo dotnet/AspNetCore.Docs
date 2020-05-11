@@ -50,19 +50,18 @@ Typically, a component's namespace is derived from the app's root namespace and 
 * The `Counter` component's namespace is `BlazorApp.Pages`.
 * The fully qualified type name of the component is `BlazorApp.Pages.Counter`.
 
-Outside of the *Pages* and *Shared* folders, a component's namespace is formed from its path in the project. To consume a component in a custom folder:
-
-* Add the component's namespace to the parent component.
-* Add the component's namespace the app's *_Imports.razor* file.
-* Use the fully-qualified component reference.
-
-For example, the following namespace makes components in the *Components* folder available when the app's root namespace is `BlazorApp`:
+Outside of the *Pages* and *Shared* folders, a component's namespace is formed from its path in the project. For example, the following namespace makes components in the *Components* folder available when the app's root namespace is `BlazorApp`:
 
 ```razor
 @using BlazorApp.Components
 ```
 
-For a component named `MyCoolComponent` in the *Components* folder, the component can be directly referenced:
+Add the component's namespace:
+
+* To the parent component.
+* The app's *_Imports.razor* file.
+
+Alternatively, a component can be directly referenced:
 
 ```razor
 <BlazorApp.Components.MyCoolComponent />
