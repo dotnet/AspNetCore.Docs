@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/08/2020
+ms.date: 05/11/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/additional-scenarios
 ---
@@ -49,21 +49,23 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-builder.Services.AddHttpClient("BlazorWithIdentityApp1.ServerAPI", 
+builder.Services.AddHttpClient("BlazorWithIdentity.ServerAPI", 
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
         .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("BlazorWithIdentityApp1.ServerAPI"));
+    .CreateClient("BlazorWithIdentity.ServerAPI"));
 ```
 
 Where the client is created with `CreateClient` in the preceding example, the <xref:System.Net.Http.HttpClient> is supplied instances that include access tokens when making requests to the server project.
 
-The configured <xref:System.Net.Http.HttpClient> is then used to make authorized requests using a simple `try-catch` pattern. The following `FetchData` component requests weather forecast data:
+The configured <xref:System.Net.Http.HttpClient> is then used to make authorized requests using a simple `try-catch` pattern.
+
+`FetchData` component (*Pages/FetchData.razor*):
 
 ```csharp
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@inject HttpClient Http
+@inject HttpClient Client
 
 ...
 
@@ -72,7 +74,7 @@ protected override async Task OnInitializedAsync()
     try
     {
         forecasts = 
-            await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+            await Client.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
     }
     catch (AccessTokenNotAvailableException exception)
     {
@@ -81,37 +83,36 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Alternatively, you can define a typed client that handles all of the HTTP and token acquisition concerns within a single class:
+## Typed HttpClient
 
-*WeatherClient.cs*:
+A typed client can be defined that handles all of the HTTP and token acquisition concerns within a single class.
+
+*WeatherForecastClient.cs*:
 
 ```csharp
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using static {APP ASSEMBLY}.Data;
 
-public class WeatherClient
+public class WeatherForecastClient
 {
-    private readonly HttpClient httpClient;
+    private readonly HttpClient client;
  
-    public WeatherClient(HttpClient httpClient)
+    public WeatherForecastClient(HttpClient client)
     {
-        this.httpClient = httpClient;
+        this.client = client;
     }
  
-    public async Task<IEnumerable<WeatherForecast>> GetWeatherForeacasts()
+    public async Task<WeatherForecast[]> GetForecastAsync()
     {
-        IEnumerable<WeatherForecast> forecasts = new WeatherForecast[0];
+        var forecasts = new WeatherForecast[0];
 
         try
         {
-            forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>(
+            forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
                 "WeatherForecast");
-
-            ...
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -123,7 +124,7 @@ public class WeatherClient
 }
 ```
 
-*Program.cs*:
+`Program.Main` (*Program.cs*):
 
 ```csharp
 using System.Net.Http;
@@ -131,29 +132,80 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-builder.Services.AddHttpClient<WeatherClient>(
+builder.Services.AddHttpClient<WeatherForecastClient>(
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 ```
 
-*FetchData.razor*:
+`FetchData` component (*Pages/FetchData.razor*):
 
 ```razor
-@inject WeatherClient WeatherClient
+@inject WeatherForecastClient Client
 
 ...
 
 protected override async Task OnInitializedAsync()
 {
-    forecasts = await WeatherClient.GetWeatherForeacasts();
+    forecasts = await Client.GetForecastAsync();
 }
 ```
+
+## Configure the HttpClient handler
+
+The handler can be further configured with <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> for outbound HTTP requests.
+
+`Program.Main` (*Program.cs*):
+
+```csharp
+builder.Services.AddHttpClient<WeatherForecastClient>(client => client.BaseAddress = new Uri("https://www.example.com/base"))
+    .AddHttpMessageHandler(sp => sp.GetRequiredService<AuthorizationMessageHandler>()
+    .ConfigureHandler(new [] { "https://www.example.com/base" },
+        scopes: new[] { "example.read", "example.write" }));
+```
+
+## Insecure web API requests in an app with a secure default client
+
+If the Blazor WebAssembly app ordinarily uses a secure default <xref:System.Net.Http.HttpClient>, the app can also make insecure web API requests by configuring a named <xref:System.Net.Http.HttpClient>:
+
+`Program.Main` (*Program.cs*):
+
+```csharp
+builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient", 
+    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+```
+
+The preceding registration is in addition to the existing secure default <xref:System.Net.Http.HttpClient> registration.
+
+A component creates the <xref:System.Net.Http.HttpClient> from the <xref:System.Net.Http.IHttpClientFactory> to make insecure requests:
+
+```razor
+@inject IHttpClientFactory ClientFactory
+
+...
+
+@code {
+    private WeatherForecast[] forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var client = ClientFactory.CreateClient("ServerAPI.NoAuthenticationClient");
+
+        forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
+            "WeatherForecastNoAuthentication");
+    }
+}
+```
+
+> [!NOTE]
+> The controller in the server API, `WeatherForecastNoAuthenticationController` for the preceding example, isn't marked with the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute.
 
 ## Request additional access tokens
 
 Access tokens can be manually obtained by calling `IAccessTokenProvider.RequestAccessToken`.
 
-In the following example, additional Azure Active Directory (AAD) Microsoft Graph API scopes are required by an app to read user data and send mail. After adding the Microsoft Graph API permissions in the Azure AAD portal, the additional scopes are configured in the Client app (`Program.Main`, *Program.cs*):
+In the following example, additional Azure Active Directory (AAD) Microsoft Graph API scopes are required by an app to read user data and send mail. After adding the Microsoft Graph API permissions in the Azure AAD portal, the additional scopes are configured in the Client app.
+
+`Program.Main` (*Program.cs*):
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -167,9 +219,11 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-The `IAccessTokenProvider.RequestToken` method provides an overload that allows an app to provision an access token with a given set of scopes, as seen in the following example:
+The `IAccessTokenProvider.RequestToken` method provides an overload that allows an app to provision an access token with a given set of scopes.
 
-```csharp
+In a Razor component:
+
+```razor
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject IAccessTokenProvider TokenProvider
 
@@ -195,7 +249,7 @@ if (tokenResult.TryGetToken(out var token))
 
 ## HttpClient and HttpRequestMessage with Fetch API request options
 
-When running on WebAssembly in a Blazor WebAssembly app, [HttpClient](xref:fundamentals/http-requests) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following example makes a `POST` request to a To Do List API endpoint on the server and shows the response body:
+When running on WebAssembly in a Blazor WebAssembly app, [HttpClient](xref:fundamentals/http-requests) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following component makes a `POST` request to a To Do List API endpoint on the server and shows the response body:
 
 ```razor
 @page "/todorequest"
