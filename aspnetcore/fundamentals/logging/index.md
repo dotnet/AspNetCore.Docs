@@ -178,15 +178,15 @@ To explicitly specify the category, call `ILoggerFactory.CreateLogger`:
 
 The following table lists the <xref:Microsoft.Extensions.Logging.LogLevel> values, the convenience `Log{LogLevel}` extension method, and the suggested usage:
 
-| LogLevel  | Value |  Method | Description |
-| -------- | --------- | ------------ | ----- |
-| [Trace](xref:Microsoft.Extensions.Logging.LogLevel) | 0 | [LogTrace](/dotnet/api/microsoft.extensions.logging.loggerextensions.logtrace)  | Contain the most detailed messages. These messages may contain sensitive app data. These messages are disabled by default and should ***not*** be enabled in production. |
-| [Debug](xref:Microsoft.Extensions.Logging.LogLevel) | 1 | [LogDebug](/dotnet/api/microsoft.extensions.logging.loggerextensions.logdebug)  | For debugging and development. Use with caution in production due to the high volume. |
-| [Information](xref:Microsoft.Extensions.Logging.LogLevel) | 2 | [LogInformation](/dotnet/api/microsoft.extensions.logging.loggerextensions.loginformation)  | Tracks the general flow of the app. May have long-term value. |
-| [Warning](xref:Microsoft.Extensions.Logging.LogLevel) | 3 | [LogWarning](/dotnet/api/microsoft.extensions.logging.loggerextensions.logwarning)  | For abnormal or unexpected events. Typically includes errors or conditions that don't cause the app to fail.  |
-| [Error](xref:Microsoft.Extensions.Logging.LogLevel) | 4 | [LogError](/dotnet/api/microsoft.extensions.logging.loggerextensions.logerror)  | For errors and exceptions that cannot be handled. These messages indicate a failure in the current operation or request, not an app-wide failure. |
-| [Critical](xref:Microsoft.Extensions.Logging.LogLevel) | 5| [LogCritical](/dotnet/api/microsoft.extensions.logging.loggerextensions.logcritical)  | For failures that require immediate attention. Examples: data loss scenarios, out of disk space. |
-| [None](xref:Microsoft.Extensions.Logging.LogLevel) | 6|  N/A | Specifies that a logging category should not write any messages. |
+| LogLevel | Value | Method | Description |
+| -------- | ----- | ------ | ----------- |
+| [Trace](xref:Microsoft.Extensions.Logging.LogLevel) | 0 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogTrace%2A> | Contain the most detailed messages. These messages may contain sensitive app data. These messages are disabled by default and should ***not*** be enabled in production. |
+| [Debug](xref:Microsoft.Extensions.Logging.LogLevel) | 1 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogDebug%2A> | For debugging and development. Use with caution in production due to the high volume. |
+| [Information](xref:Microsoft.Extensions.Logging.LogLevel) | 2 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> | Tracks the general flow of the app. May have long-term value. |
+| [Warning](xref:Microsoft.Extensions.Logging.LogLevel) | 3 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> | For abnormal or unexpected events. Typically includes errors or conditions that don't cause the app to fail. |
+| [Error](xref:Microsoft.Extensions.Logging.LogLevel) | 4 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A> | For errors and exceptions that cannot be handled. These messages indicate a failure in the current operation or request, not an app-wide failure. |
+| [Critical](xref:Microsoft.Extensions.Logging.LogLevel) | 5 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogCritical%2A> | For failures that require immediate attention. Examples: data loss scenarios, out of disk space. |
+| [None](xref:Microsoft.Extensions.Logging.LogLevel) | 6 | | Specifies that a logging category should not write any messages. |
 
 In the previous table, the `LogLevel` is listed from lowest to highest severity.
 
