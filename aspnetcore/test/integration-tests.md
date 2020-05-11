@@ -320,22 +320,6 @@ public class CustomWebApplicationFactory<TStartup>
 }
 ```
 
-The environment can also be set directly on the host builder in a custom <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>:
-
-```csharp
-public class CustomWebApplicationFactory<TStartup> 
-    : WebApplicationFactory<TStartup> where TStartup: class
-{
-    protected override void ConfigureWebHost(IWebHostBuilder builder)
-    {
-        builder.UseEnvironment(
-            Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
-
-        ...
-    }
-}
-```
-
 ## How the test infrastructure infers the app content root path
 
 The `WebApplicationFactory` constructor infers the app [content root](xref:fundamentals/index#content-root) path by searching for a [WebApplicationFactoryContentRootAttribute](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) on the assembly containing the integration tests with a key equal to the `TEntryPoint` assembly `System.Reflection.Assembly.FullName`. In case an attribute with the correct key isn't found, `WebApplicationFactory` falls back to searching for a solution file (*.sln*) and appends the `TEntryPoint` assembly name to the solution directory. The app root directory (the content root path) is used to discover views and content files.
