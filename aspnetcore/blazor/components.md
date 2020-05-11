@@ -50,13 +50,13 @@ Typically, a component's namespace is derived from the app's root namespace and 
 * The `Counter` component's namespace is `BlazorApp.Pages`.
 * The fully qualified type name of the component is `BlazorApp.Pages.Counter`.
 
-For more information, see the [Import components](#import-components) section.
-
-To use a custom folder, add the custom folder's namespace to either the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `BlazorApp`:
+To consume components from folders other than *Pages* and *Shared*, add the folder's namespace to either the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in the *Components* folder available when the app's root namespace is `BlazorApp`:
 
 ```razor
 @using BlazorApp.Components
 ```
+
+For more information, see the [Import components](#import-components) section.
 
 ## Static assets
 
