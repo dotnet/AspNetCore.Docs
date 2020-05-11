@@ -235,7 +235,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 ![macOS New solution](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application** > **Next** from the sidebar. In version 8.6 or later, select **Web and Console** > **App** > **Web Application** > **Next** from the sidebar.
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application** > **Next**.
 
 * In the **Configure your new ASP.NET Core Web API** dialog, set the  **Target Framework** to **.NET Core 3.1**.
 

@@ -576,7 +576,7 @@ The following diagram shows the design of the app.
 
   ![macOS New solution](first-web-api-mac/_static/sln.png)
 
-* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next** from the sidebar. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next** from the sidebar.
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
   
 * In the **Configure your new ASP.NET Core Web API** dialog, accept the default **Target Framework** of **.NET Core 2.2*.
 
