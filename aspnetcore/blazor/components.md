@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/21/2020
+ms.date: 05/11/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components
 ---
@@ -50,13 +50,19 @@ Typically, a component's namespace is derived from the app's root namespace and 
 * The `Counter` component's namespace is `BlazorApp.Pages`.
 * The fully qualified type name of the component is `BlazorApp.Pages.Counter`.
 
-For more information, see the [Import components](#import-components) section.
-
-To use a custom folder, add the custom folder's namespace to either the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `BlazorApp`:
+For custom folders that hold components, add a `using` statement to the parent component or to the app's *_Imports.razor* file. The following example makes components in the *Components* folder available:
 
 ```razor
 @using BlazorApp.Components
 ```
+
+Alternatively, a component can be directly referenced:
+
+```razor
+<BlazorApp.Components.MyCoolComponent />
+```
+
+For more information, see the [Import components](#import-components) section.
 
 ## Static assets
 
@@ -306,9 +312,11 @@ While capturing component references use a similar syntax to [capturing element 
 
 ## Invoke component methods externally to update state
 
-Blazor uses a `SynchronizationContext` to enforce a single logical thread of execution. A component's [lifecycle methods](xref:blazor/lifecycle) and any event callbacks that are raised by Blazor are executed on this `SynchronizationContext`. In the event a component must be updated based on an external event, such as a timer or other notifications, use the `InvokeAsync` method, which will dispatch to Blazor's `SynchronizationContext`.
+Blazor uses a synchronization context (`SynchronizationContext`) to enforce a single logical thread of execution. A component's [lifecycle methods](xref:blazor/lifecycle) and any event callbacks that are raised by Blazor are executed on the synchronization context.
 
-For example, consider a *notifier service* that can notify any listening component of the updated state:
+Blazor Server's synchronization context attempts to emulate a single-threaded environment so that it closely matches the WebAssembly model in the browser, which is single threaded. At any given point in time, work is performed on exactly one thread, giving the impression of a single logical thread. No two operations execute concurrently.
+
+In the event a component must be updated based on an external event, such as a timer or other notifications, use the `InvokeAsync` method, which will dispatch to Blazor's synchronization context. For example, consider a *notifier service* that can notify any listening component of the updated state:
 
 ```csharp
 public class NotifierService
@@ -373,7 +381,7 @@ Use the `NotifierService` to update a component:
 }
 ```
 
-In the preceding example, `NotifierService` invokes the component's `OnNotify` method outside of Blazor's `SynchronizationContext`. `InvokeAsync` is used to switch to the correct context and queue a render.
+In the preceding example, `NotifierService` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and queue a render.
 
 ## Use \@key to control the preservation of elements and components
 
