@@ -357,7 +357,6 @@ Terms:
 
 ::: moniker-end
 
-
 ::: moniker range="< aspnetcore-3.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
