@@ -146,6 +146,8 @@ Browser source maps allow the browser to map compiled files back to their origin
 
 ## Troubleshoot
 
-If you're running into errors, the following tip may help:
+If you're running into errors, the following tips may help:
 
 In the **Debugger** tab, open the developer tools in your browser. In the console, execute `localStorage.clear()` to remove any breakpoints.
+
+If you are using the new Edge, you, and you do not get breakpoints working on `https://localhost:5001/`, try browsing to `http://localhost:5000/`, and then you should be able to access the breakpoints.
